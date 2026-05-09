@@ -19,6 +19,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { Typography } from '../utils/Theme';
 import NeoCard from '../components/NeoCard';
 import { H2, H3, Body, Small } from '../components/NeoTypography';
 import { EPI_DOMESTICO } from '../data/epi_domestico';

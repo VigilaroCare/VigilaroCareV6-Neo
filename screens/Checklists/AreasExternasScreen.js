@@ -6,6 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { Typography } from '../../utils/Theme';
 import { areasExternas } from '../../data/areas_externas';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
