@@ -1,3 +1,4 @@
+import { Typography, Spacing, Colors, Shadows } from '../../utils/Theme';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar, FlatList } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';

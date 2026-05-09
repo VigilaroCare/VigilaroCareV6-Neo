@@ -1,3 +1,4 @@
+import { Typography, Spacing, Colors, Shadows } from '../../utils/Theme';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
