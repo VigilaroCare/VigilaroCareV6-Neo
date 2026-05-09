@@ -270,11 +270,11 @@ export default function AreasExternasScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.background,
+        backgroundColor: Neo.colors.neutral[50],
     },
     header: {
-        paddingHorizontal: Spacing.lg,
-        paddingBottom: Spacing.xl,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingBottom: Neo.spacing.xl,
         borderBottomLeftRadius: 24,
         borderBottomRightRadius: 24,
         ...Neo.shadows.md,

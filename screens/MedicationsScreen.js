@@ -483,7 +483,7 @@ export default function MedicationsScreen({ navigation }) {
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                             <Text style={styles.modalTitle}>{t('medications.doseHistory')}</Text>
                             <TouchableOpacity onPress={() => setHistoryVisible(false)}>
-                                <NeoIcon name="CloseSquare" size={24} color={Colors.textSecondary} />
+                                <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[500]} />
                             </TouchableOpacity>
                         </View>
 

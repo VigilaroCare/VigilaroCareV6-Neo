@@ -426,8 +426,8 @@ export default function AreasInternasScreen({ navigation, route }) {
                       {
                         color:
                           alerta.tipo === 'warning'
-                            ? Colors.warning
-                            : Colors.error,
+                            ? Neo.colors.feedback.warning
+                            : Neo.colors.feedback.error,
                       },
                     ]}
                   >
