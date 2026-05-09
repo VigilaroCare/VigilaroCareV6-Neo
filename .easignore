@@ -1,0 +1,34 @@
+node_modules/
+.expo/
+.expo-shared/
+android/
+ios/
+dist/
+.vscode/
+.idea/
+.git/
+.agent/
+Plantas/
+assets/LogoVigilaroCare/
+assets/createBundleReleaseJsAndAssets/
+
+# Arquivos legados e lixo
+_legacy/
+tmp_*
+fix_encoding.ps1
+components/componentsPerfilForm.js.txt
+data/casosReais.json
+data/areas_externas.js.bak
+data/areas_internas.js.bak
+
+# Extensões irrelevantes para build
+*.log
+*.cdr
+*.pdf
+*.docx
+*.md
+*.txt
+*.html
+*.py
+*.ps1
+*.bak

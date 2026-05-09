@@ -1,0 +1,92 @@
+{
+  "expo": {
+    "name": "Vigilaro Audit",
+    "slug": "vigilaro-care-audit",
+    "scheme": "vigilarocare",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/logo_vigilaro.png",
+    "splash": {
+      "image": "./assets/logo_vigilaro.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo_vigilaro.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.agnaldoaf.vigilarocare",
+      "versionCode": 3,
+      "blockedPermissions": [
+        "android.permission.READ_PHONE_STATE",
+        "android.permission.SYSTEM_ALERT_WINDOW"
+      ],
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "RECORD_AUDIO",
+        "READ_MEDIA_IMAGES",
+        "VIBRATE",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION"
+      ],
+      "navigationBar": {
+        "backgroundColor": "#FFFFFF",
+        "barStyle": "dark-content"
+      },
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.agnaldoaf.vigilarocare",
+      "buildNumber": "3",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "location"
+        ],
+        "NSCameraUsageDescription": "O Vigilaro precisa da câmera para escanear produtos e identificar riscos domésticos.",
+        "NSMicrophoneUsageDescription": "O Vigilaro precisa do microfone para o monitoramento de áudio ambiente por segurança.",
+        "NSPhotoLibraryUsageDescription": "Precisamos acessar suas fotos para analisar imagens de possíveis riscos domésticos.",
+        "NSLocationWhenInUseUsageDescription": "Usamos sua localização para exibir alertas de segurança relevantes para a sua região.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "O Vigilaro monitora a localização em segundo plano para alertar quando familiares – especialmente crianças e idosos – saem de zonas seguras como casa ou escola (Geofencing).",
+        "NSMotionUsageDescription": "O Vigilaro usa o sensor de movimento do dispositivo para detectar quedas e acionar alertas de emergência automaticamente."
+      }
+    },
+    "web": {
+      "favicon": "./assets/logo_vigilaro.png"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font",
+      "expo-location",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/logo_vigilaro.png",
+          "color": "#FFFFFF",
+          "sounds": []
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "image": "./assets/logo_vigilaro.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ],
+      "@react-native-community/datetimepicker",
+      "expo-audio",
+      "expo-video",
+      "expo-localization"
+    ]
+  }
+}

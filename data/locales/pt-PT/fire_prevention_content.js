@@ -1,0 +1,81 @@
+export const firePreventionContentPTPT = {
+    concepts: {
+        title: 'Teoria do Fogo',
+        emoji: '🔥',
+        sections: [
+            {
+                title: 'O que é o Fogo?',
+                content: 'O fogo é uma reação química de oxidação exotérmica (liberta calor), que gera luz e gases. Para que exista, é necessária a união de quatro elementos essenciais, formando o "Tetraedro do Fogo".'
+            },
+            {
+                title: 'O Tetraedro do Fogo',
+                content: 'Antigamente falava-se em triângulo, mas hoje sabemos que são 4 elementos:\n\n1. Combustível: O material que arde (sólido, líquido ou gasoso).\n2. Comburente: O elemento que alimenta o fogo (geralmente o Oxigénio do ar).\n3. Calor: A energia que inicia a reação.\n4. Reação em Cadeia: O processo que torna a combustão autossustentável.\n\nSe retirar QUALQUER um destes 4 elementos, o fogo apaga-se.'
+            },
+            {
+                title: 'Métodos de Propagação',
+                content: 'O calor pode espalhar-se de três formas:\n\n• Condução: Transferência de calor através de um corpo sólido, de molécula a molécula. Ex: Uma colher de metal a aquecer na panela.\n\n• Convecção: Movimentação de massas de ar ou líquido aquecidas. O ar quente sobe e o frio desce. É assim que o fogo se espalha para os andares superiores.\n\n• Irradiação: Ondas de calor que viajam pelo espaço, sem necessidade de contacto material. É o calor que sente ao ficar perto de uma fogueira.'
+            },
+            {
+                title: 'Classes de Incêndio',
+                content: 'Saber a classe é vital para escolher o extintor correto:\n\n• Classe A (Sólidos): Papel, madeira, tecido. Deixam cinzas. Apaga-se com Água ou Pó Químico.\n\n• Classe B (Líquidos Inflamáveis): Gasolina, álcool, cera. NÃO use água! Apaga-se por abafamento (Pó Químico ou CO2).\n\n• Classe C (Elétricos): Equipamentos ligados à tomada. NÃO use água (risco de choque)! Use CO2 ou Pó Químico.\n\n• Classe F (Cozinha - K em alguns sistemas): Óleos e gorduras em fritadeiras. Requer extintores especiais ou abafamento com tampa.'
+            },
+            {
+                title: 'Fases do Fogo',
+                content: '1. Fase Inicial: O fogo começa pequeno. É o momento ideal para usar um extintor.\n2. Combustão Livre: O fogo cresce, a temperatura sobe rapidamente e o oxigénio é consumido.\n3. Combustão Lenta: O oxigénio diminui, mas o calor é intenso. Cuidado: abrir uma porta agora pode causar uma explosão de fumo (Backdraft).'
+            }
+        ]
+    },
+    prevention: {
+        title: 'Prevenção em Casa',
+        emoji: '🛡️',
+        sections: [
+            {
+                title: 'Cozinha (Área Crítica)',
+                content: '• Jamais deixe panelas ao lume sem supervisão.\n• Use um temporizador se precisar de sair.\n• Cabos das panelas virados para dentro.\n• Fogo em óleo? NÃO DEITE ÁGUA. Desligue e abafe com uma tampa.'
+            },
+            {
+                title: 'Elétrica',
+                content: '• Evite usar triplas e sobrecargas elétricas.\n• Fios descarnados ou quentes? Chame um eletricista.\n• Desligue os equipamentos da tomada em tempestades.'
+            },
+            {
+                title: 'Inflamáveis',
+                content: '• Álcool, gasolina e solventes longe do calor.\n• Armazene em local ventilado.\n• Nunca deite no esgoto (risco de explosão).'
+            },
+            {
+                title: 'Velas e Cigarros',
+                content: '• Velas sempre em suporte firme e longe de cortinas.\n• Apague ao sair da divisão.\n• Fumadores: cuidado com o sono e com as beatas.'
+            }
+        ]
+    },
+    electricalAppliances: {
+        title: 'Eletrodomésticos e Incêndio',
+        emoji: '🔌',
+        sections: [
+            {
+                title: 'Classe F (K) - Cozinha',
+                content: 'Incêndios envolvendo óleo e gordura em fritadeiras, grelhadores e assadeiras. NUNCA use água, pois causa uma explosão de vapor e espalha o fogo. O correto é desligar a fonte de calor e abafar com uma tampa ou usar um extintor apropriado.'
+            },
+            {
+                title: 'Equipamentos de Alta Potência',
+                content: 'Ar-condicionado, aquecedores, fornos elétricos e micro-ondas exigem muita energia. NUNCA utilize extensões ou triplas para estes aparelhos, pois podem derreter e iniciar um incêndio.'
+            },
+            {
+                title: 'Fontes de Calor',
+                content: 'Ferros de engomar, alisadores de cabelo e aquecedores portáteis são causas frequentes de fogo. Nunca os deixe ligados sem supervisão e mantenha-os longe de materiais combustíveis (roupa, cortinas, sofás).'
+            }
+        ]
+    },
+    action: {
+        title: 'Em Caso de Incêndio',
+        emoji: '🚨',
+        steps: [
+            'SAIA IMEDIATAMENTE. A vida é a prioridade.',
+            'Se houver fumo, rasteje (o ar limpo fica mais abaixo).',
+            'Toque na porta antes de abrir. Se estiver quente, não abra.',
+            'Feche as portas atrás de si para retardar o fogo.',
+            'Ligue 112 (Bombeiros) de um local seguro.',
+            'NUNCA volte para trás para ir buscar objetos.',
+            'Se a sua roupa pegar fogo: PARE, DEITE-SE e ROLE.'
+        ]
+    }
+};
