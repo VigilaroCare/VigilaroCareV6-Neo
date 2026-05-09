@@ -1,4 +1,3 @@
-import { Typography, Spacing, Colors, Shadows } from '../utils/Theme';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,7 +16,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { Colors, Spacing, Typography, BorderRadius, Shadows, Components } from '../utils/Theme';
 import { eletrodomesticosSeguranca } from '../data/eletrodomesticos_seguranca';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {

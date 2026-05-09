@@ -1,11 +1,10 @@
-import { Typography, Spacing, Colors, Shadows } from '../utils/Theme';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { Spacing, Typography, BorderRadius, Shadows, Colors, Components } from '../utils/Theme';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 

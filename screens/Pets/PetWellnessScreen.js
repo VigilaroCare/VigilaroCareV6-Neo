@@ -1,11 +1,10 @@
-import { Typography, Spacing, Colors, Shadows } from '../../utils/Theme';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar, FlatList } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../../utils/Theme';
+import { Colors, Spacing, Typography, BorderRadius, Shadows, Components } from '../../utils/Theme';
 import { PET_WELLNESS_DATA } from '../../data/pet_wellness_data';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
