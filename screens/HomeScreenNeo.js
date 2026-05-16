@@ -216,11 +216,8 @@ export default function HomeScreenNeo() {
         },
     ];
 
-    const CHIP_ITEMS = [
-        // 'relatorios' removido: duplica destino do card Vistorias no grid acima
-        // 'briefing' removido a pedido do usuário (acessível por outras rotas)
-        { key: 'historico',  label: t('home.recent', 'Histórico'),    Icon: Activity,     route: 'RecentActivity' },
-    ];
+    // CHIP_ITEMS removidos: a row de chips com 1 só elemento ficava órfã.
+    // Histórico agora é um link discreto à direita das Ferramentas (mais abaixo).
 
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
@@ -435,21 +432,22 @@ export default function HomeScreenNeo() {
                         </TouchableOpacity>
                     </View>
 
-                    {/* ───── ABSORÇÃO 3: CHIPS SECUNDÁRIOS ─────
-                        Hubs extras acessíveis sem inchar o grid principal. */}
-                    <View style={s.chipsRow}>
-                        {CHIP_ITEMS.map(chip => (
-                            <TouchableOpacity
-                                key={chip.key}
-                                onPress={() => navigateWithHaptic(chip.route)}
-                                activeOpacity={0.7}
-                                style={s.chip}
-                            >
-                                <chip.Icon size={14} color={Neo.colors.neutral[600]} variant="Linear" />
-                                <Text style={s.chipLabel}>{chip.label}</Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
+                    {/* ───── LINK DISCRETO PARA HISTÓRICO ─────
+                        Acesso secundário ao log de atividades. Subtle por design:
+                        não compete com Ferramentas/Acesso Rápido e não desperdiça
+                        espaço como um card isolado faria. */}
+                    <TouchableOpacity
+                        onPress={() => navigateWithHaptic('RecentActivity')}
+                        activeOpacity={0.6}
+                        style={s.historyLink}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                        <Activity size={13} color={Neo.colors.neutral[500]} variant="Linear" />
+                        <Text style={s.historyLinkText}>
+                            {t('home.viewHistory', 'Ver histórico de atividades')}
+                        </Text>
+                        <ArrowRight2 size={12} color={Neo.colors.neutral[500]} />
+                    </TouchableOpacity>
 
                 </ScrollView>
 
@@ -696,28 +694,21 @@ const s = StyleSheet.create({
         textAlign: 'center',
     },
 
-    // ── Chips secundários (Absorção 3) ──
-    chipsRow: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 8,
-        marginTop: 4,
-    },
-    chip: {
+    // ── Link discreto para Histórico ──
+    // Substitui a row de chips: subtle, alinhado à direita, não compete com
+    // os blocos principais. Padrão "secondary link" em vez de "tertiary card".
+    historyLink: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 12,
+        alignSelf: 'flex-end',
         paddingVertical: 6,
-        borderRadius: 14,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.06)',
+        paddingHorizontal: 4,
+        marginTop: 6,
+        gap: 5,
     },
-    chipLabel: {
-        fontSize: 11,
-        fontWeight: '700',
-        color: Neo.colors.neutral[700],
-        marginLeft: 5,
+    historyLinkText: {
+        fontSize: 11.5,
+        fontWeight: '600',
+        color: Neo.colors.neutral[600],
     },
 });
