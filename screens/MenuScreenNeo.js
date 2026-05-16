@@ -103,19 +103,20 @@ export default function MenuScreenNeo() {
     };
 
     // ── Seções ──
+    // Cores escolhidas para garantir alto contraste sobre o background verde-claro
+    // do AppBackground. Evitamos neutros (cinza-em-cinza) e amarelos pálidos.
     const sectionConta = [
-        // Premium card é renderizado fora do grid (recebe tratamento especial)
         {
             key: 'acessibilidade',
             IconComponent: Eye,
-            color: Neo.colors.primary[500],
+            color: '#10B981', // emerald — primary
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
         {
             key: 'idioma',
             IconComponent: LanguageSquare,
-            color: Neo.colors.primary[400] || Neo.colors.primary[500],
+            color: '#0EA5E9', // sky blue — secondary
             label: t('settings.language', 'Idioma'),
             action: () => setShowLangPicker(true),
         },
@@ -125,28 +126,28 @@ export default function MenuScreenNeo() {
         {
             key: 'suporte',
             IconComponent: MessageQuestion,
-            color: Neo.colors.feedback.warning,
+            color: '#F59E0B', // amber, mais visível que o yellow do DS
             label: t('menu.support'),
             action: () => Linking.openURL('mailto:suporte@vigilaro.com'),
         },
         {
             key: 'sobre',
             IconComponent: InfoCircle,
-            color: Neo.colors.neutral[500],
+            color: '#6366F1', // indigo — distinto dos outros, alto contraste
             label: t('menu.about'),
             action: () => navigateWithHaptic('Sobre'),
         },
         {
             key: 'termos',
             IconComponent: DocumentText,
-            color: Neo.colors.primary[600],
+            color: '#0891B2', // cyan/teal — alto contraste, profissional
             label: t('menu.terms'),
             action: () => navigateWithHaptic('TermsOfUse'),
         },
         {
             key: 'privacidade',
             IconComponent: Shield,
-            color: Neo.colors.neutral[800],
+            color: '#475569', // slate — protetor/sério mas com contraste suficiente
             label: t('menu.privacy'),
             action: () => navigateWithHaptic('PrivacyPolicy'),
         },
@@ -165,8 +166,8 @@ export default function MenuScreenNeo() {
             style={s.gridCell}
         >
             <NeoCard variant="elevated" style={s.gridCard}>
-                <View style={[s.gridIconCircle, { backgroundColor: item.color + '1A' }]}>
-                    <item.IconComponent size={26} color={item.color} variant="Bulk" />
+                <View style={[s.gridIconCircle, { backgroundColor: item.color + '33' }]}>
+                    <item.IconComponent size={26} color={item.color} variant="Bold" />
                 </View>
                 <Text style={s.gridLabel} numberOfLines={2}>
                     {item.label}
@@ -252,7 +253,6 @@ export default function MenuScreenNeo() {
                     </Text>
                     <View style={s.grid}>
                         {sectionConta.map(renderGridCard)}
-                        <View style={s.gridCell} />{/* placeholder pra alinhar (grid 3 col) */}
                     </View>
 
                     {/* SEÇÃO 2 — AJUDA & INFORMAÇÕES */}
@@ -261,9 +261,6 @@ export default function MenuScreenNeo() {
                     </Text>
                     <View style={s.grid}>
                         {sectionAjuda.map(renderGridCard)}
-                        {sectionAjuda.length % 3 === 1 && <View style={s.gridCell} />}
-                        {sectionAjuda.length % 3 === 1 && <View style={s.gridCell} />}
-                        {sectionAjuda.length % 3 === 2 && <View style={s.gridCell} />}
                     </View>
 
                     {/* DIVISOR + LINK DESTRUTIVO — visualmente quieto, isolado */}
@@ -397,7 +394,7 @@ const s = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        backgroundColor: 'rgba(16,185,129,0.12)',
+        backgroundColor: 'rgba(16,185,129,0.22)', // mais saturado para destacar
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -423,25 +420,24 @@ const s = StyleSheet.create({
         opacity: 0.85,
     },
 
-    // Grid 3 colunas
+    // Grid 2 colunas — uniforme, sem placeholders
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
         gap: 10,
     },
     gridCell: {
-        width: '31.5%',
-        aspectRatio: 0.95,
-        marginBottom: 8,
+        width: '48.5%',
+        aspectRatio: 1.6,
+        marginBottom: 4,
     },
     gridCard: {
         flex: 1,
         borderRadius: 18,
         paddingVertical: 14,
-        paddingHorizontal: 8,
+        paddingHorizontal: 14,
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
     },
     gridIconCircle: {
         width: 44,
@@ -449,14 +445,14 @@ const s = StyleSheet.create({
         borderRadius: 22,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 8,
+        marginRight: 12,
     },
     gridLabel: {
-        fontSize: 12,
+        flex: 1,
+        fontSize: 13,
         fontWeight: '800',
-        color: Neo.colors.neutral[800],
-        textAlign: 'center',
-        lineHeight: 15,
+        color: Neo.colors.neutral[900],
+        lineHeight: 16,
     },
 
     // Destrutivo + footer
