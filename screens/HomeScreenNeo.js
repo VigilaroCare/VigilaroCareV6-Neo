@@ -217,8 +217,8 @@ export default function HomeScreenNeo() {
     ];
 
     const CHIP_ITEMS = [
-        { key: 'relatorios', label: t('home.reports', 'Relatórios'), Icon: DocumentText, route: 'Relatorios' },
-        { key: 'briefing',   label: t('home.briefing', 'Briefing'),   Icon: InfoCircle,   route: 'SecretBriefing' },
+        // 'relatorios' removido: duplica destino do card Vistorias no grid acima
+        // 'briefing' removido a pedido do usuário (acessível por outras rotas)
         { key: 'historico',  label: t('home.recent', 'Histórico'),    Icon: Activity,     route: 'RecentActivity' },
     ];
 
@@ -281,7 +281,7 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 104,
+                        paddingBottom: 160, // acomoda altura do GlobalFloatingFooter para não cortar os chips
                         paddingTop: 2,
                     }}
                 >
@@ -636,10 +636,10 @@ const s = StyleSheet.create({
         height: 116,
         position: 'relative',
     },
-    gridCardAccent: {
-        borderWidth: 1.5,
-        borderColor: 'rgba(255,109,0,0.25)',
-    },
+    // gridCardAccent intencionalmente vazio — com o vidro jateado a borda extra
+    // virava "moldura sobrando". O destaque do card Eventuais agora vem só do
+    // ícone laranja + micro-status próprio.
+    gridCardAccent: {},
     gridIconCircle: {
         width: 48,
         height: 48,
