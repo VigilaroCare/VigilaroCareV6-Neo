@@ -186,7 +186,8 @@ export default function MenuScreenNeo() {
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
                         paddingTop: 8,
-                        paddingBottom: 140,
+                        paddingBottom: 190, // libera espaço para o GlobalFloatingFooter
+                                            // (botão SOS estende acima da barra base)
                     }}
                 >
                     {/* HEADER — título + contexto do usuário */}
