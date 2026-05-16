@@ -177,7 +177,7 @@ export default function MenuScreenNeo() {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
