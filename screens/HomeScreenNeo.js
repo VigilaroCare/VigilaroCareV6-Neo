@@ -442,11 +442,11 @@ export default function HomeScreenNeo() {
                         style={s.historyLink}
                         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                        <Activity size={13} color={Neo.colors.neutral[500]} variant="Linear" />
+                        <Activity size={17} color={Neo.colors.primary[600]} variant="Bold" />
                         <Text style={s.historyLinkText}>
                             {t('home.viewHistory', 'Ver histórico de atividades')}
                         </Text>
-                        <ArrowRight2 size={12} color={Neo.colors.neutral[500]} />
+                        <ArrowRight2 size={15} color={Neo.colors.primary[600]} />
                     </TouchableOpacity>
 
                 </ScrollView>
@@ -701,14 +701,15 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'flex-end',
-        paddingVertical: 6,
-        paddingHorizontal: 4,
-        marginTop: 6,
-        gap: 5,
+        paddingVertical: 8,
+        paddingHorizontal: 6,
+        marginTop: 8,
+        gap: 6,
     },
     historyLinkText: {
-        fontSize: 11.5,
-        fontWeight: '600',
-        color: Neo.colors.neutral[600],
+        fontSize: 14,
+        fontWeight: '700',
+        color: Neo.colors.primary[700],
+        letterSpacing: 0.1,
     },
 });
