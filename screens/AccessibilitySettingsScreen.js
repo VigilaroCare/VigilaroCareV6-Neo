@@ -1,20 +1,20 @@
 import React from 'react';
-import { View, Switch, ScrollView, TouchableOpacity, StatusBar, StyleSheet, Text } from 'react-native';
+import {
+    View, Switch, ScrollView, TouchableOpacity, StyleSheet, Text,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import * as Haptics from 'expo-haptics';
 
-// Design System & Components
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
-import { H2, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { H1, H3, Body, Small, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 
 import { useAccessibility } from '../context/AccessibilityContext';
-
-
 
 export default function AccessibilitySettingsScreen() {
     const navigation = useNavigation();
@@ -22,26 +22,30 @@ export default function AccessibilitySettingsScreen() {
         fontSizeLevel, updateFontSize,
         highContrast, toggleHighContrast,
         reduceMotion, toggleReduceMotion,
-        leftHandedMode, toggleLeftHanded
+        leftHandedMode, toggleLeftHanded,
     } = useAccessibility();
     const { t } = useTranslation();
 
     const isLargeText = fontSizeLevel > 1;
     const toggleLargeText = (val) => updateFontSize(val ? 1.4 : 1);
 
-    // Wrapper com haptic feedback
     const hapticToggle = (toggleFn) => (val) => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         toggleFn(val);
     };
 
-    const renderSettingItem = (label, desc, icon, color, value, onToggle, showSwitch = true, isLast = false) => (
-        <View style={[
-            s.settingRow,
-            !isLast && { borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[100] }
-        ]}>
-            <View style={[s.settingIcon, { backgroundColor: color + '15' }]}>
-                {icon}
+    const renderSettingItem = ({
+        label, desc, iconName, iconVariant = 'Bold', color,
+        value, onToggle, showSwitch = true, isLast = false,
+    }) => (
+        <View
+            style={[
+                s.settingRow,
+                !isLast && { borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.06)' },
+            ]}
+        >
+            <View style={[s.settingIcon, { backgroundColor: color + '33' }]}>
+                <NeoIcon name={iconName} size={22} color={color} variant={iconVariant} />
             </View>
             <View style={s.settingTextCol}>
                 <Body style={s.settingLabel}>{label}</Body>
@@ -63,110 +67,105 @@ export default function AccessibilitySettingsScreen() {
     );
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar barStyle="dark-content" />
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
 
-                {/* ── Header Neo (com Voltar) ── */}
+                {/* HEADER — back + title (padrão dos detalhes/configurações) */}
                 <View style={s.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
                         <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <H2 style={s.headerTitle}>{t('settings.accessibility')}</H2>
-                    <View style={{ width: 36 }} />
+                    <H1 style={s.headerTitle}>
+                        {t('settings.accessibility')}
+                    </H1>
                 </View>
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{ padding: Neo.spacing.lg, paddingBottom: 120 }}
+                    contentContainerStyle={s.scrollContent}
                 >
-                    {/* ── Intro Card (Glass) ── */}
-                    <NeoCard variant="glass" style={s.introCard}>
-                        <View style={s.introRow}>
-                            <View style={s.introIconCircle}>
-                                <NeoIcon name="MagicStar" size={22} color={Neo.colors.primary[600]} variant="Bold" />
-                            </View>
-                            <H3 style={s.introTitle}>{t('settings.adaptForYou')}</H3>
+                    {/* INTRO — informacional, sem "magia/IA" */}
+                    <NeoCard variant="elevated" style={s.introCard}>
+                        <View style={s.introIconCircle}>
+                            <NeoIcon name="Eye" size={22} color={Neo.colors.primary[600]} variant="Bold" />
                         </View>
-                        <Body style={s.introBody}>
-                            {t('settings.adaptForYouDesc')}
-                        </Body>
+                        <View style={{ flex: 1 }}>
+                            <H3 style={s.introTitle}>
+                                {t('settings.adaptForYou', 'Ajustes pra você')}
+                            </H3>
+                            <Body style={s.introBody}>
+                                {t('settings.adaptForYouDesc', 'Personalize o app para se adequar à sua forma de usar.')}
+                            </Body>
+                        </View>
                     </NeoCard>
 
-                    {/* ═══ VISUAL ═══ */}
-                    <View style={s.sectionHeader}>
-                        <View style={[s.sectionDot, { backgroundColor: Neo.colors.primary[500] }]} />
-                        <Text style={s.sectionLabel}>{t('settings.visual')}</Text>
-                    </View>
-
-                    <NeoCard variant="glass" style={s.settingCard}>
-                        {renderSettingItem(
-                            t('settings.largeText'),
-                            t('settings.largeTextDesc'),
-                            <NeoIcon name="TextalignJustifycenter" size={22} color={Neo.colors.primary[500]} variant="Bold" />,
-                            Neo.colors.primary[500],
-                            isLargeText,
-                            toggleLargeText
-                        )}
-                        {renderSettingItem(
-                            t('settings.highContrast'),
-                            t('settings.highContrastDesc'),
-                            <NeoIcon name="Colorfilter" size={22} color={Neo.colors.feedback.warning} variant="Bold" />,
-                            Neo.colors.feedback.warning,
-                            highContrast,
-                            toggleHighContrast,
-                            true,
-                            true // isLast
-                        )}
+                    {/* SEÇÃO VISÃO */}
+                    <Text style={s.sectionLabel}>
+                        {t('settings.visual', 'Visão')}
+                    </Text>
+                    <NeoCard variant="elevated" style={s.settingCard}>
+                        {renderSettingItem({
+                            label: t('settings.largeText'),
+                            desc: t('settings.largeTextDesc'),
+                            iconName: 'TextalignJustifycenter',
+                            color: '#10B981', // emerald
+                            value: isLargeText,
+                            onToggle: toggleLargeText,
+                        })}
+                        {renderSettingItem({
+                            label: t('settings.highContrast'),
+                            desc: t('settings.highContrastDesc'),
+                            iconName: 'Colorfilter',
+                            color: '#F59E0B', // amber
+                            value: highContrast,
+                            onToggle: toggleHighContrast,
+                            isLast: true,
+                        })}
                     </NeoCard>
 
-                    {/* ═══ FEEDBACK ═══ */}
-                    <View style={s.sectionHeader}>
-                        <View style={[s.sectionDot, { backgroundColor: Neo.colors.secondary[500] }]} />
-                        <Text style={s.sectionLabel}>{t('settings.audioFeedback')}</Text>
-                    </View>
-
-                    <NeoCard variant="glass" style={s.settingCard}>
-                        {renderSettingItem(
-                            t('settings.reduceMotion'),
-                            t('settings.reduceMotionDesc'),
-                            <NeoIcon name="Eye" size={22} color={Neo.colors.secondary[500]} variant="Bold" />,
-                            Neo.colors.secondary[500],
-                            reduceMotion,
-                            toggleReduceMotion
-                        )}
-                        {renderSettingItem(
-                            t('settings.screenReader'),
-                            t('settings.screenReaderDesc'),
-                            <NeoIcon name="VolumeHigh" size={22} color={Neo.colors.feedback.success} variant="Bold" />,
-                            Neo.colors.feedback.success,
-                            true,
-                            null,
-                            false,
-                            true
-                        )}
+                    {/* SEÇÃO MOVIMENTO & ÁUDIO */}
+                    <Text style={[s.sectionLabel, { marginTop: 24 }]}>
+                        {t('settings.audioFeedback', 'Movimento e Áudio')}
+                    </Text>
+                    <NeoCard variant="elevated" style={s.settingCard}>
+                        {renderSettingItem({
+                            label: t('settings.reduceMotion'),
+                            desc: t('settings.reduceMotionDesc'),
+                            iconName: 'Refresh',
+                            color: '#0EA5E9', // sky
+                            value: reduceMotion,
+                            onToggle: toggleReduceMotion,
+                        })}
+                        {renderSettingItem({
+                            label: t('settings.screenReader'),
+                            desc: t('settings.screenReaderDesc'),
+                            iconName: 'VolumeHigh',
+                            color: '#16A34A', // success green
+                            showSwitch: false,
+                            isLast: true,
+                        })}
                     </NeoCard>
 
-                    {/* ═══ INTERAÇÃO ═══ */}
-                    <View style={s.sectionHeader}>
-                        <View style={[s.sectionDot, { backgroundColor: Neo.colors.feedback.error }]} />
-                        <Text style={s.sectionLabel}>{t('settings.interaction')}</Text>
-                    </View>
-
-                    <NeoCard variant="glass" style={s.settingCard}>
-                        {renderSettingItem(
-                            t('settings.leftHanded'),
-                            t('settings.leftHandedDesc'),
-                            <NeoIcon name="Hand" size={22} color={Neo.colors.feedback.error} variant="Bold" />,
-                            Neo.colors.feedback.error,
-                            leftHandedMode,
-                            toggleLeftHanded,
-                            true,
-                            true
-                        )}
+                    {/* SEÇÃO INTERAÇÃO */}
+                    <Text style={[s.sectionLabel, { marginTop: 24 }]}>
+                        {t('settings.interaction', 'Interação')}
+                    </Text>
+                    <NeoCard variant="elevated" style={s.settingCard}>
+                        {renderSettingItem({
+                            label: t('settings.leftHanded'),
+                            desc: t('settings.leftHandedDesc'),
+                            iconName: 'Hand',
+                            color: '#7C3AED', // violet — neutro e distinto
+                            value: leftHandedMode,
+                            onToggle: toggleLeftHanded,
+                            isLast: true,
+                        })}
                     </NeoCard>
-
-
 
                 </ScrollView>
             </SafeAreaView>
@@ -175,85 +174,91 @@ export default function AccessibilitySettingsScreen() {
 }
 
 const s = StyleSheet.create({
-    // ── Header ──
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: 14,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backBtn: {
-        width: 36, height: 36, borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.7)',
-        alignItems: 'center', justifyContent: 'center',
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     headerTitle: {
-        color: Neo.colors.neutral[900],
-        textAlign: 'center',
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        flex: 1,
     },
 
-    // ── Intro Card ──
-    introCard: {
-        padding: 20,
-        marginBottom: 28,
-        borderRadius: 20,
+    scrollContent: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
-    introRow: {
+
+    // Intro card
+    introCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        padding: 16,
+        marginBottom: 26,
+        borderRadius: 18,
     },
     introIconCircle: {
-        width: 40, height: 40, borderRadius: 20,
-        backgroundColor: Neo.colors.primary[100],
-        alignItems: 'center', justifyContent: 'center',
-        marginRight: 12,
+        width: 46,
+        height: 46,
+        borderRadius: 23,
+        backgroundColor: 'rgba(16,185,129,0.22)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 14,
     },
     introTitle: {
-        color: Neo.colors.primary[700],
-        flex: 1,
+        color: Neo.colors.neutral[900],
+        fontSize: 16,
+        marginBottom: 2,
     },
     introBody: {
         color: Neo.colors.neutral[600],
         fontSize: 13,
-        lineHeight: 20,
+        lineHeight: 18,
     },
 
-    // ── Section Headers ──
-    sectionHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-        marginTop: 4,
-    },
-    sectionDot: {
-        width: 6, height: 6, borderRadius: 3,
-        marginRight: 8,
-    },
+    // Section labels (consistente com Home/Menu/KnowledgeHub)
     sectionLabel: {
         fontSize: 11,
-        fontWeight: '800',
-        color: Neo.colors.neutral[500],
+        fontWeight: '900',
+        color: Neo.colors.neutral[700],
+        letterSpacing: 1.6,
+        marginBottom: 10,
         textTransform: 'uppercase',
-        letterSpacing: 1.4,
+        opacity: 0.85,
     },
 
-    // ── Setting Card & Rows ──
+    // Setting card e rows
     settingCard: {
         paddingHorizontal: 16,
         paddingVertical: 4,
-        marginBottom: 24,
-        borderRadius: 16,
+        borderRadius: 18,
     },
     settingRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 16,
+        paddingVertical: 14,
     },
     settingIcon: {
-        width: 44, height: 44, borderRadius: 22,
-        justifyContent: 'center', alignItems: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
         marginRight: 14,
     },
     settingTextCol: {
@@ -261,22 +266,22 @@ const s = StyleSheet.create({
         marginRight: 12,
     },
     settingLabel: {
-        fontWeight: '600',
+        fontWeight: '700',
         color: Neo.colors.neutral[900],
     },
     settingDesc: {
-        color: Neo.colors.neutral[500],
+        color: Neo.colors.neutral[600],
         marginTop: 2,
     },
     nativeBadge: {
-        backgroundColor: Neo.colors.neutral[200],
+        backgroundColor: 'rgba(0,0,0,0.06)',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        borderRadius: 8,
+        borderRadius: 10,
     },
     nativeBadgeText: {
-        fontWeight: '700',
-        color: Neo.colors.neutral[600],
+        fontWeight: '800',
+        color: Neo.colors.neutral[700],
+        letterSpacing: 0.3,
     },
-
 });
