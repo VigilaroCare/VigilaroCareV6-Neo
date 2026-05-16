@@ -5,21 +5,26 @@ import {
     ScrollView,
     TouchableOpacity,
     Modal,
+    Alert,
     Image,
     StyleSheet,
     Text,
+    Animated,
     LayoutAnimation,
     UIManager,
     Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
-    ShieldTick, Health, Scan, Warning2, Home2, CloseCircle, Building,
-    ArrowRight2, Pet, Setting2, DocumentText, InfoCircle, Activity,
+    ShieldTick, Health, HeartAdd, Scan, Microphone,
+    Warning2, Home2, ArrowDown2, CloseCircle, Building, ArrowRight2, Activity, Pet
 } from 'iconsax-react-native';
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 
+// Services & Util
+// FIX #6: Removido import morto de 'displayFont'
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -29,33 +34,46 @@ import { useProfiles } from '../contexts/ProfileContext';
 import ProactiveNotificationService from '../services/ProactiveNotificationService';
 import ScoreService from '../services/ScoreService';
 
+// Neo Components
 import NeoCard from '../components/NeoCard';
+import NeoIcon from '../components/NeoIcon';
 import { H2, Body } from '../components/NeoTypography';
 import CompactActiveMonitor from '../components/CompactActiveMonitor';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 
+// Epic Redesign Components
 import { HousePill } from '../components/PillSwitch';
 import GlassProfileRing from '../components/GlassProfileRing';
+import ShimmerBorder from '../components/ShimmerBorder';
 
+// Habilita LayoutAnimation no Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
 const H_MONITOR = 165;
-const H_GAP = 6;
+const H_GAP     = 6;
 
-export default function HomeScreenNeo() {
+// Cores gradiente para ícones do grid
+const GRID_GRADIENTS = {
+    saude:      ['rgba(156,39,176,0.22)', 'rgba(156,39,176,0.06)'],
+    pets:       ['rgba(233,30,99,0.22)', 'rgba(233,30,99,0.06)'],
+    vistorias:  ['rgba(33,150,243,0.22)', 'rgba(33,150,243,0.06)'],
+    atividades: ['rgba(255,152,0,0.25)', 'rgba(255,152,0,0.08)'],
+};
+
+export default function HomeScreenNeo({ navigation: propNavigation }) {
     const navigation = useNavigation();
     const { rowDirection } = useLeftHandedStyle();
     const { t } = useTranslation();
 
-    const [scoreData, setScoreData] = useState({ geral: 0, ambientes: {}, pendencias: 0 });
+    const [scoreData,    setScoreData]    = useState({ geral: 0, ambientes: {}, pendencias: 0 });
     const [scoreMessage, setScoreMessage] = useState({ titulo: 'Monitor Ativo', alerta: 'Carregando status...' });
-    const [overdueMeds, setOverdueMeds] = useState([]);
-    const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
-    const [residences, setResidences] = useState([]);
+    const [overdueMeds,  setOverdueMeds]  = useState([]);
+    const [familyMeta,   setFamilyMeta]   = useState({ totalMoradoresEsperados: 0 });
+    const [residences,   setResidences]   = useState([]);
     const [activeResidence, setActiveResidence] = useState(null);
     const [modalResidenciaVisible, setModalResidenciaVisible] = useState(false);
     const [imageError, setImageError] = useState(false);
@@ -64,17 +82,24 @@ export default function HomeScreenNeo() {
     const [systemStatus, setSystemStatus] = useState({ isConnected: true, isCriticalBattery: false });
 
     const lastNotifUpdate = useRef(0);
-    const lastProfileId = useRef(null);
+    const lastProfileId   = useRef(null);
+    // FIX #2: lastLoadTime removido — o throttle de 5s bloqueava recarregamento
+    // legítimo após troca de residência. O controle de re-render é feito pelo
+    // useFocusEffect + dependência de currentProfile?.id.
 
     const { primaryProfile, profiles: contextProfiles, loadProfiles } = useProfiles();
     const currentProfile = primaryProfile;
 
+    // Reset imageError quando o perfil muda
     React.useEffect(() => { setImageError(false); }, [currentProfile?.id]);
 
     const loadData = async () => {
         try {
-            const activeRes = await ProfileService.getActiveResidence();
-            const allRes = await ProfileService.getResidences();
+            // FIX #1: getActiveResidence() substitui três chamadas separadas
+            // (getResidences + getActiveResidenceId + find manual),
+            // eliminando race condition entre elas.
+            const activeRes  = await ProfileService.getActiveResidence();
+            const allRes     = await ProfileService.getResidences();
 
             setResidences(allRes);
             setActiveResidence(activeRes);
@@ -96,6 +121,9 @@ export default function HomeScreenNeo() {
         }
     };
 
+    // FIX #2: useFocusEffect sem throttle — recarrega sempre que a tela recebe foco.
+    // Isso garante que a troca de residência feita no modal ou em outra tela
+    // seja refletida imediatamente no header.
     useFocusEffect(useCallback(() => { loadData(); }, [currentProfile?.id]));
 
     React.useEffect(() => {
@@ -111,117 +139,66 @@ export default function HomeScreenNeo() {
         return () => clearTimeout(timer);
     }, [currentProfile?.id, contextProfiles, familyMeta]);
 
+    // FIX #5: navigateWithHaptic com fallback seguro caso NavigationService não esteja pronto
     const navigateWithHaptic = useCallback((route) => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         try {
             NavigationService.navigate(route);
         } catch (e) {
+            // Fallback para navigation do hook caso NavigationService falhe no boot
             navigation.navigate(route);
         }
     }, [navigation]);
 
+    // Toggle do monitor com LayoutAnimation suave
     const toggleMonitor = useCallback(() => {
         LayoutAnimation.configureNext(
-            LayoutAnimation.create(300, LayoutAnimation.Types.easeInEaseOut, LayoutAnimation.Properties.opacity)
+            LayoutAnimation.create(
+                300,
+                LayoutAnimation.Types.easeInEaseOut,
+                LayoutAnimation.Properties.opacity,
+            )
         );
         setMonitorExpanded(prev => !prev);
     }, []);
-
-    // ── DERIVADOS PARA MICRO-STATUS E ALERTA CONTEXTUAL ──
-    const hasOverdueMeds = overdueMeds.length > 0;
-    const hasPendingInspections = scoreData.pendencias > 0;
-    const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
-    const hasOffline = !systemStatus.isConnected;
-    const hasCriticalBattery = systemStatus.isCriticalBattery;
-
-    // Prioridade de mensagens (sistema > saúde > vistorias)
-    const contextualAlert = (() => {
-        if (hasOffline) {
-            return {
-                tone: 'system',
-                label: t('home.offlineAlert', 'Offline — apenas conteúdos e SOS'),
-                route: null,
-            };
-        }
-        if (hasCriticalBattery) {
-            return {
-                tone: 'system',
-                label: t('home.batteryAlert', 'Bateria crítica — carregue o dispositivo'),
-                route: null,
-            };
-        }
-        if (hasOverdueMeds) {
-            return {
-                tone: 'critical',
-                label: t('home.overdueMeds', { count: overdueMeds.length, defaultValue: `${overdueMeds.length} medicação(ões) atrasada(s)` }),
-                route: 'MedicationScheduler',
-            };
-        }
-        if (hasCriticalScore) {
-            return {
-                tone: 'warning',
-                label: t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` }),
-                route: 'Relatorios',
-            };
-        }
-        return null;
-    })();
-
-    // Micro-status dos cards de Acesso Rápido
-    const saudeStatus = hasOverdueMeds
-        ? { label: t('home.statusOverdue', { count: overdueMeds.length, defaultValue: `${overdueMeds.length} atrasadas` }), tone: 'critical' }
-        : { label: t('home.statusOnTrack', 'em dia'), tone: 'ok' };
-
-    const vistoriasStatus = hasPendingInspections
-        ? { label: t('home.statusOpen', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} abertas` }), tone: 'warning' }
-        : { label: t('home.statusComplete', 'completas'), tone: 'ok' };
-
-    // Pets e Eventuais — sem dados disponíveis ainda, ficam neutros
-    const petStatus = { label: t('home.statusViewDetails', 'ver detalhes'), tone: 'neutral' };
-    const eventuaisStatus = { label: t('home.statusNoneActive', 'nenhuma ativa'), tone: 'neutral' };
 
     const GRID_ITEMS = [
         {
             key: 'saude',
             label: t('home.myHealth'),
-            Icon: Health,
-            color: '#9C27B0',
+            icon: <Health size={28} color="#9C27B0" variant="Bold" />,
+            bg: 'rgba(156,39,176,0.10)',
+            border: 'rgba(156,39,176,0.15)',
             route: 'MinhaSaude',
-            status: saudeStatus,
         },
         {
             key: 'pets',
             label: t('home.petHealth'),
-            Icon: Pet,
-            color: '#E91E63',
+            icon: <Pet size={28} color="#E91E63" variant="Bold" />,
+            bg: 'rgba(233,30,99,0.10)',
+            border: 'rgba(233,30,99,0.15)',
             route: 'PetsMenu',
-            status: petStatus,
         },
         {
             key: 'vistorias',
             label: t('home.inspections'),
-            Icon: ShieldTick,
-            color: '#2196F3',
+            icon: <ShieldTick size={28} color="#2196F3" variant="Bold" />,
+            bg: 'rgba(33,150,243,0.10)',
+            border: 'rgba(33,150,243,0.15)',
             route: 'Relatorios',
-            status: vistoriasStatus,
         },
         {
             key: 'atividades',
             label: t('home.eventualActivities', 'Ativ. Eventuais'),
-            Icon: Warning2,
-            color: '#FF9800',
+            icon: <Warning2 size={28} color="#FF9800" variant="Bold" />,
+            bg: 'rgba(255,152,0,0.10)',
+            border: 'rgba(255,152,0,0.20)',
             route: 'ModoPreventivo',
-            status: eventuaisStatus,
             accent: true,
         },
     ];
 
-    const CHIP_ITEMS = [
-        { key: 'relatorios', label: t('home.reports', 'Relatórios'), Icon: DocumentText, route: 'Relatorios' },
-        { key: 'briefing',   label: t('home.briefing', 'Briefing'),   Icon: InfoCircle,   route: 'SecretBriefing' },
-        { key: 'historico',  label: t('home.recent', 'Histórico'),    Icon: Activity,     route: 'RecentActivity' },
-    ];
-
+    // Nome da residência para exibição
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
         : (activeResidence?.nome || t('home.mainHouse', 'Minha Casa Principal'));
@@ -240,7 +217,7 @@ export default function HomeScreenNeo() {
                     />
                 </View>
 
-                {/* HEADER: CASA + PERFIL */}
+                {/* HEADER: CASA + PERFIL — Epic Glassmorphism */}
                 <View style={{
                     flexDirection: rowDirection,
                     justifyContent: 'space-between',
@@ -249,12 +226,14 @@ export default function HomeScreenNeo() {
                     paddingTop: 8,
                     paddingBottom: 10,
                 }}>
+                    {/* Pílula Casa — Componente PillSwitch com seta animada */}
                     <HousePill
                         label={houseName}
                         isModalOpen={modalResidenciaVisible}
                         onPress={() => setModalResidenciaVisible(true)}
                     />
 
+                    {/* Card Perfil — Com Anel Gradiente */}
                     <TouchableOpacity
                         onPress={() => navigateWithHaptic('QuemProteger')}
                         style={s.profileCardOuter}
@@ -276,6 +255,7 @@ export default function HomeScreenNeo() {
                     </TouchableOpacity>
                 </View>
 
+                {/* SCROLL */}
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     bounces={false}
@@ -285,7 +265,50 @@ export default function HomeScreenNeo() {
                         paddingTop: 2,
                     }}
                 >
-                    {/* AMBIENTES VISTORIADOS */}
+                    {/* BANNER: Sistema Offline / Bateria */}
+                    {(!systemStatus.isConnected || systemStatus.isCriticalBattery) && (
+                        <View
+                            style={{
+                                backgroundColor: Neo.colors.neutral[800],
+                                borderRadius: 12, padding: 10,
+                                flexDirection: 'row', alignItems: 'center',
+                                marginBottom: H_GAP,
+                            }}
+                        >
+                            {!systemStatus.isConnected ? (
+                                <NeoIcon name="WifiSquare" size={15} color="#FFF" style={{ marginRight: 8 }} />
+                            ) : (
+                                <NeoIcon name="BatteryEmpty" size={15} color={Neo.colors.feedback.error} style={{ marginRight: 8 }} />
+                            )}
+                            <Text style={{ flex: 1, color: '#FFF', fontWeight: '800', fontSize: 12 }}>
+                                {!systemStatus.isConnected 
+                                    ? t('home.offlineAlert', 'Offline. Apenas conteúdos e SOS disponíveis.')
+                                    : t('home.batteryAlert', 'Bateria crítica. Carregue o dispositivo.')
+                                }
+                            </Text>
+                        </View>
+                    )}
+
+                    {/* BANNER: Remédios atrasados */}
+                    {overdueMeds.length > 0 && (
+                        <TouchableOpacity
+                            onPress={() => navigateWithHaptic('MedicationScheduler')}
+                            style={{
+                                backgroundColor: Neo.colors.feedback.error,
+                                borderRadius: 12, padding: 10,
+                                flexDirection: 'row', alignItems: 'center',
+                                marginBottom: H_GAP,
+                            }}
+                        >
+                            <Health size={15} color="#FFF" style={{ marginRight: 8 }} />
+                            <Text style={{ flex: 1, color: '#FFF', fontWeight: '800', fontSize: 12 }}>
+                                {t('home.overdueMeds', { count: overdueMeds.length })}
+                            </Text>
+                            <ArrowRight2 size={14} color="#FFF" />
+                        </TouchableOpacity>
+                    )}
+
+                    {/* AMBIENTES VISTORIADOS — Com LayoutAnimation no expand */}
                     <Text style={s.sectionLabel}>{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
                     <TouchableOpacity activeOpacity={0.9} onPress={toggleMonitor}>
                         <NeoCard
@@ -294,64 +317,26 @@ export default function HomeScreenNeo() {
                                 height: monitorExpanded ? null : H_MONITOR,
                                 minHeight: H_MONITOR,
                                 borderRadius: 22,
-                                paddingVertical: 12,
-                                paddingHorizontal: 14,
+                                paddingVertical: 12, paddingHorizontal: 14,
                                 overflow: 'hidden',
                                 marginBottom: H_GAP + 4,
+                                // Sombra premium colorida
                                 shadowColor: Neo.colors.primary[500],
                                 shadowOffset: { width: 0, height: 8 },
                                 shadowOpacity: 0.12,
                                 shadowRadius: 24,
                             }}
                         >
-                            <CompactActiveMonitor
-                                scoreData={scoreData}
-                                scoreMessage={scoreMessage}
+                            <CompactActiveMonitor 
+                                scoreData={scoreData} 
+                                scoreMessage={scoreMessage} 
                                 isExpanded={monitorExpanded}
                                 onStatusChange={setSystemStatus}
                             />
                         </NeoCard>
                     </TouchableOpacity>
 
-                    {/* ───── ABSORÇÃO 1: ALERTA CONTEXTUAL ─────
-                        Aparece apenas quando há item realmente urgente.
-                        Sem imperativos. Cor proporcional à urgência. */}
-                    {contextualAlert && (
-                        <TouchableOpacity
-                            activeOpacity={contextualAlert.route ? 0.7 : 1}
-                            onPress={contextualAlert.route ? () => navigateWithHaptic(contextualAlert.route) : undefined}
-                            style={[
-                                s.contextAlert,
-                                contextualAlert.tone === 'critical' && s.contextAlertCritical,
-                                contextualAlert.tone === 'warning'  && s.contextAlertWarning,
-                                contextualAlert.tone === 'system'   && s.contextAlertSystem,
-                            ]}
-                        >
-                            <View style={[
-                                s.contextAlertDot,
-                                contextualAlert.tone === 'critical' && { backgroundColor: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { backgroundColor: '#F57C00' },
-                                contextualAlert.tone === 'system'   && { backgroundColor: Neo.colors.neutral[700] },
-                            ]} />
-                            <Text style={[
-                                s.contextAlertText,
-                                contextualAlert.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { color: '#E65100' },
-                                contextualAlert.tone === 'system'   && { color: Neo.colors.neutral[800] },
-                            ]} numberOfLines={1}>
-                                {contextualAlert.label}
-                            </Text>
-                            {contextualAlert.route && (
-                                <ArrowRight2 size={14} color={
-                                    contextualAlert.tone === 'critical' ? Neo.colors.feedback.error :
-                                    contextualAlert.tone === 'warning'  ? '#E65100' :
-                                    Neo.colors.neutral[700]
-                                } />
-                            )}
-                        </TouchableOpacity>
-                    )}
-
-                    {/* ACESSO RÁPIDO — com micro-status (Absorção 2) */}
+                    {/* GRID 2×2 — Ícones maiores + gradiente circular + flutuação */}
                     <Text style={s.sectionLabel}>{t('home.quickAccess')}</Text>
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
@@ -372,83 +357,68 @@ export default function HomeScreenNeo() {
                                         variant="elevated"
                                         style={[s.gridCard, item.accent && s.gridCardAccent]}
                                     >
-                                        <View style={[s.gridIconCircle, { backgroundColor: item.color + '1A' }]}>
-                                            <item.Icon size={26} color={item.color} variant="Bold" />
-                                        </View>
-                                        <Text style={s.gridLabel} numberOfLines={1}>{item.label}</Text>
-                                        <View style={[
-                                            s.gridStatusPill,
-                                            item.status.tone === 'ok'       && s.gridStatusOk,
-                                            item.status.tone === 'warning'  && s.gridStatusWarning,
-                                            item.status.tone === 'critical' && s.gridStatusCritical,
-                                            item.status.tone === 'neutral'  && s.gridStatusNeutral,
-                                        ]}>
-                                            <Text style={[
-                                                s.gridStatusText,
-                                                item.status.tone === 'ok'       && { color: '#2E7D32' },
-                                                item.status.tone === 'warning'  && { color: '#E65100' },
-                                                item.status.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                                item.status.tone === 'neutral'  && { color: Neo.colors.neutral[500] },
-                                            ]}>
-                                                {item.status.tone === 'ok' && '✓ '}
-                                                {item.status.label}
-                                            </Text>
-                                        </View>
+                                        {/* Fundo gradiente circular no ícone */}
+                                        <LinearGradient
+                                            colors={GRID_GRADIENTS[item.key] || [item.bg, 'rgba(255,255,255,0)']}
+                                            start={{ x: 0.5, y: 0 }}
+                                            end={{ x: 0.5, y: 1 }}
+                                            style={s.gridIconCircle}
+                                        >
+                                            {item.icon}
+                                        </LinearGradient>
+                                        <Text style={s.gridLabel}>{item.label}</Text>
+                                        {item.badge && (
+                                            <View style={s.gridBadge}>
+                                                <Text style={s.gridBadgeText}>{item.badge}</Text>
+                                            </View>
+                                        )}
                                     </NeoCard>
                                 </TouchableOpacity>
                             </ScaleInView>
                         ))}
                     </View>
 
-                    {/* FERRAMENTAS — labels limpos, sem subtítulo "Assistente IA, Scanner e Voz" */}
+                    {/* FERRAMENTAS IA — Com ShimmerBorder */}
                     <Text style={[s.sectionLabel, { marginTop: 4 }]}>{t('home.tools')}</Text>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <TouchableOpacity
-                            onPress={() => navigateWithHaptic('FerramentasIA')}
-                            activeOpacity={0.85}
-                            style={{ flex: 1, marginRight: 5 }}
-                        >
-                            <NeoCard variant="elevated" style={s.toolCard}>
-                                <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
-                                    <Setting2 size={22} color="#1976D2" variant="Bold" />
-                                </View>
-                                <Text style={s.toolLabel} numberOfLines={1}>
-                                    {t('home.toolbox', 'Ferramentas')}
-                                </Text>
-                            </NeoCard>
+                        <TouchableOpacity onPress={() => navigateWithHaptic('FerramentasIA')} activeOpacity={0.7} style={{ flex: 1, marginRight: 5 }}>
+                            <ShimmerBorder color="#9C27B0" borderRadius={16}>
+                                <NeoCard variant="elevated" style={[s.bannerCard, { paddingVertical: 12, paddingHorizontal: 8, height: 110 }]}>
+                                    <LinearGradient
+                                        colors={['rgba(156,39,176,0.14)', 'rgba(156,39,176,0.04)']}
+                                        start={{ x: 0.5, y: 0 }}
+                                        end={{ x: 0.5, y: 1 }}
+                                        style={[s.bannerIconCircle, { width: 36, height: 36, marginBottom: 4 }]}
+                                    >
+                                        <Microphone size={18} color="#9C27B0" variant="Bold" />
+                                    </LinearGradient>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <Text style={[s.bannerTitle, { fontSize: 12, lineHeight: 14 }]} numberOfLines={2}>{t('home.intelligenceCenter')}</Text>
+                                        <Text style={[s.bannerSub, { fontSize: 9, marginTop: 2 }]} numberOfLines={2}>{t('home.intelligenceSub')}</Text>
+                                    </View>
+                                </NeoCard>
+                            </ShimmerBorder>
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                            onPress={() => navigateWithHaptic('InfoRotulos')}
-                            activeOpacity={0.85}
-                            style={{ flex: 1, marginLeft: 5 }}
-                        >
-                            <NeoCard variant="elevated" style={s.toolCard}>
-                                <View style={[s.toolIconCircle, { backgroundColor: 'rgba(255,109,0,0.10)' }]}>
-                                    <Scan size={22} color="#FF6D00" variant="Bold" />
-                                </View>
-                                <Text style={s.toolLabel} numberOfLines={1}>
-                                    {t('home.infoLabels', 'Info Rótulos')}
-                                </Text>
-                            </NeoCard>
+                        <TouchableOpacity onPress={() => navigateWithHaptic('InfoRotulos')} activeOpacity={0.7} style={{ flex: 1, marginLeft: 5 }}>
+                            <ShimmerBorder color="#FF6D00" borderRadius={16}>
+                                <NeoCard variant="elevated" style={[s.bannerCard, { paddingVertical: 12, paddingHorizontal: 8, height: 110 }]}>
+                                    <LinearGradient
+                                        colors={['rgba(255,109,0,0.14)', 'rgba(255,109,0,0.04)']}
+                                        start={{ x: 0.5, y: 0 }}
+                                        end={{ x: 0.5, y: 1 }}
+                                        style={[s.bannerIconCircle, { width: 36, height: 36, marginBottom: 4 }]}
+                                    >
+                                        <Scan size={18} color="#FF6D00" variant="Bold" />
+                                    </LinearGradient>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <Text style={[s.bannerTitle, { fontSize: 12, lineHeight: 14 }]} numberOfLines={2}>{t('home.infoLabels', 'Info Rótulos')}</Text>
+                                        <Text style={[s.bannerSub, { fontSize: 9, marginTop: 2 }]} numberOfLines={2}>{t('home.infoLabelsSub', 'Identifique toxicidade')}</Text>
+                                    </View>
+                                </NeoCard>
+                            </ShimmerBorder>
                         </TouchableOpacity>
-                    </View>
-
-                    {/* ───── ABSORÇÃO 3: CHIPS SECUNDÁRIOS ─────
-                        Hubs extras acessíveis sem inchar o grid principal. */}
-                    <View style={s.chipsRow}>
-                        {CHIP_ITEMS.map(chip => (
-                            <TouchableOpacity
-                                key={chip.key}
-                                onPress={() => navigateWithHaptic(chip.route)}
-                                activeOpacity={0.7}
-                                style={s.chip}
-                            >
-                                <chip.Icon size={14} color={Neo.colors.neutral[600]} variant="Linear" />
-                                <Text style={s.chipLabel}>{chip.label}</Text>
-                            </TouchableOpacity>
-                        ))}
                     </View>
 
                 </ScrollView>
@@ -487,6 +457,8 @@ export default function HomeScreenNeo() {
                                                 await ProfileService.setActiveResidence(res.id);
                                                 await loadProfiles();
                                                 setModalResidenciaVisible(false);
+                                                // FIX #4: loadData() chamado sem throttle após troca de residência
+                                                // para garantir que o header atualize o nome da casa imediatamente.
                                                 await loadData();
                                             }}
                                             style={{
@@ -552,9 +524,11 @@ const s = StyleSheet.create({
         textTransform: 'uppercase',
         opacity: 0.9,
     },
+    // ── Profile Card (Epic) ──
     profileCardOuter: {
         borderRadius: 18,
         overflow: 'hidden',
+        // Sombra premium colorida
         shadowColor: Neo.colors.primary[500],
         shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 0.15,
@@ -580,42 +554,7 @@ const s = StyleSheet.create({
         color: Neo.colors.neutral[800],
         marginTop: 3,
     },
-
-    // ── Alerta contextual (Absorção 1) ──
-    contextAlert: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 9,
-        paddingHorizontal: 12,
-        borderRadius: 12,
-        marginBottom: H_GAP + 2,
-        borderWidth: 1,
-    },
-    contextAlertCritical: {
-        backgroundColor: '#FFEBEE',
-        borderColor: 'rgba(229,57,53,0.30)',
-    },
-    contextAlertWarning: {
-        backgroundColor: '#FFF3E0',
-        borderColor: 'rgba(245,124,0,0.30)',
-    },
-    contextAlertSystem: {
-        backgroundColor: 'rgba(55,71,79,0.08)',
-        borderColor: 'rgba(55,71,79,0.20)',
-    },
-    contextAlertDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        marginRight: 10,
-    },
-    contextAlertText: {
-        flex: 1,
-        fontSize: 12.5,
-        fontWeight: '700',
-    },
-
-    // ── Grid 2×2 ──
+    // ── Grid 2×2 (Epic) ──
     gridContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -632,8 +571,7 @@ const s = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 8,
-        paddingVertical: 12,
-        height: 116,
+        height: 104,
         position: 'relative',
     },
     gridCardAccent: {
@@ -641,83 +579,64 @@ const s = StyleSheet.create({
         borderColor: 'rgba(255,109,0,0.25)',
     },
     gridIconCircle: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        width: 54,
+        height: 54,
+        borderRadius: 27,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 6,
+        marginBottom: 8,
     },
     gridLabel: {
         fontSize: 13,
         fontWeight: '800',
         color: '#1a1a2e',
         textAlign: 'center',
-        lineHeight: 16,
-        marginBottom: 4,
+        lineHeight: 17,
     },
-    // Micro-status pill (Absorção 2)
-    gridStatusPill: {
-        paddingHorizontal: 8,
-        paddingVertical: 2,
+    gridBadge: {
+        position: 'absolute',
+        top: 8,
+        right: 10,
+        backgroundColor: Neo.colors.feedback.error,
         borderRadius: 10,
+        width: 20,
+        height: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    gridStatusOk:       { backgroundColor: 'rgba(46,125,50,0.10)' },
-    gridStatusWarning:  { backgroundColor: 'rgba(230,81,0,0.10)' },
-    gridStatusCritical: { backgroundColor: 'rgba(229,57,53,0.10)' },
-    gridStatusNeutral:  { backgroundColor: 'rgba(120,120,120,0.08)' },
-    gridStatusText: {
+    gridBadgeText: {
+        color: '#FFF',
         fontSize: 10,
-        fontWeight: '800',
+        fontWeight: 'bold',
     },
-
-    // ── Ferramentas — labels limpos, sem subtítulo de IA ──
-    toolCard: {
+    // ── Banners IA (Epic) ──
+    bannerCard: {
         borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 14,
-        paddingHorizontal: 12,
-        height: 84,
+        paddingVertical: 17,
+        paddingHorizontal: 14,
         marginBottom: 8,
     },
-    toolIconCircle: {
-        width: 38,
-        height: 38,
-        borderRadius: 19,
+    bannerIconCircle: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 6,
+        marginBottom: 8,
     },
-    toolLabel: {
-        fontSize: 12.5,
+    bannerTitle: {
+        fontSize: 14,
         fontWeight: '800',
         color: Neo.colors.neutral[900],
         textAlign: 'center',
+        marginBottom: 2,
     },
-
-    // ── Chips secundários (Absorção 3) ──
-    chipsRow: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 8,
-        marginTop: 4,
-    },
-    chip: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 14,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.06)',
-    },
-    chipLabel: {
+    bannerSub: {
         fontSize: 11,
-        fontWeight: '700',
-        color: Neo.colors.neutral[700],
-        marginLeft: 5,
+        color: Neo.colors.neutral[500],
+        fontWeight: '500',
+        textAlign: 'center',
     },
 });
