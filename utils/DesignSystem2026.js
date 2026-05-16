@@ -53,7 +53,8 @@ export const DS = {
             500: '#10B981', // Emerald Green (Vibrante, Saudável, Premium)
             300: '#34D399',
             100: '#D1FAE5', // Tint leve para fundos ativos
-            main: '#10B981', 
+            50:  '#ECFDF5', // Tint extra-leve (alias retrocompatível)
+            main: '#10B981',
         },
         secondary: {
             500: '#0EA5E9', // Sky Blue (Calmante)
@@ -66,6 +67,12 @@ export const DS = {
             warning: '#FFCC00', // Padrão exato iOS System Yellow
             info: '#5AC8FA',    // Padrão exato iOS System Teal/Blue
         },
+        // Aliases retrocompatíveis usados em ~16 telas
+        success: '#34C759',
+        error: '#FF3B30',
+        warning: '#FFCC00',
+        info: '#5AC8FA',
+        surface: '#FFFFFF',
         neutral: {
             900: '#1C1C1E', // iOS Dark Text (Não é 100% preto, reduz fadiga ocular)
             800: '#3A3A3C', // iOS Secondary Text
@@ -118,6 +125,14 @@ export const DS = {
         full: 9999,
     },
     radius: {
+        sm: 10,
+        md: 20,
+        lg: 24,
+        pill: 9999,
+        full: 9999,
+    },
+    // Alias retrocompatível (algumas telas usam Neo.radii)
+    radii: {
         sm: 10,
         md: 20,
         lg: 24,
