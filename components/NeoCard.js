@@ -3,15 +3,12 @@ import { BlurView } from 'expo-blur';
 import Theme from '../utils/Theme';
 
 /**
- * NeoCard - Cartão Padrão do Sistema DS2026 (Tactical Calm)
- *
- * GLASSMORPHISM UNIFICADO:
- * Desde a migração DS2026, 'elevated' e 'glass' renderizam
- * identicamente como vidro jateado (BlurView + fundo translúcido).
- * Sombras e elevation foram erradicados do design system.
- *
+ * NeoCard - Cartão Padrão do Sistema 2026
+ * Características: Minimalista, Fundo Branco (ou Surface), Borda Sutil.
+ * Substitui o GlassCard nas interfaces novas.
+ * 
  * Props:
- * - variant: 'elevated'|'glass' (vidro jateado), 'outline' (borda), 'flat' (cinza)
+ * - variant: 'elevated' (sombra), 'outline' (borda), 'flat' (fundo cinza)
  * - padding: number (default: md)
  * - onPress: function (se fornecido, torna-se tocável)
  */
@@ -26,31 +23,20 @@ export default function NeoCard({
     const { Neo } = Theme;
     const spacing = padding !== undefined ? padding : Neo.spacing.md;
 
-    // DS2026: 'elevated' agora é alias de 'glass' — vidro jateado unificado
-    const isGlass = variant === 'elevated' || variant === 'glass';
-
     const baseStyle = {
         padding: spacing,
         borderRadius: Neo.borderRadius.md,
-        backgroundColor: isGlass ? 'transparent' : '#FFFFFF',
-        overflow: isGlass ? 'hidden' : 'visible',
+        backgroundColor: variant === 'glass' ? 'transparent' : '#FFFFFF', // Transparent for glass to show blur
+        overflow: variant === 'glass' ? 'hidden' : 'visible', // Android crashes shadow rendering inside if overflow is hidden on elevated elements
     };
 
     let variantStyle = {};
 
     switch (variant) {
         case 'elevated':
-        case 'glass':
-            // Glassmorphism unificado — vidro jateado com bordas de luz
             variantStyle = {
-                backgroundColor: 'rgba(255, 255, 255, 0.35)',
-                borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.4)',
-                borderTopColor: 'rgba(255, 255, 255, 0.9)',
-                borderLeftColor: 'rgba(255, 255, 255, 0.7)',
-                borderTopWidth: 1.5,
-                borderLeftWidth: 1.2,
-                elevation: 0,
+                ...Neo.shadows.sm, // Sombra suave
+                borderWidth: 0,
             };
             break;
         case 'outline':
@@ -58,11 +44,12 @@ export default function NeoCard({
                 borderWidth: 1,
                 borderColor: Neo.colors.neutral[200],
                 backgroundColor: 'transparent',
+                ...(Neo.shadows.none) // Remove sombra legacy se existir
             };
             break;
         case 'flat':
             variantStyle = {
-                backgroundColor: 'rgba(240, 242, 245, 0.8)',
+                backgroundColor: 'rgba(240, 242, 245, 0.8)', // Fundo cinza suave
                 borderWidth: 0,
                 elevation: 0,
             };
@@ -70,7 +57,21 @@ export default function NeoCard({
         case 'primary':
             variantStyle = {
                 backgroundColor: Neo.colors.primary[500],
-                elevation: 0,
+                ...Neo.shadows.md
+            }
+            break;
+        case 'glass':
+            // Glassmorphism variant — mais denso para aumentar contraste (4K view)
+            variantStyle = {
+                backgroundColor: 'rgba(255, 255, 255, 0.35)', // Aumentado de 0.18 para 0.35 para garantir legibilidade dos textos
+                borderWidth: 1,
+                borderColor: 'rgba(255, 255, 255, 0.4)', // Borda suave geral
+                borderTopColor: 'rgba(255, 255, 255, 0.9)', // Brilho "Highlighter" no topo
+                borderLeftColor: 'rgba(255, 255, 255, 0.7)', // Brilho "Highlighter" na lateral
+                borderTopWidth: 1.5,
+                borderLeftWidth: 1.2,
+                ...Neo.shadows.premium4K, // Sombra para fundo iOS
+                elevation: 0, // FIX ANDROID BUG: Impede o "retângulo fantasma" em backgrounds transparentes
             };
             break;
     }
@@ -95,9 +96,10 @@ export default function NeoCard({
     // Remove undefined keys
     Object.keys(layoutStyle).forEach(k => layoutStyle[k] === undefined && delete layoutStyle[k]);
 
-    // Glass rendering via BlurView (covers both 'elevated' and 'glass')
-    if (isGlass) {
+    if (variant === 'glass') {
         if (onPress) {
+            // onPress: layout styles go to outer TouchableOpacity, visual styles go to BlurView
+            // BlurView needs to fill the TouchableOpacity
             const blurStyle = [visualStyle];
             if (layoutStyle.height) {
                 blurStyle.push({ height: '100%' });
@@ -112,6 +114,7 @@ export default function NeoCard({
             );
         }
 
+        // No onPress: return BlurView directly with ALL styles (no wrapper needed)
         return (
             <BlurView intensity={45} tint="light" style={flatStyle}>
                 {children}
@@ -119,7 +122,6 @@ export default function NeoCard({
         );
     }
 
-    // Non-glass variants (outline, flat, primary)
     const finalStyle = [baseStyle, variantStyle, style];
 
     if (onPress) {
