@@ -8,12 +8,15 @@ import {
   Vibration,
   Alert,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';
+
 import NeoIcon from '../../components/NeoIcon';
+import NeoCard from '../../components/NeoCard';
+import AppBackground from '../../components/AppBackground';
+import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { Typography } from '../../utils/Theme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { areasInternas } from '../../data/areas_internas';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
@@ -31,7 +34,6 @@ const AMBIENTE_TO_AREA = {
   pool: ['piscina'],
   stairs: ['escadas'],
   balcony: ['varanda', 'sacada'],
-  // Novos mapeamentos para filtrar o AreasInternas
   dining_room: ['copa', 'sala'],
   pantry: ['despensa'],
   bedroom_kids: ['quarto_crianca'],
@@ -43,15 +45,15 @@ const AMBIENTE_TO_AREA = {
 };
 
 export default function AreasInternasScreen({ navigation, route }) {
-  const insets = useSafeAreaInsets();
+  // BUG FIX: ambienteId nunca era extraído do route.params (causava ReferenceError silencioso)
+  const ambienteId = route?.params?.ambienteId || null;
+
   const [activeResidenceId, setActiveResidenceId] = useState(null);
-  const [mapping, setMapping] = useState([]); // Array de IDs mapeados
-  
+  const [mapping, setMapping] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [checklistState, setChecklistState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Helper para traduzir ID da interface (inglês) para o ID do banco de dados (português)
   const getNativeAreaId = (areaId) => {
     return AMBIENTE_TO_AREA[areaId]?.[0] || areaId;
   };
@@ -59,7 +61,6 @@ export default function AreasInternasScreen({ navigation, route }) {
   const dadosFiltrados = useMemo(() => {
     let baseData = areasInternas;
 
-    // 1. Filtrar pelo mapeamento estrutural da casa
     if (mapping && mapping.length > 0) {
       baseData = areasInternas.filter(area => {
         const mappedTerms = AMBIENTE_TO_AREA[area.id];
@@ -68,10 +69,8 @@ export default function AreasInternasScreen({ navigation, route }) {
       });
     }
 
-    // 2. Filtrar por parâmetro de navegação (se houver)
     if (!ambienteId) return baseData;
 
-    // ambienteId vem em português (ex: 'cozinha'). Vamos encontrar quais áreas (ex: 'kitchen') mapeiam para ele.
     const filtered = baseData.filter(area => {
       const mappedTerms = AMBIENTE_TO_AREA[area.id] || [];
       return mappedTerms.includes(ambienteId);
@@ -80,7 +79,6 @@ export default function AreasInternasScreen({ navigation, route }) {
     return filtered.length > 0 ? filtered : baseData;
   }, [ambienteId, mapping]);
 
-  // BUG FIX #6: useFocusEffect para recarregar ao trocar residência
   useFocusEffect(
     useCallback(() => {
       loadChecklistStatus();
@@ -90,21 +88,17 @@ export default function AreasInternasScreen({ navigation, route }) {
   const loadChecklistStatus = async () => {
     try {
       setIsLoading(true);
-      
-      // BUG-02 FIX: Buscar ID ativamente via ProfileService
       const resId = await ProfileService.getActiveResidenceId();
       setActiveResidenceId(resId);
-      
-      // FIX NOVO: Carrega o mapeamento do usuário para ocultar cômodos não existentes
+
       const currentMapping = await ProfileService.getMapping();
       setMapping(currentMapping || []);
-      
+
       if (!resId) {
         if (__DEV__) console.log('[AreasInternas] Sem residência ativa');
         return;
       }
 
-      // BUG FIX #2: Passar activeResidenceId ao ChecklistService
       const status = await ChecklistService.getAllState(resId);
       setChecklistState(status || {});
     } catch (error) {
@@ -115,7 +109,6 @@ export default function AreasInternasScreen({ navigation, route }) {
     }
   };
 
-  // Auto-expandir se houver apenas 1 item
   React.useEffect(() => {
     if (dadosFiltrados.length === 1) {
       setExpandedId(dadosFiltrados[0].id);
@@ -123,8 +116,8 @@ export default function AreasInternasScreen({ navigation, route }) {
   }, [dadosFiltrados]);
 
   const tituloDinamico = ambienteId
-    ? `Riscos: ${ambienteId.charAt(0).toUpperCase() + ambienteId.slice(1)}`
-    : 'Áreas Internas';
+    ? `${ambienteId.charAt(0).toUpperCase() + ambienteId.slice(1)}`
+    : 'Áreas internas';
 
   const flatListRef = useRef(null);
 
@@ -154,8 +147,6 @@ export default function AreasInternasScreen({ navigation, route }) {
 
     const nativeId = getNativeAreaId(areaId);
     const currentAreaState = checklistState[nativeId] || {};
-
-    // Se clicar no que já está, remove (toggle)
     const currentState = currentAreaState[itemText];
     const newStatus = currentState === status ? null : status;
 
@@ -170,7 +161,6 @@ export default function AreasInternasScreen({ navigation, route }) {
     if (newStatus !== null) Vibration.vibrate(10);
 
     try {
-      // Grava no banco usando o ID traduzido (ex: 'cozinha') para integrar com o ScoreService
       await ChecklistService.saveItemState(
         nativeId,
         itemText,
@@ -187,115 +177,111 @@ export default function AreasInternasScreen({ navigation, route }) {
     const isExpanded = expandedId === item.id;
     const nativeId = getNativeAreaId(item.id);
     const areaState = checklistState[nativeId] || {};
-    const totalItems = item.oQueFazer.length;
+    const totalItems = (item.oQueFazer || []).length;
 
-    // Contagens
     const oQueFazerSafe = item.oQueFazer || [];
     const naItems = oQueFazerSafe.filter(step => areaState[step] === 'na').length;
-    const checkedItems = oQueFazerSafe.filter(step => areaState[step] === true)
-      .length;
+    const checkedItems = oQueFazerSafe.filter(step => areaState[step] === true).length;
     const validTotal = totalItems - naItems;
-
-    // Evitar divisão por zero
     const progress =
       validTotal > 0 ? checkedItems / validTotal : naItems > 0 ? 1 : 0;
+    const isComplete = progress === 1 && totalItems > 0;
 
     return (
-      <TouchableOpacity
-        style={[styles.card, isExpanded && styles.cardExpanded]}
-        onPress={() => toggleExpand(item.id)}
-        activeOpacity={0.9}
+      <NeoCard
+        variant="elevated"
+        style={[s.card, isExpanded && s.cardExpanded]}
       >
-        <View style={styles.cardHeader}>
-          {/* BUG FIX #5: Usar Colors.* em vez de hardcode */}
+        <TouchableOpacity
+          onPress={() => toggleExpand(item.id)}
+          activeOpacity={0.85}
+          style={s.cardHeader}
+        >
           <View
             style={[
-              styles.iconBox,
+              s.iconBox,
               {
-                backgroundColor: isExpanded
-                  ? Neo.colors.feedback.success + '20'
-                  : Neo.colors.neutral[100],
+                backgroundColor: isComplete
+                  ? Neo.colors.feedback.success + '26'
+                  : isExpanded
+                    ? Neo.colors.primary[500] + '1F'
+                    : 'rgba(255,255,255,0.6)',
               },
             ]}
           >
-            <Text style={{ fontSize: 32 }}>{item.emoji}</Text>
+            <Text style={{ fontSize: 28 }}>{item.emoji}</Text>
           </View>
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>{item.titulo}</Text>
 
-            <Text style={styles.cardSituation}>
-              {progress === 1
-                ? 'Seguro ✅'
-                : `${Math.round(progress * 100)}% protegido`}
+          <View style={s.cardContent}>
+            <Text style={s.cardTitle}>{item.titulo}</Text>
+
+            <Text
+              style={[
+                s.cardSituation,
+                isComplete && { color: Neo.colors.feedback.success, fontWeight: '700' },
+              ]}
+            >
+              {isComplete ? 'Seguro' : `${Math.round(progress * 100)}% protegido`}
             </Text>
 
-            {/* Mini progress bar */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+            <View style={s.progressTrack}>
               <View
-                style={{
-                  flex: 1,
-                  height: 4,
-                  backgroundColor: Neo.colors.neutral[300],
-                  borderRadius: 2,
-                  marginRight: 8,
-                  maxWidth: 100,
-                }}
-              >
-                <View
-                  style={{
+                style={[
+                  s.progressFill,
+                  {
                     width: `${progress * 100}%`,
-                    height: '100%',
-                    backgroundColor:
-                      progress === 1 ? Neo.colors.feedback.success : Neo.colors.feedback.success + '80',
-                    borderRadius: 2,
-                  }}
-                />
-              </View>
+                    backgroundColor: isComplete
+                      ? Neo.colors.feedback.success
+                      : Neo.colors.primary[500],
+                  },
+                ]}
+              />
             </View>
           </View>
+
           <View
             style={[
-              styles.chevronBox,
-              isExpanded && { backgroundColor: Neo.colors.feedback.success },
+              s.chevronBox,
+              isExpanded && { backgroundColor: Neo.colors.primary[500] },
             ]}
           >
             <NeoIcon
               name={isExpanded ? 'ArrowUp2' : 'ArrowDown2'}
-              size={20}
-              color={isExpanded ? Neo.colors.neutral.white : Neo.colors.neutral[400]}
+              size={18}
+              color={isExpanded ? '#FFF' : Neo.colors.neutral[600]}
+              variant="Bold"
             />
           </View>
-        </View>
+        </TouchableOpacity>
 
         {isExpanded && (
-          <View style={styles.cardBody}>
-            {/* O QUE FAZER (CHECKLIST INTERATIVO) */}
-            <View style={styles.sectionContainer}>
-              <View style={styles.sectionHeader}>
+          <View style={s.cardBody}>
+            {/* VERIFICAÇÃO DE SEGURANÇA */}
+            <View style={s.sectionContainer}>
+              <View style={s.sectionHeader}>
                 <NeoIcon
                   name="ShieldTick"
-                  size={20}
-                  color={Neo.colors.primary[500]}
+                  size={16}
+                  color={Neo.colors.primary[600]}
                   variant="Bold"
                 />
-                <Text style={[styles.sectionLabel, { color: Neo.colors.primary[500] }]}>
+                <Text style={[s.sectionLabel, { color: Neo.colors.primary[700] }]}>
                   VERIFICAÇÃO DE SEGURANÇA
                 </Text>
               </View>
 
-              <View style={styles.questionsContainer}>
+              <View style={s.questionsContainer}>
                 {(item.oQueFazer || []).map((step, index) => {
                   const state = checklistState[nativeId]?.[step];
 
                   return (
-                    <View key={index} style={styles.questionCard}>
-                      <Text style={styles.questionText}>{step}</Text>
+                    <View key={index} style={s.questionCard}>
+                      <Text style={s.questionText}>{step}</Text>
 
-                      <View style={styles.responseRow}>
-                        {/* Botão SIM */}
+                      <View style={s.responseRow}>
                         <TouchableOpacity
                           style={[
-                            styles.responseBtn,
+                            s.responseBtn,
                             state === true && {
                               backgroundColor: Neo.colors.feedback.success,
                               borderColor: Neo.colors.feedback.success,
@@ -305,18 +291,17 @@ export default function AreasInternasScreen({ navigation, route }) {
                         >
                           <Text
                             style={[
-                              styles.responseBtnText,
-                              state === true && { color: Neo.colors.neutral.white },
+                              s.responseBtnText,
+                              state === true && { color: '#FFF' },
                             ]}
                           >
                             SIM
                           </Text>
                         </TouchableOpacity>
 
-                        {/* Botão NÃO */}
                         <TouchableOpacity
                           style={[
-                            styles.responseBtn,
+                            s.responseBtn,
                             state === false && {
                               backgroundColor: Neo.colors.feedback.error,
                               borderColor: Neo.colors.feedback.error,
@@ -326,18 +311,17 @@ export default function AreasInternasScreen({ navigation, route }) {
                         >
                           <Text
                             style={[
-                              styles.responseBtnText,
-                              state === false && { color: Neo.colors.neutral.white },
+                              s.responseBtnText,
+                              state === false && { color: '#FFF' },
                             ]}
                           >
                             NÃO
                           </Text>
                         </TouchableOpacity>
 
-                        {/* Botão N/A */}
                         <TouchableOpacity
                           style={[
-                            styles.responseBtn,
+                            s.responseBtn,
                             state === 'na' && {
                               backgroundColor: Neo.colors.neutral[500],
                               borderColor: Neo.colors.neutral[500],
@@ -347,8 +331,8 @@ export default function AreasInternasScreen({ navigation, route }) {
                         >
                           <Text
                             style={[
-                              styles.responseBtnText,
-                              state === 'na' && { color: Neo.colors.neutral.white },
+                              s.responseBtnText,
+                              state === 'na' && { color: '#FFF' },
                             ]}
                           >
                             N/A
@@ -361,219 +345,217 @@ export default function AreasInternasScreen({ navigation, route }) {
               </View>
             </View>
 
-            {/* O QUE NÃO FAZER (MANTIDO INFORMATIVO) */}
-            <View style={styles.sectionContainer}>
-              <View style={styles.sectionHeader}>
-                <NeoIcon
-                  name="CloseCircle"
-                  size={20}
-                  color={Neo.colors.feedback.error}
-                />
-                <Text style={[styles.sectionLabel, { color: Neo.colors.feedback.error }]}>
-                  EVITE
-                </Text>
-              </View>
-              {(item.oQueNaoFazer || []).map((step, index) => (
-                <View key={index} style={styles.stepRow}>
-                  <View style={styles.bulletError} />
-                  <Text style={styles.stepText}>{step}</Text>
+            {/* EVITE */}
+            {(item.oQueNaoFazer || []).length > 0 && (
+              <View style={s.sectionContainer}>
+                <View style={s.sectionHeader}>
+                  <NeoIcon
+                    name="CloseCircle"
+                    size={16}
+                    color={Neo.colors.feedback.error}
+                    variant="Bold"
+                  />
+                  <Text style={[s.sectionLabel, { color: Neo.colors.feedback.error }]}>
+                    EVITE
+                  </Text>
                 </View>
-              ))}
-            </View>
+                {item.oQueNaoFazer.map((step, index) => (
+                  <View key={index} style={s.stepRow}>
+                    <View style={s.bulletError} />
+                    <Text style={s.stepText}>{step}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
 
             {/* ALERTAS */}
-            {item.alertas &&
-              item.alertas.map((alerta, idx) => (
+            {item.alertas?.map((alerta, idx) => {
+              const accent = alerta.tipo === 'warning'
+                ? Neo.colors.feedback.warning
+                : Neo.colors.feedback.error;
+              return (
                 <View
                   key={idx}
                   style={[
-                    styles.alertBox,
+                    s.alertBox,
                     {
-                      backgroundColor:
-                        alerta.tipo === 'warning'
-                          ? Neo.colors.feedback.warning + '15'
-                          : Neo.colors.feedback.error + '15',
+                      backgroundColor: accent + '15',
+                      borderLeftWidth: 3,
+                      borderLeftColor: accent,
                     },
                   ]}
                 >
-                  <View style={styles.alertHeader}>
+                  <View style={s.alertHeader}>
                     <NeoIcon
-                      name={
-                        alerta.tipo === 'warning' ? 'Warning2' : 'DangerCircle'
-                      }
-                      size={20}
-                      color={
-                        alerta.tipo === 'warning' ? Neo.colors.feedback.warning : Neo.colors.feedback.error
-                      }
+                      name={alerta.tipo === 'warning' ? 'Warning2' : 'DangerCircle'}
+                      size={18}
+                      color={accent}
+                      variant="Bold"
                     />
-                    <Text
-                      style={[
-                        styles.alertTitle,
-                        {
-                          color:
-                            alerta.tipo === 'warning'
-                              ? Neo.colors.feedback.warning
-                              : Neo.colors.feedback.error,
-                        },
-                      ]}
-                    >
+                    <Text style={[s.alertTitle, { color: accent }]}>
                       {alerta.titulo}
                     </Text>
                   </View>
-                  <Text
-                    style={[
-                      styles.alertText,
-                      {
-                        color:
-                          alerta.tipo === 'warning'
-                            ? Neo.colors.feedback.warning
-                            : Neo.colors.feedback.error,
-                      },
-                    ]}
-                  >
+                  <Text style={[s.alertText, { color: Neo.colors.neutral[800] }]}>
                     {alerta.descricao}
                   </Text>
                 </View>
-              ))}
+              );
+            })}
           </View>
         )}
-      </TouchableOpacity>
+      </NeoCard>
     );
   };
 
   return (
-    <LinearGradient
-      colors={[Neo.colors.primary[500], Neo.colors.primary[700]]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={[styles.container, { paddingTop: insets.top }]}
-    >
-      {/* HEADER */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backBtn}
-          onPress={() => navigation.goBack()}
-        >
-          <NeoIcon
-            name="ArrowLeft"
-            size={24}
-            color={Neo.colors.neutral.white}
-            variant="Bold"
-          />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{tituloDinamico}</Text>
-        <Text style={styles.headerSubtitle}>
-          Verifique os riscos por ambiente
-        </Text>
-      </View>
+    <AppBackground>
+      <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <StatusBar style="dark" />
 
-      {/* LISTA DE ÁREAS */}
-      <FlatList
-        ref={flatListRef}
-        data={dadosFiltrados}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        contentContainerStyle={styles.listContent}
-        scrollEnabled={true}
-        scrollEventThrottle={16}
-        initialNumToRender={5}
-        maxToRenderPerBatch={10}
-      />
-    </LinearGradient>
+        {/* HEADER padronizado */}
+        <View style={s.header}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={s.backBtn}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+          </TouchableOpacity>
+          <View style={{ flex: 1 }}>
+            <H1 style={s.title}>{tituloDinamico}</H1>
+            <Caption style={s.subtitle}>
+              {dadosFiltrados.length} {dadosFiltrados.length === 1 ? 'ambiente' : 'ambientes'} para verificar
+            </Caption>
+          </View>
+        </View>
+
+        {/* LISTA */}
+        <FlatList
+          ref={flatListRef}
+          data={dadosFiltrados}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          contentContainerStyle={s.listContent}
+          scrollEnabled
+          scrollEventThrottle={16}
+          initialNumToRender={5}
+          maxToRenderPerBatch={10}
+          showsVerticalScrollIndicator={false}
+        />
+      </SafeAreaView>
+    </AppBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Neo.colors.neutral[100],
-  },
+const s = StyleSheet.create({
+  // Header
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Neo.spacing.lg,
-    paddingBottom: Neo.spacing.xl,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    ...Neo.shadows.md,
+    paddingTop: 4,
+    paddingBottom: 14,
+    gap: 12,
   },
   backBtn: {
-    marginBottom: Neo.spacing.md,
-    width: 40,
-    height: 40,
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: {
+  title: {
+    fontWeight: '800',
+    letterSpacing: -0.5,
+    marginBottom: 2,
     fontSize: 24,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral.white,
-    marginBottom: 4,
   },
-  headerSubtitle: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.9)',
+  subtitle: {
+    color: Neo.colors.neutral[600],
   },
+
+  // List
   listContent: {
     padding: Neo.spacing.lg,
-    paddingBottom: 100,
+    paddingTop: 4,
+    paddingBottom: 190,
   },
+
+  // Card
   card: {
-    backgroundColor: Neo.colors.neutral.white,
-    borderRadius: Neo.radius.lg,
-    marginBottom: Neo.spacing.md,
-    ...Neo.shadows.sm,
+    marginBottom: 12,
+    borderRadius: 20,
+    padding: 0,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0)',
-    elevation: 0, // [FIX] Previne moldura fantasma Android
   },
   cardExpanded: {
-    borderColor: Neo.colors.feedback.success,
-    ...Neo.shadows.md,
+    borderWidth: 1,
+    borderColor: Neo.colors.primary[500] + '40',
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: Neo.spacing.md,
+    padding: 14,
+    gap: 12,
   },
   iconBox: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: Neo.spacing.md,
   },
   cardContent: {
     flex: 1,
   },
   cardTitle: {
-    fontSize: Typography.sizes.lg,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '800',
     color: Neo.colors.neutral[900],
-    marginBottom: 4,
+    marginBottom: 2,
+    letterSpacing: -0.2,
   },
   cardSituation: {
-    fontSize: Typography.sizes.sm,
-    color: Neo.colors.neutral[500],
-    fontFamily: Typography.fontFamily.medium,
+    fontSize: 12.5,
+    color: Neo.colors.neutral[600],
+    fontWeight: '600',
+    marginBottom: 6,
+  },
+  progressTrack: {
+    height: 4,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+    borderRadius: 2,
+    overflow: 'hidden',
+    maxWidth: 120,
+  },
+  progressFill: {
+    height: '100%',
+    borderRadius: 2,
   },
   chevronBox: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Neo.colors.neutral[200],
+    backgroundColor: 'rgba(255,255,255,0.7)',
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  // Card body (expanded)
   cardBody: {
-    padding: Neo.spacing.lg,
-    paddingTop: 0,
-    backgroundColor: Neo.colors.neutral.white,
+    paddingHorizontal: 14,
+    paddingTop: 4,
+    paddingBottom: 14,
   },
   sectionContainer: {
-    marginTop: Neo.spacing.lg,
-    backgroundColor: Neo.colors.neutral[100],
-    padding: Neo.spacing.md,
-    borderRadius: Neo.radius.md,
+    marginTop: 14,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    padding: 12,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.04)',
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -582,86 +564,28 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   sectionLabel: {
-    fontSize: 14,
-    fontWeight: '900',
-    letterSpacing: 0.5,
+    fontSize: 11.5,
+    fontWeight: '800',
+    letterSpacing: 1.2,
   },
-  stepRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 10,
-  },
-  stepNumber: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral[500],
-    marginRight: 8,
-    width: 20,
-  },
-  bulletError: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: Neo.colors.feedback.error,
-    marginTop: 8,
-    marginRight: 12,
-  },
-  stepText: {
-    fontSize: 15,
-    color: Neo.colors.neutral[900],
-    flex: 1,
-    lineHeight: 22,
-  },
-  alertBox: {
-    padding: Neo.spacing.md,
-    borderRadius: Neo.radius.md,
-    marginTop: Neo.spacing.lg,
-  },
-  alertHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-    gap: 8,
-  },
-  alertTitle: {
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
-  alertText: {
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  checkRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: Neo.colors.neutral[200],
-  },
-  checkText: {
-    fontSize: 15,
-    color: Neo.colors.neutral[900],
-    marginLeft: 12,
-    flex: 1,
-    lineHeight: 22,
-  },
+
+  // Questions
   questionsContainer: {
-    gap: 16,
+    gap: 10,
   },
   questionCard: {
-    backgroundColor: Neo.colors.neutral.white,
+    backgroundColor: '#FFF',
     padding: 12,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: Neo.colors.neutral[300],
+    borderColor: 'rgba(0,0,0,0.06)',
   },
   questionText: {
-    fontSize: 15,
+    fontSize: 14,
     color: Neo.colors.neutral[900],
     fontWeight: '500',
-    marginBottom: 12,
-    lineHeight: 22,
+    marginBottom: 10,
+    lineHeight: 20,
   },
   responseRow: {
     flexDirection: 'row',
@@ -669,39 +593,60 @@ const styles = StyleSheet.create({
   },
   responseBtn: {
     flex: 1,
-    paddingVertical: 8,
-    borderRadius: 8,
+    paddingVertical: 9,
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: Neo.colors.neutral[300],
+    borderColor: 'rgba(0,0,0,0.1)',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Neo.colors.neutral[100],
+    backgroundColor: 'rgba(255,255,255,0.8)',
   },
   responseBtnText: {
     fontSize: 12,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral[500],
+    fontWeight: '800',
+    color: Neo.colors.neutral[600],
+    letterSpacing: 0.4,
   },
-  nextButton: {
-    marginTop: Neo.spacing.xl,
-    backgroundColor: Neo.colors.primary[500],
-    borderRadius: Neo.radius.lg,
-    padding: Neo.spacing.lg,
+
+  // Avoid / Steps
+  stepRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+  },
+  bulletError: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: Neo.colors.feedback.error,
+    marginTop: 7,
+    marginRight: 10,
+  },
+  stepText: {
+    fontSize: 14,
+    color: Neo.colors.neutral[800],
+    flex: 1,
+    lineHeight: 20,
+  },
+
+  // Alerts
+  alertBox: {
+    padding: 12,
+    borderRadius: 12,
+    marginTop: 12,
+  },
+  alertHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    ...Neo.shadows.md,
+    marginBottom: 6,
+    gap: 8,
   },
-  nextButtonLabel: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.8)',
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    marginBottom: 4,
+  alertTitle: {
+    fontWeight: '800',
+    fontSize: 13.5,
   },
-  nextButtonTitle: {
-    fontSize: 18,
-    color: '#FFF',
-    fontWeight: 'bold',
+  alertText: {
+    fontSize: 13,
+    lineHeight: 19,
   },
 });
