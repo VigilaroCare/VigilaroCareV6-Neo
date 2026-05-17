@@ -1,197 +1,164 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar, Dimensions } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+
 import NeoIcon from '../components/NeoIcon';
-import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
+import AppBackground from '../components/AppBackground';
+import { H1, Caption } from '../components/NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { Colors, Shadows } from '../utils/Theme';
 import { INTRO_CONCEPTS } from '../data/intro_safety';
 import { t_field } from '../utils/getLocalizedField';
 
-const { width } = Dimensions.get('window');
-const GAP = 16;
-const CARD_WIDTH = (width - 40 - GAP) / 2;
+/**
+ * Ordem de exibição preferida pelo usuário (independente da ordem do array):
+ * 1. Introdução à Segurança    (intro_01)
+ * 2. Quase Acidentes           (piramide_bird)
+ * 3. Metodologia 3D            (prevencao_3d)
+ */
+const PREFERRED_ORDER = ['intro_01', 'piramide_bird', 'prevencao_3d'];
 
 export default function IntroSafetyMenuScreen({ navigation }) {
     const { t } = useTranslation('common');
-    const insets = useSafeAreaInsets();
+
+    // Ordena conforme PREFERRED_ORDER; itens fora da lista vão ao final
+    const orderedConcepts = useMemo(() => {
+        const byId = Object.fromEntries(INTRO_CONCEPTS.map(c => [c.id, c]));
+        const ordered = PREFERRED_ORDER.map(id => byId[id]).filter(Boolean);
+        const extras = INTRO_CONCEPTS.filter(c => !PREFERRED_ORDER.includes(c.id));
+        return [...ordered, ...extras];
+    }, []);
 
     const renderCard = (concept) => (
         <TouchableOpacity
             key={concept.id}
-            style={{ width: '100%', marginBottom: 12 }}
             onPress={() => navigation.navigate('ConceitoDetail', { conceito: concept })}
-            activeOpacity={0.8}
+            activeOpacity={0.85}
+            style={{ marginBottom: 12 }}
         >
-            <NeoCard variant="glass" style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: 16,
-                borderRadius: 16,
-                ...Neo.shadows?.sm
-            }}>
-                <View style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 24,
-                    backgroundColor: (concept.bg || '#EDE7F6'),
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginRight: 16
-                }}>
+            <NeoCard variant="elevated" style={s.card}>
+                <View style={[s.cardIcon, { backgroundColor: (concept.bg || '#EDE7F6') }]}>
                     {concept.icone ? (
-                        <NeoIcon name={concept.icone} size={24} color={concept.cor || Colors.primary} />
+                        <NeoIcon name={concept.icone} size={22} color={concept.cor || Neo.colors.primary[600]} variant="Bold" />
                     ) : (
-                        <Text style={styles.emoji}>{concept.emoji || '💡'}</Text>
+                        <Text style={s.cardEmoji}>{concept.emoji || '💡'}</Text>
                     )}
                 </View>
 
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 15, fontWeight: 'bold', color: Neo.colors.neutral[800], marginBottom: 4 }} numberOfLines={1}>
+                    <Text style={s.cardTitle} numberOfLines={1}>
                         {t_field(concept, 'titulo')}
                     </Text>
-                    <Text style={{ fontSize: 13, color: Neo.colors.neutral[500], lineHeight: 18 }} numberOfLines={2}>
+                    <Text style={s.cardDesc} numberOfLines={2}>
                         {t_field(concept, 'definicao')}
                     </Text>
                 </View>
-                
-                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} style={{ marginLeft: 8 }} />
+
+                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
             </NeoCard>
         </TouchableOpacity>
     );
 
     return (
         <AppBackground>
-        <View style={styles.container}>
-            <StatusBar barStyle="dark-content" />
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
 
-            {/* Header Neo Glass */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                </TouchableOpacity>
-            </View>
-
-            <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-                <NeoCard variant="glass"
-                    style={{
-                        width: '100%',
-                        padding: 16,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        ...Neo.shadows?.sm
-                    }}
-                >
-                    <View style={{
-                        width: 48, height: 48, borderRadius: 12,
-                        backgroundColor: '#EDE7F6', alignItems: 'center', justifyContent: 'center',
-                        marginRight: 16
-                    }}>
-                        <Text style={{ fontSize: 24 }}>💎</Text>
-                    </View>
+                {/* HEADER padronizado (igual outras telas premium) */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                    </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ color: '#673AB7', fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{t('headersFirst.metodologia3D', 'Metodologia 3D')}</Text>
-                        <Text style={{ color: Neo.colors.neutral[600], fontWeight: 'bold', fontSize: 13 }}>{t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}</Text>
+                        <H1 style={s.title}>
+                            {t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('intro.subtitle', 'Base da prevenção doméstica')}
+                        </Caption>
                     </View>
-                </NeoCard>
-            </View>
-
-            <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                <View style={styles.list}>
-                    {INTRO_CONCEPTS.map(renderCard)}
                 </View>
-                <View style={{ height: 120 }} />
-            </ScrollView>
-        </View>
+
+                <ScrollView
+                    contentContainerStyle={s.content}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {orderedConcepts.map(renderCard)}
+                </ScrollView>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent',
-    },
+const s = StyleSheet.create({
+    // Header
     header: {
-        paddingTop: 60,
-        paddingBottom: 24,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 32,
-        borderBottomRightRadius: 32,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 16,
-        ...Shadows.md,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
-    backButton: {
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
         alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        borderRadius: 20
+        justifyContent: 'center',
     },
-    headerTitle: {
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
         fontSize: 24,
-        fontWeight: 'bold',
-        color: '#FFF',
     },
-    headerSubtitle: {
-        fontSize: 14,
-        color: 'rgba(255,255,255,0.9)',
+    subtitle: {
+        color: Neo.colors.neutral[600],
     },
+
+    // Content
     content: {
-        padding: 20,
-        paddingTop: 24
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
-    list: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: GAP,
-    },
+
+    // Card
     card: {
-        width: CARD_WIDTH,
-        height: CARD_WIDTH * 1.1, // Aspect ratio fixo levemente vertical
-        backgroundColor: '#FFF',
-        borderRadius: 24,
-        padding: 16,
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start', // Importante para alinhamento do topo
-        ...Shadows.sm,
+        padding: 14,
+        borderRadius: 16,
+        gap: 12,
     },
-    iconContainer: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
+    cardIcon: {
+        width: 46,
+        height: 46,
+        borderRadius: 23,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 16, // Espaço fixo entre ícone e texto
-        marginTop: 8 // Padding top interno leve
     },
-    emoji: {
-        fontSize: 28,
-    },
-    textWrapper: {
-        alignItems: 'center',
-        width: '100%'
+    cardEmoji: {
+        fontSize: 22,
     },
     cardTitle: {
         fontSize: 15,
-        fontWeight: 'bold',
-        color: Colors.textPrimary,
-        textAlign: 'center',
-        marginBottom: 6,
-        minHeight: 40, // FORÇA ALINHAMENTO: Reserva espaço para 2 linhas sempre
-        // Isso garante que se um titulo tiver 1 linha e outro 2, os subtitulos (se existirem) começariam alinhados?
-        // O usuário quer "títulos equidistantes". O título começa no mesmo lugar.
+        fontWeight: '800',
+        color: Neo.colors.neutral[900],
+        marginBottom: 3,
+        letterSpacing: -0.2,
     },
-    cardSubtitle: {
-        fontSize: 11,
-        color: '#666',
-        textAlign: 'center',
-        lineHeight: 14,
+    cardDesc: {
+        fontSize: 12.5,
+        color: Neo.colors.neutral[600],
+        lineHeight: 17,
     },
 });
