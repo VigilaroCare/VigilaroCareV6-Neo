@@ -64,7 +64,7 @@ export default function ChecklistWizardScreen({ navigation }) {
 
   if (modo === "inicio") {
     return (
-      <AppBackground variant="subtle">
+      <AppBackground>
         <SafeAreaView style={styles.container}>
           <StatusBar style="dark" />
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -120,7 +120,7 @@ export default function ChecklistWizardScreen({ navigation }) {
   }
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <SafeAreaView style={styles.container}>
         <StatusBar style="dark" />
         <View style={styles.header}>

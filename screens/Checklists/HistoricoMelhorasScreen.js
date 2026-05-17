@@ -27,7 +27,7 @@ export default function HistoricoMelhorasScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={styles.container}>
             {/* Cabeçalho Minimalista */}
             <View style={styles.header}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         padding: 20,
-        paddingBottom: 120
+        paddingBottom: 190
     },
     historyCard: {
         flexDirection: 'row',

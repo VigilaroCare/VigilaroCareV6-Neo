@@ -135,7 +135,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                 {/* Lista de Itens */}
                 <ScrollView
                     style={{ flex: 1 }}
-                    contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 120 }}
+                    contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}
                     showsVerticalScrollIndicator={false}
                 >
                     {items.map((it, idx) => {

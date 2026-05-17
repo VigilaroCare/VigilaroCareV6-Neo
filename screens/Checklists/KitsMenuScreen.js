@@ -69,7 +69,7 @@ export default function KitsMenuScreen({ navigation, route }) {
     }, [kitParam]);
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <View style={styles.container}>
                 <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
 
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         paddingHorizontal: 16,
-        paddingBottom: 120,
+        paddingBottom: 190,
     },
     gridContainer: {
         flexDirection: 'row',

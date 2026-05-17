@@ -230,7 +230,7 @@ export default function SafetyActionPlanScreen() {
 
     if (loading) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
         <SafeAreaView style={styles.container}>
                 {renderHeader()}
                 <View style={styles.centerLoading}>

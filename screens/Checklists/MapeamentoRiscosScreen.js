@@ -219,7 +219,7 @@ export default function HomeMappingScreen({ navigation, route }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
         <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
 

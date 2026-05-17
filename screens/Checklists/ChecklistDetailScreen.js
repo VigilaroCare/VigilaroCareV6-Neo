@@ -440,7 +440,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       {/* Grid Layout Checklist (Mini Bento Cards) */}
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={{ paddingBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: 190 }}
         showsVerticalScrollIndicator={false}
       >
         {items.length === 0 ? (

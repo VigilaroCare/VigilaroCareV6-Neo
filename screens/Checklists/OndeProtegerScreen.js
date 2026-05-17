@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     headerTitle: { fontSize: 24, fontWeight: '700', color: Neo.colors.neutral.white },
     headerSubtitle: { fontSize: 13, color: 'rgba(255,255,255,0.9)', marginTop: 4 },
 
-    content: { padding: 20, paddingBottom: 100 },
+    content: { padding: 20, paddingBottom: 190 },
     sectionTitle: { fontSize: 18, fontWeight: '700', color: Neo.colors.neutral[900], marginBottom: 16 },
 
     ambientesGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
