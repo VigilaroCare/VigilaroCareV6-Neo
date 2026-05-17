@@ -20,18 +20,16 @@ import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
 import TriColorBar from '../../components/TriColorBar';
 
 // Services & Utils
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { Shadows } from '../../utils/Theme';
 import { CHECKLIST_ESCOLA_SEGURA, calcularPontuacao, getNivelSeguranca } from '../../data/escola_segura_data';
 import { t_field } from '../../utils/getLocalizedField';
 
 // Components
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
@@ -92,39 +90,39 @@ export default function EscolaSeguraScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* ── Header Neo ── */}
+                {/* HEADER padronizado */}
                 <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     >
-                        <ArrowRight2
-                            size={22}
-                            color={Neo.colors.neutral[800]}
-                            style={{ transform: [{ rotate: '180deg' }] }}
-                        />
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2>{t('headersFirst.escolaSegura', 'Escola Segura')}</H2>
-                        <Caption style={{ marginTop: 2 }}>
-                            {t('headersFirst.checklistDeAvaliaO', 'Checklist de Avaliação')}
+                        <H1 style={{ fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 }}>
+                            {t('headersFirst.escolaSegura', 'Escola segura')}
+                        </H1>
+                        <Caption style={{ color: Neo.colors.neutral[600] }}>
+                            {t('headersFirst.checklistDeAvaliaO', 'Checklist de avaliação')}
                         </Caption>
                     </View>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('EscolaSeguraReport', { responses, pontuacao, nivelSeguranca })}
                         style={styles.actionButton}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     >
-                        <NeoIcon name="DocumentText" size={22} color={THEME_COLOR} />
+                        <NeoIcon name="DocumentText" size={20} color={THEME_COLOR} variant="Bold" />
                     </TouchableOpacity>
                 </View>
 
                 <ScrollView
                     style={styles.content}
-                    contentContainerStyle={{ paddingBottom: 120, paddingTop: 8 }}
+                    contentContainerStyle={{ paddingBottom: 190, paddingTop: 8 }}
                     showsVerticalScrollIndicator={false}
                 >
 
@@ -429,26 +427,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingTop: Neo.spacing.md,
-        paddingBottom: Neo.spacing.sm,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'rgba(0,0,0,0.04)',
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: Neo.spacing.md,
     },
     actionButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'rgba(76,175,80,0.10)',
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(76,175,80,0.18)',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 8,
     },
 
     // ── Scroll ──

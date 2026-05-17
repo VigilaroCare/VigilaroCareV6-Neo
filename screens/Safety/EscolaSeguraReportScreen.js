@@ -68,22 +68,33 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
     const pontosFracos = getPontosFracos();
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
             <StatusBar style="dark" />
 
-            {/* Header */}
+            {/* HEADER padronizado */}
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <NeoIcon name="ArrowLeft2" size={28} color={Neo.colors.neutral[900]} />
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                 </TouchableOpacity>
-                <H2 style={{ flex: 1, marginLeft: 16 }}>{t('headersFirst.relatRioCompleto', 'Relatório Completo')}</H2>
-                <TouchableOpacity onPress={handleShare}>
-                    <NeoIcon name="ShareNetwork" size={28} color={Neo.colors.primary[600]} />
+                <View style={{ flex: 1 }}>
+                    <H1 style={styles.title}>{t('headersFirst.relatRioCompleto', 'Relatório')}</H1>
+                    <Caption style={styles.subtitle}>Escola segura</Caption>
+                </View>
+                <TouchableOpacity
+                    onPress={handleShare}
+                    style={styles.shareBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                    <NeoIcon name="ShareNetwork" size={20} color={Neo.colors.primary[700]} variant="Bold" />
                 </TouchableOpacity>
             </View>
 
-            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 40 }}>
+            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
 
                 {/* Nível de Segurança */}
                 <NeoCard variant="elevated" style={[styles.nivelCard, { borderLeftWidth: 6, borderLeftColor: nivelSeguranca.cor }]}>
@@ -202,16 +213,33 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Neo.colors.neutral[100],
+        backgroundColor: 'transparent',
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: Neo.spacing.md,
-        borderBottomWidth: 1,
-        borderBottomColor: Neo.colors.neutral[200],
-        backgroundColor: 'transparent',
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
+    },
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
+    subtitle: { color: Neo.colors.neutral[600] },
+    shareBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     content: {
         flex: 1,
