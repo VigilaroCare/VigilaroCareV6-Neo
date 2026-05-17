@@ -127,7 +127,7 @@ export default function InspecaoRetornoScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -150,7 +150,7 @@ export default function InspecaoRetornoScreen({ navigation }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 100 }}>
+                <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 190 }}>
                     <View style={{ alignItems: 'center', marginBottom: 24 }}>
                         <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: Neo.colors.feedback.error + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
                             <SearchNormal size={32} color={Neo.colors.feedback.error} variant="Bold" />

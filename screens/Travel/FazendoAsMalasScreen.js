@@ -236,7 +236,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
     const kitsToDisplay = getDynamicKits();
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -255,7 +255,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
                     </TouchableOpacity>
                 </View>
 
-                <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 140 }}>
+                <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 190 }}>
 
                     <SectionBanner
                         emoji="✈️"

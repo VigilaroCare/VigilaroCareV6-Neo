@@ -226,7 +226,7 @@ function CategoryCard({ category }) {
 export default function KitViagemScreen({ navigation }) {
     const { t } = useTranslation('common');
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -249,7 +249,7 @@ export default function KitViagemScreen({ navigation }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 140 }}>
+                <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 190 }}>
 
                     {/* Intro */}
                     <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], marginBottom: 20, paddingHorizontal: 8, lineHeight: 20 }}>

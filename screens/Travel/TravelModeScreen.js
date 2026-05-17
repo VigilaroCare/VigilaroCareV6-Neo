@@ -133,10 +133,10 @@ export default function TravelModeScreen({ navigation }) {
     // --- WIZARD RENDER ---
     if (!activeTrip) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
                 <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                     <StatusBar style="dark" />
-                    <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 12, paddingBottom: 100 }}>
+                    <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 12, paddingBottom: 190 }}>
                         {/* HEADER */}
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                             <TouchableOpacity onPress={() => navigation.goBack()} style={s.backButton}>
@@ -299,7 +299,7 @@ export default function TravelModeScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -314,7 +314,7 @@ export default function TravelModeScreen({ navigation }) {
                     <View style={{ width: 44 }} />
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 120 }}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}>
 
                     {/* 1. ASSISTENTE DE VIAGEM */}
                     <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 14 }}>
