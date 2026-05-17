@@ -191,7 +191,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
                 <StatusBar barStyle="dark-content" />
 
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     content: {
         flexGrow: 1,
         padding: Spacing.md,
-        paddingBottom: 120,
+        paddingBottom: 190,
     },
     section: {
         marginBottom: Spacing.lg,

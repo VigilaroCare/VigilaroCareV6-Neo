@@ -29,7 +29,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
         <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={[styles.header, { backgroundColor: nivelInfo.cor }]}>

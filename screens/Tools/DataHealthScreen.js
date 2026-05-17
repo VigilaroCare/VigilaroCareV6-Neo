@@ -72,7 +72,7 @@ export default function DataHealthScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -87,7 +87,7 @@ export default function DataHealthScreen({ navigation }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 100 }}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 190 }}>
 
                     {/* Run Button */}
                     {!report && (

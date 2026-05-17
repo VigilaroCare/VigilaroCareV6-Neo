@@ -153,7 +153,7 @@ export default function VisionMonitorScreen({ navigation }) {
 
                     {/* HUD Layer (Visible only if NOT stealth) */}
                     {!stealthMode && (
-                        <AppBackground variant="subtle">
+                        <AppBackground>
         <SafeAreaView style={styles.hudContainer}>
 
                             {/* Status Header */}

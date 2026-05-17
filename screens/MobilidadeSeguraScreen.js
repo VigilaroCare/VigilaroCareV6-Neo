@@ -40,7 +40,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   ];
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
 
@@ -634,7 +634,7 @@ const styles = StyleSheet.create({
   },
   conteudo: {
     padding: 20,
-    paddingBottom: 120,
+    paddingBottom: 190,
   },
   categoryContainer: {
     marginBottom: 16,

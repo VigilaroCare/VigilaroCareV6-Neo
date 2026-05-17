@@ -90,7 +90,7 @@ export default function ShareHealthRecordScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
             <StatusBar style="dark" />
 

@@ -63,7 +63,7 @@ export default function IntroSafetyMenuScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
 

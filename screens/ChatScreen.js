@@ -177,7 +177,7 @@ export default function ChatScreen({ navigation, route }) {
     // ═══════════════════════════════════════════════════════
     if (isTextMode) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
         <SafeAreaView style={styles.container}>
                 <StatusBar barStyle="light-content" backgroundColor="#1A1A2E" />
 

@@ -88,7 +88,7 @@ export default function SafetyPermitScreen({ route, navigation }) {
     // Se ID inválido
     if (!PROTOCOLS[eventId]) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
         <SafeAreaView style={styles.center}>
                 <Text>Protocolo '{eventId}' não encontrado.</Text>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>

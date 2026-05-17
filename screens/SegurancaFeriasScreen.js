@@ -407,7 +407,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
                 <StatusBar style="dark" />
 
@@ -426,7 +426,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 data={locaisFerias}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 120 }}
+                contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 190 }}
                 showsVerticalScrollIndicator={false}
             />
             </SafeAreaView>

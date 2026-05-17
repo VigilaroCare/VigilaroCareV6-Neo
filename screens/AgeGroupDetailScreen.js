@@ -44,7 +44,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top']}>
             <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 

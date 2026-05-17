@@ -34,7 +34,7 @@ const { width, height } = Dimensions.get('window');
 const ScannerIntro = ({ onSelectMode, onClose }) => {
   const { t } = useTranslation();
   return (
-  <AppBackground variant="subtle">
+  <AppBackground>
     <View style={styles.introContainer}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
       <View style={styles.introHeader}>
@@ -435,7 +435,7 @@ export default function ScannerScreen({ navigation, route }) {
       )}
 
       {!isAnalyzing && analysisResult && (
-        <ScrollView style={styles.resultSheet} contentContainerStyle={{ paddingBottom: 120 }}>
+        <ScrollView style={styles.resultSheet} contentContainerStyle={{ paddingBottom: 190 }}>
           <View style={styles.dragIndicator} />
           {/* Header */}
           <View style={styles.resultHeader}>

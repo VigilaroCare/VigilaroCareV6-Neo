@@ -108,7 +108,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
@@ -124,7 +124,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     <Caption style={{ textAlign: 'center', marginTop: 4 }}>{t('headersFirst.monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar')}</Caption>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 100 }}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 190 }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         {RISK_CATEGORIES.map((item) => (
                             <TouchableOpacity
@@ -177,7 +177,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     visible={modalVisible}
                     onRequestClose={closeAudit}
                 >
-                    <AppBackground variant="subtle">
+                    <AppBackground>
                         <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                             {selectedRisk && (
                                 <View style={{ flex: 1 }}>

@@ -124,7 +124,7 @@ export default function AudioMonitorScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={styles.container}>
             {/* Header */}
             <View style={styles.header}>

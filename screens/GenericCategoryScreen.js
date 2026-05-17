@@ -50,7 +50,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
     const THEME_COLOR = content.color || '#3B82F6';
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <View style={[styles.container, { backgroundColor: 'transparent' }]}>
             <StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
