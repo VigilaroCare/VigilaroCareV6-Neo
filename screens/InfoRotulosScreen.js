@@ -1,49 +1,46 @@
 /**
  * InfoRotulosScreen.js
- * Tela hub do módulo InfoRótulos
+ * Hub do módulo InfoRótulos
  *
  * 3 pontos de entrada:
  *   - Busca por nome/ingrediente (autocomplete local + PubChem)
  *   - Scan de código de barras (câmera)
- *   - Navegação por categorias
+ *   - Histórico recente
  *
- * Exibe: alertas do perfil familiar, histórico recente, CIATOX
+ * Exibe: contexto familiar, histórico, CIATOX, disclaimer
  */
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    TextInput, FlatList, Linking, ActivityIndicator, Alert,
+    TextInput, Linking, ActivityIndicator, Alert,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+
 import {
     ArrowRight2, SearchNormal1, Scan, Call, CloseCircle,
-    Trash, Brush, Health, Reserve, Warning2, Lovely,
-    Box1, Battery3Full, Milk,
 } from 'iconsax-react-native';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
-import { H2, H3, Body, Small, Caption } from '../components/NeoTypography';
+import NeoIcon from '../components/NeoIcon';
+import { H1, Body, Small, Caption } from '../components/NeoTypography';
 import FadeInView from '../components/FadeInView';
 
 import { buscarProdutoPorNome } from '../data/produtos_scanner';
-import { PRODUTOS_PERIGOSOS_DATA } from '../data/produtos_perigosos';
 import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
 import { getHistory, addToHistory } from '../services/inforotulos_cache';
-import { resolveBarcode, getSubstanceByName } from '../services/InfoRotulosSubstanceService';
-
-
+import { getSubstanceByName } from '../services/InfoRotulosSubstanceService';
 
 export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
     const navigation = useNavigation();
-    const insets = useSafeAreaInsets();
     const searchRef = useRef(null);
+    const searchTimeout = useRef(null);
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -51,56 +48,29 @@ export default function InfoRotulosScreen() {
     const [familySummary, setFamilySummary] = useState(null);
     const [history, setHistory] = useState([]);
 
-    // Carrega dados ao focar
     useFocusEffect(useCallback(() => {
-        loadFamilySummary();
-        loadHistory();
+        (async () => {
+            try { setFamilySummary(await getFamilySummary()); } catch (_) {}
+            try { setHistory(await getHistory(5)); } catch (_) {}
+        })();
     }, []));
-
-    const loadFamilySummary = async () => {
-        try {
-            const summary = await getFamilySummary();
-            setFamilySummary(summary);
-        } catch {
-            // silencioso
-        }
-    };
-
-    const loadHistory = async () => {
-        try {
-            const h = await getHistory(5);
-            setHistory(h);
-        } catch {
-            // silencioso
-        }
-    };
-
-    // ── Busca com debounce ──
-    const searchTimeout = useRef(null);
 
     const handleSearch = (text) => {
         setSearchQuery(text);
-
         if (searchTimeout.current) clearTimeout(searchTimeout.current);
-
         if (!text.trim()) {
             setSearchResults([]);
             return;
         }
-
         searchTimeout.current = setTimeout(() => {
-            // Busca local primeiro
             const localResults = buscarProdutoPorNome(text);
             setSearchResults(localResults.slice(0, 8));
         }, 300);
     };
 
-    // ── Navega para resultado ──
     const handleProductSelect = async (product) => {
         setSearchQuery('');
         setSearchResults([]);
-
-        // Salva no histórico
         await addToHistory({
             id: product.barcode || product.nome,
             nome: product.nome,
@@ -108,116 +78,102 @@ export default function InfoRotulosScreen() {
             icone: product.icone || '🧪',
             perigo: product.perigo,
         });
-
-        navigation.navigate('InfoRotulosResult', {
-            product,
-            source: 'local',
-        });
+        navigation.navigate('InfoRotulosResult', { product, source: 'local' });
     };
 
-    // ── Busca por nome no PubChem ──
     const handleSearchSubmit = async () => {
         if (!searchQuery.trim()) return;
-
         setIsSearching(true);
         try {
             const data = await getSubstanceByName(searchQuery.trim());
-
             if (data) {
                 await addToHistory({
                     id: data.pubchem_cid || searchQuery,
                     nome: data.name_pt || searchQuery,
-                    categoria: 'Substância',
+                    categoria: t('inforotulos.substance', 'Substância'),
                     icone: '🧪',
                     perigo: data.severity || 'Indeterminado',
                 });
-
                 navigation.navigate('InfoRotulosResult', {
-                    substance: data,
-                    source: 'pubchem',
-                    searchQuery: searchQuery.trim(),
+                    substance: data, source: 'pubchem', searchQuery: searchQuery.trim(),
                 });
             } else {
                 Alert.alert(
-                    'Substância não encontrada',
-                    `"${searchQuery}" não foi encontrada nas bases de dados. Tente outro nome ou use o scanner de código de barras.`,
+                    t('inforotulos.notFoundTitle', 'Substância não encontrada'),
+                    t('inforotulos.notFoundDesc', { query: searchQuery, defaultValue: `"${searchQuery}" não foi encontrada nas bases de dados.` }),
                     [{ text: 'OK' }]
                 );
             }
         } catch {
-            Alert.alert('Erro', 'Falha na busca. Verifique sua conexão.');
+            Alert.alert(
+                t('inforotulos.errorTitle', 'Erro'),
+                t('inforotulos.errorDesc', 'Falha na busca. Verifique sua conexão.')
+            );
         } finally {
             setIsSearching(false);
         }
     };
 
-    // ── Barcode scan ──
     const handleBarcodeScan = () => {
-        navigation.navigate('Scanner', {
-            mode: 'barcode_scan',
-            returnTo: 'InfoRotulos',
-        });
+        navigation.navigate('Scanner', { mode: 'barcode_scan', returnTo: 'InfoRotulos' });
     };
 
-
-    // ── Histórico ──
     const handleHistorySelect = async (item) => {
-        // Tenta buscar novamente
         const data = await getSubstanceByName(item.nome);
         if (data) {
             navigation.navigate('InfoRotulosResult', {
-                substance: data,
-                source: 'cache',
-                searchQuery: item.nome,
+                substance: data, source: 'cache', searchQuery: item.nome,
             });
         } else {
-            // Usa dados mínimos do histórico
             navigation.navigate('InfoRotulosResult', {
                 product: {
-                    nome: item.nome,
-                    categoria: item.categoria,
-                    perigo: item.perigo,
-                    icone: item.icone,
+                    nome: item.nome, categoria: item.categoria,
+                    perigo: item.perigo, icone: item.icone,
                 },
                 source: 'history',
             });
         }
     };
 
-    // ─────────────────────────────────
-    // RENDER
-    // ─────────────────────────────────
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* Header */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <ArrowRight2 size={24} color={Neo.colors.neutral[800]} style={{ transform: [{ rotate: '180deg' }] }} />
+                {/* HEADER consistente */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2>{t('headersFirst.infoRTulos', 'InfoRótulos')}</H2>
-                        <Caption>{t('headersFirst.seguranAEmProdutosParaSuaFamLia', 'Segurança em produtos para sua família')}</Caption>
+                        <H1 style={s.title}>
+                            {t('inforotulos.headerTitle', 'Info Rótulos')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('inforotulos.headerSubtitle', 'Segurança em produtos para sua família')}
+                        </Caption>
                     </View>
                 </View>
 
                 <ScrollView
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={s.scrollContent}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
                 >
-                    {/* ── Campo de Busca ── */}
-                    <FadeInView delay={100}>
-                        <NeoCard variant="glass" style={styles.searchCard}>
-                            <View style={styles.searchRow}>
-                                <SearchNormal1 size={20} color={Neo.colors.neutral[400]} />
+                    {/* CAMPO DE BUSCA */}
+                    <FadeInView delay={80}>
+                        <NeoCard variant="elevated" style={s.searchCard}>
+                            <View style={s.searchRow}>
+                                <SearchNormal1 size={20} color={Neo.colors.neutral[500]} variant="Bold" />
                                 <TextInput
                                     ref={searchRef}
-                                    style={styles.searchInput}
-                                    placeholder="Buscar produto ou ingrediente..."
-                                    placeholderTextColor={Neo.colors.neutral[400]}
+                                    style={s.searchInput}
+                                    placeholder={t('inforotulos.searchPlaceholder', 'Buscar produto ou ingrediente…')}
+                                    placeholderTextColor={Neo.colors.neutral[500]}
                                     value={searchQuery}
                                     onChangeText={handleSearch}
                                     onSubmitEditing={handleSearchSubmit}
@@ -226,142 +182,169 @@ export default function InfoRotulosScreen() {
                                 />
                                 {searchQuery.length > 0 && (
                                     <TouchableOpacity onPress={() => { setSearchQuery(''); setSearchResults([]); }}>
-                                        <CloseCircle size={20} color={Neo.colors.neutral[400]} />
+                                        <CloseCircle size={20} color={Neo.colors.neutral[500]} variant="Bold" />
                                     </TouchableOpacity>
                                 )}
                                 {isSearching && <ActivityIndicator size="small" color={Neo.colors.primary[500]} />}
                             </View>
 
-                            {/* Resultados de busca local */}
                             {searchResults.length > 0 && (
-                                <View style={styles.searchResults}>
+                                <View style={s.searchResults}>
                                     {searchResults.map((item, idx) => (
                                         <TouchableOpacity
                                             key={idx}
-                                            style={styles.searchResultItem}
+                                            style={s.searchResultItem}
                                             onPress={() => handleProductSelect(item)}
+                                            activeOpacity={0.7}
                                         >
-                                            <Text style={styles.searchResultIcon}>{item.icone || '🧪'}</Text>
+                                            <Text style={s.searchResultIcon}>{item.icone || '🧪'}</Text>
                                             <View style={{ flex: 1 }}>
-                                                <Text style={styles.searchResultName}>{item.nome}</Text>
-                                                <Text style={styles.searchResultCat}>{item.categoria}</Text>
+                                                <Body style={s.searchResultName}>{item.nome}</Body>
+                                                <Small style={s.searchResultCat}>{item.categoria}</Small>
                                             </View>
-                                            <View style={[styles.perigoTag, { backgroundColor: item.cor + '20' }]}>
-                                                <Text style={[styles.perigoTagText, { color: item.cor }]}>{item.perigo}</Text>
+                                            <View style={[s.perigoTag, { backgroundColor: (item.cor || Neo.colors.neutral[500]) + '22' }]}>
+                                                <Caption style={[s.perigoTagText, { color: item.cor || Neo.colors.neutral[700] }]}>
+                                                    {item.perigo}
+                                                </Caption>
                                             </View>
                                         </TouchableOpacity>
                                     ))}
-
-                                    {/* Busca online */}
-                                    <TouchableOpacity style={styles.searchOnlineBtn} onPress={handleSearchSubmit}>
-                                        <SearchNormal1 size={16} color={Neo.colors.primary[600]} />
-                                        <Text style={styles.searchOnlineText}>
-                                            Buscar "{searchQuery}" nas bases toxicológicas
-                                        </Text>
-                                        <ArrowRight2 size={14} color={Neo.colors.primary[600]} />
+                                    <TouchableOpacity style={s.searchOnlineBtn} onPress={handleSearchSubmit} activeOpacity={0.7}>
+                                        <SearchNormal1 size={15} color={Neo.colors.primary[700]} variant="Bold" />
+                                        <Caption style={s.searchOnlineText}>
+                                            {t('inforotulos.searchOnline', { query: searchQuery, defaultValue: `Buscar "${searchQuery}" online` })}
+                                        </Caption>
+                                        <ArrowRight2 size={14} color={Neo.colors.primary[700]} />
                                     </TouchableOpacity>
                                 </View>
                             )}
                         </NeoCard>
                     </FadeInView>
 
-                    {/* ── Botão Barcode ── */}
-                    <FadeInView delay={200}>
+                    {/* BARCODE — card horizontal flat com accent primary */}
+                    <FadeInView delay={150}>
                         <TouchableOpacity
                             activeOpacity={0.85}
                             onPress={handleBarcodeScan}
-                            style={styles.barcodeButton}
+                            style={{ marginTop: 14, marginBottom: 14 }}
                         >
-                            <View style={styles.barcodeIconBox}>
-                                <Scan size={28} color="#FFF" variant="Bold" />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text style={styles.barcodeTitle}>{t('headersFirst.escanearCDigoDeBarras', 'Escanear Código de Barras')}</Text>
-                                <Text style={styles.barcodeSubtitle}>{t('headersFirst.aponteACMeraParaIdentificarOProduto', 'Aponte a câmera para identificar o produto')}</Text>
-                            </View>
-                            <ArrowRight2 size={20} color="rgba(255,255,255,0.6)" />
+                            <NeoCard variant="elevated" style={s.actionCard}>
+                                <View style={[s.actionIconWrap, { backgroundColor: 'rgba(16,185,129,0.22)' }]}>
+                                    <Scan size={24} color={Neo.colors.primary[600]} variant="Bold" />
+                                </View>
+                                <View style={{ flex: 1, marginLeft: 14 }}>
+                                    <Body style={s.actionTitle}>
+                                        {t('inforotulos.barcodeTitle', 'Escanear código de barras')}
+                                    </Body>
+                                    <Small style={s.actionSub}>
+                                        {t('inforotulos.barcodeSub', 'Aponte a câmera para identificar o produto')}
+                                    </Small>
+                                </View>
+                                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                            </NeoCard>
                         </TouchableOpacity>
                     </FadeInView>
 
-                    {/* ── Alerta do Perfil Familiar ── */}
+                    {/* CONTEXTO FAMILIAR */}
                     {familySummary && (
-                        <FadeInView delay={300}>
-                            <NeoCard variant="solid" color={familySummary.hasVulnerables ? '#FFF3E0' : '#E8F5E9'} style={styles.familyCard}>
-                                <View style={styles.familyRow}>
-                                    <Text style={styles.familyEmoji}>
-                                        {familySummary.hasVulnerables ? '⚠️' : '👨‍👩‍👧‍👦'}
-                                    </Text>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.familyTitle}>{t('headersFirst.seuPerfilFamiliar', 'Seu perfil familiar')}</Text>
-                                        <Text style={styles.familyText}>{familySummary.text}</Text>
-                                        {familySummary.hasVulnerables && (
-                                            <Text style={styles.familyWarning}>
-                                                {t('headersFirst.alertasPersonalizadosSerOExibidosNosResu', 'Alertas personalizados serão exibidos nos resultados.')}
-                                            </Text>
-                                        )}
-                                    </View>
+                        <FadeInView delay={220}>
+                            <NeoCard variant="elevated" style={[
+                                s.familyCard,
+                                familySummary.hasVulnerables
+                                    ? { borderColor: 'rgba(245,158,11,0.4)', borderWidth: 1 }
+                                    : null,
+                            ]}>
+                                <View style={[s.familyIconWrap, {
+                                    backgroundColor: familySummary.hasVulnerables
+                                        ? 'rgba(245,158,11,0.22)'
+                                        : 'rgba(16,185,129,0.22)',
+                                }]}>
+                                    <NeoIcon
+                                        name={familySummary.hasVulnerables ? 'Warning2' : 'People'}
+                                        size={20}
+                                        color={familySummary.hasVulnerables ? '#B45309' : Neo.colors.primary[700]}
+                                        variant="Bold"
+                                    />
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Body style={s.familyTitle}>
+                                        {t('inforotulos.familyProfile', 'Seu perfil familiar')}
+                                    </Body>
+                                    <Small style={s.familyText}>{familySummary.text}</Small>
+                                    {familySummary.hasVulnerables && (
+                                        <Caption style={s.familyWarning}>
+                                            {t('inforotulos.personalizedAlerts', 'Alertas personalizados aparecerão nos resultados.')}
+                                        </Caption>
+                                    )}
                                 </View>
                             </NeoCard>
                         </FadeInView>
                     )}
 
-
-                    {/* ── Histórico Recente ── */}
+                    {/* HISTÓRICO */}
                     {history.length > 0 && (
-                        <FadeInView delay={500}>
-                            <Text style={styles.sectionTitle}>{t('headersFirst.cONSULTASRECENTES', 'CONSULTAS RECENTES')}</Text>
-                            <NeoCard variant="glass" style={styles.historyCard}>
+                        <FadeInView delay={280}>
+                            <Text style={[s.sectionLabel, { marginTop: 22 }]}>
+                                {t('inforotulos.recentSearches', 'Consultas recentes')}
+                            </Text>
+                            <NeoCard variant="elevated" style={s.historyCard}>
                                 {history.map((item, idx) => (
                                     <TouchableOpacity
                                         key={idx}
-                                        style={[styles.historyItem, idx < history.length - 1 && styles.historyItemBorder]}
+                                        style={[s.historyItem, idx < history.length - 1 && s.historyItemBorder]}
                                         onPress={() => handleHistorySelect(item)}
+                                        activeOpacity={0.7}
                                     >
                                         <Text style={{ fontSize: 18, marginRight: 12 }}>{item.icone || '🧪'}</Text>
                                         <View style={{ flex: 1 }}>
-                                            <Text style={styles.historyName}>{item.nome}</Text>
-                                            <Text style={styles.historyDate}>
+                                            <Body style={s.historyName}>{item.nome}</Body>
+                                            <Caption style={s.historyDate}>
                                                 {formatRelativeTime(item.consultedAt)}
-                                            </Text>
+                                            </Caption>
                                         </View>
-                                        <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
+                                        <ArrowRight2 size={16} color={Neo.colors.neutral[500]} />
                                     </TouchableOpacity>
                                 ))}
                             </NeoCard>
                         </FadeInView>
                     )}
 
-                    {/* ── CIATOX ── */}
-                    <FadeInView delay={600}>
+                    {/* CIATOX — destaque vermelho contido (emergência real) */}
+                    <FadeInView delay={350}>
+                        <Text style={[s.sectionLabel, { marginTop: 22 }]}>
+                            {t('inforotulos.emergencyLabel', 'Em caso de intoxicação')}
+                        </Text>
                         <TouchableOpacity
                             activeOpacity={0.85}
                             onPress={() => Linking.openURL('tel:08007226001')}
-                            style={styles.ciatoxButton}
                         >
-                            <Call size={20} color="#FFF" variant="Bold" />
-                            <View style={{ flex: 1, marginLeft: 12 }}>
-                                <Text style={styles.ciatoxTitle}>{t('headersFirst.cIATOXEmergNciaToxicolGica', 'CIATOX — Emergência Toxicológica')}</Text>
-                                <Text style={styles.ciatoxNumber}>{t('headersFirst.08007226001Gratuito24h', '0800 722 6001 (Gratuito, 24h)')}</Text>
-                            </View>
-                            <ArrowRight2 size={16} color="rgba(255,255,255,0.6)" />
+                            <NeoCard variant="elevated" style={s.ciatoxCard}>
+                                <View style={s.ciatoxIconWrap}>
+                                    <Call size={22} color="#FFF" variant="Bold" />
+                                </View>
+                                <View style={{ flex: 1, marginLeft: 14 }}>
+                                    <Body style={s.ciatoxTitle}>
+                                        {t('inforotulos.ciatoxTitle', 'CIATOX — Emergência toxicológica')}
+                                    </Body>
+                                    <Small style={s.ciatoxNumber}>
+                                        {t('inforotulos.ciatoxNumber', '0800 722 6001 · Gratuito, 24h')}
+                                    </Small>
+                                </View>
+                                <ArrowRight2 size={18} color="rgba(255,255,255,0.85)" />
+                            </NeoCard>
                         </TouchableOpacity>
                     </FadeInView>
 
-                    {/* Disclaimer Médico/Técnico */}
-                    <Text style={styles.disclaimerText}>
+                    {/* DISCLAIMER */}
+                    <Small style={s.disclaimer}>
                         {t('inforotulos.disclaimer', 'O Vigilaro Care não substitui avaliação de um toxicologista, engenheiro químico ou profissional de saúde. Use as informações como referência educativa. Em caso de intoxicação, ligue imediatamente para o CIATOX ou SAMU.')}
-                    </Text>
-
-                    <View style={{ height: 100 }} />
+                    </Small>
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>
     );
 }
 
-// ─────────────────────────────────
-// Utilitários
-// ─────────────────────────────────
 function formatRelativeTime(timestamp) {
     if (!timestamp) return '';
     const diff = Date.now() - timestamp;
@@ -374,26 +357,34 @@ function formatRelativeTime(timestamp) {
     return `há ${Math.floor(days / 7)} semana${Math.floor(days / 7) > 1 ? 's' : ''}`;
 }
 
-// ─────────────────────────────────
-// Estilos
-// ─────────────────────────────────
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingTop: Neo.spacing.md,
-        paddingBottom: Neo.spacing.sm,
+        paddingTop: 4,
+        paddingBottom: 18,
+        gap: 12,
     },
-    backButton: {
-        width: 40, height: 40, borderRadius: 20,
-        backgroundColor: 'rgba(0,0,0,0.03)',
-        justifyContent: 'center', alignItems: 'center',
-        marginRight: Neo.spacing.md,
+    backBtn: {
+        width: 38, height: 38, borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center', justifyContent: 'center',
     },
+    title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2 },
+    subtitle: { color: Neo.colors.neutral[600] },
+
     scrollContent: {
-        padding: Neo.spacing.lg,
-        paddingBottom: 100,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
+    },
+
+    // Section labels
+    sectionLabel: {
+        fontSize: 11, fontWeight: '900', color: Neo.colors.neutral[700],
+        letterSpacing: 1.6, marginBottom: 10, textTransform: 'uppercase', opacity: 0.85,
     },
 
     // Search
@@ -401,159 +392,107 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 0,
         overflow: 'hidden',
-        marginBottom: Neo.spacing.md,
     },
     searchRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 14,
+        paddingHorizontal: 16, paddingVertical: 12,
         gap: 10,
     },
     searchInput: {
         flex: 1,
         fontSize: 15,
-        color: Neo.colors.neutral[800],
+        color: Neo.colors.neutral[900],
         fontWeight: '500',
     },
     searchResults: {
         borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.05)',
+        borderTopColor: 'rgba(0,0,0,0.06)',
     },
     searchResultItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.03)',
+        paddingHorizontal: 16, paddingVertical: 12,
+        borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.04)',
     },
-    searchResultIcon: {
-        fontSize: 22,
-        marginRight: 12,
-    },
-    searchResultName: {
-        fontSize: 14, fontWeight: '600',
-        color: Neo.colors.neutral[800],
-    },
-    searchResultCat: {
-        fontSize: 11,
-        color: Neo.colors.neutral[500],
-        marginTop: 1,
-    },
-    perigoTag: {
-        paddingHorizontal: 8, paddingVertical: 3,
-        borderRadius: 8,
-    },
-    perigoTagText: {
-        fontSize: 9, fontWeight: '800',
-    },
+    searchResultIcon: { fontSize: 22, marginRight: 12 },
+    searchResultName: { fontSize: 14, fontWeight: '700', color: Neo.colors.neutral[900] },
+    searchResultCat: { color: Neo.colors.neutral[600], marginTop: 1 },
+    perigoTag: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8 },
+    perigoTagText: { fontSize: 9.5, fontWeight: '800', letterSpacing: 0.3 },
     searchOnlineBtn: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 14,
-        gap: 8,
-        backgroundColor: 'rgba(16,185,129,0.05)',
+        flexDirection: 'row', alignItems: 'center',
+        paddingHorizontal: 16, paddingVertical: 12, gap: 8,
+        backgroundColor: 'rgba(16,185,129,0.10)',
     },
-    searchOnlineText: {
-        flex: 1,
-        fontSize: 13,
-        color: Neo.colors.primary[600],
-        fontWeight: '600',
-    },
+    searchOnlineText: { flex: 1, fontWeight: '700', color: Neo.colors.primary[700], fontSize: 12 },
 
-    // Barcode
-    barcodeButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: Neo.colors.primary[600],
-        borderRadius: 20,
-        padding: 16,
-        marginBottom: Neo.spacing.md,
-        ...Neo.shadows.md,
+    // Generic action card (Barcode)
+    actionCard: {
+        flexDirection: 'row', alignItems: 'center',
+        padding: 14, borderRadius: 18,
     },
-    barcodeIconBox: {
+    actionIconWrap: {
         width: 48, height: 48, borderRadius: 24,
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        justifyContent: 'center', alignItems: 'center',
-        marginRight: 14,
+        alignItems: 'center', justifyContent: 'center',
     },
-    barcodeTitle: {
-        fontSize: 16, fontWeight: '700', color: '#FFF',
+    actionTitle: {
+        fontWeight: '800', fontSize: 15, color: Neo.colors.neutral[900], marginBottom: 2,
     },
-    barcodeSubtitle: {
-        fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 2,
+    actionSub: {
+        color: Neo.colors.neutral[600], lineHeight: 16,
     },
 
-    // Family
+    // Family card
     familyCard: {
-        borderRadius: 20, padding: 16,
-        marginBottom: Neo.spacing.md,
-    },
-    familyRow: {
         flexDirection: 'row', alignItems: 'flex-start',
+        padding: 14, borderRadius: 18, gap: 12,
     },
-    familyEmoji: {
-        fontSize: 28, marginRight: 14, marginTop: 2,
+    familyIconWrap: {
+        width: 40, height: 40, borderRadius: 20,
+        alignItems: 'center', justifyContent: 'center',
     },
-    familyTitle: {
-        fontSize: 14, fontWeight: '700', color: Neo.colors.neutral[800], marginBottom: 2,
-    },
-    familyText: {
-        fontSize: 13, color: Neo.colors.neutral[600], lineHeight: 18,
-    },
+    familyTitle: { fontWeight: '800', color: Neo.colors.neutral[900], marginBottom: 2 },
+    familyText: { color: Neo.colors.neutral[700], lineHeight: 17 },
     familyWarning: {
-        fontSize: 11, color: '#E65100', fontWeight: '600', marginTop: 4,
-    },
-
-    // Categories
-    sectionTitle: {
-        fontSize: 12, fontWeight: '800', letterSpacing: 1,
-        color: Neo.colors.neutral[500], marginBottom: Neo.spacing.md,
-        textTransform: 'uppercase',
+        color: '#B45309', fontWeight: '700', marginTop: 6,
     },
 
     // History
-    historyCard: {
-        borderRadius: 20,
-        padding: 4,
-        marginBottom: Neo.spacing.lg,
-    },
+    historyCard: { padding: 0, borderRadius: 18, overflow: 'hidden' },
     historyItem: {
         flexDirection: 'row', alignItems: 'center',
         paddingHorizontal: 14, paddingVertical: 12,
     },
     historyItemBorder: {
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.04)',
+        borderBottomColor: 'rgba(0,0,0,0.05)',
     },
-    historyName: {
-        fontSize: 14, fontWeight: '600', color: Neo.colors.neutral[800],
-    },
-    historyDate: {
-        fontSize: 11, color: Neo.colors.neutral[500], marginTop: 1,
-    },
+    historyName: { fontWeight: '700', fontSize: 14, color: Neo.colors.neutral[900] },
+    historyDate: { color: Neo.colors.neutral[500], marginTop: 1 },
 
     // CIATOX
-    ciatoxButton: {
+    ciatoxCard: {
         flexDirection: 'row', alignItems: 'center',
         backgroundColor: '#D32F2F',
-        borderRadius: 16, padding: 16,
-        ...Neo.shadows.sm,
+        padding: 14, borderRadius: 18,
+    },
+    ciatoxIconWrap: {
+        width: 44, height: 44, borderRadius: 22,
+        backgroundColor: 'rgba(255,255,255,0.22)',
+        alignItems: 'center', justifyContent: 'center',
     },
     ciatoxTitle: {
-        fontSize: 13, fontWeight: '700', color: '#FFF',
+        fontWeight: '800', color: '#FFF', fontSize: 14,
     },
-    ciatoxNumber: {
-        fontSize: 11, color: 'rgba(255,255,255,0.8)', marginTop: 1,
-    },
-    disclaimerText: {
-        fontSize: 11,
+    ciatoxNumber: { color: 'rgba(255,255,255,0.85)', marginTop: 2 },
+
+    disclaimer: {
         color: Neo.colors.neutral[500],
         textAlign: 'center',
-        marginTop: 20,
+        marginTop: 22,
         lineHeight: 16,
-        paddingHorizontal: 16,
+        fontSize: 11,
+        paddingHorizontal: 8,
     },
 });
