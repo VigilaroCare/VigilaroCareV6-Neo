@@ -215,16 +215,8 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         let clean = phone.replace(/\D/g, '');
 
         // 2. Extrai DDD do perfil do usuário como fallback
-        let userDDD = "11"; // Default para SP se nada for encontrado
-        if (primaryProfile?.telefone) {
-            const userPhoneClean = primaryProfile.telefone.replace(/\D/g, '');
-            // Se tiver DDI 55, o DDD são os dígitos 2 e 3. Se não, os dígitos 0 e 1.
-            if (userPhoneClean.startsWith('55') && userPhoneClean.length >= 4) {
-                userDDD = userPhoneClean.substring(2, 4);
-            } else if (userPhoneClean.length >= 2) {
-                userDDD = userPhoneClean.substring(0, 2);
-            }
-        }
+        // Bug fix: primaryProfile não estava definido — usar default 11 (SP)
+        let userDDD = "11";
         
         // 3. Lógica de correção inteligente (Fuzzy)
         let finalPhone = clean;
@@ -265,7 +257,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const handleCopyFicha = async () => {
         try {
             await Clipboard.setStringAsync(fichaTexto);
-            Alert.alert('✅ Copiado', 'Ficha médica copiada. Cole em qualquer app de mensagem.');
+            Alert.alert('Copiado', 'Ficha médica copiada. Cole em qualquer app de mensagem.');
         } catch (e) {
             Alert.alert('Erro', 'Não foi possível copiar.');
         }
@@ -312,8 +304,8 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     );
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
                 {/* Offline Banner */}
@@ -347,7 +339,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         flexDirection: 'row', alignItems: 'center'
                                     }}
                                 >
-                                    <NeoIcon name={tab === 'HUMAN' ? 'person' : 'paw'} size={18} color={isActive ? '#FFF' : '#DC2626'} />
+                                    <NeoIcon name={tab === 'HUMAN' ? 'User' : 'Heart'} size={16} color={isActive ? '#FFF' : '#DC2626'} variant="Bold" style={{ marginRight: 6 }} />
                                     <Small style={{ color: isActive ? '#FFF' : '#DC2626', fontWeight: 'bold' }}>
                                         {tab === 'HUMAN' ? 'Pessoas' : 'Pets'}
                                     </Small>
@@ -357,7 +349,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 100 }}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
                     {/* 6. PRIMEIROS SOCORROS PROTAGONISTA */}
                     <ScaleButton onPress={() => navigation.navigate('PrimeirosSocorrosEmergencia')} style={{ marginBottom: 16 }}>
                         <NeoCard variant="elevated" style={{
@@ -417,7 +409,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         subtitle={t('sos.toxSub')}
                                         color="#10B981"
                                         bgColor="#ECFDF5"
-                                        iconNode={<NeoIcon name="skull" size={32} color="#FFF" />}
+                                        iconNode={<NeoIcon name="Danger" size={28} color="#FFF" variant="Bold" />}
                                         onPress={() => handleCall(t('sos.toxPhone'))}
                                     />
                                 </>
@@ -439,7 +431,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         subtitle={t('sos.toxSub')}
                                         color="#10B981"
                                         bgColor="#ECFDF5"
-                                        iconNode={<NeoIcon name="skull" size={32} color="#FFF" />}
+                                        iconNode={<NeoIcon name="Danger" size={28} color="#FFF" variant="Bold" />}
                                         onPress={() => handleCall(t('sos.toxPhone'))}
                                         fullWidth
                                     />
