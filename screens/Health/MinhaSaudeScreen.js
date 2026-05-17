@@ -11,13 +11,12 @@ import HealthService from '../../services/HealthService';
 import ProfileService from '../../services/ProfileService';
 import { useProfiles } from '../../contexts/ProfileContext';
 import { getArticleById } from '../../data/SafetyArticlesDB';
-import { LampOn, ArrowRight2, CloseSquare } from 'iconsax-react-native';
 import { useLeftHandedStyle } from '../../hooks/useLeftHandedStyle';
 import { useTranslation } from 'react-i18next';
 
 // Components
 import NeoCard from '../../components/NeoCard';
-import { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
@@ -148,68 +147,56 @@ export default function MinhaSaudeScreen({ navigation }) {
                 <NeoCard variant="elevated" style={styles.alertCard}>
                     <View style={styles.alertContent}>
                         <View style={styles.alertIcon}>
-                            <NeoIcon name="Warning2" size={24} color={Neo.colors.feedback.error} />
+                            <NeoIcon name="Warning2" size={20} color={Neo.colors.feedback.error} variant="Bold" />
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Body style={{ color: Neo.colors.feedback.error, fontWeight: 'bold' }}>
+                            <Body style={{ color: Neo.colors.feedback.error, fontWeight: '800', fontSize: 14 }}>
                                 {activeProfile?.nome?.split(' ')[0]}, {t('health.overdueMedsInfo', { count: overdueMeds.length })}
                             </Body>
-                            <Small style={{ color: Neo.colors.neutral[600] }}>
+                            <Small style={{ color: Neo.colors.neutral[700], marginTop: 2 }}>
                                 {t('health.tapToView')}
                             </Small>
                         </View>
-                        <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.feedback.error} />
+                        <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.feedback.error} />
                     </View>
                 </NeoCard>
             </View>
         );
     };
 
-    const renderTabs = () => (
-        <View style={styles.tabsContainer}>
-            <TouchableOpacity
-                style={[styles.tab, activeTab === 'medications' && styles.tabActive]}
-                onPress={() => setActiveTab('medications')}
-            >
-                <NeoIcon
-                    name="Health"
-                    size={20}
-                    color={activeTab === 'medications' ? Neo.colors.primary[600] : Neo.colors.neutral[500]}
-                />
-                <Small style={[styles.tabText, { fontSize: 11 }, activeTab === 'medications' && styles.tabTextActive]}>
-                    {t('health.tabMeds')}
-                </Small>
-            </TouchableOpacity>
+    const renderTabs = () => {
+        const tabs = [
+            { id: 'medications', icon: 'Health', label: t('health.tabMeds') },
+            { id: 'agenda', icon: 'CalendarEdit', label: t('health.tabAgenda') },
+            { id: 'dossier', icon: 'Clipboard', label: t('health.tabDossier') },
+        ];
 
-            <TouchableOpacity
-                style={[styles.tab, activeTab === 'agenda' && styles.tabActive]}
-                onPress={() => setActiveTab('agenda')}
-            >
-                <NeoIcon
-                    name="CalendarEdit"
-                    size={20}
-                    color={activeTab === 'agenda' ? Neo.colors.primary[600] : Neo.colors.neutral[500]}
-                />
-                <Small style={[styles.tabText, { fontSize: 11 }, activeTab === 'agenda' && styles.tabTextActive]}>
-                    {t('health.tabAgenda')}
-                </Small>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={[styles.tab, activeTab === 'dossier' && styles.tabActive]}
-                onPress={() => setActiveTab('dossier')}
-            >
-                <NeoIcon
-                    name="Clipboard"
-                    size={20}
-                    color={activeTab === 'dossier' ? Neo.colors.primary[600] : Neo.colors.neutral[500]}
-                />
-                <Small style={[styles.tabText, { fontSize: 11 }, activeTab === 'dossier' && styles.tabTextActive]}>
-                    {t('health.tabDossier')}
-                </Small>
-            </TouchableOpacity>
-        </View>
-    );
+        return (
+            <View style={styles.tabsContainer}>
+                {tabs.map((tab) => {
+                    const isActive = activeTab === tab.id;
+                    return (
+                        <TouchableOpacity
+                            key={tab.id}
+                            style={[styles.tab, isActive && styles.tabActive]}
+                            onPress={() => setActiveTab(tab.id)}
+                            activeOpacity={0.85}
+                        >
+                            <NeoIcon
+                                name={tab.icon}
+                                size={18}
+                                color={isActive ? Neo.colors.primary[700] : Neo.colors.neutral[600]}
+                                variant={isActive ? 'Bold' : 'Linear'}
+                            />
+                            <Small style={[styles.tabText, isActive && styles.tabTextActive]}>
+                                {tab.label}
+                            </Small>
+                        </TouchableOpacity>
+                    );
+                })}
+            </View>
+        );
+    };
 
     const renderMedications = () => {
         if (medications.length === 0) {
@@ -238,9 +225,12 @@ export default function MinhaSaudeScreen({ navigation }) {
                             {med.dosage || t('health.doseNotSpecified')}
                         </Small>
                         {med.indication ? (
-                            <Small style={{ color: Neo.colors.primary[600], fontStyle: 'italic', marginTop: 2 }}>
-                                🎯 {med.indication}
-                            </Small>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 4 }}>
+                                <NeoIcon name="TickCircle" size={12} color={Neo.colors.primary[600]} variant="Bold" />
+                                <Small style={{ color: Neo.colors.primary[700], fontStyle: 'italic' }}>
+                                    {med.indication}
+                                </Small>
+                            </View>
                         ) : null}
                     </View>
                     <View style={{ flexDirection: 'row', gap: 16 }}>
@@ -362,9 +352,9 @@ export default function MinhaSaudeScreen({ navigation }) {
             const daysUntil = Math.ceil((eventDate - new Date()) / (1000 * 60 * 60 * 24));
 
             const icons = {
-                treatment: 'hospital-box',
-                appointment: 'calendar',
-                procedure: 'medical-bag'
+                treatment: 'Hospital',
+                appointment: 'Calendar',
+                procedure: 'Health'
             };
 
             const colors = {
@@ -377,7 +367,7 @@ export default function MinhaSaudeScreen({ navigation }) {
                 <NeoCard variant="elevated" key={event.id} style={styles.itemCard}>
                     <View style={styles.itemHeader}>
                         <View style={[styles.eventIcon, { backgroundColor: colors[event.type] + '20' }]}>
-                            <NeoIcon name={icons[event.type]} size={24} color={colors[event.type]} />
+                            <NeoIcon name={icons[event.type]} size={22} color={colors[event.type]} variant="Bold" />
                         </View>
                         <View style={{ flex: 1, marginLeft: 12 }}>
                             <H3>{event.name}</H3>
@@ -434,83 +424,125 @@ export default function MinhaSaudeScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
-        <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
-            <StatusBar style="dark" />
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
+                <StatusBar style="dark" />
 
-            {/* Header */}
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
-                </TouchableOpacity>
-                <View style={{ flex: 1, marginLeft: 16 }}>
-                    <H2>{t('health.title')}</H2>
-                    <Small style={{ color: Neo.colors.neutral[500] }}>
-                        {activeProfile?.nome || '...'}
-                    </Small>
+                {/* HEADER padronizado */}
+                <View style={styles.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={styles.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                    </TouchableOpacity>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={styles.title}>{t('health.title', 'Saúde')}</H1>
+                        <Caption style={styles.subtitle}>
+                            {activeProfile?.nome || '…'}
+                        </Caption>
+                    </View>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ShareHealthRecord')}
+                        style={styles.shareBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ShareNetwork" size={20} color={Neo.colors.primary[700]} variant="Bold" />
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('ShareHealthRecord')}>
-                    <NeoIcon name="ShareNetwork" size={24} color={Neo.colors.primary[600]} />
-                </TouchableOpacity>
-            </View>
 
-            {/* Alerts */}
-            {renderAlerts()}
+                {/* Alerts */}
+                {renderAlerts()}
 
-            {/* Health Tip Widget removido conforme solicitação */}
+                {/* Tabs */}
+                {renderTabs()}
 
-            {/* Tabs */}
-            {renderTabs()}
-
-            {/* Content */}
-            <ScrollView
-                style={styles.content}
-                contentContainerStyle={{ paddingBottom: 100 }}
-                refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }
-            >
-                {activeTab === 'medications' && renderMedications()}
-                {activeTab === 'agenda' && renderAgenda()}
-                {activeTab === 'dossier' && renderDossier()}
-            </ScrollView>
-
-            {/* FAB - Hide if medications list is empty (redundant with center button) AND completely hide in Dossier tab */}
-            {activeTab !== 'dossier' && !(activeTab === 'medications' && medications.length === 0) ? (
-                <TouchableOpacity
-                    style={[styles.fab, fabPosition('right')]}
-                    onPress={() => {
-                        if (activeTab === 'medications') navigation.navigate('MedicationScheduler', { autoOpen: true });
-                        else if (activeTab === 'agenda') navigation.navigate('AddEvent');
-                    }}
+                {/* Content */}
+                <ScrollView
+                    style={styles.content}
+                    contentContainerStyle={{ paddingBottom: 190 }}
+                    showsVerticalScrollIndicator={false}
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    }
                 >
-                    <NeoIcon name="Add" size={28} color={Neo.colors.neutral.white} />
-                </TouchableOpacity>
-            ) : null}
-        </SafeAreaView>
-      </AppBackground>
+                    {activeTab === 'medications' && renderMedications()}
+                    {activeTab === 'agenda' && renderAgenda()}
+                    {activeTab === 'dossier' && renderDossier()}
+                </ScrollView>
+
+                {/* FAB */}
+                {activeTab !== 'dossier' && !(activeTab === 'medications' && medications.length === 0) ? (
+                    <TouchableOpacity
+                        style={[styles.fab, fabPosition('right')]}
+                        onPress={() => {
+                            if (activeTab === 'medications') navigation.navigate('MedicationScheduler', { autoOpen: true });
+                            else if (activeTab === 'agenda') navigation.navigate('AddEvent');
+                        }}
+                        activeOpacity={0.85}
+                    >
+                        <NeoIcon name="Add" size={26} color="#FFF" variant="Bold" />
+                    </TouchableOpacity>
+                ) : null}
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Neo.colors.neutral[100],
+        backgroundColor: 'transparent',
     },
+
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: Neo.spacing.md,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 24,
+    },
+    subtitle: {
+        color: Neo.colors.neutral[600],
+    },
+    shareBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    // Alerts
     alertsSection: {
         paddingHorizontal: Neo.spacing.lg,
         gap: 12,
-        marginBottom: Neo.spacing.md,
+        marginBottom: 12,
     },
     alertCard: {
-        padding: 16,
-        backgroundColor: Neo.colors.feedback.error + '1A',
+        padding: 14,
+        borderRadius: 16,
+        backgroundColor: Neo.colors.feedback.error + '14',
+        borderLeftWidth: 3,
+        borderLeftColor: Neo.colors.feedback.error,
     },
     alertContent: {
         flexDirection: 'row',
@@ -518,47 +550,57 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     alertIcon: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: Neo.colors.feedback.error + '33',
+        width: 38,
+        height: 38,
+        borderRadius: 19,
+        backgroundColor: Neo.colors.feedback.error + '24',
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    // Tabs (pill glass)
     tabsContainer: {
         flexDirection: 'row',
-        paddingHorizontal: Neo.spacing.lg,
-        gap: 8,
-        marginBottom: Neo.spacing.md,
+        marginHorizontal: Neo.spacing.lg,
+        marginBottom: 12,
+        backgroundColor: 'rgba(255,255,255,0.45)',
+        borderRadius: 16,
+        padding: 4,
+        gap: 4,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.04)',
     },
     tab: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
+        paddingVertical: 10,
         borderRadius: 12,
-        backgroundColor: Neo.colors.neutral[200],
         gap: 6,
     },
     tabActive: {
-        backgroundColor: Neo.colors.primary[100],
+        backgroundColor: '#FFF',
     },
     tabText: {
         color: Neo.colors.neutral[600],
-        fontWeight: '500',
+        fontWeight: '700',
+        fontSize: 12,
     },
     tabTextActive: {
         color: Neo.colors.primary[700],
-        fontWeight: '600',
+        fontWeight: '800',
     },
+
+    // Content
     content: {
         flex: 1,
         paddingHorizontal: Neo.spacing.lg,
     },
     itemCard: {
-        padding: 16,
+        padding: 14,
         marginBottom: 12,
+        borderRadius: 16,
     },
     itemHeader: {
         flexDirection: 'row',
@@ -570,28 +612,28 @@ const styles = StyleSheet.create({
         marginTop: 12,
         paddingTop: 12,
         borderTopWidth: 1,
-        borderTopColor: Neo.colors.neutral[200],
+        borderTopColor: 'rgba(0,0,0,0.05)',
     },
     eventIcon: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
         alignItems: 'center',
         justifyContent: 'center',
     },
     eventFooter: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 16,
-        paddingTop: 16,
+        marginTop: 14,
+        paddingTop: 14,
         borderTopWidth: 1,
-        borderTopColor: Neo.colors.neutral[200],
+        borderTopColor: 'rgba(0,0,0,0.05)',
     },
     doneButton: {
-        backgroundColor: Neo.colors.primary[500],
-        paddingHorizontal: 16,
+        backgroundColor: Neo.colors.primary[600],
+        paddingHorizontal: 14,
         paddingVertical: 8,
-        borderRadius: 8,
+        borderRadius: 10,
     },
     categoryBadge: {
         width: 40,
@@ -600,20 +642,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    // Empty state
     emptyState: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 60,
+        paddingHorizontal: 24,
     },
+
+    // FAB
     fab: {
         position: 'absolute',
-        bottom: 110, // Raised to clear the Bottom Tab Bar
+        bottom: 180, // bem acima do SOS
         width: 56,
         height: 56,
         borderRadius: 28,
-        backgroundColor: Neo.colors.primary[500],
+        backgroundColor: Neo.colors.primary[600],
         alignItems: 'center',
         justifyContent: 'center',
-        ...Neo.shadows.lg,
+        ...Neo.shadows.md,
     },
 });
