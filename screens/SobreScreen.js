@@ -23,7 +23,7 @@ export default function SobreScreen({ navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
         <StatusBar barStyle="dark-content" />
 
@@ -47,7 +47,7 @@ export default function SobreScreen({ navigation }) {
                     backgroundColor: Neo.colors.primary[100], alignItems: "center", justifyContent: "center",
                     marginBottom: 12
                 }}>
-                    <NeoIcon name="InfoCircle" size={24} color={Neo.colors.primary[600]} variant="Bulk" />
+                    <NeoIcon name="InfoCircle" size={24} color={Neo.colors.primary[600]} variant="Bold" />
                 </View>
                 <View style={{ alignItems: "center" }}>
                     <H3 style={{ color: Neo.colors.primary[600], fontSize: 16, marginBottom: 4, lineHeight: 18 }}>{t('about.title')}</H3>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   content: {
     padding: Spacing.lg,
     paddingTop: 0,
-    paddingBottom: 120,
+    paddingBottom: 190,
   },
   brandSection: {
     alignItems: 'center',

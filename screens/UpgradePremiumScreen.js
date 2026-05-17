@@ -298,7 +298,7 @@ export default function UpgradePremiumScreen({ navigation }) {
   // ---------------------------------------------------------------------------
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}

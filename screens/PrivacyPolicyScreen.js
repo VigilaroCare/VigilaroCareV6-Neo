@@ -10,7 +10,7 @@ import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/The
 export default function PrivacyPolicyScreen({ navigation }) {
     const { t } = useTranslation('common');
     return (
-      <AppBackground variant="subtle">
+      <AppBackground>
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>

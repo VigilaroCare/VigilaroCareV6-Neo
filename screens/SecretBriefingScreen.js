@@ -45,7 +45,7 @@ export default function SecretBriefingScreen({ navigation }) {
                 colors={['#1F2937', '#111827']}
                 style={styles.gradient}
             >
-                <AppBackground variant="subtle">
+                <AppBackground>
         <SafeAreaView style={styles.content}>
 
                     <Animated.View style={{ opacity: fadeAnim, alignItems: 'center' }}>
