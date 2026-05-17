@@ -1,305 +1,304 @@
 /**
  * PetsMenuScreen.js
- * Menu de Segurança para Pets
- * Vigilaro Care V5
+ * Hub de Saúde Pet — Vigilaro Care V6 Neo
+ *
+ * Filosofia: lista plana de 11 itens vira 3 seções semânticas
+ * (Por tipo/idade · Bem-estar · Emergência). Cada item é um card glass
+ * horizontal com ícone (emoji on-brand para pets) + título + descrição.
  */
 
 import React from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
+    View, Text, StyleSheet, ScrollView, TouchableOpacity,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft, Pet, ArrowRight2 } from 'iconsax-react-native'; // Standard icons
-import { Shadows } from '../../utils/Theme';
-import { PET_SAFETY_CONTENT } from '../../data/pet_safety_content';
+import { ArrowRight2 } from 'iconsax-react-native';
+import { useTranslation } from 'react-i18next';
+
+import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import NeoText, { H3, Body, Small } from '../../components/NeoTypography';
-import { DS as Neo } from '../../utils/DesignSystem2026';
-import { useTranslation } from 'react-i18next';
+import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { PET_SAFETY_CONTENT } from '../../data/pet_safety_content';
 
-export default function PetsMenuScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
+export default function PetsMenuScreen() {
+    const navigation = useNavigation();
     const { t } = useTranslation('common');
-    const THEME_COLOR = '#9C27B0'; // Purple
 
-    const items = [
+    // ── Por tipo/idade ──
+    const sectionTipos = [
         {
             id: 'prenhez',
+            emoji: '🤰',
+            cor: '#E91E63',
             titulo: t('petsMenu.prenhez.titulo'),
-            subtitulo: t('petsMenu.prenhez.subtitulo'),
             descricao: t('petsMenu.prenhez.descricao'),
-            emoji: '🐾',
-            cor: '#F3E5F5',
-            corIcone: '#E1BEE7', // Light Purple
             tela: 'PetPregnancyGuide',
         },
         {
             id: 'filhotes',
-            titulo: t('petsMenu.filhotes.titulo'),
-            subtitulo: t('petsMenu.filhotes.subtitulo'),
-            descricao: t('petsMenu.filhotes.descricao'),
             emoji: '🐶',
-            cor: '#E3F2FD',
-            corIcone: '#90CAF9', // Light Blue
+            cor: '#2196F3',
+            titulo: t('petsMenu.filhotes.titulo'),
+            descricao: t('petsMenu.filhotes.descricao'),
             tela: 'AgeGroupDetail',
-            risks: PET_SAFETY_CONTENT['filhotes'].risks,
-            checklist: PET_SAFETY_CONTENT['filhotes'].checklist
+            risks: PET_SAFETY_CONTENT['filhotes']?.risks,
+            checklist: PET_SAFETY_CONTENT['filhotes']?.checklist,
         },
         {
             id: 'adultos',
-            titulo: t('petsMenu.adultos.titulo'),
-            subtitulo: t('petsMenu.adultos.subtitulo'),
-            descricao: t('petsMenu.adultos.descricao'),
             emoji: '🐕',
-            cor: '#E8F5E9',
-            corIcone: '#A5D6A7', // Light Green
+            cor: '#4CAF50',
+            titulo: t('petsMenu.adultos.titulo'),
+            descricao: t('petsMenu.adultos.descricao'),
             tela: 'AgeGroupDetail',
-            risks: PET_SAFETY_CONTENT['adultos'].risks,
-            checklist: PET_SAFETY_CONTENT['adultos'].checklist
-        },
-        {
-            id: 'aves',
-            titulo: t('petsMenu.aves.titulo'),
-            subtitulo: t('petsMenu.aves.subtitulo'),
-            descricao: t('petsMenu.aves.descricao'),
-            emoji: '🦜',
-            cor: '#FFF9C4',
-            corIcone: '#FFF176',
-            tela: 'AvesSeguras',
-        },
-        {
-            id: 'wellness',
-            titulo: t('petsMenu.wellness.titulo'),
-            subtitulo: t('petsMenu.wellness.subtitulo'),
-            descricao: t('petsMenu.wellness.descricao'),
-            emoji: '🌟',
-            cor: '#E0F2F1',
-            corIcone: '#80CBC4',
-            tela: 'PetWellness',
+            risks: PET_SAFETY_CONTENT['adultos']?.risks,
+            checklist: PET_SAFETY_CONTENT['adultos']?.checklist,
         },
         {
             id: 'pequenos',
-            titulo: t('petsMenu.pequenos.titulo'),
-            subtitulo: t('petsMenu.pequenos.subtitulo'),
-            descricao: t('petsMenu.pequenos.descricao'),
             emoji: '🐹',
-            cor: '#FBE9E7',
-            corIcone: '#FFAB91',
+            cor: '#FF7043',
+            titulo: t('petsMenu.pequenos.titulo'),
+            descricao: t('petsMenu.pequenos.descricao'),
             tela: 'AgeGroupDetail',
-            risks: PET_SAFETY_CONTENT['pequenos_mamiferos'].risks,
-            checklist: PET_SAFETY_CONTENT['pequenos_mamiferos'].checklist
+            risks: PET_SAFETY_CONTENT['pequenos_mamiferos']?.risks,
+            checklist: PET_SAFETY_CONTENT['pequenos_mamiferos']?.checklist,
+        },
+        {
+            id: 'aves',
+            emoji: '🦜',
+            cor: '#FBC02D',
+            titulo: t('petsMenu.aves.titulo'),
+            descricao: t('petsMenu.aves.descricao'),
+            tela: 'AvesSeguras',
         },
         {
             id: 'peixes',
-            titulo: t('petsMenu.peixes.titulo'),
-            subtitulo: t('petsMenu.peixes.subtitulo'),
-            descricao: t('petsMenu.peixes.descricao'),
             emoji: '🐠',
-            cor: '#E1F5FE',
-            corIcone: '#81D4FA',
+            cor: '#0EA5E9',
+            titulo: t('petsMenu.peixes.titulo'),
+            descricao: t('petsMenu.peixes.descricao'),
             tela: 'AgeGroupDetail',
-            risks: PET_SAFETY_CONTENT['peixes'].risks,
-            checklist: PET_SAFETY_CONTENT['peixes'].checklist
+            risks: PET_SAFETY_CONTENT['peixes']?.risks,
+            checklist: PET_SAFETY_CONTENT['peixes']?.checklist,
+        },
+    ];
+
+    // ── Bem-estar & alimentação ──
+    const sectionBemEstar = [
+        {
+            id: 'wellness',
+            emoji: '🌿',
+            cor: '#16A34A',
+            titulo: t('petsMenu.wellness.titulo'),
+            descricao: t('petsMenu.wellness.descricao'),
+            tela: 'PetWellness',
         },
         {
             id: 'alimentos',
-            titulo: t('petsMenu.alimentos.titulo'),
-            subtitulo: t('petsMenu.alimentos.subtitulo'),
-            descricao: t('petsMenu.alimentos.descricao'),
             emoji: '🍫',
-            cor: '#FFEBEE',
-            corIcone: '#D32F2F',
+            cor: '#D32F2F',
+            titulo: t('petsMenu.alimentos.titulo'),
+            descricao: t('petsMenu.alimentos.descricao'),
             tela: 'PetFoodSafety',
         },
+    ];
+
+    // ── Emergência ──
+    const sectionEmergencia = [
         {
             id: 'socorros',
-            titulo: t('petsMenu.socorros.titulo'),
-            subtitulo: t('petsMenu.socorros.subtitulo'),
-            descricao: t('petsMenu.socorros.descricao'),
             emoji: '🚑',
-            cor: '#EFEBE9',
-            corIcone: '#4E342E',
+            cor: '#DC2626',
+            titulo: t('petsMenu.socorros.titulo'),
+            descricao: t('petsMenu.socorros.descricao'),
             tela: 'PrimeirosSocorrosEmergencia',
         },
         {
             id: 'guia_socorros_pet',
-            titulo: t('petsMenu.guia_socorros_pet.titulo'),
-            subtitulo: t('petsMenu.guia_socorros_pet.subtitulo'),
-            descricao: t('petsMenu.guia_socorros_pet.descricao'),
             emoji: '📖',
-            cor: '#F3E5F5',
-            corIcone: '#E1BEE7',
+            cor: '#7C3AED',
+            titulo: t('petsMenu.guia_socorros_pet.titulo'),
+            descricao: t('petsMenu.guia_socorros_pet.descricao'),
             tela: 'PrimeirosSocorros',
         },
         {
             id: 'kit_pet_checklist',
-            titulo: t('petsMenu.kit_pet_checklist.titulo'),
-            subtitulo: t('petsMenu.kit_pet_checklist.subtitulo'),
-            descricao: t('petsMenu.kit_pet_checklist.descricao'),
             emoji: '🎒',
-            cor: '#FFF3E0',
-            corIcone: '#FFB74D',
+            cor: '#F59E0B',
+            titulo: t('petsMenu.kit_pet_checklist.titulo'),
+            descricao: t('petsMenu.kit_pet_checklist.descricao'),
             tela: 'GuiaKitsEmergencia',
-params: {}
-        }
+            params: {},
+        },
     ];
 
-    return (
-        <AppBackground variant="subtle">
-        <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-            <StatusBar style="dark" />
+    const handlePress = (item) => {
+        if (item.tela === 'AgeGroupDetail') {
+            navigation.navigate(item.tela, {
+                group: {
+                    title: item.titulo,
+                    subtitle: t(`petsMenu.${item.id}.subtitulo`, ''),
+                    description: item.descricao,
+                    color: item.cor,
+                    icon: 'paw',
+                    risks: item.risks,
+                    checklist: item.checklist,
+                },
+            });
+        } else {
+            navigation.navigate(item.tela, item.params || {});
+        }
+    };
 
-            {/* Header Neo Glass */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                </TouchableOpacity>
-            </View>
-            <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-                <NeoCard variant="glass"
-                    style={{
-                        width: '100%',
-                        padding: 16,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        ...Neo.shadows?.sm
-                    }}
-                >
-                    <View style={{
-                        width: 48, height: 48, borderRadius: 12,
-                        backgroundColor: '#F3E5F5', alignItems: 'center', justifyContent: 'center',
-                        marginRight: 16
-                    }}>
-                        <Text style={{ fontSize: 24 }}>🐾</Text>
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{t('petsMenu.headerTitle')}</Text>
-                        <Text style={{ color: Neo.colors.neutral[600], fontSize: 13, fontWeight: '600' }}>{t('petsMenu.headerSubtitle')}</Text>
-                    </View>
-                </NeoCard>
-            </View>
-
-            <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
-
-                <Body style={{ textAlign: 'center', marginBottom: 24, paddingHorizontal: 16 }}>
-                    {t('petsMenu.introText')}
-                </Body>
-
-                {/* Vertical List Layout */}
-                <View style={styles.listContainer}>
-                    {items.map((item) => (
-                        <TouchableOpacity
-                            key={item.id}
-                            onPress={() => {
-                                if (item.tela === 'AgeGroupDetail') {
-                                    navigation.navigate(item.tela, {
-                                        group: {
-                                            title: item.titulo,
-                                            subtitle: item.subtitulo,
-                                            description: item.descricao,
-                                            color: item.corIcone,
-                                            icon: 'paw', // Generic icon
-                                            risks: item.risks,
-                                            checklist: item.checklist
-                                        }
-                                    });
-                                } else {
-                                    navigation.navigate(item.tela, item.params || {});
-                                }
-                            }}
-                            activeOpacity={0.8}
-                        >
-                            <NeoCard variant="glass" style={styles.listCard}>
-                                <View style={[styles.iconContainer, { backgroundColor: item.corIcone }]}>
-                                    <NeoText style={{ fontSize: 26 }}>{item.emoji}</NeoText>
-                                </View>
-                                <View style={styles.textContainer}>
-                                    <Text style={styles.cardTitle}>{item.titulo}</Text>
-                                    <Text style={styles.cardDesc} numberOfLines={2}>{item.descricao}</Text>
-                                </View>
-                                <View style={styles.chevronBox}>
-                                    <ArrowRight2 size={20} color={Neo.colors.neutral[400]} />
-                                </View>
-                            </NeoCard>
-                        </TouchableOpacity>
-                    ))}
+    const renderItem = (item) => (
+        <TouchableOpacity
+            key={item.id}
+            onPress={() => handlePress(item)}
+            activeOpacity={0.85}
+            style={{ marginBottom: 10 }}
+        >
+            <NeoCard variant="elevated" style={s.itemCard}>
+                <View style={[s.iconCircle, { backgroundColor: item.cor + '26' }]}>
+                    <Text style={s.emoji}>{item.emoji}</Text>
                 </View>
-            </ScrollView>
-        </View>
+                <View style={s.textCol}>
+                    <Body style={s.itemTitle} numberOfLines={1}>{item.titulo}</Body>
+                    <Small style={s.itemDesc} numberOfLines={2}>{item.descricao}</Small>
+                </View>
+                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+            </NeoCard>
+        </TouchableOpacity>
+    );
+
+    return (
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
+
+                {/* HEADER consistente */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                    </TouchableOpacity>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('petsMenu.headerTitle', 'Saúde Pet')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('petsMenu.headerSubtitle', 'Cuidados e segurança para seus pets')}
+                        </Caption>
+                    </View>
+                </View>
+
+                <ScrollView
+                    contentContainerStyle={s.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {/* POR TIPO/IDADE */}
+                    <Text style={s.sectionLabel}>
+                        {t('petsMenu.sectionTipos', 'Por tipo / idade')}
+                    </Text>
+                    {sectionTipos.map(renderItem)}
+
+                    {/* BEM-ESTAR */}
+                    <Text style={[s.sectionLabel, { marginTop: 22 }]}>
+                        {t('petsMenu.sectionBemEstar', 'Bem-estar')}
+                    </Text>
+                    {sectionBemEstar.map(renderItem)}
+
+                    {/* EMERGÊNCIA */}
+                    <Text style={[s.sectionLabel, { marginTop: 22 }]}>
+                        {t('petsMenu.sectionEmergencia', 'Emergência')}
+                    </Text>
+                    {sectionEmergencia.map(renderItem)}
+                </ScrollView>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F8F9FA',
-    },
-    scrollContent: {
-        padding: 24,
-        paddingBottom: 40,
-    },
-    infoBox: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 24,
-        ...Shadows.sm,
-    },
-    infoText: {
-        fontSize: 14,
-        color: '#424242',
-        lineHeight: 20,
-        textAlign: 'center',
-    },
-    listContainer: {
-        flexDirection: 'column',
-        gap: 12
-    },
-    listCard: {
+const s = StyleSheet.create({
+    // Header
+    header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 16,
-        marginBottom: 4,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 18,
+        gap: 12,
     },
-    iconContainer: {
-        width: 56,
-        height: 56,
-        borderRadius: 28,
-        justifyContent: 'center',
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
         alignItems: 'center',
-        marginRight: 16,
+        justifyContent: 'center',
     },
-    textContainer: {
-        flex: 1,
-        justifyContent: 'center'
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
     },
-    cardTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: Neo.colors.neutral[900],
-        marginBottom: 4,
+    subtitle: {
+        color: Neo.colors.neutral[600],
     },
-    cardDesc: {
-        fontSize: 13,
-        color: Neo.colors.neutral[500],
-        lineHeight: 18,
+
+    scrollContent: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
-    chevronBox: {
-        width: 32,
-        height: 32,
+
+    // Section labels
+    sectionLabel: {
+        fontSize: 11,
+        fontWeight: '900',
+        color: Neo.colors.neutral[700],
+        letterSpacing: 1.6,
+        marginBottom: 10,
+        textTransform: 'uppercase',
+        opacity: 0.85,
+    },
+
+    // Item card
+    itemCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 14,
         borderRadius: 16,
-        backgroundColor: Neo.colors.neutral[100],
-        justifyContent: 'center',
+    },
+    iconCircle: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
         alignItems: 'center',
-        marginLeft: 12
-    }
+        justifyContent: 'center',
+        marginRight: 14,
+    },
+    emoji: {
+        fontSize: 26,
+    },
+    textCol: {
+        flex: 1,
+    },
+    itemTitle: {
+        fontWeight: '800',
+        fontSize: 14.5,
+        color: Neo.colors.neutral[900],
+        marginBottom: 2,
+    },
+    itemDesc: {
+        color: Neo.colors.neutral[600],
+        lineHeight: 16,
+    },
 });
