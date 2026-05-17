@@ -67,7 +67,7 @@ export default function MicroBlogScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <View style={styles.container}>
                 <StatusBar barStyle="dark-content" />
 

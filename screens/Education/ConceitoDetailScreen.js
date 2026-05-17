@@ -82,7 +82,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
         <StatusBar barStyle="dark-content" />
         <View style={styles.header}><TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft size={28} color={Neo.colors.neutral[800]} /></TouchableOpacity></View>

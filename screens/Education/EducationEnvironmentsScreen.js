@@ -36,7 +36,7 @@ export default function EducationEnvironmentsScreen({ navigation }) {
             >
                 <NeoCard variant="glass" style={styles.listCard}>
                     <View style={[styles.iconContainer, { backgroundColor: item.color + '20' }]}>
-                        <NeoIcon name={item.iconName} size={28} color={item.color} variant="Bulk" />
+                        <NeoIcon name={item.iconName} size={26} color={item.color} variant="Bold" />
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.cardTitle}>{item.label}</Text>
@@ -65,7 +65,7 @@ export default function EducationEnvironmentsScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <View style={styles.container}>
                 <StatusBar barStyle="dark-content" />
 

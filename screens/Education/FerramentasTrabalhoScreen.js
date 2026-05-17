@@ -29,7 +29,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
     const { goldenRules, categories } = FERRAMENTAS_DATA;
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={styles.container} edges={['top']}>
                 <StatusBar barStyle="dark-content" />
 

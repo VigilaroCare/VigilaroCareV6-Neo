@@ -54,7 +54,7 @@ export default function RiscosFisicosScreen({ navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
     <View style={{ flex: 1, backgroundColor: 'transparent' }}>
       <StatusBar style="dark" backgroundColor="transparent" />
 

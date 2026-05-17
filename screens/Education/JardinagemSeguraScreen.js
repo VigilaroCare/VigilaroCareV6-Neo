@@ -32,7 +32,7 @@ export default function JardinagemSeguraScreen({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
                 <StatusBar barStyle="dark-content" />
 

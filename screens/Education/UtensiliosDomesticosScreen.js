@@ -93,7 +93,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={{ flex: 1, backgroundColor: Neo.colors.neutral[100] }} edges={['top']}>
             <StatusBar style="dark" />
 

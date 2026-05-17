@@ -59,7 +59,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
     const riskLabel = RISK_LABELS[item.nivelRisco] || 'N/A';
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <StatusBar style="light" />
 
             {/* ═══ HEADER ═══ */}

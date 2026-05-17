@@ -140,7 +140,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <View style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar barStyle="dark-content" />
 

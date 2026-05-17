@@ -55,7 +55,7 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <StatusBar style="dark" />
 
             {/* ═══ HEADER ═══ */}

@@ -55,7 +55,7 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <StatusBar style="dark" />
 
             {/* ═══ HEADER ═══ */}
