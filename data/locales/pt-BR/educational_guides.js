@@ -66,10 +66,10 @@ export const EDUCATIONAL_GUIDES_PT_BR = {
         content: 'A segurança na despensa começa com a separação: jamais armazene produtos de limpeza ou venenos junto com alimentos. Para famílias com bebês, mantenha grãos como arroz e feijão em prateleiras altas. Ao precisar alcançar itens no alto, utilize escadas firmes e evite improvisos.'
     },
     quartos: {
-        label: 'Quartos',
+        label: 'Quarto de Adulto',
         iconName: 'Bed',
         color: '#512DA8',
-        content: 'A polifarmácia gera confusão. Centralize a gestão em caixas organizadoras semanais mantidas em armários altos e trancados. Nunca guarde medicamentos no banheiro devido à umidade.'
+        content: 'Carregadores sob travesseiro, velas perfumadas esquecidas acesas e cabos pelo chão são causas comuns de incêndios e quedas noturnas. Mantenha o caminho até o banheiro desimpedido, com luz noturna LED próxima ao chão. Eletrônicos sempre carregando em superfície rígida — nunca sobre a cama ou tecidos.'
     },
     banheiros: {
         label: 'Banheiros',
