@@ -1,90 +1,211 @@
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+
+import NeoIcon from '../../components/NeoIcon';
+import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 
 const POST_ITEMS = [
-  { key: 'residuos', label: 'Resíduos e ferramentas recolhidos' },
+  { key: 'residuos',   label: 'Resíduos e ferramentas recolhidos' },
   { key: 'protetores', label: 'Protetores reinstalados' },
   { key: 'ventilacao', label: 'Áreas ventiladas e limpas' },
 ];
 
 export default function EncerrarSituacaoScreen({ route, navigation }) {
-    const { t } = useTranslation('common');
+  const { t } = useTranslation('common');
   const { type = 'reforma', tempIndex = 75 } = route.params || {};
-  const [done, setDone] = useState(() => POST_ITEMS.reduce((s, it) => ({ ...s, [it.key]: false }), {}));
+  const [done, setDone] = useState(() => POST_ITEMS.reduce((acc, it) => ({ ...acc, [it.key]: false }), {}));
 
   const completed = Object.values(done).filter(Boolean).length;
   const restoredIndex = Math.min(100, tempIndex + Math.round((completed / POST_ITEMS.length) * 20));
 
-  function toggle(k) {
-    setDone(prev => ({ ...prev, [k]: !prev[k] }));
-  }
+  const toggle = (k) => setDone(prev => ({ ...prev, [k]: !prev[k] }));
 
-  function finalizar() {
-    navigation.navigate('DashboardPersonalizado'); // ajuste conforme seu nome de rota
-  }
+  const finalizar = () => {
+    navigation.navigate('DashboardPersonalizado');
+  };
 
   return (
-    <AppBackground variant="subtle">
-        <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.inner}>
-        <Text style={styles.title}>Encerrar: {type === 'reforma' ? 'Reforma' : type}</Text>
-        <Text style={styles.subtitle}>{t('headersFirst.reviseOsItensAbaixoParaRestaurarASeguran', 'Revise os itens abaixo para restaurar a segurança do lar.')}</Text>
+    <AppBackground>
+      <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <StatusBar style="dark" />
 
-        <View style={{ marginTop: 12 }}>
-          {POST_ITEMS.map(it => (
-            <TouchableOpacity key={it.key} style={styles.row} onPress={() => toggle(it.key)}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.rowLabel}>{it.label}</Text>
-              </View>
-              <View style={[styles.checkbox, done[it.key] && styles.checkboxDone]}>
-                {done[it.key] ? <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>OK</Text> : <Text style={{ color: '#6B7280' }}>—</Text>}
-              </View>
-            </TouchableOpacity>
-          ))}
+        {/* HEADER padronizado */}
+        <View style={s.header}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={s.backBtn}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+          </TouchableOpacity>
+          <View style={{ flex: 1 }}>
+            <H1 style={s.title}>
+              Encerrar {type === 'reforma' ? 'reforma' : type}
+            </H1>
+            <Caption style={s.subtitle}>
+              Restaurar segurança do lar
+            </Caption>
+          </View>
         </View>
 
-        <View style={{ marginTop: 18 }}>
-          <Text style={{ color: '#6B7280' }}>{t('headersFirst.NdiceRestauradoEstimado', 'Índice restaurado estimado')}</Text>
-          <Text style={{ fontSize: 28, fontWeight: '800', color: '#16A34A', marginTop: 6 }}>{restoredIndex}%</Text>
-        </View>
+        <ScrollView
+          contentContainerStyle={s.content}
+          showsVerticalScrollIndicator={false}
+        >
+          <Body style={s.intro}>
+            {t('headersFirst.reviseOsItensAbaixoParaRestaurarASeguran', 'Revise os itens abaixo para restaurar a segurança do lar.')}
+          </Body>
 
-        <TouchableOpacity style={styles.primary} onPress={finalizar}>
-          <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>{t('headersFirst.concluirEVoltarAoDashboard', 'Concluir e voltar ao Dashboard')}</Text>
-        </TouchableOpacity>
+          <View style={{ marginTop: 14 }}>
+            {POST_ITEMS.map(it => {
+              const isDone = done[it.key];
+              return (
+                <NeoCard
+                  key={it.key}
+                  variant="elevated"
+                  style={[s.row, isDone && s.rowDone]}
+                >
+                  <TouchableOpacity onPress={() => toggle(it.key)} style={s.rowInner} activeOpacity={0.85}>
+                    <View style={{ flex: 1 }}>
+                      <Body style={[s.rowLabel, isDone && { color: Neo.colors.neutral[600], textDecorationLine: 'line-through' }]}>
+                        {it.label}
+                      </Body>
+                    </View>
+                    <View style={[s.checkbox, isDone && s.checkboxDone]}>
+                      {isDone ? (
+                        <NeoIcon name="Tick" size={14} color="#FFF" variant="Bold" />
+                      ) : (
+                        <Text style={{ color: Neo.colors.neutral[500], fontWeight: '700' }}>—</Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
+                </NeoCard>
+              );
+            })}
+          </View>
 
-        <View style={{ height: 40 }} />
-      </ScrollView>
-    </SafeAreaView>
-      </AppBackground>
+          <NeoCard variant="elevated" style={s.indexCard}>
+            <Caption style={{ color: Neo.colors.neutral[600] }}>
+              {t('headersFirst.NdiceRestauradoEstimado', 'Índice restaurado estimado')}
+            </Caption>
+            <Text style={s.indexValue}>{restoredIndex}%</Text>
+          </NeoCard>
+
+          <TouchableOpacity style={s.primary} onPress={finalizar} activeOpacity={0.85}>
+            <NeoIcon name="TickCircle" size={20} color="#FFF" variant="Bold" />
+            <Body style={s.primaryText}>
+              {t('headersFirst.concluirEVoltarAoDashboard', 'Concluir e voltar ao painel')}
+            </Body>
+          </TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
+    </AppBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F6F8FA' },
-  inner: { padding: 20 },
-  title: { fontSize: 20, fontWeight: '700', color: '#0F172A' },
-  subtitle: { color: '#475569', marginTop: 6 },
-  row: {
-    backgroundColor: '#FFFFFF',
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 12,
+const s = StyleSheet.create({
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: Neo.spacing.lg,
+    paddingTop: 4,
+    paddingBottom: 14,
+    gap: 12,
   },
-  rowLabel: { fontWeight: '600', color: '#0F172A' },
-  checkbox: { width: 48, height: 32, borderRadius: 8, backgroundColor: '#F1F5F9', justifyContent: 'center', alignItems: 'center' },
-  checkboxDone: { backgroundColor: '#16A34A' },
-  primary: {
-    marginTop: 18,
-    backgroundColor: '#3A7BD5',
-    paddingVertical: 14,
+  backBtn: {
+    width: 38,
+    height: 38,
     borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontWeight: '800',
+    letterSpacing: -0.5,
+    marginBottom: 2,
+    fontSize: 22,
+  },
+  subtitle: {
+    color: Neo.colors.neutral[600],
+  },
+
+  content: {
+    paddingHorizontal: Neo.spacing.lg,
+    paddingBottom: 190,
+  },
+  intro: {
+    color: Neo.colors.neutral[700],
+    fontSize: 14,
+    lineHeight: 20,
+  },
+
+  row: {
+    padding: 0,
+    borderRadius: 14,
+    marginBottom: 10,
+    overflow: 'hidden',
+  },
+  rowDone: {
+    backgroundColor: Neo.colors.feedback.success + '12',
+    borderWidth: 1,
+    borderColor: Neo.colors.feedback.success + '40',
+  },
+  rowInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 14,
+    gap: 12,
+  },
+  rowLabel: {
+    fontWeight: '600',
+    color: Neo.colors.neutral[900],
+    fontSize: 14.5,
+  },
+  checkbox: {
+    width: 38,
+    height: 28,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+    justifyContent: 'center',
     alignItems: 'center',
   },
+  checkboxDone: {
+    backgroundColor: Neo.colors.feedback.success,
+  },
+
+  indexCard: {
+    padding: 16,
+    borderRadius: 16,
+    marginTop: 16,
+  },
+  indexValue: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: Neo.colors.feedback.success,
+    marginTop: 4,
+    letterSpacing: -0.5,
+  },
+
+  primary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    backgroundColor: Neo.colors.primary[600],
+    paddingVertical: 14,
+    borderRadius: 14,
+    marginTop: 18,
+  },
+  primaryText: {
+    color: '#FFF',
+    fontWeight: '800',
+    fontSize: 15,
+  },
 });
-
-

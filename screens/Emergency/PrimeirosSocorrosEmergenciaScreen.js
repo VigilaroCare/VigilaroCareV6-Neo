@@ -26,7 +26,7 @@ import { EMERGENCIAS_PETS } from '../../data/primeiros_socorros_pets';
 
 const { width } = Dimensions.get('window');
 
-// Helper to map icon strings to NeoIcon names
+// Helper to map icon strings to NeoIcon names (iconsax válidos)
 const getIcon = (iconName, size = 28) => {
     let name = 'Danger';
     switch (iconName) {
@@ -37,18 +37,18 @@ const getIcon = (iconName, size = 28) => {
         case 'water-outline': name = 'Drop'; break;
         case 'flash': name = 'Flash'; break;
         case 'flame': name = 'Sun1'; break;
-        case 'skull-outline': name = 'Virus'; break;
+        case 'skull-outline': name = 'Danger'; break;
         case 'pulse': name = 'Activity'; break;
-        case 'alert-circle': name = 'UserTag'; break;
+        case 'alert-circle': name = 'Warning2'; break;
         case 'heart': name = 'Heart'; break;
         case 'eye-off': name = 'EyeSlash'; break;
-        case 'paw': name = 'Pet'; break;
+        case 'paw': name = 'Heart'; break; // Pet não existe
         case 'bandage': name = 'Health'; break;
-        case 'heart-dislike': name = 'HeartSlash'; break;
+        case 'heart-dislike': name = 'Heart'; break; // HeartSlash não existe
         case 'sunny': name = 'Sun1'; break;
-        case 'warning': name = 'Danger'; break;
-        case 'leaf': name = 'Tree'; break;
-        case 'flask': name = 'Milk'; break;
+        case 'warning': name = 'Warning2'; break;
+        case 'leaf': name = 'Health'; break; // Tree não existe
+        case 'flask': name = 'Drop'; break; // Milk não existe
         default: name = 'Danger'; break;
     }
     return <NeoIcon name={name} size={size} color="#FFF" variant="Bold" />;
@@ -216,9 +216,9 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
     // MODO HUB: Seleção da Emergência
     if (!emergenciaSelecionada) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar style="dark" />
 
                 <View style={{ flexDirection: 'column', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
@@ -237,14 +237,14 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
                             onPress={() => setMode('HUMAN')}
                             style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: !isPet ? '#FFF' : 'transparent', borderRadius: 20, flexDirection: 'row', ...(!isPet && Neo.shadows?.sm) }}
                         >
-                            <NeoIcon name="person" size={16} color={!isPet ? '#BE123C' : Neo.colors.neutral[500]} style={{marginRight: 6}} />
+                            <NeoIcon name="User" size={16} color={!isPet ? '#BE123C' : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
                             <Small style={{ color: !isPet ? '#BE123C' : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.people')}</Small>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => setMode('PET')}
                             style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: isPet ? '#FFF' : 'transparent', borderRadius: 20, flexDirection: 'row', ...(isPet && Neo.shadows?.sm) }}
                         >
-                            <NeoIcon name="paw" size={16} color={isPet ? '#059669' : Neo.colors.neutral[500]} style={{marginRight: 6}} />
+                            <NeoIcon name="Heart" size={16} color={isPet ? '#059669' : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
                             <Small style={{ color: isPet ? '#059669' : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.pets')}</Small>
                         </TouchableOpacity>
                     </View>
@@ -284,8 +284,8 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
 
     // MODO DETALHISTA TÁTICO: Ação Imediata Guidada (Step-by-Step)
     return (
-        <AppBackground variant="subtle">
-            <StatusBar barStyle="dark-content" />
+        <AppBackground>
+            <StatusBar style="dark" />
 
             <ScrollView contentContainerStyle={{ paddingBottom: 150 }} showsVerticalScrollIndicator={false}>
                 {/* Cabeçalho do Protocolo Modernizado */}
