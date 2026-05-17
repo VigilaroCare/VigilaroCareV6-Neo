@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Image, Modal, ScrollView, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, ScrollView, Dimensions } from "react-native";
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import ProfileService from "../services/ProfileService";
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -44,9 +45,9 @@ export default function BoasVindasScreen({ navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
         <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <StatusBar style="dark" />
 
       {/* Botão de Acessibilidade (Canto Direito Superior) */}
       <View style={styles.topBar}>
@@ -87,9 +88,10 @@ export default function BoasVindasScreen({ navigation }) {
           activeOpacity={0.8}
         >
           <NeoIcon
-            name={accepted ? "checkbox" : "square-outline"}
-            size={24}
-            color={accepted ? "#1A73E8" : "#999"}
+            name={accepted ? 'TickSquare' : 'Stop'}
+            size={22}
+            color={accepted ? '#1A73E8' : '#999'}
+            variant={accepted ? 'Bold' : 'Linear'}
           />
           <Text style={styles.checkboxText}>
             Ler e concordar com os{' '}

@@ -132,7 +132,7 @@ export default function FamilyCompositionScreen({ navigation, route }) {
     };
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>{t('headersFirst.quemVamosProteger', 'Quem vamos proteger?')}</Text>

@@ -481,14 +481,14 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar barStyle="dark-content" />
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
 
                 {/* Header */}
                 <View style={ss.header}>
-                    <TouchableOpacity onPress={handleBack} style={{ padding: 8 }}>
-                        <NeoIcon name={phase === 0 && subView === 'list' ? 'close-circle' : 'arrow-left'} size={26} color={C.neutral[800]} />
+                    <TouchableOpacity onPress={handleBack} style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.75)', alignItems: 'center', justifyContent: 'center' }} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+                        <NeoIcon name={phase === 0 && subView === 'list' ? 'CloseSquare' : 'ArrowLeft2'} size={22} color={C.neutral[800]} />
                     </TouchableOpacity>
                     <View style={ss.progressBar}>
                         <View style={[ss.progressFill, { width: `${((phase + 1) / 2) * 100}%` }]} />

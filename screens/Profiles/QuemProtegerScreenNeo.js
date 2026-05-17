@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { View, ScrollView, TouchableOpacity, Alert, Image, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Alert, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 // Icons
-import { ArrowLeft2, ArrowRight2, Home2, Edit2, Trash, Scan, Add, TickCircle, Setting4, User, Woman, Warning2 } from 'iconsax-react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { ArrowLeft2, ArrowRight2, Home2, Edit2, Trash, Scan, Add, TickCircle, Setting4, User, Woman, Warning2, Heart } from 'iconsax-react-native';
 
 // Hooks & Services
 import { useProfiles } from '../../contexts/ProfileContext';
@@ -15,15 +15,13 @@ import ProfileService from '../../services/ProfileService';
 // Neo Design
 import { Neo } from '../../utils/Theme';
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import NeoText, { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const Pet = ({ size, color }) => <MaterialCommunityIcons name="paw" size={size} color={color} />;
+const Pet = ({ size, color }) => <Heart size={size} color={color} variant="Bold" />;
 
 export default function QuemProtegerScreenNeo() {
-    const insets = useSafeAreaInsets();
     const navigation = useNavigation();
     const { t } = useTranslation();
     const { setPrimaryProfile, deleteProfile, loadProfiles } = useProfiles();
@@ -124,21 +122,26 @@ export default function QuemProtegerScreenNeo() {
     };
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* HEADER TÁTICO */}
-                <View style={{ paddingHorizontal: Neo.spacing.lg, paddingTop: Neo.spacing.md, paddingBottom: Neo.spacing.sm, flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 8, marginRight: 8 }}>
-                        <ArrowLeft2 size={24} color={Neo.colors.neutral[900]} />
+                {/* HEADER padronizado */}
+                <View style={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 4, paddingBottom: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.75)', alignItems: 'center', justifyContent: 'center' }}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <ArrowLeft2 size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2>Contexto de Risco</H2>
+                        <H1 style={{ fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 }}>Quem proteger</H1>
+                        <Caption style={{ color: Neo.colors.neutral[600] }}>Moradores e residências</Caption>
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 120 }}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
                     
                     {/* ONDE: LOCAL ATIVO */}
                     <Caption style={{ marginBottom: 8, fontWeight: 'bold', color: Neo.colors.neutral[600] }}>Onde estamos?</Caption>

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Animated, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, Animated, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { H1 as H1Neo, Body as BodyNeo } from '../components/NeoTypography';
 import ButtonNeo from '../components/ButtonNeo';
@@ -16,25 +17,25 @@ const SLIDES = [
         id: '1',
         titleKey: 'onboarding.title1',
         subtitleKey: 'onboarding.subtitle1',
-        icon: <NeoIcon name="ShieldTick" size={100} color={Neo.colors.primary.main} variant="Bulk" />
+        icon: <NeoIcon name="ShieldTick" size={100} color={Neo.colors.primary.main} variant="Bold" />
     },
     {
         id: '2',
         titleKey: 'onboarding.title2',
         subtitleKey: 'onboarding.subtitle2',
-        icon: <NeoIcon name="Radar" size={100} color={Neo.colors.primary.main} variant="Bulk" />
+        icon: <NeoIcon name="Radar" size={100} color={Neo.colors.primary.main} variant="Bold" />
     },
     {
         id: '3',
         titleKey: 'onboarding.title3',
         subtitleKey: 'onboarding.subtitle3',
-        icon: <NeoIcon name="HeartAdd" size={100} color={Neo.colors.primary.main} variant="Bulk" />
+        icon: <NeoIcon name="HeartAdd" size={100} color={Neo.colors.primary.main} variant="Bold" />
     },
     {
         id: '4',
         titleKey: 'onboarding.title4',
         subtitleKey: 'onboarding.subtitle4',
-        icon: <NeoIcon name="Hand" size={100} color={Neo.colors.primary.main} variant="Bulk" />,
+        icon: <NeoIcon name="Hand" size={100} color={Neo.colors.primary.main} variant="Bold" />,
         isHandednessSlide: true
     }
 ];
@@ -91,9 +92,9 @@ export default function WelcomeTourScreenNeo({ navigation }) {
     );
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="dark-content" backgroundColor="#FFF" translucent={false} />
+            <StatusBar style="dark" />
 
             <View style={styles.skipContainer}>
                 {currentIndex < SLIDES.length - 1 && (

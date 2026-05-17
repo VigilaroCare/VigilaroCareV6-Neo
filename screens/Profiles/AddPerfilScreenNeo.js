@@ -266,21 +266,24 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
     };
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: Neo.colors.neutral[100] }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* Header */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: Neo.spacing.lg, paddingVertical: Neo.spacing.md }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 4 }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
+                {/* HEADER padronizado */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: Neo.spacing.lg, paddingTop: 4, paddingBottom: 14, gap: 12 }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.75)', alignItems: 'center', justifyContent: 'center' }}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <H3>{editingProfile ? t('addProfile.editTitle') : t('addProfile.newTitle')}</H3>
-                    <View style={{ width: 24 }} />
+                    <H3 style={{ flex: 1 }}>{editingProfile ? t('addProfile.editTitle') : t('addProfile.newTitle')}</H3>
                 </View>
 
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
-                    <ScrollView contentContainerStyle={{ padding: Neo.spacing.lg, paddingBottom: 100 }}>
+                    <ScrollView contentContainerStyle={{ padding: Neo.spacing.lg, paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
 
                         {/* Type Selector */}
                         <NeoCard variant="elevated" style={{ flexDirection: 'row', padding: 4, marginBottom: 24, borderRadius: 16 }}>

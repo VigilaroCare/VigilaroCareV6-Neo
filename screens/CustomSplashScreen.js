@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, Dimensions, Image } from 'react-native';
-import AppBackground from '../components/AppBackground';
-import { DS as Neo } from '../utils/DesignSystem2026';
 import { getLocalizedLogo } from '../utils/getLocalizedLogo';
 
 const { width } = Dimensions.get('window');
