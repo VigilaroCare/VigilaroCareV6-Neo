@@ -78,7 +78,7 @@ export default function MicroArticleScreen({ navigation, route }) {
                 </View>
             </View>
 
-            <AppBackground variant="subtle" statusBarStyle="light-content">
+            <AppBackground>
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                     {/* Title */}
                     <Text style={styles.title}>{t_field(article, 'title')}</Text>
