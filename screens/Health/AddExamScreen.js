@@ -13,7 +13,7 @@ import { useProfiles } from '../../contexts/ProfileContext';
 
 // Components
 import NeoCard from '../../components/NeoCard';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 
 export default function AddExamScreen({ navigation }) {
@@ -37,25 +37,26 @@ export default function AddExamScreen({ navigation }) {
     const [followUp, setFollowUp] = useState('');
     const [instructions, setInstructions] = useState('');
 
+    // Ícones iconsax válidos (antes Material Community que não renderizavam)
     const examTypes = [
-        // Exames de Imagem
-        { id: 'ultrassom', label: 'Ultrassom', icon: 'waves', category: 'Imagem' },
-        { id: 'raio_x', label: 'Raio-X', icon: 'radiobox-marked', category: 'Imagem' },
-        { id: 'ressonancia', label: 'Ressonância', icon: 'magnet', category: 'Imagem' },
-        { id: 'tomografia', label: 'Tomografia', icon: 'scan-helper', category: 'Imagem' },
-        { id: 'mamografia', label: 'Mamografia', icon: 'human-female', category: 'Imagem' },
-        { id: 'ecocardiograma', label: 'Ecocardiograma', icon: 'heart-pulse', category: 'Imagem' },
+        // Imagem
+        { id: 'ultrassom',         label: 'Ultrassom',         icon: 'Sound',  category: 'Imagem' },
+        { id: 'raio_x',            label: 'Raio-X',            icon: 'Scan',   category: 'Imagem' },
+        { id: 'ressonancia',       label: 'Ressonância',       icon: 'Cpu',    category: 'Imagem' },
+        { id: 'tomografia',        label: 'Tomografia',        icon: 'Scan',   category: 'Imagem' },
+        { id: 'mamografia',        label: 'Mamografia',        icon: 'Health', category: 'Imagem' },
+        { id: 'ecocardiograma',    label: 'Ecocardiograma',    icon: 'Heart',  category: 'Imagem' },
 
-        // Exames Laboratoriais
-        { id: 'sangue', label: 'Exame de Sangue', icon: 'water', category: 'Laboratorial' },
-        { id: 'urina', label: 'Exame de Urina', icon: 'beaker', category: 'Laboratorial' },
-        { id: 'fezes', label: 'Exame de Fezes', icon: 'test-tube', category: 'Laboratorial' },
+        // Laboratorial
+        { id: 'sangue',            label: 'Sangue',            icon: 'Drop',     category: 'Laboratorial' },
+        { id: 'urina',             label: 'Urina',             icon: 'Drop',     category: 'Laboratorial' },
+        { id: 'fezes',             label: 'Fezes',             icon: 'Health',   category: 'Laboratorial' },
 
         // Outros
-        { id: 'eletrocardiograma', label: 'Eletrocardiograma', icon: 'heart-flash', category: 'Outro' },
-        { id: 'endoscopia', label: 'Endoscopia', icon: 'stomach', category: 'Outro' },
-        { id: 'colonoscopia', label: 'Colonoscopia', icon: 'stomach', category: 'Outro' },
-        { id: 'outro', label: 'Outro Exame', icon: 'clipboard-text', category: 'Outro' },
+        { id: 'eletrocardiograma', label: 'Eletrocardiograma', icon: 'Heart',     category: 'Outro' },
+        { id: 'endoscopia',        label: 'Endoscopia',        icon: 'Health',    category: 'Outro' },
+        { id: 'colonoscopia',      label: 'Colonoscopia',      icon: 'Health',    category: 'Outro' },
+        { id: 'outro',             label: 'Outro',             icon: 'Clipboard', category: 'Outro' },
     ];
 
     const handleSave = async () => {
@@ -117,24 +118,37 @@ export default function AddExamScreen({ navigation }) {
     }, {});
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
             <StatusBar style="dark" />
 
-            {/* Header */}
+            {/* HEADER padronizado */}
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <NeoIcon name="CloseSquare" size={28} color={Neo.colors.neutral[900]} />
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                 </TouchableOpacity>
-                <H2 style={{ flex: 1, marginLeft: 16 }}>{t('headersFirst.novoExame', 'Novo Exame')}</H2>
-                <TouchableOpacity onPress={handleSave} disabled={saving}>
-                    <Body style={{ color: saving ? Neo.colors.neutral[400] : Neo.colors.primary[600], fontWeight: '600' }}>
-                        {saving ? 'Salvando...' : 'Salvar'}
+                <View style={{ flex: 1 }}>
+                    <H1 style={styles.title}>
+                        {t('headersFirst.novoExame', 'Novo exame')}
+                    </H1>
+                    <Caption style={styles.subtitle}>Imagem ou laboratório</Caption>
+                </View>
+                <TouchableOpacity
+                    onPress={handleSave}
+                    disabled={saving}
+                    style={[styles.saveBtn, saving && { opacity: 0.5 }]}
+                >
+                    <Body style={styles.saveBtnText}>
+                        {saving ? 'Salvando…' : 'Salvar'}
                     </Body>
                 </TouchableOpacity>
             </View>
 
-            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 40 }}>
+            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
 
                 {/* Exam Types by Category */}
                 {Object.entries(groupedExams).map(([category, exams]) => (
@@ -189,9 +203,10 @@ export default function AddExamScreen({ navigation }) {
                             >
                                 <View style={[styles.profileAvatar, selectedProfile === profile.id && styles.profileAvatarActive]}>
                                     <NeoIcon
-                                        name={profile.isPet ? "paw" : "person"}
-                                        size={20}
-                                        color={selectedProfile === profile.id ? Neo.colors.neutral.white : Neo.colors.neutral[600]}
+                                        name={profile.isPet ? 'Heart' : 'User'}
+                                        size={18}
+                                        color={selectedProfile === profile.id ? '#FFF' : Neo.colors.neutral[600]}
+                                        variant="Bold"
                                     />
                                 </View>
                                 <Small style={[styles.profileName, selectedProfile === profile.id && styles.profileNameActive]}>
@@ -358,99 +373,134 @@ export default function AddExamScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Neo.colors.neutral[100],
+        backgroundColor: 'transparent',
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: Neo.spacing.md,
-        borderBottomWidth: 1,
-        borderBottomColor: Neo.colors.neutral[200],
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
+    },
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 22,
+    },
+    subtitle: {
+        color: Neo.colors.neutral[600],
+    },
+    saveBtn: {
+        paddingHorizontal: 14,
+        paddingVertical: 9,
+        borderRadius: 12,
+        backgroundColor: Neo.colors.primary[600],
+    },
+    saveBtnText: {
+        color: '#FFF',
+        fontWeight: '800',
+        fontSize: 13.5,
     },
     content: {
         flex: 1,
         paddingHorizontal: Neo.spacing.lg,
     },
     section: {
-        marginTop: 24,
+        marginTop: 20,
     },
     categoryLabel: {
-        color: Neo.colors.primary[500],
-        fontWeight: '700',
-        marginBottom: 12,
-        letterSpacing: 0.5,
+        color: Neo.colors.primary[700],
+        fontWeight: '800',
+        marginBottom: 10,
+        letterSpacing: 1.2,
+        fontSize: 11,
     },
     label: {
         color: Neo.colors.neutral[600],
-        fontWeight: '600',
-        marginBottom: 12,
-        letterSpacing: 0.5,
+        fontWeight: '800',
+        marginBottom: 10,
+        letterSpacing: 1.2,
+        fontSize: 11,
     },
     typeGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 12,
+        gap: 10,
     },
     typeCard: {
         width: '30%',
         aspectRatio: 1,
-        backgroundColor: 'transparent',
-        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.65)',
+        borderRadius: 14,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: Neo.colors.neutral[200],
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.06)',
     },
     typeCardActive: {
         borderColor: Neo.colors.primary[500],
-        backgroundColor: Neo.colors.primary[50],
+        backgroundColor: Neo.colors.primary[500] + '15',
     },
     typeLabel: {
-        marginTop: 8,
-        color: Neo.colors.neutral[600],
-        fontSize: 11,
+        marginTop: 6,
+        color: Neo.colors.neutral[700],
+        fontSize: 10.5,
         textAlign: 'center',
-    },
-    typeLabelActive: {
-        color: Neo.colors.primary[600],
         fontWeight: '600',
     },
+    typeLabelActive: {
+        color: Neo.colors.primary[700],
+        fontWeight: '800',
+    },
     inputCard: {
-        padding: 16,
+        padding: 14,
+        borderRadius: 14,
     },
     input: {
-        fontSize: 16,
+        fontSize: 15,
         color: Neo.colors.neutral[900],
         fontFamily: 'System',
     },
     profileScroll: {
         flexDirection: 'row',
-        gap: 12,
     },
     profileCard: {
         alignItems: 'center',
-        marginRight: 16,
+        marginRight: 14,
     },
     profileAvatar: {
-        width: 56,
-        height: 56,
-        borderRadius: 28,
-        backgroundColor: Neo.colors.neutral[200],
+        width: 52,
+        height: 52,
+        borderRadius: 26,
+        backgroundColor: 'rgba(255,255,255,0.7)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 8,
+        marginBottom: 6,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
     },
     profileAvatarActive: {
-        backgroundColor: Neo.colors.primary[500],
+        backgroundColor: Neo.colors.primary[600],
+        borderColor: Neo.colors.primary[600],
     },
     profileName: {
-        fontSize: 12,
+        fontSize: 11.5,
         color: Neo.colors.neutral[600],
+        fontWeight: '600',
     },
     profileNameActive: {
-        color: Neo.colors.primary[600],
-        fontWeight: '600',
+        color: Neo.colors.primary[700],
+        fontWeight: '800',
     },
     dateTimeRow: {
         flexDirection: 'row',
@@ -462,17 +512,19 @@ const styles = StyleSheet.create({
     divider: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 32,
-        marginBottom: 8,
+        marginTop: 28,
+        marginBottom: 4,
     },
     dividerLine: {
         flex: 1,
         height: 1,
-        backgroundColor: Neo.colors.neutral[300],
+        backgroundColor: 'rgba(0,0,0,0.08)',
     },
     dividerText: {
-        marginHorizontal: 16,
-        color: Neo.colors.neutral[500],
-        fontWeight: '600',
+        marginHorizontal: 14,
+        color: Neo.colors.neutral[600],
+        fontWeight: '800',
+        fontSize: 10.5,
+        letterSpacing: 1,
     },
 });
