@@ -3,13 +3,13 @@
  * Tela de resultado do InfoRótulos
  *
  * Exibe:
- *   - Header colorido por severidade
+ *   - Header colorido por severidade (sinal visual crítico para segurança)
  *   - Alertas personalizados (RuleEngine × Perfil)
  *   - Classificação GHS traduzida
  *   - Primeiros socorros por via de exposição
  *   - Prevenção
  *   - CIATOX
- *   - Análise complementar com IA (opcional)
+ *   - Re-escanear via câmera (opcional)
  */
 
 import React, { useState, useEffect } from 'react';
@@ -20,25 +20,21 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import {
-    ArrowRight2, Call, Warning2, ShieldTick,
-    Heart, Lovely, Eye, Danger, SearchNormal1,
-} from 'iconsax-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
+import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import { H2, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { Body, Small, Caption } from '../components/NeoTypography';
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 
-import { evaluateProduct, SEVERITY } from '../services/InfoRotulosRuleEngine';
-import { getSubstanceByName, getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
+import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
+import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
-import { addToHistory } from '../services/inforotulos_cache';
 
-// Cores por severidade do produto
+// Cores por severidade — sinal visual crítico (mantido por UX de segurança)
 const SEVERITY_COLORS = {
     'Extremo':       { bg: '#1A1A1A', text: '#FFF', accent: '#FF1744' },
     'Muito Alto':    { bg: '#B71C1C', text: '#FFF', accent: '#FF5252' },
@@ -48,28 +44,28 @@ const SEVERITY_COLORS = {
     'Indeterminado': { bg: '#616161', text: '#FFF', accent: '#BDBDBD' },
 };
 
+// Pictogramas funcionais (não "cara de IA" — iconografia universal de primeiros socorros)
 const FIRST_AID_ICONS = {
-    ingestao: { emoji: '💧', label: 'Se INGERIR' },
-    contato_pele: { emoji: '✋', label: 'Se TOCAR NA PELE' },
-    contato_olhos: { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
-    inalacao: { emoji: '💨', label: 'Se INALAR' },
-    // Fallbacks para campos do produtos_scanner.js
-    pele: { emoji: '✋', label: 'Se TOCAR NA PELE' },
-    olhos: { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
-    queimadura: { emoji: '🔥', label: 'Se QUEIMAR' },
-    reacao: { emoji: '⚡', label: 'Se REAÇÃO ALÉRGICA' },
-    ingestao_pet: { emoji: '🐾', label: 'Se PET INGERIR' },
+    ingestao:        { emoji: '💧', label: 'Se INGERIR' },
+    contato_pele:    { emoji: '✋', label: 'Se TOCAR NA PELE' },
+    contato_olhos:   { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
+    inalacao:        { emoji: '💨', label: 'Se INALAR' },
+    pele:            { emoji: '✋', label: 'Se TOCAR NA PELE' },
+    olhos:           { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
+    queimadura:      { emoji: '🔥', label: 'Se QUEIMAR' },
+    reacao:          { emoji: '⚡', label: 'Se REAÇÃO ALÉRGICA' },
+    ingestao_pet:    { emoji: '🐾', label: 'Se PET INGERIR' },
     ingestao_humana: { emoji: '💧', label: 'Se HUMANO INGERIR' },
 };
 
-// Labels amigáveis para cada fonte de dados
+// Labels limpas para fonte (sem emoji prefix — cor faz o trabalho)
 const SOURCE_LABELS = {
-    local: { label: 'Base Local', icon: '📦', color: '#4CAF50' },
-    open_food_facts: { label: 'Open Food Facts', icon: '🌍', color: '#2196F3' },
-    open_beauty_facts: { label: 'Open Beauty Facts', icon: '💄', color: '#E91E63' },
-    open_products_facts: { label: 'Open Products Facts', icon: '🏠', color: '#FF9800' },
-    upcitemdb: { label: 'UPCitemdb', icon: '🔖', color: '#9C27B0' },
-    not_found: { label: 'Não encontrado', icon: '❓', color: '#9E9E9E' },
+    local:               { label: 'Base local', color: '#4CAF50' },
+    open_food_facts:     { label: 'Open Food Facts', color: '#2196F3' },
+    open_beauty_facts:   { label: 'Open Beauty Facts', color: '#E91E63' },
+    open_products_facts: { label: 'Open Products Facts', color: '#FF9800' },
+    upcitemdb:           { label: 'UPCitemdb', color: '#9C27B0' },
+    not_found:           { label: 'Não encontrado', color: '#9E9E9E' },
 };
 
 export default function InfoRotulosResultScreen() {
@@ -92,7 +88,6 @@ export default function InfoRotulosResultScreen() {
     const severityColor = SEVERITY_COLORS[perigo] || SEVERITY_COLORS[findClosestSeverity(perigo)] || SEVERITY_COLORS['Indeterminado'];
     const sourceInfo = SOURCE_LABELS[source] || SOURCE_LABELS['not_found'];
 
-    // Determina se o produto veio de fonte externa (precisa enriquecimento)
     const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb'].includes(source);
 
     useEffect(() => {
@@ -104,10 +99,8 @@ export default function InfoRotulosResultScreen() {
             if (product && !substance) {
                 setLoading(true);
 
-                // Determina quais ingredientes usar para enriquecimento
                 let ingredientesToSearch = product.componentes || [];
 
-                // Se componentes está vazio mas temos ingredientes_texto, faz parse
                 if (ingredientesToSearch.length === 0 && (ingredientes_texto || product.ingredientes_texto)) {
                     const rawText = ingredientes_texto || product.ingredientes_texto || '';
                     ingredientesToSearch = rawText
@@ -115,17 +108,14 @@ export default function InfoRotulosResultScreen() {
                         .map(s => s.trim())
                         .filter(s => s.length > 2);
 
-                    if (__DEV__) console.log('[InfoRotulosResult] Ingredientes parseados do texto:', ingredientesToSearch);
+                    if (__DEV__) console.log('[InfoRotulosResult] Ingredientes parseados:', ingredientesToSearch);
                 }
 
-                // Tenta enriquecer com dados toxicológicos
                 if (ingredientesToSearch.length > 0) {
-                    if (__DEV__) console.log('[InfoRotulosResult] Enriquecendo com', ingredientesToSearch.length, 'ingredientes...');
                     setEnriching(true);
                     const substancesData = await getSubstancesForIngredients(ingredientesToSearch);
                     if (substancesData.length > 0) {
-                        setSubstanceData(substancesData[0]); // Usa o mais relevante
-                        if (__DEV__) console.log('[InfoRotulosResult] ✅ Enriquecido com PubChem/EPA:', substancesData[0].name_pt);
+                        setSubstanceData(substancesData[0]);
                     }
                     setEnriching(false);
                 }
@@ -133,7 +123,6 @@ export default function InfoRotulosResultScreen() {
                 setLoading(false);
             }
 
-            // Avalia alertas do RuleEngine
             const productAlerts = await evaluateProduct(
                 substanceData || substance,
                 product
@@ -147,120 +136,118 @@ export default function InfoRotulosResultScreen() {
         }
     };
 
-    // Re-avaliar quando substanceData mudar
     useEffect(() => {
         if (substanceData) {
             evaluateProduct(substanceData, product).then(setAlerts);
         }
     }, [substanceData]);
 
-    // Primeiros socorros: combina dados do produto local + substância
     const firstAid = {
         ...(substanceData?.first_aid || {}),
         ...(productData.primeiros_socorros || {}),
     };
 
-    // GHS statements
     const hazardStatements = substanceData?.hazard_statements || [];
     const precautionary = substanceData?.precautionary || [];
 
-    // Prevenção (do produto local)
     const prevencao = productData.prevencao || [];
     const riscos = productData.riscos || [];
 
-    // Ingredientes (para exibição quando vêm de fonte externa)
-    const ingredientesDisplay = productData.ingredientes_texto || ingredientes_texto || '';
     const componentesDisplay = productData.componentes || [];
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['left', 'right']}>
-                <StatusBar style={severityColor.bg === '#1A1A1A' ? 'light' : 'light'} />
+                <StatusBar style="light" />
 
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={{ paddingBottom: 220 }}>
 
-                    {/* ── HEADER colorido ── */}
-                    <LinearGradient 
-                        colors={[severityColor.bg, severityColor.bg + 'CC']} 
-                        style={styles.heroHeader}
+                    {/* HERO colorido por severidade — sinal de risco instantâneo */}
+                    <LinearGradient
+                        colors={[severityColor.bg, severityColor.bg + 'CC']}
+                        style={s.heroHeader}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0, y: 1 }}
                     >
                         <SafeAreaView edges={['top']}>
-                            <View style={styles.heroNav}>
-                                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.heroBackBtn}>
-                                    <ArrowRight2 size={22} color={severityColor.text} style={{ transform: [{ rotate: '180deg' }] }} />
+                            <View style={s.heroNav}>
+                                <TouchableOpacity
+                                    onPress={() => navigation.goBack()}
+                                    style={s.heroBackBtn}
+                                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                                >
+                                    <NeoIcon name="ArrowLeft2" size={22} color={severityColor.text} />
                                 </TouchableOpacity>
-                                <Caption style={{ color: severityColor.text, opacity: 0.7 }}>{t('headersFirst.infoRTulos', 'InfoRótulos')}</Caption>
+                                <Caption style={{ color: severityColor.text, opacity: 0.85, fontWeight: '700', letterSpacing: 0.5 }}>
+                                    {t('headersFirst.infoRTulos', 'INFO RÓTULOS')}
+                                </Caption>
                             </View>
                         </SafeAreaView>
 
-                        <View style={styles.heroContent}>
-                            <Text style={styles.heroIcon}>{productData.icone || '🧪'}</Text>
-                            <Text style={[styles.heroTitle, { color: severityColor.text }]}>{nome}</Text>
+                        <View style={s.heroContent}>
+                            <Text style={s.heroIcon}>{productData.icone || '🧪'}</Text>
+                            <Text style={[s.heroTitle, { color: severityColor.text }]}>{nome}</Text>
                             {brandName ? (
-                                <Text style={[styles.heroSubtitle, { color: severityColor.text + 'DD', fontWeight: '600' }]}>
+                                <Text style={[s.heroSubtitle, { color: severityColor.text + 'DD', fontWeight: '600' }]}>
                                     {brandName}
                                 </Text>
                             ) : null}
-                            <Text style={[styles.heroSubtitle, { color: severityColor.text + 'BB' }]}>{categoria}</Text>
+                            <Text style={[s.heroSubtitle, { color: severityColor.text + 'BB' }]}>{categoria}</Text>
 
-                            <View style={styles.heroBadges}>
-                                <View style={[styles.severityBadge, { backgroundColor: severityColor.accent + '30' }]}>
-                                    <Text style={[styles.severityText, { color: severityColor.text }]}>
+                            <View style={s.heroBadges}>
+                                <View style={[s.severityBadge, { backgroundColor: severityColor.accent + '30' }]}>
+                                    <Text style={[s.severityText, { color: severityColor.text }]}>
                                         {(NIVEIS_PERIGO[perigo]?.icone || '⚠️') + ' ' + perigo.toUpperCase()}
                                     </Text>
                                 </View>
 
-                                {/* Badge de fonte dos dados */}
-                                <View style={[styles.sourceBadge, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
-                                    <Text style={[styles.sourceText, { color: severityColor.text }]}>
-                                        {sourceInfo.icon + ' ' + sourceInfo.label}
+                                <View style={[s.sourceBadge, { backgroundColor: 'rgba(255,255,255,0.18)' }]}>
+                                    <View style={[s.sourceDot, { backgroundColor: sourceInfo.color }]} />
+                                    <Text style={[s.sourceText, { color: severityColor.text }]}>
+                                        {sourceInfo.label}
                                     </Text>
                                 </View>
                             </View>
                         </View>
                     </LinearGradient>
 
-                    <View style={styles.contentArea}>
+                    <View style={s.contentArea}>
 
-                        {/* ── Loading ── */}
                         {loading && (
-                            <NeoCard variant="glass" style={styles.sectionCard}>
+                            <NeoCard variant="elevated" style={s.sectionCard}>
                                 <ActivityIndicator color={Neo.colors.primary[500]} />
                                 <Small style={{ textAlign: 'center', marginTop: 8, color: Neo.colors.neutral[500] }}>
-                                    {t('scanner.loadingTox')}
+                                    {t('scanner.loadingTox', 'Carregando dados toxicológicos…')}
                                 </Small>
                             </NeoCard>
                         )}
 
-                        {/* ── ALERTAS PERSONALIZADOS ── */}
+                        {/* ALERTAS PERSONALIZADOS */}
                         {alerts.length > 0 && (
                             <FadeInView delay={100}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultAlerts')}</Text>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultAlerts', 'Alertas para você') || '').toUpperCase()}</Text>
                                 {alerts.map((alert, idx) => (
                                     <NeoCard
                                         key={idx}
-                                        variant="solid"
-                                        color={alert.bg || '#FFF3E0'}
-                                        style={[styles.alertCard, { borderLeftWidth: 4, borderLeftColor: alert.color }]}
+                                        variant="elevated"
+                                        style={[s.alertCard, { borderLeftWidth: 4, borderLeftColor: alert.color }]}
                                     >
-                                        <View style={styles.alertHeader}>
+                                        <View style={s.alertHeader}>
                                             <Text style={{ fontSize: 20 }}>{alert.icon}</Text>
-                                            <View style={[styles.alertSeverityTag, { backgroundColor: alert.color + '20' }]}>
-                                                <Text style={[styles.alertSeverityText, { color: alert.color }]}>
+                                            <View style={[s.alertSeverityTag, { backgroundColor: alert.color + '20' }]}>
+                                                <Text style={[s.alertSeverityText, { color: alert.color }]}>
                                                     {alert.label}
                                                 </Text>
                                             </View>
                                         </View>
 
-                                        <Text style={[styles.alertTitle, { color: alert.color }]}>{alert.title}</Text>
-                                        <Text style={styles.alertMessage}>{alert.message}</Text>
+                                        <Text style={[s.alertTitle, { color: alert.color }]}>{alert.title}</Text>
+                                        <Text style={s.alertMessage}>{alert.message}</Text>
 
                                         {alert.action && (
-                                            <View style={styles.alertAction}>
-                                                <ShieldTick size={14} color={alert.color} />
-                                                <Text style={[styles.alertActionText, { color: alert.color }]}>
+                                            <View style={s.alertAction}>
+                                                <NeoIcon name="ShieldTick" size={14} color={alert.color} variant="Bold" />
+                                                <Text style={[s.alertActionText, { color: alert.color }]}>
                                                     {alert.action}
                                                 </Text>
                                             </View>
@@ -270,19 +257,19 @@ export default function InfoRotulosResultScreen() {
                             </FadeInView>
                         )}
 
-                        {/* ── INGREDIENTES (fonte externa) ── */}
+                        {/* INGREDIENTES (fonte externa) */}
                         {isExternalSource && componentesDisplay.length > 0 && (
                             <FadeInView delay={150}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultIngredients')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
-                                    <Text style={styles.ingredientesText}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultIngredients', 'Ingredientes') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
+                                    <Text style={s.ingredientesText}>
                                         {componentesDisplay.join(', ')}
                                     </Text>
                                     {enriching && (
-                                        <View style={styles.enrichingRow}>
+                                        <View style={s.enrichingRow}>
                                             <ActivityIndicator size="small" color={Neo.colors.primary[500]} />
                                             <Small style={{ marginLeft: 8, color: Neo.colors.neutral[500] }}>
-                                                {t('scanner.loadingEpa')}
+                                                {t('scanner.loadingEpa', 'Consultando bases toxicológicas…')}
                                             </Small>
                                         </View>
                                     )}
@@ -290,35 +277,35 @@ export default function InfoRotulosResultScreen() {
                             </FadeInView>
                         )}
 
-                        {/* ── RISCOS (dados locais) ── */}
+                        {/* RISCOS */}
                         {riscos.length > 0 && (
                             <FadeInView delay={200}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultRisks')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultRisks', 'Principais riscos') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {riscos.map((risco, idx) => (
-                                        <View key={idx} style={styles.riskItem}>
-                                            <Warning2 size={16} color="#E65100" variant="Bold" />
-                                            <Text style={styles.riskText}>{risco}</Text>
+                                        <View key={idx} style={s.riskItem}>
+                                            <NeoIcon name="Warning2" size={16} color="#E65100" variant="Bold" />
+                                            <Text style={s.riskText}>{risco}</Text>
                                         </View>
                                     ))}
                                 </NeoCard>
                             </FadeInView>
                         )}
 
-                        {/* ── CLASSIFICAÇÃO GHS ── */}
+                        {/* GHS */}
                         {hazardStatements.length > 0 && (
                             <FadeInView delay={250}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultGhs')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultGhs', 'Classificação GHS') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {hazardStatements.map((stmt, idx) => (
-                                        <View key={idx} style={styles.ghsItem}>
-                                            <View style={styles.ghsCodeBadge}>
-                                                <Text style={styles.ghsCode}>{stmt.code}</Text>
+                                        <View key={idx} style={s.ghsItem}>
+                                            <View style={s.ghsCodeBadge}>
+                                                <Text style={s.ghsCode}>{stmt.code}</Text>
                                             </View>
-                                            <Text style={styles.ghsText}>{stmt.text_pt}</Text>
+                                            <Text style={s.ghsText}>{stmt.text_pt}</Text>
                                         </View>
                                     ))}
-                                    <Text style={styles.ghsSource}>
+                                    <Text style={s.ghsSource}>
                                         Fonte: PubChem (NIH/NLM)
                                         {substanceData?.source === 'pubchem+epa' ? ' + EPA CTX' : ''}
                                     </Text>
@@ -326,21 +313,21 @@ export default function InfoRotulosResultScreen() {
                             </FadeInView>
                         )}
 
-                        {/* ── PRIMEIROS SOCORROS ── */}
+                        {/* PRIMEIROS SOCORROS */}
                         {Object.keys(firstAid).length > 0 && (
                             <FadeInView delay={300}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultFirstAid')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultFirstAid', 'Primeiros socorros') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {Object.entries(firstAid).map(([key, value]) => {
                                         if (!value) return null;
                                         const icon = FIRST_AID_ICONS[key] || { emoji: '🩹', label: key };
                                         return (
-                                            <View key={key} style={styles.firstAidItem}>
-                                                <View style={styles.firstAidHeader}>
+                                            <View key={key} style={s.firstAidItem}>
+                                                <View style={s.firstAidHeader}>
                                                     <Text style={{ fontSize: 18 }}>{icon.emoji}</Text>
-                                                    <Text style={styles.firstAidLabel}>{icon.label}</Text>
+                                                    <Text style={s.firstAidLabel}>{icon.label}</Text>
                                                 </View>
-                                                <Text style={styles.firstAidText}>{value}</Text>
+                                                <Text style={s.firstAidText}>{value}</Text>
                                             </View>
                                         );
                                     })}
@@ -348,116 +335,116 @@ export default function InfoRotulosResultScreen() {
                             </FadeInView>
                         )}
 
-                        {/* ── PREVENÇÃO ── */}
+                        {/* PREVENÇÃO */}
                         {prevencao.length > 0 && (
                             <FadeInView delay={350}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultPrevention')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultPrevention', 'Prevenção') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {prevencao.map((item, idx) => (
-                                        <View key={idx} style={styles.preventionItem}>
-                                            <Text style={styles.preventionCheck}>✓</Text>
-                                            <Text style={styles.preventionText}>{item}</Text>
+                                        <View key={idx} style={s.preventionItem}>
+                                            <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[600]} variant="Bold" />
+                                            <Text style={s.preventionText}>{item}</Text>
                                         </View>
                                     ))}
                                 </NeoCard>
                             </FadeInView>
                         )}
 
-                        {/* ── PRECAUÇÕES GHS ── */}
+                        {/* PRECAUÇÕES GHS */}
                         {precautionary.length > 0 && (
                             <FadeInView delay={400}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultPrecaution')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultPrecaution', 'Precauções') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {precautionary.map((stmt, idx) => (
-                                        <View key={idx} style={styles.ghsItem}>
-                                            <View style={[styles.ghsCodeBadge, { backgroundColor: '#E3F2FD' }]}>
-                                                <Text style={[styles.ghsCode, { color: '#1565C0' }]}>{stmt.code}</Text>
+                                        <View key={idx} style={s.ghsItem}>
+                                            <View style={[s.ghsCodeBadge, { backgroundColor: '#E3F2FD' }]}>
+                                                <Text style={[s.ghsCode, { color: '#1565C0' }]}>{stmt.code}</Text>
                                             </View>
-                                            <Text style={styles.ghsText}>{stmt.text}</Text>
+                                            <Text style={s.ghsText}>{stmt.text}</Text>
                                         </View>
                                     ))}
                                 </NeoCard>
                             </FadeInView>
                         )}
 
-                        {/* ── EPA CTX dados extras ── */}
+                        {/* EPA CTX */}
                         {substanceData?.epa_ld50 && (
                             <FadeInView delay={420}>
-                                <Text style={styles.sectionTitle}>{t('scanner.resultEpa')}</Text>
-                                <NeoCard variant="glass" style={styles.sectionCard}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultEpa', 'Dados toxicológicos') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
                                     {substanceData.epa_ld50 && (
-                                        <View style={styles.epaRow}>
-                                            <Text style={styles.epaLabel}>{t('headersFirst.lD50DoseLetalOral', 'LD50 (dose letal oral)')}</Text>
-                                            <Text style={styles.epaValue}>{substanceData.epa_ld50}</Text>
+                                        <View style={s.epaRow}>
+                                            <Text style={s.epaLabel}>{t('headersFirst.lD50DoseLetalOral', 'LD50 (dose letal oral)')}</Text>
+                                            <Text style={s.epaValue}>{substanceData.epa_ld50}</Text>
                                         </View>
                                     )}
                                     {substanceData.epa_carcinogenicity && (
-                                        <View style={styles.epaRow}>
-                                            <Text style={styles.epaLabel}>{t('headersFirst.carcinogenicidade', 'Carcinogenicidade')}</Text>
-                                            <Text style={styles.epaValue}>{substanceData.epa_carcinogenicity}</Text>
+                                        <View style={s.epaRow}>
+                                            <Text style={s.epaLabel}>{t('headersFirst.carcinogenicidade', 'Carcinogenicidade')}</Text>
+                                            <Text style={s.epaValue}>{substanceData.epa_carcinogenicity}</Text>
                                         </View>
                                     )}
                                     {substanceData.epa_genotoxicity && (
-                                        <View style={styles.epaRow}>
-                                            <Text style={styles.epaLabel}>{t('headersFirst.genotoxicidade', 'Genotoxicidade')}</Text>
-                                            <Text style={styles.epaValue}>{substanceData.epa_genotoxicity}</Text>
+                                        <View style={s.epaRow}>
+                                            <Text style={s.epaLabel}>{t('headersFirst.genotoxicidade', 'Genotoxicidade')}</Text>
+                                            <Text style={s.epaValue}>{substanceData.epa_genotoxicity}</Text>
                                         </View>
                                     )}
                                     {substanceData.epa_reproductive_toxicity && (
-                                        <View style={styles.epaRow}>
-                                            <Text style={styles.epaLabel}>{t('headersFirst.toxicidadeReprodutiva', 'Toxicidade Reprodutiva')}</Text>
-                                            <Text style={styles.epaValue}>{substanceData.epa_reproductive_toxicity}</Text>
+                                        <View style={s.epaRow}>
+                                            <Text style={s.epaLabel}>{t('headersFirst.toxicidadeReprodutiva', 'Toxicidade Reprodutiva')}</Text>
+                                            <Text style={s.epaValue}>{substanceData.epa_reproductive_toxicity}</Text>
                                         </View>
                                     )}
-                                    <Text style={styles.ghsSource}>{t('headersFirst.fonteEPAComputationalToxicology', 'Fonte: EPA Computational Toxicology')}</Text>
+                                    <Text style={s.ghsSource}>{t('headersFirst.fonteEPAComputationalToxicology', 'Fonte: EPA Computational Toxicology')}</Text>
                                 </NeoCard>
                             </FadeInView>
                         )}
 
-                        {/* ── BOTÃO CIATOX ── */}
+                        {/* CIATOX — emergência, fica em vermelho destacado */}
                         <FadeInView delay={450}>
                             <TouchableOpacity
                                 activeOpacity={0.85}
                                 onPress={() => Linking.openURL('tel:08007226001')}
-                                style={styles.ciatoxButton}
+                                style={s.ciatoxButton}
                             >
-                                <Call size={22} color="#FFF" variant="Bold" />
+                                <NeoIcon name="Call" size={22} color="#FFF" variant="Bold" />
                                 <View style={{ flex: 1, marginLeft: 12 }}>
-                                    <Text style={styles.ciatoxTitle}>{t('scanner.callCiatox')}</Text>
-                                    <Text style={styles.ciatoxNumber}>{t('scanner.ciatoxNumber')}</Text>
+                                    <Text style={s.ciatoxTitle}>{t('scanner.callCiatox', 'Ligar para o CIATOX')}</Text>
+                                    <Text style={s.ciatoxNumber}>{t('scanner.ciatoxNumber', '0800 722 6001 · gratuito 24h')}</Text>
                                 </View>
                             </TouchableOpacity>
                         </FadeInView>
 
-                        {/* ── ANÁLISE IA COMPLEMENTAR ── */}
+                        {/* ESCANEAR ROTULO — re-uso da câmera */}
                         <FadeInView delay={500}>
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 onPress={() => navigation.push('Scanner', { mode: 'label_scan' })}
-                                style={styles.iaButton}
+                                style={s.actionButton}
                             >
-                                <Text style={{ fontSize: 20, marginRight: 12 }}>🤖</Text>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.iaTitle}>{t('scanner.analyzeWithAi')}</Text>
-                                    <Text style={styles.iaSubtitle}>{t('scanner.analyzeWithAiSub')}</Text>
+                                <View style={s.actionIconWrap}>
+                                    <NeoIcon name="Scan" size={18} color={Neo.colors.primary[600]} variant="Bold" />
                                 </View>
-                                <ArrowRight2 size={16} color={Neo.colors.primary[600]} />
+                                <View style={{ flex: 1 }}>
+                                    <Text style={s.actionTitle}>{t('scanner.analyzeWithAi', 'Escanear outro rótulo')}</Text>
+                                    <Text style={s.actionSubtitle}>{t('scanner.analyzeWithAiSub', 'Use a câmera para ler outra etiqueta')}</Text>
+                                </View>
+                                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.primary[600]} />
                             </TouchableOpacity>
                         </FadeInView>
 
-                        {/* ── NOVA CONSULTA ── */}
+                        {/* NOVA CONSULTA */}
                         <FadeInView delay={550}>
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 onPress={() => navigation.navigate('InfoRotulos')}
-                                style={styles.newSearchButton}
+                                style={s.newSearchButton}
                             >
-                                <SearchNormal1 size={18} color={Neo.colors.primary[600]} />
-                                <Text style={styles.newSearchText}>{t('scanner.newSearch')}</Text>
+                                <NeoIcon name="SearchNormal1" size={18} color={Neo.colors.primary[600]} />
+                                <Text style={s.newSearchText}>{t('scanner.newSearch', 'Nova consulta')}</Text>
                             </TouchableOpacity>
                         </FadeInView>
-
-                        <View style={{ height: 100 }} />
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -465,7 +452,7 @@ export default function InfoRotulosResultScreen() {
     );
 }
 
-// Encontra a severidade mais próxima para variantes como "Médio (Humanos) / Mortal (Gatos)"
+// Casamento de severidade para variantes como "Médio (Humanos) / Mortal (Gatos)"
 function findClosestSeverity(perigo) {
     if (!perigo) return 'Indeterminado';
     const p = perigo.toLowerCase();
@@ -477,7 +464,7 @@ function findClosestSeverity(perigo) {
     return 'Indeterminado';
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
     // Hero Header
     heroHeader: {
         paddingBottom: 30,
@@ -490,12 +477,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: Neo.spacing.lg,
         paddingTop: Neo.spacing.md,
         paddingBottom: 4,
+        gap: 12,
     },
     heroBackBtn: {
-        width: 40, height: 40, borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.15)',
-        justifyContent: 'center', alignItems: 'center',
-        marginRight: 12,
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.18)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     heroContent: {
         alignItems: 'center',
@@ -503,43 +493,69 @@ const styles = StyleSheet.create({
         paddingTop: 10,
     },
     heroIcon: {
-        fontSize: 48, marginBottom: 8,
+        fontSize: 48,
+        marginBottom: 8,
     },
     heroTitle: {
-        fontSize: 24, fontWeight: '800',
-        textAlign: 'center', marginBottom: 4,
+        fontSize: 24,
+        fontWeight: '800',
+        textAlign: 'center',
+        marginBottom: 4,
+        letterSpacing: -0.5,
     },
     heroSubtitle: {
-        fontSize: 14, fontWeight: '500',
-        textAlign: 'center', marginBottom: 12,
+        fontSize: 14,
+        fontWeight: '500',
+        textAlign: 'center',
+        marginBottom: 12,
     },
     heroBadges: {
-        flexDirection: 'row', flexWrap: 'wrap',
-        justifyContent: 'center', gap: 8,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 8,
         marginTop: 4,
     },
     severityBadge: {
-        paddingHorizontal: 16, paddingVertical: 6,
+        paddingHorizontal: 16,
+        paddingVertical: 6,
         borderRadius: 12,
     },
     severityText: {
-        fontSize: 13, fontWeight: '900', letterSpacing: 1,
+        fontSize: 13,
+        fontWeight: '900',
+        letterSpacing: 1,
     },
     sourceBadge: {
-        paddingHorizontal: 12, paddingVertical: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 12,
+        paddingVertical: 5,
         borderRadius: 10,
+        gap: 6,
+    },
+    sourceDot: {
+        width: 7,
+        height: 7,
+        borderRadius: 3.5,
     },
     sourceText: {
-        fontSize: 11, fontWeight: '700', letterSpacing: 0.3,
+        fontSize: 11,
+        fontWeight: '700',
+        letterSpacing: 0.3,
     },
     ingredientesText: {
-        fontSize: 13, color: Neo.colors.neutral[600],
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
         lineHeight: 20,
     },
     enrichingRow: {
-        flexDirection: 'row', alignItems: 'center',
-        marginTop: 12, paddingTop: 10,
-        borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.04)',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 12,
+        paddingTop: 10,
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(0,0,0,0.04)',
     },
 
     // Content
@@ -547,11 +563,14 @@ const styles = StyleSheet.create({
         padding: Neo.spacing.lg,
         marginTop: -16,
     },
-    sectionTitle: {
-        fontSize: 13, fontWeight: '800', letterSpacing: 0.5,
-        color: Neo.colors.neutral[700],
+    sectionLabel: {
+        fontSize: 11.5,
+        fontWeight: '800',
+        letterSpacing: 1.2,
+        color: Neo.colors.neutral[600],
         marginTop: Neo.spacing.lg,
         marginBottom: Neo.spacing.sm,
+        textTransform: 'uppercase',
     },
     sectionCard: {
         borderRadius: 20,
@@ -571,59 +590,85 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     alertSeverityTag: {
-        paddingHorizontal: 10, paddingVertical: 3,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
         borderRadius: 8,
     },
     alertSeverityText: {
-        fontSize: 10, fontWeight: '900', letterSpacing: 0.5,
+        fontSize: 10,
+        fontWeight: '900',
+        letterSpacing: 0.5,
     },
     alertTitle: {
-        fontSize: 15, fontWeight: '800', marginBottom: 4,
+        fontSize: 15,
+        fontWeight: '800',
+        marginBottom: 4,
     },
     alertMessage: {
-        fontSize: 13, color: Neo.colors.neutral[700],
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
         lineHeight: 19,
     },
     alertAction: {
-        flexDirection: 'row', alignItems: 'center',
-        marginTop: 10, gap: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+        gap: 6,
         paddingTop: 10,
-        borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.05)',
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(0,0,0,0.05)',
     },
     alertActionText: {
-        fontSize: 12, fontWeight: '700',
+        fontSize: 12,
+        fontWeight: '700',
     },
 
     // Risks
     riskItem: {
-        flexDirection: 'row', alignItems: 'flex-start',
-        marginBottom: 10, gap: 8,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 10,
+        gap: 8,
     },
     riskText: {
-        flex: 1, fontSize: 13, color: Neo.colors.neutral[700],
+        flex: 1,
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
         lineHeight: 18,
     },
 
     // GHS
     ghsItem: {
-        flexDirection: 'row', alignItems: 'flex-start',
-        marginBottom: 10, gap: 10,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 10,
+        gap: 10,
     },
     ghsCodeBadge: {
         backgroundColor: '#FFEBEE',
-        paddingHorizontal: 8, paddingVertical: 3,
-        borderRadius: 6, minWidth: 45, alignItems: 'center',
+        paddingHorizontal: 8,
+        paddingVertical: 3,
+        borderRadius: 6,
+        minWidth: 45,
+        alignItems: 'center',
     },
     ghsCode: {
-        fontSize: 11, fontWeight: '800', color: '#C62828',
+        fontSize: 11,
+        fontWeight: '800',
+        color: '#C62828',
     },
     ghsText: {
-        flex: 1, fontSize: 13, color: Neo.colors.neutral[700],
+        flex: 1,
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
         lineHeight: 18,
     },
     ghsSource: {
-        fontSize: 10, color: Neo.colors.neutral[400],
-        textAlign: 'right', marginTop: 8, fontStyle: 'italic',
+        fontSize: 10,
+        color: Neo.colors.neutral[500],
+        textAlign: 'right',
+        marginTop: 8,
+        fontStyle: 'italic',
     },
 
     // First Aid
@@ -634,89 +679,126 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(0,0,0,0.04)',
     },
     firstAidHeader: {
-        flexDirection: 'row', alignItems: 'center',
-        marginBottom: 6, gap: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 6,
+        gap: 8,
     },
     firstAidLabel: {
-        fontSize: 13, fontWeight: '800',
+        fontSize: 13,
+        fontWeight: '800',
         color: Neo.colors.neutral[800],
     },
     firstAidText: {
-        fontSize: 13, color: Neo.colors.neutral[600],
-        lineHeight: 19, paddingLeft: 30,
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
+        lineHeight: 19,
+        paddingLeft: 30,
     },
 
     // Prevention
     preventionItem: {
-        flexDirection: 'row', alignItems: 'flex-start',
-        marginBottom: 8, gap: 8,
-    },
-    preventionCheck: {
-        fontSize: 14, fontWeight: '800',
-        color: Neo.colors.primary[600],
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+        gap: 8,
     },
     preventionText: {
-        flex: 1, fontSize: 13, color: Neo.colors.neutral[700],
+        flex: 1,
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
         lineHeight: 18,
     },
 
     // EPA
     epaRow: {
-        flexDirection: 'row', justifyContent: 'space-between',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 8,
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(0,0,0,0.04)',
     },
     epaLabel: {
-        fontSize: 13, fontWeight: '600', color: Neo.colors.neutral[600],
+        fontSize: 13,
+        fontWeight: '600',
+        color: Neo.colors.neutral[600],
     },
     epaValue: {
-        fontSize: 13, fontWeight: '700', color: Neo.colors.neutral[800],
-        maxWidth: '50%', textAlign: 'right',
+        fontSize: 13,
+        fontWeight: '700',
+        color: Neo.colors.neutral[800],
+        maxWidth: '50%',
+        textAlign: 'right',
     },
 
-    // CIATOX
+    // CIATOX — vermelho de emergência (mantido)
     ciatoxButton: {
-        flexDirection: 'row', alignItems: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: '#D32F2F',
-        borderRadius: 16, padding: 18,
+        borderRadius: 16,
+        padding: 18,
         marginTop: Neo.spacing.lg,
-        ...Neo.shadows.md,
     },
     ciatoxTitle: {
-        fontSize: 16, fontWeight: '800', color: '#FFF',
+        fontSize: 16,
+        fontWeight: '800',
+        color: '#FFF',
     },
     ciatoxNumber: {
-        fontSize: 12, color: 'rgba(255,255,255,0.8)', marginTop: 2,
+        fontSize: 12,
+        color: 'rgba(255,255,255,0.85)',
+        marginTop: 2,
     },
 
-    // IA Button
-    iaButton: {
-        flexDirection: 'row', alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,0.8)',
-        borderRadius: 16, padding: 16,
+    // Action button (escanear)
+    actionButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        borderRadius: 16,
+        padding: 14,
         marginTop: Neo.spacing.md,
-        borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)',
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.06)',
+        gap: 12,
     },
-    iaTitle: {
-        fontSize: 14, fontWeight: '700', color: Neo.colors.neutral[800],
+    actionIconWrap: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: Neo.colors.primary[600] + '1A',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    iaSubtitle: {
-        fontSize: 11, color: Neo.colors.neutral[500], marginTop: 1,
+    actionTitle: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: Neo.colors.neutral[900],
+    },
+    actionSubtitle: {
+        fontSize: 11.5,
+        color: Neo.colors.neutral[600],
+        marginTop: 2,
     },
 
     // New Search
     newSearchButton: {
-        flexDirection: 'row', alignItems: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(255,255,255,0.6)',
-        borderRadius: 16, padding: 16,
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderRadius: 16,
+        padding: 16,
         marginTop: Neo.spacing.md,
-        borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)',
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.06)',
         gap: 8,
     },
     newSearchText: {
-        fontSize: 15, fontWeight: '700', color: Neo.colors.primary[600],
+        fontSize: 15,
+        fontWeight: '700',
+        color: Neo.colors.primary[600],
     },
 });
