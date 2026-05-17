@@ -1,20 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import NeoIcon from '../../components/NeoIcon';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { Colors, Shadows } from '../../utils/Theme';
+import { StatusBar } from 'expo-status-bar';
+import { useTranslation } from 'react-i18next';
+
+import {
+    Health, Briefcase, Hammer, ShieldTick, ArrowRight2, LampOn,
+} from 'iconsax-react-native';
+
+import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
-
-const { width } = Dimensions.get('window');
-const CARD_GAP = 16;
-const CARD_WIDTH = (width - 40 - CARD_GAP) / 2; // 2 columns
-
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
+import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 
 export default function KitsHubScreen() {
     const navigation = useNavigation();
@@ -23,97 +22,102 @@ export default function KitsHubScreen() {
     const kits = [
         {
             id: 'socorros',
-            title: 'Primeiros Socorros',
-            subtitle: 'Curativos e itens básicos',
-            icon: 'medkit',
-            color: '#EF5350',
-            route: 'KitPrimeirosSocorros'
+            title: t('kitsHub.firstAid', 'Primeiros Socorros'),
+            sub: t('kitsHub.firstAidSub', 'Curativos e itens básicos'),
+            Icon: Health,
+            color: '#DC2626', // red
+            route: 'KitPrimeirosSocorros',
         },
         {
             id: 'remedios',
-            title: 'Farmácia em Casa',
-            subtitle: 'Controle de remédios',
-            icon: 'bandage',
-            color: '#42A5F5',
-            route: 'KitRemedios'
+            title: t('kitsHub.pharmacy', 'Farmácia em casa'),
+            sub: t('kitsHub.pharmacySub', 'Controle de remédios'),
+            Icon: Health,
+            color: '#0EA5E9', // sky
+            route: 'KitRemedios',
         },
         {
             id: 'emergencia',
-            title: 'Kit de Emergência',
-            subtitle: 'Sobrevivência 72h',
-            icon: 'briefcase',
-            color: '#AB47BC',
-            route: 'KitEmergencia'
+            title: t('kitsHub.emergency', 'Kit de Emergência'),
+            sub: t('kitsHub.emergencySub', 'Sobrevivência por 72h'),
+            Icon: Briefcase,
+            color: '#7C3AED', // violet
+            route: 'KitEmergencia',
         },
         {
             id: 'ferramentas',
-            title: 'Ferramentas',
-            subtitle: 'Manutenção básica',
-            icon: 'hammer',
-            color: '#FF7043',
-            route: 'KitFerramentas'
+            title: t('kitsHub.tools', 'Ferramentas'),
+            sub: t('kitsHub.toolsSub', 'Manutenção e reparos básicos'),
+            Icon: Hammer,
+            color: '#F59E0B', // amber
+            route: 'FerramentasTrabalho', // FIX: era KitFerramentas (rota inexistente)
         },
         {
             id: 'epis',
-            title: 'EPIs',
-            subtitle: 'Equipamentos de Proteção',
-            icon: 'shield',
-            color: '#FFCA28',
-            route: 'KitEPIs'
-        }
+            title: t('kitsHub.ppe', 'EPIs'),
+            sub: t('kitsHub.ppeSub', 'Equipamentos de proteção'),
+            Icon: ShieldTick,
+            color: '#16A34A', // green
+            route: 'EpiDomestico', // FIX: era KitEPIs (rota inexistente)
+        },
     ];
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-                {/* Header Standardized - Centered */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-                        <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
+
+                {/* HEADER consistente */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <View style={styles.headerTextContainer}>
-                        <H2 style={{ color: Neo.colors.neutral[900] }}>{t('headersFirst.rescueKits', 'Kits de Socorro')}</H2>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('kitsHub.headerTitle', 'Kits')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('kitsHub.headerSubtitle', 'Preparação para emergências')}
+                        </Caption>
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    {/* Intro Card */}
-                    <View style={styles.introCard}>
-                        <H3 style={styles.introTitle}>{t('headersFirst.whyPrepare', 'Por que se preparar?')}</H3>
-                        <Body style={styles.introText}>
-                            {t('headersFirst.terOsKitsCertosEProntosEMOTransformaOCao', 'Ter os kits certos e prontos e à mão, transforma o caos em controle protegendo sua familia.')}
-                        </Body>
-                    </View>
-                    <View style={styles.listContainer}>
-                        {/* Render Kit Item Function Inlining for simplicity if it was causing issues, or just define it here */}
-                        {kits.map((item) => (
-                            <TouchableOpacity
-                                key={item.id}
-                                onPress={() => navigation.navigate(item.route)}
-                                activeOpacity={0.9}
-                                style={{ marginBottom: 12 }}
-                            >
-                                <NeoCard variant="glass" style={styles.kitCard}>
-                                    <View style={[styles.iconContainer, { backgroundColor: item.color + '20' }]}>
-                                        <NeoIcon name={item.icon} size={28} color={item.color} />
-                                    </View>
+                <ScrollView
+                    contentContainerStyle={s.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {/* LISTA DE KITS */}
+                    {kits.map(item => (
+                        <TouchableOpacity
+                            key={item.id}
+                            onPress={() => navigation.navigate(item.route)}
+                            activeOpacity={0.85}
+                            style={{ marginBottom: 10 }}
+                        >
+                            <NeoCard variant="elevated" style={s.kitCard}>
+                                <View style={[s.iconCircle, { backgroundColor: item.color + '33' }]}>
+                                    <item.Icon size={24} color={item.color} variant="Bold" />
+                                </View>
+                                <View style={s.textCol}>
+                                    <Body style={s.kitTitle}>{item.title}</Body>
+                                    <Small style={s.kitSub}>{item.sub}</Small>
+                                </View>
+                                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                            </NeoCard>
+                        </TouchableOpacity>
+                    ))}
 
-                                    <View style={styles.textContainer}>
-                                        <Body style={styles.kitTitle}>{item.title}</Body>
-                                        <Small style={styles.kitSubtitle}>{item.items ? item.items.length : 0} itens</Small>
-                                    </View>
-
-                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
-                                </NeoCard>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-
-                    {/* Dica */}
-                    <NeoCard variant="glass" style={styles.tipCard}>
-                        <NeoIcon name="LampOn" size={24} color={Neo.colors.feedback.warning} />
-                        <Body style={styles.tipText}>
-                            {t('headersFirst.mantenhaSeusKitsSempreAtualizadosEVerifi', 'Mantenha seus kits sempre atualizados e verifique a validade dos itens a cada 6 meses.')}
+                    {/* DICA — card glass discreto */}
+                    <NeoCard variant="elevated" style={s.tipCard}>
+                        <View style={s.tipIconWrap}>
+                            <LampOn size={20} color="#F59E0B" variant="Bold" />
+                        </View>
+                        <Body style={s.tipText}>
+                            {t('kitsHub.tipText', 'Verifique a validade dos itens a cada 6 meses para manter seus kits sempre prontos.')}
                         </Body>
                     </NeoCard>
                 </ScrollView>
@@ -122,96 +126,89 @@ export default function KitsHubScreen() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent',
-    },
+const s = StyleSheet.create({
+    // Header
     header: {
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        backgroundColor: 'transparent',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 20,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 18,
+        gap: 12,
     },
     backBtn: {
-        width: 40, height: 40, borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.4)',
-        alignItems: 'center', justifyContent: 'center',
-        marginRight: 12,
-        borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
-    },
-    headerTextContainer: {
-        flex: 1,
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
         justifyContent: 'center',
     },
-    content: {
-        padding: 20,
-        paddingBottom: 100, // Extra padding for safe scrolling
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
     },
-    listContainer: {
-        flexDirection: 'column',
+    subtitle: {
+        color: Neo.colors.neutral[600],
     },
-    tipText: {
-        flex: 1,
-        color: Neo.colors.neutral[800],
-        lineHeight: 20,
+
+    scrollContent: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
+
+    // Kit card
     kitCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 16,
-        borderRadius: 20,
+        padding: 14,
+        borderRadius: 16,
     },
-    iconContainer: {
-        width: 56,
-        height: 56,
-        borderRadius: 18,
-        justifyContent: 'center',
+    iconCircle: {
+        width: 46,
+        height: 46,
+        borderRadius: 23,
         alignItems: 'center',
-        marginRight: 16,
+        justifyContent: 'center',
+        marginRight: 14,
     },
-    textContainer: {
+    textCol: {
         flex: 1,
     },
     kitTitle: {
-        fontWeight: 'bold',
+        fontWeight: '800',
+        fontSize: 15,
         color: Neo.colors.neutral[900],
-        marginBottom: 4,
+        marginBottom: 2,
     },
-    kitSubtitle: {
-        color: Neo.colors.neutral[500],
+    kitSub: {
+        color: Neo.colors.neutral[600],
+        lineHeight: 16,
     },
+
+    // Tip card
     tipCard: {
-        marginTop: 32,
-        // backgroundColor: '#FFF9C4', // Replaced by GlassCard tint
-        padding: 16,
-        borderRadius: 16,
         flexDirection: 'row',
         alignItems: 'center',
+        padding: 14,
+        borderRadius: 16,
+        marginTop: 18,
         gap: 12,
-        marginBottom: 20,
+    },
+    tipIconWrap: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(245,158,11,0.22)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     tipText: {
         flex: 1,
-        color: Neo.colors.neutral[800],
-        lineHeight: 18,
-    },
-    introCard: {
-        marginBottom: 24,
-        padding: 16,
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        borderRadius: 16,
-        borderLeftWidth: 4,
-        borderLeftColor: Neo.colors.primary[500],
-    },
-    introTitle: {
-        color: Neo.colors.neutral[900],
-        marginBottom: 8,
-    },
-    introText: {
         color: Neo.colors.neutral[700],
-        lineHeight: 20,
+        fontSize: 13,
+        lineHeight: 18,
     },
 });
