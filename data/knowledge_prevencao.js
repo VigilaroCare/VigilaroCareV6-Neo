@@ -1,24 +1,31 @@
 /**
  * data/knowledge_prevencao.js
  *
- * Base consultiva do módulo educacional "Riscos e Orientações por Ambiente".
- * Cada ambiente tem texto autoral + imagem Unsplash contextualizada.
+ * Base consultiva do módulo "Riscos e Orientações por Ambiente".
  *
- * Auditoria Mai/2026:
- * - 22 ambientes (igual ao educational_guides) — antes tinha 16, faltavam
- *   armarios, oficinas, depositos, jardinagem, praia_rios → caíam em sala
- * - URLs Unsplash auditadas: trocadas as fotos fora de contexto
- *   (piscina mostrava academia, garagem desenho de carrinho, etc.)
- * - "Quartos" renomeado para "Quarto de Adulto" (mais inclusivo —
- *   cobre solteiro/casal sem assumir formato familiar)
- * - Swap despensa ↔ banheiro: a foto que estava em despensa era um
- *   banheiro; foto real de pantry/despensa adicionada
+ * ─── DECISÃO DE DESIGN (Mai/2026) ────────────────────────────
+ * Após várias tentativas de usar fotos Unsplash, descobriu-se que
+ * URLs específicas (photo-ID) podem mudar de conteúdo ao longo do
+ * tempo e às vezes retornam imagens fora de contexto.
  *
- * Nota sobre personalização (perfis):
- * Esta tela é EDUCATIVA, não personalizada. Mostra orientações
- * genéricas por tipo de ambiente independentemente do perfil ativo.
- * A personalização por perfil acontece no Checklist (AreasInternas,
- * AreasExternas) e no Dashboard de Riscos.
+ * **Solução adotada**: hero estilizado nativo com:
+ *   - Gradient duotone na cor do ambiente
+ *   - Emoji em escala grande (130px) centralizado
+ *   - Padrão decorativo (círculos translúcidos)
+ *
+ * Vantagens:
+ *   - 100% offline, zero dependência de CDN externo
+ *   - Visual premium e consistente entre todos os ambientes
+ *   - Identidade clara: cor + emoji do ambiente
+ *   - Sem risco de imagem "fora de contexto"
+ *
+ * Para ambientes onde uma foto realmente agrega valor, o componente
+ * suporta `capa` como array de URLs (cascade fallback) e mantém
+ * o StyledHero como último recurso.
+ *
+ * Flag `useStyledHero: true` força o hero estilizado (recomendado
+ * para ambientes onde as fotos Unsplash são inconsistentes).
+ * ───────────────────────────────────────────────────────────────
  */
 
 export const MAPA_PREVENCAO = {
@@ -28,7 +35,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Sala de Estar',
         emoji: '🛋️',
         cor: '#9C27B0',
-        capa: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A sala de estar é o coração da casa, mas também o local onde mais ocorrem pequenos acidentes domésticos devido ao alto fluxo de circulação.' },
             { tipo: 'topico', titulo: 'A Ameaça Silenciosa dos Móveis', texto: 'Estantes, racks e aparelhos de TV que não estão firmemente fixados na parede (anti-tombamento) representam risco crítico, especialmente para crianças pequenas que usam gavetas como "escadas". Ancore móveis pesados com fitas de segurança ou buchas adequadas.' },
@@ -42,7 +49,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Cozinha',
         emoji: '🍳',
         cor: '#FF9800',
-        capa: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Estatisticamente, a cozinha é o ambiente mais perigoso de toda a residência. Fogo, lâminas, gás e água fervente coabitam este espaço.' },
             { tipo: 'topico', titulo: 'Regras de Ouro no Fogão', texto: 'Priorize sempre as bocas de trás do fogão. Cabos de panelas devem ficar virados para o centro ou para trás, nunca voltados para a borda. Uma panela de água fervente virada sobre uma criança causa queimaduras de 2º e 3º grau irreversíveis.' },
@@ -57,8 +64,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Despensa',
         emoji: '🥫',
         cor: '#FB8C00',
-        // Foto real de pantry/despensa com prateleiras de alimentos
-        capa: 'https://images.unsplash.com/photo-1593853963555-013dba48b6d4?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A despensa parece inofensiva, mas concentra dois riscos silenciosos: pragas atraídas pelos alimentos e desmoronamento de prateleiras mal dimensionadas.' },
             { tipo: 'topico', titulo: 'Organização Anti-queda', texto: 'Mantenha os itens mais pesados (latas, garrafas, sacos de arroz) nas prateleiras intermediárias — nunca acima da altura dos ombros. Uma única lata caindo de 1,80 m causa concussão em uma criança. Prateleiras de MDF precisam de mãos-francesas a cada 60 cm para suportar peso real.' },
@@ -74,7 +80,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Quarto de Adulto',
         emoji: '🛏️',
         cor: '#7E57C2',
-        capa: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Quartos de adulto parecem ambientes neutros, mas concentram fontes de incêndio, sufocamento e quedas noturnas frequentemente subestimadas.' },
             { tipo: 'topico', titulo: 'Eletrônicos Carregando à Noite', texto: 'Celulares e tablets carregando sob travesseiros ou sobre a cama são a principal causa moderna de incêndios noturnos em quartos. A bateria de lítio em curto atinge 600 °C em segundos. Carregue sempre em superfícies rígidas (mesa, criado-mudo) longe de tecidos.' },
@@ -89,7 +95,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Quarto de Bebê',
         emoji: '👶',
         cor: '#FF4081',
-        capa: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'O berço deve ser o lugar mais seguro do mundo. Infelizmente, práticas estéticas muitas vezes ignoram protocolos vitais de segurança.' },
             { tipo: 'topico', titulo: 'O Berço Nu', texto: 'A Sociedade Brasileira de Pediatria é clara: até os 12 meses, o berço deve estar vazio. Sem travesseiros, sem cobertores soltos, sem pelúcias e, principalmente, SEM kits de berço (protetores laterais acolchoados). O risco de morte súbita e asfixia mecânica é altíssimo. Use apenas lençol de elástico bem preso; para o frio, use sacos de dormir.' },
@@ -103,7 +109,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Quarto Infantil',
         emoji: '🧸',
         cor: '#E91E63',
-        capa: 'https://images.unsplash.com/photo-1558899603-bbd64b6e8a48?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Um reino de brincadeiras precisa blindar a criatividade da criança contra armadilhas estruturais.' },
             { tipo: 'topico', titulo: 'Ameaça de Altura: Janelas e Móveis', texto: 'Redes de proteção nas janelas são a defesa máxima e devem ser revisadas a cada 3-5 anos. Crianças gostam de escalar. Além de telas, certifique-se de que não haja poltronas e camas posicionadas logo abaixo das janelas.' },
@@ -117,8 +123,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Quarto do Idoso',
         emoji: '👴',
         cor: '#8D6E63',
-        // Quarto sereno com cama maior, contexto sênior (não cama de solteiro)
-        capa: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'O santuário de repouso do idoso precisa de visão clara noturna, mobilidade descomplicada e zero barreiras — três pilares contra a queda, sua maior causa de hospitalização.' },
             { tipo: 'topico', titulo: 'A Visão Noturna que Salva', texto: 'Ir ao banheiro de madrugada é a situação de risco mais grave. O quarto deve ter abajures próximos à cama (acessíveis sem se levantar) e luzes noturnas (footlights) esmaecidas na base das paredes, criando um "rastro" iluminado do leito até o banheiro. Evite acender luz principal — choque visual atrapalha o equilíbrio.' },
@@ -133,8 +138,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Banheiro',
         emoji: '🚿',
         cor: '#2196F3',
-        // Foto que estava em despensa (era um banheiro) — agora no lugar certo
-        capa: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Água e superfícies lisas formam uma combinação fatal. O banheiro exige atenção extrema à aderência e organização.' },
             { tipo: 'topico', titulo: 'A Regra Anti-Afogamento', texto: 'Crianças pequenas podem se afogar em apenas 3 dedos de água. Nunca deixe bacias, baldes ou banheiras cheias de água desacompanhadas. Após o banho infantil, esvazie imediatamente os recipientes. A tampa do vaso sanitário deve permanecer abaixada e, idealmente, travada.' },
@@ -148,7 +152,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Armários',
         emoji: '🗄️',
         cor: '#6D4C41',
-        capa: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Armários são depósitos íntimos da casa — concentram medicamentos, pilhas, produtos químicos, ferramentas, sacolas plásticas. Sua organização é uma das engenharias mais subestimadas da prevenção doméstica.' },
             { tipo: 'topico', titulo: 'Lei da Gravidade Cotidiana', texto: 'Coloque objetos pesados sempre nas prateleiras inferiores. Itens leves no alto. Um liquidificador caindo da prateleira mais alta pode causar fratura craniana. Caixas pesadas em armários sem porta devem ter cinta de retenção.' },
@@ -164,8 +168,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Lavanderia',
         emoji: '🧺',
         cor: '#00BCD4',
-        // Lavanderia doméstica residencial — não comercial
-        capa: 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A lavanderia doméstica reúne potentes fatores de risco: alto fluxo elétrico de máquinas, produtos químicos puros e pisos habitualmente molhados.' },
             { tipo: 'topico', titulo: 'Misturas Letais', texto: 'JAMAIS misture água sanitária com amônia (presente em alguns desengordurantes e limpa-vidros) — gera gás cloramina, que pode ser letal em ambiente fechado. Sempre leia rótulos antes de combinar produtos e mantenha a área ventilada durante a limpeza.' },
@@ -180,8 +183,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Garagem',
         emoji: '🚗',
         cor: '#546E7A',
-        // Garagem residencial real com veículo — não ilustração
-        capa: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A garagem combina veículo em movimento, ferramentas pesadas, produtos químicos e baixa visibilidade — uma equação que exige protocolos rigorosos.' },
             { tipo: 'topico', titulo: 'Atropelamento Doméstico', texto: 'O atropelamento de crianças por familiares na própria garagem é uma das principais causas de morte infantil em casas com veículo. SEMPRE faça volta completa em torno do carro antes de dar partida e usar ré. Câmeras de ré ajudam, mas não substituem verificação visual. Regra: "ninguém na garagem quando o carro está manobrando".' },
@@ -197,7 +199,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Oficina / Ferramentas',
         emoji: '🔧',
         cor: '#455A64',
-        capa: 'https://images.unsplash.com/photo-1622618760546-8e443f8a909e?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A bancada de ferramentas combina lâminas, motores rotativos, eletricidade e produtos inflamáveis em um único ambiente — exige protocolos profissionais mesmo em uso doméstico.' },
             { tipo: 'topico', titulo: 'Ferramentas Cortantes e Perfurantes', texto: 'Serrotes, formões, tesouras de poda e brocas devem ficar em painéis fixos (com silhueta desenhada para cada ferramenta) ou caixas trancadas — nunca soltos sobre a bancada. Lâminas viradas para baixo, pontas protegidas. Crianças escalam tudo: oficina não é parquinho.' },
@@ -213,7 +215,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Depósito',
         emoji: '📦',
         cor: '#5D4037',
-        capa: 'https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Depósitos e quartinhos de despejo viram, com o tempo, ninhos de aranhas, escorpiões e roedores. A organização compulsiva é a defesa.' },
             { tipo: 'topico', titulo: 'Gravidade nas Caixas', texto: 'Regra de ouro: caixas pesadas SEMPRE no chão; partes altas só para itens leves (roupa de cama, decoração de Natal vazia, papelão). Empilhamento máximo de 3 caixas, com a base ancorada na parede.' },
@@ -229,8 +231,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Gás (GLP)',
         emoji: '🔥',
         cor: '#D32F2F',
-        // Botijão de gás real com regulador e mangueira
-        capa: 'https://images.unsplash.com/photo-1626383137804-baf6f4cf3849?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'O poder adormecido do gás GLP não perdoa falha de ventilação ou confinamento. Cada protocolo aqui foi escrito após acidentes reais.' },
             { tipo: 'topico', titulo: 'Posicionamento e Ventilação', texto: 'Botijões P13 e cilindros P45 NUNCA devem ficar em locais enclausurados, porões ou áreas abaixo do nível do solo — o GLP é mais denso que o ar e desce ao escapar. A válvula deve estar exposta em armários treliçados e gradeados que recebam ar corrente. Distância mínima de 1,5 m de portas, janelas e fontes de calor.' },
@@ -246,8 +247,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Quintal / Jardim',
         emoji: '🌳',
         cor: '#43A047',
-        // Quintal residencial real, com grama e estrutura — não ilustração
-        capa: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'O quintal é zona de liberdade — e exatamente por isso, exige mapeamento minucioso de plantas tóxicas, animais peçonhentos e ferramentas.' },
             { tipo: 'topico', titulo: 'Plantas Tóxicas Comuns', texto: 'Espirradeira, comigo-ninguém-pode, copo-de-leite, mamona, tinhorão e azaleia são ornamentais comuns que podem causar intoxicação grave por ingestão ou contato. Crianças e pets investigam tudo na boca. Identifique todas as plantas do seu jardim — consulte o módulo Plantas Tóxicas no app.' },
@@ -262,7 +262,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Jardinagem / Plantas',
         emoji: '🌱',
         cor: '#8BC34A',
-        capa: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'O ato de cultivar conecta a casa à terra — mas a terra tem moradores invisíveis (parasitas, fungos) e o cultivo manuseia químicos que entram pelo pulmão e pela pele.' },
             { tipo: 'topico', titulo: 'EPI do Jardineiro', texto: 'Luvas de raspa (não de pano — não impedem espinhos e parasitas), botas fechadas com solado grosso, calça comprida e camisa de manga longa são equipamento básico. Em poda de árvores ou pulverização, adicione óculos de proteção e máscara facial PFF2.' },
@@ -278,7 +278,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Áreas Comuns',
         emoji: '🏘️',
         cor: '#FFC107',
-        capa: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Playgrounds, quadras, salões e áreas comuns de condomínio têm responsabilidade compartilhada — o que multiplica o risco de manutenção negligenciada.' },
             { tipo: 'topico', titulo: 'Playground — Inspeção Visual', texto: 'Antes de liberar a criança, faça inspeção rápida: parafusos expostos? Madeira lascada? Plástico ressecado/quebradiço? Corrente de balanço com elos abertos? Piso de borracha rasgado? Reporte qualquer defeito à administração e evite o equipamento. Brinquedos metálicos atingem 70 °C em dias de sol forte — verifique a temperatura com a mão antes.' },
@@ -293,8 +293,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Piscina',
         emoji: '🏊',
         cor: '#03A9F4',
-        // Foto de piscina residencial real — não academia
-        capa: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Afogamentos são predominantemente mudos, velozes e a forma suprema de letalidade entre crianças de 1 a 4 anos no verão domiciliar.' },
             { tipo: 'topico', titulo: 'Vigilância Ativa: a regra dos 10 segundos', texto: 'O celular destruiu a vigília das bordas. Nunca delegue por suposição: "alguém estava olhando". Quando há piscina, designe explicitamente um adulto "vigilante", em turnos cronometrados, SEM celular ao alcance. Sua única função: observar a superfície. Afogamento é silencioso — a criança não grita, ela luta calada para respirar.' },
@@ -309,7 +308,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Áreas Naturais',
         emoji: '🌊',
         cor: '#0288D1',
-        capa: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Praia, rio, cachoeira e represa são ambientes não controlados — correntezas, marés, fauna marinha e clima variável exigem leitura ativa do risco.' },
             { tipo: 'topico', titulo: 'Bandeiras e Sinalização', texto: 'Respeite RIGOROSAMENTE a sinalização: bandeira vermelha = proibido entrar; amarela = atenção, perigo moderado; verde = segurança razoável. Em praias sem salva-vidas, evite mergulhar. Nunca subestime correntezas — mesmo nadadores experientes são arrastados.' },
@@ -326,8 +325,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Escadas',
         emoji: '🪜',
         cor: '#F44336',
-        // Escada interna doméstica real — não desenho
-        capa: 'https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'A gravidade sempre vence na ausência de limites e aderência. Escadas merecem atenção militar em casas com crianças e idosos.' },
             { tipo: 'topico', titulo: 'Baby Gates Infalíveis', texto: 'Nunca instale portões tipo "sanfona" na borda das escadas. Os trincos de barreiras de segurança (no topo e na base) precisam estar AFIXADOS COM PARAFUSOS nas paredes, jamais por pressão. Devem suportar o empurrão de uma criança em corrida (15-20 kg de impacto).' },
@@ -342,8 +340,7 @@ export const MAPA_PREVENCAO = {
         nome: 'Varanda',
         emoji: '🌿',
         cor: '#26A69A',
-        // Varanda residencial real com guarda-corpo
-        capa: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=1200',
+        useStyledHero: true,
         conteudo: [
             { tipo: 'destaque', texto: 'Varandas concentram dois riscos altos e silenciosos: quedas de altura (crianças e idosos) e queda de objetos sobre transeuntes.' },
             { tipo: 'topico', titulo: 'Redes e Telas — Especificação Correta', texto: 'Para crianças, redes de proteção certificadas (norma INMETRO) são obrigatórias até os 12 anos. O fio deve ter no mínimo 2,5 mm de espessura e malha máxima de 5 cm. Revisão profissional anual é mandatória — fios de polipropileno degradam com sol e chuva em 3-5 anos. Vasos pesados nunca devem ficar apoiados no parapeito.' },
