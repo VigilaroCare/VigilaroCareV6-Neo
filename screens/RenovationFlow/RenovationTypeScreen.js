@@ -21,7 +21,7 @@ export default function RenovationTypeScreen({ navigation }) {
     ];
 
     return (
-        <AppBackground variant="subtle">
+        <AppBackground>
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.inner}>
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
