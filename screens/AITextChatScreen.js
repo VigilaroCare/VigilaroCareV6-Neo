@@ -1,26 +1,26 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TextInput,
-    FlatList,
-    ActivityIndicator,
-    StatusBar,
-    KeyboardAvoidingView,
-    Platform,
+    View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList,
+    ActivityIndicator, KeyboardAvoidingView, Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+
 import NeoIcon from '../components/NeoIcon';
-import { LinearGradient } from 'expo-linear-gradient';
-import OpenAIService from '../services/OpenAIService';
+import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
+import { H1, Body, Small, Caption } from '../components/NeoTypography';
+import OpenAIService from '../services/OpenAIService';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
-export default function AITextChatScreen({ navigation }) {
+const ACCENT = '#0EA5E9'; // sky — combina com card "Por texto" das Ferramentas
+
+export default function AITextChatScreen() {
+    const navigation = useNavigation();
     const { t } = useTranslation('common');
+
     const [messages, setMessages] = useState([]);
     const [inputText, setInputText] = useState('');
     const [loading, setLoading] = useState(false);
@@ -48,206 +48,278 @@ export default function AITextChatScreen({ navigation }) {
             setMessages(prev => [...prev, {
                 id: (Date.now() + 2).toString(),
                 role: 'assistant',
-                text: '⚠️ Erro de conexão. Tente novamente.',
+                text: t('chat.errorConnection', 'Erro de conexão. Tente novamente.'),
             }]);
         } finally {
             setLoading(false);
         }
     };
 
-    const renderItem = ({ item }) => (
-        <View style={[styles.row, item.role === 'user' ? styles.rowUser : styles.rowAi]}>
-            {item.role === 'assistant' && (
-                <View style={styles.avatar}>
-                    <Text style={{ fontSize: 14 }}>🛡️</Text>
-                </View>
-            )}
-            <View style={[styles.bubble, item.role === 'user' ? styles.bubbleUser : styles.bubbleAi]}>
-                <Text style={styles.bubbleText}>{item.text}</Text>
-            </View>
-        </View>
-    );
-
-    return (
-        <AppBackground variant="subtle">
-        <SafeAreaView style={styles.safe} edges={['top']}>
-            <StatusBar barStyle="light-content" backgroundColor="#1A1A2E" />
-
-            <KeyboardAvoidingView
-                style={styles.keyboardAvoid}
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            >
-                {/* Header */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-                        <NeoIcon name="ArrowLeft2" size={22} color="#FFF" />
-                    </TouchableOpacity>
-                    <Text style={styles.headerTitle}>{t('headersFirst.vigilaroAIChat', 'Vigilaro AI — Chat')}</Text>
-                    <View style={{ width: 40 }} />
-                </View>
-
-                {/* Mensagens - Flex 1 ocupa o espaço do meio */}
-                <FlatList
-                    ref={listRef}
-                    style={styles.list}
-                    data={messages}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={styles.listContent}
-                    keyboardShouldPersistTaps="handled"
-                    onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: false })}
-                    ListEmptyComponent={
-                        <View style={styles.empty}>
-                            <LinearGradient colors={['#8E2DE2', '#4A00E0']} style={styles.emptyIcon}>
-                                <NeoIcon name="Message" size={36} color="#FFF" />
-                            </LinearGradient>
-                            <Text style={styles.emptyTitle}>{t('headersFirst.olComoPossoAjudar', 'Olá! Como posso ajudar?')}</Text>
-                            <Text style={styles.emptySub}>
-                                {t('headersFirst.tireDVidasSobreSeguranADomSticaPrevenODe', 'Tire dúvidas sobre segurança doméstica, prevenção de acidentes e primeiros socorros.')}
-                            </Text>
-                        </View>
-                    }
-                />
-
-                {loading && (
-                    <View style={styles.typing}>
-                        <ActivityIndicator size="small" color="#8E2DE2" />
-                        <Text style={styles.typingText}>{t('headersFirst.respondendo', 'Respondendo...')}</Text>
+    const renderItem = ({ item }) => {
+        const isUser = item.role === 'user';
+        return (
+            <View style={[s.row, isUser ? s.rowUser : s.rowAi]}>
+                {!isUser && (
+                    <View style={s.avatar}>
+                        <NeoIcon name="Bubble" size={16} color={ACCENT} variant="Bold" />
                     </View>
                 )}
-
-                {/* InputBar fixo no fundo da View Flex */}
-                <View style={styles.inputWrapper}>
-                    <View style={styles.inputBar}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Digite sua mensagem..."
-                            placeholderTextColor="rgba(255,255,255,0.4)"
-                            value={inputText}
-                            onChangeText={setInputText}
-                            onSubmitEditing={handleSend}
-                            returnKeyType="send"
-                            editable={!loading}
-                            multiline={false}
-                        />
-                        <TouchableOpacity
-                            style={[styles.sendBtn, (!inputText.trim() || loading) && styles.sendDisabled]}
-                            onPress={handleSend}
-                            disabled={!inputText.trim() || loading}
-                        >
-                            <NeoIcon name="Send2" size={18} color="#FFF" />
-                        </TouchableOpacity>
-                    </View>
+                <View style={[s.bubble, isUser ? s.bubbleUser : s.bubbleAi]}>
+                    <Text style={[s.bubbleText, isUser ? s.bubbleTextUser : s.bubbleTextAi]}>
+                        {item.text}
+                    </Text>
                 </View>
-            </KeyboardAvoidingView>
-        </SafeAreaView>
-      </AppBackground>
+            </View>
+        );
+    };
+
+    return (
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
+
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                >
+                    {/* HEADER consistente */}
+                    <View style={s.header}>
+                        <TouchableOpacity
+                            onPress={() => navigation.goBack()}
+                            style={s.backBtn}
+                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        >
+                            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                        </TouchableOpacity>
+                        <View style={{ flex: 1 }}>
+                            <H1 style={s.title}>
+                                {t('chat.headerTitle', 'Conversa')}
+                            </H1>
+                            <Caption style={s.subtitle}>
+                                {t('chat.headerSubtitle', 'Tire dúvidas sobre prevenção')}
+                            </Caption>
+                        </View>
+                    </View>
+
+                    {/* MENSAGENS */}
+                    <FlatList
+                        ref={listRef}
+                        style={{ flex: 1 }}
+                        data={messages}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={s.listContent}
+                        keyboardShouldPersistTaps="handled"
+                        onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: false })}
+                        ListEmptyComponent={
+                            <View style={s.empty}>
+                                <View style={s.emptyIconCircle}>
+                                    <NeoIcon name="Bubble" size={36} color={ACCENT} variant="Bold" />
+                                </View>
+                                <H1 style={s.emptyTitle}>
+                                    {t('chat.emptyTitle', 'Olá! Como posso ajudar?')}
+                                </H1>
+                                <Body style={s.emptyDesc}>
+                                    {t('chat.emptyDesc', 'Tire dúvidas sobre segurança doméstica, prevenção de acidentes e primeiros socorros.')}
+                                </Body>
+                            </View>
+                        }
+                    />
+
+                    {loading && (
+                        <View style={s.typing}>
+                            <ActivityIndicator size="small" color={ACCENT} />
+                            <Small style={s.typingText}>
+                                {t('chat.typing', 'Respondendo…')}
+                            </Small>
+                        </View>
+                    )}
+
+                    {/* INPUT BAR */}
+                    <View style={s.inputWrap}>
+                        <View style={s.inputRow}>
+                            <TextInput
+                                style={s.input}
+                                placeholder={t('chat.inputPlaceholder', 'Digite sua mensagem…')}
+                                placeholderTextColor={Neo.colors.neutral[500]}
+                                value={inputText}
+                                onChangeText={setInputText}
+                                onSubmitEditing={handleSend}
+                                returnKeyType="send"
+                                editable={!loading}
+                                multiline={false}
+                            />
+                            <TouchableOpacity
+                                style={[s.sendBtn, (!inputText.trim() || loading) && s.sendDisabled]}
+                                onPress={handleSend}
+                                disabled={!inputText.trim() || loading}
+                            >
+                                <NeoIcon name="Send2" size={18} color="#FFF" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    safe: {
-        flex: 1,
-        backgroundColor: '#1A1A2E',
-    },
-    keyboardAvoid: {
-        flex: 1,
-    },
+const s = StyleSheet.create({
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(255,255,255,0.07)',
-        backgroundColor: '#1A1A2E',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backBtn: {
-        padding: 8,
-        backgroundColor: 'rgba(255,255,255,0.1)',
-        borderRadius: 20,
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    headerTitle: {
-        color: '#FFF',
-        fontSize: 16,
-        fontWeight: '700',
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 24,
     },
-    list: {
-        flex: 1,
+    subtitle: {
+        color: Neo.colors.neutral[600],
     },
+
+    // List
     listContent: {
-        padding: 16,
+        padding: Neo.spacing.lg,
         flexGrow: 1,
         paddingBottom: 20,
     },
+
+    // Empty state
     empty: {
+        flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         paddingTop: 60,
         paddingHorizontal: 32,
     },
-    emptyIcon: {
-        width: 70, height: 70, borderRadius: 35,
-        alignItems: 'center', justifyContent: 'center', marginBottom: 16,
+    emptyIconCircle: {
+        width: 88,
+        height: 88,
+        borderRadius: 44,
+        backgroundColor: 'rgba(14,165,233,0.18)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
     },
-    emptyTitle: { color: '#FFF', fontSize: 18, fontWeight: '700', marginBottom: 8 },
-    emptySub: { color: 'rgba(255,255,255,0.4)', fontSize: 14, textAlign: 'center', lineHeight: 20 },
-    row: { flexDirection: 'row', marginBottom: 12, alignItems: 'flex-end' },
+    emptyTitle: {
+        fontSize: 22,
+        fontWeight: '800',
+        color: Neo.colors.neutral[900],
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    emptyDesc: {
+        color: Neo.colors.neutral[600],
+        textAlign: 'center',
+        lineHeight: 20,
+        maxWidth: 300,
+    },
+
+    // Chat rows
+    row: {
+        flexDirection: 'row',
+        marginBottom: 10,
+        alignItems: 'flex-end',
+    },
     rowUser: { justifyContent: 'flex-end' },
     rowAi: { justifyContent: 'flex-start' },
+
     avatar: {
-        width: 32, height: 32, borderRadius: 16,
-        backgroundColor: 'rgba(142,45,226,0.25)',
-        alignItems: 'center', justifyContent: 'center', marginRight: 8,
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: 'rgba(14,165,233,0.18)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 8,
     },
+
     bubble: {
-        maxWidth: '80%', paddingVertical: 10, paddingHorizontal: 14, borderRadius: 18,
+        maxWidth: '78%',
+        paddingVertical: 10,
+        paddingHorizontal: 14,
+        borderRadius: 18,
     },
-    bubbleUser: { backgroundColor: '#6C3AED', borderBottomRightRadius: 4 },
+    bubbleUser: {
+        backgroundColor: ACCENT,
+        borderBottomRightRadius: 4,
+    },
     bubbleAi: {
-        backgroundColor: 'rgba(255,255,255,0.07)',
+        backgroundColor: 'rgba(255,255,255,0.85)',
         borderBottomLeftRadius: 4,
-        borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
     },
-    bubbleText: { color: '#FFF', fontSize: 15, lineHeight: 22 },
+    bubbleText: {
+        fontSize: 15,
+        lineHeight: 21,
+    },
+    bubbleTextUser: { color: '#FFF' },
+    bubbleTextAi: { color: Neo.colors.neutral[900] },
+
+    // Typing indicator
     typing: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 8,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingVertical: 6,
+        gap: 8,
     },
-    typingText: { color: 'rgba(255,255,255,0.4)', fontSize: 13, marginLeft: 8 },
+    typingText: {
+        color: Neo.colors.neutral[500],
+        fontSize: 12.5,
+    },
 
-    // Input fixo básico
-    inputWrapper: {
-        // Compensação para área da Tab Bar flutuante quando o teclado NÃO está aberto
-        paddingBottom: Platform.OS === 'android' ? 120 : 100,
-        backgroundColor: '#1A1A2E',
+    // Input bar
+    inputWrap: {
+        // Espaço para o GlobalFloatingFooter / SOS quando o teclado NÃO está aberto
+        paddingBottom: Platform.OS === 'android' ? 130 : 110,
+        backgroundColor: 'transparent',
     },
-    inputBar: {
+    inputRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
+        paddingHorizontal: Neo.spacing.lg,
         paddingVertical: 10,
-        backgroundColor: '#1A1A2E',
+        gap: 10,
+        backgroundColor: 'rgba(255,255,255,0.5)',
         borderTopWidth: 1,
-        borderTopColor: 'rgba(255,255,255,0.07)',
+        borderTopColor: 'rgba(0,0,0,0.05)',
     },
     input: {
         flex: 1,
-        backgroundColor: '#2D2D44',
+        backgroundColor: 'rgba(255,255,255,0.9)',
         borderRadius: 22,
         paddingHorizontal: 16,
         paddingVertical: 10,
-        color: '#FFF',
+        color: Neo.colors.neutral[900],
         fontSize: 15,
         borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.1)',
+        borderColor: 'rgba(0,0,0,0.08)',
         minHeight: 44,
     },
     sendBtn: {
-        marginLeft: 10, width: 44, height: 44, borderRadius: 22,
-        backgroundColor: '#6C3AED', alignItems: 'center', justifyContent: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: ACCENT,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     sendDisabled: { opacity: 0.35 },
 });
