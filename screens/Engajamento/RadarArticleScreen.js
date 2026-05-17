@@ -34,7 +34,7 @@ export default function RadarArticleScreen({ route, navigation }) {
 
   if (!article) {
     return (
-      <AppBackground variant="subtle">
+      <AppBackground>
         <SafeAreaView style={s.safeArea}>
           <TouchableOpacity style={s.backBtn} onPress={() => navigation.goBack()}>
             <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
@@ -54,7 +54,7 @@ export default function RadarArticleScreen({ route, navigation }) {
   const orientacoes = article.orientacoes || [];
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <StatusBar barStyle="dark-content" />
 
       {/* Header fixo */}
@@ -205,7 +205,7 @@ const s = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingBottom: 120,
+    paddingBottom: 190,
   },
   hero: {
     alignItems: 'center',

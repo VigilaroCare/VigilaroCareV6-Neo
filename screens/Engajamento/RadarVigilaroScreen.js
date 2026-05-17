@@ -97,7 +97,7 @@ export default function RadarVigilaroScreen({ navigation }) {
   };
 
   return (
-    <AppBackground variant="subtle">
+    <AppBackground>
       <SafeAreaView style={s.safeArea} edges={['top', 'left', 'right']}>
         <StatusBar style="dark" />
 
@@ -204,7 +204,7 @@ const s = StyleSheet.create({
   },
   listContent: {
     padding: 16,
-    paddingBottom: 120,
+    paddingBottom: 190,
   },
   card: {
     marginBottom: 14,
