@@ -1,170 +1,249 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+
 import NeoIcon from '../components/NeoIcon';
-import { DS as Neo } from '../utils/DesignSystem2026';
-import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
+import AppBackground from '../components/AppBackground';
+import { H1, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
-export default function AssistentePrevencaoIAScreen({ navigation }) {
+const ACCENT = '#7C3AED'; // violet — combina com o card "Por voz" das Ferramentas
+
+export default function AssistentePrevencaoIAScreen() {
+    const navigation = useNavigation();
     const { t } = useTranslation('common');
+
+    const features = [
+        {
+            iconName: 'Message',
+            color: ACCENT,
+            text: t('assistant.featureRealtime', 'Dúvidas em tempo real'),
+        },
+        {
+            iconName: 'Health',
+            color: '#DC2626',
+            text: t('assistant.featureEmergency', 'Apoio em situações de emergência'),
+        },
+        {
+            iconName: 'ShieldTick',
+            color: '#16A34A',
+            text: t('assistant.featurePrevention', 'Dicas de prevenção contextuais'),
+        },
+    ];
+
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={styles.container}>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <Text style={styles.title}>{t('headersFirst.assistenteDeVoz', 'Assistente de Voz')}</Text>
-                </View>
-                <View style={styles.content}>
-                    <View style={styles.iconContainer}>
-                        <NeoIcon name="Microphone2" size={72} color="#9C27B0" variant="Bold" />
-                    </View>
-                    <Text style={styles.titleMain}>{t('headersFirst.vigilaroVoice', 'Vigilaro Voice')}</Text>
-                    <Text style={styles.message}>
-                        {t('headersFirst.converseNaturalmenteComNossaIAEspecializ', 'Converse naturalmente com nossa IA especializada. Tire dúvidas sobre segurança doméstica, prevenção e primeiros socorros.')}
-                    </Text>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
 
-                    <View style={styles.featuresList}>
-                        <NeoCard variant="elevated" style={[styles.featureItem, { backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)' }]}>
-                            <NeoIcon name="Message" size={20} color="#9C27B0" variant="Bold" />
-                            <Text style={styles.featureText}>{t('headersFirst.tireDVidasEmTempoReal', 'Tire dúvidas em tempo real')}</Text>
-                        </NeoCard>
-                        <NeoCard variant="elevated" style={[styles.featureItem, { backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)' }]}>
-                            <NeoIcon name="Health" size={20} color={Neo.colors.feedback.error} variant="Bold" />
-                            <Text style={styles.featureText}>{t('headersFirst.suporteParaEmergNcias', 'Suporte para Emergências')}</Text>
-                        </NeoCard>
-                        <NeoCard variant="elevated" style={[styles.featureItem, { backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)' }]}>
-                            <NeoIcon name="ShieldTick" size={20} color={Neo.colors.feedback.success} variant="Bold" />
-                            <Text style={styles.featureText}>{t('headersFirst.dicasDePrevenO', 'Dicas de Prevenção')}</Text>
-                        </NeoCard>
-                    </View>
-
+                {/* HEADER consistente */}
+                <View style={s.header}>
                     <TouchableOpacity
-                        style={[styles.button]}
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                    </TouchableOpacity>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('assistant.headerTitle', 'Assistente')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('assistant.headerSubtitle', 'Conversa por voz sobre prevenção')}
+                        </Caption>
+                    </View>
+                </View>
+
+                <ScrollView
+                    contentContainerStyle={s.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {/* HERO ÍCONE + INTRO */}
+                    <View style={s.heroBlock}>
+                        <View style={s.heroIconWrap}>
+                            <NeoIcon name="Microphone2" size={56} color={ACCENT} variant="Bold" />
+                        </View>
+                        <H3 style={s.heroTitle}>
+                            {t('assistant.heroTitle', 'Pergunte falando')}
+                        </H3>
+                        <Body style={s.heroText}>
+                            {t('assistant.heroText', 'Tire dúvidas sobre segurança doméstica, prevenção e primeiros socorros conversando naturalmente.')}
+                        </Body>
+                    </View>
+
+                    {/* FEATURES — 3 itens em cards glass */}
+                    <View style={s.featureList}>
+                        {features.map((f, idx) => (
+                            <NeoCard key={idx} variant="elevated" style={s.featureCard}>
+                                <View style={[s.featureIconWrap, { backgroundColor: f.color + '33' }]}>
+                                    <NeoIcon name={f.iconName} size={18} color={f.color} variant="Bold" />
+                                </View>
+                                <Body style={s.featureText}>{f.text}</Body>
+                            </NeoCard>
+                        ))}
+                    </View>
+
+                    {/* CTA PRIMÁRIO — sem nome de vendor, sem "IA" stamp */}
+                    <TouchableOpacity
                         onPress={() => navigation.navigate('ConversationalAgent')}
-                        activeOpacity={0.8}
+                        activeOpacity={0.85}
+                        style={s.ctaPrimary}
                     >
-                        <NeoIcon name="Microphone2" size={24} color="#FFF" style={{ marginRight: 8 }} variant="Bold" />
-                        <Text style={styles.buttonText}>{t('headersFirst.falarComAIAElevenLabs', 'Falar com a IA (ElevenLabs)')}</Text>
+                        <NeoIcon name="Microphone2" size={22} color="#FFF" variant="Bold" />
+                        <Text style={s.ctaPrimaryText}>
+                            {t('assistant.ctaStart', 'Iniciar conversa')}
+                        </Text>
                     </TouchableOpacity>
 
-                    {/* Secondary Button for Typing */}
+                    {/* CTA SECUNDÁRIO — link discreto */}
                     <TouchableOpacity
-                        style={[styles.button, styles.secondaryButton]}
                         onPress={() => navigation.navigate('AITextChat')}
-                        activeOpacity={0.8}
+                        activeOpacity={0.7}
+                        style={s.ctaSecondary}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                        <NeoIcon name="Keyboard" size={24} color="#9C27B0" style={{ marginRight: 8 }} variant="Bold" />
-                        <Text style={[styles.buttonText, { color: '#9C27B0' }]}>{t('headersFirst.digitarTexto', 'Digitar Texto')}</Text>
+                        <Text style={s.ctaSecondaryText}>
+                            {t('assistant.ctaPreferText', 'Prefiro digitar')}
+                        </Text>
                     </TouchableOpacity>
 
-                    {/* Disclaimer LGPD/Apple */}
-                    <Text style={styles.disclaimerText}>
+                    {/* DISCLAIMER LGPD/Apple */}
+                    <Small style={s.disclaimer}>
                         {t('ai.disclaimer', 'O Vigilaro Care é uma ferramenta educativa e preventiva. A IA pode cometer erros e não substitui avaliação técnica, consulta médica ou socorro profissional. Em emergências graves, ligue imediatamente para os serviços de emergência (ex: 192, 193).')}
-                    </Text>
-                </View>
+                    </Small>
+                </ScrollView>
             </SafeAreaView>
         </AppBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'transparent',
-    },
+const s = StyleSheet.create({
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: Neo.spacing.md,
-        backgroundColor: 'transparent'
-    },
-    backButton: {
-        marginRight: Neo.spacing.md,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: Neo.colors.neutral[800],
-    },
-    content: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.xl,
+        paddingHorizontal: Neo.spacing.lg,
         paddingTop: 4,
-        paddingBottom: 85, // Ajustado para o botão SOS
-    },
-    iconContainer: {
-        marginBottom: 8,
-        backgroundColor: 'rgba(156, 39, 176, 0.15)', // Translucent purple
-        padding: 20,
-        borderRadius: 56,
-    },
-    titleMain: {
-        fontSize: 28,
-        fontWeight: '800',
-        color: Neo.colors.neutral[900],
-        marginBottom: 12,
-        textAlign: 'center',
-    },
-    message: {
-        fontSize: 14,
-        color: Neo.colors.neutral[600],
-        textAlign: 'center',
-        marginBottom: 16,
-        lineHeight: 20,
-    },
-    featuresList: {
-        width: '100%',
-        marginBottom: 20,
+        paddingBottom: 18,
         gap: 12,
     },
-    featureItem: {
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+    },
+    subtitle: {
+        color: Neo.colors.neutral[600],
+    },
+
+    scrollContent: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 8,
+        paddingBottom: 190,
+    },
+
+    // Hero
+    heroBlock: {
+        alignItems: 'center',
+        marginBottom: 24,
+    },
+    heroIconWrap: {
+        width: 110,
+        height: 110,
+        borderRadius: 55,
+        backgroundColor: 'rgba(124,58,237,0.18)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
+    },
+    heroTitle: {
+        fontSize: 22,
+        color: Neo.colors.neutral[900],
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    heroText: {
+        textAlign: 'center',
+        color: Neo.colors.neutral[700],
+        fontSize: 14,
+        lineHeight: 20,
+        maxWidth: 320,
+    },
+
+    // Features
+    featureList: {
+        gap: 10,
+        marginBottom: 24,
+    },
+    featureCard: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 14,
         borderRadius: 16,
         gap: 12,
-        borderWidth: 0, // Let NeoCard glass decide
+    },
+    featureIconWrap: {
+        width: 38,
+        height: 38,
+        borderRadius: 19,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     featureText: {
+        flex: 1,
         fontSize: 14,
-        color: Neo.colors.neutral[700],
+        color: Neo.colors.neutral[800],
         fontWeight: '600',
     },
-    button: {
+
+    // CTAs
+    ctaPrimary: {
         flexDirection: 'row',
-        backgroundColor: '#9C27B0',
-        paddingHorizontal: Neo.spacing.xl,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        backgroundColor: ACCENT,
         paddingVertical: 16,
         borderRadius: 16,
-        alignItems: 'center',
-        width: '100%',
-        justifyContent: 'center',
-        ...Neo.shadows.md,
-        marginBottom: 10
+        marginBottom: 10,
     },
-    secondaryButton: {
-        backgroundColor: 'rgba(255,255,255,0.4)',
-        borderWidth: 1.5,
-        borderColor: '#9C27B0',
-        elevation: 0
-    },
-    buttonText: {
+    ctaPrimaryText: {
         color: '#FFF',
-        fontWeight: 'bold',
+        fontWeight: '800',
         fontSize: 16,
+        letterSpacing: 0.1,
     },
-    disclaimerText: {
-        fontSize: 14,
+    ctaSecondary: {
+        alignSelf: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        marginBottom: 20,
+    },
+    ctaSecondaryText: {
+        fontSize: 13.5,
+        fontWeight: '700',
+        color: ACCENT,
+    },
+
+    // Disclaimer
+    disclaimer: {
         color: Neo.colors.neutral[500],
         textAlign: 'center',
-        marginTop: 8,
-        lineHeight: 18,
-        paddingHorizontal: 12,
+        lineHeight: 16,
+        fontSize: 11.5,
+        paddingHorizontal: 8,
     },
 });
