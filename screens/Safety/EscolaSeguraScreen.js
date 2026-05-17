@@ -504,7 +504,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.8)',
         paddingTop: 16,
-        ...Shadows.sm,
+        ...Neo.shadows.sm,
     },
     gridCardTitle: {
         fontSize: 11,
@@ -631,7 +631,7 @@ const styles = StyleSheet.create({
         padding: 24,
         width: '100%',
         maxWidth: 400,
-        ...Shadows.lg,
+        ...Neo.shadows.md,
     },
     modalHeader: {
         flexDirection: 'row',

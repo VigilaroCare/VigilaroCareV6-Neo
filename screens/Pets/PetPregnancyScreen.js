@@ -198,7 +198,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                                             <Text style={styles.petName}>{p.nome}</Text>
                                             <Text style={styles.petDetail}>{p.especie || 'Pet'}</Text>
                                         </View>
-                                        <NeoIcon name="ArrowRight2" size={20} color={Colors.textTertiary} style={{ marginLeft: 'auto' }} />
+                                        <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} style={{ marginLeft: 'auto' }} />
                                     </TouchableOpacity>
                                 ))
                             )
