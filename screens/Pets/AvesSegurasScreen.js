@@ -1,101 +1,289 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { useTranslation } from 'react-i18next';
 
-// Design System
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import NeoText, { H2, H3, Body, Small } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
+import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { AVES_SEGURAS_DATA } from '../../data/aves_seguras_data';
-import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 
 export default function AvesSegurasScreen({ navigation }) {
-    const { t } = useTranslation('common');
+  const { t } = useTranslation('common');
 
-    const renderRiscoCard = (title, message, icon, color, bg) => (
-        <NeoCard variant="glass" style={{ marginBottom: 16, padding: 16, borderLeftWidth: 4, borderLeftColor: color }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: bg, alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                    <NeoIcon name={icon} size={20} color={color} variant="Bold"/>
-                </View>
-                <H3 style={{ flex: 1, fontSize: 16, color: Neo.colors.neutral[900] }}>{title}</H3>
+  const renderRiscoCard = (title, message, icon, color, bg) => (
+    <NeoCard variant="elevated" style={[s.riscoCard, { borderLeftWidth: 4, borderLeftColor: color }]}>
+      <View style={s.riscoHeader}>
+        <View style={[s.riscoIcon, { backgroundColor: bg || (color + '1A') }]}>
+          <NeoIcon name={icon} size={18} color={color} variant="Bold" />
+        </View>
+        <H3 style={s.riscoTitle}>{title}</H3>
+      </View>
+      <Body style={s.riscoMessage}>{message}</Body>
+    </NeoCard>
+  );
+
+  return (
+    <AppBackground>
+      <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <StatusBar style="dark" />
+
+        <View style={s.header}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={s.backBtn}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+          </TouchableOpacity>
+          <View style={{ flex: 1 }}>
+            <H1 style={s.title}>
+              {t('avesSeguras.headerTitle', 'Aves seguras')}
+            </H1>
+            <Caption style={s.subtitle}>
+              {t('avesSeguras.subtitle', 'Ambiente e diagnóstico')}
+            </Caption>
+          </View>
+        </View>
+
+        <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+          {/* HERO */}
+          <NeoCard variant="elevated" style={s.heroCard}>
+            <View style={s.heroIconCircle}>
+              <Text style={{ fontSize: 32 }}>🦜</Text>
             </View>
-            <Body style={{ color: Neo.colors.neutral[600] }}>{message}</Body>
-        </NeoCard>
-    );
+            <H3 style={s.heroTitle}>{t_field(AVES_SEGURAS_DATA.hero, 'title')}</H3>
+            <Body style={s.heroDesc}>{t_field(AVES_SEGURAS_DATA.hero, 'desc')}</Body>
+          </NeoCard>
 
-    return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
-                <StatusBar style="dark" />
-                
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)', marginRight: 16 }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }}><H2>{t('avesSeguras.headerTitle', 'Aves Seguras')}</H2></View>
-                </View>
+          {/* ALERTA CRÍTICO */}
+          <NeoCard variant="elevated" style={s.alertCard}>
+            <View style={s.alertHeader}>
+              <View style={s.alertIcon}>
+                <NeoIcon name="Danger" size={18} color="#D32F2F" variant="Bold" />
+              </View>
+              <H3 style={s.alertTitle}>{t_field(AVES_SEGURAS_DATA.alertaCritico, 'title')}</H3>
+            </View>
+            <Body style={s.alertDesc}>{t_field(AVES_SEGURAS_DATA.alertaCritico, 'desc')}</Body>
+            <View style={s.alertSmall}>
+              <Small style={s.alertSmallText}>
+                {t_field(AVES_SEGURAS_DATA.alertaCritico, 'small')}
+              </Small>
+            </View>
+          </NeoCard>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
-                    
-                    {/* Hero Area */}
-                    <NeoCard variant="glass" style={{
-                        padding: 24, paddingVertical: 32, alignItems: 'center', alignSelf: 'stretch', marginBottom: 24, marginTop: 12, backgroundColor: '#E1F5FE'
-                    }}>
-                        <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: '#81D4FA', alignItems: 'center', justifyContent: 'center', marginBottom: 16, shadowColor: '#81D4FA', shadowOpacity: 0.8, shadowRadius: 20 }}>
-                            <NeoText style={{ fontSize: 32 }}>🦜</NeoText>
-                        </View>
-                        <H3 style={{ color: '#0288D1', textAlign: 'center', marginBottom: 8 }}>{t_field(AVES_SEGURAS_DATA.hero, 'title')}</H3>
-                        <Body style={{ color: '#0277BD', textAlign: 'center', lineHeight: 22 }}>{t_field(AVES_SEGURAS_DATA.hero, 'desc')}</Body>
-                    </NeoCard>
+          <Small style={s.sectionLabel}>
+            {(t('avesSeguras.environmentTitle', 'Ambiente saudável') || '').toUpperCase()}
+          </Small>
 
-                    {/* ALERTA CRITICO */}
-                    <NeoCard variant="glass" style={{ padding: 20, backgroundColor: '#FFF0F0', borderColor: '#FFCDD2', borderWidth: 1, marginBottom: 24 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#FFCDD2', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                                <NeoIcon name="Danger" size={20} color="#D32F2F" variant="Bold"/>
-                            </View>
-                            <H3 style={{ color: '#C62828', flex: 1, textTransform: 'uppercase', fontSize: 14 }}>{t_field(AVES_SEGURAS_DATA.alertaCritico, 'title')}</H3>
-                        </View>
-                        <Body style={{ color: '#B71C1C', marginBottom: 12, fontWeight: '500' }}>
-                            {t_field(AVES_SEGURAS_DATA.alertaCritico, 'desc')}
-                        </Body>
-                        <View style={{ backgroundColor: 'rgba(211, 47, 47, 0.1)', padding: 12, borderRadius: 8 }}>
-                            <Small style={{ color: '#D32F2F', fontWeight: 'bold' }}>{t_field(AVES_SEGURAS_DATA.alertaCritico, 'small')}</Small>
-                        </View>
-                    </NeoCard>
+          {AVES_SEGURAS_DATA.riscos.map((risco, index) => (
+            <View key={index}>
+              {renderRiscoCard(
+                t_field(risco, 'title'),
+                t_field(risco, 'message'),
+                risco.icon,
+                risco.color,
+                risco.bg
+              )}
+            </View>
+          ))}
 
-                    <H3 style={{ marginBottom: 16, color: Neo.colors.neutral[800] }}>{t('avesSeguras.environmentTitle', 'Ambiente Saudável')}</H3>
-                    
-                    {AVES_SEGURAS_DATA.riscos.map((risco, index) => 
-                        <View key={index}>
-                            {renderRiscoCard(
-                                t_field(risco, 'title'),
-                                t_field(risco, 'message'),
-                                risco.icon,
-                                risco.color,
-                                risco.bg
-                            )}
-                        </View>
-                    )}
-
-                    <NeoCard variant="glass" style={{ marginTop: 16, padding: 20, backgroundColor: '#F3E5F5', borderColor: '#E1BEE7', borderWidth: 1 }}>
-                        <H3 style={{ color: '#6A1B9A', marginBottom: 8 }}>{t_field(AVES_SEGURAS_DATA.diagnostico, 'title')}</H3>
-                        <Body style={{ color: '#8E24AA', marginBottom: 16 }}>{t_field(AVES_SEGURAS_DATA.diagnostico, 'desc')}</Body>
-                        <TouchableOpacity 
-                            style={{ backgroundColor: '#8E24AA', paddingVertical: 12, borderRadius: 12, alignItems: 'center' }}
-                            onPress={() => navigation.navigate('PetFoodSafety')}
-                        >
-                            <NeoText style={{ color: '#FFF', fontWeight: 'bold' }}>{t_field(AVES_SEGURAS_DATA.diagnostico, 'btn')}</NeoText>
-                        </TouchableOpacity>
-                    </NeoCard>
-
-                </ScrollView>
-            </SafeAreaView>
-        </AppBackground>
-    );
+          {/* DIAGNÓSTICO CTA */}
+          <NeoCard variant="elevated" style={s.diagnosticoCard}>
+            <H3 style={s.diagnosticoTitle}>{t_field(AVES_SEGURAS_DATA.diagnostico, 'title')}</H3>
+            <Body style={s.diagnosticoDesc}>{t_field(AVES_SEGURAS_DATA.diagnostico, 'desc')}</Body>
+            <TouchableOpacity
+              style={s.diagnosticoBtn}
+              onPress={() => navigation.navigate('PetFoodSafety')}
+              activeOpacity={0.85}
+            >
+              <Body style={s.diagnosticoBtnText}>
+                {t_field(AVES_SEGURAS_DATA.diagnostico, 'btn')}
+              </Body>
+            </TouchableOpacity>
+          </NeoCard>
+        </ScrollView>
+      </SafeAreaView>
+    </AppBackground>
+  );
 }
+
+const s = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: Neo.spacing.lg,
+    paddingTop: 4,
+    paddingBottom: 14,
+    gap: 12,
+  },
+  backBtn: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
+  subtitle: { color: Neo.colors.neutral[600] },
+
+  content: {
+    paddingHorizontal: Neo.spacing.lg,
+    paddingBottom: 190,
+  },
+
+  heroCard: {
+    padding: 22,
+    paddingVertical: 28,
+    alignItems: 'center',
+    marginBottom: 16,
+    borderRadius: 18,
+  },
+  heroIconCircle: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#E1F5FE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  heroTitle: {
+    color: '#0288D1',
+    textAlign: 'center',
+    marginBottom: 6,
+    fontSize: 17,
+    fontWeight: '800',
+  },
+  heroDesc: {
+    color: Neo.colors.neutral[700],
+    textAlign: 'center',
+    lineHeight: 20,
+    fontSize: 13.5,
+  },
+
+  alertCard: {
+    padding: 16,
+    backgroundColor: '#FEF2F2',
+    borderLeftWidth: 3,
+    borderLeftColor: '#D32F2F',
+    marginBottom: 20,
+    borderRadius: 14,
+  },
+  alertHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    gap: 10,
+  },
+  alertIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#D32F2F24',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  alertTitle: {
+    color: '#B91C1C',
+    flex: 1,
+    textTransform: 'uppercase',
+    fontSize: 12.5,
+    fontWeight: '800',
+    letterSpacing: 0.8,
+  },
+  alertDesc: {
+    color: '#7F1D1D',
+    marginBottom: 10,
+    fontWeight: '500',
+    fontSize: 13.5,
+    lineHeight: 19,
+  },
+  alertSmall: {
+    backgroundColor: 'rgba(211,47,47,0.1)',
+    padding: 10,
+    borderRadius: 8,
+  },
+  alertSmallText: {
+    color: '#B91C1C',
+    fontWeight: '700',
+    fontSize: 12,
+    lineHeight: 17,
+  },
+
+  sectionLabel: {
+    fontSize: 11.5,
+    fontWeight: '800',
+    letterSpacing: 1.2,
+    color: Neo.colors.neutral[600],
+    marginBottom: 10,
+    marginTop: 4,
+    textTransform: 'uppercase',
+  },
+
+  riscoCard: {
+    marginBottom: 10,
+    padding: 14,
+    borderRadius: 14,
+  },
+  riscoHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    gap: 10,
+  },
+  riscoIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  riscoTitle: {
+    flex: 1,
+    fontSize: 14.5,
+    color: Neo.colors.neutral[900],
+    fontWeight: '800',
+    letterSpacing: -0.2,
+  },
+  riscoMessage: {
+    color: Neo.colors.neutral[700],
+    fontSize: 13,
+    lineHeight: 19,
+  },
+
+  diagnosticoCard: {
+    marginTop: 14,
+    padding: 16,
+    backgroundColor: '#F3E5F5',
+    borderRadius: 14,
+  },
+  diagnosticoTitle: {
+    color: '#6A1B9A',
+    marginBottom: 6,
+    fontSize: 15,
+    fontWeight: '800',
+  },
+  diagnosticoDesc: {
+    color: Neo.colors.neutral[800],
+    marginBottom: 14,
+    fontSize: 13.5,
+    lineHeight: 19,
+  },
+  diagnosticoBtn: {
+    backgroundColor: '#8E24AA',
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  diagnosticoBtnText: {
+    color: '#FFF',
+    fontWeight: '800',
+    fontSize: 14,
+  },
+});

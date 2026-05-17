@@ -7,19 +7,19 @@ import {
     TouchableOpacity,
     TextInput,
     Alert,
-    StatusBar,
-    ActivityIndicator
+    ActivityIndicator,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
+import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { Colors, Spacing, BorderRadius, Shadows } from '../../utils/Theme';
 import ProfileService from '../../services/ProfileService';
 import { useTranslation } from 'react-i18next';
 
 export default function PetPregnancyScreen({ navigation, route }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const [pet, setPet] = useState(route.params?.pet || null);
     const [petsList, setPetsList] = useState([]);
@@ -149,15 +149,19 @@ export default function PetPregnancyScreen({ navigation, route }) {
         return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
     };
 
-    // Header Component Reuse
+    // Header padronizado
     const renderHeader = () => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+        <View style={styles.headerStd}>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={styles.backBtn}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+                <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
             </TouchableOpacity>
-            <View style={{ marginLeft: 16, flex: 1 }}>
-                <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('petPregnancyTracker.title')}</Text>
-                <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('petPregnancyTracker.subtitle')}</Text>
+            <View style={{ flex: 1 }}>
+                <H1 style={styles.titleStd}>{t('petPregnancyTracker.title', 'Gestação pet')}</H1>
+                <Caption style={styles.subtitleStd}>{t('petPregnancyTracker.subtitle', 'Acompanhamento semanal')}</Caption>
             </View>
         </View>
     );
@@ -165,9 +169,9 @@ export default function PetPregnancyScreen({ navigation, route }) {
     // SELECTION SCREEN
     if (!pet) {
         return (
-            <AppBackground variant="subtle">
+            <AppBackground>
                 <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                    <StatusBar barStyle="dark-content" />
+                    <StatusBar style="dark" />
                     {renderHeader()}
                     <ScrollView contentContainerStyle={styles.content}>
                         <Text style={styles.cardTitle}>{t('petPregnancyTracker.selectPet')}</Text>
@@ -325,48 +329,146 @@ export default function PetPregnancyScreen({ navigation, route }) {
     );
 }
 
+const ACCENT = '#E91E63';
+
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#FCE4EC' },
-    header: { paddingHorizontal: Spacing.lg, paddingVertical: Spacing.xl, paddingTop: 60, borderBottomLeftRadius: 24, borderBottomRightRadius: 24, ...Shadows.md, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-    headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#FFF' },
-    backButton: { padding: 4 },
-    content: { padding: Spacing.lg, gap: Spacing.md, paddingBottom: 120 },
-    petCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', padding: Spacing.md, borderRadius: BorderRadius.lg, ...Shadows.sm },
-    petSelectionCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', padding: Spacing.md, borderRadius: BorderRadius.lg, ...Shadows.sm, marginBottom: 12 },
-    avatarContainer: { width: 50, height: 50, borderRadius: 25, backgroundColor: '#FCE4EC', justifyContent: 'center', alignItems: 'center', marginRight: Spacing.md },
-    petName: { fontSize: 18, fontWeight: 'bold', color: Colors.textPrimary },
-    petDetail: { color: Colors.textSecondary },
-    setupCard: { backgroundColor: '#FFF', padding: Spacing.lg, borderRadius: BorderRadius.lg, ...Shadows.sm },
-    cardTitle: { fontSize: 18, fontWeight: 'bold', color: Colors.textPrimary, marginBottom: Spacing.md },
-    label: { fontSize: 14, fontWeight: 'bold', color: Colors.textSecondary, marginBottom: 8 },
-    input: { backgroundColor: '#F5F5F5', padding: 12, borderRadius: BorderRadius.md, borderWidth: 1, borderColor: '#E0E0E0', fontSize: 16, marginBottom: Spacing.md },
-    predictionBox: { backgroundColor: '#E3F2FD', padding: Spacing.md, borderRadius: BorderRadius.md, alignItems: 'center', marginBottom: Spacing.lg },
-    predictionLabel: { color: '#2196F3', fontWeight: 'bold' },
-    predictionValue: { fontSize: 24, fontWeight: 'bold', color: '#1565C0', marginVertical: 4 },
-    predictionSub: { fontSize: 12, color: '#2196F3' },
-    saveButton: { backgroundColor: '#E91E63', padding: 16, borderRadius: BorderRadius.md, alignItems: 'center' },
-    saveButtonText: { color: '#FFF', fontWeight: 'bold', fontSize: 16 },
-    statusCard: { backgroundColor: '#FFF', padding: Spacing.lg, borderRadius: BorderRadius.lg, ...Shadows.sm },
-    statusHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Spacing.lg },
-    statusTitle: { fontSize: 18, fontWeight: 'bold', color: '#E91E63' },
-    weekBadge: { backgroundColor: '#FCE4EC', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20 },
-    weekText: { color: '#C2185B', fontWeight: 'bold', fontSize: 12 },
-    timelineContainer: { marginBottom: Spacing.lg },
-    timelineBar: { height: 8, backgroundColor: '#F5F5F5', borderRadius: 4, marginBottom: 8, overflow: 'hidden' },
-    timelineProgress: { height: '100%', backgroundColor: '#E91E63', borderRadius: 4 },
+    container: { flex: 1, backgroundColor: 'transparent' },
+
+    // Header padronizado
+    headerStd: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
+    },
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    titleStd: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
+    subtitleStd: { color: Neo.colors.neutral[600] },
+
+    content: { padding: Neo.spacing.lg, gap: 12, paddingBottom: 190 },
+
+    petCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 14,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    petSelectionCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 14,
+        borderRadius: 16,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    avatarContainer: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        backgroundColor: ACCENT + '1A',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 12,
+    },
+    petName: { fontSize: 16, fontWeight: '800', color: Neo.colors.neutral[900] },
+    petDetail: { color: Neo.colors.neutral[600], fontSize: 12.5 },
+
+    setupCard: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 16,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    cardTitle: { fontSize: 16, fontWeight: '800', color: Neo.colors.neutral[900], marginBottom: 12, letterSpacing: -0.2 },
+    label: { fontSize: 11.5, fontWeight: '800', color: Neo.colors.neutral[600], marginBottom: 8, letterSpacing: 1, textTransform: 'uppercase' },
+    input: {
+        backgroundColor: '#FFF',
+        padding: 12,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.08)',
+        fontSize: 15,
+        marginBottom: 14,
+        color: Neo.colors.neutral[900],
+    },
+    predictionBox: {
+        backgroundColor: '#E3F2FD',
+        padding: 14,
+        borderRadius: 12,
+        alignItems: 'center',
+        marginBottom: 16,
+    },
+    predictionLabel: { color: '#1565C0', fontWeight: '800', fontSize: 12, letterSpacing: 0.4 },
+    predictionValue: { fontSize: 24, fontWeight: '800', color: '#0D47A1', marginVertical: 4, letterSpacing: -0.5 },
+    predictionSub: { fontSize: 12, color: '#1976D2' },
+    saveButton: { backgroundColor: ACCENT, padding: 14, borderRadius: 12, alignItems: 'center' },
+    saveButtonText: { color: '#FFF', fontWeight: '800', fontSize: 15 },
+
+    statusCard: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 16,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    statusHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 },
+    statusTitle: { fontSize: 16, fontWeight: '800', color: ACCENT },
+    weekBadge: { backgroundColor: ACCENT + '1A', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 14 },
+    weekText: { color: ACCENT, fontWeight: '800', fontSize: 11.5 },
+    timelineContainer: { marginBottom: 14 },
+    timelineBar: { height: 8, backgroundColor: 'rgba(0,0,0,0.06)', borderRadius: 4, marginBottom: 6, overflow: 'hidden' },
+    timelineProgress: { height: '100%', backgroundColor: ACCENT, borderRadius: 4 },
     timelineLabels: { flexDirection: 'row', justifyContent: 'space-between' },
-    timelineLabel: { fontSize: 12, color: Colors.textTertiary },
-    infoRow: { flexDirection: 'row', justifyContent: 'space-between', borderTopWidth: 1, borderTopColor: '#F5F5F5', paddingTop: Spacing.md },
+    timelineLabel: { fontSize: 11.5, color: Neo.colors.neutral[600] },
+    infoRow: { flexDirection: 'row', justifyContent: 'space-between', borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.06)', paddingTop: 12 },
     infoItem: { alignItems: 'center', flex: 1 },
-    infoLabel: { fontSize: 12, color: Colors.textSecondary, marginBottom: 4 },
-    infoValue: { fontSize: 16, fontWeight: 'bold', color: Colors.textPrimary },
-    tipsCard: { backgroundColor: '#FFF', padding: Spacing.lg, borderRadius: BorderRadius.lg, ...Shadows.sm },
-    tipText: { fontSize: 14, color: Colors.textSecondary, lineHeight: 22 },
-    birthCard: { backgroundColor: '#FFF', padding: Spacing.lg, borderRadius: BorderRadius.lg, ...Shadows.sm, marginBottom: 40 },
-    birthButton: { backgroundColor: '#4CAF50', padding: 16, borderRadius: BorderRadius.md, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 },
-    birthButtonText: { color: '#FFF', fontWeight: 'bold', fontSize: 16 },
+    infoLabel: { fontSize: 11.5, color: Neo.colors.neutral[600], marginBottom: 4 },
+    infoValue: { fontSize: 15, fontWeight: '800', color: Neo.colors.neutral[900] },
+
+    tipsCard: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 16,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    tipText: { fontSize: 13.5, color: Neo.colors.neutral[800], lineHeight: 20 },
+
+    birthCard: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        padding: 16,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.05)',
+    },
+    birthButton: {
+        backgroundColor: '#4CAF50',
+        padding: 14,
+        borderRadius: 12,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 8,
+    },
+    birthButtonText: { color: '#FFF', fontWeight: '800', fontSize: 15 },
+
     noDataCard: { alignItems: 'center', padding: 32 },
-    noDataText: { fontSize: 16, color: Colors.textSecondary, marginBottom: 16 },
-    createButton: { padding: 12, backgroundColor: Colors.primary, borderRadius: 8 },
-    createButtonText: { color: '#FFF', fontWeight: 'bold' }
+    noDataText: { fontSize: 14, color: Neo.colors.neutral[600], marginBottom: 16, textAlign: 'center' },
+    createButton: { paddingVertical: 12, paddingHorizontal: 18, backgroundColor: Neo.colors.primary[600], borderRadius: 12 },
+    createButtonText: { color: '#FFF', fontWeight: '800' },
 });
