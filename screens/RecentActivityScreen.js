@@ -1,43 +1,52 @@
-﻿// screens/RecentActivityScreen.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, StatusBar, RefreshControl, ActivityIndicator } from 'react-native';
+import {
+    View, StyleSheet, FlatList, TouchableOpacity, RefreshControl, ActivityIndicator,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+
 import NeoIcon from '../components/NeoIcon';
-import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoCard from '../components/NeoCard';
+import { H1, H3, Body, Small, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
-import { H3, Body, Small } from '../components/NeoTypography';
+import { DS as Neo } from '../utils/DesignSystem2026';
 import ActivityLogService from '../services/ActivityLogService';
 
 const ActivityItem = ({ item }) => {
-    const iconName = item.icon || 'Activity'; // Ícone padrão
+    const iconName = item.icon || 'Activity';
     const iconColor = item.color || Neo.colors.primary[500];
     const timeAgo = ActivityLogService.getTimeAgo(item.timestamp);
 
     return (
-        <View style={itemStyles.itemContainer}>
-            <View style={[itemStyles.iconCircle, { backgroundColor: iconColor + '20' }]}>
-                <NeoIcon name={iconName} size={24} color={iconColor} variant="Bulk" />
+        <NeoCard variant="elevated" style={s.itemCard}>
+            <View style={[s.iconCircle, { backgroundColor: iconColor + '33' }]}>
+                <NeoIcon name={iconName} size={22} color={iconColor} variant="Bold" />
             </View>
-            <View style={itemStyles.textContainer}>
-                <Body style={itemStyles.title}>{item.title}</Body>
-                <Small style={itemStyles.description}>{item.description}</Small>
-                <Small style={itemStyles.timestamp}>{timeAgo}</Small>
+            <View style={s.textCol}>
+                <Body style={s.itemTitle} numberOfLines={2}>{item.title}</Body>
+                {!!item.description && (
+                    <Small style={s.itemDesc} numberOfLines={2}>{item.description}</Small>
+                )}
+                <Caption style={s.timestamp}>{timeAgo}</Caption>
             </View>
-        </View>
+        </NeoCard>
     );
 };
 
-export default function RecentActivityScreen({ navigation }) {
+export default function RecentActivityScreen() {
+    const navigation = useNavigation();
     const { t } = useTranslation('common');
+
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
 
     const loadActivities = useCallback(async () => {
         setLoading(true);
-        const fetchedActivities = await ActivityLogService.getActivities();
-        setActivities(fetchedActivities);
+        const fetched = await ActivityLogService.getActivities();
+        setActivities(fetched);
         setLoading(false);
     }, []);
 
@@ -49,43 +58,61 @@ export default function RecentActivityScreen({ navigation }) {
 
     useEffect(() => {
         loadActivities();
-        const unsubscribe = ActivityLogService.onActivityLogged(() => {
-            loadActivities();
-        });
+        const unsubscribe = ActivityLogService.onActivityLogged(() => loadActivities());
         return () => unsubscribe();
     }, [loadActivities]);
 
-    return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+    const isEmpty = !loading && activities.length === 0;
 
-                {/* Header */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+    return (
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style="dark" />
+
+                {/* HEADER consistente com Accessibility/Reports */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <H3 style={styles.headerTitle}>{t('headersFirst.atividadeRecente', 'Atividade Recente')}</H3>
-                    <View style={{ width: 44 }} /> {/* Espaçador */}
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('headersFirst.atividadeRecente', 'Atividade recente')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('recentActivity.subtitle', 'Histórico de eventos do app')}
+                        </Caption>
+                    </View>
                 </View>
 
                 {loading && activities.length === 0 ? (
-                    <View style={styles.loadingContainer}>
+                    <View style={s.centered}>
                         <ActivityIndicator size="large" color={Neo.colors.primary[500]} />
-                        <Text style={styles.loadingText}>{t('headersFirst.carregandoAtividades', 'Carregando atividades...')}</Text>
+                        <Caption style={{ marginTop: 12, color: Neo.colors.neutral[500] }}>
+                            {t('headersFirst.carregandoAtividades', 'Carregando atividades…')}
+                        </Caption>
                     </View>
-                ) : activities.length === 0 ? (
-                    <View style={styles.emptyContainer}>
-                        <NeoIcon name="Activity" size={64} color={Neo.colors.neutral[400]} />
-                        <H3 style={styles.emptyTitle}>{t('headersFirst.nenhumaAtividadeRecente', 'Nenhuma atividade recente')}</H3>
-                        <Body style={styles.emptyText}>{t('headersFirst.comeceAUsarOVigilaroParaVerSeuHistRicoAq', 'Comece a usar o Vigilaro para ver seu histórico aqui.')}</Body>
+                ) : isEmpty ? (
+                    <View style={s.centered}>
+                        <View style={s.emptyIconCircle}>
+                            <NeoIcon name="Activity" size={36} color={Neo.colors.primary[600]} variant="Bulk" />
+                        </View>
+                        <H3 style={s.emptyTitle}>
+                            {t('headersFirst.nenhumaAtividadeRecente', 'Nenhuma atividade recente')}
+                        </H3>
+                        <Body style={s.emptyDesc}>
+                            {t('headersFirst.comeceAUsarOVigilaroParaVerSeuHistRicoAq', 'Comece a usar o Vigilaro para ver seu histórico aqui.')}
+                        </Body>
                     </View>
                 ) : (
                     <FlatList
                         data={activities}
                         keyExtractor={(item, index) => item.id || index.toString()}
                         renderItem={({ item }) => <ActivityItem item={item} />}
-                        contentContainerStyle={styles.listContent}
+                        contentContainerStyle={s.listContent}
                         showsVerticalScrollIndicator={false}
                         refreshControl={
                             <RefreshControl
@@ -101,101 +128,100 @@ export default function RecentActivityScreen({ navigation }) {
     );
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: Neo.spacing.md,
-        paddingTop: Neo.spacing.sm,
-        paddingBottom: Neo.spacing.md,
-        borderBottomWidth: 1,
-        borderBottomColor: Neo.colors.neutral[100],
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 18,
+        gap: 12,
     },
-    backButton: {
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+    },
+    subtitle: {
+        color: Neo.colors.neutral[600],
+    },
+
+    // List
+    listContent: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190, // SOS clearance
+    },
+
+    // Activity item card
+    itemCard: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        padding: 14,
+        marginBottom: 10,
+        borderRadius: 16,
+    },
+    iconCircle: {
         width: 44,
         height: 44,
         borderRadius: 22,
-        backgroundColor: Neo.colors.neutral[50],
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: Neo.colors.neutral[100],
+        marginRight: 12,
     },
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: Neo.colors.neutral[800],
-    },
-    listContent: {
-        paddingHorizontal: Neo.spacing.md,
-        paddingVertical: Neo.spacing.lg,
-    },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    loadingText: {
-        color: Neo.colors.neutral[500],
-        fontSize: 16,
-        marginTop: Neo.spacing.sm,
-    },
-    emptyContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: Neo.spacing.lg,
-        marginTop: Neo.spacing.xxl,
-    },
-    emptyTitle: {
-        color: Neo.colors.neutral[600],
-        marginTop: Neo.spacing.md,
-        marginBottom: Neo.spacing.sm,
-    },
-    emptyText: {
-        color: Neo.colors.neutral[500],
-        textAlign: 'center',
-        lineHeight: 22,
-    },
-});
-
-const itemStyles = StyleSheet.create({
-    itemContainer: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: Neo.colors.white,
-        borderRadius: Neo.borderRadius.lg,
-        padding: Neo.spacing.md,
-        marginBottom: Neo.spacing.md,
-        ...Neo.shadows.sm,
-        borderWidth: 1,
-        borderColor: Neo.colors.neutral[100],
-    },
-    iconCircle: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: Neo.spacing.md,
-    },
-    textContainer: {
+    textCol: {
         flex: 1,
     },
-    title: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: Neo.colors.neutral[800],
-        marginBottom: Neo.spacing.xs,
+    itemTitle: {
+        fontSize: 15,
+        fontWeight: '800',
+        color: Neo.colors.neutral[900],
+        marginBottom: 3,
     },
-    description: {
-        fontSize: 14,
-        color: Neo.colors.neutral[600],
-        marginBottom: Neo.spacing.xs,
+    itemDesc: {
+        color: Neo.colors.neutral[700],
+        marginBottom: 4,
+        lineHeight: 18,
     },
     timestamp: {
-        fontSize: 12,
-        color: Neo.colors.neutral[400],
+        color: Neo.colors.neutral[500],
+    },
+
+    // Loading / empty
+    centered: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingBottom: 120,
+    },
+    emptyIconCircle: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        backgroundColor: 'rgba(16,185,129,0.18)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
+    },
+    emptyTitle: {
+        color: Neo.colors.neutral[800],
+        textAlign: 'center',
+        marginBottom: 8,
+    },
+    emptyDesc: {
+        color: Neo.colors.neutral[600],
+        textAlign: 'center',
+        lineHeight: 20,
+        maxWidth: 280,
     },
 });
