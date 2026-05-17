@@ -1,25 +1,30 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
+import {
+    View, Text, ScrollView, TouchableOpacity, StyleSheet, Image,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowLeft2, People, Pet, Map, Danger, Building, Home2, ShieldTick, Ruler, Warning2 } from 'iconsax-react-native';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-// Services & Utils
+import {
+    People, Pet, Map, Building, Home2, ShieldTick, Ruler,
+} from 'iconsax-react-native';
+
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { AMBIENTES } from '../../data/mapeamento_dados';
-import AppBackground from '../../components/AppBackground';
 
-// Neo Components
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import NeoIcon from '../../components/NeoIcon';
+import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 
-const { width } = Dimensions.get('window');
-
-export default function HomeXRayScreen({ navigation }) {
+export default function HomeXRayScreen() {
+    const navigation = useNavigation();
     const { t } = useTranslation('common');
+
     const [residences, setResidences] = useState([]);
     const [allProfiles, setAllProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -29,8 +34,7 @@ export default function HomeXRayScreen({ navigation }) {
             setLoading(true);
             const resList = await ProfileService.getResidences();
             const profiles = await ProfileService.getAllPerfis();
-            
-            // Enrich residences with their specific data
+
             const enrichedResidences = await Promise.all(resList.map(async (res) => {
                 const data = await ProfileService.getResidenceData(res.id);
                 return { ...res, ...data };
@@ -39,7 +43,7 @@ export default function HomeXRayScreen({ navigation }) {
             setResidences(enrichedResidences);
             setAllProfiles(profiles);
         } catch (e) {
-            console.error("Error loading X-Ray multi-residence data", e);
+            console.error('Error loading X-Ray multi-residence data', e);
         } finally {
             setLoading(false);
         }
@@ -51,26 +55,25 @@ export default function HomeXRayScreen({ navigation }) {
 
     const getInherentRisks = (type, construction) => {
         const risks = [];
-        const t = type?.toLowerCase() || '';
-        const c = construction?.toLowerCase() || '';
+        const ty = type?.toLowerCase() || '';
+        const cs = construction?.toLowerCase() || '';
 
-        if (t.includes('apartamento') || t.includes('edificio')) {
-            risks.push({ label: 'Altura e Janelas', icon: 'ruler', color: '#2196F3' });
-            risks.push({ label: 'Gás Coletivo', icon: 'danger', color: '#FF9800' });
-            risks.push({ label: 'Evacuação em Escadas', icon: 'warning-2', color: '#F44336' });
-        } else if (t.includes('sobrado') || c === 'sobrado') {
-            risks.push({ label: 'Quedas em Escadas', icon: 'stairs', color: '#FF9800' });
-            risks.push({ label: 'Barreiras de Andar', icon: 'shield-tick', color: '#4CAF50' });
-        } else if (t.includes('praia') || t.includes('litoral')) {
-            risks.push({ label: 'Umidade/Elétrica', icon: 'flash', color: '#FFC107' });
-            risks.push({ label: 'Riscos de Afogamento', icon: 'water', color: '#03A9F4' });
-        } else if (t.includes('rural') || t.includes('sitio') || t.includes('fazenda')) {
-            risks.push({ label: 'Animais Peçonhentos', icon: 'bug', color: '#795548' });
-            risks.push({ label: 'Isolamento Geográfico', icon: 'location', color: '#607D8B' });
+        if (ty.includes('apartamento') || ty.includes('edificio')) {
+            risks.push({ label: t('homeXRay.riskHeight', 'Altura e janelas'), color: '#2196F3' });
+            risks.push({ label: t('homeXRay.riskCollectiveGas', 'Gás coletivo'), color: '#F59E0B' });
+            risks.push({ label: t('homeXRay.riskStairs', 'Evacuação em escadas'), color: '#DC2626' });
+        } else if (ty.includes('sobrado') || cs === 'sobrado') {
+            risks.push({ label: t('homeXRay.riskFalls', 'Quedas em escadas'), color: '#F59E0B' });
+            risks.push({ label: t('homeXRay.riskBarriers', 'Barreiras de andar'), color: '#16A34A' });
+        } else if (ty.includes('praia') || ty.includes('litoral')) {
+            risks.push({ label: t('homeXRay.riskHumidity', 'Umidade e elétrica'), color: '#EAB308' });
+            risks.push({ label: t('homeXRay.riskDrowning', 'Risco de afogamento'), color: '#0EA5E9' });
+        } else if (ty.includes('rural') || ty.includes('sitio') || ty.includes('fazenda')) {
+            risks.push({ label: t('homeXRay.riskAnimals', 'Animais peçonhentos'), color: '#78716C' });
+            risks.push({ label: t('homeXRay.riskIsolation', 'Isolamento geográfico'), color: '#475569' });
         } else {
-            // Casa Térrea / Geral
-            risks.push({ label: 'Intrusão Exterior', icon: 'lock', color: '#607D8B' });
-            risks.push({ label: 'Riscos de Quintal', icon: 'tree', color: '#4CAF50' });
+            risks.push({ label: t('homeXRay.riskIntrusion', 'Intrusão exterior'), color: '#475569' });
+            risks.push({ label: t('homeXRay.riskBackyard', 'Riscos de quintal'), color: '#16A34A' });
         }
 
         return risks;
@@ -83,79 +86,93 @@ export default function HomeXRayScreen({ navigation }) {
         const rooms = AMBIENTES.filter(a => roomIds.includes(a.id));
         const inherentRisks = getInherentRisks(res?.moradia?.tipoImovel, res?.moradia?.tipoConstrucao);
 
-        const buildDesc = res?.moradia?.tipoImovel === 'casa' 
-            ? (res?.moradia?.tipoConstrucao === 'terrea' ? 'Casa Térrea' : 'Sobrado') 
-            : (res?.moradia?.tipoImovel || 'Residência');
+        const buildDesc = res?.moradia?.tipoImovel === 'casa'
+            ? (res?.moradia?.tipoConstrucao === 'terrea' ? t('homeXRay.houseTipoTerrea', 'Casa térrea') : t('homeXRay.houseTipoSobrado', 'Sobrado'))
+            : (res?.moradia?.tipoImovel || t('homeXRay.houseTipoGeneric', 'Residência'));
 
         return (
             <FadeInView key={res.id} delay={index * 150}>
-                <NeoCard variant="glass" style={s.resCard}>
-                    {/* 1. HEADER: BUILDING DESCRIPTION */}
+                <NeoCard variant="elevated" style={s.resCard}>
+                    {/* HEADER do card */}
                     <View style={s.resHeader}>
-                        <View style={s.titleGroup}>
-                            <H3 style={s.resName}>{res.nome || 'Minha Casa'}</H3>
-                            <View style={s.badge}>
-                                <Caption style={s.badgeText}>{buildDesc.toUpperCase()}</Caption>
+                        <View style={{ flex: 1 }}>
+                            <H3 style={s.resName}>{res.nome || t('home.mainHouse', 'Minha Casa')}</H3>
+                            <View style={s.typeBadge}>
+                                <Caption style={s.typeBadgeText}>{buildDesc.toUpperCase()}</Caption>
                             </View>
                         </View>
-                        <View style={[s.iconBox, { backgroundColor: Neo.colors.primary[100] }]}>
-                            {res?.moradia?.tipoImovel === 'apartamento' ? <Building size={24} color={Neo.colors.primary[600]} variant="Bold" /> : <Home2 size={24} color={Neo.colors.primary[600]} variant="Bold" />}
+                        <View style={s.resIconBox}>
+                            {res?.moradia?.tipoImovel === 'apartamento'
+                                ? <Building size={22} color={Neo.colors.primary[600]} variant="Bold" />
+                                : <Home2 size={22} color={Neo.colors.primary[600]} variant="Bold" />}
                         </View>
                     </View>
 
                     <View style={s.divider} />
 
-                    {/* 2. INHABITANTS */}
+                    {/* MORADORES */}
                     <View style={s.section}>
-                        <View style={s.sectionIconTitle}>
-                            <People size={20} color={Neo.colors.neutral[600]} variant="Outline" />
-                            <Small style={s.sectionTitle}>{t('headersFirst.moradoresEPets', 'Moradores e Pets')}</Small>
+                        <View style={s.sectionHeader}>
+                            <People size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <Text style={s.sectionLabel}>
+                                {t('homeXRay.inhabitantsLabel', 'Moradores e pets')}
+                            </Text>
                         </View>
                         <View style={s.avatarList}>
-                            {residents.length > 0 ? (
-                                residents.map((p) => (
-                                    <View key={p.id} style={s.avatarItem}>
-                                        <View style={[s.miniAvatar, { backgroundColor: p.tipo === 'pet' ? Neo.colors.feedback.warning + '25' : Neo.colors.primary[100] }]}>
-                                            {p.foto ? (
-                                                <Image source={{ uri: p.foto }} style={s.avatarImg} />
-                                            ) : (
-                                                p.tipo === 'pet' ? <Pet size={12} color={Neo.colors.feedback.warning} variant="Bold" /> : <People size={12} color={Neo.colors.primary[600]} variant="Bold" />
-                                            )}
-                                        </View>
-                                        <Caption style={s.avatarName} numberOfLines={1}>{p.nome.split(' ')[0]}</Caption>
+                            {residents.length > 0 ? residents.map((p) => (
+                                <View key={p.id} style={s.avatarItem}>
+                                    <View style={[s.miniAvatar, {
+                                        backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.22)' : Neo.colors.primary[100],
+                                    }]}>
+                                        {p.foto ? (
+                                            <Image source={{ uri: p.foto }} style={s.avatarImg} />
+                                        ) : (
+                                            p.tipo === 'pet'
+                                                ? <Pet size={14} color="#F59E0B" variant="Bold" />
+                                                : <People size={14} color={Neo.colors.primary[600]} variant="Bold" />
+                                        )}
                                     </View>
-                                ))
-                            ) : (
-                                <Caption>{t('headersFirst.nenhumMoradorVinculado', 'Nenhum morador vinculado.')}</Caption>
+                                    <Caption style={s.avatarName} numberOfLines={1}>
+                                        {(p.nome || '').split(' ')[0]}
+                                    </Caption>
+                                </View>
+                            )) : (
+                                <Caption style={s.emptyInline}>
+                                    {t('headersFirst.nenhumMoradorVinculado', 'Nenhum morador vinculado.')}
+                                </Caption>
                             )}
                         </View>
                     </View>
 
-                    {/* 3. ENVIRONMENTS (CHIPS) */}
+                    {/* AMBIENTES */}
                     <View style={s.section}>
-                        <View style={s.sectionIconTitle}>
-                            <Map size={20} color={Neo.colors.neutral[600]} variant="Outline" />
-                            <Small style={s.sectionTitle}>{t('headersFirst.ambientesMapeados', 'Ambientes Mapeados')}</Small>
+                        <View style={s.sectionHeader}>
+                            <Map size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <Text style={s.sectionLabel}>
+                                {t('homeXRay.environmentsLabel', 'Ambientes mapeados')}
+                            </Text>
                         </View>
                         <View style={s.roomsRow}>
-                            {rooms.length > 0 ? (
-                                rooms.map(r => (
-                                    <View key={r.id} style={s.roomBadge}>
-                                        <Text style={{ fontSize: 13 }}>{r.emoji}</Text>
-                                        <Caption style={s.roomBadgeText}>{r.nome}</Caption>
-                                    </View>
-                                ))
-                            ) : (
-                                <Caption>{t('headersFirst.nenhumAmbienteMapeado', 'Nenhum ambiente mapeado.')}</Caption>
+                            {rooms.length > 0 ? rooms.map(r => (
+                                <View key={r.id} style={s.roomBadge}>
+                                    <Text style={{ fontSize: 13 }}>{r.emoji}</Text>
+                                    <Caption style={s.roomBadgeText}>{r.nome}</Caption>
+                                </View>
+                            )) : (
+                                <Caption style={s.emptyInline}>
+                                    {t('headersFirst.nenhumAmbienteMapeado', 'Nenhum ambiente mapeado.')}
+                                </Caption>
                             )}
                         </View>
                     </View>
 
-                    {/* 4. INHERENT RISKS (DNA DE SEGURANÇA) */}
-                    <View style={s.riskSection}>
-                        <View style={s.sectionIconTitle}>
-                            <ShieldTick size={20} color={Neo.colors.feedback.error} variant="Bold" />
-                            <Small style={[s.sectionTitle, { color: Neo.colors.feedback.error, fontWeight: 'bold' }]}>{t('headersFirst.dNADeSeguranARiscosInerentes', 'DNA de Segurança (Riscos Inerentes)')}</Small>
+                    {/* RISCOS INERENTES — calmo, sem bg vermelho ostensivo */}
+                    <View style={s.section}>
+                        <View style={s.sectionHeader}>
+                            <ShieldTick size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <Text style={s.sectionLabel}>
+                                {t('homeXRay.inherentRisksLabel', 'Riscos inerentes')}
+                            </Text>
                         </View>
                         <View style={s.risksGrid}>
                             {inherentRisks.map((risk, i) => (
@@ -166,48 +183,64 @@ export default function HomeXRayScreen({ navigation }) {
                             ))}
                         </View>
                     </View>
-                    {/* 5. ACTIONS: UPDATE MAPPING */}
-                    <View style={s.actionsRow}>
-                        <TouchableOpacity 
-                            style={s.recalcButton}
-                            onPress={() => {
-                                // Activate this residence first, then navigate
-                                ProfileService.setActiveResidence(res.id);
-                                navigation.navigate('MapeamentoRiscos', { residenceId: res.id, residenceName: res.nome });
-                            }}
-                        >
-                            <Ruler size={18} color="#FFF" variant="Bold" />
-                            <Small style={s.recalcButtonText}>{t('headersFirst.atualizarMapeamentoEstrutural', 'Atualizar Mapeamento Estrutural')}</Small>
-                        </TouchableOpacity>
-                    </View>
+
+                    {/* AÇÃO */}
+                    <TouchableOpacity
+                        style={s.recalcButton}
+                        activeOpacity={0.85}
+                        onPress={() => {
+                            ProfileService.setActiveResidence(res.id);
+                            navigation.navigate('MapeamentoRiscos', { residenceId: res.id, residenceName: res.nome });
+                        }}
+                    >
+                        <Ruler size={16} color="#FFF" variant="Bold" />
+                        <Text style={s.recalcButtonText}>
+                            {t('homeXRay.updateMapping', 'Atualizar mapeamento')}
+                        </Text>
+                    </TouchableOpacity>
                 </NeoCard>
             </FadeInView>
         );
     };
 
     return (
-        <AppBackground variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <AppBackground>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* HEADER */}
+                {/* HEADER consistente */}
                 <View style={s.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
-                        <ArrowLeft2 size={24} color={Neo.colors.neutral[900]} />
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <View>
-                        <H2>{t('headersFirst.raioXDaMoradia', 'Raio X da Moradia')}</H2>
-                        <Caption>{t('headersFirst.resumoEstratGicoPorResidNcia', 'Resumo estratégico por residência')}</Caption>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('homeXRay.headerTitle', 'Raio-X da casa')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('homeXRay.headerSubtitle', 'Perfil de cada residência')}
+                        </Caption>
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={s.scrollContent}>
+                <ScrollView
+                    contentContainerStyle={s.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
                     {residences.map((res, i) => renderResidenceCard(res, i))}
-                    
+
                     {residences.length === 0 && !loading && (
                         <View style={s.emptyState}>
-                            <Home2 size={64} color={Neo.colors.neutral[300]} variant="Bold" />
-                            <Body style={s.emptyText}>{t('headersFirst.nenhumaResidNciaEncontrada', 'Nenhuma residência encontrada.')}</Body>
+                            <View style={s.emptyIconCircle}>
+                                <Home2 size={40} color={Neo.colors.primary[600]} variant="Bold" />
+                            </View>
+                            <H3 style={s.emptyTitle}>
+                                {t('headersFirst.nenhumaResidNciaEncontrada', 'Nenhuma residência encontrada.')}
+                            </H3>
                         </View>
                     )}
                 </ScrollView>
@@ -217,77 +250,105 @@ export default function HomeXRayScreen({ navigation }) {
 }
 
 const s = StyleSheet.create({
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: Neo.spacing.md,
+        paddingTop: 4,
+        paddingBottom: 18,
+        gap: 12,
     },
     backBtn: {
-        padding: 8,
-        marginRight: 8,
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+    },
+    subtitle: {
+        color: Neo.colors.neutral[600],
+    },
+
     scrollContent: {
         paddingHorizontal: Neo.spacing.lg,
-        paddingBottom: 60,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
+
+    // Card de residência
     resCard: {
-        marginBottom: 20,
-        padding: 20,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.4)',
+        marginBottom: 16,
+        padding: 18,
+        borderRadius: 20,
     },
     resHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        marginBottom: 16,
-    },
-    titleGroup: {
-        flex: 1,
+        marginBottom: 14,
+        gap: 12,
     },
     resName: {
-        fontSize: 18,
+        fontSize: 17,
         color: Neo.colors.neutral[900],
-        marginBottom: 4,
+        marginBottom: 6,
     },
-    badge: {
+    typeBadge: {
         alignSelf: 'flex-start',
-        backgroundColor: 'rgba(0,0,0,0.05)',
+        backgroundColor: 'rgba(16,185,129,0.12)',
         paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 4,
+        paddingVertical: 3,
+        borderRadius: 8,
     },
-    badgeText: {
+    typeBadgeText: {
         fontSize: 10,
-        fontWeight: 'bold',
-        letterSpacing: 0.5,
+        fontWeight: '800',
+        color: Neo.colors.primary[700],
+        letterSpacing: 0.4,
     },
-    iconBox: {
+    resIconBox: {
         width: 44,
         height: 44,
         borderRadius: 12,
+        backgroundColor: 'rgba(16,185,129,0.18)',
         alignItems: 'center',
         justifyContent: 'center',
     },
     divider: {
         height: 1,
-        backgroundColor: 'rgba(0,0,0,0.05)',
-        marginBottom: 16,
+        backgroundColor: 'rgba(0,0,0,0.06)',
+        marginBottom: 14,
     },
+
+    // Sections internas do card
     section: {
-        marginBottom: 16,
+        marginBottom: 14,
     },
-    sectionIconTitle: {
+    sectionHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
-        gap: 8,
+        gap: 6,
+        marginBottom: 8,
     },
-    sectionTitle: {
-        fontWeight: 'bold',
+    sectionLabel: {
+        fontSize: 10.5,
+        fontWeight: '900',
         color: Neo.colors.neutral[700],
+        letterSpacing: 1.2,
+        textTransform: 'uppercase',
     },
+    emptyInline: {
+        color: Neo.colors.neutral[500],
+    },
+
+    // Moradores
     avatarList: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -295,25 +356,28 @@ const s = StyleSheet.create({
     },
     avatarItem: {
         alignItems: 'center',
-        width: 50,
+        width: 52,
     },
     miniAvatar: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 4,
         overflow: 'hidden',
     },
     avatarImg: {
-        width: 32,
-        height: 32,
+        width: 36,
+        height: 36,
     },
     avatarName: {
-        fontSize: 9,
+        fontSize: 10,
         textAlign: 'center',
+        color: Neo.colors.neutral[700],
     },
+
+    // Ambientes (chips)
     roomsRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -322,29 +386,25 @@ const s = StyleSheet.create({
     roomBadge: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,0.6)',
+        backgroundColor: 'rgba(255,255,255,0.65)',
         paddingHorizontal: 8,
         paddingVertical: 4,
-        borderRadius: 12,
+        borderRadius: 10,
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.05)',
+        gap: 4,
     },
     roomBadgeText: {
-        fontSize: 10,
-        marginLeft: 4,
-        fontWeight: '500',
+        fontSize: 10.5,
+        color: Neo.colors.neutral[700],
+        fontWeight: '600',
     },
-    riskSection: {
-        marginTop: 4,
-        backgroundColor: 'rgba(244, 67, 54, 0.05)',
-        padding: 12,
-        borderRadius: 12,
-    },
+
+    // Riscos inerentes
     risksGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 12,
-        marginTop: 4,
+        gap: 10,
     },
     riskItem: {
         flexDirection: 'row',
@@ -352,43 +412,51 @@ const s = StyleSheet.create({
         gap: 6,
     },
     riskDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
+        width: 9,
+        height: 9,
+        borderRadius: 4.5,
     },
     riskLabel: {
-        fontSize: 11,
+        fontSize: 11.5,
         fontWeight: '600',
+        color: Neo.colors.neutral[800],
     },
-    emptyState: {
-        alignItems: 'center',
-        marginTop: 60,
-        opacity: 0.5,
-    },
-    emptyText: {
-        marginTop: 16,
-    },
-    actionsRow: {
-        marginTop: 20,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
+
+    // Botão de ação
     recalcButton: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: Neo.colors.primary[500],
         paddingVertical: 12,
-        paddingHorizontal: 20,
         borderRadius: 14,
-        gap: 10,
-        ...Neo.shadows.sm,
+        gap: 8,
+        marginTop: 6,
     },
     recalcButtonText: {
         color: '#FFF',
-        fontWeight: 'bold',
-    }
-});
+        fontWeight: '800',
+        fontSize: 13.5,
+    },
 
-function Text({ children, style }) {
-    return <NeoText style={style}>{children}</NeoText>
-}
+    // Empty state
+    emptyState: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 80,
+        paddingHorizontal: 32,
+    },
+    emptyIconCircle: {
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        backgroundColor: 'rgba(16,185,129,0.18)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 18,
+    },
+    emptyTitle: {
+        color: Neo.colors.neutral[800],
+        textAlign: 'center',
+    },
+});
