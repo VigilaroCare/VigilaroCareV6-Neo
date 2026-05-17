@@ -1,45 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  Alert,
-  Linking,
-  ActivityIndicator
+  View, Text, StyleSheet, ScrollView, TouchableOpacity,
+  TextInput, Alert, Linking, ActivityIndicator, Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../../utils/ThemeContext';
-import CustomIcon from '../../components/CustomIcon';
-import ProfileService from '../../services/ProfileService'; // Ensure we can get active profile if needed
-import AppBackground from '../../components/AppBackground';
-import { DS as Neo } from '../../utils/DesignSystem2026';
+
+import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import AppBackground from '../../components/AppBackground';
+import { H1, Caption } from '../../components/NeoTypography';
+import { DS as Neo } from '../../utils/DesignSystem2026';
+import ProfileService from '../../services/ProfileService';
+
+const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
+
+const TIPO_COLORS = {
+  Familiar: '#2196F3',
+  Médico: '#4CAF50',
+  Vizinho: '#FF9800',
+  Amigo: '#9C27B0',
+  Veterinário: '#009688',
+  Outro: '#757575',
+};
+
+const TIPO_ICONS = {
+  Familiar: 'People',
+  Médico: 'Health',
+  Vizinho: 'Buildings',
+  Amigo: 'UserOctagon',
+  Veterinário: 'Heart',
+  Outro: 'Call',
+};
 
 export default function ContatosEmergenciaScreen({ navigation, route }) {
-    const { t } = useTranslation('common');
-  const { theme } = useTheme();
+  const { t } = useTranslation('common');
+
   const [contatos, setContatos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [editando, setEditando] = useState(null);
 
-  // Form State
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [tipo, setTipo] = useState('Familiar');
-  const [parentesco, setParentesco] = useState(''); // Novo Campo
+  const [parentesco, setParentesco] = useState('');
 
-  // Profile Context
   const [activeProfile, setActiveProfile] = useState(null);
   const [storageKey, setStorageKey] = useState(null);
-
-  const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
   useEffect(() => {
     setupProfileAndLoad();
@@ -48,23 +58,18 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
   const setupProfileAndLoad = async () => {
     try {
       setLoading(true);
-      // 1. Determine Profile
       let profile = route.params?.profile;
       if (!profile) {
         profile = await ProfileService.getPerfilAtivo();
       }
       setActiveProfile(profile);
 
-      // 2. Determine Storage Key
-      // If no profile (Generic mode), use legacy key
       const key = profile ? `@contacts_${profile.id}` : 'contatos_emergencia';
       setStorageKey(key);
 
-      // 3. Load Contacts
       await carregarContatos(key, profile);
-
     } catch (e) {
-      console.error("Erro setup contacts", e);
+      if (__DEV__) console.error('Erro setup contacts', e);
     } finally {
       setLoading(false);
     }
@@ -76,22 +81,20 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
       if (dados) {
         setContatos(JSON.parse(dados));
       } else {
-        // If empty AND we are in a specific profile, check if we can import
-        if (profile) { // Only suggest import if we are in a specific profile
+        if (profile) {
           checkAndProposeImport(key);
         } else {
           setContatos([]);
         }
       }
     } catch (error) {
-      console.log('Erro ao carregar contatos:', error);
+      if (__DEV__) console.log('Erro ao carregar contatos:', error);
       setContatos([]);
     }
   };
 
   const checkAndProposeImport = async (currentProfileKey) => {
     try {
-      // Check legacy/global list
       const globalData = await AsyncStorage.getItem('contatos_emergencia');
       if (globalData) {
         const globalContacts = JSON.parse(globalData);
@@ -104,30 +107,26 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               {
                 text: 'Sim, importar',
                 onPress: async () => {
-                  // Save to current profile key
                   await AsyncStorage.setItem(currentProfileKey, JSON.stringify(globalContacts));
                   setContatos(globalContacts);
-                }
-              }
+                },
+              },
             ]
           );
         }
       }
     } catch (e) {
-      console.log('Erro ao verificar importação', e);
+      if (__DEV__) console.log('Erro ao verificar importação', e);
     }
-  }
+  };
 
   const salvarContatos = async (novosContatos) => {
     if (!storageKey) return;
     try {
       await AsyncStorage.setItem(storageKey, JSON.stringify(novosContatos));
       setContatos(novosContatos);
-
-      // If we are editing the 'Main' legacy list (no profile or explicitly main), 
-      // strictly speaking we don't sync back, but for now we keep isolated.
     } catch (error) {
-      console.log('Erro ao salvar contatos:', error);
+      if (__DEV__) console.log('Erro ao salvar contatos:', error);
     }
   };
 
@@ -136,7 +135,6 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
       Alert.alert('Erro', 'Por favor, informe o nome.');
       return;
     }
-
     if (!telefone.trim()) {
       Alert.alert('Erro', 'Por favor, informe o telefone.');
       return;
@@ -147,7 +145,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
       nome: nome.trim(),
       telefone: telefone.trim(),
       tipo,
-      parentesco: parentesco.trim(), // Salva Parentesco
+      parentesco: parentesco.trim(),
       dataCriacao: editando?.dataCriacao || new Date().toISOString(),
     };
 
@@ -167,13 +165,13 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
     setNome(contato.nome);
     setTelefone(contato.telefone);
     setTipo(contato.tipo);
-    setParentesco(contato.parentesco || ''); // Carrega Parentesco
+    setParentesco(contato.parentesco || '');
     setModalVisible(true);
   };
 
   const excluirContato = (id) => {
     Alert.alert(
-      'Excluir Contato',
+      'Excluir contato',
       'Tem certeza que deseja excluir este contato deste perfil?',
       [
         { text: 'Cancelar', style: 'cancel' },
@@ -198,485 +196,560 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
     setModalVisible(false);
   };
 
-  const ligarContato = (telefone) => {
-    Linking.openURL(`tel:${telefone}`);
+  const ligarContato = (telefoneNum) => {
+    Linking.openURL(`tel:${telefoneNum}`);
   };
 
-  const whatsappContato = (telefone) => {
-    // Remove chars não numéricos
-    const num = telefone.replace(/\D/g, '');
+  const whatsappContato = (telefoneNum) => {
+    const num = telefoneNum.replace(/\D/g, '');
     Linking.openURL(`https://wa.me/55${num}`);
   };
 
-  const smsContato = (telefone) => {
+  const smsContato = (telefoneNum) => {
     const separator = Platform.OS === 'ios' ? '&' : '?';
-    Linking.openURL(`sms:${telefone}${separator}body=Olá, preciso de ajuda!`);
+    Linking.openURL(`sms:${telefoneNum}${separator}body=Olá, preciso de ajuda!`);
   };
-
-  const getTipoColor = (tipo) => {
-    switch (tipo) {
-      case 'Familiar': return '#2196F3';
-      case 'Médico': return '#4CAF50';
-      case 'Vizinho': return '#FF9800';
-      case 'Amigo': return '#9C27B0';
-      case 'Veterinário': return '#009688';
-      default: return '#757575';
-    }
-  };
-
-  const getTipoEmoji = (tipo) => {
-    switch (tipo) {
-      case 'Familiar': return '👨‍👩‍👧‍👦';
-      case 'Médico': return '👨‍⚕️';
-      case 'Vizinho': return '🏘️';
-      case 'Amigo': return '👥';
-      case 'Veterinário': return '🐾';
-      default: return '📞';
-    }
-  };
-
-  const styles = getStyles(theme);
-  const themeColor = activeProfile ? (activeProfile.tipo === 'pet' ? '#FF9800' : '#2196F3') : '#F44336';
-
 
   if (loading) {
     return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color={themeColor} />
-      </View>
-    )
+      <AppBackground>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
+          <ActivityIndicator size="large" color={Neo.colors.primary[500]} />
+        </SafeAreaView>
+      </AppBackground>
+    );
   }
 
+  const headerTitle = activeProfile ? `Contatos de ${activeProfile.nome}` : 'Contatos de emergência';
+  const headerSubtitle = activeProfile
+    ? `Rede de apoio específica`
+    : 'Contatos gerais da residência';
+
   return (
-    <AppBackground variant="subtle">
-        <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={[styles.header, { backgroundColor: themeColor }]}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginBottom: 10 }}>
-            <CustomIcon name="voltar" size={24} color={Neo.colors.neutral.white} />
+    <AppBackground>
+      <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+        <StatusBar style="dark" />
+
+        {/* HEADER padronizado */}
+        <View style={s.header}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={s.backBtn}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>
-            {activeProfile ? `Contatos: ${activeProfile.nome}` : 'Contatos de Emergência'}
-          </Text>
-          <Text style={styles.headerSubtitle}>
-            {activeProfile
-              ? `Rede de apoio específica para ${activeProfile.nome}`
-              : 'Contatos gerais da residência'
-            }
-          </Text>
-        </View>
-
-        <View style={[styles.infoCard, { borderLeftColor: themeColor, backgroundColor: themeColor + '15' }]}>
-          <Text style={[styles.infoTitle, { color: themeColor }]}>{t('headersFirst.RedeDeApoio', '💡 Rede de Apoio')}</Text>
-          <Text style={[styles.infoText, { color: themeColor }]}>
-            {t('headersFirst.mantenhaEssaListaAtualizadaEmUmaEmergNci', 'Mantenha essa lista atualizada. Em uma emergência, esses contatos aparecerão no topo.')}
-          </Text>
-        </View>
-
-        {modalVisible && (
-          <View style={styles.formCard}>
-            <Text style={styles.formTitle}>
-              {editando ? '✏️ Editar Contato' : '➕ Novo Contato'}
-            </Text>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>{t('headersFirst.nome', 'Nome *')}</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Ex: Dr. João Silva"
-                placeholderTextColor={theme.subText}
-                value={nome}
-                onChangeText={setNome}
-              />
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>{t('headersFirst.detalheRelacionamento', 'Detalhe / Relacionamento')}</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Ex: Cardiologista, Tio, Vizinho frente..."
-                placeholderTextColor={theme.subText}
-                value={parentesco}
-                onChangeText={setParentesco}
-              />
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>{t('headersFirst.telefone', 'Telefone *')}</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Ex: (41) 99999-9999"
-                placeholderTextColor={theme.subText}
-                value={telefone}
-                onChangeText={setTelefone}
-                keyboardType="phone-pad"
-              />
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.label}>{t('headersFirst.tipo', 'Tipo *')}</Text>
-              <View style={styles.tiposContainer}>
-                {TIPOS.map((t) => (
-                  <TouchableOpacity
-                    key={t}
-                    style={[
-                      styles.tipoButton,
-                      tipo === t && { backgroundColor: getTipoColor(t), borderColor: getTipoColor(t) },
-                    ]}
-                    onPress={() => setTipo(t)}
-                  >
-                    <Text
-                      style={[
-                        styles.tipoButtonText,
-                        tipo === t ? { color: Neo.colors.neutral.white } : { color: theme.text },
-                      ]}
-                    >
-                      {getTipoEmoji(t)} {t}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            </View>
-
-            <View style={styles.formButtons}>
-              <TouchableOpacity
-                style={styles.cancelButton}
-                onPress={limparFormulario}
-              >
-                <Text style={styles.cancelButtonText}>{t('headersFirst.cancelar', 'Cancelar')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.saveButton, { backgroundColor: themeColor }]}
-                onPress={adicionarContato}
-              >
-                <Text style={styles.saveButtonText}>
-                  {editando ? 'Atualizar' : 'Salvar'}
-                </Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{ flex: 1 }}>
+            <H1 style={s.title}>{headerTitle}</H1>
+            <Caption style={s.subtitle}>{headerSubtitle}</Caption>
           </View>
-        )}
+        </View>
 
-        <View style={styles.content}>
-          {!modalVisible && (
-            <TouchableOpacity
-              style={[styles.addButton, { backgroundColor: themeColor }]}
-              onPress={() => setModalVisible(true)}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <CustomIcon name="adicionar" size={20} />
-                <Text style={styles.addButtonText}> {t('headersFirst.adicionarContato', 'Adicionar Contato')}</Text>
+        <ScrollView
+          contentContainerStyle={s.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* INFO */}
+          <NeoCard variant="elevated" style={s.infoCard}>
+            <View style={s.infoIconCircle}>
+              <NeoIcon name="Lovely" size={18} color={Neo.colors.primary[600]} variant="Bold" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={s.infoTitle}>
+                {t('headersFirst.RedeDeApoio', 'Sua rede de apoio')}
+              </Text>
+              <Text style={s.infoText}>
+                {t('headersFirst.mantenhaEssaListaAtualizadaEmUmaEmergNci', 'Mantenha esta lista atualizada. Em emergências, estes contatos aparecerão no topo.')}
+              </Text>
+            </View>
+          </NeoCard>
+
+          {/* FORM (inline modal) */}
+          {modalVisible && (
+            <NeoCard variant="elevated" style={s.formCard}>
+              <Text style={s.formTitle}>
+                {editando ? 'Editar contato' : 'Novo contato'}
+              </Text>
+
+              <View style={s.field}>
+                <Text style={s.label}>{t('headersFirst.nome', 'Nome')}</Text>
+                <TextInput
+                  style={s.input}
+                  placeholder="Ex: Dr. João Silva"
+                  placeholderTextColor={Neo.colors.neutral[500]}
+                  value={nome}
+                  onChangeText={setNome}
+                />
               </View>
+
+              <View style={s.field}>
+                <Text style={s.label}>{t('headersFirst.detalheRelacionamento', 'Detalhe / Relacionamento')}</Text>
+                <TextInput
+                  style={s.input}
+                  placeholder="Ex: Cardiologista, Tio, Vizinho da frente…"
+                  placeholderTextColor={Neo.colors.neutral[500]}
+                  value={parentesco}
+                  onChangeText={setParentesco}
+                />
+              </View>
+
+              <View style={s.field}>
+                <Text style={s.label}>{t('headersFirst.telefone', 'Telefone')}</Text>
+                <TextInput
+                  style={s.input}
+                  placeholder="Ex: (41) 99999-9999"
+                  placeholderTextColor={Neo.colors.neutral[500]}
+                  value={telefone}
+                  onChangeText={setTelefone}
+                  keyboardType="phone-pad"
+                />
+              </View>
+
+              <View style={s.field}>
+                <Text style={s.label}>{t('headersFirst.tipo', 'Tipo')}</Text>
+                <View style={s.tiposContainer}>
+                  {TIPOS.map((tp) => {
+                    const isSelected = tipo === tp;
+                    const color = TIPO_COLORS[tp];
+                    return (
+                      <TouchableOpacity
+                        key={tp}
+                        style={[
+                          s.tipoButton,
+                          isSelected && {
+                            backgroundColor: color,
+                            borderColor: color,
+                          },
+                        ]}
+                        onPress={() => setTipo(tp)}
+                      >
+                        <NeoIcon
+                          name={TIPO_ICONS[tp] || 'Call'}
+                          size={14}
+                          color={isSelected ? '#FFF' : color}
+                          variant="Bold"
+                        />
+                        <Text
+                          style={[
+                            s.tipoButtonText,
+                            { color: isSelected ? '#FFF' : Neo.colors.neutral[700] },
+                          ]}
+                        >
+                          {tp}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View style={s.formButtons}>
+                <TouchableOpacity style={s.cancelButton} onPress={limparFormulario}>
+                  <Text style={s.cancelButtonText}>
+                    {t('headersFirst.cancelar', 'Cancelar')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={s.saveButton} onPress={adicionarContato}>
+                  <Text style={s.saveButtonText}>
+                    {editando ? 'Atualizar' : 'Salvar'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </NeoCard>
+          )}
+
+          {/* ADD */}
+          {!modalVisible && (
+            <TouchableOpacity style={s.addButton} onPress={() => setModalVisible(true)} activeOpacity={0.85}>
+              <NeoIcon name="AddCircle" size={20} color="#FFF" variant="Bold" />
+              <Text style={s.addButtonText}>
+                {t('headersFirst.adicionarContato', 'Adicionar contato')}
+              </Text>
             </TouchableOpacity>
           )}
 
+          {/* LISTA */}
           {contatos.length > 0 ? (
             <>
-              <Text style={styles.sectionTitle}>
-                📋 Lista ({contatos.length})
+              <Text style={s.sectionLabel}>
+                LISTA · {contatos.length}
               </Text>
-              {contatos.map((contato) => (
-                <View
-                  key={contato.id}
-                  style={[
-                    styles.contatoCard,
-                    { borderLeftColor: getTipoColor(contato.tipo) },
-                  ]}
-                >
-                  <View style={styles.contatoInfo}>
-                    <Text style={styles.contatoEmoji}>
-                      {getTipoEmoji(contato.tipo)}
-                    </Text>
-                    <View style={styles.contatoTextos}>
-                      <Text style={styles.contatoNome}>{contato.nome}</Text>
-                      {contato.parentesco ? (
-                        <Text style={[styles.contatoTelefone, { color: theme.text, fontWeight: 'normal', fontSize: 13 }]}>
-                          {contato.parentesco}
-                        </Text>
-                      ) : null}
-                      <Text style={styles.contatoTelefone}>{contato.telefone}</Text>
-                      <View
-                        style={[
-                          styles.contatoBadge,
-                          { backgroundColor: getTipoColor(contato.tipo) },
-                        ]}
-                      >
-                        <Text style={styles.contatoBadgeText}>{contato.tipo}</Text>
+              {contatos.map((contato) => {
+                const color = TIPO_COLORS[contato.tipo] || TIPO_COLORS.Outro;
+                return (
+                  <NeoCard
+                    key={contato.id}
+                    variant="elevated"
+                    style={[s.contatoCard, { borderLeftWidth: 4, borderLeftColor: color }]}
+                  >
+                    <View style={s.contatoInfo}>
+                      <View style={[s.contatoIconBox, { backgroundColor: color + '1A' }]}>
+                        <NeoIcon
+                          name={TIPO_ICONS[contato.tipo] || 'Call'}
+                          size={22}
+                          color={color}
+                          variant="Bold"
+                        />
+                      </View>
+                      <View style={s.contatoTextos}>
+                        <Text style={s.contatoNome}>{contato.nome}</Text>
+                        {contato.parentesco ? (
+                          <Text style={s.contatoSub}>{contato.parentesco}</Text>
+                        ) : null}
+                        <Text style={s.contatoTelefone}>{contato.telefone}</Text>
+                        <View style={[s.contatoBadge, { backgroundColor: color }]}>
+                          <Text style={s.contatoBadgeText}>{contato.tipo}</Text>
+                        </View>
+                      </View>
+
+                      <View style={s.quickActions}>
+                        <TouchableOpacity
+                          onPress={() => whatsappContato(contato.telefone)}
+                          style={[s.quickBtn, { backgroundColor: '#25D366' }]}
+                        >
+                          <NeoIcon name="MessageText1" size={18} color="#FFF" variant="Bold" />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() => ligarContato(contato.telefone)}
+                          style={[s.quickBtn, { backgroundColor: color }]}
+                        >
+                          <NeoIcon name="Call" size={18} color="#FFF" variant="Bold" />
+                        </TouchableOpacity>
                       </View>
                     </View>
 
-                    {/* Botões de Ação Rápida */}
-                    <View style={{ flexDirection: 'row', gap: 8 }}>
-                      <TouchableOpacity onPress={() => whatsappContato(contato.telefone)} style={{ padding: 8, backgroundColor: '#25D366', borderRadius: 20 }}>
-                        <CustomIcon name="whatsapp" size={20} color={Neo.colors.neutral.white} />
+                    <View style={s.contatoActions}>
+                      <TouchableOpacity style={s.actionLink} onPress={() => smsContato(contato.telefone)}>
+                        <NeoIcon name="Sms" size={14} color={Neo.colors.neutral[700]} />
+                        <Text style={s.actionLinkText}>SMS</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => ligarContato(contato.telefone)} style={{ padding: 8, backgroundColor: themeColor, borderRadius: 20 }}>
-                        <CustomIcon name="telefone-emergencia" size={20} color={Neo.colors.neutral.white} />
+                      <View style={{ flex: 1 }} />
+                      <TouchableOpacity style={s.actionLink} onPress={() => editarContato(contato)}>
+                        <NeoIcon name="Edit2" size={14} color={Neo.colors.neutral[700]} />
+                        <Text style={s.actionLinkText}>Editar</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[s.actionLink, { backgroundColor: Neo.colors.feedback.error + '12' }]}
+                        onPress={() => excluirContato(contato.id)}
+                      >
+                        <NeoIcon name="Trash" size={14} color={Neo.colors.feedback.error} />
+                        <Text style={[s.actionLinkText, { color: Neo.colors.feedback.error }]}>Excluir</Text>
                       </TouchableOpacity>
                     </View>
-
-                  </View>
-
-                  {/* Actions Line */}
-                  <View style={styles.contatoActions}>
-                    <TouchableOpacity
-                      style={styles.actionIconButton}
-                      onPress={() => smsContato(contato.telefone)}
-                    >
-                      <Text>{t('headersFirst.SMS', '💬 SMS')}</Text>
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }} />
-                    <TouchableOpacity
-                      style={styles.actionIconButton}
-                      onPress={() => editarContato(contato)}
-                    >
-                      <Text>✏️</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[styles.actionIconButton, { backgroundColor: Neo.colors.feedback.error + '15' }]}
-                      onPress={() => excluirContato(contato.id)}
-                    >
-                      <Text>🗑️</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
+                  </NeoCard>
+                );
+              })}
             </>
           ) : (
             !modalVisible && (
-              <View style={styles.emptyState}>
-                <Text style={{ fontSize: 40, marginBottom: 10 }}>📭</Text>
-                <Text style={styles.emptyStateTitle}>
+              <View style={s.emptyState}>
+                <View style={s.emptyIconCircle}>
+                  <NeoIcon name="ProfileCircle" size={36} color={Neo.colors.neutral[400]} variant="Bold" />
+                </View>
+                <Text style={s.emptyStateTitle}>
                   {t('headersFirst.nenhumContatoNestaLista', 'Nenhum contato nesta lista')}
                 </Text>
-                <Text style={styles.emptyStateText}>
+                <Text style={s.emptyStateText}>
                   Adicione médicos, parentes ou vizinhos específicos para {activeProfile?.nome || 'sua casa'}.
                 </Text>
               </View>
             )
           )}
-        </View>
-        <View style={{ height: 50 }} />
-      </ScrollView>
-    </SafeAreaView>
-      </AppBackground>
+        </ScrollView>
+      </SafeAreaView>
+    </AppBackground>
   );
 }
 
-const getStyles = (theme) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.background,
-    },
-    scrollView: {
-      flex: 1,
-    },
-    header: {
-      padding: 20,
-      paddingTop: 10,
-      borderBottomLeftRadius: 24,
-      borderBottomRightRadius: 24,
-      elevation: 4,
-    },
-    headerTitle: {
-      fontSize: 22,
-      fontWeight: 'bold',
-      color: Neo.colors.neutral.white,
-      marginBottom: 4,
-    },
-    headerSubtitle: {
-      fontSize: 14,
-      color: Neo.colors.neutral.white,
-      opacity: 0.9,
-    },
-    infoCard: {
-      margin: 16,
-      padding: 16,
-      borderRadius: 12,
-      borderLeftWidth: 4,
-    },
-    infoTitle: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      marginBottom: 8,
-    },
-    infoText: {
-      fontSize: 14,
-      lineHeight: 20,
-    },
-    formCard: {
-      margin: 16,
-      padding: 16,
-      backgroundColor: theme.card,
-      borderRadius: 12,
-      ...Neo.shadows.md,
-    },
-    formTitle: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: theme.text,
-      marginBottom: 16,
-    },
-    field: {
-      marginBottom: 16,
-    },
-    label: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: theme.text,
-      marginBottom: 8,
-    },
-    input: {
-      backgroundColor: theme.background,
-      borderRadius: 8,
-      padding: 12,
-      fontSize: 16,
-      color: theme.text,
-      borderWidth: 1,
-      borderColor: theme.border,
-    },
-    tiposContainer: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 8,
-    },
-    tipoButton: {
-      paddingHorizontal: 12,
-      paddingVertical: 8,
-      borderRadius: 20,
-      backgroundColor: theme.background,
-      borderWidth: 1,
-      borderColor: theme.border,
-    },
-    tipoButtonText: {
-      fontSize: 14,
-      fontWeight: '600',
-    },
-    formButtons: {
-      flexDirection: 'row',
-      gap: 12,
-      marginTop: 8,
-    },
-    cancelButton: {
-      flex: 1,
-      backgroundColor: Neo.colors.neutral[700],
-      padding: 14,
-      borderRadius: 8,
-      alignItems: 'center',
-    },
-    cancelButtonText: {
-      color: Neo.colors.neutral.white,
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    saveButton: {
-      flex: 1,
-      padding: 14,
-      borderRadius: 8,
-      alignItems: 'center',
-    },
-    saveButtonText: {
-      color: Neo.colors.neutral.white,
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    content: {
-      padding: 16,
-    },
-    addButton: {
-      padding: 16,
-      borderRadius: 12,
-      alignItems: 'center',
-      marginBottom: 24,
-      ...Neo.shadows.md,
-    },
-    addButtonText: {
-      color: Neo.colors.neutral.white,
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    sectionTitle: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: theme.text,
-      marginBottom: 16,
-    },
-    contatoCard: {
-      backgroundColor: theme.card,
-      borderRadius: 12,
-      padding: 16,
-      marginBottom: 12,
-      borderLeftWidth: 4,
-      elevation: 2,
-    },
-    contatoInfo: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    contatoEmoji: {
-      fontSize: 32,
-      marginRight: 12,
-    },
-    contatoTextos: {
-      flex: 1,
-    },
-    contatoNome: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: theme.text,
-      marginBottom: 4,
-    },
-    contatoTelefone: {
-      fontSize: 14,
-      color: theme.subText,
-      fontWeight: '600',
-      marginBottom: 6,
-    },
-    contatoBadge: {
-      alignSelf: 'flex-start',
-      paddingHorizontal: 8,
-      paddingVertical: 4,
-      borderRadius: 12,
-    },
-    contatoBadgeText: {
-      color: Neo.colors.neutral.white,
-      fontSize: 10,
-      fontWeight: 'bold',
-    },
-    contatoActions: {
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-      marginTop: 10,
-      borderTopWidth: 1,
-      borderTopColor: Neo.colors.neutral[300],
-      paddingTop: 8,
-      gap: 15
-    },
-    actionIconButton: {
-      padding: 8,
-      borderRadius: 20,
-      backgroundColor: 'transparent'
-    },
-    emptyState: {
-      alignItems: 'center',
-      padding: 32,
-      marginTop: 10,
-      backgroundColor: 'transparent',
-      borderRadius: 12
-    },
-    emptyStateTitle: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: theme.text,
-      marginBottom: 8,
-      textAlign: 'center',
-    },
-    emptyStateText: {
-      fontSize: 14,
-      color: theme.subText,
-      textAlign: 'center',
-      lineHeight: 20,
-    },
-  });
+const s = StyleSheet.create({
+  // Header
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: Neo.spacing.lg,
+    paddingTop: 4,
+    paddingBottom: 14,
+    gap: 12,
+  },
+  backBtn: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.75)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontWeight: '800',
+    letterSpacing: -0.5,
+    marginBottom: 2,
+    fontSize: 22,
+  },
+  subtitle: {
+    color: Neo.colors.neutral[600],
+  },
 
+  scrollContent: {
+    paddingHorizontal: Neo.spacing.lg,
+    paddingBottom: 190,
+  },
+
+  // Info card
+  infoCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 14,
+    borderRadius: 16,
+    gap: 12,
+    marginBottom: 16,
+  },
+  infoIconCircle: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: Neo.colors.primary[500] + '1A',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  infoTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: Neo.colors.neutral[900],
+    marginBottom: 3,
+  },
+  infoText: {
+    fontSize: 12.5,
+    color: Neo.colors.neutral[600],
+    lineHeight: 17,
+  },
+
+  // Add button
+  addButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: Neo.colors.primary[600],
+    paddingVertical: 14,
+    borderRadius: 14,
+    marginBottom: 20,
+  },
+  addButtonText: {
+    color: '#FFF',
+    fontSize: 15,
+    fontWeight: '800',
+    letterSpacing: 0.1,
+  },
+
+  // Section label
+  sectionLabel: {
+    fontSize: 11.5,
+    fontWeight: '800',
+    letterSpacing: 1.2,
+    color: Neo.colors.neutral[600],
+    marginBottom: 10,
+    marginTop: 4,
+    textTransform: 'uppercase',
+  },
+
+  // Form
+  formCard: {
+    padding: 16,
+    borderRadius: 18,
+    marginBottom: 16,
+  },
+  formTitle: {
+    fontSize: 17,
+    fontWeight: '800',
+    color: Neo.colors.neutral[900],
+    marginBottom: 14,
+    letterSpacing: -0.3,
+  },
+  field: {
+    marginBottom: 14,
+  },
+  label: {
+    fontSize: 12.5,
+    fontWeight: '700',
+    color: Neo.colors.neutral[700],
+    marginBottom: 6,
+    letterSpacing: 0.2,
+  },
+  input: {
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
+    fontSize: 15,
+    color: Neo.colors.neutral[900],
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.08)',
+  },
+  tiposContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  tipoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.08)',
+  },
+  tipoButtonText: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  formButtons: {
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 4,
+  },
+  cancelButton: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    paddingVertical: 13,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  cancelButtonText: {
+    color: Neo.colors.neutral[700],
+    fontSize: 14.5,
+    fontWeight: '800',
+  },
+  saveButton: {
+    flex: 1,
+    backgroundColor: Neo.colors.primary[600],
+    paddingVertical: 13,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  saveButtonText: {
+    color: '#FFF',
+    fontSize: 14.5,
+    fontWeight: '800',
+  },
+
+  // Contato card
+  contatoCard: {
+    padding: 14,
+    borderRadius: 16,
+    marginBottom: 10,
+  },
+  contatoInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  contatoIconBox: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  contatoTextos: {
+    flex: 1,
+  },
+  contatoNome: {
+    fontSize: 15.5,
+    fontWeight: '800',
+    color: Neo.colors.neutral[900],
+    marginBottom: 2,
+    letterSpacing: -0.2,
+  },
+  contatoSub: {
+    fontSize: 12.5,
+    color: Neo.colors.neutral[600],
+    marginBottom: 2,
+  },
+  contatoTelefone: {
+    fontSize: 13,
+    color: Neo.colors.neutral[700],
+    fontWeight: '600',
+    marginBottom: 5,
+  },
+  contatoBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 8,
+  },
+  contatoBadgeText: {
+    color: '#FFF',
+    fontSize: 10,
+    fontWeight: '800',
+    letterSpacing: 0.4,
+  },
+  quickActions: {
+    flexDirection: 'row',
+    gap: 8,
+    marginLeft: 8,
+  },
+  quickBtn: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  contatoActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.05)',
+    gap: 10,
+  },
+  actionLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0,0,0,0.04)',
+  },
+  actionLinkText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: Neo.colors.neutral[700],
+  },
+
+  // Empty
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: 36,
+    paddingHorizontal: 24,
+  },
+  emptyIconCircle: {
+    width: 76,
+    height: 76,
+    borderRadius: 38,
+    backgroundColor: 'rgba(0,0,0,0.06)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  emptyStateTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: Neo.colors.neutral[900],
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  emptyStateText: {
+    fontSize: 13,
+    color: Neo.colors.neutral[600],
+    textAlign: 'center',
+    lineHeight: 19,
+    maxWidth: 300,
+  },
+});
