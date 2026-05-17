@@ -16,7 +16,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import { H2, H3, Body, Small } from '../components/NeoTypography';
+import { H1, H2, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -380,15 +381,27 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
     };
 
     return (
-      <AppBackground variant="subtle">
-        <SafeAreaView style={styles.container}>
+      <AppBackground>
+        <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
+            <StatusBar style="dark" />
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.7)', alignItems: 'center', justifyContent: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
                     <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>{t('medications.title')}</Text>
-                <TouchableOpacity onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); resetForm(); setModalVisible(true); }}>
-                    <NeoIcon name="AddCircle" size={32} color={Neo.colors.primary[600]} />
+                <View style={{ flex: 1 }}>
+                    <H1 style={styles.headerTitle}>{t('medications.title', 'Medicamentos')}</H1>
+                    <Caption style={styles.headerSubtitle}>{meds.length} {meds.length === 1 ? 'remédio agendado' : 'remédios agendados'}</Caption>
+                </View>
+                <TouchableOpacity
+                    onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); resetForm(); setModalVisible(true); }}
+                    style={styles.addHeaderBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
+                    <NeoIcon name="Add" size={22} color="#FFF" variant="Bold" />
                 </TouchableOpacity>
             </View>
 
@@ -669,11 +682,23 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: 'transparent' },
     header: {
-        flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-        paddingHorizontal: Neo.spacing.lg, paddingVertical: 14,
+        flexDirection: 'row', alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg, paddingTop: 4, paddingBottom: 14,
+        gap: 12,
     },
-    headerTitle: { fontSize: 18, fontWeight: 'bold', color: Neo.colors.neutral[900] },
-    list: { padding: 20, paddingBottom: 160 },
+    backBtn: {
+        width: 38, height: 38, borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center', justifyContent: 'center',
+    },
+    headerTitle: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
+    headerSubtitle: { color: Neo.colors.neutral[600] },
+    addHeaderBtn: {
+        width: 38, height: 38, borderRadius: 12,
+        backgroundColor: Neo.colors.primary[600],
+        alignItems: 'center', justifyContent: 'center',
+    },
+    list: { padding: 20, paddingBottom: 190 },
 
     card: {
         backgroundColor: Neo.colors.surface, borderRadius: Neo.radii.lg, padding: 16, marginBottom: 16,

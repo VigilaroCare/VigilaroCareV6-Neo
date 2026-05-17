@@ -15,9 +15,10 @@ import {
     Image
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import { H2, H3, Body, Small } from '../components/NeoTypography';
+import { H1, H2, H3, Body, Small, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -35,10 +36,11 @@ import { useTranslation } from 'react-i18next';
 export default function MedicationsScreen({ navigation }) {
     const { t } = useTranslation();
 
+    // Ícones iconsax válidos (antes Ionicons sunny/partly-sunny/moon não renderizavam)
     const PERIODS = [
-        { id: 'morning', label: t('medications.morning'), icon: 'sunny', color: '#FFB74D', range: '06:00 - 12:00' },
-        { id: 'afternoon', label: t('medications.afternoon'), icon: 'partly-sunny', color: '#4FC3F7', range: '12:00 - 18:00' },
-        { id: 'night', label: t('medications.night'), icon: 'moon', color: '#7986CB', range: '18:00 - 06:00' }
+        { id: 'morning',   label: t('medications.morning'),   icon: 'Sun1',  color: '#FFB74D', range: '06:00 - 12:00' },
+        { id: 'afternoon', label: t('medications.afternoon'), icon: 'Cloud', color: '#4FC3F7', range: '12:00 - 18:00' },
+        { id: 'night',     label: t('medications.night'),     icon: 'Moon',  color: '#7986CB', range: '18:00 - 06:00' },
     ];
 
     const [medications, setMedications] = useState([]);
@@ -323,21 +325,36 @@ export default function MedicationsScreen({ navigation }) {
     };
 
     return (
-      <AppBackground variant="subtle">
-        <SafeAreaView style={styles.container} edges={['top']}>
-            <StatusBar barStyle="dark-content" />
+      <AppBackground>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+            <ExpoStatusBar style="dark" />
 
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
                     <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                 </TouchableOpacity>
-                <H2 style={styles.headerTitle}>{t('medications.title')}</H2>
-                <View style={{ flexDirection: 'row', gap: 12 }}>
-                    <TouchableOpacity onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setGuideVisible(true); }}>
-                        <NeoIcon name="Trash" size={22} color={Neo.colors.primary[600]} />
+                <View style={{ flex: 1 }}>
+                    <H1 style={styles.headerTitle}>{t('medications.title', 'Medicamentos')}</H1>
+                    <Caption style={styles.headerSubtitle}>Histórico e horários</Caption>
+                </View>
+                <View style={styles.headerActions}>
+                    <TouchableOpacity
+                        onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); setGuideVisible(true); }}
+                        style={styles.actionBtn}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                        <NeoIcon name="Trash" size={18} color={Neo.colors.primary[700]} variant="Bold" />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); handleManageAction('history'); }}>
-                        <NeoIcon name="Clock" size={22} color={Neo.colors.primary[600]} />
+                    <TouchableOpacity
+                        onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); handleManageAction('history'); }}
+                        style={styles.actionBtn}
+                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                        <NeoIcon name="Clock" size={18} color={Neo.colors.primary[700]} variant="Bold" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -670,18 +687,29 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
         paddingHorizontal: Neo.spacing.lg,
-        paddingVertical: 14,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backButton: {
-        width: 36, height: 36, borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.7)',
+        width: 38, height: 38, borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
         alignItems: 'center', justifyContent: 'center',
     },
     headerTitle: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 22,
         color: Neo.colors.neutral[900],
-        textAlign: 'center',
+    },
+    headerSubtitle: { color: Neo.colors.neutral[600] },
+    headerActions: { flexDirection: 'row', gap: 8 },
+    actionBtn: {
+        width: 38, height: 38, borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center', justifyContent: 'center',
     },
     profileSelector: {
         paddingVertical: 10,
