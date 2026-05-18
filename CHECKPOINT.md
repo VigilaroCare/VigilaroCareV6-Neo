@@ -2,18 +2,30 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 72
+**Commits totais no branch:** 73
 
 ---
 
-## 🎯 PRÓXIMA TAREFA PRIORITÁRIA
+## ⏸️ AGUARDANDO VALIDAÇÃO DO USER (em tempo ocioso)
 
-### #2 — Acessibilidade + Dark Mode (PARTE 1 CONCLUÍDA, parte 2 pendente)
+### Dark Mode — varredura visual restante
 
-A frente #2 foi quebrada em duas sub-sessões:
+**Status:** infraestrutura ✅, NeoTypography ✅ (override automático em dark via último style), Home/Aprender/Footer ✅. Várias outras telas devem ter melhorado automaticamente graças ao NeoTypography fix de cor.
 
-- **Parte 1 ✅ CONCLUÍDA (2026-05-18)** — Infraestrutura de dark mode (DS + ThemeContext + AppBackground + NeoCard), toggle Aparência em AccessibilitySettings, sweep de acessibilidade nas 3 telas mais críticas (SOSCountdown, ContatosEmergencia, HomeScreenNeo), e `reduceMotion` instrumentado em SOSCountdown + ScaleInView (afeta toda HomeScreenNeo).
-- **Parte 2 ⏳ PENDENTE** — Sweep de `accessibilityLabel` nas ~120 telas restantes + validação visual em dark mode dessas telas (várias usarão `Neo.colors.neutral[X]` hardcoded → texto invisível em dark). Lista de hotspots de iteração no Histórico abaixo.
+**O que falta o user fazer:** durante tempo ocioso entre renovações de token, navegar pelas telas restantes em **Aparência → Escuro** e listar quais ainda têm problemas de contraste/legibilidade.
+
+**Como vai funcionar:** próxima sessão Claude recebe a lista de telas problemáticas e aplica o padrão (importar `useThemeColors`, declarar `textPrimary`/`textSecondary`, fazer style merge `[s.X, { color: textPrimary }]` no `<Text>` cru). Não é trabalho exploratório — é mecânico.
+
+**Hotspots prováveis (telas com muito `<Text>` cru + `Neo.colors.neutral[X]` hardcoded):**
+- MenuScreenNeo, RelatoriosScreenNeo, TravelModeScreen (outras tabs)
+- Hubs internos: KitsHubScreen, FerramentasIAScreenNeo, RiscosMenuScreen
+- Detalhes: ChecklistDetailScreen, MicroArticleScreen, ConceitoDetailScreen
+- Formulários de Health: AddEvent/AddExam/AddTreatment/etc
+- Perfis: ProfileRiskSummary, HomeXRay
+
+---
+
+## 🎯 PRÓXIMA TAREFA PRIORITÁRIA — sessão atual
 
 ---
 
