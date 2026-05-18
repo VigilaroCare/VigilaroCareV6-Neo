@@ -2,24 +2,25 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 78
+**Commits totais no branch:** 79
 
 ---
 
-## 🐛 BUG REPORTADO — investigar na próxima sessão
+## ✅ BUG RESOLVIDO (2026-05-18)
 
-**Edição de perfil (QuemProtegerScreenNeo) não aparece — só o botão Excluir renderiza.**
+**"Edição de perfil só mostra Trash, Edit2 invisível"** — causa raíz identificada e corrigida.
 
-User reportou (2026-05-18) que o commit `30264c4` adicionou Edit2 + Trash em cada card de perfil, mas só o Trash apareceu na UI. Hipóteses para investigar:
+O Edit2 estava sendo renderizado com `color={Neo.colors.neutral[600]}`, mas **`neutral[600]` não existia na paleta DS** (a escala pulava direto de 700 pra 500). O ícone recebia `color={undefined}` e renderizava transparente. O Trash funcionava porque usava `feedback.error` (existia).
 
-1. **Outra tela:** talvez exista um fluxo de "editar perfil" separado (ex: PerfilWizardScreen, FamilyCompositionScreen ou um modal específico) onde a edição é acessada — e o que o user tocou foi essa outra tela que só tem Delete.
-2. **Layout/clipping:** o card pode estar comprimido lateralmente (avatar 52px + name flex:1 + Edit2 + Trash + TickCircle = pode estourar largura em devices estreitos). Edit2 pode estar sendo empurrado para fora.
-3. **Variant Linear do Edit2:** improvável (CHECKPOINT confirma Edit2 na lista de iconsax válidos e Linear é variant padrão), mas vale conferir renderizando com variant="Bold".
-4. **Cache do Metro:** ler o arquivo no celular pode ter cacheado uma versão antiga sem Edit2. Reload forçado já tentou? (Ctrl+R no terminal Metro)
+**Auditoria do DS revelou outros tokens fantasma** sendo referenciados em 30+ arquivos: `primary[200]`, `primary[800]`, `primary[900]`, `neutral[50]`, `neutral[600]`. Todos resolviam para `undefined`.
 
-**Como reproduzir:** Home → toque no perfil "Agnaldo" no topo → tela "Quem Protegemos" → card do pet recém-adicionado.
+**Fix sistêmico:** adicionados os tokens faltantes em `LightColors` e `DarkColors` (com valores invertidos para dark — escala emerald Tailwind + neutros iOS). Isso conserta de uma vez:
+- `neutral[600]` → 79 ocorrências em 30 arquivos
+- `primary[800]` → 11 ocorrências em 5 arquivos
+- `neutral[50]` → 11 ocorrências em 8 arquivos
+- `primary[200]`, `primary[900]` → casos esparsos
 
-**Próximo passo:** ler o arquivo em runtime via React DevTools / inspecionar elemento; ou simplificar a row substituindo `flex: 1` no nome por `flex: 0.6` p/ garantir espaço pros 2 ícones.
+O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza médio iOS) e é visível.
 
 ---
 

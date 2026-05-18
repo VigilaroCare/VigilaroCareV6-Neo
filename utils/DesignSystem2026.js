@@ -45,12 +45,16 @@ export function bodyFont() {
 }
 
 // Paleta Light (default) — espelhada na DarkColors abaixo
+// Escala Tailwind emerald + extensões para callsites legados.
 const LightColors = {
     primary: {
+        900: '#064E3B', // Forest Green muito profundo (StatusBar dark, gradiente top)
+        800: '#065F46', // Deep — títulos em fundo claro, accent em cards
         700: '#047857', // Forest Green (Deep/Premium)
         600: '#059669', // Hover/Active
         500: '#10B981', // Emerald Green (Vibrante, Saudável, Premium)
         300: '#34D399',
+        200: '#A7F3D0', // Tint suave (borders, fundos de chips)
         100: '#D1FAE5', // Tint leve para fundos ativos
         50:  '#ECFDF5', // Tint extra-leve (alias retrocompatível)
         main: '#10B981',
@@ -76,11 +80,13 @@ const LightColors = {
         900: '#1C1C1E', // iOS Dark Text (Não é 100% preto, reduz fadiga ocular)
         800: '#3A3A3C', // iOS Secondary Text
         700: '#636366',
+        600: '#787880', // iOS Tertiary Label resolved — intermediário entre 700 e 500
         500: '#8E8E93', // iOS System Gray (Desabilitados, placeholders)
         400: '#C7C7CC', // Bordas médias
         300: '#E5E5EA', // iOS Gray 5 (Divisores e bordas leves)
         200: '#F2F2F7', // iOS Gray 6 (Fundo de seções/cards internos)
         100: '#F9FAFB', // Fundo principal da tela (Off-white)
+        50:  '#FAFAFA', // Fundo levíssimo (inputs, hover, divisor extra-leve)
         white: '#FFFFFF',
         black: '#000000',
     },
@@ -104,10 +110,15 @@ const LightColors = {
 // ajustadas para os valores iOS Dark Mode oficiais (mais saturadas).
 const DarkColors = {
     primary: {
+        // Em dark o brand verde mantém o tom; tokens "altos" ficam MAIS claros
+        // para contraste sobre fundo escuro (escala invertida vs. light).
+        900: '#A7F3D0',   // muito claro p/ títulos accent em dark
+        800: '#6EE7B7',   // claro
         700: '#34D399',   // mais clara em dark p/ contraste em hover
         600: '#10B981',   // brand stays
         500: '#10B981',   // brand stays — identidade visual
         300: '#6EE7B7',
+        200: '#065F46',   // tint dark (mais escuro, fundo de chip ativo)
         100: '#064E3B',   // tint dark (invertido — fundo de elemento ativo)
         50:  '#022C22',
         main: '#10B981',
@@ -132,11 +143,13 @@ const DarkColors = {
         900: '#F2F2F7',   // texto principal (invertido) — alta luminância
         800: '#E5E5EA',   // texto secundário
         700: '#C7C7CC',
+        600: '#AEAEB2',   // intermediário entre 700 e 500 (espelha o 600 do light)
         500: '#8E8E93',   // gray médio — usado em ambos
         400: '#48484A',
         300: '#3A3A3C',   // bordas/divisores em dark
         200: '#2C2C2E',   // fundo de seções/cards
         100: '#1C1C1E',   // fundo principal da tela (off-black)
+        50:  '#0F0F11',   // fundo extra-escuro (inputs sobre o 100)
         white: '#FFFFFF', // semantic — texto branco continua branco
         black: '#000000', // semantic — preto continua preto
     },
