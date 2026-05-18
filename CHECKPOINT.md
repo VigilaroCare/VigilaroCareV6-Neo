@@ -1,49 +1,60 @@
 # 🚦 CHECKPOINT — Vigilaro Care V6 Neo
 
-**Última atualização:** 2026-05-17
+**Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 68
+**Commits totais no branch:** 71
 
 ---
 
-## 🎯 TAREFA PENDENTE PRIORITÁRIA — para retomar nesta ordem
+## 🎯 PRÓXIMA TAREFA PRIORITÁRIA
 
-### #1 — Imagens reais nos ambientes (CRÍTICA, adiada por tokens)
+### #2 — Acessibilidade + Dark Mode (próxima sessão)
 
-**Arquivo:** `data/knowledge_prevencao.js`
-**Tela afetada:** `screens/Education/EnvironmentGuideNeoScreen.js`
-**Acessada via:** Menu Aprender → Riscos e Orientações por Ambiente → tap em qualquer ambiente
+A frente #1 (imagens reais nos 21 ambientes) está **CONCLUÍDA** — ver "Histórico" abaixo. Próxima ação: começar pela varredura de `accessibilityLabel` nas ~125 telas (detalhes em `## 🗺️ ROADMAP` mais abaixo).
 
-#### Estado atual
-Todos os 18 ambientes têm flag `useStyledHero: true` → renderizam hero estilizado nativo (gradient duotone na cor do ambiente + emoji 130px + círculos decorativos). Foi solução intermediária após múltiplas tentativas com URLs Unsplash que retornavam imagens fora de contexto (academia na piscina, foto de escritório no depósito, etc.).
+---
 
-#### O que o user quer
-> *"Tenho 100% de preferência de imagens reais e 100% dentro do contexto de cada ambiente."*
+## ✅ Frente #1 — CONCLUÍDA (2026-05-18)
 
-User reportou problemas específicos quando estávamos tentando URLs Unsplash:
-- Quarto de bebê fora de contexto — quer foto de quarto com **berço nu**
-- Quarto infantil com desenho genérico — quer **foto real**
-- Quarto do idoso fora do contexto
-- Garagem fora do contexto — quer foto com **foco em prevenção**
-- Oficina/Ferramentas com desenho — quer foto de **residência com ferramentas na parede/bancada**
-- Depósitos com foto de **escritório** (errado)
-- Gás/GLP com desenho — quer **botijão em ambiente doméstico**
-- Quintal/Jardim com foto de **piscina** (errado)
-- Escadas com desenho — quer **escada doméstica real**
-- Varanda fora de contexto
+**O que foi feito:**
+- Migrado de StyledHero (gradient + emoji) para fotos reais via Pexels CDN
+- Cada um dos 21 ambientes agora tem `capa: [url1, url2]` com cascade fallback
+- StyledHero mantido como último recurso (quando ambas URLs falham)
+- Header docblock do arquivo atualizado explicando a nova estratégia
 
-#### Estratégia recomendada para a próxima sessão
-**Não tente mais URLs Unsplash via `photo-ID`** — provou-se instável (IDs antigos podem retornar fotos completamente diferentes ao longo do tempo). Opções:
+**Por que Pexels (não Unsplash, não local):**
+- Pexels não reusa photo-IDs (diferentemente de Unsplash) — URL aponta sempre para a mesma foto
+- CC0, mesma licença permissiva
+- Acervo melhor para contextos específicos (botijão GLP, áreas comuns de condomínio)
+- Não exige bundle local (zero peso adicional no app)
 
-1. **Imagens locais bundle** (mais robusto): user fornece JPGs → salvar em `assets/images/ambientes/` → referenciar com `require('../../assets/images/ambientes/quarto_bebe.jpg')`
-2. **Pexels CDN** (alternativa CC0 mais estável que Unsplash): formato `https://images.pexels.com/photos/{ID}/pexels-photo-{ID}.jpeg?auto=compress&cs=tinysrgb&w=1200`
-3. **API Unsplash com chave** (requer setup): autenticada, garante imagens corretas
-4. **Manter StyledHero** (atual) — user já disse que **não quer**
+**Mapeamento ambiente → Pexels primary ID** (todos com fallback secundário):
 
-**Importante:** o componente `EnvironmentGuideNeoScreen.js` já está preparado para receber `capa` como string OU array de URLs (cascade fallback) e tem o StyledHero como último recurso. Basta atualizar o data file e remover o `useStyledHero: true` dos que ganharem imagem real.
+| Ambiente | Primary ID | Contexto |
+|---|---|---|
+| sala | 1571469 | Sofá cinza em sala moderna |
+| cozinha | 5524067 | Cozinha branca com inox |
+| despensa | 4440173 | Prateleiras com potes de vidro |
+| quartos | 2631746 | Quarto neutro de adulto |
+| quarto_bebe | 4713247 | **Berço nu** em quarto sereno |
+| quarto_crianca | 5008397 | Beliche com teepee, real |
+| quarto_idoso | 8899457 | Quarto sênior minimalista |
+| banheiros | 5524223 | Banheiro residencial |
+| armarios | 8893908 | Guarda-roupa organizado |
+| lavanderia | 5365777 | Lavanderia doméstica |
+| garagem | 6200441 | Pickup suburbana na garagem |
+| oficinas | 30361320 | Parede com ferramentas, oficina caseira |
+| depositos | 36946571 | **Depósito** com prateleiras e caixas |
+| central_gas | 36285352 | **Botijões GLP** encostados na parede |
+| quintal | 25972319 | Quintal com flores e mobília de pátio |
+| jardinagem | 6231714 | Ferramentas de jardinagem em terra |
+| areas_coletivas | 33094391 | Playground com escorregador |
+| piscina | 17568046 | **Piscina residencial suburbana** |
+| praia_rios | 4321954 | Praia tropical aérea |
+| escadas | 13005094 | **Escada residencial** com corrimão |
+| varanda | 17758798 | **Varanda urbana** com mobília |
 
-#### IDs dos ambientes (em `data/knowledge_prevencao.js`)
-- `sala`, `cozinha`, `despensa`, `quartos`, `quarto_bebe`, `quarto_crianca`, `quarto_idoso`, `banheiros`, `armarios`, `lavanderia`, `garagem`, `oficinas`, `depositos`, `central_gas`, `quintal`, `jardinagem`, `areas_coletivas`, `piscina`, `praia_rios`, `escadas`, `varanda`
+**Validação visual pendente do user:** ao rodar o app, navegar em Aprender → Riscos por Ambiente → tap em cada ambiente. Se algum não estiver fiel ao contexto, basta dizer o `id` que escolho outra URL Pexels. O sistema de fallback já cobre falhas de carregamento (404).
 
 ---
 
@@ -136,8 +147,8 @@ Validado com o user: estas são as frentes que de fato **destacam o app dentre c
 ### Ordem sugerida cronológica
 
 ```
-Sessão N+1: Imagens reais 18 ambientes (CHECKPOINT #1)
-Sessão N+2: Acessibilidade — sweep accessibilityLabel + testes VoiceOver/TalkBack
+Sessão N+1: ✅ Imagens reais 21 ambientes — CONCLUÍDA (2026-05-18)
+Sessão N+2: ◀ PRÓXIMA — Acessibilidade: sweep accessibilityLabel + testes VoiceOver/TalkBack
 Sessão N+3: Dark Mode — implementar ThemeContext + adaptar AppBackground/NeoCard
 Sessão N+4: Microinterações parte 1 — taps, stagger, parallax hero
 Sessão N+5: Microinterações parte 2 — swipe-to-delete, skeleton loaders, transitions
@@ -145,7 +156,7 @@ Sessão N+6: Sons + Haptics padronização
 Sessão N+7+: Identidade visual (se viável)
 ```
 
-**Total estimado:** 6-7 sessões focadas para o app entrar em outro patamar comparado aos top-tier do setor.
+**Total estimado:** 5-6 sessões focadas restantes para o app entrar em outro patamar comparado aos top-tier do setor.
 
 ---
 
@@ -272,8 +283,7 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
 ## 📞 Para continuar na próxima sessão
 
 1. **Cumprimentar e referenciar este checkpoint:** _"Continue de onde parou conforme `CHECKPOINT.md`"_
-2. **Prioridade clara:** imagens reais nos 18 ambientes
-3. **Decidir abordagem:** locais (assets/) vs Pexels vs Unsplash com API key
-4. **Por ambiente, atualizar:** remover `useStyledHero: true` e adicionar `capa: 'url-real'` (ou `capa: require('./...')` se local)
+2. **Prioridade clara:** Acessibilidade (frente #2) — começar pela varredura de `accessibilityLabel` nas telas mais críticas (SOS, Login, Contatos Emergência, EnvironmentGuide)
+3. **Validar imagens:** o user pode antes pedir uma volta de validação visual nas fotos dos 21 ambientes (rodar o app e checar tap a tap). Se alguma estiver fora de contexto, basta o `id` do ambiente que troco a URL.
 
 Tudo no branch `claude/unruffled-jennings-51c18f` — pronto pra merge na main quando o user decidir.
