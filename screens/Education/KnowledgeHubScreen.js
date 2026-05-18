@@ -24,6 +24,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import {
     Home2, Lovely, TrendUp, Woman, MagicStar, Building, Briefcase, Health,
@@ -43,6 +44,11 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 
 export default function KnowledgeHubScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textSecondary = themeColors.neutral[700];
+    const textTertiary = themeColors.neutral[600];
 
     // Item único — renderizado em card horizontal full-width
     const conceitoItem = {
@@ -117,12 +123,14 @@ export default function KnowledgeHubScreen({ navigation }) {
                 onPress={() => navigation.navigate(item.route, item.params || {})}
                 activeOpacity={0.85}
                 style={{ flex: 1 }}
+                accessibilityRole="button"
+                accessibilityLabel={item.titulo}
             >
                 <NeoCard variant="elevated" style={s.gridCard}>
                     <View style={[s.iconCircle, { backgroundColor: item.cor + '33' }]}>
                         <item.Icon size={24} color={item.cor} variant="Bold" />
                     </View>
-                    <Text style={s.gridLabel} numberOfLines={2}>
+                    <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
                         {item.titulo}
                     </Text>
                 </NeoCard>
@@ -133,7 +141,7 @@ export default function KnowledgeHubScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -141,16 +149,16 @@ export default function KnowledgeHubScreen({ navigation }) {
                 >
                     {/* HEADER — consistente com Home + Menu */}
                     <View style={s.headerBlock}>
-                        <H1 style={s.title}>
+                        <H1 style={[s.title, { color: textPrimary }]} accessibilityRole="header">
                             {t('knowledgeHub.titleShort', 'Aprender')}
                         </H1>
-                        <Caption style={s.subtitle}>
+                        <Caption style={[s.subtitle, { color: textTertiary }]}>
                             {t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção')}
                         </Caption>
                     </View>
 
                     {/* DESTAQUES — carrossel horizontal */}
-                    <Text style={s.sectionLabel}>
+                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                         {t('knowledgeHub.featured', 'Destaques')}
                     </Text>
                     <FlatList
@@ -220,28 +228,30 @@ export default function KnowledgeHubScreen({ navigation }) {
                     </TouchableOpacity>
 
                     {/* CONCEITOS — card único (era grid de 1, fica menos órfão como linha) */}
-                    <Text style={[s.sectionLabel, { marginTop: 20 }]}>
+                    <Text style={[s.sectionLabel, { marginTop: 20, color: textSecondary }]} accessibilityRole="header">
                         {t('knowledgeHub.essentialConcepts', 'Conceitos')}
                     </Text>
                     <TouchableOpacity
                         activeOpacity={0.85}
                         onPress={() => navigation.navigate(conceitoItem.route)}
+                        accessibilityRole="button"
+                        accessibilityLabel={conceitoItem.titulo}
                     >
                         <NeoCard variant="elevated" style={s.conceitoCard}>
                             <View style={[s.iconCircle, { backgroundColor: conceitoItem.cor + '33', marginRight: 14, marginBottom: 0 }]}>
                                 <conceitoItem.Icon size={24} color={conceitoItem.cor} />
                             </View>
-                            <Body style={{ flex: 1, fontWeight: '800', color: Neo.colors.neutral[900], fontSize: 14 }}>
+                            <Body style={{ flex: 1, fontWeight: '800', color: textPrimary, fontSize: 14 }}>
                                 {conceitoItem.titulo}
                             </Body>
-                            <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                            <ArrowRight2 size={18} color={themeColors.neutral[500]} />
                         </NeoCard>
                     </TouchableOpacity>
 
                     {/* 5 SEÇÕES — grid 3 colunas */}
                     {SECTIONS.map((section) => (
                         <View key={section.key} style={{ marginTop: 20 }}>
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {section.title}
                             </Text>
                             <View style={s.grid}>

@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 // ---------------------------------------------------------------------------
 // ROTAS ONDE O FOOTER NÃO DEVE APARECER
@@ -80,6 +81,8 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isLeftHanded } = useLeftHandedStyle();
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
   const sosTimer = useRef(null);
   const longPressTriggered = useRef(false);
   const [isTravelModeOn, setIsTravelModeOn] = React.useState(false);
@@ -189,10 +192,16 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const bottomPadding = insets.bottom > 0 ? insets.bottom : 10;
   const buttons = isLeftHanded ? [...TAB_BUTTONS].reverse() : TAB_BUTTONS;
 
+  const containerThemed = isDark
+    ? { backgroundColor: 'rgba(28,28,30,0.94)', borderTopColor: 'rgba(255,255,255,0.08)' }
+    : { backgroundColor: 'rgba(255,255,255,0.96)', borderTopColor: 'rgba(0,0,0,0.05)' };
+  const inactiveTabColor = isDark ? themeColors.neutral[700] : Neo.colors.neutral[500];
+
   return (
     <View style={styles.containerWrapper}>
       <View style={[
         styles.container,
+        containerThemed,
         { paddingBottom: bottomPadding, height: 60 + bottomPadding },
       ]}>
         {buttons.map((tab, index) => {
@@ -205,7 +214,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
           const forceTravelHighlight = tab.route === 'TravelModeTab' && isTravelModeOn;
           const isIconActive = active || forceTravelHighlight;
           
-          const color = isIconActive ? Neo.colors.primary[500] : Neo.colors.neutral[500];
+          const color = isIconActive ? Neo.colors.primary[500] : inactiveTabColor;
           const iconName = isIconActive ? tab.iconActive : tab.iconInactive;
           
           // Avião só voa (-45deg) se o modo de viagem ESTIVER ON. Se for apenas a tab ativa, não decola.

@@ -4,6 +4,7 @@ import Theme from '../utils/Theme';
 import { FONTS, displayFont } from '../utils/DesignSystem2026';
 
 import { useAccessibility } from '../context/AccessibilityContext';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 /**
  * Mapeia fontWeight CSS → nome da fonte Plus Jakarta Sans carregada.
@@ -18,9 +19,35 @@ const WEIGHT_MAP = {
     'bold': 'bold',
 };
 
+// Mapeia cada variante do DS para a "função semântica" no tema.
+// Em dark mode, o DS.type.X.color (hardcoded #1C1C1E) seria invisível,
+// então essa tabela informa qual cor do tema usar como default.
+const DEFAULT_COLOR_FOR_VARIANT = {
+    h1: 'neutral.900',
+    h2: 'neutral.900',
+    h3: 'neutral.900',
+    body: 'neutral.800',
+    bodySmall: 'neutral.800',
+    caption: 'neutral.500', // caption já era cinza em light; cinza em dark também funciona
+    button: 'neutral.900',
+};
+
+function resolveThemeColor(colors, path) {
+    if (!path) return null;
+    const parts = path.split('.');
+    let v = colors;
+    for (const p of parts) {
+        if (v == null) return null;
+        v = v[p];
+    }
+    return typeof v === 'string' ? v : null;
+}
+
 export const NeoText = ({ children, style, variant = 'body', color, align = 'left', numberOfLines, ...props }) => {
     const { Neo } = Theme;
     const { fontSizeLevel = 1, highContrast = false } = useAccessibility() || {};
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
 
     // Mapeia variante para estilo definido no DS
     const variantStyle = Neo.type[variant] || Neo.type.body;
@@ -30,8 +57,17 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
     const originalSize = variantStyle.fontSize || 14;
     const scaledSize = originalSize * fontSizeLevel;
 
-    // High Contrast Override
-    let finalColor = color || (variantStyle ? variantStyle.color : '#000');
+    // Cor: explicit prop > tema (se dark) > variante hardcoded do DS (se light)
+    // Em dark, NUNCA usar variantStyle.color (que é #1C1C1E, invisível em dark mode).
+    const themeDefault = resolveThemeColor(themeColors, DEFAULT_COLOR_FOR_VARIANT[variant]);
+    let finalColor;
+    if (color) {
+        finalColor = color;
+    } else if (isDark && themeDefault) {
+        finalColor = themeDefault;
+    } else {
+        finalColor = variantStyle?.color || '#000';
+    }
     let finalWeight = (variantStyle ? variantStyle.fontWeight : 'normal');
 
     if (highContrast) {
@@ -54,7 +90,11 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
             letterSpacing: variantStyle?.letterSpacing || 0,
         },
         { textAlign: align },
-        style
+        style,
+        // Em dark mode, quando o caller NÃO passou prop `color`, força a cor do tema
+        // como override final. Isso protege contra `style={{color: Neo.colors.neutral[900]}}`
+        // hardcoded no callsite (que seria invisível em dark).
+        (isDark && !color && themeDefault) ? { color: themeDefault } : null,
     ];
 
     return (

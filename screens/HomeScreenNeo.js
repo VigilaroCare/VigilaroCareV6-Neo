@@ -35,6 +35,7 @@ import CompactActiveMonitor from '../components/CompactActiveMonitor';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 import { HousePill } from '../components/PillSwitch';
 import GlassProfileRing from '../components/GlassProfileRing';
@@ -50,6 +51,11 @@ export default function HomeScreenNeo() {
     const navigation = useNavigation();
     const { rowDirection } = useLeftHandedStyle();
     const { t } = useTranslation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textSecondary = themeColors.neutral[800];
+    const textTertiary = themeColors.neutral[700];
 
     const [scoreData, setScoreData] = useState({ geral: 0, ambientes: {}, pendencias: 0 });
     const [scoreMessage, setScoreMessage] = useState({ titulo: 'Monitor Ativo', alerta: 'Carregando status...' });
@@ -285,7 +291,7 @@ export default function HomeScreenNeo() {
                     }}
                 >
                     {/* AMBIENTES VISTORIADOS */}
-                    <Text style={s.sectionLabel} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
+                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
                     <TouchableOpacity
                         activeOpacity={0.9}
                         onPress={toggleMonitor}
@@ -358,7 +364,7 @@ export default function HomeScreenNeo() {
                     )}
 
                     {/* ACESSO RÁPIDO — com micro-status (Absorção 2) */}
-                    <Text style={s.sectionLabel}>{t('home.quickAccess')}</Text>
+                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.quickAccess')}</Text>
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
                             <ScaleInView
@@ -383,7 +389,7 @@ export default function HomeScreenNeo() {
                                         <View style={[s.gridIconCircle, { backgroundColor: item.color + '1A' }]}>
                                             <item.Icon size={26} color={item.color} variant="Bold" />
                                         </View>
-                                        <Text style={s.gridLabel} numberOfLines={1}>{item.label}</Text>
+                                        <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={1}>{item.label}</Text>
                                         <View style={[
                                             s.gridStatusPill,
                                             item.status.tone === 'ok'       && s.gridStatusOk,
@@ -409,7 +415,7 @@ export default function HomeScreenNeo() {
                     </View>
 
                     {/* FERRAMENTAS — labels limpos, sem subtítulo "Assistente IA, Scanner e Voz" */}
-                    <Text style={[s.sectionLabel, { marginTop: 4 }]}>{t('home.tools')}</Text>
+                    <Text style={[s.sectionLabel, { marginTop: 4, color: textSecondary }]} accessibilityRole="header">{t('home.tools')}</Text>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <TouchableOpacity
@@ -423,7 +429,7 @@ export default function HomeScreenNeo() {
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
                                     <Setting2 size={22} color="#1976D2" variant="Bold" />
                                 </View>
-                                <Text style={s.toolLabel} numberOfLines={1}>
+                                <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
                                     {t('home.toolbox', 'Ferramentas')}
                                 </Text>
                             </NeoCard>
@@ -440,7 +446,7 @@ export default function HomeScreenNeo() {
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(255,109,0,0.10)' }]}>
                                     <Scan size={22} color="#FF6D00" variant="Bold" />
                                 </View>
-                                <Text style={s.toolLabel} numberOfLines={1}>
+                                <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
                                     {t('home.infoLabels', 'Info Rótulos')}
                                 </Text>
                             </NeoCard>
