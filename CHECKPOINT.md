@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 82
+**Commits totais no branch:** 83
 
 ---
 
@@ -57,12 +57,25 @@ O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza 
 - ✅ AvesSegurasScreen — StatusBar (resto cascateia)
 - ✅ PetPregnancyScreen — StatusBar (a tela tem muito Text plain em cards de pet, mas os cards têm bg white-ish onde dark text fica legível em ambos os modos)
 
-**Lote 4 — próximo:**
-- Formulários de Health: AddEvent/AddExam/AddTreatment/AddProcedure/AddMedicalRecord
-- Perfis: ProfileRiskSummary, HomeXRay
-- ConceitoDetailScreen — denso, requer refactor cuidadoso (muitos `<Text style={[styles.text, { color: ... }]}>` com explicit inline color)
-- MicroBlogScreen — listagem de artigos
-- Checklists internos (AreasInternas, AreasExternas, ChecklistWizard, OndeProteger)
+**Lote 4 — refatorado (2026-05-18):**
+- ✅ 5 forms Health (AddEvent/AddExam/AddTreatment/AddProcedure/AddMedicalRecord) — só StatusBar dinâmico, resto cascateia via NeoTypography (H1/H3/Body/Small)
+- ✅ ProfileRiskSummaryScreen — sectionLabel (replace_all) + riskTitle + StatusBar
+- ✅ HomeXRayScreen — sectionLabel (replace_all) + StatusBar
+- ✅ ConceitoDetailScreen — textBody no renderList (era #4B5563 hardcoded) + StatusBar + backBtn color
+- ✅ MicroBlogScreen — articleTitle + headerTitle
+- ✅ AreasInternasScreen + AreasExternasScreen — cardTitle, questionText, stepText (replace_all) + StatusBar
+- ✅ ChecklistWizardScreen — StatusBar + ambiente nome inline + **fix latente:** import de Text de react-native que estava faltando (bug pré-existente que crasharia se usuário entrasse no branch line 148)
+- ✅ OndeProtegerScreen — headerTitle, sectionTitle, ambienteLabel, inventoryTitle (replace_all)
+
+**Lote 5 — telas restantes para sweep eventual (esperar feedback do user):**
+- Health: MinhaSaude, SaudePet, MedicationScheduler, ShareHealthRecord
+- Education: JardinagemSegura, TeoriaFogo, RiscosFisicos, FerramentasTrabalho, UtensiliosDomesticos, EletrodomesticosScreen, etc
+- Emergency: PrimeirosSocorros, PrimeirosSocorrosEmergencia, EmergenciaPet
+- Tools: AssistentePrevencaoIA, AudioMonitor, VisionMonitor, HistoricoAuditoria, DataHealth
+- Safety: EscolaSegura, VistoriaAsilo, SafetyActionPlan
+- Travel: KitViagem, Inspecao*, FazendoAsMalas
+- Onboarding flows
+- Reviews: UtensiliosReviews, EletrodomesticosReviews, DispositivosEletronicosReviews
 
 **Padrão usado nos refactors:**
 ```js

@@ -14,6 +14,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import HealthService from '../../services/HealthService';
 import OpenAIService from '../../services/OpenAIService';
 import { useProfiles } from '../../contexts/ProfileContext';
+import { useIsDark } from '../../utils/ThemeContext';
 
 // Components
 import NeoIcon from '../../components/NeoIcon';
@@ -23,6 +24,7 @@ import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 
 export default function AddMedicalRecordScreen({ route, navigation }) {
   const { t } = useTranslation('common');
+  const isDark = useIsDark();
   const { primaryProfile } = useProfiles();
 
   const prefillCategory = route.params?.prefillCategory;
@@ -118,7 +120,7 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* HEADER padronizado */}
         <View style={s.header}>

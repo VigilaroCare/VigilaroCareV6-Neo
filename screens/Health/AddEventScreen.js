@@ -10,11 +10,13 @@ import AppBackground from '../../components/AppBackground';
 import { H1, H3, Body, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useProfiles } from '../../contexts/ProfileContext';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function AddEventScreen({ navigation }) {
   const { t } = useTranslation('common');
   const { primaryProfile } = useProfiles();
   const isPet = primaryProfile?.tipo === 'pet';
+  const isDark = useIsDark();
 
   const eventTypes = [
     {
@@ -54,7 +56,7 @@ export default function AddEventScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* HEADER padronizado */}
         <View style={s.header}>

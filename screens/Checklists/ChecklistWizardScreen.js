@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   View,
+  Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
@@ -16,11 +17,15 @@ import AppBackground from "../../components/AppBackground";
 import ScaleButton from "../../components/ScaleButton";
 import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import { AMBIENTES } from "../../data/mapeamento_dados";
 
 export default function ChecklistWizardScreen({ navigation }) {
   const { t } = useTranslation();
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
   const [modo, setModo] = useState("inicio"); // "inicio" | "por_comodo"
   const [ambientesAtivos, setAmbientesAtivos] = useState(AMBIENTES);
 
@@ -66,7 +71,7 @@ export default function ChecklistWizardScreen({ navigation }) {
     return (
       <AppBackground>
         <SafeAreaView style={styles.container}>
-          <StatusBar style="dark" />
+          <StatusBar style={isDark ? 'light' : 'dark'} />
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={{ alignItems: 'center', marginBottom: 24, marginTop: 12 }}>
                 <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(26, 115, 232, 0.15)', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
@@ -122,7 +127,7 @@ export default function ChecklistWizardScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView style={styles.container}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
         <View style={styles.header}>
             <TouchableOpacity onPress={() => setModo("inicio")} style={styles.backButton}>
                 <ArrowLeft2 size={24} color={Neo.colors.neutral[800]} />
@@ -145,7 +150,7 @@ export default function ChecklistWizardScreen({ navigation }) {
                         <Home2 size={24} color={ambiente.cor} variant="Bold" />
                     </View>
                     <View style={{ flex: 1, paddingRight: 8 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '800', color: Neo.colors.neutral[800], marginBottom: 2 }}>{t_field(ambiente, 'nome')}</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '800', color: textPrimary, marginBottom: 2 }}>{t_field(ambiente, 'nome')}</Text>
                         <Text style={{ fontSize: 12, color: Neo.colors.neutral[600] }}>{t_field(ambiente, 'descricao')}</Text>
                         <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center' }}>
                             <View style={{ backgroundColor: 'rgba(0,0,0,0.05)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12 }}>

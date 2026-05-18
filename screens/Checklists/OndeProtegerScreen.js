@@ -32,6 +32,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import ProfileService from '../../services/ProfileService';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
@@ -97,6 +98,10 @@ const ID_TRANSLATION = {
 
 export default function OndeProtegerScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[800];
 
     // FIX #3: activeResidenceId no estado para disparar recarregamento ao trocar de casa
     const [activeResidenceId, setActiveResidenceId] = useState(null);
@@ -214,7 +219,7 @@ export default function OndeProtegerScreen({ navigation }) {
                     <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
                 </TouchableOpacity>
                 <View style={{ flex: 1 }}>
-                    <Text style={styles.headerTitle}>{t('headersFirst.vistoriarAmbientes', 'Vistoriar Ambientes')}</Text>
+                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.vistoriarAmbientes', 'Vistoriar Ambientes')}</Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.backButton}>
                     <NeoIcon name="Home2" size={24} color={Neo.colors.neutral.white} />
@@ -222,7 +227,7 @@ export default function OndeProtegerScreen({ navigation }) {
             </LinearGradient>
 
             <ScrollView contentContainerStyle={styles.content}>
-                <Text style={styles.sectionTitle}>{t('headersFirst.checklistsDeSeguranA', 'Checklists de Segurança')}</Text>
+                <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.checklistsDeSeguranA', 'Checklists de Segurança')}</Text>
 
                 {ambientesDoUsuario.length === 0 ? (
                     <View style={styles.emptyState}>
@@ -258,7 +263,7 @@ export default function OndeProtegerScreen({ navigation }) {
                                         <NeoIcon name={ambiente.icon} size={28} color={Neo.colors.neutral.white} variant="Bold" />
                                     </View>
                                     <View>
-                                        <Text style={styles.ambienteLabel}>{ambiente.label}</Text>
+                                        <Text style={[styles.ambienteLabel, { color: textPrimary }]}>{ambiente.label}</Text>
                                         <Text style={styles.ambienteRiscos}>
                                             {ambiente.riscos.length} pontos de atenção
                                         </Text>
@@ -281,7 +286,7 @@ export default function OndeProtegerScreen({ navigation }) {
                                     <NeoIcon name="Box" size={32} color="#FF5722" variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.inventoryTitle}>{t('headersFirst.inventRioDeRisco', 'Inventário de Risco')}</Text>
+                                    <Text style={[styles.inventoryTitle, { color: textPrimary }]}>{t('headersFirst.inventRioDeRisco', 'Inventário de Risco')}</Text>
                                     <Text style={styles.inventorySubtitle}>
                                         {t('headersFirst.mapeie25ItensPerigososAirFryerVidrosEsca', 'Mapeie 25+ itens perigosos (Air Fryer, Vidros, Escadas...) para ativar a proteção inteligente.')}
                                     </Text>

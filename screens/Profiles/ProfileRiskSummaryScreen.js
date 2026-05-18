@@ -14,6 +14,7 @@ import AppBackground from '../../components/AppBackground';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import SafetyReportService from '../../services/SafetyReportService';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const TYPE_COLOR = {
     baby: '#EC4899', toddler: '#F59E0B', child: '#3B82F6',
@@ -42,7 +43,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                     <Text style={s.riskEnvLabel}>{item.roomLabel}</Text>
                 </View>
 
-                <Text style={s.riskTitle}>{item.titulo}</Text>
+                <Text style={[s.riskTitle, { color: textPrimary }]}>{item.titulo}</Text>
 
                 {item.implication ? (
                     <View style={[s.implicationBlock, ack && s.implicationBlockAck]}>
@@ -102,6 +103,10 @@ export default function ProfileRiskSummaryScreen() {
     const navigation = useNavigation();
     const route = useRoute();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textSecondary = themeColors.neutral[700];
 
     const [loading, setLoading] = useState(true);
     const [report, setReport] = useState(null);
@@ -262,7 +267,7 @@ export default function ProfileRiskSummaryScreen() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER consistente */}
                 <View style={s.header}>
@@ -328,7 +333,7 @@ export default function ProfileRiskSummaryScreen() {
                     </NeoCard>
 
                     {/* ANÁLISE PERSONALIZADA */}
-                    <Text style={s.sectionLabel}>
+                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                         {t('riskSummary.analysisLabel', 'Análise personalizada')}
                     </Text>
                     {!aiReport ? (
@@ -376,7 +381,7 @@ export default function ProfileRiskSummaryScreen() {
                     {activeRisks.length > 0 && (
                         <View style={{ marginTop: 24 }}>
                             <View style={s.sectionHeaderRow}>
-                                <Text style={s.sectionLabel}>
+                                <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                     {t('riskSummary.activeIssues', 'Irregularidades ativas')}
                                 </Text>
                                 <View style={[s.countBadge, { backgroundColor: 'rgba(229,57,53,0.14)' }]}>
@@ -401,7 +406,7 @@ export default function ProfileRiskSummaryScreen() {
                     {ackRisks.length > 0 && (
                         <View style={{ marginTop: 24 }}>
                             <View style={s.sectionHeaderRow}>
-                                <Text style={s.sectionLabel}>
+                                <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                     {t('riskSummary.acknowledged', 'Reconhecidos pelo responsável')}
                                 </Text>
                                 <View style={[s.countBadge, { backgroundColor: 'rgba(0,0,0,0.06)' }]}>
@@ -426,7 +431,7 @@ export default function ProfileRiskSummaryScreen() {
                     {pendingItems && pendingItems.length > 0 && (
                         <View style={{ marginTop: 24 }}>
                             <View style={s.sectionHeaderRow}>
-                                <Text style={s.sectionLabel}>
+                                <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                     {t('riskSummary.unverified', 'Não verificados')}
                                 </Text>
                                 <View style={[s.countBadge, { backgroundColor: 'rgba(245,158,11,0.18)' }]}>
@@ -460,7 +465,7 @@ export default function ProfileRiskSummaryScreen() {
                     {/* VOCÊ SABIA */}
                     {curiosity && (
                         <View style={{ marginTop: 24 }}>
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('riskSummary.didYouKnow', 'Você sabia?')}
                             </Text>
                             <NeoCard variant="elevated" style={s.curiosityCard}>
@@ -475,7 +480,7 @@ export default function ProfileRiskSummaryScreen() {
                     {/* OUTROS MORADORES */}
                     {otherProfiles && otherProfiles.length > 0 && (
                         <View style={{ marginTop: 24 }}>
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('riskSummary.otherResidents', 'Outros moradores')}
                             </Text>
                             <View style={s.miniGrid}>

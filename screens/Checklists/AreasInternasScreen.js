@@ -20,6 +20,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { areasInternas } from '../../data/areas_internas';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 // Mapeamento de IDs de ambiente para IDs de áreas internas
 const AMBIENTE_TO_AREA = {
@@ -47,6 +48,10 @@ const AMBIENTE_TO_AREA = {
 export default function AreasInternasScreen({ navigation, route }) {
   // BUG FIX: ambienteId nunca era extraído do route.params (causava ReferenceError silencioso)
   const ambienteId = route?.params?.ambienteId || null;
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[800];
 
   const [activeResidenceId, setActiveResidenceId] = useState(null);
   const [mapping, setMapping] = useState([]);
@@ -213,7 +218,7 @@ export default function AreasInternasScreen({ navigation, route }) {
           </View>
 
           <View style={s.cardContent}>
-            <Text style={s.cardTitle}>{item.titulo}</Text>
+            <Text style={[s.cardTitle, { color: textPrimary }]}>{item.titulo}</Text>
 
             <Text
               style={[
@@ -276,7 +281,7 @@ export default function AreasInternasScreen({ navigation, route }) {
 
                   return (
                     <View key={index} style={s.questionCard}>
-                      <Text style={s.questionText}>{step}</Text>
+                      <Text style={[s.questionText, { color: textBody }]}>{step}</Text>
 
                       <View style={s.responseRow}>
                         <TouchableOpacity
@@ -362,7 +367,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                 {item.oQueNaoFazer.map((step, index) => (
                   <View key={index} style={s.stepRow}>
                     <View style={s.bulletError} />
-                    <Text style={s.stepText}>{step}</Text>
+                    <Text style={[s.stepText, { color: textBody }]}>{step}</Text>
                   </View>
                 ))}
               </View>
@@ -411,7 +416,7 @@ export default function AreasInternasScreen({ navigation, route }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* HEADER padronizado */}
         <View style={s.header}>

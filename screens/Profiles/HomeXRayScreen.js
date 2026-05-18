@@ -20,10 +20,14 @@ import NeoIcon from '../../components/NeoIcon';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function HomeXRayScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textSecondary = themeColors.neutral[700];
 
     const [residences, setResidences] = useState([]);
     const [allProfiles, setAllProfiles] = useState([]);
@@ -114,7 +118,7 @@ export default function HomeXRayScreen() {
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
                             <People size={14} color={Neo.colors.neutral[600]} variant="Bold" />
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('homeXRay.inhabitantsLabel', 'Moradores e pets')}
                             </Text>
                         </View>
@@ -148,7 +152,7 @@ export default function HomeXRayScreen() {
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
                             <Map size={14} color={Neo.colors.neutral[600]} variant="Bold" />
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('homeXRay.environmentsLabel', 'Ambientes mapeados')}
                             </Text>
                         </View>
@@ -170,7 +174,7 @@ export default function HomeXRayScreen() {
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
                             <ShieldTick size={14} color={Neo.colors.neutral[600]} variant="Bold" />
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('homeXRay.inherentRisksLabel', 'Riscos inerentes')}
                             </Text>
                         </View>
@@ -206,7 +210,7 @@ export default function HomeXRayScreen() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER consistente */}
                 <View style={s.header}>

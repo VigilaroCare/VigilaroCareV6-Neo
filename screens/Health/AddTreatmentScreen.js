@@ -10,6 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import HealthService from '../../services/HealthService';
 import { useProfiles } from '../../contexts/ProfileContext';
+import { useIsDark } from '../../utils/ThemeContext';
 
 // Components
 import NeoCard from '../../components/NeoCard';
@@ -19,6 +20,7 @@ import AppBackground from '../../components/AppBackground';
 export default function AddTreatmentScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const { primaryProfile, profiles } = useProfiles();
+    const isDark = useIsDark();
 
     const [editingId, setEditingId] = useState(null);
     const [name, setName] = useState('');
@@ -105,7 +107,7 @@ export default function AddTreatmentScreen({ navigation, route }) {
     return (
         <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
-            <StatusBar style="dark" />
+            <StatusBar style={isDark ? 'light' : 'dark'} />
 
             {/* HEADER padronizado */}
             <View style={styles.header}>

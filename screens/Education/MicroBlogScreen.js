@@ -14,9 +14,14 @@ import { ArrowLeft } from 'iconsax-react-native';
 import AppBackground from '../../components/AppBackground';
 import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blog';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function MicroBlogScreen({ navigation }) {
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[800];
     const [activeCategory, setActiveCategory] = useState('all');
 
     const filteredArticles = useMemo(() => {
@@ -57,7 +62,7 @@ export default function MicroBlogScreen({ navigation }) {
                         </View>
                         <Text style={styles.readTime}>⏱️ {article.readTime} min</Text>
                     </View>
-                    <Text style={styles.articleTitle} numberOfLines={2}>{t_field(article, 'title')}</Text>
+                    <Text style={[styles.articleTitle, { color: textBody }]} numberOfLines={2}>{t_field(article, 'title')}</Text>
                     <Text style={styles.articlePreview} numberOfLines={2}>
                         {t_field(article, 'summary').substring(0, 100)}...
                     </Text>
@@ -77,7 +82,7 @@ export default function MicroBlogScreen({ navigation }) {
                         <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={styles.headerTitle}>📰 Micro Blog</Text>
+                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">📰 Micro Blog</Text>
                         <Text style={styles.headerSubtitle}>Prevenir em Casa</Text>
                     </View>
                     <View style={{ width: 40 }} />

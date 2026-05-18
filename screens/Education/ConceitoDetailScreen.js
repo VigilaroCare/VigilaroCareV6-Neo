@@ -14,10 +14,15 @@ import NeoIcon from '../../components/NeoIcon';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array, t_object } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function ConceitoDetailScreen({ route, navigation }) {
   const { t } = useTranslation('common');
   const { conceito } = route.params;
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textBody = themeColors.neutral[700];   // sobrescreve #4B5563 em dark
+  const textMuted = themeColors.neutral[500];
 
   // Determine Icon/Emoji/Image to show
   const HeroIcon = conceito.icon;
@@ -30,10 +35,10 @@ export default function ConceitoDetailScreen({ route, navigation }) {
 
   const renderList = (items, bulletColor = '#374151') => {
     if (!items) return null;
-    if (typeof items === 'string') return <Text style={[styles.text, { color: Neo.colors.neutral[700], fontSize: 16 }]}>{items}</Text>;
+    if (typeof items === 'string') return <Text style={[styles.text, { color: textBody, fontSize: 16 }]}>{items}</Text>;
     if (Array.isArray(items)) {
       return items.map((item, index) => (
-        <View key={index} style={styles.listItem}><View style={[styles.bullet, { backgroundColor: bulletColor }]} /><Text style={[styles.text, { color: Neo.colors.neutral[700], fontSize: 16 }]}>{item}</Text></View>
+        <View key={index} style={styles.listItem}><View style={[styles.bullet, { backgroundColor: bulletColor }]} /><Text style={[styles.text, { color: textBody, fontSize: 16 }]}>{item}</Text></View>
       ));
     }
     if (typeof items === 'object') {
@@ -84,8 +89,8 @@ export default function ConceitoDetailScreen({ route, navigation }) {
   return (
     <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-        <StatusBar barStyle="dark-content" />
-        <View style={styles.header}><TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}><ArrowLeft size={28} color={Neo.colors.neutral[800]} /></TouchableOpacity></View>
+        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+        <View style={styles.header}><TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} accessibilityRole="button" accessibilityLabel={t('common.back', 'Voltar')}><ArrowLeft size={28} color={themeColors.neutral[800]} /></TouchableOpacity></View>
         <ScrollView contentContainerStyle={[styles.scrollContent, { paddingBottom: 240 }]} showsVerticalScrollIndicator={false}>
           <View style={styles.heroSection}>
               {HeroImage ? (
