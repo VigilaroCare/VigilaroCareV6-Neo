@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 80
+**Commits totais no branch:** 81
 
 ---
 
@@ -42,11 +42,18 @@ O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza 
 - ✅ MicroArticleScreen — title, meta, divider, body
 - ✅ ChecklistDetailScreen — auditado, cascata do NeoTypography cobre quase tudo (só `loadingText` ficou com cor branca hardcoded, mas é bug pré-existente em ambos os temas)
 
-**Lote 2 — próximo:**
+**Lote 2 — refatorado (2026-05-18) baseado em prints do user:**
+- ✅ EducationEnvironmentsScreen — nome do ambiente legível + REMOVIDA frase redundante "Guia de prevenção" + chevron box theme-aware
+- ✅ PetPregnancyGuideScreen — section titles + item bullets text + StatusBar/backBtn
+- ✅ AgeGroupDetailScreen — hero subtitle/desc, "Principais Riscos" header, riskTitle/riskDesc, preventionBox bg (era "white pill" em dark)
+
+**Lote 3 — próximo:**
 - TravelModeScreen (3ª tab principal)
 - Hubs internos: KitsHubScreen, FerramentasIAScreenNeo, RiscosMenuScreen
 - Formulários de Health: AddEvent/AddExam/AddTreatment/etc
 - Perfis: ProfileRiskSummary, HomeXRay
+- Telas Pet restantes: PetFoodSafety, PetWellness, AvesSeguras, PetPregnancy (pai do guide)
+- ConceitoDetailScreen — denso com inline overrides; precisa refactor mais cuidadoso
 
 **Padrão usado nos refactors:**
 ```js

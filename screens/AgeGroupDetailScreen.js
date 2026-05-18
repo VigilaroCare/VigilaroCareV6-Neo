@@ -9,11 +9,17 @@ import NeoCard from '../components/NeoCard';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function AgeGroupDetailScreen({ route, navigation }) {
     const { group } = route.params;
     const [checklistState, setChecklistState] = useState({});
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[800];
+    const textMuted = themeColors.neutral[600];
 
     // Gerar ID único para persistência baseado no título do grupo
     // Ex: 'Pets Adultos' -> 'custom_Pets_Adultos'
@@ -46,12 +52,17 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
     return (
         <AppBackground>
         <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top']}>
-            <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor="transparent" />
 
             {/* Header Neo Glass Unified */}
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                 </TouchableOpacity>
             </View>
             <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
@@ -73,9 +84,9 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                         }}>
                              <NeoIcon name={group.icon} size={32} color={Neo.colors.neutral.white} />
                         </View>
-                        <Text style={{ color: group.color, fontSize: 20, marginBottom: 4, lineHeight: 24, fontWeight: 'bold', textAlign: 'center' }}>{t_field(group, 'title')}</Text>
-                        <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', lineHeight: 16, textAlign: 'center', marginBottom: 8 }}>{t_field(group, 'subtitle')}</Text>
-                        <Text style={{ fontSize: 14, color: Neo.colors.neutral[800], textAlign: 'center', lineHeight: 20 }}>{t_field(group, 'description')}</Text>
+                        <Text style={{ color: group.color, fontSize: 20, marginBottom: 4, lineHeight: 24, fontWeight: 'bold', textAlign: 'center' }} accessibilityRole="header">{t_field(group, 'title')}</Text>
+                        <Text style={{ color: textBody, fontWeight: 'bold', lineHeight: 16, textAlign: 'center', marginBottom: 8 }}>{t_field(group, 'subtitle')}</Text>
+                        <Text style={{ fontSize: 14, color: textBody, textAlign: 'center', lineHeight: 20 }}>{t_field(group, 'description')}</Text>
                     </View>
                 </NeoCard>
             </View>
@@ -85,19 +96,19 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                 {/* Risks Section */}
                 {group.risks && group.risks.length > 0 && (
                     <>
-                        <Text style={styles.sectionTitle}>{t('ageGroup.risksTitle', 'Principais Riscos')}</Text>
-                        <View style={styles.listContainer}>
+                        <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('ageGroup.risksTitle', 'Principais Riscos')}</Text>
+                        <View style={[styles.listContainer, { backgroundColor: isDark ? 'rgba(28,28,30,0.5)' : 'rgba(255,255,255,0.7)' }]}>
                             {group.risks.map((risk, index) => (
                                 <View key={risk.id || index} style={styles.riskCard}>
                                     <View style={[styles.riskHeader, { borderLeftColor: risk.cor || Neo.colors.feedback.error }]}>
                                         <NeoIcon name={risk.icone || "alert-circle"} size={24} color={risk.cor || Neo.colors.feedback.error} />
-                                        <Text style={styles.riskTitle}>{t_field(risk, 'titulo') || t_field(risk, 'text')}</Text>
+                                        <Text style={[styles.riskTitle, { color: textPrimary }]}>{t_field(risk, 'titulo') || t_field(risk, 'text')}</Text>
                                     </View>
-                                    {t_field(risk, 'descricao') && <Text style={styles.riskDesc}>{t_field(risk, 'descricao')}</Text>}
+                                    {t_field(risk, 'descricao') && <Text style={[styles.riskDesc, { color: textMuted }]}>{t_field(risk, 'descricao')}</Text>}
                                     {t_field(risk, 'prevencao') && (
-                                        <View style={styles.preventionBox}>
+                                        <View style={[styles.preventionBox, { backgroundColor: isDark ? themeColors.neutral[200] : themeColors.neutral[50] }]}>
                                             <Text style={styles.preventionLabel}>{t('ageGroup.howToPrevent', 'Como Prevenir:')}</Text>
-                                            <Text style={styles.preventionText}>{t_field(risk, 'prevencao')}</Text>
+                                            <Text style={[styles.preventionText, { color: textPrimary }]}>{t_field(risk, 'prevencao')}</Text>
                                         </View>
                                     )}
                                 </View>

@@ -18,10 +18,13 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function EducationEnvironmentsScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
     const THEME_COLOR = '#FF9800'; // Orange
 
     const renderCard = (id) => {
@@ -39,11 +42,10 @@ export default function EducationEnvironmentsScreen({ navigation }) {
                         <NeoIcon name={item.iconName} size={26} color={item.color} variant="Bold" />
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.cardTitle}>{item.label}</Text>
-                        <Text style={styles.cardDesc}>{t('envScreens.preventionGuide', 'Guia de prevenção')}</Text>
+                        <Text style={[styles.cardTitle, { color: themeColors.neutral[900] }]}>{item.label}</Text>
                     </View>
-                    <View style={styles.chevronBox}>
-                        <ArrowRight2 size={20} color={Neo.colors.neutral[400]} />
+                    <View style={[styles.chevronBox, { backgroundColor: isDark ? themeColors.neutral[300] : themeColors.neutral[100] }]}>
+                        <ArrowRight2 size={20} color={themeColors.neutral[500]} />
                     </View>
                 </NeoCard>
             </TouchableOpacity>
@@ -67,15 +69,17 @@ export default function EducationEnvironmentsScreen({ navigation }) {
     return (
         <AppBackground>
             <View style={styles.container}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
                 {/* Header Standardized */}
                 <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={styles.backBtn}
+                        style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)' }]}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                        <ArrowLeft size={24} color={themeColors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H2 style={{ color: Neo.colors.neutral[900] }}>{t('envScreens.title', 'Riscos e Orientações por Ambiente')}</H2>

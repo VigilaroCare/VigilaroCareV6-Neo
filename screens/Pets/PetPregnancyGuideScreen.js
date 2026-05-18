@@ -22,24 +22,31 @@ import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_PREGNANCY_DATA } from '../../data/pet_pregnancy_data';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function PetPregnancyGuideScreen({ navigation }) {
     const { t } = useTranslation('common');
     const sections = PET_PREGNANCY_DATA.sections;
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[800];
 
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER padronizado */}
                 <View style={s.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={s.backBtn}
+                        style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
                         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H1 style={s.title}>
@@ -76,14 +83,14 @@ export default function PetPregnancyGuideScreen({ navigation }) {
                                 <View style={[s.iconBox, { backgroundColor: section.color + '20' }]}>
                                     <NeoIcon name={section.icon} size={20} color={section.color} variant="Bold" />
                                 </View>
-                                <Text style={s.sectionTitle}>{t_field(section, 'title')}</Text>
+                                <Text style={[s.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t_field(section, 'title')}</Text>
                             </View>
 
                             <View style={s.itemsList}>
                                 {section.items.map((item, index) => (
                                     <View key={index} style={s.item}>
                                         <View style={[s.bullet, { backgroundColor: section.color }]} />
-                                        <Text style={s.itemText}>{t_field(item, 'text')}</Text>
+                                        <Text style={[s.itemText, { color: textBody }]}>{t_field(item, 'text')}</Text>
                                     </View>
                                 ))}
                             </View>
