@@ -1,51 +1,120 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext, useMemo, useCallback } from 'react';
+import { useColorScheme } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ThemeContext = createContext();
+import { DS, DarkDS, LightColors, DarkColors } from './DesignSystem2026';
 
-export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
+const STORAGE_KEY = '@vigilaro_theme_mode'; // 'system' | 'light' | 'dark'
 
-  const lightTheme = {
-    background: '#F9FAFB',
-    card: '#FFFFFF',
-    cardBackground: '#FFFFFF',
-    text: '#1F2937',
-    textPrimary: '#1F2937',
-    textSecondary: '#6B7280',
-    subText: '#6B7280',
-    primary: '#6200EE',
-    primaryGradient: ['#6200EE', '#3700B3'],
-    border: '#E5E7EB',
-    success: '#10B981',
-    warning: '#F59E0B',
-    danger: '#EF4444',
-  };
+/**
+ * Constrói o objeto `theme` (shape flat de back-compat) a partir das cores DS.
+ * Mantido para componentes legacy que consomem `theme.background`, etc.
+ */
+function buildLegacyTheme(colors) {
+    return {
+        background: colors.neutral[100],
+        card: colors === DarkColors ? colors.neutral[200] : colors.neutral.white,
+        cardBackground: colors === DarkColors ? colors.neutral[200] : colors.neutral.white,
+        text: colors.neutral[900],
+        textPrimary: colors.neutral[900],
+        textSecondary: colors.neutral[700],
+        subText: colors.neutral[700],
+        primary: colors.primary[500],
+        primaryGradient: [colors.primary[500], colors.primary[700]],
+        border: colors.neutral[300],
+        success: colors.feedback.success,
+        warning: colors.feedback.warning,
+        danger: colors.feedback.error,
+    };
+}
 
-  const darkTheme = {
-    background: '#111827',
-    card: '#1F2937',
-    cardBackground: '#1F2937',
-    text: '#F9FAFB',
-    textPrimary: '#F9FAFB',
-    textSecondary: '#9CA3AF',
-    subText: '#9CA3AF',
-    primary: '#3B82F6',
-    primaryGradient: ['#3B82F6', '#2563EB'],
-    border: '#374151',
-    success: '#34D399',
-    warning: '#FBBF24',
-    danger: '#F87171',
-  };
-
-  const theme = isDark ? darkTheme : lightTheme;
-
-  const toggleTheme = () => setIsDark(!isDark);
-
-  return (
-    <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+const defaultValue = {
+    mode: 'system',
+    isDark: false,
+    colors: LightColors,
+    theme: buildLegacyTheme(LightColors),
+    setMode: () => {},
+    toggleTheme: () => {},
 };
 
+const ThemeContext = createContext(defaultValue);
+
+export const ThemeProvider = ({ children }) => {
+    const systemScheme = useColorScheme();
+    const [mode, setModeState] = useState('system');
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const stored = await AsyncStorage.getItem(STORAGE_KEY);
+                if (stored === 'light' || stored === 'dark' || stored === 'system') {
+                    setModeState(stored);
+                }
+            } catch (e) {
+                // AsyncStorage indisponível — mantém 'system'
+            }
+        })();
+    }, []);
+
+    const isDark = useMemo(() => {
+        if (mode === 'system') return systemScheme === 'dark';
+        return mode === 'dark';
+    }, [mode, systemScheme]);
+
+    const colors = isDark ? DarkColors : LightColors;
+    const theme = useMemo(() => buildLegacyTheme(colors), [colors]);
+
+    const setMode = useCallback(async (newMode) => {
+        if (newMode !== 'light' && newMode !== 'dark' && newMode !== 'system') return;
+        setModeState(newMode);
+        try {
+            await AsyncStorage.setItem(STORAGE_KEY, newMode);
+        } catch (e) {
+            // Falha silenciosa — preferência ainda fica em memória
+        }
+    }, []);
+
+    // Back-compat: alterna apenas entre light/dark (sem 'system')
+    const toggleTheme = useCallback(() => {
+        setMode(isDark ? 'light' : 'dark');
+    }, [isDark, setMode]);
+
+    const value = useMemo(() => ({
+        mode,
+        isDark,
+        colors,
+        theme,
+        setMode,
+        toggleTheme,
+    }), [mode, isDark, colors, theme, setMode, toggleTheme]);
+
+    return (
+        <ThemeContext.Provider value={value}>
+            {children}
+        </ThemeContext.Provider>
+    );
+};
+
+/**
+ * Hook principal — retorna { mode, isDark, colors, theme, setMode, toggleTheme }.
+ * Compatível com consumidores existentes que destruturam `theme`.
+ */
 export const useTheme = () => useContext(ThemeContext);
+
+/**
+ * Hook simplificado — retorna o objeto de cores DS ativo (LightColors ou DarkColors).
+ * Preferir este em código novo (mais explícito que `useTheme().colors`).
+ */
+export const useThemeColors = () => useContext(ThemeContext).colors;
+
+/**
+ * Hook simplificado — retorna apenas o boolean isDark.
+ * Útil em componentes que só precisam variar tint (ex: BlurView).
+ */
+export const useIsDark = () => useContext(ThemeContext).isDark;
+
+/**
+ * Retorna o DS completo (light ou dark) — para componentes que queiram acessar
+ * tipografia/spacing/radii sem precisar mexer no tema.
+ */
+export const useThemeDS = () => (useContext(ThemeContext).isDark ? DarkDS : DS);

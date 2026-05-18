@@ -236,11 +236,13 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
             onPress={() => navigation.goBack()}
             style={s.backBtn}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityRole="button"
+            accessibilityLabel={t('common.back', 'Voltar')}
           >
             <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
-            <H1 style={s.title}>{headerTitle}</H1>
+            <H1 style={s.title} accessibilityRole="header">{headerTitle}</H1>
             <Caption style={s.subtitle}>{headerSubtitle}</Caption>
           </View>
         </View>
@@ -360,7 +362,14 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
           {/* ADD */}
           {!modalVisible && (
-            <TouchableOpacity style={s.addButton} onPress={() => setModalVisible(true)} activeOpacity={0.85}>
+            <TouchableOpacity
+              style={s.addButton}
+              onPress={() => setModalVisible(true)}
+              activeOpacity={0.85}
+              accessibilityRole="button"
+              accessibilityLabel={t('headersFirst.adicionarContato', 'Adicionar contato')}
+              accessibilityHint={t('contacts.addHint', 'Abre o formulário para cadastrar um novo contato de emergência.')}
+            >
               <NeoIcon name="AddCircle" size={20} color="#FFF" variant="Bold" />
               <Text style={s.addButtonText}>
                 {t('headersFirst.adicionarContato', 'Adicionar contato')}
@@ -406,12 +415,20 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         <TouchableOpacity
                           onPress={() => whatsappContato(contato.telefone)}
                           style={[s.quickBtn, { backgroundColor: '#25D366' }]}
+                          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                          accessibilityRole="button"
+                          accessibilityLabel={t('contacts.whatsappLabel', 'Enviar WhatsApp para {{name}}', { name: contato.nome })}
+                          accessibilityHint={t('contacts.whatsappHint', 'Abre o WhatsApp com este contato.')}
                         >
                           <NeoIcon name="MessageText1" size={18} color="#FFF" variant="Bold" />
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() => ligarContato(contato.telefone)}
                           style={[s.quickBtn, { backgroundColor: color }]}
+                          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                          accessibilityRole="button"
+                          accessibilityLabel={t('contacts.callLabel', 'Ligar para {{name}}', { name: contato.nome })}
+                          accessibilityHint={t('contacts.callHint', 'Inicia uma chamada telefônica para este contato.')}
                         >
                           <NeoIcon name="Call" size={18} color="#FFF" variant="Bold" />
                         </TouchableOpacity>
@@ -419,18 +436,31 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                     </View>
 
                     <View style={s.contatoActions}>
-                      <TouchableOpacity style={s.actionLink} onPress={() => smsContato(contato.telefone)}>
+                      <TouchableOpacity
+                        style={s.actionLink}
+                        onPress={() => smsContato(contato.telefone)}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('contacts.smsLabel', 'Enviar SMS para {{name}}', { name: contato.nome })}
+                      >
                         <NeoIcon name="Sms" size={14} color={Neo.colors.neutral[700]} />
                         <Text style={s.actionLinkText}>SMS</Text>
                       </TouchableOpacity>
                       <View style={{ flex: 1 }} />
-                      <TouchableOpacity style={s.actionLink} onPress={() => editarContato(contato)}>
+                      <TouchableOpacity
+                        style={s.actionLink}
+                        onPress={() => editarContato(contato)}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('contacts.editLabel', 'Editar contato {{name}}', { name: contato.nome })}
+                      >
                         <NeoIcon name="Edit2" size={14} color={Neo.colors.neutral[700]} />
                         <Text style={s.actionLinkText}>Editar</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[s.actionLink, { backgroundColor: Neo.colors.feedback.error + '12' }]}
                         onPress={() => excluirContato(contato.id)}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('contacts.deleteLabel', 'Excluir contato {{name}}', { name: contato.nome })}
+                        accessibilityHint={t('contacts.deleteHint', 'Remove permanentemente este contato da lista.')}
                       >
                         <NeoIcon name="Trash" size={14} color={Neo.colors.feedback.error} />
                         <Text style={[s.actionLinkText, { color: Neo.colors.feedback.error }]}>Excluir</Text>

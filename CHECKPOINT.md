@@ -2,15 +2,18 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 71
+**Commits totais no branch:** 72
 
 ---
 
 ## 🎯 PRÓXIMA TAREFA PRIORITÁRIA
 
-### #2 — Acessibilidade + Dark Mode (próxima sessão)
+### #2 — Acessibilidade + Dark Mode (PARTE 1 CONCLUÍDA, parte 2 pendente)
 
-A frente #1 (imagens reais nos 21 ambientes) está **CONCLUÍDA** — ver "Histórico" abaixo. Próxima ação: começar pela varredura de `accessibilityLabel` nas ~125 telas (detalhes em `## 🗺️ ROADMAP` mais abaixo).
+A frente #2 foi quebrada em duas sub-sessões:
+
+- **Parte 1 ✅ CONCLUÍDA (2026-05-18)** — Infraestrutura de dark mode (DS + ThemeContext + AppBackground + NeoCard), toggle Aparência em AccessibilitySettings, sweep de acessibilidade nas 3 telas mais críticas (SOSCountdown, ContatosEmergencia, HomeScreenNeo), e `reduceMotion` instrumentado em SOSCountdown + ScaleInView (afeta toda HomeScreenNeo).
+- **Parte 2 ⏳ PENDENTE** — Sweep de `accessibilityLabel` nas ~120 telas restantes + validação visual em dark mode dessas telas (várias usarão `Neo.colors.neutral[X]` hardcoded → texto invisível em dark). Lista de hotspots de iteração no Histórico abaixo.
 
 ---
 
@@ -55,6 +58,51 @@ A frente #1 (imagens reais nos 21 ambientes) está **CONCLUÍDA** — ver "Hist�
 | varanda | 17758798 | **Varanda urbana** com mobília |
 
 **Validação visual pendente do user:** ao rodar o app, navegar em Aprender → Riscos por Ambiente → tap em cada ambiente. Se algum não estiver fiel ao contexto, basta dizer o `id` que escolho outra URL Pexels. O sistema de fallback já cobre falhas de carregamento (404).
+
+---
+
+## ✅ Frente #2 — PARTE 1 CONCLUÍDA (2026-05-18)
+
+### Dark Mode — infraestrutura completa
+
+- **`utils/DesignSystem2026.js`**: paletas `LightColors` + `DarkColors` definidas, exportadas como named exports. Brand verde (#10B981) mantida nas duas. Neutral invertido. Cores semânticas usam valores oficiais iOS Dark Mode (`#FF453A`, `#30D158`, `#FFD60A`, `#64D2FF`). `DarkDS` espelha `DS` com colors trocadas.
+- **`utils/ThemeContext.js`**: reescrito do zero. 3 modos: `system` (default — segue `useColorScheme`), `light`, `dark`. Persistido em `AsyncStorage` (`@vigilaro_theme_mode`). Hooks: `useTheme()`, `useThemeColors()`, `useIsDark()`, `useThemeDS()`. Mantém retrocompat com SafeScreen (que usa `theme.background`).
+- **`components/AppBackground.js`**: lê tema via `useThemeColors()`. Variante `mist` agora tem gradiente light (verde claro) E dark (verde escuro com tom esverdeado sutil). StatusBar deriva do tema (override manual ainda funciona). MIST exportado mantido só pra compat (light hardcoded — código atual não importa em lugar nenhum).
+- **`components/NeoCard.js`**: BlurView `tint` dinâmico (light/dark). Glass variant tem bordas branco-alpha em light e branco-alpha-baixo em dark. Flat e outline variants também adaptados.
+- **`screens/AccessibilitySettingsScreen.js`**: nova seção "Aparência" com chip-picker de 3 opções (Sistema, Claro, Escuro). Tela inteira refatorada para ler `colors` do tema (labels, descs, dividers, switches, badges, header). Acessibilidade: `accessibilityRole`, labels nos chips e back button.
+
+### Acessibilidade — sweep nas 3 telas mais críticas
+
+- **`screens/Emergency/SOSCountdownScreen.js`**: `accessibilityLiveRegion="assertive"` no countdown, `accessibilityRole="header"`/"button", `accessibilityHint` no cancel. Pulse animation passa a respeitar `reduceMotion` do AccessibilityContext (importante para idosos com vertigem).
+- **`screens/Emergency/ContatosEmergenciaScreen.js`**: labels em back, add, e cada quick action (Call, WhatsApp, SMS) com nome do contato interpolado. Hint em destrutivo (Excluir). hitSlop nas quick actions.
+- **`screens/HomeScreenNeo.js`**: labels no profile card (com nome do perfil ativo), monitor (com status + estado expandido), grid cards (label + status), tool buttons, history link, section header.
+- **`components/ScaleInView.js`**: respeita `reduceMotion` — quando ativo, renderiza no estado final sem animar. Como é usado em todos os grid cards da Home (e provavelmente outros lugares), esse fix tem efeito cascata. Importante: idosos com vertigem ganham UX estática automaticamente.
+
+### Não foi feito nesta parte (vai para Parte 2)
+
+- ❌ Sweep das ~120 telas restantes (a8labels nos botões secundários — KnowledgeHub, hubs, formulários, settings sub-screens)
+- ❌ Refatorar as telas que usam `Neo.colors.neutral[X]` hardcoded para ler do tema dinâmico (no momento, muitas telas vão ter texto preto em fundo escuro quando o user ligar dark mode)
+- ❌ Validação manual VoiceOver/TalkBack
+- ❌ Validação contraste WCAG AA pair-by-pair
+
+**Como continuar na Parte 2:**
+1. User testa Aparência → Escuro no app. Lista quais telas têm problema visual.
+2. Para cada tela problemática, swap `Neo.colors.neutral[X]` → `useThemeColors().neutral[X]` (ou usar `useTheme()`).
+3. Sweep accessibilityLabel batches de ~10-15 telas por vez.
+
+### Arquivos novos / refatorados
+
+```
+utils/DesignSystem2026.js       — DarkColors + DarkDS exports
+utils/ThemeContext.js           — reescrito (system/light/dark + persistência)
+components/AppBackground.js     — theme-aware
+components/NeoCard.js           — theme-aware (BlurView tint)
+components/ScaleInView.js       — respeita reduceMotion
+screens/AccessibilitySettingsScreen.js — toggle Aparência + theme-aware
+screens/Emergency/SOSCountdownScreen.js — a11y completa + reduceMotion
+screens/Emergency/ContatosEmergenciaScreen.js — a11y nas ações críticas
+screens/HomeScreenNeo.js        — a11y nas ações principais
+```
 
 ---
 
@@ -148,15 +196,15 @@ Validado com o user: estas são as frentes que de fato **destacam o app dentre c
 
 ```
 Sessão N+1: ✅ Imagens reais 21 ambientes — CONCLUÍDA (2026-05-18)
-Sessão N+2: ◀ PRÓXIMA — Acessibilidade: sweep accessibilityLabel + testes VoiceOver/TalkBack
-Sessão N+3: Dark Mode — implementar ThemeContext + adaptar AppBackground/NeoCard
+Sessão N+2: ✅ Dark Mode infra + a11y telas críticas — CONCLUÍDA (2026-05-18)
+Sessão N+3: ◀ PRÓXIMA — Sweep a11y nas ~120 telas restantes + refatorar Neo.colors hardcoded
 Sessão N+4: Microinterações parte 1 — taps, stagger, parallax hero
 Sessão N+5: Microinterações parte 2 — swipe-to-delete, skeleton loaders, transitions
 Sessão N+6: Sons + Haptics padronização
 Sessão N+7+: Identidade visual (se viável)
 ```
 
-**Total estimado:** 5-6 sessões focadas restantes para o app entrar em outro patamar comparado aos top-tier do setor.
+**Total estimado:** 4-5 sessões focadas restantes.
 
 ---
 
@@ -283,7 +331,7 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
 ## 📞 Para continuar na próxima sessão
 
 1. **Cumprimentar e referenciar este checkpoint:** _"Continue de onde parou conforme `CHECKPOINT.md`"_
-2. **Prioridade clara:** Acessibilidade (frente #2) — começar pela varredura de `accessibilityLabel` nas telas mais críticas (SOS, Login, Contatos Emergência, EnvironmentGuide)
-3. **Validar imagens:** o user pode antes pedir uma volta de validação visual nas fotos dos 21 ambientes (rodar o app e checar tap a tap). Se alguma estiver fora de contexto, basta o `id` do ambiente que troco a URL.
+2. **Prioridade clara:** Frente #2 Parte 2 — sweep accessibilityLabel nas ~120 telas restantes + refatorar `Neo.colors.neutral[X]` → tema dinâmico onde der overflow visual em dark.
+3. **Validar dark mode + imagens:** antes de iniciar, peça pro user rodar o app, ligar Aparência → Escuro, e listar telas com texto invisível. Depois validar visualmente as 21 fotos Pexels dos ambientes.
 
 Tudo no branch `claude/unruffled-jennings-51c18f` — pronto pra merge na main quando o user decidir.

@@ -15,6 +15,7 @@ import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 
 import { useAccessibility } from '../context/AccessibilityContext';
+import { useTheme } from '../utils/ThemeContext';
 
 export default function AccessibilitySettingsScreen() {
     const navigation = useNavigation();
@@ -25,6 +26,7 @@ export default function AccessibilitySettingsScreen() {
         leftHandedMode, toggleLeftHanded,
     } = useAccessibility();
     const { t } = useTranslation();
+    const { mode, setMode, isDark, colors } = useTheme();
 
     const isLargeText = fontSizeLevel > 1;
     const toggleLargeText = (val) => updateFontSize(val ? 1.4 : 1);
@@ -34,6 +36,20 @@ export default function AccessibilitySettingsScreen() {
         toggleFn(val);
     };
 
+    const hapticThemeSet = (newMode) => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        setMode(newMode);
+    };
+
+    const themeOptions = [
+        { id: 'system', label: t('settings.themeSystem', 'Sistema'), iconName: 'Setting4' },
+        { id: 'light',  label: t('settings.themeLight',  'Claro'),   iconName: 'Sun1' },
+        { id: 'dark',   label: t('settings.themeDark',   'Escuro'),  iconName: 'Moon' },
+    ];
+
+    const dividerColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+    const switchTrackFalse = isDark ? colors.neutral[400] : colors.neutral[300];
+
     const renderSettingItem = ({
         label, desc, iconName, iconVariant = 'Bold', color,
         value, onToggle, showSwitch = true, isLast = false,
@@ -41,26 +57,26 @@ export default function AccessibilitySettingsScreen() {
         <View
             style={[
                 s.settingRow,
-                !isLast && { borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.06)' },
+                !isLast && { borderBottomWidth: 1, borderBottomColor: dividerColor },
             ]}
         >
             <View style={[s.settingIcon, { backgroundColor: color + '33' }]}>
                 <NeoIcon name={iconName} size={22} color={color} variant={iconVariant} />
             </View>
             <View style={s.settingTextCol}>
-                <Body style={s.settingLabel}>{label}</Body>
-                <Small style={s.settingDesc}>{desc}</Small>
+                <Body style={[s.settingLabel, { color: colors.neutral[900] }]}>{label}</Body>
+                <Small style={[s.settingDesc, { color: colors.neutral[700] }]}>{desc}</Small>
             </View>
             {showSwitch ? (
                 <Switch
                     value={value}
                     onValueChange={hapticToggle(onToggle)}
-                    trackColor={{ false: Neo.colors.neutral[300], true: color }}
-                    thumbColor={Neo.colors.neutral.white}
+                    trackColor={{ false: switchTrackFalse, true: color }}
+                    thumbColor={isDark ? colors.neutral[900] : colors.neutral.white}
                 />
             ) : (
-                <View style={s.nativeBadge}>
-                    <Caption style={s.nativeBadgeText}>{t('settings.native')}</Caption>
+                <View style={[s.nativeBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.06)' }]}>
+                    <Caption style={[s.nativeBadgeText, { color: colors.neutral[700] }]}>{t('settings.native')}</Caption>
                 </View>
             )}
         </View>
@@ -69,18 +85,20 @@ export default function AccessibilitySettingsScreen() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER — back + title (padrão dos detalhes/configurações) */}
                 <View style={s.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={s.backBtn}
+                        style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
                         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={colors.neutral[800]} />
                     </TouchableOpacity>
-                    <H1 style={s.headerTitle}>
+                    <H1 style={[s.headerTitle, { color: colors.neutral[900] }]} accessibilityRole="header">
                         {t('settings.accessibility')}
                     </H1>
                 </View>
@@ -92,20 +110,73 @@ export default function AccessibilitySettingsScreen() {
                     {/* INTRO — informacional, sem "magia/IA" */}
                     <NeoCard variant="elevated" style={s.introCard}>
                         <View style={s.introIconCircle}>
-                            <NeoIcon name="Eye" size={22} color={Neo.colors.primary[600]} variant="Bold" />
+                            <NeoIcon name="Eye" size={22} color={colors.primary[600] || colors.primary[500]} variant="Bold" />
                         </View>
                         <View style={{ flex: 1 }}>
-                            <H3 style={s.introTitle}>
+                            <H3 style={[s.introTitle, { color: colors.neutral[900] }]}>
                                 {t('settings.adaptForYou', 'Ajustes pra você')}
                             </H3>
-                            <Body style={s.introBody}>
+                            <Body style={[s.introBody, { color: colors.neutral[700] }]}>
                                 {t('settings.adaptForYouDesc', 'Personalize o app para se adequar à sua forma de usar.')}
                             </Body>
                         </View>
                     </NeoCard>
 
+                    {/* SEÇÃO APARÊNCIA — toggle light/dark/system */}
+                    <Text style={[s.sectionLabel, { color: colors.neutral[700] }]}>
+                        {t('settings.appearance', 'Aparência')}
+                    </Text>
+                    <NeoCard variant="elevated" style={s.settingCard}>
+                        <View style={s.settingRow}>
+                            <View style={[s.settingIcon, { backgroundColor: '#8B5CF6' + '33' }]}>
+                                <NeoIcon name="Moon" size={22} color="#8B5CF6" variant="Bold" />
+                            </View>
+                            <View style={s.settingTextCol}>
+                                <Body style={[s.settingLabel, { color: colors.neutral[900] }]}>
+                                    {t('settings.theme', 'Tema do app')}
+                                </Body>
+                                <Small style={[s.settingDesc, { color: colors.neutral[700] }]}>
+                                    {t('settings.themeDesc', 'Acompanhe o sistema ou escolha manualmente')}
+                                </Small>
+                            </View>
+                        </View>
+                        <View style={s.themePickerRow}>
+                            {themeOptions.map((opt) => {
+                                const active = mode === opt.id;
+                                return (
+                                    <TouchableOpacity
+                                        key={opt.id}
+                                        onPress={() => hapticThemeSet(opt.id)}
+                                        activeOpacity={0.85}
+                                        accessibilityRole="button"
+                                        accessibilityState={{ selected: active }}
+                                        accessibilityLabel={opt.label}
+                                        style={[
+                                            s.themeChip,
+                                            { borderColor: dividerColor, backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)' },
+                                            active && { backgroundColor: '#8B5CF6', borderColor: '#8B5CF6' },
+                                        ]}
+                                    >
+                                        <NeoIcon
+                                            name={opt.iconName}
+                                            size={18}
+                                            color={active ? '#FFFFFF' : colors.neutral[800]}
+                                            variant="Bold"
+                                        />
+                                        <Small style={[
+                                            s.themeChipLabel,
+                                            { color: active ? '#FFFFFF' : colors.neutral[800] },
+                                        ]}>
+                                            {opt.label}
+                                        </Small>
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+                    </NeoCard>
+
                     {/* SEÇÃO VISÃO */}
-                    <Text style={s.sectionLabel}>
+                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
                         {t('settings.visual', 'Visão')}
                     </Text>
                     <NeoCard variant="elevated" style={s.settingCard}>
@@ -129,7 +200,7 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO MOVIMENTO & ÁUDIO */}
-                    <Text style={[s.sectionLabel, { marginTop: 24 }]}>
+                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
                         {t('settings.audioFeedback', 'Movimento e Áudio')}
                     </Text>
                     <NeoCard variant="elevated" style={s.settingCard}>
@@ -152,7 +223,7 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO INTERAÇÃO */}
-                    <Text style={[s.sectionLabel, { marginTop: 24 }]}>
+                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
                         {t('settings.interaction', 'Interação')}
                     </Text>
                     <NeoCard variant="elevated" style={s.settingCard}>
@@ -283,5 +354,28 @@ const s = StyleSheet.create({
         fontWeight: '800',
         color: Neo.colors.neutral[700],
         letterSpacing: 0.3,
+    },
+
+    // Theme picker row (Sistema / Claro / Escuro)
+    themePickerRow: {
+        flexDirection: 'row',
+        gap: 8,
+        paddingVertical: 10,
+        paddingBottom: 14,
+    },
+    themeChip: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 6,
+        paddingVertical: 10,
+        paddingHorizontal: 8,
+        borderRadius: 12,
+        borderWidth: 1,
+    },
+    themeChipLabel: {
+        fontWeight: '700',
+        fontSize: 13,
     },
 });

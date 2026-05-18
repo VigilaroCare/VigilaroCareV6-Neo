@@ -18,12 +18,14 @@ import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';
 import ProfileService from '../../services/ProfileService';
+import { useAccessibility } from '../../context/AccessibilityContext';
 
 export default function SOSCountdownScreen({ navigation, route }) {
   const { t } = useTranslation();
   const { triggerReason } = route.params || {};
   const [countdown, setCountdown] = useState(triggerReason ? 10 : 5);
   const [sending, setSending] = useState(false);
+  const { reduceMotion } = useAccessibility();
 
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const playerRef = useRef(null);
@@ -49,12 +51,15 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
     startAlert();
 
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, { toValue: 1.2, duration: 500, useNativeDriver: true }),
-        Animated.timing(pulseAnim, { toValue: 1, duration: 500, useNativeDriver: true }),
-      ])
-    ).start();
+    // Pulse desabilitado quando o user prefere movimento reduzido (vertigem, idosos)
+    if (!reduceMotion) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnim, { toValue: 1.2, duration: 500, useNativeDriver: true }),
+          Animated.timing(pulseAnim, { toValue: 1, duration: 500, useNativeDriver: true }),
+        ])
+      ).start();
+    }
 
     const timer = setInterval(() => {
       setCountdown((prev) => {
@@ -143,25 +148,31 @@ export default function SOSCountdownScreen({ navigation, route }) {
     navigation.goBack();
   };
 
+  const titleText = triggerReason === 'FALL'
+    ? t('sosCountdown.fallDetected', 'QUEDA DETECTADA')
+    : triggerReason === 'VITAL_CHECK'
+      ? t('sosCountdown.vitalCheck', 'VERIFICAÇÃO VITAL')
+      : t('sosCountdown.sendingSOS', 'ENVIANDO SOS');
+
   return (
-    <View style={s.overlay}>
+    <View style={s.overlay} accessibilityViewIsModal accessibilityLiveRegion="assertive">
       <StatusBar style="light" />
       <SafeAreaView style={s.container}>
         {!sending ? (
           <>
-            <View style={s.iconCircle}>
+            <View style={s.iconCircle} accessible={false} importantForAccessibility="no">
               <NeoIcon name="Warning2" size={42} color="#FFF" variant="Bold" />
             </View>
 
-            <Text style={s.title}>
-              {triggerReason === 'FALL'
-                ? t('sosCountdown.fallDetected', 'QUEDA DETECTADA')
-                : triggerReason === 'VITAL_CHECK'
-                  ? t('sosCountdown.vitalCheck', 'VERIFICAÇÃO VITAL')
-                  : t('sosCountdown.sendingSOS', 'ENVIANDO SOS')}
+            <Text style={s.title} accessibilityRole="header">
+              {titleText}
             </Text>
 
-            <Animated.View style={[s.circle, { transform: [{ scale: pulseAnim }] }]}>
+            <Animated.View
+              style={[s.circle, { transform: [{ scale: pulseAnim }] }]}
+              accessibilityLiveRegion="assertive"
+              accessibilityLabel={t('sosCountdown.secondsLeft', { count: countdown, defaultValue: `${countdown} segundos restantes` })}
+            >
               <Text style={s.countdownText}>{countdown}</Text>
             </Animated.View>
 
@@ -169,7 +180,14 @@ export default function SOSCountdownScreen({ navigation, route }) {
               {t('sosCountdown.locationMsg', 'Seus contatos receberão sua localização.')}
             </Text>
 
-            <TouchableOpacity style={s.cancelBtn} onPress={handleCancel} activeOpacity={0.85}>
+            <TouchableOpacity
+              style={s.cancelBtn}
+              onPress={handleCancel}
+              activeOpacity={0.85}
+              accessibilityRole="button"
+              accessibilityLabel={t('sosCountdown.cancelBtn', 'CANCELAR')}
+              accessibilityHint={t('sosCountdown.cancelHint', 'Interrompe o envio do alerta SOS e fecha esta tela.')}
+            >
               <Text style={s.cancelText}>
                 {t('sosCountdown.cancelBtn', 'CANCELAR')}
               </Text>
@@ -177,10 +195,10 @@ export default function SOSCountdownScreen({ navigation, route }) {
           </>
         ) : (
           <>
-            <View style={s.iconCircle}>
+            <View style={s.iconCircle} accessible={false} importantForAccessibility="no">
               <NeoIcon name="Send2" size={42} color="#FFF" variant="Bold" />
             </View>
-            <Text style={s.title}>
+            <Text style={s.title} accessibilityRole="header">
               {t('sosCountdown.sendingAlert', 'ENVIANDO ALERTA…')}
             </Text>
             <Text style={s.subtitle}>
@@ -190,6 +208,8 @@ export default function SOSCountdownScreen({ navigation, route }) {
               style={[s.cancelBtn, { backgroundColor: 'rgba(0,0,0,0.45)' }]}
               onPress={handleCancel}
               activeOpacity={0.85}
+              accessibilityRole="button"
+              accessibilityLabel={t('sosCountdown.closeBtn', 'FECHAR')}
             >
               <Text style={s.cancelText}>
                 {t('sosCountdown.closeBtn', 'FECHAR')}

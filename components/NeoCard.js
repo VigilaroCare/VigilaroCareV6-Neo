@@ -1,17 +1,18 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Theme from '../utils/Theme';
+import { useIsDark, useThemeColors } from '../utils/ThemeContext';
 
 /**
- * NeoCard - Cartão Padrão do Sistema DS2026 (Tactical Calm)
+ * NeoCard - Cartão Padrão do Sistema DS2026 (Tactical Calm) — theme-aware.
  *
  * GLASSMORPHISM UNIFICADO:
- * Desde a migração DS2026, 'elevated' e 'glass' renderizam
- * identicamente como vidro jateado (BlurView + fundo translúcido).
- * Sombras e elevation foram erradicados do design system.
+ * 'elevated' e 'glass' renderizam idênticos como vidro jateado (BlurView +
+ * fundo translúcido). Em dark mode, tint vira "dark" e bordas tornam-se
+ * sutis baseadas em white-alpha.
  *
  * Props:
- * - variant: 'elevated'|'glass' (vidro jateado), 'outline' (borda), 'flat' (cinza)
+ * - variant: 'elevated'|'glass' (vidro jateado), 'outline' (borda), 'flat' (cinza), 'primary'
  * - padding: number (default: md)
  * - onPress: function (se fornecido, torna-se tocável)
  */
@@ -24,6 +25,8 @@ export default function NeoCard({
     activeOpacity = 0.8
 }) {
     const { Neo } = Theme;
+    const isDark = useIsDark();
+    const colors = useThemeColors();
     const spacing = padding !== undefined ? padding : Neo.spacing.md;
 
     // DS2026: 'elevated' agora é alias de 'glass' — vidro jateado unificado
@@ -32,7 +35,7 @@ export default function NeoCard({
     const baseStyle = {
         padding: spacing,
         borderRadius: Neo.borderRadius.md,
-        backgroundColor: isGlass ? 'transparent' : '#FFFFFF',
+        backgroundColor: isGlass ? 'transparent' : (isDark ? colors.neutral[200] : '#FFFFFF'),
         overflow: isGlass ? 'hidden' : 'visible',
     };
 
@@ -41,8 +44,17 @@ export default function NeoCard({
     switch (variant) {
         case 'elevated':
         case 'glass':
-            // Glassmorphism unificado — vidro jateado com bordas de luz
-            variantStyle = {
+            // Glassmorphism — bordas de luz em light, bordas sutis brancas em dark
+            variantStyle = isDark ? {
+                backgroundColor: 'rgba(28, 28, 30, 0.55)',
+                borderWidth: 1,
+                borderColor: 'rgba(255, 255, 255, 0.10)',
+                borderTopColor: 'rgba(255, 255, 255, 0.18)',
+                borderLeftColor: 'rgba(255, 255, 255, 0.14)',
+                borderTopWidth: 1.5,
+                borderLeftWidth: 1.2,
+                elevation: 0,
+            } : {
                 backgroundColor: 'rgba(255, 255, 255, 0.35)',
                 borderWidth: 1,
                 borderColor: 'rgba(255, 255, 255, 0.4)',
@@ -56,20 +68,20 @@ export default function NeoCard({
         case 'outline':
             variantStyle = {
                 borderWidth: 1,
-                borderColor: Neo.colors.neutral[200],
+                borderColor: colors.neutral[300],
                 backgroundColor: 'transparent',
             };
             break;
         case 'flat':
             variantStyle = {
-                backgroundColor: 'rgba(240, 242, 245, 0.8)',
+                backgroundColor: isDark ? 'rgba(44, 44, 46, 0.85)' : 'rgba(240, 242, 245, 0.8)',
                 borderWidth: 0,
                 elevation: 0,
             };
             break;
         case 'primary':
             variantStyle = {
-                backgroundColor: Neo.colors.primary[500],
+                backgroundColor: colors.primary[500],
                 elevation: 0,
             };
             break;
@@ -105,7 +117,7 @@ export default function NeoCard({
 
             return (
                 <TouchableOpacity style={layoutStyle} onPress={onPress} activeOpacity={activeOpacity}>
-                    <BlurView intensity={45} tint="light" style={blurStyle}>
+                    <BlurView intensity={45} tint={isDark ? 'dark' : 'light'} style={blurStyle}>
                         {children}
                     </BlurView>
                 </TouchableOpacity>
@@ -113,7 +125,7 @@ export default function NeoCard({
         }
 
         return (
-            <BlurView intensity={45} tint="light" style={flatStyle}>
+            <BlurView intensity={45} tint={isDark ? 'dark' : 'light'} style={flatStyle}>
                 {children}
             </BlurView>
         );

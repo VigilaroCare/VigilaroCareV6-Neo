@@ -1,12 +1,15 @@
 /**
  * AppBackground.js
- * Componente de Background Premium com Névoa Verde
- * VigilaroCare Diamond Design System
- * 
- * Cria um efeito de névoa suave verde que dá profundidade à tela.
- * Os cards "flutuam" sobre este background, criando uma hierarquia visual elegante.
- * 
+ * Componente de Background Premium com Névoa Verde — agora theme-aware.
+ *
+ * Renderiza gradiente de "névoa" (mist) que se adapta ao tema ativo:
+ *   - Light: verde suave / branco quase puro
+ *   - Dark: verde escuro / off-black com leve tom esverdeado (identidade)
+ *
  * Performance: Gradientes estáticos (sem animação), minimalista na GPU.
+ *
+ * Lê o tema do ThemeContext via useThemeColors() — nenhum componente
+ * existente precisa de mudança, props ficam estáveis.
  */
 
 import React from 'react';
@@ -14,66 +17,72 @@ import { View, StyleSheet, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// ============================================
-// PALETA DE NÉVOA (Green Mist) — Home apenas
-// ============================================
-const MIST = {
-    // Gradiente principal: quase branco → verde suave → quase branco
-    primary: [
-        '#D0EBE0',     // Topo (mais escuro e rico)
-        '#B0DBCA',     // Suave
-        '#8CCEA8',     // Ponto intenso (verde realçado para vazar no vidro)
-        '#A1D4B8',     // Suave
-        '#D0EBE0',     // Quase branco
-        '#E4F2EC',     // Base
-    ],
-    // Stops para controlar onde cada cor aparece
-    stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
-    // Manchas decorativas maiores e com leve cor a mais para dar "nuvens" no fundo
-    accent: 'rgba(46, 125, 50, 0.08)',
-    accentStrong: 'rgba(27, 94, 32, 0.12)',
+// Variante 'subtle' — 2-stop limpo para telas de conteúdo (light)
+const SUBTLE_LIGHT = {
+    primary: ['#F0F7F3', '#F7FAF8'],
+    stops: [0, 1],
 };
 
-// Variante sutil: 2-stop limpo para telas de conteúdo
-const SUBTLE = {
-    primary: ['#F0F7F3', '#F7FAF8'],
+// Variante 'subtle' dark — mantém a base escura sem o gradient esverdeado
+const SUBTLE_DARK = {
+    primary: ['#13191E', '#0B1014'],
     stops: [0, 1],
 };
 
 /**
  * AppBackground
- * Wrapper de tela com névoa verde premium.
- * 
- * @param {React.ReactNode} children - Conteúdo da tela
- * @param {object} style - Estilos adicionais para o container
- * @param {boolean} withSafeArea - Se true, aplica padding para SafeArea (default: false)
- * @param {string} statusBarStyle - Estilo da StatusBar ('dark-content' | 'light-content')
- * @param {boolean} showAccents - Se true, mostra manchas decorativas sutis (default: true)
- * @param {'mist'|'subtle'|'solid'} variant - Estilo do fundo (default: 'mist')
+ * Wrapper de tela com névoa verde premium (adapta light/dark).
+ *
+ * @param {React.ReactNode} children
+ * @param {object} style
+ * @param {boolean} withSafeArea
+ * @param {string} statusBarStyle - Override manual. Se omitido, deriva do tema.
+ * @param {boolean} showAccents
+ * @param {'mist'|'subtle'|'solid'} variant
  */
 export default function AppBackground({
     children,
     style,
     withSafeArea = false,
-    statusBarStyle = 'dark-content',
+    statusBarStyle,
     showAccents = true,
     variant = 'mist',
 }) {
     const insets = useSafeAreaInsets();
+    const colors = useThemeColors();
+    const isDark = useIsDark();
 
-    // Determinar gradiente e accents com base na variante
+    const mist = colors.mist;
+
     const isMist = variant === 'mist';
     const isSolid = variant === 'solid';
-    const gradientColors = isMist ? MIST.primary : (isSolid ? ['#F7F8FA', '#F7F8FA'] : SUBTLE.primary);
-    const gradientStops = isMist ? MIST.stops : (isSolid ? [0, 1] : SUBTLE.stops);
+
+    let gradientColors;
+    let gradientStops;
+    if (isMist) {
+        gradientColors = mist.gradient;
+        gradientStops = mist.stops;
+    } else if (isSolid) {
+        gradientColors = isDark ? ['#1C1C1E', '#1C1C1E'] : ['#F7F8FA', '#F7F8FA'];
+        gradientStops = [0, 1];
+    } else {
+        // subtle
+        const sub = isDark ? SUBTLE_DARK : SUBTLE_LIGHT;
+        gradientColors = sub.primary;
+        gradientStops = sub.stops;
+    }
+
     const shouldShowAccents = showAccents && isMist;
 
-    return (
-        <View style={[styles.container, style]}>
-            <StatusBar barStyle={statusBarStyle} backgroundColor="transparent" translucent />
+    // StatusBar: respeita override; senão, deriva do tema
+    const effectiveStatusBarStyle = statusBarStyle ?? (isDark ? 'light-content' : 'dark-content');
 
-            {/* Gradiente de fundo */}
+    return (
+        <View style={[styles.container, { backgroundColor: mist.fallback }, style]}>
+            <StatusBar barStyle={effectiveStatusBarStyle} backgroundColor="transparent" translucent />
+
             <LinearGradient
                 colors={gradientColors}
                 locations={gradientStops}
@@ -82,15 +91,13 @@ export default function AppBackground({
                 end={{ x: 0.7, y: 1 }}
             />
 
-            {/* Manchas decorativas sutis (apenas no modo mist) */}
             {shouldShowAccents && (
                 <>
-                    <View style={[styles.mistAccent, styles.accentTopRight]} />
-                    <View style={[styles.mistAccent, styles.accentBottomLeft]} />
+                    <View style={[styles.mistAccent, styles.accentTopRight, { backgroundColor: mist.accent }]} />
+                    <View style={[styles.mistAccent, styles.accentBottomLeft, { backgroundColor: mist.accentStrong }]} />
                 </>
             )}
 
-            {/* Conteúdo com SafeArea opcional */}
             <View style={[
                 styles.content,
                 withSafeArea && { paddingTop: insets.top }
@@ -102,20 +109,23 @@ export default function AppBackground({
 }
 
 /**
- * Export da paleta para uso externo (ex: cards que precisam se adaptar)
+ * Export retrocompatível — alguns componentes importam { MIST } de AppBackground.
+ * Mantém o shape antigo (com `primary`/`stops`) usando a paleta LIGHT por default.
  */
-export { MIST };
+export const MIST = {
+    primary: ['#D0EBE0', '#B0DBCA', '#8CCEA8', '#A1D4B8', '#D0EBE0', '#E4F2EC'],
+    stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
+    accent: 'rgba(46, 125, 50, 0.08)',
+    accentStrong: 'rgba(27, 94, 32, 0.12)',
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F2F8F4', // Fallback case gradient fails to load
     },
     content: {
         flex: 1,
     },
-
-    // Manchas decorativas de névoa
     mistAccent: {
         position: 'absolute',
         borderRadius: 999,
@@ -125,13 +135,11 @@ const styles = StyleSheet.create({
         right: '-15%',
         width: 300,
         height: 300,
-        backgroundColor: MIST.accent,
     },
     accentBottomLeft: {
         bottom: '15%',
         left: '-10%',
         width: 250,
         height: 250,
-        backgroundColor: MIST.accentStrong,
     },
 });

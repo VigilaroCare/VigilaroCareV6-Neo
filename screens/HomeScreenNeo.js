@@ -255,6 +255,8 @@ export default function HomeScreenNeo() {
                     <TouchableOpacity
                         onPress={() => navigateWithHaptic('QuemProteger')}
                         style={s.profileCardOuter}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
                     >
                         <View style={s.profileCardInner}>
                             <GlassProfileRing
@@ -283,8 +285,15 @@ export default function HomeScreenNeo() {
                     }}
                 >
                     {/* AMBIENTES VISTORIADOS */}
-                    <Text style={s.sectionLabel}>{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
-                    <TouchableOpacity activeOpacity={0.9} onPress={toggleMonitor}>
+                    <Text style={s.sectionLabel} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
+                    <TouchableOpacity
+                        activeOpacity={0.9}
+                        onPress={toggleMonitor}
+                        accessibilityRole="button"
+                        accessibilityState={{ expanded: monitorExpanded }}
+                        accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: scoreMessage.titulo, alert: scoreMessage.alerta })}
+                        accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
+                    >
                         <NeoCard
                             variant="glass"
                             style={{
@@ -364,6 +373,8 @@ export default function HomeScreenNeo() {
                                     onPress={() => navigateWithHaptic(item.route)}
                                     activeOpacity={0.85}
                                     pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
+                                    accessibilityRole="button"
+                                    accessibilityLabel={`${item.label}. ${item.status.label}`}
                                 >
                                     <NeoCard
                                         variant="elevated"
@@ -405,6 +416,8 @@ export default function HomeScreenNeo() {
                             onPress={() => navigateWithHaptic('FerramentasIA')}
                             activeOpacity={0.85}
                             style={{ flex: 1, marginRight: 5 }}
+                            accessibilityRole="button"
+                            accessibilityLabel={t('home.toolbox', 'Ferramentas')}
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
@@ -420,6 +433,8 @@ export default function HomeScreenNeo() {
                             onPress={() => navigateWithHaptic('InfoRotulos')}
                             activeOpacity={0.85}
                             style={{ flex: 1, marginLeft: 5 }}
+                            accessibilityRole="button"
+                            accessibilityLabel={t('home.infoLabels', 'Info Rótulos')}
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(255,109,0,0.10)' }]}>
@@ -441,6 +456,8 @@ export default function HomeScreenNeo() {
                         activeOpacity={0.6}
                         style={s.historyLink}
                         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('home.viewHistory', 'Ver histórico de atividades')}
                     >
                         <Activity size={17} color={Neo.colors.primary[600]} variant="Bold" />
                         <Text style={s.historyLinkText}>
