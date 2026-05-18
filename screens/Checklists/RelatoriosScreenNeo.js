@@ -19,6 +19,7 @@ import NeoText, { H1, H3, Body, Small, Caption } from '../../components/NeoTypog
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 // Helper de cor para badge de status do ambiente
 const getStatusStyle = (status) => {
@@ -31,6 +32,8 @@ const getStatusStyle = (status) => {
 
 export default function RelatoriosScreenNeo({ navigation }) {
     const { t } = useTranslation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
 
     const [loading, setLoading] = useState(true);
     const [chartData, setChartData] = useState([]);
@@ -154,7 +157,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER */}
                 <View style={s.headerBlock}>
@@ -214,7 +217,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             </TouchableOpacity>
 
                             {/* AMBIENTES — grid 3-col */}
-                            <Text style={s.sectionLabel}>
+                            <Text style={[s.sectionLabel, { color: themeColors.neutral[700] }]} accessibilityRole="header">
                                 {t('reports.environmentInspection', 'Ambientes')}
                             </Text>
                             <View style={s.grid}>

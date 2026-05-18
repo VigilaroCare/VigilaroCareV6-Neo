@@ -15,10 +15,13 @@ import AppBackground from '../../components/AppBackground';
 import { ArrowLeft } from 'iconsax-react-native';
 import { MICRO_BLOG_CATEGORIES, MICRO_BLOG_ARTICLES } from '../../data/micro_blog';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function MicroArticleScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
 
     // Suporta tanto article completo quanto apenas articleId
     const article = route.params?.article || MICRO_BLOG_ARTICLES.find(a => a.id === route.params?.articleId);
@@ -81,19 +84,19 @@ export default function MicroArticleScreen({ navigation, route }) {
             <AppBackground>
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                     {/* Title */}
-                    <Text style={styles.title}>{t_field(article, 'title')}</Text>
+                    <Text style={[styles.title, { color: themeColors.neutral[900] }]} accessibilityRole="header">{t_field(article, 'title')}</Text>
 
                     {/* Meta */}
                     <View style={styles.metaRow}>
-                        <Text style={styles.metaText}>⏱️ {article.readTime} min de leitura</Text>
-                        <Text style={styles.metaText}>{t('headersFirst.PrevenirEmCasa', '📰 Prevenir em Casa')}</Text>
+                        <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>⏱️ {article.readTime} min de leitura</Text>
+                        <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{t('headersFirst.PrevenirEmCasa', '📰 Prevenir em Casa')}</Text>
                     </View>
 
                     {/* Divider */}
-                    <View style={styles.divider} />
+                    <View style={[styles.divider, { backgroundColor: themeColors.neutral[300] }]} />
 
                     {/* Article Body */}
-                    <Text style={styles.body}>{t_field(article, 'summary')}</Text>
+                    <Text style={[styles.body, { color: themeColors.neutral[700] }]}>{t_field(article, 'summary')}</Text>
 
                     {/* CTA: Read Full */}
                     <TouchableOpacity onPress={handleReadFull} style={styles.readFullBtn}>

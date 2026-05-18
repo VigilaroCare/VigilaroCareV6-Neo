@@ -22,6 +22,7 @@ import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import * as Haptics from 'expo-haptics';
 import NeoIcon from '../components/NeoIcon';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 const LANGUAGES = [
     { code: 'pt-BR', flag: '🇧🇷', label: 'PT-BR', name: 'Português' },
@@ -34,6 +35,10 @@ export default function MenuScreenNeo() {
     const navigation = useNavigation();
     const { primaryProfile, loadProfiles } = useProfiles();
     const { t, i18n } = useTranslation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textSecondary = themeColors.neutral[700];
 
     const [displayProfile, setDisplayProfile] = useState(null);
     const [activeResidenceName, setActiveResidenceName] = useState('');
@@ -169,7 +174,7 @@ export default function MenuScreenNeo() {
                 <View style={[s.gridIconCircle, { backgroundColor: item.color + '33' }]}>
                     <item.IconComponent size={26} color={item.color} variant="Bold" />
                 </View>
-                <Text style={s.gridLabel} numberOfLines={2}>
+                <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
                     {item.label}
                 </Text>
             </NeoCard>
@@ -179,7 +184,7 @@ export default function MenuScreenNeo() {
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -249,7 +254,7 @@ export default function MenuScreenNeo() {
                     </TouchableOpacity>
 
                     {/* SEÇÃO 1 — CONTA & PREFERÊNCIAS */}
-                    <Text style={s.sectionLabel}>
+                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                         {t('menu.sectionAccount', 'Conta & Preferências')}
                     </Text>
                     <View style={s.grid}>
@@ -257,7 +262,7 @@ export default function MenuScreenNeo() {
                     </View>
 
                     {/* SEÇÃO 2 — AJUDA & INFORMAÇÕES */}
-                    <Text style={[s.sectionLabel, { marginTop: 20 }]}>
+                    <Text style={[s.sectionLabel, { marginTop: 20, color: textSecondary }]} accessibilityRole="header">
                         {t('menu.sectionHelp', 'Ajuda & Informações')}
                     </Text>
                     <View style={s.grid}>
@@ -295,7 +300,7 @@ export default function MenuScreenNeo() {
                         activeOpacity={1}
                         onPress={() => setShowLangPicker(false)}
                     >
-                        <View style={s.modalCard}>
+                        <View style={[s.modalCard, { backgroundColor: isDark ? themeColors.neutral[200] : themeColors.neutral.white }]}>
                             <H3 style={{ textAlign: 'center', marginBottom: 20 }}>
                                 {t('settings.language', 'Idioma')}
                             </H3>

@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 79
+**Commits totais no branch:** 80
 
 ---
 
@@ -35,11 +35,32 @@ O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza 
 **Como vai funcionar:** próxima sessão Claude recebe a lista de telas problemáticas e aplica o padrão (importar `useThemeColors`, declarar `textPrimary`/`textSecondary`, fazer style merge `[s.X, { color: textPrimary }]` no `<Text>` cru). Não é trabalho exploratório — é mecânico.
 
 **Hotspots prováveis (telas com muito `<Text>` cru + `Neo.colors.neutral[X]` hardcoded):**
-- MenuScreenNeo, RelatoriosScreenNeo, TravelModeScreen (outras tabs)
+
+**Lote 1 — refatorado (2026-05-18):**
+- ✅ MenuScreenNeo — section labels, grid labels, theme picker modal
+- ✅ RelatoriosScreenNeo — section label "Ambientes" + StatusBar
+- ✅ MicroArticleScreen — title, meta, divider, body
+- ✅ ChecklistDetailScreen — auditado, cascata do NeoTypography cobre quase tudo (só `loadingText` ficou com cor branca hardcoded, mas é bug pré-existente em ambos os temas)
+
+**Lote 2 — próximo:**
+- TravelModeScreen (3ª tab principal)
 - Hubs internos: KitsHubScreen, FerramentasIAScreenNeo, RiscosMenuScreen
-- Detalhes: ChecklistDetailScreen, MicroArticleScreen, ConceitoDetailScreen
 - Formulários de Health: AddEvent/AddExam/AddTreatment/etc
 - Perfis: ProfileRiskSummary, HomeXRay
+
+**Padrão usado nos refactors:**
+```js
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+// dentro do componente:
+const themeColors = useThemeColors();
+const isDark = useIsDark();
+const textPrimary = themeColors.neutral[900];
+const textSecondary = themeColors.neutral[700];
+// nos <Text style={s.X}>:
+<Text style={[s.X, { color: textPrimary }]}>
+// no <StatusBar>:
+<StatusBar style={isDark ? 'light' : 'dark'} />
+```
 
 ---
 
