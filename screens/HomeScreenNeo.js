@@ -34,6 +34,7 @@ import { H2, Body } from '../components/NeoTypography';
 import CompactActiveMonitor from '../components/CompactActiveMonitor';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
+import TappablePressable from '../components/TappablePressable';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
@@ -258,10 +259,9 @@ export default function HomeScreenNeo() {
                         onPress={() => setModalResidenciaVisible(true)}
                     />
 
-                    <TouchableOpacity
+                    <TappablePressable
                         onPress={() => navigateWithHaptic('QuemProteger')}
                         style={s.profileCardOuter}
-                        accessibilityRole="button"
                         accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
                     >
                         <View style={s.profileCardInner}>
@@ -278,7 +278,7 @@ export default function HomeScreenNeo() {
                                 {currentProfile?.nome?.split(' ')[0] || t('home.myProfile')}
                             </Text>
                         </View>
-                    </TouchableOpacity>
+                    </TappablePressable>
                 </View>
 
                 <ScrollView
@@ -292,10 +292,8 @@ export default function HomeScreenNeo() {
                 >
                     {/* AMBIENTES VISTORIADOS */}
                     <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
-                    <TouchableOpacity
-                        activeOpacity={0.9}
+                    <TappablePressable
                         onPress={toggleMonitor}
-                        accessibilityRole="button"
                         accessibilityState={{ expanded: monitorExpanded }}
                         accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: scoreMessage.titulo, alert: scoreMessage.alerta })}
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
@@ -323,7 +321,7 @@ export default function HomeScreenNeo() {
                                 onStatusChange={setSystemStatus}
                             />
                         </NeoCard>
-                    </TouchableOpacity>
+                    </TappablePressable>
 
                     {/* ───── ABSORÇÃO 1: ALERTA CONTEXTUAL ─────
                         Aparece apenas quando há item realmente urgente.
@@ -374,12 +372,10 @@ export default function HomeScreenNeo() {
                                 screenKey="HomeGrid"
                                 style={s.gridCell}
                             >
-                                <TouchableOpacity
+                                <TappablePressable
                                     style={{ flex: 1 }}
                                     onPress={() => navigateWithHaptic(item.route)}
-                                    activeOpacity={0.85}
                                     pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
-                                    accessibilityRole="button"
                                     accessibilityLabel={`${item.label}. ${item.status.label}`}
                                 >
                                     <NeoCard
@@ -409,7 +405,7 @@ export default function HomeScreenNeo() {
                                             </Text>
                                         </View>
                                     </NeoCard>
-                                </TouchableOpacity>
+                                </TappablePressable>
                             </ScaleInView>
                         ))}
                     </View>
@@ -418,11 +414,9 @@ export default function HomeScreenNeo() {
                     <Text style={[s.sectionLabel, { marginTop: 4, color: textSecondary }]} accessibilityRole="header">{t('home.tools')}</Text>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <TouchableOpacity
+                        <TappablePressable
                             onPress={() => navigateWithHaptic('FerramentasIA')}
-                            activeOpacity={0.85}
                             style={{ flex: 1, marginRight: 5 }}
-                            accessibilityRole="button"
                             accessibilityLabel={t('home.toolbox', 'Ferramentas')}
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
@@ -433,13 +427,11 @@ export default function HomeScreenNeo() {
                                     {t('home.toolbox', 'Ferramentas')}
                                 </Text>
                             </NeoCard>
-                        </TouchableOpacity>
+                        </TappablePressable>
 
-                        <TouchableOpacity
+                        <TappablePressable
                             onPress={() => navigateWithHaptic('InfoRotulos')}
-                            activeOpacity={0.85}
                             style={{ flex: 1, marginLeft: 5 }}
-                            accessibilityRole="button"
                             accessibilityLabel={t('home.infoLabels', 'Info Rótulos')}
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
@@ -450,7 +442,7 @@ export default function HomeScreenNeo() {
                                     {t('home.infoLabels', 'Info Rótulos')}
                                 </Text>
                             </NeoCard>
-                        </TouchableOpacity>
+                        </TappablePressable>
                     </View>
 
                     {/* ───── LINK DISCRETO PARA HISTÓRICO ─────

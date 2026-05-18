@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import SkeletonLoader, { SkeletonContactCard } from '../../components/SkeletonLoader';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
@@ -213,8 +214,35 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
   if (loading) {
     return (
       <AppBackground>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
-          <ActivityIndicator size="large" color={Neo.colors.primary[500]} />
+        <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+          {/* Header skeleton — espelhando o padrão da tela carregada */}
+          <View style={s.header}>
+            <View style={s.backBtn} />
+            <View style={{ flex: 1, gap: 6 }}>
+              <SkeletonLoader width="60%" height={22} borderRadius={6} />
+              <SkeletonLoader width="40%" height={11} />
+            </View>
+          </View>
+
+          <View style={s.scrollContent}>
+            {/* Info card skeleton */}
+            <View style={[s.infoCard, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
+              <SkeletonLoader width={38} height={38} borderRadius={19} />
+              <View style={{ flex: 1, gap: 6 }}>
+                <SkeletonLoader width="55%" height={13} />
+                <SkeletonLoader width="85%" height={11} />
+              </View>
+            </View>
+
+            {/* Add button skeleton */}
+            <SkeletonLoader width="100%" height={46} borderRadius={14} style={{ marginBottom: 20 }} />
+
+            {/* Lista — 3 cards */}
+            <SkeletonLoader width={64} height={11} style={{ marginBottom: 10 }} />
+            <SkeletonContactCard />
+            <SkeletonContactCard />
+            <SkeletonContactCard />
+          </View>
         </SafeAreaView>
       </AppBackground>
     );

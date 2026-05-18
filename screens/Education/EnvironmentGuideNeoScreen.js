@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useCallback } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useMemo, useState, useCallback, useRef } from 'react';
+import { View, Text, Animated, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,6 +9,7 @@ import { getConteudoPrevencao } from '../../data/knowledge_prevencao';
 import { Shadows } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
+import { useAccessibility } from '../../context/AccessibilityContext';
 
 const { width } = Dimensions.get('window');
 const HERO_HEIGHT = Math.round(width * 0.78);
@@ -93,6 +94,26 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
     const { t } = useTranslation('common');
     const { ambienteId } = route.params || { ambienteId: 'sala' };
     const guideData = useMemo(() => getConteudoPrevencao(ambienteId), [ambienteId]);
+    const { reduceMotion } = useAccessibility() || {};
+
+    // Parallax: hero "afunda" metade da velocidade do scroll, com zoom-in
+    // ao puxar para baixo (overscroll). Desligado em reduceMotion.
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const heroTranslateY = scrollY.interpolate({
+        inputRange: [0, HERO_HEIGHT],
+        outputRange: [0, HERO_HEIGHT * 0.5],
+        extrapolate: 'clamp',
+    });
+    const heroScale = scrollY.interpolate({
+        inputRange: [-HERO_HEIGHT, 0],
+        outputRange: [1.4, 1],
+        extrapolateRight: 'clamp',
+    });
+    const heroOpacity = scrollY.interpolate({
+        inputRange: [0, HERO_HEIGHT * 0.6, HERO_HEIGHT],
+        outputRange: [1, 1, 0.5],
+        extrapolate: 'clamp',
+    });
 
     // Suporta capa como string ou array de URLs (cascade fallback)
     const capaList = useMemo(() => {
@@ -123,83 +144,68 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
             <StatusBar style="light" translucent />
 
-            {/* HERO */}
-            <View style={{ width: '100%', height: HERO_HEIGHT, position: 'relative', backgroundColor: guideData.cor }}>
-                {showImage ? (
-                    <Image
-                        // key força reload quando trocar de URL
-                        key={`${guideData.id}-${imgIndex}`}
-                        source={{ uri: currentUrl }}
-                        style={{ width: '100%', height: '100%' }}
-                        resizeMode="cover"
-                        onError={handleImgError}
-                    />
-                ) : (
-                    <StyledHero cor={guideData.cor} emoji={guideData.emoji} />
-                )}
-
-                {/* Gradient para legibilidade do título */}
-                <LinearGradient
-                    colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', '#FFFFFF']}
-                    locations={[0, 0.35, 0.85, 1]}
-                    style={{ position: 'absolute', width: '100%', height: '100%' }}
-                />
-
-                {/* Nav top */}
-                <SafeAreaView edges={['top']} style={{ position: 'absolute', width: '100%' }}>
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        paddingHorizontal: 20,
-                        paddingTop: 8,
-                    }}>
-                        <TouchableOpacity
-                            onPress={() => navigation.goBack()}
-                            style={{
-                                width: 40, height: 40, borderRadius: 20,
-                                backgroundColor: 'rgba(0,0,0,0.45)',
-                                alignItems: 'center', justifyContent: 'center',
-                            }}
-                            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                        >
-                            <NeoIcon name="ArrowLeft2" size={22} color="#FFF" variant="Bold" />
-                        </TouchableOpacity>
-
-                        <View style={{
-                            width: 40, height: 40, borderRadius: 20,
-                            backgroundColor: 'rgba(0,0,0,0.45)',
-                            alignItems: 'center', justifyContent: 'center',
-                        }}>
-                            <Text style={{ fontSize: 20 }}>{guideData.emoji}</Text>
-                        </View>
-                    </View>
-                </SafeAreaView>
-
-                {/* Hero title */}
-                <View style={{
-                    position: 'absolute',
-                    bottom: 24,
-                    paddingHorizontal: 22,
-                    width: '100%',
-                }}>
-                    <Text style={{
-                        fontSize: 34,
-                        fontWeight: '900',
-                        color: '#111827',
-                        letterSpacing: -0.8,
-                        lineHeight: 38,
-                    }}>
-                        {guideData.nome}
-                    </Text>
-                </View>
-            </View>
-
-            {/* CONTENT */}
-            <ScrollView
-                contentContainerStyle={{ paddingHorizontal: 22, paddingBottom: 190 }}
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 190 }}
                 showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: true }
+                )}
             >
+                {/* HERO com parallax (translate + scale + fade) */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: guideData.cor,
+                    overflow: 'hidden',
+                    transform: reduceMotion ? [] : [
+                        { translateY: heroTranslateY },
+                        { scale: heroScale },
+                    ],
+                    opacity: reduceMotion ? 1 : heroOpacity,
+                }}>
+                    {showImage ? (
+                        <Image
+                            // key força reload quando trocar de URL
+                            key={`${guideData.id}-${imgIndex}`}
+                            source={{ uri: currentUrl }}
+                            style={{ width: '100%', height: '100%' }}
+                            resizeMode="cover"
+                            onError={handleImgError}
+                        />
+                    ) : (
+                        <StyledHero cor={guideData.cor} emoji={guideData.emoji} />
+                    )}
+
+                    {/* Gradient para legibilidade do título */}
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', '#FFFFFF']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={{ position: 'absolute', width: '100%', height: '100%' }}
+                    />
+
+                    {/* Hero title — viaja junto com a parallax */}
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#111827',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                        }} accessibilityRole="header">
+                            {guideData.nome}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* CONTENT */}
+                <View style={{ paddingHorizontal: 22 }}>
                 {destaqueText && (
                     <Text style={{
                         fontSize: 16.5,
@@ -317,7 +323,41 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         {t('headersFirst.auditThisEnvironment', 'Auditar este ambiente')}
                     </Text>
                 </TouchableOpacity>
-            </ScrollView>
+                </View>
+            </Animated.ScrollView>
+
+            {/* Nav top fixa — sobrepõe o hero parallaxado */}
+            <SafeAreaView edges={['top']} pointerEvents="box-none" style={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingHorizontal: 20,
+                    paddingTop: 8,
+                }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{
+                            width: 40, height: 40, borderRadius: 20,
+                            backgroundColor: 'rgba(0,0,0,0.45)',
+                            alignItems: 'center', justifyContent: 'center',
+                        }}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={22} color="#FFF" variant="Bold" />
+                    </TouchableOpacity>
+
+                    <View style={{
+                        width: 40, height: 40, borderRadius: 20,
+                        backgroundColor: 'rgba(0,0,0,0.45)',
+                        alignItems: 'center', justifyContent: 'center',
+                    }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+                        <Text style={{ fontSize: 20 }}>{guideData.emoji}</Text>
+                    </View>
+                </View>
+            </SafeAreaView>
         </View>
     );
 }

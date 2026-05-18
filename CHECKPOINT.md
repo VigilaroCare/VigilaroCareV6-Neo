@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 73
+**Commits totais no branch:** 74
 
 ---
 
@@ -22,6 +22,39 @@
 - Detalhes: ChecklistDetailScreen, MicroArticleScreen, ConceitoDetailScreen
 - Formulários de Health: AddEvent/AddExam/AddTreatment/etc
 - Perfis: ProfileRiskSummary, HomeXRay
+
+---
+
+## ✅ Frente #3 — PARTE 1 CONCLUÍDA (2026-05-18)
+
+### Microinterações com Animated API nativa do RN
+
+**Importante:** Reanimated NÃO está instalado no projeto (CHECKPOINT antigo dizia que sim, foi erro). Usamos `Animated` core do RN — funciona perfeitamente pra todas as microinterações desta fase, sem custo de instalação ou config babel.
+
+**O que foi entregue:**
+
+1. **`components/TappablePressable.js` (NOVO)** — Drop-in para `TouchableOpacity` em cards. Spring scale 0.97 ao press-in com retorno bouncy. Respeita `reduceMotion`. `useNativeDriver: true` (animação na thread nativa, zero JS bridge por frame). Aplicado no HomeScreenNeo (profile card, monitor, grid 4 cards, 2 tool cards).
+
+2. **`screens/Education/EnvironmentGuideNeoScreen.js`** — Parallax hero (Spotify-style):
+   - Hero "afunda" a meia velocidade do scroll (`translateY: scrollY * 0.5`)
+   - Zoom-in 1.4x ao puxar overscroll para baixo
+   - Fade para 50% opacity quando rolagem ultrapassa hero
+   - Nav (back + emoji) ficou fixa fora do scroll (sobrepõe o hero parallaxado)
+   - Tudo desligado em `reduceMotion`
+
+3. **`components/SkeletonLoader.js` (NOVO)** — Placeholder animado com shimmer (gradient sliding em `translateX`). Theme-aware. Respeita `reduceMotion`. Exporta também `<SkeletonContactCard>` (composto: avatar circular + 3 linhas + 2 botões de ação). Aplicado em `ContatosEmergenciaScreen` substituindo o `ActivityIndicator` cego — agora o user vê a forma do conteúdo carregando.
+
+**Padrões estabelecidos para reuso:**
+- TappablePressable é a opção default para qualquer card clicável daqui pra frente. Pular pra TouchableOpacity só quando for botão pequeno (não-card) ou link de texto.
+- SkeletonLoader resolve qualquer "fundo cinza enquanto carrega". `SkeletonContactCard` é o exemplo de "composto" — outras telas podem criar seus próprios compostos (ex: `SkeletonMedicationRow`, `SkeletonChecklistItem`).
+- Parallax hero é um padrão replicável: scrollY → translateY interpolated → Animated.View. Pode aplicar nas outras telas com hero grande (MicroArticleScreen, KitDetailScreen, etc).
+
+**O que falta de microinterações (Parte 2):**
+- Swipe-to-delete com revealed action (precisa gesture-handler — já instalado)
+- Number counter animado (Animated.Value + interpolate + onChange listener) nos scores
+- Progress bar animado nos 3 Kits (width: 0 → valor real, easing.out)
+- Transição slide horizontal entre tabs do MinhaSaude/SaudePet
+- Stagger entrance padronizado (já tem ScaleInView e FadeInView, mas uso é inconsistente)
 
 ---
 
@@ -209,14 +242,13 @@ Validado com o user: estas são as frentes que de fato **destacam o app dentre c
 ```
 Sessão N+1: ✅ Imagens reais 21 ambientes — CONCLUÍDA (2026-05-18)
 Sessão N+2: ✅ Dark Mode infra + a11y telas críticas — CONCLUÍDA (2026-05-18)
-Sessão N+3: ◀ PRÓXIMA — Sweep a11y nas ~120 telas restantes + refatorar Neo.colors hardcoded
-Sessão N+4: Microinterações parte 1 — taps, stagger, parallax hero
-Sessão N+5: Microinterações parte 2 — swipe-to-delete, skeleton loaders, transitions
-Sessão N+6: Sons + Haptics padronização
-Sessão N+7+: Identidade visual (se viável)
+Sessão N+3: ✅ Microinterações parte 1 — TappablePressable, parallax hero, SkeletonLoader (2026-05-18)
+Sessão N+4: ◀ PRÓXIMA — Microinterações parte 2 + Sons/Haptics
+Sessão N+5: Sweep a11y/dark nas ~120 telas restantes (depois do user listar problemáticas)
+Sessão N+6: Identidade visual (se viável)
 ```
 
-**Total estimado:** 4-5 sessões focadas restantes.
+**Total estimado:** 3-4 sessões focadas restantes.
 
 ---
 
