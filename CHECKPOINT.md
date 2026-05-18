@@ -47,6 +47,108 @@ User reportou problemas específicos quando estávamos tentando URLs Unsplash:
 
 ---
 
+## 🗺️ ROADMAP — pós-imagens, próximas 3 grandes frentes
+
+Validado com o user: estas são as frentes que de fato **destacam o app dentre concorrentes** (apps de safety/care como Life360, Tile, Nest Aware). Ordem de prioridade após resolver imagens:
+
+### #2 — Acessibilidade + Dark Mode (1-2 sessões)
+
+**Por que é prioridade #2:** Público idoso é core do Vigilaro Care. App Store policy + WCAG AA são requisito real, não "extra".
+
+#### Acessibilidade
+- [ ] Sweep em todas as ~125 telas adicionando `accessibilityLabel` em `TouchableOpacity`, `Image`, `NeoIcon` interativos
+- [ ] `accessibilityRole="button"` / `"header"` / `"image"` consistente
+- [ ] `accessibilityHint` em ações críticas (SOS, ligar CIATOX, excluir contato)
+- [ ] Testar VoiceOver (iOS) e TalkBack (Android) nas jornadas críticas (Home → SOS, Login → Onboarding, vistoria de ambiente)
+- [ ] Validar contraste WCAG AA com WebAIM Contrast Checker em todos os pares texto/fundo do DS
+- [ ] Fontes escalonáveis: respeitar `fontScale` do sistema (idosos aumentam para 1.5x ou 2x — verificar overflow)
+- [ ] Hit-slop generoso em TODOS os botões pequenos (já tem em vários, falta padronizar)
+- [ ] Reduzir movimento: respeitar `prefersReducedMotion` (importante para idosos com vertigem)
+
+**Arquivo de referência:** `screens/AccessibilitySettingsScreen.js` (já tem toggle de left-handed, contraste alto — expandir)
+
+#### Dark Mode
+- [ ] `utils/DesignSystem2026.js` já tem `DarkColors` definido — **nenhuma tela usa ainda**
+- [ ] Implementar `ThemeContext` ou usar `useColorScheme()` do RN
+- [ ] Toggle em `AccessibilitySettings` (manual) + opção "Sistema"
+- [ ] Adaptar `AppBackground` para `mist.dark` (gradient escuro)
+- [ ] Adaptar `NeoCard` glass — BlurView tint dark
+- [ ] Validar contraste em todos os ambientes que usam cor própria (cozinha laranja, banheiro azul, etc — alguns vão precisar variant dark)
+- [ ] Telas críticas que devem MANTER tema próprio (não seguir dark): `SOSCountdown` (vermelho), `EmergenciaRapida` (preto), `ConversationalAgent` (dark intencional)
+
+**Estimativa:** ~3-5h de trabalho focado por feature
+
+---
+
+### #3 — Microinterações com Reanimated 3 (1-2 sessões)
+
+**Por que é prioridade #3:** Diferença entre "app funcional" e "app premium" está nas microanimações. Apps top-tier (Apple Health, Linear, Things 3) ganham aqui.
+
+#### Animações sugeridas
+- [ ] **Tap feedback**: scale 0.97 com spring suave em todos os TouchableOpacity de cards
+- [ ] **Scroll parallax** no hero do `EnvironmentGuideNeoScreen` (hero "afunda" 30% ao rolar)
+- [ ] **Stagger entrance** nos cards do `KnowledgeHub`, `RiscosMenu`, `FerramentasIA` (cada card aparece com fade+translate 50ms depois do anterior)
+- [ ] **Progress bar animado** nos Kits (fill cresce de 0% até o valor real, easing.out)
+- [ ] **Pulse contínuo** no botão SOS quando idle (já tem na countdown, levar para o footer)
+- [ ] **Transição entre tabs** no MinhaSaude/SaudePet com slide horizontal suave
+- [ ] **Number counter** nos índices de risco (de 0 até X com easing)
+- [ ] **Swipe-to-delete** com revealed action red nos contatos de emergência, medicamentos, checklists
+- [ ] **Skeleton loaders** substituindo ActivityIndicator nas telas com loading (MinhaSaude, RecentActivity, InfoRotulosResult)
+- [ ] **Bottom sheet** com physics natural em vez de Modal nativo (já parcialmente — padronizar)
+
+**Bibliotecas:** `react-native-reanimated@3` (já instalado), `react-native-gesture-handler` (já instalado)
+
+**Estimativa:** ~4-6h focado
+
+---
+
+### #4 — Sons sutis + Haptic padronizado (0.5 sessão)
+
+**Por que ganha apesar de pequeno:** baixíssimo custo, percepção de qualidade ↑↑.
+
+#### Implementação
+- [ ] Biblioteca de sons UI livres (BBC Sound Effects, Mixkit) — escolher 5: tap, success, error, alert, navigation
+- [ ] Toggle em `AccessibilitySettings` (alguns idosos preferem silêncio)
+- [ ] `Haptics.Light` em taps comuns
+- [ ] `Haptics.Medium` em ações importantes (salvar, marcar feito)
+- [ ] `Haptics.Heavy` + sound em alertas (SOS dispara, validação de campo)
+- [ ] `Haptics.Success` em conclusões (vistoria completada, kit 100%)
+- [ ] Auditoria: hoje haptic está em algumas telas (MedicationScheduler, etc) mas não padronizado — listar usos e uniformizar
+
+**Estimativa:** ~2h focado
+
+---
+
+### #5 — Identidade visual única (sessão dedicada — opcional)
+
+**Quando atacar:** depois das anteriores. Requer alinhamento de marca.
+
+- [ ] Avaliar logo atual — adequado mas pouco memorável
+- [ ] Definir "assinatura visual" (uma forma característica, ilustração própria, padrão de fundo)
+- [ ] Aplicar consistentemente: splash, onboarding, empty states, marca d'água Menu
+- [ ] Trocar emojis genéricos por ilustrações próprias nos hubs principais (KnowledgeHub, FerramentasIA)
+- [ ] Considerar contratar ilustrador para 10-15 spot illustrations (não-IA — diferencial autoral)
+
+**Estimativa:** depende de decisão de marca
+
+---
+
+### Ordem sugerida cronológica
+
+```
+Sessão N+1: Imagens reais 18 ambientes (CHECKPOINT #1)
+Sessão N+2: Acessibilidade — sweep accessibilityLabel + testes VoiceOver/TalkBack
+Sessão N+3: Dark Mode — implementar ThemeContext + adaptar AppBackground/NeoCard
+Sessão N+4: Microinterações parte 1 — taps, stagger, parallax hero
+Sessão N+5: Microinterações parte 2 — swipe-to-delete, skeleton loaders, transitions
+Sessão N+6: Sons + Haptics padronização
+Sessão N+7+: Identidade visual (se viável)
+```
+
+**Total estimado:** 6-7 sessões focadas para o app entrar em outro patamar comparado aos top-tier do setor.
+
+---
+
 ## 📊 Estado da campanha (concluído nesta sessão)
 
 ### Telas redesenhadas: **~125 das 127** (98%)
