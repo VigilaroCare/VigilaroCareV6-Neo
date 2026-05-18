@@ -6,6 +6,23 @@
 
 ---
 
+## 🐛 BUG REPORTADO — investigar na próxima sessão
+
+**Edição de perfil (QuemProtegerScreenNeo) não aparece — só o botão Excluir renderiza.**
+
+User reportou (2026-05-18) que o commit `30264c4` adicionou Edit2 + Trash em cada card de perfil, mas só o Trash apareceu na UI. Hipóteses para investigar:
+
+1. **Outra tela:** talvez exista um fluxo de "editar perfil" separado (ex: PerfilWizardScreen, FamilyCompositionScreen ou um modal específico) onde a edição é acessada — e o que o user tocou foi essa outra tela que só tem Delete.
+2. **Layout/clipping:** o card pode estar comprimido lateralmente (avatar 52px + name flex:1 + Edit2 + Trash + TickCircle = pode estourar largura em devices estreitos). Edit2 pode estar sendo empurrado para fora.
+3. **Variant Linear do Edit2:** improvável (CHECKPOINT confirma Edit2 na lista de iconsax válidos e Linear é variant padrão), mas vale conferir renderizando com variant="Bold".
+4. **Cache do Metro:** ler o arquivo no celular pode ter cacheado uma versão antiga sem Edit2. Reload forçado já tentou? (Ctrl+R no terminal Metro)
+
+**Como reproduzir:** Home → toque no perfil "Agnaldo" no topo → tela "Quem Protegemos" → card do pet recém-adicionado.
+
+**Próximo passo:** ler o arquivo em runtime via React DevTools / inspecionar elemento; ou simplificar a row substituindo `flex: 1` no nome por `flex: 0.6` p/ garantir espaço pros 2 ícones.
+
+---
+
 ## ⏸️ AGUARDANDO VALIDAÇÃO DO USER (em tempo ocioso)
 
 ### Dark Mode — varredura visual restante
