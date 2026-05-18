@@ -38,6 +38,7 @@ LogBox.ignoreLogs([
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import './i18n'; // Configuração do i18next
 import * as SplashScreen from "expo-splash-screen";
@@ -484,6 +485,7 @@ export default function App() {
   // ---------------------------------------------------------------------------
   return (
     <ErrorBoundary>
+      <GestureHandlerRootView style={{ flex: 1 }}>
       <ProfileProvider>
         <AccessibilityProvider>
           <ThemeProvider>
@@ -714,6 +716,7 @@ export default function App() {
           </ThemeProvider>
         </AccessibilityProvider>
       </ProfileProvider>
+      </GestureHandlerRootView>
     </ErrorBoundary>
   );
 }

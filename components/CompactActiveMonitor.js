@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Vibration, TouchableOpacity } from 'react-native';
 import NeoIcon from './NeoIcon';
+import AnimatedCounter from './AnimatedCounter';
 import * as Battery from 'expo-battery';
 import NetInfo from '@react-native-community/netinfo';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -208,7 +209,13 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
                 {/* Lado Esquerdo (Global Bar) */}
                 <View style={styles.gaugeContainer}>
                     <View style={{ alignItems: 'flex-start', width: '100%' }}>
-                        <Text style={[styles.scoreValue, { color: getScoreTextColor() }]}>{score}%</Text>
+                        <AnimatedCounter
+                            value={score}
+                            duration={1100}
+                            suffix="%"
+                            style={[styles.scoreValue, { color: getScoreTextColor() }]}
+                            accessibilityLabel={t('home.scoreLabel', 'Score geral da residência: {{score}}%', { score })}
+                        />
                         <Text style={styles.scoreSubtitle} numberOfLines={2}>
                             {score >= 80 ? t('home.homeSafe', 'Sua casa está\nsegura') : (score >= 50 ? t('home.homeNeedsAttention', 'Sua casa precisa\nde atenção') : t('home.actImmediately', 'Aja\nimediatamente'))}
                         </Text>

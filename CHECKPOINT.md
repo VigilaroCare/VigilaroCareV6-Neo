@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 74
+**Commits totais no branch:** 75
 
 ---
 
@@ -55,6 +55,59 @@
 - Progress bar animado nos 3 Kits (width: 0 → valor real, easing.out)
 - Transição slide horizontal entre tabs do MinhaSaude/SaudePet
 - Stagger entrance padronizado (já tem ScaleInView e FadeInView, mas uso é inconsistente)
+
+---
+
+## ✅ Frente #3 — PARTE 2 + Frente #4 (haptic) CONCLUÍDAS (2026-05-18)
+
+### Microinterações Parte 2
+
+1. **`components/AnimatedProgressBar.js` (NOVO)** — barra de progresso que cresce de 0→value% com `Easing.out(Easing.cubic)`. Re-anima quando `value` muda. Respeita `reduceMotion`. Aceita props de cor, altura, duração, accessibilityLabel.
+
+2. **`components/AnimatedCounter.js` (NOVO)** — tween de número (`Animated.Value` + listener → `setState`). Útil para scores, contagens, percentuais. Aplicado em `CompactActiveMonitor` — o score geral da Home agora anima 0→27% (ou qualquer valor) na primeira renderização e quando os dados mudam. Respeita `reduceMotion`.
+
+3. **Swipe-to-delete em ContatosEmergencia** — `Swipeable` de `react-native-gesture-handler`. Cada card de contato pode ser arrastado para a esquerda revelando botão vermelho com ícone trash + texto "Excluir" (escala animada com o drag). Removeu necessidade do botão Excluir, mas mantivemos por enquanto pra não quebrar o fluxo conhecido — agora há 2 caminhos.
+
+4. **App.js: `GestureHandlerRootView`** wrappando todo o app — necessário pro gesture-handler funcionar (sem ele, o Swipeable seria ignorado).
+
+### Frente #4 (parcial): Haptic padronizado
+
+5. **`utils/Haptics.js` (NOVO)** — wrapper semântico acima de `expo-haptics`. API:
+   - `haptic.tap()` — toque em card/botão (Light)
+   - `haptic.action()` — ação intermediária (Medium)
+   - `haptic.toggle()` — switch/seleção (Selection)
+   - `haptic.success()` — sucesso (Notification Success)
+   - `haptic.warning()` — atenção (Notification Warning)
+   - `haptic.error()` — falha (Notification Error)
+   - `haptic.heavy()` — crítico (Heavy)
+   - `haptic.sos()` — combo Heavy + Warning sequencial
+
+6. **TappablePressable agora dispara `haptic.tap()` automaticamente** no press-in. Prop `hapticOnPress` permite mudar pra outro verbo ou desabilitar com `null`. Isso significa que todos os cards já recebem haptic sem o callsite precisar fazer nada.
+
+7. **GlobalFloatingFooter migrado** — tap em tab → `haptic.tap()`, press-in do SOS → `haptic.heavy()`, press do SOS → `haptic.sos()`.
+
+8. **AccessibilitySettings migrado** — toggle dos switches e dos chips de tema usam `haptic.toggle()`.
+
+9. **HomeScreenNeo: `navigateWithHaptic` deduplicado** — não dispara mais haptic próprio (que estava duplicando com o TappablePressable). TappablePressable virou a única fonte. Mudança transparente.
+
+### O que falta de microinterações (Parte 3 — futura)
+
+- **Animated progress bars** nos 3 Kits (Primeiros Socorros, Emergência, Remédios) — usar AnimatedProgressBar onde tem fill estático hoje.
+- **Stagger entrance padronizado** — uso atual de FadeInView/ScaleInView é inconsistente nos hubs (KnowledgeHub usa FadeInView, HomeScreen usa ScaleInView, outros hubs não usam nada).
+- **Transição slide horizontal** entre tabs do MinhaSaude/SaudePet.
+- **Bottom sheet com physics natural** em vez de Modal nativo (padronizar onde já é parcial).
+
+### Sons UI (Frente #4 restante — bloqueado em decisão do user)
+
+Precisa do user escolher 5 sons (tap, success, error, alert, navigation) — vão pra `assets/sounds/`. Sugestões de fontes CC0:
+- Mixkit (mixkit.co/free-sound-effects/notification/)
+- Pixabay sons (pixabay.com/sound-effects/)
+- BBC Sound Effects (livre p/ uso pessoal/educacional)
+
+Quando user fornecer ou aprovar 5 arquivos `.mp3`/`.wav`, próxima sessão:
+- Cria `services/SoundService.js` com pre-load via `expo-audio`
+- Adiciona toggle "Sons da interface" em AccessibilitySettings
+- Wire em TappablePressable + ações chave (próximo de `haptic.*`)
 
 ---
 
@@ -242,13 +295,14 @@ Validado com o user: estas são as frentes que de fato **destacam o app dentre c
 ```
 Sessão N+1: ✅ Imagens reais 21 ambientes — CONCLUÍDA (2026-05-18)
 Sessão N+2: ✅ Dark Mode infra + a11y telas críticas — CONCLUÍDA (2026-05-18)
-Sessão N+3: ✅ Microinterações parte 1 — TappablePressable, parallax hero, SkeletonLoader (2026-05-18)
-Sessão N+4: ◀ PRÓXIMA — Microinterações parte 2 + Sons/Haptics
-Sessão N+5: Sweep a11y/dark nas ~120 telas restantes (depois do user listar problemáticas)
-Sessão N+6: Identidade visual (se viável)
+Sessão N+3: ✅ Microinterações parte 1 — TappablePressable, parallax, Skeleton (2026-05-18)
+Sessão N+4: ✅ Microinterações parte 2 + Haptic helper — CONCLUÍDA (2026-05-18)
+Sessão N+5: ◀ PRÓXIMA — Sons UI (precisa de aprovação do user de arquivos .mp3)
+Sessão N+6: Sweep a11y/dark nas ~120 telas restantes (idle do user)
+Sessão N+7: Identidade visual (se viável)
 ```
 
-**Total estimado:** 3-4 sessões focadas restantes.
+**Total estimado:** 2-3 sessões focadas restantes.
 
 ---
 

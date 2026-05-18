@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from 'react';
 import { Pressable, Animated } from 'react-native';
 import { useAccessibility } from '../context/AccessibilityContext';
+import haptic from '../utils/Haptics';
 
 /**
  * TappablePressable
@@ -38,6 +39,7 @@ export default function TappablePressable({
     bounceOnRelease = true,
     disabled = false,
     hitSlop,
+    hapticOnPress = 'tap', // 'tap'|'action'|'success'|'warning'|'error'|null — semântico via utils/Haptics
     accessibilityLabel,
     accessibilityRole = 'button',
     accessibilityHint,
@@ -57,8 +59,12 @@ export default function TappablePressable({
                 bounciness: 0,
             }).start();
         }
+        // Feedback tátil: chama o verbo semântico, sem ruído se prop null.
+        if (hapticOnPress && haptic[hapticOnPress]) {
+            haptic[hapticOnPress]();
+        }
         onPressIn?.(e);
-    }, [reduceMotion, activeScale, onPressIn, scale]);
+    }, [reduceMotion, activeScale, onPressIn, scale, hapticOnPress]);
 
     const handlePressOut = useCallback((e) => {
         if (!reduceMotion) {

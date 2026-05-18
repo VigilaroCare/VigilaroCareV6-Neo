@@ -17,7 +17,7 @@ import {
     ShieldTick, Health, Scan, Warning2, Home2, CloseCircle, Building,
     ArrowRight2, Pet, Setting2, DocumentText, InfoCircle, Activity,
 } from 'iconsax-react-native';
-import * as Haptics from 'expo-haptics';
+import haptic from '../utils/Haptics';
 import { StatusBar } from 'expo-status-bar';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -118,8 +118,9 @@ export default function HomeScreenNeo() {
         return () => clearTimeout(timer);
     }, [currentProfile?.id, contextProfiles, familyMeta]);
 
+    // Haptic agora vem do TappablePressable (single source of truth) —
+    // mantemos o nome da função pra não quebrar callsites.
     const navigateWithHaptic = useCallback((route) => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         try {
             NavigationService.navigate(route);
         } catch (e) {
@@ -496,7 +497,7 @@ export default function HomeScreenNeo() {
                                             variant={isSelected ? 'primary' : 'elevated'}
                                             padding={16}
                                             onPress={async () => {
-                                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                                haptic.tap();
                                                 await ProfileService.setActiveResidence(res.id);
                                                 await loadProfiles();
                                                 setModalResidenciaVisible(false);

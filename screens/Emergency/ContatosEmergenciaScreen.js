@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity,
-  TextInput, Alert, Linking, ActivityIndicator, Platform,
+  TextInput, Alert, Linking, ActivityIndicator, Platform, Animated,
 } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -413,11 +414,36 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               </Text>
               {contatos.map((contato) => {
                 const color = TIPO_COLORS[contato.tipo] || TIPO_COLORS.Outro;
+                const renderRightActions = (progress, dragX) => {
+                  const scale = dragX.interpolate({
+                    inputRange: [-90, -50, 0],
+                    outputRange: [1, 0.85, 0],
+                    extrapolate: 'clamp',
+                  });
+                  return (
+                    <TouchableOpacity
+                      onPress={() => excluirContato(contato.id)}
+                      style={s.swipeDeleteAction}
+                      accessibilityRole="button"
+                      accessibilityLabel={t('contacts.deleteLabel', 'Excluir contato {{name}}', { name: contato.nome })}
+                    >
+                      <Animated.View style={{ transform: [{ scale }], alignItems: 'center' }}>
+                        <NeoIcon name="Trash" size={22} color="#FFF" variant="Bold" />
+                        <Text style={s.swipeDeleteText}>{t('contacts.swipeDelete', 'Excluir')}</Text>
+                      </Animated.View>
+                    </TouchableOpacity>
+                  );
+                };
                 return (
-                  <NeoCard
+                  <Swipeable
                     key={contato.id}
+                    renderRightActions={renderRightActions}
+                    overshootRight={false}
+                    containerStyle={{ marginBottom: 10, borderRadius: 16 }}
+                  >
+                  <NeoCard
                     variant="elevated"
-                    style={[s.contatoCard, { borderLeftWidth: 4, borderLeftColor: color }]}
+                    style={[s.contatoCard, { borderLeftWidth: 4, borderLeftColor: color, marginBottom: 0 }]}
                   >
                     <View style={s.contatoInfo}>
                       <View style={[s.contatoIconBox, { backgroundColor: color + '1A' }]}>
@@ -495,6 +521,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                       </TouchableOpacity>
                     </View>
                   </NeoCard>
+                  </Swipeable>
                 );
               })}
             </>
@@ -809,5 +836,22 @@ const s = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 19,
     maxWidth: 300,
+  },
+
+  // Swipe-to-delete (revealed action behind the card on swipe-right→left)
+  swipeDeleteAction: {
+    backgroundColor: Neo.colors.feedback.error,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 90,
+    borderTopRightRadius: 16,
+    borderBottomRightRadius: 16,
+  },
+  swipeDeleteText: {
+    color: '#FFF',
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 0.6,
+    marginTop: 4,
   },
 });

@@ -5,7 +5,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import * as Haptics from 'expo-haptics';
+import haptic from '../utils/Haptics';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
@@ -32,12 +32,12 @@ export default function AccessibilitySettingsScreen() {
     const toggleLargeText = (val) => updateFontSize(val ? 1.4 : 1);
 
     const hapticToggle = (toggleFn) => (val) => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        haptic.toggle();
         toggleFn(val);
     };
 
     const hapticThemeSet = (newMode) => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        haptic.toggle();
         setMode(newMode);
     };
 

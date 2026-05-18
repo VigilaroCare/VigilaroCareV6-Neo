@@ -19,7 +19,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as NavigationService from '../services/NavigationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
+import haptic from '../utils/Haptics';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
@@ -137,8 +137,8 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   }, []);
 
   const handleNavigate = useCallback((name) => {
-    // Haptic feedback on tab navigation
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // Haptic feedback semântico para navegação entre tabs
+    haptic.tap();
 
     const tabRoutes = Object.keys(TAB_ROUTES);
     if (tabRoutes.includes(name)) {
@@ -151,8 +151,8 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   // SOS handlers separados para clareza
   const handleSOSPressIn = useCallback(() => {
     longPressTriggered.current = false;
-    // Heavy haptic on SOS press-in
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+    // Press-in do SOS = heavy
+    haptic.heavy();
 
     sosTimer.current = setTimeout(() => {
       longPressTriggered.current = true;
@@ -179,7 +179,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const handleSOSPress = useCallback(() => {
     // Se long press foi disparado, ignora o press normal
     if (longPressTriggered.current) return;
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    haptic.sos(); // heavy + warning sequencial — gatilho crítico
     NavigationService.navigate('SOSEmergencyMode');
   }, []);
   // ────────────────────────────────────────────────────────────────────────
