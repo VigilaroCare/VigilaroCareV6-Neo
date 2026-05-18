@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, ScrollView, TouchableOpacity, Alert, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 // Icons
@@ -24,6 +24,7 @@ const Pet = ({ size, color }) => <Heart size={size} color={color} variant="Bold"
 export default function QuemProtegerScreenNeo() {
     const navigation = useNavigation();
     const { t } = useTranslation();
+    const insets = useSafeAreaInsets();
     const { setPrimaryProfile, deleteProfile, loadProfiles } = useProfiles();
 
     const [mainOwner, setMainOwner] = useState(null);
