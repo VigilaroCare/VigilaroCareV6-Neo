@@ -11,9 +11,11 @@ import AppBackground from '../../components/AppBackground';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { AVES_SEGURAS_DATA } from '../../data/aves_seguras_data';
 import { t_field } from '../../utils/getLocalizedField';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function AvesSegurasScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const isDark = useIsDark();
 
   const renderRiscoCard = (title, message, icon, color, bg) => (
     <NeoCard variant="elevated" style={[s.riscoCard, { borderLeftWidth: 4, borderLeftColor: color }]}>
@@ -30,7 +32,7 @@ export default function AvesSegurasScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         <View style={s.header}>
           <TouchableOpacity

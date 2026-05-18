@@ -18,9 +18,11 @@ import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { useTranslation } from 'react-i18next';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function PetPregnancyScreen({ navigation, route }) {
     const { t } = useTranslation('common');
+    const isDark = useIsDark();
     const [pet, setPet] = useState(route.params?.pet || null);
     const [petsList, setPetsList] = useState([]);
 
@@ -171,7 +173,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
         return (
             <AppBackground>
                 <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                    <StatusBar style="dark" />
+                    <StatusBar style={isDark ? 'light' : 'dark'} />
                     {renderHeader()}
                     <ScrollView contentContainerStyle={styles.content}>
                         <Text style={styles.cardTitle}>{t('petPregnancyTracker.selectPet')}</Text>

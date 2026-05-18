@@ -11,9 +11,11 @@ import AppBackground from '../../components/AppBackground';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { PET_FOOD_SAFETY } from '../../data/pet_food_safety';
 import { t_field } from '../../utils/getLocalizedField';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function PetFoodSafetyScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const isDark = useIsDark();
 
   const callCiatox = () => Linking.openURL('tel:08007226001');
 
@@ -53,7 +55,7 @@ export default function PetFoodSafetyScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         <View style={s.header}>
           <TouchableOpacity

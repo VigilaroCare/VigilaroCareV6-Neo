@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 81
+**Commits totais no branch:** 82
 
 ---
 
@@ -47,13 +47,22 @@ O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza 
 - ✅ PetPregnancyGuideScreen — section titles + item bullets text + StatusBar/backBtn
 - ✅ AgeGroupDetailScreen — hero subtitle/desc, "Principais Riscos" header, riskTitle/riskDesc, preventionBox bg (era "white pill" em dark)
 
-**Lote 3 — próximo:**
-- TravelModeScreen (3ª tab principal)
-- Hubs internos: KitsHubScreen, FerramentasIAScreenNeo, RiscosMenuScreen
-- Formulários de Health: AddEvent/AddExam/AddTreatment/etc
+**Lote 3 — refatorado (2026-05-18):**
+- ✅ TravelModeScreen — 5× sectionLabel via replace_all + StatusBar
+- ✅ KitsHubScreen — StatusBar dynamic (resto cascateia via NeoTypography)
+- ✅ RiscosMenuScreen — StatusBar dynamic
+- ✅ FerramentasIAScreenNeo — sectionLabel + StatusBar
+- ✅ PetWellnessScreen — sectionTitle, tipText, infoTitle, infoText + StatusBar
+- ✅ PetFoodSafetyScreen — StatusBar (resto cascateia)
+- ✅ AvesSegurasScreen — StatusBar (resto cascateia)
+- ✅ PetPregnancyScreen — StatusBar (a tela tem muito Text plain em cards de pet, mas os cards têm bg white-ish onde dark text fica legível em ambos os modos)
+
+**Lote 4 — próximo:**
+- Formulários de Health: AddEvent/AddExam/AddTreatment/AddProcedure/AddMedicalRecord
 - Perfis: ProfileRiskSummary, HomeXRay
-- Telas Pet restantes: PetFoodSafety, PetWellness, AvesSeguras, PetPregnancy (pai do guide)
-- ConceitoDetailScreen — denso com inline overrides; precisa refactor mais cuidadoso
+- ConceitoDetailScreen — denso, requer refactor cuidadoso (muitos `<Text style={[styles.text, { color: ... }]}>` com explicit inline color)
+- MicroBlogScreen — listagem de artigos
+- Checklists internos (AreasInternas, AreasExternas, ChecklistWizard, OndeProteger)
 
 **Padrão usado nos refactors:**
 ```js

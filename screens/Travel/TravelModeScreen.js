@@ -11,6 +11,7 @@ import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const TRIP_TYPES = [
     { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: Tree, color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_en: 'Aislamiento, animales, ríos.' },
@@ -21,6 +22,9 @@ const TRIP_TYPES = [
 
 export default function TravelModeScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textSecondary = themeColors.neutral[700];
     const [activeTrip, setActiveTrip] = useState(null);
     const [loading, setLoading] = useState(true);
     const [expandedTipIdx, setExpandedTipIdx] = useState(null);
@@ -135,7 +139,7 @@ export default function TravelModeScreen({ navigation }) {
         return (
             <AppBackground>
                 <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                    <StatusBar style="dark" />
+                    <StatusBar style={isDark ? 'light' : 'dark'} />
                     <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 12, paddingBottom: 190 }}>
                         {/* HEADER */}
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
@@ -155,7 +159,7 @@ export default function TravelModeScreen({ navigation }) {
                         </View>
 
                         {/* TIPO DE DESTINO */}
-                        <Text style={s.sectionLabel}>{t('travel.destinationType', 'Qual o tipo de destino?')}</Text>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.destinationType', 'Qual o tipo de destino?')}</Text>
                         <View style={s.gridContainer}>
                             {TRIP_TYPES.map(trip => {
                                 const sel = tripType === trip.id;
@@ -180,7 +184,7 @@ export default function TravelModeScreen({ navigation }) {
                         </View>
 
                         {/* PROPÓSITO DA VIAGEM */}
-                        <Text style={s.sectionLabel}>{t('travel.travelPurpose', 'Propósito da Viagem')}</Text>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.travelPurpose', 'Propósito da Viagem')}</Text>
                         <View style={s.chipRow}>
                             {[
                                 { key: 'lazer', emoji: '🌴', label: t('travel.leisure', 'Lazer'), color: Neo.colors.feedback.warning },
@@ -205,7 +209,7 @@ export default function TravelModeScreen({ navigation }) {
                         </View>
 
                         {/* DESTINO INTERNACIONAL */}
-                        <Text style={s.sectionLabel}>{t('travel.internationalDestination', 'Destino Internacional?')}</Text>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.internationalDestination', 'Destino Internacional?')}</Text>
                         <View style={s.chipRow}>
                             {[
                                 { key: true, emoji: '🌍', label: t('common.yes', 'Sim'), color: Neo.colors.secondary[500] },
@@ -230,7 +234,7 @@ export default function TravelModeScreen({ navigation }) {
                         </View>
 
                         {/* QUEM VAI JUNTO */}
-                        <Text style={s.sectionLabel}>{t('travel.whoIsGoing', 'Quem vai junto?')}</Text>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.whoIsGoing', 'Quem vai junto?')}</Text>
                         <View style={s.gridContainer}>
                             {[
                                 { key: 'kids', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças'), icon: ShieldTick, color: Neo.colors.secondary[500] },
@@ -318,7 +322,7 @@ export default function TravelModeScreen({ navigation }) {
 
                     {/* 1. ASSISTENTE DE VIAGEM */}
                     <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 14 }}>
-                        <Text style={s.sectionLabel}>{t('travel.travelAssistant', 'Assistente de Viagem')}</Text>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.travelAssistant', 'Assistente de Viagem')}</Text>
                         <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center' }}>{t('travel.doThisWheneverTraveling', 'Faça isso sempre que for viajar')}</Small>
                     </View>
 

@@ -11,16 +11,18 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function RiscosMenuScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
     const ambientes = Object.values(MAPA_PREVENCAO);
+    const isDark = useIsDark();
 
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER consistente */}
                 <View style={s.header}>

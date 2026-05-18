@@ -14,10 +14,12 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function KitsHubScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
+    const isDark = useIsDark();
 
     const kits = [
         {
@@ -65,7 +67,7 @@ export default function KitsHubScreen() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER consistente */}
                 <View style={s.header}>

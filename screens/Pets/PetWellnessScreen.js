@@ -13,9 +13,14 @@ import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_WELLNESS_DATA } from '../../data/pet_wellness_data';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function PetWellnessScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[800];
 
   const renderCategory = (item) => (
     <View key={item.id} style={s.section}>
@@ -23,7 +28,7 @@ export default function PetWellnessScreen({ navigation }) {
         <View style={[s.iconCircle, { backgroundColor: item.cor + '1F' }]}>
           <NeoIcon name={item.icone} size={20} color={item.cor} variant="Bold" />
         </View>
-        <Text style={s.sectionTitle}>{t_field(item, 'titulo')}</Text>
+        <Text style={[s.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t_field(item, 'titulo')}</Text>
       </View>
 
       <View style={s.tipsContainer}>
@@ -38,7 +43,7 @@ export default function PetWellnessScreen({ navigation }) {
                 {t_field(dica, 'pet')}
               </Text>
             </View>
-            <Text style={s.tipText}>{t_field(dica, 'texto')}</Text>
+            <Text style={[s.tipText, { color: textBody }]}>{t_field(dica, 'texto')}</Text>
           </NeoCard>
         ))}
       </View>
@@ -48,7 +53,7 @@ export default function PetWellnessScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* HEADER padronizado */}
         <View style={s.header}>
@@ -76,10 +81,10 @@ export default function PetWellnessScreen({ navigation }) {
               <NeoIcon name="Heart" size={18} color="#10B981" variant="Bold" />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={s.infoTitle}>
+              <Text style={[s.infoTitle, { color: textPrimary }]} accessibilityRole="header">
                 {t('petWellness.introTitle', 'Prevenção é amor')}
               </Text>
-              <Text style={s.infoText}>
+              <Text style={[s.infoText, { color: textBody }]}>
                 {t('petWellness.introText', 'Pequenos ajustes na rotina podem evitar grandes emergências no futuro.')}
               </Text>
             </View>

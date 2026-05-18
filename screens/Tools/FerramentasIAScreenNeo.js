@@ -25,10 +25,14 @@ import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import FadeInView from '../../components/FadeInView';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function FerramentasIAScreenNeo() {
     const { t } = useTranslation('common');
     const navigation = useNavigation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textSecondary = themeColors.neutral[700];
 
     // Análise visual (1 ferramenta principal)
     const analysisTool = {
@@ -88,7 +92,7 @@ export default function FerramentasIAScreenNeo() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER consistente com Accessibility/Reports/Activity */}
                 <View style={s.header}>
@@ -115,7 +119,7 @@ export default function FerramentasIAScreenNeo() {
                 >
                     {/* ANÁLISE — destaque, 1 card horizontal */}
                     <FadeInView delay={80}>
-                        <Text style={s.sectionLabel}>
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                             {t('ferramentasIA.sectionAnaliseVisual', 'Análise')}
                         </Text>
                         <TouchableOpacity
