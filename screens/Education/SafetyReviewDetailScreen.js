@@ -22,6 +22,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import { ArrowLeft, Danger, ShieldTick, Heart, InfoCircle, People } from 'iconsax-react-native';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
     critico: '#D32F2F',
@@ -49,6 +50,11 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
     const { item } = route.params;
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
 
     if (!item) {
         navigation.goBack();
@@ -73,7 +79,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
                     <Text style={styles.headerEmoji}>{item.emoji}</Text>
-                    <Text style={styles.headerTitle}>{item.nome}</Text>
+                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{item.nome}</Text>
                     <View style={[styles.riskBadge, { backgroundColor: riskColor }]}>
                         <Text style={styles.riskBadgeText}>Risco {riskLabel}</Text>
                     </View>
@@ -92,17 +98,17 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                             <InfoCircle size={20} color={Neo.colors.primary[600]} variant="Bold" />
                             <Text style={styles.sectionTitle}>{t('headersFirst.sobre', 'Sobre')}</Text>
                         </View>
-                        <Text style={styles.bodyText}>{item.resumo}</Text>
+                        <Text style={[styles.bodyText, { color: textBody }]}>{item.resumo}</Text>
 
                         {/* Perfil de Risco + Frequência */}
                         <View style={styles.metaRow}>
                             <View style={styles.metaItem}>
-                                <Text style={styles.metaLabel}>{t('headersFirst.frequNciaDeUso', 'Frequência de uso')}</Text>
-                                <Text style={styles.metaValue}>{item.frequenciaUso}</Text>
+                                <Text style={[styles.metaLabel, { color: textMuted }]}>{t('headersFirst.frequNciaDeUso', 'Frequência de uso')}</Text>
+                                <Text style={[styles.metaValue, { color: textBody }]}>{item.frequenciaUso}</Text>
                             </View>
                             <View style={styles.metaItem}>
-                                <Text style={styles.metaLabel}>{t('headersFirst.maisVulnerVeis', 'Mais vulneráveis')}</Text>
-                                <Text style={styles.metaValue}>
+                                <Text style={[styles.metaLabel, { color: textMuted }]}>{t('headersFirst.maisVulnerVeis', 'Mais vulneráveis')}</Text>
+                                <Text style={[styles.metaValue, { color: textBody }]}>
                                     {item.perfilRisco.map(p => PERFIL_LABELS[p] || p).join(', ')}
                                 </Text>
                             </View>
@@ -126,7 +132,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                                     { backgroundColor: RISK_COLORS[risco.gravidade] || '#999' }
                                 ]} />
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.riskText}>{risco.descricao}</Text>
+                                    <Text style={[styles.riskText, { color: textBody }]}>{risco.descricao}</Text>
                                     <Text style={[
                                         styles.riskLevel,
                                         { color: RISK_COLORS[risco.gravidade] || '#999' }
@@ -151,7 +157,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                         {item.prevencao.map((tip, idx) => (
                             <View key={idx} style={styles.prevItem}>
                                 <Text style={styles.prevNumber}>{idx + 1}</Text>
-                                <Text style={styles.prevText}>{tip}</Text>
+                                <Text style={[styles.prevText, { color: textBody }]}>{tip}</Text>
                             </View>
                         ))}
                     </NeoCard>
@@ -166,7 +172,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                                 {t('headersFirst.oQueFazerEmCasoDeAcidente', 'O Que Fazer em Caso de Acidente')}
                             </Text>
                         </View>
-                        <Text style={styles.bodyText}>{item.oQueFazer}</Text>
+                        <Text style={[styles.bodyText, { color: textBody }]}>{item.oQueFazer}</Text>
                     </NeoCard>
                 </FadeInView>
 

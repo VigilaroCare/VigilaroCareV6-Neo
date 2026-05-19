@@ -21,6 +21,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
 import { UTENSILIOS_REVIEWS } from '../../data/utensilios_reviews';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
     critico: '#D32F2F',
@@ -46,6 +47,11 @@ const RISK_BG = {
 export default function UtensiliosReviewsScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
 
     const THEME_COLOR = '#E65100';
     const ITEMS = UTENSILIOS_REVIEWS;
@@ -56,7 +62,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <StatusBar style="dark" />
+            <StatusBar style={isDark ? 'light' : 'dark'} />
 
             {/* ═══ HEADER ═══ */}
             <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
@@ -69,8 +75,8 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
                     <Text style={styles.headerEmoji}>🍽️</Text>
-                    <Text style={styles.headerTitle}>{t('headersFirst.householdUtensils', 'Utensílios Domésticos')}</Text>
-                    <Text style={styles.headerSubtitle}>
+                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.householdUtensils', 'Utensílios Domésticos')}</Text>
+                    <Text style={[styles.headerSubtitle, { color: textBody }]}>
                         {t('headersFirst.riscosPrevenOEOQueFazerEmCasoDeAcidente', 'Riscos, prevenção e o que fazer em caso de acidente')}
                     </Text>
                 </View>
@@ -83,7 +89,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                 {/* Info bar */}
                 <FadeInView delay={100}>
                     <View style={styles.infoBar}>
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { color: textMuted }]}>
                             📋 {ITEMS.length} itens • Toque para ver o review completo
                         </Text>
                     </View>
@@ -109,8 +115,8 @@ export default function UtensiliosReviewsScreen({ navigation }) {
 
                                         {/* Info */}
                                         <View style={styles.itemInfo}>
-                                            <Text style={styles.itemName}>{item.nome}</Text>
-                                            <Text style={styles.itemDesc} numberOfLines={2}>
+                                            <Text style={[styles.itemName, { color: textPrimary }]}>{item.nome}</Text>
+                                            <Text style={[styles.itemDesc, { color: textBody }]} numberOfLines={2}>
                                                 {item.resumo}
                                             </Text>
                                             {/* Badges */}

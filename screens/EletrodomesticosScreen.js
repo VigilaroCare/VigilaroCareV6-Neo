@@ -18,6 +18,7 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing, Typography, BorderRadius, Shadows, Components } from '../utils/Theme';
 import { eletrodomesticosSeguranca } from '../data/eletrodomesticos_seguranca';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -27,6 +28,11 @@ export default function EletrodomesticosScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [expandedId, setExpandedId] = useState(null);
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
 
     const toggleExpand = (id) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -52,7 +58,7 @@ export default function EletrodomesticosScreen({ navigation }) {
                         />
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.cardTitle}>{device.nome}</Text>
+                        <Text style={[styles.cardTitle, { color: textPrimary }]}>{device.nome}</Text>
                         <View style={styles.badgesRow}>
                             {device.travas && (
                                 <View style={styles.badgeLock}>
@@ -76,7 +82,7 @@ export default function EletrodomesticosScreen({ navigation }) {
 
                 {isExpanded && (
                     <View style={styles.cardContent}>
-                        <Text style={styles.description}>{device.descricao}</Text>
+                        <Text style={[styles.description, { color: textBody }]}>{device.descricao}</Text>
 
                         <View style={styles.section}>
                             <Text style={styles.sectionTitle}>{t('headersFirst.RiscosPrincipais', '⚠️ Riscos Principais')}</Text>
@@ -130,8 +136,8 @@ export default function EletrodomesticosScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ marginLeft: 16, flex: 1 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('headersFirst.eletrodomesticos', 'Eletrodomesticos')}</Text>
-                        <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.')}</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.eletrodomesticos', 'Eletrodomesticos')}</Text>
+                        <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.')}</Text>
                     </View>
                 </View>
 

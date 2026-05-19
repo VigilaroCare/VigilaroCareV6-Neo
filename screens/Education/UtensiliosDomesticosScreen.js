@@ -12,9 +12,15 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function UtensiliosDomesticosScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
     const [search, setSearch] = useState('');
     const [expandedId, setExpandedId] = useState(null);
 
@@ -43,7 +49,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         <Text style={{ fontSize: 28 }}>{item.emoji === 'blender' ? '🌪️' : item.emoji}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.cardTitle}>{item.nome}</Text>
+                        <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.nome}</Text>
                         <Text style={[styles.cardSubtitle, { color: RiscoColor }]}>Risco: {item.risco}</Text>
                     </View>
                     <View style={styles.expandIcon}>
@@ -58,19 +64,19 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                 {isExpanded && (
                     <View style={styles.cardBody}>
                         {/* Descrição */}
-                        <Text style={styles.description}>{item.descricao}</Text>
+                        <Text style={[styles.description, { color: textBody }]}>{item.descricao}</Text>
 
                         {/* Prevenção */}
                         <View style={styles.sectionBlock}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
                                 <ShieldTick size={20} color="#059669" variant="Bold" />
-                                <Text style={[styles.sectionTitle, { color: '#059669' }]}>{t('headersFirst.cOMOPREVENIR', 'COMO PREVENIR')}</Text>
+                                <Text style={[styles.sectionTitle, { color: '#059669' }]} accessibilityRole="header">{t('headersFirst.cOMOPREVENIR', 'COMO PREVENIR')}</Text>
                             </View>
                             <View style={{ gap: 8 }}>
                                 {item.prevencao.map((tip, index) => (
                                     <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                                         <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: Neo.colors.primary[600], marginTop: 8, marginRight: 8 }} />
-                                        <Text style={styles.listItem}>{tip}</Text>
+                                        <Text style={[styles.listItem, { color: textBody }]}>{tip}</Text>
                                     </View>
                                 ))}
                             </View>
@@ -102,30 +108,32 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={{ alignSelf: 'flex-start', padding: 8, marginLeft: -8, marginBottom: 8 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <ArrowLeft size={28} color={Neo.colors.neutral[900]} />
+                    <ArrowLeft size={28} color={textPrimary} />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 32, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>
+                <Text style={{ fontSize: 32, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">
                     {t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos')}
                 </Text>
-                <Text style={{ fontSize: 16, color: Neo.colors.neutral[500], marginTop: 4 }}>
+                <Text style={{ fontSize: 16, color: textMuted, marginTop: 4 }}>
                     {t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço.')}
                 </Text>
             </View>
 
             {/* Search Bar */}
-            <View style={styles.searchContainer}>
-                <SearchNormal1 size={20} color={Neo.colors.neutral[400]} />
+            <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300] }]}>
+                <SearchNormal1 size={20} color={textMuted} />
                 <TextInput
-                    style={styles.searchInput}
+                    style={[styles.searchInput, { color: textPrimary }]}
                     placeholder="Buscar utensílio (ex: Facas, Panelas)"
-                    placeholderTextColor={Neo.colors.neutral[400]}
+                    placeholderTextColor={textMuted}
                     value={search}
                     onChangeText={setSearch}
                 />
             </View>
 
-            <Text style={{ fontSize: 13, color: Neo.colors.neutral[400], marginLeft: 24, marginBottom: 12 }}>
+            <Text style={{ fontSize: 13, color: textMuted, marginLeft: 24, marginBottom: 12 }}>
                 {filteredData.length} itens encontrados
             </Text>
 
