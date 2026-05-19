@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
@@ -45,6 +45,7 @@ export default function FasesVidaMenuScreen({ navigation }) {
             icon: data.icon,
             color: data.bg,
             iconColor: data.iconColor,
+            imagemUrl: data.imagemUrl, // foto Pexels real
             data: data
         };
     }).filter(item => item !== null);
@@ -94,9 +95,18 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                     activeOpacity={0.8}
                                 >
                                     <NeoCard variant="glass" style={styles.listCard}>
-                                        <View style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}>
-                                            <Icon size={28} color={item.iconColor} variant="Bold" />
-                                        </View>
+                                        {item.imagemUrl ? (
+                                            <Image
+                                                source={{ uri: item.imagemUrl }}
+                                                style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}
+                                                resizeMode="cover"
+                                                accessibilityIgnoresInvertColors
+                                            />
+                                        ) : (
+                                            <View style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}>
+                                                <Icon size={28} color={item.iconColor} variant="Bold" />
+                                            </View>
+                                        )}
                                         <View style={styles.textContainer}>
                                             <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.cardTitle}</Text>
                                             <Text style={[styles.cardDesc, { color: textBody }]}>{item.desc}</Text>

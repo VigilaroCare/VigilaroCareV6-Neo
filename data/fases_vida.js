@@ -11,6 +11,7 @@ export const FASES_VIDA_DATA = {
         cardTitle: 'Bebês', cardTitle_en: 'Babies', cardTitle_es: 'Bebés',
         desc: '0 a 6 meses', desc_en: '0 to 6 months', desc_es: '0 a 6 meses',
         emoji: '👶',
+        imagemUrl: 'https://images.pexels.com/photos/4005601/pexels-photo-4005601.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: EmojiHappy,
         iconColor: '#0284C7', // Sky 600
         bg: '#E0F2FE', // Sky 100
@@ -239,6 +240,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         cardTitle: 'Bebês', cardTitle_en: 'Babies', cardTitle_es: 'Bebés',
         desc: '7 a 12 meses', desc_en: '7 to 12 months', desc_es: '7 a 12 meses',
         emoji: '🚼',
+        imagemUrl: 'https://images.pexels.com/photos/3995926/pexels-photo-3995926.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: EmojiHappy,
         iconColor: '#0369A1', // Sky 700
         bg: '#BAE6FD', // Sky 200
@@ -481,6 +483,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '1 a 3 anos', desc_en: '1 to 3 years', desc_es: '1 a 3 años',
         emoji: '🧸',
+        imagemUrl: 'https://images.pexels.com/photos/437747/pexels-photo-437747.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Profile2User,
         iconColor: '#D97706', // Amber 600
         bg: '#FEF3C7', // Amber 100
@@ -729,6 +732,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '3 a 5 anos', desc_en: '3 to 5 years', desc_es: '3 a 5 años',
         emoji: '🚲',
+        imagemUrl: 'https://images.pexels.com/photos/8612916/pexels-photo-8612916.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Profile2User,
         iconColor: '#B45309', // Amber 700
         bg: '#FDE68A', // Amber 200
@@ -977,6 +981,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '6 a 14 anos', desc_en: '6 to 14 years', desc_es: '6 a 14 años',
         emoji: '⚽',
+        imagemUrl: 'https://images.pexels.com/photos/8926555/pexels-photo-8926555.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Brodcast,
         iconColor: '#059669', // Emerald 600
         bg: '#DCFCE7', // Emerald 100
@@ -1107,6 +1112,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Adolescentes', cardTitle_en: 'Teenagers', cardTitle_es: 'Adolescentes',
         desc: '10 a 17 anos', desc_en: '10 to 17 years', desc_es: '10 a 17 años',
         emoji: '🎧',
+        imagemUrl: 'https://images.pexels.com/photos/4588371/pexels-photo-4588371.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Personalcard,
         iconColor: '#7C3AED', // Purple 600
         bg: '#F3E8FF', // Purple 100
@@ -1160,6 +1166,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Adultos', cardTitle_en: 'Adults', cardTitle_es: 'Adultos',
         desc: '18 a 59 anos', desc_en: '18 to 59 years', desc_es: '18 a 59 años',
         emoji: '🧑',
+        imagemUrl: 'https://images.pexels.com/photos/37218531/pexels-photo-37218531.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Profile, // Changed from User to Profile to ensure compatibility
         iconColor: '#2563EB', // Blue 600
         bg: '#DBEAFE', // Blue 100
@@ -1210,6 +1217,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Necessidades', cardTitle_en: 'Needs', cardTitle_es: 'Necesidades',
         desc: 'Especiais', desc_en: 'Special', desc_es: 'Especiales',
         emoji: '♿',
+        imagemUrl: 'https://images.pexels.com/photos/6194680/pexels-photo-6194680.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: Health, // Changed from Wheelchair to Health to ensure compatibility
         iconColor: '#0891B2', // Cyan 600
         bg: '#CFFAFE', // Cyan 100
@@ -1251,6 +1259,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Idosos', cardTitle_en: 'Elderly', cardTitle_es: 'Tercera Edad',
         desc: '60+ anos', desc_en: '60+ years', desc_es: '60+ años',
         emoji: '👴',
+        imagemUrl: 'https://images.pexels.com/photos/8317775/pexels-photo-8317775.jpeg?auto=compress&cs=tinysrgb&w=1200',
         icon: HeartCircle,
         iconColor: '#DB2777', // Pink 600
         bg: '#FCE7F3', // Pink 100
