@@ -2,7 +2,7 @@
 
 **Última atualização:** 2026-05-18
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 83
+**Commits totais no branch:** 84
 
 ---
 
@@ -67,15 +67,25 @@ O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza 
 - ✅ ChecklistWizardScreen — StatusBar + ambiente nome inline + **fix latente:** import de Text de react-native que estava faltando (bug pré-existente que crasharia se usuário entrasse no branch line 148)
 - ✅ OndeProtegerScreen — headerTitle, sectionTitle, ambienteLabel, inventoryTitle (replace_all)
 
-**Lote 5 — telas restantes para sweep eventual (esperar feedback do user):**
-- Health: MinhaSaude, SaudePet, MedicationScheduler, ShareHealthRecord
-- Education: JardinagemSegura, TeoriaFogo, RiscosFisicos, FerramentasTrabalho, UtensiliosDomesticos, EletrodomesticosScreen, etc
-- Emergency: PrimeirosSocorros, PrimeirosSocorrosEmergencia, EmergenciaPet
+**Lote 5a — refatorado (2026-05-18):**
+- ✅ MinhaSaudeScreen — StatusBar dinâmico (resto cascateia)
+- ✅ SaudePetScreen — StatusBar dinâmico 2× (resto cascateia)
+- ✅ MedicationSchedulerScreen — modalTitle, emptyText + StatusBar
+- ✅ PrimeirosSocorrosScreen — cardTitle, modalTitle, stepText + StatusBar
+- ✅ PrimeirosSocorrosEmergenciaScreen — StatusBar 2× (cascateia)
+
+**Lote 5b/5c/5d — telas restantes (esperar feedback do user):**
+- Health: ShareHealthRecord
+- Education: JardinagemSegura, TeoriaFogo, RiscosFisicos, FerramentasTrabalho, UtensiliosDomesticos, EletrodomesticosScreen, IntroSafetyMenu, etc
+- Emergency: EmergenciaPet, KitEmergencia/Remedios/PrimeirosSocorros (Kits), GuiaKitsEmergencia, PlanoIncendio
 - Tools: AssistentePrevencaoIA, AudioMonitor, VisionMonitor, HistoricoAuditoria, DataHealth
-- Safety: EscolaSegura, VistoriaAsilo, SafetyActionPlan
-- Travel: KitViagem, Inspecao*, FazendoAsMalas
-- Onboarding flows
-- Reviews: UtensiliosReviews, EletrodomesticosReviews, DispositivosEletronicosReviews
+- Safety: EscolaSegura/EscolaSeguraReport, VistoriaAsilo/VistoriaAsiloReport, SafetyActionPlan
+- Travel: KitViagem, Inspecao*, FazendoAsMalas, TravelSafetyGuide
+- Onboarding: BoasVindas, WelcomeTour, PerfilWizard, NewHomeWizard, FamilyComposition, MapeamentoRiscos
+- Reviews: UtensiliosReviews, EletrodomesticosReviews, DispositivosEletronicosReviews, SafetyReviewDetail
+- Outras: HistoricoMelhoras, RecentActivity, GenericCategory, ChecklistReport, ChecklistReforma, ChecklistVisit, AcessoriosSeguranca, EPIDomestico, MobilidadeSegura, SegurancaLazer, SegurancaFerias, LazerFeriasMenu, EnvironmentGuide (legacy), TermsOfUse, PrivacyPolicy, Sobre, UpgradePremium, AudioMonitor, VisionMonitor, ProdutoScanner, InfoRotulos/Result, ConversationalAgent, AITextChat, Chat, FerramentasIAScreen (legacy se houver), SafetyPermit, Briefing/SecretBriefing, MapeamentoRiscos, ModoPreventivo, EncerrarSituacao, ModoSituacaoAtiva, SituacoesTemporarias, EmergenciaRapida (já intencionalmente dark)
+
+Total estimado: ~50 telas restantes. Estratégia: aguardar prints do user em dark mode e refatorar sob demanda priorizada por uso real.
 
 **Padrão usado nos refactors:**
 ```js

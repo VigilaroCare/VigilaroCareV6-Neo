@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next';
 
 // Dados
 import { EMERGENCIAS_PETS } from '../../data/primeiros_socorros_pets';
+import { useIsDark } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
@@ -204,6 +205,7 @@ const EMERGENCIAS_HUMANOS = [
 export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation();
+    const isDark = useIsDark();
     const [mode, setMode] = useState('HUMAN'); // 'HUMAN' | 'PET'
     const isPet = mode === 'PET';
     const EMERGENCIAS = isPet ? EMERGENCIAS_PETS : EMERGENCIAS_HUMANOS;
@@ -218,7 +220,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
         return (
             <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 <View style={{ flexDirection: 'column', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
@@ -285,7 +287,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
     // MODO DETALHISTA TÁTICO: Ação Imediata Guidada (Step-by-Step)
     return (
         <AppBackground>
-            <StatusBar style="dark" />
+            <StatusBar style={isDark ? 'light' : 'dark'} />
 
             <ScrollView contentContainerStyle={{ paddingBottom: 150 }} showsVerticalScrollIndicator={false}>
                 {/* Cabeçalho do Protocolo Modernizado */}

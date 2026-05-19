@@ -20,8 +20,10 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function MinhaSaudeScreen({ navigation }) {
+    const isDark = useIsDark();
     const [activeTab, setActiveTab] = useState('agenda'); // medications | agenda | history
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
@@ -426,7 +428,7 @@ export default function MinhaSaudeScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER padronizado */}
                 <View style={styles.header}>

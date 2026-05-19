@@ -29,9 +29,14 @@ import MedicationService from '../services/MedicationService';
 import VisionService from '../services/VisionService';
 import ProfileService from '../services/ProfileService'; // Para listar quem toma
 import DoseConfirmationModal from '../components/DoseConfirmationModal';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function MedicationSchedulerScreen({ navigation, route }) {
     const { t } = useTranslation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[800];
     const [meds, setMeds] = useState([]);
     const [profiles, setProfiles] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
@@ -383,7 +388,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
     return (
       <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
-            <StatusBar style="dark" />
+            <StatusBar style={isDark ? 'light' : 'dark'} />
             <View style={styles.header}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
@@ -409,7 +414,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
                 {meds.length === 0 ? (
                     <View style={styles.emptyState}>
                         <NeoIcon name="Health" size={64} color={Neo.colors.neutral[200]} />
-                        <Text style={styles.emptyText}>{t('headersFirst.nenhumMedicamentoComHorRioDefinidoConfig', 'Nenhum medicamento com horário definido. Configure agendamentos para garantir adesão ao tratamento.')}</Text>
+                        <Text style={[styles.emptyText, { color: textBody }]}>{t('headersFirst.nenhumMedicamentoComHorRioDefinidoConfig', 'Nenhum medicamento com horário definido. Configure agendamentos para garantir adesão ao tratamento.')}</Text>
                         <TouchableOpacity style={styles.addButton} onPress={() => { resetForm(); setModalVisible(true); }}>
                             <Text style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.adicionarRemDio', 'Adicionar Remédio')}</Text>
                         </TouchableOpacity>
@@ -423,7 +428,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
             <Modal visible={modalVisible} animationType="slide" presentationStyle="pageSheet">
                 <SafeAreaView style={{ flex: 1, backgroundColor: Neo.colors.neutral.white }}>
                     <View style={styles.modalHeader}>
-                        <Text style={styles.modalTitle}>{editingId ? 'Editar Medicamento' : 'Novo Medicamento'}</Text>
+                        <Text style={[styles.modalTitle, { color: textPrimary }]} accessibilityRole="header">{editingId ? 'Editar Medicamento' : 'Novo Medicamento'}</Text>
                         <TouchableOpacity onPress={() => { resetForm(); setModalVisible(false); }}>
                             <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[900]} />
                         </TouchableOpacity>

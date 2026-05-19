@@ -19,9 +19,11 @@ import NeoCard from '../../components/NeoCard';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
+import { useIsDark } from '../../utils/ThemeContext';
 
 export default function SaudePetScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const isDark = useIsDark();
   const [activeTab, setActiveTab] = useState('agenda');
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -273,7 +275,7 @@ export default function SaudePetScreen({ navigation }) {
     return (
       <AppBackground>
         <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-          <StatusBar style="dark" />
+          <StatusBar style={isDark ? 'light' : 'dark'} />
           <View style={s.header}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -310,7 +312,7 @@ export default function SaudePetScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* HEADER padronizado */}
         <View style={s.header}>

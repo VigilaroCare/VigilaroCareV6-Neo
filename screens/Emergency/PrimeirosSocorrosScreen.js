@@ -14,12 +14,17 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getPrimeirosSocorros } from '../../data/primeiros_socorros';
 import { getEmergenciasPets } from '../../data/primeiros_socorros_pets';
 import DisclaimerModal from '../../components/DisclaimerModal';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const HUMAN_ACCENT = '#EF4444'; // red — pessoas (urgência)
 const PET_ACCENT = '#10B981';   // green — pets (cuidado)
 
 export default function PrimeirosSocorrosScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[800];
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [type, setType] = useState('HUMAN');
@@ -57,7 +62,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
           )}
         </View>
         <View style={{ flex: 1, width: '100%' }}>
-          <Text style={s.cardTitle} numberOfLines={2}>{item.titulo}</Text>
+          <Text style={[s.cardTitle, { color: textPrimary }]} numberOfLines={2}>{item.titulo}</Text>
           <Text style={s.cardSituation} numberOfLines={2}>{item.situacao}</Text>
         </View>
         <View style={s.cardArrow}>
@@ -70,7 +75,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
         <DisclaimerModal visible={showDisclaimer} onClose={() => setShowDisclaimer(false)} />
 
         {/* HEADER padronizado */}
@@ -172,7 +177,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
                   )}
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text style={s.modalTitle}>{selectedItem.titulo}</Text>
+                  <Text style={[s.modalTitle, { color: textPrimary }]} accessibilityRole="header">{selectedItem.titulo}</Text>
                   <Text style={s.modalSubtitle} numberOfLines={2}>{selectedItem.situacao}</Text>
                 </View>
                 <TouchableOpacity onPress={closeDetail} style={s.closeBtn}>
@@ -237,7 +242,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
                       {(selectedItem.oQueFazer || []).map((step, index) => (
                         <View key={index} style={s.stepRow}>
                           <Text style={[s.stepNumber, { color: PET_ACCENT }]}>{index + 1}.</Text>
-                          <Text style={s.stepText}>{step}</Text>
+                          <Text style={[s.stepText, { color: textBody }]}>{step}</Text>
                         </View>
                       ))}
                     </View>
@@ -254,7 +259,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
                         {selectedItem.oQueNaoFazer.map((step, index) => (
                           <View key={index} style={s.stepRow}>
                             <View style={s.bulletError} />
-                            <Text style={s.stepText}>{step}</Text>
+                            <Text style={[s.stepText, { color: textBody }]}>{step}</Text>
                           </View>
                         ))}
                       </View>
