@@ -14,10 +14,16 @@ import {
   Sun1, Drop, Tree, Ticket, Map1,
   Warning2, ShieldTick, Health, LampOn
 } from 'iconsax-react-native';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function SegurancaLazerScreen({ navigation }) {
     const { t } = useTranslation('common');
   const insets = useSafeAreaInsets();
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
   const [expandedId, setExpandedId] = useState(null);
 
   const toggleExpand = (id) => {
@@ -562,7 +568,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16, flex: 1 }}>
-            <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('headersFirst.lazerDiversO', 'Lazer & Diversão')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.lazerDiversO', 'Lazer & Diversão')}</Text>
             <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.aproveiteOsMomentosDeLazerComSeguranA', 'Aproveite os momentos de lazer com segurança.')}</Text>
           </View>
         </View>

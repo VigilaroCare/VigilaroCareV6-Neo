@@ -11,10 +11,17 @@ import {
     Sun1, Airplane, Flash
 } from 'iconsax-react-native';
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function LazerFeriasMenuScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const items = [
         {
             id: 'lazer',
@@ -51,16 +58,21 @@ export default function LazerFeriasMenuScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* Header Neo Glass */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                     </TouchableOpacity>
                     <View style={{ marginLeft: 16 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('lazerMenu.headerTitle')}</Text>
-                        <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('lazerMenu.headerSubtitle')}</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('lazerMenu.headerTitle')}</Text>
+                        <Text style={{ fontSize: 13, color: textMuted }}>{t('lazerMenu.headerSubtitle')}</Text>
                     </View>
                 </View>
 

@@ -1,8 +1,8 @@
 # 🚦 CHECKPOINT — Vigilaro Care V6 Neo
 
-**Última atualização:** 2026-05-18
+**Última atualização:** 2026-05-19
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 84
+**Commits totais no branch:** 88
 
 ---
 
@@ -21,6 +21,36 @@ O Edit2 estava sendo renderizado com `color={Neo.colors.neutral[600]}`, mas **`n
 - `primary[200]`, `primary[900]` → casos esparsos
 
 O bug do Edit2 some automaticamente — o ícone agora tem cor `#787880` (cinza médio iOS) e é visível.
+
+---
+
+## ❓ QUESTÕES UX LEVANTADAS PELO USER — investigar com ele na próxima sessão
+
+Durante audit do dark mode (2026-05-19), user levantou questões de UX/produto que precisam de decisão dele antes de implementar:
+
+### 1. Função real de "Relatório Pessoal" vs Checklists
+**User questionou:** "qual a função real de relatório pessoal nesta seção? Não está redundante com os checklists logo abaixo? Em vistorias dos ambientes?"
+
+**Onde aparece:** "O Quê e Como" → modal "Pendências (100%)" com card "Relatório Pessoal" + lista de ambientes com botões "Verificar Agora" (que abrem os mesmos checklists logo abaixo na tela).
+
+**Decisão necessária:** manter ambos (com clarificação visual da diferença), remover Relatório Pessoal (se redundante), ou redesenhar como sumário/dashboard que NÃO sobreposiciona com a lista de checklists.
+
+### 2. Imagens genéricas em "Cuidados por Faixa Etária" (FasesVidaMenu)
+**User mencionou:** "Vejo que temos imagens bem genéricas nesta sessão para representar cada uma das faixas etárias. Precisamos rever isso."
+
+**Estado atual:** cada faixa (bebê, criança, adolescente, adulto, idoso, etc.) tem só um ícone iconsax + cor. Não há fotos/ilustrações específicas.
+
+**Opções:**
+- Adicionar fotos Pexels CDN como fizemos para os 21 ambientes (consistência visual)
+- Ilustrações próprias (mais autoral, mas exige design/contratação)
+- Ícones customizados maiores (intermediário)
+
+### 3. Imagens em Utensílios / Eletrodomésticos / Dispositivos: emojis ou favicons?
+**User confundiu:** "as imagens que ilustram os cards de utensílios domésticos são favicons?"
+
+**Resposta:** NÃO são favicons — são **emojis Unicode** (`item.emoji` no data file). O user provavelmente se confundiu pelo tamanho pequeno (28px) e estilo flat de cor. Os emojis vêm das fontes do sistema (Apple Color Emoji no iOS, Noto Color Emoji no Android), portanto a aparência VARIA entre devices.
+
+**Decisão necessária:** manter emojis (consistência casual), trocar por iconsax (consistência visual + cor de marca), ou usar fotos reais Pexels (estilo premium).
 
 ---
 

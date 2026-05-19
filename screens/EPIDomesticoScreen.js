@@ -24,10 +24,17 @@ import NeoCard from '../components/NeoCard';
 import { H2, H3, Body, Small } from '../components/NeoTypography';
 import { EPI_DOMESTICO } from '../data/epi_domestico';
 import VoiceAlert from '../services/VoiceAlertService';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function EPIDomesticoScreen({ navigation }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -185,7 +192,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ marginLeft: 16, flex: 1 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('headersFirst.ePIsDomSticos', 'EPIs Domésticos')}</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.ePIsDomSticos', 'EPIs Domésticos')}</Text>
                         <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.proteOParaAtividadesDoDiaADia', 'Proteção para atividades do dia a dia')}</Text>
                     </View>
                     <TouchableOpacity

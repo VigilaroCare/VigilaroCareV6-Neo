@@ -9,6 +9,7 @@ import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
 import { FERRAMENTAS_DATA } from '../../data/ferramentas_seguranca';
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -19,6 +20,12 @@ if (Platform.OS === 'android') {
 export default function FerramentasTrabalhoScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const [expandedSection, setExpandedSection] = useState(null);
 
     const toggleSection = (id) => {
@@ -31,16 +38,21 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView style={styles.container} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
                 {/* Header Neo Glass */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                     </TouchableOpacity>
                     <View style={{ marginLeft: 16 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('headersFirst.toolsAndRepairs', 'Ferramentas & Reparos')}</Text>
-                        <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.safetyAndMaintenance', 'Segurança e Manutenção.')}</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.toolsAndRepairs', 'Ferramentas & Reparos')}</Text>
+                        <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.safetyAndMaintenance', 'Segurança e Manutenção.')}</Text>
                     </View>
                 </View>
 
@@ -73,7 +85,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E8F5E9', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
                                 <NeoIcon name="Health" size={24} color="#4CAF50" variant="Bold" />
                             </View>
-                            <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Guia de{'\n'}EPIs</Text>
+                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Guia de{'\n'}EPIs</Text>
                         </NeoCard>
                     </TouchableOpacity>
 
@@ -86,7 +98,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E3F2FD', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
                                 <NeoIcon name="ShieldTick" size={24} color="#2196F3" variant="Bold" />
                             </View>
-                            <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Acessórios de{'\n'}Segurança</Text>
+                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Acessórios de{'\n'}Segurança</Text>
                         </NeoCard>
                     </TouchableOpacity>
                 </View>

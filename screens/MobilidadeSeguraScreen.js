@@ -23,6 +23,7 @@ import {
   MICROMOBILIDADE_ELETRICA,
   getDispositivoPorIdade
 } from '../data/mobilidade_data';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
@@ -30,6 +31,12 @@ export default function MobilidadeSeguraScreen({ navigation }) {
     const { t } = useTranslation('common');
   const [tabAtiva, setTabAtiva] = useState('drv'); // drv, ativa, pedestre, moto
   const insets = useSafeAreaInsets();
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
+  const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
   const TABS = [
     { id: 'drv', label: 'Carros', emoji: '🚗' },
@@ -42,16 +49,21 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   return (
     <AppBackground>
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
         {/* Header Neo Glass */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+            accessibilityRole="button"
+            accessibilityLabel={t('common.back', 'Voltar')}
+          >
+            <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16 }}>
-            <Text style={{ fontSize: 24, fontWeight: '800', color: Neo.colors.neutral[900], letterSpacing: -0.5 }}>{t('headersFirst.mobilidade', 'Mobilidade')}</Text>
-            <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.trNsitoESeguranA', 'Trânsito e Segurança.')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.mobilidade', 'Mobilidade')}</Text>
+            <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.trNsitoESeguranA', 'Trânsito e Segurança.')}</Text>
           </View>
         </View>
 
@@ -177,7 +189,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
         activeOpacity={0.8}
       >
         <View style={styles.guideCardOuter}>
-          <View style={[styles.guideCardInner, { backgroundColor: '#FFFFFF' }]}>
+          <View style={[styles.guideCardInner, { backgroundColor: cardBg }]}>
             <View style={[styles.guideImageContainer, { backgroundColor: dispositivo.cor + '15' }]}>
               <Text style={{ fontSize: 48 }}>{dispositivo.icone}</Text>
             </View>
@@ -305,7 +317,7 @@ function TipoMobilidadeCard({ tipo }) {
         activeOpacity={0.8}
       >
         <View style={styles.guideCardOuter}>
-          <View style={[styles.guideCardInner, { backgroundColor: '#FFFFFF' }]}>
+          <View style={[styles.guideCardInner, { backgroundColor: cardBg }]}>
             <View style={[styles.guideImageContainer, { backgroundColor: '#F8F9FA' }]}>
               <Text style={{ fontSize: 48 }}>{tipo.icone}</Text>
             </View>
