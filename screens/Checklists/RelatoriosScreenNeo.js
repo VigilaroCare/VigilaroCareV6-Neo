@@ -174,6 +174,12 @@ export default function RelatoriosScreenNeo({ navigation }) {
                     ) : (
                         <>
                             {/* AÇÕES — relatório detalhado + histórico */}
+                            {/* STANDBY (2026-05-19): card "Relatório detalhado" oculto a pedido do user.
+                                Motivo: redundância com os checklists logo abaixo na tela.
+                                Decisão sobre redesign ou remoção definitiva fica para próxima iteração.
+                                A função do modal (setDetailsModalVisible) e o modal em si permanecem
+                                no código, prontos para reativar quando o user definir o redesign.
+
                             <TouchableOpacity
                                 activeOpacity={0.85}
                                 onPress={() => setDetailsModalVisible(true)}
@@ -194,6 +200,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                     <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                                 </NeoCard>
                             </TouchableOpacity>
+                            */}
 
                             <TouchableOpacity
                                 activeOpacity={0.85}

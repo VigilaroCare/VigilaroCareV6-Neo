@@ -21,6 +21,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
 import { ArrowLeft, ShieldTick, InfoCircle, Danger, ArrowRight2 } from 'iconsax-react-native';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const FORMAT_CONFIG = {
   caso:      { label: 'Caso Real',      cor: '#DC2626', bg: '#FFF5F5', iconeBg: '#FECACA' },
@@ -31,6 +32,13 @@ const FORMAT_CONFIG = {
 
 export default function RadarArticleScreen({ route, navigation }) {
   const { article } = route.params || {};
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
+  const contentBg = isDark ? themeColors.neutral[200] : '#fff';
+  const headerBg = isDark ? 'rgba(28,28,30,0.85)' : 'rgba(255,255,255,0.85)';
 
   if (!article) {
     return (
@@ -55,13 +63,18 @@ export default function RadarArticleScreen({ route, navigation }) {
 
   return (
     <AppBackground>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
       {/* Header fixo */}
-      <SafeAreaView style={s.headerArea} edges={['top', 'left', 'right']}>
+      <SafeAreaView style={[s.headerArea, { backgroundColor: headerBg }]} edges={['top', 'left', 'right']}>
         <View style={s.header}>
-          <TouchableOpacity style={s.backBtn} onPress={() => navigation.goBack()}>
-            <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+          <TouchableOpacity
+            style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.6)' : 'rgba(255,255,255,0.6)', borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)' }]}
+            onPress={() => navigation.goBack()}
+            accessibilityRole="button"
+            accessibilityLabel="Voltar"
+          >
+            <ArrowLeft size={24} color={textBody} />
           </TouchableOpacity>
           <View style={[s.badgeHeader, { backgroundColor: config.bg }]}>
             <ShieldTick size={14} color={config.cor} variant="Bold" />
@@ -91,10 +104,10 @@ export default function RadarArticleScreen({ route, navigation }) {
           )}
         </View>
 
-        <View style={s.content}>
+        <View style={[s.content, { backgroundColor: contentBg }]}>
 
           {/* Título */}
-          <Text style={s.titulo}>{article.titulo}</Text>
+          <Text style={[s.titulo, { color: textPrimary }]} accessibilityRole="header">{article.titulo}</Text>
 
           {/* Destaque (para fatos) */}
           {article.destaque && (
@@ -106,7 +119,7 @@ export default function RadarArticleScreen({ route, navigation }) {
           )}
 
           {/* Narrativa / Resumo */}
-          <Text style={s.narrativa}>
+          <Text style={[s.narrativa, { color: textBody }]}>
             {article.narrativa || article.resumo}
           </Text>
 
