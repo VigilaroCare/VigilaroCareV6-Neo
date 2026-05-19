@@ -8,15 +8,21 @@ import { FASES_VIDA_DATA } from '../../data/fases_vida';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
-import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
+import NeoIcon from '../../components/NeoIcon';
+import { H1, H2, H3, Body, Caption, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
 export default function FasesVidaMenuScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
 
     // Correct order based on eBook content
     const dataKeys = [
@@ -51,24 +57,27 @@ export default function FasesVidaMenuScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar barStyle="dark-content" />
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Custom Header */}
+                {/* HEADER padronizado (alinha com outras telas premium) */}
                 <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={styles.backBtn}
+                        style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2 style={{ color: Neo.colors.neutral[900] }}>
+                        <H1 style={styles.title} accessibilityRole="header">
                             {t('fasesVida.title', 'Fases da Vida')}
-                        </H2>
-                        <Body style={{ color: Neo.colors.neutral[500] }}>
+                        </H1>
+                        <Caption style={styles.subtitle}>
                             {t('fasesVida.subtitle', 'Guia de proteção por faixa etária')}
-                        </Body>
+                        </Caption>
                     </View>
                 </View>
 
@@ -89,11 +98,11 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                             <Icon size={28} color={item.iconColor} variant="Bold" />
                                         </View>
                                         <View style={styles.textContainer}>
-                                            <Text style={styles.cardTitle}>{item.cardTitle}</Text>
-                                            <Text style={styles.cardDesc}>{item.desc}</Text>
+                                            <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.cardTitle}</Text>
+                                            <Text style={[styles.cardDesc, { color: textBody }]}>{item.desc}</Text>
                                         </View>
-                                        <View style={styles.chevronBox}>
-                                            <ArrowRight2 size={20} color={Neo.colors.neutral[400]} />
+                                        <View style={[styles.chevronBox, { backgroundColor: isDark ? themeColors.neutral[300] : themeColors.neutral[100] }]}>
+                                            <ArrowRight2 size={20} color={themeColors.neutral[500]} />
                                         </View>
                                     </NeoCard>
                                 </TouchableOpacity>
@@ -102,25 +111,36 @@ export default function FasesVidaMenuScreen({ navigation }) {
                     </View>
 
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
+    // Header padronizado (alinhado com outras telas Neo)
     header: {
-        paddingTop: 60,
-        paddingBottom: 20,
-        paddingHorizontal: 24,
+        flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backBtn: {
-        width: 48, height: 48, borderRadius: 24,
-        backgroundColor: 'rgba(255,255,255,0.4)',
-        alignItems: 'center', justifyContent: 'center',
-        marginRight: 16,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.2)',
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 22,
+    },
+    subtitle: {
+        // Caption tem cor default cinza no DS — cascata aplica em dark
     },
     listContainer: {
         flexDirection: 'column',

@@ -80,8 +80,8 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           if (trimmed.startsWith('# ')) return <H2 key={index} style={[styles.mdH1, { color: HeroColor, marginTop: 16, marginBottom: 8 }]}>{trimmed.substring(2)}</H2>;
           if (trimmed.startsWith('## ')) return <H3 key={index} style={[styles.mdH2, { color: Neo.colors.neutral[800], marginTop: 12, marginBottom: 4 }]}>{trimmed.substring(3)}</H3>;
           if (trimmed.startsWith('### ')) return <H3 key={index} style={[styles.mdH3, { color: Neo.colors.neutral[700], marginTop: 8, marginBottom: 4, fontSize: 16 }]}>{trimmed.substring(4)}</H3>;
-          if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) return (<View key={index} style={styles.listItem}><View style={[styles.bullet, { backgroundColor: HeroColor }]} /><Text style={styles.text}>{trimmed.substring(2)}</Text></View>);
-          return <Text key={index} style={[styles.text, { marginBottom: 4 }]}>{trimmed}</Text>;
+          if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) return (<View key={index} style={styles.listItem}><View style={[styles.bullet, { backgroundColor: HeroColor }]} /><Text style={[styles.text, { color: textBody }]}>{trimmed.substring(2)}</Text></View>);
+          return <Text key={index} style={[styles.text, { marginBottom: 4, color: textBody }]}>{trimmed}</Text>;
         })}</NeoCard>
     );
   };
@@ -112,7 +112,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               {(t_field(conceito, 'nomeCientifico') || t_field(conceito, 'subtitulo')) && (<Text style={[styles.heroSubtitle, { color: Neo.colors.neutral[500], textAlign: 'center', fontStyle: 'italic' }]}>{t_field(conceito, 'nomeCientifico') || t_field(conceito, 'subtitulo')}</Text>)}
               {(t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')) && (<View style={[styles.badge, { backgroundColor: 'rgba(239, 68, 68, 0.1)', marginTop: 12, borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }]}><Warning2 size={16} color="#EF4444" variant="Bold" /><Text style={{ color: '#EF4444', fontWeight: 'bold', marginLeft: 6 }}>{t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')}</Text></View>)}
           </View>
-          {(t_field(conceito, 'definicao') || t_field(conceito, 'descricao')) && (<NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><Book1 size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t_field(conceito, 'definicao') ? t('detail.definition', 'Definição') : t('detail.description', 'Descrição')}</H3></View><Text style={styles.text}>{t_field(conceito, 'definicao') || t_field(conceito, 'descricao')}</Text></NeoCard>)}
+          {(t_field(conceito, 'definicao') || t_field(conceito, 'descricao')) && (<NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><Book1 size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t_field(conceito, 'definicao') ? t('detail.definition', 'Definição') : t('detail.description', 'Descrição')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'definicao') || t_field(conceito, 'descricao')}</Text></NeoCard>)}
           {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'))}
           {renderSection(t('detail.toxicParts', 'Partes Tóxicas'), t_array(conceito, 'partesToxicas'), Warning2, '#F59E0B')}
           {renderSection(t('detail.humanSymptoms', 'Sintomas em Humanos'), t_array(conceito, 'sintomasHumanos'), User, '#EF4444')}
@@ -126,7 +126,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), SearchNormal1, '#8B5CF6')}
           {renderFirstAid(t_object(conceito, 'primeirosSocorros') || t_array(conceito, 'oQueFazer') || t_field(conceito, 'oQueFazer'))}
           {renderSection(t('detail.whatNotToDo', 'O que NÃO fazer'), t_array(conceito, 'oQueNaoFazer'), CloseCircle, '#DC2626')}
-          {t_field(conceito, 'estatisticas') && (<NeoCard variant="glass" style={[styles.card, { marginTop: 12 }]}><View style={styles.cardHeader}><InfoCircle size={24} color={Neo.colors.neutral[500]} variant="Bold" /><H3 style={styles.cardTitle}>{t('detail.dataStats', 'Dados & Estatísticas')}</H3></View><Text style={styles.text}>{t_field(conceito, 'estatisticas')}</Text></NeoCard>)}
+          {t_field(conceito, 'estatisticas') && (<NeoCard variant="glass" style={[styles.card, { marginTop: 12 }]}><View style={styles.cardHeader}><InfoCircle size={24} color={Neo.colors.neutral[500]} variant="Bold" /><H3 style={styles.cardTitle}>{t('detail.dataStats', 'Dados & Estatísticas')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'estatisticas')}</Text></NeoCard>)}
           {renderSection(t('detail.curiosities', 'Curiosidades'), t_array(conceito, 'curiosidades'), Star1, '#F59E0B')}
           <View style={{ height: 80 }} />
         </ScrollView>

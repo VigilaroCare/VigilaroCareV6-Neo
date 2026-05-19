@@ -200,7 +200,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
                         <Text style={s.viewAllText}>
-                            {t('knowledgeHub.viewAllArticles', 'Ver todos os artigos')}
+                            {t('knowledgeHub.viewAllArticles', 'Ver Microblog')}
                         </Text>
                         <ArrowRight2 size={14} color={Neo.colors.primary[700]} />
                     </TouchableOpacity>

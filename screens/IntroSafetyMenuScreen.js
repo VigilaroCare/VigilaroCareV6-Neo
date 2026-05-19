@@ -11,6 +11,7 @@ import { H1, Caption } from '../components/NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { INTRO_CONCEPTS } from '../data/intro_safety';
 import { t_field } from '../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 /**
  * Ordem de exibição preferida pelo usuário (independente da ordem do array):
@@ -22,6 +23,10 @@ const PREFERRED_ORDER = ['intro_01', 'piramide_bird', 'prevencao_3d'];
 
 export default function IntroSafetyMenuScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
 
     // Ordena conforme PREFERRED_ORDER; itens fora da lista vão ao final
     const orderedConcepts = useMemo(() => {
@@ -48,10 +53,10 @@ export default function IntroSafetyMenuScreen({ navigation }) {
                 </View>
 
                 <View style={{ flex: 1 }}>
-                    <Text style={s.cardTitle} numberOfLines={1}>
+                    <Text style={[s.cardTitle, { color: textPrimary }]} numberOfLines={1}>
                         {t_field(concept, 'titulo')}
                     </Text>
-                    <Text style={s.cardDesc} numberOfLines={2}>
+                    <Text style={[s.cardDesc, { color: textBody }]} numberOfLines={2}>
                         {t_field(concept, 'definicao')}
                     </Text>
                 </View>
@@ -64,7 +69,7 @@ export default function IntroSafetyMenuScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER padronizado (igual outras telas premium) */}
                 <View style={s.header}>

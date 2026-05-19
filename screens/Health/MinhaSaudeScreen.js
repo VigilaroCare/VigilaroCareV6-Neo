@@ -20,10 +20,11 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function MinhaSaudeScreen({ navigation }) {
     const isDark = useIsDark();
+    const themeColors = useThemeColors();
     const [activeTab, setActiveTab] = useState('agenda'); // medications | agenda | history
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
@@ -173,24 +174,40 @@ export default function MinhaSaudeScreen({ navigation }) {
             { id: 'dossier', icon: 'Clipboard', label: t('health.tabDossier') },
         ];
 
+        // Tab selector com tema dinâmico — em dark, o pill fica escuro e os labels
+        // ficam claros (era o motivo dos labels inativos sumirem em dark).
+        const tabsContainerThemed = {
+            backgroundColor: isDark ? 'rgba(28,28,30,0.55)' : 'rgba(255,255,255,0.45)',
+            borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)',
+        };
+        const tabActiveThemed = {
+            backgroundColor: isDark ? themeColors.neutral[200] : '#FFF',
+        };
+        const tabInactiveTextColor = isDark ? themeColors.neutral[700] : themeColors.neutral[600];
         return (
-            <View style={styles.tabsContainer}>
+            <View style={[styles.tabsContainer, tabsContainerThemed]}>
                 {tabs.map((tab) => {
                     const isActive = activeTab === tab.id;
                     return (
                         <TouchableOpacity
                             key={tab.id}
-                            style={[styles.tab, isActive && styles.tabActive]}
+                            style={[styles.tab, isActive && [styles.tabActive, tabActiveThemed]]}
                             onPress={() => setActiveTab(tab.id)}
                             activeOpacity={0.85}
+                            accessibilityRole="tab"
+                            accessibilityState={{ selected: isActive }}
                         >
                             <NeoIcon
                                 name={tab.icon}
                                 size={18}
-                                color={isActive ? Neo.colors.primary[700] : Neo.colors.neutral[600]}
+                                color={isActive ? Neo.colors.primary[700] : tabInactiveTextColor}
                                 variant={isActive ? 'Bold' : 'Linear'}
                             />
-                            <Small style={[styles.tabText, isActive && styles.tabTextActive]}>
+                            <Small style={[
+                                styles.tabText,
+                                { color: tabInactiveTextColor },
+                                isActive && styles.tabTextActive,
+                            ]}>
                                 {tab.label}
                             </Small>
                         </TouchableOpacity>
