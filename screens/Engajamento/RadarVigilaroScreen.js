@@ -17,6 +17,7 @@ import NeoTypography from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import RadarVigilaroService from '../../services/RadarVigilaroService';
 import { ArrowLeft, ShieldTick, Chart, DocumentText, Calendar } from 'iconsax-react-native';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 // ─── Paleta de ícones por formato ──────────────────────────────────────────
 const FORMAT_CONFIG = {
@@ -29,12 +30,18 @@ const FORMAT_CONFIG = {
 // ─── Card do feed ────────────────────────────────────────────────────────────
 const FeedCard = React.memo(({ item, onPress }) => {
   const config = FORMAT_CONFIG[item.formato] || FORMAT_CONFIG.caso;
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
 
   return (
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={onPress}
-      style={s.card}
+      style={[s.card, { backgroundColor: cardBg }]}
     >
       <View style={s.cardInner}>
         {/* Badge formato + data */}
@@ -46,15 +53,15 @@ const FeedCard = React.memo(({ item, onPress }) => {
             </Text>
           </View>
           {item.data ? (
-            <Text style={s.dataText}>{item.data}</Text>
+            <Text style={[s.dataText, { color: textMuted }]}>{item.data}</Text>
           ) : null}
         </View>
 
         {/* Título */}
-        <Text style={s.titulo} numberOfLines={3}>{item.titulo}</Text>
+        <Text style={[s.titulo, { color: textPrimary }]} numberOfLines={3}>{item.titulo}</Text>
 
         {/* Resumo / Narrativa */}
-        <Text style={s.resumo} numberOfLines={3}>
+        <Text style={[s.resumo, { color: textBody }]} numberOfLines={3}>
           {item.narrativa || item.resumo}
         </Text>
 

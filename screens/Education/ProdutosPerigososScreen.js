@@ -10,12 +10,19 @@ import NeoCard from '../../components/NeoCard';
 import { H2, Small } from '../../components/NeoTypography';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
 import { useTranslation } from 'react-i18next';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 
 
 export default function ProdutosPerigososScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation('common');
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
+  const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
   const THEME_COLOR = '#8B5CF6'; // Violet/Purple (Consistent with 'Produtos' card in Menu)
 
   // Convert object to array
@@ -33,19 +40,21 @@ export default function ProdutosPerigososScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* Custom Header */}
         <View style={{ paddingTop: 10, paddingBottom: 20, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center' }}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', marginRight: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
+            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', marginRight: 16, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+            accessibilityRole="button"
+            accessibilityLabel={t('common.back', 'Voltar')}
           >
-            <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+            <ArrowLeft size={24} color={textBody} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
-            <H2 style={{ color: Neo.colors.neutral[900] }}>{t('headersFirst.chemicals', 'Produtos Químicos')}</H2>
-            <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>{t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa')}</Small>
+            <H2 style={{ color: textPrimary }} accessibilityRole="header">{t('headersFirst.chemicals', 'Produtos Químicos')}</H2>
+            <Small style={{ color: textMuted, marginTop: 2 }}>{t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa')}</Small>
           </View>
         </View>
 
@@ -57,17 +66,17 @@ export default function ProdutosPerigososScreen({ navigation }) {
             return (
               <TouchableOpacity key={item.id} style={{ marginBottom: 16 }} onPress={() => handlePress(item)} activeOpacity={0.8}>
                 <View style={styles.guideCardOuter}>
-                  <View style={styles.guideCardInner}>
+                  <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                     <View style={[styles.guideImageContainer, { backgroundColor: item.bg || THEME_COLOR + '15' }]}>
                       <Icon size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
                     </View>
                     <View style={styles.guideContent}>
                       <View style={{ flex: 1, paddingRight: 8 }}>
-                        <Text style={styles.guideTitle} numberOfLines={1}>{item.titulo}</Text>
-                        <Text style={styles.guideSubtitle} numberOfLines={1}>{item.subtitulo}</Text>
+                        <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.titulo}</Text>
+                        <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{item.subtitulo}</Text>
                       </View>
                       <View style={{ flex: 1 }} />
-                      <Text style={styles.descText} numberOfLines={2}>{item.definicao}</Text>
+                      <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>{item.definicao}</Text>
                     </View>
                   </View>
                 </View>

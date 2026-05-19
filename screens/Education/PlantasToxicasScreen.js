@@ -22,10 +22,17 @@ import NeoCard from '../../components/NeoCard';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function PlantasToxicasScreen({ navigation }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const [searchText, setSearchText] = useState('');
     const THEME_COLOR = '#10B981'; // Emerald
 
@@ -95,15 +102,15 @@ export default function PlantasToxicasScreen({ navigation }) {
                         return (
                             <TouchableOpacity key={planta.id} onPress={() => navigation.navigate('ConceitoDetail', { conceito: planta })} activeOpacity={0.8} style={{ marginBottom: 16 }}>
                                 <View style={styles.guideCardOuter}>
-                                    <View style={styles.guideCardInner}>
+                                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                         <View style={styles.guideImageContainer}>
                                             {planta.imagem ? <Image source={planta.imagem} style={styles.guideImage} /> : <Leaf size={48} color={THEME_COLOR} variant="Bold" />}
                                         </View>
                                         <View style={styles.guideContent}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                                 <View style={{ flex: 1, paddingRight: 8 }}>
-                                                    <Text style={styles.guideTitle} numberOfLines={1}>{t_field(planta, 'nomePopular')}</Text>
-                                                    <Text style={styles.guideSubtitle} numberOfLines={1}>{planta.nomeCientifico}</Text>
+                                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(planta, 'nomePopular')}</Text>
+                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{planta.nomeCientifico}</Text>
                                                 </View>
                                                 <View style={[styles.toxicBadge, { backgroundColor: getToxicidadeColor(nivel) + '15' }]}>
                                                     <Text style={[styles.toxicText, { color: getToxicidadeColor(nivel) }]}>{nivel}</Text>

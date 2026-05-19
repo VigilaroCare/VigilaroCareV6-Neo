@@ -8,6 +8,7 @@ import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Shadows } from '../utils/Theme';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 // Import Data
 import { SAFETY_SCHOOL } from '../data/safety_school';
@@ -34,6 +35,12 @@ export default function GenericCategoryScreen({ route, navigation }) {
     const { t } = useTranslation('common');
     const { categoryId } = route.params;
     const insets = useSafeAreaInsets();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
     // Fallback content if ID not found
     const content = DATA_MAP[categoryId] || {
@@ -52,12 +59,17 @@ export default function GenericCategoryScreen({ route, navigation }) {
     return (
         <AppBackground>
         <View style={[styles.container, { backgroundColor: 'transparent' }]}>
-            <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor="transparent" />
 
             {/* Header Neo Glass - Tactical Calm */}
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                 </TouchableOpacity>
             </View>
 
@@ -80,8 +92,8 @@ export default function GenericCategoryScreen({ route, navigation }) {
                         <Text style={{ fontSize: 24 }}>{content.emoji || '📚'}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{content.title}</Text>
-                        <Text style={{ color: Neo.colors.neutral[600], fontSize: 13, fontWeight: '600' }}>{content.subtitle}</Text>
+                        <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }} accessibilityRole="header">{content.title}</Text>
+                        <Text style={{ color: textBody, fontSize: 13, fontWeight: '600' }}>{content.subtitle}</Text>
                     </View>
                 </NeoCard>
             </View>
@@ -90,15 +102,15 @@ export default function GenericCategoryScreen({ route, navigation }) {
 
                 {/* Intro Box */}
                 {content.sections && content.sections.length > 0 ? (
-                    <View style={styles.infoBox}>
+                    <View style={[styles.infoBox, { backgroundColor: cardBg }]}>
                         <InfoCircle size={20} color={THEME_COLOR} variant="Bold" style={{ marginRight: 8 }} />
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { color: textBody }]}>
                             Explore os tópicos abaixo para garantir a segurança em {content.title.toLowerCase()}.
                         </Text>
                     </View>
                 ) : (
-                    <View style={[styles.infoBox, { justifyContent: 'center' }]}>
-                        <Text style={styles.infoText}>{t('headersFirst.nenhumConteDoDisponVelNoMomento', 'Nenhum conteúdo disponível no momento.')}</Text>
+                    <View style={[styles.infoBox, { backgroundColor: cardBg, justifyContent: 'center' }]}>
+                        <Text style={[styles.infoText, { color: textBody }]}>{t('headersFirst.nenhumConteDoDisponVelNoMomento', 'Nenhum conteúdo disponível no momento.')}</Text>
                     </View>
                 )}
 
@@ -122,7 +134,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             style={{ marginBottom: 16 }}
                         >
                             <View style={styles.guideCardOuter}>
-                                <View style={styles.guideCardInner}>
+                                <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                     <View style={[styles.guideImageContainer, { backgroundColor: THEME_COLOR + '15' }]}>
                                         {section.icon ? (
                                             <NeoIcon name={section.icon} size={48} color={THEME_COLOR} variant="Bold" />
@@ -132,11 +144,11 @@ export default function GenericCategoryScreen({ route, navigation }) {
                                     </View>
                                     <View style={styles.guideContent}>
                                         <View style={{ flex: 1, paddingRight: 8 }}>
-                                            <Text style={styles.guideTitle} numberOfLines={1}>{section.title}</Text>
-                                            <Text style={styles.guideSubtitle} numberOfLines={1}>{t('headersFirst.tPicoDeSeguranA', 'Tópico de Segurança')}</Text>
+                                            <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{section.title}</Text>
+                                            <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{t('headersFirst.tPicoDeSeguranA', 'Tópico de Segurança')}</Text>
                                         </View>
                                         <View style={{ flex: 1 }} />
-                                        <Text style={styles.descText} numberOfLines={2}>
+                                        <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>
                                             {section.content || section.description || 'Toque para saber mais.'}
                                         </Text>
                                     </View>
@@ -165,21 +177,21 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             style={{ marginBottom: 16 }}
                         >
                             <View style={styles.guideCardOuter}>
-                                <View style={styles.guideCardInner}>
+                                <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                     <View style={[styles.guideImageContainer, { backgroundColor: THEME_COLOR + '15' }]}>
                                         <NeoIcon name="Book" size={48} color={THEME_COLOR} variant="Bold" />
                                     </View>
                                     <View style={styles.guideContent}>
                                         <View style={{ flex: 1, paddingRight: 8 }}>
-                                            <Text style={styles.guideTitle} numberOfLines={1}>{article.title}</Text>
+                                            <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{article.title}</Text>
                                             <View style={{ flexDirection: 'row', gap: 4 }}>
                                                 {article.tags && article.tags.slice(0, 1).map(tag => (
-                                                    <Text key={tag} style={styles.guideSubtitle}>#{tag}</Text>
+                                                    <Text key={tag} style={[styles.guideSubtitle, { color: textMuted }]}>#{tag}</Text>
                                                 ))}
                                             </View>
                                         </View>
                                         <View style={{ flex: 1 }} />
-                                        <Text style={styles.descText} numberOfLines={2}>
+                                        <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>
                                             {article.summary}
                                         </Text>
                                     </View>
