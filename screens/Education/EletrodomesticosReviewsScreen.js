@@ -20,6 +20,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
+import ReviewImage from '../../components/ReviewImage';
 import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
 import { ELETRODOMESTICOS_REVIEWS } from '../../data/eletrodomesticos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -114,11 +115,10 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
                                     <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                         <View style={[styles.guideImageContainer, { backgroundColor: riskBg }]}>
                                             {item.imagemUrl ? (
-                                                <Image
+                                                <ReviewImage
                                                     source={{ uri: item.imagemUrl }}
-                                                    style={styles.guideImage}
-                                                    resizeMode="cover"
-                                                    accessibilityIgnoresInvertColors
+                                                    tint={THEME_COLOR}
+                                                    accessibilityLabel={item.nome}
                                                 />
                                             ) : (
                                                 <Text style={{ fontSize: 48 }}>{item.emoji}</Text>
