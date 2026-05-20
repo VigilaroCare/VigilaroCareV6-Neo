@@ -7,6 +7,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: Trash, // Cleaning bucket generic
         iconColor: '#0EA5E9', // Sky
         bg: '#E0F2FE', // Sky 100
+        imagemUrl: 'https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Produtos usados na higiene da casa contêm substâncias corrosivas e tóxicas (cloro, amônia).',
         importancia: 'O armazenamento incorreto (embaixo da pia) é a causa nº 1 de intoxicação infantil.',
         comoIdentificar: [
@@ -27,6 +28,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: Brush, // Gardening tool generic
         iconColor: '#059669', // Emerald
         bg: '#D1FAE5', // Emerald 100
+        imagemUrl: 'https://images.pexels.com/photos/4894608/pexels-photo-4894608.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Produtos para matar pragas e adubar plantas são altamente tóxicos para humanos e pets.',
         importancia: 'A ingestão acidental pode causar falência de órgãos.',
         comoIdentificar: [
@@ -46,6 +48,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: TruckFast, // Maintenance/Work generic
         iconColor: '#F59E0B', // Amber
         bg: '#FEF3C7', // Amber 100
+        imagemUrl: 'https://images.pexels.com/photos/6068901/pexels-photo-6068901.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Tintas, vernizes, colas e solventes (thinner) emitem vapores tóxicos e são inflamáveis.',
         importancia: 'Risco duplo: Intoxicação por inalação e Incêndio.',
         comoIdentificar: [
@@ -65,6 +68,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: Health, // Medical cross
         iconColor: '#EF4444', // Red
         bg: '#FEE2E2', // Red 100
+        imagemUrl: 'https://images.pexels.com/photos/3873149/pexels-photo-3873149.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Remédios parecem "balinhas" para crianças. A sobredosagem é fatal.',
         importancia: 'Intoxicação medicamentosa é comum em crianças (curiosas) e idosos (confusão).',
         comoIdentificar: [

@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import ReviewImage from '../../components/ReviewImage';
 import { H2, Small } from '../../components/NeoTypography';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
 import { useTranslation } from 'react-i18next';
@@ -68,7 +69,15 @@ export default function ProdutosPerigososScreen({ navigation }) {
                 <View style={styles.guideCardOuter}>
                   <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                     <View style={[styles.guideImageContainer, { backgroundColor: item.bg || THEME_COLOR + '15' }]}>
-                      <Icon size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
+                      {item.imagemUrl ? (
+                        <ReviewImage
+                          source={{ uri: item.imagemUrl }}
+                          tint={item.iconColor || THEME_COLOR}
+                          accessibilityLabel={item.titulo}
+                        />
+                      ) : (
+                        <Icon size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
+                      )}
                     </View>
                     <View style={styles.guideContent}>
                       <View style={{ flex: 1, paddingRight: 8 }}>

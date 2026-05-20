@@ -11,6 +11,7 @@ import { utensiliosDomesticos } from '../../data/utensilios_domesticos';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import ReviewImage from '../../components/ReviewImage';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -46,11 +47,11 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                 {/* Header do Card */}
                 <View style={styles.cardHeader}>
                     {item.imagemUrl ? (
-                        <Image
+                        <ReviewImage
                             source={{ uri: item.imagemUrl }}
                             style={styles.iconBox}
-                            resizeMode="cover"
-                            accessibilityIgnoresInvertColors
+                            tint={RiscoColor}
+                            accessibilityLabel={item.nome}
                         />
                     ) : (
                         <View style={styles.iconBox}>
