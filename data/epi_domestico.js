@@ -18,6 +18,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para a Cabeça',
             icone: 'helmet-outline',
             emoji: '⛑️',
+            imagemUrl: 'https://images.pexels.com/photos/13507074/pexels-photo-13507074.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Reparos sob o telhado ou forros',
                 'Podas de árvores com risco de queda de galhos',
@@ -32,6 +33,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Olhos',
             icone: 'glasses-outline',
             emoji: '🥽',
+            imagemUrl: 'https://images.pexels.com/photos/7789650/pexels-photo-7789650.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Usar furadeira, esmerilhadeira ou lixadeira',
                 'Cortar madeira ou metal',
@@ -47,6 +49,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para as Mãos',
             icone: 'hand-left-outline',
             emoji: '🧤',
+            imagemUrl: 'https://images.pexels.com/photos/8488002/pexels-photo-8488002.jpeg?auto=compress&cs=tinysrgb&w=1200',
             tipos: [
                 {
                     tipo: 'Luvas de borracha/látex',
@@ -72,6 +75,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Ouvidos',
             icone: 'ear-outline',
             emoji: '👂',
+            imagemUrl: 'https://images.pexels.com/photos/5974011/pexels-photo-5974011.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Usar furadeira por mais de 5 minutos',
                 'Usar roçadeira/cortador de grama',
@@ -88,6 +92,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Pés',
             icone: 'footsteps-outline',
             emoji: '👟',
+            imagemUrl: 'https://images.pexels.com/photos/30493107/pexels-photo-30493107.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Jardinagem (risco de animais peçonhentos)',
                 'Limpeza de quintais e áreas com entulho',
@@ -104,6 +109,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção Respiratória',
             icone: 'thermometer-outline',
             emoji: '😷',
+            imagemUrl: 'https://images.pexels.com/photos/3992946/pexels-photo-3992946.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Usar tintas, vernizes ou solventes',
                 'Lixar paredes ou madeiras',
@@ -128,6 +134,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para o Corpo',
             icone: 'shirt-outline',
             emoji: '👷',
+            imagemUrl: 'https://images.pexels.com/photos/8487783/pexels-photo-8487783.jpeg?auto=compress&cs=tinysrgb&w=1200',
             quando: [
                 'Podar plantas (espinhos, alergia)',
                 'Manusear materiais abrasivos',
