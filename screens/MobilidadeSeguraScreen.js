@@ -100,6 +100,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
 }
 
 function ConteudoDRV() {
+  const { t } = useTranslation('common');
   const [dispositivoExpandido, setDispositivoExpandido] = useState(null);
 
   return (
@@ -183,6 +184,7 @@ function ConteudoDRV() {
 }
 
 function DispositivoCard({ dispositivo, expandido, onToggle }) {
+  const { t } = useTranslation('common');
   return (
     <View style={styles.categoryContainer}>
       <TouchableOpacity
@@ -190,7 +192,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
         activeOpacity={0.8}
       >
         <View style={styles.guideCardOuter}>
-          <View style={[styles.guideCardInner, { backgroundColor: cardBg }]}>
+          <View style={styles.guideCardInner}>
             <View style={[styles.guideImageContainer, { backgroundColor: dispositivo.cor + '15' }]}>
               {dispositivo.imagemUrl ? (
                 <ReviewImage
@@ -277,6 +279,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 }
 
 function ConteudoAtiva() {
+  const { t } = useTranslation('common');
   return (
     <View style={styles.conteudo}>
       {/* Introdução */}
@@ -410,6 +413,7 @@ function TipoMobilidadeCard({ tipo }) {
 }
 
 function ConteudoPedestre() {
+  const { t } = useTranslation('common');
   return (
     <View style={styles.conteudo}>
       {/* Idade de autonomia */}
@@ -478,6 +482,7 @@ function ConteudoPedestre() {
 }
 
 function ConteudoMoto() {
+  const { t } = useTranslation('common');
   return (
     <View style={styles.conteudo}>
       {/* Idade mínima */}
@@ -549,6 +554,7 @@ function ConteudoMoto() {
 }
 
 function ConteudoEletrica() {
+  const { t } = useTranslation('common');
   return (
     <View style={styles.conteudo}>
       {/* Introdução */}

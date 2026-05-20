@@ -10,7 +10,7 @@ import NeoCard from '../../components/NeoCard';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { riscosFisicos } from '../../data/riscos_fisicos';
 import { useTranslation } from 'react-i18next';
-import { getLocalizedField as t_field, getLocalizedArray as t_array } from '../../utils/getLocalizedField';
+import { t_field, t_array } from '../../utils/getLocalizedField';
 
 
 
