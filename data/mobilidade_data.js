@@ -17,6 +17,7 @@ export const DISPOSITIVOS_RETENCAO = [
     nome: 'Bebê Conforto',
     icone: '👶',
     cor: '#FFB6C1',
+    imagemUrl: 'https://images.pexels.com/photos/13771900/pexels-photo-13771900.jpeg?auto=compress&cs=tinysrgb&w=1200',
     
     idadeMin: 0,
     idadeMax: 1,
@@ -74,6 +75,7 @@ export const DISPOSITIVOS_RETENCAO = [
     nome: 'Cadeirinha',
     icone: '🧒',
     cor: '#87CEEB',
+    imagemUrl: 'https://images.pexels.com/photos/30739458/pexels-photo-30739458.jpeg?auto=compress&cs=tinysrgb&w=1200',
     
     idadeMin: 1,
     idadeMax: 4,
@@ -130,6 +132,7 @@ export const DISPOSITIVOS_RETENCAO = [
     nome: 'Assento de Elevação (Booster)',
     icone: '👦',
     cor: '#9370DB',
+    imagemUrl: 'https://images.pexels.com/photos/6300862/pexels-photo-6300862.jpeg?auto=compress&cs=tinysrgb&w=1200',
     
     idadeMin: 4,
     idadeMax: 10,

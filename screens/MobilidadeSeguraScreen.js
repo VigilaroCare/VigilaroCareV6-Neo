@@ -13,6 +13,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
+import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Shadows } from '../utils/Theme';
 import { 
@@ -191,7 +192,15 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
         <View style={styles.guideCardOuter}>
           <View style={[styles.guideCardInner, { backgroundColor: cardBg }]}>
             <View style={[styles.guideImageContainer, { backgroundColor: dispositivo.cor + '15' }]}>
-              <Text style={{ fontSize: 48 }}>{dispositivo.icone}</Text>
+              {dispositivo.imagemUrl ? (
+                <ReviewImage
+                  source={{ uri: dispositivo.imagemUrl }}
+                  tint={dispositivo.cor}
+                  accessibilityLabel={dispositivo.nome}
+                />
+              ) : (
+                <Text style={{ fontSize: 48 }}>{dispositivo.icone}</Text>
+              )}
             </View>
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
