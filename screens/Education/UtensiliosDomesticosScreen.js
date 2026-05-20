@@ -1,256 +1,280 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import {
-    ArrowLeft, SearchNormal1, ArrowDown2, ArrowUp2,
-    Warning2, ShieldTick, Health, InfoCircle
-} from 'iconsax-react-native';
+import { ArrowLeft, SearchNormal1 } from 'iconsax-react-native';
 import { utensiliosDomesticos } from '../../data/utensilios_domesticos';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import NeoCard from '../../components/NeoCard';
+import { H2, Small } from '../../components/NeoTypography';
 import ReviewImage from '../../components/ReviewImage';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import FadeInView from '../../components/FadeInView';
+import { Shadows } from '../../utils/Theme';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
+// Cor de risco por nivel (heuristica baseada no texto do campo)
+const getRiscoColor = (risco) => {
+    const r = (risco || '').toLowerCase();
+    if (r.includes('explos') || r.includes('grave') || r.includes('choque')) return '#D32F2F';
+    if (r.includes('queimadu') || r.includes('contamin')) return '#E65100';
+    if (r.includes('corte') || r.includes('perfur')) return '#F57F17';
+    return '#388E3C';
+};
+
+const getRiscoBg = (color) => color + '15';
+
 export default function UtensiliosDomesticosScreen({ navigation }) {
+    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const [search, setSearch] = useState('');
-    const [expandedId, setExpandedId] = useState(null);
+
+    const THEME_COLOR = '#E65100'; // consistente com UtensiliosReviewsScreen
 
     const filteredData = utensiliosDomesticos.filter(item =>
         item.nome.toLowerCase().includes(search.toLowerCase()) ||
         item.categoria.toLowerCase().includes(search.toLowerCase())
     );
 
-    const toggleExpand = (id) => {
-        setExpandedId(expandedId === id ? null : id);
-    };
-
-    const renderItem = ({ item }) => {
-        const isExpanded = expandedId === item.id;
-        const RiscoColor = item.risco.includes('Alto') ? '#EF4444' : '#F59E0B';
-
-        return (
-            <TouchableOpacity
-                style={[styles.card, isExpanded && styles.cardExpanded]}
-                onPress={() => toggleExpand(item.id)}
-                activeOpacity={0.9}
-            >
-                {/* Header do Card */}
-                <View style={styles.cardHeader}>
-                    {item.imagemUrl ? (
-                        <ReviewImage
-                            source={{ uri: item.imagemUrl }}
-                            style={styles.iconBox}
-                            tint={RiscoColor}
-                            accessibilityLabel={item.nome}
-                        />
-                    ) : (
-                        <View style={styles.iconBox}>
-                            <Text style={{ fontSize: 28 }}>{item.emoji === 'blender' ? '🌪️' : item.emoji}</Text>
-                        </View>
-                    )}
-                    <View style={{ flex: 1 }}>
-                        <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.nome}</Text>
-                        <Text style={[styles.cardSubtitle, { color: RiscoColor }]}>Risco: {item.risco}</Text>
-                    </View>
-                    <View style={styles.expandIcon}>
-                        {isExpanded ?
-                            <ArrowUp2 size={20} color={Neo.colors.neutral[400]} /> :
-                            <ArrowDown2 size={20} color={Neo.colors.neutral[400]} />
-                        }
-                    </View>
-                </View>
-
-                {/* Conteúdo Expandido */}
-                {isExpanded && (
-                    <View style={styles.cardBody}>
-                        {/* Descrição */}
-                        <Text style={[styles.description, { color: textBody }]}>{item.descricao}</Text>
-
-                        {/* Prevenção */}
-                        <View style={styles.sectionBlock}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-                                <ShieldTick size={20} color="#059669" variant="Bold" />
-                                <Text style={[styles.sectionTitle, { color: '#059669' }]} accessibilityRole="header">{t('headersFirst.cOMOPREVENIR', 'COMO PREVENIR')}</Text>
-                            </View>
-                            <View style={{ gap: 8 }}>
-                                {item.prevencao.map((tip, index) => (
-                                    <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                                        <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: Neo.colors.primary[600], marginTop: 8, marginRight: 8 }} />
-                                        <Text style={[styles.listItem, { color: textBody }]}>{tip}</Text>
-                                    </View>
-                                ))}
-                            </View>
-                        </View>
-
-                        {/* Primeiros Socorros */}
-                        <View style={[styles.alertBox, { backgroundColor: '#FEF2F2', borderColor: '#FECACA' }]}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
-                                <Health size={20} color="#DC2626" variant="Bold" />
-                                <Text style={[styles.sectionTitle, { color: '#B91C1C' }]}>{t('headersFirst.pRIMEIROSSOCORROS', 'PRIMEIROS SOCORROS')}</Text>
-                            </View>
-                            <Text style={[styles.listItem, { color: '#7F1D1D' }]}>
-                                {item.primeirosSocorros}
-                            </Text>
-                        </View>
-                    </View>
-                )}
-            </TouchableOpacity>
-        );
+    const handlePress = (item) => {
+        // Padroniza com FasesVida/Produtos: navega para ConceitoDetail.
+        // ConceitoDetail ja sabe ler imagemUrl como hero (Lote 7k) e
+        // os campos nome/descricao/prevencao/primeirosSocorros.
+        navigation.navigate('ConceitoDetail', {
+            conceito: {
+                ...item,
+                iconColor: getRiscoColor(item.risco),
+            },
+        });
     };
 
     return (
         <AppBackground>
-        <SafeAreaView style={{ flex: 1, backgroundColor: Neo.colors.neutral[100] }} edges={['top']}>
-            <StatusBar style="dark" />
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-            {/* Header Clean */}
-            <View style={{ paddingHorizontal: 24, paddingVertical: 16 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{ alignSelf: 'flex-start', padding: 8, marginLeft: -8, marginBottom: 8 }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('common.back', 'Voltar')}
+                {/* Header padronizado (alinha com outras telas) */}
+                <View style={[styles.header, { paddingTop: insets.top > 0 ? 4 : 12 }]}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
+                        activeOpacity={0.7}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
+                    >
+                        <ArrowLeft size={22} color={THEME_COLOR} />
+                    </TouchableOpacity>
+                    <View style={styles.headerContent}>
+                        <Text style={styles.headerEmoji}>🍽️</Text>
+                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
+                            {t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos')}
+                        </Text>
+                        <Text style={[styles.headerSubtitle, { color: textBody }]}>
+                            {t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço')}
+                        </Text>
+                    </View>
+                </View>
+
+                {/* Search Bar */}
+                <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300], backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.5)' }]}>
+                    <SearchNormal1 size={20} color={textMuted} />
+                    <TextInput
+                        style={[styles.searchInput, { color: textPrimary }]}
+                        placeholder="Buscar utensílio (ex: Facas, Panelas)"
+                        placeholderTextColor={textMuted}
+                        value={search}
+                        onChangeText={setSearch}
+                    />
+                </View>
+
+                <ScrollView
+                    contentContainerStyle={styles.listContent}
+                    showsVerticalScrollIndicator={false}
                 >
-                    <ArrowLeft size={28} color={textPrimary} />
-                </TouchableOpacity>
-                <Text style={{ fontSize: 32, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">
-                    {t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos')}
-                </Text>
-                <Text style={{ fontSize: 16, color: textMuted, marginTop: 4 }}>
-                    {t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço.')}
-                </Text>
-            </View>
+                    {/* Info bar */}
+                    <FadeInView delay={100}>
+                        <View style={styles.infoBar}>
+                            <Text style={[styles.infoText, { color: textMuted }]}>
+                                📋 {filteredData.length} itens • Toque para ver detalhes
+                            </Text>
+                        </View>
+                    </FadeInView>
 
-            {/* Search Bar */}
-            <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300] }]}>
-                <SearchNormal1 size={20} color={textMuted} />
-                <TextInput
-                    style={[styles.searchInput, { color: textPrimary }]}
-                    placeholder="Buscar utensílio (ex: Facas, Panelas)"
-                    placeholderTextColor={textMuted}
-                    value={search}
-                    onChangeText={setSearch}
-                />
-            </View>
+                    {filteredData.map((item, idx) => {
+                        const riscoColor = getRiscoColor(item.risco);
+                        const riscoBg = getRiscoBg(riscoColor);
 
-            <Text style={{ fontSize: 13, color: textMuted, marginLeft: 24, marginBottom: 12 }}>
-                {filteredData.length} itens encontrados
-            </Text>
+                        return (
+                            <FadeInView key={item.id} delay={150 + idx * 50}>
+                                <TouchableOpacity
+                                    onPress={() => handlePress(item)}
+                                    activeOpacity={0.8}
+                                    style={{ marginBottom: 16 }}
+                                >
+                                    {/* Padrão de card alinhado com Plantas/Animais/Reviews */}
+                                    <View style={styles.guideCardOuter}>
+                                        <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                                            <View style={[styles.guideImageContainer, { backgroundColor: riscoBg }]}>
+                                                {item.imagemUrl ? (
+                                                    <ReviewImage
+                                                        source={{ uri: item.imagemUrl }}
+                                                        tint={riscoColor}
+                                                        accessibilityLabel={item.nome}
+                                                    />
+                                                ) : (
+                                                    <Text style={{ fontSize: 48 }}>
+                                                        {item.emoji === 'blender' ? '🌪️' : item.emoji}
+                                                    </Text>
+                                                )}
+                                            </View>
+                                            <View style={styles.guideContent}>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                    <View style={{ flex: 1, paddingRight: 8 }}>
+                                                        <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.nome}</Text>
+                                                        <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{item.categoria}</Text>
+                                                    </View>
+                                                    <View style={[styles.riscoBadge, { backgroundColor: riscoBg }]}>
+                                                        <Text style={[styles.riscoText, { color: riscoColor }]} numberOfLines={1}>{item.risco}</Text>
+                                                    </View>
+                                                </View>
+                                                <View style={{ flex: 1 }} />
+                                                <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>{item.descricao}</Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </FadeInView>
+                        );
+                    })}
 
-            <FlatList
-                data={filteredData}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 120 }}
-                showsVerticalScrollIndicator={false}
-            />
-        </SafeAreaView>
-      </AppBackground>
+                    <View style={{ height: 120 }} />
+                </ScrollView>
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
+    header: {
+        paddingHorizontal: 20,
+        paddingBottom: 16,
+        alignItems: 'center',
+    },
+    backBtn: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
+        marginBottom: 12,
+    },
+    headerContent: {
+        alignItems: 'center',
+    },
+    headerEmoji: {
+        fontSize: 40,
+        marginBottom: 6,
+    },
+    headerTitle: {
+        fontSize: 20,
+        fontWeight: '800',
+        textAlign: 'center',
+        marginBottom: 4,
+    },
+    headerSubtitle: {
+        fontSize: 13,
+        textAlign: 'center',
+        lineHeight: 18,
+    },
+
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'transparent',
-        marginHorizontal: 24,
+        marginHorizontal: 16,
         paddingHorizontal: 16,
-        height: 52,
-        borderRadius: 16,
-        marginBottom: 16,
+        height: 48,
+        borderRadius: 14,
+        marginBottom: 12,
         borderWidth: 1,
-        borderColor: Neo.colors.neutral[300],
-        ...Neo.shadows.sm,
     },
     searchInput: {
         flex: 1,
-        marginLeft: 12,
-        fontSize: 16,
-        color: Neo.colors.neutral[900],
+        marginLeft: 10,
+        fontSize: 15,
     },
-    card: {
-        backgroundColor: 'transparent',
-        borderRadius: 20,
-        marginBottom: 16,
-        ...Neo.shadows.sm,
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0.03)',
-        overflow: 'hidden',
+
+    listContent: {
+        paddingHorizontal: 16,
     },
-    cardExpanded: {
-        borderColor: Neo.colors.neutral[300],
+    infoBar: {
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        borderRadius: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 14,
+        marginBottom: 12,
+        alignItems: 'center',
     },
-    cardHeader: {
+    infoText: {
+        fontSize: 12,
+        fontWeight: '500',
+    },
+
+    // Card grande estilo Plantas/Animais (imagem retangular a esquerda)
+    guideCardOuter: {
+        borderRadius: 24,
+        ...Shadows.sm,
+    },
+    guideCardInner: {
         flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
+        height: 120,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.5)',
     },
-    iconBox: {
-        width: 56,
-        height: 56,
-        borderRadius: 18,
-        backgroundColor: Neo.colors.neutral[200],
+    guideImageContainer: {
+        width: 120,
+        height: '100%',
+        backgroundColor: '#F5F5F5',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 16,
     },
-    cardTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: Neo.colors.neutral[900],
+    guideContent: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
         marginBottom: 2,
     },
-    cardSubtitle: {
-        fontSize: 13,
-        fontWeight: '600',
+    guideSubtitle: {
+        fontSize: 11.5,
+        fontStyle: 'italic',
+        marginBottom: 6,
     },
-    expandIcon: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
-        backgroundColor: Neo.colors.neutral[100],
-        alignItems: 'center',
-        justifyContent: 'center',
+    riscoBadge: {
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
+        maxWidth: 120,
     },
-    cardBody: {
-        padding: 20,
-        paddingTop: 0,
+    riscoText: {
+        fontSize: 9.5,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
     },
-    description: {
-        fontSize: 15,
-        color: Neo.colors.neutral[700],
-        marginBottom: 24,
-        lineHeight: 22,
-    },
-    sectionBlock: {
-        marginBottom: 24,
-    },
-    sectionTitle: {
-        fontSize: 14,
-        fontWeight: '800',
-        marginLeft: 8,
-        letterSpacing: 0.5,
-    },
-    listItem: {
-        fontSize: 15,
-        color: Neo.colors.neutral[800],
-        lineHeight: 22,
-        flex: 1,
-    },
-    alertBox: {
-        padding: 16,
-        borderRadius: 16,
-        borderWidth: 1,
+    descText: {
+        fontSize: 11.5,
+        lineHeight: 16,
     },
 });
