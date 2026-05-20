@@ -22,6 +22,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
+import ReviewImage from '../../components/ReviewImage';
 import { ArrowLeft, Danger, ShieldTick, Heart, InfoCircle, People } from 'iconsax-react-native';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -73,22 +74,28 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
             <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    style={styles.backBtn}
+                    style={[styles.backBtn, { backgroundColor: riskColor + '20' }]}
                     activeOpacity={0.7}
                 >
-                    <ArrowLeft size={22} color="#FFF" />
+                    <ArrowLeft size={22} color={riskColor} />
                 </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    {item.imagemUrl ? (
-                        <Image
+
+                {/* Hero banner grande com a foto do card (padrão FasesVida/Produtos) */}
+                {item.imagemUrl ? (
+                    <View style={styles.heroBanner}>
+                        <ReviewImage
                             source={{ uri: item.imagemUrl }}
-                            style={styles.headerImage}
-                            resizeMode="cover"
-                            accessibilityIgnoresInvertColors
+                            tint={riskColor}
+                            accessibilityLabel={item.nome}
                         />
-                    ) : (
-                        <Text style={styles.headerEmoji}>{item.emoji}</Text>
-                    )}
+                    </View>
+                ) : (
+                    <View style={[styles.heroEmojiContainer, { backgroundColor: riskColor + '15' }]}>
+                        <Text style={styles.heroEmoji}>{item.emoji}</Text>
+                    </View>
+                )}
+
+                <View style={styles.headerContent}>
                     <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{item.nome}</Text>
                     <View style={[styles.riskBadge, { backgroundColor: riskColor }]}>
                         <Text style={styles.riskBadgeText}>Risco {riskLabel}</Text>
@@ -219,7 +226,6 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(0,0,0,0.15)',
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-start',
@@ -227,17 +233,31 @@ const styles = StyleSheet.create({
     },
     headerContent: {
         alignItems: 'center',
+        width: '100%',
     },
-    headerEmoji: {
-        fontSize: 48,
-        marginBottom: 8,
-    },
-    headerImage: {
-        width: 96,
-        height: 96,
+    heroBanner: {
+        width: '100%',
+        height: 220,
         borderRadius: 24,
-        marginBottom: 12,
-        backgroundColor: 'rgba(0,0,0,0.08)',
+        overflow: 'hidden',
+        marginBottom: 16,
+        backgroundColor: '#F3F4F6',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.10,
+        shadowRadius: 12,
+        elevation: 4,
+    },
+    heroEmojiContainer: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 16,
+    },
+    heroEmoji: {
+        fontSize: 56,
     },
     headerTitle: {
         fontSize: 22,
