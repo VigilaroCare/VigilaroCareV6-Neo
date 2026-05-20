@@ -11,7 +11,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         id: 'carregadores_cabos',
         nome: 'Carregadores e Cabos USB',
         emoji: '🔌',
-        imagemUrl: 'https://images.pexels.com/photos/4219867/pexels-photo-4219867.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/36012993/pexels-photo-36012993.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nivelRisco: 'alto',
         corRisco: '#E65100',
         frequenciaUso: 'Muito Alta',
@@ -36,7 +36,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'extensoes_filtros',
-        imagemUrl: 'https://images.pexels.com/photos/16886332/pexels-photo-16886332.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/5544612/pexels-photo-5544612.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Extensões e Filtros de Linha',
         emoji: '🔗',
         nivelRisco: 'alto',
@@ -63,7 +63,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'power_banks',
-        imagemUrl: 'https://images.pexels.com/photos/6296911/pexels-photo-6296911.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/8325381/pexels-photo-8325381.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Power Banks',
         emoji: '🔋',
         nivelRisco: 'medio',

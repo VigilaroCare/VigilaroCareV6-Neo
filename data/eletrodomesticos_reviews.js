@@ -221,7 +221,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'ferro_passar',
-        imagemUrl: 'https://images.pexels.com/photos/53422/pexels-photo-53422.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/28576618/pexels-photo-28576618.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Ferro de Passar',
         emoji: '👔',
         nivelRisco: 'medio',
@@ -301,7 +301,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'ventilador',
-        imagemUrl: 'https://images.pexels.com/photos/42220/pexels-photo-42220.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/4389919/pexels-photo-4389919.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Ventilador',
         emoji: '🌬️',
         nivelRisco: 'baixo',
@@ -326,7 +326,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'aspirador',
-        imagemUrl: 'https://images.pexels.com/photos/38325/pexels-photo-38325.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/9462142/pexels-photo-9462142.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Aspirador de Pó',
         emoji: '🧹',
         nivelRisco: 'baixo',
