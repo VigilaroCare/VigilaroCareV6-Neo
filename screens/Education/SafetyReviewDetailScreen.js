@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import {
     View,
     Text,
+    Image,
     ScrollView,
     TouchableOpacity,
     StyleSheet,
@@ -78,7 +79,16 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                     <ArrowLeft size={22} color="#FFF" />
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
-                    <Text style={styles.headerEmoji}>{item.emoji}</Text>
+                    {item.imagemUrl ? (
+                        <Image
+                            source={{ uri: item.imagemUrl }}
+                            style={styles.headerImage}
+                            resizeMode="cover"
+                            accessibilityIgnoresInvertColors
+                        />
+                    ) : (
+                        <Text style={styles.headerEmoji}>{item.emoji}</Text>
+                    )}
                     <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{item.nome}</Text>
                     <View style={[styles.riskBadge, { backgroundColor: riskColor }]}>
                         <Text style={styles.riskBadgeText}>Risco {riskLabel}</Text>
@@ -221,6 +231,13 @@ const styles = StyleSheet.create({
     headerEmoji: {
         fontSize: 48,
         marginBottom: 8,
+    },
+    headerImage: {
+        width: 96,
+        height: 96,
+        borderRadius: 24,
+        marginBottom: 12,
+        backgroundColor: 'rgba(0,0,0,0.08)',
     },
     headerTitle: {
         fontSize: 22,

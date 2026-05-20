@@ -4,6 +4,7 @@ export const utensiliosDomesticos = [
         nome: 'Facas e Cortantes',
         categoria: 'Cozinha',
         emoji: '🔪',
+        imagemUrl: 'https://images.pexels.com/photos/5778289/pexels-photo-5778289.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Cortes Graves',
         descricao: 'Facas afiadas, tesouras e lâminas são causas frequentes de acidentes domésticos.',
         prevencao: [
@@ -19,6 +20,7 @@ export const utensiliosDomesticos = [
         nome: 'Panelas e Fogão',
         categoria: 'Cozinha',
         emoji: '🍳',
+        imagemUrl: 'https://images.pexels.com/photos/1277939/pexels-photo-1277939.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Queimaduras Térmicas',
         descricao: 'Cabos de panelas para fora e panelas pesadas são riscos de tombamento e queimadura.',
         prevencao: [
@@ -34,6 +36,7 @@ export const utensiliosDomesticos = [
         nome: 'Vidros e Louças',
         categoria: 'Geral',
         emoji: '🍷',
+        imagemUrl: 'https://images.pexels.com/photos/6995259/pexels-photo-6995259.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Cortes e Perfurações',
         descricao: 'Quebra por choque térmico ou impacto. Cacos de vidro são extremamente perigosos.',
         prevencao: [
@@ -49,6 +52,7 @@ export const utensiliosDomesticos = [
         nome: 'Plásticos e Potes',
         categoria: 'Cozinha',
         emoji: '🥡',
+        imagemUrl: 'https://images.pexels.com/photos/4096909/pexels-photo-4096909.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Contaminação Química',
         descricao: 'Alguns plásticos liberam substâncias tóxicas (BPA) quando aquecidos.',
         prevencao: [
@@ -63,6 +67,7 @@ export const utensiliosDomesticos = [
         nome: 'Panela de Pressão',
         categoria: 'Cozinha',
         emoji: '🥘',
+        imagemUrl: 'https://images.pexels.com/photos/35041643/pexels-photo-35041643.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Explosão',
         descricao: 'Mal uso ou falta de manutenção pode causar explosões graves.',
         prevencao: [
@@ -78,6 +83,7 @@ export const utensiliosDomesticos = [
         nome: 'Eletrodomésticos (Liquidificador/Mixer)',
         categoria: 'Eletro',
         emoji: 'blender', // Ionicons name mapping might be needed or use emoji text
+        imagemUrl: 'https://images.pexels.com/photos/5946625/pexels-photo-5946625.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Cortes e Choque',
         descricao: 'Lâminas afiadas e risco elétrico.',
         prevencao: [

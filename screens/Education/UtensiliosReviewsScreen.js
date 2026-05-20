@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import {
     View,
     Text,
+    Image,
     ScrollView,
     TouchableOpacity,
     StyleSheet,
@@ -108,10 +109,19 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                             >
                                 <NeoCard variant="glass" style={styles.itemCard}>
                                     <View style={styles.itemRow}>
-                                        {/* Emoji */}
-                                        <View style={[styles.emojiCircle, { backgroundColor: riskBg }]}>
-                                            <Text style={styles.emojiText}>{item.emoji}</Text>
-                                        </View>
+                                        {/* Imagem real (Pexels) ou emoji fallback */}
+                                        {item.imagemUrl ? (
+                                            <Image
+                                                source={{ uri: item.imagemUrl }}
+                                                style={[styles.emojiCircle, { backgroundColor: riskBg }]}
+                                                resizeMode="cover"
+                                                accessibilityIgnoresInvertColors
+                                            />
+                                        ) : (
+                                            <View style={[styles.emojiCircle, { backgroundColor: riskBg }]}>
+                                                <Text style={styles.emojiText}>{item.emoji}</Text>
+                                            </View>
+                                        )}
 
                                         {/* Info */}
                                         <View style={styles.itemInfo}>

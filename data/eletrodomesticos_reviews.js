@@ -11,6 +11,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
         id: 'fogao_cooktop',
         nome: 'Fogão e Cooktop',
         emoji: '🔥',
+        imagemUrl: 'https://images.pexels.com/photos/4252157/pexels-photo-4252157.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nivelRisco: 'critico',
         corRisco: '#D32F2F',
         frequenciaUso: 'Alta',
@@ -35,6 +36,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'chuveiro_eletrico',
+        imagemUrl: 'https://images.pexels.com/photos/6492401/pexels-photo-6492401.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Chuveiro Elétrico',
         emoji: '🚿',
         nivelRisco: 'critico',
@@ -60,6 +62,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'maquina_lavar',
+        imagemUrl: 'https://images.pexels.com/photos/5591664/pexels-photo-5591664.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Máquina de Lavar Roupa',
         emoji: '🌀',
         nivelRisco: 'critico',
@@ -85,6 +88,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'geladeira',
+        imagemUrl: 'https://images.pexels.com/photos/34872429/pexels-photo-34872429.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Geladeira e Freezer',
         emoji: '🧊',
         nivelRisco: 'alto',
@@ -110,6 +114,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'secador_chapinha',
+        imagemUrl: 'https://images.pexels.com/photos/973406/pexels-photo-973406.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Secador de Cabelo e Chapinha',
         emoji: '💇',
         nivelRisco: 'alto',
@@ -136,6 +141,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'microondas',
+        imagemUrl: 'https://images.pexels.com/photos/4172959/pexels-photo-4172959.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Micro-ondas',
         emoji: '📡',
         nivelRisco: 'medio',
@@ -162,6 +168,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'air_fryer',
+        imagemUrl: 'https://images.pexels.com/photos/14554841/pexels-photo-14554841.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Air Fryer (Fritadeira Elétrica)',
         emoji: '🍟',
         nivelRisco: 'medio',
@@ -188,6 +195,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'ar_condicionado',
+        imagemUrl: 'https://images.pexels.com/photos/8939419/pexels-photo-8939419.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Ar-Condicionado',
         emoji: '❄️',
         nivelRisco: 'medio',
@@ -213,6 +221,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'ferro_passar',
+        imagemUrl: 'https://images.pexels.com/photos/4108708/pexels-photo-4108708.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Ferro de Passar',
         emoji: '👔',
         nivelRisco: 'medio',
@@ -239,6 +248,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'liquidificador',
+        imagemUrl: 'https://images.pexels.com/photos/5946625/pexels-photo-5946625.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Liquidificador e Processador',
         emoji: '🧃',
         nivelRisco: 'medio',
@@ -265,6 +275,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'forno_eletrico',
+        imagemUrl: 'https://images.pexels.com/photos/4252140/pexels-photo-4252140.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Forno Elétrico',
         emoji: '🍕',
         nivelRisco: 'medio',
@@ -290,6 +301,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'ventilador',
+        imagemUrl: 'https://images.pexels.com/photos/4078340/pexels-photo-4078340.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Ventilador',
         emoji: '🌬️',
         nivelRisco: 'baixo',
@@ -314,6 +326,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'aspirador',
+        imagemUrl: 'https://images.pexels.com/photos/4108714/pexels-photo-4108714.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Aspirador de Pó',
         emoji: '🧹',
         nivelRisco: 'baixo',
@@ -338,6 +351,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'cafeteira',
+        imagemUrl: 'https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Cafeteira Elétrica',
         emoji: '☕',
         nivelRisco: 'baixo',

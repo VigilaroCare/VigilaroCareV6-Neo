@@ -11,6 +11,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         id: 'carregadores_cabos',
         nome: 'Carregadores e Cabos USB',
         emoji: '🔌',
+        imagemUrl: 'https://images.pexels.com/photos/4046718/pexels-photo-4046718.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nivelRisco: 'alto',
         corRisco: '#E65100',
         frequenciaUso: 'Muito Alta',
@@ -35,6 +36,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'extensoes_filtros',
+        imagemUrl: 'https://images.pexels.com/photos/11122723/pexels-photo-11122723.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Extensões e Filtros de Linha',
         emoji: '🔗',
         nivelRisco: 'alto',
@@ -61,6 +63,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'power_banks',
+        imagemUrl: 'https://images.pexels.com/photos/4068314/pexels-photo-4068314.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Power Banks',
         emoji: '🔋',
         nivelRisco: 'medio',
@@ -86,6 +89,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'televisores',
+        imagemUrl: 'https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Televisores de Tela Plana',
         emoji: '📺',
         nivelRisco: 'medio',
@@ -110,6 +114,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'baba_eletronica',
+        imagemUrl: 'https://images.pexels.com/photos/7666428/pexels-photo-7666428.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Babá Eletrônica e Câmeras Wi-Fi',
         emoji: '📹',
         nivelRisco: 'baixo',
@@ -134,6 +139,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'consoles_videogame',
+        imagemUrl: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Consoles de Videogame',
         emoji: '🎮',
         nivelRisco: 'baixo',
@@ -158,6 +164,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'pilhas_baterias',
+        imagemUrl: 'https://images.pexels.com/photos/7180756/pexels-photo-7180756.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Pilhas e Baterias (Botão/AA/AAA)',
         emoji: '🪫',
         nivelRisco: 'critico',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -45,9 +45,18 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
             >
                 {/* Header do Card */}
                 <View style={styles.cardHeader}>
-                    <View style={styles.iconBox}>
-                        <Text style={{ fontSize: 28 }}>{item.emoji === 'blender' ? '🌪️' : item.emoji}</Text>
-                    </View>
+                    {item.imagemUrl ? (
+                        <Image
+                            source={{ uri: item.imagemUrl }}
+                            style={styles.iconBox}
+                            resizeMode="cover"
+                            accessibilityIgnoresInvertColors
+                        />
+                    ) : (
+                        <View style={styles.iconBox}>
+                            <Text style={{ fontSize: 28 }}>{item.emoji === 'blender' ? '🌪️' : item.emoji}</Text>
+                        </View>
+                    )}
                     <View style={{ flex: 1 }}>
                         <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.nome}</Text>
                         <Text style={[styles.cardSubtitle, { color: RiscoColor }]}>Risco: {item.risco}</Text>
