@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import ReviewImage from '../../components/ReviewImage';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getPrimeirosSocorros } from '../../data/primeiros_socorros';
@@ -39,6 +40,7 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
       emoji: pet.emoji || '🐾', // garante fallback visual
       titulo: pet.titulo,
       situacao: pet.descricao,
+      imagemUrl: pet.imagemUrl, // foto Pexels do merge
       isPet: true,
       rawPetData: pet,
     }));
@@ -55,7 +57,13 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
         activeOpacity={0.85}
       >
         <View style={[s.iconBox, { backgroundColor: itemAccent + '1A' }]}>
-          {item.emoji ? (
+          {item.imagemUrl ? (
+            <ReviewImage
+              source={{ uri: item.imagemUrl }}
+              tint={itemAccent}
+              accessibilityLabel={item.titulo}
+            />
+          ) : item.emoji ? (
             <Text style={{ fontSize: 28 }}>{item.emoji}</Text>
           ) : (
             <NeoIcon name="Heart" size={26} color={itemAccent} variant="Bold" />
