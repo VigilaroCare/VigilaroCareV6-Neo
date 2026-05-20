@@ -11,6 +11,7 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
+import ReviewImage from '../../components/ReviewImage';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array, t_object } from '../../utils/getLocalizedField';
@@ -27,6 +28,8 @@ export default function ConceitoDetailScreen({ route, navigation }) {
   // Determine Icon/Emoji/Image to show
   const HeroIcon = conceito.icon;
   const HeroEmoji = conceito.emoji;
+  // Prioridade: imagemUrl (foto Pexels do card) > imagem (require legado) > icone
+  const HeroImageUrl = conceito.imagemUrl;
   const HeroImage = conceito.imagem; // Support for Image (require or uri)
 
   // Default blue if not provided
@@ -93,7 +96,15 @@ export default function ConceitoDetailScreen({ route, navigation }) {
         <View style={styles.header}><TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} accessibilityRole="button" accessibilityLabel={t('common.back', 'Voltar')}><ArrowLeft size={28} color={themeColors.neutral[800]} /></TouchableOpacity></View>
         <ScrollView contentContainerStyle={[styles.scrollContent, { paddingBottom: 240 }]} showsVerticalScrollIndicator={false}>
           <View style={styles.heroSection}>
-              {HeroImage ? (
+              {HeroImageUrl ? (
+                  <View style={[styles.heroImageBanner, { ...Neo.shadows.md }]}>
+                      <ReviewImage
+                          source={{ uri: HeroImageUrl }}
+                          tint={HeroColor}
+                          accessibilityLabel={t_field(conceito, 'titulo') || t_field(conceito, 'nome')}
+                      />
+                  </View>
+              ) : HeroImage ? (
                   <View style={[styles.heroImageBanner, { ...Neo.shadows.md }]}>
                       <Image source={HeroImage} style={styles.heroImageLarge} resizeMode="cover" />
                   </View>

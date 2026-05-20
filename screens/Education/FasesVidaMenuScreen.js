@@ -24,6 +24,8 @@ export default function FasesVidaMenuScreen({ navigation }) {
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
     // Correct order based on eBook content
     const dataKeys = [
@@ -94,28 +96,29 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                     key={item.id}
                                     onPress={() => handlePress(item)}
                                     activeOpacity={0.8}
+                                    style={{ marginBottom: 16 }}
                                 >
-                                    <NeoCard variant="glass" style={styles.listCard}>
-                                        {item.imagemUrl ? (
-                                            <ReviewImage
-                                                source={{ uri: item.imagemUrl }}
-                                                style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}
-                                                tint={item.iconColor}
-                                                accessibilityLabel={item.cardTitle}
-                                            />
-                                        ) : (
-                                            <View style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}>
-                                                <Icon size={28} color={item.iconColor} variant="Bold" />
+                                    {/* Padrão de card alinhado com Plantas/Animais/Reviews */}
+                                    <View style={styles.guideCardOuter}>
+                                        <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                                            <View style={[styles.guideImageContainer, { backgroundColor: item.color + '33' }]}>
+                                                {item.imagemUrl ? (
+                                                    <ReviewImage
+                                                        source={{ uri: item.imagemUrl }}
+                                                        tint={item.iconColor}
+                                                        accessibilityLabel={item.cardTitle}
+                                                    />
+                                                ) : (
+                                                    <Icon size={48} color={item.iconColor} variant="Bold" />
+                                                )}
                                             </View>
-                                        )}
-                                        <View style={styles.textContainer}>
-                                            <Text style={[styles.cardTitle, { color: textPrimary }]}>{item.cardTitle}</Text>
-                                            <Text style={[styles.cardDesc, { color: textBody }]}>{item.desc}</Text>
+                                            <View style={styles.guideContent}>
+                                                <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.cardTitle}</Text>
+                                                <View style={{ flex: 1 }} />
+                                                <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={3}>{item.desc}</Text>
+                                            </View>
                                         </View>
-                                        <View style={[styles.chevronBox, { backgroundColor: isDark ? themeColors.neutral[300] : themeColors.neutral[100] }]}>
-                                            <ArrowRight2 size={20} color={themeColors.neutral[500]} />
-                                        </View>
-                                    </NeoCard>
+                                    </View>
                                 </TouchableOpacity>
                             );
                         })}
@@ -155,47 +158,47 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         flexDirection: 'column',
-        gap: 12
     },
-    listCard: {
+    // Card grande estilo Plantas/Animais/Reviews (imagem retangular à esquerda)
+    guideCardOuter: {
+        borderRadius: 24,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
+    guideCardInner: {
         flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
-        marginBottom: 4,
+        height: 120,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.5)',
     },
-    iconContainer: {
-        width: 56,
-        height: 56,
-        borderRadius: 28,
+    guideImageContainer: {
+        width: 120,
+        height: '100%',
+        backgroundColor: '#F5F5F5',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 16,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.1)'
     },
-    textContainer: {
+    guideContent: {
         flex: 1,
-        justifyContent: 'center'
+        padding: 14,
+        justifyContent: 'flex-start',
     },
-    cardTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
         color: Neo.colors.neutral[900],
         marginBottom: 4,
     },
-    cardDesc: {
-        fontSize: 13,
-        color: Neo.colors.neutral[500],
-        fontWeight: '500',
-    },
-    chevronBox: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
-        backgroundColor: Neo.colors.neutral[100],
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 12
+    guideDesc: {
+        fontSize: 12.5,
+        color: Neo.colors.neutral[600],
+        lineHeight: 17,
     },
     articleCard: {
         padding: 16,
