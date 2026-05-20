@@ -7,6 +7,7 @@ export const TEORIA_FOGO_DATA = {
         icon: Triangle,
         iconColor: '#EF4444', // Red
         bg: '#FEE2E2', // Red 100
+        imagemUrl: 'https://images.pexels.com/photos/15129794/pexels-photo-15129794.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Para que o fogo exista, são necessários três elementos: Combustível, Comburente (Oxigênio) e Calor. Se retirar um, o fogo apaga.',
         importancia: 'Entender como o fogo começa é o primeiro passo para saber como apagá-lo ou prevení-lo.',
         comoIdentificar: [
@@ -26,6 +27,7 @@ export const TEORIA_FOGO_DATA = {
         icon: Fire,
         iconColor: '#F59E0B', // Orange
         bg: '#FEF3C7', // Orange 100
+        imagemUrl: 'https://images.pexels.com/photos/30591338/pexels-photo-30591338.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'O fogo é classificado pelo tipo de material que está queimando. Cada classe exige um extintor diferente.',
         importancia: 'Usar o extintor errado (ex: água em fogo elétrico) pode ser fatal.',
         comoIdentificar: [
@@ -42,6 +44,7 @@ export const TEORIA_FOGO_DATA = {
         icon: Drop,
         iconColor: '#3B82F6', // Blue
         bg: '#DBEAFE', // Blue 100
+        imagemUrl: 'https://images.pexels.com/photos/4805958/pexels-photo-4805958.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Cilindros com agentes químicos específicos para combater cada classe de fogo.',
         importancia: 'O extintor ABC é o mais versátil para residências, cobrindo sólidos, líquidos e elétricos.',
         comoIdentificar: [
@@ -62,6 +65,7 @@ export const TEORIA_FOGO_DATA = {
         icon: Wind, // Running/Wind concept
         iconColor: '#10B981', // Emerald
         bg: '#D1FAE5', // Emerald 100
+        imagemUrl: 'https://images.pexels.com/photos/5036652/pexels-photo-5036652.jpeg?auto=compress&cs=tinysrgb&w=1200',
         definicao: 'Estratégia pré-definida de como sair da casa em caso de incêndio.',
         importancia: 'No pânico e na fumaça, você não consegue pensar. O plano deve ser treinado.',
         comoIdentificar: [

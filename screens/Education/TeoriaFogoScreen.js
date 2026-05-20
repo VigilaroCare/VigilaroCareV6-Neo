@@ -7,6 +7,7 @@ import { Shadows } from '../../utils/Theme';
 import { ArrowLeft } from 'iconsax-react-native';
 import { TEORIA_FOGO_DATA } from '../../data/teoria_fogo';
 import AppBackground from '../../components/AppBackground';
+import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 
 const { width } = Dimensions.get('window');
@@ -80,11 +81,21 @@ export default function TeoriaFogoScreen({ navigation }) {
                                 onPress={() => handlePress(item)}
                                 activeOpacity={0.8}
                             >
-                                <View style={[styles.iconContainer, { backgroundColor: item.bg }]}>
-                                    <Icon size={32} color={item.iconColor} variant="Bold" />
+                                <View style={[styles.thumbContainer, { backgroundColor: item.bg }]}>
+                                    {item.imagemUrl ? (
+                                        <ReviewImage
+                                            source={{ uri: item.imagemUrl }}
+                                            tint={item.iconColor}
+                                            accessibilityLabel={item.titulo}
+                                        />
+                                    ) : (
+                                        <Icon size={48} color={item.iconColor} variant="Bold" />
+                                    )}
                                 </View>
-                                <Text style={styles.cardTitle}>{item.titulo}</Text>
-                                <Text style={styles.cardDesc}>{item.subtitulo}</Text>
+                                <View style={styles.cardBody}>
+                                    <Text style={styles.cardTitle}>{item.titulo}</Text>
+                                    <Text style={styles.cardDesc}>{item.subtitulo}</Text>
+                                </View>
                             </TouchableOpacity>
                         );
                     })}
@@ -103,26 +114,26 @@ const styles = StyleSheet.create({
     },
     card: {
         width: CARD_WIDTH,
-        backgroundColor: 'transparent',
+        backgroundColor: '#FFFFFF',
         borderRadius: 24,
-        padding: 20,
         marginBottom: SPACING,
-        alignItems: 'center',
-        paddingVertical: 24,
+        overflow: 'hidden',
         ...Shadows.md,
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.03)',
     },
-    iconContainer: {
-        width: 64,
-        height: 64,
-        borderRadius: 32,
+    thumbContainer: {
+        width: '100%',
+        height: 130,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 16,
+    },
+    cardBody: {
+        padding: 14,
+        alignItems: 'center',
     },
     cardTitle: {
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#1F2937',
         marginBottom: 4,
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
         lineHeight: 20,
     },
     cardDesc: {
-        fontSize: 13,
+        fontSize: 12.5,
         color: '#6B7280',
         fontWeight: '500',
         textAlign: 'center',
