@@ -189,7 +189,7 @@ export const UTENSILIOS_REVIEWS = [
     },
     {
         id: 'fosforos_isqueiros',
-        imagemUrl: 'https://images.pexels.com/photos/1043858/pexels-photo-1043858.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/67540/pexels-photo-67540.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Fósforos e Isqueiros',
         emoji: '🔥',
         nivelRisco: 'alto',
@@ -214,7 +214,7 @@ export const UTENSILIOS_REVIEWS = [
     },
     {
         id: 'sacos_plasticos',
-        imagemUrl: 'https://images.pexels.com/photos/5900192/pexels-photo-5900192.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/9016821/pexels-photo-9016821.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Sacos Plásticos',
         emoji: '🛍️',
         nivelRisco: 'medio',
@@ -239,7 +239,7 @@ export const UTENSILIOS_REVIEWS = [
     },
     {
         id: 'produtos_limpeza',
-        imagemUrl: 'https://images.pexels.com/photos/5217888/pexels-photo-5217888.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: 'https://images.pexels.com/photos/5217898/pexels-photo-5217898.jpeg?auto=compress&cs=tinysrgb&w=1200',
         nome: 'Produtos Químicos de Limpeza',
         emoji: '🧴',
         nivelRisco: 'alto',
