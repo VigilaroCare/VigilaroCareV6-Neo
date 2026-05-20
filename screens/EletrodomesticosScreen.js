@@ -15,6 +15,7 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
+import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing, Typography, BorderRadius, Shadows, Components } from '../utils/Theme';
 import { eletrodomesticosSeguranca } from '../data/eletrodomesticos_seguranca';
@@ -23,6 +24,18 @@ import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
+// Cor por dispositivo (usada como tint do ReviewImage)
+const DEVICE_COLORS = {
+    microondas:    '#E65100',
+    processadores: '#7C3AED',
+    fogao:         '#D32F2F',
+    aquecedor:     '#F57F17',
+    ventilador:    '#0EA5E9',
+    ferro:         '#EC4899',
+    secador:       '#EC4899',
+    geladeira:     '#3B82F6',
+};
 
 export default function EletrodomesticosScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -41,43 +54,61 @@ export default function EletrodomesticosScreen({ navigation }) {
 
     const renderDeviceCard = (device) => {
         const isExpanded = expandedId === device.id;
+        const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+        const deviceColor = DEVICE_COLORS[device.id] || '#6366F1';
 
         return (
             <TouchableOpacity
                 key={device.id}
-                style={[styles.card, isExpanded && styles.cardExpanded]}
                 onPress={() => toggleExpand(device.id)}
                 activeOpacity={0.9}
+                style={{ marginBottom: 16 }}
             >
-                <View style={styles.cardHeader}>
-                    <View style={styles.iconContainer}>
-                        <NeoIcon
-                            name={getIconForDevice(device.id)}
-                            size={24}
-                            color={Colors.primary}
-                        />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <Text style={[styles.cardTitle, { color: textPrimary }]}>{device.nome}</Text>
-                        <View style={styles.badgesRow}>
-                            {device.travas && (
-                                <View style={styles.badgeLock}>
-                                    <NeoIcon name="Lock" size={12} color="#FFF" style={{ marginRight: 4 }} />
-                                    <Text style={styles.badgeLockText}>{t('headersFirst.requerTrava', 'Requer Trava')}</Text>
-                                </View>
+                {/* Card retangular 130x130 padrão Plantas/Reviews */}
+                <View style={styles.guideCardOuter}>
+                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                        <View style={[styles.guideImageContainer, { backgroundColor: deviceColor + '15' }]}>
+                            {device.imagemUrl ? (
+                                <ReviewImage
+                                    source={{ uri: device.imagemUrl }}
+                                    tint={deviceColor}
+                                    accessibilityLabel={device.nome}
+                                />
+                            ) : (
+                                <NeoIcon
+                                    name={getIconForDevice(device.id)}
+                                    size={48}
+                                    color={deviceColor}
+                                />
                             )}
-                            {device.riscos.slice(0, 2).map((risco, index) => (
-                                <View key={index} style={styles.badgeRisk}>
-                                    <Text style={styles.badgeRiskText}>{risco}</Text>
+                        </View>
+                        <View style={styles.guideContent}>
+                            <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                                <View style={{ flex: 1, paddingRight: 8 }}>
+                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={2}>{device.nome}</Text>
                                 </View>
-                            ))}
+                                <NeoIcon
+                                    name={isExpanded ? "ArrowUp2" : "ArrowDown2"}
+                                    size={18}
+                                    color={textMuted}
+                                />
+                            </View>
+                            <View style={{ flex: 1 }} />
+                            <View style={styles.badgesRow}>
+                                {device.travas && (
+                                    <View style={styles.badgeLock}>
+                                        <NeoIcon name="Lock" size={10} color="#FFF" style={{ marginRight: 3 }} />
+                                        <Text style={styles.badgeLockText}>Trava</Text>
+                                    </View>
+                                )}
+                                {device.riscos.slice(0, 2).map((risco, index) => (
+                                    <View key={index} style={styles.badgeRisk}>
+                                        <Text style={styles.badgeRiskText}>{risco}</Text>
+                                    </View>
+                                ))}
+                            </View>
                         </View>
                     </View>
-                    <NeoIcon
-                        name={isExpanded ? "chevron-up" : "chevron-down"}
-                        size={24}
-                        color={Colors.textTertiary}
-                    />
                 </View>
 
                 {isExpanded && (
@@ -207,73 +238,72 @@ const styles = StyleSheet.create({
         fontFamily: Typography.fontFamily.bold,
         color: Colors.textPrimary,
     },
-    card: {
-        backgroundColor: Colors.surface,
-        borderRadius: BorderRadius.md,
-        marginBottom: Spacing.md,
+    // Card grande estilo Plantas/Animais (imagem retangular à esquerda)
+    guideCardOuter: {
+        borderRadius: 24,
         ...Shadows.sm,
+    },
+    guideCardInner: {
+        flexDirection: 'row',
+        height: 130,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
-        borderColor: 'rgba(0,0,0,0)',
-        elevation: 0, // [FIX] Previne moldura fantasma Android
+        borderColor: 'rgba(255,255,255,0.5)',
     },
-    cardExpanded: {
-        borderColor: Colors.primary,
-        ...Shadows.md,
-    },
-    cardHeader: {
-        flexDirection: 'row',
+    guideImageContainer: {
+        width: 130,
+        height: '100%',
+        backgroundColor: '#F5F5F5',
         alignItems: 'center',
-        padding: Spacing.md,
-    },
-    iconContainer: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        backgroundColor: Colors.primaryLight,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: Spacing.md,
     },
-    cardTitle: {
-        fontSize: Typography.sizes.md,
-        fontFamily: Typography.fontFamily.semibold,
-        color: Colors.textPrimary,
+    guideContent: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
         marginBottom: 4,
     },
     badgesRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 6,
+        gap: 4,
     },
     badgeLock: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: Colors.error,
-        paddingHorizontal: 8,
+        paddingHorizontal: 6,
         paddingVertical: 2,
         borderRadius: BorderRadius.sm,
     },
     badgeLockText: {
         color: '#FFF',
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: Typography.fontFamily.bold,
     },
     badgeRisk: {
         backgroundColor: Colors.surfaceVariant,
-        paddingHorizontal: 8,
+        paddingHorizontal: 6,
         paddingVertical: 2,
         borderRadius: BorderRadius.sm,
     },
     badgeRiskText: {
         color: Colors.textSecondary,
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: Typography.fontFamily.medium,
     },
     cardContent: {
         padding: Spacing.md,
-        paddingTop: 0,
-        backgroundColor: Colors.surface,
+        marginTop: -10,
+        backgroundColor: 'rgba(0,0,0,0.02)',
+        borderRadius: 16,
+        marginHorizontal: 8,
     },
     description: {
         fontSize: Typography.sizes.sm,
