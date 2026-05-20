@@ -53,6 +53,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
     const THEME_COLOR = '#E65100';
     const ITEMS = UTENSILIOS_REVIEWS;
@@ -105,45 +106,39 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                         <FadeInView key={item.id} delay={150 + idx * 60}>
                             <TouchableOpacity
                                 onPress={() => handlePress(item)}
-                                activeOpacity={0.7}
+                                activeOpacity={0.8}
+                                style={{ marginBottom: 16 }}
                             >
-                                <NeoCard variant="glass" style={styles.itemCard}>
-                                    <View style={styles.itemRow}>
-                                        {/* Imagem real (Pexels) ou emoji fallback */}
-                                        {item.imagemUrl ? (
-                                            <Image
-                                                source={{ uri: item.imagemUrl }}
-                                                style={[styles.emojiCircle, { backgroundColor: riskBg }]}
-                                                resizeMode="cover"
-                                                accessibilityIgnoresInvertColors
-                                            />
-                                        ) : (
-                                            <View style={[styles.emojiCircle, { backgroundColor: riskBg }]}>
-                                                <Text style={styles.emojiText}>{item.emoji}</Text>
-                                            </View>
-                                        )}
-
-                                        {/* Info */}
-                                        <View style={styles.itemInfo}>
-                                            <Text style={[styles.itemName, { color: textPrimary }]}>{item.nome}</Text>
-                                            <Text style={[styles.itemDesc, { color: textBody }]} numberOfLines={2}>
-                                                {item.resumo}
-                                            </Text>
-                                            {/* Badges */}
-                                            <View style={styles.badgeRow}>
-                                                <View style={[styles.badge, { backgroundColor: riskColor }]}>
-                                                    <Text style={styles.badgeText}>{riskLabel}</Text>
-                                                </View>
-                                                <Text style={styles.freqText}>
-                                                    Uso {item.frequenciaUso.toLowerCase()}
-                                                </Text>
-                                            </View>
+                                {/* Padrão de card alinhado com Plantas/Animais: imagem retangular à esquerda */}
+                                <View style={styles.guideCardOuter}>
+                                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                                        <View style={[styles.guideImageContainer, { backgroundColor: riskBg }]}>
+                                            {item.imagemUrl ? (
+                                                <Image
+                                                    source={{ uri: item.imagemUrl }}
+                                                    style={styles.guideImage}
+                                                    resizeMode="cover"
+                                                    accessibilityIgnoresInvertColors
+                                                />
+                                            ) : (
+                                                <Text style={{ fontSize: 48 }}>{item.emoji}</Text>
+                                            )}
                                         </View>
-
-                                        {/* Arrow */}
-                                        <ArrowRight2 size={18} color={Neo.colors.neutral[400]} />
+                                        <View style={styles.guideContent}>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                <View style={{ flex: 1, paddingRight: 8 }}>
+                                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.nome}</Text>
+                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>Uso {item.frequenciaUso.toLowerCase()}</Text>
+                                                </View>
+                                                <View style={[styles.toxicBadge, { backgroundColor: riskColor + '15' }]}>
+                                                    <Text style={[styles.toxicText, { color: riskColor }]}>{riskLabel}</Text>
+                                                </View>
+                                            </View>
+                                            <View style={{ flex: 1 }} />
+                                            <Text style={[styles.sptText, { color: textBody }]} numberOfLines={2}>{item.resumo}</Text>
+                                        </View>
                                     </View>
-                                </NeoCard>
+                                </View>
                             </TouchableOpacity>
                         </FadeInView>
                     );
@@ -208,6 +203,69 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
 
+    // Card grande estilo Plantas/Animais (imagem retangular à esquerda)
+    guideCardOuter: {
+        borderRadius: 24,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
+    guideCardInner: {
+        flexDirection: 'row',
+        height: 120,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.5)',
+    },
+    guideImageContainer: {
+        width: 120,
+        height: '100%',
+        backgroundColor: '#F5F5F5',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    guideImage: {
+        width: '100%',
+        height: '100%',
+    },
+    guideContent: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: Neo.colors.neutral[900],
+        marginBottom: 2,
+    },
+    guideSubtitle: {
+        fontSize: 11.5,
+        fontStyle: 'italic',
+        color: Neo.colors.neutral[500],
+        marginBottom: 6,
+    },
+    toxicBadge: {
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
+    },
+    toxicText: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+    },
+    sptText: {
+        fontSize: 11.5,
+        color: Neo.colors.neutral[600],
+        lineHeight: 16,
+    },
+
+    // Estilos legacy (mantidos só em caso de uso em outros lugares)
     itemCard: {
         padding: 14,
         marginBottom: 10,
