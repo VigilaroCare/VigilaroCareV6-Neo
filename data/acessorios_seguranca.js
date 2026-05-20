@@ -25,7 +25,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Protetor de borracha adesivo', durabilidade: 'alta' }
             ],
             instalacao: 'Limpe a superfície com álcool, retire o adesivo e pressione por 30 segundos.',
-            custoMedio: 'R$ 15-40 (kit com 4-8 unidades)'
         },
         {
             id: 'travas_armarios',
@@ -40,39 +39,42 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Trava magnética oculta', tipo: 'Chave magnética', durabilidade: 'alta' },
                 { nome: 'Trava de pressão para puxadores', tipo: 'Encaixe', durabilidade: 'alta' }
             ],
-            custoMedio: 'R$ 20-50 (kit com 4-6 unidades)'
         },
         {
             id: 'protecao_portas',
             titulo: 'Proteção para Portas',
             icone: 'enter-outline',
-            imagemUrl: 'https://images.pexels.com/photos/30807433/pexels-photo-30807433.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: 'https://images.pexels.com/photos/9593267/pexels-photo-9593267.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'idoso'],
-            descricao: 'Evita esmagamento de dedos e batidas.',
+            descricao: 'Evita esmagamento de dedinhos, batidas e fechamento brusco da porta.',
             tipos: [
                 {
-                    nome: 'Protetor de espuma (dorso da porta)',
-                    funcao: 'Impede fechamento total',
-                    risco: 'Esmagamento de dedos'
+                    nome: 'Protetor antiesmagamento de dedos (forma de C)',
+                    funcao: 'Encaixa na lateral da porta e impede fechamento total — bloqueia o vão onde dedinhos podem ser prensados',
+                    risco: 'Amputação ou fratura de falanges em crianças'
                 },
                 {
-                    nome: 'Protetor de dobradiças',
-                    funcao: 'Cobre a parte móvel da dobradiça',
-                    risco: 'Prensamento no vão'
+                    nome: 'Calço de chão (stopper)',
+                    funcao: 'Trava a porta aberta no piso, evitando que ela bata sozinha (vento, corrente de ar)',
+                    risco: 'Pancada na cabeça de bebês que engatinham atrás da porta'
+                },
+                {
+                    nome: 'Protetor de dobradiças (lateral)',
+                    funcao: 'Cobre a parte móvel da dobradiça do lado oposto da maçaneta',
+                    risco: 'Prensamento de dedos no vão entre porta e batente'
                 },
                 {
                     nome: 'Batedor de porta de silicone',
-                    funcao: 'Amortece batidas',
-                    risco: 'Sustos e danos à porta'
+                    funcao: 'Adesivo no batente, amortece o impacto ao fechar',
+                    risco: 'Sustos, ruído e danos à porta'
                 }
-            ],
-            custoMedio: 'R$ 10-25 por unidade'
+            ]
         },
         {
             id: 'protecao_tomadas',
             titulo: 'Proteção para Tomadas',
             icone: 'flash-off-outline',
-            imagemUrl: 'https://images.pexels.com/photos/8101107/pexels-photo-8101107.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: 'https://images.pexels.com/photos/218445/pexels-photo-218445.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'ESSENCIAL. Previne choque elétrico por introdução de objetos.',
             tipos: [
@@ -81,13 +83,12 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Protetor giratório automático', seguranca: 'alta', removivel: false }
             ],
             importante: 'Instale em TODAS as tomadas, inclusive as que parecem inacessíveis.',
-            custoMedio: 'R$ 15-30 (kit com 10-20 unidades)'
         },
         {
             id: 'trava_vaso',
             titulo: 'Trava para Tampa do Vaso Sanitário',
             icone: 'water-outline',
-            imagemUrl: 'https://images.pexels.com/photos/7031719/pexels-photo-7031719.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: 'https://images.pexels.com/photos/14866682/pexels-photo-14866682.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Previne afogamento. Crianças podem cair de cabeça no vaso.',
             riscoPrincipal: 'Afogamento (crianças pequenas têm centro de gravidade alto)',
@@ -95,7 +96,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Trava adesiva lateral', instalacao: 'Sem furos' },
                 { nome: 'Trava com encaixe', instalacao: 'Aparafusada' }
             ],
-            custoMedio: 'R$ 25-50'
         },
         {
             id: 'travas_eletrodomesticos',
@@ -115,7 +115,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Trava para forno', tipo: 'Calor resistente' },
                 { nome: 'Bloqueio de porta de máquina', tipo: 'Adesivo' }
             ],
-            custoMedio: 'R$ 20-40 por unidade'
         },
         {
             id: 'grades_babygate',
@@ -144,7 +143,6 @@ export const ACESSORIOS_SEGURANCA = {
                 }
             ],
             importante: 'No TOPO de escadas, use sempre grades APARAFUSADAS (pressão pode ceder).',
-            custoMedio: 'R$ 80-200'
         },
         {
             id: 'telas_protecao',
@@ -165,7 +163,6 @@ export const ACESSORIOS_SEGURANCA = {
                 'Tensão adequada (não cede ao empurrar)'
             ],
             manutencao: 'Verificar anualmente. Trocar se apresentar rasgos ou perda de tensão.',
-            custoMedio: 'R$ 50-100 por m² (inclui instalação)'
         },
         {
             id: 'barras_apoio',
@@ -187,13 +184,12 @@ export const ACESSORIOS_SEGURANCA = {
             ],
             material: 'Aço inox ou alumínio anodizado (não enferruja)',
             importante: 'Instalação DEVE ser feita em parede resistente ou com reforço.',
-            custoMedio: 'R$ 80-200 por barra (instalada)'
         },
         {
             id: 'protecao_cama',
             titulo: 'Grades de Proteção para Cama',
             icone: 'bed-outline',
-            imagemUrl: 'https://images.pexels.com/photos/7937990/pexels-photo-7937990.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: 'https://images.pexels.com/photos/7938028/pexels-photo-7938028.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'idoso'],
             descricao: 'Previne quedas durante o sono.',
             tipos: [
@@ -201,14 +197,13 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Grade fixa metálica', para: 'Idosos com risco de queda' }
             ],
             importante: 'Para bebês: NÃO use grades, use berço adequado.',
-            custoMedio: 'R$ 100-250'
         },
         // NOVAS CATEGORIAS - ENRIQUECIMENTO
         {
             id: 'seguranca_eletrica_fogo',
             titulo: 'Segurança Elétrica e Incêndio',
             icone: 'flame-outline',
-            imagemUrl: 'https://images.pexels.com/photos/25020272/pexels-photo-25020272.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: 'https://images.pexels.com/photos/31470430/pexels-photo-31470430.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['todos'],
             descricao: 'Proteção contra surtos, incêndios e intoxicação.',
             tipos: [
@@ -218,7 +213,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Protetor DPS', funcao: 'Protege equipamentos de surto' },
                 { nome: 'Luz de Emergência', funcao: 'Acende na falta de luz' }
             ],
-            custoMedio: 'R$ 50-200'
         },
         {
             id: 'seguranca_agua',
@@ -233,7 +227,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Tapete Emborrachado', funcao: 'Antiderrapante box' },
                 { nome: 'Piso Tátil', funcao: 'Alerta de desnível' }
             ],
-            custoMedio: 'R$ 30-300'
         },
         {
             id: 'monitoramento',
@@ -248,7 +241,6 @@ export const ACESSORIOS_SEGURANCA = {
                 { nome: 'Botão de Pânico', funcao: 'Emergência pessoal' },
                 { nome: 'Fechadura Digital', funcao: 'Controle de acesso' }
             ],
-            custoMedio: 'R$ 150-500'
         }
     ],
 

@@ -31,13 +31,13 @@ import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 const THEME_COLOR = '#7C3AED'; // violet
 
 const PROFILE_TABS = [
-    { id: 'todos',    label: 'Todos',     icon: 'people',        color: THEME_COLOR },
-    { id: 'bebe',     label: 'Bebês',     icon: 'happy',         color: '#EC4899' },
-    { id: 'crianca',  label: 'Crianças',  icon: 'bicycle',       color: '#8B5CF6' },
-    { id: 'idoso',    label: 'Idosos',    icon: 'accessibility', color: '#3B82F6' },
-    { id: 'pet',      label: 'Pets',      icon: 'paw',           color: '#F59E0B' },
-    { id: 'pcd',      label: 'PCD',       icon: 'people',        color: '#0EA5E9' },
-    { id: 'gestante', label: 'Gestantes', icon: 'heart',         color: '#F43F5E' },
+    { id: 'todos',    label: 'Todos',     emoji: '👥', color: THEME_COLOR },
+    { id: 'bebe',     label: 'Bebês',     emoji: '👶', color: '#EC4899' },
+    { id: 'crianca',  label: 'Crianças',  emoji: '🧒', color: '#8B5CF6' },
+    { id: 'idoso',    label: 'Idosos',    emoji: '👴', color: '#3B82F6' },
+    { id: 'pet',      label: 'Pets',      emoji: '🐾', color: '#F59E0B' },
+    { id: 'pcd',      label: 'PCD',       emoji: '♿', color: '#0EA5E9' },
+    { id: 'gestante', label: 'Gestantes', emoji: '🤰', color: '#F43F5E' },
 ];
 
 export default function AcessoriosSegurancaScreen({ navigation }) {
@@ -79,8 +79,8 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                 comoIdentificar: cat.tipos ? cat.tipos.map(t => t.nome || JSON.stringify(t)) : null,
                 // onde / ondeInstalar viram "ondeEncontrada"
                 ondeEncontrada: cat.onde || cat.ondeInstalar || null,
-                // instalacao e importante viram parte da importancia
-                importancia: [cat.instalacao, cat.importante, cat.custoMedio && `💰 ${cat.custoMedio}`]
+                // instalacao e importante viram parte da importancia (precos removidos)
+                importancia: [cat.instalacao, cat.importante]
                     .filter(Boolean)
                     .join('\n\n'),
             },
@@ -102,7 +102,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                 onPress={() => setSelectedProfile(tab.id)}
                 activeOpacity={0.7}
             >
-                <NeoIcon name={tab.icon} size={18} color={isSelected ? tab.color : textMuted} />
+                <Text style={{ fontSize: 16 }}>{tab.emoji}</Text>
                 <Text style={[
                     styles.profileTabText,
                     { color: isSelected ? tab.color : textMuted, fontWeight: isSelected ? '700' : '500' }
@@ -193,10 +193,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                                         <View style={styles.guideContent}>
                                             <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={2}>{cat.titulo}</Text>
                                             <View style={{ flex: 1 }} />
-                                            <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={2}>{cat.descricao || 'Toque para ver tipos, instalação e custo.'}</Text>
-                                            {cat.custoMedio && (
-                                                <Text style={[styles.priceText, { color: profileColor }]}>💰 {cat.custoMedio}</Text>
-                                            )}
+                                            <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={3}>{cat.descricao || 'Toque para ver tipos e instalação.'}</Text>
                                         </View>
                                     </View>
                                 </View>
