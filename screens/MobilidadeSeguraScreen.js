@@ -329,7 +329,7 @@ function TipoMobilidadeCard({ tipo }) {
         activeOpacity={0.8}
       >
         <View style={styles.guideCardOuter}>
-          <View style={[styles.guideCardInner, { backgroundColor: cardBg }]}>
+          <View style={styles.guideCardInner}>
             <View style={[styles.guideImageContainer, { backgroundColor: '#F8F9FA' }]}>
               <Text style={{ fontSize: 48 }}>{tipo.icone}</Text>
             </View>
