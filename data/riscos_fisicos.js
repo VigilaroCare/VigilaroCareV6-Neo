@@ -4,6 +4,7 @@ export const riscosFisicos = [
         nome: 'Segurança Elétrica', nome_en: 'Electrical Safety', nome_es: 'Seguridad Eléctrica',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '⚡',
+        imagemUrl: 'https://images.pexels.com/photos/11837458/pexels-photo-11837458.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Choque e Incêndio', risco_en: 'Shock and Fire', risco_es: 'Choque e Incendio',
         descricao: 'Instalações antigas e sobrecarga são as maiores causas de incêndio.', descricao_en: 'Old installations and overload are the main causes of fire.', descricao_es: 'Instalaciones antiguas y sobrecarga son las principales causas de incendio.',
         prevencao: [
@@ -33,6 +34,7 @@ export const riscosFisicos = [
         nome: 'Prevenção de Incêndios', nome_en: 'Fire Prevention', nome_es: 'Prevención de Incendios',
         categoria: 'Fogo', categoria_en: 'Fire', categoria_es: 'Fuego',
         emoji: '🔥',
+        imagemUrl: 'https://images.pexels.com/photos/27404939/pexels-photo-27404939.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Queimaduras e Morte', risco_en: 'Burns and Death', risco_es: 'Quemaduras y Muerte',
         descricao: 'Cozinha e velas são os principais focos.', descricao_en: 'Kitchen and candles are the main focus.', descricao_es: 'Cocina y velas son los focos principales.',
         prevencao: [
@@ -63,6 +65,7 @@ export const riscosFisicos = [
     {
         id: 'rf_3',
         nome: 'Armas de Fogo', nome_en: 'Firearms', nome_es: 'Armas de Fuego',
+        imagemUrl: 'https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200',
         categoria: 'Armas', categoria_en: 'Weapons', categoria_es: 'Armas',
         emoji: '🔫',
         risco: 'Morte Acidental', risco_en: 'Accidental Death', risco_es: 'Muerte Accidental',
@@ -92,6 +95,7 @@ export const riscosFisicos = [
     {
         id: 'rf_4',
         nome: 'Prevenção de Quedas', nome_en: 'Fall Prevention', nome_es: 'Prevención de Caídas',
+        imagemUrl: 'https://images.pexels.com/photos/19079390/pexels-photo-19079390.jpeg?auto=compress&cs=tinysrgb&w=1200',
         categoria: 'Quedas', categoria_en: 'Falls', categoria_es: 'Caídas',
         emoji: '🤕',
         risco: 'Fraturas e Traumas', risco_en: 'Fractures and Trauma', risco_es: 'Fracturas y Traumas',
@@ -121,6 +125,7 @@ export const riscosFisicos = [
     {
         id: 'rf_5',
         nome: 'Afogamento', nome_en: 'Drowning', nome_es: 'Ahogamiento',
+        imagemUrl: 'https://images.pexels.com/photos/5425095/pexels-photo-5425095.jpeg?auto=compress&cs=tinysrgb&w=1200',
         categoria: 'Água', categoria_en: 'Water', categoria_es: 'Agua',
         emoji: '💧',
         risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',

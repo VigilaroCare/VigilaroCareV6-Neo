@@ -7,6 +7,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react-native';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
+import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { riscosFisicos } from '../../data/riscos_fisicos';
 import { useTranslation } from 'react-i18next';
@@ -100,7 +101,15 @@ export default function RiscosFisicosScreen({ navigation }) {
                 <View style={styles.guideCardOuter}>
                   <View style={styles.guideCardInner}>
                     <View style={[styles.guideImageContainer, { backgroundColor: bg }]}>
-                      <NeoIcon name={IconStr} size={48} color={color} variant="Bold" />
+                      {item.imagemUrl ? (
+                        <ReviewImage
+                          source={{ uri: item.imagemUrl }}
+                          tint={color}
+                          accessibilityLabel={t_field(item, 'nome')}
+                        />
+                      ) : (
+                        <NeoIcon name={IconStr} size={48} color={color} variant="Bold" />
+                      )}
                     </View>
                     <View style={styles.guideContent}>
                       <View style={{ flex: 1, paddingRight: 8 }}>
