@@ -15,6 +15,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'protecao_quinas',
             titulo: 'Proteção para Quinas',
             icone: 'square-outline',
+            imagemUrl: 'https://images.pexels.com/photos/6209327/pexels-photo-6209327.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'idoso', 'pcd'],
             descricao: 'Evita batidas e cortes em cantos de móveis.',
             onde: ['Mesas de centro', 'Mesas de jantar', 'Cômodas', 'Bancadas'],
@@ -30,6 +31,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'travas_armarios',
             titulo: 'Travas para Armários e Gavetas',
             icone: 'lock-closed-outline',
+            imagemUrl: 'https://images.pexels.com/photos/5445446/pexels-photo-5445446.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Impede acesso a objetos perigosos, medicamentos e produtos químicos.',
             onde: ['Armários de cozinha', 'Armários de banheiro', 'Gavetas com objetos cortantes'],
@@ -44,6 +46,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'protecao_portas',
             titulo: 'Proteção para Portas',
             icone: 'enter-outline',
+            imagemUrl: 'https://images.pexels.com/photos/30807433/pexels-photo-30807433.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'idoso'],
             descricao: 'Evita esmagamento de dedos e batidas.',
             tipos: [
@@ -69,6 +72,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'protecao_tomadas',
             titulo: 'Proteção para Tomadas',
             icone: 'flash-off-outline',
+            imagemUrl: 'https://images.pexels.com/photos/8101107/pexels-photo-8101107.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'ESSENCIAL. Previne choque elétrico por introdução de objetos.',
             tipos: [
@@ -83,6 +87,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'trava_vaso',
             titulo: 'Trava para Tampa do Vaso Sanitário',
             icone: 'water-outline',
+            imagemUrl: 'https://images.pexels.com/photos/7031719/pexels-photo-7031719.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Previne afogamento. Crianças podem cair de cabeça no vaso.',
             riscoPrincipal: 'Afogamento (crianças pequenas têm centro de gravidade alto)',
@@ -96,6 +101,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'travas_eletrodomesticos',
             titulo: 'Travas para Eletrodomésticos',
             icone: 'cube-outline',
+            imagemUrl: 'https://images.pexels.com/photos/27301775/pexels-photo-27301775.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             onde: ['Geladeira', 'Freezer', 'Forno elétrico', 'Micro-ondas', 'Máquina de lavar'],
             riscos: [
@@ -115,6 +121,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'grades_babygate',
             titulo: 'Grades (Babygate) para Portas e Escadas',
             icone: 'stop-outline',
+            imagemUrl: 'https://images.pexels.com/photos/6223621/pexels-photo-6223621.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Bloqueia acesso a áreas perigosas.',
             ondeInstalar: [
@@ -143,6 +150,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'telas_protecao',
             titulo: 'Telas de Proteção para Janelas e Sacadas',
             icone: 'grid-outline',
+            imagemUrl: 'https://images.pexels.com/photos/7499581/pexels-photo-7499581.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'pet'],
             descricao: 'Previne quedas de altura. Obrigatória em casas com crianças ou pets.',
             norma: 'ABNT NBR 16046',
@@ -163,6 +171,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'barras_apoio',
             titulo: 'Barras de Apoio',
             icone: 'hand-right-outline',
+            imagemUrl: 'https://images.pexels.com/photos/13871327/pexels-photo-13871327.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['idoso', 'pcd', 'gestante'],
             descricao: 'Auxiliam na mobilidade e previnem quedas.',
             ondeInstalar: [
@@ -184,6 +193,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'protecao_cama',
             titulo: 'Grades de Proteção para Cama',
             icone: 'bed-outline',
+            imagemUrl: 'https://images.pexels.com/photos/7937990/pexels-photo-7937990.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['bebe', 'crianca', 'idoso'],
             descricao: 'Previne quedas durante o sono.',
             tipos: [
@@ -198,6 +208,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'seguranca_eletrica_fogo',
             titulo: 'Segurança Elétrica e Incêndio',
             icone: 'flame-outline',
+            imagemUrl: 'https://images.pexels.com/photos/25020272/pexels-photo-25020272.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['todos'],
             descricao: 'Proteção contra surtos, incêndios e intoxicação.',
             tipos: [
@@ -213,6 +224,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'seguranca_agua',
             titulo: 'Segurança Áreas Molhadas',
             icone: 'water-outline',
+            imagemUrl: 'https://images.pexels.com/photos/11671085/pexels-photo-11671085.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['todos'],
             descricao: 'Prevenção de afogamentos e vazamentos.',
             tipos: [
@@ -227,6 +239,7 @@ export const ACESSORIOS_SEGURANCA = {
             id: 'monitoramento',
             titulo: 'Monitoramento e Assistência',
             icone: 'videocam-outline',
+            imagemUrl: 'https://images.pexels.com/photos/27588251/pexels-photo-27588251.jpeg?auto=compress&cs=tinysrgb&w=1200',
             paraMoradores: ['todos'],
             descricao: 'Tecnologia para vigilância e cuidado.',
             tipos: [

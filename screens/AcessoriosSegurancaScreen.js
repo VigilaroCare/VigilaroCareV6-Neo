@@ -1,11 +1,13 @@
 /**
  * AcessoriosSegurancaScreen.js
- * Tela de Acessórios de Segurança (Baby-proof, Idosos, Pets)
- * Vigilaro Care V5
+ * Tela de Acessórios de Segurança (Baby-proof, Idosos, Pets, PCD)
+ * Vigilaro Care V6 Neo
+ *
+ * Padrao card-retangulo 120x120 + filtro por perfil + navegacao para
+ * ConceitoDetail (hero = foto do card). Sem expand inline.
  */
 
-
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
@@ -13,43 +15,76 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    StatusBar,
-    FlatList
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+import { ArrowLeft } from 'iconsax-react-native';
 import NeoIcon from '../components/NeoIcon';
-import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { Shadows } from '../utils/Theme';
 import { ACESSORIOS_SEGURANCA } from '../data/acessorios_seguranca';
-import VoiceAlert from '../services/VoiceAlertService';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import NeoCard from '../components/NeoCard';
-import { H1, H2, H3, Body, Small } from '../components/NeoTypography';
+import ReviewImage from '../components/ReviewImage';
+import FadeInView from '../components/FadeInView';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+
+const THEME_COLOR = '#7C3AED'; // violet
 
 const PROFILE_TABS = [
-    { id: 'bebe', label: 'Bebês', icon: 'happy', color: '#EC4899' },
-    { id: 'crianca', label: 'Crianças', icon: 'bicycle', color: '#8B5CF6' },
-    { id: 'idoso', label: 'Idosos', icon: 'accessibility', color: '#3B82F6' },
-    { id: 'pet', label: 'Pets', icon: 'paw', color: '#F59E0B' },
+    { id: 'todos',    label: 'Todos',     icon: 'people',        color: THEME_COLOR },
+    { id: 'bebe',     label: 'Bebês',     icon: 'happy',         color: '#EC4899' },
+    { id: 'crianca',  label: 'Crianças',  icon: 'bicycle',       color: '#8B5CF6' },
+    { id: 'idoso',    label: 'Idosos',    icon: 'accessibility', color: '#3B82F6' },
+    { id: 'pet',      label: 'Pets',      icon: 'paw',           color: '#F59E0B' },
+    { id: 'pcd',      label: 'PCD',       icon: 'people',        color: '#0EA5E9' },
+    { id: 'gestante', label: 'Gestantes', icon: 'heart',         color: '#F43F5E' },
 ];
 
 export default function AcessoriosSegurancaScreen({ navigation }) {
+    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
-    const [selectedProfile, setSelectedProfile] = useState('bebe');
-    const [expandedCategory, setExpandedCategory] = useState(null);
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
-    const categories = ACESSORIOS_SEGURANCA[selectedProfile]?.categorias || [];
-    const kits = ACESSORIOS_SEGURANCA.kits_recomendados || [];
+    const [selectedProfile, setSelectedProfile] = useState('todos');
 
-    const handleProfileChange = (profileId) => {
-        setSelectedProfile(profileId);
-        setExpandedCategory(null);
-        const profile = PROFILE_TABS.find(p => p.id === profileId);
-        VoiceAlert.speak(`Acessórios de segurança para ${profile.label}`);
-    };
+    const profileColor = PROFILE_TABS.find(p => p.id === selectedProfile)?.color || THEME_COLOR;
 
-    const handleCategoryToggle = (categoryId) => {
-        setExpandedCategory(expandedCategory === categoryId ? null : categoryId);
+    // Filtra as 13 categorias pelo perfil selecionado.
+    // 'todos' = mostra tudo. Caso contrario, item.paraMoradores deve conter
+    // o profile selecionado OU o item ter 'todos' em paraMoradores.
+    const filteredCategories = useMemo(() => {
+        const all = ACESSORIOS_SEGURANCA.categorias || [];
+        if (selectedProfile === 'todos') return all;
+        return all.filter(cat => {
+            const para = cat.paraMoradores || [];
+            return para.includes(selectedProfile) || para.includes('todos');
+        });
+    }, [selectedProfile]);
+
+    const handlePress = (cat) => {
+        // ConceitoDetail ja le imagemUrl como hero (Lote 7k).
+        // Mapeia os campos do data de acessorios para o que o detail espera.
+        navigation.navigate('ConceitoDetail', {
+            conceito: {
+                ...cat,
+                nome: cat.titulo,
+                descricao: cat.descricao,
+                iconColor: profileColor,
+                // Tipos vira "como_identificar" pra renderizar como lista
+                comoIdentificar: cat.tipos ? cat.tipos.map(t => t.nome || JSON.stringify(t)) : null,
+                // onde / ondeInstalar viram "ondeEncontrada"
+                ondeEncontrada: cat.onde || cat.ondeInstalar || null,
+                // instalacao e importante viram parte da importancia
+                importancia: [cat.instalacao, cat.importante, cat.custoMedio && `💰 ${cat.custoMedio}`]
+                    .filter(Boolean)
+                    .join('\n\n'),
+            },
+        });
     };
 
     const renderProfileTab = (tab) => {
@@ -59,215 +94,117 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                 key={tab.id}
                 style={[
                     styles.profileTab,
-                    isSelected && { backgroundColor: tab.color + '20', borderColor: tab.color, borderWidth: 2 }
+                    {
+                        backgroundColor: isSelected ? tab.color + '20' : (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.5)'),
+                        borderColor: isSelected ? tab.color : 'transparent',
+                    }
                 ]}
-                onPress={() => handleProfileChange(tab.id)}
+                onPress={() => setSelectedProfile(tab.id)}
+                activeOpacity={0.7}
             >
-                <NeoIcon name={tab.icon} size={20} color={isSelected ? tab.color : Neo.colors.neutral[500]} />
-                <Small style={[styles.profileTabText, isSelected && { color: tab.color, fontWeight: 'bold' }]}>
+                <NeoIcon name={tab.icon} size={18} color={isSelected ? tab.color : textMuted} />
+                <Text style={[
+                    styles.profileTabText,
+                    { color: isSelected ? tab.color : textMuted, fontWeight: isSelected ? '700' : '500' }
+                ]}>
                     {tab.label}
-                </Small>
+                </Text>
             </TouchableOpacity>
-        );
-    };
-
-    const renderCategoryCard = (category) => {
-        const isExpanded = expandedCategory === category.id;
-        const profileColor = PROFILE_TABS.find(p => p.id === selectedProfile)?.color || Colors.primary;
-
-        return (
-            <View key={category.id} style={{ marginBottom: 12 }}>
-                <NeoCard
-                    variant="glass"
-                    style={{ padding: 0, overflow: 'hidden' }}
-                >
-                    <TouchableOpacity
-                        style={styles.categoryHeader}
-                        onPress={() => handleCategoryToggle(category.id)}
-                        activeOpacity={0.8}
-                    >
-                        <View style={[styles.categoryIcon, { backgroundColor: profileColor + '20' }]}>
-                            <NeoIcon name={category.icone || 'shield'} size={24} color={profileColor} />
-                        </View>
-                        <View style={styles.categoryInfo}>
-                            <H3 style={styles.categoryName}>{category.nome}</H3>
-                            <Small style={styles.categoryCount}>
-                                {category.itens?.length || 0} acessórios
-                            </Small>
-                        </View>
-                        <NeoIcon
-                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                            size={24}
-                            color={Neo.colors.neutral[400]}
-                        />
-                    </TouchableOpacity>
-
-                    {isExpanded && (
-                        <View style={styles.itemsList}>
-                            {category.itens?.map((item, index) => (
-                                <View key={index} style={styles.itemCard}>
-                                    <View style={styles.itemHeader}>
-                                        <NeoIcon
-                                            name="TickCircle"
-                                            size={20}
-                                            color={profileColor}
-                                        />
-                                        <H3 style={{ fontSize: 15 }}>{item.nome}</H3>
-                                    </View>
-                                    {item.descricao && (
-                                        <Body style={styles.itemDescription}>{item.descricao}</Body>
-                                    )}
-                                    {item.locais && (
-                                        <View style={styles.locationTags}>
-                                            {item.locais.map((local, i) => (
-                                                <View key={i} style={styles.locationTag}>
-                                                    <Small style={{ color: '#00897B', fontWeight: 'bold' }}>{local}</Small>
-                                                </View>
-                                            ))}
-                                        </View>
-                                    )}
-                                    {item.preco_estimado && (
-                                        <Small style={styles.priceText}>💰 {item.preco_estimado}</Small>
-                                    )}
-                                </View>
-                            ))}
-                        </View>
-                    )}
-                </NeoCard>
-            </View>
-        );
-    };
-
-    const renderKitCard = (kit) => {
-        const profileColor = PROFILE_TABS.find(p => p.id === selectedProfile)?.color || Colors.primary;
-        return (
-            <NeoCard
-                variant="glass"
-                key={kit.id}
-                style={{
-                    backgroundColor: profileColor + '20',
-                    borderColor: profileColor + '40',
-                    borderWidth: 1.5,
-                    marginBottom: 16,
-                    padding: 20
-                }}
-            >
-                <View style={styles.kitHeader}>
-                    <NeoIcon name="Gift" size={28} color={profileColor} variant="Bold" />
-                    <H2 style={{ color: profileColor }}>{kit.nome}</H2>
-                </View>
-                <Body style={{ color: Neo.colors.neutral[700], marginBottom: 12 }}>{kit.descricao}</Body>
-
-                <View style={[styles.kitItems, { backgroundColor: 'rgba(255,255,255,0.3)' }]}>
-                    <H3 style={{ fontSize: 14, color: profileColor, marginBottom: 8 }}>{t('headersFirst.itensIncluDos', 'Itens incluídos:')}</H3>
-                    {kit.itens?.map((item, i) => (
-                        <Body key={i} style={{ color: Neo.colors.neutral[800], fontSize: 13 }}>• {item}</Body>
-                    ))}
-                </View>
-
-                {kit.preco_estimado && (
-                    <View style={styles.kitPrice}>
-                        <Small style={{ color: Neo.colors.neutral[500] }}>{t('headersFirst.investimentoEstimado', 'Investimento estimado:')}</Small>
-                        <H3 style={{ color: profileColor }}>{kit.preco_estimado}</H3>
-                    </View>
-                )}
-
-                <TouchableOpacity
-                    style={[styles.speakButton, { backgroundColor: profileColor }]}
-                    onPress={() => {
-                        VoiceAlert.speak(
-                            `Kit ${kit.nome}. ${kit.descricao}. ` +
-                            `Contém: ${kit.itens?.join(', ')}. ` +
-                            `Investimento estimado: ${kit.preco_estimado || 'variável'}.`,
-                            { rate: 0.85 }
-                        );
-                    }}
-                >
-                    <NeoIcon name="VolumeHigh" size={18} color="#FFF" />
-                    <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.ouvirDetalhes', 'Ouvir Detalhes')}</Body>
-                </TouchableOpacity>
-            </NeoCard>
         );
     };
 
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Header */}
-                <View style={{ padding: 20, paddingTop: 10 }}>
-                    <View style={styles.headerTop}>
-                        <TouchableOpacity
-                            onPress={() => navigation.goBack()}
-                            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
-                        >
-                            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                        </TouchableOpacity>
-                        <H2>{t('headersFirst.acessRios', 'Acessórios')}</H2>
-                        <TouchableOpacity
-                            onPress={() => VoiceAlert.speak(
-                                'Acessórios de segurança para proteção da sua família. ' +
-                                'Selecione um perfil para ver os itens recomendados.'
-                            )}
-                            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
-                        >
-                            <NeoIcon name="VolumeHigh" size={24} color={Neo.colors.neutral[600]} />
-                        </TouchableOpacity>
-                    </View>
-                    <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 8 }}>
-                        {t('headersFirst.proteOPersonalizadaParaCadaPerfil', 'Proteção personalizada para cada perfil')}
-                    </Small>
-                </View>
-
-                {/* Profile Tabs */}
-                <View style={{ marginBottom: 12 }}>
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
+                {/* Header padronizado */}
+                <View style={styles.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
+                        activeOpacity={0.7}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        {PROFILE_TABS.map(renderProfileTab)}
-                    </ScrollView>
+                        <ArrowLeft size={22} color={THEME_COLOR} />
+                    </TouchableOpacity>
+                    <View style={styles.headerContent}>
+                        <Text style={styles.headerEmoji}>🔐</Text>
+                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
+                            {t('headersFirst.acessRiosDeSeguranA', 'Acessórios de Segurança')}
+                        </Text>
+                        <Text style={[styles.headerSubtitle, { color: textBody }]}>
+                            {t('headersFirst.proteOPersonalizadaParaCadaPerfil', 'Proteção personalizada para cada perfil')}
+                        </Text>
+                    </View>
                 </View>
+
+                {/* Tabs horizontais por perfil */}
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.tabsContainer}
+                    style={{ flexGrow: 0 }}
+                >
+                    {PROFILE_TABS.map(renderProfileTab)}
+                </ScrollView>
 
                 <ScrollView
-                    contentContainerStyle={styles.content}
+                    contentContainerStyle={styles.listContent}
                     showsVerticalScrollIndicator={false}
                 >
-                    {/* Kits Recomendados */}
-                    {kits.filter(k => k.perfil === selectedProfile).length > 0 && (
-                        <View style={styles.section}>
-                            <H3 style={{ marginBottom: 16 }}>{t('headersFirst.KitsRecomendados', '🎁 Kits Recomendados')}</H3>
-                            {kits.map(renderKitCard)}
+                    {/* Info bar */}
+                    <FadeInView delay={100}>
+                        <View style={styles.infoBar}>
+                            <Text style={[styles.infoText, { color: textMuted }]}>
+                                📋 {filteredCategories.length} {filteredCategories.length === 1 ? 'acessório' : 'acessórios'} • Toque para ver detalhes
+                            </Text>
                         </View>
-                    )}
+                    </FadeInView>
 
-                    {/* Categorias de Acessórios */}
-                    <View style={styles.section}>
-                        <H3 style={{ marginBottom: 16 }}>{t('headersFirst.categorias', 'Categorias')}</H3>
-                        {categories.length > 0 ? (
-                            categories.map(renderCategoryCard)
-                        ) : (
-                            <View style={styles.emptyState}>
-                                <NeoIcon name="Setting2" size={48} color={Neo.colors.neutral[300]} />
-                                <Body style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 12 }}>
-                                    {t('headersFirst.estamosPreparandoOsAcessRiosParaEstePerf', 'Estamos preparando os acessórios para este perfil.')}
-                                </Body>
-                            </View>
-                        )}
-                    </View>
+                    {filteredCategories.length === 0 ? (
+                        <View style={styles.emptyState}>
+                            <NeoIcon name="Setting2" size={48} color={themeColors.neutral[300]} />
+                            <Text style={[styles.emptyText, { color: textMuted }]}>
+                                Nenhum acessório recomendado para este perfil.
+                            </Text>
+                        </View>
+                    ) : filteredCategories.map((cat, idx) => (
+                        <FadeInView key={cat.id} delay={150 + idx * 50}>
+                            <TouchableOpacity
+                                onPress={() => handlePress(cat)}
+                                activeOpacity={0.8}
+                                style={{ marginBottom: 16 }}
+                            >
+                                <View style={styles.guideCardOuter}>
+                                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                                        <View style={[styles.guideImageContainer, { backgroundColor: profileColor + '15' }]}>
+                                            {cat.imagemUrl ? (
+                                                <ReviewImage
+                                                    source={{ uri: cat.imagemUrl }}
+                                                    tint={profileColor}
+                                                    accessibilityLabel={cat.titulo}
+                                                />
+                                            ) : (
+                                                <NeoIcon name="ShieldTick" size={48} color={profileColor} variant="Bold" />
+                                            )}
+                                        </View>
+                                        <View style={styles.guideContent}>
+                                            <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={2}>{cat.titulo}</Text>
+                                            <View style={{ flex: 1 }} />
+                                            <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={2}>{cat.descricao || 'Toque para ver tipos, instalação e custo.'}</Text>
+                                            {cat.custoMedio && (
+                                                <Text style={[styles.priceText, { color: profileColor }]}>💰 {cat.custoMedio}</Text>
+                                            )}
+                                        </View>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        </FadeInView>
+                    ))}
 
-                    {/* Dica */}
-                    <NeoCard variant="glass" style={[styles.tipCard, { backgroundColor: 'rgba(254, 243, 199, 0.4)', borderColor: 'rgba(245, 158, 11, 0.2)', borderWidth: 1 }]}>
-                        <NeoIcon name="LampOn" size={24} color="#F59E0B" />
-                        <Body style={styles.tipText}>
-                            {t('headersFirst.aoInstalarAcessRiosDeSeguranASigaSempreA', `Ao instalar acessórios de segurança, siga sempre as instruções do fabricante
-                            e verifique periodicamente se estão bem fixados.`)}
-                        </Body>
-                    </NeoCard>
-
-                    <View style={{ height: 40 }} />
+                    <View style={{ height: 140 }} />
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>
@@ -275,175 +212,124 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-    },
     header: {
-        padding: Spacing.md,
-        paddingTop: Spacing.lg,
-    },
-    headerTop: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingBottom: 12,
         alignItems: 'center',
-        marginBottom: Spacing.sm,
+    },
+    backBtn: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
+        marginBottom: 12,
+    },
+    headerContent: {
+        alignItems: 'center',
+    },
+    headerEmoji: {
+        fontSize: 40,
+        marginBottom: 6,
     },
     headerTitle: {
-        fontSize: Typography.sizes.xl,
-        fontFamily: Typography.fontFamily.bold,
-        color: '#FFF',
+        fontSize: 20,
+        fontWeight: '800',
+        textAlign: 'center',
+        marginBottom: 4,
     },
     headerSubtitle: {
-        fontSize: Typography.sizes.sm,
-        color: '#E8E8E8',
+        fontSize: 13,
         textAlign: 'center',
+        lineHeight: 18,
     },
+
     tabsContainer: {
-        backgroundColor: Colors.surface,
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.surfaceVariant,
-    },
-    tabsContent: {
-        padding: Spacing.sm,
-        gap: 10,
+        paddingHorizontal: 16,
+        gap: 8,
+        paddingVertical: 8,
+        paddingBottom: 12,
     },
     profileTab: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
-        paddingHorizontal: 16,
-        borderRadius: BorderRadius.full,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.4)',
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        gap: 8,
+        gap: 6,
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        borderRadius: 999,
+        borderWidth: 1.5,
     },
     profileTabText: {
-        fontSize: Typography.sizes.sm,
-        fontFamily: Typography.fontFamily.medium,
-        color: Colors.textSecondary,
+        fontSize: 13,
     },
-    content: {
-        flexGrow: 1,
-        padding: Spacing.md,
-        paddingBottom: 190,
-    },
-    section: {
-        marginBottom: Spacing.lg,
-    },
-    sectionTitle: {
-        fontSize: Typography.sizes.lg,
-        fontFamily: Typography.fontFamily.bold,
-        color: Colors.textPrimary,
-        marginBottom: Spacing.md,
-    },
-    categoryCard: {
-        backgroundColor: Colors.surface,
-        borderRadius: BorderRadius.lg,
-        marginBottom: Spacing.sm,
-        ...Shadows.sm,
-        overflow: 'hidden',
-    },
-    categoryHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
-    },
-    categoryIcon: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 12,
-    },
-    categoryInfo: {
-        flex: 1,
-    },
-    itemsList: {
+
+    listContent: {
         paddingHorizontal: 16,
-        paddingBottom: 16,
     },
-    itemCard: {
-        backgroundColor: 'rgba(255,255,255,0.3)',
-        borderRadius: BorderRadius.md,
-        padding: 12,
-        marginTop: 8,
-    },
-    itemHeader: {
-        flexDirection: 'row',
+    infoBar: {
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        borderRadius: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 14,
+        marginBottom: 12,
         alignItems: 'center',
-        gap: 8,
-        marginBottom: 4,
     },
-    itemDescription: {
-        marginBottom: 4,
+    infoText: {
+        fontSize: 12,
+        fontWeight: '500',
     },
-    locationTags: {
+
+    // Card grande estilo Plantas/Animais (imagem retangular a esquerda)
+    guideCardOuter: {
+        borderRadius: 24,
+        ...Shadows.sm,
+    },
+    guideCardInner: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 6,
-        marginTop: 4,
+        height: 130,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.5)',
     },
-    locationTag: {
-        backgroundColor: 'rgba(0, 137, 123, 0.1)',
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        borderRadius: BorderRadius.full,
+    guideImageContainer: {
+        width: 130,
+        height: '100%',
+        backgroundColor: '#F5F5F5',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    guideContent: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
+        marginBottom: 6,
+    },
+    guideDesc: {
+        fontSize: 12,
+        lineHeight: 16,
+        marginBottom: 4,
     },
     priceText: {
-        marginTop: 4,
+        fontSize: 11,
+        fontWeight: '700',
+        marginTop: 2,
     },
-    kitCard: {
-        borderRadius: BorderRadius.lg,
-        padding: Spacing.md,
-        marginBottom: Spacing.md,
-    },
-    kitHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        marginBottom: 12,
-    },
-    kitItems: {
-        borderRadius: BorderRadius.md,
-        padding: 12,
-        marginBottom: 12,
-    },
-    kitPrice: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    speakButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 12,
-        borderRadius: 12,
-        gap: 8,
-    },
+
     emptyState: {
         alignItems: 'center',
-        padding: Spacing.xl,
+        paddingVertical: 40,
+        paddingHorizontal: 20,
     },
     emptyText: {
-        fontSize: Typography.sizes.md,
-        color: Colors.textTertiary,
+        fontSize: 14,
         textAlign: 'center',
-        marginTop: Spacing.md,
-    },
-    tipCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
-        borderRadius: 12,
-        gap: 12,
-    },
-    tipText: {
-        flex: 1,
-        color: '#92400E',
+        marginTop: 12,
     },
 });
