@@ -18,6 +18,7 @@ export const FERRAMENTAS_DATA = {
             title: 'Ferramentas Manuais',
             subtitle: '10 Itens Essenciais',
             image: require('../assets/images/sinitox/animais/pow_tools.png'),
+            imagemUrl: 'https://images.pexels.com/photos/34471533/pexels-photo-34471533.jpeg?auto=compress&cs=tinysrgb&w=1200',
             color: '#FFA000',
             icon: 'Setting2',
             items: [
@@ -38,6 +39,7 @@ export const FERRAMENTAS_DATA = {
             title: 'Ferramentas Elétricas',
             subtitle: '10 Itens de Atenção',
             image: require('../assets/images/sinitox/animais/pow_tools.png'),
+            imagemUrl: 'https://images.pexels.com/photos/30413428/pexels-photo-30413428.jpeg?auto=compress&cs=tinysrgb&w=1200',
             color: '#D32F2F',
             icon: 'Flash',
             items: [
@@ -58,6 +60,7 @@ export const FERRAMENTAS_DATA = {
             title: 'Motorizadas & Pesadas',
             subtitle: '10 Itens de Alto Risco',
             image: require('../assets/images/sinitox/animais/pow_tools.png'), // Reusing power tools image for now
+            imagemUrl: 'https://images.pexels.com/photos/4206054/pexels-photo-4206054.jpeg?auto=compress&cs=tinysrgb&w=1200',
             color: '#455A64',
             icon: 'Setting4',
             items: [

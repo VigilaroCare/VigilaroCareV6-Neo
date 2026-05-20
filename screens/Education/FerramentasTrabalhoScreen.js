@@ -7,6 +7,7 @@ import { Colors, Spacing, Shadows, BorderRadius } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
+import ReviewImage from '../../components/ReviewImage';
 import { FERRAMENTAS_DATA } from '../../data/ferramentas_seguranca';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -111,9 +112,17 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                             activeOpacity={0.9}
                         >
                             <View style={styles.guideCardOuter}>
-                                <View style={styles.guideCardInner}>
-                                    <View style={[styles.guideImageContainer, { backgroundColor: category.color }]}>
-                                        <NeoIcon name={category.icon} size={48} color="#FFF" variant="Bold" />
+                                <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                                    <View style={[styles.guideImageContainer, { backgroundColor: category.color + '15' }]}>
+                                        {category.imagemUrl ? (
+                                            <ReviewImage
+                                                source={{ uri: category.imagemUrl }}
+                                                tint={category.color}
+                                                accessibilityLabel={category.title}
+                                            />
+                                        ) : (
+                                            <NeoIcon name={category.icon} size={48} color={category.color} variant="Bold" />
+                                        )}
                                     </View>
                                     <View style={styles.guideContent}>
                                         <View style={{ flex: 1, paddingRight: 8 }}>
