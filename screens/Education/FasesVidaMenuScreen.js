@@ -8,6 +8,7 @@ import { FASES_VIDA_DATA } from '../../data/fases_vida';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { H1, H2, H3, Body, Caption, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
@@ -96,11 +97,11 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                 >
                                     <NeoCard variant="glass" style={styles.listCard}>
                                         {item.imagemUrl ? (
-                                            <Image
+                                            <ReviewImage
                                                 source={{ uri: item.imagemUrl }}
                                                 style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}
-                                                resizeMode="cover"
-                                                accessibilityIgnoresInvertColors
+                                                tint={item.iconColor}
+                                                accessibilityLabel={item.cardTitle}
                                             />
                                         ) : (
                                             <View style={[styles.iconContainer, { backgroundColor: item.color + '33' }]}>
