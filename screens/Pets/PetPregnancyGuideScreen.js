@@ -18,14 +18,16 @@ import { useTranslation } from 'react-i18next';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_PREGNANCY_DATA } from '../../data/pet_pregnancy_data';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
-export default function PetPregnancyGuideScreen({ navigation }) {
+export default function PetPregnancyGuideScreen({ navigation, route }) {
     const { t } = useTranslation('common');
+    const petHero = route?.params?.petHero;
     const sections = PET_PREGNANCY_DATA.sections;
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -63,6 +65,18 @@ export default function PetPregnancyGuideScreen({ navigation }) {
                     contentContainerStyle={{ paddingBottom: 190 }}
                     showsVerticalScrollIndicator={false}
                 >
+                    {/* Hero banner — imagem do card de origem */}
+                    {petHero && (
+                        <PetHeroBanner
+                            image={petHero.imagem}
+                            imageUrl={petHero.imagemUrl}
+                            tint={petHero.cor || '#E91E63'}
+                            accessibilityLabel={petHero.titulo}
+                            marginHorizontal={0}
+                            marginBottom={16}
+                        />
+                    )}
+
                     {/* Alerta */}
                     <NeoCard variant="elevated" style={s.alertCard}>
                         <View style={s.alertHeader}>

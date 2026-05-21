@@ -9,16 +9,18 @@ import { useTranslation } from 'react-i18next';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_WELLNESS_DATA } from '../../data/pet_wellness_data';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
-export default function PetWellnessScreen({ navigation }) {
+export default function PetWellnessScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const themeColors = useThemeColors();
   const isDark = useIsDark();
+  const petHero = route?.params?.petHero;
   const textPrimary = themeColors.neutral[900];
   const textBody = themeColors.neutral[800];
 
@@ -75,6 +77,18 @@ export default function PetWellnessScreen({ navigation }) {
         </View>
 
         <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+          {/* Hero banner — imagem do card de origem */}
+          {petHero && (
+            <PetHeroBanner
+              image={petHero.imagem}
+              imageUrl={petHero.imagemUrl}
+              tint={petHero.cor || '#16A34A'}
+              accessibilityLabel={petHero.titulo}
+              marginHorizontal={0}
+              marginBottom={14}
+            />
+          )}
+
           {/* Intro card */}
           <NeoCard variant="elevated" style={s.infoCard}>
             <View style={s.infoIconCircle}>

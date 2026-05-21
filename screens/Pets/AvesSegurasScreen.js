@@ -8,14 +8,16 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { AVES_SEGURAS_DATA } from '../../data/aves_seguras_data';
 import { t_field } from '../../utils/getLocalizedField';
 import { useIsDark } from '../../utils/ThemeContext';
 
-export default function AvesSegurasScreen({ navigation }) {
+export default function AvesSegurasScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const isDark = useIsDark();
+  const petHero = route?.params?.petHero;
 
   const renderRiscoCard = (title, message, icon, color, bg) => (
     <NeoCard variant="elevated" style={[s.riscoCard, { borderLeftWidth: 4, borderLeftColor: color }]}>
@@ -53,6 +55,18 @@ export default function AvesSegurasScreen({ navigation }) {
         </View>
 
         <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+          {/* Hero banner — imagem do card de origem */}
+          {petHero && (
+            <PetHeroBanner
+              image={petHero.imagem}
+              imageUrl={petHero.imagemUrl}
+              tint={petHero.cor || '#FBC02D'}
+              accessibilityLabel={petHero.titulo}
+              marginHorizontal={0}
+              marginBottom={14}
+            />
+          )}
+
           {/* HERO */}
           <NeoCard variant="elevated" style={s.heroCard}>
             <View style={s.heroIconCircle}>

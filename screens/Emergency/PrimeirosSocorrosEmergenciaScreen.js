@@ -19,6 +19,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import NeoText, { H2, H3, Body, Small } from '../../components/NeoTypography';
 import SafeFooter from '../../components/SafeFooter';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { useTranslation } from 'react-i18next';
 
 // Dados
@@ -202,11 +203,13 @@ const EMERGENCIAS_HUMANOS = [
     },
 ];
 
-export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
+export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation();
     const isDark = useIsDark();
-    const [mode, setMode] = useState('HUMAN'); // 'HUMAN' | 'PET'
+    const petHero = route?.params?.petHero;
+    // Se veio do hub Pet, abre direto na aba PET
+    const [mode, setMode] = useState(petHero ? 'PET' : 'HUMAN'); // 'HUMAN' | 'PET'
     const isPet = mode === 'PET';
     const EMERGENCIAS = isPet ? EMERGENCIAS_PETS : EMERGENCIAS_HUMANOS;
 
@@ -253,6 +256,18 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation }) {
                 </View>
 
                 <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 120 }}>
+                    {/* Hero banner — se veio do hub Pet */}
+                    {petHero && (
+                        <PetHeroBanner
+                            image={petHero.imagem}
+                            imageUrl={petHero.imagemUrl}
+                            tint={petHero.cor || '#DC2626'}
+                            accessibilityLabel={petHero.titulo}
+                            marginHorizontal={0}
+                            marginBottom={16}
+                            height={120}
+                        />
+                    )}
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         {EMERGENCIAS.map((item) => (
                             <TouchableOpacity activeOpacity={0.8} key={item.id} onPress={() => setEmergenciaSelecionada(item)} style={{ width: '48%', marginBottom: 16 }}>

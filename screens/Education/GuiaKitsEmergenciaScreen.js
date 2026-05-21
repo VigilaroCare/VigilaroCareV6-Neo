@@ -11,6 +11,7 @@ import { KITS_EDUCATIONAL_CONTENT } from '../../data/kits/educational_content';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { t_field } from '../../utils/getLocalizedField';
 
@@ -19,10 +20,11 @@ const SPACING = 12; // Reduced from 16
 const SCREEN_PADDING = 16; // Reduced from 24
 const CARD_WIDTH = (width - (SCREEN_PADDING * 2) - SPACING) / 2;
 
-export default function GuiaKitsEmergenciaScreen({ navigation }) {
+export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
     const THEME_COLOR = '#8B5CF6'; // Violet
+    const petHero = route?.params?.petHero;
 
     const MENU_ITEMS = [
         {
@@ -164,6 +166,17 @@ export default function GuiaKitsEmergenciaScreen({ navigation }) {
 
                 {/* Grid Layout */}
                 <ScrollView contentContainerStyle={{ padding: SCREEN_PADDING, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+                    {/* Hero banner — imagem do card de origem (se vier de PetsMenu) */}
+                    {petHero && (
+                        <PetHeroBanner
+                            image={petHero.imagem}
+                            imageUrl={petHero.imagemUrl}
+                            tint={petHero.cor || THEME_COLOR}
+                            accessibilityLabel={petHero.titulo}
+                            marginHorizontal={0}
+                            marginBottom={14}
+                        />
+                    )}
                     <View style={styles.gridContainer}>
                         {MENU_ITEMS.map((item) => {
                             const Icon = item.iconComponent || EmojiHappy;

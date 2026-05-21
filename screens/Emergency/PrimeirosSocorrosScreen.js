@@ -10,6 +10,7 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import ReviewImage from '../../components/ReviewImage';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getPrimeirosSocorros } from '../../data/primeiros_socorros';
@@ -20,15 +21,17 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 const HUMAN_ACCENT = '#EF4444'; // red — pessoas (urgência)
 const PET_ACCENT = '#10B981';   // green — pets (cuidado)
 
-export default function PrimeirosSocorrosScreen({ navigation }) {
+export default function PrimeirosSocorrosScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const themeColors = useThemeColors();
   const isDark = useIsDark();
   const textPrimary = themeColors.neutral[900];
   const textBody = themeColors.neutral[800];
+  const petHero = route?.params?.petHero;
   const [selectedItem, setSelectedItem] = useState(null);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [type, setType] = useState('HUMAN');
+  // Se veio do hub Pet, abre direto na aba PET
+  const [type, setType] = useState(petHero ? 'PET' : 'HUMAN');
 
   const openDetail = (item) => setSelectedItem(item);
   const closeDetail = () => setSelectedItem(null);
@@ -105,6 +108,19 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
             </Caption>
           </View>
         </View>
+
+        {/* Hero banner — se veio do hub Pet */}
+        {petHero && (
+          <PetHeroBanner
+            image={petHero.imagem}
+            imageUrl={petHero.imagemUrl}
+            tint={petHero.cor || PET_ACCENT}
+            accessibilityLabel={petHero.titulo}
+            marginHorizontal={20}
+            marginBottom={12}
+            height={120}
+          />
+        )}
 
         {/* TABS Pessoas / Pets */}
         <View style={s.tabsWrap}>

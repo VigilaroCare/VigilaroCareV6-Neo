@@ -6,6 +6,7 @@ import { ChecklistService } from '../services/ChecklistService';
 import { useState, useEffect } from 'react';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
+import PetHeroBanner from '../components/PetHeroBanner';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../utils/getLocalizedField';
@@ -65,25 +66,25 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                     <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                 </TouchableOpacity>
             </View>
+            {/* Hero banner — imagem do card de origem (continuidade visual) */}
+            <PetHeroBanner
+                image={group.imagem}
+                imageUrl={group.imagemUrl}
+                tint={group.color}
+                accessibilityLabel={t_field(group, 'title')}
+            />
+
             <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
                 <NeoCard variant="glass"
                     style={{
                         width: '100%',
                         padding: 16,
                         justifyContent: 'space-between',
-                        minHeight: 140,
                         alignItems: 'center',
                         ...Neo.shadows?.sm
                     }}
                 >
                     <View style={{ alignItems: 'center' }}>
-                        <View style={{
-                            width: 64, height: 64, borderRadius: 20,
-                            backgroundColor: group.color, alignItems: 'center', justifyContent: 'center',
-                            marginBottom: 12
-                        }}>
-                             <NeoIcon name={group.icon} size={32} color={Neo.colors.neutral.white} />
-                        </View>
                         <Text style={{ color: group.color, fontSize: 20, marginBottom: 4, lineHeight: 24, fontWeight: 'bold', textAlign: 'center' }} accessibilityRole="header">{t_field(group, 'title')}</Text>
                         <Text style={{ color: textBody, fontWeight: 'bold', lineHeight: 16, textAlign: 'center', marginBottom: 8 }}>{t_field(group, 'subtitle')}</Text>
                         <Text style={{ fontSize: 14, color: textBody, textAlign: 'center', lineHeight: 20 }}>{t_field(group, 'description')}</Text>

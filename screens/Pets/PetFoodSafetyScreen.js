@@ -8,14 +8,16 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
+import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { PET_FOOD_SAFETY } from '../../data/pet_food_safety';
 import { t_field } from '../../utils/getLocalizedField';
 import { useIsDark } from '../../utils/ThemeContext';
 
-export default function PetFoodSafetyScreen({ navigation }) {
+export default function PetFoodSafetyScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const isDark = useIsDark();
+  const petHero = route?.params?.petHero;
 
   const callCiatox = () => Linking.openURL('tel:08007226001');
 
@@ -76,6 +78,18 @@ export default function PetFoodSafetyScreen({ navigation }) {
         </View>
 
         <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+          {/* Hero banner — imagem do card de origem */}
+          {petHero && (
+            <PetHeroBanner
+              image={petHero.imagem}
+              imageUrl={petHero.imagemUrl}
+              tint={petHero.cor || '#D32F2F'}
+              accessibilityLabel={petHero.titulo}
+              marginHorizontal={0}
+              marginBottom={14}
+            />
+          )}
+
           {/* HERO */}
           <NeoCard variant="elevated" style={s.heroCard}>
             <View style={s.heroIconCircle}>

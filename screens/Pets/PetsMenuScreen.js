@@ -56,7 +56,7 @@ export default function PetsMenuScreen() {
             id: 'prenhez',
             cor: '#E91E63',
             imagem: null,
-            imagemUrl: PEXELS('6131954'),   // cadela com filhotes recém-nascidos
+            imagemUrl: PEXELS('1108099'),   // golden amamentando filhotes (clássica)
             titulo: t('petsMenu.prenhez.titulo'),
             descricao: t('petsMenu.prenhez.descricao'),
             tela: 'PetPregnancyGuide',
@@ -166,6 +166,14 @@ export default function PetsMenuScreen() {
     ];
 
     const handlePress = (item) => {
+        // Hero comum a propagar para todas as telas de destino
+        const petHero = {
+            imagem: item.imagem || null,
+            imagemUrl: item.imagemUrl || null,
+            cor: item.cor,
+            titulo: item.titulo,
+        };
+
         if (item.tela === 'AgeGroupDetail') {
             navigation.navigate(item.tela, {
                 group: {
@@ -176,10 +184,16 @@ export default function PetsMenuScreen() {
                     icon: 'paw',
                     risks: item.risks,
                     checklist: item.checklist,
+                    // Hero para banner no topo da tela de destino
+                    imagem: item.imagem || null,
+                    imagemUrl: item.imagemUrl || null,
                 },
             });
         } else {
-            navigation.navigate(item.tela, item.params || {});
+            navigation.navigate(item.tela, {
+                ...(item.params || {}),
+                petHero,
+            });
         }
     };
 
