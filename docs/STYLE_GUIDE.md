@@ -1,9 +1,14 @@
 # Guia de Tom e Estilo — Vigilaro Care
-## Baseado no eBook "Prevenção 3D — O Guia Completo Para Prevenção de Acidentes em Casa"
+## Baseado no eBook "Prevenção 3D" + Blog preveniremcasa.com.br
 **Autor: Agnaldo Fontinele · ISBN 978-65-86755-67-1**
 
-Este guia documenta o tom autoral do eBook que serve de base para todo o conteúdo
-do app Vigilaro Care. Usar como referência ao redigir/revisar textos.
+Este guia documenta o tom autoral em duas fontes:
+1. **eBook "Prevenção 3D"** — doutrina e estrutura editorial (seções abaixo)
+2. **Blog preveniremcasa.com.br** — como o autor escreve no dia a dia (seção
+   "Padrões do Blog" + "Exemplos lado a lado")
+
+Ambas devem ser tratadas como **uma voz unificada**. Usar como referência ao
+redigir/revisar qualquer texto do app.
 
 ---
 
@@ -159,3 +164,187 @@ Ao redigir/revisar conteúdo de qualquer tela:
 - **Defesa Civil**: 199
 
 Reforçar esses números em telas de Primeiros Socorros e Emergência.
+
+---
+
+## Padrões observados no Blog preveniremcasa.com.br
+
+Complementa o eBook com o ritmo de escrita do dia a dia do autor.
+
+### Abertura: emoção + dado
+O autor abre posts ancorando o leitor numa experiência comum, depois encaixa
+o número que justifica o assunto.
+
+> "Todo mundo já deve ter vivenciado esse drama em algum momento da vida, em
+> pequenas ou em grandes proporções. Queimaduras, intoxicações, choque elétrico,
+> quedas…"
+
+**Como aplicar no app:** descrições de tela, hero de seção, intro de artigo.
+
+### Frase curta + frase longa explicativa (ritmo desigual)
+O autor alterna períodos curtos (impacto) com períodos longos (contexto).
+
+> "Acidentes domésticos acontecem em todas as partes do mundo, seja em países
+> desenvolvidos ou não. No Brasil, estima-se que as pessoas vítimas de acidentes
+> domésticos somam 37% de todos os feridos atendidos em hospitais."
+
+**Como aplicar:** descrições de cards, textos de detalhe — não cair na monotonia
+de tudo curto ou tudo longo.
+
+### Citação de fonte explícita
+Sempre que há um número, vem a fonte logo em seguida.
+
+> "...mais 3.739 casos atendidos que representaram a principal causa de morte
+> de crianças entre 1 e 14 anos de idade. **Fonte: www.brasil.org.br**."
+
+**Como aplicar:** estatísticas em telas educativas devem ter `Fonte:` ao lado
+ou em `<Small>` no rodapé do card. Nunca número solto.
+
+### Lista de prevenção em ponto-e-vírgula, imperativo direto
+O autor usa bullets curtos terminados em ponto-e-vírgula.
+
+> "• Usar protetores de tomadas para evitar choque elétrico;
+> • Colocar redes de proteção em janelas para evitar quedas;
+> • Manter produtos químicos e objetos cortantes em lugares trancados;"
+
+**Como aplicar:** listas `prevencao[]` em data files mantêm esse padrão.
+
+### Fechamento com chamado coletivo
+Posts terminam quase sempre com convite a compartilhar.
+
+> "Aproveite e compartilhem! Tem muitas pessoas que precisam dessa informação."
+
+**Como aplicar:** telas de artigo/conceito longo terminam com CTA de
+compartilhar, não com "voltar" frio. Telas curtas podem omitir.
+
+### Tom emocional vs técnico — proporção
+- ~70% conversacional ("você", "a gente", "todo mundo")
+- ~30% técnico (números, normas, termos com tradução inline)
+- **Nunca** corporativo ("plataforma", "solução", "ecossistema", "stakeholders")
+
+---
+
+## Exemplos lado a lado — texto de UI
+
+Cada par mostra o jeito errado (asséptico ou corporativo) seguido do jeito
+Agnaldo (direto, com você, com calor).
+
+### Botões e CTAs
+
+| ❌ Evitar | ✅ Tom Agnaldo |
+|---|---|
+| "Adicionar Medicamento" | "Cadastrar remédio" |
+| "Salvar Alterações" | "Salvar" |
+| "Confirmar Operação" | "Confirmar" |
+| "Cancelar Procedimento" | "Cancelar" |
+| "Acessar Configurações" | "Abrir ajustes" |
+| "Iniciar Sessão" | "Entrar" |
+| "Realizar Login" | "Entrar" |
+| "Submeter Formulário" | "Enviar" |
+| "Excluir Registro" | "Apagar" |
+| "Visualizar Detalhes" | "Ver mais" |
+
+### Mensagens de empty state
+
+| ❌ Evitar | ✅ Tom Agnaldo |
+|---|---|
+| "Nenhum item cadastrado no sistema." | "Você ainda não cadastrou nenhum remédio." |
+| "A consulta retornou zero resultados." | "Nada por aqui ainda." |
+| "Lista vazia." | "Sem remédios — toque em + pra começar." |
+| "Não há dados para exibir." | "Ainda sem registros. Vamos começar?" |
+
+### Confirmações e diálogos
+
+| ❌ Evitar | ✅ Tom Agnaldo |
+|---|---|
+| "Deseja realmente realizar esta ação?" | "Tem certeza?" |
+| "A exclusão é irreversível. Confirma?" | "Apagar de vez? Não dá pra desfazer." |
+| "Operação realizada com sucesso." | "Pronto! Salvo." |
+| "Falha ao processar a requisição." | "Não deu pra salvar. Tenta de novo." |
+
+### Erros e validações
+
+| ❌ Evitar | ✅ Tom Agnaldo |
+|---|---|
+| "Campo obrigatório não preenchido." | "Falta preencher esse campo." |
+| "Email inválido." | "Esse email não parece certo." |
+| "Senha deve conter no mínimo 8 caracteres." | "A senha precisa de pelo menos 8 caracteres." |
+| "Sem conexão com o servidor." | "Sem internet agora. A gente tenta de novo." |
+
+### Descrições de tela / hero
+
+❌ **Tom corporativo asséptico:**
+> "Esta seção permite ao usuário configurar parâmetros relacionados às fichas
+> médicas dos membros da família, incluindo informações sobre medicamentos,
+> alergias e procedimentos."
+
+✅ **Tom Agnaldo:**
+> "Aqui você guarda as fichas médicas da família. Remédios, alergias, consultas
+> — tudo num lugar só, pra quando precisar não ter que correr atrás."
+
+### Alertas críticos
+
+❌ **Frio:**
+> "Atenção: a interrupção do uso deste medicamento pode ocasionar efeitos
+> adversos. Consulte um profissional de saúde."
+
+✅ **Agnaldo:**
+> "**Nunca pare o remédio por conta própria.** Mesmo que esteja se sentindo
+> bem, fale com o médico antes. A interrupção sem orientação pode trazer
+> complicações sérias."
+
+### Onboarding / Boas-vindas
+
+❌ **Genérico:**
+> "Bem-vindo ao Vigilaro Care. Nossa plataforma oferece soluções integradas
+> para a gestão da segurança doméstica e o bem-estar familiar."
+
+✅ **Agnaldo:**
+> "Olá! O Vigilaro Care nasceu pra te ajudar a proteger quem você ama dentro
+> de casa. A gente vai te guiar passo a passo — sem complicação, no seu ritmo.
+> **Vamos lá?**"
+
+### Tooltips e dicas curtas
+
+| ❌ Evitar | ✅ Tom Agnaldo |
+|---|---|
+| "Funcionalidade premium." | "Disponível no plano Premium." |
+| "Configuração avançada." | "Pra usuários mais experientes." |
+| "Recurso experimental." | "Ainda em testes — pode falhar." |
+
+---
+
+## Glossário rápido — o que trocar sempre
+
+Tabela de tradução automática quando vir esses termos:
+
+| Não use | Use |
+|---|---|
+| "o usuário" | "você" |
+| "a pessoa" | "você" |
+| "realizar / efetuar" | "fazer" |
+| "informação" (no plural genérico) | "dados", "registros", "ficha" |
+| "verificar" | "conferir" |
+| "selecionar" | "escolher" |
+| "deletar / excluir" | "apagar" |
+| "modificar" | "mudar" |
+| "habilitar / desabilitar" | "ligar / desligar" |
+| "executar" | "fazer", "rodar" |
+| "navegação" | "menu", "telas" |
+| "interface" | "tela" |
+| "plataforma" | "app" |
+| "solução" | "ferramenta", "recurso" |
+| "ecossistema" | (cortar — quase sempre desnecessário) |
+| "experiência do usuário" | "como o app funciona pra você" |
+
+---
+
+## Regra-de-ouro de revisão (1 minuto por tela)
+
+Lendo qualquer texto de tela, perguntar:
+
+1. **Eu falaria isso assim numa conversa?** Se não, reescreve.
+2. **Tem "você" no texto?** Se não, provavelmente está frio demais.
+3. **Tem alguma palavra que minha mãe não usaria?** Provavelmente é jargão.
+4. **Cabe em um respiro?** Se a frase tem >25 palavras, quebra em duas.
+5. **Manda fazer algo?** Use imperativo direto, não "talvez você queira…"
