@@ -68,15 +68,6 @@ export default function AvesSegurasScreen({ navigation, route }) {
             />
           )}
 
-          {/* HERO */}
-          <NeoCard variant="elevated" style={s.heroCard}>
-            <View style={s.heroIconCircle}>
-              <Text style={{ fontSize: 32 }}>🦜</Text>
-            </View>
-            <H3 style={s.heroTitle}>{t_field(AVES_SEGURAS_DATA.hero, 'title')}</H3>
-            <Body style={s.heroDesc}>{t_field(AVES_SEGURAS_DATA.hero, 'desc')}</Body>
-          </NeoCard>
-
           {/* ALERTA CRÍTICO */}
           <NeoCard variant="elevated" style={s.alertCard}>
             <View style={s.alertHeader}>
