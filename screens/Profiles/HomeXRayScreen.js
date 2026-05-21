@@ -95,7 +95,7 @@ export default function HomeXRayScreen() {
             : (res?.moradia?.tipoImovel || t('homeXRay.houseTipoGeneric', 'Residência'));
 
         return (
-            <FadeInView key={res.id} delay={index * 150}>
+            <FadeInView key={res.id} delay={120 + index * 40}>
                 <NeoCard variant="elevated" style={s.resCard}>
                     {/* HEADER do card */}
                     <View style={s.resHeader}>

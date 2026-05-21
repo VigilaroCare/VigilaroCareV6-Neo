@@ -12,6 +12,7 @@ import {
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import FadeInView from '../../components/FadeInView';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import { useIsDark } from '../../utils/ThemeContext';
@@ -93,24 +94,25 @@ export default function KitsHubScreen() {
                     showsVerticalScrollIndicator={false}
                 >
                     {/* LISTA DE KITS */}
-                    {kits.map(item => (
-                        <TouchableOpacity
-                            key={item.id}
-                            onPress={() => navigation.navigate(item.route)}
-                            activeOpacity={0.85}
-                            style={{ marginBottom: 10 }}
-                        >
-                            <NeoCard variant="elevated" style={s.kitCard}>
-                                <View style={[s.iconCircle, { backgroundColor: item.color + '33' }]}>
-                                    <item.Icon size={24} color={item.color} variant="Bold" />
-                                </View>
-                                <View style={s.textCol}>
-                                    <Body style={s.kitTitle}>{item.title}</Body>
-                                    <Small style={s.kitSub}>{item.sub}</Small>
-                                </View>
-                                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
-                            </NeoCard>
-                        </TouchableOpacity>
+                    {kits.map((item, index) => (
+                        <FadeInView key={item.id} delay={120 + index * 40}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate(item.route)}
+                                activeOpacity={0.85}
+                                style={{ marginBottom: 10 }}
+                            >
+                                <NeoCard variant="elevated" style={s.kitCard}>
+                                    <View style={[s.iconCircle, { backgroundColor: item.color + '33' }]}>
+                                        <item.Icon size={24} color={item.color} variant="Bold" />
+                                    </View>
+                                    <View style={s.textCol}>
+                                        <Body style={s.kitTitle}>{item.title}</Body>
+                                        <Small style={s.kitSub}>{item.sub}</Small>
+                                    </View>
+                                    <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                                </NeoCard>
+                            </TouchableOpacity>
+                        </FadeInView>
                     ))}
 
                     {/* DICA — card glass discreto */}
