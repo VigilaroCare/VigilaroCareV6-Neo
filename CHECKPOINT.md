@@ -706,7 +706,16 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    ### 🟣 Identidade visual (opcional, requer brand)
    | # | Item | Status |
    |---|---|---|
-   | M | Logo, splash, assinatura visual única, ilustrações próprias | ⏳ depende brand |
+   | M.1 | **Adaptive icon Android** — `foregroundImage` em app.json hoje é o logo horizontal; precisa de glyph quadrado pro launcher | ⚠️ precisa de arte |
+   | M.2 | **Ilustrações próprias pra onboarding** (4 slides) — hoje usa NeoIcons em círculos | ❌ ilustrador |
+   | M.3 | **Spot illustrations pros EmptyStates** — `<EmptyState>` aceita só ícone hoje; passar a aceitar `<illustration>` quando houver arte | ❌ ilustrador |
+   | M.4 | **Assinatura visual recorrente** (padrão geométrico, mark sutil em headers, marca d'água no Menu) | ❌ designer |
+
+   _Resolvidos em 2026-05-21 (sub-itens de marca executáveis sem ilustrador):_
+   - _Onboarding slide 4: emoji → NeoIcon Hand com mirror (`7096f89`)_
+   - _CustomSplash: 3s → 1.5s + physics moderna (`d9e3ebc`)_
+   - _Limpeza: 9 PNGs órfãos removidos do assets/ (`45ff250`)_
+   - _`<EmptyState>` reutilizável + migrado em 4 telas / 6 usos (`ea79aa1`)_
 
    ### ⚪ Tech debt menor (não urgente)
    | Item | Notas |
