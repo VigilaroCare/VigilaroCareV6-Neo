@@ -1,8 +1,104 @@
 # 🚦 CHECKPOINT — Vigilaro Care V6 Neo
 
-**Última atualização:** 2026-05-20
+**Última atualização:** 2026-05-21
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 93
+**Commits totais no branch:** 128
+**Último commit:** `4224459` (fix cascade fallback ambientes)
+
+---
+
+## 🆕 SESSÃO 2026-05-21 — Saúde Pet + Riscos por Ambiente (35 commits)
+
+### O que foi feito
+
+**1. Hub Saúde Pet — redesign completo**
+- `PetsMenuScreen` reescrita com cards grandes (120×120 imagem à esquerda)
+  no mesmo padrão de AcessoriosSegurancaScreen
+- Banner hero no topo com composite de todos os tipos de pets
+- 4 imagens locais bundladas em `assets/images/prevencao/`:
+  - `pet-todos-tipos.jpg` (composite header)
+  - `pet-filhotes.jpg` (filhotes em abrigo)
+  - `pet-wellness-gato.jpg` (gato sendo acariciado)
+  - `pet-socorros.jpg` (mordida — alerta)
+- 7 cards com Pexels **todos verificados landscape** via WebFetch:
+  - prenhez: `34793866` (mãe cachorra + filhotes)
+  - adultos: `32635851` (Border Collie)
+  - pequenos: `16509406` (hamster europeu)
+  - aves: `14413302` (papagaio verde em cerca)
+  - peixes: `128756` (clownfish)
+  - alimentos: `918327` (chocolate + framboesa)
+  - kit_pet: `8434633` (tigela inox + petiscos)
+
+**2. Propagação de imagem do card → tela de destino**
+- Novo componente `components/PetHeroBanner.js` — wrapper de ReviewImage
+  com tint, vinheta, props (image|imageUrl, resizeMode, tint, height)
+- `handlePress` do PetsMenu propaga `petHero: {imagem, imagemUrl, cor,
+  titulo, resizeMode}` via navigation params
+- 7 telas de destino renderizam o banner condicionalmente:
+  - AgeGroupDetail (filhotes/adultos/pequenos/peixes)
+  - PetPregnancyGuide, AvesSeguras, PetWellness, PetFoodSafety
+  - PrimeirosSocorros + PrimeirosSocorrosEmergencia (com auto-seleção
+    da aba PET quando vem do hub Pet)
+  - GuiaKitsEmergencia
+
+**3. Mesclagem socorros + guia (redundância)**
+- Removido card `socorros` (Emergência). Mantido apenas
+  `primeiros_socorros_pet` → PrimeirosSocorrosScreen (que já tem guia
+  educativo + modal de ação tática)
+
+**4. Fix "molduras fantasmas" em Principais Riscos**
+- `AgeGroupDetailScreen` reestruturada:
+  - Removida moldura branca externa (`listContainer` com bg + shadow)
+  - Cada risco vira `NeoCard variant="elevated"` próprio
+  - Header do risco: ícone em círculo colorido + título inline + barra
+    lateral colorida
+- Removido NeoCard glass redundante (que repetia título já mostrado
+  no banner)
+- Header padrão: back button + título/subtítulo inline (igual outras
+  telas Pet)
+
+**5. Hub Riscos por Ambiente — padronizar listing**
+- `EducationEnvironmentsScreen` reescrita com mesmo padrão card-imagem
+- Mostra a foto Pexels (de `MAPA_PREVENCAO.capa[0]`) à esquerda de
+  cada um dos 21 ambientes
+- Novo componente extraído `EnvironmentCard` com **cascade fallback**:
+  tenta `capa[0]` → `capa[1]` → ícone iconsax (igual hero do destino)
+- `ReviewImage` recebe props `onError`/`onLoad`
+
+### Arquivos novos
+```
+components/PetHeroBanner.js
+assets/images/prevencao/pet-todos-tipos.jpg
+assets/images/prevencao/pet-filhotes.jpg
+assets/images/prevencao/pet-wellness-gato.jpg
+assets/images/prevencao/pet-socorros.jpg
+```
+
+### Arquivos modificados (~10)
+- `screens/Pets/PetsMenuScreen.js`
+- `screens/Pets/PetPregnancyGuideScreen.js`
+- `screens/Pets/AvesSegurasScreen.js`
+- `screens/Pets/PetWellnessScreen.js`
+- `screens/Pets/PetFoodSafetyScreen.js`
+- `screens/AgeGroupDetailScreen.js`
+- `screens/Emergency/PrimeirosSocorrosScreen.js`
+- `screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js`
+- `screens/Education/GuiaKitsEmergenciaScreen.js`
+- `screens/Education/EducationEnvironmentsScreen.js`
+- `components/ReviewImage.js`
+- `docs/IMAGES_INVENTORY.md`
+
+### Lições aprendidas (importantes pra próxima sessão)
+1. **Validar orientation de Pexels via WebFetch ANTES** — escolher
+   IDs "às cegas" deu 5 falsos positivos (portrait disfarçado).
+   Usar `https://www.pexels.com/search/X/?orientation=landscape` e
+   verificar IDs específicos com `https://www.pexels.com/photo/{id}/`
+2. **Pet bank do user** (Imagens PAD/mordidas-animais) tem só 4-5 fotos
+   pet usáveis. Resto é Pexels.
+3. **Cascade fallback é essencial** em listings com muitas fotos —
+   sem ele, qualquer falha de carregamento deixa card vazio.
+4. **NeoCard glass redundante** após hero banner cria "fundo branco
+   fora do padrão" — evitar repetir título quando já está no banner.
 
 ---
 
@@ -577,30 +673,74 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    ```
    Branch: claude/unruffled-jennings-51c18f
    Worktree: C:\Users\User\Documents\VigilaroCareV6 Neo\.claude\worktrees\unruffled-jennings-51c18f
-   Último commit: 1c734d9 (Redesign HousePill)
+   Último commit: 4224459 (cascade fallback ambientes)
+   Total commits: 128
    Status: limpo (só assets/app-icon-square.png untracked, ignorar)
    ```
 
-3. **Pendências priorizadas (decidir com user no início):**
+3. **Pendências priorizadas (TODAS — decidir com user no início):**
 
+   ### 🟢 Bloqueadas aguardando user
    | # | Item | Status |
    |---|---|---|
-   | A | **Aplicar STYLE_GUIDE ao conteúdo do app** — reescrever `descricao`, `prevencao[]`, `tipos[]` nos data files para seguir tom do eBook (Agnaldo Fontinele). Prioridade: Acessórios, depois Primeiros Socorros. | ⏳ aguarda decisão |
-   | B | **Sons UI** — user precisa aprovar/fornecer 5 arquivos `.mp3`/`.wav`. Então criar `services/SoundService.js` + toggle em AccessibilitySettings. | 🔒 bloqueado (arquivos) |
-   | C | **Revisão geral de conteúdo** — user mencionou que fará revisão das seções. HousePill atualizado, `seguranca_eletrica_fogo` com imagem ruim (aguardando). | 🔒 aguarda user |
-   | D | **Sweep dark mode** — ~50 telas restantes ainda não refatoradas para `useThemeColors()`. Atacar sob demanda conforme prints do user. | 🔒 aguarda prints |
-   | E | **Merge na main** — quando user decidir que branch está pronto. | 🔒 aguarda user |
+   | A | **STYLE_GUIDE — tom Agnaldo** nos textos do app (descricao, prevencao[], tipos[] nos data files). Prioridade: Acessórios, depois Primeiros Socorros. Docs: `docs/STYLE_GUIDE.md` | ⏳ aguarda decisão |
+   | B | **Sons UI** — user fornece 5 `.mp3`/`.wav` (tap, success, error, alert, navigation). Aí crio `services/SoundService.js` + toggle Acessibilidade + wire no TappablePressable. Fontes CC0: Mixkit, Pixabay, BBC | 🔒 aguarda arquivos |
+   | C | **Revisão geral de conteúdo** — user mencionou que fará revisão. Pendência genérica que vai ficando pra cada sessão. | 🔒 aguarda user |
+   | D | **Sweep dark mode** — ~50 telas restantes (lista em "Hotspots prováveis" mais acima). Atacar sob demanda por prints. | 🔒 aguarda prints |
+   | E | **Merge na main** — 128 commits no branch. Quando user aprovar release. | 🔒 aguarda user |
 
-4. **Arquitetura nova a conhecer (imagens locais):**
-   - `assets/images/prevencao/` → 13 imagens do Drive bundladas
-   - Campo `imagem: require(...)` (número) = asset local offline
+   ### 🟡 UX questions sem decisão (do CHECKPOINT antigo)
+   | # | Item | Status |
+   |---|---|---|
+   | F | **"Relatório Pessoal" vs Checklists** — redundância levantada pelo user em modal "Pendências (100%)" → "O Quê e Como". Decidir: manter ambos, remover, ou redesenhar | ⏳ |
+   | G | **FasesVidaMenu** — imagens genéricas em "Cuidados por Faixa Etária" humanas (bebê, criança, adolescente, adulto, idoso). Mesma campanha que fizemos pra ambientes/pets se aplica aqui | ⏳ |
+   | H | **Emojis em Utensílios/Eletrodomésticos/Dispositivos** — manter (casual), trocar por iconsax (marca), ou fotos reais (premium)? User confundiu com favicons | ⏳ |
+
+   ### 🔵 Microinterações Parte 3 (futuro, não-urgente)
+   | # | Item | Status |
+   |---|---|---|
+   | I | **Animated progress bars** nos 3 Kits — usar `AnimatedProgressBar` (já existe) onde fill é estático hoje | ⏳ |
+   | J | **Stagger entrance padronizado** nos hubs (uso inconsistente de FadeInView/ScaleInView) | ⏳ |
+   | K | **Slide horizontal** entre tabs MinhaSaude/SaudePet | ⏳ |
+   | L | **Bottom sheet** com physics natural (padronizar) | ⏳ |
+
+   ### 🟣 Identidade visual (opcional, requer brand)
+   | # | Item | Status |
+   |---|---|---|
+   | M | Logo, splash, assinatura visual única, ilustrações próprias | ⏳ depende brand |
+
+   ### ⚪ Tech debt menor (não urgente)
+   | Item | Notas |
+   |---|---|
+   | StatusBar `barStyle` deprecated | 4 telas com warning: ConversationalAgent, SituacoesTemporarias, ChecklistDetail, OndeProteger |
+   | Telas legacy usando `Colors`/`Spacing` antigos | Funcionam mas seria bom migrar pra `Neo.*` |
+   | Telas grandes (NewHomeWizard, ChecklistDetail 500+ linhas) | Quebrar em componentes menores |
+
+4. **Arquitetura nova (imagens locais) — IMPORTANTE conhecer:**
+   - `assets/images/prevencao/` → assets bundladas localmente
+   - Campo `imagem: require(...)` (number) = asset local offline
    - Campo `imagemUrl: 'https://...'` (string) = remoto Pexels
-   - `withImages()` em `primeiros_socorros.js` detecta o tipo automaticamente
-   - Screens com suporte dual: `AcessoriosSegurancaScreen`, `PrimeirosSocorrosScreen`, `ConceitoDetailScreen`
+   - **Pexels: SEMPRE validar landscape via WebFetch antes** —
+     `https://www.pexels.com/photo/{id}/` ou
+     `https://www.pexels.com/search/X/?orientation=landscape`
+   - `withImages()` em `primeiros_socorros.js` detecta tipo automaticamente
+   - Screens com suporte dual: `AcessoriosSegurancaScreen`,
+     `PrimeirosSocorrosScreen`, `ConceitoDetailScreen`,
+     `EducationEnvironmentsScreen`, `PetsMenuScreen`
+   - `PetHeroBanner` propaga imagem do card pra tela de destino
+   - `EnvironmentCard` (extraído em EducationEnvironmentsScreen) tem
+     cascade fallback que pode ser reusado em outras listings
 
-5. **Docs de referência criados nesta sessão:**
-   - `docs/STYLE_GUIDE.md` — tom de voz do eBook Prevenção 3D
-   - `docs/IMAGES_INVENTORY.md` — catálogo do Drive com File IDs
-   - `docs/AI_PROMPTS_ACESSORIOS.md` — prompts Midjourney para 13 imagens
+5. **Banco de imagens do user:**
+   - `C:\Users\User\Pictures\Imagens PAD\` — organizado em categorias
+   - 30 subpastas: mordidas-animais, plantas-toxicas, eletrico,
+     acidentes-estatisticas, ambientes-casa, criancas-bebes, idosos,
+     fotos-stock-genericas, app-pad-assets (48 PNGs Midjourney), etc
+   - Acesso via `mcp__ccd_directory__request_directory`
 
-Tudo no branch `claude/unruffled-jennings-51c18f` — pronto pra merge na main quando o user decidir.
+6. **Docs de referência:**
+   - `docs/STYLE_GUIDE.md` — tom de voz Agnaldo (Prevenção 3D)
+   - `docs/IMAGES_INVENTORY.md` — catálogo + decisões de imagens Pet
+   - `docs/AI_PROMPTS_ACESSORIOS.md` — prompts Midjourney p/ Acessórios
+
+Tudo no branch `claude/unruffled-jennings-51c18f` — pronto pra merge na main quando user decidir (item E).
