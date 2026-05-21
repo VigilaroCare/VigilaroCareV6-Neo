@@ -56,7 +56,7 @@ export default function PetsMenuScreen() {
             id: 'prenhez',
             cor: '#E91E63',
             imagem: null,
-            imagemUrl: PEXELS('1108099'),   // golden amamentando filhotes (clássica)
+            imagemUrl: PEXELS('34793866'),   // mamãe cachorra com filhotes (landscape)
             titulo: t('petsMenu.prenhez.titulo'),
             descricao: t('petsMenu.prenhez.descricao'),
             tela: 'PetPregnancyGuide',
@@ -75,7 +75,7 @@ export default function PetsMenuScreen() {
             id: 'adultos',
             cor: '#4CAF50',
             imagem: null,
-            imagemUrl: PEXELS('2253275'),   // golden retriever sentado (landscape)
+            imagemUrl: PEXELS('32635851'),   // Border Collie sorrindo close-up (landscape)
             titulo: t('petsMenu.adultos.titulo'),
             descricao: t('petsMenu.adultos.descricao'),
             tela: 'AgeGroupDetail',
@@ -86,7 +86,7 @@ export default function PetsMenuScreen() {
             id: 'pequenos',
             cor: '#FF7043',
             imagem: null,
-            imagemUrl: PEXELS('2061057'),   // hamster close-up landscape
+            imagemUrl: PEXELS('16509406'),   // hamster europeu na grama (landscape)
             titulo: t('petsMenu.pequenos.titulo'),
             descricao: t('petsMenu.pequenos.descricao'),
             tela: 'AgeGroupDetail',
@@ -97,7 +97,7 @@ export default function PetsMenuScreen() {
             id: 'aves',
             cor: '#FBC02D',
             imagem: null,
-            imagemUrl: PEXELS('1661179'),   // papagaio verde em galho (cover centraliza o corpo)
+            imagemUrl: PEXELS('14413302'),   // papagaio verde em cerca (landscape verificada)
             titulo: t('petsMenu.aves.titulo'),
             descricao: t('petsMenu.aves.descricao'),
             tela: 'AvesSeguras',
@@ -153,7 +153,7 @@ export default function PetsMenuScreen() {
             id: 'kit_pet_checklist',
             cor: '#F59E0B',
             imagem: null,
-            imagemUrl: PEXELS('4587987'),   // tigela + coleira + brinquedo pet
+            imagemUrl: PEXELS('8434633'),   // tigela inox com petiscos (landscape)
             titulo: t('petsMenu.kit_pet_checklist.titulo'),
             descricao: t('petsMenu.kit_pet_checklist.descricao'),
             tela: 'GuiaKitsEmergencia',

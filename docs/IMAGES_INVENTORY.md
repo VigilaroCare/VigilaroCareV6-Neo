@@ -20,13 +20,15 @@ Fonte do acervo: `C:\Users\User\Pictures\Imagens PAD\mordidas-animais\`
 | `filhotes` | `pet-filhotes.jpg` | 2 filhotes em abrigo (landscape ✓) | — |
 | `wellness` | `pet-wellness-gato.jpg` | Gato tabby sendo acariciado (landscape ✓) | — |
 | `primeiros_socorros_pet` | `pet-socorros.jpg` | Ferida de mordida — contexto alerta | — |
-| `prenhez` | — | — | Pexels `1108099` (golden amamentando filhotes) |
-| `adultos` | — | (dálmata portrait removido) | Pexels `2253275` (golden retriever) |
-| `pequenos` | — | (composite removido — white bg quebrava padrão) | Pexels `2061057` (hamster) |
-| `aves` | — | — | Pexels `1661179` (papagaio) |
-| `peixes` | — | — | Pexels `128756` (aquário) |
-| `alimentos` | — | — | Pexels `918327` (chocolate) |
-| `kit_pet_checklist` | — | — | Pexels `4587987` (tigela + coleira) |
+| `prenhez` | — | — | Pexels `34793866` ✓ landscape (mãe cachorra com filhotes) |
+| `adultos` | — | (dálmata portrait removido) | Pexels `32635851` ✓ landscape (Border Collie sorrindo) |
+| `pequenos` | — | (composite removido — white bg quebrava padrão) | Pexels `16509406` ✓ landscape (hamster europeu) |
+| `aves` | — | — | Pexels `14413302` ✓ landscape (papagaio verde) |
+| `peixes` | — | — | Pexels `128756` ✓ landscape (clownfish) |
+| `alimentos` | — | — | Pexels `918327` ✓ landscape (chocolate + framboesa) |
+| `kit_pet_checklist` | — | — | Pexels `8434633` ✓ landscape (tigela inox + petiscos) |
+
+**Todos os Pexels validados como landscape orientation via Pexels search filter `?orientation=landscape` em 2026-05-21.**
 
 ### Histórico
 - **Initial:** bundladas 6 imagens — incluindo dálmata portrait e composite white-bg.
