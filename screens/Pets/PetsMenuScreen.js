@@ -28,11 +28,11 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { PET_SAFETY_CONTENT } from '../../data/pet_safety_content';
 
 // ── Imagens bundladas do acervo ──────────────────────────────────────────────
+// Apenas fotos com enquadramento landscape que funcionam em cover.
+// adultos e pequenos usam Pexels (não havia equivalente no acervo).
 const IMG = {
     header:    require('../../assets/images/prevencao/pet-todos-tipos.jpg'),
     filhotes:  require('../../assets/images/prevencao/pet-filhotes.jpg'),
-    adultos:   require('../../assets/images/prevencao/pet-adulto-dalmata.jpg'),
-    pequenos:  require('../../assets/images/prevencao/pet-pequenos-mamiferos.jpg'),
     wellness:  require('../../assets/images/prevencao/pet-wellness-gato.jpg'),
     socorros:  require('../../assets/images/prevencao/pet-socorros.jpg'),
 };
@@ -74,8 +74,8 @@ export default function PetsMenuScreen() {
         {
             id: 'adultos',
             cor: '#4CAF50',
-            imagem: IMG.adultos,
-            resizeMode: 'contain',   // dálmata portrait: cover cortaria o cão
+            imagem: null,
+            imagemUrl: PEXELS('2253275'),   // golden retriever sentado (landscape)
             titulo: t('petsMenu.adultos.titulo'),
             descricao: t('petsMenu.adultos.descricao'),
             tela: 'AgeGroupDetail',
@@ -85,8 +85,8 @@ export default function PetsMenuScreen() {
         {
             id: 'pequenos',
             cor: '#FF7043',
-            imagem: IMG.pequenos,
-            resizeMode: 'contain',   // composite white bg: cover cortaria os pets
+            imagem: null,
+            imagemUrl: PEXELS('2061057'),   // hamster close-up landscape
             titulo: t('petsMenu.pequenos.titulo'),
             descricao: t('petsMenu.pequenos.descricao'),
             tela: 'AgeGroupDetail',
@@ -98,7 +98,6 @@ export default function PetsMenuScreen() {
             cor: '#FBC02D',
             imagem: null,
             imagemUrl: PEXELS('1661179'),   // papagaio verde em galho
-            resizeMode: 'contain',   // foto portrait: cover corta cabeça/cauda
             titulo: t('petsMenu.aves.titulo'),
             descricao: t('petsMenu.aves.descricao'),
             tela: 'AvesSeguras',
@@ -138,22 +137,16 @@ export default function PetsMenuScreen() {
     ];
 
     // ── Emergência ────────────────────────────────────────────────────────────
+    // Híbrido: 1 card único de primeiros socorros (guia + ação rápida).
+    // O destino PrimeirosSocorros já mostra todas as situações com modal de
+    // passos — atende tanto estudo prévio quanto consulta em emergência.
     const sectionEmergencia = [
         {
-            id: 'socorros',
+            id: 'primeiros_socorros_pet',
             cor: '#DC2626',
             imagem: IMG.socorros,
-            titulo: t('petsMenu.socorros.titulo'),
-            descricao: t('petsMenu.socorros.descricao'),
-            tela: 'PrimeirosSocorrosEmergencia',
-        },
-        {
-            id: 'guia_socorros_pet',
-            cor: '#7C3AED',
-            imagem: null,
-            imagemUrl: PEXELS('6235236'),   // veterinário examinando cão
-            titulo: t('petsMenu.guia_socorros_pet.titulo'),
-            descricao: t('petsMenu.guia_socorros_pet.descricao'),
+            titulo: t('petsMenu.primeiros_socorros_pet.titulo', 'Primeiros socorros pet'),
+            descricao: t('petsMenu.primeiros_socorros_pet.descricao', 'Guia completo + ação rápida em emergências'),
             tela: 'PrimeirosSocorros',
         },
         {

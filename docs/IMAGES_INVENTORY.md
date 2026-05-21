@@ -9,30 +9,29 @@ nas categorias mais sensíveis.
 
 ---
 
-## Pets — PetsMenuScreen (adicionado 2026-05-21)
+## Pets — PetsMenuScreen (atualizado 2026-05-21)
 
-Varredura completa do banco: 6 imagens pet confirmadas, bundladas em `assets/images/prevencao/`.
-Fonte: `C:\Users\User\Pictures\Imagens PAD\mordidas-animais\`
+4 imagens locais + Pexels para os demais (dálmata e composite removidos por inadequação visual).
+Fonte do acervo: `C:\Users\User\Pictures\Imagens PAD\mordidas-animais\`
 
-| Card (PetsMenuScreen) | Asset bundlado | Conteúdo visual | Pexels fallback |
+| Card | Asset bundlado | Conteúdo visual | Pexels fallback |
 |---|---|---|---|
-| **Header da tela** | `pet-todos-tipos.jpg` | Composite: ferret, coelho, gato, pássaro, aquário, cão adulto, filhote, papagaio, hamster, cobra — fundo branco | — |
-| `filhotes` | `pet-filhotes.jpg` | 2 filhotes em abrigo, mão tocando cachorrinho pela grade | — |
-| `adultos` | `pet-adulto-dalmata.jpg` | Mulher com dálmata jovem rodeada de plantas, luz natural | — |
-| `pequenos` | `pet-pequenos-mamiferos.jpg` | Composite: golden, gato, coelho, chihuahua, hamster, tartaruga — fundo branco | — |
-| `wellness` | `pet-wellness-gato.jpg` | Gato tabby sendo acariciado no colo, blusa vermelha | — |
-| `socorros` | `pet-socorros.jpg` | Ferida de mordida de cachorro — contexto primeiros socorros | — |
-| `prenhez` | — | (não localizada no banco) | Pexels `6131954` (cadela com filhotes) |
-| `aves` | — | (não localizada no banco) | Pexels `1661179` (papagaio verde) |
-| `peixes` | — | (não localizada no banco) | Pexels `128756` (aquário doméstico) |
-| `alimentos` | — | (não localizada no banco) | Pexels `918327` (chocolate partido) |
-| `guia_socorros_pet` | — | (não localizada no banco) | Pexels `6235236` (veterinário examinando cão) |
-| `kit_pet_checklist` | — | (não localizada no banco) | Pexels `4587987` (tigela + coleira + brinquedo pet) |
+| **Header da tela** | `pet-todos-tipos.jpg` | Composite: todos os tipos de pets (usado com `contain`) | — |
+| `filhotes` | `pet-filhotes.jpg` | 2 filhotes em abrigo (landscape ✓) | — |
+| `wellness` | `pet-wellness-gato.jpg` | Gato tabby sendo acariciado (landscape ✓) | — |
+| `primeiros_socorros_pet` | `pet-socorros.jpg` | Ferida de mordida — contexto alerta | — |
+| `prenhez` | — | — | Pexels `1108099` (golden amamentando filhotes) |
+| `adultos` | — | (dálmata portrait removido) | Pexels `2253275` (golden retriever) |
+| `pequenos` | — | (composite removido — white bg quebrava padrão) | Pexels `2061057` (hamster) |
+| `aves` | — | — | Pexels `1661179` (papagaio) |
+| `peixes` | — | — | Pexels `128756` (aquário) |
+| `alimentos` | — | — | Pexels `918327` (chocolate) |
+| `kit_pet_checklist` | — | — | Pexels `4587987` (tigela + coleira) |
 
-### Notas de curadoria
-- `_001` e `_002` ("como escolher bicho de estimação") são composites de estúdio com fundo branco — funcionam bem em cards mas podem parecer "genéricos". Usados para header e `pequenos`.
-- `pet-socorros.jpg` mostra ferida real — adequado para card de Primeiros Socorros (contexto de alerta), não para cards de bem-estar.
-- Cards com Pexels: validar visualmente no app após primeiro run. Trocar ID se imagem não corresponder ao contexto.
+### Histórico
+- **Initial:** bundladas 6 imagens — incluindo dálmata portrait e composite white-bg.
+- **Refactor:** dálmata + composite "pequenos" removidos — quebravam padrão landscape do hero. Substituídos por Pexels.
+- **Merge socorros:** removida redundância `socorros` + `guia_socorros_pet` → 1 card `primeiros_socorros_pet` que aponta para PrimeirosSocorrosScreen (guia + modal de ação tática).
 
 ---
 

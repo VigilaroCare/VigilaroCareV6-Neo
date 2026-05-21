@@ -55,45 +55,48 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
         <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top']}>
             <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor="transparent" />
 
-            {/* Header Neo Glass Unified */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>
+            {/* HEADER padrão Pets: back button + título/subtítulo lado a lado */}
+            <View style={styles.headerRow}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                    style={styles.backBtn}
+                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
+                    <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
                 </TouchableOpacity>
-            </View>
-            {/* Hero banner — imagem do card de origem (continuidade visual) */}
-            <PetHeroBanner
-                image={group.imagem}
-                imageUrl={group.imagemUrl}
-                tint={group.color}
-                resizeMode={group.resizeMode || 'cover'}
-                accessibilityLabel={t_field(group, 'title')}
-            />
-
-            <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-                <NeoCard variant="glass"
-                    style={{
-                        width: '100%',
-                        padding: 16,
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        ...Neo.shadows?.sm
-                    }}
-                >
-                    <View style={{ alignItems: 'center' }}>
-                        <Text style={{ color: group.color, fontSize: 20, marginBottom: 4, lineHeight: 24, fontWeight: 'bold', textAlign: 'center' }} accessibilityRole="header">{t_field(group, 'title')}</Text>
-                        <Text style={{ color: textBody, fontWeight: 'bold', lineHeight: 16, textAlign: 'center', marginBottom: 8 }}>{t_field(group, 'subtitle')}</Text>
-                        <Text style={{ fontSize: 14, color: textBody, textAlign: 'center', lineHeight: 20 }}>{t_field(group, 'description')}</Text>
-                    </View>
-                </NeoCard>
+                <View style={{ flex: 1 }}>
+                    <Text style={[styles.headerTitleNew, { color: group.color }]} accessibilityRole="header" numberOfLines={1}>
+                        {t_field(group, 'title')}
+                    </Text>
+                    {t_field(group, 'subtitle') ? (
+                        <Text style={[styles.headerSubtitle, { color: textMuted }]} numberOfLines={1}>
+                            {t_field(group, 'subtitle')}
+                        </Text>
+                    ) : null}
+                </View>
             </View>
 
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+
+                {/* Hero banner — imagem do card de origem (continuidade visual) */}
+                <PetHeroBanner
+                    image={group.imagem}
+                    imageUrl={group.imagemUrl}
+                    tint={group.color}
+                    resizeMode={group.resizeMode || 'cover'}
+                    accessibilityLabel={t_field(group, 'title')}
+                    marginHorizontal={0}
+                    marginBottom={14}
+                />
+
+                {/* Descrição (se houver) — texto solto, sem moldura */}
+                {t_field(group, 'description') ? (
+                    <Text style={[styles.groupDescription, { color: textBody }]}>
+                        {t_field(group, 'description')}
+                    </Text>
+                ) : null}
 
                 {/* Risks Section — cada risco vira um NeoCard próprio (sem moldura externa) */}
                 {group.risks && group.risks.length > 0 && (
@@ -143,6 +146,39 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    // Header novo no padrão Pet (back + titulo + subtitulo)
+    headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
+    },
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    headerTitleNew: {
+        fontSize: 22,
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+    },
+    headerSubtitle: {
+        fontSize: 13,
+        fontWeight: '600',
+    },
+    groupDescription: {
+        fontSize: 14,
+        lineHeight: 20,
+        marginBottom: 16,
+        marginTop: 2,
     },
     header: {
         flexDirection: 'row',
