@@ -11,31 +11,31 @@ export default function CustomSplashScreen({ onFinish }) {
     const containerOpacity = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
-        // Sequência de animação
+        // Sequência de animação — entrada elástica suave
         Animated.parallel([
             Animated.timing(logoOpacity, {
                 toValue: 1,
-                duration: 800,
+                duration: 500,
                 useNativeDriver: true,
             }),
             Animated.spring(logoScale, {
                 toValue: 1,
-                friction: 6,
-                tension: 40,
+                damping: 14,
+                stiffness: 120,
                 useNativeDriver: true,
             })
         ]).start();
 
-        // Timer para finalizar a splash
+        // Splash mais curta — 1.5s total (recomendação Apple HIG / Material)
         const timer = setTimeout(() => {
             Animated.timing(containerOpacity, {
                 toValue: 0,
-                duration: 500,
+                duration: 350,
                 useNativeDriver: true,
             }).start(() => {
                 if (onFinish) onFinish();
             });
-        }, 3000);
+        }, 1500);
 
         return () => clearTimeout(timer);
     }, [onFinish]);
