@@ -1,53 +1,98 @@
+/**
+ * EducationEnvironmentsScreen.js
+ * Hub de Riscos e Orientações por Ambiente.
+ *
+ * Padrão card-imagem (igual PetsMenuScreen): 120x120 da foto Pexels
+ * do ambiente à esquerda, título + resumo + chevron à direita.
+ * Foto vem de MAPA_PREVENCAO.capa[0] (cascade fallback no destino).
+ */
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
-import NeoIcon from '../../components/NeoIcon';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ArrowLeft, Home, People, MagicStar, Briefcase, Sun1, RouteSquare, ArrowRight2 } from 'iconsax-react-native'; // Standard icons
+import {
+    View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
+import { ArrowLeft, People, MagicStar, Briefcase, Sun1, RouteSquare, ArrowRight2 } from 'iconsax-react-native';
+
 import { Shadows } from '../../utils/Theme';
+import { DS as Neo } from '../../utils/DesignSystem2026';
 import {
     EDUCATIONAL_GUIDES,
     LISTA_CONVIVENCIA,
     LISTA_INTIMA,
     LISTA_SERVICOS,
     LISTA_LAZER,
-    LISTA_CIRCULACAO
+    LISTA_CIRCULACAO,
 } from '../../data/educational_guides';
+import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
 import AppBackground from '../../components/AppBackground';
-import { DS as Neo } from '../../utils/DesignSystem2026';
-import NeoCard from '../../components/NeoCard';
-import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
-import { useTranslation } from 'react-i18next';
+import NeoIcon from '../../components/NeoIcon';
+import ReviewImage from '../../components/ReviewImage';
+import { H1, H3, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function EducationEnvironmentsScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
-    const THEME_COLOR = '#FF9800'; // Orange
+    const textPrimary = themeColors.neutral[900];
+    const textBody = themeColors.neutral[700];
+    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
 
     const renderCard = (id) => {
-        const item = EDUCATIONAL_GUIDES ? EDUCATIONAL_GUIDES[id] : null;
+        const item = EDUCATIONAL_GUIDES?.[id];
+        const ambiente = MAPA_PREVENCAO?.[id];
         if (!item) return null;
+
+        const imgUrl = Array.isArray(ambiente?.capa)
+            ? ambiente.capa[0]
+            : (typeof ambiente?.capa === 'string' ? ambiente.capa : null);
+        const color = item.color || '#FF9800';
 
         return (
             <TouchableOpacity
                 key={id}
                 onPress={() => navigation.navigate('EnvironmentGuideNeo', { ambienteId: id })}
-                activeOpacity={0.8}
+                activeOpacity={0.85}
+                style={{ marginBottom: 14 }}
             >
-                <NeoCard variant="glass" style={styles.listCard}>
-                    <View style={[styles.iconContainer, { backgroundColor: item.color + '20' }]}>
-                        <NeoIcon name={item.iconName} size={26} color={item.color} variant="Bold" />
+                <View style={styles.cardOuter}>
+                    <View style={[styles.cardInner, {
+                        backgroundColor: cardBg,
+                        borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)',
+                    }]}>
+                        {/* Imagem à esquerda — ou ícone como fallback */}
+                        <View style={[styles.imageContainer, { backgroundColor: color + '18' }]}>
+                            {imgUrl ? (
+                                <ReviewImage
+                                    source={{ uri: imgUrl }}
+                                    tint={color}
+                                    tintOpacity={0.10}
+                                    accessibilityLabel={item.label}
+                                />
+                            ) : (
+                                <NeoIcon name={item.iconName || 'Home2'} size={40} color={color} variant="Bold" />
+                            )}
+                        </View>
+
+                        {/* Texto */}
+                        <View style={styles.textCol}>
+                            <Text style={[styles.cardTitle, { color: textPrimary }]} numberOfLines={2}>
+                                {item.label}
+                            </Text>
+                            <View style={{ flex: 1 }} />
+                            <Text style={[styles.cardDesc, { color: textBody }]} numberOfLines={3}>
+                                {item.content}
+                            </Text>
+                        </View>
+
+                        {/* Chevron */}
+                        <View style={styles.chevron}>
+                            <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
+                        </View>
                     </View>
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.cardTitle, { color: themeColors.neutral[900] }]}>{item.label}</Text>
-                    </View>
-                    <View style={[styles.chevronBox, { backgroundColor: isDark ? themeColors.neutral[300] : themeColors.neutral[100] }]}>
-                        <ArrowRight2 size={20} color={themeColors.neutral[500]} />
-                    </View>
-                </NeoCard>
+                </View>
             </TouchableOpacity>
         );
     };
@@ -56,91 +101,141 @@ export default function EducationEnvironmentsScreen({ navigation }) {
         <View style={styles.sectionContainer} key={title}>
             <View style={styles.sectionHeader}>
                 <View style={[styles.sectionIconBg, { backgroundColor: color + '25' }]}>
-                    <IconComp size={20} color={color} variant="Bold" />
+                    <IconComp size={18} color={color} variant="Bold" />
                 </View>
-                <H3 style={{ color: Neo.colors.neutral[800] }}>{title}</H3>
+                <H3 style={[styles.sectionTitle, { color: textPrimary }]}>{title}</H3>
             </View>
-            <View style={styles.listContainer}>
-                {list.map(renderCard)}
-            </View>
+            {list.map(renderCard)}
         </View>
     );
 
     return (
         <AppBackground>
-            <View style={styles.container}>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
-                {/* Header Standardized */}
+                {/* HEADER padronizado */}
                 <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)' }]}
+                        style={styles.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={24} color={themeColors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2 style={{ color: Neo.colors.neutral[900] }}>{t('envScreens.title', 'Riscos e Orientações por Ambiente')}</H2>
+                        <H1 style={styles.title}>
+                            {t('envScreens.title', 'Riscos por Ambiente')}
+                        </H1>
+                        <Caption style={[styles.subtitle, { color: themeColors.neutral[600] }]}>
+                            {t('envScreens.subtitle', 'Prevenção 3D em cada espaço da sua casa')}
+                        </Caption>
                     </View>
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-
                     {renderSection(t('envScreens.living', 'Convivência e Estar'), People, '#FF9800', LISTA_CONVIVENCIA)}
                     {renderSection(t('envScreens.rest', 'Área de Descanso'), MagicStar, '#673AB7', LISTA_INTIMA)}
                     {renderSection(t('envScreens.services', 'Serviços e Utilidades'), Briefcase, '#607D8B', LISTA_SERVICOS)}
                     {renderSection(t('envScreens.leisure', 'Lazer e Exterior'), Sun1, '#4CAF50', LISTA_LAZER)}
                     {renderSection(t('envScreens.circulation', 'Circulação e Acessos'), RouteSquare, '#F44336', LISTA_CIRCULACAO)}
-
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: 'transparent' },
+    // Header
     header: {
-        paddingTop: 60,
-        paddingBottom: 20,
-        paddingHorizontal: 24,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
     backBtn: {
-        width: 48, height: 48, borderRadius: 24,
-        backgroundColor: 'rgba(255,255,255,0.4)',
-        alignItems: 'center', justifyContent: 'center',
-        marginRight: 16,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.2)',
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    content: { padding: 24, paddingBottom: 120 },
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+    },
+    subtitle: {},
 
-    sectionContainer: { marginBottom: 32 },
-    sectionHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
-    sectionIconBg: {
-        width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginRight: 12,
-        borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)'
+    // Scroll
+    content: {
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4,
+        paddingBottom: 190,
     },
 
-    listContainer: { flexDirection: 'column', gap: 12 },
-    listCard: {
+    // Seções
+    sectionContainer: { marginBottom: 22 },
+    sectionHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 16,
-        marginBottom: 4,
+        marginBottom: 12,
+        gap: 10,
     },
-    iconContainer: {
-        width: 56, height: 56, borderRadius: 28, justifyContent: 'center', alignItems: 'center', marginRight: 16
+    sectionIconBg: {
+        width: 30,
+        height: 30,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    textContainer: { flex: 1, justifyContent: 'center' },
-    cardTitle: { fontSize: 16, fontWeight: 'bold', color: Neo.colors.neutral[900], marginBottom: 4 },
-    cardDesc: { fontSize: 13, color: Neo.colors.neutral[500] },
-    chevronBox: {
-        width: 32, height: 32, borderRadius: 16, backgroundColor: Neo.colors.neutral[100],
-        justifyContent: 'center', alignItems: 'center', marginLeft: 12
-    }
+    sectionTitle: {
+        fontSize: 16,
+        fontWeight: '800',
+    },
+
+    // Cards — padrão idêntico a PetsMenuScreen
+    cardOuter: {
+        borderRadius: 20,
+        ...Shadows.sm,
+    },
+    cardInner: {
+        flexDirection: 'row',
+        height: 120,
+        borderRadius: 20,
+        overflow: 'hidden',
+        borderWidth: 1,
+    },
+    imageContainer: {
+        width: 120,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textCol: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    cardTitle: {
+        fontSize: 15,
+        fontWeight: '700',
+        marginBottom: 6,
+        lineHeight: 20,
+    },
+    cardDesc: {
+        fontSize: 12,
+        lineHeight: 16,
+    },
+    chevron: {
+        width: 36,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingRight: 12,
+    },
 });
