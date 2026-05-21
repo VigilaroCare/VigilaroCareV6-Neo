@@ -19,6 +19,7 @@ import NeoCard from '../../components/NeoCard';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
+import EmptyState from '../../components/EmptyState';
 import { useIsDark } from '../../utils/ThemeContext';
 
 export default function SaudePetScreen({ navigation }) {
@@ -175,17 +176,11 @@ export default function SaudePetScreen({ navigation }) {
   const renderMedications = () => {
     if (medications.length === 0) {
       return (
-        <View style={s.emptyState}>
-          <View style={s.emptyIconCircle}>
-            <NeoIcon name="Health" size={36} color={Neo.colors.neutral[400]} variant="Bold" />
-          </View>
-          <H3 style={{ marginTop: 12, color: Neo.colors.neutral[800], fontSize: 18 }}>
-            {t('headersFirst.semRemDios', 'Sem remédios')}
-          </H3>
-          <Body style={{ color: Neo.colors.neutral[600], textAlign: 'center', marginTop: 6, fontSize: 13.5 }}>
-            {t('headersFirst.adicioneMedicaEsEVacinasDoSeuPetAqui', 'Adicione medicações e vacinas do seu pet aqui.')}
-          </Body>
-        </View>
+        <EmptyState
+          icon="Health"
+          title={t('headersFirst.semRemDios', 'Sem remédios')}
+          description={t('headersFirst.adicioneMedicaEsEVacinasDoSeuPetAqui', 'Adicione medicações e vacinas do seu pet aqui.')}
+        />
       );
     }
 
@@ -218,17 +213,11 @@ export default function SaudePetScreen({ navigation }) {
 
     if (allEvents.length === 0) {
       return (
-        <View style={s.emptyState}>
-          <View style={s.emptyIconCircle}>
-            <NeoIcon name="Calendar" size={36} color={Neo.colors.neutral[400]} variant="Bold" />
-          </View>
-          <H3 style={{ marginTop: 12, color: Neo.colors.neutral[800], fontSize: 18 }}>
-            {t('headersFirst.agendaVazia', 'Agenda vazia')}
-          </H3>
-          <Body style={{ color: Neo.colors.neutral[600], textAlign: 'center', marginTop: 6, fontSize: 13.5 }}>
-            {t('headersFirst.tosaVacinasOuConsultasVeterinRiasAparece', 'Tosa, vacinas ou consultas veterinárias aparecerão aqui.')}
-          </Body>
-        </View>
+        <EmptyState
+          icon="Calendar"
+          title={t('headersFirst.agendaVazia', 'Agenda vazia')}
+          description={t('headersFirst.tosaVacinasOuConsultasVeterinRiasAparece', 'Tosa, vacinas ou consultas veterinárias aparecerão aqui.')}
+        />
       );
     }
 
@@ -293,17 +282,11 @@ export default function SaudePetScreen({ navigation }) {
               </Caption>
             </View>
           </View>
-          <View style={s.emptyState}>
-            <View style={s.emptyIconCircle}>
-              <NeoIcon name="Heart" size={36} color={Neo.colors.neutral[400]} variant="Bold" />
-            </View>
-            <H3 style={{ marginTop: 12, color: Neo.colors.neutral[800], fontSize: 18 }}>
-              {t('headersFirst.nenhumPetCadastrado', 'Nenhum pet cadastrado')}
-            </H3>
-            <Body style={{ textAlign: 'center', padding: 16, color: Neo.colors.neutral[600], fontSize: 13.5 }}>
-              {t('headersFirst.cadastreUmPerfilDePetNoGerenciadorParaUs', 'Cadastre um perfil de pet no Gerenciador para usar este módulo.')}
-            </Body>
-          </View>
+          <EmptyState
+            icon="Heart"
+            title={t('headersFirst.nenhumPetCadastrado', 'Nenhum pet cadastrado')}
+            description={t('headersFirst.cadastreUmPerfilDePetNoGerenciadorParaUs', 'Cadastre um perfil de pet no Gerenciador para usar este módulo.')}
+          />
         </SafeAreaView>
       </AppBackground>
     );

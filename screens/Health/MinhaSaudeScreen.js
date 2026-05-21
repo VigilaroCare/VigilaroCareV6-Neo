@@ -20,6 +20,7 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
+import EmptyState from '../../components/EmptyState';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function MinhaSaudeScreen({ navigation }) {
@@ -220,18 +221,15 @@ export default function MinhaSaudeScreen({ navigation }) {
     const renderMedications = () => {
         if (medications.length === 0) {
             return (
-                <View style={styles.emptyState}>
-                    <NeoIcon name="Health" size={64} color={Neo.colors.neutral[300]} />
-                    <H3 style={{ marginTop: 16, color: Neo.colors.neutral[500] }}>{t('health.noMeds')}</H3>
-                    <Body style={{ color: Neo.colors.neutral[400], textAlign: 'center', marginTop: 8 }}>
-                        {t('health.noMedsDesc')}
-                    </Body>
-                    <ScaleButton onPress={() => navigation.navigate('MedicationScheduler', { autoOpen: true })}>
-                        <View style={{ marginTop: 24, backgroundColor: Neo.colors.primary[500], paddingHorizontal: 24, paddingVertical: 12, borderRadius: 24 }}>
-                            <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('health.addMed')}</Body>
-                        </View>
-                    </ScaleButton>
-                </View>
+                <EmptyState
+                    icon="Health"
+                    title={t('health.noMeds')}
+                    description={t('health.noMedsDesc')}
+                    cta={{
+                        label: t('health.addMed'),
+                        onPress: () => navigation.navigate('MedicationScheduler', { autoOpen: true }),
+                    }}
+                />
             );
         }
 
@@ -356,13 +354,11 @@ export default function MinhaSaudeScreen({ navigation }) {
 
         if (allEvents.length === 0) {
             return (
-                <View style={styles.emptyState}>
-                    <NeoIcon name="Calendar" size={64} color={Neo.colors.neutral[300]} />
-                    <H3 style={{ marginTop: 16, color: Neo.colors.neutral[500] }}>{t('health.noEvents')}</H3>
-                    <Body style={{ color: Neo.colors.neutral[400], textAlign: 'center', marginTop: 8 }}>
-                        {t('health.noEventsDesc')}
-                    </Body>
-                </View>
+                <EmptyState
+                    icon="Calendar"
+                    title={t('health.noEvents')}
+                    description={t('health.noEventsDesc')}
+                />
             );
         }
 

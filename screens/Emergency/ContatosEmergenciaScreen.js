@@ -13,6 +13,7 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import SkeletonLoader, { SkeletonContactCard } from '../../components/SkeletonLoader';
+import EmptyState from '../../components/EmptyState';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
@@ -527,17 +528,11 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
             </>
           ) : (
             !modalVisible && (
-              <View style={s.emptyState}>
-                <View style={s.emptyIconCircle}>
-                  <NeoIcon name="ProfileCircle" size={36} color={Neo.colors.neutral[400]} variant="Bold" />
-                </View>
-                <Text style={s.emptyStateTitle}>
-                  {t('headersFirst.nenhumContatoNestaLista', 'Nenhum contato nesta lista')}
-                </Text>
-                <Text style={s.emptyStateText}>
-                  Adicione médicos, parentes ou vizinhos específicos para {activeProfile?.nome || 'sua casa'}.
-                </Text>
-              </View>
+              <EmptyState
+                icon="ProfileCircle"
+                title={t('headersFirst.nenhumContatoNestaLista', 'Nenhum contato nesta lista')}
+                description={`Adicione médicos, parentes ou vizinhos específicos para ${activeProfile?.nome || 'sua casa'}.`}
+              />
             )
           )}
         </ScrollView>
