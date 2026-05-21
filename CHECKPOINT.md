@@ -689,20 +689,21 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    | D | **Sweep dark mode** — ~50 telas restantes (lista em "Hotspots prováveis" mais acima). Atacar sob demanda por prints. | 🔒 aguarda prints |
    | E | **Merge na main** — 128 commits no branch. Quando user aprovar release. | 🔒 aguarda user |
 
-   ### 🟡 UX questions sem decisão (do CHECKPOINT antigo)
+   ### 🟡 UX questions sem decisão
    | # | Item | Status |
    |---|---|---|
-   | F | **"Relatório Pessoal" vs Checklists** — redundância levantada pelo user em modal "Pendências (100%)" → "O Quê e Como". Decidir: manter ambos, remover, ou redesenhar | ⏳ |
    | G | **FasesVidaMenu** — imagens genéricas em "Cuidados por Faixa Etária" humanas (bebê, criança, adolescente, adulto, idoso). Mesma campanha que fizemos pra ambientes/pets se aplica aqui | ⏳ |
-   | H | **Emojis em Utensílios/Eletrodomésticos/Dispositivos** — manter (casual), trocar por iconsax (marca), ou fotos reais (premium)? User confundiu com favicons | ⏳ |
+
+   _Resolvidos em 2026-05-21: F (Relatório Pessoal vs Checklists), H (emojis Utensílios/Eletro/Dispositivos)_
 
    ### 🔵 Microinterações Parte 3 (futuro, não-urgente)
    | # | Item | Status |
    |---|---|---|
    | I | **Animated progress bars** nos 3 Kits — usar `AnimatedProgressBar` (já existe) onde fill é estático hoje | ⏳ |
    | J | **Stagger entrance padronizado** nos hubs (uso inconsistente de FadeInView/ScaleInView) | ⏳ |
-   | K | **Slide horizontal** entre tabs MinhaSaude/SaudePet | ⏳ |
    | L | **Bottom sheet** com physics natural (padronizar) | ⏳ |
+
+   _Resolvido em 2026-05-21: K (slide horizontal MinhaSaude/SaudePet tabs)_
 
    ### 🟣 Identidade visual (opcional, requer brand)
    | # | Item | Status |
