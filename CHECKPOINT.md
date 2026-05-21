@@ -1,8 +1,8 @@
 # 🚦 CHECKPOINT — Vigilaro Care V6 Neo
 
-**Última atualização:** 2026-05-19
+**Última atualização:** 2026-05-20
 **Branch:** `claude/unruffled-jennings-51c18f` (worktree isolada)
-**Commits totais no branch:** 88
+**Commits totais no branch:** 93
 
 ---
 
@@ -219,7 +219,42 @@ Quando user fornecer ou aprovar 5 arquivos `.mp3`/`.wav`, próxima sessão:
 
 ---
 
-## 🎯 PRÓXIMA TAREFA PRIORITÁRIA — sessão atual
+## ✅ Sessão 2026-05-20 — Imagens do acervo + polimentos Home
+
+### Lote 8a — eBook + acervo de imagens (Drive)
+- Criado `docs/STYLE_GUIDE.md`: tom de voz do autor Agnaldo Fontinele extraído do eBook "Prevenção 3D". Conceito 3D (Diária/Dinâmica/Duradoura), vocabulário-marca, templates de texto, anti-padrões, números de emergência.
+- Criado `docs/IMAGES_INVENTORY.md`: mapeamento de ~50 imagens do Drive (pasta "Imagens Prevenção", ID `1OKFm3j3fM-fo_deXf7mMAbrrfMeJATwg`) para categorias do app. Inclui File IDs para download.
+- Docs commitados em `18f01ac` + `a2f762a` (prompts IA Midjourney para 13 imagens Acessórios).
+
+### Lote 8b — Bundle local das 13 imagens do Drive
+- Baixados via MCP Google Drive e salvos em `assets/images/prevencao/`:
+  - **Acessórios (10):** protetor-de-quina, trava-gaveta, protetor-de-tomada, trava-vaso, trava-micro, protecao-escadas, redes-protecao, protetor-de-cama, sensor-seguranca, monitoramento
+  - **Primeiros Socorros (3):** engasgo, queda, mordida-cachorro
+- `data/acessorios_seguranca.js`: 10 campos `imagemUrl: 'https://...'` → `imagem: require('../assets/images/prevencao/...')`
+- `data/primeiros_socorros_imagens.js`: ps_2/ps_7/ps_11 → `require()` local
+- **Arquitetura nova (retrocompat):**
+  - `require()` retorna `number` (asset ID) → campo `imagem` (offline)
+  - URL string → campo `imagemUrl` (remoto Pexels)
+  - `withImages()` em `primeiros_socorros.js` detecta tipo automaticamente
+  - `AcessoriosSegurancaScreen` e `PrimeirosSocorrosScreen` suportam `imagem || {uri: imagemUrl}`
+- Commitado em `3436622`.
+
+### Polimento AcessoriosSegurancaScreen
+- **Pills removidas**: `PROFILE_TABS`, `selectedProfile`, `filteredCategories`, `renderProfileTab`, ScrollView horizontal — 105 linhas removidas. Página curta, filtro era ruído desnecessário. Commit `2416664`.
+
+### Redesign HousePill (Home header)
+- **Problema:** pill usava `LinearGradient` branco opaco + `borderRadius 22`, destoa do fundo mint e do profileCard ao lado (borderRadius 18, rgba sólido).
+- **Solução:** remove `LinearGradient` (import removido), `borderRadius 18` = match profileCard, fundo `rgba(255,255,255,0.88)` idêntico, ícone squircle (borderRadius 10), sublabel "Moradia ativa" + nome em negrito.
+- Agora os dois cards do header são da mesma família visual.
+- Commit `1c734d9`.
+
+### Itens deixados propositalmente para revisão geral do user
+- `seguranca_eletrica_fogo`: imagem ainda fora de contexto (sensor genérico). User disse que irá revisar esta seção completamente em breve.
+- 3 categorias Acessórios sem imagem no Drive (protecao_portas, barras_apoio, seguranca_agua) mantêm Pexels.
+
+---
+
+## 🎯 PRÓXIMA TAREFA PRIORITÁRIA — próxima sessão
 
 ---
 
@@ -536,8 +571,36 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
 
 ## 📞 Para continuar na próxima sessão
 
-1. **Cumprimentar e referenciar este checkpoint:** _"Continue de onde parou conforme `CHECKPOINT.md`"_
-2. **Prioridade clara:** Frente #2 Parte 2 — sweep accessibilityLabel nas ~120 telas restantes + refatorar `Neo.colors.neutral[X]` → tema dinâmico onde der overflow visual em dark.
-3. **Validar dark mode + imagens:** antes de iniciar, peça pro user rodar o app, ligar Aparência → Escuro, e listar telas com texto invisível. Depois validar visualmente as 21 fotos Pexels dos ambientes.
+1. **Abrir novo chat** e referenciar este arquivo: _"Continue de onde parou conforme `CHECKPOINT.md`"_
+
+2. **Branch e worktree:**
+   ```
+   Branch: claude/unruffled-jennings-51c18f
+   Worktree: C:\Users\User\Documents\VigilaroCareV6 Neo\.claude\worktrees\unruffled-jennings-51c18f
+   Último commit: 1c734d9 (Redesign HousePill)
+   Status: limpo (só assets/app-icon-square.png untracked, ignorar)
+   ```
+
+3. **Pendências priorizadas (decidir com user no início):**
+
+   | # | Item | Status |
+   |---|---|---|
+   | A | **Aplicar STYLE_GUIDE ao conteúdo do app** — reescrever `descricao`, `prevencao[]`, `tipos[]` nos data files para seguir tom do eBook (Agnaldo Fontinele). Prioridade: Acessórios, depois Primeiros Socorros. | ⏳ aguarda decisão |
+   | B | **Sons UI** — user precisa aprovar/fornecer 5 arquivos `.mp3`/`.wav`. Então criar `services/SoundService.js` + toggle em AccessibilitySettings. | 🔒 bloqueado (arquivos) |
+   | C | **Revisão geral de conteúdo** — user mencionou que fará revisão das seções. HousePill atualizado, `seguranca_eletrica_fogo` com imagem ruim (aguardando). | 🔒 aguarda user |
+   | D | **Sweep dark mode** — ~50 telas restantes ainda não refatoradas para `useThemeColors()`. Atacar sob demanda conforme prints do user. | 🔒 aguarda prints |
+   | E | **Merge na main** — quando user decidir que branch está pronto. | 🔒 aguarda user |
+
+4. **Arquitetura nova a conhecer (imagens locais):**
+   - `assets/images/prevencao/` → 13 imagens do Drive bundladas
+   - Campo `imagem: require(...)` (número) = asset local offline
+   - Campo `imagemUrl: 'https://...'` (string) = remoto Pexels
+   - `withImages()` em `primeiros_socorros.js` detecta o tipo automaticamente
+   - Screens com suporte dual: `AcessoriosSegurancaScreen`, `PrimeirosSocorrosScreen`, `ConceitoDetailScreen`
+
+5. **Docs de referência criados nesta sessão:**
+   - `docs/STYLE_GUIDE.md` — tom de voz do eBook Prevenção 3D
+   - `docs/IMAGES_INVENTORY.md` — catálogo do Drive com File IDs
+   - `docs/AI_PROMPTS_ACESSORIOS.md` — prompts Midjourney para 13 imagens
 
 Tudo no branch `claude/unruffled-jennings-51c18f` — pronto pra merge na main quando o user decidir.
