@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -22,6 +22,7 @@ export default function FasesVidaMenuScreen({ navigation }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
+    const [imageErrors, setImageErrors] = useState({});
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
@@ -102,11 +103,12 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                     <View style={styles.guideCardOuter}>
                                         <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                             <View style={[styles.guideImageContainer, { backgroundColor: item.color + '33' }]}>
-                                                {item.imagemUrl ? (
+                                                {item.imagemUrl && !imageErrors[item.id] ? (
                                                     <ReviewImage
                                                         source={{ uri: item.imagemUrl }}
                                                         tint={item.iconColor}
                                                         accessibilityLabel={item.cardTitle}
+                                                        onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
                                                     />
                                                 ) : (
                                                     <Icon size={48} color={item.iconColor} variant="Bold" />
