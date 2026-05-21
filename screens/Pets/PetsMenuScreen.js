@@ -98,6 +98,7 @@ export default function PetsMenuScreen() {
             cor: '#FBC02D',
             imagem: null,
             imagemUrl: PEXELS('1661179'),   // papagaio verde em galho
+            resizeMode: 'contain',   // foto portrait, cover corta cabeça/cauda
             titulo: t('petsMenu.aves.titulo'),
             descricao: t('petsMenu.aves.descricao'),
             tela: 'AvesSeguras',
