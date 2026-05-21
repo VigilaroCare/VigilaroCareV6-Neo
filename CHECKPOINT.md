@@ -690,20 +690,18 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    | E | **Merge na main** — 128 commits no branch. Quando user aprovar release. | 🔒 aguarda user |
 
    ### 🟡 UX questions sem decisão
-   | # | Item | Status |
-   |---|---|---|
-   | G | **FasesVidaMenu** — imagens genéricas em "Cuidados por Faixa Etária" humanas (bebê, criança, adolescente, adulto, idoso). Mesma campanha que fizemos pra ambientes/pets se aplica aqui | ⏳ |
+   _(vazio — todas resolvidas)_
 
-   _Resolvidos em 2026-05-21: F (Relatório Pessoal vs Checklists), H (emojis Utensílios/Eletro/Dispositivos)_
+   _Resolvidos em 2026-05-21: F (Relatório Pessoal vs Checklists), H (emojis Utensílios/Eletro/Dispositivos), G (FasesVidaMenu — imagens Pexels + fallback pro ícone Iconsax se URL falhar, commit `41f5385`)_
 
    ### 🔵 Microinterações Parte 3 (futuro, não-urgente)
-   | # | Item | Status |
-   |---|---|---|
-   | I | **Animated progress bars** nos 3 Kits — usar `AnimatedProgressBar` (já existe) onde fill é estático hoje | ⏳ |
-   | J | **Stagger entrance padronizado** nos hubs (uso inconsistente de FadeInView/ScaleInView) | ⏳ |
-   | L | **Bottom sheet** com physics natural (padronizar) | ⏳ |
+   _(vazio — todas resolvidas)_
 
-   _Resolvido em 2026-05-21: K (slide horizontal MinhaSaude/SaudePet tabs)_
+   _Resolvidos em 2026-05-21:_
+   - _K (slide horizontal MinhaSaude/SaudePet tabs)_
+   - _I (progress bars animados nos 3 Kits via `AnimatedProgressBar`, commit `f789d86`)_
+   - _J (stagger padronizado `120 + index * 40` em KitsHub e HomeXRay, commit `e798725`)_
+   - _L (bottom sheet physics — `OfflineModeModal` migrada pra API `damping/stiffness`, alinhada com `LeftHandedSuggestionModal`, commit `225af05`)_
 
    ### 🟣 Identidade visual (opcional, requer brand)
    | # | Item | Status |
