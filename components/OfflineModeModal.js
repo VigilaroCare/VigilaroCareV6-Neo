@@ -63,17 +63,17 @@ export default function OfflineModeModal() {
     const slideUp = () => {
         Animated.spring(slideAnim, {
             toValue: 0,
+            damping: 20,
+            stiffness: 180,
             useNativeDriver: true,
-            tension: 20,
-            friction: 7
         }).start();
     };
 
     const slideDown = (cb) => {
         Animated.timing(slideAnim, {
             toValue: Dimensions.get('window').height,
-            duration: 300,
-            useNativeDriver: true
+            duration: 200,
+            useNativeDriver: true,
         }).start(cb);
     };
 
