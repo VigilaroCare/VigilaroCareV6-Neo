@@ -5,12 +5,14 @@ import { primeirosSocorrosPTPT } from './locales/pt-PT/primeiros_socorros';
 import { PRIMEIROS_SOCORROS_IMAGENS } from './primeiros_socorros_imagens';
 import i18n from '../i18n'; // Assuming i18n is available at root
 
-// Merge id -> imagemUrl no array (URLs sao language-agnostic, centralizadas
-// em primeiros_socorros_imagens.js para nao duplicar nos 4 locales).
-const withImages = (arr) => arr.map(item => ({
-    ...item,
-    imagemUrl: item.imagemUrl || PRIMEIROS_SOCORROS_IMAGENS[item.id],
-}));
+// Merge id -> imagemUrl/imagem no array (language-agnostic, centralizado em
+// primeiros_socorros_imagens.js). require() retorna number; URL string -> imagemUrl.
+const withImages = (arr) => arr.map(item => {
+    const img = item.imagem || item.imagemUrl || PRIMEIROS_SOCORROS_IMAGENS[item.id];
+    if (!img) return item;
+    if (typeof img === 'number') return { ...item, imagem: img };   // require() asset
+    return { ...item, imagemUrl: img };                              // URL string
+});
 
 export const getPrimeirosSocorros = () => {
     const lang = i18n.language;

@@ -40,7 +40,8 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
       emoji: pet.emoji || '🐾', // garante fallback visual
       titulo: pet.titulo,
       situacao: pet.descricao,
-      imagemUrl: pet.imagemUrl, // foto Pexels do merge
+      imagemUrl: pet.imagemUrl, // foto Pexels/URL do merge
+      imagem: pet.imagem,      // require() local, se disponível
       isPet: true,
       rawPetData: pet,
     }));
@@ -57,9 +58,9 @@ export default function PrimeirosSocorrosScreen({ navigation }) {
         activeOpacity={0.85}
       >
         <View style={[s.iconBox, { backgroundColor: itemAccent + '1A' }]}>
-          {item.imagemUrl ? (
+          {(item.imagem || item.imagemUrl) ? (
             <ReviewImage
-              source={{ uri: item.imagemUrl }}
+              source={item.imagem || { uri: item.imagemUrl }}
               tint={itemAccent}
               accessibilityLabel={item.titulo}
             />

@@ -180,9 +180,9 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                                 <View style={styles.guideCardOuter}>
                                     <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                         <View style={[styles.guideImageContainer, { backgroundColor: profileColor + '15' }]}>
-                                            {cat.imagemUrl ? (
+                                            {(cat.imagem || cat.imagemUrl) ? (
                                                 <ReviewImage
-                                                    source={{ uri: cat.imagemUrl }}
+                                                    source={cat.imagem || { uri: cat.imagemUrl }}
                                                     tint={profileColor}
                                                     accessibilityLabel={cat.titulo}
                                                 />
