@@ -75,6 +75,7 @@ export default function PetsMenuScreen() {
             id: 'adultos',
             cor: '#4CAF50',
             imagem: IMG.adultos,
+            resizeMode: 'contain',   // dálmata portrait: cover cortaria o cão
             titulo: t('petsMenu.adultos.titulo'),
             descricao: t('petsMenu.adultos.descricao'),
             tela: 'AgeGroupDetail',
@@ -85,6 +86,7 @@ export default function PetsMenuScreen() {
             id: 'pequenos',
             cor: '#FF7043',
             imagem: IMG.pequenos,
+            resizeMode: 'contain',   // composite white bg: cover cortaria os pets
             titulo: t('petsMenu.pequenos.titulo'),
             descricao: t('petsMenu.pequenos.descricao'),
             tela: 'AgeGroupDetail',
@@ -96,6 +98,7 @@ export default function PetsMenuScreen() {
             cor: '#FBC02D',
             imagem: null,
             imagemUrl: PEXELS('1661179'),   // papagaio verde em galho
+            resizeMode: 'contain',   // foto portrait: cover corta cabeça/cauda
             titulo: t('petsMenu.aves.titulo'),
             descricao: t('petsMenu.aves.descricao'),
             tela: 'AvesSeguras',
@@ -172,6 +175,7 @@ export default function PetsMenuScreen() {
             imagemUrl: item.imagemUrl || null,
             cor: item.cor,
             titulo: item.titulo,
+            resizeMode: item.resizeMode || 'cover',
         };
 
         if (item.tela === 'AgeGroupDetail') {
@@ -187,6 +191,7 @@ export default function PetsMenuScreen() {
                     // Hero para banner no topo da tela de destino
                     imagem: item.imagem || null,
                     imagemUrl: item.imagemUrl || null,
+                    resizeMode: item.resizeMode || 'cover',
                 },
             });
         } else {
@@ -218,7 +223,8 @@ export default function PetsMenuScreen() {
                                 <ReviewImage
                                     source={imgSource}
                                     tint={item.cor}
-                                    tintOpacity={0.10}
+                                    tintOpacity={item.resizeMode === 'contain' ? 0.05 : 0.10}
+                                    resizeMode={item.resizeMode || 'cover'}
                                     accessibilityLabel={item.titulo}
                                 />
                             ) : (
@@ -273,15 +279,14 @@ export default function PetsMenuScreen() {
                     </View>
                 </View>
 
-                {/* Banner hero com composite de todos os pets */}
-                <View style={s.heroBanner}>
+                {/* Banner hero — composite white-bg: contain pra mostrar todos os pets */}
+                <View style={[s.heroBanner, { backgroundColor: '#FAFAFA' }]}>
                     <Image
                         source={IMG.header}
                         style={s.heroImage}
-                        resizeMode="cover"
+                        resizeMode="contain"
                         accessibilityLabel="Todos os tipos de pets"
                     />
-                    <View style={s.heroOverlay} />
                 </View>
 
                 <ScrollView
@@ -338,10 +343,10 @@ const s = StyleSheet.create({
         // cor dinâmica via inline
     },
 
-    // Hero banner
+    // Hero banner — composite com todos os tipos de pets
     heroBanner: {
         marginHorizontal: Neo.spacing.lg,
-        height: 110,
+        height: 140,
         borderRadius: 16,
         overflow: 'hidden',
         marginBottom: 20,
@@ -350,10 +355,6 @@ const s = StyleSheet.create({
     heroImage: {
         width: '100%',
         height: '100%',
-    },
-    heroOverlay: {
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0,0,0,0.10)',
     },
 
     // Scroll

@@ -262,10 +262,11 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                             image={petHero.imagem}
                             imageUrl={petHero.imagemUrl}
                             tint={petHero.cor || '#DC2626'}
+                            resizeMode={petHero.resizeMode || 'cover'}
                             accessibilityLabel={petHero.titulo}
                             marginHorizontal={0}
                             marginBottom={16}
-                            height={120}
+                            height={140}
                         />
                     )}
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>

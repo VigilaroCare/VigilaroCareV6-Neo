@@ -22,24 +22,35 @@ export default function PetHeroBanner({
     imageUrl,
     tint = '#7C3AED',
     accessibilityLabel,
-    height = 140,
+    height = 160,
     marginHorizontal = 20,
     marginBottom = 16,
+    resizeMode = 'cover',
 }) {
     const source = image || (imageUrl ? { uri: imageUrl } : null);
     if (!source) return null;
+
+    // 'contain' precisa de fundo (a imagem fica menor que o container).
+    // Usamos tint da cor com baixa opacidade para o "letterbox" combinar.
+    const bgWhenContain = resizeMode === 'contain' ? tint + '10' : 'transparent';
 
     return (
         <View
             style={[
                 styles.banner,
-                { height, marginHorizontal, marginBottom },
+                {
+                    height,
+                    marginHorizontal,
+                    marginBottom,
+                    backgroundColor: bgWhenContain,
+                },
             ]}
         >
             <ReviewImage
                 source={source}
                 tint={tint}
-                tintOpacity={0.12}
+                tintOpacity={resizeMode === 'contain' ? 0.05 : 0.12}
+                resizeMode={resizeMode}
                 accessibilityLabel={accessibilityLabel}
             />
         </View>

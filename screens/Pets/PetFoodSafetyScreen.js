@@ -84,6 +84,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
               image={petHero.imagem}
               imageUrl={petHero.imagemUrl}
               tint={petHero.cor || '#D32F2F'}
+              resizeMode={petHero.resizeMode || 'cover'}
               accessibilityLabel={petHero.titulo}
               marginHorizontal={0}
               marginBottom={14}

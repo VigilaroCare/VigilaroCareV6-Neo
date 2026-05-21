@@ -61,6 +61,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
               image={petHero.imagem}
               imageUrl={petHero.imagemUrl}
               tint={petHero.cor || '#FBC02D'}
+              resizeMode={petHero.resizeMode || 'cover'}
               accessibilityLabel={petHero.titulo}
               marginHorizontal={0}
               marginBottom={14}

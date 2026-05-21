@@ -172,6 +172,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                             image={petHero.imagem}
                             imageUrl={petHero.imagemUrl}
                             tint={petHero.cor || THEME_COLOR}
+                            resizeMode={petHero.resizeMode || 'cover'}
                             accessibilityLabel={petHero.titulo}
                             marginHorizontal={0}
                             marginBottom={14}

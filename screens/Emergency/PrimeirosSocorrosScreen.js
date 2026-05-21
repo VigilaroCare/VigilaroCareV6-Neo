@@ -109,19 +109,6 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
           </View>
         </View>
 
-        {/* Hero banner — se veio do hub Pet */}
-        {petHero && (
-          <PetHeroBanner
-            image={petHero.imagem}
-            imageUrl={petHero.imagemUrl}
-            tint={petHero.cor || PET_ACCENT}
-            accessibilityLabel={petHero.titulo}
-            marginHorizontal={20}
-            marginBottom={12}
-            height={120}
-          />
-        )}
-
         {/* TABS Pessoas / Pets */}
         <View style={s.tabsWrap}>
           <View style={s.tabsTrack}>
@@ -171,6 +158,20 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
           numColumns={2}
           columnWrapperStyle={{ gap: 12 }}
           showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            petHero ? (
+              <PetHeroBanner
+                image={petHero.imagem}
+                imageUrl={petHero.imagemUrl}
+                tint={petHero.cor || PET_ACCENT}
+                resizeMode={petHero.resizeMode || 'cover'}
+                accessibilityLabel={petHero.titulo}
+                marginHorizontal={0}
+                marginBottom={14}
+                height={140}
+              />
+            ) : null
+          }
         />
 
         {/* DETAIL MODAL */}

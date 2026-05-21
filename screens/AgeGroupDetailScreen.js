@@ -71,6 +71,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                 image={group.imagem}
                 imageUrl={group.imagemUrl}
                 tint={group.color}
+                resizeMode={group.resizeMode || 'cover'}
                 accessibilityLabel={t_field(group, 'title')}
             />
 
@@ -94,27 +95,40 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
 
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
 
-                {/* Risks Section */}
+                {/* Risks Section — cada risco vira um NeoCard próprio (sem moldura externa) */}
                 {group.risks && group.risks.length > 0 && (
                     <>
                         <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('ageGroup.risksTitle', 'Principais Riscos')}</Text>
-                        <View style={[styles.listContainer, { backgroundColor: isDark ? 'rgba(28,28,30,0.5)' : 'rgba(255,255,255,0.7)' }]}>
-                            {group.risks.map((risk, index) => (
-                                <View key={risk.id || index} style={styles.riskCard}>
-                                    <View style={[styles.riskHeader, { borderLeftColor: risk.cor || Neo.colors.feedback.error }]}>
-                                        <NeoIcon name={risk.icone || "alert-circle"} size={24} color={risk.cor || Neo.colors.feedback.error} />
-                                        <Text style={[styles.riskTitle, { color: textPrimary }]}>{t_field(risk, 'titulo') || t_field(risk, 'text')}</Text>
+                        {group.risks.map((risk, index) => {
+                            const riskColor = risk.cor || Neo.colors.feedback.error;
+                            return (
+                                <NeoCard
+                                    key={risk.id || index}
+                                    variant="elevated"
+                                    style={[styles.riskCardNeo, { borderLeftColor: riskColor }]}
+                                >
+                                    <View style={styles.riskHeaderNeo}>
+                                        <View style={[styles.riskIconCircle, { backgroundColor: riskColor + '1A' }]}>
+                                            <NeoIcon name={risk.icone || 'Warning2'} size={18} color={riskColor} variant="Bold" />
+                                        </View>
+                                        <Text style={[styles.riskTitle, { color: textPrimary }]}>
+                                            {t_field(risk, 'titulo') || t_field(risk, 'text')}
+                                        </Text>
                                     </View>
-                                    {t_field(risk, 'descricao') && <Text style={[styles.riskDesc, { color: textMuted }]}>{t_field(risk, 'descricao')}</Text>}
+                                    {t_field(risk, 'descricao') && (
+                                        <Text style={[styles.riskDescNeo, { color: textMuted }]}>
+                                            {t_field(risk, 'descricao')}
+                                        </Text>
+                                    )}
                                     {t_field(risk, 'prevencao') && (
                                         <View style={[styles.preventionBox, { backgroundColor: isDark ? themeColors.neutral[200] : themeColors.neutral[50] }]}>
                                             <Text style={styles.preventionLabel}>{t('ageGroup.howToPrevent', 'Como Prevenir:')}</Text>
                                             <Text style={[styles.preventionText, { color: textPrimary }]}>{t_field(risk, 'prevencao')}</Text>
                                         </View>
                                     )}
-                                </View>
-                            ))}
-                        </View>
+                                </NeoCard>
+                            );
+                        })}
                     </>
                 )}
 
@@ -217,6 +231,33 @@ const styles = StyleSheet.create({
         color: Neo.colors.neutral[900],
         flex: 1,
     },
+    // Padrão novo — cada risco é seu próprio NeoCard
+    riskCardNeo: {
+        marginBottom: 12,
+        padding: 14,
+        borderLeftWidth: 4,
+        borderRadius: 14,
+    },
+    riskHeaderNeo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        marginBottom: 8,
+    },
+    riskIconCircle: {
+        width: 36,
+        height: 36,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    riskDescNeo: {
+        fontSize: 13,
+        lineHeight: 18,
+        marginBottom: 8,
+        color: Neo.colors.neutral[600],
+    },
+    // (mantidos por compat com outros usos eventuais)
     riskCard: {
         marginBottom: Spacing.lg,
         borderBottomWidth: 1,
@@ -235,6 +276,7 @@ const styles = StyleSheet.create({
         fontSize: Typography.sizes.md,
         fontFamily: Typography.fontFamily.bold,
         color: Neo.colors.neutral[900],
+        flex: 1,
     },
     riskDesc: {
         fontSize: Typography.sizes.sm,

@@ -71,6 +71,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                             image={petHero.imagem}
                             imageUrl={petHero.imagemUrl}
                             tint={petHero.cor || '#E91E63'}
+                            resizeMode={petHero.resizeMode || 'cover'}
                             accessibilityLabel={petHero.titulo}
                             marginHorizontal={0}
                             marginBottom={16}
