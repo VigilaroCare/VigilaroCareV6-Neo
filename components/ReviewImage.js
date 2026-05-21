@@ -24,6 +24,8 @@ export default function ReviewImage({
     tint = '#00695C',
     tintOpacity = 0.10,
     accessibilityLabel,
+    onError,
+    onLoad,
 }) {
     return (
         <View style={[styles.container, style]}>
@@ -33,6 +35,8 @@ export default function ReviewImage({
                 resizeMode={resizeMode}
                 accessibilityIgnoresInvertColors
                 accessibilityLabel={accessibilityLabel}
+                onError={onError}
+                onLoad={onLoad}
             />
 
             {/* Color grade — tint translúcido na cor da categoria */}

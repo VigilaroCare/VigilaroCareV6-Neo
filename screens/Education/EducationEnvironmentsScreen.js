@@ -7,7 +7,7 @@
  * Foto vem de MAPA_PREVENCAO.capa[0] (cascade fallback no destino).
  */
 
-import React from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar,
 } from 'react-native';
@@ -32,6 +32,81 @@ import ReviewImage from '../../components/ReviewImage';
 import { H1, H3, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
+/**
+ * Card de ambiente com cascade fallback de imagem.
+ * Tenta capa[0] → capa[1] → ícone iconsax (último recurso).
+ * Mesma lógica usada no EnvironmentGuideNeoScreen para o hero.
+ */
+function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
+    const capaList = useMemo(() => {
+        if (Array.isArray(ambiente?.capa)) return ambiente.capa.filter(Boolean);
+        if (typeof ambiente?.capa === 'string' && ambiente.capa) return [ambiente.capa];
+        return [];
+    }, [ambiente]);
+
+    const [imgIndex, setImgIndex] = useState(0);
+    const [allFailed, setAllFailed] = useState(false);
+
+    const handleImgError = useCallback(() => {
+        if (imgIndex < capaList.length - 1) {
+            setImgIndex(imgIndex + 1);
+        } else {
+            setAllFailed(true);
+        }
+    }, [imgIndex, capaList.length]);
+
+    const currentUrl = capaList[imgIndex];
+    const showImage = !allFailed && !!currentUrl;
+    const color = item.color || '#FF9800';
+
+    return (
+        <TouchableOpacity
+            onPress={onPress}
+            activeOpacity={0.85}
+            style={{ marginBottom: 14 }}
+        >
+            <View style={styles.cardOuter}>
+                <View style={[styles.cardInner, {
+                    backgroundColor: theme.cardBg,
+                    borderColor: theme.isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)',
+                }]}>
+                    {/* Imagem à esquerda — cascade fallback p/ capa[1] → ícone */}
+                    <View style={[styles.imageContainer, { backgroundColor: color + '18' }]}>
+                        {showImage ? (
+                            <ReviewImage
+                                key={`${id}-${imgIndex}`}
+                                source={{ uri: currentUrl }}
+                                tint={color}
+                                tintOpacity={0.10}
+                                accessibilityLabel={item.label}
+                                onError={handleImgError}
+                            />
+                        ) : (
+                            <NeoIcon name={item.iconName || 'Home2'} size={40} color={color} variant="Bold" />
+                        )}
+                    </View>
+
+                    {/* Texto */}
+                    <View style={styles.textCol}>
+                        <Text style={[styles.cardTitle, { color: theme.textPrimary }]} numberOfLines={2}>
+                            {item.label}
+                        </Text>
+                        <View style={{ flex: 1 }} />
+                        <Text style={[styles.cardDesc, { color: theme.textBody }]} numberOfLines={3}>
+                            {item.content}
+                        </Text>
+                    </View>
+
+                    {/* Chevron */}
+                    <View style={styles.chevron}>
+                        <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
+                    </View>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
+}
+
 export default function EducationEnvironmentsScreen({ navigation }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
@@ -39,61 +114,22 @@ export default function EducationEnvironmentsScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const theme = { textPrimary, textBody, cardBg, isDark };
 
     const renderCard = (id) => {
         const item = EDUCATIONAL_GUIDES?.[id];
         const ambiente = MAPA_PREVENCAO?.[id];
         if (!item) return null;
 
-        const imgUrl = Array.isArray(ambiente?.capa)
-            ? ambiente.capa[0]
-            : (typeof ambiente?.capa === 'string' ? ambiente.capa : null);
-        const color = item.color || '#FF9800';
-
         return (
-            <TouchableOpacity
+            <EnvironmentCard
                 key={id}
+                id={id}
+                item={item}
+                ambiente={ambiente}
+                theme={theme}
                 onPress={() => navigation.navigate('EnvironmentGuideNeo', { ambienteId: id })}
-                activeOpacity={0.85}
-                style={{ marginBottom: 14 }}
-            >
-                <View style={styles.cardOuter}>
-                    <View style={[styles.cardInner, {
-                        backgroundColor: cardBg,
-                        borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)',
-                    }]}>
-                        {/* Imagem à esquerda — ou ícone como fallback */}
-                        <View style={[styles.imageContainer, { backgroundColor: color + '18' }]}>
-                            {imgUrl ? (
-                                <ReviewImage
-                                    source={{ uri: imgUrl }}
-                                    tint={color}
-                                    tintOpacity={0.10}
-                                    accessibilityLabel={item.label}
-                                />
-                            ) : (
-                                <NeoIcon name={item.iconName || 'Home2'} size={40} color={color} variant="Bold" />
-                            )}
-                        </View>
-
-                        {/* Texto */}
-                        <View style={styles.textCol}>
-                            <Text style={[styles.cardTitle, { color: textPrimary }]} numberOfLines={2}>
-                                {item.label}
-                            </Text>
-                            <View style={{ flex: 1 }} />
-                            <Text style={[styles.cardDesc, { color: textBody }]} numberOfLines={3}>
-                                {item.content}
-                            </Text>
-                        </View>
-
-                        {/* Chevron */}
-                        <View style={styles.chevron}>
-                            <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
-                        </View>
-                    </View>
-                </View>
-            </TouchableOpacity>
+            />
         );
     };
 
