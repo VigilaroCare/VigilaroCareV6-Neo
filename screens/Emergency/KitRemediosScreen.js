@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import AnimatedProgressBar from '../../components/AnimatedProgressBar';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 
@@ -98,9 +99,14 @@ export default function KitRemediosScreen({ navigation }) {
               {t('headersFirst.umaFarmCiaDomSticaOrganizadaGaranteAcess', 'Uma farmácia doméstica organizada garante acesso rápido a medicamentos com controle de validade.')}
             </Small>
 
-            <View style={s.progressBarBg}>
-              <View style={[s.progressBarFill, { width: `${progressPct}%` }]} />
-            </View>
+            <AnimatedProgressBar
+              value={progressPct}
+              color="#FFF"
+              trackColor="rgba(0,0,0,0.18)"
+              height={8}
+              style={{ marginBottom: 8 }}
+              accessibilityLabel={`${progressPct}% completo`}
+            />
             <Small style={s.progressText}>{progressPct}% completo</Small>
           </View>
 
