@@ -129,19 +129,33 @@ export default function WelcomeTourScreenNeo({ navigation }) {
                             {/* Componente específico para a seleção de mão */}
                             {slide.isHandednessSlide && (
                                 <View style={styles.handednessContainer}>
-                                    <TouchableOpacity 
+                                    <TouchableOpacity
                                         style={[styles.handCard, !leftHandedMode && styles.handCardActive]}
                                         onPress={() => toggleLeftHanded(false)}
                                     >
-                                        <Text style={[styles.handCardEmoji, !leftHandedMode && styles.handCardEmojiActive]}>🤚</Text>
+                                        <View style={[styles.handIconWrap, !leftHandedMode && styles.handIconWrapActive]}>
+                                            <NeoIcon
+                                                name="Hand"
+                                                size={36}
+                                                color={!leftHandedMode ? Neo.colors.primary[600] : Neo.colors.neutral[400]}
+                                                variant="Bold"
+                                            />
+                                        </View>
                                         <Text style={[styles.handCardText, !leftHandedMode && styles.handCardTextActive]}>{t('onboarding.rightHanded')}</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity 
+                                    <TouchableOpacity
                                         style={[styles.handCard, leftHandedMode && styles.handCardActive]}
                                         onPress={() => toggleLeftHanded(true)}
                                     >
-                                        <Text style={[styles.handCardEmoji, leftHandedMode && styles.handCardEmojiActive]}>✋</Text>
+                                        <View style={[styles.handIconWrap, leftHandedMode && styles.handIconWrapActive, { transform: [{ scaleX: -1 }] }]}>
+                                            <NeoIcon
+                                                name="Hand"
+                                                size={36}
+                                                color={leftHandedMode ? Neo.colors.primary[600] : Neo.colors.neutral[400]}
+                                                variant="Bold"
+                                            />
+                                        </View>
                                         <Text style={[styles.handCardText, leftHandedMode && styles.handCardTextActive]}>{t('onboarding.leftHanded')}</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -257,13 +271,17 @@ const styles = StyleSheet.create({
         backgroundColor: Neo.colors.primary[50],
         borderColor: Neo.colors.primary[500],
     },
-    handCardEmoji: {
-        fontSize: 32,
+    handIconWrap: {
+        width: 56,
+        height: 56,
+        borderRadius: 28,
+        backgroundColor: Neo.colors.neutral[200],
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 8,
-        opacity: 0.5,
     },
-    handCardEmojiActive: {
-        opacity: 1,
+    handIconWrapActive: {
+        backgroundColor: Neo.colors.primary[100],
     },
     handCardText: {
         fontSize: 16,
