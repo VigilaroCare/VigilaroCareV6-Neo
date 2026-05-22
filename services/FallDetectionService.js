@@ -22,6 +22,47 @@
 
 import { Accelerometer } from 'expo-sensors';
 import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// ---------------------------------------------------------------------------
+// PRESETS DE SENSIBILIDADE
+// Cada preset ajusta os 4 thresholds principais. O usuário escolhe na
+// tela FallSensitivityScreen. A chave persistida é '@vigilaro/fall_sensitivity'
+// e '@vigilaro/fall_detection_enabled' para o toggle on/off.
+// ---------------------------------------------------------------------------
+export const SENSITIVITY_PRESETS = {
+  high: {
+    freefallThreshold: 0.35,
+    impactThreshold: 3.2,
+    immobilityThreshold: 0.6,
+    immobilityWindow: 4000,
+    detectionWindow: 1200,
+    impactRebounceWindow: 500,
+    throttleMs: 40,
+  },
+  medium: {
+    freefallThreshold: 0.3,
+    impactThreshold: 3.8,
+    immobilityThreshold: 0.5,
+    immobilityWindow: 5000,
+    detectionWindow: 1000,
+    impactRebounceWindow: 500,
+    throttleMs: 40,
+  },
+  low: {
+    freefallThreshold: 0.2,
+    impactThreshold: 4.5,
+    immobilityThreshold: 0.35,
+    immobilityWindow: 7000,
+    detectionWindow: 800,
+    impactRebounceWindow: 500,
+    throttleMs: 40,
+  },
+};
+
+const STORAGE_KEY_PRESET = '@vigilaro/fall_sensitivity';
+const STORAGE_KEY_ENABLED = '@vigilaro/fall_detection_enabled';
+const DEFAULT_PRESET = 'medium';
 
 // ---------------------------------------------------------------------------
 // PERMISSÕES DE MOTION (expo-sensors SDK 47+)
@@ -54,16 +95,12 @@ class FallDetectionService {
     this._notificationInProgress = false; // Previne notificações duplicadas
     this._notificationCooldown = 10000; // 10s entre notificações
 
-    // Configurações de sensibilidade (podem ser ajustadas via updateConfig)
-    this.config = {
-      freefallThreshold: 0.3, // G - threshold para detectar queda livre
-      impactThreshold: 3.8, // G - threshold para detectar impacto
-      immobilityThreshold: 0.5, // G - variação máxima para considerar imóvel
-      detectionWindow: 1000, // ms - janela entre queda livre e impacto
-      immobilityWindow: 5000, // ms - tempo de imobilidade após impacto
-      impactRebounceWindow: 500, // ms - aguarda rebote do impacto
-      throttleMs: 40, // ms - mínimo entre leituras processadas (25Hz)
-    };
+    // Preset ativo (lido de AsyncStorage no boot via loadPersistedConfig)
+    this.currentPreset = DEFAULT_PRESET;
+    this.isEnabledByUser = true; // toggle de "Desligar detecção"
+
+    // Configurações de sensibilidade (preset 'medium' por padrão)
+    this.config = { ...SENSITIVITY_PRESETS[DEFAULT_PRESET] };
 
     // Máquina de estados
     this.state = {
@@ -99,6 +136,16 @@ class FallDetectionService {
       if (__DEV__) {
         console.error(
           '[FallDetectionService] start: callback deve ser uma função'
+        );
+      }
+      return false;
+    }
+
+    // Usuário desativou a detecção no menu de Sensibilidade — não iniciar
+    if (!this.isEnabledByUser) {
+      if (__DEV__) {
+        console.log(
+          '[FallDetectionService] start: detecção desativada pelo usuário (Sensibilidade > Desligar)'
         );
       }
       return false;
@@ -233,6 +280,116 @@ class FallDetectionService {
     if (__DEV__) {
       console.log('[FallDetectionService] ⚙️ Config atualizada:', this.config);
     }
+  }
+
+  /**
+   * Aplica um preset de sensibilidade ('high' | 'medium' | 'low') e persiste
+   * a escolha em AsyncStorage. Atualiza thresholds em runtime sem reiniciar.
+   *
+   * @param {'high'|'medium'|'low'} level
+   * @returns {Promise<boolean>} true se aplicado
+   */
+  async setSensitivityPreset(level) {
+    if (!SENSITIVITY_PRESETS[level]) {
+      if (__DEV__) {
+        console.error(
+          `[FallDetectionService] setSensitivityPreset: nível inválido "${level}"`
+        );
+      }
+      return false;
+    }
+    this.currentPreset = level;
+    this.updateConfig(SENSITIVITY_PRESETS[level]);
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY_PRESET, level);
+    } catch (error) {
+      if (__DEV__) {
+        console.warn('[FallDetectionService] Falha ao persistir preset:', error);
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Liga/desliga a detecção como um todo. Persiste em AsyncStorage e
+   * encerra a subscription se houver, ou inicia (caso já haja callback registrado).
+   *
+   * @param {boolean} enabled
+   * @returns {Promise<void>}
+   */
+  async setEnabled(enabled) {
+    this.isEnabledByUser = !!enabled;
+    try {
+      await AsyncStorage.setItem(
+        STORAGE_KEY_ENABLED,
+        this.isEnabledByUser ? '1' : '0'
+      );
+    } catch (error) {
+      if (__DEV__) {
+        console.warn('[FallDetectionService] Falha ao persistir enabled:', error);
+      }
+    }
+    // Se desligou e havia subscription ativa, encerrar
+    if (!this.isEnabledByUser && this.subscription) {
+      const cb = this.onFallDetected;
+      this.stop();
+      // Guardamos o callback fora do stop para permitir religar depois
+      this._lastCallback = cb;
+    }
+  }
+
+  /**
+   * Carrega preset e flag de habilitação do AsyncStorage. Deve ser chamado
+   * antes do primeiro `start()` (no boot do App.js).
+   *
+   * @returns {Promise<{preset: string, enabled: boolean}>}
+   */
+  async loadPersistedConfig() {
+    try {
+      const [savedPreset, savedEnabled] = await Promise.all([
+        AsyncStorage.getItem(STORAGE_KEY_PRESET),
+        AsyncStorage.getItem(STORAGE_KEY_ENABLED),
+      ]);
+
+      if (savedPreset && SENSITIVITY_PRESETS[savedPreset]) {
+        this.currentPreset = savedPreset;
+        this.config = { ...SENSITIVITY_PRESETS[savedPreset] };
+      }
+      // savedEnabled === null => primeira vez => default true
+      this.isEnabledByUser = savedEnabled === null ? true : savedEnabled === '1';
+
+      if (__DEV__) {
+        console.log(
+          `[FallDetectionService] 🔧 Config carregada: preset=${this.currentPreset}, enabled=${this.isEnabledByUser}`
+        );
+      }
+    } catch (error) {
+      if (__DEV__) {
+        console.warn(
+          '[FallDetectionService] loadPersistedConfig falhou — usando defaults:',
+          error
+        );
+      }
+    }
+    return { preset: this.currentPreset, enabled: this.isEnabledByUser };
+  }
+
+  /**
+   * Getter para preset atual (usado pela tela de Sensibilidade).
+   *
+   * @returns {'high'|'medium'|'low'}
+   */
+  getCurrentPreset() {
+    return this.currentPreset;
+  }
+
+  /**
+   * Getter para flag de habilitação.
+   *
+   * @returns {boolean}
+   */
+  getIsEnabled() {
+    return this.isEnabledByUser;
   }
 
   /**

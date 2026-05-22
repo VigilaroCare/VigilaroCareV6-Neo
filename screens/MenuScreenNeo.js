@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
     Crown, InfoCircle, MessageQuestion, ArrowRight2,
     Eye, DocumentText, Shield, LanguageSquare, TickCircle,
+    Activity,
 } from 'iconsax-react-native';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -117,6 +118,13 @@ export default function MenuScreenNeo() {
             color: '#10B981', // emerald — primary
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
+        },
+        {
+            key: 'sensibilidade_queda',
+            IconComponent: Activity,
+            color: '#EF4444', // red — sinaliza segurança/emergência
+            label: t('menu.fallSensitivity', 'Sensibilidade de queda'),
+            action: () => navigateWithHaptic('FallSensitivity'),
         },
         {
             key: 'idioma',

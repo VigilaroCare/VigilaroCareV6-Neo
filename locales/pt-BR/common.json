@@ -404,7 +404,30 @@
         "privacy": "Privacidade",
         "privacyDesc": "Política de dados",
         "menuSettings": "Menu & Ajustes",
-        "generalSettings": "Configurações gerais"
+        "generalSettings": "Configurações gerais",
+        "fallSensitivity": "Sensibilidade de queda"
+    },
+    "fallSensitivity": {
+        "title": "Sensibilidade de queda",
+        "subtitle": "Como o app reconhece uma queda real",
+        "hero": "Quanto mais sensível, mais cedo o app reage — mas também aumenta a chance de alerta sem motivo. Escolha o que faz sentido pra você.",
+        "toggleLabel": "Detecção de queda",
+        "toggleOnDesc": "Ativa em segundo plano enquanto o app está aberto.",
+        "toggleOffDesc": "Desligada. O app não vai reagir a quedas.",
+        "levelSection": "Nível de sensibilidade",
+        "high": {
+            "title": "Alta",
+            "desc": "Reage a quedas leves. Pode disparar se o celular cair de uma mesa."
+        },
+        "medium": {
+            "title": "Média (recomendada)",
+            "desc": "Equilíbrio entre alerta rápido e poucos falsos positivos. Boa escolha pra maioria."
+        },
+        "low": {
+            "title": "Baixa",
+            "desc": "Só dispara em impactos fortes. Ideal pra quem é ativo ou anda em transporte público."
+        },
+        "footnote": "O ajuste vale a partir de agora. Você pode mudar quantas vezes quiser."
     },
     "sos": {
         "title": "EMERGÊNCIAS",
