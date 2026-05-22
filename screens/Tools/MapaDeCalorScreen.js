@@ -33,6 +33,49 @@ import { ChecklistService } from '../../services/ChecklistService';
 import { AMBIENTES, CHECKLISTS } from '../../data/mapeamento_dados';
 import { t_field } from '../../utils/getLocalizedField';
 
+// Helpers de classificação etária (mesmo padrão do ProfileFilterEngine)
+const calcAge = (dob) => {
+    if (!dob) return null;
+    try {
+        const d = new Date(dob);
+        if (isNaN(d.getTime())) return null;
+        const today = new Date();
+        let age = today.getFullYear() - d.getFullYear();
+        const m = today.getMonth() - d.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+        return age;
+    } catch { return null; }
+};
+
+const isBebe = (p) => p?.tipo === 'bebe' || (p?.tipo === 'humano' && calcAge(p.dataNascimento) !== null && calcAge(p.dataNascimento) <= 1);
+const isCrianca = (p) => p?.tipo === 'crianca' || (p?.tipo === 'humano' && calcAge(p.dataNascimento) !== null && calcAge(p.dataNascimento) <= 12 && calcAge(p.dataNascimento) >= 2);
+const isIdoso = (p) => p?.tipo === 'idoso' || (p?.tipo === 'humano' && calcAge(p.dataNascimento) !== null && calcAge(p.dataNascimento) >= 60);
+const hasCondicao = (p, cond) => Array.isArray(p?.necessidadesEspeciais) && p.necessidadesEspeciais.includes(cond);
+
+const PROFILE_FILTERS = [
+    { id: 'all',      label: 'Toda família', match: () => true },
+    { id: 'bebe',     label: 'Bebê',         match: isBebe },
+    { id: 'crianca',  label: 'Criança',      match: isCrianca },
+    { id: 'idoso',    label: 'Idoso',        match: isIdoso },
+    { id: 'pcd',      label: 'PcD',          match: (p) => hasCondicao(p, 'pcd') },
+    { id: 'gestante', label: 'Gestante',     match: (p) => hasCondicao(p, 'gestante') },
+];
+
+const HEAT_FILTERS = [
+    { id: 'all',       label: 'Todos' },
+    { id: 'critical',  label: 'Críticos' },
+    { id: 'high',      label: 'Alto risco' },
+    { id: 'attention', label: 'Atenção' },
+    { id: 'safe',      label: 'Seguros' },
+];
+
+const heatBucket = (room) => {
+    if (room.stats.critical > 0) return 'critical';
+    if (room.pct < 40) return 'high';
+    if (room.pct < 70) return 'attention';
+    return 'safe';
+};
+
 /**
  * Define cor do calor do cômodo:
  *   • Vermelho:  qualquer item crítico pendente (ato inseguro grave)
@@ -59,12 +102,15 @@ export default function MapaDeCalorScreen({ navigation }) {
     const [loading, setLoading] = useState(true);
     const [rooms, setRooms] = useState([]);
     const [residenceName, setResidenceName] = useState('');
+    const [heatFilter, setHeatFilter] = useState('all');
+    const [profileFilter, setProfileFilter] = useState('all');
+    const [availableProfileFilters, setAvailableProfileFilters] = useState(['all']);
 
     useFocusEffect(useCallback(() => {
-        loadData();
-    }, []));
+        loadData(profileFilter);
+    }, [profileFilter]));
 
-    const loadData = async () => {
+    const loadData = async (currentProfileFilter = 'all') => {
         try {
             setLoading(true);
 
@@ -77,6 +123,18 @@ export default function MapaDeCalorScreen({ navigation }) {
             const mapping = await ProfileService.getMapping();
             const allState = await ChecklistService.getAllState(residenceId);
 
+            // Identifica quais filtros de perfil fazem sentido pra esta família
+            const validProfileFilters = PROFILE_FILTERS
+                .filter(f => f.id === 'all' || profiles.some(p => f.match(p)))
+                .map(f => f.id);
+            setAvailableProfileFilters(validProfileFilters);
+
+            // Subset de perfis conforme filtro ativo
+            const filterDef = PROFILE_FILTERS.find(f => f.id === currentProfileFilter) || PROFILE_FILTERS[0];
+            const filteredProfiles = currentProfileFilter === 'all'
+                ? profiles
+                : profiles.filter(filterDef.match);
+
             const mappedRoomIds = Array.isArray(mapping) ? mapping : [];
 
             const enriched = mappedRoomIds
@@ -86,13 +144,15 @@ export default function MapaDeCalorScreen({ navigation }) {
                     const areaData = allState[roomId] || {};
                     const structure = CHECKLISTS[roomId];
                     const stats = ChecklistService.getAreaStats(
-                        roomId, areaData, structure, profiles, moradia
+                        roomId, areaData, structure, filteredProfiles, moradia
                     );
                     const heat = getHeatColor(stats);
                     const pct = stats.total > 0 ? Math.round((stats.checked / stats.total) * 100) : 0;
                     return { ...ambiente, stats, heat, pct };
                 })
                 .filter(Boolean)
+                // Quando filtrando por perfil, esconde cômodos que não tem risco relevante
+                .filter(room => currentProfileFilter === 'all' || room.stats.total > 0)
                 // Ordena por gravidade: críticos primeiro, depois pior score
                 .sort((a, b) => {
                     if (b.stats.critical !== a.stats.critical) return b.stats.critical - a.stats.critical;
@@ -107,7 +167,13 @@ export default function MapaDeCalorScreen({ navigation }) {
         }
     };
 
-    // Agregados globais
+    // Filtragem por calor (aplicada após o filtro de perfil já ter sido feito)
+    const visibleRooms = heatFilter === 'all'
+        ? rooms
+        : rooms.filter(r => heatBucket(r) === heatFilter);
+
+    // Agregados globais — calculados sobre TODOS os rooms do perfil ativo
+    // (não muda quando heat filter muda, mantendo o contexto)
     const totalRooms = rooms.length;
     const criticalRooms = rooms.filter(r => r.stats.critical > 0).length;
     const attentionRooms = rooms.filter(r => r.stats.critical === 0 && r.pct < 70).length;
@@ -198,21 +264,47 @@ export default function MapaDeCalorScreen({ navigation }) {
                                 />
                             </View>
 
+                            {/* FILTROS */}
+                            <FilterRow
+                                label={t('mapaCalor.filterFocus', 'Foco em')}
+                                options={PROFILE_FILTERS.filter(f => availableProfileFilters.includes(f.id))}
+                                activeId={profileFilter}
+                                onChange={setProfileFilter}
+                                textSecondary={textSecondary}
+                            />
+                            <FilterRow
+                                label={t('mapaCalor.filterShow', 'Mostrar')}
+                                options={HEAT_FILTERS}
+                                activeId={heatFilter}
+                                onChange={setHeatFilter}
+                                textSecondary={textSecondary}
+                            />
+
                             {/* GRID DE CÔMODOS */}
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
-                                {t('mapaCalor.roomsLabel', 'Cômodos mapeados')}
+                                {visibleRooms.length === rooms.length
+                                    ? t('mapaCalor.roomsLabel', 'Cômodos mapeados')
+                                    : `${visibleRooms.length} de ${rooms.length} cômodos`}
                             </Text>
-                            <View style={s.grid}>
-                                {rooms.map(room => (
-                                    <RoomHeatCard
-                                        key={room.id}
-                                        room={room}
-                                        textPrimary={textPrimary}
-                                        textBody={textBody}
-                                        onPress={() => handleRoomPress(room)}
-                                    />
-                                ))}
-                            </View>
+                            {visibleRooms.length === 0 ? (
+                                <View style={s.noMatchBox}>
+                                    <Body style={[s.noMatchText, { color: textBody }]}>
+                                        {t('mapaCalor.noMatch', 'Nenhum cômodo se encaixa nesse filtro. Tenta outra combinação.')}
+                                    </Body>
+                                </View>
+                            ) : (
+                                <View style={s.grid}>
+                                    {visibleRooms.map(room => (
+                                        <RoomHeatCard
+                                            key={room.id}
+                                            room={room}
+                                            textPrimary={textPrimary}
+                                            textBody={textBody}
+                                            onPress={() => handleRoomPress(room)}
+                                        />
+                                    ))}
+                                </View>
+                            )}
                         </>
                     )}
                 </ScrollView>
@@ -224,6 +316,38 @@ export default function MapaDeCalorScreen({ navigation }) {
 // ============================================
 // Subcomponentes
 // ============================================
+
+function FilterRow({ label, options, activeId, onChange, textSecondary }) {
+    if (!options || options.length < 2) return null;
+    return (
+        <View style={{ marginBottom: 14 }}>
+            <Caption style={[s.filterLabel, { color: textSecondary }]}>{label}</Caption>
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={s.filterScrollContent}
+            >
+                {options.map(opt => {
+                    const active = opt.id === activeId;
+                    return (
+                        <TouchableOpacity
+                            key={opt.id}
+                            onPress={() => onChange(opt.id)}
+                            activeOpacity={0.8}
+                            style={[s.filterChip, active && s.filterChipActive]}
+                            accessibilityRole="button"
+                            accessibilityState={{ selected: active }}
+                        >
+                            <Text style={[s.filterChipText, active && s.filterChipTextActive]}>
+                                {opt.label}
+                            </Text>
+                        </TouchableOpacity>
+                    );
+                })}
+            </ScrollView>
+        </View>
+    );
+}
 
 function SummaryStat({ icon, label, value, sublabel, color, bg }) {
     return (
@@ -401,6 +525,49 @@ const s = StyleSheet.create({
         marginBottom: 12,
         textTransform: 'uppercase',
         opacity: 0.85,
+    },
+
+    // Filtros
+    filterLabel: {
+        fontSize: 10.5,
+        fontWeight: '800',
+        letterSpacing: 1.2,
+        marginBottom: 6,
+        textTransform: 'uppercase',
+    },
+    filterScrollContent: {
+        flexDirection: 'row',
+        gap: 8,
+        paddingRight: 4,
+    },
+    filterChip: {
+        paddingHorizontal: 14,
+        paddingVertical: 7,
+        borderRadius: 16,
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.06)',
+    },
+    filterChipActive: {
+        backgroundColor: Neo.colors.primary[500],
+        borderColor: Neo.colors.primary[600],
+    },
+    filterChipText: {
+        fontSize: 12.5,
+        fontWeight: '600',
+        color: Neo.colors.neutral[700],
+    },
+    filterChipTextActive: {
+        color: '#FFFFFF',
+        fontWeight: '800',
+    },
+    noMatchBox: {
+        padding: 24,
+        alignItems: 'center',
+    },
+    noMatchText: {
+        fontSize: 14,
+        textAlign: 'center',
     },
 
     // Grid
