@@ -11,7 +11,7 @@
  * "Continuar depois" no header salva o draft via BriefingDraftService
  * e fecha o wizard sem perder estado.
  */
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, TouchableOpacity, Animated, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -32,6 +32,7 @@ import P1_TipoMoradiaStep from './NewHomeWizard/P1_TipoMoradiaStep';
 import OndeStep from './NewHomeWizard/OndeStep';
 import { ss } from './NewHomeWizard/styles';
 import NeoAlert from '../utils/NeoAlert';
+import { EXTERNAL_AREAS, INTERNAL_ROOMS } from '../data/onboarding_data';
 
 const C = DS.colors;
 const TOTAL_PHASES = 3;
@@ -59,6 +60,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const [formSize, setFormSize] = useState('');
     const [formPetAge, setFormPetAge] = useState('1');
     const [formPetConditions, setFormPetConditions] = useState([]);
+
+    // Vínculo Morador/Pet ↔ Cômodo (compartilhado entre human e pet form)
+    const [formComodos, setFormComodos] = useState([]);
 
     // ONDE state
     const [houseType, setHouseType] = useState('casa');
@@ -124,6 +128,34 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         setFormBond('morador'); setFormConditions([]);
         setFormSpecies(''); setFormSize(''); setFormPhoto(null);
         setFormPetAge('1'); setFormPetConditions([]);
+        setFormComodos([]);
+    };
+
+    // Lista de cômodos disponíveis pra vincular ao perfil — derivada dos
+    // ambientes selecionados em P1+P2 (externalAreas + internalRooms).
+    // Cada item: { id, label }
+    const availableRooms = useMemo(() => {
+        const list = [];
+        (externalAreas || []).forEach(id => {
+            const ext = EXTERNAL_AREAS.find(e => e.id === id);
+            if (ext) list.push({ id, label: ext.label });
+        });
+        (internalRooms || []).forEach(id => {
+            for (const cat of INTERNAL_ROOMS) {
+                const room = cat.items.find(i => i.id === id);
+                if (room) { list.push({ id, label: room.label }); break; }
+            }
+        });
+        return list;
+    }, [externalAreas, internalRooms]);
+
+    // Abre formulário de pessoa/pet — reseta campos e pré-seleciona
+    // TODOS os cômodos da casa (padrão amigável: usuário desmarca o que
+    // a pessoa/pet não usa, em vez de marcar do zero).
+    const openProfileForm = (type) => {
+        resetForm();
+        setFormComodos(availableRooms.map(r => r.id));
+        animateTo(undefined, type === 'pet' ? 'form_pet' : 'form_human');
     };
 
     const pickPhoto = async () => {
@@ -154,6 +186,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             vinculo: formBond === 'visitante' ? 'frequentador' : 'habitante',
             necessidadesEspeciais: formConditions,
             foto: fotoSalva,
+            // Vínculo Morador↔Cômodo (D1 + D3): alimenta o Interpreter
+            comodosUsados: Array.isArray(formComodos) ? formComodos : [],
         }, 'humano');
         if (perfil) {
             const all = await ProfileService.getAllPerfis();
@@ -179,6 +213,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         p.dataNascimento = `01/01/${anoNasc}`;
 
         p.necessidadesEspeciais = formPetConditions;
+        // Vínculo Pet↔Cômodo (D1 + D3)
+        p.comodosUsados = Array.isArray(formComodos) ? formComodos : [];
         p.pendente = false;
 
         const perfil = await ProfileService.addPerfil(p, 'pet');
@@ -290,6 +326,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                 formGender={formGender} setFormGender={setFormGender}
                 formBond={formBond} setFormBond={setFormBond}
                 formConditions={formConditions} setFormConditions={setFormConditions}
+                formComodos={formComodos} setFormComodos={setFormComodos}
+                availableRooms={availableRooms}
                 formPhoto={formPhoto}
                 onPickPhoto={pickPhoto}
                 onSave={saveHumanProfile}
@@ -303,6 +341,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                 formSize={formSize} setFormSize={setFormSize}
                 formPetAge={formPetAge} setFormPetAge={setFormPetAge}
                 formPetConditions={formPetConditions} setFormPetConditions={setFormPetConditions}
+                formComodos={formComodos} setFormComodos={setFormComodos}
+                availableRooms={availableRooms}
                 formPhoto={formPhoto}
                 onPickPhoto={pickPhoto}
                 onSave={savePetProfile}
@@ -312,8 +352,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         return (
             <QuemListStep
                 profiles={profiles}
-                onAddHuman={() => { resetForm(); animateTo(undefined, 'form_human'); }}
-                onAddPet={() => { resetForm(); animateTo(undefined, 'form_pet'); }}
+                onAddHuman={() => openProfileForm('human')}
+                onAddPet={() => openProfileForm('pet')}
                 onRemove={removeProfile}
             />
         );

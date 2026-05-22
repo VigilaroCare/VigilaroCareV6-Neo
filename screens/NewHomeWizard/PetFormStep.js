@@ -27,6 +27,8 @@ export default function PetFormStep({
     formSize, setFormSize,
     formPetAge, setFormPetAge,
     formPetConditions, setFormPetConditions,
+    formComodos, setFormComodos,
+    availableRooms = [],
     formPhoto,
     onPickPhoto,
     onSave,
@@ -87,9 +89,36 @@ export default function PetFormStep({
                     ))}
                 </View>
 
+                {/* ── Vínculo Pet↔Cômodo ──
+                    Permite o app entender que o gatinho passa o dia na sala
+                    ou que o cachorro só fica no quintal — risco e cuidado
+                    se conectam ao território de cada bichinho. */}
+                <Caption style={{ marginBottom: 6, marginTop: 22, color: C.neutral[700], fontWeight: '600' }}>
+                    Onde esse bichinho fica?
+                </Caption>
+                <Body style={{ color: C.neutral[600], marginBottom: 12, lineHeight: 19, fontSize: 13 }}>
+                    Marca os ambientes que ele frequenta. Pet tem rotina e território — o cuidado certo segue isso.
+                </Body>
+                {availableRooms.length === 0 ? (
+                    <Caption style={{ color: C.neutral[500], fontStyle: 'italic', marginBottom: 8 }}>
+                        Volta ao passo "Onde" e marca os ambientes da casa primeiro.
+                    </Caption>
+                ) : (
+                    <View style={ss.chipRow}>
+                        {availableRooms.map(r => (
+                            <Chip
+                                key={r.id}
+                                label={r.label}
+                                selected={formComodos.includes(r.id)}
+                                onPress={() => onToggleArray(formComodos, setFormComodos, r.id)}
+                            />
+                        ))}
+                    </View>
+                )}
+
                 <TouchableOpacity style={[ss.saveBtn, { backgroundColor: '#EF6C00' }]} onPress={onSave} activeOpacity={0.9}>
                     <NeoIcon name="tick-circle" size={22} color="#FFF" />
-                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar Pet</Body>
+                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar pet</Body>
                 </TouchableOpacity>
             </ScrollView>
         </KeyboardAvoidingView>

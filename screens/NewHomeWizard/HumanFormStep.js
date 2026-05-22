@@ -20,6 +20,8 @@ export default function HumanFormStep({
     formGender, setFormGender,
     formBond, setFormBond,
     formConditions, setFormConditions,
+    formComodos, setFormComodos,
+    availableRooms = [],
     formPhoto,
     onPickPhoto,
     onSave,
@@ -77,9 +79,35 @@ export default function HumanFormStep({
                     ))}
                 </View>
 
+                {/* ── Vínculo Morador↔Cômodo ──
+                    O coração do briefing vivo: o app aprende quem usa cada
+                    ambiente pra priorizar o que importa pra cada pessoa. */}
+                <Caption style={{ marginBottom: 6, marginTop: 22, color: C.neutral[700], fontWeight: '600' }}>
+                    Quais ambientes essa pessoa usa?
+                </Caption>
+                <Body style={{ color: C.neutral[600], marginBottom: 12, lineHeight: 19, fontSize: 13 }}>
+                    Marca tudo que ela frequenta. Ajuda o app a priorizar o cuidado certo, no lugar certo.
+                </Body>
+                {availableRooms.length === 0 ? (
+                    <Caption style={{ color: C.neutral[500], fontStyle: 'italic', marginBottom: 8 }}>
+                        Volta ao passo "Onde" e marca os ambientes da casa primeiro.
+                    </Caption>
+                ) : (
+                    <View style={ss.chipRow}>
+                        {availableRooms.map(r => (
+                            <Chip
+                                key={r.id}
+                                label={r.label}
+                                selected={formComodos.includes(r.id)}
+                                onPress={() => onToggleArray(formComodos, setFormComodos, r.id)}
+                            />
+                        ))}
+                    </View>
+                )}
+
                 <TouchableOpacity style={ss.saveBtn} onPress={onSave} activeOpacity={0.9}>
                     <NeoIcon name="tick-circle" size={22} color="#FFF" />
-                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar Morador</Body>
+                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar morador</Body>
                 </TouchableOpacity>
             </ScrollView>
         </KeyboardAvoidingView>
