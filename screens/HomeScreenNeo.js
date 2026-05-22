@@ -32,6 +32,7 @@ import ScoreService from '../services/ScoreService';
 import NeoCard from '../components/NeoCard';
 import { H2, Body } from '../components/NeoTypography';
 import CompactActiveMonitor from '../components/CompactActiveMonitor';
+import MapaSensivelCard from '../components/MapaSensivelCard';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
 import TappablePressable from '../components/TappablePressable';
@@ -291,6 +292,11 @@ export default function HomeScreenNeo() {
                         paddingTop: 2,
                     }}
                 >
+                    {/* SEU MAPA SENSÍVEL — reflexo do briefing vivo (B++ D5).
+                        Consome RiskInterpreterService.interpret() e mostra resumo
+                        + recomendação em tom Agnaldo. Tap → SafetyActionPlan. */}
+                    <MapaSensivelCard />
+
                     {/* AMBIENTES VISTORIADOS */}
                     <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
                     <TappablePressable
