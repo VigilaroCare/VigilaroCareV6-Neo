@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
-  Animated, Vibration, Linking, Alert, Platform,
+  Animated, Vibration, Linking, Alert, Platform, Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -26,6 +26,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
   const { triggerReason } = route.params || {};
   const [countdown, setCountdown] = useState(triggerReason ? 10 : 5);
   const [sending, setSending] = useState(false);
+  const [showSensitivityPrompt, setShowSensitivityPrompt] = useState(false);
   const { reduceMotion } = useAccessibility();
 
   const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -184,7 +185,35 @@ export default function SOSCountdownScreen({ navigation, route }) {
     }
   };
 
+  // Para áudio e vibração imediatamente — o usuário tomou uma decisão.
+  // Útil tanto pra cancelar quanto pra "sair via prompt de sensibilidade".
+  const stopAlerts = () => {
+    try {
+      if (playerRef.current) playerRef.current.stop();
+    } catch (_) { /* silent */ }
+    Vibration.cancel();
+  };
+
   const handleCancel = () => {
+    // Trigger contextual: se o SOS veio de FALL e ainda não saiu SMS,
+    // oferece o caminho pra ajustar sensibilidade em vez de simplesmente sair.
+    // Não dispara pra VITAL_CHECK (semântica diferente) nem pra SOS manual.
+    if (triggerReason === 'FALL' && !sending) {
+      stopAlerts();
+      setShowSensitivityPrompt(true);
+      return;
+    }
+    navigation.goBack();
+  };
+
+  const handleAdjustSensitivity = () => {
+    setShowSensitivityPrompt(false);
+    // replace pra não deixar a tela vermelha na stack ao voltar de Sensibilidade
+    navigation.replace('FallSensitivity');
+  };
+
+  const handleDismissPrompt = () => {
+    setShowSensitivityPrompt(false);
     navigation.goBack();
   };
 
@@ -258,6 +287,55 @@ export default function SOSCountdownScreen({ navigation, route }) {
           </>
         )}
       </SafeAreaView>
+
+      {/* TRIGGER CONTEXTUAL — só pra FALL cancelado antes do SMS sair.
+          Tom calmo (sem vermelho-pânico), oferece caminho direto pra
+          ajustar sensibilidade. Não fecha por toque fora — força escolha. */}
+      <Modal
+        visible={showSensitivityPrompt}
+        transparent
+        animationType="fade"
+        onRequestClose={handleDismissPrompt}
+      >
+        <View style={s.promptBackdrop}>
+          <View style={s.promptCard}>
+            <View style={s.promptIconWrap}>
+              <NeoIcon name="Activity" size={28} color="#10B981" variant="Bold" />
+            </View>
+            <Text style={s.promptTitle}>
+              {t('sosCountdown.sensitivityPromptTitle', 'Pareceu que não foi uma queda?')}
+            </Text>
+            <Text style={s.promptDesc}>
+              {t(
+                'sosCountdown.sensitivityPromptDesc',
+                'Se o alerta está disparando à toa, dá pra reduzir a sensibilidade aqui mesmo.'
+              )}
+            </Text>
+
+            <TouchableOpacity
+              style={s.promptPrimaryBtn}
+              onPress={handleAdjustSensitivity}
+              activeOpacity={0.85}
+              accessibilityRole="button"
+            >
+              <Text style={s.promptPrimaryText}>
+                {t('sosCountdown.sensitivityPromptAdjust', 'Ajustar sensibilidade')}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={s.promptSecondaryBtn}
+              onPress={handleDismissPrompt}
+              activeOpacity={0.6}
+              accessibilityRole="button"
+            >
+              <Text style={s.promptSecondaryText}>
+                {t('sosCountdown.sensitivityPromptDismiss', 'Agora não')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -337,5 +415,79 @@ const s = StyleSheet.create({
     fontSize: 17,
     fontWeight: '900',
     letterSpacing: 2,
+  },
+
+  // Modal contextual de sensibilidade — tom calmo, branco/cinza,
+  // contrasta com o overlay vermelho atrás. Não usa o vermelho de pânico.
+  promptBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.55)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+  promptCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 24,
+    width: '100%',
+    maxWidth: 360,
+    alignItems: 'center',
+    elevation: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+  },
+  promptIconWrap: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'rgba(16,185,129,0.18)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  promptTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#0F172A',
+    textAlign: 'center',
+    marginBottom: 8,
+    letterSpacing: -0.3,
+  },
+  promptDesc: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#475569',
+    textAlign: 'center',
+    lineHeight: 20,
+    marginBottom: 22,
+    paddingHorizontal: 4,
+  },
+  promptPrimaryBtn: {
+    backgroundColor: '#10B981',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 14,
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  promptPrimaryText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '800',
+    letterSpacing: 0.2,
+  },
+  promptSecondaryBtn: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+  },
+  promptSecondaryText: {
+    color: '#64748B',
+    fontSize: 14,
+    fontWeight: '600',
   },
 });

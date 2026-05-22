@@ -634,7 +634,11 @@
         "sosError": "Não deu pra enviar o SOS automático.",
         "fallMsg": "ALERTA DE QUEDA! Houve um impacto forte e não houve resposta.",
         "vitalMsg": "ALERTA DE SEGURANÇA! O check-in diário não foi respondido.",
-        "defaultMsg": "SOS! Preciso de ajuda urgente."
+        "defaultMsg": "SOS! Preciso de ajuda urgente.",
+        "sensitivityPromptTitle": "Pareceu que não foi uma queda?",
+        "sensitivityPromptDesc": "Se o alerta está disparando à toa, dá pra reduzir a sensibilidade aqui mesmo.",
+        "sensitivityPromptAdjust": "Ajustar sensibilidade",
+        "sensitivityPromptDismiss": "Agora não"
     },
     "firstAid": {
         "whatHappened": "O Que Aconteceu?",
