@@ -379,7 +379,7 @@ export default function HomeMappingScreen({ navigation, route }) {
             style={styles.gradientBtn}
           >
             <Text style={styles.saveText}>
-              {isOnboarding ? 'Finalizar Configuração' : 'Salvar Alterações'}
+              {isOnboarding ? 'Finalizar' : 'Salvar'}
             </Text>
             <NeoIcon name="ArrowRight2" size={24} color="#FFF" />
           </LinearGradient>
