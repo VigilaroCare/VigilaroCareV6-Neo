@@ -1,20 +1,26 @@
 /**
  * NewHomeWizardScreenNeo.js
- * Wizard de cadastro de residência (QUEM + ONDE).
+ * Wizard do "seu mapa sensível" — briefing vivo (B++).
  *
- * Refatorado em 2026-05-22: lógica de orquestração aqui, passos
- * extraídos pra screens/NewHomeWizard/{QuemListStep, HumanFormStep,
- * PetFormStep, OndeStep}.js + components/styles compartilhados.
+ * ORDEM (D2): ONDE primeiro, QUEM depois. 3 phases visíveis ao usuário:
+ *   phase 0 — P1_TipoMoradia (tipo + andares)
+ *   phase 1 — Onde (ambientes externos + internos)
+ *   phase 2 — Quem (humanos + pets)
+ *
+ * Cada passo abre com narrativa Agnaldo via NarrativeHeader.
+ * "Continuar depois" no header salva o draft via BriefingDraftService
+ * e fecha o wizard sem perder estado.
  */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, TouchableOpacity, Animated } from 'react-native';
+import { View, TouchableOpacity, Animated, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { DS } from '../utils/DesignSystem2026';
 import ProfileService from '../services/ProfileService';
+import BriefingDraftService from '../services/BriefingDraftService';
 import { Body, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { getDefaultProfile } from '../services/ProfileModels';
@@ -22,19 +28,22 @@ import { getDefaultProfile } from '../services/ProfileModels';
 import QuemListStep from './NewHomeWizard/QuemListStep';
 import HumanFormStep from './NewHomeWizard/HumanFormStep';
 import PetFormStep from './NewHomeWizard/PetFormStep';
+import P1_TipoMoradiaStep from './NewHomeWizard/P1_TipoMoradiaStep';
 import OndeStep from './NewHomeWizard/OndeStep';
 import { ss } from './NewHomeWizard/styles';
 import NeoAlert from '../utils/NeoAlert';
 
 const C = DS.colors;
+const TOTAL_PHASES = 3;
 
 export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const { residenceId } = route.params || {};
     const fadeAnim = useRef(new Animated.Value(1)).current;
 
-    // Navigation state
-    const [phase, setPhase] = useState(0); // 0=QUEM, 1=ONDE
+    // Navigation state — ordem invertida (D2): ONDE_TIPO → ONDE_AMBIENTES → QUEM
+    const [phase, setPhase] = useState(0); // 0=P1_TIPO, 1=P2_AMBIENTES, 2=P3_QUEM
     const [subView, setSubView] = useState('list'); // list | form_human | form_pet
+    const [draftRestored, setDraftRestored] = useState(false);
 
     // QUEM state — humanos
     const [profiles, setProfiles] = useState([]);
@@ -69,6 +78,45 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         if (moradia?.tipoImovel) setHouseType(moradia.tipoImovel);
         const mapping = await ProfileService.getMapping();
         if (mapping?.length > 0) setInternalRooms(mapping);
+
+        // Restaura draft do wizard, se existir, e abre na phase salva.
+        // Só roda uma vez por sessão pra não atropelar mudanças do usuário.
+        if (!draftRestored) {
+            try {
+                const draft = await BriefingDraftService.load();
+                if (draft) {
+                    if (Number.isInteger(draft.phase)) setPhase(Math.min(draft.phase, TOTAL_PHASES - 1));
+                    if (draft.houseType) setHouseType(draft.houseType);
+                    if (Number.isInteger(draft.floors)) setFloors(draft.floors);
+                    if (Array.isArray(draft.externalAreas)) setExternalAreas(draft.externalAreas);
+                    if (Array.isArray(draft.internalRooms)) setInternalRooms(draft.internalRooms);
+                }
+            } catch (_) { /* silent */ }
+            setDraftRestored(true);
+        }
+    };
+
+    // Helper: monta snapshot atual do estado pra persistir como draft.
+    const buildDraft = () => ({
+        phase,
+        houseType,
+        floors,
+        externalAreas,
+        internalRooms,
+    });
+
+    // "Continuar depois" — salva draft, mostra confirmação leve, fecha wizard.
+    const handleContinueLater = async () => {
+        try {
+            await BriefingDraftService.save(buildDraft());
+            NeoAlert.alert(
+                'Guardado',
+                'Você volta de onde parou pelo menu "Seu mapa sensível".',
+                [{ text: 'OK', onPress: () => navigation.goBack() }]
+            );
+        } catch (_) {
+            navigation.goBack();
+        }
     };
 
     const resetForm = () => {
@@ -163,11 +211,19 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const handleNext = () => {
-        if (phase === 0 && subView !== 'list') return;
+        // P1 → P2 → P3 (QUEM). Forms internos do P3 bloqueiam o "Avançar".
+        if (phase === 2 && subView !== 'list') return;
+
         if (phase === 0) {
-            if (profiles.length === 0) return NeoAlert.alert('Atenção', 'Adicione ao menos 1 morador.');
+            if (!houseType) return NeoAlert.alert('Atenção', 'Escolhe o tipo de moradia pra seguir.');
             animateTo(1, 'list');
+        } else if (phase === 1) {
+            const total = (externalAreas?.length || 0) + (internalRooms?.length || 0);
+            if (total === 0) return NeoAlert.alert('Atenção', 'Marca pelo menos 1 ambiente. Vai te ajudar depois.');
+            animateTo(2, 'list');
         } else {
+            // phase === 2 (QUEM): exige pelo menos 1 morador
+            if (profiles.length === 0) return NeoAlert.alert('Atenção', 'Adiciona ao menos 1 morador pra concluir.');
             finishWizard();
         }
     };
@@ -194,79 +250,102 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             const humans = profiles.filter(p => p.tipo !== 'pet' && !p.pendente);
             if (humans.length > 0) await ProfileService.setActivePerfil(humans[0].id);
             await ProfileService.setOnboardingCompleto();
-            NeoAlert.alert('Pronto!', 'Sua matriz de proteção está ativa.', [
-                { text: 'Acessar Cockpit', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
+            // Briefing concluído → limpa o draft pra não restaurar de novo
+            await BriefingDraftService.clear();
+            NeoAlert.alert('Pronto!', 'Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.', [
+                { text: 'Acessar painel', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
             ]);
         } catch (e) {
-            NeoAlert.alert('Erro', 'Não deu pra salvar.');
+            NeoAlert.alert('Erro', 'Não deu pra salvar agora. Toca em "Continuar depois" e tenta de novo.');
         }
     };
 
     // === RENDER ===
+    // phase 0 → P1 (tipo + andares)
+    // phase 1 → P2 (ambientes)
+    // phase 2 → P3 QUEM (humanos + pets, com subView interno)
     const renderContent = () => {
         if (phase === 0) {
-            if (subView === 'form_human') return (
-                <HumanFormStep
-                    formName={formName} setFormName={setFormName}
-                    formDOB={formDOB} setFormDOB={setFormDOB}
-                    formGender={formGender} setFormGender={setFormGender}
-                    formBond={formBond} setFormBond={setFormBond}
-                    formConditions={formConditions} setFormConditions={setFormConditions}
-                    formPhoto={formPhoto}
-                    onPickPhoto={pickPhoto}
-                    onSave={saveHumanProfile}
-                    onToggleArray={toggleArray}
-                />
-            );
-            if (subView === 'form_pet') return (
-                <PetFormStep
-                    formName={formName} setFormName={setFormName}
-                    formSpecies={formSpecies} setFormSpecies={setFormSpecies}
-                    formSize={formSize} setFormSize={setFormSize}
-                    formPetAge={formPetAge} setFormPetAge={setFormPetAge}
-                    formPetConditions={formPetConditions} setFormPetConditions={setFormPetConditions}
-                    formPhoto={formPhoto}
-                    onPickPhoto={pickPhoto}
-                    onSave={savePetProfile}
-                    onToggleArray={toggleArray}
-                />
-            );
             return (
-                <QuemListStep
-                    profiles={profiles}
-                    onAddHuman={() => { resetForm(); animateTo(undefined, 'form_human'); }}
-                    onAddPet={() => { resetForm(); animateTo(undefined, 'form_pet'); }}
-                    onRemove={removeProfile}
+                <P1_TipoMoradiaStep
+                    houseType={houseType} setHouseType={setHouseType}
+                    floors={floors} setFloors={setFloors}
                 />
             );
         }
-        return (
-            <OndeStep
-                houseType={houseType} setHouseType={setHouseType}
-                floors={floors} setFloors={setFloors}
-                externalAreas={externalAreas} setExternalAreas={setExternalAreas}
-                internalRooms={internalRooms} setInternalRooms={setInternalRooms}
+        if (phase === 1) {
+            return (
+                <OndeStep
+                    externalAreas={externalAreas} setExternalAreas={setExternalAreas}
+                    internalRooms={internalRooms} setInternalRooms={setInternalRooms}
+                    onToggleArray={toggleArray}
+                />
+            );
+        }
+        // phase === 2 — QUEM
+        if (subView === 'form_human') return (
+            <HumanFormStep
+                formName={formName} setFormName={setFormName}
+                formDOB={formDOB} setFormDOB={setFormDOB}
+                formGender={formGender} setFormGender={setFormGender}
+                formBond={formBond} setFormBond={setFormBond}
+                formConditions={formConditions} setFormConditions={setFormConditions}
+                formPhoto={formPhoto}
+                onPickPhoto={pickPhoto}
+                onSave={saveHumanProfile}
                 onToggleArray={toggleArray}
+            />
+        );
+        if (subView === 'form_pet') return (
+            <PetFormStep
+                formName={formName} setFormName={setFormName}
+                formSpecies={formSpecies} setFormSpecies={setFormSpecies}
+                formSize={formSize} setFormSize={setFormSize}
+                formPetAge={formPetAge} setFormPetAge={setFormPetAge}
+                formPetConditions={formPetConditions} setFormPetConditions={setFormPetConditions}
+                formPhoto={formPhoto}
+                onPickPhoto={pickPhoto}
+                onSave={savePetProfile}
+                onToggleArray={toggleArray}
+            />
+        );
+        return (
+            <QuemListStep
+                profiles={profiles}
+                onAddHuman={() => { resetForm(); animateTo(undefined, 'form_human'); }}
+                onAddPet={() => { resetForm(); animateTo(undefined, 'form_pet'); }}
+                onRemove={removeProfile}
             />
         );
     };
 
-    const showFooter = subView === 'list';
+    // Footer aparece sempre que não estamos num form interno do passo QUEM.
+    // Em P1 e P2 (ONDE) sempre aparece, em P3 (QUEM) some quando o usuário
+    // está preenchendo perfil de humano/pet.
+    const showFooter = phase < 2 || subView === 'list';
 
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* Header */}
+                {/* Header — back + progress + "Continuar depois" */}
                 <View style={ss.header}>
                     <TouchableOpacity onPress={handleBack} style={{ width: 38, height: 38, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.75)', alignItems: 'center', justifyContent: 'center' }} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
                         <NeoIcon name={phase === 0 && subView === 'list' ? 'CloseSquare' : 'ArrowLeft2'} size={22} color={C.neutral[800]} />
                     </TouchableOpacity>
                     <View style={ss.progressBar}>
-                        <View style={[ss.progressFill, { width: `${((phase + 1) / 2) * 100}%` }]} />
+                        <View style={[ss.progressFill, { width: `${((phase + 1) / TOTAL_PHASES) * 100}%` }]} />
                     </View>
-                    <Caption style={{ color: C.neutral[500], marginLeft: 12 }}>{phase + 1}/2</Caption>
+                    <Caption style={{ color: C.neutral[500], marginLeft: 12, marginRight: 8 }}>{phase + 1}/{TOTAL_PHASES}</Caption>
+                    <TouchableOpacity
+                        onPress={handleContinueLater}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel="Continuar depois"
+                    >
+                        <Text style={{ color: C.primary[700], fontSize: 12, fontWeight: '700' }}>Continuar depois</Text>
+                    </TouchableOpacity>
                 </View>
 
                 {/* Content */}
@@ -279,9 +358,11 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                     <View style={ss.footer}>
                         <TouchableOpacity style={ss.mainBtn} onPress={handleNext} activeOpacity={0.9}>
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 17 }}>
-                                {phase === 0 ? 'Próxima Etapa: Onde' : 'Concluir Mapeamento'}
+                                {phase === 0 && 'Próximo: ambientes'}
+                                {phase === 1 && 'Próximo: quem mora'}
+                                {phase === 2 && 'Concluir mapa sensível'}
                             </Body>
-                            <NeoIcon name={phase === 0 ? 'arrow-right' : 'tick-square'} size={22} color="#FFF" />
+                            <NeoIcon name={phase === 2 ? 'tick-square' : 'arrow-right'} size={22} color="#FFF" />
                         </TouchableOpacity>
                     </View>
                 )}
