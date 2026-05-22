@@ -642,7 +642,9 @@
         "sensitivityPromptTitle": "Pareceu que não foi uma queda?",
         "sensitivityPromptDesc": "Se o alerta está disparando à toa, dá pra reduzir a sensibilidade aqui mesmo.",
         "sensitivityPromptAdjust": "Ajustar sensibilidade",
-        "sensitivityPromptDismiss": "Agora não"
+        "sensitivityPromptDismiss": "Agora não",
+        "alsoWhatsApp": "Enviar via WhatsApp também",
+        "whatsappOpened": "WhatsApp aberto"
     },
     "firstAid": {
         "whatHappened": "O Que Aconteceu?",

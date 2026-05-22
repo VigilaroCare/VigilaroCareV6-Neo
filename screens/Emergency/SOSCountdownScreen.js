@@ -27,10 +27,22 @@ export default function SOSCountdownScreen({ navigation, route }) {
   const [countdown, setCountdown] = useState(triggerReason ? 10 : 5);
   const [sending, setSending] = useState(false);
   const [showSensitivityPrompt, setShowSensitivityPrompt] = useState(false);
+  // WhatsApp como canal complementar — exposto na view "sending" após o SMS sair.
+  // Não é envio automático: precisa de interação do usuário (limitação técnica:
+  // WhatsApp não suporta múltiplos destinatários num único link Linking.openURL).
+  const [canUseWhatsApp, setCanUseWhatsApp] = useState(false);
+  const [whatsappOpened, setWhatsappOpened] = useState(false);
   const { reduceMotion } = useAccessibility();
 
   const pulseAnim = useRef(new Animated.Value(1)).current;
   const playerRef = useRef(null);
+  // Mensagem e primeiro contato — guardados para o botão de WhatsApp usar
+  // após o disparo automático de SMS.
+  const sosMessageRef = useRef('');
+  const firstContactRef = useRef('');
+  // Timer de auto-fechamento da view "sending" — cancelável se o usuário
+  // tocar em "Enviar via WhatsApp também", pra dar tempo da ação completar.
+  const closeTimerRef = useRef(null);
 
   useEffect(() => {
     const startAlert = async () => {
@@ -76,12 +88,52 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
     return () => {
       clearInterval(timer);
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       if (playerRef.current) {
         playerRef.current.stop();
       }
       Vibration.cancel();
     };
   }, []);
+
+  // Normaliza número pra WhatsApp. WhatsApp exige código de país.
+  // Heurística pragmática: se o número tem 10-11 dígitos (formato BR sem DDI),
+  // prepende 55. Caso já tenha 12-13 dígitos começando com 55, mantém.
+  // Para outros formatos (ex: usuário já salvou com DDI estrangeiro), mantém.
+  const normalizeForWhatsApp = (phone) => {
+    const clean = (phone || '').replace(/\D/g, '');
+    if (!clean) return '';
+    if (clean.startsWith('55') && clean.length >= 12) return clean;
+    if (clean.length === 10 || clean.length === 11) return `55${clean}`;
+    return clean;
+  };
+
+  // Botão "Enviar via WhatsApp também" — visível na view "sending".
+  // Manda a mesma mensagem do SMS pro primeiro contato (limitação técnica:
+  // WhatsApp não aceita múltiplos destinatários num único link).
+  const handleSendWhatsApp = async () => {
+    if (whatsappOpened || !firstContactRef.current) return;
+    // Cancela o auto-fechamento — o usuário fecha manualmente após voltar
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setWhatsappOpened(true);
+    const phone = normalizeForWhatsApp(firstContactRef.current);
+    const text = encodeURIComponent(sosMessageRef.current);
+    const nativeUrl = `whatsapp://send?phone=${phone}&text=${text}`;
+    try {
+      await Linking.openURL(nativeUrl);
+    } catch (_) {
+      // Fallback pra wa.me (abre WhatsApp Web ou app conforme o sistema)
+      try {
+        await Linking.openURL(`https://wa.me/${phone}?text=${text}`);
+      } catch (e) {
+        if (__DEV__) console.warn('Falha ao abrir WhatsApp:', e);
+        setWhatsappOpened(false);
+      }
+    }
+  };
 
   const triggerSOSAction = async () => {
     setSending(true);
@@ -135,6 +187,16 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
       await Linking.openURL(url);
 
+      // Guarda dados pro botão de WhatsApp complementar
+      sosMessageRef.current = message;
+      firstContactRef.current = unifiedContacts[0];
+
+      // Detecta disponibilidade de WhatsApp (não bloqueia o fluxo se falhar)
+      try {
+        const wa = await Linking.canOpenURL('whatsapp://send?phone=5511999999999');
+        if (wa) setCanUseWhatsApp(true);
+      } catch (_) { /* silent — WhatsApp não disponível */ }
+
       // Log de atividade — APENAS quando o SMS de SOS foi efetivamente
       // disparado (não loga se o usuário tiver cancelado o countdown).
       try {
@@ -177,9 +239,11 @@ export default function SOSCountdownScreen({ navigation, route }) {
         if (__DEV__) console.warn('Falha ao registrar log de SOS:', logErr);
       }
 
-      setTimeout(() => {
+      // Auto-fechar a view "sending" em 6s — dá tempo do usuário ver o
+      // botão de WhatsApp e decidir tocar. Cancelado se ele tocar.
+      closeTimerRef.current = setTimeout(() => {
         navigation.goBack();
-      }, 1500);
+      }, 6000);
 
     } catch (error) {
       if (__DEV__) console.error('Erro ao disparar SOS:', error);
@@ -276,6 +340,34 @@ export default function SOSCountdownScreen({ navigation, route }) {
             <Text style={s.subtitle}>
               {t('sosCountdown.confirmSend', 'Confirme o envio no app de mensagens.')}
             </Text>
+
+            {/* Botão complementar de WhatsApp — só aparece se o WhatsApp
+                estiver instalado e houver contato. Envia a mesma mensagem
+                pro primeiro contato (limitação técnica: WhatsApp não aceita
+                múltiplos destinatários). */}
+            {canUseWhatsApp && !!firstContactRef.current && (
+              <TouchableOpacity
+                style={[s.whatsappBtn, whatsappOpened && s.whatsappBtnDone]}
+                onPress={handleSendWhatsApp}
+                activeOpacity={0.85}
+                disabled={whatsappOpened}
+                accessibilityRole="button"
+                accessibilityLabel={t('sosCountdown.alsoWhatsApp', 'Enviar via WhatsApp também')}
+              >
+                <NeoIcon
+                  name={whatsappOpened ? 'TickCircle' : 'Send2'}
+                  size={20}
+                  color="#FFF"
+                  variant="Bold"
+                />
+                <Text style={s.whatsappBtnText}>
+                  {whatsappOpened
+                    ? t('sosCountdown.whatsappOpened', 'WhatsApp aberto')
+                    : t('sosCountdown.alsoWhatsApp', 'Enviar via WhatsApp também')}
+                </Text>
+              </TouchableOpacity>
+            )}
+
             <TouchableOpacity
               style={[s.cancelBtn, { backgroundColor: 'rgba(0,0,0,0.45)' }]}
               onPress={handleCancel}
@@ -418,6 +510,31 @@ const s = StyleSheet.create({
     fontSize: 17,
     fontWeight: '900',
     letterSpacing: 2,
+  },
+
+  // Botão WhatsApp complementar — verde do WhatsApp (#25D366) sobre o
+  // vermelho da tela. Contraste alto, fica claro que é uma ação secundária
+  // mas premium (não escondida). Estado "done" muda o fundo pra escuro.
+  whatsappBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#25D366',
+    paddingVertical: 16,
+    paddingHorizontal: 28,
+    borderRadius: 100,
+    width: '100%',
+    marginBottom: 14,
+    gap: 10,
+  },
+  whatsappBtnDone: {
+    backgroundColor: 'rgba(0,0,0,0.45)',
+  },
+  whatsappBtnText: {
+    color: '#FFF',
+    fontSize: 15,
+    fontWeight: '800',
+    letterSpacing: 0.3,
   },
 
   // Modal contextual de sensibilidade — tom calmo, branco/cinza,
