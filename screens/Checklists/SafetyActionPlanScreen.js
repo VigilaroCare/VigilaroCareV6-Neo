@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator, Alert, Platform } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -14,6 +14,7 @@ import SafetyReportService from '../../services/SafetyReportService';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 import AppBackground from '../../components/AppBackground';
+import NeoAlert from '../../utils/NeoAlert';
 
 
 export default function SafetyActionPlanScreen() {
@@ -113,7 +114,7 @@ export default function SafetyActionPlanScreen() {
 
         } catch (error) {
             console.error(error);
-            Alert.alert(t('actionPlan.error'), t('actionPlan.loadError'));
+            NeoAlert.alert(t('actionPlan.error'), t('actionPlan.loadError'));
         } finally {
             setLoading(false);
         }
@@ -198,10 +199,10 @@ export default function SafetyActionPlanScreen() {
                     try {
                         const profile = await ProfileService.getPerfilAtivo();
                         if (!profile) {
-                            Alert.alert(t('actionPlan.error'), t('actionPlan.noProfile'));
+                            NeoAlert.alert(t('actionPlan.error'), t('actionPlan.noProfile'));
                             return;
                         }
-                        Alert.alert(
+                        NeoAlert.alert(
                             t('actionPlan.generateReport'),
                             t('actionPlan.generatePDFConfirm'),
                             [
@@ -212,7 +213,7 @@ export default function SafetyActionPlanScreen() {
                                         try {
                                             await SafetyReportService.generatePDFReport(profile.id);
                                         } catch (err) {
-                                            Alert.alert(t('actionPlan.error'), t('actionPlan.pdfError') + err.message);
+                                            NeoAlert.alert(t('actionPlan.error'), t('actionPlan.pdfError') + err.message);
                                         }
                                     }
                                 }

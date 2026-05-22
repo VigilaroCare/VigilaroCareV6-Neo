@@ -14,8 +14,9 @@
  */
 
 import * as Speech from 'expo-speech';
-import { Alert, Vibration, Platform } from 'react-native';
+import { Vibration, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import NeoAlert from '../utils/NeoAlert';
 
 const VOICE_SETTINGS_KEY = '@vigilaro_voice_settings';
 
@@ -172,7 +173,7 @@ class VoiceAlertService {
         }
 
         // Mostrar Alert visual
-        Alert.alert(title, message, buttons, { cancelable: options.cancelable ?? true });
+        NeoAlert.alert(title, message, buttons, { cancelable: options.cancelable ?? true });
     }
 
     /**
@@ -195,7 +196,7 @@ class VoiceAlertService {
         });
 
         // Alert visual
-        Alert.alert(`🚨 ${title}`, message, buttons, { cancelable: false });
+        NeoAlert.alert(`🚨 ${title}`, message, buttons, { cancelable: false });
     }
 
     /**
@@ -205,7 +206,7 @@ class VoiceAlertService {
     confirm(message, onConfirm, onCancel = null) {
         this.speak(message, { priority: 'high' });
 
-        Alert.alert(
+        NeoAlert.alert(
             'Confirmação',
             message,
             [

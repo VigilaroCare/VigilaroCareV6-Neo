@@ -1,7 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  View, ScrollView, TouchableOpacity, StyleSheet, RefreshControl, Alert,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -21,6 +25,7 @@ import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
 import EmptyState from '../../components/EmptyState';
 import { useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function SaudePetScreen({ navigation }) {
   const { t } = useTranslation('common');
@@ -86,7 +91,7 @@ export default function SaudePetScreen({ navigation }) {
   };
 
   const handleDeleteMedication = (id) => {
-    Alert.alert('Excluir medicamento', 'Remover este medicamento da lista do pet?', [
+    NeoAlert.alert('Excluir medicamento', 'Remover este medicamento da lista do pet?', [
       { text: 'Cancelar', style: 'cancel' },
       {
         text: 'Excluir',
@@ -100,7 +105,7 @@ export default function SaudePetScreen({ navigation }) {
   };
 
   const handleDeleteEvent = (id, type) => {
-    Alert.alert('Excluir evento', 'Remover este evento da agenda do pet?', [
+    NeoAlert.alert('Excluir evento', 'Remover este evento da agenda do pet?', [
       { text: 'Cancelar', style: 'cancel' },
       {
         text: 'Excluir',

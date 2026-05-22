@@ -15,12 +15,11 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
-    Alert,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -33,6 +32,7 @@ import ProfileService from '../../services/ProfileService';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
@@ -182,7 +182,7 @@ export default function OndeProtegerScreen({ navigation }) {
 
     // FIX #6: Handler de nova residência sem import() dinâmico
     const handleAddResidence = async () => {
-        Alert.alert(
+        NeoAlert.alert(
             'Nova Residência',
             'Deseja criar e mapear um novo local?',
             [

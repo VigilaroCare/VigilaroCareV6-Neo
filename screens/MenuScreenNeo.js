@@ -1,6 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import {
-    View, ScrollView, TouchableOpacity, Alert, Linking, Image, Text, StyleSheet, Modal,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+  Image,
+  Text,
+  StyleSheet,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -24,6 +31,7 @@ import { useTranslation } from 'react-i18next';
 import * as Haptics from 'expo-haptics';
 import NeoIcon from '../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import NeoAlert from '../utils/NeoAlert';
 
 const LANGUAGES = [
     { code: 'pt-BR', flag: '🇧🇷', label: 'PT-BR', name: 'Português' },
@@ -82,7 +90,7 @@ export default function MenuScreenNeo() {
     };
 
     const handleResetApp = () => {
-        Alert.alert(
+        NeoAlert.alert(
             t('menu.resetWarningTitle'),
             t('menu.resetWarningDesc'),
             [
@@ -94,10 +102,10 @@ export default function MenuScreenNeo() {
                         try {
                             const success = await ProfileService.resetAllData();
                             if (success) {
-                                Alert.alert('Sucesso', t('menu.resetSuccess'));
+                                NeoAlert.alert('Sucesso', t('menu.resetSuccess'));
                                 navigation.reset({ index: 0, routes: [{ name: 'BoasVindas' }] });
                             } else {
-                                Alert.alert('Erro', t('menu.resetError'));
+                                NeoAlert.alert('Erro', t('menu.resetError'));
                             }
                         } catch (error) {
                             console.error('Reset error:', error);

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Alert, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -18,6 +18,7 @@ import NeoCard from '../../components/NeoCard';
 import NeoText, { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
+import NeoAlert from '../../utils/NeoAlert';
 
 const Pet = ({ size, color }) => <Heart size={size} color={color} variant="Bold" />;
 
@@ -79,7 +80,7 @@ export default function QuemProtegerScreenNeo() {
     const handleSelectProfile = async (perfilSelecionado) => {
         try {
             if (perfilSelecionado.tipo === 'pet') {
-                Alert.alert(t('profiles.petCareTitle'), t('profiles.petCareMsg'));
+                NeoAlert.alert(t('profiles.petCareTitle'), t('profiles.petCareMsg'));
                 return;
             }
             setActiveProfile(perfilSelecionado);
@@ -95,7 +96,7 @@ export default function QuemProtegerScreenNeo() {
             setActiveResidenceId(residence.id);
             await loadHomeData();
             setHouseModalVisible(false);
-            Alert.alert("Local Alterado", `Agora monitorando: ${residence.nome}`);
+            NeoAlert.alert("Local Alterado", `Agora monitorando: ${residence.nome}`);
         } catch (e) { console.error(e); }
     };
 
@@ -118,7 +119,7 @@ export default function QuemProtegerScreenNeo() {
     };
 
     const handleDeleteProfile = (p) => {
-        Alert.alert(
+        NeoAlert.alert(
             t('profiles.deleteTitle', 'Excluir perfil?'),
             t('profiles.deleteMsg', 'Tem certeza que deseja remover "{{nome}}" deste local? Esta ação não pode ser desfeita.', { nome: p.nome }),
             [
@@ -150,13 +151,13 @@ export default function QuemProtegerScreenNeo() {
 
     const handleDeleteResidence = (res) => {
         if (allResidences.length <= 1) {
-            Alert.alert(
+            NeoAlert.alert(
                 t('profiles.cannotDeleteLastTitle', 'Não é possível excluir'),
                 t('profiles.cannotDeleteLastMsg', 'Você precisa ter pelo menos um local cadastrado.'),
             );
             return;
         }
-        Alert.alert(
+        NeoAlert.alert(
             t('profiles.deleteResTitle', 'Excluir local?'),
             t('profiles.deleteResMsg', 'Tem certeza que deseja remover o local "{{nome}}"? Todos os perfis e dados desse local serão removidos.', { nome: res.nome }),
             [
@@ -414,7 +415,7 @@ export default function QuemProtegerScreenNeo() {
                 <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 24, paddingBottom: Math.max(insets.bottom + 16, 24) }}>
                     <TouchableOpacity
                         onPress={() => {
-                            if (!activeProfile) { Alert.alert(t('profiles.warning'), t('profiles.noProfileSelected')); return; }
+                            if (!activeProfile) { NeoAlert.alert(t('profiles.warning'), t('profiles.noProfileSelected')); return; }
                             navigation.navigate('MainTabs');
                         }}
                         activeOpacity={0.9}

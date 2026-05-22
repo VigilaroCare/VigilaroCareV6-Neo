@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-    View,
-    ScrollView,
-    TouchableOpacity,
-    Alert,
-    Switch,
-    Image,
-    Platform,
-    KeyboardAvoidingView,
-    TextInput
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Switch,
+  Image,
+  Platform,
+  KeyboardAvoidingView,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ProfileService from '../../services/ProfileService';
@@ -23,6 +22,7 @@ import NeoCard from '../../components/NeoCard';
 import NeoText, { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../../components/AppBackground';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function AddPerfilScreenNeo({ navigation, route }) {
     const { t } = useTranslation();
@@ -137,7 +137,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
-            Alert.alert(t('addProfile.permRequired'), t('addProfile.galleryPerm'));
+            NeoAlert.alert(t('addProfile.permRequired'), t('addProfile.galleryPerm'));
             return;
         }
         const result = await ImagePicker.launchImageLibraryAsync({
@@ -154,13 +154,13 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
     const handleSave = async () => {
         if (!nome.trim()) {
-            Alert.alert(t('addProfile.error'), t('addProfile.nameRequired'));
+            NeoAlert.alert(t('addProfile.error'), t('addProfile.nameRequired'));
             return;
         }
 
         // FIX #2: Validação de data completa e robusta antes de prosseguir
         if (!dia || !mes || !ano || ano.length < 4) {
-            Alert.alert(t('addProfile.error'), t('addProfile.dateIncomplete'));
+            NeoAlert.alert(t('addProfile.error'), t('addProfile.dateIncomplete'));
             return;
         }
         const dNum = parseInt(dia, 10);
@@ -172,12 +172,12 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
             mNum < 1 || mNum > 12 ||
             yNum < 1900 || yNum > new Date().getFullYear()
         ) {
-            Alert.alert(t('addProfile.error'), t('addProfile.dateInvalid', 'Data de nascimento inválida.'));
+            NeoAlert.alert(t('addProfile.error'), t('addProfile.dateInvalid', 'Data de nascimento inválida.'));
             return;
         }
         // FIX #1: Verifica se dataNascimento foi corretamente construído (não é null)
         if (!dataNascimento || isNaN(dataNascimento.getTime())) {
-            Alert.alert(t('addProfile.error'), t('addProfile.dateInvalid', 'Data de nascimento inválida.'));
+            NeoAlert.alert(t('addProfile.error'), t('addProfile.dateInvalid', 'Data de nascimento inválida.'));
             return;
         }
 
@@ -252,7 +252,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 await ProfileService.addPerfil(profileData, tipo);
             }
 
-            Alert.alert(
+            NeoAlert.alert(
                 t('addProfile.success'),
                 t('addProfile.profileSaved'),
                 [{ text: 'OK', onPress: () => navigation.goBack() }]
@@ -261,7 +261,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
             if (__DEV__) {
                 console.error('[AddPerfil] SAVE ERROR:', error?.message || error);
             }
-            Alert.alert(t('addProfile.error'), t('addProfile.saveFailed'));
+            NeoAlert.alert(t('addProfile.error'), t('addProfile.saveFailed'));
         }
     };
 
@@ -610,7 +610,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 setNewContactName('');
                                                 setNewContactPhone('');
                                             } else {
-                                                Alert.alert(t('addProfile.error'), t('addProfile.fillBoth'));
+                                                NeoAlert.alert(t('addProfile.error'), t('addProfile.fillBoth'));
                                             }
                                         }}
                                         style={{ backgroundColor: Neo.colors.primary[500], paddingHorizontal: 16, paddingVertical: 8, borderRadius: 8 }}

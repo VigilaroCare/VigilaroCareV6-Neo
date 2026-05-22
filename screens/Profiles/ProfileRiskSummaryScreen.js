@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    ActivityIndicator, Share, Alert, Image,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  Share,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -15,6 +21,7 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import SafetyReportService from '../../services/SafetyReportService';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 const TYPE_COLOR = {
     baby: '#EC4899', toddler: '#F59E0B', child: '#3B82F6',
@@ -139,13 +146,13 @@ export default function ProfileRiskSummaryScreen() {
             if (aiData?.quem) {
                 setAiReport(aiData);
             } else {
-                Alert.alert(
+                NeoAlert.alert(
                     t('riscSummary.aiUnavailableTitle', 'Análise indisponível'),
                     t('riskSummary.aiUnavailableDesc', 'Não foi possível gerar a análise agora. Tente novamente em instantes.')
                 );
             }
         } catch (e) {
-            Alert.alert(
+            NeoAlert.alert(
                 t('riskSummary.aiErrorTitle', 'Falha de conexão'),
                 t('riskSummary.aiErrorDesc', 'Não foi possível conectar para gerar a análise.')
             );
@@ -183,7 +190,7 @@ export default function ProfileRiskSummaryScreen() {
 
     const handleAcknowledge = (item) => {
         const responsibleName = report?.profile?.nome || t('riskSummary.responsibleFallback', 'Responsável');
-        Alert.alert(
+        NeoAlert.alert(
             t('riskSummary.ackTitle', 'Reconhecer risco'),
             t('riskSummary.ackBody', { name: responsibleName, defaultValue: `Ao confirmar, registraremos que "${responsibleName}" está ciente desta irregularidade e assume a responsabilidade. O item permanecerá visível como "Reconhecido".` }),
             [

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Share } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Share } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function ChecklistReportScreen({ route, navigation }) {
   const { t } = useTranslation();
@@ -72,7 +73,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
 
   // --- SHARE FUNCTIONALITY ---
   const handleShare = async () => {
-    Alert.alert(
+    NeoAlert.alert(
       t('checklistReport.privacyTitle'),
       t('checklistReport.privacyMsg'),
       [
@@ -119,7 +120,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
       });
 
     } catch (error) {
-      Alert.alert(t('actionPlan.error'), t('checklistReport.shareError'));
+      NeoAlert.alert(t('actionPlan.error'), t('checklistReport.shareError'));
     }
   };
   // ---------------------------

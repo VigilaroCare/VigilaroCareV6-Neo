@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, Alert } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text } from 'react-native';
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -15,6 +15,7 @@ import NeoText, { H2, H3, Body, Small, Caption } from '../components/NeoTypograp
 import TriColorBar from '../components/TriColorBar';
 
 import AppBackground from '../components/AppBackground';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation('common');
@@ -296,7 +297,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                     handleStatusSelect(item.id, 'na');
                                                                     // Smart Logic: If it's the first question and marked NA, ask if want to skip category
                                                                     if (index === 0) {
-                                                                        Alert.alert(
+                                                                        NeoAlert.alert(
                                                                             "Ambiente Não Aplicável?",
                                                                             "Deseja marcar este ambiente inteiro como não aplicável e finalizar?",
                                                                             [
@@ -344,7 +345,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                         }}
                                                         onPress={() => {
                                                             if (percentage === 100) setShowResult(true);
-                                                            else Alert.alert("Atenção", "Responda a todas as questões para concluir.");
+                                                            else NeoAlert.alert("Atenção", "Responda a todas as questões para concluir.");
                                                         }}
                                                     >
                                                         <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.finalizarProtocolo', 'Finalizar Protocolo')}</Body>

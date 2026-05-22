@@ -1,18 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Animated,
-    TextInput,
-    KeyboardAvoidingView,
-    Platform,
-    Alert,
-    Easing,
-    FlatList,
-    ActivityIndicator,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  Easing,
+  FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,6 +21,7 @@ import OpenAIService from '../services/OpenAIService';
 import VoiceService from '../services/VoiceService';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function ChatScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -124,7 +124,7 @@ export default function ChatScreen({ navigation, route }) {
                     if (text) {
                         handleSend(text);
                     } else {
-                        Alert.alert("Não entendi", "Tente falar novamente.");
+                        NeoAlert.alert("Não entendi", "Tente falar novamente.");
                         setStatus('idle');
                     }
                 } else {
@@ -138,7 +138,7 @@ export default function ChatScreen({ navigation, route }) {
                 const started = await VoiceService.startRecording();
                 if (started) setStatus('listening');
             } catch (e) {
-                Alert.alert("Erro", "Microfone indisponível");
+                NeoAlert.alert("Erro", "Microfone indisponível");
             }
         }
     };

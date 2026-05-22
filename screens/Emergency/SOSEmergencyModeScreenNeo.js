@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NetInfo from '@react-native-community/netinfo';
-import { View, ScrollView, TouchableOpacity, Alert, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { HeartAdd, CallCalling, Danger, Shield, Warning2, Personalcard, Location, TruckFast, Message } from 'iconsax-react-native';
@@ -82,6 +82,7 @@ async function generateMedicalCard(locationCoords) {
 }
 
 import AppBackground from '../../components/AppBackground';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const { t, i18n } = useTranslation('common');
@@ -163,7 +164,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
     const handleSOS = async () => {
         if (customContacts.length === 0) {
-            Alert.alert('Sem contatos', 'Adicione contatos de emergência para usar o SOS.');
+            NeoAlert.alert('Sem contatos', 'Adicione contatos de emergência para usar o SOS.');
             return;
         }
 
@@ -189,7 +190,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             setFichaTexto(ficha);
             setFichaModalVisible(true);
         } else {
-            Alert.alert('Erro', 'Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.');
+            NeoAlert.alert('Erro', 'Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.');
         }
     };
 
@@ -202,7 +203,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 // Fallback para esquema direto se a URL wa.me sem número falhar em alguns ambientes
                 const fallback = `whatsapp://send?text=${encodeURIComponent(fichaTexto)}`;
                 Linking.openURL(fallback).catch(() => {
-                    Alert.alert('WhatsApp', 'WhatsApp não instalado. Use "Copiar" para colar manualmente.');
+                    NeoAlert.alert('WhatsApp', 'WhatsApp não instalado. Use "Copiar" para colar manualmente.');
                 });
             }
         });
@@ -248,7 +249,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             } else {
                 const fallbackUrl = `https://api.whatsapp.com/send?phone=${finalPhone}&text=${encodeURIComponent(message)}`;
                 Linking.openURL(fallbackUrl).catch(() => {
-                    Alert.alert('Erro', 'WhatsApp não está instalado ou configurado.');
+                    NeoAlert.alert('Erro', 'WhatsApp não está instalado ou configurado.');
                 });
             }
         });
@@ -257,9 +258,9 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const handleCopyFicha = async () => {
         try {
             await Clipboard.setStringAsync(fichaTexto);
-            Alert.alert('Copiado', 'Ficha médica copiada. Cole em qualquer app de mensagem.');
+            NeoAlert.alert('Copiado', 'Ficha médica copiada. Cole em qualquer app de mensagem.');
         } catch (e) {
-            Alert.alert('Erro', 'Não foi possível copiar.');
+            NeoAlert.alert('Erro', 'Não foi possível copiar.');
         }
     };
 

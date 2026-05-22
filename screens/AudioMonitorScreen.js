@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Animated, Easing, AppState } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing, AppState } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,6 +9,7 @@ import { Colors, Shadows } from '../utils/Theme';
 import { useIsFocused } from '@react-navigation/native';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function AudioMonitorScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -53,7 +54,7 @@ export default function AudioMonitorScreen({ navigation }) {
         } else {
             const permission = await AudioMonitorService.requestPermissions();
             if (!permission) {
-                Alert.alert('Permissão Necessária', 'Precisamos acessar o microfone para ouvir o ambiente.');
+                NeoAlert.alert('Permissão Necessária', 'Precisamos acessar o microfone para ouvir o ambiente.');
                 return;
             }
 

@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Alert,
   Vibration,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -20,6 +19,7 @@ import GamificationService from '../../services/GamificationService';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../../utils/Theme';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoAlert from '../../utils/NeoAlert';
 
 // --- DATA CONSTANTS ---
 
@@ -148,7 +148,7 @@ export default function HomeMappingScreen({ navigation, route }) {
 
   const handleSave = async () => {
     if (!tipo) {
-      Alert.alert('Atenção', 'Selecione o tipo de moradia.');
+      NeoAlert.alert('Atenção', 'Selecione o tipo de moradia.');
       return;
     }
 
@@ -182,7 +182,7 @@ export default function HomeMappingScreen({ navigation, route }) {
       await GamificationService.addPoints('HOME_MAPPING_COMPLETE');
       await ProfileService.setOnboardingCompleto();
 
-      Alert.alert(
+      NeoAlert.alert(
         'Tudo Pronto! 🚀',
         'Seu perfil, família e casa foram configurados com sucesso.',
         [{
@@ -194,7 +194,7 @@ export default function HomeMappingScreen({ navigation, route }) {
         }]
       );
     } else {
-      Alert.alert('Sucesso', 'Configurações do lar atualizadas!', [
+      NeoAlert.alert('Sucesso', 'Configurações do lar atualizadas!', [
         {
           text: 'OK',
           onPress: () => {

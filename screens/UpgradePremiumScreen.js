@@ -8,9 +8,14 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
-  View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Alert, ActivityIndicator,
-  Dimensions, Linking,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  Dimensions,
+  Linking,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,6 +27,7 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Shadows } from '../utils/Theme';
 import SubscriptionService from '../services/SubscriptionService';
 import { useTranslation } from 'react-i18next';
+import NeoAlert from '../utils/NeoAlert';
 
 const { width } = Dimensions.get('window');
 
@@ -46,10 +52,10 @@ const openURL = async (url) => {
     if (supported) {
       await Linking.openURL(url);
     } else {
-      Alert.alert('Erro', 'Não foi possível abrir este link.');
+      NeoAlert.alert('Erro', 'Não foi possível abrir este link.');
     }
   } catch {
-    Alert.alert('Erro', 'Não foi possível abrir este link.');
+    NeoAlert.alert('Erro', 'Não foi possível abrir este link.');
   }
 };
 
@@ -165,11 +171,11 @@ export default function UpgradePremiumScreen({ navigation }) {
     try {
       const network = await NetInfo.fetch();
       if (!network.isConnected) {
-        Alert.alert(t('upgrade.offline'), t('upgrade.offlineMsg'));
+        NeoAlert.alert(t('upgrade.offline'), t('upgrade.offlineMsg'));
         return;
       }
     } catch {
-      Alert.alert(t('upgrade.error'), t('upgrade.offlineMsg'));
+      NeoAlert.alert(t('upgrade.error'), t('upgrade.offlineMsg'));
       return;
     }
 
@@ -178,7 +184,7 @@ export default function UpgradePremiumScreen({ navigation }) {
     const selectedPackage = resolvePackage(packages, selectedTier, selectedPeriod);
 
     if (!selectedPackage?.product?.priceString) {
-      Alert.alert(t('upgrade.error'), t('upgrade.invalidProduct'));
+      NeoAlert.alert(t('upgrade.error'), t('upgrade.invalidProduct'));
       return;
     }
 
@@ -187,7 +193,7 @@ export default function UpgradePremiumScreen({ navigation }) {
       const result = await SubscriptionService.purchasePackage(selectedPackage);
 
       if (result.success) {
-        Alert.alert(
+        NeoAlert.alert(
           t('upgrade.protectionActive'),
           `${t('upgrade.understood')} Vigilaro ${selectedTier === 'premium' ? t('upgrade.premium') : t('upgrade.family')}.`,
           [{
@@ -200,10 +206,10 @@ export default function UpgradePremiumScreen({ navigation }) {
           }]
         );
       } else if (!result.cancelled) {
-        Alert.alert(t('upgrade.purchaseError'), result.error || t('upgrade.purchaseErrorFallback'));
+        NeoAlert.alert(t('upgrade.purchaseError'), result.error || t('upgrade.purchaseErrorFallback'));
       }
     } catch {
-      Alert.alert(t('upgrade.error'), t('upgrade.unexpectedError'));
+      NeoAlert.alert(t('upgrade.error'), t('upgrade.unexpectedError'));
     } finally {
       setPurchasing(false);
     }
@@ -214,18 +220,18 @@ export default function UpgradePremiumScreen({ navigation }) {
     try {
       const result = await SubscriptionService.restorePurchases();
       if (result.restored) {
-        Alert.alert(t('upgrade.subscriptionRestored'), t('upgrade.restoredMsg'));
+        NeoAlert.alert(t('upgrade.subscriptionRestored'), t('upgrade.restoredMsg'));
         await loadData(); // await para evitar race condition
       } else if (result.success) {
-        Alert.alert(
+        NeoAlert.alert(
           t('upgrade.noSubscription'),
           t('upgrade.noSubscriptionMsg')
         );
       } else {
-        Alert.alert(t('upgrade.error'), result.error || t('upgrade.restoreError'));
+        NeoAlert.alert(t('upgrade.error'), result.error || t('upgrade.restoreError'));
       }
     } catch {
-      Alert.alert(t('upgrade.error'), t('upgrade.unexpectedRestore'));
+      NeoAlert.alert(t('upgrade.error'), t('upgrade.unexpectedRestore'));
     } finally {
       setLoading(false);
     }

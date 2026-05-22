@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  View, Text, StyleSheet, ScrollView, TouchableOpacity,
-  TextInput, Alert, Linking, ActivityIndicator, Platform, Animated,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+  Linking,
+  ActivityIndicator,
+  Platform,
+  Animated,
 } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,6 +25,7 @@ import EmptyState from '../../components/EmptyState';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
+import NeoAlert from '../../utils/NeoAlert';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
@@ -102,7 +111,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
       if (globalData) {
         const globalContacts = JSON.parse(globalData);
         if (globalContacts.length > 0) {
-          Alert.alert(
+          NeoAlert.alert(
             'Importar Contatos?',
             'Encontramos contatos da família. Deseja importá-los para este perfil para facilitar?',
             [
@@ -135,11 +144,11 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
   const adicionarContato = () => {
     if (!nome.trim()) {
-      Alert.alert('Erro', 'Por favor, informe o nome.');
+      NeoAlert.alert('Erro', 'Por favor, informe o nome.');
       return;
     }
     if (!telefone.trim()) {
-      Alert.alert('Erro', 'Por favor, informe o telefone.');
+      NeoAlert.alert('Erro', 'Por favor, informe o telefone.');
       return;
     }
 
@@ -173,7 +182,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
   };
 
   const excluirContato = (id) => {
-    Alert.alert(
+    NeoAlert.alert(
       'Excluir contato',
       'Tem certeza que deseja excluir este contato deste perfil?',
       [

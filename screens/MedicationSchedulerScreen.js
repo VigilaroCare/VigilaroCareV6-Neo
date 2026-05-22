@@ -1,17 +1,16 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
-    TextInput,
-    Alert,
-    Image,
-    Modal,
-    Platform,
-    ActivityIndicator
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  Modal,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
@@ -30,6 +29,7 @@ import VisionService from '../services/VisionService';
 import ProfileService from '../services/ProfileService'; // Para listar quem toma
 import DoseConfirmationModal from '../components/DoseConfirmationModal';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function MedicationSchedulerScreen({ navigation, route }) {
     const { t } = useTranslation();
@@ -118,7 +118,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
                         if (analysis) {
                             if (analysis.name) setName(analysis.name);
                             if (analysis.dosage) setDosage(analysis.dosage);
-                            Alert.alert('Leitura Inteligente', `Identificado:\n${analysis.name || ''} ${analysis.dosage || ''}`);
+                            NeoAlert.alert('Leitura Inteligente', `Identificado:\n${analysis.name || ''} ${analysis.dosage || ''}`);
                         }
                     } catch (e) {
                         console.log("Medication OCR Error", e);
@@ -128,7 +128,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
                 }
             }
         } else {
-            Alert.alert('Permissão necessária', 'Precisamos de acesso à câmera para fotografar o remédio.');
+            NeoAlert.alert('Permissão necessária', 'Precisamos de acesso à câmera para fotografar o remédio.');
         }
     };
 
@@ -144,13 +144,13 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
                 setPrescriptionPhoto(result.assets[0].uri);
             }
         } else {
-            Alert.alert('Permissão necessária', 'Precisamos de acesso à câmera para fotografar a receita.');
+            NeoAlert.alert('Permissão necessária', 'Precisamos de acesso à câmera para fotografar a receita.');
         }
     };
 
     const handleSave = async () => {
         if (!name || !dosage || !selectedProfile) {
-            Alert.alert('Preencha tudo', 'Nome, dosagem e perfil são obrigatórios.');
+            NeoAlert.alert('Preencha tudo', 'Nome, dosagem e perfil são obrigatórios.');
             return;
         }
 
@@ -179,17 +179,17 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
 
             if (editingId) {
                 await MedicationService.updateMedication(medData);
-                Alert.alert('Atualizado', 'Informações do medicamento corrigidas.');
+                NeoAlert.alert('Atualizado', 'Informações do medicamento corrigidas.');
             } else {
                 await MedicationService.addMedication(medData);
-                Alert.alert('Sucesso', 'Medicamento agendado com alertas de 15min e 5min.');
+                NeoAlert.alert('Sucesso', 'Medicamento agendado com alertas de 15min e 5min.');
             }
 
             setModalVisible(false);
             resetForm();
             loadData();
         } catch (error) {
-            Alert.alert('Erro', 'Não foi possível salvar.');
+            NeoAlert.alert('Erro', 'Não foi possível salvar.');
         }
     };
 
@@ -223,7 +223,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
         if (!doseConfirmMed) return;
         try {
             await MedicationService.markAsTaken(doseConfirmMed.id);
-            Alert.alert(
+            NeoAlert.alert(
                 t('doseConfirm.successTitle', 'Registrado!'),
                 t('doseConfirm.successOnTime', 'Dose confirmada no horário. Próxima dose agendada.')
             );
@@ -242,7 +242,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
                 delayMinutes,
                 nextDoseDate
             );
-            Alert.alert(
+            NeoAlert.alert(
                 t('doseConfirm.successTitle', 'Registrado!'),
                 t('doseConfirm.successDelay', 'Dose registrada com atraso. Próxima dose recalculada.')
             );
@@ -253,7 +253,7 @@ export default function MedicationSchedulerScreen({ navigation, route }) {
     };
 
     const handleDelete = async (medId) => {
-        Alert.alert('Excluir?', 'Isso cancelará todos os lembretes deste remédio.', [
+        NeoAlert.alert('Excluir?', 'Isso cancelará todos os lembretes deste remédio.', [
             { text: 'Cancelar', style: 'cancel' },
             {
                 text: 'Excluir', style: 'destructive', onPress: async () => {

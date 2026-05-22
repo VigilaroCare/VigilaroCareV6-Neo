@@ -6,7 +6,6 @@ import {
   FlatList,
   TouchableOpacity,
   Vibration,
-  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -21,6 +20,7 @@ import { areasInternas } from '../../data/areas_internas';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 // Mapeamento de IDs de ambiente para IDs de áreas internas
 const AMBIENTE_TO_AREA = {
@@ -108,7 +108,7 @@ export default function AreasInternasScreen({ navigation, route }) {
       setChecklistState(status || {});
     } catch (error) {
       if (__DEV__) console.error('[AreasInternas] Erro ao carregar checklist:', error);
-      Alert.alert('Erro', 'Falha ao carregar checklist. Tente novamente.');
+      NeoAlert.alert('Erro', 'Falha ao carregar checklist. Tente novamente.');
     } finally {
       setIsLoading(false);
     }
@@ -146,7 +146,7 @@ export default function AreasInternasScreen({ navigation, route }) {
 
   const handleSetStatus = async (areaId, itemText, status) => {
     if (!activeResidenceId) {
-      Alert.alert('Erro', 'Residência não selecionada');
+      NeoAlert.alert('Erro', 'Residência não selecionada');
       return;
     }
 
@@ -174,7 +174,7 @@ export default function AreasInternasScreen({ navigation, route }) {
       );
     } catch (error) {
       if (__DEV__) console.error('[AreasInternas] Erro ao salvar status:', error);
-      Alert.alert('Erro', 'Falha ao salvar resposta. Tente novamente.');
+      NeoAlert.alert('Erro', 'Falha ao salvar resposta. Tente novamente.');
     }
   };
 

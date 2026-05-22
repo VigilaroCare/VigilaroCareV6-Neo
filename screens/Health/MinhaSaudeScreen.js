@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet, RefreshControl, Text, Alert } from 'react-native';
+import { View, ScrollView, TouchableOpacity, StyleSheet, RefreshControl, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
@@ -22,6 +22,7 @@ import DossierComponent from '../../components/DossierComponent';
 import AppBackground from '../../components/AppBackground';
 import EmptyState from '../../components/EmptyState';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function MinhaSaudeScreen({ navigation }) {
     const isDark = useIsDark();
@@ -118,7 +119,7 @@ export default function MinhaSaudeScreen({ navigation }) {
     };
 
     const handleDeleteMedication = (id) => {
-        Alert.alert(t('health.deleteMedTitle'), t('health.deleteMedDesc'), [
+        NeoAlert.alert(t('health.deleteMedTitle'), t('health.deleteMedDesc'), [
             { text: t('health.cancel'), style: 'cancel' },
             {
                 text: t('health.delete'), style: 'destructive', onPress: async () => {
@@ -130,7 +131,7 @@ export default function MinhaSaudeScreen({ navigation }) {
     };
 
     const handleDeleteEvent = (id, type) => {
-        Alert.alert(t('health.deleteEventTitle'), t('health.deleteEventDesc'), [
+        NeoAlert.alert(t('health.deleteEventTitle'), t('health.deleteEventDesc'), [
             { text: t('health.cancel'), style: 'cancel' },
             {
                 text: t('health.delete'), style: 'destructive', onPress: async () => {

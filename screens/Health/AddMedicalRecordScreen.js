@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  View, ScrollView, TouchableOpacity, StyleSheet, TextInput,
-  Platform, Alert, ActivityIndicator,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -21,6 +26,7 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function AddMedicalRecordScreen({ route, navigation }) {
   const { t } = useTranslation('common');
@@ -57,7 +63,7 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
     try {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permissão negada', 'Precisamos da câmera para ler a carteirinha.');
+        NeoAlert.alert('Permissão negada', 'Precisamos da câmera para ler a carteirinha.');
         return;
       }
 
@@ -79,14 +85,14 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
           if (vaccinesExtracted[0].date && !isNaN(new Date(vaccinesExtracted[0].date))) {
             setDate(new Date(vaccinesExtracted[0].date));
           }
-          Alert.alert('Sucesso', `${vaccinesExtracted.length} dose(s) encontrada(s). Confira antes de salvar.`);
+          NeoAlert.alert('Sucesso', `${vaccinesExtracted.length} dose(s) encontrada(s). Confira antes de salvar.`);
         } else {
-          Alert.alert('Atenção', 'Não foi possível ler as vacinas. Tente uma foto melhor iluminada.');
+          NeoAlert.alert('Atenção', 'Não foi possível ler as vacinas. Tente uma foto melhor iluminada.');
         }
       }
     } catch (e) {
       if (__DEV__) console.error('Scan Error:', e);
-      Alert.alert('Erro', 'Não foi possível processar a imagem.');
+      NeoAlert.alert('Erro', 'Não foi possível processar a imagem.');
     } finally {
       setIsScanning(false);
     }
@@ -95,7 +101,7 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
   const handleSave = async () => {
     try {
       if (!description.trim()) {
-        Alert.alert('Atenção', 'Por favor, descreva o registro médico.');
+        NeoAlert.alert('Atenção', 'Por favor, descreva o registro médico.');
         return;
       }
 
@@ -111,7 +117,7 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
       navigation.goBack();
     } catch (e) {
       if (__DEV__) console.error('Error saving medical record:', e);
-      Alert.alert('Erro', 'Não foi possível salvar o registro.');
+      NeoAlert.alert('Erro', 'Não foi possível salvar o registro.');
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, TouchableOpacity, Alert, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Building, Map1, SearchNormal, Warning2, ArrowLeft, ArrowRight, Add, ArrowRight2, StatusUp, SearchZoomIn, DocumentDownload, TickCircle, Sun1, Activity, CloseCircle, GlobalSearch, Call, User, AirplaneSquare, CalendarEdit, Clock, LocationTick, Discover, ShieldTick, Car, Airplane, Tree, Health, Teacher, Routing, ArrowDown2, ArrowUp2 } from 'iconsax-react-native';
@@ -12,6 +12,7 @@ import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 const TRIP_TYPES = [
     { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: Tree, color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_en: 'Aislamiento, animales, ríos.' },
@@ -54,7 +55,7 @@ export default function TravelModeScreen({ navigation }) {
     };
 
     const startTrip = async () => {
-        if (!tripType) return Alert.alert('Selecione o destino');
+        if (!tripType) return NeoAlert.alert('Selecione o destino');
 
         const newTrip = {
             id: Date.now().toString(),
@@ -74,7 +75,7 @@ export default function TravelModeScreen({ navigation }) {
     };
 
     const endTrip = async () => {
-        Alert.alert(
+        NeoAlert.alert(
             'Encerrar Viagem?',
             'Isso desativará o Modo Viagem.',
             [

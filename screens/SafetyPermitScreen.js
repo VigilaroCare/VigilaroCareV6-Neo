@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { Colors, Shadows } from '../utils/Theme';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoAlert from '../utils/NeoAlert';
 
 // --- DATA: SAFETY PROTOCOLS (FULL DATABASE) ---
 const PROTOCOLS = {
@@ -117,7 +118,7 @@ export default function SafetyPermitScreen({ route, navigation }) {
             // Logica complexa de dependencia? Vamos simplificar: Valida TUDO.
 
             if (ans === undefined) {
-                Alert.alert("Atenção", "Responda todas as perguntas para garantir sua segurança.");
+                NeoAlert.alert("Atenção", "Responda todas as perguntas para garantir sua segurança.");
                 return;
             }
             if (q.stopIf && ans === q.stopIf) {

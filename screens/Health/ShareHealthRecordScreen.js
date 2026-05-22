@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Share, Alert, Platform, Text } from 'react-native';
+import { View, ScrollView, TouchableOpacity, StyleSheet, Share, Platform, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
@@ -15,6 +15,7 @@ import { useProfiles } from '../../contexts/ProfileContext';
 import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function ShareHealthRecordScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -55,7 +56,7 @@ export default function ShareHealthRecordScreen({ navigation }) {
     const handleShare = async () => {
         try {
             if (!primaryProfile) {
-                Alert.alert('Erro', 'Perfil não encontrado');
+                NeoAlert.alert('Erro', 'Perfil não encontrado');
                 return;
             }
 
@@ -67,7 +68,7 @@ export default function ShareHealthRecordScreen({ navigation }) {
             });
         } catch (e) {
             console.error('Error sharing:', e);
-            Alert.alert('Erro', 'Não foi possível compartilhar a ficha médica');
+            NeoAlert.alert('Erro', 'Não foi possível compartilhar a ficha médica');
         }
     };
 
@@ -77,10 +78,10 @@ export default function ShareHealthRecordScreen({ navigation }) {
 
             const report = await HealthService.generateHealthReport(primaryProfile.id, options);
             await Clipboard.setStringAsync(report);
-            Alert.alert('Copiado!', 'Ficha médica copiada para a área de transferência');
+            NeoAlert.alert('Copiado!', 'Ficha médica copiada para a área de transferência');
         } catch (e) {
             console.error('Error copying:', e);
-            Alert.alert('Erro', 'Não foi possível copiar o texto.');
+            NeoAlert.alert('Erro', 'Não foi possível copiar o texto.');
         }
     };
 

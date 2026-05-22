@@ -1,11 +1,12 @@
 ﻿import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { buscarProduto, NIVEIS_PERIGO } from '../data/produtos_scanner';
 import { getTelefoneCiatox } from '../data/telefones_ciatox';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function ProdutoScannerScreen({ route, navigation }) {
     const { t } = useTranslation('common');
@@ -15,7 +16,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
   const telefoneCiatox = getTelefoneCiatox('PR');
 
   const callCIATOX = () => {
-    Alert.alert(
+    NeoAlert.alert(
       '📞 Ligar para CIATOX',
       `${telefoneCiatox}\n\nDeseja ligar para o Centro de Intoxicação?`,
       [

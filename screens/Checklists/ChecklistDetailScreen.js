@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Alert,
   Platform,
   Modal,
 } from 'react-native';
@@ -26,6 +25,7 @@ import AppBg from '../../components/AppBackground';
 import TriColorBar from '../../components/TriColorBar';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
+import NeoAlert from '../../utils/NeoAlert';
 
 const ChecklistDetailScreen = ({ route, navigation }) => {
   const { roomId, roomName, roomIcon, roomColor, categoryFilter, sequentialRooms, currentRoomIndex, fullChecklist } = route.params || {};
@@ -82,7 +82,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   const loadChecklistItems = async () => {
     try {
       if (!roomId) {
-        Alert.alert('Erro', t('checklists.roomNotFound'));
+        NeoAlert.alert('Erro', t('checklists.roomNotFound'));
         navigation.goBack();
         return;
       }
@@ -275,7 +275,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   };
 
   const mapAllToNA = async () => {
-    Alert.alert(
+    NeoAlert.alert(
       t('checklists.naAlertTitle'),
       t('checklists.naAlertDesc'),
       [

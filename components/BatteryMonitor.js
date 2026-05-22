@@ -4,8 +4,9 @@
  * Utiliza expo-battery para leitura do estado atual
  */
 import { useEffect, useRef } from 'react';
-import { Alert, AppState, Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import * as Battery from 'expo-battery';
+import NeoAlert from '../utils/NeoAlert';
 
 const BATTERY_LOW_THRESHOLD = 0.20;    // 20%
 const BATTERY_CRITICAL_THRESHOLD = 0.10; // 10%
@@ -49,7 +50,7 @@ export default function BatteryMonitor() {
 
             if (level <= BATTERY_CRITICAL_THRESHOLD && lastAlertLevel.current !== 'critical') {
                 lastAlertLevel.current = 'critical';
-                Alert.alert(
+                NeoAlert.alert(
                     '🔴 Bateria Crítica',
                     `Sua bateria está em ${Math.round(level * 100)}%. ` +
                     'Em caso de emergência, você pode não conseguir usar o telefone. ' +
@@ -59,7 +60,7 @@ export default function BatteryMonitor() {
                 );
             } else if (level <= BATTERY_LOW_THRESHOLD && level > BATTERY_CRITICAL_THRESHOLD && lastAlertLevel.current !== 'low') {
                 lastAlertLevel.current = 'low';
-                Alert.alert(
+                NeoAlert.alert(
                     '🟡 Bateria Baixa',
                     `Sua bateria está em ${Math.round(level * 100)}%. ` +
                     'Recomendamos carregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro.',

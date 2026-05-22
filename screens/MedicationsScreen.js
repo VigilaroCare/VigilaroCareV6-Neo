@@ -1,18 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TextInput,
-    Modal,
-    Alert,
-    StatusBar,
-    SectionList,
-    Switch,
-    ScrollView,
-    Image
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  Modal,
+  StatusBar,
+  SectionList,
+  Switch,
+  ScrollView,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
@@ -30,6 +29,7 @@ import GamificationService from '../services/GamificationService';
 import NotificationService from '../services/NotificationService';
 import { useProfiles } from '../contexts/ProfileContext';
 import { useTranslation } from 'react-i18next';
+import NeoAlert from '../utils/NeoAlert';
 
 // PERIODS are now defined inside the component to access t()
 
@@ -111,12 +111,12 @@ export default function MedicationsScreen({ navigation }) {
 
     const saveMedication = async () => {
         if (!name.trim() || !time.trim()) {
-            Alert.alert(t('medications.errorNameTime'));
+            NeoAlert.alert(t('medications.errorNameTime'));
             return;
         }
 
         if (!selectedProfileId) {
-            Alert.alert(t('medications.errorSelectProfile'));
+            NeoAlert.alert(t('medications.errorSelectProfile'));
             return;
         }
 
@@ -211,7 +211,7 @@ export default function MedicationsScreen({ navigation }) {
         if (isTaking && med.stock !== null && med.stock > 0) {
             newStock = med.stock - 1;
             if (newStock <= med.lowStockThreshold) {
-                Alert.alert(t('medications.lowStockTitle'), t('medications.lowStock', { count: newStock, name: med.name }));
+                NeoAlert.alert(t('medications.lowStockTitle'), t('medications.lowStock', { count: newStock, name: med.name }));
             }
         } else if (!isTaking && med.stock !== null) {
             newStock = med.stock + 1; // Undo
@@ -250,7 +250,7 @@ export default function MedicationsScreen({ navigation }) {
     };
 
     const deleteMedication = async (id) => {
-        Alert.alert(
+        NeoAlert.alert(
             t('medications.disposalTitle'), 
             t('medications.disposalAlertMsg'), 
             [

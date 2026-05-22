@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows, Components } from '../../utils/Theme';
 import ProfileService from '../../services/ProfileService';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoAlert from '../../utils/NeoAlert';
 
 // Componente Stepper Individual
 const CounterRow = ({ label, icon, sub, value, onChange }) => (
@@ -89,7 +90,7 @@ export default function FamilyCompositionScreen({ navigation, route }) {
 
     const handleSave = async () => {
         if (totalPessoas === 0) {
-            Alert.alert("Atenção", "Selecione pelo menos um morador.");
+            NeoAlert.alert("Atenção", "Selecione pelo menos um morador.");
             return;
         }
 
@@ -116,7 +117,7 @@ export default function FamilyCompositionScreen({ navigation, route }) {
             await ProfileService.ensureGhostProfiles(meta);
 
             if (isEditing) {
-                Alert.alert("Sucesso", "Composição familiar atualizada!", [
+                NeoAlert.alert("Sucesso", "Composição familiar atualizada!", [
                     { text: "OK", onPress: () => navigation.goBack() }
                 ]);
             } else {
@@ -127,7 +128,7 @@ export default function FamilyCompositionScreen({ navigation, route }) {
 
         } catch (error) {
             console.error(error);
-            Alert.alert("Erro", "Não foi possível salvar os dados.");
+            NeoAlert.alert("Erro", "Não foi possível salvar os dados.");
         }
     };
 

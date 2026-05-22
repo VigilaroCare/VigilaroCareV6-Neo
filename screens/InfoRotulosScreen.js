@@ -13,8 +13,14 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    TextInput, Linking, ActivityIndicator, Alert,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+  Linking,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -35,6 +41,7 @@ import { buscarProdutoPorNome } from '../data/produtos_scanner';
 import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
 import { getHistory, addToHistory } from '../services/inforotulos_cache';
 import { getSubstanceByName } from '../services/InfoRotulosSubstanceService';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
@@ -98,14 +105,14 @@ export default function InfoRotulosScreen() {
                     substance: data, source: 'pubchem', searchQuery: searchQuery.trim(),
                 });
             } else {
-                Alert.alert(
+                NeoAlert.alert(
                     t('inforotulos.notFoundTitle', 'Substância não encontrada'),
                     t('inforotulos.notFoundDesc', { query: searchQuery, defaultValue: `"${searchQuery}" não foi encontrada nas bases de dados.` }),
                     [{ text: 'OK' }]
                 );
             }
         } catch {
-            Alert.alert(
+            NeoAlert.alert(
                 t('inforotulos.errorTitle', 'Erro'),
                 t('inforotulos.errorDesc', 'Falha na busca. Verifique sua conexão.')
             );

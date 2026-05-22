@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
@@ -14,6 +14,7 @@ import NeoCard from '../components/NeoCard';
 import { H1, H2, H3, Body, Small } from '../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedLogo } from '../utils/getLocalizedLogo';
+import NeoAlert from '../utils/NeoAlert';
 
 export default function SobreScreen({ navigation }) {
   const { t } = useTranslation();
@@ -121,7 +122,7 @@ export default function SobreScreen({ navigation }) {
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {
-                Alert.alert(
+                NeoAlert.alert(
                   t('about.resetTitle'),
                   t('about.resetMsg'),
                   [

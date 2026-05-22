@@ -5,8 +5,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
-  Animated, Vibration, Linking, Alert, Platform, Modal,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Vibration,
+  Linking,
+  Platform,
+  Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -20,6 +27,7 @@ import NeoIcon from '../../components/NeoIcon';
 import ProfileService from '../../services/ProfileService';
 import ActivityLogService from '../../services/ActivityLogService';
 import { useAccessibility } from '../../context/AccessibilityContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function SOSCountdownScreen({ navigation, route }) {
   const { t } = useTranslation();
@@ -170,7 +178,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
       if (unifiedContacts.length === 0) {
         setSending(false);
-        Alert.alert(t('sosCountdown.noContactsTitle'), t('sosCountdown.noContacts'));
+        NeoAlert.alert(t('sosCountdown.noContactsTitle'), t('sosCountdown.noContacts'));
         navigation.goBack();
         return;
       }
@@ -247,7 +255,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
     } catch (error) {
       if (__DEV__) console.error('Erro ao disparar SOS:', error);
-      Alert.alert(t('sosCountdown.sosErrorTitle'), t('sosCountdown.sosError'));
+      NeoAlert.alert(t('sosCountdown.sosErrorTitle'), t('sosCountdown.sosError'));
       navigation.goBack();
     }
   };

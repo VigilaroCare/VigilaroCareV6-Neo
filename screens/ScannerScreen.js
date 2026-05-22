@@ -7,10 +7,9 @@ import {
   Dimensions,
   Image,
   Animated,
-  Alert,
   Easing,
   ScrollView,
-  Vibration
+  Vibration,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from '@react-navigation/native';
@@ -25,6 +24,7 @@ import { resolveBarcode } from '../services/InfoRotulosSubstanceService';
 import { Config } from '../utils/Config';
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../components/AppBackground';
+import NeoAlert from '../utils/NeoAlert';
 
 
 const { width, height } = Dimensions.get('window');
@@ -175,7 +175,7 @@ export default function ScannerScreen({ navigation, route }) {
         setIsAnalyzing(true);
         analyzePhoto(photoData.uri);
       } catch (error) {
-        Alert.alert("Erro", "Não foi possível capturar a foto.");
+        NeoAlert.alert("Erro", "Não foi possível capturar a foto.");
         console.error(error);
       }
     }
@@ -194,7 +194,7 @@ export default function ScannerScreen({ navigation, route }) {
         if (__DEV__) console.log('[Scanner] ✅ Proxy online:', proxyCheck.status);
       } catch (proxyErr) {
         if (__DEV__) console.error('[Scanner] ❌ Proxy offline:', proxyErr.message);
-        Alert.alert(
+        NeoAlert.alert(
           '⚠️ Servidor indisponível',
           'O servidor de análise (proxy) não está acessível.\n\n' +
           'Verifique se o backend proxy está rodando:\n' +
@@ -241,14 +241,14 @@ export default function ScannerScreen({ navigation, route }) {
 
       // Mensagem específica por tipo de erro
       if (error.name === 'AbortError') {
-        Alert.alert(
+        NeoAlert.alert(
           '⏱️ Tempo esgotado',
           'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes',
         );
       } else if (error.message?.includes('Network') || error.message?.includes('fetch')) {
-        Alert.alert('📡 Sem conexão', 'Verifique sua conexão com a internet e tente novamente.');
+        NeoAlert.alert('📡 Sem conexão', 'Verifique sua conexão com a internet e tente novamente.');
       } else {
-        Alert.alert('Erro', 'Falha na análise. Tente novamente.');
+        NeoAlert.alert('Erro', 'Falha na análise. Tente novamente.');
       }
       setAnalysisResult(null);
     } finally {
@@ -282,7 +282,7 @@ export default function ScannerScreen({ navigation, route }) {
     if (data.startsWith('http') || data.startsWith('www') || data.includes('://')) {
       if (__DEV__) console.log('[Scanner] ⏭️ URL detectada, mudando para foto do rótulo');
       setCurrentMode('label_scan');
-      Alert.alert('📷 Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
+      NeoAlert.alert('📷 Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
       setTimeout(() => setIsAnalyzing(false), 500);
       return;
     }
@@ -312,7 +312,7 @@ export default function ScannerScreen({ navigation, route }) {
           setCurrentMode('label_scan');
 
           // Alerta breve informativo — atribui causa ao fabricante, não ao app
-          Alert.alert(
+          NeoAlert.alert(
             '📷 Fotografe o rótulo',
             `O fabricante deste produto ainda não o cadastrou nas bases de dados públicas mundiais (código ${data}).\n\nMas não se preocupe — fotografe o rótulo e nossa IA analisará os ingredientes e riscos em segundos.`,
             [{ text: 'Entendi' }],
@@ -320,7 +320,7 @@ export default function ScannerScreen({ navigation, route }) {
       }
     } catch (e) {
       console.warn('Erro ao ler código de barras:', e);
-      Alert.alert('Erro', 'Falha ao buscar dados do produto. Tente novamente.');
+      NeoAlert.alert('Erro', 'Falha ao buscar dados do produto. Tente novamente.');
     } finally {
       setTimeout(() => setIsAnalyzing(false), 2000);
     }

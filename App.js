@@ -240,6 +240,7 @@ import AchievementToast       from "./components/AchievementToast";
 import ProfileService         from "./services/ProfileService";
 import GlobalFloatingFooter   from "./components/GlobalFloatingFooter";
 import BatteryMonitor         from "./components/BatteryMonitor";
+import NeoAlertHost           from "./components/NeoAlertHost";
 import * as NavigationService from "./services/NavigationService";
 import FallDetectionService   from "./services/FallDetectionService";
 import VitalCheckService      from "./services/VitalCheckService";
@@ -498,7 +499,7 @@ export default function App() {
 
                 <OfflineModeModal />
                 <TermsModal />
-                <LeftHandedSuggestionModal 
+                <LeftHandedSuggestionModal
                   visible={suggestionModalVisible}
                   onDismiss={() => setSuggestionModalVisible(false)}
                 />
@@ -507,6 +508,12 @@ export default function App() {
                   data={toastData}
                   onHide={() => setToastVisible(false)}
                 />
+
+                {/* NeoAlertHost — substitui Alert.alert nativo do Android
+                    por modal premium em todo o app. Drop-in via NeoAlert
+                    de utils/NeoAlert.js. Precisa estar dentro do
+                    ThemeProvider pra dark mode funcionar. */}
+                <NeoAlertHost />
 
                 <NavigationContainer
                   ref={NavigationService.navigationRef}

@@ -12,15 +12,21 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  Modal, View, StyleSheet, ScrollView,
-  TouchableOpacity, BackHandler, Alert,
-  useWindowDimensions, Platform,
+  Modal,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  BackHandler,
+  useWindowDimensions,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoText, { H3, Body, Small } from './NeoTypography';
+import NeoAlert from '../utils/NeoAlert';
 
 const DISCLAIMER_KEY = '@medical_disclaimer_accepted';
 const DISCLAIMER_VERSION = '1.0.0';
@@ -98,7 +104,7 @@ export default function MedicalDisclaimerModal({ onAccept, onDismiss }) {
         console.warn('[MedicalDisclaimerModal] handleAccept: erro ao salvar aceite:', e?.message);
       }
       // Informa o usuário — aceite não foi persistido
-      Alert.alert(
+      NeoAlert.alert(
         'Erro ao salvar',
         'Não foi possível registrar seu aceite. Verifique o armazenamento do dispositivo e tente novamente.',
         [{ text: 'OK' }]

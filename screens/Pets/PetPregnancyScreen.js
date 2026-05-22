@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
-    TextInput,
-    Alert,
-    ActivityIndicator,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -19,6 +18,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { useTranslation } from 'react-i18next';
 import { useIsDark } from '../../utils/ThemeContext';
+import NeoAlert from '../../utils/NeoAlert';
 
 export default function PetPregnancyScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -87,7 +87,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
 
     const handleSave = async () => {
         if (!matingDate || !dueDate) {
-            Alert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorMatingDate'));
+            NeoAlert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorMatingDate'));
             return;
         }
 
@@ -102,13 +102,13 @@ export default function PetPregnancyScreen({ navigation, route }) {
 
         if (await updatePetInStorage(updatedPet)) {
             setIsPregnant(true);
-            Alert.alert(t('petPregnancyTracker.successTitle'), t('petPregnancyTracker.successPregnancy'));
+            NeoAlert.alert(t('petPregnancyTracker.successTitle'), t('petPregnancyTracker.successPregnancy'));
         }
     };
 
     const handleBirth = async () => {
         if (!litterSize) {
-            Alert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorLitterCount'));
+            NeoAlert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorLitterCount'));
             return;
         }
 
@@ -127,7 +127,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
             setMatingDate('');
             setDueDate(null);
             setLitterSize('');
-            Alert.alert(t('petPregnancyTracker.congratsTitle'), t('petPregnancyTracker.congratsBirth', { count: litterSize }));
+            NeoAlert.alert(t('petPregnancyTracker.congratsTitle'), t('petPregnancyTracker.congratsBirth', { count: litterSize }));
             navigation.goBack();
         }
     };
@@ -141,7 +141,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
             return true;
         } catch (e) {
             console.error("Error updating pet:", e);
-            Alert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorSave'));
+            NeoAlert.alert(t('petPregnancyTracker.errorTitle'), t('petPregnancyTracker.errorSave'));
             return false;
         }
     };

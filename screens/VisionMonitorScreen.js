@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Animated, Easing, Dimensions, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing, Dimensions, StatusBar } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
@@ -8,6 +8,7 @@ import { Colors } from '../utils/Theme';
 import * as Speech from 'expo-speech';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoAlert from '../utils/NeoAlert';
 
 const { width, height } = Dimensions.get('window');
 
@@ -98,7 +99,7 @@ export default function VisionMonitorScreen({ navigation }) {
         if (!permission.granted) {
             const result = await requestPermission();
             if (!result.granted) {
-                Alert.alert("Permissão Negada", "Precisamos da câmera para vigiar o ambiente.");
+                NeoAlert.alert("Permissão Negada", "Precisamos da câmera para vigiar o ambiente.");
                 return;
             }
         }

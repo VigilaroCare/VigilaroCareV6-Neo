@@ -8,7 +8,7 @@
  */
 import React, { useState, useCallback, useRef } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, TouchableOpacity, Alert, Animated } from 'react-native';
+import { View, TouchableOpacity, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -24,6 +24,7 @@ import HumanFormStep from './NewHomeWizard/HumanFormStep';
 import PetFormStep from './NewHomeWizard/PetFormStep';
 import OndeStep from './NewHomeWizard/OndeStep';
 import { ss } from './NewHomeWizard/styles';
+import NeoAlert from '../utils/NeoAlert';
 
 const C = DS.colors;
 
@@ -80,7 +81,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const pickPhoto = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
-            return Alert.alert('Permissão Necessária', 'Precisamos de acesso à galeria pra escolher a foto.');
+            return NeoAlert.alert('Permissão Necessária', 'Precisamos de acesso à galeria pra escolher a foto.');
         }
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
@@ -95,7 +96,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // === PROFILE CRUD ===
     const saveHumanProfile = async () => {
-        if (!formName.trim()) return Alert.alert('Atenção', 'Informe o nome.');
+        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Informe o nome.');
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'profile');
         const perfil = await ProfileService.addPerfil({
@@ -115,7 +116,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const savePetProfile = async () => {
-        if (!formName.trim()) return Alert.alert('Atenção', 'Informe o nome do pet.');
+        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Informe o nome do pet.');
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'pet');
         const p = getDefaultProfile('pet');
@@ -142,7 +143,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const removeProfile = async (id) => {
-        Alert.alert('Apagar?', 'Este perfil sai do mapeamento.', [
+        NeoAlert.alert('Apagar?', 'Este perfil sai do mapeamento.', [
             { text: 'Cancelar', style: 'cancel' },
             { text: 'Apagar', style: 'destructive', onPress: async () => {
                 await ProfileService.removePerfil(id);
@@ -164,7 +165,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const handleNext = () => {
         if (phase === 0 && subView !== 'list') return;
         if (phase === 0) {
-            if (profiles.length === 0) return Alert.alert('Atenção', 'Adicione ao menos 1 morador.');
+            if (profiles.length === 0) return NeoAlert.alert('Atenção', 'Adicione ao menos 1 morador.');
             animateTo(1, 'list');
         } else {
             finishWizard();
@@ -193,11 +194,11 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             const humans = profiles.filter(p => p.tipo !== 'pet' && !p.pendente);
             if (humans.length > 0) await ProfileService.setActivePerfil(humans[0].id);
             await ProfileService.setOnboardingCompleto();
-            Alert.alert('Pronto!', 'Sua matriz de proteção está ativa.', [
+            NeoAlert.alert('Pronto!', 'Sua matriz de proteção está ativa.', [
                 { text: 'Acessar Cockpit', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
             ]);
         } catch (e) {
-            Alert.alert('Erro', 'Não deu pra salvar.');
+            NeoAlert.alert('Erro', 'Não deu pra salvar.');
         }
     };
 
