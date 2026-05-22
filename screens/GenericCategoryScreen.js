@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { ArrowLeft, InfoCircle } from 'iconsax-react-native'; // Standard
@@ -59,7 +60,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
     return (
         <AppBackground>
         <View style={[styles.container, { backgroundColor: 'transparent' }]}>
-            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor="transparent" />
+            <StatusBar style={isDark ? 'light' : 'dark'} backgroundColor="transparent" />
 
             {/* Header Neo Glass - Tactical Calm */}
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>

@@ -5,11 +5,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  StatusBar,
   Alert,
   Platform,
   Modal,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ArrowLeft2, ArrowRight2, TickCircle, CloseSquare } from 'iconsax-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -334,7 +334,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   if (loading) {
     return (
       <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-        <StatusBar barStyle="light-content" backgroundColor={roomColor || '#8B5CF6'} />
+        <StatusBar style="light" backgroundColor={roomColor || '#8B5CF6'} />
         <View style={styles.loadingContainer}>
           <Text style={styles.loadingText}>{t('checklists.loading')}</Text>
         </View>
@@ -345,7 +345,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   return (
     <AppBg variant="subtle">
       <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top', 'bottom', 'left', 'right']}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar style="dark" />
 
         {/* Modern Neo Header */}
         <View style={styles.header}>

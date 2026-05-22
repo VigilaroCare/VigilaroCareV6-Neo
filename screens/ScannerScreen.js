@@ -7,12 +7,12 @@ import {
   Dimensions,
   Image,
   Animated,
-  StatusBar,
   Alert,
   Easing,
   ScrollView,
   Vibration
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from '@react-navigation/native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
@@ -36,7 +36,7 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
   return (
   <AppBackground>
     <View style={styles.introContainer}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       <View style={styles.introHeader}>
         <TouchableOpacity onPress={onClose} style={styles.closeButton}>
           <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[800]} />
@@ -492,7 +492,7 @@ export default function ScannerScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+      <StatusBar style="light" backgroundColor="transparent" translucent />
       {photo ? renderAnalysis() : renderCamera()}
     </View>
   );

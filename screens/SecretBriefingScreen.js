@@ -6,7 +6,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Vibration, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Vibration } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,7 +40,7 @@ export default function SecretBriefingScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#111" />
+            <StatusBar style="light" backgroundColor="#111" />
 
             <LinearGradient
                 colors={['#1F2937', '#111827']}

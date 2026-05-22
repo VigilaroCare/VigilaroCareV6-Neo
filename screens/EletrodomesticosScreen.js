@@ -6,12 +6,12 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    StatusBar,
     Animated,
     LayoutAnimation,
     Platform,
     UIManager
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
@@ -159,7 +159,7 @@ export default function EletrodomesticosScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar style="dark" />
 
                 {/* Header Neo Glass */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>

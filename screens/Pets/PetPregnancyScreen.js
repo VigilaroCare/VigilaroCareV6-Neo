@@ -215,7 +215,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
     return (
         <AppBackground variant="subtle">
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-            <StatusBar barStyle="dark-content" />
+            <StatusBar style="dark" />
             {renderHeader()}
 
             <ScrollView contentContainerStyle={styles.content}>

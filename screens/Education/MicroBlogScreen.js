@@ -5,8 +5,9 @@
 import React, { useState, useMemo } from 'react';
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    Image, StatusBar, FlatList
+    Image, FlatList
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -74,7 +75,7 @@ export default function MicroBlogScreen({ navigation }) {
     return (
         <AppBackground>
             <View style={styles.container}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar style="dark" />
 
                 {/* Header */}
                 <View style={[styles.header, { paddingTop: insets.top + 12 }]}>

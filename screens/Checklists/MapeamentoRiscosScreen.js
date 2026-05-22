@@ -8,9 +8,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  StatusBar,
   Vibration,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
@@ -221,7 +221,7 @@ export default function HomeMappingScreen({ navigation, route }) {
   return (
     <AppBackground>
         <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
+      <StatusBar style="dark" backgroundColor={Colors.background} />
 
       {/* Header */}
       <View style={styles.header}>

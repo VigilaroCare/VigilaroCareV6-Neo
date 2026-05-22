@@ -6,9 +6,9 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
-  StatusBar
+  Dimensions
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
@@ -50,7 +50,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   return (
     <AppBackground>
       <View style={styles.container}>
-        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* Header Neo Glass */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>

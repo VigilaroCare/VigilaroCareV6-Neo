@@ -92,7 +92,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
   return (
     <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
         <View style={styles.header}><TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} accessibilityRole="button" accessibilityLabel={t('common.back', 'Voltar')}><ArrowLeft size={28} color={themeColors.neutral[800]} /></TouchableOpacity></View>
         <ScrollView contentContainerStyle={[styles.scrollContent, { paddingBottom: 240 }]} showsVerticalScrollIndicator={false}>
           <View style={styles.heroSection}>

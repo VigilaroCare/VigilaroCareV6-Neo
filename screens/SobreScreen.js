@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking, Alert, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking, Alert } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { Spacing } from '../utils/Theme';
@@ -25,7 +26,7 @@ export default function SobreScreen({ navigation }) {
   return (
     <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar style="dark" />
 
         {/* Header Neo Glass */}
         <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>

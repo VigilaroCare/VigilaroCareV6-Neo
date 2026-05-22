@@ -6,8 +6,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    Image, StatusBar, Linking, Share, Platform
+    Image, Linking, Share, Platform
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoIcon from '../../components/NeoIcon';
@@ -48,7 +49,7 @@ export default function MicroArticleScreen({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar style="light" />
 
             {/* Hero Image */}
             <View style={{ position: 'relative' }}>

@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar, Vibration } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Vibration } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
@@ -53,7 +54,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
     return (
         <AppBackground>
         <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top']}>
-            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor="transparent" />
+            <StatusBar style={isDark ? 'light' : 'dark'} backgroundColor="transparent" />
 
             {/* HEADER padrão Pets: back button + título/subtítulo lado a lado */}
             <View style={styles.headerRow}>

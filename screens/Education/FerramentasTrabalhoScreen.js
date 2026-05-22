@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, LayoutAnimation, Platform, UIManager, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import CustomIcon from '../../components/CustomIcon';
@@ -39,7 +40,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView style={styles.container} edges={['top']}>
-                <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* Header Neo Glass */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>

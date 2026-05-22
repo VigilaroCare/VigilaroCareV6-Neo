@@ -14,8 +14,9 @@
 import React from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, StatusBar
+  TouchableOpacity
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
@@ -63,7 +64,7 @@ export default function RadarArticleScreen({ route, navigation }) {
 
   return (
     <AppBackground>
-      <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+      <StatusBar style={isDark ? 'light' : 'dark'} />
 
       {/* Header fixo */}
       <SafeAreaView style={[s.headerArea, { backgroundColor: headerBg }]} edges={['top', 'left', 'right']}>

@@ -9,8 +9,9 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar,
+    View, Text, StyleSheet, ScrollView, TouchableOpacity,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, People, MagicStar, Briefcase, Sun1, RouteSquare, ArrowRight2 } from 'iconsax-react-native';
@@ -148,7 +149,7 @@ export default function EducationEnvironmentsScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
                 {/* HEADER padronizado */}
                 <View style={styles.header}>

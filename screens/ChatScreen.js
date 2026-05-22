@@ -9,12 +9,12 @@ import {
     TextInput,
     KeyboardAvoidingView,
     Platform,
-    StatusBar,
     Alert,
     Easing,
     FlatList,
     ActivityIndicator,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -179,7 +179,7 @@ export default function ChatScreen({ navigation, route }) {
         return (
             <AppBackground>
         <SafeAreaView style={styles.container}>
-                <StatusBar barStyle="light-content" backgroundColor="#1A1A2E" />
+                <StatusBar style="light" backgroundColor="#1A1A2E" />
 
                 {/* Header */}
                 <View style={styles.header}>
@@ -257,7 +257,7 @@ export default function ChatScreen({ navigation, route }) {
     // ═══════════════════════════════════════════════════════
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#1A1A2E" />
+            <StatusBar style="light" backgroundColor="#1A1A2E" />
 
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>

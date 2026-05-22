@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -33,7 +34,7 @@ export default function SituacoesTemporariasScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={Neo.colors.primary[900]} />
+      <StatusBar style="light" backgroundColor={Neo.colors.primary[900]} />
 
       <LinearGradient
         colors={[Neo.colors.primary[800], Neo.colors.primary[600]]}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, StatusBar, Dimensions, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArrowLeft2 } from 'iconsax-react-native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -71,7 +72,7 @@ export default function KitsMenuScreen({ navigation, route }) {
     return (
         <AppBackground>
             <View style={styles.container}>
-                <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+                <StatusBar style="dark" backgroundColor="transparent" translucent />
 
                 {/* Header Premium Neo (Glass) */}
                 <View style={[styles.headerContainer, { paddingTop: insets.top + 10 }]}>

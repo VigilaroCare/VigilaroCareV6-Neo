@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../../utils/Theme';
 import { EDUCATIONAL_GUIDES } from '../../data/educational_guides';
@@ -23,7 +24,7 @@ export default function EnvironmentGuideScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
+            <StatusBar style="dark" backgroundColor="#FFF" />
             <View style={[styles.header, { borderBottomColor: guideItem.color }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <NeoIcon name="ArrowLeft2" size={24} color={Colors.textPrimary} />

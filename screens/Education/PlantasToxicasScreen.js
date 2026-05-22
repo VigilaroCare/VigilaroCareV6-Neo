@@ -59,7 +59,7 @@ export default function PlantasToxicasScreen({ navigation }) {
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar style="dark" />
 
                 {/* Header Standardized */}
                 <View style={{ padding: 20, paddingTop: 10 }}>
