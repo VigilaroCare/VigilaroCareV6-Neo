@@ -85,7 +85,7 @@ export default function MapaSensivelCard() {
             accessibilityRole="button"
             accessibilityLabel={`Seu mapa sensível. ${leitura.resumo} ${leitura.recomendacao}`}
         >
-            <NeoCard variant="elevated" style={[s.card, { borderLeftColor: accentColor }]}>
+            <NeoCard variant="elevated" style={s.card}>
                 <View style={s.headerRow}>
                     <View style={[s.iconWrap, { backgroundColor: accentColor + '22' }]}>
                         <NeoIcon name="Activity" size={20} color={accentColor} variant="Bold" />
@@ -125,8 +125,6 @@ const s = StyleSheet.create({
         padding: 16,
         marginBottom: 14,
         borderRadius: 20,
-        borderLeftWidth: 4,
-        borderLeftColor: '#10B981',
     },
     headerRow: {
         flexDirection: 'row',

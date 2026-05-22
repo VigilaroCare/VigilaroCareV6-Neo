@@ -123,7 +123,7 @@ export default function MapaSensivelHubScreen() {
                             onPress={handleRefazer}
                             style={{ marginBottom: 14 }}
                         >
-                            <NeoCard variant="elevated" style={[s.draftCard, { borderLeftColor: '#F59E0B' }]}>
+                            <NeoCard variant="elevated" style={s.draftCard}>
                                 <View style={[s.cardIcon, { backgroundColor: 'rgba(245,158,11,0.18)' }]}>
                                     <NeoIcon name="Clock" size={22} color="#F59E0B" variant="Bold" />
                                 </View>
@@ -300,7 +300,6 @@ const s = StyleSheet.create({
         alignItems: 'center',
         padding: 14,
         borderRadius: 16,
-        borderLeftWidth: 4,
     },
 
     // Action card
