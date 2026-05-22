@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View, StyleSheet, FlatList, TouchableOpacity, RefreshControl, ActivityIndicator,
@@ -64,6 +64,49 @@ export default function RecentActivityScreen() {
 
     const isEmpty = !loading && activities.length === 0;
 
+    // Detecta se há logs de queda — usados pra mostrar CTA contextual
+    // de "Ajustar sensibilidade" no rodapé da lista.
+    // Aceita tanto o campo `category` (logs novos) quanto título contendo
+    // "queda" (compatibilidade com logs gravados antes do fix de category).
+    const hasFallLogs = useMemo(
+        () =>
+            activities.some(
+                (a) =>
+                    a.category === 'fall' ||
+                    (a.title || '').toLowerCase().includes('queda')
+            ),
+        [activities]
+    );
+
+    // Footer condicional — só aparece quando há eventos de queda no histórico.
+    // Tom calmo, sem alarmismo. Caminho direto pra reduzir sensibilidade.
+    const renderListFooter = () => {
+        if (!hasFallLogs) return null;
+        return (
+            <TouchableOpacity
+                onPress={() => navigation.navigate('FallSensitivity')}
+                activeOpacity={0.7}
+                style={s.footerLink}
+                accessibilityRole="link"
+                accessibilityLabel={t(
+                    'recentActivity.adjustSensitivity',
+                    'Vendo muitos eventos de queda? Ajuste a sensibilidade'
+                )}
+            >
+                <View style={s.footerIconWrap}>
+                    <NeoIcon name="Activity" size={18} color={Neo.colors.primary[600]} variant="Bold" />
+                </View>
+                <Small style={s.footerText}>
+                    {t(
+                        'recentActivity.adjustSensitivity',
+                        'Vendo muitos eventos de queda? Ajuste a sensibilidade'
+                    )}
+                </Small>
+                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.primary[600]} />
+            </TouchableOpacity>
+        );
+    };
+
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -112,6 +155,7 @@ export default function RecentActivityScreen() {
                         data={activities}
                         keyExtractor={(item, index) => item.id || index.toString()}
                         renderItem={({ item }) => <ActivityItem item={item} />}
+                        ListFooterComponent={renderListFooter}
                         contentContainerStyle={s.listContent}
                         showsVerticalScrollIndicator={false}
                         refreshControl={
@@ -223,5 +267,34 @@ const s = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 20,
         maxWidth: 280,
+    },
+
+    // Footer link contextual — só aparece quando há logs de queda.
+    // Discreto, sem chamar atenção desnecessária, mas claramente clicável.
+    footerLink: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(16,185,129,0.10)',
+        borderRadius: 14,
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        marginTop: 8,
+        gap: 8,
+    },
+    footerIconWrap: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: 'rgba(16,185,129,0.20)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    footerText: {
+        flex: 1,
+        color: Neo.colors.primary[700],
+        fontWeight: '600',
+        fontSize: 13,
+        lineHeight: 18,
     },
 });

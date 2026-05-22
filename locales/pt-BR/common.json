@@ -415,6 +415,10 @@
         "manualSosTitle": "SOS manual enviado",
         "manualSosDesc": "Alerta de SOS disparado manualmente por {{nome}}."
     },
+    "recentActivity": {
+        "subtitle": "Histórico de eventos do app",
+        "adjustSensitivity": "Vendo muitos eventos de queda? Ajuste a sensibilidade"
+    },
     "fallSensitivity": {
         "title": "Sensibilidade de queda",
         "subtitle": "Como o app reconhece uma queda real",

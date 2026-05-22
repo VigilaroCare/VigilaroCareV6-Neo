@@ -30,8 +30,10 @@ class ActivityLogService {
      * @param {string} description - Descrição detalhada (ex: "Usuário 'João' acessou o aplicativo.").
      * @param {string} [icon='Activity'] - Nome do ícone (ex: 'Login', 'Warning', 'Checklist').
      * @param {string} [color='#6366F1'] - Cor do ícone (ex: '#4CAF50' para sucesso, '#EF4444' para erro).
+     * @param {string} [category] - Categoria opcional para filtros downstream (ex: 'fall', 'vital', 'manual').
+     *                              Telas como Atividade Recente podem usar pra mostrar CTAs contextuais.
      */
-    async logActivity(title, description, icon = 'Activity', color = '#6366F1') {
+    async logActivity(title, description, icon = 'Activity', color = '#6366F1', category = null) {
         try {
             const newActivity = {
                 id: Date.now().toString(),
@@ -39,6 +41,7 @@ class ActivityLogService {
                 description,
                 icon,
                 color,
+                category,
                 timestamp: new Date().toISOString(),
             };
 

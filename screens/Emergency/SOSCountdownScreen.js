@@ -147,7 +147,8 @@ export default function SOSCountdownScreen({ navigation, route }) {
               defaultValue: `Queda detectada para ${nome}. Alerta de SOS disparado para os contatos.`,
             }),
             'Warning2',
-            '#EF4444'
+            '#EF4444',
+            'fall'
           );
         } else if (triggerReason === 'VITAL_CHECK') {
           await ActivityLogService.logActivity(
@@ -157,7 +158,8 @@ export default function SOSCountdownScreen({ navigation, route }) {
               defaultValue: `${nome} não respondeu ao check-in. Alerta de SOS disparado para os contatos.`,
             }),
             'Timer1',
-            '#F59E0B'
+            '#F59E0B',
+            'vital'
           );
         } else {
           await ActivityLogService.logActivity(
@@ -167,7 +169,8 @@ export default function SOSCountdownScreen({ navigation, route }) {
               defaultValue: `Alerta de SOS disparado manualmente por ${nome}.`,
             }),
             'Warning2',
-            '#DC2626'
+            '#DC2626',
+            'manual'
           );
         }
       } catch (logErr) {
