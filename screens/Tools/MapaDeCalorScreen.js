@@ -30,6 +30,7 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import ProfileService from '../../services/ProfileService';
 import { ChecklistService } from '../../services/ChecklistService';
+import TimelineService from '../../services/TimelineService';
 import { AMBIENTES, CHECKLISTS } from '../../data/mapeamento_dados';
 import { t_field } from '../../utils/getLocalizedField';
 
@@ -105,6 +106,7 @@ export default function MapaDeCalorScreen({ navigation }) {
     const [heatFilter, setHeatFilter] = useState('all');
     const [profileFilter, setProfileFilter] = useState('all');
     const [availableProfileFilters, setAvailableProfileFilters] = useState(['all']);
+    const [trend, setTrend] = useState(null); // { last7, prev7, deltaPct, buckets }
 
     useFocusEffect(useCallback(() => {
         loadData(profileFilter);
@@ -160,6 +162,32 @@ export default function MapaDeCalorScreen({ navigation }) {
                 });
 
             setRooms(enriched);
+
+            // === Histórico (item C) — evolução nos últimos 14 dias ===
+            const history = await TimelineService.getHistory();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Bucket por dia, últimos 14 dias (índice 0 = mais recente)
+            const buckets = Array.from({ length: 14 }, () => 0);
+            history.forEach(h => {
+                if (!h.data) return;
+                const d = new Date(h.data);
+                d.setHours(0, 0, 0, 0);
+                const diffDays = Math.floor((today - d) / (1000 * 60 * 60 * 24));
+                if (diffDays >= 0 && diffDays < 14) {
+                    buckets[diffDays]++;
+                }
+            });
+
+            // Últimos 7 dias vs 7 dias anteriores
+            const last7 = buckets.slice(0, 7).reduce((a, b) => a + b, 0);
+            const prev7 = buckets.slice(7, 14).reduce((a, b) => a + b, 0);
+            let deltaPct = null;
+            if (prev7 > 0) deltaPct = Math.round(((last7 - prev7) / prev7) * 100);
+            else if (last7 > 0) deltaPct = 100; // surge a partir do zero
+
+            setTrend({ last7, prev7, deltaPct, buckets });
         } catch (e) {
             if (__DEV__) console.error('[MapaDeCalor] loadData:', e);
         } finally {
@@ -264,6 +292,9 @@ export default function MapaDeCalorScreen({ navigation }) {
                                 />
                             </View>
 
+                            {/* HISTÓRICO (item C) — sempre presente, mostra "sem atividade" se zerado */}
+                            <TrendCard trend={trend} textBody={textBody} textSecondary={textSecondary} />
+
                             {/* FILTROS */}
                             <FilterRow
                                 label={t('mapaCalor.filterFocus', 'Foco em')}
@@ -316,6 +347,82 @@ export default function MapaDeCalorScreen({ navigation }) {
 // ============================================
 // Subcomponentes
 // ============================================
+
+function TrendCard({ trend, textBody, textSecondary }) {
+    if (!trend) return null;
+    const { last7, prev7, deltaPct, buckets } = trend;
+    const maxBucket = Math.max(1, ...buckets);
+
+    const hasActivity = last7 > 0 || prev7 > 0;
+
+    let deltaInfo = null;
+    if (deltaPct !== null && prev7 > 0) {
+        const up = deltaPct > 0;
+        const flat = deltaPct === 0;
+        deltaInfo = {
+            color: flat ? Neo.colors.neutral[600] : (up ? '#16A34A' : '#DC2626'),
+            symbol: flat ? '→' : (up ? '↑' : '↓'),
+            text: `${flat ? '' : (up ? '+' : '')}${deltaPct}% vs 7 dias antes`,
+        };
+    } else if (last7 > 0 && prev7 === 0) {
+        deltaInfo = {
+            color: '#16A34A',
+            symbol: '↑',
+            text: 'Primeira semana ativa',
+        };
+    }
+
+    return (
+        <NeoCard variant="elevated" style={s.trendCard}>
+            <View style={s.trendHeader}>
+                <View style={{ flex: 1 }}>
+                    <Caption style={[s.trendLabel, { color: textSecondary }]}>
+                        ÚLTIMOS 7 DIAS
+                    </Caption>
+                    <View style={s.trendValueRow}>
+                        <Text style={s.trendValue}>{last7}</Text>
+                        <Caption style={[s.trendValueSub, { color: textBody }]}>
+                            {last7 === 1 ? 'item resolvido' : 'itens resolvidos'}
+                        </Caption>
+                    </View>
+                    {deltaInfo && (
+                        <Caption style={[s.trendDelta, { color: deltaInfo.color }]}>
+                            {deltaInfo.symbol} {deltaInfo.text}
+                        </Caption>
+                    )}
+                    {!hasActivity && (
+                        <Caption style={[s.trendDelta, { color: textBody }]}>
+                            Sem atividade nas últimas 2 semanas.
+                        </Caption>
+                    )}
+                </View>
+
+                {/* Mini-bars dos últimos 14 dias (índice 0 = hoje à direita) */}
+                {hasActivity && (
+                    <View style={s.sparkline}>
+                        {buckets.slice().reverse().map((count, i) => {
+                            const h = count === 0 ? 4 : Math.max(6, (count / maxBucket) * 40);
+                            const isLast7 = i >= 7; // últimos 7 (direita)
+                            return (
+                                <View
+                                    key={i}
+                                    style={{
+                                        width: 4,
+                                        height: h,
+                                        borderRadius: 2,
+                                        backgroundColor: isLast7
+                                            ? Neo.colors.primary[500]
+                                            : Neo.colors.neutral[300],
+                                    }}
+                                />
+                            );
+                        })}
+                    </View>
+                )}
+            </View>
+        </NeoCard>
+    );
+}
 
 function FilterRow({ label, options, activeId, onChange, textSecondary }) {
     if (!options || options.length < 2) return null;
@@ -525,6 +632,50 @@ const s = StyleSheet.create({
         marginBottom: 12,
         textTransform: 'uppercase',
         opacity: 0.85,
+    },
+
+    // Histórico (TrendCard)
+    trendCard: {
+        padding: 16,
+        borderRadius: 16,
+        marginBottom: 18,
+    },
+    trendHeader: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+    },
+    trendLabel: {
+        fontSize: 10.5,
+        fontWeight: '800',
+        letterSpacing: 1.2,
+        marginBottom: 6,
+    },
+    trendValueRow: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        gap: 8,
+        marginBottom: 4,
+    },
+    trendValue: {
+        fontSize: 32,
+        fontWeight: '900',
+        color: Neo.colors.primary[600],
+        letterSpacing: -1,
+    },
+    trendValueSub: {
+        fontSize: 12,
+    },
+    trendDelta: {
+        fontSize: 12,
+        fontWeight: '600',
+    },
+    sparkline: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        gap: 3,
+        height: 44,
+        marginLeft: 12,
     },
 
     // Filtros
