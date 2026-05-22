@@ -718,10 +718,15 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    - _`<EmptyState>` reutilizável + migrado em 4 telas / 6 usos (`ea79aa1`)_
 
    ### ⚪ Tech debt menor (não urgente)
+   _Resolvidos em 2026-05-22:_
+   - _StatusBar `barStyle` deprecated → migrado para `expo-status-bar` em 22 telas (`b3de0e2`)_
+   - _Imports não usados de `utils/Theme` removidos em 8 telas (`c8160ca`) — migração completa Theme→DS ainda pendente em 42 arquivos_
+   - _NewHomeWizardScreenNeo quebrado em 6 arquivos: 597 → 290 linhas no principal (`8d68170`)_
+
+   _Restante (não urgente):_
    | Item | Notas |
    |---|---|
-   | StatusBar `barStyle` deprecated | 4 telas com warning: ConversationalAgent, SituacoesTemporarias, ChecklistDetail, OndeProteger |
-   | Telas legacy usando `Colors`/`Spacing` antigos | Funcionam mas seria bom migrar pra `Neo.*` |
+   | Migração completa `utils/Theme` → `DesignSystem2026` | 42 arquivos ainda usam Theme; sweep grande, risco visual sem prints |
    | Telas grandes (NewHomeWizard, ChecklistDetail 500+ linhas) | Quebrar em componentes menores |
 
 4. **Arquitetura nova (imagens locais) — IMPORTANTE conhecer:**
