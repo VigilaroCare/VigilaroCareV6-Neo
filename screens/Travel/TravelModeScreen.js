@@ -148,14 +148,14 @@ export default function TravelModeScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={s.tipCard}>
-                            <View style={[s.tipIconWrap, { backgroundColor: Neo.colors.primary[100] }]}>
-                                <Airplane size={22} color={Neo.colors.primary[600]} variant="Bold" />
+                        <NeoCard variant="elevated" style={s.headerCard}>
+                            <View style={[s.headerCardIcon, { backgroundColor: Neo.colors.primary[100] }]}>
+                                <Airplane size={24} color={Neo.colors.primary[600]} variant="Bold" />
                             </View>
-                            <Body style={s.tipText}>
+                            <Text style={[s.headerCardText, { color: textSecondary }]}>
                                 {t('travel.activateMode', 'Ative o Modo Viagem para checklists de segurança específicos.')}
-                            </Body>
-                        </View>
+                            </Text>
+                        </NeoCard>
 
                         {/* TIPO DE DESTINO */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.destinationType', 'Qual o tipo de destino?')}</Text>
@@ -502,29 +502,27 @@ const s = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
     },
-    tipCard: {
+    headerCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: Neo.colors.primary[500] + '12',
         padding: 14,
-        borderRadius: 14,
-        marginBottom: 20,
-        borderLeftWidth: 3,
-        borderLeftColor: Neo.colors.primary[500],
+        borderRadius: 16,
         gap: 12,
+        marginBottom: 20,
     },
-    tipIconWrap: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+    headerCardIcon: {
+        width: 46,
+        height: 46,
+        borderRadius: 23,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    tipText: {
+    headerCardText: {
         flex: 1,
-        color: Neo.colors.neutral[800],
-        fontSize: 13.5,
-        lineHeight: 19,
+        fontSize: 15,
+        fontWeight: '600',
+        lineHeight: 21,
+        letterSpacing: -0.1,
     },
     checkBadge: {
         position: 'absolute',
