@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { ArrowRight2, Location, Grid2, Warning2, Home2, ArrowLeft2, ClipboardTick } from "iconsax-react-native";
+import { ArrowRight2, Location, Grid2, Warning2, Home2, ArrowLeft2, ClipboardTick, ShieldTick } from "iconsax-react-native";
 import { DS as Neo } from "../../utils/DesignSystem2026";
 import { t_field } from "../../utils/getLocalizedField";
 import NeoCard from "../../components/NeoCard";
