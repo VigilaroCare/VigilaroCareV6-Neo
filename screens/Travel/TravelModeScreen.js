@@ -6,7 +6,7 @@ import { Building, Map1, SearchNormal, Warning2, ArrowLeft, ArrowRight, Add, Arr
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
+import NeoText, { H2, H3, Body, Small } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
@@ -148,12 +148,11 @@ export default function TravelModeScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{ alignItems: 'center', marginBottom: 16 }}>
-                            <View style={[s.gridIconCircle, { backgroundColor: Neo.colors.primary[100], marginBottom: 8 }]}>
-                                <Airplane size={26} color={Neo.colors.primary[600]} variant="Bold" />
+                        <View style={s.tipCard}>
+                            <View style={[s.tipIconWrap, { backgroundColor: Neo.colors.primary[100] }]}>
+                                <Airplane size={22} color={Neo.colors.primary[600]} variant="Bold" />
                             </View>
-                            <H1 style={{ textAlign: 'center' }}>{t('travel.goingToTravel', 'Vai Viajar?')}</H1>
-                            <Body style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 2 }}>
+                            <Body style={s.tipText}>
                                 {t('travel.activateMode', 'Ative o Modo Viagem para checklists de segurança específicos.')}
                             </Body>
                         </View>
@@ -502,6 +501,30 @@ const s = StyleSheet.create({
         justifyContent: 'center',
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
+    },
+    tipCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: Neo.colors.primary[500] + '12',
+        padding: 14,
+        borderRadius: 14,
+        marginBottom: 20,
+        borderLeftWidth: 3,
+        borderLeftColor: Neo.colors.primary[500],
+        gap: 12,
+    },
+    tipIconWrap: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    tipText: {
+        flex: 1,
+        color: Neo.colors.neutral[800],
+        fontSize: 13.5,
+        lineHeight: 19,
     },
     checkBadge: {
         position: 'absolute',
