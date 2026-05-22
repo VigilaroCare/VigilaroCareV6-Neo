@@ -18,7 +18,7 @@
         "inspections": "Vistorias",
         "infoLabels": "Info Rótulos",
         "infoLabelsSub": "Identifique toxicidade",
-        "tools": "Ferramentas",
+        "tools": "Ferramentas IA",
         "intelligenceCenter": "Central de Inteligência",
         "intelligenceSub": "Assistente IA, Scanner e Voz",
         "vigilaroRadar": "Radar da Prevenção",
@@ -246,7 +246,7 @@
             "askEyebrow": "Perguntar",
             "askTitle": "Vigilaro IA",
             "askBody": "Chat com contexto da casa.",
-            "toolsEyebrow": "Ferramentas",
+            "toolsEyebrow": "Ferramentas IA",
             "toolsTitle": "Centro de IA",
             "toolsBody": "Scanner, voz e histórico."
         }
@@ -1752,6 +1752,8 @@
         "minRead": "min de leitura"
     },
     "ferramentasIA": {
+        "headerTitle": "Ferramentas IA",
+        "headerSubtitle": "Análise visual, voz e dados",
         "sectionAnaliseVisual": "Análise Visual",
         "sectionAssistentes": "Assistentes",
         "sectionEmBreve": "Chegando em breve",

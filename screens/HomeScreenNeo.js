@@ -418,14 +418,14 @@ export default function HomeScreenNeo() {
                         <TappablePressable
                             onPress={() => navigateWithHaptic('FerramentasIA')}
                             style={{ flex: 1, marginRight: 5 }}
-                            accessibilityLabel={t('home.toolbox', 'Ferramentas')}
+                            accessibilityLabel={t('home.toolbox', 'Ferramentas IA')}
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
                                     <Setting2 size={22} color="#1976D2" variant="Bold" />
                                 </View>
                                 <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
-                                    {t('home.toolbox', 'Ferramentas')}
+                                    {t('home.toolbox', 'Ferramentas IA')}
                                 </Text>
                             </NeoCard>
                         </TappablePressable>

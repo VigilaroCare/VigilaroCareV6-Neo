@@ -112,7 +112,7 @@ export default function FerramentasIAScreenNeo() {
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H1 style={s.title}>
-                            {t('ferramentasIA.headerTitle', 'Ferramentas')}
+                            {t('ferramentasIA.headerTitle', 'Ferramentas IA')}
                         </H1>
                         <Caption style={s.subtitle}>
                             {t('ferramentasIA.headerSubtitle', 'Análise visual, voz e dados')}
