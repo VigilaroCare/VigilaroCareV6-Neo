@@ -92,7 +92,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 **Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).
 
-[Saiba mais no ecossistema Prevenir em Casa](https://www.preveniremcasa.com.br)
+[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)
 
 ---
 
@@ -218,7 +218,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 **Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).
 
-[Saiba mais no ecossistema Prevenir em Casa](https://www.preveniremcasa.com.br)
+[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)
 
 ---
 
@@ -335,7 +335,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 **Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).
 
-[Saiba mais no ecossistema Prevenir em Casa](https://www.preveniremcasa.com.br)
+[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)
 
 ---
 
@@ -461,7 +461,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 **Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).
 
-[Saiba mais no ecossistema Prevenir em Casa](https://www.preveniremcasa.com.br)
+[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)
 
 ---
 

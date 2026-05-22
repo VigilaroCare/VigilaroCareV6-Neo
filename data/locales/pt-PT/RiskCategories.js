@@ -13,7 +13,7 @@ export const RISK_CATEGORIES = [
                 '**Ação Tática Imediata:** Isole fisicamente áreas de risco (tranque portões e cozinha).',
                 'Para visitas de idosos, remova imediatamente tapetes soltos.',
                 'Alerte convidados sobre desníveis logo na chegada.',
-                'Conheça o ecossistema completo em preveniremcasa.com.br'
+                'Veja o conteúdo completo em preveniremcasa.com.br'
             ]
         },
         questions: [
