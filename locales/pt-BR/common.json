@@ -1780,9 +1780,6 @@
         "critical": "Críticos",
         "attention": "Atenção",
         "safe": "Seguros",
-        "roomsLabel": "Cômodos mapeados",
-        "filterFocus": "Foco em",
-        "filterShow": "Mostrar",
-        "noMatch": "Nenhum cômodo se encaixa nesse filtro. Tenta outra combinação."
+        "roomsLabel": "Cômodos mapeados"
     }
 }
