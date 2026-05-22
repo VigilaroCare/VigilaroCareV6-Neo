@@ -223,6 +223,7 @@ import AITextChatScreen            from './screens/AITextChatScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
+import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
 import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
 import InfoRotulosScreen           from "./screens/InfoRotulosScreen";
 import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
@@ -648,6 +649,7 @@ export default function App() {
                       <Stack.Screen name="Chat" component={ChatScreen} />
                       <Stack.Screen name="AITextChat" component={AITextChatScreen} options={{ headerShown: false }} />
                       <Stack.Screen name="DataHealth" component={DataHealthScreen} />
+                      <Stack.Screen name="MapaDeCalor" component={MapaDeCalorScreen} />
 
                       {/* ---- Hubs ---- */}
                       <Stack.Screen name="RiscosMenu" component={RiscosMenuScreen} />

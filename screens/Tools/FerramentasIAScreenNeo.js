@@ -63,15 +63,23 @@ export default function FerramentasIAScreenNeo() {
         },
     ];
 
-    // Histórico & Dados (ações secundárias)
+    // Visualizações & Dados (ações secundárias)
     const records = [
+        {
+            id: 'heatmap',
+            title: t('ferramentasIA.heatmapTitle', 'Mapa de calor de riscos'),
+            sub: t('ferramentasIA.heatmapSub', 'Riscos por cômodo'),
+            Icon: Map,
+            color: '#DC2626',
+            route: 'MapaDeCalor',
+        },
         {
             id: 'activity',
             title: t('ferramentasIA.recentTitle', 'Atividade recente'),
             sub: t('ferramentasIA.recentSub', 'Eventos e ações do app'),
             Icon: Activity,
             color: '#F59E0B',
-            route: 'RecentActivity', // FIX: era 'Historico', rota inexistente
+            route: 'RecentActivity',
         },
         {
             id: 'datahealth',
@@ -83,10 +91,9 @@ export default function FerramentasIAScreenNeo() {
         },
     ];
 
-    // Em breve (subtle — não cards lockados teatrais)
+    // Em breve (subtle — só itens ainda não implementados)
     const upcoming = [
         t('ferramentasIA.detectorTitle', 'Detector de áudio do ambiente'),
-        t('ferramentasIA.heatmapTitle', 'Mapa de calor de riscos'),
     ];
 
     return (

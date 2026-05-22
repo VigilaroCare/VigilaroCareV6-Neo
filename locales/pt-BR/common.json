@@ -1766,7 +1766,20 @@
         "chatDesc": "Assistente por texto pra dicas rápidas de segurança.",
         "detectorTitle": "Detector Ambiente",
         "detectorDesc": "Analisa ruídos (ex: choro, vidro quebrando) e nível de segurança luminosa do cômodo.",
-        "heatmapTitle": "Mapa de Calor IA",
-        "heatmapDesc": "Mapeamento 3D dos pontos cegos e áreas de risco da sua casa."
+        "heatmapTitle": "Mapa de calor de riscos",
+        "heatmapSub": "Riscos por cômodo",
+        "heatmapDesc": "Visualização agregada dos riscos identificados nas vistorias, com cores por nível de criticidade."
+    },
+    "mapaCalor": {
+        "title": "Mapa de calor",
+        "subtitle": "Riscos por cômodo",
+        "intro": "Cada cômodo aparece colorido pelo nível de risco identificado nas vistorias. Toque pra abrir o checklist.",
+        "emptyTitle": "Sem mapa pra mostrar ainda",
+        "emptyDesc": "Mapeie os cômodos da sua residência e faça pelo menos uma vistoria pra ver o mapa de calor.",
+        "emptyCta": "Ir pra Onde Proteger",
+        "critical": "Críticos",
+        "attention": "Atenção",
+        "safe": "Seguros",
+        "roomsLabel": "Cômodos mapeados"
     }
 }
