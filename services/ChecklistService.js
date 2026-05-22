@@ -10,6 +10,25 @@ let _ProfileService = null, _FilterEngine = null, _MapeamentoDados = null;
 const normalizeString = (str) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
 
 export const ChecklistService = {
+    /**
+     * Retorna os perfis que declaram USAR um cômodo específico.
+     * Fundamento do RiskInterpreter (D4) — permite priorizar riscos
+     * por contexto humano (ex: idosa Maria usa quarto X com escada).
+     *
+     * IMPORTANTE: este helper depende do schema v2 (comodosUsados[]).
+     * Perfis pré-migração têm comodosUsados preenchido pela
+     * ProfileService.migrateProfilesV2 com todos os cômodos do mapping.
+     *
+     * @param {string} roomId - id do cômodo (ex: 'cozinha', 'quarto_idoso')
+     * @returns {Promise<Array>} Lista de perfis que usam o cômodo
+     */
+    getResidentsOfRoom: async (roomId) => {
+        if (!roomId) return [];
+        const ProfileService = require('./ProfileService').default;
+        const perfis = await ProfileService.getPerfis();
+        return perfis.filter((p) => Array.isArray(p.comodosUsados) && p.comodosUsados.includes(roomId));
+    },
+
     // Helper para obter todos os itens de um ambiente em uma lista plana
     getFlattenedItems: (roomId) => {
         const { CHECKLISTS } = require('../data/mapeamento_dados');

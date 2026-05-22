@@ -114,6 +114,16 @@ export const getDefaultProfile = (tipo = 'humano') => ({
     // Contatos de Emergência (por pessoa)
     contatos: [], // [{ nome, telefone, relacao }]
 
+    // ── Vínculo Morador↔Cômodo ──
+    // Quais ambientes este perfil USA no dia a dia. Fundamento do
+    // briefing vivo: alimenta o RiskInterpreter (D4) com contexto
+    // de quem frequenta o quê. Ex: idosa Maria usa quarto_principal
+    // → escada sem corrimão lá vira prioridade alta pra ela.
+    // Array de IDs do mapping (mesmos IDs salvos por ProfileService.saveMapping).
+    // [] significa "ainda não declarado" — será preenchido no wizard P3/P4
+    // ou via migração (estratégia conservadora: todos os cômodos mapeados).
+    comodosUsados: [],
+
     // Pet específico
     especie: '', // cachorro, gato, pássaro...
     raca: '',
@@ -121,6 +131,7 @@ export const getDefaultProfile = (tipo = 'humano') => ({
     castrado: false,
 
     // Metadados
+    schemaVersion: 2, // bumped quando adicionamos comodosUsados (migração automática)
     dataCriacao: new Date().toISOString(),
     dataAtualizacao: new Date().toISOString(),
 });

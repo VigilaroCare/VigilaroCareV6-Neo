@@ -341,6 +341,69 @@ class ProfileService {
     }
 
     /**
+     * Migração V2 — adiciona campo `comodosUsados` em perfis legados.
+     *
+     * Idempotente: roda só uma vez, marca flag `@vigilaro/schema_v2_migrated`.
+     *
+     * Estratégia conservadora: perfis sem o campo recebem `comodosUsados`
+     * = todos os cômodos do mapping atual. Mantém o comportamento atual
+     * (cômodos do mapping aparecem na vistoria pra todos), e o usuário
+     * pode refinar depois via Hub "Seu mapa sensível" (D6).
+     *
+     * @returns {Promise<{migrated: number, skipped: boolean}>}
+     */
+    static async migrateProfilesV2() {
+        const FLAG_KEY = '@vigilaro/schema_v2_migrated';
+        try {
+            const alreadyDone = await AsyncStorage.getItem(FLAG_KEY);
+            if (alreadyDone === '1') {
+                return { migrated: 0, skipped: true };
+            }
+
+            const data = await this.getData();
+            if (!data.perfis || data.perfis.length === 0) {
+                // Sem perfis → marca como migrado pra não testar de novo
+                await AsyncStorage.setItem(FLAG_KEY, '1');
+                return { migrated: 0, skipped: true };
+            }
+
+            // Pega o mapping atual como conjunto de cômodos "padrão" pra cada
+            // perfil antigo (estratégia conservadora — não muda comportamento)
+            const mapping = await this.getMapping();
+            const allRoomIds = Array.isArray(mapping)
+                ? mapping.map((m) => (typeof m === 'string' ? m : m?.id)).filter(Boolean)
+                : [];
+
+            let migratedCount = 0;
+            for (const p of data.perfis) {
+                if (!Array.isArray(p.comodosUsados)) {
+                    p.comodosUsados = [...allRoomIds];
+                    p.schemaVersion = 2;
+                    p.dataAtualizacao = new Date().toISOString();
+                    migratedCount += 1;
+                }
+            }
+
+            if (migratedCount > 0) {
+                await this.saveData(data);
+            }
+            await AsyncStorage.setItem(FLAG_KEY, '1');
+
+            if (__DEV__) {
+                console.log(
+                    `[ProfileService] migrateProfilesV2: ${migratedCount} perfil(is) migrado(s) com ${allRoomIds.length} cômodo(s) padrão.`
+                );
+            }
+            return { migrated: migratedCount, skipped: false };
+        } catch (error) {
+            if (__DEV__) {
+                console.error('[ProfileService.migrateProfilesV2] erro:', error);
+            }
+            return { migrated: 0, skipped: false, error: error?.message };
+        }
+    }
+
+    /**
      * Retorna TODOS os perfis (global), sem resolução dupla de URI.
      *
      * FIX #5: resolveImageUri aplicado apenas aqui, uma única vez.

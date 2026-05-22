@@ -368,6 +368,19 @@ export default function App() {
           }
         }
 
+        // 5b. Migração de schema V2 (campo comodosUsados em perfis).
+        // Idempotente — roda só uma vez. Estratégia conservadora:
+        // perfis legados recebem todos os cômodos do mapping atual,
+        // preservando o comportamento de filtragem existente.
+        try {
+          const migrationResult = await ProfileService.migrateProfilesV2();
+          if (__DEV__ && migrationResult.migrated > 0) {
+            console.log(`[App Boot] Migração V2: ${migrationResult.migrated} perfil(is) atualizado(s).`);
+          }
+        } catch (migErr) {
+          if (__DEV__) console.warn('[App Boot] Migração V2 falhou:', migErr?.message);
+        }
+
         // 6. NavigationBar no Android (sem suporte no Android 15+ / edge-to-edge)
         if (Platform.OS === 'android') {
           try {
