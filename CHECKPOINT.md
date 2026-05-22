@@ -683,7 +683,7 @@ Coisas que NÃO são bugs mas poderiam ser polidas no futuro:
    ### 🟢 Bloqueadas aguardando user
    | # | Item | Status |
    |---|---|---|
-   | A | **STYLE_GUIDE — tom Agnaldo** nos textos do app (descricao, prevencao[], tipos[] nos data files). Prioridade: Acessórios, depois Primeiros Socorros. Docs: `docs/STYLE_GUIDE.md` | ⏳ aguarda decisão |
+   | A | ~~STYLE_GUIDE — tom Agnaldo nos textos do app~~ | ✅ **Resolvido em 2026-05-21** (5 camadas: botões, empty states, confirmações, heros, data files) |
    | B | **Sons UI** — user fornece 5 `.mp3`/`.wav` (tap, success, error, alert, navigation). Aí crio `services/SoundService.js` + toggle Acessibilidade + wire no TappablePressable. Fontes CC0: Mixkit, Pixabay, BBC | 🔒 aguarda arquivos |
    | C | **Revisão geral de conteúdo** — user mencionou que fará revisão. Pendência genérica que vai ficando pra cada sessão. | 🔒 aguarda user |
    | D | **Sweep dark mode** — ~50 telas restantes (lista em "Hotspots prováveis" mais acima). Atacar sob demanda por prints. | 🔒 aguarda prints |
