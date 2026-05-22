@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';
 import ProfileService from '../../services/ProfileService';
+import ActivityLogService from '../../services/ActivityLogService';
 import { useAccessibility } from '../../context/AccessibilityContext';
 
 export default function SOSCountdownScreen({ navigation, route }) {
@@ -132,6 +133,45 @@ export default function SOSCountdownScreen({ navigation, route }) {
       const url = `sms:${phones}${separator}body=${encodeURIComponent(message)}`;
 
       await Linking.openURL(url);
+
+      // Log de atividade — APENAS quando o SMS de SOS foi efetivamente
+      // disparado (não loga se o usuário tiver cancelado o countdown).
+      try {
+        const nome = profile?.nome || t('common.activeUser', 'usuário ativo');
+        if (triggerReason === 'FALL') {
+          await ActivityLogService.logActivity(
+            t('activityLog.fallSosTitle', 'SOS por queda enviado'),
+            t('activityLog.fallSosDesc', {
+              nome,
+              defaultValue: `Queda detectada para ${nome}. Alerta de SOS disparado para os contatos.`,
+            }),
+            'Warning2',
+            '#EF4444'
+          );
+        } else if (triggerReason === 'VITAL_CHECK') {
+          await ActivityLogService.logActivity(
+            t('activityLog.vitalSosTitle', 'Check-in não respondido'),
+            t('activityLog.vitalSosDesc', {
+              nome,
+              defaultValue: `${nome} não respondeu ao check-in. Alerta de SOS disparado para os contatos.`,
+            }),
+            'Timer1',
+            '#F59E0B'
+          );
+        } else {
+          await ActivityLogService.logActivity(
+            t('activityLog.manualSosTitle', 'SOS manual enviado'),
+            t('activityLog.manualSosDesc', {
+              nome,
+              defaultValue: `Alerta de SOS disparado manualmente por ${nome}.`,
+            }),
+            'Warning2',
+            '#DC2626'
+          );
+        }
+      } catch (logErr) {
+        if (__DEV__) console.warn('Falha ao registrar log de SOS:', logErr);
+      }
 
       setTimeout(() => {
         navigation.goBack();

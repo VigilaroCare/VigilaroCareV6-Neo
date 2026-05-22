@@ -245,7 +245,6 @@ import FallDetectionService   from "./services/FallDetectionService";
 import VitalCheckService      from "./services/VitalCheckService";
 import AchievementService     from "./services/AchievementService";
 import SubscriptionService    from "./services/SubscriptionService";
-import ActivityLogService     from "./services/ActivityLogService";
 import HandednessDetector     from "./services/HandednessDetector";
 import LeftHandedSuggestionModal from "./components/LeftHandedSuggestionModal";
 
@@ -430,14 +429,10 @@ export default function App() {
         if (!mounted) return;
         const current = NavigationService.getCurrentRoute();
         if (current !== 'SOSCountdown') {
+          // O log de "Queda Detectada / SOS enviado" é gravado pelo próprio
+          // SOSCountdownScreen quando o SMS é disparado — não aqui, para
+          // evitar gravar evento quando o usuário cancela antes do envio.
           NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'FALL' });
-          // Log de detecção de queda
-          ActivityLogService.logActivity(
-              'Queda Detectada',
-              `Possível queda detectada para ${ProfileService.getPerfilAtivo()?.nome || 'usuário ativo'}. Alerta de SOS iniciado.`,
-              'Warning2',
-              '#EF4444'
-          );
         }
       });
 
@@ -445,14 +440,8 @@ export default function App() {
         if (!mounted) return;
         const current = NavigationService.getCurrentRoute();
         if (current !== 'SOSCountdown') {
+          // Idem — log gravado dentro do SOSCountdownScreen.
           NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'VITAL_CHECK' });
-          // Log de check-in não respondido
-          ActivityLogService.logActivity(
-              'Check-in Não Respondido',
-              `O check-in diário de ${ProfileService.getPerfilAtivo()?.nome || 'usuário ativo'} não foi respondido. Alerta de SOS iniciado.`,
-              'Timer1',
-              '#F59E0B'
-          );
         }
       });
     };
