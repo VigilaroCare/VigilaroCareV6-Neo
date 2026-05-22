@@ -40,7 +40,12 @@ const SLIDES = [
     }
 ];
 
-export default function WelcomeTourScreenNeo({ navigation }) {
+export default function WelcomeTourScreenNeo({ navigation, route }) {
+    // Próxima rota configurável via params (B++ D6).
+    // Default: NewHomeWizard (briefing). Aceita override via route.params.nextRoute.
+    const nextRoute = route?.params?.nextRoute || 'NewHomeWizard';
+    const nextParams = route?.params?.nextParams || { fromOnboarding: true };
+    const goNext = () => navigation.replace(nextRoute, nextParams);
     const { t } = useTranslation();
     const scrollX = useRef(new Animated.Value(0)).current;
     const scrollViewRef = useRef(null);
@@ -61,8 +66,8 @@ export default function WelcomeTourScreenNeo({ navigation }) {
         if (currentIndex < SLIDES.length - 1) {
             scrollViewRef.current?.scrollTo({ x: (currentIndex + 1) * width, animated: true });
         } else {
-            // Fim do tour -> segue para o fluxo de preenchimento (FamilyComposition)
-            navigation.replace("FamilyComposition");
+            // Fim do tour -> próximo passo configurável (default: NewHomeWizard)
+            goNext();
         }
     };
 
@@ -98,7 +103,7 @@ export default function WelcomeTourScreenNeo({ navigation }) {
 
             <View style={styles.skipContainer}>
                 {currentIndex < SLIDES.length - 1 && (
-                    <TouchableOpacity onPress={() => navigation.replace("FamilyComposition")} hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}>
+                    <TouchableOpacity onPress={goNext} hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}>
                         <BodyNeo style={styles.skipText}>{t('onboarding.skip')}</BodyNeo>
                     </TouchableOpacity>
                 )}

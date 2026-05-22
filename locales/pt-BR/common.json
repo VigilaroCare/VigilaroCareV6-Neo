@@ -405,7 +405,8 @@
         "privacyDesc": "Política de dados",
         "menuSettings": "Menu & Ajustes",
         "generalSettings": "Configurações gerais",
-        "fallSensitivity": "Sensibilidade de queda"
+        "fallSensitivity": "Sensibilidade de queda",
+        "mapaSensivel": "Seu mapa sensível"
     },
     "activityLog": {
         "fallSosTitle": "SOS por queda enviado",

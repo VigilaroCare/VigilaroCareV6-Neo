@@ -222,6 +222,7 @@ import ChatScreen                  from './screens/ChatScreen';
 import AITextChatScreen            from './screens/AITextChatScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import FallSensitivityScreen      from "./screens/FallSensitivityScreen";
+import MapaSensivelHubScreen     from "./screens/MapaSensivelHubScreen";
 import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
 import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
@@ -556,6 +557,7 @@ export default function App() {
                       <Stack.Screen name="WelcomeTour" component={WelcomeTourScreen} />
                       <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
                       <Stack.Screen name="FallSensitivity" component={FallSensitivityScreen} />
+                      <Stack.Screen name="MapaSensivelHub" component={MapaSensivelHubScreen} />
                       <Stack.Screen
                         name="FamilyComposition"
                         component={FamilyCompositionScreen}

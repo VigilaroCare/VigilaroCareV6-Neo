@@ -31,10 +31,12 @@ export default function BoasVindasScreen({ navigation }) {
       if (completo && perfis.length > 0) {
         navigation.replace("MainTabs");
       } else {
-        // Fluxo direto: Mapeamento Doméstico
-        navigation.replace("NewHomeWizard", {
-          fromOnboarding: true,
-          residenceId: activeResId
+        // Briefing vivo (B++ D6): introduzir o app antes do wizard.
+        // WelcomeTour apresenta a Prevenção 3D e o tom da casa antes
+        // de pedir dados — coerente com "briefing não é cadastro".
+        navigation.replace("WelcomeTour", {
+          nextRoute: 'NewHomeWizard',
+          nextParams: { fromOnboarding: true, residenceId: activeResId },
         });
       }
 
