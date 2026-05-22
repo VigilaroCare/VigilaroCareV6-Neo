@@ -19,7 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { Colors, Spacing, BorderRadius, Shadows } from '../utils/Theme';
+import { Colors, Shadows } from '../utils/Theme';
 import SubscriptionService from '../services/SubscriptionService';
 import { useTranslation } from 'react-i18next';
 

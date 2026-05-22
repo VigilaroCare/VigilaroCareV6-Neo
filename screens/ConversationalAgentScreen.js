@@ -7,7 +7,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import OpenAIService from '../services/OpenAIService';
 import VoiceService from '../services/VoiceService'; // Já migrado para expo-audio
-import { Shadows } from '../utils/Theme';
 import { useAudioRecorder, AudioModule, RecordingPresets, createAudioPlayer } from 'expo-audio'; // [MIG-AV-07]
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';

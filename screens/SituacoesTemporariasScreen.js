@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Spacing, Typography, BorderRadius, Shadows, Colors, Components } from '../utils/Theme';
+import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 

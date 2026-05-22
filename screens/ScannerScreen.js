@@ -18,7 +18,6 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { VisionService } from '../services/VisionService';
 import GamificationService from '../services/GamificationService';
 import { buscarProduto } from '../data/produtos_scanner';
