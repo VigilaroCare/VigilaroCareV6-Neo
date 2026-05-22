@@ -20,9 +20,32 @@
  * - Permissões tratadas corretamente
  */
 
-import { Accelerometer } from 'expo-sensors';
+import { Accelerometer, Gyroscope } from 'expo-sensors';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// ---------------------------------------------------------------------------
+// HEURÍSTICAS DE "CELULAR CAINDO"
+// Estes parâmetros NÃO são por-preset — são heurísticas defensivas que
+// reduzem falsos positivos do tipo "o celular caiu da mesa, não a pessoa".
+//
+// Sinal 1: rotação caótica durante a queda
+//   Se o giroscópio registrar pico angular > GYRO_CHAOS_THRESHOLD em
+//   pelo menos 2 dos 3 eixos durante a janela [queda livre → impacto],
+//   classifica como celular girando no ar.
+//
+// Sinal 2: repouso prolongado prévio
+//   Se nos últimos PRE_FALL_REST_WINDOW_MS antes da queda livre a magnitude
+//   do acelerômetro variou < PRE_FALL_REST_VARIATION (celular parado em
+//   superfície), classifica como celular tombando da superfície.
+//
+// Qualquer um dos dois sinais positivos => suprime o alerta.
+// ---------------------------------------------------------------------------
+const GYRO_CHAOS_THRESHOLD = 5.0; // rad/s — pico angular típico de objeto girando
+const GYRO_CHAOS_AXES_MIN = 2;    // n.º de eixos que precisam ultrapassar
+const PRE_FALL_REST_WINDOW_MS = 30000; // 30s antes da queda livre
+const PRE_FALL_REST_VARIATION = 0.08;  // G — variação max para considerar "parado"
+const ACC_HISTORY_SAMPLES = 750;  // ~30s a 25Hz
 
 // ---------------------------------------------------------------------------
 // PRESETS DE SENSIBILIDADE
@@ -109,6 +132,21 @@ class FallDetectionService {
       hasImpacted: false,
       impactTime: 0,
       checkImmobility: false,
+    };
+
+    // Buffers para heurística de "celular caindo"
+    // accHistory: { t, magnitude } circular, ~30s a 25Hz
+    // gyroPeak: pico de |ω| em cada eixo durante queda livre + impacto
+    this.accHistory = [];
+    this.gyroSubscription = null;
+    this.gyroPeak = { x: 0, y: 0, z: 0 };
+    this.gyroPeakActive = false; // true durante a janela queda livre → 200ms pós-impacto
+
+    // Estatísticas de supressão (para debug/telemetria)
+    this.suppressionStats = {
+      suppressedByGyro: 0,
+      suppressedByRest: 0,
+      confirmed: 0,
     };
 
     // Callback para notificar UI
@@ -218,9 +256,32 @@ class FallDetectionService {
       this._processData(data);
     });
 
+    // Inicia giroscópio em paralelo (mesma frequência) — usado pela
+    // heurística de "celular caindo".
+    try {
+      const gyroAvailable = await Gyroscope.isAvailableAsync();
+      if (gyroAvailable) {
+        Gyroscope.setUpdateInterval(this.config.throttleMs);
+        this.gyroSubscription = Gyroscope.addListener((data) => {
+          this._processGyro(data);
+        });
+      } else if (__DEV__) {
+        console.warn(
+          '[FallDetectionService] giroscópio indisponível — heurística de celular caindo desativada'
+        );
+      }
+    } catch (error) {
+      if (__DEV__) {
+        console.warn(
+          '[FallDetectionService] erro ao iniciar giroscópio:',
+          error?.message || error
+        );
+      }
+    }
+
     if (__DEV__) {
       console.log(
-        `[FallDetectionService] ✅ Monitoramento iniciado (${1000 / this.config.throttleMs}Hz)`
+        `[FallDetectionService] ✅ Monitoramento iniciado (${1000 / this.config.throttleMs}Hz, gyro: ${!!this.gyroSubscription})`
       );
     }
 
@@ -237,11 +298,16 @@ class FallDetectionService {
       this.subscription.remove();
       this.subscription = null;
     }
+    if (this.gyroSubscription) {
+      this.gyroSubscription.remove();
+      this.gyroSubscription = null;
+    }
 
     // Cleanup completo
     this.onFallDetected = null;
     this._notificationInProgress = false;
     this.resetState();
+    this.accHistory = [];
 
     if (__DEV__) {
       console.log('[FallDetectionService] ⏹️ Monitoramento encerrado');
@@ -432,10 +498,19 @@ class FallDetectionService {
     };
     this.magnitude = 0;
     this.lastData = { x: 0, y: 0, z: 0 };
+    this._resetGyroPeak();
 
     if (__DEV__) {
       console.log('[FallDetectionService] 🔄 Estado resetado');
     }
+  }
+
+  /**
+   * Retorna estatísticas de supressão para a tela de Sensibilidade (debug
+   * opcional) e para validar a heurística em campo.
+   */
+  getSuppressionStats() {
+    return { ...this.suppressionStats };
   }
 
   // -------------------------------------------------------------------------
@@ -462,6 +537,9 @@ class FallDetectionService {
     const magnitude = Math.sqrt(x * x + y * y + z * z);
     this.magnitude = magnitude;
 
+    // Alimenta histórico circular (usado pela heurística de repouso prévio)
+    this._pushAccHistory(now, magnitude);
+
     // -------------------------------------------------------------------------
     // FASE 1: DETECTAR QUEDA LIVRE
     // -------------------------------------------------------------------------
@@ -473,6 +551,9 @@ class FallDetectionService {
       }
       this.state.isFalling = true;
       this.state.fallStartTime = now;
+      // Liga captura do pico angular para a heurística de "celular caindo"
+      this._resetGyroPeak();
+      this.gyroPeakActive = true;
     }
 
     // -------------------------------------------------------------------------
@@ -521,7 +602,30 @@ class FallDetectionService {
           }
           this.resetState();
         } else if (timeSinceImpact > this.config.immobilityWindow) {
-          // Imobilidade confirmada — notifica UI via callback
+          // Imobilidade confirmada — antes de notificar, aplica heurísticas
+          // de "celular caindo" para suprimir falsos positivos.
+          if (this._hadChaoticRotation()) {
+            if (__DEV__) {
+              console.log(
+                '[FallDetectionService] 📱 Suprimido: rotação caótica indica celular girando no ar.'
+              );
+            }
+            this.suppressionStats.suppressedByGyro += 1;
+            this.resetState();
+            return;
+          }
+          if (this._hadPriorRest()) {
+            if (__DEV__) {
+              console.log(
+                '[FallDetectionService] 🛏️ Suprimido: celular estava em repouso prolongado antes da queda.'
+              );
+            }
+            this.suppressionStats.suppressedByRest += 1;
+            this.resetState();
+            return;
+          }
+          // Passou nos filtros — notifica UI via callback
+          this.suppressionStats.confirmed += 1;
           this._confirmFall(magnitude);
         }
       }
@@ -581,6 +685,123 @@ class FallDetectionService {
     setTimeout(() => {
       this._notificationInProgress = false;
     }, this._notificationCooldown);
+  }
+
+  // -------------------------------------------------------------------------
+  // HEURÍSTICA DE "CELULAR CAINDO" — PRIVADOS
+  // -------------------------------------------------------------------------
+
+  /**
+   * Processa cada amostra do giroscópio. Mantém o pico de |ω| por eixo
+   * durante a janela ativa (queda livre → 200ms pós-impacto).
+   *
+   * @private
+   * @param {object} data - { x, y, z } em rad/s
+   */
+  _processGyro(data) {
+    if (!this.gyroPeakActive) return;
+
+    // Encerra a janela 200ms após o impacto (tempo suficiente pra capturar
+    // o pico angular do tombo). Depois disso, não interessa mais.
+    if (this.state.impactTime > 0 && Date.now() - this.state.impactTime > 200) {
+      this.gyroPeakActive = false;
+      return;
+    }
+
+    const ax = Math.abs(data.x);
+    const ay = Math.abs(data.y);
+    const az = Math.abs(data.z);
+    if (ax > this.gyroPeak.x) this.gyroPeak.x = ax;
+    if (ay > this.gyroPeak.y) this.gyroPeak.y = ay;
+    if (az > this.gyroPeak.z) this.gyroPeak.z = az;
+  }
+
+  _resetGyroPeak() {
+    this.gyroPeak = { x: 0, y: 0, z: 0 };
+    this.gyroPeakActive = false;
+  }
+
+  /**
+   * Adiciona uma amostra ao histórico circular do acelerômetro.
+   * Mantém no máximo ACC_HISTORY_SAMPLES entradas (~30s a 25Hz).
+   *
+   * @private
+   */
+  _pushAccHistory(timestamp, magnitude) {
+    this.accHistory.push({ t: timestamp, m: magnitude });
+    if (this.accHistory.length > ACC_HISTORY_SAMPLES) {
+      this.accHistory.shift();
+    }
+  }
+
+  /**
+   * Sinal 1 — Rotação caótica durante a queda.
+   * Retorna true se o pico angular ultrapassou GYRO_CHAOS_THRESHOLD em pelo
+   * menos GYRO_CHAOS_AXES_MIN eixos. Indica celular girando no ar (queda
+   * livre típica de objeto, não de pessoa).
+   *
+   * Se o giroscópio não está disponível (gyroSubscription === null),
+   * retorna false — a heurística simplesmente não é aplicada.
+   *
+   * @private
+   * @returns {boolean}
+   */
+  _hadChaoticRotation() {
+    if (!this.gyroSubscription) return false;
+
+    let axesAboveThreshold = 0;
+    if (this.gyroPeak.x > GYRO_CHAOS_THRESHOLD) axesAboveThreshold += 1;
+    if (this.gyroPeak.y > GYRO_CHAOS_THRESHOLD) axesAboveThreshold += 1;
+    if (this.gyroPeak.z > GYRO_CHAOS_THRESHOLD) axesAboveThreshold += 1;
+
+    if (__DEV__ && axesAboveThreshold > 0) {
+      console.log(
+        `[FallDetectionService] gyro peak: x=${this.gyroPeak.x.toFixed(2)} y=${this.gyroPeak.y.toFixed(2)} z=${this.gyroPeak.z.toFixed(2)} (eixos>${GYRO_CHAOS_THRESHOLD}: ${axesAboveThreshold})`
+      );
+    }
+
+    return axesAboveThreshold >= GYRO_CHAOS_AXES_MIN;
+  }
+
+  /**
+   * Sinal 2 — Repouso prolongado prévio.
+   * Retorna true se nos últimos PRE_FALL_REST_WINDOW_MS (30s) antes da queda
+   * livre a magnitude variou menos que PRE_FALL_REST_VARIATION (0.08G).
+   * Significa que o celular estava sobre uma superfície parada (mesa de
+   * cabeceira, sofá, bancada) e tombou sozinho.
+   *
+   * Se não há histórico suficiente, retorna false (concede o benefício
+   * da dúvida — evita suprimir queda real logo após o boot do app).
+   *
+   * @private
+   * @returns {boolean}
+   */
+  _hadPriorRest() {
+    const cutoff = this.state.fallStartTime - PRE_FALL_REST_WINDOW_MS;
+    const window = this.accHistory.filter(
+      (s) => s.t < this.state.fallStartTime && s.t >= cutoff
+    );
+
+    // Exige pelo menos metade da janela com amostras (15s contínuos)
+    // para confiar na conclusão "estava parado".
+    const minSamples = Math.floor((PRE_FALL_REST_WINDOW_MS / this.config.throttleMs) * 0.5);
+    if (window.length < minSamples) return false;
+
+    let max = -Infinity;
+    let min = Infinity;
+    for (const s of window) {
+      if (s.m > max) max = s.m;
+      if (s.m < min) min = s.m;
+    }
+    const variation = max - min;
+
+    if (__DEV__) {
+      console.log(
+        `[FallDetectionService] pre-fall rest: variação=${variation.toFixed(3)}G em ${window.length} amostras`
+      );
+    }
+
+    return variation < PRE_FALL_REST_VARIATION;
   }
 }
 
