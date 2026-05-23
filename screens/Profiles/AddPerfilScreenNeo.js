@@ -30,10 +30,20 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
     const editingProfile = route.params?.profile || route.params?.perfil || null;
     const initialType = route.params?.type || (editingProfile?.tipo === 'pet' ? 'pet' : 'humano');
 
+    // Helper: normaliza gênero — aceita 'masculino'/'feminino' (B++ HumanFormStep
+    // salva lowercase via GENDERS ids) E 'Masculino'/'Feminino' (legado).
+    const normalizeGenero = (g) => {
+        if (!g) return 'Masculino';
+        const lower = String(g).toLowerCase();
+        if (lower === 'masculino' || lower === 'macho' || lower === 'm') return 'Masculino';
+        if (lower === 'feminino' || lower === 'femea' || lower === 'fêmea' || lower === 'f') return 'Feminino';
+        return g; // fallback (Outro ou string custom)
+    };
+
     const [tipo, setTipo] = useState(initialType);
     const [especie, setEspecie] = useState(editingProfile?.especie || 'Cachorro');
     const [nome, setNome] = useState(editingProfile?.pendente ? '' : (editingProfile?.nome || ''));
-    const [genero, setGenero] = useState(editingProfile?.genero || 'Masculino');
+    const [genero, setGenero] = useState(normalizeGenero(editingProfile?.genero));
 
     // FIX #4: resolveImageUri aplicado já no estado inicial para evitar flash de URI crua
     const [foto, setFoto] = useState(
@@ -97,18 +107,24 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
     useEffect(() => {
         if (editingProfile) {
             setNome(editingProfile.nome || '');
-            setGenero(editingProfile.genero || 'Masculino');
+            // FIX: normaliza gênero (B++ salva lowercase)
+            setGenero(normalizeGenero(editingProfile.genero));
             setTipo(editingProfile.tipo || 'humano');
             // FIX #4: resolveImageUri já foi aplicado no estado inicial — sem duplicação aqui
             if (editingProfile.foto) {
                 setFoto(ProfileService.resolveImageUri(editingProfile.foto));
             }
-            if (editingProfile.dataNascimento) {
-                const d = new Date(editingProfile.dataNascimento);
+            // FIX: usa parseDOB pra aceitar formato "DD/MM/AAAA" do B++ HumanFormStep
+            // (antes usava new Date() direto, retornava Invalid Date → "Na/Na/NaN")
+            const d = parseDOB(editingProfile.dataNascimento);
+            if (d) {
                 setDia(d.getDate().toString().padStart(2, '0'));
                 setMes((d.getMonth() + 1).toString().padStart(2, '0'));
                 setAno(d.getFullYear().toString());
                 setDataNascimento(d);
+            } else {
+                // Limpa se não há data válida (evita NaN se vinha de tentativa anterior)
+                setDia(''); setMes(''); setAno(''); setDataNascimento(null);
             }
             setTipoSanguineo(editingProfile.saude?.tipoSanguineo || '');
             setCondicoes(editingProfile.saude?.condicoes || []);
