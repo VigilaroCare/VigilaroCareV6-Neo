@@ -16,7 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
     Crown, InfoCircle, MessageQuestion, ArrowRight2,
     Eye, DocumentText, Shield, LanguageSquare, TickCircle,
-    Activity, Home2,
+    Activity,
 } from 'iconsax-react-native';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -119,18 +119,14 @@ export default function MenuScreenNeo() {
     // ── Seções ──
     // Cores escolhidas para garantir alto contraste sobre o background verde-claro
     // do AppBackground. Evitamos neutros (cinza-em-cinza) e amarelos pálidos.
+    // "Seu mapa sensível" foi removido daqui: é conteúdo principal, não ajuste.
+    // Caminhos remanescentes: card na Home (premier) + "Atualizar mapeamento"
+    // dentro do Raio X. Menu fica reservado pra ajustes verdadeiros.
     const sectionConta = [
-        {
-            key: 'mapa_sensivel',
-            IconComponent: Home2,
-            color: '#10B981', // emerald — primary, comunica "núcleo do app"
-            label: t('menu.mapaSensivel', 'Seu mapa sensível'),
-            action: () => navigateWithHaptic('MapaSensivelHub'),
-        },
         {
             key: 'acessibilidade',
             IconComponent: Eye,
-            color: '#0891B2', // cyan — visual separa do mapa sensível
+            color: '#10B981', // emerald — primary
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
