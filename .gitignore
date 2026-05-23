@@ -63,6 +63,12 @@ Plantas/
 Plantas_Docs/
 Animais_e_Plantas/
 Telas_sem_padrao/
+# IMPORTANTE: as regras acima são pastas de trabalho na RAIZ do projeto.
+# Em sistemas case-insensitive (Windows/macOS), "Plantas/" também faz match
+# com "plantas/". A whitelist abaixo garante que assets/plantas/ vá pro repo
+# (caso contrário, EAS Build na nuvem Linux não acha os PNGs e quebra).
+!assets/plantas/
+!assets/plantas/**
 com.facebook.react.devsupport.BundleDownloader
 error.txt
 analyze_icons.js
