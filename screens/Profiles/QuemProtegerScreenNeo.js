@@ -260,26 +260,28 @@ export default function QuemProtegerScreenNeo() {
                                             </Caption>
                                         </View>
 
-                                        {/* Editar — abre formulário pré-preenchido (AddPerfil já suporta) */}
+                                        {/* Editar — abre formulário pré-preenchido (AddPerfil já suporta).
+                                            Ergonomia: size 22 + padding 10 + marginRight 14 + hitSlop 14 pra
+                                            acessibilidade (alvo de toque mín 44x44 do iOS HIG / 48dp Material). */}
                                         <TouchableOpacity
                                             onPress={() => handleEditProfile(p)}
-                                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                                            style={{ padding: 6, marginRight: 4 }}
+                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+                                            style={{ padding: 10, marginRight: 14 }}
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.editProfileLabel', 'Editar perfil {{nome}}', { nome: p.nome })}
                                         >
-                                            <Edit2 size={18} color={Neo.colors.neutral[600]} variant="Linear" />
+                                            <Edit2 size={22} color={Neo.colors.neutral[700]} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {/* Excluir — confirma antes */}
                                         <TouchableOpacity
                                             onPress={() => handleDeleteProfile(p)}
-                                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                                            style={{ padding: 6, marginRight: 8 }}
+                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+                                            style={{ padding: 10, marginRight: 14 }}
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.deleteProfileLabel', 'Excluir perfil {{nome}}', { nome: p.nome })}
                                         >
-                                            <Trash size={18} color={Neo.colors.feedback.error} variant="Linear" />
+                                            <Trash size={22} color={Neo.colors.feedback.error} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {isSelected ? (
@@ -351,26 +353,26 @@ export default function QuemProtegerScreenNeo() {
                                             {activeResidenceId === res.id && <TickCircle size={20} color={Neo.colors.primary[600]} />}
                                         </TouchableOpacity>
 
-                                        {/* Editar nome do local */}
+                                        {/* Editar nome do local — mesmo padrão ergonômico dos cards de perfil */}
                                         <TouchableOpacity
                                             onPress={() => handleEditResidence(res)}
-                                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                                            style={{ padding: 8, marginLeft: 8 }}
+                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+                                            style={{ padding: 10, marginLeft: 14 }}
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.editResidenceLabel', 'Renomear {{nome}}', { nome: res.nome })}
                                         >
-                                            <Edit2 size={18} color={Neo.colors.neutral[600]} variant="Linear" />
+                                            <Edit2 size={22} color={Neo.colors.neutral[700]} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {/* Excluir local — bloqueia se for o último */}
                                         <TouchableOpacity
                                             onPress={() => handleDeleteResidence(res)}
-                                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                                            style={{ padding: 8 }}
+                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+                                            style={{ padding: 10, marginLeft: 8 }}
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.deleteResidenceLabel', 'Excluir {{nome}}', { nome: res.nome })}
                                         >
-                                            <Trash size={18} color={Neo.colors.feedback.error} variant="Linear" />
+                                            <Trash size={22} color={Neo.colors.feedback.error} variant="Linear" />
                                         </TouchableOpacity>
                                     </View>
                                 ))}
