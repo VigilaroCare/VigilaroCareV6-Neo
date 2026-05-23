@@ -10,7 +10,7 @@
 // 1. Moradores — editar/adicionar/remover perfis (QuemProteger)
 // 2. Ambientes — revisar cômodos da casa (NewHomeWizard com fast-track)
 // 3. Tipo de imóvel — revisar tipo + andares
-// 4. Refazer mapeamento — reabre o wizard pré-preenchido na phase 0
+// 4. Atualizar mapeamento — reabre o wizard pré-preenchido na phase 0
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, ScrollView, TouchableOpacity, StyleSheet, Text } from 'react-native';
@@ -212,7 +212,7 @@ export default function MapaSensivelHubScreen() {
                                 <NeoIcon name="Refresh" size={22} color="#EF4444" variant="Bold" />
                             </View>
                             <View style={{ flex: 1 }}>
-                                <Body style={[s.cardTitle, { color: textPrimary }]}>Refazer mapeamento</Body>
+                                <Body style={[s.cardTitle, { color: textPrimary }]}>Atualizar mapeamento</Body>
                                 <Small style={[s.cardDesc, { color: textSecondary }]}>
                                     Recomeça o wizard com seus dados pré-preenchidos. Você revê cada passo.
                                 </Small>

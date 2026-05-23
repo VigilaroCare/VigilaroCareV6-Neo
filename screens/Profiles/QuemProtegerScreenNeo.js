@@ -321,7 +321,7 @@ export default function QuemProtegerScreenNeo() {
                         <TouchableOpacity onPress={() => navigation.navigate('NewHomeWizard', { residenceId: activeResidence?.id, residenceName: activeResidence?.nome })}>
                             <NeoCard variant="glass" style={{ padding: 16, flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.5)' }}>
                                 <Setting4 size={24} color={Neo.colors.neutral[600]} style={{ marginRight: 16 }} />
-                                <Body style={{ flex: 1, fontWeight: 'bold', color: Neo.colors.neutral[800] }}>Refazer Onboarding da Casa</Body>
+                                <Body style={{ flex: 1, fontWeight: 'bold', color: Neo.colors.neutral[800] }}>Atualizar mapeamento</Body>
                                 <ArrowRight2 size={20} color={Neo.colors.neutral[400]} />
                             </NeoCard>
                         </TouchableOpacity>
