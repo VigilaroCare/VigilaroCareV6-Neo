@@ -34,7 +34,11 @@
         "READ_MEDIA_IMAGES",
         "VIBRATE",
         "FOREGROUND_SERVICE",
-        "FOREGROUND_SERVICE_LOCATION"
+        "FOREGROUND_SERVICE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
       ],
       "navigationBar": {
         "backgroundColor": "#FFFFFF",
@@ -87,6 +91,12 @@
       "expo-audio",
       "expo-video",
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b538c3ab-d303-4cc8-ab3b-34b3afa025c5"
+      }
+    },
+    "owner": "agnaldoaf"
   }
 }
