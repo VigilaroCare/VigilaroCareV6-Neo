@@ -40,16 +40,33 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
         editingProfile?.foto ? ProfileService.resolveImageUri(editingProfile.foto) : null
     );
 
-    const [vinculo, setVinculo] = useState(editingProfile?.isVisitante ? 'frequentador' : 'morador');
+    // FIX: aceita tanto vinculo='frequentador' (B++ HumanFormStep) quanto isVisitante=true (legado).
+    const [vinculo, setVinculo] = useState(
+        (editingProfile?.vinculo === 'frequentador' || editingProfile?.isVisitante)
+            ? 'frequentador'
+            : 'morador'
+    );
 
     // FIX #1: dataNascimento inicializado como null em vez de new Date()
     // para evitar que perfis novos sem data preenchida sejam salvos com data de hoje.
-    const [dia, setDia] = useState(editingProfile?.dataNascimento ? new Date(editingProfile.dataNascimento).getDate().toString().padStart(2, '0') : '');
-    const [mes, setMes] = useState(editingProfile?.dataNascimento ? (new Date(editingProfile.dataNascimento).getMonth() + 1).toString().padStart(2, '0') : '');
-    const [ano, setAno] = useState(editingProfile?.dataNascimento ? new Date(editingProfile.dataNascimento).getFullYear().toString() : '');
-    const [dataNascimento, setDataNascimento] = useState(
-        editingProfile?.dataNascimento ? new Date(editingProfile.dataNascimento) : null
-    );
+    // FIX adicional: aceita tanto Date/ISO (legado) quanto string "DD/MM/AAAA" (B++ HumanFormStep).
+    const parseDOB = (val) => {
+        if (!val) return null;
+        // Formato "DD/MM/AAAA" do B++
+        if (typeof val === 'string' && /^\d{2}\/\d{2}\/\d{4}$/.test(val)) {
+            const [d, m, y] = val.split('/');
+            const dt = new Date(`${y}-${m}-${d}`);
+            return Number.isNaN(dt.getTime()) ? null : dt;
+        }
+        // Fallback: Date object ou ISO string
+        const dt = new Date(val);
+        return Number.isNaN(dt.getTime()) ? null : dt;
+    };
+    const _parsedDOB = parseDOB(editingProfile?.dataNascimento);
+    const [dia, setDia] = useState(_parsedDOB ? _parsedDOB.getDate().toString().padStart(2, '0') : '');
+    const [mes, setMes] = useState(_parsedDOB ? (_parsedDOB.getMonth() + 1).toString().padStart(2, '0') : '');
+    const [ano, setAno] = useState(_parsedDOB ? _parsedDOB.getFullYear().toString() : '');
+    const [dataNascimento, setDataNascimento] = useState(_parsedDOB);
 
     const diaRef = useRef(null);
     const mesRef = useRef(null);

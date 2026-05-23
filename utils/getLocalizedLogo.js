@@ -14,8 +14,8 @@ import i18n from '../i18n';
 // Os requires devem ser estáticos para o Metro bundler
 const logos = {
   pt: require('../assets/logo_vigilaro.png'),
-  en: require('../assets/logo_vigilaro_en.png'),
-  es: require('../assets/logo_vigilaro_es.png'),
+  en: require('../assets/logo_vigilaro_en.jpg'),
+  es: require('../assets/logo_vigilaro_es.jpg'),
 };
 
 /**

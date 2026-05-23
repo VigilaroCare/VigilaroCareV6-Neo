@@ -131,24 +131,12 @@ export default function WelcomeTourScreenNeo({ navigation, route }) {
                             <H1Neo style={styles.title}>{t(slide.titleKey)}</H1Neo>
                             <BodyNeo style={styles.subtitle}>{t(slide.subtitleKey)}</BodyNeo>
                             
-                            {/* Componente específico para a seleção de mão */}
+                            {/* Componente específico para a seleção de mão.
+                                Ordem visual intencional: CANHOTO à esquerda + DESTRO à direita.
+                                Casa com o lado da mão de cada um (canhoto usa esquerda, destro usa direita). */}
                             {slide.isHandednessSlide && (
                                 <View style={styles.handednessContainer}>
-                                    <TouchableOpacity
-                                        style={[styles.handCard, !leftHandedMode && styles.handCardActive]}
-                                        onPress={() => toggleLeftHanded(false)}
-                                    >
-                                        <View style={[styles.handIconWrap, !leftHandedMode && styles.handIconWrapActive]}>
-                                            <NeoIcon
-                                                name="Hand"
-                                                size={36}
-                                                color={!leftHandedMode ? Neo.colors.primary[600] : Neo.colors.neutral[400]}
-                                                variant="Bold"
-                                            />
-                                        </View>
-                                        <Text style={[styles.handCardText, !leftHandedMode && styles.handCardTextActive]}>{t('onboarding.rightHanded')}</Text>
-                                    </TouchableOpacity>
-
+                                    {/* ESQUERDA: CANHOTO */}
                                     <TouchableOpacity
                                         style={[styles.handCard, leftHandedMode && styles.handCardActive]}
                                         onPress={() => toggleLeftHanded(true)}
@@ -162,6 +150,22 @@ export default function WelcomeTourScreenNeo({ navigation, route }) {
                                             />
                                         </View>
                                         <Text style={[styles.handCardText, leftHandedMode && styles.handCardTextActive]}>{t('onboarding.leftHanded')}</Text>
+                                    </TouchableOpacity>
+
+                                    {/* DIREITA: DESTRO */}
+                                    <TouchableOpacity
+                                        style={[styles.handCard, !leftHandedMode && styles.handCardActive]}
+                                        onPress={() => toggleLeftHanded(false)}
+                                    >
+                                        <View style={[styles.handIconWrap, !leftHandedMode && styles.handIconWrapActive]}>
+                                            <NeoIcon
+                                                name="Hand"
+                                                size={36}
+                                                color={!leftHandedMode ? Neo.colors.primary[600] : Neo.colors.neutral[400]}
+                                                variant="Bold"
+                                            />
+                                        </View>
+                                        <Text style={[styles.handCardText, !leftHandedMode && styles.handCardTextActive]}>{t('onboarding.rightHanded')}</Text>
                                     </TouchableOpacity>
                                 </View>
                             )}

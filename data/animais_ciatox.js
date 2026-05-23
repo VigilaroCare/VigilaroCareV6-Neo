@@ -215,7 +215,7 @@ export const animaisCatalog = [
         gravidade: "MUITO GRAVE - Taxa de mortalidade de 0,3% quando não tratada. Com tratamento adequado em até 6 horas, a taxa cai para 0,04%. Pode causar sequelas permanentes como perda de dedos ou membros.",
         gravidade_en: "VERY SERIOUS - Mortality rate of 0.3% when untreated. With adequate treatment within 6 hours, the rate drops to 0.04%. May cause permanent complications such as loss of fingers or limbs.",
         gravidade_es: "MUY GRAVE - Tasa de mortalidad del 0,3% sin tratamiento. Con tratamiento adecuado en hasta 6 horas, la tasa baja al 0,04%. Puede causar secuelas permanentes como pérdida de dedos o miembros.",
-        imagem: require('../assets/images/sinitox/animais/bj_jararaca.png'),
+        imagem: require('../assets/images/sinitox/animais/bj_jararaca.jpg'),
         tipo: "cobra",
     },
     {
@@ -396,7 +396,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antiescorpiônico disponível em hospitais. CRIANÇA sempre deve receber soro. Adultos dependendo da gravidade.",
         gravidade: "EXTREMAMENTE GRAVE em crianças menores de 7 anos. Pode levar à morte em 2-3 horas sem tratamento adequado.",
-        imagem: require('../assets/images/sinitox/animais/ts_amarelo.png'),
+        imagem: require('../assets/images/sinitox/animais/ts_amarelo.jpg'),
         tipo: "escorpiao",
     },
     {
@@ -564,7 +564,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Tratamento com soro antiaracnídeo nos casos graves. Pode necessitar desbridamento cirúrgico da necrose.",
         gravidade: "GRAVE - Pode causar necrose extensa necessitando cirurgia e enxertos. Cicatrizes permanentes são comuns.",
-        imagem: require('../assets/images/sinitox/animais/li_marrom.png'),
+        imagem: require('../assets/images/sinitox/animais/li_marrom.jpg'),
         tipo: "aranha",
     },
     {
@@ -735,7 +735,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro anticoral (antielapídico). URGÊNCIA ABSOLUTA mesmo sem sintomas. Ventilação mecânica pode ser necessária.",
         gravidade: "EXTREMAMENTE GRAVE - Alta letalidade se não tratada rapidamente. Sintomas podem demorar horas para aparecer mas evolução é rápida.",
-        imagem: require('../assets/images/sinitox/animais/mc_coral.png'),
+        imagem: require('../assets/images/sinitox/animais/mc_coral.jpg'),
         tipo: "cobra",
     },
     {
@@ -910,7 +910,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antiaracnídico. Analgésicos para controle da dor intensa. Hospitalização recomendada.",
         gravidade: "MUITO GRAVE - Dor extrema, pode ser fatal em crianças. Acidentes são comuns por ser agressiva.",
-        imagem: require('../assets/images/sinitox/animais/pp_armadeira.png'),
+        imagem: require('../assets/images/sinitox/animais/pp_armadeira.jpg'),
         tipo: "aranha",
     },
     {
@@ -1069,7 +1069,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático: analgésicos e anti-inflamatórios. Raramente necessita soro.",
         gravidade: "MODERADO - Dor intensa mas raramente grave. Risco maior é infecção secundária.",
-        imagem: require('../assets/images/sinitox/animais/sc_lacraia.png'),
+        imagem: require('../assets/images/sinitox/animais/sc_lacraia.jpg'),
         tipo: "centopeia",
     },
     {
@@ -1227,7 +1227,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Remoção do ferrão, analgésicos, anti-histamínicos. Corticoides em casos moderados. Adrenalina para anafilaxia.",
         gravidade: "VARIÁVEL - De leve (picada única em não alérgico) a FATAL (alérgicos ou ataque de enxame).",
-        imagem: require('../assets/images/sinitox/animais/honey_bee.png'), // Updated to new AI image
+        imagem: require('../assets/images/sinitox/animais/honey_bee.jpg'), // Updated to new AI image
         tipo: "inseto",
     },
     {
@@ -1375,7 +1375,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático para dor e inchaço. Atendimento médico se houver reação alérgica.",
         gravidade: "MODERADA - Dolorosa, mas geralmente não fatal, exceto em alérgicos.",
-        imagem: require('../assets/images/sinitox/animais/vespa.png'),
+        imagem: require('../assets/images/sinitox/animais/vespa.jpg'),
         tipo: "inseto",
     },
     {
@@ -1488,7 +1488,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/cd_cascavel.png'),
+        imagem: require('../assets/images/sinitox/animais/cd_cascavel.jpg'),
         tipo: "outro",
     },
     {
@@ -1601,7 +1601,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/bj_jararacussu.png'),
+        imagem: require('../assets/images/sinitox/animais/bj_jararacussu.jpg'),
         tipo: "outro",
     },
     {
@@ -1714,7 +1714,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/bj_albina.png'),
+        imagem: require('../assets/images/sinitox/animais/bj_albina.jpg'),
         tipo: "outro",
     },
     {
@@ -1827,7 +1827,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/lm_surucucu.png'),
+        imagem: require('../assets/images/sinitox/animais/lm_surucucu.jpg'),
         tipo: "outro",
     },
     {
@@ -1940,7 +1940,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/mc_coral.png'),
+        imagem: require('../assets/images/sinitox/animais/mc_coral.jpg'),
         tipo: "outro",
     },
 
@@ -2054,7 +2054,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/ts_amarelo.png'),
+        imagem: require('../assets/images/sinitox/animais/ts_amarelo.jpg'),
         tipo: "outro",
     },
     {
@@ -2167,7 +2167,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/gm_caranguejeira.png'),
+        imagem: require('../assets/images/sinitox/animais/gm_caranguejeira.jpg'),
         tipo: "outro",
     },
     {
@@ -2561,7 +2561,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Água quente, limpeza cirúrgica, antibióticos.",
         gravidade: "MODERADA a GRAVE (pela infecção/necrose).",
-        imagem: require('../assets/images/sinitox/animais/arraia.png'),
+        imagem: require('../assets/images/sinitox/animais/arraia.jpg'),
         tipo: "aquatico",
     },
     {

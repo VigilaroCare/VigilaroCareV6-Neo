@@ -24,6 +24,8 @@ export const EXTERNAL_AREAS = [
     { id: 'pomar', label: 'Pomar/Horta', icon: 'tree' },
     { id: 'canil', label: 'Canil', icon: 'pet' },
     { id: 'rua_movimentada', label: 'Rua Movimentada', icon: 'car' },
+    { id: 'botijao_gas', label: 'Botijão de Gás', icon: 'box' },
+    { id: 'gas_encanado', label: 'Gás Encanado', icon: 'gas-station' },
     { id: 'central_gas', label: 'Central de Gás Externa', icon: 'gas-station' },
 ];
 

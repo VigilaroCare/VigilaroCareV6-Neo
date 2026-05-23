@@ -64,7 +64,10 @@ export const ss = StyleSheet.create({
         alignItems: 'center', justifyContent: 'center',
     },
     footer: {
-        padding: 20, paddingBottom: Platform.OS === 'ios' ? 36 : 20,
+        // paddingBottom aumentado pra acomodar GlobalFloatingFooter (botão SOS + tab bar)
+        // quando o wizard é aberto pós-onboarding via "Refazer mapeamento". No onboarding
+        // inicial o GlobalFloatingFooter não está montado, mas o espaço extra não atrapalha.
+        padding: 20, paddingBottom: Platform.OS === 'ios' ? 120 : 110,
     },
     mainBtn: {
         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',

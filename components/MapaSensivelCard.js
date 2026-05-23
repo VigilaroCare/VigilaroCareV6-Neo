@@ -81,7 +81,7 @@ export default function MapaSensivelCard() {
     return (
         <TouchableOpacity
             activeOpacity={0.85}
-            onPress={() => navigation.navigate('SafetyActionPlan')}
+            onPress={() => navigation.navigate('MapaSensivelHub')}
             accessibilityRole="button"
             accessibilityLabel={`Seu mapa sensível. ${leitura.resumo} ${leitura.recomendacao}`}
         >
