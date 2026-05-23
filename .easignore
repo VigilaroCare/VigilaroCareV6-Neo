@@ -9,6 +9,11 @@ dist/
 .git/
 .agent/
 Plantas/
+# IMPORTANTE: "Plantas/" acima faz match com "assets/plantas/" em sistemas
+# case-insensitive (Windows/macOS). A whitelist abaixo garante que os 17
+# PNGs de plantas tóxicas vão pro upload do EAS.
+!assets/plantas/
+!assets/plantas/**
 assets/LogoVigilaroCare/
 assets/createBundleReleaseJsAndAssets/
 
