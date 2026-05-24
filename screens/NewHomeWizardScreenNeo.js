@@ -70,14 +70,33 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const [externalAreas, setExternalAreas] = useState([]);
     const [internalRooms, setInternalRooms] = useState([]);
 
+    // IDs dos perfis vinculados à residência ATIVA — alimenta checkbox
+    // "mora aqui?" no QuemListStep. Recarrega ao salvar/togglar.
+    const [linkedIds, setLinkedIds] = useState([]);
+
     useFocusEffect(useCallback(() => {
         loadData();
     }, [residenceId]));
+
+    // Recalcula linkedIds a partir do estado salvo da residência ativa.
+    // Chamado no loadData + após cada toggle/save.
+    const reloadLinkedIds = async () => {
+        try {
+            const all = await ProfileService.getAllPerfis();
+            const linked = [];
+            for (const p of (all || [])) {
+                const isLinked = await ProfileService.isProfileLinkedToActiveResidence(p.id);
+                if (isLinked) linked.push(p.id);
+            }
+            setLinkedIds(linked);
+        } catch (_) { /* silent */ }
+    };
 
     const loadData = async () => {
         if (residenceId) await ProfileService.setActiveResidence(residenceId);
         const all = await ProfileService.getAllPerfis();
         setProfiles(all || []);
+        await reloadLinkedIds();
         const moradia = await ProfileService.getMoradia();
         if (moradia?.tipoImovel) setHouseType(moradia.tipoImovel);
         const mapping = await ProfileService.getMapping();
@@ -149,6 +168,21 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         return list;
     }, [externalAreas, internalRooms]);
 
+    // Toggle "fulano mora aqui?" — vincula/desvincula da residência ATIVA
+    // sem deletar o perfil global. Atualiza linkedIds em seguida.
+    const handleToggleLink = async (perfilId, currentlyLinked) => {
+        try {
+            if (currentlyLinked) {
+                await ProfileService.unlinkProfileFromActiveResidence(perfilId);
+            } else {
+                await ProfileService.linkProfileToActiveResidence(perfilId);
+            }
+            await reloadLinkedIds();
+        } catch (e) {
+            if (__DEV__) console.warn('[handleToggleLink]', e);
+        }
+    };
+
     // Abre formulário de pessoa/pet — reseta campos e pré-seleciona
     // TODOS os cômodos da casa (padrão amigável: usuário desmarca o que
     // a pessoa/pet não usa, em vez de marcar do zero).
@@ -192,6 +226,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         if (perfil) {
             const all = await ProfileService.getAllPerfis();
             setProfiles(all || []);
+            await reloadLinkedIds(); // novo perfil já vem vinculado à ativa via addPerfil
             resetForm();
             setSubView('list');
         }
@@ -221,6 +256,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         if (perfil) {
             const all = await ProfileService.getAllPerfis();
             setProfiles(all || []);
+            await reloadLinkedIds(); // novo pet já vem vinculado à ativa
             resetForm();
             setSubView('list');
         }
@@ -258,8 +294,14 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             if (total === 0) return NeoAlert.alert('Atenção', 'Marca pelo menos 1 ambiente. Vai te ajudar depois.');
             animateTo(2, 'list');
         } else {
-            // phase === 2 (QUEM): exige pelo menos 1 morador
-            if (profiles.length === 0) return NeoAlert.alert('Atenção', 'Adiciona ao menos 1 morador pra concluir.');
+            // phase === 2 (QUEM): exige pelo menos 1 perfil VINCULADO à residência atual
+            // (não basta existir global — precisa morar/frequentar aqui pra fazer sentido).
+            if (linkedIds.length === 0) {
+                return NeoAlert.alert(
+                    'Atenção',
+                    'Marca quem mora ou frequenta esta residência pra concluir.'
+                );
+            }
             finishWizard();
         }
     };
@@ -352,9 +394,11 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         return (
             <QuemListStep
                 profiles={profiles}
+                linkedIds={linkedIds}
                 onAddHuman={() => openProfileForm('human')}
                 onAddPet={() => openProfileForm('pet')}
                 onRemove={removeProfile}
+                onToggleLink={handleToggleLink}
             />
         );
     };

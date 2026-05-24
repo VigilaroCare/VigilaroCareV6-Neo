@@ -598,6 +598,58 @@ class ProfileService {
     }
 
     /**
+     * Desvincula um perfil da residência ATIVA (remove de habitantes
+     * E frequentadores) — sem deletar o perfil global. O perfil continua
+     * existindo e pode estar vinculado a outras residências.
+     *
+     * Use quando o usuário diz: "fulano NÃO mora nesta casa".
+     */
+    static async unlinkProfileFromActiveResidence(perfilId) {
+        const data = await this.getData();
+        const activeId = data.activeResidenceId || 'default_home';
+        const resIndex = (data.residences || []).findIndex(r => r.id === activeId);
+
+        if (resIndex !== -1) {
+            if (!data.residences[resIndex].moradia) return false;
+            const m = data.residences[resIndex].moradia;
+            const hadHabitante = Array.isArray(m.habitantes) && m.habitantes.includes(perfilId);
+            const hadFrequentador = Array.isArray(m.frequentadores) && m.frequentadores.includes(perfilId);
+
+            if (Array.isArray(m.habitantes)) {
+                m.habitantes = m.habitantes.filter(id => id !== perfilId);
+            }
+            if (Array.isArray(m.frequentadores)) {
+                m.frequentadores = m.frequentadores.filter(id => id !== perfilId);
+            }
+
+            if (hadHabitante || hadFrequentador) {
+                await this.saveData(data);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verifica se um perfil está vinculado à residência ATIVA
+     * (como habitante OU frequentador). Útil pra exibir checkbox
+     * "fulano mora aqui?" em telas de gestão de residências.
+     *
+     * @returns {Promise<boolean>}
+     */
+    static async isProfileLinkedToActiveResidence(perfilId) {
+        const data = await this.getData();
+        const activeId = data.activeResidenceId || 'default_home';
+        const activeRes = (data.residences || []).find(r => r.id === activeId);
+        if (!activeRes?.moradia) return false;
+        const m = activeRes.moradia;
+        return (
+            (Array.isArray(m.habitantes) && m.habitantes.includes(perfilId)) ||
+            (Array.isArray(m.frequentadores) && m.frequentadores.includes(perfilId))
+        );
+    }
+
+    /**
      * Atualiza um perfil existente pelo ID.
      */
     static async updatePerfil(perfilId, updates) {

@@ -59,6 +59,10 @@ export default function MapaDeCalorScreen({ navigation }) {
     const [loading, setLoading] = useState(true);
     const [rooms, setRooms] = useState([]);
     const [residenceName, setResidenceName] = useState('');
+    // Filtro contextual: nome do perfil ativo + indicação visual de que
+    // o mapa está focado nele (quando há comodosUsados declarados).
+    const [activeProfileName, setActiveProfileName] = useState('');
+    const [isFilteredByProfile, setIsFilteredByProfile] = useState(false);
 
     useFocusEffect(useCallback(() => {
         loadData();
@@ -77,7 +81,23 @@ export default function MapaDeCalorScreen({ navigation }) {
             const mapping = await ProfileService.getMapping();
             const allState = await ChecklistService.getAllState(residenceId);
 
-            const mappedRoomIds = Array.isArray(mapping) ? mapping : [];
+            // CONTEXTO ATIVO — filtrar mapa pelo morador selecionado
+            // se ele declarou cômodos (D1 schema comodosUsados[]).
+            const perfilAtivo = await ProfileService.getPerfilAtivo();
+            const comodosDoPerfil = Array.isArray(perfilAtivo?.comodosUsados)
+                ? perfilAtivo.comodosUsados
+                : null;
+            const filterActive = comodosDoPerfil && comodosDoPerfil.length > 0;
+            setActiveProfileName(perfilAtivo?.nome || '');
+            setIsFilteredByProfile(filterActive);
+
+            let mappedRoomIds = Array.isArray(mapping) ? mapping : [];
+
+            // Se há perfil ativo com cômodos declarados, intersecta:
+            // só exibe cômodos que o perfil declara usar (subset do mapping).
+            if (filterActive) {
+                mappedRoomIds = mappedRoomIds.filter(id => comodosDoPerfil.includes(id));
+            }
 
             const enriched = mappedRoomIds
                 .map(roomId => {
@@ -139,7 +159,9 @@ export default function MapaDeCalorScreen({ navigation }) {
                     <View style={{ flex: 1 }}>
                         <H1 style={s.title}>{t('mapaCalor.title', 'Mapa de calor')}</H1>
                         <Caption style={s.subtitle}>
-                            {residenceName || t('mapaCalor.subtitle', 'Riscos por cômodo')}
+                            {isFilteredByProfile && activeProfileName
+                                ? `${residenceName} · ${activeProfileName}`
+                                : (residenceName || t('mapaCalor.subtitle', 'Riscos por cômodo'))}
                         </Caption>
                     </View>
                 </View>
@@ -148,13 +170,15 @@ export default function MapaDeCalorScreen({ navigation }) {
                     contentContainerStyle={s.scrollContent}
                     showsVerticalScrollIndicator={false}
                 >
-                    {/* CARD-DICA EXPLICATIVO (padrão IntroSafety / TravelMode) */}
+                    {/* CARD-DICA EXPLICATIVO — texto contextualiza se está filtrado por morador */}
                     <NeoCard variant="elevated" style={s.headerCard}>
                         <View style={[s.headerCardIcon, { backgroundColor: Neo.colors.primary[100] }]}>
                             <Map1 size={24} color={Neo.colors.primary[600]} variant="Bold" />
                         </View>
                         <Text style={[s.headerCardText, { color: textBody }]}>
-                            {t('mapaCalor.intro', 'Cada cômodo aparece colorido pelo nível de risco identificado nas vistorias. Toque pra abrir o checklist.')}
+                            {isFilteredByProfile && activeProfileName
+                                ? `Mostrando apenas os ambientes que ${activeProfileName.split(' ')[0]} usa. Toque num cômodo pra ver o checklist.`
+                                : t('mapaCalor.intro', 'Cada cômodo aparece colorido pelo nível de risco identificado nas vistorias. Toque pra abrir o checklist.')}
                         </Text>
                     </NeoCard>
 
