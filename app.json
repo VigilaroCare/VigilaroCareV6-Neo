@@ -6,7 +6,7 @@
     "version": "1.0.2",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "icon": "./assets/logo_vigilaro.png",
+    "icon": "./assets/app-icon.png",
     "splash": {
       "image": "./assets/logo_vigilaro.png",
       "resizeMode": "contain",
@@ -17,7 +17,7 @@
     ],
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo_vigilaro.png",
+        "foregroundImage": "./assets/app-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.agnaldoaf.vigilarocare",
@@ -69,7 +69,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/logo_vigilaro.png",
+          "icon": "./assets/app-icon.png",
           "color": "#FFFFFF",
           "sounds": []
         }
