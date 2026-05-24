@@ -65,6 +65,13 @@ export default function MapaSensivelHubScreen() {
         navigation.navigate(route, params);
     };
 
+    // Cada card vai pra phase específica do wizard via initialPhase.
+    // null/undefined = wizard começa do início (revisão completa).
+    const openWizardAt = (initialPhase) => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        navigation.navigate('NewHomeWizard', { initialPhase });
+    };
+
     const handleRefazer = () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         navigation.navigate('NewHomeWizard');
@@ -145,11 +152,11 @@ export default function MapaSensivelHubScreen() {
                         style={[s.sectionLabel, { color: textSecondary }]}
                         accessibilityRole="header"
                     >
-                        EDITAR PEDAÇOS
+                        ATUALIZE POR TÓPICO
                     </Text>
 
-                    {/* MORADORES */}
-                    <TouchableOpacity activeOpacity={0.85} onPress={() => navigateWithHaptic('MainTabs', { screen: 'Perfil' })}>
+                    {/* MORADORES — vai pra QuemProteger (Stack route correto) */}
+                    <TouchableOpacity activeOpacity={0.85} onPress={() => navigateWithHaptic('QuemProteger')}>
                         <NeoCard variant="elevated" style={s.actionCard}>
                             <View style={[s.cardIcon, { backgroundColor: 'rgba(16,185,129,0.18)' }]}>
                                 <NeoIcon name="ProfileCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
@@ -164,8 +171,8 @@ export default function MapaSensivelHubScreen() {
                         </NeoCard>
                     </TouchableOpacity>
 
-                    {/* AMBIENTES */}
-                    <TouchableOpacity activeOpacity={0.85} onPress={handleRefazer}>
+                    {/* AMBIENTES — abre wizard direto na phase 1 (P2 ambientes) */}
+                    <TouchableOpacity activeOpacity={0.85} onPress={() => openWizardAt(1)}>
                         <NeoCard variant="elevated" style={s.actionCard}>
                             <View style={[s.cardIcon, { backgroundColor: 'rgba(14,165,233,0.18)' }]}>
                                 <NeoIcon name="Grid2" size={22} color="#0EA5E9" variant="Bold" />
@@ -180,8 +187,8 @@ export default function MapaSensivelHubScreen() {
                         </NeoCard>
                     </TouchableOpacity>
 
-                    {/* TIPO DE IMÓVEL */}
-                    <TouchableOpacity activeOpacity={0.85} onPress={handleRefazer}>
+                    {/* TIPO DE IMÓVEL — abre wizard direto na phase 0 (P1 tipo+andares) */}
+                    <TouchableOpacity activeOpacity={0.85} onPress={() => openWizardAt(0)}>
                         <NeoCard variant="elevated" style={s.actionCard}>
                             <View style={[s.cardIcon, { backgroundColor: 'rgba(99,102,241,0.18)' }]}>
                                 <NeoIcon name="Home2" size={22} color="#6366F1" variant="Bold" />
@@ -190,6 +197,22 @@ export default function MapaSensivelHubScreen() {
                                 <Body style={[s.cardTitle, { color: textPrimary }]}>Tipo e estrutura</Body>
                                 <Small style={[s.cardDesc, { color: textSecondary }]}>
                                     Mudou de casa? Reformou? Atualize aqui.
+                                </Small>
+                            </View>
+                            <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
+                        </NeoCard>
+                    </TouchableOpacity>
+
+                    {/* MAPA DE CALOR — ver visualmente o estado dos cômodos */}
+                    <TouchableOpacity activeOpacity={0.85} onPress={() => navigateWithHaptic('MapaDeCalor')}>
+                        <NeoCard variant="elevated" style={s.actionCard}>
+                            <View style={[s.cardIcon, { backgroundColor: 'rgba(220,38,38,0.18)' }]}>
+                                <NeoIcon name="Map1" size={22} color="#DC2626" variant="Bold" />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Body style={[s.cardTitle, { color: textPrimary }]}>Mapa de calor</Body>
+                                <Small style={[s.cardDesc, { color: textSecondary }]}>
+                                    Veja os cômodos coloridos por nível de risco.
                                 </Small>
                             </View>
                             <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />

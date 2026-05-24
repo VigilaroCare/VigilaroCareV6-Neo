@@ -38,11 +38,16 @@ const C = DS.colors;
 const TOTAL_PHASES = 3;
 
 export default function NewHomeWizardScreenNeo({ navigation, route }) {
-    const { residenceId } = route.params || {};
+    const { residenceId, initialPhase } = route.params || {};
     const fadeAnim = useRef(new Animated.Value(1)).current;
 
     // Navigation state — ordem invertida (D2): ONDE_TIPO → ONDE_AMBIENTES → QUEM
-    const [phase, setPhase] = useState(0); // 0=P1_TIPO, 1=P2_AMBIENTES, 2=P3_QUEM
+    // initialPhase via route.params permite ao Hub "Seu mapa sensível" abrir
+    // direto na phase desejada (Tipo & estrutura → 0, Ambientes → 1, Quem → 2).
+    const initial = Number.isInteger(initialPhase) && initialPhase >= 0 && initialPhase < 3
+        ? initialPhase
+        : 0;
+    const [phase, setPhase] = useState(initial); // 0=P1_TIPO, 1=P2_AMBIENTES, 2=P3_QUEM
     const [subView, setSubView] = useState('list'); // list | form_human | form_pet
     const [draftRestored, setDraftRestored] = useState(false);
 
