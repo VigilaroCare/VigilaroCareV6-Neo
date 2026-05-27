@@ -23,12 +23,14 @@ const WEIGHT_MAP = {
 // Em dark mode, o DS.type.X.color (hardcoded #1C1C1E) seria invisível,
 // então essa tabela informa qual cor do tema usar como default.
 const DEFAULT_COLOR_FOR_VARIANT = {
+    display: 'neutral.900',
     h1: 'neutral.900',
     h2: 'neutral.900',
     h3: 'neutral.900',
     body: 'neutral.800',
     bodySmall: 'neutral.800',
     caption: 'neutral.500', // caption já era cinza em light; cinza em dark também funciona
+    eyebrow: 'neutral.600', // label de seção — secundário sem ser apagado
     button: 'neutral.900',
 };
 
@@ -105,11 +107,15 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
 };
 
 // Atalhos Semânticos
+export const Display = (props) => <NeoText variant="display" {...props} />;
 export const H1 = (props) => <NeoText variant="h1" {...props} />;
 export const H2 = (props) => <NeoText variant="h2" {...props} />;
 export const H3 = (props) => <NeoText variant="h3" {...props} />;
 export const Body = (props) => <NeoText variant="body" {...props} />;
 export const Small = (props) => <NeoText variant="bodySmall" {...props} />;
 export const Caption = (props) => <NeoText variant="caption" {...props} />;
+// Eyebrow — label premium de seção. Substitui "sectionLabel" inline.
+// Visual: uppercase, tracking +1.4, peso 600, cor neutral[600].
+export const Eyebrow = (props) => <NeoText variant="eyebrow" {...props} />;
 
 export default NeoText;

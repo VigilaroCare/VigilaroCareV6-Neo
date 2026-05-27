@@ -111,12 +111,13 @@ export default function AppBackground({
 /**
  * Export retrocompatível — alguns componentes importam { MIST } de AppBackground.
  * Mantém o shape antigo (com `primary`/`stops`) usando a paleta LIGHT por default.
+ * Sincronizado com o novo mist premium (off-white quente neutro).
  */
 export const MIST = {
-    primary: ['#D0EBE0', '#B0DBCA', '#8CCEA8', '#A1D4B8', '#D0EBE0', '#E4F2EC'],
+    primary: ['#FAFAF7', '#F7F6F1', '#F4F2EC', '#F7F6F1', '#FAFAF7', '#FCFBF8'],
     stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
-    accent: 'rgba(46, 125, 50, 0.08)',
-    accentStrong: 'rgba(27, 94, 32, 0.12)',
+    accent: 'rgba(4, 120, 87, 0.04)',
+    accentStrong: 'rgba(161, 98, 7, 0.05)',
 };
 
 const styles = StyleSheet.create({

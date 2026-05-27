@@ -1,5 +1,6 @@
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
 import Theme from '../utils/Theme';
 import { useIsDark, useThemeColors } from '../utils/ThemeContext';
 
@@ -11,8 +12,15 @@ import { useIsDark, useThemeColors } from '../utils/ThemeContext';
  * fundo translúcido). Em dark mode, tint vira "dark" e bordas tornam-se
  * sutis baseadas em white-alpha.
  *
+ * VARIANT 'premium' (DS2026 Premium Upgrade):
+ * Mesmo glass + (a) specular highlight gradient interno top→bottom
+ * (a "lambida de luz" do topo), (b) sombra colorida brand (Forest Deep)
+ * — eleva o card de "vidro funcional" para "vidro de luxo". Uso parcimonioso:
+ * destinado a hero cards (monitor da Home, CTAs primários, cards de destaque).
+ *
  * Props:
- * - variant: 'elevated'|'glass' (vidro jateado), 'outline' (borda), 'flat' (cinza), 'primary'
+ * - variant: 'elevated'|'glass' (vidro jateado), 'premium' (vidro luxo),
+ *            'outline' (borda), 'flat' (cinza), 'primary'
  * - padding: number (default: md)
  * - onPress: function (se fornecido, torna-se tocável)
  */
@@ -29,8 +37,10 @@ export default function NeoCard({
     const colors = useThemeColors();
     const spacing = padding !== undefined ? padding : Neo.spacing.md;
 
-    // DS2026: 'elevated' agora é alias de 'glass' — vidro jateado unificado
-    const isGlass = variant === 'elevated' || variant === 'glass';
+    // DS2026: 'elevated' agora é alias de 'glass' — vidro jateado unificado.
+    // 'premium' é uma extensão do glass (BlurView + specular + brand shadow).
+    const isGlass = variant === 'elevated' || variant === 'glass' || variant === 'premium';
+    const isPremium = variant === 'premium';
 
     const baseStyle = {
         padding: spacing,
@@ -44,25 +54,80 @@ export default function NeoCard({
     switch (variant) {
         case 'elevated':
         case 'glass':
-            // Glassmorphism — bordas de luz em light, bordas sutis brancas em dark
+            // Moldura vitrificada — borda warm-gray SÓLIDA + highlight branco
+            // top/left + sombra warm bottom + sombra Apple-style externa.
+            // Sobre off-white, a borda translúcida sumia; agora opacity 0.22
+            // dá um contorno definido sem perder a leveza.
             variantStyle = isDark ? {
-                backgroundColor: 'rgba(28, 28, 30, 0.55)',
+                backgroundColor: 'rgba(28, 28, 30, 0.58)',
                 borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.10)',
-                borderTopColor: 'rgba(255, 255, 255, 0.18)',
-                borderLeftColor: 'rgba(255, 255, 255, 0.14)',
+                borderColor: 'rgba(255, 255, 255, 0.14)',
+                borderTopColor: 'rgba(255, 255, 255, 0.22)',
+                borderLeftColor: 'rgba(255, 255, 255, 0.18)',
+                borderBottomColor: 'rgba(0, 0, 0, 0.32)',
                 borderTopWidth: 1.5,
                 borderLeftWidth: 1.2,
-                elevation: 0,
+                borderBottomWidth: 1.2,
+                shadowColor: '#000000',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.18,
+                shadowRadius: 12,
+                elevation: 3,
             } : {
-                backgroundColor: 'rgba(255, 255, 255, 0.35)',
+                backgroundColor: 'rgba(255, 255, 255, 0.72)',
                 borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.4)',
-                borderTopColor: 'rgba(255, 255, 255, 0.9)',
-                borderLeftColor: 'rgba(255, 255, 255, 0.7)',
+                borderColor: 'rgba(120, 113, 108, 0.22)',     // warm-gray sólido
+                borderTopColor: 'rgba(255, 255, 255, 1)',     // highlight brilho top
+                borderLeftColor: 'rgba(255, 255, 255, 0.85)', // highlight brilho left
+                borderBottomColor: 'rgba(82, 75, 68, 0.22)',  // sombra warm bottom mais escura
                 borderTopWidth: 1.5,
                 borderLeftWidth: 1.2,
-                elevation: 0,
+                borderBottomWidth: 1.2,
+                // Sombra Apple-style: discreta, espalhada, neutra (sem tinge).
+                shadowColor: '#1C1C1E',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.06,
+                shadowRadius: 14,
+                elevation: 2,
+            };
+            break;
+        case 'premium':
+            // Moldura vitrificada + brand shadow sutil + specular interno.
+            // Mais "presença" que glass mas sem virar caixa pesada.
+            variantStyle = isDark ? {
+                backgroundColor: 'rgba(28, 28, 30, 0.68)',
+                borderWidth: 1,
+                borderColor: 'rgba(255, 255, 255, 0.18)',
+                borderTopColor: 'rgba(255, 255, 255, 0.32)',
+                borderLeftColor: 'rgba(255, 255, 255, 0.22)',
+                borderBottomColor: 'rgba(0, 0, 0, 0.42)',
+                borderTopWidth: 1.8,
+                borderLeftWidth: 1.4,
+                borderBottomWidth: 1.4,
+                shadowColor: Neo.colors.primary[700],
+                shadowOffset: { width: 0, height: 8 },
+                shadowOpacity: 0.18,
+                shadowRadius: 20,
+                elevation: 5,
+            } : {
+                backgroundColor: 'rgba(255, 255, 255, 0.82)',
+                borderWidth: 1,
+                borderColor: 'rgba(120, 113, 108, 0.26)',     // warm-gray mais sólido
+                borderTopColor: 'rgba(255, 255, 255, 1)',
+                borderLeftColor: 'rgba(255, 255, 255, 0.92)',
+                borderBottomColor: 'rgba(82, 75, 68, 0.28)',  // sombra warm bottom premium
+                borderTopWidth: 1.8,
+                borderLeftWidth: 1.4,
+                borderBottomWidth: 1.4,
+                // Sombra dupla: brand Forest sutil + neutra Apple-style.
+                // RN só honra uma shadowColor por View; usamos a Forest aqui
+                // (assinatura) e o BlurView interno + specular dão o efeito de
+                // profundidade. Em Android elevation 4 = neutra cinza.
+                shadowColor: Neo.colors.primary[700],
+                shadowOffset: { width: 0, height: 8 },
+                shadowOpacity: 0.08,
+                shadowRadius: 20,
+                elevation: 4,
             };
             break;
         case 'outline':
@@ -107,7 +172,23 @@ export default function NeoCard({
     // Remove undefined keys
     Object.keys(layoutStyle).forEach(k => layoutStyle[k] === undefined && delete layoutStyle[k]);
 
-    // Glass rendering via BlurView (covers both 'elevated' and 'glass')
+    // Specular highlight overlay — só renderizado em variant="premium".
+    // Posicionado absolute no topo do card, ocupando ~55% da altura,
+    // com gradient branco semi-transparente top→transparent. pointerEvents="none"
+    // garante que toques cheguem nos elementos internos (botões, etc).
+    const specularGradient = isDark ? Neo.gradients.specularDark : Neo.gradients.specular;
+    const SpecularOverlay = isPremium ? (
+        <LinearGradient
+            pointerEvents="none"
+            colors={specularGradient.colors}
+            locations={specularGradient.locations}
+            start={specularGradient.start}
+            end={specularGradient.end}
+            style={StyleSheet.absoluteFillObject}
+        />
+    ) : null;
+
+    // Glass rendering via BlurView (covers 'elevated', 'glass', and 'premium')
     if (isGlass) {
         if (onPress) {
             const blurStyle = [visualStyle];
@@ -117,7 +198,8 @@ export default function NeoCard({
 
             return (
                 <TouchableOpacity style={layoutStyle} onPress={onPress} activeOpacity={activeOpacity}>
-                    <BlurView intensity={45} tint={isDark ? 'dark' : 'light'} style={blurStyle}>
+                    <BlurView intensity={isPremium ? 35 : 28} tint={isDark ? 'dark' : 'light'} style={blurStyle}>
+                        {SpecularOverlay}
                         {children}
                     </BlurView>
                 </TouchableOpacity>
@@ -125,7 +207,8 @@ export default function NeoCard({
         }
 
         return (
-            <BlurView intensity={45} tint={isDark ? 'dark' : 'light'} style={flatStyle}>
+            <BlurView intensity={isPremium ? 35 : 28} tint={isDark ? 'dark' : 'light'} style={flatStyle}>
+                {SpecularOverlay}
                 {children}
             </BlurView>
         );

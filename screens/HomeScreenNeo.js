@@ -30,9 +30,8 @@ import ProactiveNotificationService from '../services/ProactiveNotificationServi
 import ScoreService from '../services/ScoreService';
 
 import NeoCard from '../components/NeoCard';
-import { H2, Body } from '../components/NeoTypography';
+import { H2, Body, Eyebrow } from '../components/NeoTypography';
 import CompactActiveMonitor from '../components/CompactActiveMonitor';
-import MapaSensivelCard from '../components/MapaSensivelCard';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
 import TappablePressable from '../components/TappablePressable';
@@ -65,7 +64,6 @@ export default function HomeScreenNeo() {
     const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
     const [residences, setResidences] = useState([]);
     const [activeResidence, setActiveResidence] = useState(null);
-    const [modalResidenciaVisible, setModalResidenciaVisible] = useState(false);
     const [imageError, setImageError] = useState(false);
 
     const [monitorExpanded, setMonitorExpanded] = useState(false);
@@ -189,12 +187,16 @@ export default function HomeScreenNeo() {
     const petStatus = { label: t('home.statusViewDetails', 'ver detalhes'), tone: 'neutral' };
     const eventuaisStatus = { label: t('home.statusNoneActive', 'nenhuma ativa'), tone: 'neutral' };
 
+    // Cores derivadas do DS (Neo.colors.gridAccents) — substituem o Material
+    // antigo (#9C27B0, #E91E63, #2196F3, #FF9800) por uma paleta coerente
+    // ao brand (teal/rose/sky/amber rebaixados, Tailwind 600-700).
     const GRID_ITEMS = [
         {
             key: 'saude',
             label: t('home.myHealth'),
             Icon: Health,
-            color: '#9C27B0',
+            color: Neo.colors.gridAccents.saude.color,
+            bg: Neo.colors.gridAccents.saude.bg,
             route: 'MinhaSaude',
             status: saudeStatus,
         },
@@ -202,7 +204,8 @@ export default function HomeScreenNeo() {
             key: 'pets',
             label: t('home.petHealth'),
             Icon: Pet,
-            color: '#E91E63',
+            color: Neo.colors.gridAccents.pets.color,
+            bg: Neo.colors.gridAccents.pets.bg,
             route: 'PetsMenu',
             status: petStatus,
         },
@@ -210,7 +213,8 @@ export default function HomeScreenNeo() {
             key: 'vistorias',
             label: t('home.inspections'),
             Icon: ShieldTick,
-            color: '#2196F3',
+            color: Neo.colors.gridAccents.vistorias.color,
+            bg: Neo.colors.gridAccents.vistorias.bg,
             route: 'Relatorios',
             status: vistoriasStatus,
         },
@@ -218,7 +222,8 @@ export default function HomeScreenNeo() {
             key: 'atividades',
             label: t('home.eventualActivities', 'Ativ. Eventuais'),
             Icon: Warning2,
-            color: '#FF9800',
+            color: Neo.colors.gridAccents.eventuais.color,
+            bg: Neo.colors.gridAccents.eventuais.bg,
             route: 'ModoPreventivo',
             status: eventuaisStatus,
             accent: true,
@@ -237,11 +242,11 @@ export default function HomeScreenNeo() {
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* LOGO */}
-                <View style={{ alignItems: 'center', paddingTop: 6, paddingBottom: 4 }}>
+                {/* LOGO — framing premium (mais respiro vertical) */}
+                <View style={{ alignItems: 'center', paddingTop: 12, paddingBottom: 10 }}>
                     <Image
                         source={require('../assets/logo_vigilaro.png')}
-                        style={{ width: 180, height: 50 }}
+                        style={{ width: 168, height: 46, opacity: 0.95 }}
                         resizeMode="contain"
                     />
                 </View>
@@ -257,8 +262,6 @@ export default function HomeScreenNeo() {
                 }}>
                     <HousePill
                         label={houseName}
-                        isModalOpen={modalResidenciaVisible}
-                        onPress={() => setModalResidenciaVisible(true)}
                     />
 
                     <TappablePressable
@@ -292,13 +295,8 @@ export default function HomeScreenNeo() {
                         paddingTop: 2,
                     }}
                 >
-                    {/* SEU MAPA SENSÍVEL — reflexo do briefing vivo (B++ D5).
-                        Consome RiskInterpreterService.interpret() e mostra resumo
-                        + recomendação em tom Agnaldo. Tap → SafetyActionPlan. */}
-                    <MapaSensivelCard />
-
                     {/* AMBIENTES VISTORIADOS */}
-                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Text>
+                    <Eyebrow style={s.sectionEyebrow} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Eyebrow>
                     <TappablePressable
                         onPress={toggleMonitor}
                         accessibilityState={{ expanded: monitorExpanded }}
@@ -306,19 +304,15 @@ export default function HomeScreenNeo() {
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
                     >
                         <NeoCard
-                            variant="glass"
+                            variant="premium"
                             style={{
                                 height: monitorExpanded ? null : H_MONITOR,
                                 minHeight: H_MONITOR,
-                                borderRadius: 22,
-                                paddingVertical: 12,
-                                paddingHorizontal: 14,
+                                borderRadius: 24,
+                                paddingVertical: 16,
+                                paddingHorizontal: 18,
                                 overflow: 'hidden',
-                                marginBottom: H_GAP + 4,
-                                shadowColor: Neo.colors.primary[500],
-                                shadowOffset: { width: 0, height: 8 },
-                                shadowOpacity: 0.12,
-                                shadowRadius: 24,
+                                marginBottom: H_GAP + 6,
                             }}
                         >
                             <CompactActiveMonitor
@@ -347,13 +341,13 @@ export default function HomeScreenNeo() {
                             <View style={[
                                 s.contextAlertDot,
                                 contextualAlert.tone === 'critical' && { backgroundColor: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { backgroundColor: '#F57C00' },
+                                contextualAlert.tone === 'warning'  && { backgroundColor: Neo.colors.accent.copper },
                                 contextualAlert.tone === 'system'   && { backgroundColor: Neo.colors.neutral[700] },
                             ]} />
                             <Text style={[
                                 s.contextAlertText,
                                 contextualAlert.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { color: '#E65100' },
+                                contextualAlert.tone === 'warning'  && { color: Neo.colors.accent.copper },
                                 contextualAlert.tone === 'system'   && { color: Neo.colors.neutral[800] },
                             ]} numberOfLines={1}>
                                 {contextualAlert.label}
@@ -361,7 +355,7 @@ export default function HomeScreenNeo() {
                             {contextualAlert.route && (
                                 <ArrowRight2 size={14} color={
                                     contextualAlert.tone === 'critical' ? Neo.colors.feedback.error :
-                                    contextualAlert.tone === 'warning'  ? '#E65100' :
+                                    contextualAlert.tone === 'warning'  ? Neo.colors.accent.copper :
                                     Neo.colors.neutral[700]
                                 } />
                             )}
@@ -369,7 +363,7 @@ export default function HomeScreenNeo() {
                     )}
 
                     {/* ACESSO RÁPIDO — com micro-status (Absorção 2) */}
-                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('home.quickAccess')}</Text>
+                    <Eyebrow style={s.sectionEyebrow} accessibilityRole="header">{t('home.quickAccess')}</Eyebrow>
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
                             <ScaleInView
@@ -389,8 +383,8 @@ export default function HomeScreenNeo() {
                                         variant="elevated"
                                         style={[s.gridCard, item.accent && s.gridCardAccent]}
                                     >
-                                        <View style={[s.gridIconCircle, { backgroundColor: item.color + '1A' }]}>
-                                            <item.Icon size={26} color={item.color} variant="Bold" />
+                                        <View style={[s.gridIconCircle, { backgroundColor: item.bg }]}>
+                                            <item.Icon size={28} color={item.color} variant="Bold" />
                                         </View>
                                         <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={1}>{item.label}</Text>
                                         <View style={[
@@ -402,10 +396,10 @@ export default function HomeScreenNeo() {
                                         ]}>
                                             <Text style={[
                                                 s.gridStatusText,
-                                                item.status.tone === 'ok'       && { color: '#2E7D32' },
-                                                item.status.tone === 'warning'  && { color: '#E65100' },
+                                                item.status.tone === 'ok'       && { color: Neo.colors.primary[700] },
+                                                item.status.tone === 'warning'  && { color: Neo.colors.accent.copper },
                                                 item.status.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                                item.status.tone === 'neutral'  && { color: Neo.colors.neutral[500] },
+                                                item.status.tone === 'neutral'  && { color: Neo.colors.neutral[600] },
                                             ]}>
                                                 {item.status.tone === 'ok' && '✓ '}
                                                 {item.status.label}
@@ -418,7 +412,7 @@ export default function HomeScreenNeo() {
                     </View>
 
                     {/* FERRAMENTAS — labels limpos, sem subtítulo "Assistente IA, Scanner e Voz" */}
-                    <Text style={[s.sectionLabel, { marginTop: 4, color: textSecondary }]} accessibilityRole="header">{t('home.tools')}</Text>
+                    <Eyebrow style={[s.sectionEyebrow, { marginTop: 14 }]} accessibilityRole="header">{t('home.tools')}</Eyebrow>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <TappablePressable
@@ -464,96 +458,16 @@ export default function HomeScreenNeo() {
                         accessibilityRole="button"
                         accessibilityLabel={t('home.viewHistory', 'Ver histórico de atividades')}
                     >
-                        <Activity size={17} color={Neo.colors.primary[600]} variant="Bold" />
+                        <Activity size={16} color={Neo.colors.primary[700]} variant="Bold" />
                         <Text style={s.historyLinkText}>
                             {t('home.viewHistory', 'Ver histórico de atividades')}
                         </Text>
-                        <ArrowRight2 size={15} color={Neo.colors.primary[600]} />
+                        <ArrowRight2 size={14} color={Neo.colors.primary[700]} />
                     </TouchableOpacity>
 
                 </ScrollView>
 
-                {/* MODAL RESIDÊNCIAS */}
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalResidenciaVisible}
-                    onRequestClose={() => setModalResidenciaVisible(false)}
-                >
-                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end' }}>
-                        <NeoCard variant="elevated" style={{
-                            borderBottomLeftRadius: 0, borderBottomRightRadius: 0,
-                            borderTopLeftRadius: 24, borderTopRightRadius: 24,
-                            padding: 24, minHeight: 400, width: '100%',
-                            backgroundColor: '#FFFFFF',
-                        }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
-                                <H2>{t('home.myLocations')}</H2>
-                                <TouchableOpacity onPress={() => setModalResidenciaVisible(false)}>
-                                    <CloseCircle size={24} color="#000" />
-                                </TouchableOpacity>
-                            </View>
 
-                            <ScrollView showsVerticalScrollIndicator={false}>
-                                {residences.map(res => {
-                                    const isSelected = activeResidence?.id === res.id;
-                                    return (
-                                        <NeoCard
-                                            key={res.id}
-                                            variant={isSelected ? 'primary' : 'elevated'}
-                                            padding={16}
-                                            onPress={async () => {
-                                                haptic.tap();
-                                                await ProfileService.setActiveResidence(res.id);
-                                                await loadProfiles();
-                                                setModalResidenciaVisible(false);
-                                                await loadData();
-                                            }}
-                                            style={{
-                                                marginBottom: 12, borderRadius: 16,
-                                                flexDirection: 'row', alignItems: 'center',
-                                                justifyContent: 'space-between',
-                                                borderWidth: isSelected ? 2 : 1,
-                                                borderColor: isSelected ? Neo.colors.primary[500] : 'rgba(0,0,0,0.05)',
-                                            }}
-                                        >
-                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <View style={{
-                                                    width: 40, height: 40, borderRadius: 20,
-                                                    backgroundColor: isSelected ? 'rgba(255,255,255,0.3)' : Neo.colors.primary[100],
-                                                    justifyContent: 'center', alignItems: 'center', marginRight: 12,
-                                                }}>
-                                                    <Home2 size={20} color={isSelected ? '#FFF' : Neo.colors.primary[600]} variant={isSelected ? 'Bold' : 'Linear'} />
-                                                </View>
-                                                <Body style={{ fontWeight: isSelected ? 'bold' : '600', color: isSelected ? '#FFF' : Neo.colors.neutral[800] }}>
-                                                    {res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : res.nome}
-                                                </Body>
-                                            </View>
-                                            {isSelected && <ArrowRight2 size={20} color="#FFF" />}
-                                        </NeoCard>
-                                    );
-                                })}
-
-                                <NeoCard
-                                    variant="elevated"
-                                    padding={16}
-                                    style={{
-                                        marginTop: 4, borderWidth: 1, borderStyle: 'dashed',
-                                        borderColor: Neo.colors.neutral[400], borderRadius: 16,
-                                        alignItems: 'center', justifyContent: 'center', flexDirection: 'row',
-                                    }}
-                                    onPress={() => {
-                                        setModalResidenciaVisible(false);
-                                        navigation.navigate('NewHomeWizard');
-                                    }}
-                                >
-                                    <Building size={20} color={Neo.colors.neutral[500]} style={{ marginRight: 8 }} />
-                                    <Body style={{ color: Neo.colors.neutral[600], fontWeight: '600' }}>{t('home.addNewLocation')}</Body>
-                                </NeoCard>
-                            </ScrollView>
-                        </NeoCard>
-                    </View>
-                </Modal>
 
             </SafeAreaView>
         </AppBackground>
@@ -561,44 +475,49 @@ export default function HomeScreenNeo() {
 }
 
 const s = StyleSheet.create({
-    sectionLabel: {
-        fontSize: 11,
-        fontWeight: '900',
-        color: Neo.colors.neutral[800],
-        letterSpacing: 1.6,
-        marginBottom: 6,
-        marginTop: 2,
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        opacity: 0.9,
+    // Premium eyebrow para labels de seção. Margem inferior generosa pra
+    // dar respiro; alinhado à esquerda (apps premium não centralizam labels).
+    sectionEyebrow: {
+        marginBottom: 10,
+        marginTop: 4,
+        textAlign: 'left',
+        paddingHorizontal: 2,
     },
     profileCardOuter: {
-        borderRadius: 18,
-        overflow: 'hidden',
-        shadowColor: Neo.colors.primary[500],
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.15,
-        shadowRadius: 16,
-        elevation: 4,
+        borderRadius: 20,
+        // overflow:hidden removido (clipava a sombra externa no Android).
+        // Sem flex aqui — o card já tem tamanho próprio definido pelo conteúdo.
     },
     profileCardInner: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(255,255,255,0.88)',
-        paddingVertical: 6,
-        paddingHorizontal: 14,
-        borderRadius: 18,
-        borderWidth: 1.5,
-        borderColor: 'rgba(255,255,255,0.95)',
-        borderTopColor: 'rgba(255,255,255,1)',
-        borderTopWidth: 2,
-        minWidth: 72,
+        backgroundColor: '#FFFFFF',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        minWidth: 76,
+        // Moldura vitrificada igual ao HousePill — consistência.
+        borderWidth: 1,
+        borderColor: 'rgba(120, 113, 108, 0.22)',
+        borderTopColor: 'rgba(255, 255, 255, 1)',
+        borderTopWidth: 1.5,
+        borderLeftColor: 'rgba(255, 255, 255, 0.85)',
+        borderLeftWidth: 1.2,
+        borderBottomColor: 'rgba(82, 75, 68, 0.20)',
+        borderBottomWidth: 1.2,
+        // Sombra Apple-style neutra (sem tinge Forest)
+        shadowColor: '#1C1C1E',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
     },
     profileName: {
-        fontSize: 10,
-        fontWeight: '700',
+        fontSize: 11,
+        fontWeight: '600',
         color: Neo.colors.neutral[800],
-        marginTop: 3,
+        marginTop: 4,
+        letterSpacing: 0.1,
     },
 
     // ── Alerta contextual (Absorção 1) ──
@@ -612,16 +531,16 @@ const s = StyleSheet.create({
         borderWidth: 1,
     },
     contextAlertCritical: {
-        backgroundColor: '#FFEBEE',
-        borderColor: 'rgba(229,57,53,0.30)',
+        backgroundColor: 'rgba(255, 59, 48, 0.08)',     // iOS red tint
+        borderColor: 'rgba(255, 59, 48, 0.24)',
     },
     contextAlertWarning: {
-        backgroundColor: '#FFF3E0',
-        borderColor: 'rgba(245,124,0,0.30)',
+        backgroundColor: 'rgba(180, 83, 9, 0.08)',      // Copper tint
+        borderColor: 'rgba(180, 83, 9, 0.24)',
     },
     contextAlertSystem: {
-        backgroundColor: 'rgba(55,71,79,0.08)',
-        borderColor: 'rgba(55,71,79,0.20)',
+        backgroundColor: 'rgba(60, 60, 67, 0.06)',
+        borderColor: 'rgba(60, 60, 67, 0.16)',
     },
     contextAlertDot: {
         width: 8,
@@ -631,29 +550,30 @@ const s = StyleSheet.create({
     },
     contextAlertText: {
         flex: 1,
-        fontSize: 12.5,
-        fontWeight: '700',
+        fontSize: 13,
+        fontWeight: '600',
+        letterSpacing: -0.05,
     },
 
-    // ── Grid 2×2 ──
+    // ── Grid 2×2 (premium spacing) ──
     gridContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginBottom: H_GAP,
-        gap: 10,
+        marginBottom: H_GAP + 4,
+        gap: 12,
     },
     gridCell: {
         width: '48%',
-        marginBottom: 8,
+        marginBottom: 10,
     },
     gridCard: {
-        borderRadius: 20,
+        borderRadius: 22,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 8,
-        paddingVertical: 12,
-        height: 116,
+        paddingHorizontal: 12,
+        paddingVertical: 18,
+        height: 132,
         position: 'relative',
     },
     // gridCardAccent intencionalmente vazio — com o vidro jateado a borda extra
@@ -661,59 +581,64 @@ const s = StyleSheet.create({
     // ícone laranja + micro-status próprio.
     gridCardAccent: {},
     gridIconCircle: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        width: 52,
+        height: 52,
+        borderRadius: 26,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 6,
+        marginBottom: 8,
     },
     gridLabel: {
-        fontSize: 13,
-        fontWeight: '800',
-        color: '#1a1a2e',
+        fontSize: 14,
+        fontWeight: '700',
+        color: Neo.colors.neutral[900],
         textAlign: 'center',
-        lineHeight: 16,
-        marginBottom: 4,
+        lineHeight: 18,
+        marginBottom: 6,
+        letterSpacing: -0.1,
     },
     // Micro-status pill (Absorção 2)
     gridStatusPill: {
-        paddingHorizontal: 8,
-        paddingVertical: 2,
+        paddingHorizontal: 9,
+        paddingVertical: 3,
         borderRadius: 10,
     },
-    gridStatusOk:       { backgroundColor: 'rgba(46,125,50,0.10)' },
-    gridStatusWarning:  { backgroundColor: 'rgba(230,81,0,0.10)' },
-    gridStatusCritical: { backgroundColor: 'rgba(229,57,53,0.10)' },
-    gridStatusNeutral:  { backgroundColor: 'rgba(120,120,120,0.08)' },
+    // Pills alinhados ao DS — verde brand (Forest), warning âmbar premium,
+    // critical iOS red, neutral cinza warm.
+    gridStatusOk:       { backgroundColor: 'rgba(4, 120, 87, 0.10)' },     // Forest tint
+    gridStatusWarning:  { backgroundColor: 'rgba(180, 83, 9, 0.10)' },     // Amber tint
+    gridStatusCritical: { backgroundColor: 'rgba(255, 59, 48, 0.10)' },    // iOS red tint
+    gridStatusNeutral:  { backgroundColor: 'rgba(120, 120, 128, 0.08)' },  // iOS gray tint
     gridStatusText: {
-        fontSize: 10,
-        fontWeight: '800',
+        fontSize: 11,
+        fontWeight: '700',
+        letterSpacing: 0.1,
     },
 
     // ── Ferramentas — labels limpos, sem subtítulo de IA ──
     toolCard: {
-        borderRadius: 16,
+        borderRadius: 18,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 14,
-        paddingHorizontal: 12,
-        height: 84,
-        marginBottom: 8,
+        paddingVertical: 18,
+        paddingHorizontal: 14,
+        height: 96,
+        marginBottom: 10,
     },
     toolIconCircle: {
-        width: 38,
-        height: 38,
-        borderRadius: 19,
+        width: 42,
+        height: 42,
+        borderRadius: 21,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 6,
+        marginBottom: 8,
     },
     toolLabel: {
-        fontSize: 12.5,
-        fontWeight: '800',
+        fontSize: 13,
+        fontWeight: '700',
         color: Neo.colors.neutral[900],
         textAlign: 'center',
+        letterSpacing: -0.1,
     },
 
     // ── Link discreto para Histórico ──
@@ -723,15 +648,15 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'flex-end',
-        paddingVertical: 8,
-        paddingHorizontal: 6,
-        marginTop: 8,
+        paddingVertical: 10,
+        paddingHorizontal: 8,
+        marginTop: 12,
         gap: 6,
     },
     historyLinkText: {
-        fontSize: 14,
-        fontWeight: '700',
-        color: Neo.colors.primary[700],
-        letterSpacing: 0.1,
+        fontSize: 13,
+        fontWeight: '600',
+        color: Neo.colors.primary[700], // Forest Deep
+        letterSpacing: 0.2,
     },
 });

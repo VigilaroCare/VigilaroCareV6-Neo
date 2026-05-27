@@ -96,13 +96,33 @@ const LightColors = {
         border: 'rgba(255, 255, 255, 0.4)',
         dark: 'rgba(28, 28, 30, 0.65)',
     },
-    // Mist (gradient de fundo) — verde claro
+    // Mist premium 2026 — off-white quente com leve gradiente neutro.
+    // Substitui o "mist verde" anterior (que criava sopa esverdeada quando
+    // empilhado com cards de vidro verdes + accents verdes).
+    // Identidade vem dos cards/elementos, não do background.
     mist: {
-        gradient: ['#D0EBE0', '#B0DBCA', '#8CCEA8', '#A1D4B8', '#D0EBE0', '#E4F2EC'],
+        gradient: ['#FAFAF7', '#F7F6F1', '#F4F2EC', '#F7F6F1', '#FAFAF7', '#FCFBF8'],
         stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
-        accent: 'rgba(46, 125, 50, 0.08)',
-        accentStrong: 'rgba(27, 94, 32, 0.12)',
-        fallback: '#F2F8F4',
+        accent: 'rgba(4, 120, 87, 0.04)',       // Forest Deep ultra-sutil
+        accentStrong: 'rgba(161, 98, 7, 0.05)', // Champagne signature ultra-sutil
+        fallback: '#FAFAF7',
+    },
+    // Accent "signature" — champagne / cobre para momentos premium pontuais
+    // (badges raros, score 100%, highlights de luxo). Uso parcimonioso.
+    accent: {
+        champagne: '#A16207',       // Cobre/champagne escuro — texto/ícone em fundo claro
+        champagneLight: '#D4A055',  // Tom médio para gradientes
+        champagneSubtle: '#FEF3C7', // Fundo levíssimo para chips/badges premium
+        copper: '#B45309',          // Variante mais quente
+    },
+    // Paleta do grid principal (Home, menus) — substitui as cores Material
+    // hardcoded (#9C27B0, #E91E63, #2196F3, #FF9800) por uma escala coerente
+    // ao DS, dessaturada (Tailwind 600-700, não 500).
+    gridAccents: {
+        saude:     { color: '#0F766E', bg: 'rgba(15, 118, 110, 0.10)' },  // Teal-700
+        pets:      { color: '#BE185D', bg: 'rgba(190, 24, 93, 0.10)' },   // Rose-700 (rebaixado)
+        vistorias: { color: '#0369A1', bg: 'rgba(3, 105, 161, 0.10)' },   // Sky-700
+        eventuais: { color: '#B45309', bg: 'rgba(180, 83, 9, 0.10)' },    // Amber-700
     },
 };
 
@@ -159,13 +179,29 @@ const DarkColors = {
         border: 'rgba(255, 255, 255, 0.12)',
         dark: 'rgba(28, 28, 30, 0.78)',
     },
-    // Mist dark — gradient escuro com tom esverdeado sutil (identidade)
+    // Mist dark premium — charcoal neutro com leve undertone quente.
+    // Removido o tom esverdeado (que pesava em camadas).
     mist: {
-        gradient: ['#0F1A14', '#13241B', '#173024', '#13241B', '#0F1A14', '#0A130E'],
+        gradient: ['#15141A', '#1A1820', '#1E1C24', '#1A1820', '#15141A', '#100F14'],
         stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
-        accent: 'rgba(16, 185, 129, 0.06)',
-        accentStrong: 'rgba(16, 185, 129, 0.10)',
-        fallback: '#0E1A12',
+        accent: 'rgba(16, 185, 129, 0.05)',
+        accentStrong: 'rgba(212, 160, 85, 0.06)', // Champagne sutil no dark
+        fallback: '#15141A',
+    },
+    // Accent "signature" no dark — champagne mais claro para legibilidade
+    accent: {
+        champagne: '#D4A055',       // Tom médio (mais claro no dark)
+        champagneLight: '#E5C28A',
+        champagneSubtle: 'rgba(212, 160, 85, 0.12)',
+        copper: '#E08B4D',
+    },
+    // Grid no dark — mesmas hues mas com luminância elevada para contraste
+    // em fundo escuro (Tailwind 400-500 ao invés de 700)
+    gridAccents: {
+        saude:     { color: '#2DD4BF', bg: 'rgba(45, 212, 191, 0.14)' },  // Teal-400
+        pets:      { color: '#F472B6', bg: 'rgba(244, 114, 182, 0.14)' }, // Pink-400
+        vistorias: { color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.14)' },  // Sky-400
+        eventuais: { color: '#FBBF24', bg: 'rgba(251, 191, 36, 0.14)' },  // Amber-400
     },
 };
 
@@ -175,6 +211,9 @@ export const DS = {
 
     // 2. Tipografia (Plus Jakarta Sans display + System body)
     type: {
+        // Hero — momentos "wow" da Home (score grande, números de impacto)
+        display: { fontSize: 48, fontWeight: '800', lineHeight: 52, color: '#1C1C1E', letterSpacing: -1.2, _display: true },
+
         h1: { fontSize: 34, fontWeight: '800', lineHeight: 41, color: '#1C1C1E', letterSpacing: -0.6, _display: true }, // Display font
         h2: { fontSize: 28, fontWeight: '700', lineHeight: 34, color: '#1C1C1E', letterSpacing: -0.4, _display: true }, // Display font
         h3: { fontSize: 22, fontWeight: '700', lineHeight: 28, color: '#1C1C1E', letterSpacing: -0.2, _display: true }, // Display font
@@ -182,6 +221,11 @@ export const DS = {
         body: { fontSize: 17, fontWeight: '400', lineHeight: 24, color: '#3A3A3C', letterSpacing: -0.1 }, // System font
         bodySmall: { fontSize: 15, fontWeight: '400', lineHeight: 20, color: '#3A3A3C', letterSpacing: -0.1 }, // System font
         caption: { fontSize: 13, fontWeight: '500', lineHeight: 18, color: '#8E8E93', letterSpacing: 0.1 }, // System font
+
+        // Eyebrow — labels de seção premium. Substitui o "sectionLabel" inline da Home
+        // (fontSize 11, fontWeight 900, uppercase opacity 0.9 — visual de planilha).
+        // Premium = peso médio (600), tracking generoso, cor secundária.
+        eyebrow: { fontSize: 11, fontWeight: '600', lineHeight: 14, color: '#787880', letterSpacing: 1.4, textTransform: 'uppercase', _display: true },
 
         button: { fontSize: 17, fontWeight: '600', letterSpacing: 0, textTransform: 'none', _display: true } // Display font
     },
@@ -227,7 +271,7 @@ export const DS = {
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.04,
             shadowRadius: 8,
-            elevation: Platform.OS === 'android' ? 2 : 0, 
+            elevation: Platform.OS === 'android' ? 2 : 0,
             // Para Android plano, evitamos a caixa cinza forte, mas damos leve volume
         },
         md: {
@@ -255,8 +299,59 @@ export const DS = {
             shadowOpacity: 0.25,
             shadowRadius: 36,
             elevation: Platform.OS === 'android' ? 12 : 0,
-        }
-    }
+        },
+        // Premium "duotone" — sombra colorida brand + sombra neutra ampla.
+        // Em RN nativo só uma shadowColor é honrada; aqui usamos a colorida
+        // (mais característica) e deixamos a neutra para a borda inferior do card
+        // via View interna (ver NeoCard variant="premium").
+        premium: {
+            shadowColor: '#047857', // Forest Deep — assinatura sutil
+            shadowOffset: { width: 0, height: 14 },
+            shadowOpacity: 0.10,
+            shadowRadius: 28,
+            elevation: Platform.OS === 'android' ? 10 : 0,
+        },
+        // Second pass — usada como View overlay para complementar a sombra do premium
+        premiumNeutral: {
+            shadowColor: '#1C1C1E',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.06,
+            shadowRadius: 12,
+            elevation: Platform.OS === 'android' ? 2 : 0,
+        },
+    },
+
+    // 6. Gradientes utilitários (specular highlights, brand gradients)
+    gradients: {
+        // Specular highlight — "lambida de luz" sutil no topo do card de vidro.
+        // Mantida baixa (0.35) pra ser polimento, não washout. Decai rápido
+        // pra não interferir com a legibilidade do conteúdo.
+        specular: {
+            colors: ['rgba(255,255,255,0.35)', 'rgba(255,255,255,0.08)', 'rgba(255,255,255,0)'],
+            locations: [0, 0.35, 1],
+            start: { x: 0.5, y: 0 },
+            end: { x: 0.5, y: 1 },
+        },
+        // Specular dark — para cards de vidro em dark mode (mais sutil ainda)
+        specularDark: {
+            colors: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0)'],
+            locations: [0, 0.35, 1],
+            start: { x: 0.5, y: 0 },
+            end: { x: 0.5, y: 1 },
+        },
+        // Brand sutil — Forest Deep → Emerald, uso em CTAs e hero accents
+        brand: {
+            colors: ['#047857', '#10B981'],
+            start: { x: 0, y: 0 },
+            end: { x: 1, y: 1 },
+        },
+        // Champagne signature — uso pontual em badges premium / score 100%
+        champagne: {
+            colors: ['#A16207', '#D4A055'],
+            start: { x: 0, y: 0 },
+            end: { x: 1, y: 1 },
+        },
+    },
 };
 
 // DarkDS — mesma estrutura do DS, mas com a paleta dark.

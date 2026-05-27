@@ -34,21 +34,25 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
     const arrowRotation = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        Animated.timing(arrowRotation, {
-            toValue: isModalOpen ? 1 : 0,
-            duration: 280,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-        }).start();
-    }, [isModalOpen]);
+        if (onPress) {
+            Animated.timing(arrowRotation, {
+                toValue: isModalOpen ? 1 : 0,
+                duration: 280,
+                easing: Easing.out(Easing.cubic),
+                useNativeDriver: true,
+            }).start();
+        }
+    }, [isModalOpen, onPress]);
 
     const rotate = arrowRotation.interpolate({
         inputRange: [0, 1],
         outputRange: ['0deg', '180deg'],
     });
 
+    const Container = onPress ? TouchableOpacity : View;
+
     return (
-        <TouchableOpacity
+        <Container
             onPress={onPress}
             activeOpacity={0.8}
             style={styles.housePillOuter}
@@ -72,12 +76,14 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
                     </Text>
                 </View>
 
-                {/* Seta animada */}
-                <Animated.View style={[styles.arrowContainer, { transform: [{ rotate }] }]}>
-                    <ArrowDown2 size={14} color={Neo.colors.neutral[500]} />
-                </Animated.View>
+                {/* Seta animada — só exibe se for clicável/editável */}
+                {onPress && (
+                    <Animated.View style={[styles.arrowContainer, { transform: [{ rotate }] }]}>
+                        <ArrowDown2 size={14} color={Neo.colors.neutral[500]} />
+                    </Animated.View>
+                )}
             </View>
-        </TouchableOpacity>
+        </Container>
     );
 }
 
@@ -85,25 +91,36 @@ const styles = StyleSheet.create({
     housePillOuter: {
         flex: 1,
         marginRight: 10,
-        borderRadius: 18,
-        overflow: 'hidden',
-        shadowColor: Neo.colors.primary[500],
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.15,
-        shadowRadius: 16,
-        elevation: 4,
+        // alignSelf:center impede que o outer estique até a altura do card de
+        // perfil vizinho (efeito de "card fantasma" visto antes — a sombra
+        // desenhava no bounding esticado, mas o inner não preenchia tudo).
+        alignSelf: 'center',
+        width: '100%',
     },
     housePillInner: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        borderRadius: 18,
-        backgroundColor: 'rgba(255,255,255,0.88)',
-        borderWidth: 1.5,
-        borderColor: 'rgba(255,255,255,0.95)',
-        borderTopColor: 'rgba(255,255,255,1)',
-        borderTopWidth: 2,
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        borderRadius: 20,
+        backgroundColor: '#FFFFFF',
+        // Moldura vitrificada: borda principal warm-gray sólida (não mais
+        // translúcida que sumia no off-white), highlight branco top/left,
+        // sombra warm bottom — efeito "moldura sólida com luz superior".
+        borderWidth: 1,
+        borderColor: 'rgba(120, 113, 108, 0.22)',
+        borderTopColor: 'rgba(255, 255, 255, 1)',
+        borderTopWidth: 1.5,
+        borderLeftColor: 'rgba(255, 255, 255, 0.85)',
+        borderLeftWidth: 1.2,
+        borderBottomColor: 'rgba(82, 75, 68, 0.20)',
+        borderBottomWidth: 1.2,
+        // Sombra Apple-style: discreta, espalhada, neutra (sem tinge colorido).
+        shadowColor: '#1C1C1E',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 2,
     },
     houseIconContainer: {
         marginRight: 10,
