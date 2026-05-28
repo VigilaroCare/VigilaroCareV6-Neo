@@ -26,10 +26,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import {
-    ArrowRight2, SearchNormal1, Scan, Call, CloseCircle,
-} from 'iconsax-react-native';
-
 import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
@@ -175,7 +171,7 @@ export default function InfoRotulosScreen() {
                     <FadeInView delay={80}>
                         <NeoCard variant="elevated" style={s.searchCard}>
                             <View style={s.searchRow}>
-                                <SearchNormal1 size={20} color={Neo.colors.neutral[500]} variant="Bold" />
+                                <NeoIcon name="SearchNormal1" size={20} color={Neo.colors.neutral[500]} variant="Bold" />
                                 <TextInput
                                     ref={searchRef}
                                     style={s.searchInput}
@@ -189,7 +185,7 @@ export default function InfoRotulosScreen() {
                                 />
                                 {searchQuery.length > 0 && (
                                     <TouchableOpacity onPress={() => { setSearchQuery(''); setSearchResults([]); }}>
-                                        <CloseCircle size={20} color={Neo.colors.neutral[500]} variant="Bold" />
+                                        <NeoIcon name="CloseCircle" size={20} color={Neo.colors.neutral[500]} variant="Bold" />
                                     </TouchableOpacity>
                                 )}
                                 {isSearching && <ActivityIndicator size="small" color={Neo.colors.primary[500]} />}
@@ -217,11 +213,11 @@ export default function InfoRotulosScreen() {
                                         </TouchableOpacity>
                                     ))}
                                     <TouchableOpacity style={s.searchOnlineBtn} onPress={handleSearchSubmit} activeOpacity={0.7}>
-                                        <SearchNormal1 size={15} color={Neo.colors.primary[700]} variant="Bold" />
+                                        <NeoIcon name="SearchNormal1" size={15} color={Neo.colors.primary[700]} variant="Bold" />
                                         <Caption style={s.searchOnlineText}>
                                             {t('inforotulos.searchOnline', { query: searchQuery, defaultValue: `Buscar "${searchQuery}" online` })}
                                         </Caption>
-                                        <ArrowRight2 size={14} color={Neo.colors.primary[700]} />
+                                        <NeoIcon name="ArrowRight2" size={14} color={Neo.colors.primary[700]} />
                                     </TouchableOpacity>
                                 </View>
                             )}
@@ -237,7 +233,7 @@ export default function InfoRotulosScreen() {
                         >
                             <NeoCard variant="elevated" style={s.actionCard}>
                                 <View style={[s.actionIconWrap, { backgroundColor: 'rgba(16,185,129,0.22)' }]}>
-                                    <Scan size={24} color={Neo.colors.primary[600]} variant="Bold" />
+                                    <NeoIcon name="Scan" size={24} color={Neo.colors.primary[600]} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1, marginLeft: 14 }}>
                                     <Body style={s.actionTitle}>
@@ -247,7 +243,7 @@ export default function InfoRotulosScreen() {
                                         {t('inforotulos.barcodeSub', 'Aponte a câmera para identificar o produto')}
                                     </Small>
                                 </View>
-                                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                             </NeoCard>
                         </TouchableOpacity>
                     </FadeInView>
@@ -309,7 +305,7 @@ export default function InfoRotulosScreen() {
                                                 {formatRelativeTime(item.consultedAt)}
                                             </Caption>
                                         </View>
-                                        <ArrowRight2 size={16} color={Neo.colors.neutral[500]} />
+                                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
                                     </TouchableOpacity>
                                 ))}
                             </NeoCard>
@@ -327,7 +323,7 @@ export default function InfoRotulosScreen() {
                         >
                             <NeoCard variant="elevated" style={s.ciatoxCard}>
                                 <View style={s.ciatoxIconWrap}>
-                                    <Call size={22} color="#FFF" variant="Bold" />
+                                    <NeoIcon name="Call" size={22} color="#FFF" variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1, marginLeft: 14 }}>
                                     <Body style={s.ciatoxTitle}>
@@ -337,7 +333,7 @@ export default function InfoRotulosScreen() {
                                         {t('inforotulos.ciatoxNumber', '0800 722 6001 · Gratuito, 24h')}
                                     </Small>
                                 </View>
-                                <ArrowRight2 size={18} color="rgba(255,255,255,0.85)" />
+                                <NeoIcon name="ArrowRight2" size={18} color="rgba(255,255,255,0.85)" />
                             </NeoCard>
                         </TouchableOpacity>
                     </FadeInView>

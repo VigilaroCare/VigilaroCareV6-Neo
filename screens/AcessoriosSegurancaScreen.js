@@ -18,7 +18,6 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft } from 'iconsax-react-native';
 import NeoIcon from '../components/NeoIcon';
 import { Shadows } from '../utils/Theme';
 import { ACESSORIOS_SEGURANCA } from '../data/acessorios_seguranca';
@@ -77,7 +76,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={22} color={THEME_COLOR} />
+                        <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
                     </TouchableOpacity>
                     <View style={styles.headerContent}>
                         <Text style={styles.headerEmoji}>🔐</Text>

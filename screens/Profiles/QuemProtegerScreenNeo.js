@@ -5,9 +5,6 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
-// Icons
-import { ArrowLeft2, ArrowRight2, Home2, Edit2, Trash, Scan, Add, TickCircle, Setting4, User, Woman, Warning2, Heart, DocumentText, Personalcard } from 'iconsax-react-native';
-
 // Hooks & Services
 import { useProfiles } from '../../contexts/ProfileContext';
 import ProfileService from '../../services/ProfileService';
@@ -21,7 +18,7 @@ import FadeInView from '../../components/FadeInView';
 import NeoAlert from '../../utils/NeoAlert';
 import NeoIcon from '../../components/NeoIcon';
 
-const Pet = ({ size, color }) => <Heart size={size} color={color} variant="Bold" />;
+const Pet = ({ size, color }) => <NeoIcon name="Heart" size={size} color={color} variant="Bold" />;
 
 export default function QuemProtegerScreenNeo() {
     const navigation = useNavigation();
@@ -223,7 +220,7 @@ export default function QuemProtegerScreenNeo() {
                         }}
                         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     >
-                        <ArrowLeft2 size={20} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={20} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <Eyebrow style={{ marginBottom: 4 }}>Moradores e locais</Eyebrow>
@@ -241,13 +238,13 @@ export default function QuemProtegerScreenNeo() {
                             backgroundColor: Neo.colors.primary[100],
                             alignItems: 'center', justifyContent: 'center', marginRight: 16
                         }}>
-                            <Home2 size={24} color={Neo.colors.primary[700]} variant="Bold" />
+                            <NeoIcon name="Home2" size={24} color={Neo.colors.primary[700]} variant="Bold" />
                         </View>
                         <View style={{ flex: 1 }}>
                             <Body style={{ fontWeight: '700', letterSpacing: -0.2 }}>{getResidenceName(activeResidence) || 'Nenhuma Residência'}</Body>
                             <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>Toque para trocar de local</Caption>
                         </View>
-                        <ArrowRight2 size={20} color={Neo.colors.neutral[500]} />
+                        <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
                     </NeoCard>
 
                     {/* QUEM: MORADORES */}
@@ -280,7 +277,7 @@ export default function QuemProtegerScreenNeo() {
                                             {p.foto ? (
                                                 <Image source={{ uri: ProfileService.resolveImageUri ? ProfileService.resolveImageUri(p.foto) : p.foto }} style={{ width: 52, height: 52 }} />
                                             ) : (
-                                                p.tipo === 'pet' ? <Pet size={24} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} /> : <User size={24} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} variant="Bold" />
+                                                p.tipo === 'pet' ? <Pet size={24} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} /> : <NeoIcon name="User" size={24} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} variant="Bold" />
                                             )}
                                         </View>
                                         
@@ -304,7 +301,7 @@ export default function QuemProtegerScreenNeo() {
                                             accessibilityRole="button"
                                             accessibilityLabel={`Ver relatório de ${p.nome}`}
                                         >
-                                            <DocumentText size={22} color={Neo.colors.primary[700]} variant="Linear" />
+                                            <NeoIcon name="DocumentText" size={22} color={Neo.colors.primary[700]} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {/* Editar — abre formulário pré-preenchido (AddPerfil já suporta).
@@ -317,7 +314,7 @@ export default function QuemProtegerScreenNeo() {
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.editProfileLabel', 'Editar perfil {{nome}}', { nome: p.nome })}
                                         >
-                                            <Edit2 size={22} color={Neo.colors.neutral[700]} variant="Linear" />
+                                            <NeoIcon name="Edit2" size={22} color={Neo.colors.neutral[700]} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {/* Excluir — confirma antes */}
@@ -328,11 +325,11 @@ export default function QuemProtegerScreenNeo() {
                                             accessibilityRole="button"
                                             accessibilityLabel={t('profiles.deleteProfileLabel', 'Excluir perfil {{nome}}', { nome: p.nome })}
                                         >
-                                            <Trash size={22} color={Neo.colors.feedback.error} variant="Linear" />
+                                            <NeoIcon name="Trash" size={22} color={Neo.colors.feedback.error} variant="Linear" />
                                         </TouchableOpacity>
 
                                         {isSelected ? (
-                                            <TickCircle size={28} color={Neo.colors.primary[700]} variant="Bold" />
+                                            <NeoIcon name="TickCircle" size={28} color={Neo.colors.primary[700]} variant="Bold" />
                                         ) : (
                                             <View style={{ width: 24, height: 24, borderRadius: 12, borderWidth: 1.5, borderColor: Neo.colors.neutral[400] }} />
                                         )}
@@ -357,7 +354,7 @@ export default function QuemProtegerScreenNeo() {
                                 borderTopWidth: 1.5,
                             }}
                         >
-                            <Add size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
+                            <NeoIcon name="Add" size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
                             <Body style={{ color: Neo.colors.primary[800], fontWeight: '700', letterSpacing: -0.1 }}>
                                 {t('profiles.addMemberTo', 'Adicionar integrante à {{local}}', { local: getResidenceName(activeResidence) || 'esta residência' })}
                             </Body>
@@ -393,7 +390,7 @@ export default function QuemProtegerScreenNeo() {
                                                         {p.foto ? (
                                                             <Image source={{ uri: ProfileService.resolveImageUri ? ProfileService.resolveImageUri(p.foto) : p.foto }} style={{ width: 40, height: 40 }} />
                                                         ) : (
-                                                            p.tipo === 'pet' ? <Pet size={18} color={Neo.colors.accent.champagne} /> : <User size={18} color={Neo.colors.primary[700]} variant="Bold" />
+                                                            p.tipo === 'pet' ? <Pet size={18} color={Neo.colors.accent.champagne} /> : <NeoIcon name="User" size={18} color={Neo.colors.primary[700]} variant="Bold" />
                                                         )}
                                                     </View>
                                                     <View style={{ flex: 1 }}>
@@ -426,13 +423,13 @@ export default function QuemProtegerScreenNeo() {
                                             backgroundColor: Neo.colors.primary[100],
                                             alignItems: 'center', justifyContent: 'center', marginRight: 14,
                                         }}>
-                                            <Personalcard size={22} color={Neo.colors.primary[700]} variant="Bold" />
+                                            <NeoIcon name="Personalcard" size={22} color={Neo.colors.primary[700]} variant="Bold" />
                                         </View>
                                         <View style={{ flex: 1 }}>
                                             <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>Relatório de Proteção</Body>
                                             <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>Análise de riscos para {activeProfile.nome}</Caption>
                                         </View>
-                                        <ArrowRight2 size={20} color={Neo.colors.primary[700]} />
+                                        <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[700]} />
                                     </NeoCard>
                                 </TouchableOpacity>
                             )}
@@ -443,10 +440,10 @@ export default function QuemProtegerScreenNeo() {
                                         backgroundColor: Neo.colors.accent.champagneSubtle,
                                         alignItems: 'center', justifyContent: 'center', marginRight: 14,
                                     }}>
-                                        <Scan size={22} color={Neo.colors.accent.champagne} variant="Bold" />
+                                        <NeoIcon name="Scan" size={22} color={Neo.colors.accent.champagne} variant="Bold" />
                                     </View>
                                     <Body style={{ flex: 1, fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>Raio-X da Casa</Body>
-                                    <ArrowRight2 size={20} color={Neo.colors.neutral[500]} />
+                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
                                 </NeoCard>
                             </TouchableOpacity>
                         </View>
@@ -491,7 +488,7 @@ export default function QuemProtegerScreenNeo() {
                                                         backgroundColor: isSelected ? Neo.colors.primary[100] : Neo.colors.neutral[200],
                                                         alignItems: 'center', justifyContent: 'center', marginRight: 12
                                                     }}>
-                                                        <Home2 size={22} color={isSelected ? Neo.colors.primary[700] : Neo.colors.neutral[600]} variant={isSelected ? "Bold" : "Linear"} />
+                                                        <NeoIcon name="Home2" size={22} color={isSelected ? Neo.colors.primary[700] : Neo.colors.neutral[600]} variant={isSelected ? "Bold" : "Linear"} />
                                                     </View>
 
                                                     <View style={{ flex: 1 }}>
@@ -517,7 +514,7 @@ export default function QuemProtegerScreenNeo() {
                                                         style={{ width: 34, height: 34, borderRadius: 8, backgroundColor: Neo.colors.neutral[200], alignItems: 'center', justifyContent: 'center' }}
                                                         accessibilityLabel="Configurar estrutura da moradia"
                                                     >
-                                                        <Setting4 size={18} color={Neo.colors.neutral[700]} variant="Linear" />
+                                                        <NeoIcon name="Setting4" size={18} color={Neo.colors.neutral[700]} variant="Linear" />
                                                     </TouchableOpacity>
 
                                                     {/* 2. Mapear Ambientes (Phase 1) */}
@@ -540,7 +537,7 @@ export default function QuemProtegerScreenNeo() {
                                                         style={{ width: 34, height: 34, borderRadius: 8, backgroundColor: Neo.colors.neutral[200], alignItems: 'center', justifyContent: 'center' }}
                                                         accessibilityLabel="Renomear local"
                                                     >
-                                                        <Edit2 size={18} color={Neo.colors.neutral[700]} variant="Linear" />
+                                                        <NeoIcon name="Edit2" size={18} color={Neo.colors.neutral[700]} variant="Linear" />
                                                     </TouchableOpacity>
 
                                                     {/* 4. Excluir local */}
@@ -550,7 +547,7 @@ export default function QuemProtegerScreenNeo() {
                                                         style={{ width: 34, height: 34, borderRadius: 8, backgroundColor: Neo.colors.neutral[200], alignItems: 'center', justifyContent: 'center' }}
                                                         accessibilityLabel="Excluir local"
                                                     >
-                                                        <Trash size={18} color={Neo.colors.feedback.error} variant="Linear" />
+                                                        <NeoIcon name="Trash" size={18} color={Neo.colors.feedback.error} variant="Linear" />
                                                     </TouchableOpacity>
                                                 </View>
                                             </NeoCard>
@@ -573,7 +570,7 @@ export default function QuemProtegerScreenNeo() {
                                     borderTopWidth: 1.5,
                                 }}
                             >
-                                <Add size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
+                                <NeoIcon name="Add" size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
                                 <Body style={{ color: Neo.colors.primary[800], fontWeight: '700', letterSpacing: -0.1 }}>Novo Local</Body>
                             </TouchableOpacity>
                         </View>
@@ -643,7 +640,7 @@ export default function QuemProtegerScreenNeo() {
                             elevation: 8,
                         }}
                     >
-                        <TickCircle size={24} color="#FFF" variant="Bold" />
+                        <NeoIcon name="TickCircle" size={24} color="#FFF" variant="Bold" />
                         <H3 style={{ color: '#FFF', fontSize: 17, letterSpacing: 0.2, fontWeight: '700' }}>Confirmar Contexto</H3>
                     </TouchableOpacity>
                 </View>

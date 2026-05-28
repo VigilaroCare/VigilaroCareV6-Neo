@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
-import { ArrowLeft, InfoCircle } from 'iconsax-react-native'; // Standard
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -104,7 +103,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
                 {/* Intro Box */}
                 {content.sections && content.sections.length > 0 ? (
                     <View style={[styles.infoBox, { backgroundColor: cardBg }]}>
-                        <InfoCircle size={20} color={THEME_COLOR} variant="Bold" style={{ marginRight: 8 }} />
+                        <NeoIcon name="InfoCircle" size={20} color={THEME_COLOR} variant="Bold" style={{ marginRight: 8 }} />
                         <Text style={[styles.infoText, { color: textBody }]}>
                             Explore os tópicos abaixo para garantir a segurança em {content.title.toLowerCase()}.
                         </Text>

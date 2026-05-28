@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft, Warning2 } from 'iconsax-react-native';
+import NeoIcon from '../components/NeoIcon';
 import { Shadows } from '../utils/Theme';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -98,7 +98,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={22} color={THEME_COLOR} />
+                        <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
                     </TouchableOpacity>
                     <View style={styles.headerContent}>
                         <Text style={styles.headerEmoji}>🦺</Text>
@@ -119,7 +119,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                     {EPI_DOMESTICO.advertencia && (
                         <FadeInView delay={80}>
                             <View style={[styles.warnBox, { borderColor: THEME_COLOR + '40' }]}>
-                                <Warning2 size={20} color={THEME_COLOR} variant="Bold" />
+                                <NeoIcon name="Warning2" size={20} color={THEME_COLOR} variant="Bold" />
                                 <Text style={[styles.warnText, { color: textBody }]}>
                                     {EPI_DOMESTICO.advertencia}
                                 </Text>

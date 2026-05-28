@@ -9,11 +9,6 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
 import { H2, H3, Body, Small } from '../components/NeoTypography';
-import {
-  ArrowLeft, ArrowDown2, ArrowUp2,
-  Sun1, Drop, Tree, Ticket, Map1,
-  Warning2, ShieldTick, Health, LampOn
-} from 'iconsax-react-native';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function SegurancaLazerScreen({ navigation }) {
@@ -37,7 +32,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'Beach',
       local_es: 'Playa',
       emoji: '🏖️', // Mantido para fallback se precisar
-      icon: Sun1,
+      icon: 'Sun1',
       iconColor: '#F59E0B',
       bg: '#FFFBEB',
       riscosPrincipais: [
@@ -118,7 +113,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local: 'Rio e Lago',
       local_en: 'River and Lake',
       local_es: 'Río y Lago',
-      icon: Drop,
+      icon: 'Drop',
       iconColor: '#0EA5E9',
       bg: '#E0F2FE',
       riscosPrincipais: [
@@ -187,7 +182,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local: 'Piscina',
       local_en: 'Pool',
       local_es: 'Piscina',
-      icon: Drop, // Reusing Drop generally, or could use another shape
+      icon: 'Drop', // Reusing Drop generally
       iconColor: '#06B6D4',
       bg: '#CFFAFE',
       riscosPrincipais: [
@@ -253,7 +248,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local: 'Camping',
       local_en: 'Camping',
       local_es: 'Camping',
-      icon: Tree,
+      icon: 'Tree',
       iconColor: '#10B981',
       bg: '#ECFDF5',
       riscosPrincipais: [
@@ -319,7 +314,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local: 'Parques de Diversão',
       local_en: 'Amusement Parks',
       local_es: 'Parques de Diversiones',
-      icon: Ticket,
+      icon: 'Ticket',
       iconColor: '#EC4899',
       bg: '#FCE7F3',
       riscosPrincipais: [
@@ -385,7 +380,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       local: 'Trilhas',
       local_en: 'Trails',
       local_es: 'Senderos',
-      icon: Map1,
+      icon: 'Map1',
       iconColor: '#8B5CF6',
       bg: '#F3E8FF',
       riscosPrincipais: [
@@ -450,7 +445,7 @@ export default function SegurancaLazerScreen({ navigation }) {
 
   const renderItem = ({ item }) => {
     const isExpanded = expandedId === item.id;
-    const Icon = item.icon;
+    const iconName = item.icon;
 
     return (
       <TouchableOpacity
@@ -473,7 +468,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             alignItems: 'center', justifyContent: 'center',
             marginRight: 16
           }}>
-            <Icon size={32} color={item.iconColor} variant="Bold" />
+            <NeoIcon name={iconName} size={32} color={item.iconColor} variant="Bold" />
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 20, fontWeight: '700', color: Neo.colors.neutral[900] }}>{t_field(item, 'local')}</Text>
@@ -487,8 +482,8 @@ export default function SegurancaLazerScreen({ navigation }) {
             alignItems: 'center', justifyContent: 'center'
           }}>
             {isExpanded ?
-              <ArrowUp2 size={20} color={Neo.colors.neutral[400]} /> :
-              <ArrowDown2 size={20} color={Neo.colors.neutral[400]} />
+              <NeoIcon name="ArrowUp2" size={20} color={Neo.colors.neutral[400]} /> :
+              <NeoIcon name="ArrowDown2" size={20} color={Neo.colors.neutral[400]} />
             }
           </View>
         </View>
@@ -499,7 +494,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Riscos */}
             <View style={{ marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <Warning2 size={24} color="#F59E0B" variant="Bold" />
+                <NeoIcon name="Warning2" size={24} color="#F59E0B" variant="Bold" />
                 <Text style={{ fontSize: 15, fontWeight: '800', color: '#D97706', letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
               </View>
               <View style={{ gap: 8, paddingLeft: 4 }}>
@@ -512,7 +507,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Prevenção */}
             <View style={{ marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <ShieldTick size={24} color="#10B981" variant="Bold" />
+                <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
                 <Text style={{ fontSize: 15, fontWeight: '800', color: Neo.colors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
               </View>
               <View style={{ gap: 10 }}>
@@ -528,7 +523,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Emergência */}
             <View style={{ backgroundColor: '#FEF2F2', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: '#FECACA', marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <Health size={24} color="#DC2626" variant="Bold" />
+                <NeoIcon name="Health" size={24} color="#DC2626" variant="Bold" />
                 <Text style={{ fontSize: 14, fontWeight: '800', color: '#B91C1C' }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
               </View>
               <View style={{ gap: 8 }}>
@@ -541,7 +536,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Dicas */}
             <View style={{ backgroundColor: '#F3E8FF', padding: 16, borderRadius: 16 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <LampOn size={24} color="#9333EA" variant="Bold" />
+                <NeoIcon name="LampOn" size={24} color="#9333EA" variant="Bold" />
                 <Text style={{ fontSize: 14, fontWeight: '800', color: '#7E22CE' }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
               </View>
               <View style={{ gap: 8 }}>

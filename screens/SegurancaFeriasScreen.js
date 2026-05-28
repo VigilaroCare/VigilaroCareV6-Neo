@@ -9,11 +9,6 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
 import { H2, H3, Body, Small } from '../components/NeoTypography';
-import {
-    ArrowLeft, ArrowDown2, ArrowUp2,
-    Car, Building, Airplane, DocumentText,
-    Warning2, ShieldTick, Health, LampOn
-} from 'iconsax-react-native';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function SegurancaFeriasScreen({ navigation }) {
@@ -34,7 +29,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local: 'Na Estrada (Carro)',
             local_en: 'On the Road (Car)',
             local_es: 'En la Carretera (Coche)',
-            icon: Car,
+            icon: 'Car',
             iconColor: '#EF4444',
             bg: '#FEF2F2',
             riscosPrincipais: [
@@ -106,7 +101,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local: 'Hotel e Airbnb',
             local_en: 'Hotel and Airbnb',
             local_es: 'Hotel y Airbnb',
-            icon: Building,
+            icon: 'Building',
             iconColor: '#8B5CF6',
             bg: '#F3E8FF',
             riscosPrincipais: [
@@ -175,7 +170,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local: 'Aeroporto e Avião',
             local_en: 'Airport and Airplane',
             local_es: 'Aeropuerto y Avión',
-            icon: Airplane,
+            icon: 'Airplane',
             iconColor: '#3B82F6',
             bg: '#EFF6FF',
             riscosPrincipais: [
@@ -241,7 +236,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local: 'Documentos e Bagagem',
             local_en: 'Documents and Luggage',
             local_es: 'Documentos y Equipaje',
-            icon: DocumentText,
+            icon: 'DocumentText',
             iconColor: '#F59E0B',
             bg: '#FFFBEB',
             riscosPrincipais: [
@@ -303,7 +298,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
 
     const renderItem = ({ item }) => {
         const isExpanded = expandedId === item.id;
-        const Icon = item.icon;
+        const iconName = item.icon;
 
         return (
             <TouchableOpacity
@@ -326,7 +321,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         alignItems: 'center', justifyContent: 'center',
                         marginRight: 16
                     }}>
-                        <Icon size={32} color={item.iconColor} variant="Bold" />
+                        <NeoIcon name={iconName} size={32} color={item.iconColor} variant="Bold" />
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={{ fontSize: 20, fontWeight: '700', color: Neo.colors.neutral[900] }}>{t_field(item, 'local')}</Text>
@@ -340,8 +335,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         alignItems: 'center', justifyContent: 'center'
                     }}>
                         {isExpanded ?
-                            <ArrowUp2 size={20} color={Neo.colors.neutral[400]} /> :
-                            <ArrowDown2 size={20} color={Neo.colors.neutral[400]} />
+                            <NeoIcon name="ArrowUp2" size={20} color={Neo.colors.neutral[400]} /> :
+                            <NeoIcon name="ArrowDown2" size={20} color={Neo.colors.neutral[400]} />
                         }
                     </View>
                 </View>
@@ -352,7 +347,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Riscos */}
                         <View style={{ marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                                <Warning2 size={24} color="#F59E0B" variant="Bold" />
+                                <NeoIcon name="Warning2" size={24} color="#F59E0B" variant="Bold" />
                                 <Text style={{ fontSize: 15, fontWeight: '800', color: '#D97706', letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
                             </View>
                             <View style={{ gap: 8, paddingLeft: 4 }}>
@@ -365,7 +360,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Prevenção */}
                         <View style={{ marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                                <ShieldTick size={24} color="#10B981" variant="Bold" />
+                                <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
                                 <Text style={{ fontSize: 15, fontWeight: '800', color: Neo.colors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
                             </View>
                             <View style={{ gap: 10 }}>
@@ -381,7 +376,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Emergência */}
                         <View style={{ backgroundColor: '#FEF2F2', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: '#FECACA', marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                                <Health size={24} color="#DC2626" variant="Bold" />
+                                <NeoIcon name="Health" size={24} color="#DC2626" variant="Bold" />
                                 <Text style={{ fontSize: 14, fontWeight: '800', color: '#B91C1C' }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
                             </View>
                             <View style={{ gap: 8 }}>
@@ -394,7 +389,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Dicas */}
                         <View style={{ backgroundColor: '#F3E8FF', padding: 16, borderRadius: 16 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                                <LampOn size={24} color="#9333EA" variant="Bold" />
+                                <NeoIcon name="LampOn" size={24} color="#9333EA" variant="Bold" />
                                 <Text style={{ fontSize: 14, fontWeight: '800', color: '#7E22CE' }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
                             </View>
                             <View style={{ gap: 8 }}>

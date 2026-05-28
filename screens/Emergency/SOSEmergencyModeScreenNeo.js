@@ -3,7 +3,6 @@ import NetInfo from '@react-native-community/netinfo';
 import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
-import { HeartAdd, CallCalling, Danger, Shield, Warning2, Personalcard, Location, TruckFast, Message } from 'iconsax-react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as ExpoLocation from 'expo-location';
 import * as Clipboard from 'expo-clipboard';
@@ -366,7 +365,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 backgroundColor: '#FFEBEE', alignItems: 'center',
                                 justifyContent: 'center', marginBottom: 6
                             }}>
-                                <HeartAdd size={22} color="#D32F2F" variant="Outline" />
+                                <NeoIcon name="HeartAdd" size={22} color="#D32F2F" variant="Outline" />
                             </View>
                             <H3 style={{ color: '#D32F2F', fontSize: 15 }}>{t('sos.firstAid')}</H3>
                             <Small style={{ color: Neo.colors.neutral[500], fontSize: 10 }}>{t('sos.firstAidSub')}</Small>
@@ -383,7 +382,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         subtitle={t('sos.samuSub')}
                                         color="#EF4444"
                                         bgColor="#FEF2F2"
-                                        iconNode={<CallCalling size={28} color="#FFF" variant="Bold" />}
+                                        iconNode={<NeoIcon name="CallCalling" size={28} color="#FFF" variant="Bold" />}
                                         onPress={() => handleCall(t('sos.samuPhone'))}
                                     />
                                     {/* Bombeiros */}
@@ -401,7 +400,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         subtitle={t('sos.policeSub')}
                                         color="#3B82F6"
                                         bgColor="#EFF6FF"
-                                        iconNode={<Shield size={28} color="#FFF" variant="Bold" />}
+                                        iconNode={<NeoIcon name="Shield" size={28} color="#FFF" variant="Bold" />}
                                         onPress={() => handleCall(t('sos.policePhone'))}
                                     />
                                     {/* CIATOX */}
@@ -422,7 +421,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         subtitle={t('sos.generalSub')}
                                         color="#EF4444"
                                         bgColor="#FEF2F2"
-                                        iconNode={<CallCalling size={28} color="#FFF" variant="Bold" />}
+                                        iconNode={<NeoIcon name="CallCalling" size={28} color="#FFF" variant="Bold" />}
                                         onPress={() => handleCall(t('sos.generalPhone'))}
                                         fullWidth
                                     />
@@ -447,7 +446,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 subtitle={t('sos.vetSub')}
                                 color="#059669"
                                 bgColor="#ECFDF5"
-                                iconNode={<Location size={28} color="#FFF" variant="Bold" />}
+                                iconNode={<NeoIcon name="Location" size={28} color="#FFF" variant="Bold" />}
                                 onPress={() => Linking.openURL('geo:0,0?q=veterinario 24h')}
                                 fullWidth
                             />
@@ -494,7 +493,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                             style={{ width: '31%', aspectRatio: 1 }}
                         >
                             <NeoCard variant="elevated" style={{ flex: 1, backgroundColor: '#FEF2F2', borderWidth: 1, borderColor: '#FECACA', borderRadius: 16, alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-                                <Message size={28} color="#DC2626" variant="Bold" style={{ marginBottom: 4 }} />
+                                <NeoIcon name="Message" size={28} color="#DC2626" variant="Bold" style={{ marginBottom: 4 }} />
                                 <Body style={{ color: '#DC2626', fontWeight: 'bold', fontSize: 12, textAlign: 'center' }}>{t('sos.sendSos')}</Body>
                                 <Small style={{ color: '#DC2626', fontSize: 9, textAlign: 'center', marginTop: 2 }}>{t('sos.holdButton')}</Small>
                             </NeoCard>
@@ -503,7 +502,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         {/* Ficha Médica */}
                         <TouchableOpacity onPress={handleFichaMedica} disabled={loadingFicha} style={{ width: '31%', aspectRatio: 1 }}>
                             <NeoCard variant="elevated" style={{ flex: 1, backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)', borderRadius: 16, alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-                                {loadingFicha ? <ActivityIndicator size="small" color="#3B82F6" style={{ marginBottom: 8 }} /> : <Personalcard size={28} color="#3B82F6" variant="Outline" style={{ marginBottom: 8 }} />}
+                                {loadingFicha ? <ActivityIndicator size="small" color="#3B82F6" style={{ marginBottom: 8 }} /> : <NeoIcon name="Personalcard" size={28} color="#3B82F6" variant="Outline" style={{ marginBottom: 8 }} />}
                                 <Body style={{ color: '#3B82F6', fontWeight: 'bold', fontSize: 12, textAlign: 'center' }}>{t('sos.medCard')} </Body>
                                 <Small style={{ color: '#3B82F6', fontSize: 10, textAlign: 'center' }}>{t('sos.medCardSub')}</Small>
                             </NeoCard>

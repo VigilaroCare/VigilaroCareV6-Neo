@@ -72,9 +72,7 @@ export default function TeoriaFogoScreen({ navigation }) {
             {/* Grid Layout (2 cols) */}
             <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
                 <View style={styles.gridContainer}>
-                    {items.map((item) => {
-                        const Icon = item.icon;
-                        return (
+                    {items.map((item) => (
                             <TouchableOpacity
                                 key={item.id}
                                 style={styles.card}
@@ -89,7 +87,7 @@ export default function TeoriaFogoScreen({ navigation }) {
                                             accessibilityLabel={item.titulo}
                                         />
                                     ) : (
-                                        <Icon size={48} color={item.iconColor} variant="Bold" />
+                                        <NeoIcon name={item.icon} size={48} color={item.iconColor} variant="Bold" />
                                     )}
                                 </View>
                                 <View style={styles.cardBody}>
@@ -97,8 +95,7 @@ export default function TeoriaFogoScreen({ navigation }) {
                                     <Text style={styles.cardDesc}>{item.subtitulo}</Text>
                                 </View>
                             </TouchableOpacity>
-                        );
-                    })}
+                    ))}
                 </View>
             </ScrollView>
         </View>

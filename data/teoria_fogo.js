@@ -1,10 +1,12 @@
-import { Fire, Triangle, Drop, Wind, Copy } from 'iconsax-react-native';
+// Nomes de ícones resolvidos via NeoIcon (Phosphor) — não importa
+// component refs do iconsax pra não amarrar o data layer à biblioteca.
+// O nome viaja como string e a tela renderiza com <NeoIcon name={item.icon} />.
 
 export const TEORIA_FOGO_DATA = {
     'triangulo': {
         titulo: 'O Triângulo do Fogo',
         subtitulo: 'Conceitos Básicos',
-        icon: Triangle,
+        icon: 'Triangle',
         iconColor: '#EF4444', // Red
         bg: '#FEE2E2', // Red 100
         imagemUrl: 'https://images.pexels.com/photos/15129794/pexels-photo-15129794.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -24,7 +26,7 @@ export const TEORIA_FOGO_DATA = {
     'classes': {
         titulo: 'Classes de Incêndio',
         subtitulo: 'Tipos de Fogo',
-        icon: Fire,
+        icon: 'Fire',
         iconColor: '#F59E0B', // Orange
         bg: '#FEF3C7', // Orange 100
         imagemUrl: 'https://images.pexels.com/photos/30591338/pexels-photo-30591338.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -41,7 +43,7 @@ export const TEORIA_FOGO_DATA = {
     'extintores': {
         titulo: 'Tipos de Extintores',
         subtitulo: 'Como Escolher',
-        icon: Drop,
+        icon: 'Drop',
         iconColor: '#3B82F6', // Blue
         bg: '#DBEAFE', // Blue 100
         imagemUrl: 'https://images.pexels.com/photos/4805958/pexels-photo-4805958.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -62,7 +64,7 @@ export const TEORIA_FOGO_DATA = {
     'fuga': {
         titulo: 'Plano de Fuga',
         subtitulo: 'Evacuação Segura',
-        icon: Wind, // Running/Wind concept
+        icon: 'Wind', // Running/Wind concept
         iconColor: '#10B981', // Emerald
         bg: '#D1FAE5', // Emerald 100
         imagemUrl: 'https://images.pexels.com/photos/5036652/pexels-photo-5036652.jpeg?auto=compress&cs=tinysrgb&w=1200',

@@ -62,9 +62,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
         {/* Vertical List Layout */}
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
         <View style={styles.listContainer}>
-          {items.map((item) => {
-            const Icon = item.icon;
-            return (
+          {items.map((item) => (
               <TouchableOpacity key={item.id} style={{ marginBottom: 16 }} onPress={() => handlePress(item)} activeOpacity={0.8}>
                 <View style={styles.guideCardOuter}>
                   <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
@@ -76,7 +74,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
                           accessibilityLabel={item.titulo}
                         />
                       ) : (
-                        <Icon size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
+                        <NeoIcon name={item.icon} size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
                       )}
                     </View>
                     <View style={styles.guideContent}>
@@ -90,8 +88,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
                   </View>
                 </View>
               </TouchableOpacity>
-            );
-          })}
+          ))}
         </View>
         <View style={{ height: 80 }} />
       </ScrollView>

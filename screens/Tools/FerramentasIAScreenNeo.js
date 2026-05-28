@@ -14,11 +14,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import {
-    ScanBarcode, Microphone2, Bubble, ShieldTick, Activity, ArrowRight2,
-    Flashy, Map,
-} from 'iconsax-react-native';
-
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
@@ -38,7 +33,7 @@ export default function FerramentasIAScreenNeo() {
     const analysisTool = {
         title: t('ferramentasIA.scannerAmbienteTitle', 'Análise do ambiente'),
         desc: t('ferramentasIA.scannerAmbienteDesc', 'Aponte a câmera para mapear riscos de queda, objetos perigosos e condições do ambiente.'),
-        Icon: ScanBarcode,
+        iconName: 'ScanBarcode',
         color: '#10B981', // emerald
         route: 'Scanner',
     };
@@ -49,7 +44,7 @@ export default function FerramentasIAScreenNeo() {
             id: 'voice',
             title: t('ferramentasIA.voiceTitle', 'Por voz'),
             sub: t('ferramentasIA.voiceSubtitle', 'Pergunte falando'),
-            Icon: Microphone2,
+            iconName: 'Microphone2',
             color: '#7C3AED', // violet
             route: 'AssistentePrevencaoIA',
         },
@@ -57,7 +52,7 @@ export default function FerramentasIAScreenNeo() {
             id: 'text',
             title: t('ferramentasIA.chatTitle', 'Por texto'),
             sub: t('ferramentasIA.chatSubtitle', 'Pergunte escrevendo'),
-            Icon: Bubble,
+            iconName: 'Bubble',
             color: '#0EA5E9', // sky
             route: 'AITextChat',
         },
@@ -69,7 +64,7 @@ export default function FerramentasIAScreenNeo() {
             id: 'heatmap',
             title: t('ferramentasIA.heatmapTitle', 'Mapa de calor de riscos'),
             sub: t('ferramentasIA.heatmapSub', 'Riscos por cômodo'),
-            Icon: Map,
+            iconName: 'Map',
             color: '#DC2626',
             route: 'MapaDeCalor',
         },
@@ -77,7 +72,7 @@ export default function FerramentasIAScreenNeo() {
             id: 'activity',
             title: t('ferramentasIA.recentTitle', 'Atividade recente'),
             sub: t('ferramentasIA.recentSub', 'Eventos e ações do app'),
-            Icon: Activity,
+            iconName: 'Activity',
             color: '#F59E0B',
             route: 'RecentActivity',
         },
@@ -85,7 +80,7 @@ export default function FerramentasIAScreenNeo() {
             id: 'datahealth',
             title: t('ferramentasIA.dataHealthTitle', 'Saúde dos dados'),
             sub: t('ferramentasIA.dataHealthSub', 'Diagnóstico de integridade'),
-            Icon: ShieldTick,
+            iconName: 'ShieldTick',
             color: '#16A34A',
             route: 'DataHealth',
         },
@@ -135,13 +130,13 @@ export default function FerramentasIAScreenNeo() {
                         >
                             <NeoCard variant="elevated" style={s.analysisCard}>
                                 <View style={[s.analysisIconWrap, { backgroundColor: analysisTool.color + '33' }]}>
-                                    <analysisTool.Icon size={28} color={analysisTool.color} variant="Bold" />
+                                    <NeoIcon name={analysisTool.iconName} size={28} color={analysisTool.color} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1, marginLeft: 14 }}>
                                     <Body style={s.analysisTitle}>{analysisTool.title}</Body>
                                     <Small style={s.analysisDesc} numberOfLines={3}>{analysisTool.desc}</Small>
                                 </View>
-                                <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                             </NeoCard>
                         </TouchableOpacity>
                     </FadeInView>
@@ -161,7 +156,7 @@ export default function FerramentasIAScreenNeo() {
                                 >
                                     <NeoCard variant="elevated" style={s.assistCard}>
                                         <View style={[s.assistIconWrap, { backgroundColor: item.color + '33' }]}>
-                                            <item.Icon size={24} color={item.color} variant="Bold" />
+                                            <NeoIcon name={item.iconName} size={24} color={item.color} variant="Bold" />
                                         </View>
                                         <H3 style={s.assistTitle}>{item.title}</H3>
                                         <Small style={s.assistSub}>{item.sub}</Small>
@@ -185,13 +180,13 @@ export default function FerramentasIAScreenNeo() {
                             >
                                 <NeoCard variant="elevated" style={s.recordCard}>
                                     <View style={[s.recordIconWrap, { backgroundColor: item.color + '33' }]}>
-                                        <item.Icon size={22} color={item.color} variant="Bold" />
+                                        <NeoIcon name={item.iconName} size={22} color={item.color} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1, marginLeft: 14 }}>
                                         <Body style={s.recordTitle}>{item.title}</Body>
                                         <Small style={s.recordSub}>{item.sub}</Small>
                                     </View>
-                                    <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                                 </NeoCard>
                             </TouchableOpacity>
                         ))}

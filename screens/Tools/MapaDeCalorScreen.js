@@ -18,7 +18,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { Map1, ShieldTick, Warning2, Danger, ArrowRight2 } from 'iconsax-react-native';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
@@ -173,7 +172,7 @@ export default function MapaDeCalorScreen({ navigation }) {
                     {/* CARD-DICA EXPLICATIVO — texto contextualiza se está filtrado por morador */}
                     <NeoCard variant="elevated" style={s.headerCard}>
                         <View style={[s.headerCardIcon, { backgroundColor: Neo.colors.primary[100] }]}>
-                            <Map1 size={24} color={Neo.colors.primary[600]} variant="Bold" />
+                            <NeoIcon name="Map1" size={24} color={Neo.colors.primary[600]} variant="Bold" />
                         </View>
                         <Text style={[s.headerCardText, { color: textBody }]}>
                             {isFilteredByProfile && activeProfileName
@@ -197,7 +196,7 @@ export default function MapaDeCalorScreen({ navigation }) {
                             {/* SUMÁRIO GLOBAL */}
                             <View style={s.summaryRow}>
                                 <SummaryStat
-                                    icon={<Danger size={18} color="#DC2626" variant="Bold" />}
+                                    icon={<NeoIcon name="Danger" size={18} color="#DC2626" variant="Bold" />}
                                     label={t('mapaCalor.critical', 'Críticos')}
                                     value={criticalRooms}
                                     sublabel={`${globalCritical} item(s)`}
@@ -205,7 +204,7 @@ export default function MapaDeCalorScreen({ navigation }) {
                                     bg="#FEE2E2"
                                 />
                                 <SummaryStat
-                                    icon={<Warning2 size={18} color="#EAB308" variant="Bold" />}
+                                    icon={<NeoIcon name="Warning2" size={18} color="#EAB308" variant="Bold" />}
                                     label={t('mapaCalor.attention', 'Atenção')}
                                     value={attentionRooms}
                                     sublabel={`${globalWarning} pendência(s)`}
@@ -213,7 +212,7 @@ export default function MapaDeCalorScreen({ navigation }) {
                                     bg="#FEF9C3"
                                 />
                                 <SummaryStat
-                                    icon={<ShieldTick size={18} color="#16A34A" variant="Bold" />}
+                                    icon={<NeoIcon name="ShieldTick" size={18} color="#16A34A" variant="Bold" />}
                                     label={t('mapaCalor.safe', 'Seguros')}
                                     value={safeRooms}
                                     sublabel={`de ${totalRooms} cômodos`}
@@ -305,7 +304,7 @@ function RoomHeatCard({ room, textPrimary, textBody, onPress }) {
                         <View style={s.problemRow}>
                             {room.stats.critical > 0 && (
                                 <View style={s.problemChip}>
-                                    <Danger size={11} color="#DC2626" variant="Bold" />
+                                    <NeoIcon name="Danger" size={11} color="#DC2626" variant="Bold" />
                                     <Caption style={[s.problemText, { color: '#DC2626' }]}>
                                         {room.stats.critical} crítico{room.stats.critical > 1 ? 's' : ''}
                                     </Caption>
@@ -313,7 +312,7 @@ function RoomHeatCard({ room, textPrimary, textBody, onPress }) {
                             )}
                             {room.stats.warning > 0 && (
                                 <View style={s.problemChip}>
-                                    <Warning2 size={11} color="#A16207" variant="Bold" />
+                                    <NeoIcon name="Warning2" size={11} color="#A16207" variant="Bold" />
                                     <Caption style={[s.problemText, { color: '#A16207' }]}>
                                         {room.stats.warning} pend.
                                     </Caption>

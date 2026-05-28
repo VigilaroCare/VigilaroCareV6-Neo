@@ -1,10 +1,12 @@
-import { Trash, ChemicalGlass, Health, Brush, TruckFast } from 'iconsax-react-native';
+// Nomes de ícones resolvidos via NeoIcon (Phosphor) — não importa
+// component refs do iconsax pra não amarrar o data layer à biblioteca.
+// O nome viaja como string e a tela renderiza com <NeoIcon name={item.icon} />.
 
 export const PRODUTOS_CATEGORIAS_DATA = {
     'limpeza': {
         titulo: 'Limpeza Doméstica',
         subtitulo: 'Produtos Químicos',
-        icon: Trash, // Cleaning bucket generic
+        icon: 'Trash', // Cleaning bucket generic
         iconColor: '#0EA5E9', // Sky
         bg: '#E0F2FE', // Sky 100
         imagemUrl: 'https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -25,7 +27,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
     'jardim': {
         titulo: 'Jardinagem',
         subtitulo: 'Pesticidas e Adubos',
-        icon: Brush, // Gardening tool generic
+        icon: 'Brush', // Gardening tool generic
         iconColor: '#059669', // Emerald
         bg: '#D1FAE5', // Emerald 100
         imagemUrl: 'https://images.pexels.com/photos/4894608/pexels-photo-4894608.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -45,7 +47,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
     'manutencao': {
         titulo: 'Manutenção',
         subtitulo: 'Tintas e Solventes',
-        icon: TruckFast, // Maintenance/Work generic
+        icon: 'TruckFast', // Maintenance/Work generic
         iconColor: '#F59E0B', // Amber
         bg: '#FEF3C7', // Amber 100
         imagemUrl: 'https://images.pexels.com/photos/6068901/pexels-photo-6068901.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -65,7 +67,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
     'remedios': {
         titulo: 'Medicamentos',
         subtitulo: 'Farmácia Caseira',
-        icon: Health, // Medical cross
+        icon: 'Health', // Medical cross
         iconColor: '#EF4444', // Red
         bg: '#FEE2E2', // Red 100
         imagemUrl: 'https://images.pexels.com/photos/3873149/pexels-photo-3873149.jpeg?auto=compress&cs=tinysrgb&w=1200',

@@ -10,10 +10,10 @@ import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft2, TickCircle, Warning2, CloseCircle, InfoCircle } from 'iconsax-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AppBackground from '../../components/AppBackground';
+import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { Neo } from '../../utils/Theme';
@@ -30,11 +30,11 @@ const SEVERITY_COLORS = {
 };
 
 const SEVERITY_ICONS = {
-    [SEVERITY.CRITICAL]: (s) => <CloseCircle size={s} color={Neo.colors.feedback.error} variant="Bold" />,
-    [SEVERITY.HIGH]:     (s) => <Warning2 size={s} color={Neo.colors.feedback.warning} variant="Bold" />,
-    [SEVERITY.MEDIUM]:   (s) => <Warning2 size={s} color={Neo.colors.feedback.warning} variant="Bold" />,
-    [SEVERITY.LOW]:      (s) => <InfoCircle size={s} color={Neo.colors.feedback.info} variant="Bold" />,
-    [SEVERITY.INFO]:     (s) => <InfoCircle size={s} color={Neo.colors.neutral[500]} />,
+    [SEVERITY.CRITICAL]: (s) => <NeoIcon name="CloseCircle" size={s} color={Neo.colors.feedback.error} variant="Bold" />,
+    [SEVERITY.HIGH]:     (s) => <NeoIcon name="Warning2" size={s} color={Neo.colors.feedback.warning} variant="Bold" />,
+    [SEVERITY.MEDIUM]:   (s) => <NeoIcon name="Warning2" size={s} color={Neo.colors.feedback.warning} variant="Bold" />,
+    [SEVERITY.LOW]:      (s) => <NeoIcon name="InfoCircle" size={s} color={Neo.colors.feedback.info} variant="Bold" />,
+    [SEVERITY.INFO]:     (s) => <NeoIcon name="InfoCircle" size={s} color={Neo.colors.neutral[500]} />,
 };
 
 export default function DataHealthScreen({ navigation }) {
@@ -79,7 +79,7 @@ export default function DataHealthScreen({ navigation }) {
                 {/* Header */}
                 <View style={{ paddingHorizontal: Neo.spacing.lg, paddingVertical: Neo.spacing.md, flexDirection: 'row', alignItems: 'center' }}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 8, marginRight: 8 }}>
-                        <ArrowLeft2 size={24} color={Neo.colors.neutral[900]} />
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
                     </TouchableOpacity>
                     <View>
                         <H2>Saúde dos Dados</H2>
@@ -129,9 +129,9 @@ export default function DataHealthScreen({ navigation }) {
                                     backgroundColor: getStatusColor() + '20',
                                     alignItems: 'center', justifyContent: 'center', marginBottom: 12
                                 }}>
-                                    {report.healthStatus.includes('SAUDÁVEL') 
-                                        ? <TickCircle size={36} color={Neo.colors.feedback.success} variant="Bold" />
-                                        : <Warning2 size={36} color={getStatusColor()} variant="Bold" />
+                                    {report.healthStatus.includes('SAUDÁVEL')
+                                        ? <NeoIcon name="TickCircle" size={36} color={Neo.colors.feedback.success} variant="Bold" />
+                                        : <NeoIcon name="Warning2" size={36} color={getStatusColor()} variant="Bold" />
                                     }
                                 </View>
                                 <H3 style={{ textAlign: 'center', color: getStatusColor() }}>
@@ -173,7 +173,7 @@ export default function DataHealthScreen({ navigation }) {
                                         <NeoCard key={idx} variant="glass" style={{ padding: 14, marginBottom: 10 }}>
                                             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                                                 <View style={{ marginRight: 10, marginTop: 2 }}>
-                                                    {SEVERITY_ICONS[issue.severity]?.(18) || <InfoCircle size={18} color="#999" />}
+                                                    {SEVERITY_ICONS[issue.severity]?.(18) || <NeoIcon name="InfoCircle" size={18} color="#999" />}
                                                 </View>
                                                 <View style={{ flex: 1 }}>
                                                     <Small style={{ fontWeight: 'bold', color: SEVERITY_COLORS[issue.severity] || '#666', marginBottom: 2 }}>
@@ -191,7 +191,7 @@ export default function DataHealthScreen({ navigation }) {
 
                             {report.issues.length === 0 && (
                                 <NeoCard variant="glass" style={{ padding: 24, alignItems: 'center' }}>
-                                    <TickCircle size={48} color={Neo.colors.feedback.success} variant="Bold" />
+                                    <NeoIcon name="TickCircle" size={48} color={Neo.colors.feedback.success} variant="Bold" />
                                     <H3 style={{ marginTop: 12, color: Neo.colors.feedback.success }}>Tudo Íntegro!</H3>
                                     <Caption style={{ textAlign: 'center', marginTop: 4 }}>
                                         Nenhuma inconsistência encontrada nos dados.
