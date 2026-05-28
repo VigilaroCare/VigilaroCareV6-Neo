@@ -119,11 +119,11 @@ export default function HomeScreenNeo() {
 
     // Haptic agora vem do TappablePressable (single source of truth) —
     // mantemos o nome da função pra não quebrar callsites.
-    const navigateWithHaptic = useCallback((route) => {
+    const navigateWithHaptic = useCallback((route, params) => {
         try {
-            NavigationService.navigate(route);
+            NavigationService.navigate(route, params);
         } catch (e) {
-            navigation.navigate(route);
+            navigation.navigate(route, params);
         }
     }, [navigation]);
 
@@ -169,6 +169,9 @@ export default function HomeScreenNeo() {
                 tone: 'warning',
                 label: t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` }),
                 route: 'Relatorios',
+                // Deep-link UX: usuário tocou no alerta de pendências, então
+                // Relatorios fará auto-redirect para SafetyActionPlan (pula 1 tap).
+                params: { focus: 'pendencias' },
             };
         }
         return null;
@@ -330,7 +333,7 @@ export default function HomeScreenNeo() {
                     {contextualAlert && (
                         <TouchableOpacity
                             activeOpacity={contextualAlert.route ? 0.7 : 1}
-                            onPress={contextualAlert.route ? () => navigateWithHaptic(contextualAlert.route) : undefined}
+                            onPress={contextualAlert.route ? () => navigateWithHaptic(contextualAlert.route, contextualAlert.params) : undefined}
                             style={[
                                 s.contextAlert,
                                 contextualAlert.tone === 'critical' && s.contextAlertCritical,

@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
     View, ScrollView, TouchableOpacity, Modal, ActivityIndicator, Text,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +11,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { ChecklistService } from '../../services/ChecklistService';
 import SafetyReportService from '../../services/SafetyReportService';
-import { isAreaRelevant } from '../../utils/ProfileFilterEngine';
+import { isAreaRelevant, getRoomChecklistStructure } from '../../utils/ProfileFilterEngine';
 import { AMBIENTES, CHECKLISTS } from '../../data/mapeamento_dados';
 
 import NeoCard from '../../components/NeoCard';
@@ -32,6 +32,7 @@ const getStatusStyle = (status) => {
 
 export default function RelatoriosScreenNeo({ navigation }) {
     const { t } = useTranslation();
+    const route = useRoute();
     const themeColors = useThemeColors();
     const isDark = useIsDark();
 
@@ -41,6 +42,20 @@ export default function RelatoriosScreenNeo({ navigation }) {
     const [pendingActions, setPendingActions] = useState([]);
     const [profilesCount, setProfilesCount] = useState(0);
     const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
+
+    // Deep-link UX: quando vier de Home com params.focus === 'pendencias'
+    // (alerta contextual de pontos críticos), pula direto pra SafetyActionPlan
+    // assim que os dados carregarem — economiza 1 tap do usuário.
+    // Usa ref pra disparar uma única vez por mount (evita loop).
+    const didAutoRedirectRef = useRef(false);
+    useEffect(() => {
+        if (didAutoRedirectRef.current) return;
+        if (loading) return;
+        if (route?.params?.focus !== 'pendencias') return;
+        if (pendingActions.length === 0) return;
+        didAutoRedirectRef.current = true;
+        navigation.replace('SafetyActionPlan');
+    }, [loading, pendingActions.length, route?.params?.focus, navigation]);
 
     const [detailsModalVisible, setDetailsModalVisible] = useState(false);
     const [generatingPDF, setGeneratingPDF] = useState(false);
@@ -88,13 +103,19 @@ export default function RelatoriosScreenNeo({ navigation }) {
 
             const finalData = relevantAreas.map((area, index) => {
                 const areaData = checklistState[area.id] || {};
-                const structure = CHECKLISTS[area.id];
+                const structure = getRoomChecklistStructure(area.id, profiles, moradia, mapping);
                 const stats = ChecklistService.getAreaStats(
-                    area.id, areaData, structure, profiles, moradia
+                    area.id, areaData, structure, profiles, moradia, mapping
                 );
+
+                let fullName = t_field(area, 'nome');
+                if (area.id === 'sala' && mapping.includes('sala_estar') && mapping.includes('sala_jantar')) {
+                    fullName = t('reports.integratedLivingDining', 'Sala de Estar/Jantar (Integradas)');
+                }
+
                 return {
                     key: area.id,
-                    fullName: t_field(area, 'nome'),
+                    fullName: fullName,
                     emoji: area.emoji,
                     iconName: area.iconName,
                     total: stats.total,
@@ -110,9 +131,13 @@ export default function RelatoriosScreenNeo({ navigation }) {
                 const areaData = checklistState[area.id] || [];
                 const risks = (Array.isArray(areaData) ? areaData : []).filter((item) => item.status === 'risco');
                 risks.forEach((risk) => {
+                    let roomName = t_field(area, 'nome');
+                    if (area.id === 'sala' && mapping.includes('sala_estar') && mapping.includes('sala_jantar')) {
+                        roomName = t('reports.integratedLivingDining', 'Sala de Estar/Jantar (Integradas)');
+                    }
                     allRiskItems.push({
                         ...risk,
-                        roomName: t_field(area, 'nome'),
+                        roomName: roomName,
                         roomId: area.id,
                         roomIcon: area.emoji,
                     });
@@ -205,7 +230,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             <TouchableOpacity
                                 activeOpacity={0.85}
                                 onPress={() => navigation.navigate('HistoricoMelhoras')}
-                                style={{ marginBottom: 22 }}
+                                style={{ marginBottom: 12 }}
                             >
                                 <NeoCard variant="elevated" style={s.actionCard}>
                                     <View style={[s.actionIconWrap, { backgroundColor: 'rgba(16,185,129,0.20)' }]}>
@@ -223,80 +248,51 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                 </NeoCard>
                             </TouchableOpacity>
 
-                            {/* AMBIENTES — grid 3-col */}
-                            <Text style={[s.sectionLabel, { color: themeColors.neutral[700] }]} accessibilityRole="header">
-                                {t('reports.environmentInspection', 'Ambientes')}
-                            </Text>
-                            <View style={s.grid}>
-                                {chartData.map((area) => {
-                                    const statusKey = area.percent === 100 && area.total > 0
-                                        ? 'Seguro'
-                                        : area.checked === 0 ? 'Pendente'
-                                        : area.percent >= 70 ? 'Atenção' : 'Risco';
-                                    const statusStyle = getStatusStyle(statusKey);
-                                    let statusLabel = statusKey;
-                                    if (statusKey === 'Seguro')   statusLabel = t('reports.statusSafe', 'Seguro');
-                                    if (statusKey === 'Pendente') statusLabel = t('reports.statusPending', 'Pendente');
-                                    if (statusKey === 'Atenção')  statusLabel = t('reports.statusAttention', 'Atenção');
-                                    if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
+                            {/* AMBIENTES VISTORIADOS CARD */}
+                            <TouchableOpacity
+                                activeOpacity={0.85}
+                                onPress={() => navigation.navigate('AmbientesVistoriados')}
+                                style={{ marginBottom: pendingActions.length > 0 ? 12 : 22 }}
+                            >
+                                <NeoCard variant="elevated" style={s.actionCard}>
+                                    <View style={[s.actionIconWrap, { backgroundColor: 'rgba(14,165,233,0.20)' }]}>
+                                        <NeoIcon name="Grid2" size={22} color="#0EA5E9" variant="Bold" />
+                                    </View>
+                                    <View style={{ flex: 1, marginLeft: 14 }}>
+                                        <Body style={s.actionTitle}>
+                                            {t('reports.environmentInspection', 'Ambientes Vistoriados')}
+                                        </Body>
+                                        <Small style={s.actionSub} numberOfLines={2}>
+                                            {t('reports.environmentInspectionDesc', 'Vistorias por cômodo e mapa de calor.')}
+                                        </Small>
+                                    </View>
+                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
+                                </NeoCard>
+                            </TouchableOpacity>
 
-                                    return (
-                                        <TouchableOpacity
-                                            key={area.key}
-                                            activeOpacity={0.85}
-                                            style={s.gridCell}
-                                            onPress={() => navigation.navigate('ChecklistDetail', {
-                                                roomId: area.key,
-                                                roomName: area.fullName,
-                                                roomColor: area.color,
-                                                roomIcon: area.emoji,
-                                                fullChecklist: false,
-                                            })}
-                                        >
-                                            <NeoCard variant="elevated" style={s.roomCard}>
-                                                <View style={[s.roomIconCircle, { backgroundColor: area.color + '26' }]}>
-                                                    {area.iconName ? (
-                                                        <NeoIcon name={area.iconName} size={22} color={area.color} variant="Bold" />
-                                                    ) : (
-                                                        <Text style={{ fontSize: 22 }}>{area.emoji}</Text>
-                                                    )}
-                                                </View>
-                                                <Body style={s.roomLabel} numberOfLines={2}>
-                                                    {area.fullName}
-                                                </Body>
-                                                <View style={[s.statusPill, { backgroundColor: statusStyle.bg }]}>
-                                                    <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
-                                                        {statusLabel}
-                                                    </Small>
-                                                </View>
-                                            </NeoCard>
-                                        </TouchableOpacity>
-                                    );
-                                })}
-
-                                {/* PENDÊNCIAS CRÍTICAS — card vermelho discreto inline */}
-                                {pendingActions.length > 0 && (
-                                    <TouchableOpacity
-                                        activeOpacity={0.85}
-                                        style={s.gridCell}
-                                        onPress={() => navigation.navigate('SafetyActionPlan')}
-                                    >
-                                        <NeoCard variant="elevated" style={[s.roomCard, s.roomCardCritical]}>
-                                            <View style={[s.roomIconCircle, { backgroundColor: 'rgba(229,57,53,0.22)' }]}>
-                                                <NeoIcon name="Warning2" size={22} color="#D32F2F" variant="Bold" />
-                                            </View>
-                                            <Body style={[s.roomLabel, { color: '#D32F2F' }]} numberOfLines={2}>
+                            {/* PENDÊNCIAS CRÍTICAS CARD */}
+                            {pendingActions.length > 0 && (
+                                <TouchableOpacity
+                                    activeOpacity={0.85}
+                                    onPress={() => navigation.navigate('SafetyActionPlan')}
+                                    style={{ marginBottom: 22 }}
+                                >
+                                    <NeoCard variant="elevated" style={[s.actionCard, { borderColor: 'rgba(229,57,53,0.3)', borderWidth: 1 }]}>
+                                        <View style={[s.actionIconWrap, { backgroundColor: 'rgba(229,57,53,0.20)' }]}>
+                                            <NeoIcon name="Warning2" size={22} color="#D32F2F" variant="Bold" />
+                                        </View>
+                                        <View style={{ flex: 1, marginLeft: 14 }}>
+                                            <Body style={[s.actionTitle, { color: '#D32F2F' }]}>
                                                 {t('reports.pendencies', 'Pendências')}
                                             </Body>
-                                            <View style={[s.statusPill, { backgroundColor: 'rgba(229,57,53,0.14)' }]}>
-                                                <Small style={[s.statusText, { color: '#D32F2F' }]}>
-                                                    {pendingActions.length} {pendingActions.length === 1 ? 'item' : 'itens'}
-                                                </Small>
-                                            </View>
-                                        </NeoCard>
-                                    </TouchableOpacity>
-                                )}
-                            </View>
+                                            <Small style={s.actionSub} numberOfLines={2}>
+                                                {t('reports.pendenciesDesc', 'Você tem {{count}} item(ns) pendente(s) com risco.', { count: pendingActions.length })}
+                                            </Small>
+                                        </View>
+                                        <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
+                                    </NeoCard>
+                                </TouchableOpacity>
+                            )}
 
                             {/* VISTORIAS ESPECIAIS — 2-col, glass cards limpos */}
                             <Text style={[s.sectionLabel, { marginTop: 24 }]}>
