@@ -60,6 +60,7 @@
     "i18next": "^26.0.7",
     "iconsax-react-native": "^0.0.8",
     "morgan": "^1.10.1",
+    "phosphor-react-native": "^3.0.6",
     "react": "19.1.0",
     "react-i18next": "^17.0.4",
     "react-native": "0.81.5",

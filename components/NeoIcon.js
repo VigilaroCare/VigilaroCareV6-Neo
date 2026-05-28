@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path, Circle, Rect, Line, Polyline } from 'react-native-svg';
 import * as Iconsax from 'iconsax-react-native';
+import * as Phosphor from 'phosphor-react-native';
 
 /**
  * NeoIcon — API ÚNICA de iconografia do Vigilaro Care (DS2026).
@@ -13,14 +14,18 @@ import * as Iconsax from 'iconsax-react-native';
  * ──────────────────────────────────────────────────────────────────────
  * CONTRATO SEMÂNTICO (governança visual do app):
  *
- *   "Bold ancora, Linear atua."
+ *   "Fill ancora, Regular atua."  (Phosphor)
+ *   ↳ alias histórico: "Bold ancora, Linear atua." (Iconsax) — variant
+ *     prop continua aceitando 'Bold' e 'Linear' e mapeia internamente.
  *
  *   - variant="Bold"    →  ícones que ANCORAM uma seção/contexto.
+ *                          Renderiza como Phosphor weight="fill".
  *                          Uso em: cards hero, círculos/quadrados
  *                          decorativos dentro de cards, navegação
  *                          principal (tab bar), status ativos.
  *
- *   - variant="Linear"  →  ícones que ATUAM (ações). Stroke 1.5px.
+ *   - variant="Linear"  →  ícones que ATUAM (ações).
+ *                          Renderiza como Phosphor weight="regular".
  *                          Uso em: botões inline (Edit, Trash, Add),
  *                          setas (ArrowRight, ArrowLeft), back buttons,
  *                          itens em listas densas, modais, secundários.
@@ -29,11 +34,18 @@ import * as Iconsax from 'iconsax-react-native';
  * passando `variant` explicitamente. NUNCA omita (default é 'Linear').
  *
  * ──────────────────────────────────────────────────────────────────────
+ * Resolução interna (ordem):
+ *  1. SVGs custom (Kitchen, Bathroom, Metodologia3D, etc.) — sempre prioridade.
+ *  2. Phosphor (se nome estiver em PHOSPHOR_MAP) — direção oficial DS2026.
+ *  3. Iconsax (fallback) — para nomes ainda não mapeados; vai sumindo
+ *     conforme PHOSPHOR_MAP cresce ao longo das fases B/C da migração.
+ *
  * Catálogo:
- *  1. Iconsax (biblioteca) — qualquer nome PascalCase da iconsax-react-native
- *  2. SVGs custom Linear — Kitchen, Bathroom, BabyCrib, Elder, Stairs,
+ *  1. Iconsax (biblioteca legado, fallback) — qualquer nome PascalCase
+ *  2. Phosphor (biblioteca nova, prioritária quando mapeada) — weight fill/regular
+ *  3. SVGs custom Linear — Kitchen, Bathroom, BabyCrib, Elder, Stairs,
  *     WashingMachine, Tree, Pool, ShareNetwork (stroke 1.5, currentColor)
- *  3. SVGs custom Bold — Metodologia3D, RiscoAmbiente, ProtejaPet,
+ *  4. SVGs custom Bold — Metodologia3D, RiscoAmbiente, ProtejaPet,
  *     PrevencaoIncendio (fill, ignoram variant prop pois são fixos)
  *
  *  Os 4 SVGs Bold também são re-exportados como named exports para
@@ -202,7 +214,7 @@ const CustomIcons = {
 
 const mapName = (name) => {
     if (!name) return name;
-    
+
     // Custom explicit overrides for legacy names or custom semantic maps
     const overrides = {
         'pet': 'Heart',
@@ -228,17 +240,62 @@ const mapName = (name) => {
         'camera': 'Camera',
         'Camera': 'Camera',
     };
-    
+
     if (overrides[name]) return overrides[name];
-    
+
     // Convert kebab-case to PascalCase (e.g., house-2 -> House2, tick-square -> TickSquare)
     const pascal = name
         .split('-')
         .map(part => part.charAt(0).toUpperCase() + part.slice(1))
         .join('');
-        
+
     return pascal;
 };
+
+// ──────────────────────────────────────────────────────────────────────
+// Mapping Iconsax → Phosphor (migração Fase A iniciada). Quando um nome
+// está aqui, NeoIcon prefere Phosphor sobre Iconsax. Caso contrário,
+// cai pro Iconsax como fallback (sem regressão visual). A tabela cresce
+// na Fase B até cobrir todos os ~80-100 nomes em uso no app.
+// ──────────────────────────────────────────────────────────────────────
+const PHOSPHOR_MAP = {
+    // Home (Fase A piloto)
+    Home2: 'House',
+    House: 'House',
+    Health: 'Heartbeat',
+    ShieldTick: 'ShieldCheck',
+    Warning2: 'Warning',
+    Setting2: 'GearSix',
+    Scan: 'Scan',
+    Activity: 'Pulse',
+    ArrowRight2: 'CaretRight',
+    ArrowLeft2: 'CaretLeft',
+    ArrowDown2: 'CaretDown',
+    ArrowUp2: 'CaretUp',
+    ArrowRight: 'ArrowRight',
+    ArrowLeft: 'ArrowLeft',
+    Pet: 'PawPrint',
+    Heart: 'Heart',
+    Building: 'Buildings',
+    CloseCircle: 'XCircle',
+    DocumentText: 'FileText',
+    InfoCircle: 'Info',
+    TickCircle: 'CheckCircle',
+    TickSquare: 'CheckSquare',
+};
+
+// Iconsax variant → Phosphor weight. Bold ancora (fill),
+// Linear atua (regular). Bulk/TwoTone caem em duotone.
+const VARIANT_TO_WEIGHT = {
+    Bold: 'fill',
+    Linear: 'regular',
+    Broken: 'regular',
+    Outline: 'regular',
+    Bulk: 'duotone',
+    TwoTone: 'duotone',
+};
+
+const variantToWeight = (variant) => VARIANT_TO_WEIGHT[variant] || 'regular';
 
 export default function NeoIcon({
     name: rawName,
@@ -249,7 +306,7 @@ export default function NeoIcon({
 }) {
     const name = mapName(rawName);
 
-    // Check if it's a Custom SVG map
+    // 1. Custom SVGs (Kitchen, Bathroom, Metodologia3D, etc.) — prioridade absoluta.
     if (CustomIcons[name]) {
         const CustomIconComponent = CustomIcons[name];
         return (
@@ -259,9 +316,20 @@ export default function NeoIcon({
         );
     }
 
-    // Otherwise, check Iconsax
-    const IconsaxComponent = Iconsax[name];
+    // 2. Phosphor (direção DS2026). Resolve via PHOSPHOR_MAP; se o pacote
+    //    de fato exporta o componente, renderiza com weight derivado do variant.
+    const phosphorName = PHOSPHOR_MAP[name];
+    if (phosphorName && Phosphor[phosphorName]) {
+        const PhosphorComponent = Phosphor[phosphorName];
+        return (
+            <View style={style}>
+                <PhosphorComponent size={size} color={color} weight={variantToWeight(variant)} />
+            </View>
+        );
+    }
 
+    // 3. Iconsax (fallback legado). Vai sumindo conforme PHOSPHOR_MAP cresce.
+    const IconsaxComponent = Iconsax[name];
     if (IconsaxComponent) {
         return (
             <View style={style}>
@@ -270,7 +338,7 @@ export default function NeoIcon({
         );
     }
 
-    // Default Fallback
+    // 4. Last-resort fallback.
     const DefaultFallback = Iconsax.Danger;
     return (
         <View style={style}>

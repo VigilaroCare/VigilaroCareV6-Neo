@@ -13,10 +13,7 @@ import {
     Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-    ShieldTick, Health, Scan, Warning2, Home2, CloseCircle, Building,
-    ArrowRight2, Pet, Setting2, DocumentText, InfoCircle, Activity,
-} from 'iconsax-react-native';
+import NeoIcon from '../components/NeoIcon';
 import haptic from '../utils/Haptics';
 import { StatusBar } from 'expo-status-bar';
 
@@ -197,7 +194,7 @@ export default function HomeScreenNeo() {
         {
             key: 'saude',
             label: t('home.myHealth'),
-            Icon: Health,
+            iconName: 'Health',
             color: Neo.colors.gridAccents.saude.color,
             bg: Neo.colors.gridAccents.saude.bg,
             route: 'MinhaSaude',
@@ -206,7 +203,7 @@ export default function HomeScreenNeo() {
         {
             key: 'pets',
             label: t('home.petHealth'),
-            Icon: Pet,
+            iconName: 'Pet',
             color: Neo.colors.gridAccents.pets.color,
             bg: Neo.colors.gridAccents.pets.bg,
             route: 'PetsMenu',
@@ -215,7 +212,7 @@ export default function HomeScreenNeo() {
         {
             key: 'vistorias',
             label: t('home.inspections'),
-            Icon: ShieldTick,
+            iconName: 'ShieldTick',
             color: Neo.colors.gridAccents.vistorias.color,
             bg: Neo.colors.gridAccents.vistorias.bg,
             route: 'Relatorios',
@@ -224,7 +221,7 @@ export default function HomeScreenNeo() {
         {
             key: 'atividades',
             label: t('home.eventualActivities', 'Ativ. Eventuais'),
-            Icon: Warning2,
+            iconName: 'Warning2',
             color: Neo.colors.gridAccents.eventuais.color,
             bg: Neo.colors.gridAccents.eventuais.bg,
             route: 'ModoPreventivo',
@@ -356,7 +353,7 @@ export default function HomeScreenNeo() {
                                 {contextualAlert.label}
                             </Text>
                             {contextualAlert.route && (
-                                <ArrowRight2 size={14} color={
+                                <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={
                                     contextualAlert.tone === 'critical' ? Neo.colors.feedback.error :
                                     contextualAlert.tone === 'warning'  ? Neo.colors.accent.copper :
                                     Neo.colors.neutral[700]
@@ -387,7 +384,7 @@ export default function HomeScreenNeo() {
                                         style={[s.gridCard, item.accent && s.gridCardAccent]}
                                     >
                                         <View style={[s.gridIconCircle, { backgroundColor: item.bg }]}>
-                                            <item.Icon size={28} color={item.color} variant="Bold" />
+                                            <NeoIcon name={item.iconName} size={28} color={item.color} variant="Bold" />
                                         </View>
                                         <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={1}>{item.label}</Text>
                                         <View style={[
@@ -425,7 +422,7 @@ export default function HomeScreenNeo() {
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
-                                    <Setting2 size={22} color="#1976D2" variant="Bold" />
+                                    <NeoIcon name="Setting2" size={22} color="#1976D2" variant="Bold" />
                                 </View>
                                 <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
                                     {t('home.toolbox', 'Ferramentas IA')}
@@ -440,7 +437,7 @@ export default function HomeScreenNeo() {
                         >
                             <NeoCard variant="elevated" style={s.toolCard}>
                                 <View style={[s.toolIconCircle, { backgroundColor: 'rgba(255,109,0,0.10)' }]}>
-                                    <Scan size={22} color="#FF6D00" variant="Bold" />
+                                    <NeoIcon name="Scan" size={22} color="#FF6D00" variant="Bold" />
                                 </View>
                                 <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
                                     {t('home.infoLabels', 'Info Rótulos')}
@@ -461,11 +458,11 @@ export default function HomeScreenNeo() {
                         accessibilityRole="button"
                         accessibilityLabel={t('home.viewHistory', 'Ver histórico de atividades')}
                     >
-                        <Activity size={16} color={Neo.colors.primary[700]} variant="Bold" />
+                        <NeoIcon name="Activity" size={16} color={Neo.colors.primary[700]} variant="Bold" />
                         <Text style={s.historyLinkText}>
                             {t('home.viewHistory', 'Ver histórico de atividades')}
                         </Text>
-                        <ArrowRight2 size={14} color={Neo.colors.primary[700]} />
+                        <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={Neo.colors.primary[700]} />
                     </TouchableOpacity>
 
                 </ScrollView>
