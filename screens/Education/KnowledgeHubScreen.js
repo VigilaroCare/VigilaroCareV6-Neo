@@ -36,7 +36,7 @@ import {
     Metodologia3D,
     ProtejaPet,
     PrevencaoIncendio,
-} from '../../components/CustomIconsax';
+} from '../../components/NeoIcon';
 import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blog';
 
 // Featured rotativo (5 aleatórios por sessão)
