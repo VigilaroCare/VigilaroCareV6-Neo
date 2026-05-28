@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft, SearchNormal1 } from 'iconsax-react-native';
 import { utensiliosDomesticos } from '../../data/utensilios_domesticos';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H2, Small } from '../../components/NeoTypography';
@@ -68,7 +68,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <ArrowLeft size={22} color={THEME_COLOR} />
+                        <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
                     </TouchableOpacity>
                     <View style={styles.headerContent}>
                         <Text style={styles.headerEmoji}>🍽️</Text>
@@ -83,7 +83,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
 
                 {/* Search Bar */}
                 <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300], backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.5)' }]}>
-                    <SearchNormal1 size={20} color={textMuted} />
+                    <NeoIcon name="SearchNormal1" size={20} color={textMuted} />
                     <TextInput
                         style={[styles.searchInput, { color: textPrimary }]}
                         placeholder="Buscar utensílio (ex: Facas, Panelas)"

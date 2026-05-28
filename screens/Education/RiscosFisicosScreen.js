@@ -4,7 +4,6 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
 import NeoIcon from '../../components/NeoIcon';
-import { ArrowLeft2, ArrowRight2 } from 'iconsax-react-native';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';

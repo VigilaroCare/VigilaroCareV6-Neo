@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft2, TickCircle, Window, Candle2, Electricity, Routing } from 'iconsax-react-native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +22,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
         {
             id: 'windows',
             title: t('travel.windowsBalconies', 'Janelas e Sacadas'),
-            icon: Window,
+            icon: 'Window',
             color: Neo.colors.secondary[500],
             items: [
                 { id: 'window_locks', label: t('travel.windowLocksWork', 'Travas de janelas funcionam corretamente') },
@@ -34,7 +34,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
         {
             id: 'water',
             title: t('travel.poolsWater', 'Piscinas e Água'),
-            icon: Candle2,
+            icon: 'Candle2',
             color: Neo.colors.primary[500],
             items: [
                 { id: 'pool_fence', label: t('travel.poolFence', 'Piscina tem cerca/grade de proteção') },
@@ -46,7 +46,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
         {
             id: 'electric',
             title: t('travel.electricGas', 'Elétrica e Gás'),
-            icon: Electricity,
+            icon: 'Electricity',
             color: Neo.colors.feedback.warning,
             items: [
                 { id: 'outlet_covers', label: t('travel.outletCovers', 'Tomadas com proteção (especialmente perto de água)') },
@@ -58,7 +58,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
         {
             id: 'access',
             title: t('travel.accessExits', 'Acessos e Saídas'),
-            icon: Routing,
+            icon: 'Routing',
             color: Neo.colors.feedback.success,
             items: [
                 { id: 'emergency_exit', label: t('travel.emergencyExit', 'Saída de emergência identificada e desobstruída') },
@@ -98,7 +98,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
                     }}
                 >
                     <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: section.color + '15', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                        <section.icon size={20} color={isCompleted ? Neo.colors.feedback.success : section.color} variant="Bold" />
+                        <NeoIcon name={section.icon} size={20} color={isCompleted ? Neo.colors.feedback.success : section.color} variant="Bold" />
                     </View>
                     <View style={{ flex: 1 }}>
                         <H3 style={{ color: isCompleted ? Neo.colors.feedback.success : Neo.colors.neutral[800] }}>{section.title}</H3>
@@ -127,7 +127,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
                                         backgroundColor: isChecked ? Neo.colors.feedback.success : 'transparent',
                                         alignItems: 'center', justifyContent: 'center', marginRight: 12
                                     }}>
-                                        {isChecked && <TickCircle size={14} color={Neo.colors.neutral.white} variant="Bold" />}
+                                        {isChecked && <NeoIcon name="TickCircle" size={14} color={Neo.colors.neutral.white} variant="Bold" />}
                                     </View>
                                     <Body style={{ flex: 1, color: isChecked ? Neo.colors.neutral[500] : Neo.colors.neutral[800], textDecorationLine: isChecked ? 'line-through' : 'none' }}>
                                         {item.label}
@@ -157,7 +157,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
                             borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)'
                         }}
                     >
-                        <ArrowLeft2 size={24} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
                         <H2>{t('travel.arrivalInspection', 'Verificações no Destino')}</H2>
@@ -168,7 +168,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
                 <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 190 }}>
                     <View style={{ alignItems: 'center', marginBottom: 24 }}>
                         <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: Neo.colors.feedback.success + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-                            <Routing size={32} color={Neo.colors.feedback.success} variant="Bold" />
+                            <NeoIcon name="Routing" size={32} color={Neo.colors.feedback.success} variant="Bold" />
                         </View>
                         <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600] }}>
                             {t('travel.arrivalIntro', 'Ao chegar no destino, faça esta inspeção rápida para identificar riscos e garantir a segurança de todos.')}

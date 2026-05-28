@@ -7,9 +7,6 @@ import { Shadows, Colors } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
-import {
-    Sun1, Airplane, Flash
-} from 'iconsax-react-native';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -28,7 +25,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
             title: t('lazerMenu.lazer.title'),
             subtitulo: t('lazerMenu.lazer.subtitulo'),
             desc: t('lazerMenu.lazer.desc'),
-            icon: Sun1,
+            iconName: 'Sun1',
             color: '#E0F7FA', // Cyan 50
             iconColor: '#00ACC1', // Cyan 600
             route: 'SegurancaLazer',
@@ -38,7 +35,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
             title: t('lazerMenu.ferias.title'),
             subtitulo: t('lazerMenu.ferias.subtitulo'),
             desc: t('lazerMenu.ferias.desc'),
-            icon: Airplane,
+            iconName: 'Airplane',
             color: '#F3E5F5', // Purple 50
             iconColor: '#8E24AA', // Purple 600
             route: 'SegurancaFerias',
@@ -48,7 +45,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
             title: t('lazerMenu.mobilidade.title'),
             subtitulo: t('lazerMenu.mobilidade.subtitulo'),
             desc: t('lazerMenu.mobilidade.desc'),
-            icon: Flash,
+            iconName: 'Flash',
             color: '#FFF8E1', // Amber 50
             iconColor: '#FFB300', // Amber 600
             route: 'MobilidadeSegura',
@@ -78,10 +75,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
 
                 {/* List Layout Nível 2 */}
                 <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
-                    {items.map((item) => {
-                        const Icon = item.icon;
-
-                        return (
+                    {items.map((item) => (
                             <TouchableOpacity
                                 key={item.id}
                                 style={{ width: '100%', marginBottom: 16 }}
@@ -91,7 +85,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
                                 <View style={styles.guideCardOuter}>
                                     <View style={styles.guideCardInner}>
                                         <View style={[styles.guideImageContainer, { backgroundColor: item.color }]}>
-                                            <Icon size={48} color={item.iconColor} variant="Bold" />
+                                            <NeoIcon name={item.iconName} size={48} color={item.iconColor} variant="Bold" />
                                         </View>
                                         
                                         <View style={styles.guideContent}>
@@ -111,8 +105,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
                                     </View>
                                 </View>
                             </TouchableOpacity>
-                        );
-                    })}
+                    ))}
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>

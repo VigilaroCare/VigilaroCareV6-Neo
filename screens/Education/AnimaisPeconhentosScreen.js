@@ -13,9 +13,6 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
-import {
-    SearchNormal1, Call, ArrowLeft2 as ArrowLeft, Warning2
-} from 'iconsax-react-native';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -66,11 +63,11 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                 <View style={{ padding: 20, paddingTop: 10 }}>
                     <View style={styles.headerTop}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                            <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                         </TouchableOpacity>
                         <H2>{t('animals.title')}</H2>
                         <TouchableOpacity onPress={handleCallCiatox} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(239, 68, 68, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }}>
-                            <Call size={24} color="#EF4444" variant="Bold" />
+                            <NeoIcon name="Call" size={24} color="#EF4444" variant="Bold" />
                         </TouchableOpacity>
                     </View>
                     <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 8 }}>{t('animals.subtitle')}</Small>
@@ -79,7 +76,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                 {/* Search Bar */}
                 <View style={{ paddingHorizontal: 20, paddingVertical: 12 }}>
                     <NeoCard variant="glass" style={styles.searchContainer}>
-                        <SearchNormal1 size={20} color={Neo.colors.neutral[400]} />
+                        <NeoIcon name="SearchNormal1" size={20} color={Neo.colors.neutral[400]} />
                         <TextInput
                             style={styles.searchInput}
                             placeholder={t('animals.searchPlaceholder')}
@@ -96,7 +93,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                     <TouchableOpacity onPress={handleCallCiatox} activeOpacity={0.9} style={{ marginBottom: 16 }}>
                         <View style={[styles.alertCard, { backgroundColor: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)', borderWidth: 1 }]}>
                             <View style={styles.alertIconBg}>
-                                <Call size={24} color="#EF4444" variant="Bold" />
+                                <NeoIcon name="Call" size={24} color="#EF4444" variant="Bold" />
                             </View>
                             <View style={{ flex: 1 }}>
                                 <H3 style={styles.alertTitle}>{t('animals.emergencyTitle')}</H3>
@@ -118,7 +115,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                                 <View style={styles.guideCardOuter}>
                                     <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                         <View style={styles.guideImageContainer}>
-                                            {animal.imagem ? <Image source={animal.imagem} style={styles.guideImage} /> : <Warning2 size={48} color={THEME_COLOR} variant="Bold" />}
+                                            {animal.imagem ? <Image source={animal.imagem} style={styles.guideImage} /> : <NeoIcon name="Warning2" size={48} color={THEME_COLOR} variant="Bold" />}
                                         </View>
                                         <View style={styles.guideContent}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -132,7 +129,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                                             </View>
                                             <View style={{ flex: 1 }} />
                                             <View style={styles.sptContainer}>
-                                                <Warning2 size={12} color={Neo.colors.neutral[500]} />
+                                                <NeoIcon name="Warning2" size={12} color={Neo.colors.neutral[500]} />
                                                 <Text style={styles.sptText} numberOfLines={2}>{sintomasText}</Text>
                                             </View>
                                         </View>
@@ -144,7 +141,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
 
                     {animaisFiltrados.length === 0 && (
                         <View style={{ alignItems: 'center', marginTop: 40 }}>
-                            <Warning2 size={48} color={Neo.colors.neutral[300]} variant="Bold" />
+                            <NeoIcon name="Warning2" size={48} color={Neo.colors.neutral[300]} variant="Bold" />
                             <Body style={{ marginTop: 16, color: Neo.colors.neutral[400] }}>{t('animals.noResults')}</Body>
                         </View>
                     )}

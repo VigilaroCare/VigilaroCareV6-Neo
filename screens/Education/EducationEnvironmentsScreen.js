@@ -14,8 +14,6 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, People, MagicStar, Briefcase, Sun1, RouteSquare, ArrowRight2 } from 'iconsax-react-native';
-
 import { Shadows } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import {
@@ -100,7 +98,7 @@ function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
 
                     {/* Chevron */}
                     <View style={styles.chevron}>
-                        <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
+                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
                     </View>
                 </View>
             </View>
@@ -134,11 +132,11 @@ export default function EducationEnvironmentsScreen({ navigation }) {
         );
     };
 
-    const renderSection = (title, IconComp, color, list) => (
+    const renderSection = (title, iconName, color, list) => (
         <View style={styles.sectionContainer} key={title}>
             <View style={styles.sectionHeader}>
                 <View style={[styles.sectionIconBg, { backgroundColor: color + '25' }]}>
-                    <IconComp size={18} color={color} variant="Bold" />
+                    <NeoIcon name={iconName} size={18} color={color} variant="Bold" />
                 </View>
                 <H3 style={[styles.sectionTitle, { color: textPrimary }]}>{title}</H3>
             </View>
@@ -173,11 +171,11 @@ export default function EducationEnvironmentsScreen({ navigation }) {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    {renderSection(t('envScreens.living', 'Convivência e Estar'), People, '#FF9800', LISTA_CONVIVENCIA)}
-                    {renderSection(t('envScreens.rest', 'Área de Descanso'), MagicStar, '#673AB7', LISTA_INTIMA)}
-                    {renderSection(t('envScreens.services', 'Serviços e Utilidades'), Briefcase, '#607D8B', LISTA_SERVICOS)}
-                    {renderSection(t('envScreens.leisure', 'Lazer e Exterior'), Sun1, '#4CAF50', LISTA_LAZER)}
-                    {renderSection(t('envScreens.circulation', 'Circulação e Acessos'), RouteSquare, '#F44336', LISTA_CIRCULACAO)}
+                    {renderSection(t('envScreens.living', 'Convivência e Estar'), 'People', '#FF9800', LISTA_CONVIVENCIA)}
+                    {renderSection(t('envScreens.rest', 'Área de Descanso'), 'MagicStar', '#673AB7', LISTA_INTIMA)}
+                    {renderSection(t('envScreens.services', 'Serviços e Utilidades'), 'Briefcase', '#607D8B', LISTA_SERVICOS)}
+                    {renderSection(t('envScreens.leisure', 'Lazer e Exterior'), 'Sun1', '#4CAF50', LISTA_LAZER)}
+                    {renderSection(t('envScreens.circulation', 'Circulação e Acessos'), 'RouteSquare', '#F44336', LISTA_CIRCULACAO)}
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>

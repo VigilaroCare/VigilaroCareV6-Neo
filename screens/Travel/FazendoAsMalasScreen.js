@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft2, ArrowDown2, ArrowUp2 } from 'iconsax-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -161,7 +160,7 @@ function CategoryCard({ category, expanded, onToggle }) {
                     <H3 style={{ color: Neo.colors.neutral[900], fontSize: 15 }}>{category.title}</H3>
                     <Small style={{ color: Neo.colors.neutral[500], fontSize: 11, marginTop: 2 }}>{category.items.length} itens</Small>
                 </View>
-                {expanded ? <ArrowUp2 size={20} color={category.color} /> : <ArrowDown2 size={20} color={category.color} />}
+                {expanded ? <NeoIcon name="ArrowUp2" size={20} color={category.color} /> : <NeoIcon name="ArrowDown2" size={20} color={category.color} />}
             </TouchableOpacity>
 
             {expanded && (
@@ -251,7 +250,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
                             borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)'
                         }}
                     >
-                        <ArrowLeft2 size={24} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                 </View>
 

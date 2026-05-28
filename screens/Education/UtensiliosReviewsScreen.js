@@ -21,7 +21,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
-import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
+import NeoIcon from '../../components/NeoIcon';
 import { UTENSILIOS_REVIEWS } from '../../data/utensilios_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -74,7 +74,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                     style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
                     activeOpacity={0.7}
                 >
-                    <ArrowLeft size={22} color={THEME_COLOR} />
+                    <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
                     <Text style={styles.headerEmoji}>🍽️</Text>

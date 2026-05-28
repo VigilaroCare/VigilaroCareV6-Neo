@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
-import { ArrowLeft, ArrowRight2 } from 'iconsax-react-native';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -51,7 +51,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
             accessibilityRole="button"
             accessibilityLabel={t('common.back', 'Voltar')}
           >
-            <ArrowLeft size={24} color={textBody} />
+            <NeoIcon name="ArrowLeft" size={24} color={textBody} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
             <H2 style={{ color: textPrimary }} accessibilityRole="header">{t('headersFirst.chemicals', 'Produtos Químicos')}</H2>

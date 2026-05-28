@@ -4,7 +4,7 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
-import { ArrowLeft } from 'iconsax-react-native';
+import NeoIcon from '../../components/NeoIcon';
 import { TEORIA_FOGO_DATA } from '../../data/teoria_fogo';
 import AppBackground from '../../components/AppBackground';
 import ReviewImage from '../../components/ReviewImage';
@@ -57,7 +57,7 @@ export default function TeoriaFogoScreen({ navigation }) {
                         marginRight: 16
                     }}
                 >
-                    <ArrowLeft size={24} color="#FFF" />
+                    <NeoIcon name="ArrowLeft" size={24} color="#FFF" />
                 </TouchableOpacity>
                 <View style={{ flex: 1 }}>
                     <Text style={{ fontSize: 24, fontWeight: '800', color: '#FFF' }}>

@@ -10,11 +10,11 @@ import { View, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowLeft2, TickCircle, People } from 'iconsax-react-native';
 import { VISIT_CHECKLISTS } from '../../data/visitChecklists';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import NeoIcon from '../../components/NeoIcon';
 import AppBg from '../../components/AppBackground';
 import ScaleButton from '../../components/ScaleButton';
 import GamificationService from '../../services/GamificationService';
@@ -106,7 +106,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                         onPress={() => navigation.goBack()}
                         style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.05)', alignItems: 'center', justifyContent: 'center' }}
                     >
-                        <ArrowLeft2 size={22} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, marginLeft: 12 }}>
                         <H2 style={{ color: Neo.colors.neutral[800] }}>{t('headersFirst.checklistVisita', 'Checklist: Visita')}</H2>
@@ -115,7 +115,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                         </Small>
                     </View>
                     <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: THEME_COLOR + '15', alignItems: 'center', justifyContent: 'center' }}>
-                        <People size={22} color={THEME_COLOR} variant="Bold" />
+                        <NeoIcon name="People" size={22} color={THEME_COLOR} variant="Bold" />
                     </View>
                 </View>
 
@@ -161,7 +161,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                                         borderColor: isChecked ? 'transparent' : Neo.colors.neutral[300],
                                         alignItems: 'center', justifyContent: 'center',
                                     }}>
-                                        {isChecked && <TickCircle size={16} color={Neo.colors.neutral.white} variant="Bold" />}
+                                        {isChecked && <NeoIcon name="TickCircle" size={16} color={Neo.colors.neutral.white} variant="Bold" />}
                                     </View>
 
                                     {/* Label */}
@@ -190,7 +190,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                             justifyContent: 'center',
                             ...Neo.shadows.md,
                         }}>
-                            <People size={22} color={Neo.colors.neutral.white} variant="Bold" />
+                            <NeoIcon name="People" size={22} color={Neo.colors.neutral.white} variant="Bold" />
                             <H3 style={{ color: Neo.colors.neutral.white, marginLeft: 10 }}>
                                 {isRecebendo ? 'Ativar Modo Visita' : 'Pronto para Visitar'}
                             </H3>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
-import { ArrowLeft, Award, Clock } from 'iconsax-react-native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoIcon from '../../components/NeoIcon';
 import TimelineService from '../../services/TimelineService';
 import AppBackground from '../../components/AppBackground';
 
@@ -32,7 +32,7 @@ export default function HistoricoMelhorasScreen({ navigation }) {
             {/* Cabeçalho Minimalista */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.btnVoltar}>
-                    <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                    <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>{t('headersFirst.histRicoDeMelhorias', 'Histórico de Melhorias')}</Text>
                 <View style={{ width: 44 }} />
@@ -44,7 +44,7 @@ export default function HistoricoMelhorasScreen({ navigation }) {
                 </View>
             ) : history.length === 0 ? (
                 <View style={styles.center}>
-                    <Clock size={48} color={Neo.colors.neutral[300]} variant="Outline" />
+                    <NeoIcon name="Clock" size={48} color={Neo.colors.neutral[300]} variant="Outline" />
                     <Text style={styles.emptyText}>{t('headersFirst.pareceQueVocAindaNOTemRegistros', 'Parece que você ainda não tem registros.')}</Text>
                     <Text style={styles.emptySubText}>{t('headersFirst.realizeVistoriasEMarqueOsItensComoSeguro', 'Realize vistorias e marque os itens como Seguros para construir seu histórico.')}</Text>
                 </View>
@@ -65,7 +65,7 @@ export default function HistoricoMelhorasScreen({ navigation }) {
                             <View style={styles.cardContent}>
                                 <View style={styles.cardHeader}>
                                     <View style={styles.tagContainer}>
-                                        <Award size={14} color={Neo.colors.primary[700]} variant="Bold" />
+                                        <NeoIcon name="Award" size={14} color={Neo.colors.primary[700]} variant="Bold" />
                                         <Text style={styles.tagText}>{item.areaId.toUpperCase()}</Text>
                                     </View>
                                     <Text style={styles.dateText}>{formatDate(item.data)}</Text>

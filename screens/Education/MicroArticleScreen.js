@@ -13,7 +13,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
-import { ArrowLeft } from 'iconsax-react-native';
 import { MICRO_BLOG_CATEGORIES, MICRO_BLOG_ARTICLES } from '../../data/micro_blog';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -65,7 +64,7 @@ export default function MicroArticleScreen({ navigation, route }) {
                     onPress={() => navigation.goBack()}
                     style={[styles.backBtn, { top: insets.top + 8 }]}
                 >
-                    <ArrowLeft size={24} color="#FFF" />
+                    <NeoIcon name="ArrowLeft" size={24} color="#FFF" />
                 </TouchableOpacity>
 
                 {/* Share Button */}

@@ -23,7 +23,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
-import { ArrowLeft, Danger, ShieldTick, Heart, InfoCircle, People } from 'iconsax-react-native';
+import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
@@ -77,7 +77,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                     style={[styles.backBtn, { backgroundColor: riskColor + '20' }]}
                     activeOpacity={0.7}
                 >
-                    <ArrowLeft size={22} color={riskColor} />
+                    <NeoIcon name="ArrowLeft" size={22} color={riskColor} />
                 </TouchableOpacity>
 
                 {/* Hero banner grande com a foto do card (padrão FasesVida/Produtos) */}
@@ -112,7 +112,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={100}>
                     <NeoCard variant="glass" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <InfoCircle size={20} color={Neo.colors.primary[600]} variant="Bold" />
+                            <NeoIcon name="InfoCircle" size={20} color={Neo.colors.primary[600]} variant="Bold" />
                             <Text style={styles.sectionTitle}>{t('headersFirst.sobre', 'Sobre')}</Text>
                         </View>
                         <Text style={[styles.bodyText, { color: textBody }]}>{item.resumo}</Text>
@@ -137,7 +137,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={200}>
                     <NeoCard variant="glass" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <Danger size={20} color="#D32F2F" variant="Bold" />
+                            <NeoIcon name="Danger" size={20} color="#D32F2F" variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: '#D32F2F' }]}>
                                 {t('headersFirst.riscosIdentificados', 'Riscos Identificados')}
                             </Text>
@@ -166,7 +166,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={300}>
                     <NeoCard variant="glass" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <ShieldTick size={20} color="#2E7D32" variant="Bold" />
+                            <NeoIcon name="ShieldTick" size={20} color="#2E7D32" variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: '#2E7D32' }]}>
                                 {t('headersFirst.comoPrevenir', 'Como Prevenir')}
                             </Text>
@@ -184,7 +184,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={400}>
                     <NeoCard variant="glass" style={[styles.sectionCard, styles.emergencyCard]}>
                         <View style={styles.sectionHeader}>
-                            <Heart size={20} color="#C62828" variant="Bold" />
+                            <NeoIcon name="Heart" size={20} color="#C62828" variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: '#C62828' }]}>
                                 {t('headersFirst.oQueFazerEmCasoDeAcidente', 'O Que Fazer em Caso de Acidente')}
                             </Text>
@@ -198,7 +198,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                     <FadeInView delay={500}>
                         <NeoCard variant="glass" style={[styles.sectionCard, styles.statCard]}>
                             <View style={styles.sectionHeader}>
-                                <People size={20} color={Neo.colors.primary[600]} variant="Bold" />
+                                <NeoIcon name="People" size={20} color={Neo.colors.primary[600]} variant="Bold" />
                                 <Text style={[styles.sectionTitle, { color: Neo.colors.primary[600] }]}>
                                     {t('headersFirst.vocSabia', 'Você Sabia?')}
                                 </Text>

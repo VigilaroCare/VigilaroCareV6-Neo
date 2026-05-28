@@ -3,7 +3,6 @@ import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
-import { ArrowLeft, EmojiHappy, Book1, ArrowRight2 } from 'iconsax-react-native';
 import { FASES_VIDA_DATA } from '../../data/fases_vida';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -90,7 +89,7 @@ export default function FasesVidaMenuScreen({ navigation }) {
                 <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
                     <View style={styles.listContainer}>
                         {items.map((item) => {
-                            const Icon = item.icon || EmojiHappy;
+                            const IconComp = item.icon;
 
                             return (
                                 <TouchableOpacity
@@ -110,8 +109,10 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                                         accessibilityLabel={item.cardTitle}
                                                         onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
                                                     />
+                                                ) : IconComp ? (
+                                                    <IconComp size={48} color={item.iconColor} variant="Bold" />
                                                 ) : (
-                                                    <Icon size={48} color={item.iconColor} variant="Bold" />
+                                                    <NeoIcon name="EmojiHappy" size={48} color={item.iconColor} variant="Bold" />
                                                 )}
                                             </View>
                                             <View style={styles.guideContent}>

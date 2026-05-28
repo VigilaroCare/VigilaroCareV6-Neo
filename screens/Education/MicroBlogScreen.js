@@ -11,7 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
-import { ArrowLeft } from 'iconsax-react-native';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blog';
 import { t_field } from '../../utils/getLocalizedField';
@@ -80,7 +80,7 @@ export default function MicroBlogScreen({ navigation }) {
                 {/* Header */}
                 <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-                        <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">📰 Micro Blog</Text>
