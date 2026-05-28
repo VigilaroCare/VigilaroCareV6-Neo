@@ -5,10 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
-import {
-    Health, Briefcase, Hammer, ShieldTick, ArrowRight2, LampOn,
-} from 'iconsax-react-native';
-
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
@@ -27,7 +23,7 @@ export default function KitsHubScreen() {
             id: 'socorros',
             title: t('kitsHub.firstAid', 'Primeiros Socorros'),
             sub: t('kitsHub.firstAidSub', 'Curativos e itens básicos'),
-            Icon: Health,
+            iconName: 'Health',
             color: '#DC2626', // red
             route: 'KitPrimeirosSocorros',
         },
@@ -35,7 +31,7 @@ export default function KitsHubScreen() {
             id: 'remedios',
             title: t('kitsHub.pharmacy', 'Farmácia em casa'),
             sub: t('kitsHub.pharmacySub', 'Controle de remédios'),
-            Icon: Health,
+            iconName: 'Health',
             color: '#0EA5E9', // sky
             route: 'KitRemedios',
         },
@@ -43,7 +39,7 @@ export default function KitsHubScreen() {
             id: 'emergencia',
             title: t('kitsHub.emergency', 'Kit de Emergência'),
             sub: t('kitsHub.emergencySub', 'Sobrevivência por 72h'),
-            Icon: Briefcase,
+            iconName: 'Briefcase',
             color: '#7C3AED', // violet
             route: 'KitEmergencia',
         },
@@ -51,7 +47,7 @@ export default function KitsHubScreen() {
             id: 'ferramentas',
             title: t('kitsHub.tools', 'Ferramentas'),
             sub: t('kitsHub.toolsSub', 'Manutenção e reparos básicos'),
-            Icon: Hammer,
+            iconName: 'Hammer',
             color: '#F59E0B', // amber
             route: 'FerramentasTrabalho', // FIX: era KitFerramentas (rota inexistente)
         },
@@ -59,7 +55,7 @@ export default function KitsHubScreen() {
             id: 'epis',
             title: t('kitsHub.ppe', 'EPIs'),
             sub: t('kitsHub.ppeSub', 'Equipamentos de proteção'),
-            Icon: ShieldTick,
+            iconName: 'ShieldTick',
             color: '#16A34A', // green
             route: 'EpiDomestico', // FIX: era KitEPIs (rota inexistente)
         },
@@ -103,13 +99,13 @@ export default function KitsHubScreen() {
                             >
                                 <NeoCard variant="elevated" style={s.kitCard}>
                                     <View style={[s.iconCircle, { backgroundColor: item.color + '33' }]}>
-                                        <item.Icon size={24} color={item.color} variant="Bold" />
+                                        <NeoIcon name={item.iconName} size={24} color={item.color} variant="Bold" />
                                     </View>
                                     <View style={s.textCol}>
                                         <Body style={s.kitTitle}>{item.title}</Body>
                                         <Small style={s.kitSub}>{item.sub}</Small>
                                     </View>
-                                    <ArrowRight2 size={18} color={Neo.colors.neutral[500]} />
+                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                                 </NeoCard>
                             </TouchableOpacity>
                         </FadeInView>
@@ -118,7 +114,7 @@ export default function KitsHubScreen() {
                     {/* DICA — card glass discreto */}
                     <NeoCard variant="elevated" style={s.tipCard}>
                         <View style={s.tipIconWrap}>
-                            <LampOn size={20} color="#F59E0B" variant="Bold" />
+                            <NeoIcon name="LampOn" size={20} color="#F59E0B" variant="Bold" />
                         </View>
                         <Body style={s.tipText}>
                             {t('kitsHub.tipText', 'Verifique a validade dos itens a cada 6 meses para manter seus kits sempre prontos.')}

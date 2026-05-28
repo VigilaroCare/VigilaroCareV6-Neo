@@ -253,13 +253,13 @@ const mapName = (name) => {
 };
 
 // ──────────────────────────────────────────────────────────────────────
-// Mapping Iconsax → Phosphor (migração Fase A iniciada). Quando um nome
-// está aqui, NeoIcon prefere Phosphor sobre Iconsax. Caso contrário,
-// cai pro Iconsax como fallback (sem regressão visual). A tabela cresce
-// na Fase B até cobrir todos os ~80-100 nomes em uso no app.
+// Mapping Iconsax → Phosphor. Quando um nome está aqui, NeoIcon prefere
+// Phosphor sobre Iconsax. Caso contrário, cai pro Iconsax como fallback.
+// Cobertura: Fase B (2026-05-28) — ~80 nomes em uso no app, todos
+// verificados contra os exports reais de phosphor-react-native@3.x.
 // ──────────────────────────────────────────────────────────────────────
 const PHOSPHOR_MAP = {
-    // Home (Fase A piloto)
+    // ── Casa / piloto Fase A ────────────────────────────────────────
     Home2: 'House',
     House: 'House',
     Health: 'Heartbeat',
@@ -268,20 +268,141 @@ const PHOSPHOR_MAP = {
     Setting2: 'GearSix',
     Scan: 'Scan',
     Activity: 'Pulse',
+
+    // ── Setas / navegação ──────────────────────────────────────────
     ArrowRight2: 'CaretRight',
     ArrowLeft2: 'CaretLeft',
     ArrowDown2: 'CaretDown',
     ArrowUp2: 'CaretUp',
     ArrowRight: 'ArrowRight',
     ArrowLeft: 'ArrowLeft',
-    Pet: 'PawPrint',
-    Heart: 'Heart',
-    Building: 'Buildings',
+
+    // ── Ações comuns ───────────────────────────────────────────────
+    Add: 'Plus',
+    Edit2: 'PencilSimple',
+    Trash: 'TrashSimple',
+    Copy: 'Copy',
     CloseCircle: 'XCircle',
-    DocumentText: 'FileText',
-    InfoCircle: 'Info',
+    CloseSquare: 'XSquare',
     TickCircle: 'CheckCircle',
     TickSquare: 'CheckSquare',
+    Eye: 'Eye',
+
+    // ── Busca / localização ────────────────────────────────────────
+    SearchNormal: 'MagnifyingGlass',
+    SearchNormal1: 'MagnifyingGlass',
+    SearchZoomIn: 'MagnifyingGlassPlus',
+    Discover: 'Compass',
+    GlobalSearch: 'Globe',
+    Map1: 'MapTrifold',
+    Location: 'MapPin',
+    LocationTick: 'MapPin',
+    RouteSquare: 'Path',
+    Routing: 'Path',
+
+    // ── Comunicação ────────────────────────────────────────────────
+    Call: 'Phone',
+    CallCalling: 'PhoneCall',
+    Message: 'ChatCircle',
+
+    // ── Documentos / dados ─────────────────────────────────────────
+    DocumentText: 'FileText',
+    DocumentCopy: 'Files',
+    DocumentDownload: 'FileArrowDown',
+    Book1: 'Book',
+    ClipboardTick: 'ClipboardText',
+
+    // ── Status / hierarquia ────────────────────────────────────────
+    Award: 'Trophy',
+    StatusUp: 'TrendUp',
+    Chart: 'ChartBar',
+    Grid2: 'GridFour',
+    Shield: 'Shield',
+    Danger: 'Warning',
+    InfoCircle: 'Info',
+    Setting4: 'GearSix',
+
+    // ── Lugares / objetos ──────────────────────────────────────────
+    Building: 'Building',
+    Building4: 'Buildings',
+    Window: 'AppWindow',
+    Calendar: 'Calendar',
+    CalendarEdit: 'CalendarBlank',
+    Clock: 'Clock',
+    Key: 'Key',
+    Lock1: 'Lock',
+    LampOn: 'Lamp',
+
+    // ── Pessoas / perfis ───────────────────────────────────────────
+    User: 'User',
+    People: 'Users',
+    Personalcard: 'IdentificationCard',
+    Woman: 'Person',
+    EmojiHappy: 'Smiley',
+
+    // ── Pet ────────────────────────────────────────────────────────
+    Pet: 'PawPrint',
+    Heart: 'Heart',
+    HeartAdd: 'HeartStraight',
+
+    // ── Natureza / clima / elementos ───────────────────────────────
+    Drop: 'Drop',
+    Fire: 'Fire',
+    Sun1: 'Sun',
+    Tree: 'Tree',
+    Triangle: 'Triangle',
+    Wind: 'Wind',
+    Electricity: 'Lightning',
+    Candle2: 'Flame',
+
+    // ── Transporte / viagem ────────────────────────────────────────
+    Airplane: 'Airplane',
+    AirplaneSquare: 'AirplaneTilt',
+    Car: 'Car',
+    TruckFast: 'Truck',
+
+    // ── Específicos do domínio Vigilaro ────────────────────────────
+    BoxTick: 'Package',
+    Briefcase: 'Briefcase',
+    Brush: 'PaintBrush',
+    ChemicalGlass: 'Flask',
+    MagicStar: 'MagicWand',
+    Teacher: 'ChalkboardTeacher',
+    Hammer: 'Hammer',
+    Leaf: 'Leaf',
+    Note: 'Note',
+    Ruler: 'Ruler',
+    Scissor: 'Scissors',
+    Ticket: 'Ticket',
+    Star: 'Star',
+    Star1: 'Star',
+    Crown: 'Crown',
+    Cpu: 'Cpu',
+
+    // ── Engajamento / sociais ──────────────────────────────────────
+    LanguageSquare: 'Translate',
+    MessageQuestion: 'Question',
+    Lovely: 'Heart',
+    HeartCircle: 'HeartStraight',
+    Reserve: 'Bookmark',
+    ExportSquare: 'Export',
+    Profile: 'User',
+    Profile2User: 'Users',
+
+    // ── Dispositivos / mídia ───────────────────────────────────────
+    Monitor: 'Monitor',
+    Mobile: 'DeviceMobile',
+    Microphone2: 'Microphone',
+    Flash: 'Lightning',
+    Flashy: 'Lightning',
+    Broadcast: 'Broadcast',
+    Brodcast: 'Broadcast', // typo in legacy callsites
+    ScanBarcode: 'Barcode',
+    Map: 'MapTrifold',
+    Lamp: 'Lamp',
+    ArchiveBox: 'Archive',
+    Bubble: 'ChatCircle',
+    TrendUp: 'TrendUp',
 };
 
 // Iconsax variant → Phosphor weight. Bold ancora (fill),

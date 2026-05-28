@@ -18,7 +18,7 @@ import {
     Animated,
     Easing,
 } from 'react-native';
-import { Home2, ArrowDown2 } from 'iconsax-react-native';
+import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
 /**
@@ -61,7 +61,7 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
                 {/* Ícone de casa com dot de status */}
                 <View style={styles.houseIconContainer}>
                     <View style={styles.houseIconBg}>
-                        <Home2 size={16} color="#FFF" variant="Bold" />
+                        <NeoIcon name="Home2" size={16} color="#FFF" variant="Bold" />
                     </View>
                     <View style={styles.statusDot} />
                 </View>
@@ -79,7 +79,7 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
                 {/* Seta animada — só exibe se for clicável/editável */}
                 {onPress && (
                     <Animated.View style={[styles.arrowContainer, { transform: [{ rotate }] }]}>
-                        <ArrowDown2 size={14} color={Neo.colors.neutral[500]} />
+                        <NeoIcon name="ArrowDown2" size={14} color={Neo.colors.neutral[500]} />
                     </Animated.View>
                 )}
             </View>

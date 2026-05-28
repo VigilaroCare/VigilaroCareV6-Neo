@@ -21,7 +21,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
-import { ArrowLeft, ShieldTick, InfoCircle, Danger, ArrowRight2 } from 'iconsax-react-native';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const FORMAT_CONFIG = {
@@ -46,7 +45,7 @@ export default function RadarArticleScreen({ route, navigation }) {
       <AppBackground>
         <SafeAreaView style={s.safeArea}>
           <TouchableOpacity style={s.backBtn} onPress={() => navigation.goBack()}>
-            <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+            <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={s.emptyState}>
             <Text style={s.emptyText}>Conteúdo não encontrado.</Text>
@@ -75,10 +74,10 @@ export default function RadarArticleScreen({ route, navigation }) {
             accessibilityRole="button"
             accessibilityLabel="Voltar"
           >
-            <ArrowLeft size={24} color={textBody} />
+            <NeoIcon name="ArrowLeft" size={24} color={textBody} />
           </TouchableOpacity>
           <View style={[s.badgeHeader, { backgroundColor: config.bg }]}>
-            <ShieldTick size={14} color={config.cor} variant="Bold" />
+            <NeoIcon name="ShieldTick" size={14} color={config.cor} variant="Bold" />
             <Text style={[s.badgeHeaderText, { color: config.cor }]}>
               {config.label}
             </Text>
@@ -128,7 +127,7 @@ export default function RadarArticleScreen({ route, navigation }) {
           {article.causaRaiz && (
             <View style={s.causaBox}>
               <View style={s.causaHeader}>
-                <Danger size={16} color="#D97706" variant="Bold" />
+                <NeoIcon name="Danger" size={16} color="#D97706" variant="Bold" />
                 <Text style={s.causaLabel}>Por que aconteceu</Text>
               </View>
               <Text style={s.causaTexto}>{article.causaRaiz}</Text>
@@ -139,7 +138,7 @@ export default function RadarArticleScreen({ route, navigation }) {
           {orientacoes.length > 0 && (
             <View style={s.orientacoesBox}>
               <View style={s.orientacoesHeader}>
-                <ShieldTick size={18} color={Neo.colors.primary[600]} variant="Bold" />
+                <NeoIcon name="ShieldTick" size={18} color={Neo.colors.primary[600]} variant="Bold" />
                 <Text style={s.orientacoesTitle}>Como evitar</Text>
               </View>
 
@@ -157,7 +156,7 @@ export default function RadarArticleScreen({ route, navigation }) {
           {/* Fonte */}
           {article.fonte && (
             <View style={s.fonteBox}>
-              <InfoCircle size={14} color={Neo.colors.neutral[400]} />
+              <NeoIcon name="InfoCircle" size={14} color={Neo.colors.neutral[400]} />
               <Text style={s.fonteTexto}>{article.fonte}</Text>
             </View>
           )}
@@ -169,7 +168,7 @@ export default function RadarArticleScreen({ route, navigation }) {
             activeOpacity={0.7}
           >
             <Text style={s.verMaisText}>Ler outras histórias no Radar da Prevenção</Text>
-            <ArrowRight2 size={14} color={Neo.colors.primary[600]} />
+            <NeoIcon name="ArrowRight2" size={14} color={Neo.colors.primary[600]} />
           </TouchableOpacity>
 
           <View style={{ height: 40 }} />

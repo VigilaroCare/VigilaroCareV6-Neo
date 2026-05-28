@@ -16,7 +16,6 @@ import AppBackground from '../../components/AppBackground';
 import NeoTypography from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import RadarVigilaroService from '../../services/RadarVigilaroService';
-import { ArrowLeft, ShieldTick, Chart, DocumentText, Calendar } from 'iconsax-react-native';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 // ─── Paleta de ícones por formato ──────────────────────────────────────────
@@ -114,10 +113,10 @@ export default function RadarVigilaroScreen({ navigation }) {
             style={s.backBtn}
             onPress={() => navigation.goBack()}
           >
-            <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+            <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={s.headerTitle}>
-            <ShieldTick size={20} color={Neo.colors.primary[600]} variant="Bold" />
+            <NeoIcon name="ShieldTick" size={20} color={Neo.colors.primary[600]} variant="Bold" />
             <Text style={s.headerTitleText}>Radar da Prevenção</Text>
           </View>
           <View style={{ width: 44 }} />

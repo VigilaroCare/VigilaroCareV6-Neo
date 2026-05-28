@@ -13,12 +13,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import {
-    Crown, InfoCircle, MessageQuestion, ArrowRight2,
-    Eye, DocumentText, Shield, LanguageSquare, TickCircle,
-    Activity, Home2,
-} from 'iconsax-react-native';
-
 import { DS as Neo } from '../utils/DesignSystem2026';
 import ProfileService from '../services/ProfileService';
 import SubscriptionService from '../services/SubscriptionService';
@@ -125,28 +119,28 @@ export default function MenuScreenNeo() {
     const sectionConta = [
         {
             key: 'gerenciar_mapa',
-            IconComponent: Home2,
+            iconName: 'Home2',
             color: '#0F766E', // teal — gestão de mapa/locais
             label: t('menu.manageMap', 'Locais e moradores'),
             action: () => navigateWithHaptic('GerenciarLocaisPerfis'),
         },
         {
             key: 'acessibilidade',
-            IconComponent: Eye,
+            iconName: 'Eye',
             color: '#10B981', // emerald — primary
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
         {
             key: 'sensibilidade_queda',
-            IconComponent: Activity,
+            iconName: 'Activity',
             color: '#EF4444', // red — sinaliza segurança/emergência
             label: t('menu.fallSensitivity', 'Sensibilidade de queda'),
             action: () => navigateWithHaptic('FallSensitivity'),
         },
         {
             key: 'idioma',
-            IconComponent: LanguageSquare,
+            iconName: 'LanguageSquare',
             color: '#0EA5E9', // sky blue — secondary
             label: t('settings.language', 'Idioma'),
             action: () => setShowLangPicker(true),
@@ -156,28 +150,28 @@ export default function MenuScreenNeo() {
     const sectionAjuda = [
         {
             key: 'suporte',
-            IconComponent: MessageQuestion,
+            iconName: 'MessageQuestion',
             color: '#F59E0B', // amber, mais visível que o yellow do DS
             label: t('menu.support'),
             action: () => Linking.openURL('mailto:suporte@vigilaro.com'),
         },
         {
             key: 'sobre',
-            IconComponent: InfoCircle,
+            iconName: 'InfoCircle',
             color: '#6366F1', // indigo — distinto dos outros, alto contraste
             label: t('menu.about'),
             action: () => navigateWithHaptic('Sobre'),
         },
         {
             key: 'termos',
-            IconComponent: DocumentText,
+            iconName: 'DocumentText',
             color: '#0891B2', // cyan/teal — alto contraste, profissional
             label: t('menu.terms'),
             action: () => navigateWithHaptic('TermsOfUse'),
         },
         {
             key: 'privacidade',
-            IconComponent: Shield,
+            iconName: 'Shield',
             color: '#475569', // slate — protetor/sério mas com contraste suficiente
             label: t('menu.privacy'),
             action: () => navigateWithHaptic('PrivacyPolicy'),
@@ -198,7 +192,7 @@ export default function MenuScreenNeo() {
         >
             <NeoCard variant="elevated" style={s.gridCard}>
                 <View style={[s.gridIconCircle, { backgroundColor: item.color + '33' }]}>
-                    <item.IconComponent size={26} color={item.color} variant="Bold" />
+                    <NeoIcon name={item.iconName} size={26} color={item.color} variant="Bold" />
                 </View>
                 <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
                     {item.label}
@@ -245,7 +239,7 @@ export default function MenuScreenNeo() {
                                 </View>
                                 {isPremium && (
                                     <View style={s.premiumBadge}>
-                                        <TickCircle size={12} color={Neo.colors.primary[700]} variant="Bold" />
+                                        <NeoIcon name="TickCircle" size={12} color={Neo.colors.primary[700]} variant="Bold" />
                                         <Text style={s.premiumBadgeText}>Premium</Text>
                                     </View>
                                 )}
@@ -261,7 +255,7 @@ export default function MenuScreenNeo() {
                     >
                         <NeoCard variant="elevated" style={s.premiumCard}>
                             <View style={s.premiumIconWrap}>
-                                <Crown size={26} color={Neo.colors.primary[700]} variant="Bulk" />
+                                <NeoIcon name="Crown" size={26} color={Neo.colors.primary[700]} variant="Bulk" />
                             </View>
                             <View style={{ flex: 1, marginLeft: 14 }}>
                                 <Body style={s.premiumTitle}>
@@ -275,7 +269,7 @@ export default function MenuScreenNeo() {
                                         : t('menu.premiumPromoSub', 'Voz em tempo real, scanner ilimitado e mais.')}
                                 </Small>
                             </View>
-                            <ArrowRight2 size={18} color={Neo.colors.primary[600]} />
+                            <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.primary[600]} />
                         </NeoCard>
                     </TouchableOpacity>
 
