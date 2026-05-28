@@ -40,6 +40,7 @@ function formatAckDate(isoString) {
 // `implication`, pois t/useTranslation não estavam no escopo).
 function RiskCard({ item, onAcknowledge, onNavigate, t }) {
     const ack = item.acknowledged;
+    const textPrimary = Neo.colors.neutral[900];
 
     return (
         <NeoCard variant="elevated" style={s.riskCard}>
@@ -63,12 +64,39 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                     </View>
                 ) : null}
 
-                {item.tip ? (
-                    <View style={s.tipBlock}>
-                        <NeoIcon name="LampOn" size={14} color={Neo.colors.primary[600]} variant="Bold" />
-                        <Text style={s.tipText}>{item.tip}</Text>
+                {!ack && (
+                    <View style={s.measuresContainer}>
+                        {item.medidaCorretiva ? (
+                            <View style={s.measureBlockCorretiva}>
+                                <View style={s.measureHeader}>
+                                    <NeoIcon name="TickSquare" size={13} color="#10B981" variant="Bold" />
+                                    <Text style={s.measureTitleCorretiva}>Medida Corretiva (Ação Física)</Text>
+                                </View>
+                                <Text style={s.measureText}>{item.medidaCorretiva}</Text>
+                            </View>
+                        ) : null}
+
+                        {item.medidaPreventiva ? (
+                            <View style={s.measureBlockPreventiva}>
+                                <View style={s.measureHeader}>
+                                    <NeoIcon name="Shield" size={13} color="#3B82F6" variant="Bold" />
+                                    <Text style={s.measureTitlePreventiva}>Medida Preventiva (Hábito/Cuidado)</Text>
+                                </View>
+                                <Text style={s.measureText}>{item.medidaPreventiva}</Text>
+                            </View>
+                        ) : null}
+
+                        {item.medidaMitigacao ? (
+                            <View style={s.measureBlockMitigacao}>
+                                <View style={s.measureHeader}>
+                                    <NeoIcon name="Heart" size={13} color="#F97316" variant="Bold" />
+                                    <Text style={s.measureTitleMitigacao}>Medida de Mitigação (Redução de Dano)</Text>
+                                </View>
+                                <Text style={s.measureText}>{item.medidaMitigacao}</Text>
+                            </View>
+                        ) : null}
                     </View>
-                ) : null}
+                )}
 
                 {ack ? (
                     <View style={s.ackBanner}>
@@ -81,7 +109,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                     <View style={s.actionRow}>
                         <TouchableOpacity
                             style={s.btnResolve}
-                            onPress={() => onNavigate(item.roomKey)}
+                            onPress={() => onNavigate(item)}
                             activeOpacity={0.85}
                         >
                             <NeoIcon name="TickCircle" size={14} color="#FFF" variant="Bold" />
@@ -122,16 +150,16 @@ export default function ProfileRiskSummaryScreen() {
 
     const [aiReport, setAiReport] = useState(null);
     const [generatingAi, setGeneratingAi] = useState(false);
+    const [aiFailed, setAiFailed] = useState(false);
 
     const loadReport = useCallback(async (profileId) => {
         try {
             setLoading(true);
+            setAiReport(null);
+            setAiFailed(false);
             const data = await SafetyReportService.getDeepDiveReport(profileId);
             setReport(data);
             setRiskItems(data?.riskItems || []);
-
-            const cachedAi = await SafetyReportService.getAIAugmentedReport(profileId, false);
-            setAiReport(cachedAi?.quem ? cachedAi : null);
         } catch (error) {
             console.error('ProfileRiskSummaryScreen error:', error);
         } finally {
@@ -139,34 +167,42 @@ export default function ProfileRiskSummaryScreen() {
         }
     }, []);
 
-    const handleGenerateAI = async () => {
+    const handleGenerateAI = useCallback(async (force = false) => {
+        if (generatingAi) return;
         setGeneratingAi(true);
+        setAiFailed(false);
         try {
-            const aiData = await SafetyReportService.getAIAugmentedReport(activeProfileId, true);
+            const aiData = await SafetyReportService.getAIAugmentedReport(activeProfileId, force);
             if (aiData?.quem) {
                 setAiReport(aiData);
             } else {
-                NeoAlert.alert(
-                    t('riscSummary.aiUnavailableTitle', 'Análise indisponível'),
-                    t('riskSummary.aiUnavailableDesc', 'Não foi possível gerar a análise agora. Tente novamente em instantes.')
-                );
+                setAiFailed(true);
+                if (force) {
+                    NeoAlert.alert(
+                        t('riskSummary.aiUnavailableTitle', 'Análise indisponível'),
+                        t('riskSummary.aiUnavailableDesc', 'Não foi possível gerar a análise agora. Tente novamente em instantes.')
+                    );
+                }
             }
         } catch (e) {
-            NeoAlert.alert(
-                t('riskSummary.aiErrorTitle', 'Falha de conexão'),
-                t('riskSummary.aiErrorDesc', 'Não foi possível conectar para gerar a análise.')
-            );
+            setAiFailed(true);
+            if (force) {
+                NeoAlert.alert(
+                    t('riskSummary.aiErrorTitle', 'Falha de conexão'),
+                    t('riskSummary.aiErrorDesc', 'Não foi possível conectar para gerar a análise.')
+                );
+            }
         } finally {
             setGeneratingAi(false);
         }
-    };
+    }, [activeProfileId, generatingAi, t]);
 
     useEffect(() => {
-        if (!aiReport && !generatingAi && report && !loading) {
-            handleGenerateAI();
+        if (!aiReport && !generatingAi && !aiFailed && report && !loading && report.stats?.answeredCount > 0) {
+            handleGenerateAI(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [aiReport, report, loading]);
+    }, [aiReport, report, loading, generatingAi, aiFailed, handleGenerateAI]);
 
     useEffect(() => {
         const initReport = async () => {
@@ -271,6 +307,16 @@ export default function ProfileRiskSummaryScreen() {
     const activeRisks = riskItems.filter(r => !r.acknowledged);
     const ackRisks = riskItems.filter(r => r.acknowledged);
 
+    const hasHealthInfo = profile?.tipo === 'pet'
+        ? !!(profile?.especie || (profile?.infoPet && profile?.infoPet.raca))
+        : !!(
+            (profile?.condicoesMedicas && profile?.condicoesMedicas.length > 0) ||
+            (profile?.necessidadesEspeciais && profile?.necessidadesEspeciais.length > 0) ||
+            (profile?.medicamentosEmUso && profile?.medicamentosEmUso.length > 0) ||
+            (profile?.alergias && profile?.alergias.length > 0) ||
+            (profile?.tipoSanguineo && profile?.tipoSanguineo !== '')
+        );
+
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -328,29 +374,150 @@ export default function ProfileRiskSummaryScreen() {
                                     {[moradia.tipo, moradia.andar ? `${moradia.andar}º andar` : null, moradia.location].filter(Boolean).join(' · ')}
                                 </Caption>
                             ) : null}
+                            {moradia?.nome ? (
+                                <Caption style={{ color: Neo.colors.primary[600], fontWeight: 'bold', marginTop: 4 }}>
+                                    📍 Moradia: {moradia.nome}
+                                </Caption>
+                            ) : null}
                         </View>
-                        <View style={[s.scoreBox, { backgroundColor: stats.risks > 0 ? 'rgba(229,57,53,0.14)' : 'rgba(16,185,129,0.18)' }]}>
-                            <Text style={[s.scoreNumber, { color: stats.risks > 0 ? Neo.colors.feedback.error : Neo.colors.primary[700] }]}>
-                                {stats.risks}
-                            </Text>
-                            <Caption style={[s.scoreLabel, { color: stats.risks > 0 ? Neo.colors.feedback.error : Neo.colors.primary[700] }]}>
-                                {stats.risks === 1 ? 'risco' : 'riscos'}
-                            </Caption>
-                        </View>
+                        {stats.answeredCount === 0 ? (
+                            <View style={[s.scoreBox, { backgroundColor: 'rgba(245,158,11,0.12)' }]}>
+                                <Text style={[s.scoreNumber, { color: '#B45309', fontSize: 20 }]}>
+                                    -
+                                </Text>
+                                <Caption style={[s.scoreLabel, { color: '#B45309', fontSize: 8 }]}>
+                                    Pendente
+                                </Caption>
+                            </View>
+                        ) : (
+                            <View style={[s.scoreBox, { backgroundColor: stats.risks > 0 ? 'rgba(229,57,53,0.14)' : 'rgba(16,185,129,0.18)' }]}>
+                                <Text style={[s.scoreNumber, { color: stats.risks > 0 ? Neo.colors.feedback.error : Neo.colors.primary[700] }]}>
+                                    {stats.risks}
+                                </Text>
+                                <Caption style={[s.scoreLabel, { color: stats.risks > 0 ? Neo.colors.feedback.error : Neo.colors.primary[700] }]}>
+                                    {stats.risks === 1 ? 'risco' : 'riscos'}
+                                </Caption>
+                            </View>
+                        )}
                     </NeoCard>
+
+                    {/* ALERTA DE SAÚDE PENDENTE (se a vistoria foi iniciada, mas a saúde não) */}
+                    {stats.answeredCount > 0 && !hasHealthInfo && (
+                        <NeoCard variant="elevated" style={s.healthNoticeCard}>
+                            <View style={s.healthNoticeHeader}>
+                                <View style={[s.healthNoticeIconWrap, { backgroundColor: 'rgba(245,158,11,0.12)' }]}>
+                                    <NeoIcon name="InfoCircle" size={20} color="#D97706" variant="Bold" />
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={s.healthNoticeTitle}>Ficha de Saúde Incompleta</Text>
+                                    <Text style={s.healthNoticeText}>
+                                        Para obter recomendações e um relatório de prevenção 100% personalizado para {profile?.nome || 'o morador'}, informe as medicações, enfermidades e limitações físicas/cognitivas.
+                                    </Text>
+                                </View>
+                            </View>
+                            <TouchableOpacity
+                                style={s.btnHealthNotice}
+                                onPress={() => navigation.navigate('AddPerfil', { profile })}
+                                activeOpacity={0.85}
+                            >
+                                <NeoIcon name="Heart" size={14} color="#FFF" variant="Bold" />
+                                <Text style={s.btnHealthNoticeText}>Completar Ficha de Saúde</Text>
+                            </TouchableOpacity>
+                        </NeoCard>
+                    )}
 
                     {/* ANÁLISE PERSONALIZADA */}
                     <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                         {t('riskSummary.analysisLabel', 'Análise personalizada')}
                     </Text>
-                    {!aiReport ? (
+                    {stats.answeredCount === 0 ? (
+                        <NeoCard variant="elevated" style={s.onboardingCard}>
+                            <View style={s.onboardingHeader}>
+                                <View style={[s.onboardingIconWrap, { backgroundColor: 'rgba(245,158,11,0.14)' }]}>
+                                    <NeoIcon name="Warning2" size={20} color="#D97706" variant="Bold" />
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={s.onboardingTitle}>Configuração Inicial Pendente</Text>
+                                    <Text style={s.onboardingSubtitle}>Para gerar a prevenção personalizada, precisamos de:</Text>
+                                </View>
+                            </View>
+
+                            <View style={s.stepListContainer}>
+                                <View style={s.stepRow}>
+                                    <View style={[s.stepBadge, stats.answeredCount > 0 ? s.stepBadgeDone : s.stepBadgePending]}>
+                                        <NeoIcon name={stats.answeredCount > 0 ? "TickCircle" : "Clock"} size={13} color={stats.answeredCount > 0 ? "#16A34A" : "#D97706"} variant="Bold" />
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={s.stepTitle}>1. Vistoria dos Ambientes</Text>
+                                        <Text style={s.stepDesc}>Responder aos checklists dos ambientes informados no onboarding.</Text>
+                                    </View>
+                                    <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? '#16A34A' : '#D97706' }]}>
+                                        {stats.answeredCount > 0 ? "Concluído" : "Pendente"}
+                                    </Text>
+                                </View>
+
+                                <View style={s.stepRow}>
+                                    <View style={[s.stepBadge, hasHealthInfo ? s.stepBadgeDone : s.stepBadgePending]}>
+                                        <NeoIcon name={hasHealthInfo ? "TickCircle" : "InfoCircle"} size={13} color={hasHealthInfo ? "#16A34A" : "#3B82F6"} variant="Bold" />
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={s.stepTitle}>2. Ficha de Saúde (Medicações/Limitações)</Text>
+                                        <Text style={s.stepDesc}>Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.</Text>
+                                    </View>
+                                    <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? '#16A34A' : '#3B82F6' }]}>
+                                        {hasHealthInfo ? "Concluído" : "Recomendado"}
+                                    </Text>
+                                </View>
+                            </View>
+
+                            <View style={{ gap: 8, marginTop: 8 }}>
+                                <TouchableOpacity
+                                    style={s.btnOnboarding}
+                                    onPress={() => navigation.navigate('Relatorios')}
+                                    activeOpacity={0.85}
+                                >
+                                    <NeoIcon name="ClipboardText" size={16} color="#FFF" variant="Bold" />
+                                    <Text style={s.btnOnboardingText}>Iniciar Vistoria dos Ambientes</Text>
+                                </TouchableOpacity>
+
+                                {!hasHealthInfo && (
+                                    <TouchableOpacity
+                                        style={s.btnOnboardingSecondary}
+                                        onPress={() => navigation.navigate('AddPerfil', { profile })}
+                                        activeOpacity={0.85}
+                                    >
+                                        <NeoIcon name="Heart" size={16} color={Neo.colors.primary[600]} variant="Bold" />
+                                        <Text style={s.btnOnboardingSecondaryText}>Preencher Ficha de Saúde</Text>
+                                    </TouchableOpacity>
+                                )}
+                            </View>
+                        </NeoCard>
+                    ) : !aiReport ? (
                         <NeoCard variant="elevated" style={s.aiLoadingCard}>
-                            <ActivityIndicator size="small" color={Neo.colors.primary[500]} />
-                            <Body style={s.aiLoadingText}>
-                                {generatingAi
-                                    ? t('riskSummary.aiGenerating', 'Preparando sua análise…')
-                                    : t('riskSummary.aiQueued', 'Aguardando dados…')}
-                            </Body>
+                            {aiFailed ? (
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 4 }}>
+                                    <NeoIcon name="InfoCircle" size={20} color={Neo.colors.neutral[500]} />
+                                    <View style={{ flex: 1 }}>
+                                        <Body style={{ fontSize: 13, color: Neo.colors.neutral[700] }}>
+                                            Não foi possível carregar a análise inteligente.
+                                        </Body>
+                                        <TouchableOpacity onPress={() => handleGenerateAI(true)} style={{ marginTop: 4 }}>
+                                            <Text style={{ color: Neo.colors.primary[600], fontWeight: 'bold', fontSize: 13 }}>
+                                                Tentar novamente
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            ) : (
+                                <>
+                                    <ActivityIndicator size="small" color={Neo.colors.primary[500]} />
+                                    <Body style={s.aiLoadingText}>
+                                        {generatingAi
+                                            ? t('riskSummary.aiGenerating', 'Preparando sua análise…')
+                                            : t('riskSummary.aiQueued', 'Aguardando dados…')}
+                                    </Body>
+                                </>
+                            )}
                         </NeoCard>
                     ) : (
                         <View style={{ gap: 10 }}>
@@ -402,7 +569,7 @@ export default function ProfileRiskSummaryScreen() {
                                     key={`risk-${idx}`}
                                     item={item}
                                     onAcknowledge={handleAcknowledge}
-                                    onNavigate={(roomKey) => navigation.navigate('ChecklistDetail', { roomId: roomKey })}
+                                    onNavigate={(r) => navigation.navigate('ChecklistDetail', { roomId: r.roomKey, roomName: r.roomLabel, roomIcon: r.roomEmoji })}
                                     t={t}
                                 />
                             ))}
@@ -427,7 +594,7 @@ export default function ProfileRiskSummaryScreen() {
                                     key={`ack-${idx}`}
                                     item={item}
                                     onAcknowledge={handleAcknowledge}
-                                    onNavigate={(roomKey) => navigation.navigate('ChecklistDetail', { roomId: roomKey })}
+                                    onNavigate={(r) => navigation.navigate('ChecklistDetail', { roomId: r.roomKey, roomName: r.roomLabel, roomIcon: r.roomEmoji })}
                                     t={t}
                                 />
                             ))}
@@ -452,7 +619,7 @@ export default function ProfileRiskSummaryScreen() {
                                     <TouchableOpacity
                                         key={`pending-${idx}`}
                                         style={[s.pendingRow, idx < Math.min(pendingItems.length, 8) - 1 && s.pendingRowDivider]}
-                                        onPress={() => navigation.navigate('ChecklistDetail', { roomId: item.roomKey })}
+                                        onPress={() => navigation.navigate('ChecklistDetail', { roomId: item.roomKey, roomName: item.roomLabel, roomIcon: item.roomEmoji })}
                                         activeOpacity={0.7}
                                     >
                                         <Text style={s.pendingEmoji}>{item.roomEmoji}</Text>
@@ -715,4 +882,213 @@ const s = StyleSheet.create({
 
     // Generated at
     generatedAt: { textAlign: 'center', color: Neo.colors.neutral[500], marginTop: 28, fontSize: 11 },
+
+    // Medidas Preventivas, Corretivas e Mitigação
+    measuresContainer: {
+        gap: 8,
+        marginBottom: 14,
+        marginTop: 6,
+    },
+    measureBlockCorretiva: {
+        backgroundColor: 'rgba(16,185,129,0.08)',
+        borderRadius: 12,
+        padding: 10,
+        borderLeftWidth: 3,
+        borderLeftColor: '#10B981',
+    },
+    measureBlockPreventiva: {
+        backgroundColor: 'rgba(59,130,246,0.08)',
+        borderRadius: 12,
+        padding: 10,
+        borderLeftWidth: 3,
+        borderLeftColor: '#3B82F6',
+    },
+    measureBlockMitigacao: {
+        backgroundColor: 'rgba(249,115,22,0.09)',
+        borderRadius: 12,
+        padding: 10,
+        borderLeftWidth: 3,
+        borderLeftColor: '#F97316',
+    },
+    measureHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        marginBottom: 4,
+    },
+    measureTitleCorretiva: {
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: '#059669',
+        textTransform: 'uppercase',
+        letterSpacing: 0.3,
+    },
+    measureTitlePreventiva: {
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: '#2563EB',
+        textTransform: 'uppercase',
+        letterSpacing: 0.3,
+    },
+    measureTitleMitigacao: {
+        fontSize: 11,
+        fontWeight: 'bold',
+        color: '#D97706',
+        textTransform: 'uppercase',
+        letterSpacing: 0.3,
+    },
+    measureText: {
+        fontSize: 12,
+        color: Neo.colors.neutral[800],
+        lineHeight: 16.5,
+    },
+    onboardingCard: {
+        padding: 16,
+        borderRadius: 18,
+        marginBottom: 16,
+    },
+    onboardingHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        marginBottom: 12,
+    },
+    onboardingIconWrap: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    onboardingTitle: {
+        fontWeight: '800',
+        fontSize: 15,
+        color: Neo.colors.neutral[900],
+    },
+    onboardingSubtitle: {
+        fontSize: 11,
+        color: Neo.colors.neutral[600],
+        marginTop: 2,
+    },
+    onboardingText: {
+        fontSize: 13,
+        color: Neo.colors.neutral[700],
+        lineHeight: 18.5,
+        marginBottom: 16,
+    },
+    btnOnboarding: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Neo.colors.primary[500],
+        borderRadius: 12,
+        paddingVertical: 11,
+        gap: 8,
+    },
+    btnOnboardingText: {
+        color: '#FFF',
+        fontWeight: '800',
+        fontSize: 13,
+    },
+    stepListContainer: {
+        marginVertical: 12,
+        gap: 12,
+    },
+    stepRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        paddingVertical: 6,
+    },
+    stepBadge: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    stepBadgeDone: {
+        backgroundColor: 'rgba(22,163,74,0.12)',
+    },
+    stepBadgePending: {
+        backgroundColor: 'rgba(245,158,11,0.12)',
+    },
+    stepTitle: {
+        fontSize: 13,
+        fontWeight: '800',
+        color: Neo.colors.neutral[800],
+    },
+    stepDesc: {
+        fontSize: 11,
+        color: Neo.colors.neutral[500],
+        marginTop: 1,
+    },
+    stepStatusLabel: {
+        fontSize: 11,
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: 0.3,
+    },
+    btnOnboardingSecondary: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(99,102,241,0.06)',
+        borderWidth: 1.5,
+        borderColor: Neo.colors.primary[500],
+        borderRadius: 12,
+        paddingVertical: 11,
+        gap: 8,
+    },
+    btnOnboardingSecondaryText: {
+        color: Neo.colors.primary[600],
+        fontWeight: '800',
+        fontSize: 13,
+    },
+    healthNoticeCard: {
+        padding: 14,
+        borderRadius: 16,
+        marginBottom: 20,
+        borderWidth: 1.5,
+        borderColor: 'rgba(245,158,11,0.3)',
+    },
+    healthNoticeHeader: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 10,
+        marginBottom: 12,
+    },
+    healthNoticeIconWrap: {
+        width: 32,
+        height: 32,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 2,
+    },
+    healthNoticeTitle: {
+        fontSize: 13.5,
+        fontWeight: '800',
+        color: '#D97706',
+    },
+    healthNoticeText: {
+        fontSize: 12,
+        color: Neo.colors.neutral[700],
+        lineHeight: 17,
+        marginTop: 2,
+    },
+    btnHealthNotice: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Neo.colors.primary[500],
+        borderRadius: 10,
+        paddingVertical: 8,
+        gap: 6,
+    },
+    btnHealthNoticeText: {
+        color: '#FFF',
+        fontWeight: '800',
+        fontSize: 12,
+    },
 });

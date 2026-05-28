@@ -16,7 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
     Crown, InfoCircle, MessageQuestion, ArrowRight2,
     Eye, DocumentText, Shield, LanguageSquare, TickCircle,
-    Activity,
+    Activity, Home2,
 } from 'iconsax-react-native';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -123,6 +123,13 @@ export default function MenuScreenNeo() {
     // Caminhos remanescentes: card na Home (premier) + "Atualizar mapeamento"
     // dentro do Raio X. Menu fica reservado pra ajustes verdadeiros.
     const sectionConta = [
+        {
+            key: 'gerenciar_mapa',
+            IconComponent: Home2,
+            color: '#0F766E', // teal — gestão de mapa/locais
+            label: t('menu.manageMap', 'Locais e moradores'),
+            action: () => navigateWithHaptic('GerenciarLocaisPerfis'),
+        },
         {
             key: 'acessibilidade',
             IconComponent: Eye,

@@ -176,7 +176,7 @@ class KitAlertService {
                         title: 'EPIs para Jardinagem',
                         message: 'Proteja-se durante a jardinagem com os EPIs adequados.',
                         icon: 'leaf',
-                        route: 'KitEPIs',
+                        route: 'EpiDomestico', // FIX: rota era 'KitEPIs' (inexistente em App.js)
                         priority: 'medium',
                     });
                 }

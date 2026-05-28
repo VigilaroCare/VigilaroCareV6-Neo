@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1500" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif">
+  <!-- ============================================================== -->
+  <!-- VIGILARO CARE — USER FLOW VISUAL                                -->
+  <!-- Ponto de partida: Home (HomeScreenNeo)                          -->
+  <!-- Cores DS Premium 2026: Forest #047857, Champagne #A16207,       -->
+  <!--   Teal #0F766E, Rose #BE185D, Sky #0369A1, Amber #B45309        -->
+  <!--                                                                  -->
+  <!-- LEGENDA:                                                         -->
+  <!--   Linhas sólidas cinza  = navegação primária                    -->
+  <!--   Linhas tracejadas cobre = entrada alternativa para o mesmo     -->
+  <!--     destino (duplicação detectada)                               -->
+  <!--   Badge ★N = destino com N entradas no app                      -->
+  <!--   Caixa champagne = "hub terminal" alcançado por múltiplas rotas-->
+  <!-- ============================================================== -->
+
+  <defs>
+    <!-- Estilo "moldura vitrificada" base -->
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.10"/>
+    </filter>
+
+    <!-- Sombra mais forte para Home -->
+    <filter id="hero-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#047857" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Padrão de linha tracejada cobre/champagne -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8E8E93"/>
+    </marker>
+    <marker id="arrow-champagne" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#A16207"/>
+    </marker>
+    <marker id="arrow-forest" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#047857"/>
+    </marker>
+  </defs>
+
+  <!-- Background off-white quente -->
+  <rect width="1800" height="1500" fill="#FAFAF7"/>
+
+  <!-- ============================== TÍTULO ============================== -->
+  <text x="60" y="50" font-size="26" font-weight="700" fill="#1C1C1E" letter-spacing="-0.5">Vigilaro Care — User Flow</text>
+  <text x="60" y="78" font-size="14" font-weight="500" fill="#636366" letter-spacing="0.2">Da Home até as conclusões de tarefa · caminhos duplicados destacados em cobre</text>
+
+  <!-- ============================== LEGENDA ============================== -->
+  <g transform="translate(1280, 38)">
+    <rect width="480" height="60" rx="14" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+    <line x1="20" y1="22" x2="60" y2="22" stroke="#8E8E93" stroke-width="2" marker-end="url(#arrow-gray)"/>
+    <text x="70" y="26" font-size="11" fill="#3A3A3C">navegação primária</text>
+
+    <line x1="220" y1="22" x2="260" y2="22" stroke="#A16207" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+    <text x="270" y="26" font-size="11" fill="#3A3A3C">entrada alternativa (mesma tela)</text>
+
+    <circle cx="30" cy="46" r="9" fill="#A16207"/>
+    <text x="30" y="49" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">★3</text>
+    <text x="48" y="49" font-size="11" fill="#3A3A3C">badge = nº de entradas no app</text>
+
+    <rect x="270" y="38" width="60" height="18" rx="6" fill="#FEF3C7" stroke="#A16207" stroke-width="1"/>
+    <text x="300" y="50" font-size="10" font-weight="600" fill="#A16207" text-anchor="middle">hub</text>
+    <text x="338" y="49" font-size="11" fill="#3A3A3C">hub multi-entrada</text>
+  </g>
+
+  <!-- ============================== HOME (ANCORA) ============================== -->
+  <g filter="url(#hero-shadow)">
+    <rect x="740" y="120" width="320" height="80" rx="20" fill="#047857" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="900" y="155" font-size="22" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">HomeScreenNeo</text>
+    <text x="900" y="180" font-size="12" font-weight="500" fill="#A7F3D0" text-anchor="middle" letter-spacing="0.5">PONTO DE PARTIDA</text>
+  </g>
+
+  <!-- ============================== HEADER DA HOME ============================== -->
+  <g transform="translate(0, 240)">
+    <text x="60" y="0" font-size="11" font-weight="600" fill="#787880" letter-spacing="1.4">HEADER DA HOME</text>
+
+    <!-- HousePill -->
+    <g filter="url(#soft-shadow)">
+      <rect x="60" y="20" width="220" height="60" rx="14" fill="#FFFFFF" stroke="#D6CFC4" stroke-width="1"/>
+      <text x="170" y="48" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">HousePill</text>
+      <text x="170" y="66" font-size="10" fill="#787880" text-anchor="middle">"Moradia ativa"</text>
+    </g>
+
+    <!-- Profile Card -->
+    <g filter="url(#soft-shadow)">
+      <rect x="320" y="20" width="220" height="60" rx="14" fill="#FFFFFF" stroke="#D6CFC4" stroke-width="1"/>
+      <text x="430" y="48" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">Profile Card</text>
+      <text x="430" y="66" font-size="10" fill="#787880" text-anchor="middle">avatar + nome</text>
+    </g>
+
+    <!-- Modal Locais -->
+    <g filter="url(#soft-shadow)">
+      <rect x="60" y="120" width="220" height="60" rx="14" fill="#FFFFFF" stroke="#D6CFC4" stroke-width="1"/>
+      <text x="170" y="148" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">Modal Locais</text>
+      <text x="170" y="166" font-size="10" fill="#787880" text-anchor="middle">trocar / renomear</text>
+    </g>
+
+    <!-- QuemProteger (HUB) -->
+    <g filter="url(#soft-shadow)">
+      <rect x="320" y="120" width="220" height="60" rx="14" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="430" y="148" font-size="13" font-weight="700" fill="#A16207" text-anchor="middle">QuemProteger</text>
+      <text x="430" y="166" font-size="10" fill="#A16207" text-anchor="middle">moradores + locais</text>
+    </g>
+  </g>
+
+  <!-- Setas Home → Header -->
+  <path d="M 870 200 Q 870 240 170 260" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 880 200 Q 880 240 430 260" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <!-- HousePill → ModalLocais -->
+  <line x1="170" y1="320" x2="170" y2="358" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <!-- Profile → QuemProteger -->
+  <line x1="430" y1="320" x2="430" y2="358" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ============================== GRID PRINCIPAL (5 hubs) ============================== -->
+  <g transform="translate(0, 460)">
+    <text x="60" y="0" font-size="11" font-weight="600" fill="#787880" letter-spacing="1.4">ACESSO RÁPIDO &amp; FERRAMENTAS</text>
+
+    <!-- MinhaSaude -->
+    <g filter="url(#soft-shadow)">
+      <rect x="60" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.5"/>
+      <text x="160" y="48" font-size="14" font-weight="700" fill="#0F766E" text-anchor="middle">MinhaSaúde</text>
+      <text x="160" y="68" font-size="10" fill="#636366" text-anchor="middle">medicações · agenda · dossiê</text>
+    </g>
+
+    <!-- PetsMenu -->
+    <g filter="url(#soft-shadow)">
+      <rect x="280" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#BE185D" stroke-width="1.5"/>
+      <text x="380" y="48" font-size="14" font-weight="700" fill="#BE185D" text-anchor="middle">PetsMenu</text>
+      <text x="380" y="68" font-size="10" fill="#636366" text-anchor="middle">cuidados &amp; emergências pet</text>
+    </g>
+
+    <!-- Relatorios (HUB ★4) -->
+    <g filter="url(#soft-shadow)">
+      <rect x="500" y="20" width="200" height="64" rx="14" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="600" y="48" font-size="14" font-weight="700" fill="#A16207" text-anchor="middle">Relatórios</text>
+      <text x="600" y="68" font-size="10" fill="#A16207" text-anchor="middle">vistorias · histórico</text>
+      <circle cx="690" cy="30" r="11" fill="#A16207"/>
+      <text x="690" y="34" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">★4</text>
+    </g>
+
+    <!-- ModoPreventivo -->
+    <g filter="url(#soft-shadow)">
+      <rect x="720" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#B45309" stroke-width="1.5"/>
+      <text x="820" y="48" font-size="14" font-weight="700" fill="#B45309" text-anchor="middle">ModoPreventivo</text>
+      <text x="820" y="68" font-size="10" fill="#636366" text-anchor="middle">atividades eventuais</text>
+    </g>
+
+    <!-- FerramentasIA -->
+    <g filter="url(#soft-shadow)">
+      <rect x="940" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#0369A1" stroke-width="1.5"/>
+      <text x="1040" y="48" font-size="14" font-weight="700" fill="#0369A1" text-anchor="middle">FerramentasIA</text>
+      <text x="1040" y="68" font-size="10" fill="#636366" text-anchor="middle">scanner · voz · chat</text>
+    </g>
+
+    <!-- InfoRotulos -->
+    <g filter="url(#soft-shadow)">
+      <rect x="1160" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#0369A1" stroke-width="1.5"/>
+      <text x="1260" y="48" font-size="14" font-weight="700" fill="#0369A1" text-anchor="middle">InfoRótulos</text>
+      <text x="1260" y="68" font-size="10" fill="#636366" text-anchor="middle">scanner de produtos</text>
+    </g>
+
+    <!-- RecentActivity -->
+    <g filter="url(#soft-shadow)">
+      <rect x="1380" y="20" width="200" height="64" rx="14" fill="#FFFFFF" stroke="#636366" stroke-width="1"/>
+      <text x="1480" y="48" font-size="14" font-weight="700" fill="#1C1C1E" text-anchor="middle">RecentActivity</text>
+      <text x="1480" y="68" font-size="10" fill="#636366" text-anchor="middle">histórico de eventos</text>
+    </g>
+  </g>
+
+  <!-- Home → cada hub do grid (setas saindo do meio inferior) -->
+  <path d="M 800 200 C 800 380 160 440 160 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 830 200 C 830 380 380 440 380 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 870 200 C 870 380 600 440 600 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 920 200 C 920 380 820 440 820 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 960 200 C 960 380 1040 440 1040 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 1000 200 C 1000 380 1260 440 1260 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <path d="M 1040 200 C 1040 380 1480 440 1480 480" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- Atalho duplicado: Home Monitor / Alert → Relatórios (champagne) -->
+  <path d="M 1000 160 C 1100 300 850 420 620 540" fill="none" stroke="#A16207" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+  <text x="1110" y="305" font-size="9" fill="#A16207" font-style="italic">atalho: Monitor + Alert</text>
+
+  <!-- ============================== CAMADA 3: Sub-telas ============================== -->
+  <g transform="translate(0, 640)">
+    <text x="60" y="0" font-size="11" font-weight="600" fill="#787880" letter-spacing="1.4">SUB-FLUXOS</text>
+
+    <!-- Saúde branch -->
+    <g filter="url(#soft-shadow)">
+      <rect x="20" y="20" width="120" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="80" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Medications</text>
+      <text x="80" y="58" font-size="9" fill="#636366" text-anchor="middle">lista</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="150" y="20" width="120" height="50" rx="12" fill="#FEF3C7" stroke="#A16207" stroke-width="1.2"/>
+      <text x="210" y="42" font-size="11" font-weight="700" fill="#A16207" text-anchor="middle">MedicationScheduler</text>
+      <text x="210" y="58" font-size="9" fill="#A16207" text-anchor="middle">★2</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="20" y="84" width="120" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="80" y="106" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">AddEvent</text>
+      <text x="80" y="122" font-size="9" fill="#636366" text-anchor="middle">router de tipo</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="150" y="84" width="120" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="210" y="100" font-size="10" font-weight="600" fill="#1C1C1E" text-anchor="middle">Add{Treatment,</text>
+      <text x="210" y="113" font-size="10" font-weight="600" fill="#1C1C1E" text-anchor="middle">Appointment,</text>
+      <text x="210" y="126" font-size="10" font-weight="600" fill="#1C1C1E" text-anchor="middle">Exam, Procedure}</text>
+    </g>
+
+    <!-- Pets branch -->
+    <g filter="url(#soft-shadow)">
+      <rect x="290" y="20" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="380" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">PetWellness · PetPregnancy</text>
+      <text x="380" y="58" font-size="9" fill="#636366" text-anchor="middle">AvesSeguras · PetFoodSafety</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="290" y="84" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="380" y="106" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">SaudePet · EmergenciaPet</text>
+      <text x="380" y="122" font-size="9" fill="#636366" text-anchor="middle">PrimeirosSocorros</text>
+    </g>
+
+    <!-- Vistorias branch (Relatórios sub) -->
+    <g filter="url(#soft-shadow)">
+      <rect x="490" y="20" width="220" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="600" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">AmbientesVistoriados</text>
+      <text x="600" y="58" font-size="9" fill="#636366" text-anchor="middle">grid de cômodos vistoriados</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="490" y="84" width="220" height="50" rx="12" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="600" y="106" font-size="11" font-weight="700" fill="#A16207" text-anchor="middle">ChecklistDetail</text>
+      <text x="600" y="122" font-size="9" fill="#A16207" text-anchor="middle">★7 — tela terminal multi-entrada</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="490" y="148" width="220" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="600" y="170" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">SafetyActionPlan · Escola/Asilo</text>
+      <text x="600" y="186" font-size="9" fill="#636366" text-anchor="middle">HistoricoMelhoras · ChecklistReport</text>
+    </g>
+
+    <!-- ModoPreventivo sub -->
+    <g filter="url(#soft-shadow)">
+      <rect x="730" y="20" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="820" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Modal categoria</text>
+      <text x="820" y="58" font-size="9" fill="#636366" text-anchor="middle">→ perguntas S/N/NA → resultado</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="730" y="84" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="820" y="106" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Scanner (label_scan)</text>
+      <text x="820" y="122" font-size="9" fill="#636366" text-anchor="middle">se action = NAVIGATE_SCANNER</text>
+    </g>
+
+    <!-- FerramentasIA sub -->
+    <g filter="url(#soft-shadow)">
+      <rect x="930" y="20" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1020" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">AssistentePrevencaoIA</text>
+      <text x="1020" y="58" font-size="9" fill="#636366" text-anchor="middle">voz preventiva</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="930" y="84" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1020" y="106" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">AITextChat · Chat</text>
+      <text x="1020" y="122" font-size="9" fill="#636366" text-anchor="middle">conversa textual</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="930" y="148" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1020" y="170" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">HistoricoAuditoria</text>
+      <text x="1020" y="186" font-size="9" fill="#636366" text-anchor="middle">leituras passadas</text>
+    </g>
+
+    <!-- InfoRotulos sub -->
+    <g filter="url(#soft-shadow)">
+      <rect x="1130" y="20" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1220" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Scanner</text>
+      <text x="1220" y="58" font-size="9" fill="#636366" text-anchor="middle">barcode · label · environment</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="1130" y="84" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1220" y="106" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">InfoRotulosResult</text>
+      <text x="1220" y="122" font-size="9" fill="#636366" text-anchor="middle">risco · primeiros socorros</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="1130" y="148" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1220" y="170" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">CIATOX (externo)</text>
+      <text x="1220" y="186" font-size="9" fill="#636366" text-anchor="middle">telefone tel:</text>
+    </g>
+  </g>
+
+  <!-- Conexões camada 2 → 3 -->
+  <line x1="160" y1="544" x2="80" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="160" y1="544" x2="210" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="160" y1="544" x2="80" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="380" y1="544" x2="380" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="380" y1="544" x2="380" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="600" y1="544" x2="600" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="600" y1="710" x2="600" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="600" y1="710" x2="600" y2="788" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="820" y1="544" x2="820" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="820" y1="544" x2="820" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1040" y1="544" x2="1020" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1040" y1="544" x2="1020" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1040" y1="544" x2="1020" y2="788" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1260" y1="544" x2="1220" y2="660" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1260" y1="544" x2="1220" y2="724" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+  <line x1="1260" y1="544" x2="1220" y2="788" stroke="#8E8E93" stroke-width="1.2" marker-end="url(#arrow-gray)"/>
+
+  <!-- QuemProteger → AddPerfil, HomeXRay, ProfileRiskSummary (vão para banda direita inferior) -->
+
+  <!-- ============================== CAMADA 4: TERMINAIS / WIZARDS ============================== -->
+  <g transform="translate(0, 880)">
+    <text x="60" y="0" font-size="11" font-weight="600" fill="#787880" letter-spacing="1.4">DESTINOS &amp; WIZARDS</text>
+
+    <!-- AddPerfil HUB -->
+    <g filter="url(#soft-shadow)">
+      <rect x="60" y="20" width="200" height="62" rx="14" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="160" y="44" font-size="13" font-weight="700" fill="#A16207" text-anchor="middle">AddPerfil</text>
+      <text x="160" y="64" font-size="10" fill="#A16207" text-anchor="middle">novo morador / pet</text>
+      <circle cx="250" cy="32" r="11" fill="#A16207"/>
+      <text x="250" y="36" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">★3</text>
+    </g>
+
+    <!-- NewHomeWizard HUB -->
+    <g filter="url(#soft-shadow)">
+      <rect x="280" y="20" width="200" height="62" rx="14" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="380" y="44" font-size="13" font-weight="700" fill="#A16207" text-anchor="middle">NewHomeWizard</text>
+      <text x="380" y="64" font-size="10" fill="#A16207" text-anchor="middle">configurar moradia</text>
+      <circle cx="470" cy="32" r="11" fill="#A16207"/>
+      <text x="470" y="36" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">★3</text>
+    </g>
+
+    <!-- HomeXRay -->
+    <g filter="url(#soft-shadow)">
+      <rect x="500" y="20" width="200" height="62" rx="14" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="600" y="44" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">HomeXRay</text>
+      <text x="600" y="64" font-size="10" fill="#636366" text-anchor="middle">raio-X da casa</text>
+    </g>
+
+    <!-- ProfileRiskSummary -->
+    <g filter="url(#soft-shadow)">
+      <rect x="720" y="20" width="200" height="62" rx="14" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="820" y="44" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">ProfileRiskSummary</text>
+      <text x="820" y="64" font-size="10" fill="#636366" text-anchor="middle">leitura personalizada</text>
+    </g>
+
+    <!-- OndeProteger / MapeamentoRiscos -->
+    <g filter="url(#soft-shadow)">
+      <rect x="940" y="20" width="180" height="62" rx="14" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="1030" y="44" font-size="13" font-weight="700" fill="#1C1C1E" text-anchor="middle">OndeProteger</text>
+      <text x="1030" y="64" font-size="10" fill="#636366" text-anchor="middle">mapa de cômodos</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="1140" y="20" width="180" height="62" rx="14" fill="#FEF3C7" stroke="#A16207" stroke-width="1.5"/>
+      <text x="1230" y="44" font-size="13" font-weight="700" fill="#A16207" text-anchor="middle">MapeamentoRiscos</text>
+      <text x="1230" y="64" font-size="10" fill="#A16207" text-anchor="middle">wizard de risco</text>
+      <circle cx="1310" cy="32" r="11" fill="#A16207"/>
+      <text x="1310" y="36" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">★2</text>
+    </g>
+
+    <!-- SOSEmergencyMode / SOSCountdown / EmergenciaRapida -->
+    <g filter="url(#soft-shadow)">
+      <rect x="1340" y="20" width="200" height="62" rx="14" fill="#FFFFFF" stroke="#FF3B30" stroke-width="1.8"/>
+      <text x="1440" y="44" font-size="13" font-weight="700" fill="#FF3B30" text-anchor="middle">SOSEmergencyMode</text>
+      <text x="1440" y="64" font-size="10" fill="#636366" text-anchor="middle">via footer · queda · sinais vitais</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="1560" y="20" width="200" height="62" rx="14" fill="#FFFFFF" stroke="#FF3B30" stroke-width="1.8"/>
+      <text x="1660" y="44" font-size="13" font-weight="700" fill="#FF3B30" text-anchor="middle">SOSCountdown</text>
+      <text x="1660" y="64" font-size="10" fill="#636366" text-anchor="middle">SMS · gatilho automático</text>
+    </g>
+  </g>
+
+  <!-- ============================== CONEXÕES DE DUPLICAÇÃO (champagne tracejado) ============================== -->
+
+  <!-- QuemProteger → AddPerfil -->
+  <path d="M 430 420 C 430 700 160 850 160 900" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <!-- QuemProteger → HomeXRay -->
+  <path d="M 460 420 C 460 700 600 850 600 900" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <!-- QuemProteger → ProfileRiskSummary -->
+  <path d="M 500 420 C 500 700 820 850 820 900" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+  <!-- QuemProteger → NewHomeWizard -->
+  <path d="M 470 420 C 470 700 380 850 380 900" fill="none" stroke="#8E8E93" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- ChecklistDetail recebe entradas alternativas (champagne) -->
+  <!-- AmbientesVistoriados → ChecklistDetail (primário, já tem) -->
+  <!-- KitsMenu → ChecklistDetail (precisa vir do footer/Aprender — desenharei abaixo) -->
+  <!-- EnvironmentGuideNeo → ChecklistDetail -->
+  <!-- ProfileRiskSummary → ChecklistDetail (champagne) -->
+  <path d="M 820 962 C 820 920 700 800 600 770" fill="none" stroke="#A16207" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+  <text x="820" y="868" font-size="9" fill="#A16207" font-style="italic">duplicado: também via ProfileRiskSummary</text>
+
+  <!-- AddPerfil recebe duplicações: GerenciarLocaisPerfis e ProfileRiskSummary -->
+  <path d="M 820 962 C 600 920 300 920 200 942" fill="none" stroke="#A16207" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+  <text x="450" y="940" font-size="9" fill="#A16207" font-style="italic">duplicado: ProfileRiskSummary → AddPerfil</text>
+
+  <!-- NewHomeWizard duplicação: GerenciarLocaisPerfis -->
+  <text x="380" y="975" font-size="9" fill="#A16207" font-style="italic">★ também GerenciarLocaisPerfis</text>
+
+  <!-- MapeamentoRiscos: OndeProteger + HomeXRay -->
+  <path d="M 600 962 C 800 1000 1100 980 1230 962" fill="none" stroke="#A16207" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+  <text x="900" y="1005" font-size="9" fill="#A16207" font-style="italic">HomeXRay também roteia → MapeamentoRiscos</text>
+
+  <!-- ============================== FOOTER GLOBAL (lado direito) ============================== -->
+  <g transform="translate(1370, 240)">
+    <text x="0" y="0" font-size="11" font-weight="600" fill="#787880" letter-spacing="1.4">FOOTER GLOBAL</text>
+
+    <g filter="url(#soft-shadow)">
+      <rect x="0" y="20" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="90" y="42" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Início</text>
+      <text x="90" y="58" font-size="9" fill="#636366" text-anchor="middle">retorna à Home</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="0" y="80" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="90" y="102" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Aprender</text>
+      <text x="90" y="118" font-size="9" fill="#636366" text-anchor="middle">KnowledgeHub</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="0" y="140" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#FF3B30" stroke-width="1.5"/>
+      <text x="90" y="162" font-size="11" font-weight="700" fill="#FF3B30" text-anchor="middle">SOS (tap)</text>
+      <text x="90" y="178" font-size="9" fill="#636366" text-anchor="middle">long-press → EmergenciaRapida</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="0" y="200" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="90" y="222" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Viagem</text>
+      <text x="90" y="238" font-size="9" fill="#636366" text-anchor="middle">TravelMode</text>
+    </g>
+    <g filter="url(#soft-shadow)">
+      <rect x="0" y="260" width="180" height="50" rx="12" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="1"/>
+      <text x="90" y="282" font-size="11" font-weight="600" fill="#1C1C1E" text-anchor="middle">Menu</text>
+      <text x="90" y="298" font-size="9" fill="#636366" text-anchor="middle">settings · sobre · termos</text>
+    </g>
+  </g>
+
+  <!-- Footer → SOSEmergencyMode (atalho duplicado) -->
+  <path d="M 1460 430 C 1500 700 1500 850 1460 900" fill="none" stroke="#A16207" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-champagne)"/>
+  <text x="1510" y="700" font-size="9" fill="#A16207" font-style="italic">SOS é alcançável também por</text>
+  <text x="1510" y="712" font-size="9" fill="#A16207" font-style="italic">FallDetection / VitalCheck (automático)</text>
+
+  <!-- ============================== RODAPÉ — PROBLEMAS DETECTADOS ============================== -->
+  <g transform="translate(60, 1130)">
+    <rect width="1680" height="340" rx="20" fill="#FFFFFF" stroke="#D6CFC4" stroke-width="1"/>
+
+    <text x="24" y="36" font-size="16" font-weight="700" fill="#1C1C1E">Problemas / Redundâncias Detectados</text>
+    <text x="24" y="58" font-size="11" fill="#787880">Itens identificados ao cruzar este fluxo visual com o código atual (grep navigate/route)</text>
+
+    <!-- Item 1 -->
+    <g transform="translate(24, 84)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">Relatórios é hub com 4 entradas</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Home grid (Vistorias) · Home Monitor (toque) · Home contextualAlert · ChecklistDetail (post-save) · ProfileRiskSummary.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Sugestão: padronizar o ponto canônico. Monitor e Alert podem abrir o mesmo deeplink (Relatórios?focus=pendencias).</text>
+    </g>
+
+    <!-- Item 2 -->
+    <g transform="translate(24, 144)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">ChecklistDetail é terminal multi-entrada (7 callers)</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">AmbientesVistoriados · ChecklistWizard · KitsMenu · Relatórios · EnvironmentGuideNeo · ProfileRiskSummary · MapaDeCalor.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Sugestão: tela já é abstraída por params; revisar se "back" de cada caller volta pro local certo (risco de loop).</text>
+    </g>
+
+    <!-- Item 3 -->
+    <g transform="translate(24, 204)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">AddPerfil + NewHomeWizard chegam do mesmo lugar (QuemProteger + GerenciarLocaisPerfis)</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Tem 2 telas ("QuemProteger" e "GerenciarLocaisPerfis") fazendo trabalho parecido — gerenciar moradores + locais.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Sugestão crítica: investigar se GerenciarLocaisPerfisScreen é redundante com QuemProtegerScreenNeo.</text>
+    </g>
+
+    <!-- Item 4 -->
+    <g transform="translate(860, 84)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">SOSEmergencyMode tem 3 gatilhos</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Footer SOS (tap) · FallDetectionService (queda) · VitalCheckService (sinais vitais ausentes).</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Esperado — não é redundância. Apenas confirmar UX consistente entre tap manual e gatilho automático.</text>
+    </g>
+
+    <!-- Item 5 -->
+    <g transform="translate(860, 144)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">Two-tap-deep para chegar à medicação atrasada</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Caminho 1 (rápido): Home → contextualAlert → MedicationScheduler. Caminho 2 (longo): Home → Saúde → Medicações → Scheduler.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Bom UX — o alert é o atalho. Validar só que o alert aparece sempre que há overdue (talvez teste).</text>
+    </g>
+
+    <!-- Item 6 -->
+    <g transform="translate(860, 204)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">6</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">Doc antigo cita inconsistências ainda não resolvidas</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">DIAGRAMA_FLUXO_USUARIO.markdown observa: KitsHub aponta para KitFerramentas/KitEPIs não declaradas no App.js.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Validar — esses links provavelmente quebram a navegação se tocados.</text>
+    </g>
+
+    <!-- Item 7 — pets multiple entries -->
+    <g transform="translate(24, 264)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">7</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">PetsMenu acessível por 4+ entradas distintas</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Home grid (Saúde Pet) · KnowledgeHub destaque · KnowledgeHub contexto · footer (via Aprender).</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Provavelmente intencional (high-discoverability). Mas a duplicação no KnowledgeHub é redundante.</text>
+    </g>
+
+    <!-- Item 8 — InfoRotulos -->
+    <g transform="translate(860, 264)">
+      <circle cx="10" cy="10" r="9" fill="#A16207"/>
+      <text x="10" y="14" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">8</text>
+      <text x="34" y="14" font-size="13" font-weight="700" fill="#1C1C1E">InfoRotulos é alcançável pela Home (tile) e por FerramentasIA</text>
+      <text x="34" y="34" font-size="11" fill="#3A3A3C">Atalho premium na Home faz sentido. Mas a entrada via FerramentasIA cria 2 caminhos pro mesmo destino.</text>
+      <text x="34" y="50" font-size="11" fill="#787880" font-style="italic">Sugestão: manter atalho na Home como "primário" e remover entrada em FerramentasIA — ou vice-versa.</text>
+    </g>
+  </g>
+
+</svg>
