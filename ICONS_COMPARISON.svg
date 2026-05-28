@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1400" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif">
+  <!-- ============================================================== -->
+  <!-- ICONOGRAFIA: ICONSAX (atual) vs PHOSPHOR (proposto)             -->
+  <!-- 8 ícones-chave do app, renderizados em tamanho real (64x64)     -->
+  <!-- com a cor brand Forest Deep #047857 para fidelidade visual.     -->
+  <!-- ============================================================== -->
+
+  <rect width="1200" height="1400" fill="#FAFAF7"/>
+
+  <!-- Header -->
+  <text x="60" y="56" font-size="28" font-weight="700" fill="#1C1C1E" letter-spacing="-0.5">Iconografia · Comparação Visual</text>
+  <text x="60" y="86" font-size="14" font-weight="500" fill="#636366">Iconsax (atual) vs Phosphor (proposto) · 8 ícones-chave em ambas as variantes do contrato "Bold ancora, Linear atua"</text>
+
+  <!-- Column headers -->
+  <g transform="translate(0, 130)">
+    <text x="240" y="0" font-size="12" font-weight="700" fill="#A16207" text-anchor="middle" letter-spacing="1.5">ICONSAX · BOLD</text>
+    <text x="240" y="20" font-size="10" fill="#787880" text-anchor="middle">atual · ancoragem</text>
+
+    <text x="460" y="0" font-size="12" font-weight="700" fill="#A16207" text-anchor="middle" letter-spacing="1.5">ICONSAX · LINEAR</text>
+    <text x="460" y="20" font-size="10" fill="#787880" text-anchor="middle">atual · ação</text>
+
+    <text x="740" y="0" font-size="12" font-weight="700" fill="#047857" text-anchor="middle" letter-spacing="1.5">PHOSPHOR · FILL</text>
+    <text x="740" y="20" font-size="10" fill="#787880" text-anchor="middle">proposto · ancoragem</text>
+
+    <text x="960" y="0" font-size="12" font-weight="700" fill="#047857" text-anchor="middle" letter-spacing="1.5">PHOSPHOR · REGULAR</text>
+    <text x="960" y="20" font-size="10" fill="#787880" text-anchor="middle">proposto · ação</text>
+  </g>
+
+  <!-- Divisor vertical entre as 2 famílias (na metade entre coluna 2 e 3) -->
+  <line x1="600" y1="160" x2="600" y2="1180" stroke="#D6CFC4" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- ====================== ÍCONE 1: HEART ====================== -->
+  <g transform="translate(0, 180)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">Heart</text>
+    <text x="60" y="54" font-size="10" fill="#787880">saúde · pets</text>
+
+    <!-- Iconsax Bold -->
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M16.44 3.102c-1.81 0-3.43.88-4.44 2.23a5.549 5.549 0 0 0-4.44-2.23c-3.07 0-5.56 2.5-5.56 5.59 0 1.19.19 2.29.52 3.31 1.58 5 6.45 7.99 8.86 8.81.34.12.9.12 1.24 0 2.41-.82 7.28-3.81 8.86-8.81.33-1.02.52-2.12.52-3.31 0-3.09-2.49-5.59-5.56-5.59Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <!-- Iconsax Linear -->
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <!-- Phosphor Fill -->
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <!-- Phosphor Regular -->
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 2: HOUSE ====================== -->
+  <g transform="translate(0, 300)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">House / Home</text>
+    <text x="60" y="54" font-size="10" fill="#787880">moradia ativa</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="m20.04 6.822-5.76-4.03c-1.57-1.1-3.98-1.04-5.49.13l-5.01 3.91c-1 .78-1.79 2.38-1.79 3.64v6.9c0 2.55 2.07 4.63 4.62 4.63h10.78c2.55 0 4.62-2.07 4.62-4.62v-6.78c0-1.35-.87-3.01-1.97-3.78Zm-7.29 11.18c0 .41-.34.75-.75.75s-.75-.34-.75-.75v-3c0-.41.34-.75.75-.75s.75.34.75.75v3Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="m9.02 2.84-5.39 4.2C2.73 7.74 2 9.23 2 10.36v7.41c0 2.32 1.89 4.22 4.21 4.22h11.58c2.32 0 4.21-1.9 4.21-4.21V10.5c0-1.21-.81-2.76-1.8-3.45l-6.18-4.33c-1.4-.98-3.65-.93-5 .12ZM12 17.99v-3" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M224,120v96a8,8,0,0,1-8,8H160a8,8,0,0,1-8-8V164a4,4,0,0,0-4-4H108a4,4,0,0,0-4,4v52a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V120a16,16,0,0,1,4.69-11.31l80-80a16,16,0,0,1,22.62,0l80,80A16,16,0,0,1,224,120Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 3: SHIELD CHECK ====================== -->
+  <g transform="translate(0, 420)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">ShieldCheck</text>
+    <text x="60" y="54" font-size="10" fill="#787880">vistorias</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="m18.54 4.12-5.5-2.06c-.57-.21-1.5-.21-2.07 0l-5.5 2.06c-1.06.4-1.92 1.64-1.92 2.77v8.1c0 .81.53 1.88 1.18 2.36l5.5 4.11c.97.73 2.56.73 3.53 0l5.5-4.11c.65-.49 1.18-1.55 1.18-2.36v-8.1c.01-1.13-.85-2.37-1.9-2.77Zm-3.06 5.6-4.3 4.3c-.15.15-.34.22-.53.22s-.38-.07-.53-.22l-1.6-1.62a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l1.08 1.08 3.77-3.77c.29-.29.77-.29 1.06 0 .29.29.29.78-.01 1.07Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M10.49 2.23 5.5 4.11c-1.15.43-2.09 1.79-2.09 3.01v7.43c0 1.18.78 2.73 1.73 3.44l4.3 3.21c1.41 1.06 3.73 1.06 5.14 0l4.3-3.21c.95-.71 1.73-2.26 1.73-3.44V7.12c0-1.23-.94-2.59-2.09-3.02l-4.99-1.87c-.85-.31-2.21-.31-3.04 0Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="m9.05 11.87 1.61 1.61 4.3-4.3" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm-34.32,69.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 4: GEAR / SETTINGS ====================== -->
+  <g transform="translate(0, 540)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">GearSix / Settings</text>
+    <text x="60" y="54" font-size="10" fill="#787880">ferramentas</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M20.1 9.221c-1.81 0-2.55-1.28-1.65-2.85.52-.91.21-2.07-.7-2.59l-1.73-.99c-.79-.47-1.81-.19-2.28.6l-.11.19c-.9 1.57-2.38 1.57-3.29 0l-.11-.19a1.641 1.641 0 0 0-2.26-.6l-1.73.99c-.91.52-1.22 1.69-.7 2.6.91 1.56.17 2.84-1.64 2.84-1.04 0-1.9.85-1.9 1.9v1.76c0 1.04.85 1.9 1.9 1.9 1.81 0 2.55 1.28 1.64 2.85-.52.91-.21 2.07.7 2.59l1.73.99c.79.47 1.81.19 2.28-.6l.11-.19c.9-1.57 2.38-1.57 3.29 0l.11.19c.47.79 1.49 1.07 2.28.6l1.73-.99c.91-.52 1.22-1.69.7-2.59-.91-1.57-.17-2.85 1.64-2.85 1.04 0 1.9-.85 1.9-1.9v-1.76a1.92 1.92 0 0 0-1.91-1.9Zm-8.1 6.03c-1.79 0-3.25-1.46-3.25-3.25s1.46-3.25 3.25-3.25 3.25 1.46 3.25 3.25-1.46 3.25-3.25 3.25Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M2 12.88v-1.76c0-1.04.85-1.9 1.9-1.9 1.81 0 2.55-1.28 1.64-2.85-.52-.9-.21-2.07.7-2.59l1.73-.99c.79-.47 1.81-.19 2.28.6l.11.19c.9 1.57 2.38 1.57 3.29 0l.11-.19c.47-.79 1.49-1.07 2.28-.6l1.73.99c.91.52 1.22 1.69.7 2.59-.91 1.57-.17 2.85 1.64 2.85 1.04 0 1.9.85 1.9 1.9v1.76c0 1.04-.85 1.9-1.9 1.9-1.81 0-2.55 1.28-1.64 2.85.52.91.21 2.07-.7 2.59l-1.73.99c-.79.47-1.81.19-2.28-.6l-.11-.19c-.9-1.57-2.38-1.57-3.29 0l-.11.19c-.47.79-1.49 1.07-2.28.6l-1.73-.99a1.899 1.899 0 0 1-.7-2.59c.91-1.57.17-2.85-1.64-2.85-1.05 0-1.9-.86-1.9-1.9Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M237.94,107.21a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A111.92,111.92,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.63a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm109.94-52.79a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A112.1,112.1,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.62a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21Zm-15,34.91-28.57,16.25a8,8,0,0,0-3,3c-.58,1-1.19,2.06-1.81,3.06a7.94,7.94,0,0,0-1.22,4.21l-.15,32.25a95.89,95.89,0,0,1-25.37,14.3L134,199.13a8,8,0,0,0-3.91-1h-.19c-1.21,0-2.43,0-3.64,0a8.08,8.08,0,0,0-4.1,1l-28.84,16.1A96,96,0,0,1,67.88,201l-.11-32.2a8,8,0,0,0-1.22-4.22c-.62-1-1.23-2-1.8-3.06a8.09,8.09,0,0,0-3-3.06l-28.6-16.29a90.49,90.49,0,0,1,0-28.26L61.67,97.63a8,8,0,0,0,3-3c.58-1,1.19-2.06,1.81-3.06a7.94,7.94,0,0,0,1.22-4.21l.15-32.25a95.89,95.89,0,0,1,25.37-14.3L122,56.87a8,8,0,0,0,4.1,1c1.21,0,2.43,0,3.64,0a8.08,8.08,0,0,0,4.1-1l28.84-16.1A96,96,0,0,1,188.12,55l.11,32.2a8,8,0,0,0,1.22,4.22c.62,1,1.23,2,1.8,3.06a8.09,8.09,0,0,0,3,3.06l28.6,16.29A90.49,90.49,0,0,1,222.9,142.12Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 5: SCAN ====================== -->
+  <g transform="translate(0, 660)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">Scan</text>
+    <text x="60" y="54" font-size="10" fill="#787880">info rótulos</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M2.77 10C2.34 10 2 9.66 2 9.23V6.92A4.93 4.93 0 0 1 6.92 2h2.31c.43 0 .77.34.77.77s-.34.77-.77.77H6.92c-1.87 0-3.38 1.52-3.38 3.38v2.31c0 .43-.35.77-.77.77ZM21.23 10a.77.77 0 0 1-.77-.77V6.92c0-1.87-1.52-3.38-3.38-3.38h-2.31a.77.77 0 0 1 0-1.54h2.31A4.93 4.93 0 0 1 22 6.92v2.31c0 .43-.34.77-.77.77ZM17.082 22h-1.39a.77.77 0 0 1 0-1.54h1.39c1.87 0 3.38-1.52 3.38-3.38V15.7a.77.77 0 0 1 1.54 0v1.38a4.93 4.93 0 0 1-4.92 4.92ZM9.23 22H6.92A4.93 4.93 0 0 1 2 17.08v-2.31c0-.43.34-.77.77-.77s.77.34.77.77v2.31c0 1.87 1.52 3.38 3.38 3.38h2.31a.77.77 0 0 1 0 1.54ZM18.46 11.23H5.54a.77.77 0 0 0 0 1.54H18.46a.77.77 0 0 0 0-1.54ZM6.898 13.94v.33c0 1.66 1.34 3 3 3h4.2c1.66 0 3-1.34 3-3v-.33c0-.12-.09-.21-.21-.21h-9.78c-.12 0-.21.09-.21.21ZM6.898 10.06v-.33c0-1.66 1.34-3 3-3h4.2c1.66 0 3 1.34 3 3v.33c0 .12-.09.21-.21.21h-9.78c-.12 0-.21-.09-.21-.21Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9M15 2h2.5C19.99 2 22 4.01 22 6.5V9M22 16v1.5c0 2.49-2.01 4.5-4.5 4.5H16M9 22H6.5C4.01 22 2 19.99 2 17.5V15M17 9.5v5c0 2-1 3-3 3h-4c-2 0-3-1-3-3v-5c0-2 1-3 3-3h4c2 0 3 1 3 3ZM19 12H5" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88ZM80,72h96a8,8,0,0,1,8,8v96a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80A8,8,0,0,1,80,72Zm8,96h80V88H88Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M224,40V80a8,8,0,0,1-16,0V48H176a8,8,0,0,1,0-16h40A8,8,0,0,1,224,40ZM80,208H48V176a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H80a8,8,0,0,0,0-16Zm136-40a8,8,0,0,0-8,8v32H176a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V176A8,8,0,0,0,216,168ZM40,88a8,8,0,0,0,8-8V48H80a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8V80A8,8,0,0,0,40,88Zm32-8v96a8,8,0,0,0,8,8h96a8,8,0,0,0,8-8V80a8,8,0,0,0-8-8H80A8,8,0,0,0,72,80Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 6: WARNING ====================== -->
+  <g transform="translate(0, 780)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">Warning</text>
+    <text x="60" y="54" font-size="10" fill="#787880">atividades eventuais</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="m19.51 5.85-5.94-3.43c-.97-.56-2.17-.56-3.15 0L4.49 5.85a3.15 3.15 0 0 0-1.57 2.73v6.84c0 1.12.6 2.16 1.57 2.73l5.94 3.43c.97.56 2.17.56 3.15 0l5.94-3.43a3.15 3.15 0 0 0 1.57-2.73V8.58a3.192 3.192 0 0 0-1.58-2.73Zm-8.26 1.9c0-.41.34-.75.75-.75s.75.34.75.75V13c0 .41-.34.75-.75.75s-.75-.34-.75-.75V7.75Zm1.67 8.88c-.05.12-.12.23-.21.33a.99.99 0 0 1-1.09.21c-.13-.05-.23-.12-.33-.21-.09-.1-.16-.21-.22-.33a.986.986 0 0 1-.07-.38c0-.26.1-.52.29-.71.1-.09.2-.16.33-.21.37-.16.81-.07 1.09.21.09.1.16.2.21.33.05.12.08.25.08.38s-.03.26-.08.38Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M12 7.75V13M21.08 8.58v6.84c0 1.12-.6 2.16-1.57 2.73l-5.94 3.43c-.97.56-2.17.56-3.15 0l-5.94-3.43a3.15 3.15 0 0 1-1.57-2.73V8.58c0-1.12.6-2.16 1.57-2.73l5.94-3.43c.97-.56 2.17-.56 3.15 0l5.94 3.43c.97.57 1.57 1.6 1.57 2.73Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M12 16.2v.1" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM120,104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm8,88a12,12,0,1,1,12-12A12,12,0,0,1,128,192Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 7: CROWN ====================== -->
+  <g transform="translate(0, 900)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">Crown</text>
+    <text x="60" y="54" font-size="10" fill="#787880">premium</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M17 22H7c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h10c.41 0 .75.34.75.75s-.34.75-.75.75ZM20.35 5.52l-4 2.86c-.53.38-1.29.15-1.52-.46l-1.89-5.04c-.32-.87-1.55-.87-1.87 0l-1.9 5.03c-.23.62-.98.85-1.51.46l-4-2.86c-.8-.56-1.86.23-1.53 1.16l4.16 11.65c.14.4.52.66.94.66h9.53c.42 0 .8-.27.94-.66l4.16-11.65c.34-.93-.72-1.72-1.51-1.15Zm-5.85 9.23h-5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h5c.41 0 .75.34.75.75s-.34.75-.75.75Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M2 15.29V5.71c0-1.33.77-1.65 1.71-.71L6.3 7.59c.39.39 1.03.39 1.41 0L11.29 4a.996.996 0 0 1 1.41 0l3.59 3.59c.39.39 1.03.39 1.41 0L20.29 5c.94-.94 1.71-.62 1.71.71v9.59c0 3-2 5-5 5H7c-2.76-.01-5-2.25-5-5.01Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M248,80a28,28,0,1,0-51.12,15.77l-26.79,33L146,73.4a28,28,0,1,0-36.06,0L85.91,128.74l-26.79-33a28,28,0,1,0-26.6,12L47,194.63A16,16,0,0,0,62.78,208H193.22A16,16,0,0,0,209,194.63l14.47-86.85A28,28,0,0,0,248,80ZM128,40a12,12,0,1,1-12,12A12,12,0,0,1,128,40ZM24,80A12,12,0,1,1,36,92,12,12,0,0,1,24,80ZM220,92a12,12,0,1,1,12-12A12,12,0,0,1,220,92Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M248,80a28,28,0,1,0-51.12,15.77l-26.79,33L146,73.4a28,28,0,1,0-36.06,0L85.91,128.74l-26.79-33a28,28,0,1,0-26.6,12L47,194.63A16,16,0,0,0,62.78,208H193.22A16,16,0,0,0,209,194.63l14.47-86.85A28,28,0,0,0,248,80ZM128,40a12,12,0,1,1-12,12A12,12,0,0,1,128,40ZM24,80A12,12,0,1,1,36,92,12,12,0,0,1,24,80ZM193.22,192H62.78L48.86,108.52,81.79,149A8,8,0,0,0,88,152a7.83,7.83,0,0,0,1.08-.07,8,8,0,0,0,6.26-4.74l29.3-67.4a27,27,0,0,0,6.72,0l29.3,67.4a8,8,0,0,0,6.26,4.74A7.83,7.83,0,0,0,168,152a8,8,0,0,0,6.21-3l32.93-40.52ZM220,92a12,12,0,1,1,12-12A12,12,0,0,1,220,92Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ÍCONE 8: PULSE / ACTIVITY ====================== -->
+  <g transform="translate(0, 1020)">
+    <text x="60" y="36" font-size="13" font-weight="700" fill="#1C1C1E">Pulse / Activity</text>
+    <text x="60" y="54" font-size="10" fill="#787880">histórico · status</text>
+
+    <g transform="translate(200, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81v8.37C2 19.83 4.17 22 7.81 22h8.37c3.64 0 5.81-2.17 5.81-5.81V7.81C22 4.17 19.83 2 16.19 2Zm1.07 7.96-2.31 2.98c-.29.37-.7.61-1.17.66-.47.06-.93-.07-1.3-.36l-1.83-1.44a.22.22 0 0 0-.19-.05c-.04 0-.11.02-.17.1l-2.38 3.09c-.15.19-.37.29-.59.29-.16 0-.32-.05-.46-.16a.749.749 0 0 1-.14-1.05l2.38-3.09c.29-.37.7-.61 1.17-.67.46-.06.93.07 1.3.36l1.83 1.44c.07.06.14.06.19.05.04 0 .11-.02.17-.1l2.31-2.98a.74.74 0 0 1 1.05-.13c.33.27.39.74.14 1.06Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(420, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 24 24">
+        <path d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7Z" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="m7.33 14.49 2.38-3.09c.34-.44.97-.52 1.41-.18l1.83 1.44c.44.34 1.07.26 1.41-.17l2.31-2.98" stroke="#047857" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </g>
+
+    <g transform="translate(700, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm-8,96H188.64L159,188a8,8,0,0,1-6.95,4h-.46a8,8,0,0,1-6.89-4.84L103,89.92,79,132a8,8,0,0,1-7,4H48a8,8,0,0,1,0-16H67.36L97.05,68a8,8,0,0,1,14.3.82L153,166.08l24-42.05a8,8,0,0,1,6.95-4h24a8,8,0,0,1,0,16Z" fill="#047857"/>
+      </svg>
+    </g>
+
+    <g transform="translate(920, 0)">
+      <rect width="80" height="80" rx="14" fill="#FFFFFF" stroke="#E5E5EA"/>
+      <svg x="8" y="8" width="64" height="64" viewBox="0 0 256 256">
+        <path d="M240,128a8,8,0,0,1-8,8H204.94l-37.78,75.58A8,8,0,0,1,160,216h-.4a8,8,0,0,1-7.08-5.14L95.35,60.76,63.28,131.31A8,8,0,0,1,56,136H24a8,8,0,0,1,0-16H50.85L88.72,36.69a8,8,0,0,1,14.76.46l57.51,151,31.85-63.71A8,8,0,0,1,200,120h32A8,8,0,0,1,240,128Z" fill="#047857"/>
+      </svg>
+    </g>
+  </g>
+
+  <!-- ====================== ANÁLISE ====================== -->
+  <g transform="translate(60, 1180)">
+    <rect width="1080" height="200" rx="20" fill="#FFFFFF" stroke="#D6CFC4" stroke-width="1"/>
+    <text x="24" y="36" font-size="16" font-weight="700" fill="#1C1C1E">Análise visual</text>
+    <text x="24" y="58" font-size="11" fill="#787880">O que muda objetivamente entre as duas famílias</text>
+
+    <g transform="translate(24, 80)">
+      <text x="0" y="0" font-size="12" font-weight="700" fill="#A16207">ICONSAX (atual)</text>
+      <text x="0" y="22" font-size="11" fill="#3A3A3C">· Cantos arredondados pronunciados (chubby) — visual "amigável 2020-2022"</text>
+      <text x="0" y="40" font-size="11" fill="#3A3A3C">· Bold com bastante "carne" — quase infantil em Heart e Crown</text>
+      <text x="0" y="58" font-size="11" fill="#3A3A3C">· ShieldTick e Warning2 com bordas suaves — perde caráter "alerta"</text>
+      <text x="0" y="76" font-size="11" fill="#3A3A3C">· House (Home2) tem traço "encurralado" no topo — não é casa idiomática</text>
+      <text x="0" y="94" font-size="11" fill="#3A3A3C">· GearSix com 8 raios complexos — visualmente carregado em tamanho pequeno</text>
+    </g>
+
+    <g transform="translate(550, 80)">
+      <text x="0" y="0" font-size="12" font-weight="700" fill="#047857">PHOSPHOR (proposto)</text>
+      <text x="0" y="22" font-size="11" fill="#3A3A3C">· Cantos sutis (squircle 2-3px) — visual "premium 2024-2026"</text>
+      <text x="0" y="40" font-size="11" fill="#3A3A3C">· Fill com peso equilibrado — sério mas não frio</text>
+      <text x="0" y="58" font-size="11" fill="#3A3A3C">· ShieldCheck e Warning ortogonais — comunicam "atenção" com clareza</text>
+      <text x="0" y="76" font-size="11" fill="#3A3A3C">· House em arquétipo limpo (telhado triangular puro + porta central)</text>
+      <text x="0" y="94" font-size="11" fill="#3A3A3C">· GearSix com 6 raios elegantes — leitura imediata em qualquer tamanho</text>
+    </g>
+  </g>
+
+</svg>
