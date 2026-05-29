@@ -13,6 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+import NetInfo from '@react-native-community/netinfo';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
@@ -151,6 +152,7 @@ export default function ProfileRiskSummaryScreen() {
     const [aiReport, setAiReport] = useState(null);
     const [generatingAi, setGeneratingAi] = useState(false);
     const [aiFailed, setAiFailed] = useState(false);
+    const [aiOffline, setAiOffline] = useState(false);
 
     const loadReport = useCallback(async (profileId) => {
         try {
@@ -171,6 +173,29 @@ export default function ProfileRiskSummaryScreen() {
         if (generatingAi) return;
         setGeneratingAi(true);
         setAiFailed(false);
+        setAiOffline(false);
+
+        // Check de conectividade antes do fetch — evita timeout de 25s quando o
+        // dispositivo claramente está offline (sem Wi-Fi/celular).
+        try {
+            const net = await NetInfo.fetch();
+            const isOnline = net.isConnected && net.isInternetReachable !== false;
+            if (!isOnline) {
+                setAiOffline(true);
+                setAiFailed(true);
+                setGeneratingAi(false);
+                if (force) {
+                    NeoAlert.alert(
+                        t('riskSummary.aiOfflineTitle', 'Sem conexão'),
+                        t('riskSummary.aiOfflineDesc', 'A análise personalizada precisa de internet pra ser gerada. O restante do relatório continua disponível offline.')
+                    );
+                }
+                return;
+            }
+        } catch (_) {
+            // Se NetInfo falhar por algum motivo, segue tentando fetch normalmente.
+        }
+
         try {
             const aiData = await SafetyReportService.getAIAugmentedReport(activeProfileId, force);
             if (aiData?.quem) {
@@ -499,7 +524,9 @@ export default function ProfileRiskSummaryScreen() {
                                     <NeoIcon name="InfoCircle" size={20} color={Neo.colors.neutral[500]} />
                                     <View style={{ flex: 1 }}>
                                         <Body style={{ fontSize: 13, color: Neo.colors.neutral[700] }}>
-                                            Não foi possível carregar a análise inteligente.
+                                            {aiOffline
+                                                ? 'Análise personalizada indisponível offline. Conecte-se à internet para gerar.'
+                                                : 'Não foi possível carregar a análise inteligente.'}
                                         </Body>
                                         <TouchableOpacity onPress={() => handleGenerateAI(true)} style={{ marginTop: 4 }}>
                                             <Text style={{ color: Neo.colors.primary[600], fontWeight: 'bold', fontSize: 13 }}>
@@ -757,7 +784,7 @@ const s = StyleSheet.create({
         flexDirection: 'row', alignItems: 'center', padding: 14, borderRadius: 20, marginBottom: 22, gap: 12,
     },
     profileAvatar: {
-        width: 54, height: 54, borderRadius: 27, borderWidth: 2.5,
+        width: 54, height: 54, borderRadius: 16, borderWidth: 2.5,
         backgroundColor: 'rgba(255,255,255,0.4)',
         alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
     },

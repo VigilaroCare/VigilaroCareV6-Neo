@@ -29,7 +29,7 @@ export const ss = StyleSheet.create({
         ...DS.shadows.sm,
     },
     avatar: {
-        width: 48, height: 48, borderRadius: 24,
+        width: 48, height: 48, borderRadius: 14,
         alignItems: 'center', justifyContent: 'center', marginRight: 16,
     },
     addBtn: {

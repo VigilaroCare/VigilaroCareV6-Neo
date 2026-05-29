@@ -69,9 +69,11 @@ export default function GlassProfileRing({
     };
 
     const innerSize = size - (ringWidth * 2);
-    const innerRadius = innerSize / 2;
     const photoSize = innerSize - 4; // 2px de espaçamento branco interno
-    const photoRadius = photoSize / 2;
+    // Quadrado arredondado (padrão DS para fotos de família) — ~30% da dimensão
+    const outerRadius = Math.round(size * 0.30);
+    const innerRadius = Math.round(innerSize * 0.30);
+    const photoRadius = Math.round(photoSize * 0.30);
 
     return (
         <Animated.View style={{
@@ -92,7 +94,7 @@ export default function GlassProfileRing({
                     {
                         width: size,
                         height: size,
-                        borderRadius: size / 2,
+                        borderRadius: outerRadius,
                     },
                 ]}
             >

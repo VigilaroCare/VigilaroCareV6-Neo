@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     profileAvatar: {
         width: 52,
         height: 52,
-        borderRadius: 26,
+        borderRadius: 16,
         backgroundColor: 'rgba(255,255,255,0.7)',
         alignItems: 'center',
         justifyContent: 'center',
