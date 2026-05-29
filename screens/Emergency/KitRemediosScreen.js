@@ -17,7 +17,7 @@ import ProfileService from '../../services/ProfileService';
 
 const ACCENT = '#E91E63'; // pink — remédios
 
-// Mapeamento defensivo de ícones de item (caso venham nomes não-iconsax do data)
+// Mapeamento defensivo de ícones de item (caso venham nomes legados do data layer)
 const ICON_FALLBACK = {
   checkmark: 'TickCircle',
   'radio-button-off': 'Health',

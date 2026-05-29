@@ -1,5 +1,5 @@
-// Nomes de ícones resolvidos via NeoIcon (Phosphor) — não importa
-// component refs do iconsax pra não amarrar o data layer à biblioteca.
+// Nomes de ícones resolvidos via NeoIcon (Phosphor) — passamos string,
+// não component refs, pra não amarrar o data layer à biblioteca.
 // O nome viaja como string e a tela renderiza com <NeoIcon name={item.icon} />.
 
 export const TEORIA_FOGO_DATA = {

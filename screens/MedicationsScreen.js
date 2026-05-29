@@ -36,7 +36,7 @@ import NeoAlert from '../utils/NeoAlert';
 export default function MedicationsScreen({ navigation }) {
     const { t } = useTranslation();
 
-    // Ícones iconsax válidos (antes Ionicons sunny/partly-sunny/moon não renderizavam)
+    // Ícones Phosphor válidos via NeoIcon (antes Ionicons sunny/partly-sunny/moon não renderizavam)
     const PERIODS = [
         { id: 'morning',   label: t('medications.morning'),   icon: 'Sun1',  color: '#FFB74D', range: '06:00 - 12:00' },
         { id: 'afternoon', label: t('medications.afternoon'), icon: 'Cloud', color: '#4FC3F7', range: '12:00 - 18:00' },

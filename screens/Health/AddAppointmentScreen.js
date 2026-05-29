@@ -43,7 +43,7 @@ export default function AddAppointmentScreen({ navigation, route }) {
     const [referrals, setReferrals] = useState('');
     const [nextAppointment, setNextAppointment] = useState('');
 
-    // Ícones iconsax válidos (antes eram MaterialCommunityIcons que não renderizavam)
+    // Ícones Phosphor válidos via NeoIcon (antes eram MaterialCommunityIcons que não renderizavam)
     const specialties = [
         { id: 'cardiologista',   label: 'Cardiologista',   icon: 'Heart' },
         { id: 'ortopedista',     label: 'Ortopedista',     icon: 'Health' },

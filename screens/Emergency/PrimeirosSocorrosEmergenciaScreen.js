@@ -28,7 +28,7 @@ import { useIsDark } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
-// Helper to map icon strings to NeoIcon names (iconsax válidos)
+// Helper to map icon strings to NeoIcon names (Phosphor válidos)
 const getIcon = (iconName, size = 28) => {
     let name = 'Danger';
     switch (iconName) {

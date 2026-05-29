@@ -34,7 +34,7 @@ export default function AddTreatmentScreen({ navigation, route }) {
     const [notes, setNotes] = useState('');
     const [saving, setSaving] = useState(false);
 
-    // Ícones iconsax válidos (antes eram Ionicons que não renderizavam)
+    // Ícones Phosphor válidos via NeoIcon (antes eram Ionicons que não renderizavam)
     const treatmentTypes = [
         { id: 'fisioterapia',  label: 'Fisioterapia',  icon: 'Activity' },
         { id: 'hemodialise',   label: 'Hemodiálise',   icon: 'Drop' },

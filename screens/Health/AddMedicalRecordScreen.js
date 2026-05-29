@@ -42,7 +42,7 @@ export default function AddMedicalRecordScreen({ route, navigation }) {
   const [shareable, setShareable] = useState(true);
   const [isScanning, setIsScanning] = useState(false);
 
-  // Ícones iconsax válidos (antes Material Community que não renderizavam)
+  // Ícones Phosphor válidos via NeoIcon (antes Material Community que não renderizavam)
   const categories = [
     { id: 'alergia',         label: 'Alergia',           icon: 'DangerCircle', color: '#FF5252' },
     { id: 'cirurgia',        label: 'Cirurgia',          icon: 'Health',       color: '#FF6F00' },

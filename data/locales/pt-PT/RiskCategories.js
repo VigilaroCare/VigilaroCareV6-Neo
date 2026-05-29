@@ -4,7 +4,7 @@ export const RISK_CATEGORIES = [
         title: 'Festas e Eventos',
         subtitle: 'Segurançã em reuniões sociais',
         audience: ['adult', 'child', 'baby', 'pet'],
-        icon: 'Musicnote', // Iconsax
+        icon: 'Musicnote',
         color: '#E91E63',
         gradient: ['#C2185B', '#F48FB1'],
         educational: {

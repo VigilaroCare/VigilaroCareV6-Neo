@@ -40,7 +40,7 @@ export default function AddProcedureScreen({ navigation, route }) {
     const [followUp, setFollowUp] = useState('');
     const [instructions, setInstructions] = useState('');
 
-    // Ícones iconsax válidos (antes Material Community que não renderizavam)
+    // Ícones Phosphor válidos via NeoIcon (antes Material Community que não renderizavam)
     const procedureTypes = [
         { id: 'colonoscopia',           label: 'Colonoscopia',     icon: 'Health' },
         { id: 'endoscopia',             label: 'Endoscopia',       icon: 'Health' },

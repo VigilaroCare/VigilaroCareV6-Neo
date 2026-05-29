@@ -33,7 +33,7 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 /**
  * Card de ambiente com cascade fallback de imagem.
- * Tenta capa[0] → capa[1] → ícone iconsax (último recurso).
+ * Tenta capa[0] → capa[1] → ícone NeoIcon (último recurso).
  * Mesma lógica usada no EnvironmentGuideNeoScreen para o hero.
  */
 function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
