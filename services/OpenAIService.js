@@ -21,6 +21,28 @@ const CHAT_URL = `${PROXY_URL}/v1/chat/completions`;
 const TRANSCRIPTIONS_URL = `${PROXY_URL}/v1/audio/transcriptions`;
 const SPEECH_URL = `${PROXY_URL}/v1/audio/speech`;
 
+// Timeouts proporcionais à natureza de cada operação (ms)
+const TIMEOUT_CHAT = 15000;          // chat curto (askMaster)
+const TIMEOUT_REPORT = 25000;        // geração de relatório consultivo (resposta JSON longa)
+const TIMEOUT_VISION = 30000;        // visão computacional (upload de imagem)
+const TIMEOUT_AUDIO_UP = 30000;      // upload de áudio + transcrição
+const TIMEOUT_TTS = 20000;           // TTS (resposta de áudio)
+
+/**
+ * Wrapper de fetch com timeout via AbortController.
+ * Resolve com a Response normalmente, ou lança AbortError se exceder timeoutMs.
+ * Evita travamento aparente quando o servidor não responde.
+ */
+async function fetchWithTimeout(url, options = {}, timeoutMs = TIMEOUT_CHAT) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+        return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+        clearTimeout(timeoutId);
+    }
+}
+
 // Vozes disponíveis no OpenAI TTS
 // alloy: neutra, echo: masculina, fable: narrativa, onyx: masculina grave, nova: feminina, shimmer: feminina suave
 const AVAILABLE_VOICES = ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'];
@@ -223,7 +245,7 @@ ${this.context}`;
         ];
 
         try {
-            const response = await fetch(CHAT_URL, {
+            const response = await fetchWithTimeout(CHAT_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -235,7 +257,7 @@ ${this.context}`;
                     temperature: 0.7,
                     max_tokens: 500
                 })
-            });
+            }, TIMEOUT_CHAT);
 
             const data = await response.json();
 
@@ -334,7 +356,7 @@ Regras de Tom e Estilo:
         ];
 
         try {
-            const response = await fetch(CHAT_URL, {
+            const response = await fetchWithTimeout(CHAT_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -346,7 +368,7 @@ Regras de Tom e Estilo:
                     temperature: 0.7,
                     response_format: { type: "json_object" }
                 })
-            });
+            }, TIMEOUT_REPORT);
 
             const data = await response.json();
 
@@ -362,7 +384,13 @@ Regras de Tom e Estilo:
 
         } catch (error) {
             if (__DEV__) {
-                console.error("Erro ao gerar Relatório Personalizado:", error);
+                const isTimeout = error?.name === 'AbortError';
+                console.error(
+                    isTimeout
+                        ? `Timeout (${TIMEOUT_REPORT}ms) ao gerar Relatório Personalizado — proxy inalcançável?`
+                        : "Erro ao gerar Relatório Personalizado:",
+                    error
+                );
             }
             throw error;
         }
@@ -399,7 +427,7 @@ Regras de Tom e Estilo:
         ];
 
         try {
-            const response = await fetch(CHAT_URL, {
+            const response = await fetchWithTimeout(CHAT_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -412,7 +440,7 @@ Regras de Tom e Estilo:
                     response_format: { type: "json_object" },
                     max_tokens: 1500
                 })
-            });
+            }, TIMEOUT_VISION);
 
             const data = await response.json();
 
@@ -455,14 +483,14 @@ Regras de Tom e Estilo:
             formData.append('model', 'whisper-1');
             formData.append('language', 'pt');
 
-            const response = await fetch(TRANSCRIPTIONS_URL, {
+            const response = await fetchWithTimeout(TRANSCRIPTIONS_URL, {
                 method: 'POST',
                 headers: {
                     'x-vigilaro-token': APP_SECRET,
                     'Content-Type': 'multipart/form-data',
                 },
                 body: formData
-            });
+            }, TIMEOUT_AUDIO_UP);
 
             const data = await response.json();
 
@@ -526,7 +554,7 @@ Regras de Tom e Estilo:
                 await this.getSelectedVoice();
             }
 
-            const response = await fetch(SPEECH_URL, {
+            const response = await fetchWithTimeout(SPEECH_URL, {
                 method: 'POST',
                 headers: {
                     'x-vigilaro-token': APP_SECRET,
@@ -538,7 +566,7 @@ Regras de Tom e Estilo:
                     voice: this.selectedVoice, // Usa voz selecionada pelo usuário
                     response_format: 'aac'
                 })
-            });
+            }, TIMEOUT_TTS);
 
             if (!response.ok) {
                 const err = await response.json();
