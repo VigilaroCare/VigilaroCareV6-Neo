@@ -68,6 +68,7 @@ import MapeamentoRiscosScreen     from './screens/Checklists/MapeamentoRiscosScr
 import ChecklistWizardScreen     from './screens/Checklists/ChecklistWizardScreen';
 import AddPerfilScreen            from './screens/Profiles/AddPerfilScreenNeo';
 import QuemProtegerScreenNeo      from "./screens/Profiles/QuemProtegerScreenNeo";
+import GerenciarLocaisPerfisScreen from "./screens/Profiles/GerenciarLocaisPerfisScreen";
 import SecretBriefingScreen       from "./screens/SecretBriefingScreen";
 import RadarVigilaroScreen        from './screens/Engajamento/RadarVigilaroScreen';
 import RadarArticleScreen         from './screens/Engajamento/RadarArticleScreen';
@@ -98,7 +99,6 @@ import SOSEmergencyModeScreen            from './screens/Emergency/SOSEmergencyM
 import SOSCountdownScreen                from './screens/Emergency/SOSCountdownScreen';
 import ModoPreventivoScreenNeo           from "./screens/ModoPreventivoScreenNeo";
 import EmergenciaRapidaScreen            from './screens/Emergency/EmergenciaRapidaScreen';
-import HistoricoMelhorasScreen           from './screens/Checklists/HistoricoMelhorasScreen';
 import PrimeirosSocorrosScreen           from './screens/Emergency/PrimeirosSocorrosScreen';
 import RecentActivityScreen              from './screens/RecentActivityScreen';
 
@@ -222,7 +222,6 @@ import ChatScreen                  from './screens/ChatScreen';
 import AITextChatScreen            from './screens/AITextChatScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import FallSensitivityScreen      from "./screens/FallSensitivityScreen";
-import MapaSensivelHubScreen     from "./screens/MapaSensivelHubScreen";
 import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
 import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
@@ -557,7 +556,6 @@ export default function App() {
                       <Stack.Screen name="WelcomeTour" component={WelcomeTourScreen} />
                       <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
                       <Stack.Screen name="FallSensitivity" component={FallSensitivityScreen} />
-                      <Stack.Screen name="MapaSensivelHub" component={MapaSensivelHubScreen} />
                       <Stack.Screen
                         name="FamilyComposition"
                         component={FamilyCompositionScreen}
@@ -579,6 +577,7 @@ export default function App() {
                       <Stack.Screen name="SafetyPermit" component={SafetyPermitScreen} options={{ presentation: 'modal', headerShown: false }} />
                       <Stack.Screen name="AddPerfil" component={AddPerfilScreen} />
                       <Stack.Screen name="QuemProteger" component={QuemProtegerScreenNeo} />
+                      <Stack.Screen name="GerenciarLocaisPerfis" component={GerenciarLocaisPerfisScreen} />
                       <Stack.Screen name="SecretBriefing" component={SecretBriefingScreen} />
                       <Stack.Screen name="UpgradePremium" component={UpgradePremiumScreen} options={{ presentation: 'modal' }} />
 
@@ -711,7 +710,6 @@ export default function App() {
                       <Stack.Screen name="SaudePet" component={SaudePetScreen} />
                       <Stack.Screen name="EscolaSegura" component={EscolaSeguraScreen} />
                       <Stack.Screen name="EscolaSeguraReport" component={EscolaSeguraReportScreen} />
-                      <Stack.Screen name="HistoricoMelhoras" component={HistoricoMelhorasScreen} />
                       <Stack.Screen name="AreasInternas" component={AreasInternasScreen} />
                       <Stack.Screen name="AreasExternas" component={AreasExternasScreen} />
                       <Stack.Screen name="VistoriaAsilo" component={VistoriaAsiloScreen} />

@@ -19,6 +19,7 @@
         "infoLabels": "Info Etiquetas",
         "infoLabelsSub": "Identifica toxicidad",
         "tools": "Herramientas",
+        "toolbox": "Herramientas IA",
         "intelligenceCenter": "Central de Inteligencia",
         "intelligenceSub": "Asistente IA, Escáner y Voz",
         "vigilaroRadar": "Vigilaro Radar",
@@ -313,7 +314,9 @@
         "finishInspection": "Concluir Inspección",
         "naAlertTitle": "Habitación No Aplicable",
         "naAlertDesc": "Esto marcará todos los elementos de esta lista como 'No Aplica' (NA). ¿Estás seguro?",
-        "confirmNA": "Confirmar N/A"
+        "confirmNA": "Confirmar N/A",
+        "botijaoGas": "Cilindro de Gas",
+        "gasEncanado": "Gas Canalizado"
     },
     "ai_assistant": {
         "listening": "Escuchando...",
@@ -555,12 +558,10 @@
         "realCases": "Casos Reales"
     },
     "reports": {
-        "title": "Qué y Cómo",
+        "title": "Inspeccione sus Ambientes",
         "subtitle": "Descubra los Riesgos y Actúe",
         "personalReport": "Informe Personal",
         "personalReportDesc": "Análisis detallado sobre tu hogar.",
-        "improvementHistory": "Historial de Mejoras",
-        "improvementHistoryDesc": "Ve tu evolución en seguridad.",
         "environmentInspection": "Inspección de Ambientes",
         "specialInspections": "Inspecciones Especiales",
         "safeSchool": "Escuela Segura",
@@ -1752,6 +1753,8 @@
         "minRead": "min de lectura"
     },
     "ferramentasIA": {
+        "headerTitle": "Herramientas IA",
+        "headerSubtitle": "Análisis visual, voz y datos",
         "sectionAnaliseVisual": "Análisis Visual",
         "sectionAssistentes": "Asistentes",
         "sectionEmBreve": "Próximamente",
@@ -1766,7 +1769,25 @@
         "chatDesc": "Asistente de texto rápido para consejos de seguridad y protocolos.",
         "detectorTitle": "Detector de Ambiente",
         "detectorDesc": "Analiza ruidos (ej: llanto, vidrio rompiéndose) y el nivel de seguridad luminosa del cuarto.",
-        "heatmapTitle": "Mapa de Calor IA",
-        "heatmapDesc": "Mapeo topográfico 3D de los puntos ciegos y áreas de riesgo de tu hogar."
+        "heatmapTitle": "Mapa de Calor de Riesgos",
+        "heatmapSub": "Riesgos por habitación",
+        "heatmapDesc": "Visualización agregada de los riesgos identificados en las inspecciones, con colores por nivel de criticidad.",
+        "sectionRecords": "Historial y Datos",
+        "recentTitle": "Actividad reciente",
+        "recentSub": "Eventos y acciones de la aplicación",
+        "dataHealthTitle": "Salud de los datos",
+        "dataHealthSub": "Diagnóstico de integridad"
+    },
+    "mapaCalor": {
+        "title": "Mapa de calor",
+        "subtitle": "Riesgos por habitación",
+        "intro": "Cada habitación aparece coloreada por el nivel de riesgo identificado en las inspecciones. Toque para abrir la lista de verificación.",
+        "emptyTitle": "Sin mapa para mostrar todavía",
+        "emptyDesc": "Mapee las habitaciones de su residencia y realice al menos una inspección para ver el mapa de calor.",
+        "emptyCta": "Ir a Dónde Proteger",
+        "critical": "Críticos",
+        "attention": "Atención",
+        "safe": "Seguros",
+        "roomsLabel": "Habitaciones mapeadas"
     }
 }

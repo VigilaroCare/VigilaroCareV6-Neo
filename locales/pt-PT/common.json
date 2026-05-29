@@ -19,6 +19,7 @@
         "infoLabels": "Info Rótulos",
         "infoLabelsSub": "Identifique toxicidade",
         "tools": "Ferramentas",
+        "toolbox": "Ferramentas IA",
         "intelligenceCenter": "Central de Inteligência",
         "intelligenceSub": "Assistente IA, Scanner e Voz",
         "vigilaroRadar": "Vigilaro Radar",
@@ -313,7 +314,9 @@
         "finishInspection": "Concluir Vistoria",
         "naAlertTitle": "Divisão Não Aplicável",
         "naAlertDesc": "Isto irá marcar todos os itens desta lista como 'Não se Aplica' (NA). Tem a certeza?",
-        "confirmNA": "Confirmar N/A"
+        "confirmNA": "Confirmar N/A",
+        "botijaoGas": "Garrafa de Gás",
+        "gasEncanado": "Gás Canalizado"
     },
     "ai_assistant": {
         "listening": "A ouvir...",
@@ -555,12 +558,10 @@
         "realCases": "Casos Reais"
     },
     "reports": {
-        "title": "O Quê e Como",
+        "title": "Vistorie os seus Ambientes",
         "subtitle": "Descubra os Riscos e Aja",
         "personalReport": "Relatório Pessoal",
         "personalReportDesc": "Análise detalhada sobre o seu lar.",
-        "improvementHistory": "Histórico de Melhorias",
-        "improvementHistoryDesc": "Veja a sua evolução na segurança.",
         "environmentInspection": "Vistoria dos Ambientes",
         "specialInspections": "Vistorias Especiais",
         "safeSchool": "Escola Segura",
@@ -1129,6 +1130,7 @@
         "circulation": "Circulação e Acessos"
     },
     "headersFirst": {
+        "itensParaVerificar": "itens para verificar",
         "electronicDevices": "Dispositivos Eletrónicos",
         "homeAppliances": "Eletrodomésticos",
         "householdUtensils": "Utensílios Domésticos",
@@ -1767,6 +1769,26 @@
         "detectorTitle": "Detector de Ambiente",
         "detectorDesc": "Analisa ruídos (ex: choro, vidro a partir) e o nível de segurança luminosa do compartimento.",
         "heatmapTitle": "Mapa de Calor IA",
-        "heatmapDesc": "Mapeamento topográfico 3D dos pontos cegos e áreas de risco da sua casa."
+        "heatmapSub": "Riscos por compartimento",
+        "heatmapDesc": "Mapeamento topográfico 3D dos pontos cegos e áreas de risco da sua casa.",
+        "headerTitle": "Ferramentas IA",
+        "headerSubtitle": "Análise visual, voz e dados",
+        "sectionRecords": "Histórico & Dados",
+        "recentTitle": "Atividade recente",
+        "recentSub": "Eventos e ações do app",
+        "dataHealthTitle": "Saúde dos dados",
+        "dataHealthSub": "Diagnóstico de integridade"
+    },
+    "mapaCalor": {
+        "title": "Mapa de calor",
+        "subtitle": "Riscos por compartimento",
+        "intro": "Cada compartimento aparece colorido pelo nível de risco identificado nas vistorias. Toque para abrir o checklist.",
+        "emptyTitle": "Sem mapa para mostrar ainda",
+        "emptyDesc": "Mapeie os compartimentos da sua residência e faça pelo menos uma vistoria para ver o mapa de calor.",
+        "emptyCta": "Ir para Onde Proteger",
+        "critical": "Críticos",
+        "attention": "Atenção",
+        "safe": "Seguros",
+        "roomsLabel": "Compartimentos mapeados"
     }
 }

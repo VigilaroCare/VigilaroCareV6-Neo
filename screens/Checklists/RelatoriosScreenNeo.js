@@ -227,49 +227,6 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             </TouchableOpacity>
                             */}
 
-                            <TouchableOpacity
-                                activeOpacity={0.85}
-                                onPress={() => navigation.navigate('HistoricoMelhoras')}
-                                style={{ marginBottom: 12 }}
-                            >
-                                <NeoCard variant="elevated" style={s.actionCard}>
-                                    <View style={[s.actionIconWrap, { backgroundColor: 'rgba(16,185,129,0.20)' }]}>
-                                        <NeoIcon name="Activity" size={22} color={Neo.colors.primary[600]} variant="Bold" />
-                                    </View>
-                                    <View style={{ flex: 1, marginLeft: 14 }}>
-                                        <Body style={s.actionTitle}>
-                                            {t('reports.improvementHistory', 'Histórico de melhorias')}
-                                        </Body>
-                                        <Small style={s.actionSub} numberOfLines={2}>
-                                            {t('reports.improvementHistoryDesc', 'Acompanhe a evolução da segurança.')}
-                                        </Small>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
-                                </NeoCard>
-                            </TouchableOpacity>
-
-                            {/* AMBIENTES VISTORIADOS CARD */}
-                            <TouchableOpacity
-                                activeOpacity={0.85}
-                                onPress={() => navigation.navigate('AmbientesVistoriados')}
-                                style={{ marginBottom: pendingActions.length > 0 ? 12 : 22 }}
-                            >
-                                <NeoCard variant="elevated" style={s.actionCard}>
-                                    <View style={[s.actionIconWrap, { backgroundColor: 'rgba(14,165,233,0.20)' }]}>
-                                        <NeoIcon name="Grid2" size={22} color="#0EA5E9" variant="Bold" />
-                                    </View>
-                                    <View style={{ flex: 1, marginLeft: 14 }}>
-                                        <Body style={s.actionTitle}>
-                                            {t('reports.environmentInspection', 'Ambientes Vistoriados')}
-                                        </Body>
-                                        <Small style={s.actionSub} numberOfLines={2}>
-                                            {t('reports.environmentInspectionDesc', 'Vistorias por cômodo e mapa de calor.')}
-                                        </Small>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
-                                </NeoCard>
-                            </TouchableOpacity>
-
                             {/* PENDÊNCIAS CRÍTICAS CARD */}
                             {pendingActions.length > 0 && (
                                 <TouchableOpacity
@@ -292,6 +249,86 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                         <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                                     </NeoCard>
                                 </TouchableOpacity>
+                            )}
+
+                            {/* AMBIENTES VISTORIADOS — seção inline.
+                                Antes era card de nav que abria AmbientesVistoriadosScreen.
+                                Conteúdo (Mapa de Calor + grid de ambientes) elevado pra cá. */}
+                            <Text style={[s.sectionLabel, { marginTop: pendingActions.length > 0 ? 4 : 0 }]}>
+                                {t('reports.environmentInspection', 'Ambientes Vistoriados')}
+                            </Text>
+
+                            {/* Mapa de Calor */}
+                            <TouchableOpacity
+                                activeOpacity={0.85}
+                                onPress={() => navigation.navigate('MapaDeCalor')}
+                                style={{ marginBottom: 16 }}
+                            >
+                                <NeoCard variant="elevated" style={s.heatmapCard}>
+                                    <View style={[s.heatmapIconWrap, { backgroundColor: 'rgba(220,38,38,0.18)' }]}>
+                                        <NeoIcon name="Map1" size={24} color="#DC2626" variant="Bold" />
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Body style={[s.heatmapTitle, { color: themeColors.neutral[900] }]}>
+                                            {t('reports.heatmap', 'Mapa de Calor')}
+                                        </Body>
+                                        <Small style={[s.heatmapSub, { color: themeColors.neutral[700] }]}>
+                                            {t('reports.heatmapDesc', 'Veja visualmente os riscos de cada ambiente em gradiente.')}
+                                        </Small>
+                                    </View>
+                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
+                                </NeoCard>
+                            </TouchableOpacity>
+
+                            {/* Grid de ambientes com status por cômodo */}
+                            {chartData.length > 0 && (
+                                <View style={s.grid}>
+                                    {chartData.map((area) => {
+                                        const statusKey = area.percent === 100 && area.total > 0
+                                            ? 'Seguro'
+                                            : area.checked === 0 ? 'Pendente'
+                                            : area.percent >= 70 ? 'Atenção' : 'Risco';
+                                        const statusStyle = getStatusStyle(statusKey);
+                                        let statusLabel = statusKey;
+                                        if (statusKey === 'Seguro')   statusLabel = t('reports.statusSafe', 'Seguro');
+                                        if (statusKey === 'Pendente') statusLabel = t('reports.statusPending', 'Pendente');
+                                        if (statusKey === 'Atenção')  statusLabel = t('reports.statusAttention', 'Atenção');
+                                        if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
+
+                                        return (
+                                            <TouchableOpacity
+                                                key={area.key}
+                                                activeOpacity={0.85}
+                                                style={s.gridCell}
+                                                onPress={() => navigation.navigate('ChecklistDetail', {
+                                                    roomId: area.key,
+                                                    roomName: area.fullName,
+                                                    roomColor: area.color,
+                                                    roomIcon: area.emoji,
+                                                    fullChecklist: false,
+                                                })}
+                                            >
+                                                <NeoCard variant="elevated" style={s.roomCard}>
+                                                    <View style={[s.roomIconCircle, { backgroundColor: area.color + '26' }]}>
+                                                        {area.iconName ? (
+                                                            <NeoIcon name={area.iconName} size={22} color={area.color} variant="Bold" />
+                                                        ) : (
+                                                            <Text style={{ fontSize: 22 }}>{area.emoji}</Text>
+                                                        )}
+                                                    </View>
+                                                    <Body style={s.roomLabel} numberOfLines={2}>
+                                                        {area.fullName}
+                                                    </Body>
+                                                    <View style={[s.statusPill, { backgroundColor: statusStyle.bg }]}>
+                                                        <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
+                                                            {statusLabel}
+                                                        </Small>
+                                                    </View>
+                                                </NeoCard>
+                                            </TouchableOpacity>
+                                        );
+                                    })}
+                                </View>
                             )}
 
                             {/* VISTORIAS ESPECIAIS — 2-col, glass cards limpos */}
@@ -505,6 +542,30 @@ const s = {
     actionSub: {
         color: Neo.colors.neutral[600],
         marginTop: 2,
+        lineHeight: 16,
+    },
+
+    // Heatmap card (entrada inline pro MapaDeCalor)
+    heatmapCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+        borderRadius: 18,
+    },
+    heatmapIconWrap: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 14,
+    },
+    heatmapTitle: {
+        fontSize: 16,
+        fontWeight: '800',
+        marginBottom: 2,
+    },
+    heatmapSub: {
         lineHeight: 16,
     },
 
