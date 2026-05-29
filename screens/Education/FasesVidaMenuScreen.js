@@ -89,7 +89,7 @@ export default function FasesVidaMenuScreen({ navigation }) {
                 <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
                     <View style={styles.listContainer}>
                         {items.map((item) => {
-                            const IconComp = item.icon;
+                            const iconName = item.icon;
 
                             return (
                                 <TouchableOpacity
@@ -109,10 +109,8 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                                         accessibilityLabel={item.cardTitle}
                                                         onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
                                                     />
-                                                ) : IconComp ? (
-                                                    <IconComp size={48} color={item.iconColor} variant="Bold" />
                                                 ) : (
-                                                    <NeoIcon name="EmojiHappy" size={48} color={item.iconColor} variant="Bold" />
+                                                    <NeoIcon name={iconName || 'EmojiHappy'} size={48} color={item.iconColor} variant="Bold" />
                                                 )}
                                             </View>
                                             <View style={styles.guideContent}>

@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { ArrowRight2, Location, Grid2, Warning2, Home2, ArrowLeft2, ClipboardTick, ShieldTick } from "iconsax-react-native";
 import { DS as Neo } from "../../utils/DesignSystem2026";
 import { t_field } from "../../utils/getLocalizedField";
 import NeoCard from "../../components/NeoCard";
+import NeoIcon from "../../components/NeoIcon";
 import AppBackground from "../../components/AppBackground";
 import ScaleButton from "../../components/ScaleButton";
 import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
@@ -30,13 +30,31 @@ export default function ChecklistWizardScreen({ navigation }) {
   const [ambientesAtivos, setAmbientesAtivos] = useState(AMBIENTES);
 
   React.useEffect(() => {
-    import('../../services/ProfileService').then(module => {
-      module.default.getMapping().then(mapping => {
-        if (mapping && mapping.length > 0) {
-          const filtered = AMBIENTES.filter(a => mapping.includes(a.id));
-          if (filtered.length > 0) {
-            setAmbientesAtivos(filtered);
-          }
+    Promise.all([
+      import('../../services/ProfileService'),
+      import('../../utils/ProfileFilterEngine')
+    ]).then(([profileServiceMod, filterEngineMod]) => {
+      const ProfileService = profileServiceMod.default;
+      const { isAreaRelevant, getDynamicAreaName } = filterEngineMod;
+
+      Promise.all([
+        ProfileService.getMoradia(),
+        ProfileService.getResidentsProfiles(),
+        ProfileService.getMapping()
+      ]).then(([moradia, profiles, mapping]) => {
+        const filtered = AMBIENTES.filter(a => isAreaRelevant(a, moradia, profiles, mapping))
+          .map(a => {
+            if (a.id === 'central_gas') {
+              const dynamicName = getDynamicAreaName(a.id, a.nome, mapping, t);
+              return {
+                ...a,
+                nome: dynamicName
+              };
+            }
+            return a;
+          });
+        if (filtered.length > 0) {
+          setAmbientesAtivos(filtered);
         }
       });
     });
@@ -75,7 +93,7 @@ export default function ChecklistWizardScreen({ navigation }) {
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={{ alignItems: 'center', marginBottom: 24, marginTop: 12 }}>
                 <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(26, 115, 232, 0.15)', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                    <ClipboardTick size={32} color="#1A73E8" variant="Bold" />
+                    <NeoIcon name="ClipboardTick" size={32} color="#1A73E8" variant="Bold" />
                 </View>
                 <H2 style={{ marginBottom: 4 }}>{t('checklistWizard.routineInspection')}</H2>
                 <Body style={{ fontSize: 13, color: Neo.colors.neutral[600] }}>
@@ -86,7 +104,7 @@ export default function ChecklistWizardScreen({ navigation }) {
             <NeoCard variant="glass" style={{ backgroundColor: '#FEF2F2', borderColor: '#FEE2E2', borderWidth: 1, marginBottom: 32, padding: 16 }}>
                 <View style={styles.featureRow}>
                     <View style={[styles.iconCircle, { backgroundColor: 'rgba(255,152,0,0.1)', width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }]}>
-                        <ShieldTick size={20} color="#FF9800" variant="Bold"/>
+                        <NeoIcon name="ShieldTick" size={20} color="#FF9800" variant="Bold"/>
                     </View>
                     <View style={{ flex: 1, marginLeft: 12 }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#B91C1C' }}>{t('checklistWizard.continuousAttention')}</Text>
@@ -102,7 +120,7 @@ export default function ChecklistWizardScreen({ navigation }) {
               onPress={handlePercorrerCasa}
               activeOpacity={0.85}
             >
-              <Location size={22} color="#FFF" style={{ marginRight: 8 }} variant="Bold" />
+              <NeoIcon name="Location" size={22} color="#FFF" style={{ marginRight: 8 }} variant="Bold" />
               <H3 style={{ color: '#FFF' }}>{t('checklistWizard.startFullAudit')}</H3>
             </TouchableOpacity>
 
@@ -111,12 +129,12 @@ export default function ChecklistWizardScreen({ navigation }) {
               onPress={() => setModo("por_comodo")}
               activeOpacity={0.8}
             >
-              <Grid2 size={20} color="#1A73E8" style={{ marginRight: 8 }} variant="Outline" />
+              <NeoIcon name="Grid2" size={20} color="#1A73E8" style={{ marginRight: 8 }} variant="Linear" />
               <Body style={{ color: '#1A73E8', fontWeight: '600' }}>{t('checklistWizard.auditSpecificRoom')}</Body>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.botaoTexto} onPress={handlePular} hitSlop={{top: 10, bottom: 10}}>
-              <Small style={{ color: Neo.colors.neutral[500], textDecorationLine: 'underline' }}>{t('checklistWizard.backToDashboard')}</Small>
+              <Small style={{ color: Neo.colors.neutral[500], textDecorationLine: 'underline' }}>{t('checklistWizard.backToPanel', 'Voltar para o Painel')}</Small>
             </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>
@@ -130,7 +148,7 @@ export default function ChecklistWizardScreen({ navigation }) {
         <StatusBar style={isDark ? 'light' : 'dark'} />
         <View style={styles.header}>
             <TouchableOpacity onPress={() => setModo("inicio")} style={styles.backButton}>
-                <ArrowLeft2 size={24} color={Neo.colors.neutral[800]} />
+                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
             </TouchableOpacity>
             <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
                 <H2>{t('checklistWizard.routineInspection')}</H2>
@@ -147,7 +165,7 @@ export default function ChecklistWizardScreen({ navigation }) {
             <ScaleButton key={ambiente.id} onPress={() => handleAmbientePress(ambiente)} style={{ marginBottom: 12 }}>
                 <NeoCard variant="glass" style={{ padding: 16, flexDirection: 'row', alignItems: 'center' }}>
                     <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: ambiente.cor + '15', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
-                        <Home2 size={24} color={ambiente.cor} variant="Bold" />
+                        <NeoIcon name="Home2" size={24} color={ambiente.cor} variant="Bold" />
                     </View>
                     <View style={{ flex: 1, paddingRight: 8 }}>
                         <Text style={{ fontSize: 16, fontWeight: '800', color: textPrimary, marginBottom: 2 }}>{t_field(ambiente, 'nome')}</Text>
@@ -158,7 +176,7 @@ export default function ChecklistWizardScreen({ navigation }) {
                             </View>
                         </View>
                     </View>
-                    <ArrowRight2 size={20} color={Neo.colors.neutral[400]} />
+                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
                 </NeoCard>
             </ScaleButton>
           ))}

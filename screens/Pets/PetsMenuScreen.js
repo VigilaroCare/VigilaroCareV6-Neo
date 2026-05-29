@@ -15,7 +15,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowRight2 } from 'iconsax-react-native';
 import { useTranslation } from 'react-i18next';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -238,7 +237,7 @@ export default function PetsMenuScreen() {
 
                         {/* Chevron */}
                         <View style={s.chevron}>
-                            <ArrowRight2 size={16} color={Neo.colors.neutral[400]} />
+                            <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
                         </View>
                     </View>
                 </View>
@@ -354,7 +353,7 @@ const s = StyleSheet.create({
     scrollContent: {
         paddingHorizontal: Neo.spacing.lg,
         paddingTop: 2,
-        paddingBottom: 190,
+        paddingBottom: 240,
     },
 
     // Section labels

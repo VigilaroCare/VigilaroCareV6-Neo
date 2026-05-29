@@ -4,13 +4,11 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
-import {
-    Health, ShieldTick, ArchiveBox, Lamp, ArrowLeft, EmojiHappy, Heart, Star
-} from 'iconsax-react-native';
 import { KITS_EDUCATIONAL_CONTENT } from '../../data/kits/educational_content';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import NeoIcon from '../../components/NeoIcon';
 import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { t_field } from '../../utils/getLocalizedField';
@@ -21,7 +19,7 @@ const SCREEN_PADDING = 16; // Reduced from 24
 const CARD_WIDTH = (width - (SCREEN_PADDING * 2) - SPACING) / 2;
 
 export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
     const insets = useSafeAreaInsets();
     const THEME_COLOR = '#8B5CF6'; // Violet
     const petHero = route?.params?.petHero;
@@ -35,7 +33,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Equipamentos de Proteção Individual',
             subtitle_en: 'Personal Protective Equipment',
             subtitle_es: 'Equipos de Protección Individual',
-            iconComponent: ShieldTick,
+            iconName: 'ShieldTick',
             color: '#F59E0B',
             checklistRoute: 'KitsMenu'
         },
@@ -47,7 +45,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Itens Essenciais',
             subtitle_en: 'Essential Items',
             subtitle_es: 'Artículos Esenciales',
-            iconComponent: Health,
+            iconName: 'Health',
             color: '#EF4444',
             checklistRoute: 'KitsMenu'
         },
@@ -59,7 +57,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Manutenção Segura',
             subtitle_en: 'Safe Maintenance',
             subtitle_es: 'Mantenimiento Seguro',
-            iconComponent: ArchiveBox,
+            iconName: 'ArchiveBox',
             color: '#607D8B',
             checklistRoute: 'KitsMenu'
         },
@@ -71,7 +69,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Luz e Comunicação',
             subtitle_en: 'Light & Communication',
             subtitle_es: 'Luz y Comunicación',
-            iconComponent: Lamp,
+            iconName: 'Lamp',
             color: '#8B5CF6',
             checklistRoute: 'KitsMenu'
         },
@@ -83,7 +81,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Farmácia Caseira',
             subtitle_en: 'Home Pharmacy',
             subtitle_es: 'Farmacia Casera',
-            iconComponent: Heart,
+            iconName: 'Heart',
             color: '#10B981',
             checklistRoute: 'KitsMenu'
         },
@@ -95,7 +93,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
             subtitle: 'Prevenção e Emergência',
             subtitle_en: 'Prevention & Emergency',
             subtitle_es: 'Prevención y Emergencia',
-            iconComponent: Star,
+            iconName: 'Star',
             color: '#F43F5E',
             checklistRoute: 'KitsMenu'
         },
@@ -105,32 +103,42 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
         const rawContent = KITS_EDUCATIONAL_CONTENT[item.id] || {};
         const { icon: junkIcon, sections, description, ...restContent } = rawContent;
 
-        let adaptedDescription = description || '';
+        const formatSections = (desc, secs) => {
+            let res = desc || '';
+            if (Array.isArray(secs)) {
+                secs.forEach(sec => {
+                    res += `\n\n🔹 ${sec.title.toUpperCase()}`;
+                    if (Array.isArray(sec.content)) {
+                        res += '\n' + sec.content.map(c => `• ${c}`).join('\n');
+                    } else {
+                        res += '\n' + sec.content;
+                    }
+                });
+            }
+            return res;
+        };
 
-        if (Array.isArray(sections)) {
-            sections.forEach(sec => {
-                adaptedDescription += `\n\n🔹 ${sec.title.toUpperCase()}`;
-                if (Array.isArray(sec.content)) {
-                    adaptedDescription += '\n' + sec.content.map(c => `• ${c}`).join('\n');
-                } else {
-                    adaptedDescription += '\n' + sec.content;
-                }
-            });
-        }
+        const adaptedDescription = formatSections(description, sections);
+        const adaptedDescriptionEn = formatSections(rawContent.description_en, rawContent.sections_en || sections);
+        const adaptedDescriptionEs = formatSections(rawContent.description_es, rawContent.sections_es || sections);
+        const adaptedDescriptionPtPt = formatSections(rawContent.description_ptpt, rawContent.sections_ptpt || sections);
 
         const adaptedContent = {
             titulo: item.title,
             titulo_en: item.title_en || restContent.title_en,
             titulo_es: item.title_es || restContent.title_es,
+            titulo_ptpt: item.title_ptpt || restContent.title_ptpt,
             subtitulo: item.subtitle,
             subtitulo_en: item.subtitle_en,
             subtitulo_es: item.subtitle_es,
-            icon: item.iconComponent,
+            subtitulo_ptpt: item.subtitle_ptpt,
+            icon: item.iconName,
             iconColor: item.color,
             bg: item.color + '15',
             definicao: adaptedDescription,
-            definicao_en: restContent.description_en,
-            definicao_es: restContent.description_es,
+            definicao_en: adaptedDescriptionEn,
+            definicao_es: adaptedDescriptionEs,
+            definicao_ptpt: adaptedDescriptionPtPt,
             comoIdentificar: [],
             comoEvitar: [],
             ...restContent
@@ -152,7 +160,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                         onPress={() => navigation.goBack()}
                         style={styles.backBtn}
                     >
-                        <ArrowLeft size={24} color={Neo.colors.neutral[800]} />
+                        <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H2 style={{ color: Neo.colors.neutral[900] }}>
@@ -180,7 +188,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                     )}
                     <View style={styles.gridContainer}>
                         {MENU_ITEMS.map((item) => {
-                            const Icon = item.iconComponent || EmojiHappy;
+                            const iconName = item.iconName || 'EmojiHappy';
                             return (
                                 <TouchableOpacity
                                     key={item.id}
@@ -190,7 +198,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                                 >
                                     <NeoCard variant="glass" style={styles.card}>
                                         <View style={[styles.iconContainer, { backgroundColor: item.color + '20' }]}>
-                                            <Icon size={28} color={item.color} variant="Bold" />
+                                            <NeoIcon name={iconName} size={28} color={item.color} variant="Bold" />
                                         </View>
                                         <View style={styles.textContainer}>
                                             <Body style={styles.cardTitle} numberOfLines={2}>{t_field(item, 'title')}</Body>

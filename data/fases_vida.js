@@ -1,10 +1,6 @@
-import {
-    EmojiHappy, Profile2User, Brodcast, Personalcard, HeartCircle,
-    ShieldTick, Health, Warning2, Car, Mobile, Profile
-} from 'iconsax-react-native';
-
 export const FASES_VIDA_DATA = {
     'baby_0_6': {
+        relatedGuides: ['intoxicacoes'],
         titulo: 'Bebês (0 a 6 meses)',
         titulo_en: 'Babies (0 to 6 months)',
         titulo_es: 'Bebés (0 a 6 meses)',
@@ -12,7 +8,7 @@ export const FASES_VIDA_DATA = {
         desc: '0 a 6 meses', desc_en: '0 to 6 months', desc_es: '0 a 6 meses',
         emoji: '👶',
         imagemUrl: 'https://images.pexels.com/photos/4005601/pexels-photo-4005601.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: EmojiHappy,
+        icon: 'EmojiHappy',
         iconColor: '#0284C7', // Sky 600
         bg: '#E0F2FE', // Sky 100
         definicao: 'Fase de dependência total. O bebê dorme muito e começa a descobrir o corpo.',
@@ -234,6 +230,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
 5.  **Cordões:** Nunca deixe cordões de chupeta ou roupas com tiras longas que possam enrolar no pescoço.`,
     },
     'baby_7_12': {
+        relatedGuides: ['produtos_quimicos', 'intoxicacoes'],
         titulo: 'Bebês (7 a 12 meses)',
         titulo_en: 'Babies (7 to 12 months)',
         titulo_es: 'Bebés (7 a 12 meses)',
@@ -241,7 +238,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         desc: '7 a 12 meses', desc_en: '7 to 12 months', desc_es: '7 a 12 meses',
         emoji: '🚼',
         imagemUrl: 'https://images.pexels.com/photos/3995926/pexels-photo-3995926.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: EmojiHappy,
+        icon: 'EmojiHappy',
         iconColor: '#0369A1', // Sky 700
         bg: '#BAE6FD', // Sky 200
         definicao: 'Fase oral (tudo vai à boca), engatinhar e primeiros passos. Curiosidade extrema.',
@@ -477,6 +474,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
 5.  **Cordões:** Nunca deixe cordões de chupeta ou roupas com tiras longas que possam enrolar no pescoço.`,
     },
     'child_1_3': {
+        relatedGuides: ['produtos_quimicos', 'intoxicacoes', 'seguranca_eletrica', 'incendios'],
         titulo: 'Crianças (1 a 3 anos)',
         titulo_en: 'Children (1 to 3 years)',
         titulo_es: 'Niños (1 a 3 años)',
@@ -484,7 +482,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         desc: '1 a 3 anos', desc_en: '1 to 3 years', desc_es: '1 a 3 años',
         emoji: '🧸',
         imagemUrl: 'https://images.pexels.com/photos/437747/pexels-photo-437747.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Profile2User,
+        icon: 'Profile2User',
         iconColor: '#D97706', // Amber 600
         bg: '#FEF3C7', // Amber 100
         definicao: 'Fase exploradora: escala móveis, abre gavetas e investiga tudo.',
@@ -726,6 +724,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
     },
     'child_3_5': {
+        relatedGuides: ['seguranca_eletrica', 'incendios'],
         titulo: 'Crianças (3 a 5 anos)',
         titulo_en: 'Children (3 to 5 years)',
         titulo_es: 'Niños (3 a 5 años)',
@@ -733,7 +732,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         desc: '3 a 5 anos', desc_en: '3 to 5 years', desc_es: '3 a 5 años',
         emoji: '🚲',
         imagemUrl: 'https://images.pexels.com/photos/8612916/pexels-photo-8612916.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Profile2User,
+        icon: 'Profile2User',
         iconColor: '#B45309', // Amber 700
         bg: '#FDE68A', // Amber 200
         definicao: 'Maior autonomia: bicicleta, brincadeiras na rua, curiosidade com fósforos.',
@@ -975,6 +974,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
     },
     'child_6_14': {
+        relatedGuides: ['seguranca_eletrica'],
         titulo: 'Crianças (6 a 14 anos)',
         titulo_en: 'Children (6 to 14 years)',
         titulo_es: 'Niños (6 a 14 años)',
@@ -982,7 +982,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         desc: '6 a 14 anos', desc_en: '6 to 14 years', desc_es: '6 a 14 años',
         emoji: '⚽',
         imagemUrl: 'https://images.pexels.com/photos/8926555/pexels-photo-8926555.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Brodcast,
+        icon: 'Broadcast',
         iconColor: '#059669', // Emerald 600
         bg: '#DCFCE7', // Emerald 100
         definicao: 'Energia explosiva, imitação de heróis, esportes e aventuras.',
@@ -1106,6 +1106,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)`,
     },
     'teen': {
+        relatedGuides: ['seguranca_eletrica'],
         titulo: 'Adolescentes',
         titulo_en: 'Teenagers',
         titulo_es: 'Adolescentes',
@@ -1113,7 +1114,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         desc: '10 a 17 anos', desc_en: '10 to 17 years', desc_es: '10 a 17 años',
         emoji: '🎧',
         imagemUrl: 'https://images.pexels.com/photos/4588371/pexels-photo-4588371.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Personalcard,
+        icon: 'Personalcard',
         iconColor: '#7C3AED', // Purple 600
         bg: '#F3E8FF', // Purple 100
         definicao: 'Ousadia, busca por identidade e afastamento de casa.',
@@ -1160,6 +1161,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         estatisticas_es: 'El suicidio y los accidentes de moto/coche son las principales causas de muerte.'
     },
     'adult': {
+        relatedGuides: ['incendios', 'produtos_quimicos', 'seguranca_eletrica', 'intoxicacoes', 'monoxido_carbono'],
         titulo: 'Adultos',
         titulo_en: 'Adults',
         titulo_es: 'Adultos',
@@ -1167,7 +1169,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         desc: '18 a 59 anos', desc_en: '18 to 59 years', desc_es: '18 a 59 años',
         emoji: '🧑',
         imagemUrl: 'https://images.pexels.com/photos/37218531/pexels-photo-37218531.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Profile, // Changed from User to Profile to ensure compatibility
+        icon: 'Profile',
         iconColor: '#2563EB', // Blue 600
         bg: '#DBEAFE', // Blue 100
         definicao: 'Acidentes ocorrem por pressa, improviso e falta de EPI.',
@@ -1211,6 +1213,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         ]
     },
     'pne': {
+        relatedGuides: ['seguranca_eletrica', 'incendios'],
         titulo: 'Necessidades Especiais',
         titulo_en: 'Special Needs',
         titulo_es: 'Necesidades Especiales',
@@ -1218,7 +1221,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         desc: 'Especiais', desc_en: 'Special', desc_es: 'Especiales',
         emoji: '♿',
         imagemUrl: 'https://images.pexels.com/photos/6194680/pexels-photo-6194680.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: Health, // Changed from Wheelchair to Health to ensure compatibility
+        icon: 'Health',
         iconColor: '#0891B2', // Cyan 600
         bg: '#CFFAFE', // Cyan 100
         definicao: 'Foco na acessibilidade e eliminação de barreiras arquitetônicas.',
@@ -1253,6 +1256,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         estatisticas_es: 'Las caídas son frecuentes debido a pisos inadecuados.'
     },
     'elder': {
+        relatedGuides: ['seguranca_eletrica', 'intoxicacoes', 'monoxido_carbono'],
         titulo: 'Idosos (60+)',
         titulo_en: 'Elderly (60+)',
         titulo_es: 'Tercera Edad (60+)',
@@ -1260,7 +1264,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         desc: '60+ anos', desc_en: '60+ years', desc_es: '60+ años',
         emoji: '👴',
         imagemUrl: 'https://images.pexels.com/photos/8317775/pexels-photo-8317775.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        icon: HeartCircle,
+        icon: 'HeartCircle',
         iconColor: '#DB2777', // Pink 600
         bg: '#FCE7F3', // Pink 100
         definicao: 'Fragilidade óssea, visão e reflexos reduzidos. Risco de fratura de fêmur.',

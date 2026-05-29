@@ -11,7 +11,7 @@ import { useThemeColors, useIsDark } from '../utils/ThemeContext';
  * Layout: ícone centralizado em círculo + título + descrição + CTA opcional.
  * Substitui implementações ad-hoc espalhadas pelas telas.
  *
- * @param {string} icon            Nome do NeoIcon (Iconsax)
+ * @param {string} icon            Nome do NeoIcon
  * @param {string} iconVariant     'Bold' | 'Linear' | 'Outline' — default 'Bold'
  * @param {string} iconColor       Cor do ícone. Default: neutral[400]
  * @param {string} iconBgColor     Cor de fundo do círculo. Default: neutral[100]

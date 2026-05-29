@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home2, Book, Health, Airplane, Setting2 } from 'iconsax-react-native';
+import NeoIcon from '../components/NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as NavigationBar from 'expo-navigation-bar';
@@ -63,7 +63,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, focused }) => (
-                        <Home2 variant={focused ? "Bold" : "Outline"} size={28} color={color} />
+                        <NeoIcon name="Home2" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />
@@ -74,7 +74,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Aprender',
                     tabBarIcon: ({ color, focused }) => (
-                        <Book variant={focused ? "Bold" : "Outline"} size={24} color={color} />
+                        <NeoIcon name="Book" variant={focused ? "Bold" : "Linear"} size={24} color={color} />
                     ),
                 }}
             />
@@ -85,7 +85,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Acessibilidade',
                     tabBarIcon: ({ color, focused }) => (
-                        <Health variant={focused ? "Bold" : "Outline"} size={24} color={color} />
+                        <NeoIcon name="Health" variant={focused ? "Bold" : "Linear"} size={24} color={color} />
                     ),
                 }}
             />
@@ -96,7 +96,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Viagem',
                     tabBarIcon: ({ color, focused }) => (
-                        <Airplane variant={focused ? "Bold" : "Outline"} size={28} color={color} />
+                        <NeoIcon name="Airplane" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />
@@ -107,7 +107,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Menu',
                     tabBarIcon: ({ color, focused }) => (
-                        <Setting2 variant={focused ? "Bold" : "Outline"} size={28} color={color} />
+                        <NeoIcon name="Setting2" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />

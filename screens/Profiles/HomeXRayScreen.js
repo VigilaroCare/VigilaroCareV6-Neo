@@ -7,10 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import {
-    People, Pet, Map, Building, Home2, ShieldTick, Ruler,
-} from 'iconsax-react-native';
-
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { AMBIENTES } from '../../data/mapeamento_dados';
@@ -85,7 +81,9 @@ export default function HomeXRayScreen() {
 
     const renderResidenceCard = (res, index) => {
         const inhabitantsIds = res?.moradia?.habitantes || [];
+        const visitorsIds = res?.moradia?.frequentadores || [];
         const residents = allProfiles.filter(p => inhabitantsIds.includes(p.id));
+        const visitors = allProfiles.filter(p => visitorsIds.includes(p.id));
         const roomIds = res?.moradia?.estrutura?.ambientes || [];
         const rooms = AMBIENTES.filter(a => roomIds.includes(a.id));
         const inherentRisks = getInherentRisks(res?.moradia?.tipoImovel, res?.moradia?.tipoConstrucao);
@@ -100,58 +98,91 @@ export default function HomeXRayScreen() {
                     {/* HEADER do card */}
                     <View style={s.resHeader}>
                         <View style={{ flex: 1 }}>
-                            <H3 style={s.resName}>{res.nome || t('home.mainHouse', 'Minha Casa')}</H3>
+                            <H3 style={s.resName}>{res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : (res.nome || t('home.mainHouse', 'Minha Casa'))}</H3>
                             <View style={s.typeBadge}>
                                 <Caption style={s.typeBadgeText}>{buildDesc.toUpperCase()}</Caption>
                             </View>
                         </View>
                         <View style={s.resIconBox}>
                             {res?.moradia?.tipoImovel === 'apartamento'
-                                ? <Building size={22} color={Neo.colors.primary[600]} variant="Bold" />
-                                : <Home2 size={22} color={Neo.colors.primary[600]} variant="Bold" />}
+                                ? <NeoIcon name="Building" size={22} color={Neo.colors.primary[600]} variant="Bold" />
+                                : <NeoIcon name="Home2" size={22} color={Neo.colors.primary[600]} variant="Bold" />}
                         </View>
                     </View>
 
                     <View style={s.divider} />
 
-                    {/* MORADORES */}
+                    {/* INTEGRANTES */}
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
-                            <People size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <NeoIcon name="People" size={14} color={Neo.colors.neutral[600]} variant="Bold" />
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
-                                {t('homeXRay.inhabitantsLabel', 'Moradores e pets')}
+                                Pessoas e Pets Vinculados
                             </Text>
                         </View>
-                        <View style={s.avatarList}>
-                            {residents.length > 0 ? residents.map((p) => (
-                                <View key={p.id} style={s.avatarItem}>
-                                    <View style={[s.miniAvatar, {
-                                        backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.22)' : Neo.colors.primary[100],
-                                    }]}>
-                                        {p.foto ? (
-                                            <Image source={{ uri: p.foto }} style={s.avatarImg} />
-                                        ) : (
-                                            p.tipo === 'pet'
-                                                ? <Pet size={14} color="#F59E0B" variant="Bold" />
-                                                : <People size={14} color={Neo.colors.primary[600]} variant="Bold" />
-                                        )}
+                        
+                        {/* Moradores Fixos */}
+                        <View style={{ marginBottom: 10 }}>
+                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>Moradores Fixos:</Caption>
+                            <View style={s.avatarList}>
+                                {residents.length > 0 ? residents.map((p) => (
+                                    <View key={p.id} style={s.avatarItem}>
+                                        <View style={[s.miniAvatar, {
+                                            backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.22)' : Neo.colors.primary[100],
+                                        }]}>
+                                            {p.foto ? (
+                                                <Image source={{ uri: p.foto }} style={s.avatarImg} />
+                                            ) : (
+                                                p.tipo === 'pet'
+                                                    ? <NeoIcon name="Pet" size={14} color="#F59E0B" variant="Bold" />
+                                                    : <NeoIcon name="People" size={14} color={Neo.colors.primary[600]} variant="Bold" />
+                                            )}
+                                        </View>
+                                        <Caption style={s.avatarName} numberOfLines={1}>
+                                            {(p.nome || '').split(' ')[0]}
+                                        </Caption>
                                     </View>
-                                    <Caption style={s.avatarName} numberOfLines={1}>
-                                        {(p.nome || '').split(' ')[0]}
-                                    </Caption>
-                                </View>
-                            )) : (
-                                <Caption style={s.emptyInline}>
-                                    {t('headersFirst.nenhumMoradorVinculado', 'Nenhum morador vinculado.')}
-                                </Caption>
-                            )}
+                                )) : (
+                                    <Caption style={s.emptyInline}>Nenhum morador fixo.</Caption>
+                                )}
+                            </View>
+                        </View>
+
+                        {/* Visitantes Eventuais */}
+                        <View>
+                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>Visitantes Eventuais:</Caption>
+                            <View style={s.avatarList}>
+                                {visitors.length > 0 ? visitors.map((p) => (
+                                    <View key={p.id} style={s.avatarItem}>
+                                        <View style={[s.miniAvatar, {
+                                            backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.12)' : 'rgba(16,24,40,0.06)',
+                                            borderWidth: 1.5,
+                                            borderStyle: 'dashed',
+                                            borderColor: Neo.colors.neutral[400]
+                                        }]}>
+                                            {p.foto ? (
+                                                <Image source={{ uri: p.foto }} style={s.avatarImg} />
+                                            ) : (
+                                                p.tipo === 'pet'
+                                                    ? <NeoIcon name="Pet" size={14} color="#F59E0B" variant="Bold" />
+                                                    : <NeoIcon name="People" size={14} color={Neo.colors.neutral[500]} variant="Bold" />
+                                            )}
+                                        </View>
+                                        <Caption style={s.avatarName} numberOfLines={1}>
+                                            {(p.nome || '').split(' ')[0]}
+                                        </Caption>
+                                    </View>
+                                )) : (
+                                    <Caption style={s.emptyInline}>Nenhum visitante eventual.</Caption>
+                                )}
+                            </View>
                         </View>
                     </View>
 
                     {/* AMBIENTES */}
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
-                            <Map size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <NeoIcon name="Map" size={14} color={Neo.colors.neutral[600]} variant="Bold" />
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('homeXRay.environmentsLabel', 'Ambientes mapeados')}
                             </Text>
@@ -173,7 +204,7 @@ export default function HomeXRayScreen() {
                     {/* RISCOS INERENTES — calmo, sem bg vermelho ostensivo */}
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
-                            <ShieldTick size={14} color={Neo.colors.neutral[600]} variant="Bold" />
+                            <NeoIcon name="ShieldTick" size={14} color={Neo.colors.neutral[600]} variant="Bold" />
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {t('homeXRay.inherentRisksLabel', 'Riscos inerentes')}
                             </Text>
@@ -197,7 +228,7 @@ export default function HomeXRayScreen() {
                             navigation.navigate('MapeamentoRiscos', { residenceId: res.id, residenceName: res.nome });
                         }}
                     >
-                        <Ruler size={16} color="#FFF" variant="Bold" />
+                        <NeoIcon name="Ruler" size={16} color="#FFF" variant="Bold" />
                         <Text style={s.recalcButtonText}>
                             {t('homeXRay.updateMapping', 'Atualizar mapeamento')}
                         </Text>
@@ -240,7 +271,7 @@ export default function HomeXRayScreen() {
                     {residences.length === 0 && !loading && (
                         <View style={s.emptyState}>
                             <View style={s.emptyIconCircle}>
-                                <Home2 size={40} color={Neo.colors.primary[600]} variant="Bold" />
+                                <NeoIcon name="Home2" size={40} color={Neo.colors.primary[600]} variant="Bold" />
                             </View>
                             <H3 style={s.emptyTitle}>
                                 {t('headersFirst.nenhumaResidNciaEncontrada', 'Nenhuma residência encontrada.')}

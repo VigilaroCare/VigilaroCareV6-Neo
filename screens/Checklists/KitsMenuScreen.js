@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ArrowLeft2 } from 'iconsax-react-native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { H2, Body, Small } from '../../components/NeoTypography';
 import { CHECKLISTS } from '../../data/mapeamento_dados';
@@ -42,32 +42,7 @@ export default function KitsMenuScreen({ navigation, route }) {
         });
     };
 
-    // Deep Link Logic: Auto-open kit if kitId is passed
-    useEffect(() => {
-        if (kitParam && kitsData.length > 0) {
-            const mapping = {
-                'epis': 'Equipamentos de Proteção (EPIs)',
-                'tools': 'Caixa de Ferramentas',
-                'emergency_support': 'Kits de Apoio e Emergência',
-                'first_aid': 'Kit de Primeiros Socorros / Curativos',
-                'farmacinha': 'Farmácia Caseira',
-                'pet': 'Prontidão Pet'
-            };
 
-            const targetName = mapping[kitParam];
-            const kitIndex = kitsData.findIndex(k => k.nome === targetName);
-
-            if (kitIndex !== -1) {
-                // Pequeno delay para garantir que a tela carregou
-                const timer = setTimeout(() => {
-                    handleOpenKit(kitsData[kitIndex], kitIndex);
-                    // Limpar params para não abrir de novo se voltar
-                    navigation.setParams({ kitId: null });
-                }, 100);
-                return () => clearTimeout(timer);
-            }
-        }
-    }, [kitParam]);
 
     return (
         <AppBackground>
@@ -82,7 +57,7 @@ export default function KitsMenuScreen({ navigation, route }) {
                                 style={styles.backButton}
                                 onPress={() => navigation.goBack()}
                             >
-                                <ArrowLeft2 size={24} color={Neo.colors.primary[600]} />
+                                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.primary[600]} />
                             </TouchableOpacity>
 
                             <View style={styles.headerTitleContainer}>

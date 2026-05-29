@@ -10,15 +10,14 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowLeft2, ArrowRight2, TickCircle, CloseSquare } from 'iconsax-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CHECKLISTS, AMBIENTES } from '../../data/mapeamento_dados';
 import { getArticleById } from '../../data/SafetyArticlesDB';
-import { isItemRelevant } from '../../utils/ProfileFilterEngine';
-import { LampOn } from 'iconsax-react-native';
+import { isItemRelevant, getRoomChecklistStructure, isAreaRelevant, getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import NeoCard from '../../components/NeoCard';
+import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBg from '../../components/AppBackground';
@@ -32,6 +31,8 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
   const [nextRoomData, setNextRoomData] = useState(null);
   const [nextTargetIndex, setNextTargetIndex] = useState(-1);
+  const [roomList, setRoomList] = useState([]);
+  const [displayRoomName, setDisplayRoomName] = useState(roomName);
 
   // Removida a lógica síncrona do route params porque Precisamos carregar o estado salvo para saber quais próximos estão pendentes
   const [items, setItems] = useState([]);
@@ -90,7 +91,17 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       // 1. Gerar itens frescos do Código (Garante que novos itens apresentem os mais recentes)
       const profiles = await ProfileService.getPerfis();
       const moradia = await ProfileService.getMoradia();
-      const freshItems = generateDefaultItems(roomId, profiles, moradia);
+      const mapping = await ProfileService.getMapping() || [];
+      const freshItems = generateDefaultItems(roomId, profiles, moradia, mapping);
+
+      // Ajuste de nome dinâmico para Salas Integradas e Gás/Botijão
+      if (roomId === 'sala' && mapping.includes('sala_estar') && mapping.includes('sala_jantar')) {
+        setDisplayRoomName(t('checklists.integratedLivingDining', 'Sala de Estar e Jantar (Integradas)'));
+      } else if (roomId === 'central_gas') {
+        setDisplayRoomName(getDynamicAreaName(roomId, roomName, mapping, t));
+      } else {
+        setDisplayRoomName(roomName);
+      }
 
       // 2. Carregar estado salvo via ChecklistService (isolado por residência)
       const resId = await ProfileService.getActiveResidenceId();
@@ -124,15 +135,14 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
       // --- CALCULATE NEXT AUTOMATIC ROOM ---
       // 1. Pegar lista base (ou passada via params ou gerar do AMBIENTES filtrado pelo mapeamento)
-      let roomList = sequentialRooms;
-      if (!roomList) {
-        const mapping = await ProfileService.getMapping() || [];
+      let currentRoomList = sequentialRooms;
+      if (!currentRoomList) {
         let allAmbs = AMBIENTES;
-        if (mapping.length > 0 && !fullChecklist) {
-          allAmbs = allAmbs.filter(a => mapping.includes(a.id) || a.id === 'geral');
+        if (!fullChecklist) {
+          allAmbs = allAmbs.filter(a => isAreaRelevant(a, moradia, profiles, mapping) || a.id === 'geral');
         }
         
-        roomList = allAmbs.map(a => ({
+        currentRoomList = allAmbs.map(a => ({
           roomId: a.id,
           roomName: a.nome,
           roomColor: a.cor,
@@ -140,9 +150,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           fullChecklist: fullChecklist
         }));
       }
+      setRoomList(currentRoomList);
 
       // 2. Encontrar o próximo ambiente que AINDA NÃO TEM 100% RESPONDIDO
-      // (Não queremos pendências apenas, e sim descobrir qual a próxima sala que o user não abriu/não respondeu)
       let foundNext = null;
       let foundIndex = -1;
 
@@ -150,13 +160,24 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       const startIndex = currentRoomIndex !== undefined ? currentRoomIndex + 1 : 0;
 
       // Look forward
-      for (let i = startIndex; i < roomList.length; i++) {
-        const potentialRoom = roomList[i];
+      for (let i = startIndex; i < currentRoomList.length; i++) {
+        const potentialRoom = currentRoomList[i];
+        
+        // Se o cômodo potencial não tiver nenhum item relevante para o perfil/casa atual, pula
+        const potentialFreshItems = generateDefaultItems(potentialRoom.roomId, profiles, moradia, mapping);
+        if (potentialFreshItems.length === 0) {
+          continue;
+        }
+
         const stateOfPotential = storedItems[potentialRoom.roomId] || [];
 
-        // Simples heurisitic: Se respondeu 0 itens ou tem Itens marcados como 'pendente' 
-        // ou se não achou nada armazenado... é a próxima!
-        const hasUnanswered = stateOfPotential.length === 0 || stateOfPotential.some(it => !it.status);
+        // Conta quantos itens frescos já foram respondidos
+        const answeredCount = potentialFreshItems.filter(item => {
+          const saved = stateOfPotential.find(s => s.text === item.text);
+          return saved && saved.status && ['conforme', 'risco', 'na'].includes(saved.status);
+        }).length;
+
+        const hasUnanswered = answeredCount < potentialFreshItems.length;
 
         if (hasUnanswered) {
           foundNext = potentialRoom;
@@ -170,15 +191,15 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
     } catch (error) {
       console.error('Erro ao carregar checklist:', error);
-      setItems(generateDefaultItems(roomId));
+      setItems(generateDefaultItems(roomId, [], {}, []));
     } finally {
       setLoading(false);
     }
   };
 
 
-  const generateDefaultItems = (roomId, profiles, moradia) => {
-    const data = CHECKLISTS[roomId];
+  const generateDefaultItems = (roomId, profiles, moradia, mapping = []) => {
+    const data = getRoomChecklistStructure(roomId, profiles, moradia, mapping);
     if (!data || !data.categorias) return [];
 
     const flatItems = [];
@@ -310,11 +331,11 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
               if (nextRoomData) {
                 navigation.replace('ChecklistDetail', {
                   ...nextRoomData,
-                  sequentialRooms: sequentialRooms || AMBIENTES.map(a => ({ roomId: a.id, roomName: a.nome, roomColor: a.cor, roomIcon: a.emoji })),
+                  sequentialRooms: roomList,
                   currentRoomIndex: nextTargetIndex
                 });
               } else {
-                navigation.navigate('Checklist');
+                navigation.navigate('Relatorios');
               }
             } catch (e) {
               console.error("Erro no mapAllToNA:", e);
@@ -353,13 +374,13 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <ArrowLeft2 size={24} color={Neo.colors.neutral[800]} />
+            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           
           <View style={styles.headerContent}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={styles.headerIcon}>{roomIcon || '🏠'}</Text>
-                <H2 style={[styles.headerTitle, { color: Neo.colors.neutral[800], marginLeft: 8 }]} numberOfLines={1}>{roomName || t('checklists.room')}</H2>
+                <H2 style={[styles.headerTitle, { color: Neo.colors.neutral[800], marginLeft: 8 }]} numberOfLines={1}>{displayRoomName || t('checklists.room')}</H2>
             </View>
             {categoryFilter && (
               <Small style={styles.headerSubtitle} numberOfLines={1}>{t('checklists.category')} {categoryFilter}</Small>
@@ -424,14 +445,14 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
             gap: 10,
           }}>
             <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: '#0EA5E9', alignItems: 'center', justifyContent: 'center' }}>
-              <LampOn size={16} color="#FFF" variant="Bold" />
+              <NeoIcon name="LampOn" size={16} color="#FFF" variant="Bold" />
             </View>
             <View style={{ flex: 1 }}>
               <Small style={{ fontWeight: 'bold', color: '#0C4A6E', lineHeight: 16 }} numberOfLines={1}>{activeTip.title}</Small>
               <Small style={{ color: '#64748B', fontSize: 11, lineHeight: 14, marginTop: 1 }} numberOfLines={1}>{activeTip.summary}</Small>
             </View>
             <TouchableOpacity onPress={() => setTipVisible(false)} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }} style={{ padding: 4 }}>
-              <CloseSquare size={16} color="#94A3B8" />
+              <NeoIcon name="CloseSquare" size={16} color="#94A3B8" />
             </TouchableOpacity>
           </NeoCard>
         </TouchableOpacity>
@@ -446,7 +467,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
         {items.length === 0 ? (
           <View style={{ width: '100%', alignItems: 'center', marginTop: 40, paddingHorizontal: 24 }}>
             <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#F3F4F6', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-              <TickCircle size={40} color={Neo.colors.feedback.success} variant="Bold" />
+              <NeoIcon name="TickCircle" size={40} color={Neo.colors.feedback.success} variant="Bold" />
             </View>
             <H3 style={{ color: Neo.colors.neutral[900], marginBottom: 8, textAlign: 'center' }}>{t('checklists.areaCompleted')}</H3>
             <Body style={{ color: Neo.colors.neutral[500], textAlign: 'center', lineHeight: 22 }}>
@@ -543,11 +564,11 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
             if (nextRoomData) {
               navigation.replace('ChecklistDetail', {
                 ...nextRoomData,
-                sequentialRooms: sequentialRooms || AMBIENTES.map(a => ({ roomId: a.id, roomName: a.nome, roomColor: a.cor, roomIcon: a.emoji })),
+                sequentialRooms: roomList,
                 currentRoomIndex: nextTargetIndex
               });
             } else {
-              navigation.navigate('Checklist', { sessionCompleted: true });
+              navigation.navigate('Relatorios');
             }
           }}
           activeOpacity={0.8}
@@ -555,7 +576,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           <H3 style={[styles.nextButtonText, { color: '#FFF' }]}>
             {nextRoomData ? `${t('checklists.advanceTo')} ${nextRoomData.roomName}` : t('checklists.finishInspection')}
           </H3>
-          {nextRoomData ? <ArrowRight2 size={24} color="#FFF" variant="Bold" /> : <TickCircle size={24} color="#FFF" variant="Bold" />}
+          {nextRoomData ? <NeoIcon name="ArrowRight2" size={24} color="#FFF" variant="Bold" /> : <NeoIcon name="TickCircle" size={24} color="#FFF" variant="Bold" />}
         </TouchableOpacity>
 
         <View style={{ height: 40, width: '100%' }} />
@@ -568,11 +589,11 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
     if (pendingNavigation?.type === 'next') {
       navigation.replace('ChecklistDetail', {
         ...pendingNavigation.data,
-        sequentialRooms: sequentialRooms || AMBIENTES.map(a => ({ roomId: a.id, roomName: a.nome, roomColor: a.cor, roomIcon: a.emoji })),
+        sequentialRooms: roomList,
         currentRoomIndex: pendingNavigation.index,
       });
     } else {
-      navigation.navigate('Checklist');
+      navigation.navigate('Relatorios');
     }
     setPendingNavigation(null);
   }
