@@ -145,7 +145,7 @@ const s = StyleSheet.create({
   content: {
     paddingHorizontal: Neo.spacing.lg,
     paddingTop: 4,
-    paddingBottom: 190,
+    paddingBottom: 240,
   },
 
   // Info card

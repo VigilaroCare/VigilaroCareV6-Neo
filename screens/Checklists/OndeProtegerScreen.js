@@ -33,6 +33,7 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
+import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
@@ -263,7 +264,9 @@ export default function OndeProtegerScreen({ navigation }) {
                                         <NeoIcon name={ambiente.icon} size={28} color={Neo.colors.neutral.white} variant="Bold" />
                                     </View>
                                     <View>
-                                        <Text style={[styles.ambienteLabel, { color: textPrimary }]}>{ambiente.label}</Text>
+                                        <Text style={[styles.ambienteLabel, { color: textPrimary }]}>
+                                            {getDynamicAreaName(ambiente.id, ambiente.label, ambientesMapeados, t)}
+                                        </Text>
                                         <Text style={styles.ambienteRiscos}>
                                             {ambiente.riscos.length} pontos de atenção
                                         </Text>

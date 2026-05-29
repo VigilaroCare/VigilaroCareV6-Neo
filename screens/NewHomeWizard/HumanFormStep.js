@@ -30,7 +30,7 @@ export default function HumanFormStep({
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
             <ScrollView contentContainerStyle={{ padding: S.lg, paddingBottom: 140 }}>
-                <Caption style={ss.phaseLabel}>PASSO 1 — NOVO MORADOR</Caption>
+                <Caption style={ss.phaseLabel}>PASSO 1 — NOVO INTEGRANTE (PESSOA)</Caption>
                 <H2 style={{ marginBottom: 24 }}>Dados Essenciais</H2>
 
                 {/* FOTO DO MORADOR */}
@@ -39,10 +39,10 @@ export default function HumanFormStep({
                         {formPhoto ? (
                             <Image source={{ uri: formPhoto }} style={{ width: 100, height: 100, borderRadius: 50 }} />
                         ) : (
-                            <NeoIcon name="profile-circle" size={48} color={C.neutral[400]} />
+                            <NeoIcon name="User" size={48} color={C.neutral[400]} />
                         )}
                         <View style={ss.cameraBadge}>
-                            <NeoIcon name="camera" size={16} color="#FFF" />
+                            <NeoIcon name="Camera" size={16} color="#FFF" />
                         </View>
                     </View>
                     <Caption style={{ textAlign: 'center', marginTop: 8, color: C.primary[600] }}>Adicionar Foto</Caption>
@@ -106,8 +106,8 @@ export default function HumanFormStep({
                 )}
 
                 <TouchableOpacity style={ss.saveBtn} onPress={onSave} activeOpacity={0.9}>
-                    <NeoIcon name="tick-circle" size={22} color="#FFF" />
-                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar morador</Body>
+                    <NeoIcon name="TickCircle" size={22} color="#FFF" />
+                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar perfil</Body>
                 </TouchableOpacity>
             </ScrollView>
         </KeyboardAvoidingView>

@@ -46,10 +46,10 @@ export default function PetFormStep({
                         {formPhoto ? (
                             <Image source={{ uri: formPhoto }} style={{ width: 100, height: 100, borderRadius: 50 }} />
                         ) : (
-                            <NeoIcon name="pet" size={48} color={C.neutral[400]} />
+                            <NeoIcon name="Heart" size={48} color={C.neutral[400]} variant="Bold" />
                         )}
                         <View style={[ss.cameraBadge, { backgroundColor: '#EF6C00' }]}>
-                            <NeoIcon name="camera" size={16} color="#FFF" />
+                            <NeoIcon name="Camera" size={16} color="#FFF" />
                         </View>
                     </View>
                     <Caption style={{ textAlign: 'center', marginTop: 8, color: '#EF6C00' }}>Adicionar Foto</Caption>
@@ -74,11 +74,11 @@ export default function PetFormStep({
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>Idade (Anos)</Caption>
                 <View style={ss.stepperRow}>
                     <TouchableOpacity style={ss.stepperBtn} onPress={() => parseInt(formPetAge) > 0 && setFormPetAge((parseInt(formPetAge) - 1).toString())}>
-                        <NeoIcon name="minus" size={20} color={parseInt(formPetAge) <= 0 ? C.neutral[300] : C.primary[600]} />
+                        <NeoIcon name="Minus" size={20} color={parseInt(formPetAge) <= 0 ? C.neutral[300] : C.primary[600]} />
                     </TouchableOpacity>
                     <H2 style={{ marginHorizontal: 24, minWidth: 30, textAlign: 'center' }}>{formPetAge}</H2>
                     <TouchableOpacity style={ss.stepperBtn} onPress={() => setFormPetAge((parseInt(formPetAge) + 1).toString())}>
-                        <NeoIcon name="add" size={20} color={C.primary[600]} />
+                        <NeoIcon name="Add" size={20} color={C.primary[600]} />
                     </TouchableOpacity>
                 </View>
 
@@ -117,7 +117,7 @@ export default function PetFormStep({
                 )}
 
                 <TouchableOpacity style={[ss.saveBtn, { backgroundColor: '#EF6C00' }]} onPress={onSave} activeOpacity={0.9}>
-                    <NeoIcon name="tick-circle" size={22} color="#FFF" />
+                    <NeoIcon name="TickCircle" size={22} color="#FFF" />
                     <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar pet</Body>
                 </TouchableOpacity>
             </ScrollView>

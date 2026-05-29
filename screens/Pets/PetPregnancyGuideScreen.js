@@ -62,7 +62,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
 
                 <ScrollView
                     style={s.content}
-                    contentContainerStyle={{ paddingBottom: 190 }}
+                    contentContainerStyle={{ paddingBottom: 240 }}
                     showsVerticalScrollIndicator={false}
                 >
                     {/* Hero banner — imagem do card de origem */}

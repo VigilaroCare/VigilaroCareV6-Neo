@@ -10,7 +10,8 @@ import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
 import { HOUSE_TYPES } from '../../data/onboarding_data';
-import { Chip } from './components';
+import { t_field } from '../../utils/getLocalizedField';
+import { Chip, NeoInput } from './components';
 import { ss } from './styles';
 import NarrativeHeader from './NarrativeHeader';
 
@@ -18,6 +19,7 @@ const C = DS.colors;
 const S = DS.spacing;
 
 export default function P1_TipoMoradiaStep({
+    residenceName, setResidenceName,
     houseType, setHouseType,
     floors, setFloors,
 }) {
@@ -30,11 +32,19 @@ export default function P1_TipoMoradiaStep({
                 iconName="Home2"
             />
 
+            {/* Nome do Local */}
+            <NeoInput
+                label="Identificação do local (ex: Casa Principal, Apartamento da Filha)"
+                value={residenceName}
+                onChangeText={setResidenceName}
+                placeholder="Ex: Apartamento da Filha"
+            />
+
             {/* Tipo de Residência */}
             <H3 style={{ marginBottom: 12, fontSize: 17, marginTop: 8 }}>Tipo de moradia</H3>
             <View style={[ss.chipRow, { marginBottom: 28 }]}>
                 {HOUSE_TYPES.map(h => (
-                    <Chip key={h.id} label={h.label} icon={h.icon} selected={houseType === h.id}
+                    <Chip key={h.id} label={t_field(h, 'label')} icon={h.icon} selected={houseType === h.id}
                         onPress={() => setHouseType(h.id)} />
                 ))}
             </View>
@@ -46,11 +56,11 @@ export default function P1_TipoMoradiaStep({
             </Body>
             <View style={ss.stepperRow}>
                 <TouchableOpacity style={ss.stepperBtn} onPress={() => floors > 1 && setFloors(floors - 1)}>
-                    <NeoIcon name="minus" size={20} color={floors <= 1 ? C.neutral[300] : C.primary[600]} />
+                    <NeoIcon name="Minus" size={20} color={floors <= 1 ? C.neutral[300] : C.primary[600]} />
                 </TouchableOpacity>
                 <H2 style={{ marginHorizontal: 24, minWidth: 30, textAlign: 'center' }}>{floors}</H2>
                 <TouchableOpacity style={ss.stepperBtn} onPress={() => setFloors(floors + 1)}>
-                    <NeoIcon name="add" size={20} color={C.primary[600]} />
+                    <NeoIcon name="Add" size={20} color={C.primary[600]} />
                 </TouchableOpacity>
             </View>
         </ScrollView>

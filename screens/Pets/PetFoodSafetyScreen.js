@@ -155,7 +155,7 @@ const s = StyleSheet.create({
 
   content: {
     paddingHorizontal: Neo.spacing.lg,
-    paddingBottom: 190,
+    paddingBottom: 240,
   },
 
   heroCard: {

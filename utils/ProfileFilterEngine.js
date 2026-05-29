@@ -17,25 +17,25 @@ export const MAPPING_TRIGGERS = {
     parquinho: ['parquinho', 'playground_coletivo'],
     escadas: ['escadas_internas', 'escadas'],
     quintal: ['quintal', 'quadra_esportiva', 'frente'],
-    jardim_horta: ['jardim', 'horta', 'jardinagem_ativa'],
+    jardim_horta: ['jardim', 'horta', 'jardinagem_ativa', 'pomar'],
     garagem: ['garagem'],
     deposito: ['deposito_oficina', 'sotao_porao', 'ferramentas'],
-    oficina: ['deposito_oficina', 'ferramentas'],
+    oficina: ['deposito_oficina', 'ferramentas', 'oficina_ext', 'oficina_domestica'],
     sotao: ['sotao_porao'],
     porao: ['sotao_porao'],
     canil: ['area_pet'],
-    central_gas: ['central_gas', 'gas_encanado', 'botijao'],
+    central_gas: ['central_gas', 'gas_encanado', 'botijao', 'botijao_gas'],
     despensa: ['despensa'],
     copa: ['copa'], // Separado da sala
     varanda: ['sacada', 'varanda_externa', 'varanda', 'terraco'],
-    hall_corredor: ['corredor', 'hall', 'elevador_hall'],
-    quarto_adulto: ['quarto_casal', 'quarto_solteiro', 'quarto_hospedes', 'quarto_adolescente', 'escritorio', 'quarto_pcd'],
+    hall_corredor: ['corredor', 'hall', 'elevador_hall', 'corredores'],
+    quarto_adulto: ['quarto_casal', 'quarto_solteiro', 'quarto_hospedes', 'quarto_adolescente', 'escritorio', 'quarto_pcd', 'quarto_adulto'],
     quarto_bebe: ['quarto_bebe'], 
-    quarto_crianca: ['quarto_infantil', 'brinquedoteca'], 
+    quarto_crianca: ['quarto_infantil', 'brinquedoteca', 'quarto_crianca'], 
     quarto_idoso: ['quarto_idoso'],
     area_servico: ['lavanderia', 'area_servico', 'lavanderia_interna'],
     cozinha: ['cozinha', 'cozinha_americana', 'cozinha_tradicional'],
-    sala: ['sala_estar', 'sala_jantar', 'sala'],
+    sala: ['sala_estar', 'sala_jantar', 'sala', 'sala_tv'],
     banheiro: ['banheiro_social', 'banheiro_suite', 'lavabo', 'banheiro'],
 };
 
@@ -52,7 +52,7 @@ function calcularIdade(dataNascimento) {
         const m = hoje.getMonth() - nascimento.getMonth();
         if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) idade--;
         return idade;
-    } catch {
+    } catch (error) {
         return null;
     }
 }
@@ -70,6 +70,17 @@ export function isAreaRelevant(area, moradia, profiles, mapping) {
     const safeMapping = Array.isArray(mapping) ? mapping : [];
     const safeProfiles = Array.isArray(profiles) ? profiles : [];
     const safeMoradia = moradia || {};
+
+    const isStudioLike = ['studio', 'loft', 'kitnet'].includes(safeMoradia.tipo || safeMoradia.tipoImovel);
+
+    if (isStudioLike) {
+        // Se for um studio/loft/kitnet, os cômodos de estar, cozinha e quarto adulto são absorvidos pela Área Integrada.
+        if (area.id === 'ambiente_integrado') return true;
+        if (['sala', 'cozinha', 'quarto_adulto'].includes(area.id)) return false;
+    } else {
+        // Se não for um studio, a Área Integrada não é relevante.
+        if (area.id === 'ambiente_integrado') return false;
+    }
 
     const { condicional } = area;
 
@@ -138,14 +149,34 @@ export function isAreaRelevant(area, moradia, profiles, mapping) {
  * @returns {boolean}
  */
 export function isItemRelevant(item, profiles, moradia) {
-    if (!item.tags || item.tags.length === 0) return true;
-
     const safeProfiles = Array.isArray(profiles) ? profiles : [];
     const safeMoradia = moradia || {};
 
     const hasBebe = safeProfiles.some(p => p.tipo === 'bebe' || (p.tipo === 'humano' && calcularIdade(p.dataNascimento) !== null && calcularIdade(p.dataNascimento) <= 1));
     const hasCrianca = safeProfiles.some(p => p.tipo === 'crianca' || (p.tipo === 'humano' && calcularIdade(p.dataNascimento) !== null && calcularIdade(p.dataNascimento) <= 12));
     const hasIdoso = safeProfiles.some(p => p.tipo === 'idoso' || (p.tipo === 'humano' && calcularIdade(p.dataNascimento) !== null && calcularIdade(p.dataNascimento) >= 60));
+
+    // Caso especial: portão de segurança em escadas só é relevante em edificações com mais de um pavimento e com crianças pequenas/bebês
+    const tituloLower = (item.titulo || '').toLowerCase();
+    if (tituloLower.includes('babygate') || tituloLower.includes('portão de bloqueio') || tituloLower.includes('portões de bloqueio')) {
+        const andares = parseInt(safeMoradia.andares || safeMoradia.floors || 1, 10);
+        const isSobrado = ['sobrado', 'cobertura'].includes(safeMoradia.tipo || safeMoradia.tipoImovel);
+        const hasMultipleFloors = andares > 1 || isSobrado;
+        if (!hasMultipleFloors) return false;
+        if (!hasCrianca && !hasBebe) return false;
+    }
+
+    // Caso especial: redes de proteção em janelas/sacadas só são relevantes se a edificação tiver mais de um pavimento, for apartamento/studio/cobertura, ou estiver em andar superior
+    if (tituloLower.includes('rede de proteção') || tituloLower.includes('redes de proteção')) {
+        const andares = parseInt(safeMoradia.andares || safeMoradia.floors || 1, 10);
+        const andar = parseInt(safeMoradia.andar || 0, 10);
+        const isApartment = ['apartamento', 'studio', 'cobertura'].includes(safeMoradia.tipo || safeMoradia.tipoImovel);
+        const hasHeightHazard = andares > 1 || andar > 0 || isApartment;
+        if (!hasHeightHazard) return false;
+        if (!hasCrianca && !hasBebe && !safeProfiles.some(p => p.tipo === 'pet')) return false;
+    }
+
+    if (!item.tags || item.tags.length === 0) return true;
 
     const hasPetIdoso = safeProfiles.some(p => {
         if (p.tipo !== 'pet') return false;
@@ -186,7 +217,6 @@ export function isItemRelevant(item, profiles, moradia) {
     if (item.tags.includes('disfuncao_cognitiva')) {
         if (!hasDisfuncaoCognitiva) return false;
     }
-    // Adicione mais regras conforme necessário (ex: pets)
 
     return true;
 }
@@ -205,4 +235,72 @@ export function getRelevantAreas(allAreas, moradia, profiles, mapping) {
     return allAreas.filter(area => isAreaRelevant(area, moradia, profiles, mapping));
 }
 
-export default { getRelevantAreas, isAreaRelevant, isItemRelevant, MAPPING_TRIGGERS };
+/**
+ * Retorna a estrutura do checklist de um cômodo dinamicamente,
+ * aplicando regras como injeção de itens de idosos se necessário.
+ *
+ * @param {string} roomId - ID do cômodo
+ * @param {Array}  profiles - Perfis de moradores
+ * @param {Object} moradia - Dados da moradia
+ * @param {Array}  mapping - Ambientes mapeados
+ * @returns {Object} Estrutura de checklist do cômodo
+ */
+export function getRoomChecklistStructure(roomId, profiles, moradia, mapping = []) {
+    const { CHECKLISTS } = require('../data/mapeamento_dados');
+    const safeProfiles = Array.isArray(profiles) ? profiles : [];
+    const safeMapping = Array.isArray(mapping) ? mapping : [];
+
+    // Clona o checklist estático do ambiente para evitar mutações indesejadas no global
+    const structure = JSON.parse(JSON.stringify(CHECKLISTS[roomId] || { categorias: [] }));
+
+    // Regra: Injetar itens do "Quarto do Idoso" no "Quarto de Adulto" ou "Área Integrada" se:
+    // 1. O cômodo atual for 'quarto_adulto' ou 'ambiente_integrado'
+    // 2. Houver idoso cadastrado nos perfis
+    // 3. NÃO houver um 'quarto_idoso' mapeado explicitamente no onboarding
+    if (roomId === 'quarto_adulto' || roomId === 'ambiente_integrado') {
+        const hasIdoso = safeProfiles.some(p => p.tipo === 'idoso' || (p.tipo === 'humano' && calcularIdade(p.dataNascimento) !== null && calcularIdade(p.dataNascimento) >= 60));
+        const isQuartoIdosoMapped = safeMapping.includes('quarto_idoso');
+
+        if (hasIdoso && !isQuartoIdosoMapped) {
+            const idosoStructure = CHECKLISTS['quarto_idoso'];
+            if (idosoStructure && idosoStructure.categorias) {
+                idosoStructure.categorias.forEach(cat => {
+                    structure.categorias.push({
+                        nome: 'Segurança do Idoso (Antiqueda)',
+                        nome_en: 'Elderly Safety (Anti-fall)',
+                        nome_es: 'Seguridad del Adulto Mayor (Anticaídas)',
+                        nome_ptpt: 'Segurança do Idoso (Antiqueda)',
+                        emoji: '👵',
+                        itens: cat.itens
+                    });
+                });
+            }
+        }
+    }
+
+    return structure;
+}
+
+/**
+ * Retorna o nome de exibição dinamicamente ajustado para certas áreas (ex: central_gas).
+ *
+ * @param {string} areaId - ID da área
+ * @param {string} defaultName - Nome padrão da área
+ * @param {Array}  mapping - Ambientes/riscos mapeados
+ * @param {Function} t - Função de tradução
+ * @returns {string} Nome dinamicamente traduzido/ajustado
+ */
+export function getDynamicAreaName(areaId, defaultName, mapping, t) {
+    const safeMapping = Array.isArray(mapping) ? mapping : [];
+    if (areaId === 'central_gas') {
+        if (safeMapping.includes('botijao') || safeMapping.includes('botijao_gas')) {
+            return t('checklists.botijaoGas', 'Botijão de Gás');
+        }
+        if (safeMapping.includes('gas_encanado')) {
+            return t('checklists.gasEncanado', 'Gás Encanado');
+        }
+    }
+    return defaultName;
+}
+
+export default { getRelevantAreas, isAreaRelevant, isItemRelevant, getRoomChecklistStructure, getDynamicAreaName, MAPPING_TRIGGERS };

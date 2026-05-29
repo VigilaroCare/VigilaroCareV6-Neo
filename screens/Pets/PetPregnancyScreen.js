@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
     titleStd: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
     subtitleStd: { color: Neo.colors.neutral[600] },
 
-    content: { padding: Neo.spacing.lg, gap: 12, paddingBottom: 190 },
+    content: { padding: Neo.spacing.lg, gap: 12, paddingBottom: 240 },
 
     petCard: {
         flexDirection: 'row',

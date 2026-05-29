@@ -10,10 +10,13 @@
 // TIPOS DE MORADIA
 // ========================================
 export const TIPOS_MORADIA = [
-    { id: 'casa', label: 'Casa', icon: 'home', desc: 'Residência térrea (1 andar)' },
-    { id: 'apartamento', label: 'Apartamento', icon: 'business', desc: 'Unidade em prédio' },
-    { id: 'sobrado', label: 'Sobrado', icon: 'business-outline', desc: 'Casa com 2+ andares' },
-    { id: 'condominio', label: 'Condomínio', icon: 'grid', desc: 'Casa em condomínio fechado' },
+    { id: 'casa', label: 'Casa', label_en: 'House', label_es: 'Casa', label_ptpt: 'Casa/Moradia', icon: 'home', desc: 'Residência térrea (1 andar)', desc_en: 'Single-story residence (1 floor)', desc_es: 'Residencia de un piso (1 planta)', desc_ptpt: 'Residência térrea (1 piso)' },
+    { id: 'apartamento', label: 'Apartamento', label_en: 'Apartment', label_es: 'Apartamento', label_ptpt: 'Apartamento', icon: 'business', desc: 'Unidade em prédio', desc_en: 'Unit in a building', desc_es: 'Unidad en edificio', desc_ptpt: 'Unidade em prédio' },
+    { id: 'sobrado', label: 'Sobrado', label_en: 'Multi-story House', label_es: 'Casa de dos pisos', label_ptpt: 'Moradia de dois pisos', icon: 'business-outline', desc: 'Casa com 2+ andares', desc_en: 'House with 2+ floors', desc_es: 'Casa con 2+ plantas', desc_ptpt: 'Moradia com 2+ pisos' },
+    { id: 'condominio', label: 'Condomínio', label_en: 'Gated Community', label_es: 'Condominio', label_ptpt: 'Condomínio', icon: 'grid', desc: 'Casa em condomínio fechado', desc_en: 'House in a gated community', desc_es: 'Casa en condominio cerrado', desc_ptpt: 'Moradia em condomínio fechado' },
+    { id: 'studio', label: 'Studio/Flat', label_en: 'Studio Apartment', label_es: 'Estudio/Flat', label_ptpt: 'Estúdio/T0', icon: 'box', desc: 'Quarto, sala e cozinha integrados', desc_en: 'Integrated bedroom, living area, and kitchen', desc_es: 'Dormitorio, sala y cocina integrados', desc_ptpt: 'Quarto, sala e cozinha integrados' },
+    { id: 'loft', label: 'Loft', label_en: 'Loft', label_es: 'Loft', label_ptpt: 'Loft', icon: 'home', desc: 'Espaço aberto com pé-direito alto e mezanino', desc_en: 'Open space with high ceilings and mezzanine', desc_es: 'Espacio abierto con techos altos and mezzanine', desc_ptpt: 'Espaço aberto com pé-direito alto e mezanino' },
+    { id: 'kitnet', label: 'Kitnet', label_en: 'Kitchenette', label_es: 'Monoambiente', label_ptpt: 'Kitchenette/T0', icon: 'box', desc: 'Espaço pequeno com kitchenette integrada', desc_en: 'Small space with integrated kitchenette', desc_es: 'Espacio pequeño con cocina integrada', desc_ptpt: 'Espaço pequeno com kitchenette integrada' }
 ];
 
 // ========================================

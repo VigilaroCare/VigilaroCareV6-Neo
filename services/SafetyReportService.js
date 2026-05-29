@@ -106,6 +106,192 @@ function getActionTip(item, knowledgeTip) {
     return tip;
 }
 
+// ─── HELPER: Medida Corretiva ────────────────────────────────────────────────
+function getMedidaCorretiva(item, tip) {
+    if (tip && tip.trim()) {
+        return tip;
+    }
+    let title = item.titulo || '';
+    if (title.endsWith('?')) {
+        title = title.slice(0, -1);
+    }
+    title = title.replace(/^(os|as|o|a|você|existe|existem|há)\s+/i, '');
+    return `Providenciar a adequação do item: garantir que ${title.toLowerCase()}.`;
+}
+
+// ─── HELPER: Medida Preventiva ────────────────────────────────────────────────
+function getMedidaPreventiva(item, profileType) {
+    const tags = item.tags || [];
+    const title = (item.titulo || '').toLowerCase();
+    
+    const PREVENTIVE_ACTIONS = {
+        queda: {
+            baby: "Manter supervisão visual 100% ativa em locais elevados (trocador, cama, sofá) e manter os portões de segurança de escadas trancados.",
+            toddler: "Bloquear o acesso a janelas com móveis próximos, usar portões nas escadas e ensinar a descer degraus engatinhando de costas.",
+            child: "Orientar a não subir em cadeiras, mesas ou peitoris de janelas para jogar ou brincar. Manter janelas travadas se não tiverem redes de proteção.",
+            senior: "Estabelecer uma rotina de exercícios leves para fortalecimento muscular e de equilíbrio. Retirar tapetes soltos e manter caminhos desobstruídos.",
+            pet: "Evitar brincadeiras bruscas perto de vãos de escadas ou varandas abertas. Bloquear passagem de pets filhotes por grades largas.",
+            default: "Manter corredores e passagens livres de fios, calçados e brinquedos. Fazer vistorias visuais de desordem nos caminhos comuns."
+        },
+        afogamento: {
+            baby: "Esvaziar e virar para baixo baldes, bacias e banheiras imediatamente após o uso. Nunca deixar o bebê sozinho no banho por nenhum segundo.",
+            toddler: "Manter a porta do banheiro trancada por fora e a tampa do vaso sanitário lacrada com trava de segurança para crianças.",
+            child: "Ensinar a criança a nadar desde cedo e nunca deixá-la brincar perto de corpos d'água sem a presença física direta de um adulto.",
+            pet: "Manter portões da área da piscina fechados e acostumar o pet a reconhecer a rampa ou escada de saída de emergência.",
+            default: "Instalar cercas ou barreiras ao redor de áreas com água acumulada. Tampar poços, cisternas e manter piscinas cobertas com capas rígidas."
+        },
+        queimadura: {
+            baby: "Checar a temperatura da água da banheira com o cotovelo antes de colocar o bebê. Não segurar o bebê no colo enquanto consome bebidas quentes.",
+            toddler: "Adotar o hábito de usar as bocas traseiras do fogão e manter cabos de panelas virados para trás. Criar uma 'zona proibida' de 1 metro ao redor do fogão.",
+            child: "Ensinar sobre o perigo do fogo e manter fósforos, isqueiros e velas trancados em gavetas altas, longe do alcance visual.",
+            senior: "Utilizar alarmes ou temporizadores visuais/sonoros no preparo de alimentos para evitar esquecimento de panelas ligadas.",
+            pet: "Impedir o pet de subir em bancadas de cozinha e monitorar enquanto o forno estiver ligado para evitar encostar no vidro quente.",
+            default: "Manipular panelas quentes com luvas apropriadas e nunca deixar óleos ou gorduras sob aquecimento sem monitoramento constante."
+        },
+        intoxicacao: {
+            baby: "Manter produtos de higiene e cosméticos trancados. Nunca chamar medicamentos de 'docinho' ou 'bala' na frente da criança.",
+            toddler: "Guardar produtos de limpeza, inseticidas e medicamentos estritamente em armários altos ou gavetas com travas de segurança.",
+            child: "Ensinar a não colocar substâncias desconhecidas na boca. Manter produtos em seus recipientes originais (nunca usar garrafas de refrigerante).",
+            senior: "Utilizar organizadores diários/semanais de comprimidos e manter a receita médica atualizada junto às caixas para evitar superdosagem.",
+            pet: "Conhecer a lista de plantas e alimentos tóxicos para animais. Guardar chocolate, uvas, medicamentos humanos e venenos de ratos sob chave.",
+            default: "Armazenar produtos químicos residenciais isolados de alimentos e utensílios de cozinha. Manter as embalagens bem vedadas."
+        },
+        eletricidade: {
+            baby: "Usar protetores plásticos em todas as tomadas acessíveis na altura do chão e não deixar carregadores de celular conectados sem uso.",
+            toddler: "Esconder cabos elétricos atrás de móveis pesados e evitar o uso de extensões ou adaptadores elétricos temporários no chão.",
+            child: "Orientar a nunca tocar em tomadas ou ligar eletrodomésticos com as mãos ou pés molhados. Explicar o perigo de fios soltos.",
+            pet: "Proteger os cabos elétricos com conduítes ou organizadores rígidos para evitar que o animal morda ou roa os fios energizados.",
+            default: "Evitar a sobrecarga de tomadas usando múltiplos benjamins. Desligar disjuntores antes de efetuar pequenas trocas de lâmpadas ou reparos."
+        },
+        gas: {
+            default: "Adotar o hábito de fechar o registro do botijão de gás ao deitar-se ou ao se ausentar da residência por longos períodos."
+        },
+        corte: {
+            baby: "Evitar o uso de copos ou pratos de vidro perto de bebês. Guardar objetos cortantes de manicure/pedicure em estojos trancados.",
+            child: "Disponibilizar tesouras de ponta redonda para atividades escolares e guardar facas de cozinha em suportes elevados ou gavetas com travas.",
+            pet: "Evitar deixar cacos de vidro, pregos ou latas abertas em locais onde o pet possa transitar ou farejar.",
+            default: "Manusear facas e ferramentas manuais sempre apontando a lâmina para longe do corpo. Descartar vidros quebrados embrulhados em papel grosso."
+        },
+        sufocacao: {
+            baby: "Colocar o bebê para dormir de barriga para cima em colchão firme. Retirar bichos de pelúcia, almofadas e protetores soltos do berço.",
+            toddler: "Evitar oferecer brinquedos com peças muito pequenas (menores que 4 cm) e cortar alimentos (como uvas e salsichas) em pedaços pequenos no sentido longitudinal.",
+            pet: "Destruir ou recolher sacos plásticos vazios de ração ou de compras, pois cães e gatos podem prender a cabeça neles e sufocar.",
+            default: "Evitar o uso de cordões de cortina ou persianas soltos que possam criar laços na altura de crianças ou pescoço de animais."
+        },
+        iluminacao: {
+            senior: "Manter luzes de presença (sensor ou tomadas piloto) permanentemente ligadas nas rotas noturnas entre o quarto e o banheiro.",
+            default: "Substituir imediatamente lâmpadas queimadas em áreas comuns, corredores e degraus de acesso da residência."
+        },
+        janela: {
+            child: "Manter camas, sofás e cadeiras afastados das janelas e sacadas para evitar que sirvam de degrau para escaladas de crianças.",
+            pet: "Manter as janelas de apartamentos fechadas ou limitadas se não possuírem telas de proteção resistentes a garras e mordidas de pets.",
+            default: "Verificar a integridade física das redes de proteção anualmente e evitar debruçar-se ou colocar pesos excessivos nos peitoris."
+        }
+    };
+
+    for (const tag of tags) {
+        const data = PREVENTIVE_ACTIONS[tag];
+        if (data) {
+            return data[profileType] || data.default || null;
+        }
+    }
+
+    const keywords = Object.keys(PREVENTIVE_ACTIONS);
+    for (const kw of keywords) {
+        if (title.includes(kw)) {
+            const data = PREVENTIVE_ACTIONS[kw];
+            return data[profileType] || data.default || null;
+        }
+    }
+
+    return "Manter a atenção diária nas condições do ambiente e adotar hábitos de supervisão e organização para evitar situações de perigo.";
+}
+
+// ─── HELPER: Medida de Mitigação ──────────────────────────────────────────────
+function getMedidaMitigacao(item, profileType) {
+    const tags = item.tags || [];
+    const title = (item.titulo || '').toLowerCase();
+    
+    const MITIGATION_ACTIONS = {
+        queda: {
+            baby: "Instalar tapetes emborrachados macios ao redor do berço e do trocador para amortecer eventuais impactos de quedas acidentais.",
+            toddler: "Utilizar protetores de quinas arredondadas em mesas e móveis baixos para suavizar colisões e ferimentos durante quedas.",
+            child: "Usar pisos emborrachados em áreas de brinquedos e instalar limitadores de abertura nas janelas (abertura máxima de 10 cm).",
+            senior: "Garantir o uso de calçados antiderrapantes com solado de borracha firme dentro de casa e instalar barras de apoio no box e vaso sanitário.",
+            pet: "Manter pisos limpos e secos para evitar escorregões que possam lesionar as articulações e patinhas dos animais.",
+            default: "Manter um kit de primeiros socorros com gelo em gel reutilizável na geladeira e faixas para conter inchaços de quedas leves."
+        },
+        afogamento: {
+            baby: "Manter o telefone do SAMU (192) em discagem rápida e saber como realizar compressões torácicas básicas de emergência em lactentes.",
+            toddler: "Conhecer a manobra de desobstrução das vias aéreas e manter um colete salva-vidas de tamanho infantil sempre acessível se houver piscina.",
+            child: "Utilizar coletes salva-vidas homologados (não boias de braço) e manter um cabo ou boia circular rígida na borda da piscina.",
+            pet: "Instalar uma plataforma flutuante ou rampa de escape para pets na piscina, permitindo que o animal saia sozinho se cair acidentalmente.",
+            default: "Fazer curso de primeiros socorros focado em reanimação cardiorrespiratória e manter o telefone de emergência em local visível."
+        },
+        queimadura: {
+            baby: "Em caso de queimadura leve, resfriar a área com água corrente fria por 10 minutos (nunca aplicar pasta de dente ou manteiga) e buscar socorro médico.",
+            toddler: "Instalar barreiras de proteção físicas ao redor do fogão (grades de fogão) e manter pomadas para queimadura no kit de primeiros socorros.",
+            senior: "Substituir chaleiras convencionais por chaleiras elétricas com desligamento automático e proteção térmica nas laterais.",
+            pet: "Ter à mão gaze limpa e soro fisiológico frio para resfriar a pele do animal em caso de queimaduras por óleo quente ou vapor.",
+            default: "Instalar um extintor de incêndio ABC na cozinha e manter uma manta corta-fogo para abafar princípios de incêndio em frigideiras."
+        },
+        intoxicacao: {
+            baby: "Deixar o número do Centro de Informação Toxicológica (0800-722-6001) salvo nos contatos. Nunca induzir o vômito em caso de ingestão química.",
+            toddler: "Saber identificar as embalagens ingeridas para informar à equipe médica e nunca usar receitas caseiras para neutralizar venenos.",
+            senior: "Manter um diário de administração de medicamentos visível para que paramédicos possam checar os remédios em caso de emergência.",
+            pet: "Ter o contato do veterinário plantonista 24h anotado e saber quais sintomas indicam envenenamento (salivação excessiva, convulsões).",
+            default: "Salvar o telefone do CIATox local no celular e manter carvão ativado no kit de primeiros socorros doméstico."
+        },
+        eletricidade: {
+            baby: "Instalar o dispositivo Diferencial Residual (DR) no quadro elétrico, que corta a energia instantaneamente ao menor sinal de fuga de corrente.",
+            toddler: "Instalar canaletas rígidas de proteção de fios para que a criança não consiga puxar ou mastigar as fiações elétricas.",
+            pet: "Aplicar sprays amargos apropriados para pets nos cabos elétricos da casa e usar tomadas blindadas ou protetores contra mordidas.",
+            default: "Instalar disjuntores termomagnéticos adequados no quadro geral e manter um alicate de corte isolado em local de fácil acesso de emergência."
+        },
+        gas: {
+            default: "Instalar um sensor eletrônico de vazamento de gás GLP/Natural com alarme sonoro na cozinha e saber onde fica a chave geral de corte do gás."
+        },
+        corte: {
+            baby: "Manter gaze estéril, soro fisiológico e antisséptico para limpeza rápida de ferimentos no kit de primeiros socorros do bebê.",
+            child: "Ter curativos adesivos coloridos para incentivar a proteção do ferimento e saber aplicar pressão direta sobre o corte para estancar sangramentos.",
+            pet: "Manter pomada cicatrizante e ataduras para conter sangramentos nas patinhas causados por cortes com vidros ou arames.",
+            default: "Usar luvas de proteção grossas ao manusear cacos de vidro quebrado ou metais e ter à mão compressas estéreis e fita micropore."
+        },
+        sufocacao: {
+            baby: "Aprender e treinar a Manobra de Heimlich para bebês menores de 1 ano (tapas nas costas e compressões no peito).",
+            toddler: "Saber realizar a Manobra de Heimlich para crianças maiores e manter o telefone de emergência dos bombeiros (193) no discador rápido.",
+            pet: "Conhecer a técnica de desobstrução de vias aéreas em pets e saber como agir se o animal engolir brinquedos ou pedaços de ossos.",
+            default: "Ter um dispositivo extrator de corpos estranhos por vácuo (se disponível) ou saber agir rapidamente ligando para o 193/192."
+        },
+        iluminacao: {
+            senior: "Instalar fitas antiderrapantes fotoluminescentes nas bordas de todos os degraus de escada e manter uma lanterna recarregável ao lado da cama.",
+            default: "Manter luzes de emergência automáticas instaladas em pontos críticos da casa para o caso de falta de energia à noite."
+        },
+        janela: {
+            child: "Utilizar redes de proteção certificadas e instalar travas mecânicas nas janelas que restrinjam a abertura e resistam ao peso da criança.",
+            pet: "Instalar redes de proteção com malha de 3cm ou 5cm de alta resistência e vistorias frequentes das fixações para evitar rasgos.",
+            default: "Manter trincos adicionais nas janelas e usar telas mosquiteiras resistentes que também criem barreira visual."
+        }
+    };
+
+    for (const tag of tags) {
+        const data = MITIGATION_ACTIONS[tag];
+        if (data) {
+            return data[profileType] || data.default || null;
+        }
+    }
+
+    const keywords = Object.keys(MITIGATION_ACTIONS);
+    for (const kw of keywords) {
+        if (title.includes(kw)) {
+            const data = MITIGATION_ACTIONS[kw];
+            return data[profileType] || data.default || null;
+        }
+    }
+
+    return "Ter em mãos os números dos serviços de emergência (192 SAMU, 193 Bombeiros) e possuir um kit básico de primeiros socorros montado na residência.";
+}
+
 // ─── HELPER: resolve tipo de perfil robusto ──────────────────────────────────
 function resolveProfileType(profile) {
     if (!profile) return 'adult';
@@ -179,6 +365,7 @@ class SafetyReportService {
             const moradia = await ProfileService.getMoradia();
             const location = formatLocation(moradia);
             const residenceId = await ProfileService.getActiveResidenceId();
+            const nomeResidencia = await ProfileService.getActiveResidenceName();
             const mapping = await ProfileService.getMapping();
 
             const tipoMoradia = moradia.tipo || moradia.tipoMoradia || null;
@@ -207,6 +394,7 @@ class SafetyReportService {
             // ── 6. PROCESSAR AMBIENTES ─────────────────────────────────────
             const riskItems = [];   // "nao"
             const pendingItems = [];   // sem resposta
+            let answeredCount = 0;
 
             const isRelevant = (roomKey) => {
                 const roomDef = AMBIENTES.find(a => a.id === roomKey);
@@ -268,6 +456,9 @@ class SafetyReportService {
 
                 allItems.forEach(q => {
                     const answer = getItemAnswer(q.titulo);
+                    if (answer === 'sim' || answer === 'nao' || answer === 'na') {
+                        answeredCount++;
+                    }
                     const itemKey = `${roomKey}::${q.titulo}`;
                     const implication = getImplication(q, type);
                     const tip = getActionTip(q, knowledge?.tip);
@@ -281,6 +472,9 @@ class SafetyReportService {
                         tags: q.tags || [],
                         implication,
                         tip,
+                        medidaCorretiva: getMedidaCorretiva(q, tip),
+                        medidaPreventiva: getMedidaPreventiva(q, type),
+                        medidaMitigacao: getMedidaMitigacao(q, type),
                         acknowledged: acknowledgments[itemKey] || null
                     };
 
@@ -304,7 +498,9 @@ class SafetyReportService {
                     ? ` Há medicamentos registrados — certifique-se de que estão armazenados com segurança.`
                     : '';
 
-            if (critCount === 0 && pendingCount === 0) {
+            if (answeredCount === 0) {
+                executiveSummary = `${firstName}, sua vistoria ainda não foi iniciada. Mapeie e inspecione os ambientes para podermos gerar o diagnóstico de segurança da sua casa.`;
+            } else if (critCount === 0 && pendingCount === 0) {
                 executiveSummary = `${firstName}, sua vistoria está completa e não há irregularidades ativas. Excelente! Continue revisando periodicamente para manter este nível de proteção.${healthContext}`;
             } else if (critCount === 0 && pendingCount > 0) {
                 executiveSummary = `${firstName}, não há riscos confirmados, mas ${pendingCount} item(ns) ainda não foram verificados. Complete a vistoria para um diagnóstico preciso.${healthContext}`;
@@ -324,6 +520,8 @@ class SafetyReportService {
                 typeLabel: typeLabel(type, age),
                 age,
                 moradia: {
+                    id: residenceId,
+                    nome: nomeResidencia,
                     tipo: tipoMoradia,
                     andar,
                     caracteristicas: caract,
@@ -345,7 +543,8 @@ class SafetyReportService {
                     total: riskItems.length + pendingItems.length,
                     risks: riskItems.length,
                     pending: pendingItems.length,
-                    acknowledged: ackCount
+                    acknowledged: ackCount,
+                    answeredCount: answeredCount
                 },
                 generatedAt: new Date().toISOString()
             };
@@ -477,6 +676,10 @@ class SafetyReportService {
             // Precisamos dos dados cruzados atuais
             const reportData = await this.getDeepDiveReport(profileId);
             if (!reportData) return null;
+
+            if (reportData.stats?.answeredCount === 0) {
+                return null;
+            }
 
             const OpenAIService = require('./OpenAIService').default;
 

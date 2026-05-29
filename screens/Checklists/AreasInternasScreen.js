@@ -21,6 +21,8 @@ import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
+import { useTranslation } from 'react-i18next';
+import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 
 // Mapeamento de IDs de ambiente para IDs de áreas internas
 const AMBIENTE_TO_AREA = {
@@ -41,13 +43,14 @@ const AMBIENTE_TO_AREA = {
   bedroom_teen: ['quarto_adulto', 'quarto_crianca'],
   bedroom_adult: ['quarto_adulto'],
   bedroom_senior: ['quarto_idoso'],
-  gas_central: ['central_gas'],
+  gas_central: ['central_gas', 'gas_encanado', 'botijao', 'botijao_gas'],
   balcony_indoor: ['varanda'],
 };
 
 export default function AreasInternasScreen({ navigation, route }) {
-  // BUG FIX: ambienteId nunca era extraído do route.params (causava ReferenceError silencioso)
-  const ambienteId = route?.params?.ambienteId || null;
+  // BUG FIX: ambienteId/ambiente extraído de route.params com suporte a ambos os formatos
+  const ambienteId = route?.params?.ambienteId || route?.params?.ambiente || null;
+  const { t } = useTranslation('common');
   const themeColors = useThemeColors();
   const isDark = useIsDark();
   const textPrimary = themeColors.neutral[900];
@@ -120,8 +123,10 @@ export default function AreasInternasScreen({ navigation, route }) {
     }
   }, [dadosFiltrados]);
 
-  const tituloDinamico = ambienteId
-    ? `${ambienteId.charAt(0).toUpperCase() + ambienteId.slice(1)}`
+  const tituloDinamico = ambienteId && dadosFiltrados.length > 0
+    ? (dadosFiltrados[0].id === 'gas_central'
+        ? getDynamicAreaName('central_gas', dadosFiltrados[0].titulo, mapping, t)
+        : dadosFiltrados[0].titulo)
     : 'Áreas internas';
 
   const flatListRef = useRef(null);
@@ -218,7 +223,9 @@ export default function AreasInternasScreen({ navigation, route }) {
           </View>
 
           <View style={s.cardContent}>
-            <Text style={[s.cardTitle, { color: textPrimary }]}>{item.titulo}</Text>
+            <Text style={[s.cardTitle, { color: textPrimary }]}>
+              {item.id === 'gas_central' ? getDynamicAreaName('central_gas', item.titulo, mapping, t) : item.titulo}
+            </Text>
 
             <Text
               style={[

@@ -20,19 +20,22 @@ import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../../utils/
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoAlert from '../../utils/NeoAlert';
+import { t_field } from '../../utils/getLocalizedField';
 
 // --- DATA CONSTANTS ---
 
 const HOUSING_TYPES = [
-  { id: 'casa', label: 'Casa', icon: 'Home2' },
-  { id: 'apartamento', label: 'Apartamento', icon: 'Building' },
-  { id: 'sobrado', label: 'Sobrado', icon: 'HomeHashtag' },
-  { id: 'sitio', label: 'Sítio', icon: 'Tree' },
-  { id: 'chacara', label: 'Chácara', icon: 'Sun1' },
-  { id: 'casa_praia', label: 'Casa de Praia', icon: 'Sun1' },
-  { id: 'apto_praia', label: 'Apto. na Praia', icon: 'Pool' },
-  { id: 'studio', label: 'Studio/Flat', icon: 'Monitor' },
-  { id: 'cobertura', label: 'Cobertura', icon: 'CloudPlus' },
+  { id: 'casa', label: 'Casa', label_en: 'House', label_es: 'Casa', label_ptpt: 'Casa/Moradia', icon: 'Home2' },
+  { id: 'apartamento', label: 'Apartamento', label_en: 'Apartment', label_es: 'Apartamento', label_ptpt: 'Apartamento', icon: 'Building' },
+  { id: 'sobrado', label: 'Sobrado', label_en: 'Multi-story House', label_es: 'Casa de dos pisos', label_ptpt: 'Moradia de dois pisos', icon: 'HomeHashtag' },
+  { id: 'sitio', label: 'Sítio', label_en: 'Ranch', label_es: 'Finca', label_ptpt: 'Quinta', icon: 'Tree' },
+  { id: 'chacara', label: 'Chácara', label_en: 'Farmhouse', label_es: 'Granja', label_ptpt: 'Chácara', icon: 'Sun1' },
+  { id: 'casa_praia', label: 'Casa de Praia', label_en: 'Beach House', label_es: 'Casa de playa', label_ptpt: 'Casa de praia', icon: 'Sun1' },
+  { id: 'apto_praia', label: 'Apto. na Praia', label_en: 'Beach Apt', label_es: 'Apto. playa', label_ptpt: 'Apto. praia', icon: 'Pool' },
+  { id: 'studio', label: 'Studio/Flat', label_en: 'Studio Apartment', label_es: 'Estudio/Flat', label_ptpt: 'Estúdio/T0', icon: 'Monitor' },
+  { id: 'loft', label: 'Loft', label_en: 'Loft', label_es: 'Loft', label_ptpt: 'Loft', icon: 'Home2' },
+  { id: 'kitnet', label: 'Kitnet', label_en: 'Kitchenette', label_es: 'Monoambiente', label_ptpt: 'Kitchenette/T0', icon: 'Monitor' },
+  { id: 'cobertura', label: 'Cobertura', label_en: 'Penthouse', label_es: 'Ático/Penthouse', label_ptpt: 'Cobertura/Duplex', icon: 'CloudPlus' },
 ];
 
 const EXTERNAL_AREAS = [
@@ -259,7 +262,7 @@ export default function HomeMappingScreen({ navigation, route }) {
               onPress={() => setTipo(item.id)}
             >
               <NeoIcon name={item.icon} size={28} color={tipo === item.id ? Colors.primary : Colors.textSecondary} variant={tipo === item.id ? "Bold" : "Linear"} />
-              <Text style={[styles.cardText, tipo === item.id && styles.textActive]}>{item.label}</Text>
+              <Text style={[styles.cardText, tipo === item.id && styles.textActive]}>{t_field(item, 'label')}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -334,6 +337,12 @@ export default function HomeMappingScreen({ navigation, route }) {
             { id: 'fuga', label: 'Fuga', icon: 'Location' },
             { id: 'choque', label: 'Choque Elétrico', icon: 'Flash' },
             { id: 'engasgo', label: 'Engasgo', icon: 'RecordCircle' },
+            { id: 'animais_peconhentos', label: 'Peçonhentos', icon: 'Warning2' },
+            { id: 'plantas_toxicas', label: 'Plantas Tóxicas', icon: 'Tree' },
+            { id: 'queimaduras', label: 'Queimaduras', icon: 'Danger' },
+            { id: 'mobilidade', label: 'Mobilidade/Acess.', icon: 'Activity' },
+            { id: 'intrusao_externa', label: 'Intrusão/Furtos', icon: 'ShieldTick' },
+            { id: 'brinquedos_perigosos', label: 'Brinquedos/Pilhas', icon: 'Box' },
           ].map(p => (
             <TouchableOpacity
               key={p.id}

@@ -31,7 +31,7 @@ import { t_field } from '../../utils/getLocalizedField';
 
 // Components
 import NeoCard from '../../components/NeoCard';
-import { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, H2, H3, Body, Small, Caption, NeoText } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
@@ -183,11 +183,11 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                 {CHECKLIST_ASILO_SEGURA.categorias.map((categoria) => {
                                     const progress = getCategoryProgress(categoria);
                                     return (
-                                        <TouchableOpacity
+                                        <NeoCard
+                                            variant="glass"
                                             key={categoria.id}
                                             style={styles.gridCard}
                                             onPress={() => setActiveCategory(categoria.id)}
-                                            activeOpacity={0.7}
                                         >
                                             <View style={[styles.iconCircle, { backgroundColor: categoria.cor + '15' }]}>
                                                 <NeoText style={{ fontSize: 26 }}>{categoria.icone}</NeoText>
@@ -205,7 +205,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                                     }} />
                                                 </View>
                                             )}
-                                        </TouchableOpacity>
+                                        </NeoCard>
                                     );
                                 })}
                             </View>
@@ -501,15 +501,10 @@ const styles = StyleSheet.create({
     gridCard: {
         width: '48%',
         minHeight: 140,
-        backgroundColor: 'rgba(255,255,255,0.6)',
-        borderRadius: 16,
         padding: 14,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.8)',
         paddingTop: 16,
-        ...Neo.shadows.sm,
     },
     gridCardTitle: {
         fontSize: 13,
@@ -560,9 +555,6 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 14,
         marginBottom: 8,
-        borderRadius: 18,
-        borderWidth: 1,
-        borderColor: '#F3F4F6',
     },
     itemPriorityBar: {
         width: 4,

@@ -18,8 +18,15 @@ import i18n from '../i18n';
  */
 export const t_field = (obj, field) => {
   if (!obj || !field) return '';
-  const lang = i18n.language;
-  if (!lang || lang.startsWith('pt')) return obj[field] ?? '';
+  const lang = i18n.language || 'pt';
+  const langLower = lang.toLowerCase();
+
+  if (langLower.startsWith('pt-pt')) {
+    const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
+    if (ptptValue) return ptptValue;
+  }
+
+  if (langLower.startsWith('pt')) return obj[field] ?? '';
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
   return localizedValue ?? obj[field] ?? '';
@@ -30,8 +37,15 @@ export const t_field = (obj, field) => {
  */
 export const t_array = (obj, field) => {
   if (!obj || !field) return [];
-  const lang = i18n.language;
-  if (!lang || lang.startsWith('pt')) return obj[field] ?? [];
+  const lang = i18n.language || 'pt';
+  const langLower = lang.toLowerCase();
+
+  if (langLower.startsWith('pt-pt')) {
+    const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
+    if (ptptValue) return ptptValue;
+  }
+
+  if (langLower.startsWith('pt')) return obj[field] ?? [];
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
   return localizedValue ?? obj[field] ?? [];
@@ -40,7 +54,7 @@ export const t_array = (obj, field) => {
 /**
  * Retorna um objeto aninhado localizado.
  * Útil para campos como sintomas: { imediatos, tardios, graves }
- * e primeirosSocorros: { fazer, naoFazer }.
+ * e primeiros Socorros: { fazer, naoFazer }.
  * 
  * @param {Object} obj - O objeto de dados
  * @param {string} field - O nome do campo base do objeto aninhado
@@ -53,8 +67,15 @@ export const t_array = (obj, field) => {
  */
 export const t_object = (obj, field) => {
   if (!obj || !field) return {};
-  const lang = i18n.language;
-  if (!lang || lang.startsWith('pt')) return obj[field] ?? {};
+  const lang = i18n.language || 'pt';
+  const langLower = lang.toLowerCase();
+
+  if (langLower.startsWith('pt-pt')) {
+    const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
+    if (ptptValue) return ptptValue;
+  }
+
+  if (langLower.startsWith('pt')) return obj[field] ?? {};
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
   return localizedValue ?? obj[field] ?? {};

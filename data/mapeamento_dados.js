@@ -414,6 +414,25 @@ export const AMBIENTES = [
         condicional: 'opcional', // Para casas
         fase: 2,
     },
+    {
+        id: 'ambiente_integrado',
+        nome: 'Área Integrada (Studio / Loft / Kitnet)',
+        nome_en: 'Integrated Area (Studio / Loft / Kitchenette)',
+        nome_es: 'Área Integrada (Estudio / Loft / Monoambiente)',
+        nome_ptpt: 'Área Integrada (Estúdio / Loft / Kitchenette)',
+        emoji: '🏢',
+        iconName: 'Box',
+        cor: '#95A5A6',
+        prioridade: 'Máxima',
+        prioridade_en: 'Maximum',
+        prioridade_es: 'Máxima',
+        descricao: 'Quarto, sala e cozinha integrados sem divisórias físicas.',
+        descricao_en: 'Bedroom, living room, and kitchen integrated without physical walls.',
+        descricao_es: 'Dormitorio, sala y cocina integrados sin paredes divisorias.',
+        descricao_ptpt: 'Quarto, sala e cozinha integrados sem divisórias físicas.',
+        condicional: 'opcional',
+        fase: 1,
+    },
 ];
 
 /**
@@ -444,6 +463,49 @@ export const hydrateChecklistItem = (savedItem) => {
 };
 
 export const CHECKLISTS = {
+
+    ambiente_integrado: {
+        categorias: [
+            {
+                nome: 'Cozinha e Equipamentos',
+                nome_en: 'Kitchen and Equipment',
+                nome_es: 'Cocina y Equipos',
+                nome_ptpt: 'Cozinha e Equipamentos',
+                emoji: '🍳',
+                itens: [
+                    { titulo: 'Cabos das panelas estão sempre virados para o interior do fogão?', titulo_en: 'Are pot handles always turned towards the inside of the stove?', titulo_es: '¿Los mangos de las ollas están siempre girados hacia el interior de la estufa?', tipo: 'perigo', tags: ['queimadura', 'básico'] },
+                    { titulo: 'Mangueira e regulador de gás dentro da validade (5 anos)', titulo_en: 'Gas hose and regulator within validity (5 years)', titulo_es: 'Manguera y regulador de gas dentro de la validez (5 años)', titulo_ptpt: 'Mangueira e redutor de gás dentro da validade (5 anos)', tipo: 'perigo', tags: ['explosão', 'gás'] },
+                    { titulo: 'Produtos de limpeza e químicos guardados em armários altos ou com trava', titulo_en: 'Cleaning products and chemicals stored in high cabinets or with safety locks', titulo_es: 'Productos de limpieza y químicos guardados en gabinetes altos o con cerradura de seguridad', titulo_ptpt: 'Produtos de limpeza e químicos guardados em armários altos ou com fecho de segurança', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Facas e ferramentas de corte guardadas de forma segura e inacessíveis a crianças/pets', titulo_en: 'Knives and cutting tools stored safely and inaccessible to children/pets', titulo_es: 'Cuchillos y herramientas de corte guardados de forma segura e inaccesibles para niños/mascotas', titulo_ptpt: 'Facas e ferramentas de corte guardadas de forma segura e inacessíveis a crianças/animais', tipo: 'perigo', tags: ['corte', 'crianças'] }
+                ]
+            },
+            {
+                nome: 'Estar e Layout',
+                nome_en: 'Living and Layout',
+                nome_es: 'Sala y Diseño',
+                nome_ptpt: 'Estar e Layout',
+                emoji: '🛋️',
+                itens: [
+                    { titulo: 'TVs, estantes ou móveis altos fixados na parede (anti-tombamento)', titulo_en: 'TVs, shelving units or tall furniture secured to the wall (anti-tip)', titulo_es: 'Televisores, estanterías o muebles altos fijados a la pared (antivuelco)', titulo_ptpt: 'TVs, estantes ou móveis altos fixados na parede (anti-queda)', tipo: 'perigo', tags: ['tombamento'] },
+                    { titulo: 'Tapetes soltos removidos ou devidamente fixados com fita antiderrapante', titulo_en: 'Loose rugs removed or properly secured with non-slip tape', titulo_es: 'Alfombras sueltas retiradas o debidamente fijadas con cinta antideslizante', titulo_ptpt: 'Tapetes soltos removidos ou devidamente fixados com fita antiderrapante', tipo: 'perigo', tags: ['queda'] },
+                    { titulo: 'Janelas e basculantes possuem redes de proteção seguras e sem frestas', titulo_en: 'Windows and transoms have secure safety nets with no gaps', titulo_es: 'Ventanas y tragaluces tienen redes de protección seguras y sin aberturas', titulo_ptpt: 'Janelas e basculantes têm redes de proteção seguras e sem frestas', tipo: 'perigo', tags: ['queda'] },
+                    { titulo: 'Fios e cabos elétricos organizados e protegidos contra tropeços e mordidas', titulo_en: 'Electrical wires and cables organized and protected against trips and chewing', titulo_es: 'Cables y cables eléctricos organizados y protegidos contra tropiezos y mordeduras', titulo_ptpt: 'Fios e cabos elétricos organizados e protegidos contra tropeços e trincas/mordidas', tipo: 'normal', tags: ['tropeço'] }
+                ]
+            },
+            {
+                nome: 'Dormitório e Objetos',
+                nome_en: 'Bedroom and Objects',
+                nome_es: 'Dormitorio y Objetos',
+                nome_ptpt: 'Dormitório e Objetos',
+                emoji: '🛌',
+                itens: [
+                    { titulo: 'Medicamentos e cosméticos trancados em gavetas ou totalmente fora do alcance', titulo_en: 'Medicines and cosmetics locked in drawers or completely out of reach', titulo_es: 'Medicamentos y cosméticos bajo llave en cajones o totalmente fuera del alcance', titulo_ptpt: 'Medicamentos e cosméticos trancados em gavetas ou totalmente fora do alcance', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'O carregador de telemóvel/celular fica desligado da tomada se não estiver em uso', titulo_en: 'Phone charger unplugged from the outlet when not in use', titulo_es: 'Cargador de móvil/celular desenchufado de la toma de corriente si no está en uso', titulo_ptpt: 'O carregador de telemóvel fica desligado da tomada se não estiver a ser utilizado', tipo: 'perigo', tags: ['choque', 'incêndio'] },
+                    { titulo: 'Objetos cortantes e pontiagudos guardados de forma segura e fechada', titulo_en: 'Sharp and pointed objects stored in a safe and closed manner', titulo_es: 'Objetos cortantes y puntiagudos guardados de forma segura y cerrada', titulo_ptpt: 'Objetos cortantes e pontiagudos guardados de forma segura e fechada', tipo: 'normal', tags: ['corte'] }
+                ]
+            }
+        ]
+    },
 
     // === FASE 1 ===
     cozinha: {
@@ -605,6 +667,7 @@ export const CHECKLISTS = {
                     { titulo: 'Corrimão instalado dos dois lados e totalmente firme', titulo_en: 'Handrail installed on both sides and completely firm', titulo_es: 'Pasamanos instalado a ambos lados y completamente firme', tipo: 'normal', tags: ['apoio'] },
                     { titulo: 'Degraus possuem fita antiderrapante fixada', titulo_en: 'Steps have anti-slip tape attached', titulo_es: 'Los escalones tienen cinta antideslizante adherida', tipo: 'normal', tags: ['queda'] },
                     { titulo: 'Iluminação forte e contínua iluminando todos os degraus', titulo_en: 'Strong, continuous lighting illuminating all steps', titulo_es: 'Iluminación fuerte y continua que ilumina todos los escalones', tipo: 'perigo', tags: ['visão'] },
+                    { titulo: 'Escadas desobstruídas e totalmente livres de objetos nos degraus (sapatos, brinquedos, fios ou decorações)', titulo_en: 'Stairways unobstructed and completely free of objects on the steps (shoes, toys, wires, or decorations)', titulo_es: 'Escaleras despejadas y totalmente libres de objetos en los escalones (zapatos, juguetes, cables o decoraciones)', tipo: 'perigo', tags: ['queda', 'tropeço'] },
                 ],
             },
         ],
@@ -1036,63 +1099,81 @@ export const CHECKLISTS = {
         categorias: [
             {
                 nome: 'Equipamentos de Proteção (EPIs)',
+                nome_en: 'Personal Protective Equipment (PPE)',
+                nome_es: 'Equipos de Protección Personal (EPP)',
+                nome_ptpt: 'Equipamentos de Proteção (EPIs)',
                 emoji: '🪖',
                 itens: [
-                    { titulo: 'Óculos de proteção disponíveis para pequenas manutenções ou limpezas químicas', tipo: 'perigo', tags: ['visão'] },
-                    { titulo: 'Luvas de raspa/couro presentes para jardinagem pesada e proteção contra animais peçonhentos', tipo: 'perigo', tags: ['corte', 'animais_peçonhentos'] },
-                    { titulo: 'Calçados fechados e antiderrapantes são usados rotineiramente em limpeza e no jardim', tipo: 'perigo', tags: ['queda', 'animais_peçonhentos'] },
-                    { titulo: 'Protetores auriculares (plugue ou concha) disponíveis para uso com ferramentas ruidosas', tipo: 'normal', tags: ['audição'] },
-                    { titulo: 'Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados', tipo: 'sugestão', tags: ['impacto'] }
+                    { titulo: 'Óculos de proteção disponíveis para pequenas manutenções ou limpezas químicas', titulo_en: 'Safety glasses available for minor maintenance or chemical cleaning', titulo_es: 'Gafas de seguridad disponibles para pequeños mantenimientos o limpiezas químicas', titulo_ptpt: 'Óculos de proteção disponíveis para pequenas manutenções ou limpezas químicas', tipo: 'perigo', tags: ['visão'] },
+                    { titulo: 'Luvas de raspa/couro presentes para jardinagem pesada e proteção contra animais peçonhentos', titulo_en: 'Heavy duty leather gloves present for gardening and protection against venomous animals', titulo_es: 'Guantes de cuero disponibles para jardinería pesada y protección contra animales ponzoñosos', titulo_ptpt: 'Luvas de raspa/couro presentes para jardinagem pesada e proteção contra animais peçonhentos', tipo: 'perigo', tags: ['corte', 'animais_peçonhentos'] },
+                    { titulo: 'Calçados fechados e antiderrapantes são usados rotineiramente em limpeza e no jardim', titulo_en: 'Closed, non-slip footwear is routinely used for cleaning and in the garden', titulo_es: 'Se utiliza calzado cerrado y antideslizante de forma rutinaria en la limpieza y el jardín', titulo_ptpt: 'Calçado fechado e antiderrapante usado rotineiramente na limpeza e no jardim', tipo: 'perigo', tags: ['queda', 'animais_peçonhentos'] },
+                    { titulo: 'Protetores auriculares (plugue ou concha) disponíveis para uso com ferramentas ruidosas', titulo_en: 'Hearing protectors (plugs or earmuffs) available for use with noisy tools', titulo_es: 'Protectores auditivos (tapones o copas) disponibles para usar con herramientas ruidosas', titulo_ptpt: 'Protetores auriculares (tampões ou concha) disponíveis para uso com ferramentas ruidosas', tipo: 'normal', tags: ['audição'] },
+                    { titulo: 'Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados', titulo_en: 'Safety helmet (or bicycle helmet) accessible for maintenance at heights/roofs', titulo_es: 'Casco de protección (o de ciclista) accesible para mantenimientos en altura/techos', titulo_ptpt: 'Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados', tipo: 'sugestão', tags: ['impacto'] }
                 ],
             },
             {
                 nome: 'Caixa de Ferramentas',
+                nome_en: 'Toolbox',
+                nome_es: 'Caja de Herramientas',
+                nome_ptpt: 'Caixa de Ferramentas',
                 emoji: '🧰',
                 itens: [
-                    { titulo: 'Ferramentas de corte e perfuração são estritamente isoladas do acesso infantil', tipo: 'perigo', tags: ['corte'] },
-                    { titulo: 'Fita isolante e chave de teste de tensão guardadas na caixa para emergências elétricas', tipo: 'normal', tags: ['choque'] }
+                    { titulo: 'Ferramentas de corte e perfuração são estritamente isoladas do acesso infantil', titulo_en: 'Cutting and drilling tools are strictly isolated from children\'s access', titulo_es: 'Las herramientas de corte y perforación están estrictamente aisladas del acceso infantil', titulo_ptpt: 'Ferramentas de corte e perfuração são estritamente isoladas do acesso infantil', tipo: 'perigo', tags: ['corte'] },
+                    { titulo: 'Fita isolante e chave de teste de tensão guardadas na caixa para emergências elétricas', titulo_en: 'Electrical tape and voltage tester stored in the box for electrical emergencies', titulo_es: 'Cinta aislante y probador de voltaje guardados en la caja para emergencias eléctricas', titulo_ptpt: 'Fita isoladora e busca-polos guardados na caixa para emergências elétricas', tipo: 'normal', tags: ['choque'] }
                 ],
             },
             {
                 nome: 'Kits de Apoio e Emergência',
+                nome_en: 'Support and Emergency Kits',
+                nome_es: 'Kits de Apoyo y Emergencia',
+                nome_ptpt: 'Kits de Apoio e Emergência',
                 emoji: '🎒',
                 itens: [
-                    { titulo: 'Lanterna resistente com pilhas extras ou luz de emergência mantidas funcionais', tipo: 'perigo', tags: ['energia'] },
-                    { titulo: 'Pilha extra de reserva (lacrada) para os equipamentos de iluminação e emergência', tipo: 'normal', tags: ['energia'] },
-                    { titulo: 'Documentos de identidade e cartilhas de saúde (SUS/Plano) guardados em acesso prioritário', tipo: 'normal', tags: ['documentos'] },
-                    { titulo: 'Lista impressa e atualizada de contatos de emergência e apoio afixada', tipo: 'normal', tags: ['comunicação'] },
+                    { titulo: 'Lanterna resistente com pilhas extras ou luz de emergência mantidas funcionais', titulo_en: 'Heavy duty flashlight with extra batteries or emergency light kept functional', titulo_es: 'Linterna resistente con pilas extras o luz de emergencia mantenida funcional', titulo_ptpt: 'Lanterna resistente com pilhas extra ou luz de emergência mantidas funcionais', tipo: 'perigo', tags: ['energia'] },
+                    { titulo: 'Pilha extra de reserva (lacrada) para os equipamentos de iluminação e emergência', titulo_en: 'Extra backup batteries (sealed) for lighting and emergency equipment', titulo_es: 'Pilas extra de repuesto (selladas) para equipos de iluminación y emergencia', titulo_ptpt: 'Pilhas extra de reserva (seladas) para os equipamentos de iluminação e emergência', tipo: 'normal', tags: ['energia'] },
+                    { titulo: 'Documentos de identidade e cartilhas de saúde (SUS/Plano) guardados em acesso prioritário', titulo_en: 'Identity documents and health booklets (SUS/Insurance) stored in priority access', titulo_es: 'Documentos de identidad y cartillas de salud guardados en acceso prioritario', titulo_ptpt: 'Documentos de identificação e cadernetas de saúde guardados em acesso prioritário', tipo: 'normal', tags: ['documentos'] },
+                    { titulo: 'Lista impressa e atualizada de contatos de emergência e apoio afixada', titulo_en: 'Printed and updated list of emergency and support contacts posted', titulo_es: 'Lista impresa y actualizada de contactos de emergencia y apoyo fijada', titulo_ptpt: 'Lista impressa e atualizada de contactos de emergência e apoio afixada', tipo: 'normal', tags: ['comunicação'] },
                 ],
             },
             {
                 nome: 'Kit de Primeiros Socorros / Curativos',
+                nome_en: 'First Aid Kit / Dressings',
+                nome_es: 'Kit de Primeros Auxilios / Vendajes',
+                nome_ptpt: 'Kit de Primeiros Socorros / Pensos',
                 emoji: '🩹',
                 itens: [
-                    { titulo: 'Estoque mantido de Antisséptico (Água oxigenada 10v, Clorexidina ou similar)', tipo: 'perigo', tags: ['primeiros_socorros'] },
-                    { titulo: 'Dotação não-vencida de compressas de gaze estéril, esparadrapo e curativos adesivos', tipo: 'perigo', tags: ['primeiros_socorros'] },
-                    { titulo: 'Soro Fisiológico pronto para limpeza imediata de feridas abertas ou olhos', tipo: 'normal', tags: ['primeiros_socorros'] },
-                    { titulo: 'Tesoura sem ponta reservada no kit para corte de gazes ou vestimentas', tipo: 'normal', tags: ['primeiros_socorros'] },
-                    { titulo: 'Bolsa de gelo ou compressas frias instantâneas para casos de picadas e contusões', tipo: 'sugestão', tags: ['primeiros_socorros'] }
+                    { titulo: 'Estoque mantido de Antisséptico (Água oxigenada 10v, Clorexidina ou similar)', titulo_en: 'Antiseptic stock maintained (Hydrogen peroxide 10v, Chlorhexidine or similar)', titulo_es: 'Existencias de antiséptico mantenidas (Agua oxigenada 10v, Clorhexidina o similar)', titulo_ptpt: 'Stock mantido de Antisséptico (Água oxigenada 10v, Clorexidina ou similar)', tipo: 'perigo', tags: ['primeiros_socorros'] },
+                    { titulo: 'Dotação não-vencida de compressas de gaze estéril, esparadrapo e curativos adesivos', titulo_en: 'Unexpired supply of sterile gauze pads, tape and adhesive bandages', titulo_es: 'Suministro no vencido de compresas de gasa estériles, esparadrapo y vendas adhesivas', titulo_ptpt: 'Lote não vencido de compressas de gaze estéril, fita adesiva e pensos rápidos', tipo: 'perigo', tags: ['primeiros_socorros'] },
+                    { titulo: 'Soro Fisiológico pronto para limpeza imediata de feridas abertas ou olhos', titulo_en: 'Saline solution ready for immediate cleaning of open wounds or eyes', titulo_es: 'Suero fisiológico listo para la limpieza inmediata de heridas abiertas u ojos', titulo_ptpt: 'Soro Fisiológico pronto para limpeza imediata de feridas abertas ou olhos', tipo: 'normal', tags: ['primeiros_socorros'] },
+                    { titulo: 'Tesoura sem ponta reservada no kit para corte de gazes ou vestimentas', titulo_en: 'Blunt scissors reserved in the kit for cutting gauze or clothing', titulo_es: 'Tijeras sin punta reservadas en el kit para cortar gasas o ropa', titulo_ptpt: 'Tesoura sem ponta reservada no kit para corte de gazes ou vestuário', tipo: 'normal', tags: ['primeiros_socorros'] },
+                    { titulo: 'Bolsa de gelo ou compressas frias instantâneas para casos de picadas e contusões', titulo_en: 'Ice pack or instant cold packs for stings and bruises', titulo_es: 'Bolsa de hielo o compresas frías instantáneas para picaduras y contusiones', titulo_ptpt: 'Saco de gelo ou compressas frias instantâneas para casos de picadas e contusões', tipo: 'sugestão', tags: ['primeiros_socorros'] }
                 ],
             },
             {
                 nome: 'Farmácia Caseira',
+                nome_en: 'Home Pharmacy',
+                nome_es: 'Farmacia Casera',
+                nome_ptpt: 'Farmácia Caseira',
                 emoji: '💊',
                 itens: [
-                    { titulo: 'Medicamentos estritamente isolados do alcance de crianças ou pets (alto e/ou trancado)', tipo: 'perigo', tags: ['intoxicação'] },
-                    { titulo: 'Sais de Reidratação Oral (SRO) disponíveis para emergências de desidratação grave', tipo: 'sugestão', tags: ['saúde'] },
-                    { titulo: 'Medicamentos e insumos conferidos periodicamente, todos estritamente no prazo de validade', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Medicamentos estritamente isolados do alcance de crianças ou pets (alto e/ou trancado)', titulo_en: 'Medicines strictly isolated from the reach of children or pets (high up and/or locked)', titulo_es: 'Medicamentos estrictamente aislados del alcance de niños o mascotas (alto y/o cerrado)', titulo_ptpt: 'Medicamentos estritamente isolados do alcance de crianças ou pets (alto e/ou trancado)', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Sais de Reidratação Oral (SRO) disponíveis para emergências de desidratação grave', titulo_en: 'Oral Rehydration Salts (ORS) available for severe dehydration emergencies', titulo_es: 'Sales de Rehidratación Oral (SRO) disponibles para emergencias de deshidratación grave', titulo_ptpt: 'Sais de Reidratação Oral (SRO) disponíveis para emergências de desidratação grave', tipo: 'sugestão', tags: ['saúde'] },
+                    { titulo: 'Medicamentos e insumos conferidos periodicamente, todos estritamente no prazo de validade', titulo_en: 'Medicines and supplies checked periodically, all strictly within expiration date', titulo_es: 'Medicamentos e insumos verificados periódicamente, todos estrictamente dentro de la fecha de caducidad', titulo_ptpt: 'Medicamentos e consumíveis verificados periodicamente, todos estritamente no prazo de validade', tipo: 'perigo', tags: ['intoxicação'] },
                 ],
             },
             {
                 nome: 'Prontidão Pet',
+                nome_en: 'Pet Readiness',
+                nome_es: 'Preparación de Mascotas',
+                nome_ptpt: 'Prontidão Pet',
                 emoji: '🐶',
                 itens: [
-                    { titulo: 'Cópia da via da Carteira de Vacinação guardada em formato físico e ágil (ou na Nuvem)', tipo: 'normal', tags: ['documentos'] },
-                    { titulo: 'Focinheira presente para uso como ferramenta de blindagem profilática em momentos de estresse', tipo: 'perigo', tags: ['segurança'] },
-                    { titulo: 'Caixa de transporte montada (ou bolsa de suporte) em padrão robusto, preparada para evacuação', tipo: 'perigo', tags: ['fuga'] },
-                    { titulo: 'Água e Ração estocadas sob medida preventiva de segurança em recipientes herméticos de 3 dias', tipo: 'sugestão', tags: ['sobrevivência'] },
-                    { titulo: 'Carvão Ativado em estoque (para emergências de intoxicação, sob guia veterinário)', tipo: 'perigo', tags: ['intoxicação'] },
-                    { titulo: 'Fotos impressas ou salvas offline do pet para identificação rápida em caso de busca', tipo: 'normal', tags: ['identificação'] }
+                    { titulo: 'Cópia da via da Carteira de Vacinação guardada em formato físico e ágil (ou na Nuvem)', titulo_en: 'Copy of the Vaccination Card saved in physical and agile format (or in the Cloud)', titulo_es: 'Copia de la Cartilla de Vacunación guardada en formato físico y ágil (o en la Nube)', titulo_ptpt: 'Cópia da via do Boletim de Vacinas guardada em formato físico e ágil (ou na Nuvem)', tipo: 'normal', tags: ['documentos'] },
+                    { titulo: 'Focinheira presente para uso como ferramenta de blindagem profilática em momentos de estresse', titulo_en: 'Muzzle present for use as a prophylactic safety tool in times of stress', titulo_es: 'Bozal presente para usar como herramienta de seguridad profiláctica en momentos de estrés', titulo_ptpt: 'Açaime presente para uso como ferramenta de proteção profilática em momentos de stress', tipo: 'perigo', tags: ['segurança'] },
+                    { titulo: 'Caixa de transporte montada (ou bolsa de suporte) em padrão robusto, preparada para evacuação', titulo_en: 'Sturdy pet carrier (or support bag) assembled, prepared for evacuation', titulo_es: 'Caja de transporte montada (o bolsa de soporte) resistente, preparada para evacuación', titulo_ptpt: 'Caixa de transporte montada (ou bolsa de suporte) em padrão robusto, preparada para evacuação', tipo: 'perigo', tags: ['fuga'] },
+                    { titulo: 'Água e Ração estocadas sob medida preventiva de segurança em recipientes herméticos de 3 dias', titulo_en: 'Water and food stored Hermetically for 3 days as a preventive safety measure', titulo_es: 'Agua y alimentos almacenados Herméticamente durante 3 días como medida de seguridad preventiva', titulo_ptpt: 'Água e ração armazenadas sob medida preventiva de segurança em recipientes herméticos de 3 dias', tipo: 'sugestão', tags: ['sobrevivência'] },
+                    { titulo: 'Carvão Ativado em estoque (para emergências de intoxicação, sob guia veterinário)', titulo_en: 'Activated charcoal in stock (for poisoning emergencies, under veterinary guidance)', titulo_es: 'Carbón activado en stock (para emergencias de intoxicación, bajo guía veterinaria)', titulo_ptpt: 'Carvão Ativado em stock (para emergências de intoxicação, sob orientação veterinária)', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Fotos impressas ou salvas offline do pet para identificação rápida em caso de busca', titulo_en: 'Printed or offline saved photos of the pet for quick identification in case of search', titulo_es: 'Fotos impresas o guardadas fuera de línea de la mascota para una identificación rápida en caso de búsqueda', titulo_ptpt: 'Fotos impressas ou guardadas offline do pet para identificação rápida em caso de busca', tipo: 'normal', tags: ['identificação'] }
                 ],
             },
         ],

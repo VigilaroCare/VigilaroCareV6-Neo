@@ -240,18 +240,23 @@ export const ChecklistService = {
         }).filter(area => area.itens.length > 0); // Remove áreas vazias
     },
 
-    getAreaStats: (areaId, areaData = {}, structure = null, profiles = [], moradia = null) => {
+    getAreaStats: (areaId, areaData = {}, structure = null, profiles = [], moradia = null, mapping = []) => {
         if (!_FilterEngine) _FilterEngine = require('../utils/ProfileFilterEngine');
         let stats = { checked: 0, na: 0, total: 0, warning: 0, critical: 0, failedItems: [] };
         let items = [];
 
-        if (structure && structure.categorias) structure.categorias.forEach(cat => { if (cat.itens) items = [...items, ...cat.itens]; });
-        else if (Array.isArray(areaData) && areaData.length > 0) items = areaData;
-        // BUG-05 FIX: Formato legado — areaData como objeto { itemTitulo: status }
-        else if (areaData && typeof areaData === 'object' && !Array.isArray(areaData) && Object.keys(areaData).length > 0) {
+        const dynamicStructure = _FilterEngine.getRoomChecklistStructure(areaId, profiles, moradia, mapping);
+        if (dynamicStructure && dynamicStructure.categorias && dynamicStructure.categorias.length > 0) {
+            dynamicStructure.categorias.forEach(cat => { if (cat.itens) items = [...items, ...cat.itens]; });
+        } else if (structure && structure.categorias) {
+            structure.categorias.forEach(cat => { if (cat.itens) items = [...items, ...cat.itens]; });
+        } else if (Array.isArray(areaData) && areaData.length > 0) {
+            items = areaData;
+        } else if (areaData && typeof areaData === 'object' && !Array.isArray(areaData) && Object.keys(areaData).length > 0) {
             items = Object.keys(areaData).map(k => ({ titulo: k, status: areaData[k] }));
+        } else {
+            return stats;
         }
-        else return stats;
 
         // OTIMIZAÇÃO: Hash Map O(1)
         const areaDataMap = {};
@@ -304,7 +309,7 @@ export const ChecklistService = {
                 const areaData = allState[area.id] || {};
                 const structure = CHECKLISTS[area.id];
 
-                const areaStats = ChecklistService.getAreaStats(area.id, areaData, structure, profiles, moradia);
+                const areaStats = ChecklistService.getAreaStats(area.id, areaData, structure, profiles, moradia, mapping);
 
                 stats.total += areaStats.total;
                 stats.safe += areaStats.checked;

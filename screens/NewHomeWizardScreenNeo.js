@@ -40,6 +40,7 @@ const TOTAL_PHASES = 3;
 export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const { residenceId, initialPhase } = route.params || {};
     const fadeAnim = useRef(new Animated.Value(1)).current;
+    const [isOnboarding, setIsOnboarding] = useState(false);
 
     // Navigation state — ordem invertida (D2): ONDE_TIPO → ONDE_AMBIENTES → QUEM
     // initialPhase via route.params permite ao Hub "Seu mapa sensível" abrir
@@ -70,6 +71,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const [formComodos, setFormComodos] = useState([]);
 
     // ONDE state
+    const [residenceName, setResidenceName] = useState('');
     const [houseType, setHouseType] = useState('casa');
     const [floors, setFloors] = useState(1);
     const [externalAreas, setExternalAreas] = useState([]);
@@ -78,27 +80,76 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     // IDs dos perfis vinculados à residência ATIVA — alimenta checkbox
     // "mora aqui?" no QuemListStep. Recarrega ao salvar/togglar.
     const [linkedIds, setLinkedIds] = useState([]);
+    const [habitanteIds, setHabitanteIds] = useState([]);
 
     useFocusEffect(useCallback(() => {
         loadData();
     }, [residenceId]));
 
-    // Recalcula linkedIds a partir do estado salvo da residência ativa.
+    // Recalcula linkedIds e habitanteIds a partir do estado salvo da residência ativa.
     // Chamado no loadData + após cada toggle/save.
     const reloadLinkedIds = async () => {
         try {
-            const all = await ProfileService.getAllPerfis();
+            const data = await ProfileService.getData();
+            const activeId = await ProfileService.getActiveResidenceId();
+            const activeRes = (data.residences || []).find(r => r.id === activeId);
+
             const linked = [];
-            for (const p of (all || [])) {
-                const isLinked = await ProfileService.isProfileLinkedToActiveResidence(p.id);
-                if (isLinked) linked.push(p.id);
+            const habitantes = [];
+
+            if (activeRes?.moradia) {
+                const hab = activeRes.moradia.habitantes || [];
+                const freq = activeRes.moradia.frequentadores || [];
+
+                hab.forEach(id => {
+                    linked.push(id);
+                    habitantes.push(id);
+                });
+                freq.forEach(id => {
+                    if (!linked.includes(id)) linked.push(id);
+                });
             }
             setLinkedIds(linked);
+            setHabitanteIds(habitantes);
         } catch (_) { /* silent */ }
+    };
+
+    const handleChangeVinculo = async (perfilId, novoVinculo) => {
+        try {
+            const data = await ProfileService.getData();
+            const activeId = await ProfileService.getActiveResidenceId();
+            const resIndex = (data.residences || []).findIndex(r => r.id === activeId);
+
+            if (resIndex !== -1) {
+                if (!data.residences[resIndex].moradia) {
+                    data.residences[resIndex].moradia = {};
+                }
+                const m = data.residences[resIndex].moradia;
+                if (!Array.isArray(m.habitantes)) m.habitantes = [];
+                if (!Array.isArray(m.frequentadores)) m.frequentadores = [];
+
+                if (novoVinculo === 'habitante') {
+                    // Mover para habitantes
+                    m.frequentadores = m.frequentadores.filter(id => id !== perfilId);
+                    if (!m.habitantes.includes(perfilId)) m.habitantes.push(perfilId);
+                } else {
+                    // Mover para frequentadores
+                    m.habitantes = m.habitantes.filter(id => id !== perfilId);
+                    if (!m.frequentadores.includes(perfilId)) m.frequentadores.push(perfilId);
+                }
+                await ProfileService.saveData(data);
+                await reloadLinkedIds();
+            }
+        } catch (e) {
+            if (__DEV__) console.warn('[handleChangeVinculo]', e);
+        }
     };
 
     const loadData = async () => {
         if (residenceId) await ProfileService.setActiveResidence(residenceId);
+        const completed = await ProfileService.isOnboardingCompleto();
+        setIsOnboarding(!completed);
+
         const all = await ProfileService.getAllPerfis();
         setProfiles(all || []);
         await reloadLinkedIds();
@@ -107,12 +158,15 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         const mapping = await ProfileService.getMapping();
         if (mapping?.length > 0) setInternalRooms(mapping);
 
+        const activeRes = await ProfileService.getActiveResidence();
+        if (activeRes) setResidenceName(activeRes.nome || '');
+
         // Restaura draft do wizard, se existir, e abre na phase salva.
         // Só roda uma vez por sessão pra não atropelar mudanças do usuário.
         if (!draftRestored) {
             try {
                 const draft = await BriefingDraftService.load();
-                if (draft) {
+                if (draft && draft.residenceId === residenceId) {
                     if (Number.isInteger(draft.phase)) setPhase(Math.min(draft.phase, TOTAL_PHASES - 1));
                     if (draft.houseType) setHouseType(draft.houseType);
                     if (Number.isInteger(draft.floors)) setFloors(draft.floors);
@@ -126,6 +180,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // Helper: monta snapshot atual do estado pra persistir como draft.
     const buildDraft = () => ({
+        residenceId,
         phase,
         houseType,
         floors,
@@ -324,18 +379,30 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const finishWizard = async () => {
         try {
             const allMapping = [...externalAreas, ...internalRooms];
+            const activeRes = await ProfileService.getActiveResidence();
+            if (activeRes && residenceName.trim()) {
+                await ProfileService.updateResidenceName(activeRes.id, residenceName.trim());
+            }
             await ProfileService.saveMoradia({
                 tipoImovel: houseType,
                 andares: floors,
                 areasExternas: externalAreas,
             });
             await ProfileService.saveMapping(allMapping);
-            const humans = profiles.filter(p => p.tipo !== 'pet' && !p.pendente);
-            if (humans.length > 0) await ProfileService.setActivePerfil(humans[0].id);
-            await ProfileService.setOnboardingCompleto();
+            if (isOnboarding) {
+                const humans = profiles.filter(p => p.tipo !== 'pet' && !p.pendente);
+                if (humans.length > 0) await ProfileService.setActivePerfil(humans[0].id);
+                await ProfileService.setOnboardingCompleto();
+            }
             // Briefing concluído → limpa o draft pra não restaurar de novo
             await BriefingDraftService.clear();
-            NeoAlert.alert('Pronto!', 'Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.', [
+
+            const title = isOnboarding ? 'Pronto!' : 'Mapeamento concluído!';
+            const message = isOnboarding
+                ? 'Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.'
+                : 'Esta residência foi configurada com sucesso.';
+
+            NeoAlert.alert(title, message, [
                 { text: 'Acessar painel', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
             ]);
         } catch (e) {
@@ -351,6 +418,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         if (phase === 0) {
             return (
                 <P1_TipoMoradiaStep
+                    residenceName={residenceName} setResidenceName={setResidenceName}
                     houseType={houseType} setHouseType={setHouseType}
                     floors={floors} setFloors={setFloors}
                 />
@@ -400,10 +468,12 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             <QuemListStep
                 profiles={profiles}
                 linkedIds={linkedIds}
+                habitanteIds={habitanteIds}
                 onAddHuman={() => openProfileForm('human')}
                 onAddPet={() => openProfileForm('pet')}
                 onRemove={removeProfile}
                 onToggleLink={handleToggleLink}
+                onChangeVinculo={handleChangeVinculo}
             />
         );
     };
@@ -449,7 +519,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 17 }}>
                                 {phase === 0 && 'Próximo: ambientes'}
                                 {phase === 1 && 'Próximo: quem mora'}
-                                {phase === 2 && 'Concluir mapa sensível'}
+                                {phase === 2 && (isOnboarding ? 'Concluir mapa sensível' : 'Concluir mapeamento')}
                             </Body>
                             <NeoIcon name={phase === 2 ? 'tick-square' : 'arrow-right'} size={22} color="#FFF" />
                         </TouchableOpacity>

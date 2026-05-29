@@ -4,13 +4,15 @@
  */
 
 export const HOUSE_TYPES = [
-    { id: 'casa', label: 'Casa', icon: 'home' },
-    { id: 'sobrado', label: 'Sobrado', icon: 'house-2' },
-    { id: 'apartamento', label: 'Apartamento', icon: 'building' },
-    { id: 'sitio', label: 'Sítio/Chácara', icon: 'tree' },
-    { id: 'casa_praia', label: 'Casa de Praia', icon: 'sun-1' },
-    { id: 'studio', label: 'Studio/Flat', icon: 'box-1' },
-    { id: 'cobertura', label: 'Cobertura', icon: 'buildings-2' },
+    { id: 'casa', label: 'Casa', label_en: 'House', label_es: 'Casa', label_ptpt: 'Casa/Moradia', icon: 'home' },
+    { id: 'sobrado', label: 'Sobrado', label_en: 'Multi-story House', label_es: 'Casa de dos pisos', label_ptpt: 'Moradia de dois pisos', icon: 'house-2' },
+    { id: 'apartamento', label: 'Apartamento', label_en: 'Apartment', label_es: 'Apartamento', label_ptpt: 'Apartamento', icon: 'building' },
+    { id: 'sitio', label: 'Sítio/Chácara', label_en: 'Ranch/Farmhouse', label_es: 'Finca/Granja', label_ptpt: 'Quinta/Chácara', icon: 'tree' },
+    { id: 'casa_praia', label: 'Casa de Praia', label_en: 'Beach House', label_es: 'Casa de playa', label_ptpt: 'Casa de praia', icon: 'sun-1' },
+    { id: 'studio', label: 'Studio/Flat', label_en: 'Studio Apartment', label_es: 'Estudio/Flat', label_ptpt: 'Estúdio/T0', icon: 'box-1' },
+    { id: 'loft', label: 'Loft', label_en: 'Loft', label_es: 'Loft', label_ptpt: 'Loft', icon: 'house-2' },
+    { id: 'kitnet', label: 'Kitnet', label_en: 'Kitchenette', label_es: 'Monoambiente', label_ptpt: 'Kitchenette/T0', icon: 'box-1' },
+    { id: 'cobertura', label: 'Cobertura', label_en: 'Penthouse', label_es: 'Ático/Penthouse', label_ptpt: 'Cobertura/Duplex', icon: 'buildings-2' },
 ];
 
 export const EXTERNAL_AREAS = [

@@ -441,7 +441,7 @@ class ProfileService {
                         ...p,
                         isVisitante: frequentadores.includes(p.id) && !habitantes.includes(p.id)
                     }));
-            } else if (todos.length > 0) {
+            } else if (todos.length > 0 && activeId === 'default_home' && (!data.residences || data.residences.length <= 1)) {
                 // AUTO-REPAIR: perfis existem globalmente mas não estão vinculados
                 // Isso acontece com dados criados antes da correção do addPerfil.
                 // Vincular todos como habitantes da casa ativa.
@@ -585,11 +585,14 @@ class ProfileService {
             if (!data.residences[resIndex].moradia) {
                 data.residences[resIndex].moradia = {};
             }
-            if (!Array.isArray(data.residences[resIndex].moradia['habitantes'])) {
-                data.residences[resIndex].moradia['habitantes'] = [];
+            const perfil = (data.perfis || []).find(p => p.id === perfilId);
+            const vinculo = perfil?.vinculo === 'frequentador' ? 'frequentadores' : 'habitantes';
+
+            if (!Array.isArray(data.residences[resIndex].moradia[vinculo])) {
+                data.residences[resIndex].moradia[vinculo] = [];
             }
-            if (!data.residences[resIndex].moradia['habitantes'].includes(perfilId)) {
-                data.residences[resIndex].moradia['habitantes'].push(perfilId);
+            if (!data.residences[resIndex].moradia[vinculo].includes(perfilId)) {
+                data.residences[resIndex].moradia[vinculo].push(perfilId);
                 await this.saveData(data);
                 return true;
             }

@@ -11,7 +11,7 @@
  * Tap → link/unlink na residência ATIVA, sem deletar o perfil global.
  */
 import React from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body, Caption, Small } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
@@ -20,15 +20,30 @@ import { ss } from './styles';
 const C = DS.colors;
 const S = DS.spacing;
 
+function formatBirthdate(dateStr) {
+    if (!dateStr) return 'Sem data';
+    let normalized = dateStr.includes('T') ? dateStr.split('T')[0] : dateStr;
+    const yyyymmddRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    const match = normalized.match(yyyymmddRegex);
+    if (match) {
+        const [, year, month, day] = match;
+        return `${day}/${month}/${year}`;
+    }
+    return normalized;
+}
+
 export default function QuemListStep({
     profiles,
     linkedIds = [],              // IDs vinculados à residência ATIVA
+    habitanteIds = [],           // IDs de habitantes na residência ATIVA
     onAddHuman,
     onAddPet,
     onRemove,
     onToggleLink,                // (perfilId, currentlyLinked) => void
+    onChangeVinculo,             // (perfilId, novoVinculo) => void
 }) {
     const linkedSet = new Set(linkedIds);
+    const habitanteSet = new Set(habitanteIds);
 
     return (
         <ScrollView contentContainerStyle={{ padding: S.lg, paddingBottom: 140 }}>
@@ -48,7 +63,11 @@ export default function QuemListStep({
                                 isLinked && {
                                     borderWidth: 1.5,
                                     borderColor: C.primary[500],
-                                    backgroundColor: 'rgba(16,185,129,0.06)',
+                                    backgroundColor: C.primary[50],
+                                    ...Platform.select({
+                                        android: { elevation: 0 },
+                                        default: { shadowOpacity: 0 },
+                                    }),
                                 }
                             ]}>
                                 {/* Checkbox grande à esquerda — "mora aqui?" */}
@@ -83,8 +102,42 @@ export default function QuemListStep({
                                 <View style={{ flex: 1 }}>
                                     <H3 style={{ fontSize: 16 }}>{p.nome}</H3>
                                     <Caption style={{ color: C.neutral[500] }}>
-                                        {p.tipo === 'pet' ? (p.especie || 'Pet') : (p.dataNascimento || 'Sem data')}
+                                        {p.tipo === 'pet'
+                                            ? (p.especie || 'Pet')
+                                            : `${p.vinculo === 'frequentador' ? 'Visitante Eventual' : 'Morador Fixo'} • ${formatBirthdate(p.dataNascimento)}`}
                                     </Caption>
+                                    {isLinked && p.tipo !== 'pet' && (
+                                        <View style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>
+                                            <TouchableOpacity
+                                                onPress={() => onChangeVinculo && onChangeVinculo(p.id, 'habitante')}
+                                                style={{
+                                                    paddingHorizontal: 8, paddingVertical: 4,
+                                                    borderRadius: 6,
+                                                    borderWidth: 1,
+                                                    borderColor: habitanteSet.has(p.id) ? C.primary[500] : C.neutral[300],
+                                                    backgroundColor: habitanteSet.has(p.id) ? C.primary[500] : 'transparent',
+                                                }}
+                                            >
+                                                <Small style={{ color: habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>
+                                                    Morador Fixo
+                                                </Small>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity
+                                                onPress={() => onChangeVinculo && onChangeVinculo(p.id, 'frequentador')}
+                                                style={{
+                                                    paddingHorizontal: 8, paddingVertical: 4,
+                                                    borderRadius: 6,
+                                                    borderWidth: 1,
+                                                    borderColor: !habitanteSet.has(p.id) ? C.primary[500] : C.neutral[300],
+                                                    backgroundColor: !habitanteSet.has(p.id) ? C.primary[500] : 'transparent',
+                                                }}
+                                            >
+                                                <Small style={{ color: !habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>
+                                                    Visitante Eventual
+                                                </Small>
+                                            </TouchableOpacity>
+                                        </View>
+                                    )}
                                 </View>
 
                                 {/* Lixeira — apaga o perfil GLOBAL (confirmação no orquestrador) */}
@@ -113,7 +166,7 @@ export default function QuemListStep({
             <View style={{ gap: 12 }}>
                 <TouchableOpacity style={ss.addBtn} onPress={onAddHuman} activeOpacity={0.8}>
                     <NeoIcon name="profile-add" size={24} color={C.primary[600]} />
-                    <Body style={{ color: C.primary[700], fontWeight: '600', marginLeft: 12 }}>Adicionar Morador</Body>
+                    <Body style={{ color: C.primary[700], fontWeight: '600', marginLeft: 12 }}>Adicionar Morador / Visitante</Body>
                 </TouchableOpacity>
                 <TouchableOpacity style={[ss.addBtn, { backgroundColor: '#FFF8E1' }]} onPress={onAddPet} activeOpacity={0.8}>
                     <NeoIcon name="pet" size={24} color="#EF6C00" />

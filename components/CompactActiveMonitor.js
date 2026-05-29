@@ -10,6 +10,8 @@ import { AMBIENTES, hydrateChecklistItem } from '../data/mapeamento_dados';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../utils/getLocalizedField';
 import i18n from '../i18n';
+import ProfileService from '../services/ProfileService';
+import { getDynamicAreaName } from '../utils/ProfileFilterEngine';
 
 export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencias: 0, ambientes: {}, statsGeral: {}, statsAmbientes: {} }, scoreMessage = {}, isExpanded = false, onStatusChange }) {
     const { t } = useTranslation();
@@ -18,6 +20,7 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
     const [netInfo, setNetInfo] = useState(null);
     const [isMuted, setIsMuted] = useState(false);
     const [lastCheck, setLastCheck] = useState(null);
+    const [mapping, setMapping] = useState([]);
 
     const score = scoreData.geral;
     const isConnected = netInfo?.isConnected !== false;
@@ -97,6 +100,22 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
     }, [scoreData]);
 
     useEffect(() => {
+        let isMounted = true;
+        const loadMapping = async () => {
+            try {
+                const mapData = await ProfileService.getMapping();
+                if (isMounted) {
+                    setMapping(mapData || []);
+                }
+            } catch (err) {
+                console.error("Error loading mapping in CompactActiveMonitor:", err);
+            }
+        };
+        loadMapping();
+        return () => { isMounted = false; };
+    }, [scoreData]);
+
+    useEffect(() => {
         if (batteryLevel !== null && netInfo && batteryState) {
             handleAlerts(batteryLevel, netInfo, batteryState);
         }
@@ -127,9 +146,10 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
         if (found) {
             // Using t_field from utils to get translated name based on current language
             const lang = i18n.language || 'pt-BR';
-            if (lang.startsWith('en') && found.nome_en) return found.nome_en;
-            if (lang.startsWith('es') && found.nome_es) return found.nome_es;
-            return found.nome; // Fallback to pt-BR
+            let name = found.nome;
+            if (lang.startsWith('en') && found.nome_en) name = found.nome_en;
+            else if (lang.startsWith('es') && found.nome_es) name = found.nome_es;
+            return getDynamicAreaName(id, name, mapping, t);
         }
         return id.charAt(0).toUpperCase() + id.slice(1).replace(/_/g, ' ');
     };
