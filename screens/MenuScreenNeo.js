@@ -153,7 +153,7 @@ export default function MenuScreenNeo() {
             iconName: 'MessageQuestion',
             color: '#F59E0B', // amber, mais visível que o yellow do DS
             label: t('menu.support'),
-            action: () => Linking.openURL('mailto:suporte@vigilaro.com'),
+            action: () => Linking.openURL('mailto:contato@vigilarocare.ia.br'),
         },
         {
             key: 'sobre',

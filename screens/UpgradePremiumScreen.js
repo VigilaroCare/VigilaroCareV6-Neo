@@ -31,8 +31,8 @@ import NeoAlert from '../utils/NeoAlert';
 
 const { width } = Dimensions.get('window');
 
-const TERMS_URL = 'https://vigilaro.com.br/termos-de-uso';
-const PRIVACY_URL = 'https://vigilaro.com.br/politica-de-privacidade';
+const TERMS_URL = 'https://www.vigilarocare.ia.br/termos-de-uso';
+const PRIVACY_URL = 'https://www.vigilarocare.ia.br/politica-de-privacidade';
 
 // Identificadores RevenueCat em lowercase — packageType é $rc_annual / $rc_monthly
 // Referência: https://www.revenuecat.com/docs/api-reference
