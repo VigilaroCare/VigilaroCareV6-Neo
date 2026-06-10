@@ -29,9 +29,15 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { View, Platform, LogBox } from "react-native";
 
+// Supressões de warning — cada item documentado com motivo.
+// Revisar esta lista a cada bump de dependência major.
 LogBox.ignoreLogs([
+  // expo-notifications: push remoto não é suportado no Expo Go (apenas em build
+  // dev/produção). Esperado em desenvolvimento; sem impacto funcional no app.
   'expo-notifications: Android Push notifications',
   '`expo-notifications` functionality is not fully supported',
+  // React Native / Reanimated: LayoutAnimation virou no-op na New Architecture.
+  // Aviso informativo; as animações relevantes usam Animated/Reanimated.
   'setLayoutAnimationEnabledExperimental is currently a no-op',
 ]);
 

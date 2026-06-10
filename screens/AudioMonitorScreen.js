@@ -10,12 +10,17 @@ import { useIsFocused } from '@react-navigation/native';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AudioConsentModal from '../components/AudioConsentModal';
+
+const AUDIO_CONSENT_KEY = '@audio_consent_accepted';
 
 export default function AudioMonitorScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [isMonitoring, setIsMonitoring] = useState(false);
     const [dbLevel, setDbLevel] = useState(0);
     const [status, setStatus] = useState('Seguro'); // Seguro, Alerta, Perigo
+    const [consentVisible, setConsentVisible] = useState(false);
 
     // Animation Values
     const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -51,28 +56,50 @@ export default function AudioMonitorScreen({ navigation }) {
             setDbLevel(0);
             setStatus('Inativo');
             stopAnimations();
-        } else {
-            const permission = await AudioMonitorService.requestPermissions();
-            if (!permission) {
-                NeoAlert.alert('Permissão Necessária', 'Precisamos acessar o microfone para ouvir o ambiente.');
-                return;
-            }
-
-            setIsMonitoring(true);
-            setStatus('Ouvindo...');
-            startAnimations();
-
-            AudioMonitorService.startMonitoring(
-                (level) => {
-                    setDbLevel(level);
-                    updateVisuals(level);
-                },
-                (alertLevel) => {
-                    setStatus('BARULHO DETECTADO!');
-                    // Aqui poderia disparar vibração ou notificação push local
-                }
-            );
+            return;
         }
+
+        // Consentimento explícito ANTES do 1º uso do microfone (Apple 5.1.1 / LGPD).
+        const consented = await AsyncStorage.getItem(AUDIO_CONSENT_KEY);
+        if (consented !== 'true') {
+            setConsentVisible(true);
+            return;
+        }
+        await beginMonitoring();
+    };
+
+    // Inicia a escuta de fato — só chamado após permissão + consentimento.
+    const beginMonitoring = async () => {
+        const permission = await AudioMonitorService.requestPermissions();
+        if (!permission) {
+            NeoAlert.alert('Permissão Necessária', 'Precisamos acessar o microfone para ouvir o ambiente.');
+            return;
+        }
+
+        setIsMonitoring(true);
+        setStatus('Ouvindo...');
+        startAnimations();
+
+        AudioMonitorService.startMonitoring(
+            (level) => {
+                setDbLevel(level);
+                updateVisuals(level);
+            },
+            (alertLevel) => {
+                setStatus('BARULHO DETECTADO!');
+                // Aqui poderia disparar vibração ou notificação push local
+            }
+        );
+    };
+
+    const handleConsentAccept = async () => {
+        setConsentVisible(false);
+        try {
+            await AsyncStorage.setItem(AUDIO_CONSENT_KEY, 'true');
+        } catch {
+            // Falha de persistência não impede o uso na sessão atual.
+        }
+        await beginMonitoring();
     };
 
     const updateVisuals = (level) => {
@@ -199,6 +226,12 @@ export default function AudioMonitorScreen({ navigation }) {
                 </TouchableOpacity>
 
             </View>
+
+            <AudioConsentModal
+                visible={consentVisible}
+                onAccept={handleConsentAccept}
+                onDecline={() => setConsentVisible(false)}
+            />
         </SafeAreaView>
       </AppBackground>
     );

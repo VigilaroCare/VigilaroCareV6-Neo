@@ -18,6 +18,7 @@
 import { getCached, setCached } from './inforotulos_cache';
 import { PRODUTOS_PERIGOSOS } from '../data/produtos_scanner';
 import { Config } from '../utils/Config';
+import { fetchWithTimeout as fetchWithTimeoutBase } from '../utils/fetchWithTimeout';
 
 // ─────────────────────────────────────────
 // Configuração
@@ -702,20 +703,10 @@ function mergeEPAData(pubchemData, epaData) {
 // Utilitários
 // ─────────────────────────────────────────
 
-async function fetchWithTimeout(url, options = {}) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
-    try {
-        const response = await fetch(url, {
-            ...options,
-            signal: controller.signal,
-        });
-        clearTimeout(id);
-        return response;
-    } catch (e) {
-        clearTimeout(id);
-        throw e;
-    }
+// Padrão AbortController centralizado em utils/fetchWithTimeout; aqui só
+// fixamos o timeout padrão por API desta cadeia (12s).
+function fetchWithTimeout(url, options = {}) {
+    return fetchWithTimeoutBase(url, options, FETCH_TIMEOUT);
 }
 
 /**

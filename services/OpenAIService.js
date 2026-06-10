@@ -12,36 +12,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system/legacy';
 
 import { Config } from '../utils/Config';
+import { fetchWithTimeout } from '../utils/fetchWithTimeout';
 import i18n from '../i18n';
 
 const PROXY_URL = Config.VIGILARO_PROXY_URL;
 const APP_SECRET = Config.VIGILARO_APP_SECRET;
 
-const CHAT_URL = `${PROXY_URL}/v1/chat/completions`;
-const TRANSCRIPTIONS_URL = `${PROXY_URL}/v1/audio/transcriptions`;
-const SPEECH_URL = `${PROXY_URL}/v1/audio/speech`;
+const CHAT_URL = `${PROXY_URL}/api/openai/chat/completions`;
+const TRANSCRIPTIONS_URL = `${PROXY_URL}/api/openai/audio/transcriptions`;
+const SPEECH_URL = `${PROXY_URL}/api/openai/audio/speech`;
 
 // Timeouts proporcionais à natureza de cada operação (ms)
 const TIMEOUT_CHAT = 15000;          // chat curto (askMaster)
-const TIMEOUT_REPORT = 25000;        // geração de relatório consultivo (resposta JSON longa)
+const TIMEOUT_REPORT = 60000;        // geração de relatório consultivo (resposta JSON longa)
 const TIMEOUT_VISION = 30000;        // visão computacional (upload de imagem)
 const TIMEOUT_AUDIO_UP = 30000;      // upload de áudio + transcrição
 const TIMEOUT_TTS = 20000;           // TTS (resposta de áudio)
 
-/**
- * Wrapper de fetch com timeout via AbortController.
- * Resolve com a Response normalmente, ou lança AbortError se exceder timeoutMs.
- * Evita travamento aparente quando o servidor não responde.
- */
-async function fetchWithTimeout(url, options = {}, timeoutMs = TIMEOUT_CHAT) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-        return await fetch(url, { ...options, signal: controller.signal });
-    } finally {
-        clearTimeout(timeoutId);
-    }
-}
+// fetchWithTimeout vem de utils/fetchWithTimeout — fonte única do padrão
+// AbortController. Todas as chamadas abaixo passam timeout explícito (TIMEOUT_*).
 
 // Vozes disponíveis no OpenAI TTS
 // alloy: neutra, echo: masculina, fable: narrativa, onyx: masculina grave, nova: feminina, shimmer: feminina suave
@@ -366,20 +355,41 @@ Regras de Tom e Estilo:
                     model: "gpt-4o-mini",
                     messages: messages,
                     temperature: 0.7,
+                    max_tokens: 1500,
                     response_format: { type: "json_object" }
                 })
             }, TIMEOUT_REPORT);
 
-            const data = await response.json();
-
-            if (data.error) {
+            const textResponse = await response.text();
+            
+            let data;
+            try {
+                data = JSON.parse(textResponse);
+            } catch (err) {
                 if (__DEV__) {
-                    console.error("OpenAI Error:", data.error);
+                    console.error("Falha ao fazer parse do JSON do proxy:", textResponse.substring(0, 200));
                 }
-                throw new Error(data.error.message);
+                throw new Error("Servidor retornou uma resposta não-JSON (possível erro de conexão/proxy).");
             }
 
-            const jsonResponse = JSON.parse(data.choices[0].message.content);
+            if (!response.ok || data.error) {
+                if (__DEV__) {
+                    console.error("OpenAI Error HTTP", response.status, data.error || data);
+                }
+                throw new Error(data.error?.message || `Erro HTTP ${response.status}`);
+            }
+
+            let jsonResponse;
+            const content = data.choices[0].message.content;
+            try {
+                jsonResponse = JSON.parse(content);
+            } catch (err) {
+                if (__DEV__) {
+                    console.error("Falha ao fazer parse do conteúdo OpenAI:", content);
+                }
+                throw new Error("OpenAI retornou um JSON incompleto ou mal formatado.");
+            }
+            
             return jsonResponse;
 
         } catch (error) {

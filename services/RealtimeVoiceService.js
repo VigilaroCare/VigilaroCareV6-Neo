@@ -13,7 +13,12 @@ import { Audio } from './_compat/LegacyAudioRecorder';
 import { Config } from '../utils/Config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const PROXY_WS_URL = Config.VIGILARO_PROXY_URL.replace('http', 'ws');
+// Conversão determinística http→ws / https→wss ancorada no início da string.
+// .replace('http','ws') ingênuo substituiria a 1ª ocorrência em qualquer posição
+// (subdomínio/path), podendo quebrar o URL em produção.
+const PROXY_WS_URL = Config.VIGILARO_PROXY_URL
+    .replace(/^https:\/\//, 'wss://')
+    .replace(/^http:\/\//, 'ws://');
 const REALTIME_API_URL = `${PROXY_WS_URL}/v1/realtime?model=gpt-4o-mini-realtime-preview`;
 const USAGE_KEY = '@realtime_minutes_used';
 
@@ -103,7 +108,7 @@ class RealtimeVoiceService {
                 });
 
                 this.ws.onopen = () => {
-                    console.log('🎙️ Realtime API conectada');
+                    if (__DEV__) console.log('🎙️ Realtime API conectada');
                     this.isConnected = true;
                     this.sessionStartTime = Date.now();
 
@@ -125,7 +130,7 @@ class RealtimeVoiceService {
                 };
 
                 this.ws.onclose = () => {
-                    console.log('🔌 Realtime API desconectada');
+                    if (__DEV__) console.log('🔌 Realtime API desconectada');
                     this.isConnected = false;
                     this.recordSessionDuration();
                     if (this.onStateChange) this.onStateChange('disconnected');
@@ -306,7 +311,7 @@ CONHECIMENTO TÉCNICO:
             if (this.onStateChange) this.onStateChange('listening');
 
             // Stream de áudio (simplificado - na prática precisaria de chunks)
-            console.log('🎤 Gravação iniciada');
+            if (__DEV__) console.log('🎤 Gravação iniciada');
 
         } catch (error) {
             if (__DEV__) { console.error('Erro ao iniciar gravação:', error); }
@@ -360,7 +365,7 @@ CONHECIMENTO TÉCNICO:
             this.ws.send(JSON.stringify({ type: 'response.cancel' }));
             // Também limpar buffer de input pendente se houver
             this.ws.send(JSON.stringify({ type: 'input_audio_buffer.clear' }));
-            console.log('🛑 Resposta cancelada pelo usuário');
+            if (__DEV__) console.log('🛑 Resposta cancelada pelo usuário');
         }
     }
 

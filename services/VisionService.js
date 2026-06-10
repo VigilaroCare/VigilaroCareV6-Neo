@@ -4,6 +4,7 @@
  */
 
 import { Config } from "../utils/Config";
+import { fetchWithTimeout as fetchWithTimeoutBase } from "../utils/fetchWithTimeout";
 
 const CHAT_URL = `${Config.VIGILARO_PROXY_URL}/v1/chat/completions`;
 const PROXY_HEADERS = {
@@ -78,18 +79,10 @@ const MOCK_RESPONSES = [
     }
 ];
 
-const fetchWithTimeout = async (url, options, timeout = VISION_TIMEOUT) => {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    try {
-        const response = await fetch(url, { ...options, signal: controller.signal });
-        clearTimeout(id);
-        return response;
-    } catch (e) {
-        clearTimeout(id);
-        throw e;
-    }
-};
+// Padrão AbortController centralizado em utils/fetchWithTimeout; aqui só
+// fixamos o timeout padrão de visão (25s).
+const fetchWithTimeout = (url, options, timeout = VISION_TIMEOUT) =>
+    fetchWithTimeoutBase(url, options, timeout);
 
 
 export const VisionService = {

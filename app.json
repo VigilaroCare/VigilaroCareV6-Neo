@@ -33,8 +33,6 @@
         "RECORD_AUDIO",
         "READ_MEDIA_IMAGES",
         "VIBRATE",
-        "FOREGROUND_SERVICE",
-        "FOREGROUND_SERVICE_LOCATION",
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.RECORD_AUDIO",
@@ -47,14 +45,10 @@
       "bundleIdentifier": "com.agnaldoaf.vigilarocare",
       "buildNumber": "3",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "location"
-        ],
         "NSCameraUsageDescription": "O Vigilaro precisa da câmera para escanear produtos e identificar riscos domésticos.",
         "NSMicrophoneUsageDescription": "O Vigilaro precisa do microfone para o monitoramento de áudio ambiente por segurança.",
         "NSPhotoLibraryUsageDescription": "Precisamos acessar suas fotos para analisar imagens de possíveis riscos domésticos.",
         "NSLocationWhenInUseUsageDescription": "Usamos sua localização para exibir alertas de segurança relevantes para a sua região.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "O Vigilaro monitora a localização em segundo plano para alertar quando familiares – especialmente crianças e idosos – saem de zonas seguras como casa ou escola (Geofencing).",
         "NSMotionUsageDescription": "O Vigilaro usa o sensor de movimento do dispositivo para detectar quedas e acionar alertas de emergência automaticamente."
       }
     },

@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
@@ -16,7 +18,37 @@ if (!APP_SECRET) {
   process.exit(1);
 }
 
-app.use(cors());
+// Headers de segurança HTTP (X-Content-Type-Options, Referrer-Policy, etc.)
+app.use(helmet());
+
+// CORS restrito por allow-list. Apps mobile nativos NÃO enviam header Origin,
+// então `!origin` passa; navegadores só passam se a origem estiver em
+// ALLOWED_ORIGINS (CSV via env). Sem a env, apenas chamadas sem Origin (mobile).
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  methods: ['GET', 'POST'],
+}));
+
+// Rate limiting: 60 req/min por IP — barra abuso/DDoS de camada de aplicação.
+// NOTA: não usamos express.json() aqui de propósito — o http-proxy-middleware
+// encaminha o corpo bruto da requisição; consumir o stream com um body parser
+// quebraria o proxy de POST (chat/transcrição/TTS).
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests' },
+});
+app.use('/api/', apiLimiter);
+
 app.use(morgan('dev'));
 
 // Health Check
@@ -40,12 +72,19 @@ const openaiProxy = createProxyMiddleware({
   target: 'https://api.openai.com',
   changeOrigin: true,
   ws: true, // Support WebSockets for Realtime API
-  pathRewrite: {
-    '^/api/openai': '/v1', // rewrites /api/openai/chat/completions to /v1/chat/completions
+  pathRewrite: (path, req) => {
+    if (path.startsWith('/api/openai')) {
+      return path.replace(/^\/api\/openai/, '/v1');
+    }
+    return '/v1' + path;
   },
-  onProxyReq: (proxyReq, req, res) => {
-    if (OPENAI_API_KEY) {
-      proxyReq.setHeader('Authorization', `Bearer ${OPENAI_API_KEY}`);
+  on: {
+    proxyReq: (proxyReq, req, res) => {
+      if (OPENAI_API_KEY) {
+        proxyReq.setHeader('Authorization', `Bearer ${OPENAI_API_KEY}`);
+      } else {
+        console.error('⚠️ ALERTA: OPENAI_API_KEY ESTÁ UNDEFINED!');
+      }
     }
   },
 });
@@ -57,9 +96,11 @@ const elevenLabsProxy = createProxyMiddleware({
   pathRewrite: {
     '^/api/elevenlabs': '/v1', // rewrites /api/elevenlabs/text-to-speech to /v1/text-to-speech
   },
-  onProxyReq: (proxyReq, req, res) => {
-    if (ELEVEN_API_KEY) {
-      proxyReq.setHeader('xi-api-key', ELEVEN_API_KEY);
+  on: {
+    proxyReq: (proxyReq, req, res) => {
+      if (ELEVEN_API_KEY) {
+        proxyReq.setHeader('xi-api-key', ELEVEN_API_KEY);
+      }
     }
   },
 });
@@ -71,9 +112,11 @@ const epaProxy = createProxyMiddleware({
   pathRewrite: {
     '^/api/epa': '/', // rewrites /api/epa/chemical... to /chemical...
   },
-  onProxyReq: (proxyReq, req, res) => {
-    if (EPA_CTX_API_KEY) {
-      proxyReq.setHeader('x-api-key', EPA_CTX_API_KEY);
+  on: {
+    proxyReq: (proxyReq, req, res) => {
+      if (EPA_CTX_API_KEY) {
+        proxyReq.setHeader('x-api-key', EPA_CTX_API_KEY);
+      }
     }
   },
 });

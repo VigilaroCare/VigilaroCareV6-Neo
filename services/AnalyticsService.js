@@ -10,7 +10,14 @@
  * analytics.trackEvent('checklist_completed', { area: 'cozinha', score: 85 });
  */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const DEBUG = __DEV__;
+
+// Chave de consentimento (LGPD/GDPR). Sem opt-in explícito, nenhum evento é
+// coletado nem enfileirado. O fluxo de onboarding deve chamar
+// analytics.setConsent(true) somente após aceite explícito do usuário.
+const ANALYTICS_CONSENT_KEY = '@analytics_consent';
 
 // ========================
 // EVENTOS PADRONIZADOS
@@ -116,6 +123,41 @@ class AnalyticsService {
         this.userProperties = {};
         this.eventQueue = [];
         this.initialized = false;
+        // Opt-in obrigatório: começa desabilitado até consentimento explícito.
+        this.consentGranted = false;
+    }
+
+    // ========================
+    // CONSENTIMENTO (LGPD/GDPR)
+    // ========================
+    async loadConsent() {
+        try {
+            const stored = await AsyncStorage.getItem(ANALYTICS_CONSENT_KEY);
+            this.consentGranted = stored === 'true';
+        } catch {
+            this.consentGranted = false;
+        }
+        return this.consentGranted;
+    }
+
+    async setConsent(granted) {
+        this.consentGranted = !!granted;
+        try {
+            await AsyncStorage.setItem(ANALYTICS_CONSENT_KEY, String(this.consentGranted));
+        } catch {
+            // Falha de persistência não deve quebrar o app.
+        }
+        // Direito ao esquecimento: ao revogar, descarta dados em memória e
+        // reseta a SDK (quando integrada).
+        if (!this.consentGranted) this.clearUserData();
+        if (DEBUG) console.log('[Analytics] Consentimento:', this.consentGranted);
+    }
+
+    clearUserData() {
+        this.userId = null;
+        this.userProperties = {};
+        this.eventQueue = [];
+        // TODO: chamar reset da SDK quando integrada (ex.: amplitude.reset()).
     }
 
     // ========================
@@ -123,8 +165,11 @@ class AnalyticsService {
     // ========================
     async initialize() {
         try {
+            // Carrega consentimento ANTES de qualquer coleta.
+            await this.loadConsent();
+
             // TODO: Inicializar Firebase Analytics
-            // await firebase.analytics().setAnalyticsCollectionEnabled(true);
+            // await firebase.analytics().setAnalyticsCollectionEnabled(this.consentGranted);
 
             this.sessionId = `session_${Date.now()}`;
             this.initialized = true;
@@ -146,12 +191,14 @@ class AnalyticsService {
     // IDENTIFICAÇÃO
     // ========================
     setUserId(userId) {
+        if (!this.consentGranted) return;
         this.userId = userId;
         // TODO: firebase.analytics().setUserId(userId);
         if (DEBUG) console.log('[Analytics] UserId:', userId);
     }
 
     setUserProperties(properties) {
+        if (!this.consentGranted) return;
         this.userProperties = { ...this.userProperties, ...properties };
 
         // TODO: Enviar para Firebase
@@ -166,6 +213,9 @@ class AnalyticsService {
     // RASTREAMENTO DE EVENTOS
     // ========================
     trackEvent(eventName, params = {}) {
+        // Gate de consentimento: sem opt-in, nada é coletado nem enfileirado.
+        if (!this.consentGranted) return null;
+
         const event = {
             name: eventName,
             params: {
