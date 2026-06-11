@@ -45,7 +45,7 @@ const PICTOGRAMS = {
     seguranca_idade: require('../../assets/illustrations/education-pictograms/pictogram-familia-fases.png'),
     ambientes:       require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png'),
     gestante_segura: require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png'),
-    pets:            require('../../assets/illustrations/education-pictograms/pictogram-saude-pet.png'),
+    pets:            require('../../assets/illustrations/home-pictograms/pictogram-saude-pet.png'), // cerâmico da Home (pata+pulso)
     brinquedos_hub:  require('../../assets/illustrations/home-pictograms/icone_brinquedos_sem_casa.png'),
     // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
     utensilios_rev:   require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
@@ -78,6 +78,7 @@ const CERAMIC_STYLE_IDS = new Set([
     'lazer_mobilidade', 'guias_equipamentos',
     // Lote 2 (seção 1) — adicionados conforme regenerados:
     'seguranca_idade',
+    'pets', // reaproveita o cerâmico da Home
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {
