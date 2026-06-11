@@ -282,16 +282,29 @@ export default function HomeScreenNeo() {
                     {/* HERO — "Casa sob Controle" (mockup aprovado). Forest lidera. */}
                     <TappablePressable
                         onPress={toggleMonitor}
+                        style={s.heroShadowWrap}
                         accessibilityState={{ expanded: monitorExpanded }}
                         accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: heroHeadline, alert: scoreMessage.alerta })}
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
                     >
                         <LinearGradient
-                            colors={[Neo.colors.primary[900], Neo.colors.primary[700]]}
+                            colors={[Neo.colors.primary[900], Neo.colors.primary[700], Neo.colors.primary[600]]}
+                            locations={[0, 0.55, 1]}
                             start={{ x: 0, y: 0 }}
                             end={{ x: 1, y: 1 }}
                             style={s.heroCard}
                         >
+                            {/* Specular highlight — a "lambida de luz" que tira o
+                                aspecto chapado e alinha o hero ao material
+                                vitrificado do resto do app (mesma do NeoCard). */}
+                            <LinearGradient
+                                colors={Neo.gradients.specularDark.colors}
+                                locations={Neo.gradients.specularDark.locations}
+                                start={Neo.gradients.specularDark.start}
+                                end={Neo.gradients.specularDark.end}
+                                style={StyleSheet.absoluteFill}
+                                pointerEvents="none"
+                            />
                             <View style={s.heroTopRow}>
                                 <View style={s.heroHeadlineGroup}>
                                     <Text style={s.heroEyebrow}>
@@ -497,11 +510,21 @@ const s = StyleSheet.create({
     },
 
     // ── HERO "Casa sob Controle" ──
+    // Sombra no wrapper externo: overflow hidden no card mataria a sombra no iOS
+    heroShadowWrap: {
+        borderRadius: Neo.radius.lg,
+        marginBottom: 4,
+        ...Neo.shadows.premium,
+    },
     heroCard: {
         borderRadius: Neo.radius.lg,
         padding: 12,
-        marginBottom: 4,
-        ...Neo.shadows.premium,
+        overflow: 'hidden', // contém o specular nos cantos arredondados
+        // Aresta de luz no topo (mesma linguagem das bordas vitrificadas
+        // do NeoCard) — quebra o "verde chapado" com volume sutil.
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.14)',
+        borderTopColor: 'rgba(255, 255, 255, 0.34)',
     },
     heroTopRow: {
         flexDirection: 'row',
