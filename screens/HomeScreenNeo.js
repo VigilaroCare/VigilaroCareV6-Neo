@@ -25,6 +25,7 @@ import {
     LayoutAnimation,
     UIManager,
     Platform,
+    Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -54,6 +55,15 @@ import GlassProfileRing from '../components/GlassProfileRing';
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
+// Largura das células calculada em px: dentro do TappablePressable o Pressable
+// dimensiona pelo conteúdo, então width percentual NÃO resolve e a Image
+// assumiria o tamanho intrínseco do PNG (1024px+), estourando a tela.
+const SCREEN_W = Dimensions.get('window').width;
+const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
+const GRID_IMG_W = CONTENT_W * 0.48 * 0.94;  // célula 48% com leve respiro
+const TOOL_IMG_W = CONTENT_W * 0.42 * 0.94;  // células de Ferramentas (42%)
+const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
@@ -368,6 +378,7 @@ export default function HomeScreenNeo() {
                                 <BarePictogramShortcut
                                     item={item}
                                     textColor={textPrimary}
+                                    imageWidth={GRID_IMG_W}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
@@ -388,6 +399,7 @@ export default function HomeScreenNeo() {
                                 <BarePictogramShortcut
                                     item={item}
                                     textColor={textPrimary}
+                                    imageWidth={TOOL_IMG_W}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
@@ -406,7 +418,7 @@ export default function HomeScreenNeo() {
  * card. Nenhum fundo, borda ou sombra extra (a dupla moldura criava a deriva
  * creme/âmbar diagnosticada no design review).
  */
-function BarePictogramShortcut({ item, textColor, onPress }) {
+function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W }) {
     return (
         <TappablePressable
             style={s.barePictogram}
@@ -417,7 +429,7 @@ function BarePictogramShortcut({ item, textColor, onPress }) {
         >
             <Image
                 source={item.image}
-                style={s.barePictogramImage}
+                style={{ width: imageWidth, height: imageWidth * PICTO_RATIO }}
                 resizeMode="contain"
             />
             <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
@@ -582,11 +594,6 @@ const s = StyleSheet.create({
     },
     barePictogram: {
         alignItems: 'center',
-        width: '100%',
-    },
-    barePictogramImage: {
-        width: '92%',
-        aspectRatio: 4 / 3, // proporção nativa dos tiles dos pictogramas
     },
     barePictogramLabel: {
         alignSelf: 'stretch',
