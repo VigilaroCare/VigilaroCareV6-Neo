@@ -40,9 +40,9 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 // estilo 3D cerâmico da Home, símbolo solto em fundo transparente.
 // ─────────────────────────────────────────────────────────────────────────
 const PICTOGRAMS = {
-    // Seção 1 — Pessoas & Contexto (assets atuais, estilo traço P&B;
-    // regenerar no estilo 3D cerâmico no lote 2 do plano)
-    seguranca_idade: require('../../assets/illustrations/home-pictograms/icone_familia_casa_final.png'),
+    // Seção 1 — Pessoas & Contexto (lote 2 em andamento: cerâmicos
+    // substituindo os antigos de traço P&B um a um)
+    seguranca_idade: require('../../assets/illustrations/education-pictograms/pictogram-familia-fases.png'),
     ambientes:       require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png'),
     gestante_segura: require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png'),
     pets:            require('../../assets/illustrations/education-pictograms/pictogram-saude-pet.png'),
@@ -53,16 +53,16 @@ const PICTOGRAMS = {
     disp_eletronicos: require('../../assets/illustrations/education-pictograms/pictogram-disp-eletronicos.png'),
     fire_prev:        require('../../assets/illustrations/education-pictograms/pictogram-fire-prev.png'),
     emergencias:      require('../../assets/illustrations/education-pictograms/pictogram-emergencias.png'),
-    // primeiros_socorros_hub:  require('../../assets/illustrations/education-pictograms/pictogram-primeiros-socorros.png'),
-    // kits_emergencia:         require('../../assets/illustrations/education-pictograms/pictogram-kits-emergencia.png'),
-    // plantas:                 require('../../assets/illustrations/education-pictograms/pictogram-plantas.png'),
-    // animais:                 require('../../assets/illustrations/education-pictograms/pictogram-animais.png'),
-    // produtos:                require('../../assets/illustrations/education-pictograms/pictogram-produtos.png'),
-    // riscos_fisicos:          require('../../assets/illustrations/education-pictograms/pictogram-riscos-fisicos.png'),
-    // jardinagem:              require('../../assets/illustrations/education-pictograms/pictogram-jardinagem.png'),
-    // condo_safety:            require('../../assets/illustrations/education-pictograms/pictogram-condo-safety.png'),
-    // lazer_mobilidade:        require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
-    // guias_equipamentos:      require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
+    primeiros_socorros_hub: require('../../assets/illustrations/education-pictograms/pictogram-primeiros-socorros.png'),
+    kits_emergencia:  require('../../assets/illustrations/education-pictograms/pictogram-kits-emergencia.png'),
+    plantas:          require('../../assets/illustrations/education-pictograms/pictogram-plantas.png'),
+    animais:          require('../../assets/illustrations/education-pictograms/pictogram-animais.png'),
+    produtos:         require('../../assets/illustrations/education-pictograms/pictogram-produtos.png'),
+    riscos_fisicos:   require('../../assets/illustrations/education-pictograms/pictogram-riscos-fisicos.png'),
+    jardinagem:       require('../../assets/illustrations/education-pictograms/pictogram-jardinagem.png'),
+    condo_safety:     require('../../assets/illustrations/education-pictograms/pictogram-condo-safety.png'),
+    lazer_mobilidade: require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
+    guias_equipamentos: require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos-essenciais.png');
@@ -76,6 +76,8 @@ const CERAMIC_STYLE_IDS = new Set([
     'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
     'plantas', 'animais', 'produtos', 'riscos_fisicos', 'jardinagem', 'condo_safety',
     'lazer_mobilidade', 'guias_equipamentos',
+    // Lote 2 (seção 1) — adicionados conforme regenerados:
+    'seguranca_idade',
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {
