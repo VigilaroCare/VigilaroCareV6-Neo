@@ -67,6 +67,17 @@ const PICTOGRAMS = {
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos-essenciais.png');
 
+// Ids cujos assets são do formato CERÂMICO 3D (tile creme + moldura verde
+// embutidos no PNG, como na Home). Esses renderizam SEM NeoCard — o asset É
+// o card (evita moldura dupla). Os legados (traço P&B) seguem no card glass
+// até serem regenerados no lote 2.
+const CERAMIC_STYLE_IDS = new Set([
+    'utensilios_rev', 'eletro_rev', 'disp_eletronicos',
+    'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
+    'plantas', 'animais', 'produtos', 'riscos_fisicos', 'jardinagem', 'condo_safety',
+    'lazer_mobilidade', 'guias_equipamentos',
+]);
+
 export default function KnowledgeHubScreen({ navigation }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
@@ -137,6 +148,28 @@ export default function KnowledgeHubScreen({ navigation }) {
 
     const renderGridCard = (item, index) => {
         const pictogramSource = PICTOGRAMS[item.id];
+
+        // Formato cerâmico: o PNG já é o card (tile+moldura embutidos) —
+        // renderiza nu, sem NeoCard, com o label abaixo (como na Home).
+        if (pictogramSource && CERAMIC_STYLE_IDS.has(item.id)) {
+            return (
+                <FadeInView key={item.id} delay={120 + index * 40} style={s.gridCell}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate(item.route, item.params || {})}
+                        activeOpacity={0.85}
+                        style={s.ceramicCell}
+                        accessibilityRole="button"
+                        accessibilityLabel={item.titulo}
+                    >
+                        <Image source={pictogramSource} style={s.ceramicImage} resizeMode="contain" />
+                        <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
+                            {item.titulo}
+                        </Text>
+                    </TouchableOpacity>
+                </FadeInView>
+            );
+        }
+
         const customPictogram = pictogramSource
             ? <Image source={pictogramSource} style={s.gridGenericPictogramImage} resizeMode="contain" />
             : null;
@@ -464,5 +497,17 @@ const s = StyleSheet.create({
         color: Neo.colors.neutral[800],
         textAlign: 'center',
         lineHeight: 14,
+    },
+
+    // ── Célula cerâmica (pictograma novo = o próprio card, sem NeoCard) ──
+    ceramicCell: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    ceramicImage: {
+        width: '96%',
+        height: '70%',
+        marginBottom: 2,
     },
 });
