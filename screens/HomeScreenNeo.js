@@ -545,10 +545,14 @@ const s = StyleSheet.create({
         paddingHorizontal: 10,
     },
 
-    // ── Seções (Eyebrow do DS, à esquerda) ──
+    // ── Seções (Eyebrow do DS) — na Home, centralizados por preferência
+    // do autor (telas internas seguem o padrão à esquerda do
+    // PADRAO_ANATOMIA_PAGINAS.md) ──
     sectionEyebrow: {
         marginTop: 10,
-        marginBottom: 6,
+        marginBottom: 2,
+        textAlign: 'center',
+        width: '100%',
     },
 
     // ── Alerta contextual ──
