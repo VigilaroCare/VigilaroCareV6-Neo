@@ -321,7 +321,22 @@ export const DS = {
         },
     },
 
-    // 6. Gradientes utilitários (specular highlights, brand gradients)
+    // 6. Tokens de Emergência — vermelho-pânico INTENCIONAL das telas de SOS
+    // (SOSCountdown, SOSEmergencyMode, EmergenciaRapida). Centralizados aqui
+    // para as 3 telas usarem a mesma assinatura visual (auditoria D6).
+    // Não usar fora de contexto de emergência — o contraste agressivo é
+    // proposital e quebraria o "Tactical Calm" do restante do app.
+    emergency: {
+        panic: '#DC2626',                    // Fundo da tela-pânico
+        panicDark: '#B91C1C',                // Variante pressed/bordas
+        onPanic: '#FFFFFF',                  // Texto/ícone sobre o pânico
+        onPanicMuted: 'rgba(255,255,255,0.85)', // Texto secundário sobre pânico
+        surfaceOnPanic: 'rgba(255,255,255,0.18)', // Círculos/chips sobre pânico
+        ctaDark: '#000000',                  // Botão CANCELAR (máximo contraste)
+        whatsapp: '#25D366',                 // Verde oficial WhatsApp (canal complementar)
+    },
+
+    // 7. Gradientes utilitários (specular highlights, brand gradients)
     gradients: {
         // Specular highlight — "lambida de luz" sutil no topo do card de vidro.
         // Mantida baixa (0.35) pra ser polimento, não washout. Decai rápido

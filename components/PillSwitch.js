@@ -20,6 +20,7 @@ import {
 } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import haptic from '../utils/Haptics';
 
 /**
  * HousePill — Card seletor de residência ativa.
@@ -51,9 +52,14 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
 
     const Container = onPress ? TouchableOpacity : View;
 
+    // Feedback tátil leve ao trocar de residência (auditoria D5)
+    const handlePress = onPress
+        ? () => { haptic.tap(); onPress(); }
+        : undefined;
+
     return (
         <Container
-            onPress={onPress}
+            onPress={handlePress}
             activeOpacity={0.8}
             style={styles.housePillOuter}
         >
@@ -79,7 +85,7 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
                 {/* Seta animada — só exibe se for clicável/editável */}
                 {onPress && (
                     <Animated.View style={[styles.arrowContainer, { transform: [{ rotate }] }]}>
-                        <NeoIcon name="ArrowDown2" size={14} color={Neo.colors.neutral[500]} />
+                        <NeoIcon name="ArrowDown2" size={14} color="rgba(14, 59, 59, 0.58)" />
                     </Animated.View>
                 )}
             </View>
@@ -100,26 +106,26 @@ const styles = StyleSheet.create({
     housePillInner: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 14,
-        paddingVertical: 12,
-        borderRadius: 20,
-        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 13,
+        paddingVertical: 10,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255, 251, 244, 0.82)',
         // Moldura vitrificada: borda principal warm-gray sólida (não mais
         // translúcida que sumia no off-white), highlight branco top/left,
         // sombra warm bottom — efeito "moldura sólida com luz superior".
         borderWidth: 1,
-        borderColor: 'rgba(120, 113, 108, 0.22)',
+        borderColor: 'rgba(14, 59, 59, 0.18)',
         borderTopColor: 'rgba(255, 255, 255, 1)',
         borderTopWidth: 1.5,
         borderLeftColor: 'rgba(255, 255, 255, 0.85)',
         borderLeftWidth: 1.2,
-        borderBottomColor: 'rgba(82, 75, 68, 0.20)',
+        borderBottomColor: 'rgba(14, 59, 59, 0.25)',
         borderBottomWidth: 1.2,
         // Sombra Apple-style: discreta, espalhada, neutra (sem tinge colorido).
-        shadowColor: '#1C1C1E',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
+        shadowColor: '#0E3B3B',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.055,
+        shadowRadius: 12,
         elevation: 2,
     },
     houseIconContainer: {
@@ -127,10 +133,10 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     houseIconBg: {
-        width: 32,
-        height: 32,
-        borderRadius: 10,
-        backgroundColor: Neo.colors.primary[500],
+        width: 30,
+        height: 30,
+        borderRadius: 9,
+        backgroundColor: '#0E3B3B',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -141,9 +147,9 @@ const styles = StyleSheet.create({
         width: 9,
         height: 9,
         borderRadius: 4.5,
-        backgroundColor: '#34D399',
+        backgroundColor: '#2DD4BF',
         borderWidth: 2,
-        borderColor: '#FFF',
+        borderColor: '#FFFBF4',
     },
     houseLabelGroup: {
         flex: 1,
@@ -151,21 +157,21 @@ const styles = StyleSheet.create({
     houseSublabel: {
         fontSize: 10,
         fontWeight: '600',
-        color: Neo.colors.neutral[500],
-        letterSpacing: 0.2,
+        color: 'rgba(14, 59, 59, 0.58)',
+        letterSpacing: 0,
         marginBottom: 1,
     },
     housePillLabel: {
         fontSize: 14,
         fontWeight: '700',
-        color: Neo.colors.neutral[800],
-        letterSpacing: -0.2,
+        color: '#0E3B3B',
+        letterSpacing: 0,
     },
     arrowContainer: {
         width: 24,
         height: 24,
         borderRadius: 12,
-        backgroundColor: 'rgba(0,0,0,0.04)',
+        backgroundColor: 'rgba(14, 59, 59, 0.06)',
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 4,

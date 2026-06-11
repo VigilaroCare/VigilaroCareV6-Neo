@@ -53,6 +53,15 @@ const NeoAlert = {
         ? buttons
         : [{ text: 'OK' }];
 
+    // Feedback tátil junto com o alerta (auditoria D5 — premium feel).
+    // Heurística: botão 'destructive' presente => warning; senão tap leve.
+    // Falha de haptics nunca pode bloquear a exibição do aviso.
+    try {
+      const haptic = require('./Haptics').default;
+      const isDestructive = normalizedButtons.some((b) => b.style === 'destructive');
+      (isDestructive ? haptic.warning : haptic.tap)();
+    } catch (_) { /* silencioso */ }
+
     if (_showFn) {
       _showFn({
         title,

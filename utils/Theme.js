@@ -1,59 +1,75 @@
 /**
  * Theme.js
- * Sistema de Tema - Vigilaro Care V5 (Redesign Moderno & Empático)
- * Paleta: Azul Serenity, Verde Água, Laranja Suave
+ * BRIDGE DE MARCA — Vigilaro Care
+ *
+ * Este arquivo é o sistema legado (V5) consumido por ~51 telas. Em vez de
+ * migrar tela a tela, os TOKENS abaixo foram re-apontados para a paleta
+ * premium aprovada do DesignSystem2026 (Forest Deep + Emerald + Champagne).
+ * O shape (nomes das chaves) é mantido intacto — só os valores mudaram.
+ *
+ * A antiga paleta "Serenity" (azul institucional #1976D2 + Material green)
+ * criava uma segunda identidade visual dentro do app. Auditoria D1
+ * (AUDITORIA_V2_POS_CORRECOES.md, Parte 4).
+ *
+ * Telas NOVAS não devem importar este arquivo — usem DS de DesignSystem2026.
  */
 
+import { LightColors } from './DesignSystem2026';
+
 // ============================================
-// PALETA DE CORES - SERENITY & PROTECTION
+// PALETA DE CORES — re-apontada para a marca premium (DS2026)
 // ============================================
 
 export const Colors = {
-  // Cores Primárias (Modern Blue - V4 Premium)
-  primary: '#1976D2',        // Azul Institucional Moderno
-  primaryGradientStart: '#1565C0',
-  primaryGradientEnd: '#1976D2', // Gradiente sutil, quase sólido
-  primaryDark: '#0D47A1',
-  primaryLight: '#E3F2FD',   // Fundo leve azul
+  // Cores Primárias — Forest Deep (assinatura da marca)
+  primary: LightColors.primary[700],          // '#047857' Forest (era azul #1976D2)
+  primaryGradientStart: LightColors.primary[800],
+  primaryGradientEnd: LightColors.primary[700],
+  primaryDark: LightColors.primary[900],
+  primaryLight: LightColors.primary[100],     // Tint leve para fundos
 
-  // Cores Secundárias (Safety Green)
-  secondary: '#4CAF50',      // Verde Segurança
-  secondaryDark: '#388E3C',
-  secondaryLight: '#E8F5E9',
+  // Cores Secundárias — Emerald accent
+  secondary: LightColors.primary[500],        // '#10B981' Emerald
+  secondaryDark: LightColors.primary[600],
+  secondaryLight: LightColors.primary[100],
 
-  // Feedback Semântico (Vivido & Claro)
-  success: '#4CAF50',        // Verde
-  warning: '#FF9800',        // Laranja
-  error: '#F44336',          // Vermelho Alerta
-  info: '#2196F3',           // Azul Informação
+  // Feedback Semântico (alinhado ao DS / iOS System)
+  success: LightColors.feedback.success,      // '#34C759'
+  // Warning legado era usado como texto/ícone sobre branco; o amarelo iOS do
+  // DS (#FFCC00) não tem contraste pra esse uso. Amber-700 mantém a semântica
+  // com contraste AA e casa com gridAccents.eventuais.
+  warning: '#B45309',
+  error: LightColors.feedback.error,          // '#FF3B30'
+  info: LightColors.feedback.info,            // '#5AC8FA'
 
-  // Fundos (Clean Tech)
-  background: '#F5F5F7',     // Cinza Gelo (Apple Style)
-  surface: '#FFFFFF',        // Branco Puro
-  surfaceVariant: '#F2F2F7', // Cinza muito claro para áreas secundárias
+  // Fundos
+  background: LightColors.neutral[100],       // Off-white DS
+  surface: LightColors.neutral.white,
+  surfaceVariant: LightColors.neutral[200],
 
-  // Textos (Alto Contraste & Hierarquia)
-  textPrimary: '#1C1C1E',    // Quase Preto
-  textSecondary: '#666666',  // Escurecido para contraste (era #8E8E93)
-  textTertiary: '#999999',   // Escurecido (era #C7C7CC)
-  textInverted: '#FFFFFF',   // Branco
+  // Textos (escala neutra DS)
+  textPrimary: LightColors.neutral[900],
+  textSecondary: LightColors.neutral[700],
+  textTertiary: LightColors.neutral[500],
+  textInverted: LightColors.neutral.white,
 
-  // Categorias de Risco (Mantidas mas ajustadas para tons mais sólidos)
-  gestantes: '#E57373',
-  bebe: '#FFB74D',
-  crianca: '#64B5F6',
-  adolescente: '#9575CD',
-  adulto: '#81C784',
-  idoso: '#FFD54F',
-  pcd: '#4DB6AC',
-  pet: '#A1887F',
+  // Categorias de Risco — dessaturadas (Tailwind 700) na linguagem premium
+  // do gridAccents, substituindo os pastéis Material.
+  gestantes: '#BE185D',   // Rose-700
+  bebe: '#B45309',        // Amber-700
+  crianca: '#0369A1',     // Sky-700
+  adolescente: '#6D28D9', // Violet-700
+  adulto: LightColors.primary[700], // Forest
+  idoso: LightColors.accent.champagne, // Champagne signature
+  pcd: '#0F766E',         // Teal-700
+  pet: '#92400E',         // Amber-800 (terroso)
 
   // Utilidades
   white: '#FFFFFF',
   black: '#000000',
   transparent: 'transparent',
-  divider: '#E5E5EA',
-  border: '#E5E5EA', // Nova constante
+  divider: LightColors.neutral[300],
+  border: LightColors.neutral[300],
 
   // Sombras
   shadow: {
@@ -62,14 +78,9 @@ export const Colors = {
     dark: 'rgba(0, 0, 0, 0.25)',
   },
 
-  // Névoa de Fundo (Green Mist — Diamond Design)
-  mist: {
-    gradient: ['#F2F8F4', '#E8F5EC', '#DCF0E3', '#E8F5EC', '#F0F7F2', '#F5F8F6'],
-    stops: [0, 0.15, 0.35, 0.55, 0.8, 1],
-    accent: 'rgba(76, 175, 80, 0.04)',
-    accentStrong: 'rgba(56, 142, 60, 0.06)',
-    fallback: '#F2F8F4', // Cor sólida de fallback
-  },
+  // Névoa de Fundo — usa o mist premium do DS2026 (off-white quente),
+  // substituindo o "green mist" antigo que criava sopa esverdeada.
+  mist: LightColors.mist,
 };
 
 // ============================================
@@ -123,16 +134,19 @@ export const Spacing = {
 };
 
 // ============================================
-// TIPOGRAFIA (Poppins)
+// TIPOGRAFIA — Plus Jakarta Sans (identidade do DS2026)
+// Os nomes "Poppins-*" anteriores apontavam pra uma fonte que NUNCA é
+// carregada (App.js só carrega Plus Jakarta) — as telas legadas caíam
+// silenciosamente em system font. Agora usam a fonte real da marca.
 // ============================================
 
 export const Typography = {
   fontFamily: {
-    regular: 'Poppins-Regular',
-    medium: 'Poppins-Medium',
-    semibold: 'Poppins-SemiBold',
-    bold: 'Poppins-Bold',
-    // Fallbacks caso a fonte não carregue
+    regular: 'PlusJakartaSans_400Regular',
+    medium: 'PlusJakartaSans_500Medium',
+    semibold: 'PlusJakartaSans_600SemiBold',
+    bold: 'PlusJakartaSans_700Bold',
+    // Fallback caso a fonte não carregue
     system: 'System',
   },
 
@@ -243,7 +257,7 @@ export const Components = {
     color: Colors.white,
     fontSize: Typography.sizes.md,
     fontWeight: Typography.weights.semibold,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
 
   // Botão secundário
@@ -262,7 +276,7 @@ export const Components = {
     color: Colors.primary,
     fontSize: Typography.sizes.md,
     fontWeight: Typography.weights.medium,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
 
   // Input
@@ -272,7 +286,7 @@ export const Components = {
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.md,
     fontSize: Typography.sizes.md,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'PlusJakartaSans_400Regular',
     color: Colors.textPrimary,
   },
 
