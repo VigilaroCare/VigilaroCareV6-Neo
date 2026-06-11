@@ -12,14 +12,16 @@
         "myProfile": "My Profile",
         "overdueMeds": "{{count}} Overdue Meds",
         "activeMonitor": "ACTIVE MONITOR",
-        "quickAccess": "QUICK ACCESS",
+        "quickAccess": "Quick Access",
         "myHealth": "My Health",
         "petHealth": "Pet Health",
         "inspections": "Inspections",
         "infoLabels": "Scan Labels",
         "infoLabelsSub": "Identify toxicity",
         "tools": "Tools",
+        "toolsSection": "Tools",
         "toolbox": "Toolbox",
+        "history": "History",
         "intelligenceCenter": "Intelligence Center",
         "intelligenceSub": "AI Assistant, Scanner & Voice",
         "vigilaroRadar": "Vigilaro Radar",
@@ -407,7 +409,9 @@
         "privacy": "Privacy",
         "privacyDesc": "Data policy",
         "menuSettings": "Menu & Settings",
-        "generalSettings": "General settings"
+        "generalSettings": "General settings",
+        "fallSensitivity": "Fall sensitivity",
+        "mapaSensivel": "Your sensitive map"
     },
     "sos": {
         "title": "EMERGENCIES",
@@ -518,6 +522,7 @@
     "knowledgeHub": {
         "title": "Learning Center",
         "subtitle": "Guides and Manuals Library",
+        "realCasesTeach": "Real cases that teach",
         "essentialConcepts": "Essential Concepts",
         "lifeContext": "Life Context",
         "safetyReviews": "Safety Reviews",
@@ -604,7 +609,13 @@
         "sosError": "Could not send automatic SOS.",
         "fallMsg": "FALL ALERT! Strong impact detected with no response.",
         "vitalMsg": "SAFETY ALERT! Daily check-in was not answered.",
-        "defaultMsg": "SOS! I need urgent help."
+        "defaultMsg": "SOS! I need urgent help.",
+        "alsoWhatsApp": "Also send via WhatsApp",
+        "whatsappOpened": "WhatsApp opened",
+        "sensitivityPromptTitle": "Didn't seem like a fall?",
+        "sensitivityPromptDesc": "If alerts keep going off for no reason, you can lower the sensitivity right here.",
+        "sensitivityPromptAdjust": "Adjust sensitivity",
+        "sensitivityPromptDismiss": "Not now"
     },
     "firstAid": {
         "whatHappened": "What Happened?",
@@ -1744,7 +1755,8 @@
         "recebendoVisita": "Recebendo Visita",
         "prepararMinhaCasaParaConvidados": "Preparar minha casa para convidados",
         "indoVisitar": "Indo Visitar",
-        "cuidadosAoIrNaCasaDeOutros": "Cuidados ao ir na casa de outros"
+        "cuidadosAoIrNaCasaDeOutros": "Cuidados ao ir na casa de outros",
+        "itensParaVerificar": "items to check"
     },
     "microBlog": {
         "title": "Micro Blog",
@@ -1789,5 +1801,63 @@
         "attention": "Attention",
         "safe": "Safe",
         "roomsLabel": "Mapped rooms"
+    },
+    "activityLog": {
+        "fallSosTitle": "Fall SOS sent",
+        "fallSosDesc": "Fall detected for {{nome}}. SOS alert sent to contacts.",
+        "manualSosTitle": "Manual SOS sent",
+        "manualSosDesc": "SOS alert manually triggered by {{nome}}.",
+        "vitalSosTitle": "Check-in missed",
+        "vitalSosDesc": "{{nome}} didn't respond to the check-in. SOS alert sent to contacts."
+    },
+    "fallSensitivity": {
+        "title": "Fall sensitivity",
+        "subtitle": "How the app recognizes a real fall",
+        "hero": "The more sensitive, the sooner the app reacts — but false alarms become more likely. Choose what makes sense for you.",
+        "levelSection": "Sensitivity level",
+        "high": {
+            "title": "High",
+            "desc": "Reacts to light falls. May trigger if the phone falls off a table."
+        },
+        "medium": {
+            "title": "Medium (recommended)",
+            "desc": "Balance between quick alerts and few false positives. A good choice for most people."
+        },
+        "low": {
+            "title": "Low",
+            "desc": "Only triggers on strong impacts. Ideal for active people or public transport users."
+        },
+        "toggleLabel": "Fall detection",
+        "toggleOnDesc": "Active in the background while the app is open.",
+        "toggleOffDesc": "Off. The app won't react to falls.",
+        "footnote": "The setting applies from now on. You can change it as often as you like."
+    },
+    "recentActivity": {
+        "adjustSensitivity": "Seeing too many fall events? Adjust the sensitivity",
+        "subtitle": "App event history"
+    },
+    "audioMonitor": {
+        "statusIdle": "Safe",
+        "statusInactive": "Inactive",
+        "statusListening": "Listening...",
+        "statusNoise": "NOISE DETECTED!",
+        "statusCritical": "CRITICAL (Screams/Breaking)",
+        "statusWarning": "Warning (Loud Talking)",
+        "statusSafe": "Environment Safe",
+        "permTitle": "Permission Required",
+        "permMsg": "We need microphone access to listen to the environment.",
+        "noiseLevel": "Noise Level: {{pct}}%",
+        "tapToStart": "Tap to start the safety listening",
+        "btnStop": "STOP LISTENING",
+        "btnStart": "START MONITOR"
+    },
+    "audioConsent": {
+        "title": "Ambient Audio Monitoring",
+        "body": "This feature listens to the environment to detect events like crying, falls or loud noises.",
+        "bodyStrong": "Audio is never recorded or transmitted — it is processed locally, in real time, only while this screen is open.",
+        "accept": "I understand and accept",
+        "acceptA11y": "I understand and accept the audio monitoring",
+        "decline": "Not now",
+        "declineA11y": "Do not use the audio monitoring feature"
     }
 }

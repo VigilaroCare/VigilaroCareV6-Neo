@@ -19,7 +19,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const PROXY_WS_URL = Config.VIGILARO_PROXY_URL
     .replace(/^https:\/\//, 'wss://')
     .replace(/^http:\/\//, 'ws://');
-const REALTIME_API_URL = `${PROXY_WS_URL}/v1/realtime?model=gpt-4o-mini-realtime-preview`;
+// Rota do backend-proxy: /api/openai/* (reescrita para /v1/* na OpenAI).
+// ATENÇÃO (reativação da feature): o proxy atual NÃO aceita upgrade de
+// WebSocket (removido por segurança enquanto a feature está desativada) e a
+// Vercel Serverless não suporta conexões persistentes — será preciso host
+// dedicado (Railway/Fly/Render) com validação do token no evento 'upgrade'.
+const REALTIME_API_URL = `${PROXY_WS_URL}/api/openai/realtime?model=gpt-4o-mini-realtime-preview`;
 const USAGE_KEY = '@realtime_minutes_used';
 
 class RealtimeVoiceService {
@@ -90,17 +95,20 @@ class RealtimeVoiceService {
      * Conectar ao WebSocket da OpenAI Realtime API
      */
     async connect() {
+        // Checa o limite ANTES de abrir o socket. A versão anterior não
+        // aguardava: a Promise rejeitava, mas a conexão abria mesmo assim e
+        // ficava consumindo minutos da Realtime API.
+        const usage = await this.checkUsage();
+        if (usage.remaining <= 0) {
+            throw new Error('Limite mensal de minutos atingido');
+        }
+
         return new Promise((resolve, reject) => {
             try {
-                // Verificar uso antes de conectar
-                this.checkUsage().then(usage => {
-                    if (usage.remaining <= 0) {
-                        reject(new Error('Limite mensal de minutos atingido'));
-                        return;
-                    }
-                });
-
-                this.ws = new WebSocket(REALTIME_API_URL, {
+                // Assinatura do WebSocket no React Native: (url, protocols, options).
+                // Headers vão no 3º argumento — no 2º eram silenciosamente
+                // descartados e o token de autenticação nunca chegava ao proxy.
+                this.ws = new WebSocket(REALTIME_API_URL, null, {
                     headers: {
                         'x-vigilaro-token': Config.VIGILARO_APP_SECRET,
                         'OpenAI-Beta': 'realtime=v1'

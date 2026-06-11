@@ -8,7 +8,9 @@
  * por engenharia reversa do bundle.
  */
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../utils/SecureStorage';
 import * as FileSystem from 'expo-file-system/legacy';
 
 import { Config } from '../utils/Config';
@@ -46,7 +48,7 @@ class OpenAIService {
     // Obter voz selecionada do storage
     async getSelectedVoice() {
         try {
-            const voice = await AsyncStorage.getItem(VOICE_STORAGE_KEY);
+            const voice = await Storage.getItem(VOICE_STORAGE_KEY);
             if (voice && AVAILABLE_VOICES.includes(voice)) {
                 this.selectedVoice = voice;
             }
@@ -60,7 +62,7 @@ class OpenAIService {
     async setVoice(voice) {
         if (AVAILABLE_VOICES.includes(voice)) {
             this.selectedVoice = voice;
-            await AsyncStorage.setItem(VOICE_STORAGE_KEY, voice);
+            await Storage.setItem(VOICE_STORAGE_KEY, voice);
             return true;
         }
         return false;
@@ -83,25 +85,25 @@ class OpenAIService {
     async loadContext() {
         try {
             // 1. Load Universal Data (V6 Unified Storage)
-            const vigilaroDataRaw = await AsyncStorage.getItem('@vigilaro_data');
+            const vigilaroDataRaw = await Storage.getItem('@vigilaro_data');
             const vigilaroData = vigilaroDataRaw ? JSON.parse(vigilaroDataRaw) : {};
             const profiles = vigilaroData.perfis || [];
 
             // 2. Load Home Mapping (Compatibility with direct storage or unified)
             // Tenta ler do unificado primeiro, fallback para antigo
-            const homeMapping = vigilaroData.moradia || (await AsyncStorage.getItem('@home_mapping') ? JSON.parse(await AsyncStorage.getItem('@home_mapping')) : null);
+            const homeMapping = vigilaroData.moradia || (await Storage.getItem('@home_mapping') ? JSON.parse(await Storage.getItem('@home_mapping')) : null);
 
             // 3. Load Medications
-            const medicationsRaw = await AsyncStorage.getItem('@medications');
+            const medicationsRaw = await Storage.getItem('@medications');
             const medications = medicationsRaw ? JSON.parse(medicationsRaw) : [];
 
             // 4. Load Emergency Contacts
-            const emergencyContactsRaw = await AsyncStorage.getItem('@emergency_contacts');
+            const emergencyContactsRaw = await Storage.getItem('@emergency_contacts');
             const emergencyContacts = emergencyContactsRaw ? JSON.parse(emergencyContactsRaw) : [];
 
             // 5. Load Checklists Progress
-            const checklistReforma = await AsyncStorage.getItem('@checklist_reforma_casa');
-            const checklistSeguranca = await AsyncStorage.getItem('@checklist_completo');
+            const checklistReforma = await Storage.getItem('@checklist_reforma_casa');
+            const checklistSeguranca = await Storage.getItem('@checklist_completo');
 
             // 6. Construct Rich Context String
             let contextStr = "DADOS DO USUÁRIO:\n\n";

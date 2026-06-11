@@ -18,7 +18,9 @@ import { AudioRecorder, AudioModule, RecordingPresets } from 'expo-audio'; // [M
 import * as Speech from 'expo-speech';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Location from 'expo-location';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../utils/SecureStorage';
 
 const PANIC_STORAGE_KEY    = '@panic_button_state';
 const CONTACTS_STORAGE_KEY = '@emergency_contacts';
@@ -169,7 +171,7 @@ class PanicButtonService {
     // Carregar contatos de emergência
     async getEmergencyContacts() {
         try {
-            const json = await AsyncStorage.getItem(CONTACTS_STORAGE_KEY);
+            const json = await Storage.getItem(CONTACTS_STORAGE_KEY);
             if (json) {
                 return JSON.parse(json);
             }
@@ -286,7 +288,7 @@ class PanicButtonService {
                 activationTime: this.activationTime?.toISOString(),
                 location:       this.location
             };
-            await AsyncStorage.setItem(PANIC_STORAGE_KEY, JSON.stringify(state));
+            await Storage.setItem(PANIC_STORAGE_KEY, JSON.stringify(state));
         } catch (error) {
             if (__DEV__) { console.error('Erro ao salvar estado:', error); }
         }
@@ -295,7 +297,7 @@ class PanicButtonService {
     // Limpar estado
     async clearState() {
         try {
-            await AsyncStorage.removeItem(PANIC_STORAGE_KEY);
+            await Storage.removeItem(PANIC_STORAGE_KEY);
             this.location       = null;
             this.activationTime = null;
         } catch (error) {
@@ -306,7 +308,7 @@ class PanicButtonService {
     // Restaurar estado (quando o app reinicia)
     async restoreState() {
         try {
-            const json = await AsyncStorage.getItem(PANIC_STORAGE_KEY);
+            const json = await Storage.getItem(PANIC_STORAGE_KEY);
             if (json) {
                 const state = JSON.parse(json);
                 if (state.isActive) {

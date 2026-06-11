@@ -14,12 +14,14 @@
 
 import React from 'react';
 import { View, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';
 import NeoCard from './NeoCard';
 import { H3, Body, Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
 export default function AudioConsentModal({ visible, onAccept, onDecline }) {
+    const { t } = useTranslation('common');
     return (
         <Modal visible={visible} transparent animationType="fade" onRequestClose={onDecline}>
             <View style={styles.overlay}>
@@ -31,33 +33,37 @@ export default function AudioConsentModal({ visible, onAccept, onDecline }) {
                             <NeoIcon name="Microphone2" size={32} color="#FFF" variant="Bold" />
                         </View>
 
-                        <H3 style={styles.title}>Monitoramento de Áudio Ambiente</H3>
+                        <H3 style={styles.title}>
+                            {t('audioConsent.title', 'Monitoramento de Áudio Ambiente')}
+                        </H3>
 
                         <Body style={styles.body}>
-                            Esta função escuta o ambiente para detectar eventos como choro,
-                            quedas ou ruídos altos.
+                            {t('audioConsent.body', 'Esta função escuta o ambiente para detectar eventos como choro, quedas ou ruídos altos.')}
                         </Body>
                         <Body style={styles.bodyStrong}>
-                            O áudio não é gravado nem transmitido — é processado localmente,
-                            em tempo real, apenas enquanto a tela está aberta.
+                            {t('audioConsent.bodyStrong', 'O áudio não é gravado nem transmitido — é processado localmente, em tempo real, apenas enquanto a tela está aberta.')}
                         </Body>
 
                         <TouchableOpacity
                             style={styles.btnPrimary}
                             onPress={onAccept}
                             accessibilityRole="button"
-                            accessibilityLabel="Entendi e aceito o monitoramento de áudio"
+                            accessibilityLabel={t('audioConsent.acceptA11y', 'Entendi e aceito o monitoramento de áudio')}
                         >
-                            <Body style={styles.btnPrimaryText}>Entendi e aceito</Body>
+                            <Body style={styles.btnPrimaryText}>
+                                {t('audioConsent.accept', 'Entendi e aceito')}
+                            </Body>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.btnSecondary}
                             onPress={onDecline}
                             accessibilityRole="button"
-                            accessibilityLabel="Não usar a função de monitoramento de áudio"
+                            accessibilityLabel={t('audioConsent.declineA11y', 'Não usar a função de monitoramento de áudio')}
                         >
-                            <Small style={styles.btnSecondaryText}>Agora não</Small>
+                            <Small style={styles.btnSecondaryText}>
+                                {t('audioConsent.decline', 'Agora não')}
+                            </Small>
                         </TouchableOpacity>
                     </NeoCard>
                 </View>

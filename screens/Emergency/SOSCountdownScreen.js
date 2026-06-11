@@ -19,7 +19,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { AudioPlayer } from 'expo-audio';
 import * as ExpoLocation from 'expo-location';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../../utils/SecureStorage';
 import NetInfo from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 
@@ -51,6 +53,10 @@ export default function SOSCountdownScreen({ navigation, route }) {
   // Timer de auto-fechamento da view "sending" — cancelável se o usuário
   // tocar em "Enviar via WhatsApp também", pra dar tempo da ação completar.
   const closeTimerRef = useRef(null);
+  const countdownTimerRef = useRef(null);
+  // Guard de disparo único do SOS — o updater de setState deve ser puro
+  // (o React pode invocá-lo mais de uma vez); o disparo vive num useEffect.
+  const sosFiredRef = useRef(false);
 
   useEffect(() => {
     const startAlert = async () => {
@@ -83,19 +89,12 @@ export default function SOSCountdownScreen({ navigation, route }) {
       ).start();
     }
 
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          triggerSOSAction();
-          return 0;
-        }
-        return prev - 1;
-      });
+    countdownTimerRef.current = setInterval(() => {
+      setCountdown((prev) => Math.max(0, prev - 1));
     }, 1000);
 
     return () => {
-      clearInterval(timer);
+      clearInterval(countdownTimerRef.current);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       if (playerRef.current) {
         playerRef.current.stop();
@@ -103,6 +102,15 @@ export default function SOSCountdownScreen({ navigation, route }) {
       Vibration.cancel();
     };
   }, []);
+
+  // Dispara o SOS quando o countdown zera — com guard de execução única.
+  useEffect(() => {
+    if (countdown === 0 && !sosFiredRef.current) {
+      sosFiredRef.current = true;
+      clearInterval(countdownTimerRef.current);
+      triggerSOSAction();
+    }
+  }, [countdown]);
 
   // Normaliza número pra WhatsApp. WhatsApp exige código de país.
   // Heurística pragmática: se o número tem 10-11 dígitos (formato BR sem DDI),
@@ -162,7 +170,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
       }
 
       try {
-        const manualJson = await AsyncStorage.getItem('@emergency_contacts');
+        const manualJson = await Storage.getItem('@emergency_contacts');
         if (manualJson) {
           const manual = JSON.parse(manualJson);
           manual.forEach(c => {

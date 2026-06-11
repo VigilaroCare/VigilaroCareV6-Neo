@@ -179,8 +179,11 @@ class FallDetectionService {
       return false;
     }
 
-    // Usuário desativou a detecção no menu de Sensibilidade — não iniciar
+    // Usuário desativou a detecção no menu de Sensibilidade — não iniciar.
+    // Guarda o callback mesmo assim: se religar via setEnabled(true), o
+    // monitoramento retoma sem precisar reiniciar o app.
     if (!this.isEnabledByUser) {
+      this._lastCallback = callback;
       if (__DEV__) {
         console.log(
           '[FallDetectionService] start: detecção desativada pelo usuário (Sensibilidade > Desligar)'
@@ -401,6 +404,13 @@ class FallDetectionService {
       this.stop();
       // Guardamos o callback fora do stop para permitir religar depois
       this._lastCallback = cb;
+    } else if (this.isEnabledByUser && !this.subscription && this._lastCallback) {
+      // Religou: retoma o monitoramento com o callback registrado no boot.
+      // Sem isso, o toggle fica verde mas o acelerômetro só voltaria
+      // a escutar após reiniciar o app (falha silenciosa de segurança).
+      const cb = this._lastCallback;
+      this._lastCallback = null;
+      await this.start(cb);
     }
   }
 

@@ -6,7 +6,9 @@
 import { Config } from "../utils/Config";
 import { fetchWithTimeout as fetchWithTimeoutBase } from "../utils/fetchWithTimeout";
 
-const CHAT_URL = `${Config.VIGILARO_PROXY_URL}/v1/chat/completions`;
+// Rota do backend-proxy: /api/openai/* (o proxy reescreve para /v1/* na OpenAI).
+// /v1/... direto não existe no proxy e retorna 404.
+const CHAT_URL = `${Config.VIGILARO_PROXY_URL}/api/openai/chat/completions`;
 const PROXY_HEADERS = {
     "Content-Type": "application/json",
     "x-vigilaro-token": Config.VIGILARO_APP_SECRET,

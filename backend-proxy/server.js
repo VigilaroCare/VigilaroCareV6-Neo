@@ -7,6 +7,13 @@ const morgan = require('morgan');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
+
+// Atrás do LB da Vercel, req.ip precisa vir do X-Forwarded-For (primeiro hop).
+// Sem isto, o rate limiter agrupa TODOS os clientes no IP do balanceador
+// (bucket único de 60 req/min pra base inteira) e o express-rate-limit v7
+// dispara ERR_ERL_UNEXPECTED_X_FORWARDED_FOR.
+app.set('trust proxy', 1);
+
 const PORT = process.env.PORT || 3000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const ELEVEN_API_KEY = process.env.ELEVEN_API_KEY;
@@ -68,10 +75,16 @@ const requireAppSecret = (req, res, next) => {
 };
 
 // 1. Proxy OpenAI
+// NOTA: suporte a WebSocket (Realtime API) removido enquanto a feature
+// Realtime Voice estiver desativada no app (services/_compat/LegacyAudioRecorder.js).
+// O handler de upgrade anterior NÃO validava o x-vigilaro-token — qualquer
+// cliente podia abrir um WS pra Realtime API (cobrada por minuto) na nossa conta.
+// Ao reativar: validar o token no evento 'upgrade' ANTES de proxyar
+// (upgrade não passa pelos middlewares Express) e hospedar fora da Vercel
+// (serverless não suporta conexões persistentes).
 const openaiProxy = createProxyMiddleware({
   target: 'https://api.openai.com',
   changeOrigin: true,
-  ws: true, // Support WebSockets for Realtime API
   pathRewrite: (path, req) => {
     if (path.startsWith('/api/openai')) {
       return path.replace(/^\/api\/openai/, '/v1');
@@ -131,14 +144,8 @@ module.exports = app;
 
 // Listen only if not running inside Vercel
 if (process.env.NODE_ENV !== 'production' && require.main === module) {
-  const server = app.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`\x1b[32m🚀 Vigilaro Proxy running on http://localhost:${PORT}\x1b[0m`);
     console.log(`\x1b[33m🔒 App Secret ends with: ...${APP_SECRET.slice(-4)}\x1b[0m`);
-  });
-  
-  server.on('upgrade', (req, socket, head) => {
-    if (req.url.startsWith('/api/openai')) {
-      openaiProxy.upgrade(req, socket, head);
-    }
   });
 }

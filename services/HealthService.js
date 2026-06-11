@@ -1,4 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../utils/SecureStorage';
 
 /**
  * HealthService - Gerencia saúde completa (medicamentos, tratamentos, histórico)
@@ -9,7 +11,7 @@ class HealthService {
 
     static async getMedications(profileId = null) {
         try {
-            const data = await AsyncStorage.getItem('@vigilaro_medications_v1');
+            const data = await Storage.getItem('@vigilaro_medications_v1');
             const allMeds = data ? JSON.parse(data) : [];
 
             if (profileId) {
@@ -32,7 +34,7 @@ class HealthService {
                 createdAt: new Date().toISOString()
             };
             meds.push(newMed);
-            await AsyncStorage.setItem('@vigilaro_medications_v1', JSON.stringify(meds));
+            await Storage.setItem('@vigilaro_medications_v1', JSON.stringify(meds));
             return newMed;
         } catch (e) {
             if (__DEV__) { console.error('Error saving medication:', e); }
@@ -47,7 +49,7 @@ class HealthService {
 
             if (index !== -1) {
                 meds[index] = { ...meds[index], ...updates };
-                await AsyncStorage.setItem('@vigilaro_medications_v1', JSON.stringify(meds));
+                await Storage.setItem('@vigilaro_medications_v1', JSON.stringify(meds));
                 return meds[index];
             }
             return null;
@@ -61,7 +63,7 @@ class HealthService {
         try {
             const meds = await this.getMedications();
             const filtered = meds.filter(m => m.id !== medicationId);
-            await AsyncStorage.setItem('@vigilaro_medications_v1', JSON.stringify(filtered));
+            await Storage.setItem('@vigilaro_medications_v1', JSON.stringify(filtered));
         } catch (e) {
             if (__DEV__) { console.error('Error deleting medication:', e); }
             throw e;
@@ -93,7 +95,7 @@ class HealthService {
 
     static async getTreatments(profileId = null) {
         try {
-            const data = await AsyncStorage.getItem('@treatments');
+            const data = await Storage.getItem('@treatments');
             const allTreatments = data ? JSON.parse(data) : [];
 
             if (profileId) {
@@ -116,7 +118,7 @@ class HealthService {
                 nextDate: this._calculateNextDate(treatment.startDate, treatment.interval)
             };
             treatments.push(newTreatment);
-            await AsyncStorage.setItem('@treatments', JSON.stringify(treatments));
+            await Storage.setItem('@treatments', JSON.stringify(treatments));
             return newTreatment;
         } catch (e) {
             if (__DEV__) { console.error('Error saving treatment:', e); }
@@ -136,7 +138,7 @@ class HealthService {
                     updatedTreatment.nextDate = this._calculateNextDate(updatedTreatment.startDate, updatedTreatment.interval);
                 }
                 treatments[index] = updatedTreatment;
-                await AsyncStorage.setItem('@treatments', JSON.stringify(treatments));
+                await Storage.setItem('@treatments', JSON.stringify(treatments));
                 return updatedTreatment;
             }
             return null;
@@ -156,7 +158,7 @@ class HealthService {
                 treatment.lastDone = new Date().toISOString();
                 treatment.nextDate = this._calculateNextDate(new Date(), treatment.interval);
 
-                await AsyncStorage.setItem('@treatments', JSON.stringify(treatments));
+                await Storage.setItem('@treatments', JSON.stringify(treatments));
                 return treatment;
             }
             return null;
@@ -170,7 +172,7 @@ class HealthService {
         try {
             const treatments = await this.getTreatments();
             const filtered = treatments.filter(t => t.id !== treatmentId);
-            await AsyncStorage.setItem('@treatments', JSON.stringify(filtered));
+            await Storage.setItem('@treatments', JSON.stringify(filtered));
         } catch (e) {
             if (__DEV__) { console.error('Error deleting treatment:', e); }
             throw e;
@@ -216,7 +218,7 @@ class HealthService {
 
     static async getAppointments(profileId = null) {
         try {
-            const data = await AsyncStorage.getItem('@appointments');
+            const data = await Storage.getItem('@appointments');
             const allAppointments = data ? JSON.parse(data) : [];
 
             if (profileId) {
@@ -239,7 +241,7 @@ class HealthService {
                 createdAt: new Date().toISOString()
             };
             appointments.push(newAppointment);
-            await AsyncStorage.setItem('@appointments', JSON.stringify(appointments));
+            await Storage.setItem('@appointments', JSON.stringify(appointments));
             return newAppointment;
         } catch (e) {
             if (__DEV__) { console.error('Error saving appointment:', e); }
@@ -254,7 +256,7 @@ class HealthService {
 
             if (index !== -1) {
                 appointments[index] = { ...appointments[index], ...updates };
-                await AsyncStorage.setItem('@appointments', JSON.stringify(appointments));
+                await Storage.setItem('@appointments', JSON.stringify(appointments));
                 return appointments[index];
             }
             return null;
@@ -268,7 +270,7 @@ class HealthService {
         try {
             const appointments = await this.getAppointments();
             const filtered = appointments.filter(a => a.id !== appointmentId);
-            await AsyncStorage.setItem('@appointments', JSON.stringify(filtered));
+            await Storage.setItem('@appointments', JSON.stringify(filtered));
         } catch (e) {
             if (__DEV__) { console.error('Error deleting appointment:', e); }
             throw e;
@@ -296,7 +298,7 @@ class HealthService {
 
     static async getProcedures(profileId = null) {
         try {
-            const data = await AsyncStorage.getItem('@procedures');
+            const data = await Storage.getItem('@procedures');
             const allProcedures = data ? JSON.parse(data) : [];
 
             if (profileId) {
@@ -319,7 +321,7 @@ class HealthService {
                 createdAt: new Date().toISOString()
             };
             procedures.push(newProcedure);
-            await AsyncStorage.setItem('@procedures', JSON.stringify(procedures));
+            await Storage.setItem('@procedures', JSON.stringify(procedures));
             return newProcedure;
         } catch (e) {
             if (__DEV__) { console.error('Error saving procedure:', e); }
@@ -334,7 +336,7 @@ class HealthService {
 
             if (index !== -1) {
                 procedures[index] = { ...procedures[index], ...updates };
-                await AsyncStorage.setItem('@procedures', JSON.stringify(procedures));
+                await Storage.setItem('@procedures', JSON.stringify(procedures));
                 return procedures[index];
             }
             return null;
@@ -348,7 +350,7 @@ class HealthService {
         try {
             const procedures = await this.getProcedures();
             const filtered = procedures.filter(p => p.id !== procedureId);
-            await AsyncStorage.setItem('@procedures', JSON.stringify(filtered));
+            await Storage.setItem('@procedures', JSON.stringify(filtered));
         } catch (e) {
             if (__DEV__) { console.error('Error deleting procedure:', e); }
             throw e;
@@ -376,7 +378,7 @@ class HealthService {
 
     static async getMedicalHistory(profileId = null) {
         try {
-            const data = await AsyncStorage.getItem('@medical_history');
+            const data = await Storage.getItem('@medical_history');
             const allHistory = data ? JSON.parse(data) : [];
 
             if (profileId) {
@@ -399,7 +401,7 @@ class HealthService {
                 createdAt: new Date().toISOString()
             };
             history.push(newRecord);
-            await AsyncStorage.setItem('@medical_history', JSON.stringify(history));
+            await Storage.setItem('@medical_history', JSON.stringify(history));
             return newRecord;
         } catch (e) {
             if (__DEV__) { console.error('Error saving medical record:', e); }
@@ -411,7 +413,7 @@ class HealthService {
         try {
             const history = await this.getMedicalHistory();
             const filtered = history.filter(h => h.id !== recordId);
-            await AsyncStorage.setItem('@medical_history', JSON.stringify(filtered));
+            await Storage.setItem('@medical_history', JSON.stringify(filtered));
         } catch (e) {
             if (__DEV__) { console.error('Error deleting medical record:', e); }
             throw e;
@@ -425,7 +427,7 @@ class HealthService {
 
             if (index !== -1) {
                 history[index].shareable = !history[index].shareable;
-                await AsyncStorage.setItem('@medical_history', JSON.stringify(history));
+                await Storage.setItem('@medical_history', JSON.stringify(history));
                 return history[index];
             }
             return null;
@@ -572,7 +574,7 @@ class HealthService {
 
     static async _getProfileData(profileId) {
         try {
-            const data = await AsyncStorage.getItem('@profiles_data');
+            const data = await Storage.getItem('@profiles_data');
             const profilesData = data ? JSON.parse(data) : { perfis: [] };
             return profilesData.perfis.find(p => p.id === profileId);
         } catch (e) {

@@ -19,7 +19,7 @@ export default function AudioMonitorScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [isMonitoring, setIsMonitoring] = useState(false);
     const [dbLevel, setDbLevel] = useState(0);
-    const [status, setStatus] = useState('Seguro'); // Seguro, Alerta, Perigo
+    const [status, setStatus] = useState(t('audioMonitor.statusIdle', 'Seguro'));
     const [consentVisible, setConsentVisible] = useState(false);
 
     // Animation Values
@@ -54,7 +54,7 @@ export default function AudioMonitorScreen({ navigation }) {
             await AudioMonitorService.stopMonitoring();
             setIsMonitoring(false);
             setDbLevel(0);
-            setStatus('Inativo');
+            setStatus(t('audioMonitor.statusInactive', 'Inativo'));
             stopAnimations();
             return;
         }
@@ -72,12 +72,15 @@ export default function AudioMonitorScreen({ navigation }) {
     const beginMonitoring = async () => {
         const permission = await AudioMonitorService.requestPermissions();
         if (!permission) {
-            NeoAlert.alert('Permissão Necessária', 'Precisamos acessar o microfone para ouvir o ambiente.');
+            NeoAlert.alert(
+                t('audioMonitor.permTitle', 'Permissão Necessária'),
+                t('audioMonitor.permMsg', 'Precisamos acessar o microfone para ouvir o ambiente.')
+            );
             return;
         }
 
         setIsMonitoring(true);
-        setStatus('Ouvindo...');
+        setStatus(t('audioMonitor.statusListening', 'Ouvindo...'));
         startAnimations();
 
         AudioMonitorService.startMonitoring(
@@ -86,7 +89,7 @@ export default function AudioMonitorScreen({ navigation }) {
                 updateVisuals(level);
             },
             (alertLevel) => {
-                setStatus('BARULHO DETECTADO!');
+                setStatus(t('audioMonitor.statusNoise', 'BARULHO DETECTADO!'));
                 // Aqui poderia disparar vibração ou notificação push local
             }
         );
@@ -104,9 +107,9 @@ export default function AudioMonitorScreen({ navigation }) {
 
     const updateVisuals = (level) => {
         // Mudar status e cor baseada no nível (0-100)
-        if (level > 80) setStatus('CRÍTICO (Gritos/Quebra)');
-        else if (level > 50) setStatus('Alerta (Conversa Alta)');
-        else setStatus('Ambiente Seguro');
+        if (level > 80) setStatus(t('audioMonitor.statusCritical', 'CRÍTICO (Gritos/Quebra)'));
+        else if (level > 50) setStatus(t('audioMonitor.statusWarning', 'Alerta (Conversa Alta)'));
+        else setStatus(t('audioMonitor.statusSafe', 'Ambiente Seguro'));
 
         // Animação de pulso baseada no volume
         const scale = 1 + (level / 100) * 0.5; // Scale up to 1.5x
@@ -199,8 +202,8 @@ export default function AudioMonitorScreen({ navigation }) {
                 </Text>
                 <Text style={styles.statusDesc}>
                     {isMonitoring
-                        ? `Nível de Ruído: ${dbLevel.toFixed(0)}%`
-                        : "Toque para ativar a escuta de segurança"}
+                        ? t('audioMonitor.noiseLevel', 'Nível de Ruído: {{pct}}%', { pct: dbLevel.toFixed(0) })
+                        : t('audioMonitor.tapToStart', 'Toque para ativar a escuta de segurança')}
                 </Text>
 
                 {/* Tips Card */}
@@ -221,7 +224,9 @@ export default function AudioMonitorScreen({ navigation }) {
                     onPress={toggleMonitoring}
                 >
                     <Text style={styles.buttonText}>
-                        {isMonitoring ? "DESATIVAR ESCUTA" : "ATIVAR MONITOR"}
+                        {isMonitoring
+                            ? t('audioMonitor.btnStop', 'DESATIVAR ESCUTA')
+                            : t('audioMonitor.btnStart', 'ATIVAR MONITOR')}
                     </Text>
                 </TouchableOpacity>
 

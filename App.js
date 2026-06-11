@@ -27,7 +27,7 @@
 //  [FEAT-RA01] Adicionado RecentActivityScreen
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { View, Platform, LogBox } from "react-native";
+import { View, Platform, LogBox, AppState } from "react-native";
 
 // Supressões de warning — cada item documentado com motivo.
 // Revisar esta lista a cada bump de dependência major.
@@ -442,19 +442,22 @@ export default function App() {
 
     let mounted = true;
 
+    // Callback estável de queda — usado no boot e na retomada via AppState.
+    const onFallDetected = ({ reason }) => {
+      if (!mounted) return;
+      const current = NavigationService.getCurrentRoute();
+      if (current !== 'SOSCountdown') {
+        // O log de "Queda Detectada / SOS enviado" é gravado pelo próprio
+        // SOSCountdownScreen quando o SMS é disparado — não aqui, para
+        // evitar gravar evento quando o usuário cancela antes do envio.
+        NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'FALL' });
+      }
+    };
+
     const startServices = async () => {
       // Carrega preset e on/off salvos antes de iniciar
       await FallDetectionService.loadPersistedConfig();
-      await FallDetectionService.start(({ reason }) => {
-        if (!mounted) return;
-        const current = NavigationService.getCurrentRoute();
-        if (current !== 'SOSCountdown') {
-          // O log de "Queda Detectada / SOS enviado" é gravado pelo próprio
-          // SOSCountdownScreen quando o SMS é disparado — não aqui, para
-          // evitar gravar evento quando o usuário cancela antes do envio.
-          NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'FALL' });
-        }
-      });
+      await FallDetectionService.start(onFallDetected);
 
       await VitalCheckService.init(({ reason }) => {
         if (!mounted) return;
@@ -468,8 +471,24 @@ export default function App() {
 
     startServices();
 
+    // Bateria: acelerômetro + giroscópio a 25Hz só fazem sentido com o app
+    // em primeiro plano (sem foreground service, o SO pode matar o processo
+    // em background a qualquer momento — o "monitoramento" seria ilusório).
+    // Pausa os sensores ao sair e retoma ao voltar, respeitando o toggle.
+    const appStateSub = AppState.addEventListener('change', (next) => {
+      if (!mounted) return;
+      if (next === 'active') {
+        if (FallDetectionService.getIsEnabled() && !FallDetectionService.isActive()) {
+          FallDetectionService.start(onFallDetected);
+        }
+      } else {
+        FallDetectionService.stop();
+      }
+    });
+
     return () => {
       mounted = false;
+      appStateSub.remove();
       FallDetectionService.stop();
       VitalCheckService.logout();
     };

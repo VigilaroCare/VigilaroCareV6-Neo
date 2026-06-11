@@ -19,7 +19,9 @@ import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
 import { H1, H2, H3, Body, Small, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../utils/SecureStorage';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -85,7 +87,7 @@ export default function MedicationsScreen({ navigation }) {
 
     const loadMedications = async () => {
         try {
-            const saved = await AsyncStorage.getItem('@medications_timeline');
+            const saved = await Storage.getItem('@medications_timeline');
             if (saved) {
                 setMedications(JSON.parse(saved));
             }
@@ -96,7 +98,7 @@ export default function MedicationsScreen({ navigation }) {
 
     const loadHistory = async () => {
         try {
-            const saved = await AsyncStorage.getItem('@medications_history');
+            const saved = await Storage.getItem('@medications_history');
             if (saved) {
                 const allHistory = JSON.parse(saved);
                 // Filter by current profile if needed, or show all
@@ -173,7 +175,7 @@ export default function MedicationsScreen({ navigation }) {
         }
 
         setMedications(updated);
-        await AsyncStorage.setItem('@medications_timeline', JSON.stringify(updated));
+        await Storage.setItem('@medications_timeline', JSON.stringify(updated));
 
         setModalVisible(false);
         resetForm();
@@ -222,7 +224,7 @@ export default function MedicationsScreen({ navigation }) {
             m.id === id ? { ...m, taken: isTaking, stock: newStock, lastTaken: isTaking ? new Date().toISOString() : m.lastTaken } : m
         );
         setMedications(updated);
-        await AsyncStorage.setItem('@medications_timeline', JSON.stringify(updated));
+        await Storage.setItem('@medications_timeline', JSON.stringify(updated));
 
         // Log to History
         if (isTaking) {
@@ -236,10 +238,10 @@ export default function MedicationsScreen({ navigation }) {
             };
 
             try {
-                const historyStr = await AsyncStorage.getItem('@medications_history');
+                const historyStr = await Storage.getItem('@medications_history');
                 const history = historyStr ? JSON.parse(historyStr) : [];
                 history.push(historyEntry);
-                await AsyncStorage.setItem('@medications_history', JSON.stringify(history));
+                await Storage.setItem('@medications_history', JSON.stringify(history));
 
                 // Gamification
                 await GamificationService.addPoints('MEDICATION_TAKEN');
@@ -266,7 +268,7 @@ export default function MedicationsScreen({ navigation }) {
 
                     const updated = medications.filter(m => m.id !== id);
                     setMedications(updated);
-                    await AsyncStorage.setItem('@medications_timeline', JSON.stringify(updated));
+                    await Storage.setItem('@medications_timeline', JSON.stringify(updated));
                 }
             }
         ]);

@@ -1,5 +1,7 @@
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../utils/SecureStorage';
 import * as Notifications from 'expo-notifications';
 import ProfileService from './ProfileService';
 
@@ -22,7 +24,7 @@ class MedicationService {
      */
     static async getMedications() {
         try {
-            const data = await AsyncStorage.getItem(MEDS_KEY);
+            const data = await Storage.getItem(MEDS_KEY);
             return data ? JSON.parse(data) : [];
         } catch (e) {
             if (__DEV__) { console.error('Erro ao ler medicamentos', e); }
@@ -60,7 +62,7 @@ class MedicationService {
         await this.scheduleNotifications(newMed);
 
         meds.push(newMed);
-        await AsyncStorage.setItem(MEDS_KEY, JSON.stringify(meds));
+        await Storage.setItem(MEDS_KEY, JSON.stringify(meds));
         return newMed;
     }
 
@@ -87,7 +89,7 @@ class MedicationService {
             updatedMed.notificationIds = notificationIds;
 
             meds[index] = updatedMed;
-            await AsyncStorage.setItem(MEDS_KEY, JSON.stringify(meds));
+            await Storage.setItem(MEDS_KEY, JSON.stringify(meds));
             return updatedMed;
         }
     }
@@ -102,7 +104,7 @@ class MedicationService {
         if (med) {
             await this.cancelNotifications(med); // Cancela pendentes
             meds = meds.filter(m => m.id !== id);
-            await AsyncStorage.setItem(MEDS_KEY, JSON.stringify(meds));
+            await Storage.setItem(MEDS_KEY, JSON.stringify(meds));
         }
     }
 
@@ -164,7 +166,7 @@ class MedicationService {
             med.notificationIds = notificationIds;
 
             meds[index] = med;
-            await AsyncStorage.setItem(MEDS_KEY, JSON.stringify(meds));
+            await Storage.setItem(MEDS_KEY, JSON.stringify(meds));
             return med;
         }
     }
@@ -247,7 +249,7 @@ class MedicationService {
             med.notificationIds = notificationIds;
 
             meds[index] = med;
-            await AsyncStorage.setItem(MEDS_KEY, JSON.stringify(meds));
+            await Storage.setItem(MEDS_KEY, JSON.stringify(meds));
             return med;
         }
     }

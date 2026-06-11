@@ -6,7 +6,9 @@ import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 import * as ExpoLocation from 'expo-location';
 import * as Clipboard from 'expo-clipboard';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
+// e o restante pro AsyncStorage — ver utils/SecureStorage.js.
+import { Storage } from '../../utils/SecureStorage';
 import ProfileService from '../../services/ProfileService';
 import HealthService from '../../services/HealthService';
 
@@ -144,7 +146,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
     const loadContacts = async () => {
         try {
-            const json = await AsyncStorage.getItem('@emergency_contacts');
+            const json = await Storage.getItem('@emergency_contacts');
             const manual = json ? JSON.parse(json) : [];
             const profile = await ProfileService.getPerfilAtivo();
             const profileContacts = profile?.contatos?.map(c => ({
@@ -656,7 +658,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                     if (newContactName && newContactPhone) {
                                         const novaLista = [...customContacts, { id: Date.now().toString(), name: newContactName, phone: newContactPhone }];
                                         setCustomContacts(novaLista);
-                                        AsyncStorage.setItem('@emergency_contacts', JSON.stringify(novaLista));
+                                        Storage.setItem('@emergency_contacts', JSON.stringify(novaLista));
                                         setAddContactModalVisible(false);
                                         setNewContactName(''); setNewContactPhone('');
                                     }

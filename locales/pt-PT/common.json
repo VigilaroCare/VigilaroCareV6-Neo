@@ -12,14 +12,16 @@
         "myProfile": "O Meu Perfil",
         "overdueMeds": "{{count}} Medicamentos em Atraso",
         "activeMonitor": "MONITOR ATIVO",
-        "quickAccess": "ACESSO RÁPIDO",
+        "quickAccess": "Acesso Rápido",
         "myHealth": "A Minha Saúde",
         "petHealth": "Saúde Animal",
         "inspections": "Vistorias",
         "infoLabels": "Info Rótulos",
         "infoLabelsSub": "Identifique toxicidade",
         "tools": "Ferramentas",
+        "toolsSection": "Ferramentas",
         "toolbox": "Ferramentas IA",
+        "history": "Histórico",
         "intelligenceCenter": "Central de Inteligência",
         "intelligenceSub": "Assistente IA, Scanner e Voz",
         "vigilaroRadar": "Vigilaro Radar",
@@ -407,7 +409,9 @@
         "privacy": "Privacidade",
         "privacyDesc": "Política de dados",
         "menuSettings": "Menu & Definições",
-        "generalSettings": "Definições gerais"
+        "generalSettings": "Definições gerais",
+        "fallSensitivity": "Sensibilidade de queda",
+        "mapaSensivel": "O seu mapa sensível"
     },
     "sos": {
         "title": "EMERGÊNCIAS",
@@ -518,6 +522,7 @@
     "knowledgeHub": {
         "title": "Central de Aprendizado",
         "subtitle": "Biblioteca de Guias e Manuais",
+        "realCasesTeach": "Casos reais que ensinam",
         "essentialConcepts": "Conceitos Essenciais",
         "lifeContext": "Contexto de Vida",
         "safetyReviews": "Análises de Segurança",
@@ -604,7 +609,13 @@
         "sosError": "Não foi possível enviar o SOS automatico.",
         "fallMsg": "ALERTA DE QUEDA! Houve um impacto forte e não houve resposta.",
         "vitalMsg": "ALERTA DE SEGURANÇA! O check-in diário não foi respondido.",
-        "defaultMsg": "SOS! Preciso de ajuda urgente."
+        "defaultMsg": "SOS! Preciso de ajuda urgente.",
+        "alsoWhatsApp": "Enviar também por WhatsApp",
+        "whatsappOpened": "WhatsApp aberto",
+        "sensitivityPromptTitle": "Pareceu que não foi uma queda?",
+        "sensitivityPromptDesc": "Se o alerta está a disparar sem motivo, pode reduzir a sensibilidade aqui mesmo.",
+        "sensitivityPromptAdjust": "Ajustar sensibilidade",
+        "sensitivityPromptDismiss": "Agora não"
     },
     "firstAid": {
         "whatHappened": "O Que Aconteceu?",
@@ -1790,5 +1801,63 @@
         "attention": "Atenção",
         "safe": "Seguros",
         "roomsLabel": "Compartimentos mapeados"
+    },
+    "activityLog": {
+        "fallSosTitle": "SOS por queda enviado",
+        "fallSosDesc": "Queda detetada para {{nome}}. Alerta de SOS enviado aos contactos.",
+        "manualSosTitle": "SOS manual enviado",
+        "manualSosDesc": "Alerta de SOS acionado manualmente por {{nome}}.",
+        "vitalSosTitle": "Check-in sem resposta",
+        "vitalSosDesc": "{{nome}} não respondeu ao check-in. Alerta de SOS enviado aos contactos."
+    },
+    "fallSensitivity": {
+        "title": "Sensibilidade de queda",
+        "subtitle": "Como a app reconhece uma queda real",
+        "hero": "Quanto mais sensível, mais cedo a app reage — mas também aumenta a probabilidade de alertas sem motivo. Escolha o que faz sentido para si.",
+        "levelSection": "Nível de sensibilidade",
+        "high": {
+            "title": "Alta",
+            "desc": "Reage a quedas ligeiras. Pode disparar se o telemóvel cair de uma mesa."
+        },
+        "medium": {
+            "title": "Média (recomendada)",
+            "desc": "Equilíbrio entre alerta rápido e poucos falsos positivos. Boa escolha para a maioria."
+        },
+        "low": {
+            "title": "Baixa",
+            "desc": "Só dispara em impactos fortes. Ideal para quem é ativo ou anda de transportes públicos."
+        },
+        "toggleLabel": "Deteção de queda",
+        "toggleOnDesc": "Ativa em segundo plano enquanto a app está aberta.",
+        "toggleOffDesc": "Desligada. A app não vai reagir a quedas.",
+        "footnote": "O ajuste é aplicado a partir de agora. Pode alterá-lo as vezes que quiser."
+    },
+    "recentActivity": {
+        "adjustSensitivity": "A ver demasiados eventos de queda? Ajuste a sensibilidade",
+        "subtitle": "Histórico de eventos da app"
+    },
+    "audioMonitor": {
+        "statusIdle": "Seguro",
+        "statusInactive": "Inativo",
+        "statusListening": "A ouvir...",
+        "statusNoise": "RUÍDO DETETADO!",
+        "statusCritical": "CRÍTICO (Gritos/Quebra)",
+        "statusWarning": "Alerta (Conversa alta)",
+        "statusSafe": "Ambiente seguro",
+        "permTitle": "Permissão necessária",
+        "permMsg": "Precisamos de aceder ao microfone para ouvir o ambiente.",
+        "noiseLevel": "Nível de ruído: {{pct}}%",
+        "tapToStart": "Toque para ativar a escuta de segurança",
+        "btnStop": "DESATIVAR ESCUTA",
+        "btnStart": "ATIVAR MONITOR"
+    },
+    "audioConsent": {
+        "title": "Monitorização de Áudio Ambiente",
+        "body": "Esta função escuta o ambiente para detetar eventos como choro, quedas ou ruídos altos.",
+        "bodyStrong": "O áudio não é gravado nem transmitido — é processado localmente, em tempo real, apenas enquanto este ecrã está aberto.",
+        "accept": "Compreendo e aceito",
+        "acceptA11y": "Compreendo e aceito a monitorização de áudio",
+        "decline": "Agora não",
+        "declineA11y": "Não usar a função de monitorização de áudio"
     }
 }

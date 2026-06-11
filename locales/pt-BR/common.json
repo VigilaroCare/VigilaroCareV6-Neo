@@ -12,14 +12,16 @@
         "myProfile": "Meu Perfil",
         "overdueMeds": "{{count}} Remédios Atrasados",
         "activeMonitor": "MONITOR ATIVO",
-        "quickAccess": "ACESSO RÁPIDO",
+        "quickAccess": "Acesso Rápido",
         "myHealth": "Minha Saúde",
         "petHealth": "Saúde Pet",
         "inspections": "Vistorias",
         "infoLabels": "Info Rótulos",
         "infoLabelsSub": "Identifique toxicidade",
         "tools": "Ferramentas IA",
+        "toolsSection": "Ferramentas",
         "toolbox": "Ferramentas IA",
+        "history": "Histórico",
         "intelligenceCenter": "Central de Inteligência",
         "intelligenceSub": "Assistente IA, Scanner e Voz",
         "vigilaroRadar": "Radar da Prevenção",
@@ -554,6 +556,7 @@
     "knowledgeHub": {
         "title": "Central de Aprendizado",
         "subtitle": "Biblioteca de Guias e Manuais",
+        "realCasesTeach": "Casos reais que ensinam",
         "essentialConcepts": "Conceitos Essenciais",
         "lifeContext": "Contexto de Vida",
         "safetyReviews": "Análises de Segurança",
@@ -1832,5 +1835,29 @@
         "attention": "Atenção",
         "safe": "Seguros",
         "roomsLabel": "Cômodos mapeados"
+    },
+    "audioMonitor": {
+        "statusIdle": "Seguro",
+        "statusInactive": "Inativo",
+        "statusListening": "Ouvindo...",
+        "statusNoise": "BARULHO DETECTADO!",
+        "statusCritical": "CRÍTICO (Gritos/Quebra)",
+        "statusWarning": "Alerta (Conversa Alta)",
+        "statusSafe": "Ambiente Seguro",
+        "permTitle": "Permissão Necessária",
+        "permMsg": "Precisamos acessar o microfone para ouvir o ambiente.",
+        "noiseLevel": "Nível de Ruído: {{pct}}%",
+        "tapToStart": "Toque para ativar a escuta de segurança",
+        "btnStop": "DESATIVAR ESCUTA",
+        "btnStart": "ATIVAR MONITOR"
+    },
+    "audioConsent": {
+        "title": "Monitoramento de Áudio Ambiente",
+        "body": "Esta função escuta o ambiente para detectar eventos como choro, quedas ou ruídos altos.",
+        "bodyStrong": "O áudio não é gravado nem transmitido — é processado localmente, em tempo real, apenas enquanto a tela está aberta.",
+        "accept": "Entendi e aceito",
+        "acceptA11y": "Entendi e aceito o monitoramento de áudio",
+        "decline": "Agora não",
+        "declineA11y": "Não usar a função de monitoramento de áudio"
     }
 }
