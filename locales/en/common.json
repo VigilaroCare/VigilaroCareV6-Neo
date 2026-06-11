@@ -252,7 +252,14 @@
             "toolsEyebrow": "Tools",
             "toolsTitle": "AI Center",
             "toolsBody": "Scanner, voice, and history."
-        }
+        },
+        "greetingMorning": "Good morning",
+        "greetingAfternoon": "Good afternoon",
+        "greetingEvening": "Good evening",
+        "heroControl": "Home under control",
+        "heroAttention": "Attention needed",
+        "heroAct": "Act immediately",
+        "heroStart": "Start your protection"
     },
     "onboarding": {
         "title1": "360º Shielding",

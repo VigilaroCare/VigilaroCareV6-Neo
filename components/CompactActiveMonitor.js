@@ -13,7 +13,9 @@ import i18n from '../i18n';
 import ProfileService from '../services/ProfileService';
 import { getDynamicAreaName } from '../utils/ProfileFilterEngine';
 
-export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencias: 0, ambientes: {}, statsGeral: {}, statsAmbientes: {} }, scoreMessage = {}, isExpanded = false, onStatusChange }) {
+// hideScore: usado pelo hero da Home — o score grande vive no card verde
+// externo; aqui renderizamos só a barra-resumo global + lista por ambiente.
+export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencias: 0, ambientes: {}, statsGeral: {}, statsAmbientes: {} }, scoreMessage = {}, isExpanded = false, onStatusChange, hideScore = false }) {
     const { t } = useTranslation();
     const [batteryLevel, setBatteryLevel] = useState(null);
     const [batteryState, setBatteryState] = useState(null);
@@ -224,6 +226,35 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
     };
 
     const globalStats = scoreData.statsGeral || { total: 1, checked: 1, warning: 0, critical: 0 };
+
+    if (hideScore) {
+        return (
+            <View style={styles.container}>
+                <View style={{ marginBottom: 8 }}>
+                    {renderLinearBar(globalStats, 8, true)}
+                </View>
+                <View style={{ paddingTop: 2 }}>
+                    {ambientesCollapsed.length > 0 ? (
+                        ambientesCollapsed.map(item => renderAmbienteItem(item, true))
+                    ) : (
+                        <Text style={styles.noAmbienteText}>{t('home.noInspectedEnvironment', 'Nenhum ambiente vistoriado.')}</Text>
+                    )}
+                </View>
+                <View style={styles.footerRow}>
+                    <NeoIcon
+                        name={isExpanded ? 'ArrowUp2' : 'ArrowDown2'}
+                        size={18}
+                        color={Neo.colors.neutral[400]}
+                    />
+                </View>
+                {isExpanded && (
+                    <View style={styles.expandedSection}>
+                        {ambientesSorted.map(item => renderAmbienteItem(item, false))}
+                    </View>
+                )}
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>

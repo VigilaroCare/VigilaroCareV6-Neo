@@ -32,11 +32,38 @@ import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blo
 
 // Featured rotativo (5 aleatórios por sessão)
 const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random()).slice(0, 5);
-const PREGNANCY_CARE_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png');
-const TOY_GUIDE_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_brinquedos_sem_casa.png');
-const FAMILY_HOME_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_familia_casa_final.png');
-const ENVIRONMENT_PREVENTION_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png');
-const PET_PAW_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-saude-pet.png');
+// ─────────────────────────────────────────────────────────────────────────
+// MAPA DE PICTOGRAMAS — chaveado pelo `id` do item (PLANO_PICTOGRAMAS_HUB.md).
+// Item sem entrada cai no fallback ícone+círculo: permite entregar os assets
+// em lotes sem quebrar nada. Asset novo = 1 linha aqui.
+// Convenção dos novos: pictogram-<id>.png em education-pictograms/,
+// estilo 3D cerâmico da Home, símbolo solto em fundo transparente.
+// ─────────────────────────────────────────────────────────────────────────
+const PICTOGRAMS = {
+    // Seção 1 — Pessoas & Contexto (assets atuais, estilo traço P&B;
+    // regenerar no estilo 3D cerâmico no lote 2 do plano)
+    seguranca_idade: require('../../assets/illustrations/home-pictograms/icone_familia_casa_final.png'),
+    ambientes:       require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png'),
+    gestante_segura: require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png'),
+    pets:            require('../../assets/illustrations/education-pictograms/pictogram-saude-pet.png'),
+    brinquedos_hub:  require('../../assets/illustrations/home-pictograms/icone_brinquedos_sem_casa.png'),
+    // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
+    // utensilios_rev:          require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
+    // eletro_rev:              require('../../assets/illustrations/education-pictograms/pictogram-eletro-rev.png'),
+    // disp_eletronicos:        require('../../assets/illustrations/education-pictograms/pictogram-disp-eletronicos.png'),
+    // fire_prev:               require('../../assets/illustrations/education-pictograms/pictogram-fire-prev.png'),
+    // emergencias:             require('../../assets/illustrations/education-pictograms/pictogram-emergencias.png'),
+    // primeiros_socorros_hub:  require('../../assets/illustrations/education-pictograms/pictogram-primeiros-socorros.png'),
+    // kits_emergencia:         require('../../assets/illustrations/education-pictograms/pictogram-kits-emergencia.png'),
+    // plantas:                 require('../../assets/illustrations/education-pictograms/pictogram-plantas.png'),
+    // animais:                 require('../../assets/illustrations/education-pictograms/pictogram-animais.png'),
+    // produtos:                require('../../assets/illustrations/education-pictograms/pictogram-produtos.png'),
+    // riscos_fisicos:          require('../../assets/illustrations/education-pictograms/pictogram-riscos-fisicos.png'),
+    // jardinagem:              require('../../assets/illustrations/education-pictograms/pictogram-jardinagem.png'),
+    // condo_safety:            require('../../assets/illustrations/education-pictograms/pictogram-condo-safety.png'),
+    // lazer_mobilidade:        require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
+    // guias_equipamentos:      require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
+};
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos-essenciais.png');
 
@@ -109,18 +136,11 @@ export default function KnowledgeHubScreen({ navigation }) {
     ];
 
     const renderGridCard = (item, index) => {
-        const customPictogram = item.pictogram === 'familyAgeCare'
-            ? <Image source={FAMILY_HOME_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
-            : item.pictogram === 'environmentPrevention'
-                ? <Image source={ENVIRONMENT_PREVENTION_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
-                : item.pictogram === 'pregnancyCare'
-                    ? <Image source={PREGNANCY_CARE_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
-                    : item.pictogram === 'petHealth'
-                        ? <Image source={PET_PAW_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
-                        : item.pictogram === 'toyGuide'
-                            ? <Image source={TOY_GUIDE_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
-                        : null;
-        
+        const pictogramSource = PICTOGRAMS[item.id];
+        const customPictogram = pictogramSource
+            ? <Image source={pictogramSource} style={s.gridGenericPictogramImage} resizeMode="contain" />
+            : null;
+
         const customPictogramWrapStyle = s.gridPictogramWrap;
 
         return (

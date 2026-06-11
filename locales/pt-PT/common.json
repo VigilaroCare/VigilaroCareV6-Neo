@@ -252,7 +252,14 @@
             "toolsEyebrow": "Ferramentas",
             "toolsTitle": "Centro de IA",
             "toolsBody": "Scanner, voz e histórico."
-        }
+        },
+        "greetingMorning": "Bom dia",
+        "greetingAfternoon": "Boa tarde",
+        "greetingEvening": "Boa noite",
+        "heroControl": "Casa sob controlo",
+        "heroAttention": "Atenção necessária",
+        "heroAct": "Aja de imediato",
+        "heroStart": "Comece a sua proteção"
     },
     "onboarding": {
         "title1": "Blindagem 360º",

@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import { H1, H2, H3, Body, Small } from '../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedLogo } from '../utils/getLocalizedLogo';
@@ -29,34 +30,13 @@ export default function SobreScreen({ navigation }) {
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
         <StatusBar style="dark" />
 
-        {/* Header Neo Glass */}
-        <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "rgba(255,255,255,0.4)", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.2)" }}>
-                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-            </TouchableOpacity>
-        </View>
-        <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-            <NeoCard variant="glass"
-                style={Object.assign({
-                    width: "100%",
-                    padding: 16,
-                    justifyContent: "space-between",
-                    minHeight: 140, alignItems: "center"
-                }, Neo.shadows ? Neo.shadows.sm : {})}
-            >
-                <View style={{
-                    width: 44, height: 44, borderRadius: 12,
-                    backgroundColor: Neo.colors.primary[100], alignItems: "center", justifyContent: "center",
-                    marginBottom: 12
-                }}>
-                    <NeoIcon name="InfoCircle" size={24} color={Neo.colors.primary[600]} variant="Bold" />
-                </View>
-                <View style={{ alignItems: "center" }}>
-                    <H3 style={{ color: Neo.colors.primary[600], fontSize: 16, marginBottom: 4, lineHeight: 18 }}>{t('about.title')}</H3>
-                    <Small style={{ color: Neo.colors.neutral[800], fontWeight: "bold", lineHeight: 14 }}>{t('about.subtitle')}</Small>
-                </View>
-            </NeoCard>
-        </View>
+        {/* Padrão "Anatomia Editorial": título solto H1 à esquerda,
+            sem card-moldura (PADRAO_ANATOMIA_PAGINAS.md) */}
+        <NeoScreenHeader
+            title={t('about.title')}
+            subtitle={t('about.subtitle')}
+            onBack={() => navigation.goBack()}
+        />
 
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
 

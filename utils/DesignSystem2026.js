@@ -321,7 +321,16 @@ export const DS = {
         },
     },
 
-    // 6. Tokens de Emergência — vermelho-pânico INTENCIONAL das telas de SOS
+    // 6. Layout — constantes de anatomia de página (PADRAO_ANATOMIA_PAGINAS.md)
+    // Fim dos paddings mágicos por tela: todo scroll usa estes tokens.
+    layout: {
+        screenHPadding: 24,      // = spacing.lg — padding horizontal de todo scroll
+        scrollBottomFooter: 140, // folga única p/ footer flutuante + respiro
+        scrollBottomBare: 40,    // telas sem footer (modais, wizards)
+        headerMinHeight: 56,
+    },
+
+    // 7. Tokens de Emergência — vermelho-pânico INTENCIONAL das telas de SOS
     // (SOSCountdown, SOSEmergencyMode, EmergenciaRapida). Centralizados aqui
     // para as 3 telas usarem a mesma assinatura visual (auditoria D6).
     // Não usar fora de contexto de emergência — o contraste agressivo é
@@ -336,7 +345,7 @@ export const DS = {
         whatsapp: '#25D366',                 // Verde oficial WhatsApp (canal complementar)
     },
 
-    // 7. Gradientes utilitários (specular highlights, brand gradients)
+    // 8. Gradientes utilitários (specular highlights, brand gradients)
     gradients: {
         // Specular highlight — "lambida de luz" sutil no topo do card de vidro.
         // Mantida baixa (0.35) pra ser polimento, não washout. Decai rápido
