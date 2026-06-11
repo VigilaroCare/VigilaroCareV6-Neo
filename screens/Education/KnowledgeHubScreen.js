@@ -509,8 +509,8 @@ const s = StyleSheet.create({
         justifyContent: 'center',
     },
     ceramicImage: {
-        width: '96%',
-        height: '70%',
+        width: '100%',
+        height: '74%',
         marginBottom: 2,
     },
 });
