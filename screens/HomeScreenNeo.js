@@ -560,7 +560,10 @@ const s = StyleSheet.create({
     // do autor (telas internas seguem o padrão à esquerda do
     // PADRAO_ANATOMIA_PAGINAS.md) ──
     sectionEyebrow: {
-        marginTop: 10,
+        // 24 + os 4 do marginBottom do hero = 28dp de separação entre seções
+        // (o dobro dos 14dp anteriores, a pedido do autor). O título fica
+        // perto do SEU conteúdo (2dp abaixo) e longe da seção anterior.
+        marginTop: 24,
         marginBottom: 2,
         textAlign: 'center',
         width: '100%',
