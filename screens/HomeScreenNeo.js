@@ -423,6 +423,7 @@ export default function HomeScreenNeo() {
  * creme/âmbar diagnosticada no design review).
  */
 function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W }) {
+    const imageHeight = imageWidth * PICTO_RATIO;
     return (
         <TappablePressable
             style={s.barePictogram}
@@ -433,7 +434,15 @@ function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG
         >
             <Image
                 source={item.image}
-                style={{ width: imageWidth, height: imageWidth * PICTO_RATIO }}
+                style={{
+                    width: imageWidth,
+                    height: imageHeight,
+                    // O PNG tem área transparente acima/abaixo do tile — as
+                    // margens negativas comem esse respiro interno e colam o
+                    // tile no título (acima) e no label (abaixo).
+                    marginTop: -(imageHeight * 0.12),
+                    marginBottom: -(imageHeight * 0.11),
+                }}
                 resizeMode="contain"
             />
             <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
