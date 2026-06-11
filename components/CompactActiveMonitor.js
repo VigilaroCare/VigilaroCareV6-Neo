@@ -230,7 +230,7 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
     if (hideScore) {
         return (
             <View style={styles.container}>
-                <View style={{ marginBottom: 8 }}>
+                <View style={{ marginBottom: 6 }}>
                     {renderLinearBar(globalStats, 8, true)}
                 </View>
                 <View style={{ paddingTop: 2 }}>

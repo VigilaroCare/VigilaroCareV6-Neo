@@ -61,8 +61,11 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 // assumiria o tamanho intrínseco do PNG (1024px+), estourando a tela.
 const SCREEN_W = Dimensions.get('window').width;
 const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
-const GRID_IMG_W = CONTENT_W * 0.48 * 0.94;  // célula 48% com leve respiro
-const TOOL_IMG_W = CONTENT_W * 0.42 * 0.94;  // células de Ferramentas (42%)
+// Regra do produto: a Home NÃO deve ter scroll vertical. Os pictogramas são
+// os maiores consumidores de altura — fatores calibrados pra caber tudo
+// above-the-fold em telas ~800dp sem sacrificar legibilidade (labels 13px).
+const GRID_IMG_W = CONTENT_W * 0.48 * 0.84;  // célula 48%, imagem compacta
+const TOOL_IMG_W = CONTENT_W * 0.34;         // Ferramentas: 1 linha enxuta
 const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 
 const HOME_PICTOGRAMS = {
@@ -269,10 +272,11 @@ export default function HomeScreenNeo() {
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
+                    bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 140, // folga do footer flutuante (DS.layout futuro)
-                        paddingTop: Neo.spacing.sm,
+                        paddingBottom: 100, // só a folga do footer flutuante
+                        paddingTop: 4,
                     }}
                 >
                     {/* HERO — "Casa sob Controle" (mockup aprovado). Forest lidera. */}
@@ -445,8 +449,8 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingTop: Neo.spacing.sm,
-        paddingBottom: Neo.spacing.sm,
+        paddingTop: 4,
+        paddingBottom: 4,
     },
     greetingGroup: {
         flex: 1,
@@ -454,8 +458,8 @@ const s = StyleSheet.create({
         marginRight: Neo.spacing.md,
     },
     greetingText: {
-        fontSize: 26,
-        lineHeight: 32,
+        fontSize: 24,
+        lineHeight: 29,
         letterSpacing: -0.4,
         color: Neo.colors.neutral[900],
     },
@@ -484,15 +488,15 @@ const s = StyleSheet.create({
     // ── HERO "Casa sob Controle" ──
     heroCard: {
         borderRadius: Neo.radius.lg,
-        padding: Neo.spacing.md,
-        marginBottom: Neo.spacing.sm,
+        padding: 12,
+        marginBottom: 4,
         ...Neo.shadows.premium,
     },
     heroTopRow: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        marginBottom: Neo.spacing.md,
+        marginBottom: Neo.spacing.sm,
         paddingHorizontal: 2,
     },
     heroHeadlineGroup: {
@@ -526,10 +530,10 @@ const s = StyleSheet.create({
         justifyContent: 'center',
     },
     heroScore: {
-        fontSize: 44,
+        fontSize: 40,
         fontWeight: '800',
         letterSpacing: -1,
-        lineHeight: 48,
+        lineHeight: 44,
         color: '#FFFFFF',
     },
     // Poço claro dentro do hero — o monitor mantém seus estilos (pensados
@@ -537,14 +541,14 @@ const s = StyleSheet.create({
     heroWell: {
         backgroundColor: 'rgba(255, 255, 255, 0.94)',
         borderRadius: Neo.radius.md - 4,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 10,
     },
 
     // ── Seções (Eyebrow do DS, à esquerda) ──
     sectionEyebrow: {
-        marginTop: Neo.spacing.lg,
-        marginBottom: Neo.spacing.sm,
+        marginTop: 10,
+        marginBottom: 6,
     },
 
     // ── Alerta contextual ──
@@ -587,7 +591,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        rowGap: Neo.spacing.md,
+        rowGap: 8,
     },
     gridCell: {
         width: '48%',
@@ -600,8 +604,8 @@ const s = StyleSheet.create({
         fontSize: 13,
         fontWeight: '700',
         textAlign: 'center',
-        lineHeight: 17,
-        marginTop: 6,
+        lineHeight: 16,
+        marginTop: 3,
         letterSpacing: 0,
         paddingHorizontal: 2,
     },
@@ -610,7 +614,7 @@ const s = StyleSheet.create({
     toolPictogramRow: {
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: Neo.spacing.lg,
+        gap: Neo.spacing.md,
     },
     toolPictogramCell: {
         width: '42%',
