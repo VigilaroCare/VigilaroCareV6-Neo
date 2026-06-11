@@ -404,6 +404,8 @@ export default function HomeScreenNeo() {
                                     item={item}
                                     textColor={textPrimary}
                                     imageWidth={TOOL_IMG_W}
+                                    topClip={0.03}
+                                    bottomClip={0.03}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
@@ -422,7 +424,10 @@ export default function HomeScreenNeo() {
  * card. Nenhum fundo, borda ou sombra extra (a dupla moldura criava a deriva
  * creme/âmbar diagnosticada no design review).
  */
-function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W }) {
+// topClip/bottomClip: fração da altura "comida" por margem negativa pra
+// compensar a área transparente interna de cada família de PNG. Os tiles do
+// grid têm mais respiro embutido que os de Ferramentas — fatores distintos.
+function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W, topClip = 0.12, bottomClip = 0.11 }) {
     const imageHeight = imageWidth * PICTO_RATIO;
     return (
         <TappablePressable
@@ -437,11 +442,8 @@ function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG
                 style={{
                     width: imageWidth,
                     height: imageHeight,
-                    // O PNG tem área transparente acima/abaixo do tile — as
-                    // margens negativas comem esse respiro interno e colam o
-                    // tile no título (acima) e no label (abaixo).
-                    marginTop: -(imageHeight * 0.12),
-                    marginBottom: -(imageHeight * 0.11),
+                    marginTop: -(imageHeight * topClip),
+                    marginBottom: -(imageHeight * bottomClip),
                 }}
                 resizeMode="contain"
             />
