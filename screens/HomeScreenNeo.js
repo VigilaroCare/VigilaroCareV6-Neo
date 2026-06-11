@@ -560,11 +560,12 @@ const s = StyleSheet.create({
     // do autor (telas internas seguem o padrão à esquerda do
     // PADRAO_ANATOMIA_PAGINAS.md) ──
     sectionEyebrow: {
-        // 24 + os 4 do marginBottom do hero = 28dp de separação entre seções
-        // (o dobro dos 14dp anteriores, a pedido do autor). O título fica
-        // perto do SEU conteúdo (2dp abaixo) e longe da seção anterior.
-        marginTop: 24,
-        marginBottom: 2,
+        // Calibração do autor (2026-06-10):
+        // - acima do título: 10 (+4 do hero) = 14dp até a seção anterior
+        // - abaixo do título: 8dp até os cards da própria seção
+        // Vale para Acesso Rápido E Ferramentas (mesmo ritmo).
+        marginTop: 10,
+        marginBottom: 8,
         textAlign: 'center',
         width: '100%',
     },
