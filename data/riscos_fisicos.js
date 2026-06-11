@@ -36,31 +36,22 @@ export const riscosFisicos = [
         emoji: '🔥',
         imagemUrl: 'https://images.pexels.com/photos/27404939/pexels-photo-27404939.jpeg?auto=compress&cs=tinysrgb&w=1200',
         risco: 'Queimaduras e Morte', risco_en: 'Burns and Death', risco_es: 'Quemaduras y Muerte',
-        descricao: 'Cozinha e velas são os principais focos.', descricao_en: 'Kitchen and candles are the main focus.', descricao_es: 'Cocina y velas son los focos principales.',
+        descricao: 'Acesse o módulo de Teoria do Fogo e Plano de Fuga para o guia completo.', descricao_en: 'Access the Fire Theory module for the complete guide.', descricao_es: 'Acceda al módulo Teoría del Fuego para la guía completa.',
         prevencao: [
-            'Nunca deixe panelas no fogo sem supervisão.',
-            'Mantenha velas longe de cortinas e móveis.',
-            'Tenha um extintor ABC em casa e saiba usar.',
-            'Instale detectores de fumaça nos corredores.',
-            'Crie um plano de fuga com sua família.',
+            'Consulte o módulo Teoria do Fogo para aprender sobre classes de incêndio e uso de extintores.',
+            'O plano de fuga detalhado e a regra do Triângulo do Fogo estão no guia específico.'
         ],
         prevencao_en: [
-            'Never leave pots on the fire unattended.',
-            'Keep candles away from curtains and furniture.',
-            'Have an ABC extinguisher at home and know how to use it.',
-            'Install smoke detectors in the hallways.',
-            'Create an escape plan with your family.',
+            'See the Fire Theory module to learn about fire classes and extinguishers.',
+            'The detailed escape plan is in the specific guide.'
         ],
         prevencao_es: [
-            'Nunca deje ollas en el fuego sin supervisión.',
-            'Mantenga las velas alejadas de cortinas y muebles.',
-            'Tenga un extintor ABC en casa y sepa cómo usarlo.',
-            'Instale detectores de humo en los pasillos.',
-            'Cree un plan de escape con su familia.',
+            'Consulte el módulo Teoría del Fuego para aprender sobre clases de incendio y extintores.',
+            'El plan de escape detallado está en la guía específica.'
         ],
-        primeirosSocorros: 'Saia imediatamente. Não tente salvar bens. Ligue 193. Se a roupa pegar fogo: Pare, Deite e Role.',
-        primeirosSocorros_en: 'Leave immediately. Do not try to save belongings. Call 911. If clothing catches fire: Stop, Drop, and Roll.',
-        primeirosSocorros_es: 'Salga inmediatamente. No intente salvar pertenencias. Llame al 911. Si la ropa se incendia: Deténgase, Tírese al piso y Ruede.'
+        primeirosSocorros: 'Ligue 193. Se a roupa pegar fogo: Pare, Deite e Role.',
+        primeirosSocorros_en: 'Call 911. If clothing catches fire: Stop, Drop, and Roll.',
+        primeirosSocorros_es: 'Llame al 911. Si la ropa se incendia: Deténgase, Tírese al piso y Ruede.'
     },
     {
         id: 'rf_3',

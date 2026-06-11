@@ -7,15 +7,15 @@ export const SAFETY_PREGNANT = {
     sections: [
         {
             title: 'Prevenção de Quedas',
-            content: 'O centro de gravidade muda. Evite subir em bancos/escadas. Use sapatos baixos e antiderrapantes. Cuidado extra com pisos molhados e tapetes soltos.'
+            content: 'O centro de gravidade muda. Evite subir em bancos e escadas. Use sapatos baixos e antiderrapantes. Cuidado extra com pisos molhados e tapetes soltos.'
         },
         {
             title: 'Cinto de Segurança',
-            content: 'O cinto deve passar POR BAIXO da barriga (sobre os quadris) e entre os seios. Nunca sobre o útero. É vital usar no carro, mesmo no banco de trás.'
+            content: 'O cinto deve passar POR BAIXO da barriga (sobre os quadris) e entre os seios. Nunca sobre o útero. Uso obrigató no carro, mesmo no banco de trás.'
         },
         {
             title: 'Produtos Químicos',
-            content: 'Evite tintas fortes, inseticidas e produtos de limpeza com vapores tóxicos (amônia/cloro puro). Use luvas e máscaras se precisar manusear, ou peça ajuda.'
+            content: 'Evite tintas fortes, inseticidas e produtos de limpeza com vapores tóxicos (amônia/cloro puro). Use luvas e máscaras se precisar manusear, ou peça ajuda. Manuseie sempre em ambientes abertos e ventilados'
         },
         {
             title: 'Sinais de Alerta',

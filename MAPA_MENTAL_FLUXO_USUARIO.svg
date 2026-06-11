@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Mapa mental dos fluxos do usuario no Vigilaro Care</title>
+  <desc id="desc">Mapa mental radial com o Vigilaro Care no centro e ramos para entrada, home, casa, scanner, IA, menu, saude, emergencia, modo preventivo, aprender, pets e viagem.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f5f8f6; }
+      .panel { fill: #ffffff; stroke: #d7e2dc; stroke-width: 1.5; }
+      .center { fill: url(#centerGrad); }
+      .line { fill: none; stroke: #bdcec6; stroke-width: 4; stroke-linecap: round; }
+      .title { fill: #10231d; font: 800 44px "Segoe UI", Arial, sans-serif; }
+      .subtitle { fill: #5b706b; font: 500 18px "Segoe UI", Arial, sans-serif; }
+      .branch-title { fill: #10231d; font: 800 19px "Segoe UI", Arial, sans-serif; }
+      .branch-small { fill: #5b706b; font: 600 13px "Segoe UI", Arial, sans-serif; }
+      .branch-item { fill: #10231d; font: 700 13px "Segoe UI", Arial, sans-serif; }
+      .center-title { fill: #ffffff; font: 900 34px "Segoe UI", Arial, sans-serif; }
+      .center-small { fill: rgba(255,255,255,0.86); font: 600 15px "Segoe UI", Arial, sans-serif; }
+      .tag { font: 800 11px "Segoe UI", Arial, sans-serif; }
+      .note-title { fill: #c9372c; font: 800 16px "Segoe UI", Arial, sans-serif; }
+      .note-text { fill: #5b706b; font: 600 13px "Segoe UI", Arial, sans-serif; }
+    </style>
+    <linearGradient id="centerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#144887"/>
+      <stop offset="0.58" stop-color="#1b5ba2"/>
+      <stop offset="1" stop-color="#0f8a43"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#10231d" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect class="bg" width="1600" height="1200"/>
+  <circle cx="800" cy="180" r="330" fill="#e8f2ff" opacity="0.7"/>
+  <text x="70" y="75" class="title">Mapa mental dos fluxos do usuario</text>
+  <text x="70" y="108" class="subtitle">Vigilaro Care V6 Neo - hubs, cards, decisoes, alternativas e pontos finais.</text>
+
+  <g opacity="0.95">
+    <path class="line" d="M800 585 C800 420 800 310 800 190"/>
+    <path class="line" d="M755 570 C570 440 385 330 210 265"/>
+    <path class="line" d="M845 570 C1030 440 1215 330 1390 265"/>
+    <path class="line" d="M735 620 C530 620 360 605 210 560"/>
+    <path class="line" d="M865 620 C1070 620 1240 605 1390 560"/>
+    <path class="line" d="M755 675 C570 790 390 860 210 905"/>
+    <path class="line" d="M845 675 C1030 790 1210 860 1390 905"/>
+    <path class="line" d="M800 705 C800 820 800 910 800 1015"/>
+    <path class="line" d="M760 535 C675 405 615 300 535 252"/>
+    <path class="line" d="M840 535 C925 405 985 300 1065 252"/>
+    <path class="line" d="M760 705 C675 825 610 910 535 955"/>
+    <path class="line" d="M840 705 C925 825 990 910 1065 955"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="660" y="520" width="280" height="205" rx="32" class="center"/>
+    <text x="800" y="595" text-anchor="middle" class="center-title">Vigilaro Care</text>
+    <text x="800" y="630" text-anchor="middle" class="center-small">Home, prevencao, scanner,</text>
+    <text x="800" y="653" text-anchor="middle" class="center-small">educacao, emergencia, saude,</text>
+    <text x="800" y="676" text-anchor="middle" class="center-small">viagem e configuracoes.</text>
+  </g>
+
+  <!-- Entrada -->
+  <g filter="url(#shadow)">
+    <rect x="620" y="145" width="360" height="170" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="620" y="145" width="360" height="52" rx="24" fill="#e8f2ff"/>
+    <circle cx="650" cy="171" r="17" fill="#1b5ba2"/>
+    <text x="650" y="176" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">1</text>
+    <text x="680" y="177" class="branch-title">Entrada e navegacao</text>
+    <text x="645" y="222" class="branch-item">Splash + disclaimer medico</text>
+    <text x="645" y="246" class="branch-item">Onboarding ou MainTabs</text>
+    <text x="645" y="270" class="branch-item">Footer: Inicio, Aprender, Viagem, Menu, SOS</text>
+  </g>
+
+  <!-- Home -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="210" width="310" height="210" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="70" y="210" width="310" height="52" rx="24" fill="#e7f7ee"/>
+    <circle cx="100" cy="236" r="17" fill="#0f8a43"/>
+    <text x="100" y="241" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">2</text>
+    <text x="130" y="242" class="branch-title">Home</text>
+    <text x="95" y="287" class="branch-item">Hero dinamico por estado</text>
+    <text x="95" y="311" class="branch-small">conexao, briefing, score, bateria, saude</text>
+    <text x="95" y="340" class="branch-item">Acesso rapido</text>
+    <text x="95" y="364" class="branch-small">briefing, plano, tarefa, InfoRotulos</text>
+    <text x="95" y="393" class="branch-item">Perfil e moradia ativa</text>
+  </g>
+
+  <!-- Casa -->
+  <g filter="url(#shadow)">
+    <rect x="1220" y="210" width="310" height="220" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="1220" y="210" width="310" height="52" rx="24" fill="#fff2df"/>
+    <circle cx="1250" cy="236" r="17" fill="#c76a11"/>
+    <text x="1250" y="241" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">3</text>
+    <text x="1280" y="242" class="branch-title">Casa e relatorios</text>
+    <text x="1245" y="287" class="branch-item">OndeProteger</text>
+    <text x="1245" y="311" class="branch-small">sem ambientes -> MapeamentoRiscos</text>
+    <text x="1245" y="340" class="branch-item">AreasInternas + HazardMapping</text>
+    <text x="1245" y="369" class="branch-item">Relatorios + PDF + SafetyActionPlan</text>
+    <text x="1245" y="398" class="branch-item">Escola Segura / Asilo Seguro</text>
+  </g>
+
+  <!-- Menu -->
+  <g filter="url(#shadow)">
+    <rect x="420" y="210" width="230" height="170" rx="22" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="420" y="210" width="230" height="50" rx="22" fill="#eef3f5"/>
+    <circle cx="449" cy="235" r="16" fill="#394b59"/>
+    <text x="449" y="240" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="12" font-weight="900">6</text>
+    <text x="477" y="241" class="branch-title">Menu</text>
+    <text x="444" y="285" class="branch-item">Acessibilidade e idioma</text>
+    <text x="444" y="310" class="branch-item">Premium, sobre, termos</text>
+    <text x="444" y="335" class="branch-item">Suporte e reset</text>
+  </g>
+
+  <!-- Saude -->
+  <g filter="url(#shadow)">
+    <rect x="950" y="210" width="230" height="185" rx="22" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="950" y="210" width="230" height="50" rx="22" fill="#e7f7ee"/>
+    <circle cx="979" cy="235" r="16" fill="#0f8a43"/>
+    <text x="979" y="240" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="12" font-weight="900">7</text>
+    <text x="1007" y="241" class="branch-title">Minha Saude</text>
+    <text x="974" y="285" class="branch-item">Medicacoes</text>
+    <text x="974" y="310" class="branch-small">MedicationScheduler, dose, receita</text>
+    <text x="974" y="339" class="branch-item">Agenda e AddEvent</text>
+    <text x="974" y="364" class="branch-item">Dossie e compartilhamento</text>
+  </g>
+
+  <!-- Scanner -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="505" width="330" height="225" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="70" y="505" width="330" height="52" rx="24" fill="#e8f2ff"/>
+    <circle cx="100" cy="531" r="17" fill="#1b5ba2"/>
+    <text x="100" y="536" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">4</text>
+    <text x="130" y="537" class="branch-title">InfoRotulos e Scanner</text>
+    <text x="95" y="582" class="branch-item">Busca livre e cards guiados</text>
+    <text x="95" y="606" class="branch-small">local, PubChem/cache ou alerta</text>
+    <text x="95" y="635" class="branch-item">Codigo de barras</text>
+    <text x="95" y="659" class="branch-small">encontrado -> InfoRotulosResult</text>
+    <text x="95" y="688" class="branch-item">Foto de rotulo</text>
+    <text x="95" y="712" class="branch-small">proxy online -> resultado inline</text>
+  </g>
+
+  <!-- IA -->
+  <g filter="url(#shadow)">
+    <rect x="1200" y="505" width="330" height="210" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="1200" y="505" width="330" height="52" rx="24" fill="#f0eafe"/>
+    <circle cx="1230" cy="531" r="17" fill="#6d3fd1"/>
+    <text x="1230" y="536" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">5</text>
+    <text x="1260" y="537" class="branch-title">Ferramentas IA</text>
+    <text x="1225" y="582" class="branch-item">Centro de leitura preventiva</text>
+    <text x="1225" y="606" class="branch-small">abre InfoRotulos</text>
+    <text x="1225" y="635" class="branch-item">Vigilaro Voice</text>
+    <text x="1225" y="659" class="branch-small">AssistentePrevencaoIA / ConversationalAgent</text>
+    <text x="1225" y="688" class="branch-item">AITextChat e HistoricoAuditoria</text>
+  </g>
+
+  <!-- Emergencia -->
+  <g filter="url(#shadow)">
+    <rect x="420" y="820" width="240" height="185" rx="22" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="420" y="820" width="240" height="50" rx="22" fill="#ffebe8"/>
+    <circle cx="449" cy="845" r="16" fill="#c9372c"/>
+    <text x="449" y="850" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="12" font-weight="900">8</text>
+    <text x="477" y="851" class="branch-title">SOS</text>
+    <text x="444" y="895" class="branch-item">Toque curto -> SOSEmergencyMode</text>
+    <text x="444" y="920" class="branch-item">Segurar -> EmergenciaRapida</text>
+    <text x="444" y="945" class="branch-item">SOSCountdown</text>
+    <text x="444" y="970" class="branch-small">telefone, geo, contatos, CIATOX</text>
+  </g>
+
+  <!-- Preventivo -->
+  <g filter="url(#shadow)">
+    <rect x="940" y="820" width="250" height="195" rx="22" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="940" y="820" width="250" height="50" rx="22" fill="#fff2df"/>
+    <circle cx="969" cy="845" r="16" fill="#c76a11"/>
+    <text x="969" y="850" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="12" font-weight="900">9</text>
+    <text x="997" y="851" class="branch-title">Modo preventivo</text>
+    <text x="964" y="895" class="branch-item">Grid RISK_CATEGORIES</text>
+    <text x="964" y="920" class="branch-item">Modal educativo</text>
+    <text x="964" y="945" class="branch-item">Perguntas S/N/NA</text>
+    <text x="964" y="970" class="branch-small">resultado ou pontos de atencao</text>
+  </g>
+
+  <!-- Aprender -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="850" width="330" height="220" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="70" y="850" width="330" height="52" rx="24" fill="#e8f2ff"/>
+    <circle cx="100" cy="876" r="17" fill="#1b5ba2"/>
+    <text x="100" y="881" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">10</text>
+    <text x="130" y="882" class="branch-title">Aprender</text>
+    <text x="95" y="927" class="branch-item">Destaques e fundamentos</text>
+    <text x="95" y="951" class="branch-small">metodologia, primeiros socorros, pets</text>
+    <text x="95" y="980" class="branch-item">Contextos e analises</text>
+    <text x="95" y="1004" class="branch-small">ambientes, idade, reviews, categorias</text>
+    <text x="95" y="1033" class="branch-item">Blog, Radar, guias e mobilidade</text>
+  </g>
+
+  <!-- Pets -->
+  <g filter="url(#shadow)">
+    <rect x="630" y="990" width="340" height="165" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="630" y="990" width="340" height="52" rx="24" fill="#f0eafe"/>
+    <circle cx="660" cy="1016" r="17" fill="#6d3fd1"/>
+    <text x="660" y="1021" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">11</text>
+    <text x="690" y="1022" class="branch-title">Pets</text>
+    <text x="655" y="1067" class="branch-item">Fases, aves, wellness e alimentos</text>
+    <text x="655" y="1091" class="branch-small">AgeGroupDetail, AvesSeguras, PetFoodSafety</text>
+    <text x="655" y="1120" class="branch-item">Socorros e kit pet</text>
+  </g>
+
+  <!-- Viagem -->
+  <g filter="url(#shadow)">
+    <rect x="1220" y="850" width="310" height="215" rx="24" fill="#ffffff" stroke="#d7e2dc"/>
+    <rect x="1220" y="850" width="310" height="52" rx="24" fill="#fff2df"/>
+    <circle cx="1250" cy="876" r="17" fill="#c76a11"/>
+    <text x="1250" y="881" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="13" font-weight="900">12</text>
+    <text x="1280" y="882" class="branch-title">Viagem</text>
+    <text x="1245" y="927" class="branch-item">Configurar viagem</text>
+    <text x="1245" y="951" class="branch-small">destino, proposito, alcance e companhia</text>
+    <text x="1245" y="980" class="branch-item">Dashboard ativo</text>
+    <text x="1245" y="1004" class="branch-small">partida, malas, chegada, retorno, guia</text>
+    <text x="1245" y="1033" class="branch-item">Encerrar remove @active_trip</text>
+  </g>
+</svg>

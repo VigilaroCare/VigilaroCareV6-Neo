@@ -154,7 +154,7 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
         return id.charAt(0).toUpperCase() + id.slice(1).replace(/_/g, ' ');
     };
 
-    const renderLinearBar = (stats, height = 4, showLabels = false) => {
+    const renderLinearBar = (stats, height = 4, showLabels = false, muted = false) => {
         const total = stats?.total || 1;
         const safePct = (stats?.checked || 0) / total * 100;
         const warningPct = (stats?.warning || 0) / total * 100;
@@ -162,7 +162,9 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
 
         return (
             <View>
-                <View style={{ height, backgroundColor: 'rgba(0,0,0,0.06)', borderRadius: height/2, flexDirection: 'row', overflow: 'hidden' }}>
+                {/* muted: dessatura as mini-barras por-ambiente (a cor semântica
+                    forte fica no % e na barra-resumo global) — reduz o ruído visual. */}
+                <View style={{ height, backgroundColor: 'rgba(0,0,0,0.06)', borderRadius: height/2, flexDirection: 'row', overflow: 'hidden', opacity: muted ? 0.6 : 1 }}>
                     {safePct > 0 && <View style={{ width: `${safePct}%`, backgroundColor: Neo.colors.feedback.success }} />}
                     {warningPct > 0 && <View style={{ width: `${warningPct}%`, backgroundColor: Neo.colors.feedback.warning }} />}
                     {criticalPct > 0 && <View style={{ width: `${criticalPct}%`, backgroundColor: Neo.colors.feedback.error }} />}
@@ -191,7 +193,7 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
                         </View>
                         <Text style={styles.ambienteName} numberOfLines={1}>{getAmbienteName(id)}</Text>
                         <View style={{ flex: 1, marginHorizontal: 6 }}>
-                            {renderLinearBar(stats, 4, false)}
+                            {renderLinearBar(stats, 4, false, true)}
                         </View>
                         <Text style={[styles.ambienteScore, { color: getScoreTextColor(s) }]}>{s}%</Text>
                     </>
@@ -236,9 +238,12 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
                             style={[styles.scoreValue, { color: getScoreTextColor() }]}
                             accessibilityLabel={t('home.scoreLabel', 'Score geral da residência: {{score}}%', { score })}
                         />
-                        <Text style={styles.scoreSubtitle} numberOfLines={2}>
-                            {score >= 80 ? t('home.homeSafe', 'Sua casa está\nsegura') : (score >= 50 ? t('home.homeNeedsAttention', 'Sua casa precisa\nde atenção') : t('home.actImmediately', 'Aja\nimediatamente'))}
-                        </Text>
+                        <View style={styles.subtitleRow}>
+                            <NeoIcon name="ShieldTick" variant="Bold" size={13} color={getScoreTextColor()} />
+                            <Text style={styles.scoreSubtitle} numberOfLines={2}>
+                                {score >= 80 ? t('home.homeSafe', 'Sua casa está\nsegura') : (score >= 50 ? t('home.homeNeedsAttention', 'Sua casa precisa\nde atenção') : t('home.actImmediately', 'Aja\nimediatamente'))}
+                            </Text>
+                        </View>
                     </View>
                     
                     <View style={{ width: '100%', marginTop: 12 }}>
@@ -277,22 +282,23 @@ export default function CompactActiveMonitor({ scoreData = { geral: 0, pendencia
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, paddingVertical: 2 },
-    topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 4 },
+    container: { flex: 1, paddingVertical: 0 },
+    topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 3 },
     gaugeContainer: { flex: 1, paddingRight: 10, justifyContent: 'center' },
-    scoreValue: { fontSize: 38, fontWeight: '800', lineHeight: 40, letterSpacing: -1 },
-    scoreSubtitle: { fontSize: 12, fontWeight: '800', color: Neo.colors.neutral[600], letterSpacing: 0.2, marginTop: 4, textTransform: 'uppercase' },
-    verticalDivider: { width: 1, height: '100%', backgroundColor: 'rgba(0,0,0,0.06)', marginHorizontal: 4 },
-    
+    scoreValue: { fontSize: 38, fontWeight: '800', lineHeight: 40, letterSpacing: 0 },
+    subtitleRow: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 4 },
+    scoreSubtitle: { fontSize: 12, fontWeight: '800', color: 'rgba(120, 80, 40, 0.80)', letterSpacing: 0, textTransform: 'uppercase' },
+    verticalDivider: { width: 1, height: '100%', backgroundColor: 'rgba(120, 80, 40, 0.14)', marginHorizontal: 4 },
+
     ambientesContainer: { flex: 1.2, justifyContent: 'center', paddingLeft: 4, paddingTop: 4 },
     ambienteRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 5 },
     ambienteDotContainer: { width: 8, alignItems: 'center' },
     ambienteDot: { width: 4, height: 4, borderRadius: 2 },
-    ambienteName: { fontSize: 11, fontWeight: '600', color: Neo.colors.neutral[700], marginLeft: 4, maxWidth: '50%' },
+    ambienteName: { fontSize: 11, fontWeight: '700', color: 'rgba(60, 40, 20, 0.72)', marginLeft: 4, maxWidth: '50%' },
     ambienteScore: { fontSize: 11, fontWeight: '800', marginLeft: 4 },
     noAmbienteText: { fontSize: 11, color: Neo.colors.neutral[500], fontStyle: 'italic', textAlign: 'center' },
     
-    footerRow: { alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.05)', paddingTop: 4, marginTop: 4 },
+    footerRow: { alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, borderTopColor: 'rgba(120, 80, 40, 0.12)', paddingTop: 3, marginTop: 3 },
     
     expandedSection: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: 'rgba(0,0,0,0.05)' },
     expandedTitle: { fontSize: 11, fontWeight: '800', color: Neo.colors.neutral[800], letterSpacing: 1, textTransform: 'uppercase', marginBottom: 12 },

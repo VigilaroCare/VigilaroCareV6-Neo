@@ -11,7 +11,7 @@ export const SAFETY_MOBILITY = {
         },
         {
             title: 'Adaptações Simples',
-            content: 'Eleve a altura de sofás e poltronas (calços) para facilitar levantar. Use maçanetas tipo alavanca em vez de bola. Mantenha objetos de uso diário em prateleiras baixas.'
+            content: 'Eleve a altura de sofás e poltronas (calços) para facilitar levantar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas.'
         },
         {
             title: 'Segurança no Banho',
@@ -19,11 +19,11 @@ export const SAFETY_MOBILITY = {
         },
         {
             title: 'Emergência',
-            content: 'Tenha um botão de pânico ou celular sempre ao alcance (fio no pescoço ou bolso). Cadastre vizinhos na discagem rápida. Deixe uma chave extra com alguém de confiança.'
+            content: 'Tenha um botão de pânico ou celular sempre ao alcance. Cadastre vizinhos na discagem rápida. Deixe uma chave extra com alguém de confiança.'
         },
         {
             title: 'Evacuação',
-            content: 'Em caso de incêndio, planeje como sair com cadeira de rodas ou andador. Mantenha os corredores sempre livres de obstáculos (sapatos, caixas).'
+            content: 'Em caso de incêndio, planeje como sair com cadeira de rodas ou andador. Mantenha os corredores sempre livres de obstáculos.'
         }
     ]
 };

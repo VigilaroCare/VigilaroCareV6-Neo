@@ -201,10 +201,11 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Succión de desagües (cabello)'
       ],
       prevencao: [
-        'Instale cercas de proteção (min 1,5m).',
-        'Supervisão 100% do tempo (sem celular).',
-        'Use ralos anti-aprisionamento.',
-        'Não deixe brinquedos na água (atraem crianças).'
+        'Supervisão constante de crianças (regra do "vigilante" dedicado).',
+        'Cercas de no mínimo 1,20m com portão auto-travante.',
+        'Ralos anti-aprisionamento obrigatórios.',
+        'Boia salva-vidas e gancho de resgate acessíveis.',
+        'Nunca nadar sozinho.'
       ],
       prevencao_en: [
         'Install safety fences (min 1.5m).',
@@ -245,8 +246,8 @@ export default function SegurancaLazerScreen({ navigation }) {
     },
     {
       id: 4,
-      local: 'Camping',
-      local_en: 'Camping',
+      local: 'Camping e Trilhas',
+      local_en: 'Camping and Trails',
       local_es: 'Camping',
       icon: 'Tree',
       iconColor: '#10B981',
@@ -267,10 +268,10 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Hipotermia nocturna'
       ],
       prevencao: [
-        'Mantenha a barraca sempre fechada.',
-        'Não deixe restos de comida fora (atrai bichos).',
-        'Faça fogueira em local limpo e isole.',
-        'Sacuda botas antes de calçar.'
+        'Avise alguém sobre o destino e horário previsto de retorno.',
+        'Leve kit de primeiros socorros.',
+        'Proteja-se de animais peçonhentos.',
+        'Hidratação constante.'
       ],
       prevencao_en: [
         'Keep the tent closed at all times.',
@@ -311,7 +312,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     },
     {
       id: 5,
-      local: 'Parques de Diversão',
+      local: 'Parques e Playgrounds',
       local_en: 'Amusement Parks',
       local_es: 'Parques de Diversiones',
       icon: 'Ticket',
@@ -333,10 +334,10 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Accidentes en atracciones'
       ],
       prevencao: [
-        'Respeite altura e idade dos brinquedos.',
-        'Foto da criança com a roupa do dia.',
-        'Marque ponto de encontro.',
-        'Use pulseira com telefone dos pais.'
+        'Inspeção visual antes de permitir o uso.',
+        'Verificar ferrugem, parafusos soltos, pontas perigosas.',
+        'Piso deve absorver impacto (borracha, areia).',
+        'Supervisão constante.'
       ],
       prevencao_en: [
         'Respect height and age restrictions for rides.',
@@ -377,68 +378,62 @@ export default function SegurancaLazerScreen({ navigation }) {
     },
     {
       id: 6,
-      local: 'Trilhas',
-      local_en: 'Trails',
-      local_es: 'Senderos',
-      icon: 'Map1',
-      iconColor: '#8B5CF6',
-      bg: '#F3E8FF',
+      local: 'Churrasqueira',
+      local_en: 'Barbecue Grill',
+      local_es: 'Parrilla',
+      icon: 'Fire',
+      iconColor: '#EF4444',
+      bg: '#FEF2F2',
       riscosPrincipais: [
-        'Torções e quedas',
-        'Perder-se',
-        'Desidratação'
+        'Queimaduras',
+        'Incêndio'
       ],
       riscosPrincipais_en: [
-        'Sprains and falls',
-        'Getting lost',
-        'Dehydration'
+        'Burns',
+        'Fire'
       ],
       riscosPrincipais_es: [
-        'Esguinces y caídas',
-        'Perderse',
-        'Deshidratación'
+        'Quemaduras',
+        'Incendio'
       ],
       prevencao: [
-        'Não saia da trilha marcada.',
-        'Avise alguém para onde vai e quando volta.',
-        'Leve água extra e snacks.',
-        'Carregue o celular (powerbank).'
+        'NUNCA use álcool líquido para acender.',
+        'Use acendedores próprios sólidos.',
+        'Mantenha crianças afastadas.',
+        'Botijão em área ventilada.'
       ],
       prevencao_en: [
-        'Do not leave the marked trail.',
-        'Tell someone where you are going and when you will return.',
-        'Bring extra water and snacks.',
-        'Charge your phone (power bank).'
+        'NEVER use liquid alcohol to light it.',
+        'Use proper solid fire starters.',
+        'Keep children away.',
+        'Gas cylinder in a ventilated area.'
       ],
       prevencao_es: [
-        'No se salga del sendero marcado.',
-        'Avise a alguien a dónde va y cuándo volverá.',
-        'Lleve agua extra y bocadillos.',
-        'Cargue el celular (batería externa).'
+        'NUNCA use alcohol líquido para encender.',
+        'Use encendedores sólidos adecuados.',
+        'Mantenga a los niños alejados.',
+        'Cilindro de gas en un área ventilada.'
       ],
       emergencias: [
-        'Torção: Imobilize e apoie.',
-        'Perdido: Fique parado em local visível, use apito.'
+        'Queimadura: Água corrente fria por 10 min.',
+        'Incêndio: Use extintor.'
       ],
       emergencias_en: [
-        'Sprain: Immobilize and support.',
-        'Lost: Stay still in a visible place, use a whistle.'
+        'Burn: Cold running water for 10 min.',
+        'Fire: Use a fire extinguisher.'
       ],
       emergencias_es: [
-        'Esguince: Inmovilice y apoye.',
-        'Perdido: Quédese quieto en un lugar visible, use un silbato.'
+        'Quemadura: Agua corriente fría durante 10 min.',
+        'Incendio: Use un extintor.'
       ],
       dicasExtras: [
-        'Baixe mapas offline.',
-        'Leve capa de chuva.'
+        'Tenha extintor próximo.'
       ],
       dicasExtras_en: [
-        'Download offline maps.',
-        'Bring a raincoat.'
+        'Have a fire extinguisher nearby.'
       ],
       dicasExtras_es: [
-        'Descargue mapas sin conexión.',
-        'Lleve un impermeable.'
+        'Tenga un extintor cerca.'
       ]
     }
   ];

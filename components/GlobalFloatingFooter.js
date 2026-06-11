@@ -15,7 +15,7 @@ import {
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { displayFont } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
-import { Ionicons } from '@expo/vector-icons';
+import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as NavigationService from '../services/NavigationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -23,6 +23,13 @@ import haptic from '../utils/Haptics';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+
+// Corpo do avião do glifo Phosphor "AirplaneInFlight" (peso regular), SEM a
+// barra horizontal inferior (o "chão"). O glifo original junta avião + chão num
+// único path; aqui isolamos só o avião para o estado "decolando" (Modo Viagem
+// ativo): mesmo desenho, sem o chão, livre para inclinar e subir.
+// viewBox padrão do Phosphor: 0 0 256 256.
+const PLANE_NO_GROUND = 'M248 136v24a8 8 0 0 1-8 8H61.07a39.75 39.75 0 0 1-38.31-28.51L8.69 92.6A16 16 0 0 1 24 72h8a8 8 0 0 1 5.65 2.34L59.32 96h22.49l-9-26.94A16 16 0 0 1 88 48h8a8 8 0 0 1 5.66 2.34L147.32 96H208a40 40 0 0 1 40 40m-16 0a24 24 0 0 0-24-24h-64a8 8 0 0 1-5.65-2.34L92.69 64H88l12.49 37.47A8 8 0 0 1 92.91 112H56a8 8 0 0 1-5.66-2.34L28.69 88H24l14.07 46.9a23.85 23.85 0 0 0 23 17.1H232Z';
 
 // ---------------------------------------------------------------------------
 // ROTAS ONDE O FOOTER NÃO DEVE APARECER
@@ -68,12 +75,16 @@ const isTabActive = (tab, currentRouteName) => {
 // ---------------------------------------------------------------------------
 // DEFINIÇÃO DOS BOTÕES DE ABA
 // ---------------------------------------------------------------------------
+// Iconografia unificada via NeoIcon (contrato único: "Bold ancora, Linear atua").
+// Bold + cor da marca no item ativo; Linear + neutro no inativo.
+// Glifos escolhidos para assimilar o footer de referência (recorte antigo):
+// casa, livro ABERTO, avião, hambúrguer (3 linhas) — agora via NeoIcon/Phosphor.
 const TAB_BUTTONS = [
-  { labelKey: 'navigation.home',      route: 'HomeTab',      iconActive: 'home',     iconInactive: 'home-outline',    size: 24 },
-  { labelKey: 'navigation.education', route: 'KnowledgeTab', iconActive: 'book',     iconInactive: 'book-outline',    size: 24 },
+  { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'Home2' },
+  { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'BookOpen' },
   null, // espaçador central para o SOS
-  { labelKey: 'navigation.travel',    route: 'TravelModeTab', iconActive: 'airplane', iconInactive: 'airplane-outline', size: 26, rotate: true },
-  { labelKey: 'navigation.menu',      route: 'MenuTab',       iconActive: 'menu',     iconInactive: 'menu-outline',    size: 28 },
+  { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'AirplaneInFlight' },
+  { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'List' },
 ];
 
 export default function GlobalFloatingFooter({ currentRouteName }) {
@@ -86,9 +97,15 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const sosTimer = useRef(null);
   const longPressTriggered = useRef(false);
   const [isTravelModeOn, setIsTravelModeOn] = React.useState(false);
+  // Retorno concluído ("checkout seguro" feito): avião inverte = voltando pra casa.
+  const [isReturning, setIsReturning] = React.useState(false);
 
   // SOS Pulse Animation
   const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  // Modo Viagem: "ascensão" do aviãozinho — sobe e flutua suavemente quando
+  // o modo está ativo (micro-interação restaurada do footer antigo).
+  const ascentAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     // Infinite pulse: scale 1.0 → 1.08 → 1.0 over 3s
@@ -112,18 +129,44 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
     return () => pulse.stop();
   }, [pulseAnim]);
 
+  // Loop de ascensão do tab Viagem — só roda enquanto o Modo Viagem está ativo.
+  // translateY 0 → -4 → 0 dá a sensação de o avião "decolar"/flutuar subindo.
   useEffect(() => {
-    // Atualiza status do modo de viagem a cada mudança de tela
+    if (!isTravelModeOn) {
+      ascentAnim.stopAnimation();
+      Animated.timing(ascentAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start();
+      return;
+    }
+    const climb = Animated.loop(
+      Animated.sequence([
+        Animated.timing(ascentAnim, { toValue: -4, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(ascentAnim, { toValue: 0,  duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+      ])
+    );
+    climb.start();
+    return () => climb.stop();
+  }, [isTravelModeOn, ascentAnim]);
+
+  useEffect(() => {
+    // Atualiza status do modo de viagem (e fase de retorno) a cada mudança de tela
     AsyncStorage.getItem('@active_trip').then(val => {
       setIsTravelModeOn(!!val);
+      let returning = false;
+      try { returning = !!(val && JSON.parse(val).retornoConcluido); } catch (e) {}
+      setIsReturning(returning);
     }).catch(() => {});
 
     // Escuta ativações e desativações instantâneas na própria tela (Realtime)
-    const subscription = DeviceEventEmitter.addListener('travel_mode_changed', (status) => {
+    const subMode = DeviceEventEmitter.addListener('travel_mode_changed', (status) => {
         setIsTravelModeOn(status);
+        if (!status) setIsReturning(false); // viagem encerrada zera o retorno
+    });
+    // Conclusão do "checkout seguro" → fase de retorno
+    const subReturn = DeviceEventEmitter.addListener('travel_return_changed', (returning) => {
+        setIsReturning(!!returning);
     });
 
-    return () => subscription.remove();
+    return () => { subMode.remove(); subReturn.remove(); };
   }, [currentRouteName]);
 
   // Cleanup do timer SOS ao desmontar — previne memory leak
@@ -215,11 +258,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
           const isIconActive = active || forceTravelHighlight;
           
           const color = isIconActive ? Neo.colors.primary[500] : inactiveTabColor;
-          const iconName = isIconActive ? tab.iconActive : tab.iconInactive;
           
-          // Avião só voa (-45deg) se o modo de viagem ESTIVER ON. Se for apenas a tab ativa, não decola.
-          const iconStyle = tab.rotate && forceTravelHighlight ? { transform: [{ rotate: '-45deg' }] } : {};
-
           return (
             <TouchableOpacity
               key={tab.route}
@@ -230,9 +269,38 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
               accessibilityLabel={t(tab.labelKey)}
               accessibilityState={{ selected: active }}
             >
-              <View style={iconStyle}>
-                <Ionicons name={iconName} size={tab.size} color={color} />
-              </View>
+              {tab.route === 'TravelModeTab' ? (
+                // Narrativa: POUSADO (avião + chão) com o modo desativado →
+                // DECOLANDO (mesmo avião, sem o chão, inclinado e subindo)
+                // quando o Modo Viagem está ativo.
+                <Animated.View
+                  style={{
+                    transform: [
+                      { translateY: ascentAnim },
+                      { rotate: isTravelModeOn ? '-18deg' : '0deg' },
+                      // Fase de retorno: espelha o avião (aponta pra casa).
+                      { scaleX: isReturning ? -1 : 1 },
+                    ],
+                  }}
+                >
+                  {isTravelModeOn ? (
+                    // Decolando: corpo do avião sem a barra do chão.
+                    <Svg width={26} height={26} viewBox="0 0 256 256">
+                      <Path d={PLANE_NO_GROUND} fill={color} />
+                    </Svg>
+                  ) : (
+                    // Pousado: glifo completo (avião sobre a linha do chão).
+                    <NeoIcon name={tab.icon} variant="Linear" size={26} color={color} />
+                  )}
+                </Animated.View>
+              ) : (
+                <NeoIcon
+                  name={tab.icon}
+                  variant={isIconActive ? 'Bold' : 'Linear'}
+                  size={26}
+                  color={color}
+                />
+              )}
               <Text style={[styles.tabLabel, { color }]}>{t(tab.labelKey)}</Text>
             </TouchableOpacity>
           );

@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import haptic from '../utils/Haptics';
 import { StatusBar } from 'expo-status-bar';
+import Svg, { Path, Rect } from 'react-native-svg';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -35,15 +36,24 @@ import TappablePressable from '../components/TappablePressable';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
-import { HousePill } from '../components/PillSwitch';
 import GlassProfileRing from '../components/GlassProfileRing';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const H_MONITOR = 165;
+const H_MONITOR = 146; // Altura que acomoda os labels da barra-resumo com o
+                       // respiro do padding inferior (antes 120 cortava o rodapé)
 const H_GAP = 6;
+
+const HOME_PICTOGRAMS = {
+    vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
+    saude:       require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
+    pets:        require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
+    atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
+    ferramentas: require('../assets/illustrations/home-pictograms/pictogram-ferramentas-ia.png'),
+    inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
+};
 
 export default function HomeScreenNeo() {
     const navigation = useNavigation();
@@ -114,8 +124,6 @@ export default function HomeScreenNeo() {
         return () => clearTimeout(timer);
     }, [currentProfile?.id, contextProfiles, familyMeta]);
 
-    // Haptic agora vem do TappablePressable (single source of truth) —
-    // mantemos o nome da função pra não quebrar callsites.
     const navigateWithHaptic = useCallback((route, params) => {
         try {
             NavigationService.navigate(route, params);
@@ -131,9 +139,8 @@ export default function HomeScreenNeo() {
         setMonitorExpanded(prev => !prev);
     }, []);
 
-    // ── DERIVADOS PARA MICRO-STATUS E ALERTA CONTEXTUAL ──
+    // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
     const hasOverdueMeds = overdueMeds.length > 0;
-    const hasPendingInspections = scoreData.pendencias > 0;
     const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
     const hasOffline = !systemStatus.isConnected;
     const hasCriticalBattery = systemStatus.isCriticalBattery;
@@ -166,72 +173,61 @@ export default function HomeScreenNeo() {
                 tone: 'warning',
                 label: t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` }),
                 route: 'Relatorios',
-                // Deep-link UX: usuário tocou no alerta de pendências, então
-                // Relatorios fará auto-redirect para SafetyActionPlan (pula 1 tap).
                 params: { focus: 'pendencias' },
             };
         }
         return null;
     })();
 
-    // Micro-status dos cards de Acesso Rápido
-    const saudeStatus = hasOverdueMeds
-        ? { label: t('home.statusOverdue', { count: overdueMeds.length, defaultValue: `${overdueMeds.length} atrasadas` }), tone: 'critical' }
-        : { label: t('home.statusOnTrack', 'em dia'), tone: 'ok' };
-
-    const vistoriasStatus = hasPendingInspections
-        ? { label: t('home.statusOpen', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} abertas` }), tone: 'warning' }
-        : { label: t('home.statusComplete', 'completas'), tone: 'ok' };
-
-    // Pets e Eventuais — sem dados disponíveis ainda, ficam neutros
-    const petStatus = { label: t('home.statusViewDetails', 'ver detalhes'), tone: 'neutral' };
-    const eventuaisStatus = { label: t('home.statusNoneActive', 'nenhuma ativa'), tone: 'neutral' };
-
-    // Cores derivadas do DS (Neo.colors.gridAccents) — substituem o Material
-    // antigo (#9C27B0, #E91E63, #2196F3, #FF9800) por uma paleta coerente
-    // ao brand (teal/rose/sky/amber rebaixados, Tailwind 600-700).
+    // Pictogramas proprietários: a imagem carrega a linguagem visual;
+    // rótulos continuam nativos para i18n e acessibilidade.
     const GRID_ITEMS = [
         {
             key: 'saude',
             label: t('home.myHealth'),
-            iconName: 'Health',
-            color: Neo.colors.gridAccents.saude.color,
-            bg: Neo.colors.gridAccents.saude.bg,
+            image: HOME_PICTOGRAMS.saude,
             route: 'MinhaSaude',
-            status: saudeStatus,
+            labelGap: 4,
         },
         {
             key: 'pets',
             label: t('home.petHealth'),
-            iconName: 'Pet',
-            color: Neo.colors.gridAccents.pets.color,
-            bg: Neo.colors.gridAccents.pets.bg,
-            route: 'PetsMenu',
-            status: petStatus,
+            image: HOME_PICTOGRAMS.pets,
+            route: 'SaudePet',
+            labelGap: 4,
         },
         {
             key: 'vistorias',
             label: t('home.inspections'),
-            iconName: 'ShieldTick',
-            color: Neo.colors.gridAccents.vistorias.color,
-            bg: Neo.colors.gridAccents.vistorias.bg,
+            image: HOME_PICTOGRAMS.vistorias,
             route: 'Relatorios',
-            status: vistoriasStatus,
+            labelGap: 4,
         },
         {
             key: 'atividades',
-            label: t('home.eventualActivities', 'Ativ. Eventuais'),
-            iconName: 'Warning2',
-            color: Neo.colors.gridAccents.eventuais.color,
-            bg: Neo.colors.gridAccents.eventuais.bg,
+            label: t('home.eventualActivities', 'Atividades Eventuais'),
+            image: HOME_PICTOGRAMS.atividades,
             route: 'ModoPreventivo',
-            status: eventuaisStatus,
-            accent: true,
+            labelGap: 4,
         },
     ];
 
-    // CHIP_ITEMS removidos: a row de chips com 1 só elemento ficava órfã.
-    // Histórico agora é um link discreto à direita das Ferramentas (mais abaixo).
+    // Histórico removido da home — apenas Ferramentas IA e Info Rótulos
+    const TOOL_ITEMS = [
+        {
+            key: 'ferramentas',
+            label: t('home.toolbox', 'Ferramentas IA'),
+            image: HOME_PICTOGRAMS.ferramentas,
+            route: 'FerramentasIA',
+        },
+        {
+            key: 'inforotulos',
+            label: t('home.infoLabels', 'Info Rótulos'),
+            image: HOME_PICTOGRAMS.inforotulos,
+            route: 'InfoRotulos',
+            imageScale: 1.08,
+        },
+    ];
 
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
@@ -243,24 +239,18 @@ export default function HomeScreenNeo() {
                 <StatusBar style="dark" />
 
                 {/* LOGO — framing premium (mais respiro vertical) */}
-                <View style={{ alignItems: 'center', paddingTop: 12, paddingBottom: 10 }}>
+                <View style={s.brandHeader}>
                     <Image
                         source={require('../assets/logo_vigilaro.png')}
-                        style={{ width: 168, height: 46, opacity: 0.95 }}
+                        style={s.brandLogo}
                         resizeMode="contain"
                     />
                 </View>
 
                 {/* HEADER: CASA + PERFIL */}
-                <View style={{
-                    flexDirection: rowDirection,
-                    justifyContent: 'space-between',
-                    alignItems: 'stretch',
-                    paddingHorizontal: Neo.spacing.lg,
-                    paddingTop: 8,
-                    paddingBottom: 10,
-                }}>
-                    <HousePill
+                <View style={[s.homeHeader, { flexDirection: rowDirection }]}>
+                    <ResidenceIdentity
+                        title={t('home.activeResidence', 'Moradia ativa')}
                         label={houseName}
                     />
 
@@ -276,8 +266,8 @@ export default function HomeScreenNeo() {
                                 imageError={imageError}
                                 onImageError={() => setImageError(true)}
                                 resolveUri={ProfileService.resolveImageUri}
-                                size={46}
-                                ringWidth={3}
+                                size={42}
+                                ringWidth={2.7}
                             />
                             <Text style={s.profileName} numberOfLines={1}>
                                 {currentProfile?.nome?.split(' ')[0] || t('home.myProfile')}
@@ -291,29 +281,23 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 160, // acomoda altura do GlobalFloatingFooter para não cortar os chips
-                        paddingTop: 2,
+                        paddingBottom: 40, // Reduzido drasticamente para evitar scroll excedente
+                        paddingTop: 0,
                     }}
                 >
                     {/* AMBIENTES VISTORIADOS */}
-                    <Eyebrow style={s.sectionEyebrow} accessibilityRole="header">{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</Eyebrow>
+                    <SectionHeading>{t('home.inspectedEnvironments', 'Ambientes Vistoriados')}</SectionHeading>
                     <TappablePressable
                         onPress={toggleMonitor}
                         accessibilityState={{ expanded: monitorExpanded }}
                         accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: scoreMessage.titulo, alert: scoreMessage.alerta })}
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
                     >
-                        <NeoCard
-                            variant="premium"
-                            style={{
+                        <View
+                            style={[s.monitorCard, {
                                 height: monitorExpanded ? null : H_MONITOR,
                                 minHeight: H_MONITOR,
-                                borderRadius: 24,
-                                paddingVertical: 16,
-                                paddingHorizontal: 18,
-                                overflow: 'hidden',
-                                marginBottom: H_GAP + 6,
-                            }}
+                            }]}
                         >
                             <CompactActiveMonitor
                                 scoreData={scoreData}
@@ -321,12 +305,10 @@ export default function HomeScreenNeo() {
                                 isExpanded={monitorExpanded}
                                 onStatusChange={setSystemStatus}
                             />
-                        </NeoCard>
+                        </View>
                     </TappablePressable>
 
-                    {/* ───── ABSORÇÃO 1: ALERTA CONTEXTUAL ─────
-                        Aparece apenas quando há item realmente urgente.
-                        Sem imperativos. Cor proporcional à urgência. */}
+                    {/* ALERTA CONTEXTUAL */}
                     {contextualAlert && (
                         <TouchableOpacity
                             activeOpacity={contextualAlert.route ? 0.7 : 1}
@@ -362,8 +344,8 @@ export default function HomeScreenNeo() {
                         </TouchableOpacity>
                     )}
 
-                    {/* ACESSO RÁPIDO — com micro-status (Absorção 2) */}
-                    <Eyebrow style={s.sectionEyebrow} accessibilityRole="header">{t('home.quickAccess')}</Eyebrow>
+                    {/* ACESSO RÁPIDO */}
+                    <SectionHeading style={s.quickSectionHeading}>{t('home.quickAccess')}</SectionHeading>
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
                             <ScaleInView
@@ -373,154 +355,377 @@ export default function HomeScreenNeo() {
                                 screenKey="HomeGrid"
                                 style={s.gridCell}
                             >
-                                <TappablePressable
-                                    style={{ flex: 1 }}
-                                    onPress={() => navigateWithHaptic(item.route)}
-                                    pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
-                                    accessibilityLabel={`${item.label}. ${item.status.label}`}
-                                >
-                                    <NeoCard
-                                        variant="elevated"
-                                        style={[s.gridCard, item.accent && s.gridCardAccent]}
-                                    >
-                                        <View style={[s.gridIconCircle, { backgroundColor: item.bg }]}>
-                                            <NeoIcon name={item.iconName} size={28} color={item.color} variant="Bold" />
-                                        </View>
-                                        <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={1}>{item.label}</Text>
-                                        <View style={[
-                                            s.gridStatusPill,
-                                            item.status.tone === 'ok'       && s.gridStatusOk,
-                                            item.status.tone === 'warning'  && s.gridStatusWarning,
-                                            item.status.tone === 'critical' && s.gridStatusCritical,
-                                            item.status.tone === 'neutral'  && s.gridStatusNeutral,
-                                        ]}>
-                                            <Text style={[
-                                                s.gridStatusText,
-                                                item.status.tone === 'ok'       && { color: Neo.colors.primary[700] },
-                                                item.status.tone === 'warning'  && { color: Neo.colors.accent.copper },
-                                                item.status.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                                item.status.tone === 'neutral'  && { color: Neo.colors.neutral[600] },
-                                            ]}>
-                                                {item.status.tone === 'ok' && '✓ '}
-                                                {item.status.label}
-                                            </Text>
-                                        </View>
-                                    </NeoCard>
-                                </TappablePressable>
+                                <View style={s.gridItemWrap}>
+                                    <PremiumPictogramShortcut
+                                        item={item}
+                                        textColor={textPrimary}
+                                        onPress={() => navigateWithHaptic(item.route)}
+                                    />
+                                </View>
                             </ScaleInView>
                         ))}
                     </View>
 
-                    {/* FERRAMENTAS — labels limpos, sem subtítulo "Assistente IA, Scanner e Voz" */}
-                    <Eyebrow style={[s.sectionEyebrow, { marginTop: 14 }]} accessibilityRole="header">{t('home.tools')}</Eyebrow>
+                    {/* FERRAMENTAS */}
+                    <SectionHeading style={s.toolsSectionHeading}>{t('home.toolsSection', 'Ferramentas')}</SectionHeading>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <TappablePressable
-                            onPress={() => navigateWithHaptic('FerramentasIA')}
-                            style={{ flex: 1, marginRight: 5 }}
-                            accessibilityLabel={t('home.toolbox', 'Ferramentas IA')}
-                        >
-                            <NeoCard variant="elevated" style={s.toolCard}>
-                                <View style={[s.toolIconCircle, { backgroundColor: 'rgba(25,118,210,0.10)' }]}>
-                                    <NeoIcon name="Setting2" size={22} color="#1976D2" variant="Bold" />
-                                </View>
-                                <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
-                                    {t('home.toolbox', 'Ferramentas IA')}
-                                </Text>
-                            </NeoCard>
-                        </TappablePressable>
-
-                        <TappablePressable
-                            onPress={() => navigateWithHaptic('InfoRotulos')}
-                            style={{ flex: 1, marginLeft: 5 }}
-                            accessibilityLabel={t('home.infoLabels', 'Info Rótulos')}
-                        >
-                            <NeoCard variant="elevated" style={s.toolCard}>
-                                <View style={[s.toolIconCircle, { backgroundColor: 'rgba(255,109,0,0.10)' }]}>
-                                    <NeoIcon name="Scan" size={22} color="#FF6D00" variant="Bold" />
-                                </View>
-                                <Text style={[s.toolLabel, { color: textPrimary }]} numberOfLines={1}>
-                                    {t('home.infoLabels', 'Info Rótulos')}
-                                </Text>
-                            </NeoCard>
-                        </TappablePressable>
+                    <View style={s.toolPictogramRow}>
+                        {TOOL_ITEMS.map((item, idx) => (
+                            <ScaleInView
+                                key={item.key}
+                                delay={120 + idx * 45}
+                                skipOnRevisit
+                                screenKey="HomeTools"
+                                style={s.toolPictogramCell}
+                            >
+                                    <PremiumPictogramShortcut
+                                        item={item}
+                                        textColor={textPrimary}
+                                        compact
+                                        onPress={() => navigateWithHaptic(item.route)}
+                                    />
+                            </ScaleInView>
+                        ))}
                     </View>
 
-                    {/* ───── LINK DISCRETO PARA HISTÓRICO ─────
-                        Acesso secundário ao log de atividades. Subtle por design:
-                        não compete com Ferramentas/Acesso Rápido e não desperdiça
-                        espaço como um card isolado faria. */}
-                    <TouchableOpacity
-                        onPress={() => navigateWithHaptic('RecentActivity')}
-                        activeOpacity={0.6}
-                        style={s.historyLink}
-                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('home.viewHistory', 'Ver histórico de atividades')}
-                    >
-                        <NeoIcon name="Activity" size={16} color={Neo.colors.primary[700]} variant="Bold" />
-                        <Text style={s.historyLinkText}>
-                            {t('home.viewHistory', 'Ver histórico de atividades')}
-                        </Text>
-                        <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={Neo.colors.primary[700]} />
-                    </TouchableOpacity>
-
                 </ScrollView>
-
-
 
             </SafeAreaView>
         </AppBackground>
     );
 }
 
+function SectionHeading({ children, style }) {
+    return (
+        <View style={[s.sectionHeadingWrap, style]}>
+            <Text style={s.sectionHeadingText} accessibilityRole="header">
+                {children}
+            </Text>
+        </View>
+    );
+}
+
+function ResidenceHomeMark() {
+    return (
+        <Svg width={28} height={28} viewBox="0 0 48 48">
+            <Path
+                d="M10 22L24 10L38 22"
+                stroke="#FFFFFF"
+                strokeWidth={3.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+            />
+            <Path
+                d="M14 21V39H38V21"
+                stroke="#FFFFFF"
+                strokeWidth={3.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+            />
+            <Rect
+                x={21}
+                y={28}
+                width={8}
+                height={11}
+                rx={1.4}
+                stroke="#FFFFFF"
+                strokeWidth={3.2}
+                fill="none"
+            />
+        </Svg>
+    );
+}
+
+function ResidenceIdentity({ title, label }) {
+    return (
+        <View
+            style={s.residenceIdentity}
+            accessible
+            accessibilityRole="summary"
+            accessibilityLabel={`${title}: ${label}`}
+        >
+            <View style={s.residenceIdentityInner}>
+                <View style={s.residencePictogramSlot}>
+                    <ResidenceHomeMark />
+                </View>
+                <View style={s.residenceTextGroup}>
+                    <Text style={s.residenceTitle} numberOfLines={1}>
+                        {title}
+                    </Text>
+                    <Text style={s.residenceName} numberOfLines={1}>
+                        {label}
+                    </Text>
+                </View>
+            </View>
+        </View>
+    );
+}
+
+function PictogramShortcut({ item, textColor, onPress, compact = false }) {
+    const statusTone = item.status?.tone;
+    const accessibilityLabel = item.status
+        ? `${item.label}. ${item.status.label}`
+        : (item.accessibilityLabel || item.label);
+
+    return (
+        <TappablePressable
+            style={[s.pictogramPressable, compact && s.pictogramPressableCompact]}
+            onPress={onPress}
+            pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabel}
+        >
+            <View style={[s.pictogramArtBox, compact && s.pictogramArtBoxCompact]}>
+                <Image
+                    source={item.image}
+                    style={[
+                        s.pictogramImage,
+                        compact && s.pictogramImageCompact,
+                        item.imageScale && { transform: [{ scale: item.imageScale }] },
+                    ]}
+                    resizeMode="contain"
+                />
+            </View>
+            <Text
+                style={[
+                    s.pictogramLabel,
+                    compact && s.pictogramLabelCompact,
+                    { color: textColor, marginTop: item.labelGap ?? (compact ? 8 : 6) },
+                ]}
+                numberOfLines={2}
+            >
+                {item.label}
+            </Text>
+            {item.status && (
+                <View style={[
+                    s.gridStatusPill,
+                    statusTone === 'ok'       && s.gridStatusOk,
+                    statusTone === 'warning'  && s.gridStatusWarning,
+                    statusTone === 'critical' && s.gridStatusCritical,
+                    statusTone === 'neutral'  && s.gridStatusNeutral,
+                ]}>
+                    <Text style={[
+                        s.gridStatusText,
+                        statusTone === 'ok'       && { color: Neo.colors.primary[700] },
+                        statusTone === 'warning'  && { color: Neo.colors.accent.copper },
+                        statusTone === 'critical' && { color: Neo.colors.feedback.error },
+                        statusTone === 'neutral'  && { color: Neo.colors.neutral[600] },
+                    ]}>
+                        {statusTone === 'ok' && '✓ '}
+                        {item.status.label}
+                    </Text>
+                </View>
+            )}
+        </TappablePressable>
+    );
+}
+
+function PremiumPictogramShortcut({ item, textColor, onPress }) {
+    const statusTone = item.status?.tone;
+    const accessibilityLabel = item.status
+        ? `${item.label}. ${item.status.label}`
+        : (item.accessibilityLabel || item.label);
+
+    return (
+        <TappablePressable
+            style={s.premiumPictogramCard}
+            onPress={onPress}
+            pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabel}
+        >
+            <View style={s.premiumArtBox}>
+                <Image
+                    source={item.image}
+                    style={[
+                        s.premiumPictogramImage,
+                        item.imageScale && { transform: [{ scale: item.imageScale }] },
+                    ]}
+                    resizeMode="contain"
+                />
+            </View>
+            <Text
+                style={[
+                    s.premiumPictogramLabel,
+                    { color: textColor },
+                ]}
+                numberOfLines={2}
+            >
+                {item.label}
+            </Text>
+            {item.status && (
+                <View style={[
+                    s.gridStatusPill,
+                    statusTone === 'ok'       && s.gridStatusOk,
+                    statusTone === 'warning'  && s.gridStatusWarning,
+                    statusTone === 'critical' && s.gridStatusCritical,
+                    statusTone === 'neutral'  && s.gridStatusNeutral,
+                ]}>
+                    <Text style={[
+                        s.gridStatusText,
+                        statusTone === 'ok'       && { color: Neo.colors.primary[700] },
+                        statusTone === 'warning'  && { color: Neo.colors.accent.copper },
+                        statusTone === 'critical' && { color: Neo.colors.feedback.error },
+                        statusTone === 'neutral'  && { color: Neo.colors.neutral[600] },
+                    ]}>
+                        {statusTone === 'ok' && '✓ '}
+                        {item.status.label}
+                    </Text>
+                </View>
+            )}
+        </TappablePressable>
+    );
+}
+
 const s = StyleSheet.create({
-    // Premium eyebrow para labels de seção. Margem inferior generosa pra
-    // dar respiro; alinhado à esquerda (apps premium não centralizam labels).
-    sectionEyebrow: {
-        marginBottom: 10,
-        marginTop: 4,
-        textAlign: 'left',
-        paddingHorizontal: 2,
+    brandHeader: {
+        alignItems: 'center',
+        paddingTop: 6,
+        paddingBottom: 3,
+    },
+    brandLogo: {
+        width: 166,
+        height: 44,
+        opacity: 0.94,
+    },
+    homeHeader: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 3,
+        paddingBottom: 4,
+    },
+    residenceIdentity: {
+        flex: 1,
+        alignSelf: 'center',
+        marginRight: 10,
+    },
+    residenceIdentityInner: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        minHeight: 54,
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 18,
+        backgroundColor: 'rgb(251, 247, 240)', // Cor exata para fundir com a imagem da casinha
+        borderWidth: 1.5,
+        borderColor: 'rgba(217, 119, 6, 0.25)', // Borda uniforme em todo o elemento
+        shadowColor: '#D97706',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
+        shadowRadius: 10,
+        elevation: 3,
+    },
+    residencePictogramSlot: {
+        width: 34,
+        height: 34,
+        borderRadius: 10,
+        backgroundColor: '#0E3B3B',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: '#2DD4BF',
+        marginRight: 10,
+        flexShrink: 0,
+    },
+    residenceTextGroup: {
+        flex: 1,
+        justifyContent: 'center',
+        minWidth: 0,
+    },
+    residenceTitle: {
+        color: 'rgba(14, 59, 59, 0.62)',
+        fontSize: 10,
+        fontWeight: '700',
+        lineHeight: 13,
+        letterSpacing: 0,
+    },
+    residenceName: {
+        color: '#0E3B3B',
+        fontSize: 14,
+        fontWeight: '800',
+        lineHeight: 18,
+        letterSpacing: 0,
+        marginTop: 1,
+    },
+    // Card "herói" alinhado à família dos tiles de Acesso Rápido/Ferramentas:
+    // tile sólido creme + borda âmbar 2px + glow âmbar (mesma assinatura
+    // champagne/copper). Raio 20 (levemente maior que os 18 dos tiles) o
+    // mantém como destaque sem destoar do conjunto.
+    monitorCard: {
+        borderRadius: 20,
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        overflow: 'hidden',
+        marginBottom: H_GAP,
+        backgroundColor: 'rgb(251, 247, 240)',
+        borderWidth: 2,
+        borderColor: 'rgba(217, 119, 6, 0.25)',
+        shadowColor: '#D97706',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
+        shadowRadius: 10,
+        elevation: 5,
+    },
+    sectionHeadingWrap: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 1,
+        marginBottom: 8,
+    },
+    sectionHeadingText: {
+        width: '100%',
+        color: 'rgba(120, 80, 40, 0.85)', // Tom quente / caramelo escuro em vez de cinza/verde frio
+        // Tier "título de seção" (16px): acima dos labels de item (13) e abaixo
+        // do h3 (22)/score herói (38) — estabelece a hierarquia que faltava.
+        // 11px lia como eyebrow sem o uppercase, ficando subdimensionado.
+        fontSize: 16,
+        fontWeight: '700', // Um pouco menos agressivo que 800
+        lineHeight: 21,
+        letterSpacing: 0.2,
+        textAlign: 'center',
+        paddingHorizontal: 0,
+        // textTransform removido para evitar o aspecto rígido e institucional do UPPERCASE
+    },
+    quickSectionHeading: {
+        marginTop: 0,
+        marginBottom: 6,
+    },
+    toolsSectionHeading: {
+        marginTop: 2,
+        marginBottom: 6,
     },
     profileCardOuter: {
         borderRadius: 20,
-        // overflow:hidden removido (clipava a sombra externa no Android).
-        // Sem flex aqui — o card já tem tamanho próprio definido pelo conteúdo.
     },
     profileCardInner: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FFFFFF',
-        paddingVertical: 10,
-        paddingHorizontal: 16,
-        borderRadius: 20,
-        minWidth: 76,
-        // Moldura vitrificada igual ao HousePill — consistência.
-        borderWidth: 1,
-        borderColor: 'rgba(120, 113, 108, 0.22)',
-        borderTopColor: 'rgba(255, 255, 255, 1)',
-        borderTopWidth: 1.5,
-        borderLeftColor: 'rgba(255, 255, 255, 0.85)',
-        borderLeftWidth: 1.2,
-        borderBottomColor: 'rgba(82, 75, 68, 0.20)',
-        borderBottomWidth: 1.2,
-        // Sombra Apple-style neutra (sem tinge Forest)
-        shadowColor: '#1C1C1E',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.05,
+        backgroundColor: 'rgb(251, 247, 240)', // Cor exata para unificar o design
+        paddingVertical: 8,
+        paddingHorizontal: 13,
+        borderRadius: 18,
+        minWidth: 72,
+        borderWidth: 1.5,
+        borderColor: 'rgba(217, 119, 6, 0.25)', // Borda uniforme
+        shadowColor: '#D97706',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12,
         shadowRadius: 10,
-        elevation: 2,
+        elevation: 3,
     },
     profileName: {
         fontSize: 11,
-        fontWeight: '600',
-        color: Neo.colors.neutral[800],
+        fontWeight: '700',
+        color: '#0E3B3B',
         marginTop: 4,
-        letterSpacing: 0.1,
+        letterSpacing: 0,
     },
 
-    // ── Alerta contextual (Absorção 1) ──
+    // ── Alerta contextual ──
     contextAlert: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -531,11 +736,11 @@ const s = StyleSheet.create({
         borderWidth: 1,
     },
     contextAlertCritical: {
-        backgroundColor: 'rgba(255, 59, 48, 0.08)',     // iOS red tint
+        backgroundColor: 'rgba(255, 59, 48, 0.08)',
         borderColor: 'rgba(255, 59, 48, 0.24)',
     },
     contextAlertWarning: {
-        backgroundColor: 'rgba(180, 83, 9, 0.08)',      // Copper tint
+        backgroundColor: 'rgba(180, 83, 9, 0.08)',
         borderColor: 'rgba(180, 83, 9, 0.24)',
     },
     contextAlertSystem: {
@@ -552,111 +757,142 @@ const s = StyleSheet.create({
         flex: 1,
         fontSize: 13,
         fontWeight: '600',
-        letterSpacing: -0.05,
+        letterSpacing: 0,
     },
 
-    // ── Grid 2×2 (premium spacing) ──
+    // ── Grid 2×2 de pictogramas proprietários ──
     gridContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginBottom: H_GAP + 4,
-        gap: 12,
+        marginBottom: 0,
+        gap: 2,
     },
     gridCell: {
-        width: '48%',
-        marginBottom: 10,
+        width: '48.5%',
+        marginBottom: 0,
     },
-    gridCard: {
-        borderRadius: 22,
+    pictogramPressable: {
+        flex: 1,
+        alignItems: 'center',
+        minHeight: 108, // Reduzido para 25% menor
+        paddingHorizontal: 1,
+        paddingTop: 0,
+        paddingBottom: 1,
+    },
+    pictogramPressableCompact: {
+        minHeight: 84,
+    },
+    pictogramArtBox: {
+        width: '100%',
+        height: 70, // Reduzido
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 18,
-        height: 132,
-        position: 'relative',
+        marginBottom: 0,
     },
-    // gridCardAccent intencionalmente vazio — com o vidro jateado a borda extra
-    // virava "moldura sobrando". O destaque do card Eventuais agora vem só do
-    // ícone laranja + micro-status próprio.
-    gridCardAccent: {},
-    gridIconCircle: {
-        width: 52,
-        height: 52,
-        borderRadius: 26,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 8,
+    pictogramArtBoxCompact: {
+        height: 56,
+        marginBottom: 0,
     },
-    gridLabel: {
-        fontSize: 14,
-        fontWeight: '700',
+    pictogramImage: {
+        width: '114%',
+        height: '114%',
+    },
+    pictogramImageCompact: {
+        width: '122%',
+        height: '122%',
+    },
+    pictogramLabel: {
+        alignSelf: 'stretch',
+        fontSize: 13.2,
+        fontWeight: '800',
         color: Neo.colors.neutral[900],
         textAlign: 'center',
-        lineHeight: 18,
-        marginBottom: 6,
-        letterSpacing: -0.1,
+        lineHeight: 16,
+        minHeight: 28,
+        marginTop: 6,
+        marginBottom: 0,
+        letterSpacing: 0,
+        paddingHorizontal: 2,
     },
-    // Micro-status pill (Absorção 2)
+    pictogramLabelCompact: {
+        fontSize: 11.5,
+        lineHeight: 14,
+        minHeight: 20,
+        marginTop: 8,
+        marginBottom: 0,
+    },
+    // Micro-status pill
     gridStatusPill: {
         paddingHorizontal: 9,
         paddingVertical: 3,
         borderRadius: 10,
     },
-    // Pills alinhados ao DS — verde brand (Forest), warning âmbar premium,
-    // critical iOS red, neutral cinza warm.
-    gridStatusOk:       { backgroundColor: 'rgba(4, 120, 87, 0.10)' },     // Forest tint
-    gridStatusWarning:  { backgroundColor: 'rgba(180, 83, 9, 0.10)' },     // Amber tint
-    gridStatusCritical: { backgroundColor: 'rgba(255, 59, 48, 0.10)' },    // iOS red tint
-    gridStatusNeutral:  { backgroundColor: 'rgba(120, 120, 128, 0.08)' },  // iOS gray tint
+    gridStatusOk:       { backgroundColor: 'rgba(4, 120, 87, 0.10)'   },
+    gridStatusWarning:  { backgroundColor: 'rgba(180, 83, 9, 0.10)'   },
+    gridStatusCritical: { backgroundColor: 'rgba(255, 59, 48, 0.10)'  },
+    gridStatusNeutral:  { backgroundColor: 'rgba(120, 120, 128, 0.08)'},
     gridStatusText: {
         fontSize: 11,
         fontWeight: '700',
         letterSpacing: 0.1,
     },
 
-    // ── Ferramentas — labels limpos, sem subtítulo de IA ──
-    toolCard: {
-        borderRadius: 18,
-        alignItems: 'center',
+    // ── Ferramentas — dois pictogramas compactos centralizados ──
+    toolPictogramRow: {
+        flexDirection: 'row',
         justifyContent: 'center',
-        paddingVertical: 18,
-        paddingHorizontal: 14,
-        height: 96,
-        marginBottom: 10,
+        gap: 24,
+        marginBottom: 0,
     },
-    toolIconCircle: {
-        width: 42,
-        height: 42,
-        borderRadius: 21,
+    toolPictogramCell: {
+        width: '40%',
         alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 8,
-    },
-    toolLabel: {
-        fontSize: 13,
-        fontWeight: '700',
-        color: Neo.colors.neutral[900],
-        textAlign: 'center',
-        letterSpacing: -0.1,
     },
 
-    // ── Link discreto para Histórico ──
-    // Substitui a row de chips: subtle, alinhado à direita, não compete com
-    // os blocos principais. Padrão "secondary link" em vez de "tertiary card".
-    historyLink: {
-        flexDirection: 'row',
+    // ── Premium Prototype Styles ──
+    premiumPictogramCard: {
+        width: '100%', // Preenche a largura da célula no lugar de flex: 1
         alignItems: 'center',
-        alignSelf: 'flex-end',
-        paddingVertical: 10,
-        paddingHorizontal: 8,
-        marginTop: 12,
-        gap: 6,
+        minHeight: 110,
+        paddingHorizontal: 4,
+        paddingTop: 6,
+        paddingBottom: 6,
+        marginHorizontal: 4,
+        marginBottom: 6,
+        borderRadius: 18,
+        backgroundColor: 'rgb(251, 247, 240)', // Cor ajustada para tentar fundir com o gradiente creme dos PNGs
+        borderWidth: 2,
+        borderColor: 'rgba(217, 119, 6, 0.25)', 
+        shadowColor: '#D97706', 
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.12, 
+        shadowRadius: 10,
+        elevation: 5,
     },
-    historyLinkText: {
-        fontSize: 13,
-        fontWeight: '600',
-        color: Neo.colors.primary[700], // Forest Deep
-        letterSpacing: 0.2,
+    premiumArtBox: {
+        width: 76,
+        height: 76,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 2,
+        // overflow: 'hidden' removido para não cortar as imagens
+        borderRadius: 12,
+    },
+    premiumPictogramImage: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain', // Garante que a arte original caiba inteira sem cortes
+    },
+    premiumPictogramLabel: {
+        alignSelf: 'stretch',
+        fontSize: 11.5, // Texto levemente menor para garantir que não empurre o card
+        fontWeight: '800',
+        color: 'rgba(60, 40, 20, 0.85)',
+        textAlign: 'center',
+        lineHeight: 12,
+        minHeight: 24, // Altura do texto reduzida para economizar espaço
+        letterSpacing: 0,
+        marginTop: 0,
     },
 });

@@ -7,16 +7,15 @@ export const PET_PREGNANCY_DATA = {
     sections: [
         {
             id: 'sinais',
-            title: 'Sinais de Prenhez', title_en: 'Signs of Pregnancy', title_es: 'Signos de Preñez',
+            title: 'Sinais de Gestação', title_en: 'Signs of Pregnancy', title_es: 'Signos de Preñez',
             icon: 'search',
             color: '#E91E63',
             items: [
-                { text: 'Aumento do abdômen (após 3-4 semanas)', text_en: 'Abdomen enlargement (after 3-4 weeks)', text_es: 'Aumento del abdomen (después de 3-4 semanas)' },
-                { text: 'Mamas inchadas e rosadas', text_en: 'Swollen and pink nipples', text_es: 'Mamas hinchadas y rosadas' },
-                { text: 'Mudanças de comportamento (mais carinhosa ou isolada)', text_en: 'Behavioral changes (more affectionate or isolated)', text_es: 'Cambios de comportamiento (más cariñosa o aislada)' },
                 { text: 'Aumento do apetite', text_en: 'Increased appetite', text_es: 'Aumento del apetito' },
-                { text: 'Náuseas matinais (primeiras semanas)', text_en: 'Morning sickness (first weeks)', text_es: 'Náuseas matutinas (primeras semanas)' },
-                { text: 'Diminuição de atividade física', text_en: 'Decreased physical activity', text_es: 'Disminución de actividad física' }
+                { text: 'Aumento abdominal (mais visível a partir da 4ª semana)', text_en: 'Abdomen enlargement (after 3-4 weeks)', text_es: 'Aumento del abdomen (después de 3-4 semanas)' },
+                { text: 'Mamilos mais rosados e inchados', text_en: 'Swollen and pink nipples', text_es: 'Mamas hinchadas y rosadas' },
+                { text: 'Comportamento mais calmo ou carinhoso', text_en: 'Behavioral changes (more affectionate or isolated)', text_es: 'Cambios de comportamiento (más cariñosa o aislada)' },
+                { text: 'Duração média: Cadelas 58-68 dias / Gatas 60-67 dias', text_en: 'Average duration: Dogs 58-68 days / Cats 60-67 days', text_es: 'Duración media: Perras 58-68 días / Gatas 60-67 días' }
             ]
         },
         {
@@ -37,13 +36,11 @@ export const PET_PREGNANCY_DATA = {
             icon: 'heart',
             color: '#4CAF50',
             items: [
-                { text: 'Alimentação de qualidade (ração para filhotes)', text_en: 'High-quality food (puppy/kitten food)', text_es: 'Alimentación de calidad (comida para cachorros)' },
-                { text: 'Aumento gradual da quantidade de comida', text_en: 'Gradual increase in food quantity', text_es: 'Aumento gradual de la cantidad de comida' },
-                { text: 'Suplementação se recomendado pelo veterinário', text_en: 'Supplementation if recommended by vet', text_es: 'Suplementación si lo recomienda el veterinario' },
-                { text: 'Exercícios leves e regulares', text_en: 'Light and regular exercise', text_es: 'Ejercicios ligeros y regulares' },
-                { text: 'Evitar medicamentos sem orientação', text_en: 'Avoid medications without guidance', text_es: 'Evitar medicamentos sin orientación' },
+                { text: 'Alimentação de qualidade (ração para filhotes tem mais calorias)', text_en: 'High-quality food (puppy food has more calories)', text_es: 'Alimentación de calidad (comida para cachorros tiene más calorías)' },
                 { text: 'Consultas veterinárias regulares', text_en: 'Regular vet check-ups', text_es: 'Consultas veterinarias regulares' },
-                { text: 'Preparar local tranquilo para o parto', text_en: 'Prepare a quiet place for birth', text_es: 'Preparar un lugar tranquilo para el parto' }
+                { text: 'Evitar exercícios intensos', text_en: 'Avoid intense exercise', text_es: 'Evitar ejercicios intensos' },
+                { text: 'Preparar o "ninho" em local tranquilo, quente e limpo', text_en: 'Prepare the "nest" in a quiet, warm, and clean place', text_es: 'Preparar el "nido" en un lugar tranquilo, cálido y limpio' },
+                { text: 'Não administrar medicamentos sem orientação veterinária', text_en: 'Do not administer medication without veterinary guidance', text_es: 'No administrar medicamentos sin orientación veterinaria' }
             ]
         },
         {
@@ -62,17 +59,15 @@ export const PET_PREGNANCY_DATA = {
         },
         {
             id: 'pos_parto',
-            title: 'Cuidados Pós-Parto', title_en: 'Post-Partum Care', title_es: 'Cuidados Posparto',
+            title: 'Cuidados com Filhotes', title_en: 'Care for Newborns', title_es: 'Cuidados con Cachorros',
             icon: 'checkmark-circle',
             color: '#9C27B0',
             items: [
-                { text: 'Deixe a mãe limpar os filhotes', text_en: 'Let the mother clean the newborns', text_es: 'Deje que la madre limpie a los cachorros' },
-                { text: 'Verifique se todos estão mamando', text_en: 'Check if all are nursing', text_es: 'Verifique si todos están amamantando' },
-                { text: 'Mantenha ambiente aquecido (28-32°C)', text_en: 'Keep the environment warm (28-32°C)', text_es: 'Mantenga el ambiente cálido (28-32°C)' },
-                { text: 'Alimentação rica para a mãe', text_en: 'Rich diet for the mother', text_es: 'Alimentación rica para la madre' },
-                { text: 'Observar sinais de infecção', text_en: 'Watch for signs of infection', text_es: 'Observar signos de infección' },
-                { text: 'Consulta veterinária em 24-48h', text_en: 'Vet check-up in 24-48h', text_es: 'Consulta veterinaria en 24-48h' },
-                { text: 'Pesar filhotes diariamente', text_en: 'Weigh newborns daily', text_es: 'Pesar a los cachorros diariamente' }
+                { text: 'Manter aquecidos (filhotes não regulam temperatura sozinhos)', text_en: 'Keep warm (newborns cannot regulate temperature alone)', text_es: 'Mantener calientes (cachorros no regulan temperatura solos)' },
+                { text: 'Amamentação nas primeiras horas é vital (colostro)', text_en: 'Nursing in first hours is vital (colostrum)', text_es: 'Amamantar en primeras horas es vital (calostro)' },
+                { text: 'Não separar da mãe antes de 45-60 dias', text_en: 'Do not separate from mother before 45-60 days', text_es: 'No separar de la madre antes de 45-60 días' },
+                { text: 'Iniciar vacinação e vermifugação conforme orientação veterinária', text_en: 'Start vaccination and deworming as per vet guidance', text_es: 'Iniciar vacunación y desparasitación según orientación veterinaria' },
+                { text: 'Socialização gradual a partir das 3 semanas', text_en: 'Gradual socialization from 3 weeks', text_es: 'Socialización gradual a partir de 3 semanas' }
             ]
         },
         {

@@ -11,7 +11,7 @@ export const SAFETY_VACATION = {
         },
         {
             title: 'Praia e Piscina',
-            content: 'Criança na água = supervisão 100% (distância de um braço). Boias de braço NÃO são seguras (use coletes). Cuidado com correntezas e exposição excessiva ao sol (filtro a cada 2h).'
+            content: 'Acesse o Guia de Afogamentos na seção de Riscos Físicos para conhecer as regras de supervisão e o uso correto de coletes. Cuidado com exposição excessiva ao sol (filtro a cada 2h).'
         },
         {
             title: 'Hotel e Pousada',
@@ -19,7 +19,7 @@ export const SAFETY_VACATION = {
         },
         {
             title: 'Criança Perdida',
-            content: 'Em locais lotados, use pulseira de identificação com nome e telefone. Tire uma foto da criança com a roupa do dia antes de sair. Marque um ponto de encontro.'
+            content: 'Em locais lotados, use pulseira de identificação com nome e telefone. Tire uma foto da criança com a roupa do dia antes de sair. Marque um ponto de encontro. Se a criança já interage oriente-a para caso ela se perca.'
         },
         {
             title: 'Kit Viagem',

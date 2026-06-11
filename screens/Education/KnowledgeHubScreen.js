@@ -18,12 +18,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
+import Svg, { Circle, G, Line, Path, Rect } from 'react-native-svg';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
-import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, Body } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import NeoIcon from '../../components/NeoIcon';
@@ -31,6 +32,13 @@ import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blo
 
 // Featured rotativo (5 aleatórios por sessão)
 const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random()).slice(0, 5);
+const PREGNANCY_CARE_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png');
+const TOY_GUIDE_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_brinquedos_sem_casa.png');
+const FAMILY_HOME_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_familia_casa_final.png');
+const ENVIRONMENT_PREVENTION_PICTOGRAM = require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png');
+const PET_PAW_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-saude-pet.png');
+const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
+const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos-essenciais.png');
 
 export default function KnowledgeHubScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -38,14 +46,11 @@ export default function KnowledgeHubScreen({ navigation }) {
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
     const textSecondary = themeColors.neutral[700];
-    const textTertiary = themeColors.neutral[600];
 
     // Item único — renderizado em card horizontal full-width
     const conceitoItem = {
         id: 'intro_safety',
         titulo: t('knowledgeHub.methodology'),
-        iconName: 'Metodologia3D',
-        cor: '#6366F1', // indigo
         route: 'IntroSafetyMenu',
     };
 
@@ -55,11 +60,11 @@ export default function KnowledgeHubScreen({ navigation }) {
             key: 'contexto',
             title: t('knowledgeHub.lifeContext', 'Pessoas & Contexto'),
             items: [
-                { id: 'ambientes',         titulo: t('knowledgeHub.envPrevention'),  iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments' },
-                { id: 'pets',              titulo: t('knowledgeHub.protectPet'),     iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu' },
-                { id: 'seguranca_idade',   titulo: t('knowledgeHub.ageCare'),        iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu' },
-                { id: 'gestante_segura',   titulo: t('knowledgeHub.pregnancyCare'),  iconName: 'Woman',      cor: '#E91E63', route: 'GenericCategory', params: { categoryId: 'gestante_segura' } },
-                { id: 'brinquedos_hub',    titulo: t('knowledgeHub.toyGuide'),       iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' } },
+                { id: 'ambientes',         titulo: t('knowledgeHub.envPrevention'),  pictogram: 'environmentPrevention', iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments' },
+                { id: 'pets',              titulo: t('knowledgeHub.protectPet'),     pictogram: 'petHealth', iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu' },
+                { id: 'seguranca_idade',   titulo: t('knowledgeHub.ageCare'),        pictogram: 'familyAgeCare', iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu' },
+                { id: 'gestante_segura',   titulo: t('knowledgeHub.pregnancyCare'),  pictogram: 'pregnancyCare', iconName: 'Woman',      cor: '#E91E63', route: 'GenericCategory', params: { categoryId: 'gestante_segura' } },
+                { id: 'brinquedos_hub',    titulo: t('knowledgeHub.toyGuide'),       pictogram: 'toyGuide', iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' } },
             ],
         },
         {
@@ -103,30 +108,52 @@ export default function KnowledgeHubScreen({ navigation }) {
         },
     ];
 
-    const renderGridCard = (item, index) => (
-        <FadeInView
-            key={item.id}
-            delay={120 + index * 40}
-            style={s.gridCell}
-        >
-            <TouchableOpacity
-                onPress={() => navigation.navigate(item.route, item.params || {})}
-                activeOpacity={0.85}
-                style={{ flex: 1 }}
-                accessibilityRole="button"
-                accessibilityLabel={item.titulo}
+    const renderGridCard = (item, index) => {
+        const customPictogram = item.pictogram === 'familyAgeCare'
+            ? <Image source={FAMILY_HOME_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
+            : item.pictogram === 'environmentPrevention'
+                ? <Image source={ENVIRONMENT_PREVENTION_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
+                : item.pictogram === 'pregnancyCare'
+                    ? <Image source={PREGNANCY_CARE_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
+                    : item.pictogram === 'petHealth'
+                        ? <Image source={PET_PAW_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
+                        : item.pictogram === 'toyGuide'
+                            ? <Image source={TOY_GUIDE_PICTOGRAM} style={s.gridGenericPictogramImage} resizeMode="contain" />
+                        : null;
+        
+        const customPictogramWrapStyle = s.gridPictogramWrap;
+
+        return (
+            <FadeInView
+                key={item.id}
+                delay={120 + index * 40}
+                style={s.gridCell}
             >
-                <NeoCard variant="elevated" style={s.gridCard}>
-                    <View style={[s.iconCircle, { backgroundColor: item.cor + '33' }]}>
-                        <NeoIcon name={item.iconName} size={24} color={item.cor} variant="Bold" />
-                    </View>
-                    <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
-                        {item.titulo}
-                    </Text>
-                </NeoCard>
-            </TouchableOpacity>
-        </FadeInView>
-    );
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(item.route, item.params || {})}
+                    activeOpacity={0.85}
+                    style={{ flex: 1 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={item.titulo}
+                >
+                    <NeoCard variant="elevated" style={s.gridCard}>
+                        {customPictogram ? (
+                            <View style={customPictogramWrapStyle}>
+                                {customPictogram}
+                            </View>
+                        ) : (
+                            <View style={[s.iconCircle, { backgroundColor: item.cor + '33' }]}>
+                                <NeoIcon name={item.iconName} size={24} color={item.cor} variant="Bold" />
+                            </View>
+                        )}
+                        <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
+                            {item.titulo}
+                        </Text>
+                    </NeoCard>
+                </TouchableOpacity>
+            </FadeInView>
+        );
+    };
 
     return (
         <AppBackground>
@@ -140,11 +167,8 @@ export default function KnowledgeHubScreen({ navigation }) {
                     {/* HEADER — consistente com Home + Menu */}
                     <View style={s.headerBlock}>
                         <H1 style={[s.title, { color: textPrimary }]} accessibilityRole="header">
-                            {t('knowledgeHub.titleShort', 'Aprender')}
-                        </H1>
-                        <Caption style={[s.subtitle, { color: textTertiary }]}>
                             {t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção')}
-                        </Caption>
+                        </H1>
                     </View>
 
                     {/* DESTAQUES — carrossel horizontal */}
@@ -203,15 +227,12 @@ export default function KnowledgeHubScreen({ navigation }) {
                     >
                         <NeoCard variant="elevated" style={s.radarCard}>
                             <View style={s.radarIconWrap}>
-                                <NeoIcon name="Activity" size={26} color="#B91C1C" variant="Bold" />
+                                <Image source={REAL_CASES_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
                             </View>
                             <View style={{ flex: 1, marginLeft: 14 }}>
                                 <Body style={s.radarTitle}>
-                                    {t('home.vigilaroRadar', 'Radar da Prevenção')}
+                                    {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
                                 </Body>
-                                <Small style={s.radarSub} numberOfLines={2}>
-                                    {t('knowledgeHub.radarSub', 'Casos reais que ensinam')}
-                                </Small>
                             </View>
                             <NeoIcon name="ArrowRight2" size={18} color="#B91C1C" />
                         </NeoCard>
@@ -228,8 +249,8 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityLabel={conceitoItem.titulo}
                     >
                         <NeoCard variant="elevated" style={s.conceitoCard}>
-                            <View style={[s.iconCircle, { backgroundColor: conceitoItem.cor + '33', marginRight: 14, marginBottom: 0 }]}>
-                                <NeoIcon name={conceitoItem.iconName} size={24} color={conceitoItem.cor} />
+                            <View style={s.conceptPictogramWrap}>
+                                <Image source={CONCEPTS_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
                             </View>
                             <Body style={{ flex: 1, fontWeight: '800', color: textPrimary, fontSize: 14 }}>
                                 {conceitoItem.titulo}
@@ -273,10 +294,6 @@ const s = StyleSheet.create({
         letterSpacing: -0.5,
         marginBottom: 4,
     },
-    subtitle: {
-        color: Neo.colors.neutral[600],
-    },
-
     // ── Section labels (consistente com Home e Menu) ──
     sectionLabel: {
         fontSize: 11,
@@ -353,30 +370,34 @@ const s = StyleSheet.create({
         borderRadius: 18,
     },
     radarIconWrap: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        backgroundColor: 'rgba(185,28,28,0.18)',
+        width: 66,
+        height: 52,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    specialPictogramImage: {
+        width: '100%',
+        height: '100%',
+        transform: [{ scale: 1.3 }], // Aumentado em 30% visualmente
     },
     radarTitle: {
         fontWeight: '800',
         fontSize: 15,
         color: Neo.colors.neutral[900],
     },
-    radarSub: {
-        color: Neo.colors.neutral[600],
-        marginTop: 2,
-        lineHeight: 16,
-    },
-
     // ── Conceitos (card único horizontal) ──
     conceitoCard: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 14,
         borderRadius: 16,
+    },
+    conceptPictogramWrap: {
+        width: 66,
+        height: 52,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 14,
     },
 
     // ── Grid 3-col para seções de categorias ──
@@ -404,6 +425,18 @@ const s = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 6,
+    },
+    gridPictogramWrap: {
+        width: 72,
+        height: 60, // Aumentado um pouco para acomodar melhor as imagens line-art
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 4,
+    },
+    gridGenericPictogramImage: {
+        width: '100%',
+        height: '100%',
+        transform: [{ scale: 1.3 }], // Aumentado em 30% visualmente
     },
     gridLabel: {
         fontSize: 11,

@@ -237,33 +237,6 @@ export const UTENSILIOS_REVIEWS = [
         oQueFazer: 'Se a criança estiver sufocando com saco plástico: remova imediatamente o saco do rosto e vias aéreas. Se a criança estiver inconsciente e não respirando, inicie ressuscitação e ligue 192 (SAMU).',
         estatistica: 'Sacos plásticos causam em média 25 mortes por sufocamento de crianças por ano nos EUA. No Brasil, o dado é subnotificado mas igualmente preocupante.',
     },
-    {
-        id: 'produtos_limpeza',
-        imagemUrl: 'https://images.pexels.com/photos/5217888/pexels-photo-5217888.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        nome: 'Produtos Químicos de Limpeza',
-        emoji: '🧴',
-        nivelRisco: 'alto',
-        corRisco: '#E65100',
-        frequenciaUso: 'Alta',
-        perfilRisco: ['crianca', 'pet'],
-        resumo: 'Produtos coloridos debaixo da pia parecem suco para uma criança. A mistura de produtos comuns de limpeza pode gerar gases tóxicos letais.',
-        riscos: [
-            { descricao: 'Intoxicação por ingestão acidental por crianças', gravidade: 'critico' },
-            { descricao: 'Queimaduras químicas na pele e olhos por contato com soda cáustica e similares', gravidade: 'alto' },
-            { descricao: 'Gases tóxicos mortais pela mistura de água sanitária com outros produtos', gravidade: 'critico' },
-            { descricao: 'Reações alérgicas graves por inalação em ambientes pouco ventilados', gravidade: 'medio' },
-        ],
-        prevencao: [
-            'Guarde TODOS os produtos em armário alto ou com trava de segurança — nunca sob a pia acessível',
-            'NUNCA transfira produtos para garrafas de refrigerante ou embalagens de alimentos',
-            'NUNCA misture água sanitária com outros produtos de limpeza (gera gás cloro, potencialmente fatal)',
-            'Mantenha os rótulos originais legíveis — nunca raspe ou remova etiquetas',
-            'Use luvas e mantenha ventilação aberta ao manusear produtos fortes',
-            'Após dedetização: respeite o tempo de isolamento e limpe superfícies de preparo de alimentos',
-        ],
-        oQueFazer: 'Em caso de ingestão: NÃO provoque vômito. Ligue imediatamente para o CIATOX: 0800 722 6001. Se houver contato com os olhos: lave com água corrente por pelo menos 20 minutos e procure emergência.',
-        estatistica: 'Intoxicação por produtos de limpeza é a segunda maior causa de envenenamento acidental em crianças menores de 5 anos no Brasil.',
-    },
 ];
 
 export default UTENSILIOS_REVIEWS;

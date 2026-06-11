@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
-import { H1, Caption } from '../components/NeoTypography';
+import { H1, H3, Small, Caption } from '../components/NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { INTRO_CONCEPTS } from '../data/intro_safety';
 import { t_field } from '../utils/getLocalizedField';
@@ -71,23 +71,33 @@ export default function IntroSafetyMenuScreen({ navigation }) {
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* HEADER padronizado (igual outras telas premium) */}
-                <View style={s.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={s.backBtn}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+                {/* Header Neo Glass */}
+                <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "rgba(255,255,255,0.4)", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.2)" }}>
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
-                    <View style={{ flex: 1 }}>
-                        <H1 style={s.title}>
-                            {t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}
-                        </H1>
-                        <Caption style={s.subtitle}>
-                            {t('intro.subtitle', 'Base da prevenção doméstica')}
-                        </Caption>
-                    </View>
+                </View>
+                <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
+                    <NeoCard variant="glass"
+                        style={Object.assign({
+                            width: "100%",
+                            padding: 16,
+                            justifyContent: "space-between",
+                            minHeight: 140, alignItems: "center"
+                        }, Neo.shadows ? Neo.shadows.sm : {})}
+                    >
+                        <View style={{
+                            width: 44, height: 44, borderRadius: 12,
+                            backgroundColor: Neo.colors.primary[100], alignItems: "center", justifyContent: "center",
+                            marginBottom: 12
+                        }}>
+                            <NeoIcon name="Book" size={24} color={Neo.colors.primary[600]} variant="Bold" />
+                        </View>
+                        <View style={{ alignItems: "center" }}>
+                            <H3 style={{ color: Neo.colors.primary[600], fontSize: 16, marginBottom: 4, lineHeight: 18, textAlign: 'center' }}>{t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}</H3>
+                            <Small style={{ color: Neo.colors.neutral[800], fontWeight: "bold", lineHeight: 14, textAlign: 'center' }}>{t('intro.subtitle', 'Base da prevenção doméstica')}</Small>
+                        </View>
+                    </NeoCard>
                 </View>
 
                 <ScrollView

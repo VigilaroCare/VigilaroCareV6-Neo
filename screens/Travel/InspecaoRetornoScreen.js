@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform, DeviceEventEmitter } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -53,10 +54,34 @@ const CHECKLIST_ITEMS = [
     }
 ];
 
+const TOTAL_ITEMS = CHECKLIST_ITEMS.reduce((n, s) => n + s.items.length, 0);
+
 export default function InspecaoRetornoScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [checkedItems, setCheckedItems] = useState({});
     const [expandedSections, setExpandedSections] = useState({ sweep: true, returns: true, packing: true });
+
+    // Ao concluir TODOS os itens do checkout, marca o retorno na viagem ativa.
+    // O footer lê esse flag e inverte o avião ("voltando pra casa") até a
+    // viagem ser encerrada. Só marca se houver viagem ativa; roda uma vez.
+    const checkedCount = Object.values(checkedItems).filter(Boolean).length;
+    const markedRef = useRef(false);
+    useEffect(() => {
+        if (markedRef.current || checkedCount < TOTAL_ITEMS) return;
+        markedRef.current = true;
+        (async () => {
+            try {
+                const raw = await AsyncStorage.getItem('@active_trip');
+                if (!raw) return; // sem viagem ativa — nada a marcar
+                const trip = JSON.parse(raw);
+                trip.retornoConcluido = true;
+                await AsyncStorage.setItem('@active_trip', JSON.stringify(trip));
+                DeviceEventEmitter.emit('travel_return_changed', true);
+            } catch (e) {
+                markedRef.current = false; // permite nova tentativa se falhar
+            }
+        })();
+    }, [checkedCount]);
 
     const toggleItem = (id) => {
         setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));

@@ -134,5 +134,65 @@ export const PET_FOOD_SAFETY = [
         toxina: 'Solanina', toxina_en: 'Solanine', toxina_es: 'Solanina',
         sintomas: 'Problemas gastrointestinais severos, paralisia.', sintomas_en: 'Severe gastrointestinal problems, paralysis.', sintomas_es: 'Problemas gastrointestinales severos, parálisis.',
         detalhe: 'Risco alto para coelhos e roedores. Batatas cruas ou com partes verdes são tóxicas.', detalhe_en: 'High risk for rabbits and rodents. Raw potatoes or those with green parts are toxic.', detalhe_es: 'Alto riesgo para conejos y roedores. Las papas crudas o con partes verdes son tóxicas.'
+    },
+    {
+        id: 'cenoura',
+        nome: 'Cenoura', nome_en: 'Carrot', nome_es: 'Zanahoria',
+        emoji: '🥕',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Boa para os dentes e rica em vitaminas.', sintomas_en: 'Good for teeth and rich in vitamins.', sintomas_es: 'Buena para los dientes y rica en vitaminas.',
+        detalhe: 'Pode ser oferecida crua ou cozida.', detalhe_en: 'Can be offered raw or cooked.', detalhe_es: 'Puede ofrecerse cruda o cocida.'
+    },
+    {
+        id: 'maca',
+        nome: 'Maçã (sem sementes)', nome_en: 'Apple (no seeds)', nome_es: 'Manzana (sin semillas)',
+        emoji: '🍏',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Fonte de fibras e vitaminas.', sintomas_en: 'Source of fiber and vitamins.', sintomas_es: 'Fuente de fibra y vitaminas.',
+        detalhe: 'Remova sempre as sementes.', detalhe_en: 'Always remove the seeds.', detalhe_es: 'Siempre retire las semillas.'
+    },
+    {
+        id: 'banana',
+        nome: 'Banana', nome_en: 'Banana', nome_es: 'Plátano',
+        emoji: '🍌',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Fonte de potássio.', sintomas_en: 'Source of potassium.', sintomas_es: 'Fuente de potasio.',
+        detalhe: 'Oferecer em pequenas quantidades.', detalhe_en: 'Offer in small quantities.', detalhe_es: 'Ofrecer en pequeñas cantidades.'
+    },
+    {
+        id: 'arroz_cozido',
+        nome: 'Arroz cozido', nome_en: 'Cooked rice', nome_es: 'Arroz cocido',
+        emoji: '🍚',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Leve e fácil de digerir.', sintomas_en: 'Light and easy to digest.', sintomas_es: 'Ligero y fácil de digerir.',
+        detalhe: 'Ótimo para dias com problemas estomacais.', detalhe_en: 'Great for days with stomach problems.', detalhe_es: 'Ideal para días con problemas estomacales.'
+    },
+    {
+        id: 'frango_cozido',
+        nome: 'Frango cozido', nome_en: 'Cooked chicken', nome_es: 'Pollo cocido',
+        emoji: '🍗',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Proteína magra.', sintomas_en: 'Lean protein.', sintomas_es: 'Proteína magra.',
+        detalhe: 'Sempre sem tempero e sem ossos.', detalhe_en: 'Always unseasoned and boneless.', detalhe_es: 'Siempre sin condimentar y sin huesos.'
+    },
+    {
+        id: 'abobora',
+        nome: 'Abóbora cozida', nome_en: 'Cooked pumpkin', nome_es: 'Calabaza cocida',
+        emoji: '🎃',
+        risco: 'SEGURO (com moderação)', risco_en: 'SAFE (in moderation)', risco_es: 'SEGURO (con moderación)',
+        cor: '#4CAF50',
+        toxina: 'Nenhuma', toxina_en: 'None', toxina_es: 'Ninguna',
+        sintomas: 'Boa para digestão.', sintomas_en: 'Good for digestion.', sintomas_es: 'Buena para la digestión.',
+        detalhe: 'Regula o trânsito intestinal.', detalhe_en: 'Regulates intestinal transit.', detalhe_es: 'Regula el tránsito intestinal.'
     }
 ];

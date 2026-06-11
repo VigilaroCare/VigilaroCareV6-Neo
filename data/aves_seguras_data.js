@@ -21,29 +21,38 @@ export const AVES_SEGURAS_DATA = {
     },
     riscos: [
         {
-            title: 'Qualidade do Ar', title_en: 'Air Quality', title_es: 'Calidad del Aire',
-            message: 'Evite incensos, perfumes, velas aromáticas e fumaça de cigarro. Para elas, cheiros fortes são venenos físicos.',
-            message_en: 'Avoid incense, perfumes, scented candles, and cigarette smoke. To them, strong smells are physical poisons.',
-            message_es: 'Evite inciensos, perfumes, velas aromáticas y humo de cigarrillo. Para ellas, los olores fuertes son venenos físicos.',
+            title: 'Produtos em spray', title_en: 'Spray Products', title_es: 'Productos en spray',
+            message: 'Aerossóis, desodorantes, inseticidas e incensos são extremamente tóxicos para o sistema respiratório hipersensível das aves.',
+            message_en: 'Aerosols, deodorants, insecticides, and incense are extremely toxic to the hypersensitive respiratory system of birds.',
+            message_es: 'Aerosoles, desodorantes, insecticidas e inciensos son extremadamente tóxicos para el sistema respiratorio hipersensible de las aves.',
             icon: 'Wind',
             color: '#1976D2',
             bg: '#E3F2FD'
         },
         {
-            title: 'Correntes de Ar Frio', title_en: 'Cold Drafts', title_es: 'Corrientes de Aire Frío',
-            message: 'Aves evoluíram no calor. Mudanças bruscas de temperatura de ar-condicionado geram pneumonia rápida.',
-            message_en: 'Birds evolved in the heat. Sudden temperature changes from air conditioning lead to rapid pneumonia.',
-            message_es: 'Las aves evolucionaron en el calor. Los cambios bruscos de temperatura del aire acondicionado generan neumonía rápida.',
+            title: 'Correntes de ar', title_en: 'Cold Drafts', title_es: 'Corrientes de aire',
+            message: 'Gaiolas devem ficar protegidas do vento forte e sol direto.',
+            message_en: 'Cages must be protected from strong winds and direct sun.',
+            message_es: 'Las jaulas deben estar protegidas del viento fuerte y el sol directo.',
             icon: 'TrendUp',
             color: '#0097A7',
             bg: '#E0F7FA'
         },
         {
-            title: 'Limpeza do Voo Livre', title_en: 'Free Flight Cleaning', title_es: 'Limpieza del Vuelo Libre',
-            message: 'Desinfetantes tradicionais (cloro/amônia) queimam suas vias aéreas. Use apenas vinagre branco e água nas superfícies do quarto.',
-            message_en: 'Traditional disinfectants (chlorine/ammonia) burn their airways. Use only white vinegar and water on room surfaces.',
-            message_es: 'Los desinfectantes tradicionales (cloro/amoníaco) queman sus vías respiratorias. Use solo vinagre blanco y agua en las superficies de la habitación.',
-            icon: 'Drop',
+            title: 'Fumaça de cigarro', title_en: 'Cigarette Smoke', title_es: 'Humo de cigarrillo',
+            message: 'Fatal a longo prazo.',
+            message_en: 'Fatal in the long term.',
+            message_es: 'Fatal a largo plazo.',
+            icon: 'Danger',
+            color: '#D32F2F',
+            bg: '#FFEBEE'
+        },
+        {
+            title: 'Espelhos e janelas de vidro', title_en: 'Mirrors and Glass Windows', title_es: 'Espejos y ventanas de vidrio',
+            message: 'Aves podem se chocar em voo livre.',
+            message_en: 'Birds can collide during free flight.',
+            message_es: 'Las aves pueden chocar en vuelo libre.',
+            icon: 'Maximize',
             color: '#388E3C',
             bg: '#E8F5E9'
         }

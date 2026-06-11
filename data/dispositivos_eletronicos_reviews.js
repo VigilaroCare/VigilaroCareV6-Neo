@@ -184,6 +184,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Descarte pilhas usadas imediatamente em pontos de coleta (não acumule em casa)',
             'Nunca deixe pilhas soltas em gavetas, bolsas ou sobre mesas',
             'Se um brinquedo a pilha começar a funcionar mal, abra e retire as pilhas antes que vazem',
+            'Consulte o "Guia de Segurança com Brinquedos" para informações completas sobre brinquedos eletrônicos e engasgo.',
             'Ensine crianças maiores: "Pilha NÃO é brinquedo e NUNCA vai na boca"',
         ],
         oQueFazer: 'Se uma criança engolir uma pilha-botão: NÃO espere sintomas, NÃO provoque vômito. Vá ao pronto-socorro IMEDIATAMENTE. Informe o tipo de pilha (tamanho). Se possível, dê mel (para crianças acima de 1 ano) a caminho do hospital — pesquisas indicam que reduz a queimadura do esôfago. Ligue 192.',

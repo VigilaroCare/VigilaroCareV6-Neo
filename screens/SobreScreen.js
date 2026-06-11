@@ -185,8 +185,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 180,
+    height: 180,
     marginBottom: 16,
   },
   appName: {

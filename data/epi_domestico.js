@@ -53,11 +53,15 @@ export const EPI_DOMESTICO = {
             tipos: [
                 {
                     tipo: 'Luvas de borracha/látex',
-                    uso: 'Limpeza com produtos químicos, lavagem pesada'
+                    uso: 'Limpeza com produtos químicos'
                 },
                 {
-                    tipo: 'Luvas de couro/vaqueta',
-                    uso: 'Jardinagem, manuseio de ferramentas, objetos ásperos'
+                    tipo: 'Luvas de raspa',
+                    uso: 'Jardinagem, manuseio de entulho e depósito'
+                },
+                {
+                    tipo: 'Luvas isolantes',
+                    uso: 'Trabalhos elétricos'
                 },
                 {
                     tipo: 'Luvas anti-corte (malha de aço)',
@@ -100,8 +104,8 @@ export const EPI_DOMESTICO = {
                 'Carregar objetos pesados',
                 'Trabalhar com ferramentas que podem cair'
             ],
-            equipamento: 'Botina de segurança com biqueira',
-            alternativa: 'Se não tiver botina, use tênis fechado e resistente (NUNCA chinelo)',
+            equipamento: 'Botas fechadas com solado grosso para jardinagem e depósito',
+            alternativa: 'Calçado antiderrapante para idosos em casa',
             dica: 'Sapatos abertos são causa frequente de acidentes com quedas de objetos.'
         },
         {
@@ -119,12 +123,16 @@ export const EPI_DOMESTICO = {
             ],
             tipos: [
                 {
-                    tipo: 'Máscara PFF2/N95',
-                    uso: 'Poeira, partículas, mofo'
+                    tipo: 'Máscara PFF2',
+                    uso: 'Poeira, serragem e pulverização de produtos'
                 },
                 {
-                    tipo: 'Máscara com filtro químico',
-                    uso: 'Vapores de solventes, tintas, produtos químicos'
+                    tipo: 'Máscara simples',
+                    uso: 'Limpeza com produtos de cheiro forte'
+                },
+                {
+                    tipo: 'Máscara com respirador semifacial com cartucho químico',
+                    uso: 'Gases, vapores e partículas'
                 }
             ],
             dica: 'Trabalhe sempre em ambientes VENTILADOS. Máscara é complemento, não substituto.'

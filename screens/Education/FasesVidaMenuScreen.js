@@ -29,9 +29,8 @@ export default function FasesVidaMenuScreen({ navigation }) {
 
     // Correct order based on eBook content
     const dataKeys = [
-        'baby_0_6', 'baby_7_12',
-        'child_1_3', 'child_3_5', 'child_6_14',
-        'teen', 'adult', 'pne', 'elder'
+        'baby_0_6', 'child_1_3',
+        'teen', 'adult', 'elder'
     ];
 
     const items = dataKeys.map(key => {

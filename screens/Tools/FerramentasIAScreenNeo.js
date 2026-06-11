@@ -58,33 +58,7 @@ export default function FerramentasIAScreenNeo() {
         },
     ];
 
-    // Visualizações & Dados (ações secundárias)
-    const records = [
-        {
-            id: 'heatmap',
-            title: t('ferramentasIA.heatmapTitle', 'Mapa de calor de riscos'),
-            sub: t('ferramentasIA.heatmapSub', 'Riscos por cômodo'),
-            iconName: 'Map',
-            color: '#DC2626',
-            route: 'MapaDeCalor',
-        },
-        {
-            id: 'activity',
-            title: t('ferramentasIA.recentTitle', 'Atividade recente'),
-            sub: t('ferramentasIA.recentSub', 'Eventos e ações do app'),
-            iconName: 'Activity',
-            color: '#F59E0B',
-            route: 'RecentActivity',
-        },
-        {
-            id: 'datahealth',
-            title: t('ferramentasIA.dataHealthTitle', 'Saúde dos dados'),
-            sub: t('ferramentasIA.dataHealthSub', 'Diagnóstico de integridade'),
-            iconName: 'ShieldTick',
-            color: '#16A34A',
-            route: 'DataHealth',
-        },
-    ];
+
 
     // Em breve (subtle — só itens ainda não implementados)
     const upcoming = [
@@ -166,31 +140,7 @@ export default function FerramentasIAScreenNeo() {
                         </View>
                     </FadeInView>
 
-                    {/* HISTÓRICO & DADOS — 2 cards horizontais */}
-                    <FadeInView delay={220}>
-                        <Text style={[s.sectionLabel, { marginTop: 22 }]}>
-                            {t('ferramentasIA.sectionRecords', 'Histórico & Dados')}
-                        </Text>
-                        {records.map(item => (
-                            <TouchableOpacity
-                                key={item.id}
-                                activeOpacity={0.85}
-                                onPress={() => navigation.navigate(item.route)}
-                                style={{ marginBottom: 10 }}
-                            >
-                                <NeoCard variant="elevated" style={s.recordCard}>
-                                    <View style={[s.recordIconWrap, { backgroundColor: item.color + '33' }]}>
-                                        <NeoIcon name={item.iconName} size={22} color={item.color} variant="Bold" />
-                                    </View>
-                                    <View style={{ flex: 1, marginLeft: 14 }}>
-                                        <Body style={s.recordTitle}>{item.title}</Body>
-                                        <Small style={s.recordSub}>{item.sub}</Small>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
-                                </NeoCard>
-                            </TouchableOpacity>
-                        ))}
-                    </FadeInView>
+
 
                     {/* EM BREVE — linha sutil em texto, sem cards lockados */}
                     {upcoming.length > 0 && (
@@ -317,29 +267,7 @@ const s = StyleSheet.create({
         fontSize: 11,
     },
 
-    // Histórico & Dados (cards horizontais)
-    recordCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 14,
-        borderRadius: 16,
-    },
-    recordIconWrap: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    recordTitle: {
-        fontWeight: '800',
-        fontSize: 14.5,
-        color: Neo.colors.neutral[900],
-    },
-    recordSub: {
-        color: Neo.colors.neutral[600],
-        marginTop: 1,
-    },
+
 
     // Em breve (subtle, texto)
     upcomingBlock: {

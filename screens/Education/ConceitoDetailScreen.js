@@ -59,7 +59,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
     const hasItems = Array.isArray(content) ? content.length > 0 : (typeof content === 'object' ? Object.keys(content).length > 0 : !!content);
     if (!hasItems) return null;
     return (
-      <View style={styles.sectionContainer} key={title}><View style={styles.sectionHeader}>{iconName && <NeoIcon name={iconName} size={24} color={color} variant="Bold" style={{ marginRight: 8 }} />}<H3 style={{ color }}>{title}</H3></View><NeoCard variant="glass" style={styles.cardContent}>{renderList(content, color)}</NeoCard></View>
+      <View style={styles.sectionContainer} key={title}><View style={styles.sectionHeader}>{iconName && <NeoIcon name={iconName} size={24} color={color} variant="Bold" style={{ marginRight: 8 }} />}<H3 style={{ color, flex: 1 }}>{title}</H3></View><NeoCard variant="glass" style={styles.cardContent}>{renderList(content, color)}</NeoCard></View>
     );
   };
 
@@ -71,11 +71,12 @@ export default function ConceitoDetailScreen({ route, navigation }) {
     );
   };
 
-  const renderMarkdown = (markdown) => {
+  const renderMarkdown = (markdown, customTitle) => {
     if (!markdown) return null;
     const lines = markdown.split('\n');
+    const title = customTitle || t('detail.completeGuide', 'Guia Completo');
     return (
-      <NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t('detail.completeGuide', 'Guia Completo')}</H3></View>{lines.map((line, index) => {
+      <NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={[styles.cardTitle, { flex: 1 }]}>{title}</H3></View>{lines.map((line, index) => {
           const trimmed = line.trim();
           if (!trimmed) return <View key={index} style={{ height: 8 }} />;
           if (trimmed.startsWith('# ')) return <H2 key={index} style={[styles.mdH1, { color: HeroColor, marginTop: 16, marginBottom: 8 }]}>{trimmed.substring(2)}</H2>;
@@ -174,7 +175,8 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           ) : (
             <>
               {(t_field(conceito, 'definicao') || t_field(conceito, 'descricao')) && (<NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t_field(conceito, 'definicao') ? t('detail.definition', 'Definição') : t('detail.description', 'Descrição')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'definicao') || t_field(conceito, 'descricao')}</Text></NeoCard>)}
-              {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'))}
+              {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), 'SearchNormal1', '#8B5CF6')}
+              {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'), t_field(conceito, 'conteudoTitulo'))}
               {renderSection(t('detail.toxicParts', 'Partes Tóxicas'), t_array(conceito, 'partesToxicas'), 'Warning2', '#F59E0B')}
               {renderSection(t('detail.humanSymptoms', 'Sintomas em Humanos'), t_array(conceito, 'sintomasHumanos'), 'User', '#EF4444')}
               {renderSection(t('detail.petSymptoms', 'Sintomas em Pets'), t_array(conceito, 'sintomasPets'), 'Pet', '#F97316')}
@@ -184,7 +186,6 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               {renderSection(t('detail.howToPrevent', 'Como Evitar / Prevenir'), t_array(conceito, 'comoEvitar') || t_array(conceito, 'prevencao'), 'ShieldTick', '#10B981')}
               {t_field(conceito, 'importancia') && (<NeoCard variant="glass" style={[styles.card, { borderColor: 'rgba(37, 99, 235, 0.2)' }]}><View style={styles.cardHeader}><NeoIcon name="Star1" size={24} color="#2563EB" variant="Bold" /><H3 style={[styles.cardTitle, { color: '#1E40AF' }]}>{t('detail.importance', 'Importância')}</H3></View><Text style={[styles.text, { color: '#1E3A8A' }]}>{t_field(conceito, 'importancia')}</Text></NeoCard>)}
               {renderSection(t('detail.practicalExamples', 'Exemplos Práticos'), t_array(conceito, 'exemplos'), 'Note', '#6366F1')}
-              {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), 'SearchNormal1', '#8B5CF6')}
               {renderFirstAid(t_object(conceito, 'primeirosSocorros') || t_array(conceito, 'oQueFazer') || t_field(conceito, 'oQueFazer'))}
               {renderSection(t('detail.whatNotToDo', 'O que NÃO fazer'), t_array(conceito, 'oQueNaoFazer'), 'CloseCircle', '#DC2626')}
               {t_field(conceito, 'estatisticas') && (<NeoCard variant="glass" style={[styles.card, { marginTop: 12 }]}><View style={styles.cardHeader}><NeoIcon name="InfoCircle" size={24} color={Neo.colors.neutral[500]} variant="Bold" /><H3 style={styles.cardTitle}>{t('detail.dataStats', 'Dados & Estatísticas')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'estatisticas')}</Text></NeoCard>)}
@@ -340,10 +341,10 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   bullet: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    marginTop: 9,
+    width: 9,
+    height: 9,
+    borderRadius: 4.5,
+    marginTop: 8,
     marginRight: 12,
   },
   mdH1: {
