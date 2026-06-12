@@ -38,9 +38,7 @@ export default function PrivacyPolicyScreen({ navigation }) {
 
                 <Text style={styles.sectionTitle}>{t('headersFirst.3ColetaDeDados', '3. Coleta de Dados')}</Text>
                 <Text style={styles.text}>
-                    O aplicativo não coleta dados de identificação pessoal (como CPF, RG ou endereço) para envio a terceiros.
-                    {'\n\n'}
-                    Poderemos coletar dados anônimos e agregados apenas para fins de estatística de uso e melhoria de performance (ex: "quantas vezes a tela X foi aberta"), sem que isso possa identificar você individualmente.
+                    {t('privacy.collectionBody', 'O aplicativo não exige conta ou cadastro e não coleta dados de identificação pessoal (como CPF, RG ou endereço).\n\nA única situação em que informações saem do seu aparelho é nos recursos opcionais de Inteligência Artificial, descritos na seção 6 — e, mesmo neles, nomes e contatos nunca são enviados.\n\nDados anônimos e agregados de uso (ex.: "quantas vezes a tela X foi aberta") só são coletados mediante o seu consentimento explícito (opt-in) e não permitem identificar você.')}
                 </Text>
 
                 <Text style={styles.sectionTitle}>{t('headersFirst.4PermissEsDoDispositivo', '4. Permissões do Dispositivo')}</Text>
@@ -53,7 +51,7 @@ export default function PrivacyPolicyScreen({ navigation }) {
                     {'\n'}
                     🔔 <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.notificaEs', 'Notificações:')}</Text> Para lembretes de segurança.
                     {'\n'}
-                    🎤 <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.microfone', 'Microfone:')}</Text> Para monitoramento de áudio (babá eletrônica).
+                    🎤 <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.microfone', 'Microfone:')}</Text> {t('privacy.micUse', 'Para monitoramento de áudio (babá eletrônica) e mensagens de voz ao assistente.')}
                     {'\n\n'}
                     Você pode revogar essas permissões a qualquer momento nas configurações do seu celular.
                 </Text>
@@ -61,6 +59,11 @@ export default function PrivacyPolicyScreen({ navigation }) {
                 <Text style={styles.sectionTitle}>{t('headersFirst.5ExclusODeDados', '5. Exclusão de Dados')}</Text>
                 <Text style={styles.text}>
                     {t('headersFirst.comoOsDadosEstONoSeuAparelhoVocTemTotalC', 'Como os dados estão no seu aparelho, você tem total controle. Para excluir tudo permanentemente, basta usar a opção "Resetar Aplicativo" no Menu ou desinstalar o app.')}
+                </Text>
+
+                <Text style={styles.sectionTitle}>{t('privacy.aiTitle', '6. Recursos de Inteligência Artificial (Opcionais)')}</Text>
+                <Text style={styles.text}>
+                    {t('privacy.aiBody', 'Alguns recursos — assistente Vigilaro, análise de imagens, relatório personalizado e voz — usam a tecnologia da OpenAI como operadora de processamento.\n\nQuando (e somente quando) você usa um desses recursos, o app envia por conexão segura, através do nosso servidor intermediário: as mensagens que você digita ou dita; as fotos que você submete para análise; e um perfil ANONIMIZADO do lar (papéis e idades dos moradores — ex.: "criança, 4 anos" —, características da residência e nomes de medicamentos cadastrados).\n\nNomes e contatos NUNCA são enviados: o app os remove ou substitui por marcadores antes do envio e os reinsere localmente na resposta.\n\nEsses dados são processados apenas para gerar a resposta — não são armazenados por nós e, conforme a política da API da OpenAI, não são usados para treinar modelos. Se você não usar os recursos de IA, nenhuma informação sai do seu dispositivo.')}
                 </Text>
 
                 <View style={{ height: 40 }} />

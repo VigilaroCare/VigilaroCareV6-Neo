@@ -22,6 +22,7 @@ import VoiceService from '../services/VoiceService';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
+import AudioConsentModal, { hasVoiceConsent, grantVoiceConsent } from '../components/AudioConsentModal';
 
 export default function ChatScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -30,6 +31,7 @@ export default function ChatScreen({ navigation, route }) {
     const [status, setStatus] = useState('idle');
     const [messages, setMessages] = useState([]);
     const [inputText, setInputText] = useState('');
+    const [voiceConsentVisible, setVoiceConsentVisible] = useState(false);
     const flatListRef = useRef(null);
 
     // Animações (só para modo voz)
@@ -134,12 +136,30 @@ export default function ChatScreen({ navigation, route }) {
                 setStatus('idle');
             }
         } else {
+            // Consent explícito antes do 1º uso da voz (auditoria 2026-06-12,
+            // item D22) — a fala É transmitida para transcrição, diferente do
+            // monitor ambiente; o usuário precisa saber e aceitar uma vez.
+            if (!(await hasVoiceConsent())) {
+                setVoiceConsentVisible(true);
+                return;
+            }
             try {
                 const started = await VoiceService.startRecording();
                 if (started) setStatus('listening');
             } catch (e) {
                 NeoAlert.alert("Erro", "Microfone indisponível");
             }
+        }
+    };
+
+    const handleVoiceConsentAccept = async () => {
+        await grantVoiceConsent();
+        setVoiceConsentVisible(false);
+        try {
+            const started = await VoiceService.startRecording();
+            if (started) setStatus('listening');
+        } catch (e) {
+            NeoAlert.alert("Erro", "Microfone indisponível");
         }
     };
 
@@ -313,6 +333,15 @@ export default function ChatScreen({ navigation, route }) {
                     </Text>
                 </View>
             )}
+
+            {/* Consent explícito do 1º uso de voz (variante "voice" — a fala
+                é transmitida para transcrição, diferente do monitor local) */}
+            <AudioConsentModal
+                visible={voiceConsentVisible}
+                variant="voice"
+                onAccept={handleVoiceConsentAccept}
+                onDecline={() => setVoiceConsentVisible(false)}
+            />
         </SafeAreaView>
     );
 }

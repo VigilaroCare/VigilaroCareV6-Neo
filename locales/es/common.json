@@ -670,6 +670,12 @@
         "cannotDeleteActive": "No es posible eliminar la residencia activa.",
         "finishGoHome": "Finalizar e Ir al Inicio"
     },
+    "privacy": {
+        "collectionBody": "La aplicación no exige cuenta ni registro y no recopila datos de identificación personal (como documentos de identidad o dirección).\n\nLa única situación en la que la información sale de su dispositivo son las funciones opcionales de Inteligencia Artificial, descritas en la sección 6 — e incluso en ellas, nombres y contactos nunca se envían.\n\nLos datos anónimos y agregados de uso (p. ej., \"cuántas veces se abrió la pantalla X\") solo se recopilan con su consentimiento explícito (opt-in) y no permiten identificarle.",
+        "micUse": "Para monitoreo de audio ambiente (vigilabebés) y mensajes de voz al asistente.",
+        "aiTitle": "6. Funciones de Inteligencia Artificial (Opcionales)",
+        "aiBody": "Algunas funciones — el asistente Vigilaro, el análisis de imágenes, el informe personalizado y la voz — utilizan tecnología de OpenAI como operadora de procesamiento.\n\nCuando (y solo cuando) usted utiliza una de estas funciones, la app envía por conexión segura, a través de nuestro servidor intermediario: los mensajes que escribe o dicta; las fotos que envía para análisis; y un perfil ANONIMIZADO del hogar (roles y edades de los residentes — p. ej., \"niño, 4 años\" —, características de la vivienda y nombres de medicamentos registrados).\n\nNombres y contactos NUNCA se envían: la app los elimina o los sustituye por marcadores antes del envío y los reinserta localmente en la respuesta.\n\nEstos datos se procesan únicamente para generar la respuesta — no los almacenamos y, conforme a la política de la API de OpenAI, no se utilizan para entrenar modelos. Si no usa las funciones de IA, ninguna información sale de su dispositivo."
+    },
     "addProfile": {
         "editTitle": "Editar Perfil",
         "newTitle": "Nuevo Perfil",
@@ -680,7 +686,8 @@
         "visitor": "Visitante",
         "name": "NOMBRE",
         "petNamePH": "Nombre de la Mascota",
-        "personNamePH": "Nombre Completo",
+        "personNamePH": "Nombre o apodo",
+        "nameHint": "No hace falta apellido — solo cómo debemos llamarle.",
         "sex": "SEXO",
         "gender": "GENERO",
         "birth": "NACIMIENTO",
@@ -1859,6 +1866,9 @@
         "btnStart": "ACTIVAR MONITOR"
     },
     "audioConsent": {
+        "voiceTitle": "Mensajes de Voz al Asistente",
+        "voiceBody": "Al usar el micrófono, su voz se graba y se envía por conexión segura para ser transcrita y respondida por el asistente (tecnología OpenAI).",
+        "voiceBodyStrong": "El audio se usa solo para generar la respuesta — no se almacena ni se utiliza para entrenar modelos, y nombres/contactos nunca lo acompañan.",
         "title": "Monitoreo de audio ambiente",
         "body": "Esta función escucha el ambiente para detectar eventos como llanto, caídas o ruidos fuertes.",
         "bodyStrong": "El audio no se graba ni se transmite — se procesa localmente, en tiempo real, solo mientras esta pantalla está abierta.",

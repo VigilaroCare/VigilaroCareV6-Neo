@@ -10,6 +10,7 @@ import VoiceService from '../services/VoiceService'; // Já migrado para expo-au
 import { useAudioRecorder, AudioModule, RecordingPresets, createAudioPlayer } from 'expo-audio'; // [MIG-AV-07]
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import AudioConsentModal, { hasVoiceConsent, grantVoiceConsent } from '../components/AudioConsentModal';
 
 const STATES = {
     IDLE: 'idle',
@@ -25,6 +26,7 @@ export default function ConversationalAgentScreen({ navigation }) {
     const [status, setStatus] = useState(STATES.IDLE);
     const [messages, setMessages] = useState([]);
     const [conversationHistory, setConversationHistory] = useState([]); // Para contexto da IA
+    const [voiceConsentVisible, setVoiceConsentVisible] = useState(false);
 
     const scrollViewRef = useRef(null);
     const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -72,6 +74,12 @@ export default function ConversationalAgentScreen({ navigation }) {
     };
 
     const startListening = async () => {
+        // Consent explícito do 1º uso de voz (auditoria 2026-06-12, item D22)
+        // — mesma chave do ChatScreen: aceito uma vez, vale para ambos.
+        if (!(await hasVoiceConsent())) {
+            setVoiceConsentVisible(true);
+            return;
+        }
         try {
             const { granted } = await AudioModule.requestRecordingPermissionsAsync(); // [MIG-AV-07]
             if (!granted) {
@@ -258,6 +266,18 @@ export default function ConversationalAgentScreen({ navigation }) {
 
                 <Text style={styles.statusLabel}>{getStatusText()}</Text>
             </View>
+
+            {/* Consent explícito do 1º uso de voz (mesma chave do ChatScreen) */}
+            <AudioConsentModal
+                visible={voiceConsentVisible}
+                variant="voice"
+                onAccept={async () => {
+                    await grantVoiceConsent();
+                    setVoiceConsentVisible(false);
+                    startListening();
+                }}
+                onDecline={() => setVoiceConsentVisible(false)}
+            />
         </View>
     );
 }

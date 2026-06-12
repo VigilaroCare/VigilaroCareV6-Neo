@@ -106,19 +106,25 @@ class OpenAIService {
             const checklistSeguranca = await Storage.getItem('@checklist_completo');
 
             // 6. Construct Rich Context String
-            let contextStr = "DADOS DO USUÁRIO:\n\n";
+            //
+            // MINIMIZAÇÃO DE PII (auditoria 2026-06-12, item C18): NENHUM nome
+            // sai do dispositivo. Papel + idade ("criança, 4 anos") informa a
+            // IA exatamente igual para prevenção de acidentes — o nome não
+            // acrescenta utilidade e transformaria o contexto em dado pessoal
+            // identificado enviado a terceiro (LGPD + promessa da nossa
+            // Política de Privacidade). Condições de saúde seguem o mesmo
+            // princípio: desvinculadas de identidade, viram "perfil do lar".
+            let contextStr = "PERFIL DO LAR (anonimizado — não há nomes):\n\n";
 
-            // Família
+            // Família — composição por papel/idade, sem identificadores
             if (profiles.length > 0) {
-                contextStr += "FAMÍLIA:\n";
-                const processedNames = new Set(); // Para evitar duplicatas
+                contextStr += "MORADORES:\n";
+                let count = 0;
 
                 profiles.forEach(p => {
                     // Filtros de Qualidade
                     if (!p.nome || p.nome.includes('(Pendente)') || p.nome === 'Novo Perfil') return;
-                    if (processedNames.has(p.nome)) return;
-
-                    processedNames.add(p.nome);
+                    count += 1;
 
                     const tipo = p.tipo || 'pessoa';
 
@@ -141,11 +147,11 @@ class OpenAIService {
                         idadeStr = p.faixaEtaria;
                     }
 
-                    const condicoes = p.condicoesEspeciais ? ` (${p.condicoesEspeciais})` : '';
-                    contextStr += `- ${p.nome}: ${tipo}, ${idadeStr}${condicoes}\n`;
+                    const condicoes = p.condicoesEspeciais ? ` (atenção: ${p.condicoesEspeciais})` : '';
+                    contextStr += `- Morador ${count}: ${tipo}, ${idadeStr}${condicoes}\n`;
                 });
             } else {
-                contextStr += "FAMÍLIA: Nenhum perfil cadastrado.\n";
+                contextStr += "MORADORES: Nenhum perfil cadastrado.\n";
             }
 
             // Casa (Robustez na leitura)
@@ -190,7 +196,9 @@ class OpenAIService {
 
             this.context = contextStr;
             if (__DEV__) {
-                console.log("Contexto IA carregado:", contextStr);
+                // Não imprimir o conteúdo (medicações/saúde apareceriam no
+                // logcat de devices de teste) — só o tamanho.
+                console.log(`Contexto IA carregado: ${contextStr.length} chars`);
             }
             return contextStr;
         } catch (e) {
@@ -279,9 +287,12 @@ ${this.context}`;
         // Verifica se é pet
         const isPet = typeLabel?.toLowerCase() === 'pet' || profile?.tipo?.toLowerCase() === 'pet';
 
-        // Monta o contexto descritivo
+        // MINIMIZAÇÃO DE PII (auditoria 2026-06-12, item C18): o nome real
+        // NUNCA sai do dispositivo. A IA escreve usando o token literal
+        // {{NOME}} e o app o substitui localmente após a resposta — o
+        // relatório continua personalizado, mas a OpenAI só vê um placeholder.
         let contextStr = `\nDADOS DO ${isPet ? 'ANIMAL (PET)' : 'MORADOR'}:\n`;
-        contextStr += `- Nome: ${profile?.nome || 'Não informado'}\n`;
+        contextStr += `- Referência: {{NOME}} (token de privacidade — use-o exatamente assim onde usaria o nome)\n`;
         contextStr += `- Perfil: ${typeLabel} (${age ? age + ' anos' : 'Idade não informada'})\n`;
         if (profile?.condicoesEspeciais) {
             contextStr += `- Condições/Atenções: ${profile.condicoesEspeciais}\n`;
@@ -317,7 +328,7 @@ ${this.context}`;
 
         if (isPet) {
             systemPrompt += `O usuário está solicitando o Relatório Personalizado de Proteção focado em seu **Animal de Estimação (Pet)**.\n`;
-            systemPrompt += `Dirija-se ao usuário como o "tutor" ou responsável do ${profile?.nome || 'pet'}, e NÃO como se o animal fosse ler o relatório.\n`;
+            systemPrompt += `Dirija-se ao usuário como o "tutor" ou responsável do {{NOME}}, e NÃO como se o animal fosse ler o relatório.\n`;
         } else {
             systemPrompt += `O usuário quer o Relatório Personalizado de Proteção para a sua casa e para o perfil avaliado (que pode ser ele mesmo ou um familiar).\n`;
         }
@@ -325,7 +336,7 @@ ${this.context}`;
         systemPrompt += `\nBaseie-se na metodologia "Quem, Onde, O Que, Como".
 Analise o contexto fornecido e forneça o relatório de forma objetiva no seguinte formato JSON OBRIGATÓRIO:
 {
-  "quem": "Um relato acolhedor e direto de 1 parágrafo identificando os cuidados específicos para ${profile?.nome || 'o morador'}, considerando idade, medicamentos e condições. Comece usando o nome da pessoa de forma natural, como se estivesse conversando com ela (ex: 'Ana, com seus 72 anos...').",
+  "quem": "Um relato acolhedor e direto de 1 parágrafo identificando os cuidados específicos para {{NOME}}, considerando idade, medicamentos e condições. Comece usando o token de forma natural, como se estivesse conversando com a pessoa (ex: '{{NOME}}, com seus 72 anos...').",
   "onde": "Um relato claro de 1 parágrafo sobre o que o tipo de residência e suas características representam em termos de atenção. Contextualize de forma prática, não alarmista.",
   "o_que": "Um resumo tático de 1 ou 2 parágrafos sobre as irregularidades encontradas na vistoria. Seja honesto sobre a gravidade, mas explique o porquê de forma compreensível para leigos.",
   "como": "Instruções práticas e acessíveis em 1 ou 2 parágrafos. Explique como resolver os problemas de forma simples e realizável, priorizando o que é mais urgente. Incentive o usuário a agir mostrando que cada pequena ação faz diferença."
@@ -333,7 +344,7 @@ Analise o contexto fornecido e forneça o relatório de forma objetiva no seguin
 
 Regras de Tom e Estilo:
 - Fale como um consultor de confiança: competente, humano e encorajador. Combine autoridade técnica com calor humano.
-- PROIBIDO usar introduções robóticas ou impessoais como "Como um adulto...", "Dado o perfil de idoso...", "Sendo uma criança de X anos...". Use o nome da pessoa fluidamente e naturalmente.
+- PROIBIDO usar introduções robóticas ou impessoais como "Como um adulto...", "Dado o perfil de idoso...", "Sendo uma criança de X anos...". Use o token {{NOME}} fluidamente e naturalmente, exatamente como usaria o nome da pessoa (ele será trocado pelo nome real no aplicativo — nunca escreva outro nome próprio).
 - ${isPet ? 'Lembre-se: O texto vai para o DONO do pet, instruindo-o objetivamente sobre a segurança do animal com carinho.' : 'Fale diretamente com o usuário que está lendo, de forma clara, assertiva e acolhedora.'}
 - IMPORTANT: Se houver POUCOS ou NENHUM risco ativo, reconheça o esforço do usuário de forma genuína (ex: "Seu ambiente está bem cuidado, e isso mostra atenção com quem você ama."), mas SEMPRE sugira pelo menos um ponto de atenção preventiva.
 - Se as dicas cadastradas no contexto ('Problema: X | Risco: Y') forem vagas, use sua autoridade em segurança para dar orientações concretas e úteis.
@@ -391,7 +402,17 @@ Regras de Tom e Estilo:
                 }
                 throw new Error("OpenAI retornou um JSON incompleto ou mal formatado.");
             }
-            
+
+            // Re-personalização LOCAL: o token {{NOME}} (único dado que a
+            // OpenAI viu) vira o nome real aqui, dentro do dispositivo.
+            const localName = (profile?.nome || (isPet ? 'seu pet' : 'você')).trim();
+            const NAME_TOKEN = /\{\{\s*NOME\s*\}\}/g;
+            for (const k of Object.keys(jsonResponse)) {
+                if (typeof jsonResponse[k] === 'string') {
+                    jsonResponse[k] = jsonResponse[k].replace(NAME_TOKEN, localName);
+                }
+            }
+
             return jsonResponse;
 
         } catch (error) {

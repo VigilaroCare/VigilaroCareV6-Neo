@@ -670,6 +670,12 @@
         "cannotDeleteActive": "Cannot delete the active residence.",
         "finishGoHome": "Finish and Go Home"
     },
+    "privacy": {
+        "collectionBody": "The app requires no account or sign-up and does not collect personally identifying data (such as national IDs or your address).\n\nThe only situation in which information leaves your device is the optional Artificial Intelligence features described in section 6 — and even there, names and contacts are never sent.\n\nAnonymous, aggregated usage data (e.g. \"how many times screen X was opened\") is only collected with your explicit opt-in consent and cannot identify you.",
+        "micUse": "For ambient audio monitoring (baby monitor) and voice messages to the assistant.",
+        "aiTitle": "6. Artificial Intelligence Features (Optional)",
+        "aiBody": "Some features — the Vigilaro assistant, image analysis, the personalized report and voice — use OpenAI technology as a processing operator.\n\nWhen (and only when) you use one of these features, the app sends over a secure connection, through our intermediary server: the messages you type or dictate; the photos you submit for analysis; and an ANONYMIZED household profile (residents' roles and ages — e.g. \"child, 4 years old\" —, home characteristics and registered medication names).\n\nNames and contacts are NEVER sent: the app removes them or replaces them with placeholders before sending and re-inserts them locally in the response.\n\nThis data is processed solely to generate the response — we do not store it and, per the OpenAI API policy, it is not used to train models. If you do not use the AI features, no information leaves your device."
+    },
     "addProfile": {
         "editTitle": "Edit Profile",
         "newTitle": "New Profile",
@@ -680,7 +686,8 @@
         "visitor": "Visitor",
         "name": "NAME",
         "petNamePH": "Pet Name",
-        "personNamePH": "Full Name",
+        "personNamePH": "First name or nickname",
+        "nameHint": "No surname needed — just what we should call them.",
         "sex": "SEX",
         "gender": "GENDER",
         "birth": "BIRTH DATE",
@@ -1859,6 +1866,9 @@
         "btnStart": "START MONITOR"
     },
     "audioConsent": {
+        "voiceTitle": "Voice Messages to the Assistant",
+        "voiceBody": "When you use the microphone, your speech is recorded and sent over a secure connection to be transcribed and answered by the assistant (OpenAI technology).",
+        "voiceBodyStrong": "Audio is used only to generate the response — it is not stored or used to train models, and names/contacts never travel with it.",
         "title": "Ambient Audio Monitoring",
         "body": "This feature listens to the environment to detect events like crying, falls or loud noises.",
         "bodyStrong": "Audio is never recorded or transmitted — it is processed locally, in real time, only while this screen is open.",

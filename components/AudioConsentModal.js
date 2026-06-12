@@ -1,12 +1,19 @@
 /**
  * AudioConsentModal.js
- * Consentimento explícito exibido ANTES do primeiro uso do monitoramento de
- * áudio ambiente (Apple Guideline 5.1.1 / LGPD). Deixa claro que o áudio é
- * processado localmente, sem gravação nem transmissão.
+ * Consentimento explícito exibido ANTES do primeiro uso do microfone
+ * (Apple Guideline 5.1.1 / LGPD), em DUAS variantes com copy distinto —
+ * porque as promessas são diferentes:
+ *
+ *   variant="monitor" (default) — áudio ambiente: processado LOCALMENTE,
+ *     sem gravação nem transmissão.
+ *   variant="voice" — mensagens de voz ao assistente: o áudio É enviado
+ *     (via proxy seguro) para transcrição/resposta pela OpenAI; não é
+ *     armazenado nem usado para treino; nomes/contatos não acompanham.
  *
  * Uso:
  *   <AudioConsentModal
  *     visible={consentVisible}
+ *     variant="voice"
  *     onAccept={handleAccept}
  *     onDecline={() => setConsentVisible(false)}
  *   />
@@ -14,14 +21,27 @@
 
 import React from 'react';
 import { View, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';
 import NeoCard from './NeoCard';
 import { H3, Body, Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
-export default function AudioConsentModal({ visible, onAccept, onDecline }) {
+// Persistência do consent de VOZ (compartilhada por ChatScreen e
+// ConversationalAgent — o consent do monitor vive no AudioMonitorScreen).
+export const VOICE_CONSENT_KEY = '@voice_consent_accepted';
+export const hasVoiceConsent = async () => {
+    try { return (await AsyncStorage.getItem(VOICE_CONSENT_KEY)) === 'true'; }
+    catch { return false; }
+};
+export const grantVoiceConsent = async () => {
+    try { await AsyncStorage.setItem(VOICE_CONSENT_KEY, 'true'); } catch {}
+};
+
+export default function AudioConsentModal({ visible, onAccept, onDecline, variant = 'monitor' }) {
     const { t } = useTranslation('common');
+    const isVoice = variant === 'voice';
     return (
         <Modal visible={visible} transparent animationType="fade" onRequestClose={onDecline}>
             <View style={styles.overlay}>
@@ -34,14 +54,20 @@ export default function AudioConsentModal({ visible, onAccept, onDecline }) {
                         </View>
 
                         <H3 style={styles.title}>
-                            {t('audioConsent.title', 'Monitoramento de Áudio Ambiente')}
+                            {isVoice
+                                ? t('audioConsent.voiceTitle', 'Mensagens de Voz ao Assistente')
+                                : t('audioConsent.title', 'Monitoramento de Áudio Ambiente')}
                         </H3>
 
                         <Body style={styles.body}>
-                            {t('audioConsent.body', 'Esta função escuta o ambiente para detectar eventos como choro, quedas ou ruídos altos.')}
+                            {isVoice
+                                ? t('audioConsent.voiceBody', 'Ao usar o microfone, sua fala é gravada e enviada por conexão segura para ser transcrita e respondida pelo assistente (tecnologia OpenAI).')
+                                : t('audioConsent.body', 'Esta função escuta o ambiente para detectar eventos como choro, quedas ou ruídos altos.')}
                         </Body>
                         <Body style={styles.bodyStrong}>
-                            {t('audioConsent.bodyStrong', 'O áudio não é gravado nem transmitido — é processado localmente, em tempo real, apenas enquanto a tela está aberta.')}
+                            {isVoice
+                                ? t('audioConsent.voiceBodyStrong', 'O áudio é usado apenas para gerar a resposta — não é armazenado nem usado para treinar modelos, e nomes/contatos não o acompanham.')
+                                : t('audioConsent.bodyStrong', 'O áudio não é gravado nem transmitido — é processado localmente, em tempo real, apenas enquanto a tela está aberta.')}
                         </Body>
 
                         <TouchableOpacity

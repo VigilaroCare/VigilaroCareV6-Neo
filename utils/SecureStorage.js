@@ -35,6 +35,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // NOTA: '@vigilaro_data' (perfis) fica fora por decisão documentada — é lida
 // no caminho crítico de boot (App.js) e pode crescer além do razoável para o
 // Keystore; contém nomes/idades, sensibilidade menor que medicação/contatos.
+//
+// VEREDITO das demais chaves avaliadas (auditoria 2026-06-12, item C15) —
+// permanecem em AsyncStorage por decisão consciente:
+//   '@home_mapping', 'historicoAvaliacoes', '@asilo/@escola_segura_responses'
+//     -> avaliações de risco do ambiente (sem identidade vinculada); volume
+//        pode crescer além do confortável para o Keystore.
+//   '@active_trip' -> configuração de viagem (flags de composição familiar);
+//        ciclo de vida curto, apagada no fim da viagem.
+// Reavaliar se qualquer uma passar a carregar nome/saúde/identificadores.
 const SENSITIVE_KEYS = new Set([
     '@emergency_contacts',      // SOS*, PanicButtonService, OpenAIService
     '@medications',             // OpenAIService (chave legada, só leitura)
@@ -77,7 +86,11 @@ async function setSecureValue(sKey, data) {
             data.slice(i * CHUNK_SIZE, (i + 1) * CHUNK_SIZE)
         );
     }
-    await SecureStore.setItemAsync(sKey, `${CHUNK_MARKER}${total}`);
+    // O marcador leva também o TAMANHO total (`__chunked:N:LEN`): se uma
+    // regravação for interrompida entre os chunks e o marcador, a leitura
+    // poderia juntar chunks novos+velhos — o LEN detecta a mistura e a
+    // leitura devolve null (ausente) em vez de JSON corrompido ao caller.
+    await SecureStore.setItemAsync(sKey, `${CHUNK_MARKER}${total}:${data.length}`);
     await clearChunks(sKey, total);
 }
 
@@ -85,7 +98,10 @@ async function getSecureValue(sKey) {
     const main = await SecureStore.getItemAsync(sKey);
     if (main == null || !main.startsWith(CHUNK_MARKER)) return main;
 
-    const total = parseInt(main.slice(CHUNK_MARKER.length), 10);
+    // Formato: `__chunked:N` (legado) ou `__chunked:N:LEN` (com validação).
+    const [totalStr, lenStr] = main.slice(CHUNK_MARKER.length).split(':');
+    const total = parseInt(totalStr, 10);
+    const expectedLen = lenStr != null ? parseInt(lenStr, 10) : null;
     if (!Number.isFinite(total) || total <= 0) return null;
 
     const parts = [];
@@ -94,7 +110,11 @@ async function getSecureValue(sKey) {
         if (part == null) return null; // chunk perdido => trata como ausente
         parts.push(part);
     }
-    return parts.join('');
+    const joined = parts.join('');
+    // Tamanho diverge do gravado => gravação interrompida misturou gerações
+    // de chunks. Melhor "ausente" que JSON corrompido em dado de saúde.
+    if (Number.isFinite(expectedLen) && joined.length !== expectedLen) return null;
+    return joined;
 }
 
 // Remove chunks residuais de uma gravação anterior maior que a atual.

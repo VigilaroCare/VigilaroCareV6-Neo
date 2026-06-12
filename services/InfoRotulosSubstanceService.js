@@ -26,17 +26,15 @@ import { fetchWithTimeout as fetchWithTimeoutBase } from '../utils/fetchWithTime
 const FETCH_TIMEOUT = 12000;  // 12s por API (cadeia pode ter até 4 APIs)
 const USER_AGENT = 'VigilaroCare/1.0 (vigilarocare@gmail.com)';
 
-// EPA CTX API key — extraída automaticamente do .env (Expo)
-let EPA_CTX_API_KEY = process.env.EXPO_PUBLIC_EPA_CTX_API_KEY || null;
-
-/**
- * Configura a chave EPA CTX em runtime (fallback).
- */
-export function setEpaCTXKey(key) {
-    if (key) {
-        EPA_CTX_API_KEY = key;
-    }
-}
+// Enriquecimento EPA CTX — FLAG booleana, não chave (auditoria 2026-06-12,
+// item A1): a chamada real sempre vai via proxy autenticado, que adiciona a
+// chave server-side. Manter uma "API key" no cliente convidava alguém a colar
+// a chave real no .env do app — e ela iria parar no bundle sem necessidade.
+// Compat: a env antiga (EXPO_PUBLIC_EPA_CTX_API_KEY) ainda liga a flag, mas
+// o valor é descartado.
+const EPA_ENRICHMENT_ENABLED =
+    process.env.EXPO_PUBLIC_EPA_ENRICHMENT === 'true' ||
+    !!process.env.EXPO_PUBLIC_EPA_CTX_API_KEY;
 
 // ─────────────────────────────────────────
 // Traduções GHS H-Statements (PT-BR)
@@ -120,6 +118,16 @@ export async function resolveBarcode(barcode) {
     if (!barcode?.trim()) return { found: false, source: 'none', product: null };
 
     const code = barcode.trim();
+
+    // Sanitização (auditoria 2026-06-12, item E26): o valor vem do scanner —
+    // um QR malicioso pode conter texto arbitrário, que seria interpolado nas
+    // URLs das APIs externas (path/query injection). Códigos de produto
+    // legítimos (EAN-8/13, UPC-A, ITF-14) são estritamente numéricos.
+    if (!/^[0-9]{6,14}$/.test(code)) {
+        if (__DEV__) console.warn('[Barcode] Código rejeitado (formato inválido)');
+        return { found: false, source: 'invalid', product: null };
+    }
+
     if (__DEV__) console.log('[Barcode] Resolvendo código:', code);
 
     // ① Base local
@@ -385,7 +393,7 @@ export async function getSubstanceByName(name) {
         if (pubchemData) {
             // ③ EPA CTX (enriquecimento paralelo, se chave disponível)
             let enriched = pubchemData;
-            if (EPA_CTX_API_KEY) {
+            if (EPA_ENRICHMENT_ENABLED) {
                 try {
                     const epaData = await fetchFromEPACTX(trimmed);
                     if (epaData) {
@@ -659,7 +667,7 @@ function calculateSeverity(hStatements) {
 // ─────────────────────────────────────────
 
 async function fetchFromEPACTX(name) {
-    if (!EPA_CTX_API_KEY) return null;
+    if (!EPA_ENRICHMENT_ENABLED) return null;
 
     try {
         // Busca DTXSID pelo nome

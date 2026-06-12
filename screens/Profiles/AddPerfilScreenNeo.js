@@ -723,6 +723,14 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                     value={nome}
                                     onChangeText={setNome}
                                 />
+                                {/* Minimização na origem: o app não precisa de
+                                    sobrenome (decisão do autor, 2026-06-12) —
+                                    nudge gentil, sem policiar o que é digitado. */}
+                                {tipo !== 'pet' && (
+                                    <Small style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
+                                        {t('addProfile.nameHint', 'Não precisa de sobrenome — só como devemos chamar.')}
+                                    </Small>
+                                )}
                             </View>
 
                             {/* Gênero / Sexo */}
