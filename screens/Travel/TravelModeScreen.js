@@ -176,21 +176,20 @@ export default function TravelModeScreen({ navigation }) {
                 <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
                     <StatusBar style={isDark ? 'light' : 'dark'} />
                     <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 12, paddingBottom: 190 }}>
-                        {/* HEADER */}
+                        {/* HEADER — título simples, consistente com o dashboard
+                            pós-ativação (card com avião aposentado, 2026-06-12) */}
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                             <TouchableOpacity onPress={() => navigation.goBack()} style={s.backButton}>
                                 <NeoIcon name="ArrowLeft" size={20} color={Neo.colors.neutral[800]} />
                             </TouchableOpacity>
-                        </View>
-
-                        <NeoCard variant="elevated" style={s.headerCard}>
-                            <View style={[s.headerCardIcon, { backgroundColor: Neo.colors.primary[100] }]}>
-                                <NeoIcon name="Airplane" size={24} color={Neo.colors.primary[600]} variant="Bold" />
+                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                <H2>{t('headersFirst.modoViagem', 'Modo Viagem')}</H2>
                             </View>
-                            <Text style={[s.headerCardText, { color: textSecondary }]}>
-                                {t('travel.activateMode', 'Ative o Modo Viagem para checklists de segurança específicos.')}
-                            </Text>
-                        </NeoCard>
+                            <View style={{ width: 44 }} />
+                        </View>
+                        <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginBottom: 12 }}>
+                            {t('travel.activateMode', 'Ative o Modo Viagem para checklists de segurança específicos.')}
+                        </Small>
 
                         {/* TIPO DE DESTINO */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.destinationType', 'Qual o tipo de destino?')}</Text>
@@ -439,28 +438,6 @@ const s = StyleSheet.create({
         justifyContent: 'center',
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
-    },
-    headerCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 14,
-        borderRadius: 16,
-        gap: 12,
-        marginBottom: 20,
-    },
-    headerCardIcon: {
-        width: 46,
-        height: 46,
-        borderRadius: 23,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    headerCardText: {
-        flex: 1,
-        fontSize: 15,
-        fontWeight: '600',
-        lineHeight: 21,
-        letterSpacing: -0.1,
     },
     activateBtn: {
         borderRadius: 16,
