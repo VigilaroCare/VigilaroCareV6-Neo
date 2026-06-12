@@ -130,6 +130,7 @@ const PHOSPHOR_MAP = {
     SearchNormal1: 'MagnifyingGlass',
     SearchZoomIn: 'MagnifyingGlassPlus',
     Discover: 'Compass',
+    Global: 'Globe',
     GlobalSearch: 'Globe',
     Map1: 'MapTrifold',
     Location: 'MapPin',

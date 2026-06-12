@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
@@ -14,12 +14,79 @@ import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 
+// Dimensões em PIXELS (lição da Home: % não resolve dentro de wrappers
+// auto-dimensionados — a Image assume o tamanho intrínseco do PNG, 480px)
+const SCREEN_W = Dimensions.get('window').width;
+const CONTENT_W = SCREEN_W - Neo.spacing.lg * 2; // padding horizontal do scroll
+const CELL_W = CONTENT_W * 0.48;                 // célula do grid 2-col
+const TILE_W = Math.round(CELL_W * 0.88);
+const TILE_H = Math.round(TILE_W * (436 / 428)); // proporção dos assets normalizados
+
+// Pictogramas cerâmicos 3D (tile creme + moldura verde embutidos no PNG,
+// mesma linguagem da Home e do Hub). O asset É o card — render sem NeoCard.
+const TRAVEL_PICTOGRAMS = {
+    // destinos (wizard)
+    rural:    require('../../assets/illustrations/travel-pictograms/pictogram-destino-rural.png'),
+    praia:    require('../../assets/illustrations/travel-pictograms/pictogram-destino-litoral.png'),
+    urbano:   require('../../assets/illustrations/travel-pictograms/pictogram-destino-urbano.png'),
+    resort:   require('../../assets/illustrations/travel-pictograms/pictogram-destino-resort.png'),
+    // assistente de viagem (dashboard)
+    partida:  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-partida.png'),
+    malas:    require('../../assets/illustrations/travel-pictograms/pictogram-viagem-malas.png'),
+    chegada:  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-chegada.png'),
+    checkout: require('../../assets/illustrations/travel-pictograms/pictogram-viagem-checkout.png'),
+    guia:     require('../../assets/illustrations/travel-pictograms/pictogram-viagem-guia.png'),
+    // propósito da viagem (wizard)
+    lazer:    require('../../assets/illustrations/travel-pictograms/pictogram-proposito-lazer.png'),
+    trabalho: require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
+    // destino internacional? (wizard)
+    internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
+    nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
+    // quem vai junto (wizard)
+    criancas: require('../../assets/illustrations/travel-pictograms/pictogram-companhia-criancas.png'),
+    idosos:   require('../../assets/illustrations/travel-pictograms/pictogram-companhia-idosos.png'),
+    pets:     require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pets.png'),
+    pcd:      require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd.png'),
+};
+
 const TRIP_TYPES = [
     { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: 'Tree', color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_en: 'Aislamiento, animales, ríos.' },
     { id: 'praia', label: 'Litoral', label_en: 'Coastal Area', label_es: 'Zona Costera', icon: 'Sun1', color: Neo.colors.feedback.warning, desc: 'Sol, mar, piscina.', desc_en: 'Sun, sea, pool.', desc_es: 'Sol, mar, piscina.' },
     { id: 'urbano', label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana', icon: 'Building', color: Neo.colors.secondary[500], desc: 'Janelas, trânsito, aglomeração.', desc_en: 'Windows, traffic, crowds.', desc_es: 'Ventanas, tráfico, multitudes.' },
     { id: 'resort', label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio', icon: 'Sun1', color: Neo.colors.primary[500], desc: 'Piscinas, áreas comuns.', desc_en: 'Pools, common areas.', desc_es: 'Piscinas, áreas comunes.' }
 ];
+
+// Tile cerâmico selecionável — padrão único dos seletores do wizard.
+// selected: badge de check + label forest; dimmed: recua a 55% de opacidade.
+function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
+    return (
+        <ScaleButton
+            style={s.gridCell}
+            onPress={onPress}
+            accessibilityRole="button"
+            accessibilityState={{ selected }}
+            accessibilityLabel={label}
+        >
+            <View style={s.ceramicCell}>
+                <View style={s.ceramicTileWrap}>
+                    <Image
+                        source={source}
+                        style={[s.ceramicTile, dimmed && s.ceramicTileDimmed]}
+                        resizeMode="contain"
+                    />
+                    {selected && (
+                        <View style={s.ceramicCheckBadge}>
+                            <NeoIcon name="TickCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
+                        </View>
+                    )}
+                </View>
+                <Text style={[s.gridLabel, selected && { color: Neo.colors.primary[700] }]}>
+                    {label}
+                </Text>
+            </View>
+        </ScaleButton>
+    );
+}
 
 export default function TravelModeScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -161,100 +228,73 @@ export default function TravelModeScreen({ navigation }) {
                         {/* TIPO DE DESTINO */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.destinationType', 'Qual o tipo de destino?')}</Text>
                         <View style={s.gridContainer}>
-                            {TRIP_TYPES.map(trip => {
-                                const sel = tripType === trip.id;
-                                return (
-                                    <ScaleButton key={trip.id} style={s.gridCell} onPress={() => setTripType(trip.id)}>
-                                        <NeoCard variant="elevated" style={s.gridCard}>
-                                            <View style={[s.gridIconCircle, { backgroundColor: trip.color + '15' }]}>
-                                                <NeoIcon name={trip.icon} size={24} color={trip.color} variant="Bold" />
-                                            </View>
-                                            <Text style={[s.gridLabel, sel && { color: trip.color }]}>
-                                                {t_field(trip, 'label')}
-                                            </Text>
-                                            {sel && (
-                                                <View style={s.checkBadge}>
-                                                    <NeoIcon name="TickCircle" size={16} color={trip.color} variant="Bold" />
-                                                </View>
-                                            )}
-                                        </NeoCard>
-                                    </ScaleButton>
-                                );
-                            })}
+                            {TRIP_TYPES.map(trip => (
+                                <CeramicSelectTile
+                                    key={trip.id}
+                                    source={TRAVEL_PICTOGRAMS[trip.id]}
+                                    label={t_field(trip, 'label')}
+                                    selected={tripType === trip.id}
+                                    dimmed={!!tripType && tripType !== trip.id}
+                                    onPress={() => setTripType(trip.id)}
+                                />
+                            ))}
                         </View>
 
                         {/* PROPÓSITO DA VIAGEM */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.travelPurpose', 'Propósito da Viagem')}</Text>
-                        <View style={s.chipRow}>
+                        <View style={s.gridContainer}>
                             {[
-                                { key: 'lazer', emoji: '🌴', label: t('travel.leisure', 'Lazer'), color: Neo.colors.feedback.warning },
-                                { key: 'trabalho', emoji: '💼', label: t('travel.work', 'Trabalho'), color: Neo.colors.primary[500] },
-                            ].map(p => {
-                                const sel = tripPurpose === p.key;
-                                return (
-                                    <ScaleButton key={p.key} style={s.chipCell} onPress={() => setTripPurpose(p.key)}>
-                                        <NeoCard variant="elevated" style={s.chip}>
-                                            <Body style={{ fontWeight: 'bold', color: sel ? p.color : Neo.colors.neutral[600] }}>
-                                                {p.emoji} {p.label}
-                                            </Body>
-                                            {sel && (
-                                                <View style={{ position: 'absolute', top: 6, right: 8 }}>
-                                                    <NeoIcon name="TickCircle" size={14} color={p.color} variant="Bold" />
-                                                </View>
-                                            )}
-                                        </NeoCard>
-                                    </ScaleButton>
-                                );
-                            })}
+                                { key: 'lazer', label: t('travel.leisure', 'Lazer') },
+                                { key: 'trabalho', label: t('travel.work', 'Trabalho') },
+                            ].map(p => (
+                                <CeramicSelectTile
+                                    key={p.key}
+                                    source={TRAVEL_PICTOGRAMS[p.key]}
+                                    label={p.label}
+                                    selected={tripPurpose === p.key}
+                                    dimmed={tripPurpose !== p.key}
+                                    onPress={() => setTripPurpose(p.key)}
+                                />
+                            ))}
                         </View>
 
                         {/* DESTINO INTERNACIONAL */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.internationalDestination', 'Destino Internacional?')}</Text>
-                        <View style={s.chipRow}>
+                        <View style={s.gridContainer}>
                             {[
-                                { key: true, emoji: '🌍', label: t('common.yes', 'Sim'), color: Neo.colors.secondary[500] },
-                                { key: false, emoji: '🇧🇷', label: t('travel.national', 'Nacional'), color: Neo.colors.feedback.success },
-                            ].map(opt => {
-                                const sel = isInternational === opt.key;
-                                return (
-                                    <ScaleButton key={String(opt.key)} style={s.chipCell} onPress={() => setIsInternational(opt.key)}>
-                                        <NeoCard variant="elevated" style={s.chip}>
-                                            <Body style={{ fontWeight: 'bold', color: sel ? opt.color : Neo.colors.neutral[600] }}>
-                                                {opt.emoji} {opt.label}
-                                            </Body>
-                                            {sel && (
-                                                <View style={{ position: 'absolute', top: 6, right: 8 }}>
-                                                    <NeoIcon name="TickCircle" size={14} color={opt.color} variant="Bold" />
-                                                </View>
-                                            )}
-                                        </NeoCard>
-                                    </ScaleButton>
-                                );
-                            })}
+                                { key: true, picto: 'internacional', label: t('common.yes', 'Sim') },
+                                { key: false, picto: 'nacional', label: t('travel.national', 'Nacional') },
+                            ].map(opt => (
+                                <CeramicSelectTile
+                                    key={String(opt.key)}
+                                    source={TRAVEL_PICTOGRAMS[opt.picto]}
+                                    label={opt.label}
+                                    selected={isInternational === opt.key}
+                                    dimmed={isInternational !== opt.key}
+                                    onPress={() => setIsInternational(opt.key)}
+                                />
+                            ))}
                         </View>
 
                         {/* QUEM VAI JUNTO */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.whoIsGoing', 'Quem vai junto?')}</Text>
                         <View style={s.gridContainer}>
+                            {/* Multi-seleção: cada tile liga/desliga independente —
+                                apagado = não vai junto, aceso com check = vai */}
                             {[
-                                { key: 'kids', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças'), icon: 'ShieldTick', color: Neo.colors.secondary[500] },
-                                { key: 'elderly', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', 'Idosos'), icon: 'User', color: Neo.colors.neutral[700] },
-                                { key: 'pets', active: hasPets, toggle: () => setHasPets(!hasPets), label: t('travel.pets', 'Pets'), icon: 'Health', color: Neo.colors.feedback.error },
-                                { key: 'pcd', active: hasPcd, toggle: () => setHasPcd(!hasPcd), label: t('travel.pwds', 'PCDs'), icon: 'Discover', color: Neo.colors.primary[500] },
+                                { key: 'criancas', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças') },
+                                { key: 'idosos', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', 'Idosos') },
+                                { key: 'pets', active: hasPets, toggle: () => setHasPets(!hasPets), label: t('travel.pets', 'Pets') },
+                                { key: 'pcd', active: hasPcd, toggle: () => setHasPcd(!hasPcd), label: t('travel.pwds', 'PCDs') },
                             ].map(item => (
-                                <ScaleButton key={item.key} style={s.gridCell} onPress={item.toggle}>
-                                    <NeoCard variant="elevated" style={[s.gridCard, { position: 'relative' }]}>
-                                        <View style={[s.gridIconCircle, { backgroundColor: item.color + '15' }]}>
-                                            <NeoIcon name={item.icon} size={24} color={item.color} variant={item.active ? 'Bold' : 'Outline'} />
-                                        </View>
-                                        <Text style={[s.gridLabel, item.active && { color: item.color }]}>{item.label}</Text>
-                                        {item.active && (
-                                            <View style={s.checkBadge}>
-                                                <NeoIcon name="TickCircle" size={16} color={item.color} variant="Bold" />
-                                            </View>
-                                        )}
-                                    </NeoCard>
-                                </ScaleButton>
+                                <CeramicSelectTile
+                                    key={item.key}
+                                    source={TRAVEL_PICTOGRAMS[item.key]}
+                                    label={item.label}
+                                    selected={item.active}
+                                    dimmed={!item.active}
+                                    onPress={item.toggle}
+                                />
                             ))}
                         </View>
 
@@ -326,57 +366,37 @@ export default function TravelModeScreen({ navigation }) {
                         <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center' }}>{t('travel.doThisWheneverTraveling', 'Faça isso sempre que for viajar')}</Small>
                     </View>
 
+                    {/* Grid cerâmico — o pictograma É o card (linguagem Home/Hub) */}
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 12 }}>
-                        {/* Card 1: Inspeção de Partida */}
-                        <ScaleButton onPress={() => navigation.navigate('InspecaoPartida')} style={{ width: '48%', marginBottom: 12 }}>
-                            <NeoCard variant="elevated" style={{ height: 105, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
-                                <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: Neo.colors.feedback.warning + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                    <NeoIcon name="Clock" size={20} color={Neo.colors.feedback.warning} variant="Bold" />
+                        {[
+                            { key: 'partida',  route: 'InspecaoPartida', label: t('travel.departureInspection', 'Verificações antes de partir') },
+                            { key: 'malas',    route: 'FazendoAsMalas',  label: t('travel.packing', 'Saindo de Viagem') },
+                            { key: 'chegada',  route: 'InspecaoChegada', label: t('travel.arrivalInspection', 'Verificações no Destino') },
+                            { key: 'checkout', route: 'InspecaoRetorno', label: t('travel.safeCheckout', 'Checkout Seguro') },
+                        ].map(card => (
+                            <ScaleButton
+                                key={card.key}
+                                onPress={() => navigation.navigate(card.route)}
+                                style={[s.gridCell, { marginBottom: 12 }]}
+                                accessibilityRole="button"
+                                accessibilityLabel={card.label}
+                            >
+                                <View style={s.ceramicCell}>
+                                    <Image source={TRAVEL_PICTOGRAMS[card.key]} style={s.ceramicTile} resizeMode="contain" />
+                                    <Body style={s.ceramicCardLabel} numberOfLines={2}>{card.label}</Body>
                                 </View>
-                                <Body style={{ fontWeight: 'bold', textAlign: 'center', color: Neo.colors.feedback.warning, fontSize: 12, lineHeight: 14 }} numberOfLines={2}>{t('travel.departureInspection', 'Verificações antes de partir')}</Body>
-                            </NeoCard>
-                        </ScaleButton>
+                            </ScaleButton>
+                        ))}
 
-                        {/* Card 2: Fazendo as Malas */}
-                        <ScaleButton onPress={() => navigation.navigate('FazendoAsMalas')} style={{ width: '48%', marginBottom: 12 }}>
-                            <NeoCard variant="elevated" style={{ height: 105, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
-                                <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: Neo.colors.primary[500] + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                    <NeoIcon name="Airplane" size={20} color={Neo.colors.primary[500]} variant="Bold" />
-                                </View>
-                                <Body style={{ fontWeight: 'bold', textAlign: 'center', color: Neo.colors.primary[600], fontSize: 12, lineHeight: 14 }} numberOfLines={2}>{t('travel.packing', 'Saindo de Viagem')}</Body>
-                            </NeoCard>
-                        </ScaleButton>
-
-                        {/* Card 3: Inspeção de Chegada */}
-                        <ScaleButton onPress={() => navigation.navigate('InspecaoChegada')} style={{ width: '48%', marginBottom: 12 }}>
-                            <NeoCard variant="elevated" style={{ height: 105, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
-                                <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: Neo.colors.feedback.success + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                    <NeoIcon name="ShieldTick" size={20} color={Neo.colors.feedback.success} variant="Bold" />
-                                </View>
-                                <Body style={{ fontWeight: 'bold', textAlign: 'center', color: Neo.colors.feedback.success, fontSize: 12, lineHeight: 14 }} numberOfLines={2}>{t('travel.arrivalInspection', 'Verificações no Destino')}</Body>
-                            </NeoCard>
-                        </ScaleButton>
-
-                        {/* Card 4: Checkout Seguro */}
-                        <ScaleButton onPress={() => navigation.navigate('InspecaoRetorno')} style={{ width: '48%', marginBottom: 12 }}>
-                            <NeoCard variant="elevated" style={{ height: 105, padding: 10, alignItems: 'center', justifyContent: 'center' }}>
-                                <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: Neo.colors.feedback.error + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                    <NeoIcon name="SearchNormal" size={20} color={Neo.colors.feedback.error} variant="Bold" />
-                                </View>
-                                <Body style={{ fontWeight: 'bold', textAlign: 'center', color: Neo.colors.feedback.error, fontSize: 12, lineHeight: 14 }} numberOfLines={2}>{t('travel.safeCheckout', 'Checkout Seguro')}</Body>
-                            </NeoCard>
-                        </ScaleButton>
-
-                        {/* Card 5: Guia de Segurança */}
-                        <ScaleButton onPress={() => navigation.navigate('TravelSafetyGuide')} style={{ width: '100%' }}>
-                            <NeoCard variant="elevated" style={{ height: 80, padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', paddingHorizontal: 20 }}>
-                                <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: Neo.colors.primary[500] + '26', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
-                                    <NeoIcon name="Teacher" size={24} color={Neo.colors.primary[500]} variant="Bold" />
-                                </View>
+                        {/* Card 5: Guia de Segurança — horizontal com thumbnail cerâmico */}
+                        <ScaleButton onPress={() => navigation.navigate('TravelSafetyGuide')} style={{ width: '100%' }} accessibilityRole="button">
+                            <NeoCard variant="elevated" style={{ height: 80, padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', paddingHorizontal: 16 }}>
+                                <Image source={TRAVEL_PICTOGRAMS.guia} style={s.guiaThumb} resizeMode="contain" />
                                 <View style={{ flex: 1 }}>
                                     <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[700], fontSize: 14 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</Body>
                                     <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.safetyGuideDesc', 'Dicas, telefones úteis e mais.')}</Small>
                                 </View>
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                             </NeoCard>
                         </ScaleButton>
                     </View>
@@ -456,22 +476,6 @@ const s = StyleSheet.create({
     gridCell: {
         width: '48%',
     },
-    gridCard: {
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 8,
-        height: 104,
-        overflow: 'hidden',
-    },
-    gridIconCircle: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 8,
-    },
     gridLabel: {
         fontSize: 13,
         fontWeight: '800',
@@ -479,19 +483,42 @@ const s = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 17,
     },
-    chipRow: {
-        flexDirection: 'row',
-        gap: 10,
+    // ── Células cerâmicas (pictograma = o próprio card, sem NeoCard) ──
+    ceramicCell: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    ceramicTileWrap: {
+        width: TILE_W,
+        position: 'relative',
+    },
+    ceramicTile: {
+        width: TILE_W,
+        height: TILE_H,
         marginBottom: 4,
     },
-    chipCell: {
-        flex: 1,
+    ceramicTileDimmed: {
+        opacity: 0.55, // não-selecionados recuam quando há uma seleção ativa
     },
-    chip: {
-        borderRadius: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 14,
+    ceramicCheckBadge: {
+        position: 'absolute',
+        top: 2,
+        right: 2,
+        backgroundColor: Neo.colors.neutral.white,
+        borderRadius: 12,
+        ...Neo.shadows.subtle,
+    },
+    ceramicCardLabel: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: Neo.colors.neutral[800],
+        fontSize: 12,
+        lineHeight: 15,
+    },
+    guiaThumb: {
+        width: 54,
+        height: 54,
+        marginRight: 14,
     },
     backButton: {
         width: 44,
@@ -524,11 +551,6 @@ const s = StyleSheet.create({
         fontWeight: '600',
         lineHeight: 21,
         letterSpacing: -0.1,
-    },
-    checkBadge: {
-        position: 'absolute',
-        top: 8,
-        right: 10,
     },
     activateBtn: {
         borderRadius: 16,
