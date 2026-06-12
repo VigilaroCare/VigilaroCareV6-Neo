@@ -18,7 +18,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { AudioPlayer } from 'expo-audio';
-import * as ExpoLocation from 'expo-location';
+import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
 import { Storage } from '../../utils/SecureStorage';
@@ -154,11 +154,12 @@ export default function SOSCountdownScreen({ navigation, route }) {
   const triggerSOSAction = async () => {
     setSending(true);
     try {
+      // O socorro NUNCA espera o GPS: race de 4s + última posição conhecida;
+      // sem nada, o SMS sai sem localização (ver utils/getEmergencyLocation).
       let locationText = '';
-      const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
-      if (status === 'granted') {
-        const loc = await ExpoLocation.getCurrentPositionAsync({ accuracy: ExpoLocation.Accuracy.Balanced });
-        locationText = ` Estou em: https://maps.google.com/?q=${loc.coords.latitude},${loc.coords.longitude}`;
+      const coords = await getEmergencyLocation();
+      if (coords) {
+        locationText = ` Estou em: https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
       }
 
       let unifiedContacts = [];

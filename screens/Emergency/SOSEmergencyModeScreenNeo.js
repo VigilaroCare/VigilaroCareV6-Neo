@@ -4,7 +4,7 @@ import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Pl
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
-import * as ExpoLocation from 'expo-location';
+import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
 import * as Clipboard from 'expo-clipboard';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
@@ -117,17 +117,11 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         return () => unsubscribe();
     }, [route?.params]);
 
-    // Capturar localização proativamente ao abrir SOS
+    // Capturar localização proativamente ao abrir SOS — com timeout + fallback
+    // de última posição conhecida (o socorro nunca espera o GPS; item G33).
     const captureLocation = async () => {
-        try {
-            const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
-            if (status === 'granted') {
-                const loc = await ExpoLocation.getCurrentPositionAsync({ accuracy: ExpoLocation.Accuracy.Balanced });
-                setLastLocation(loc.coords);
-            }
-        } catch (e) {
-            console.log('Location capture error:', e);
-        }
+        const coords = await getEmergencyLocation();
+        if (coords) setLastLocation(coords);
     };
 
     const checkPetsProfile = async () => {
