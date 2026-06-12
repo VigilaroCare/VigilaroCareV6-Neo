@@ -1,4 +1,5 @@
 require('dotenv').config();
+const crypto = require('crypto');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -63,16 +64,50 @@ app.get('/', (req, res) => {
   res.status(200).json({ status: 'ok', service: 'Vigilaro API Proxy Serverless' });
 });
 
+// Comparação constant-time — `!==` short-circuita por caractere e vaza
+// timing. timingSafeEqual exige buffers do mesmo tamanho, então o length
+// é comparado antes (o tamanho do secret não é informação útil ao atacante).
+const safeEqual = (a, b) => {
+  const ab = Buffer.from(String(a));
+  const bb = Buffer.from(String(b));
+  return ab.length === bb.length && crypto.timingSafeEqual(ab, bb);
+};
+
 // Security guard: rejects requests without the app secret
 const requireAppSecret = (req, res, next) => {
   const token = req.headers['x-vigilaro-token'];
-  if (!token || token !== APP_SECRET) {
+  if (!token || !safeEqual(token, APP_SECRET)) {
     return res.status(401).json({ error: 'Unauthorized: Invalid or missing X-Vigilaro-Token' });
   }
   // Delete the custom token so it doesn't leak upstream
   delete req.headers['x-vigilaro-token'];
   next();
 };
+
+// Allow-list de paths por proxy. Sem isto, o pathRewrite expõe as APIs
+// INTEIRAS dos fornecedores a quem tiver o app secret (ex.: /v1/files,
+// /v1/fine_tuning e /v1/images na OpenAI; /v1/history na ElevenLabs).
+// O `req.path` aqui já vem SEM o prefixo do mount (o Express o remove),
+// decodificado — regexes ancoradas tornam path traversal inócuo.
+// Ao consumir um endpoint novo no app, adicione o padrão aqui.
+const allowPaths = (patterns) => (req, res, next) => {
+  if (patterns.some((re) => re.test(req.path))) return next();
+  return res.status(404).json({ error: 'Not found' });
+};
+
+const OPENAI_ALLOWED = [
+  /^\/chat\/completions$/,        // VisionService, OpenAIService (chat)
+  /^\/audio\/transcriptions$/,    // OpenAIService (voz -> texto)
+  /^\/audio\/speech$/,            // OpenAIService (TTS)
+  // NOTA: /realtime fica FORA de propósito — a feature Realtime Voice está
+  // desativada no app; reativar exige host com WS fora da Vercel (ver acima).
+];
+const ELEVEN_ALLOWED = [
+  /^\/text-to-speech\//,          // nenhum caller ativo hoje; mantido p/ TTS futuro
+];
+const EPA_ALLOWED = [
+  /^\/chemical\//,                // InfoRotulosSubstanceService (search/detail)
+];
 
 // 1. Proxy OpenAI
 // NOTA: suporte a WebSocket (Realtime API) removido enquanto a feature
@@ -134,10 +169,10 @@ const epaProxy = createProxyMiddleware({
   },
 });
 
-// Apply Middlewares
-app.use('/api/openai', requireAppSecret, openaiProxy);
-app.use('/api/elevenlabs', requireAppSecret, elevenLabsProxy);
-app.use('/api/epa', requireAppSecret, epaProxy);
+// Apply Middlewares (guard -> allow-list -> proxy)
+app.use('/api/openai', requireAppSecret, allowPaths(OPENAI_ALLOWED), openaiProxy);
+app.use('/api/elevenlabs', requireAppSecret, allowPaths(ELEVEN_ALLOWED), elevenLabsProxy);
+app.use('/api/epa', requireAppSecret, allowPaths(EPA_ALLOWED), epaProxy);
 
 // Export app for Vercel Serverless
 module.exports = app;
@@ -146,6 +181,7 @@ module.exports = app;
 if (process.env.NODE_ENV !== 'production' && require.main === module) {
   app.listen(PORT, () => {
     console.log(`\x1b[32m🚀 Vigilaro Proxy running on http://localhost:${PORT}\x1b[0m`);
-    console.log(`\x1b[33m🔒 App Secret ends with: ...${APP_SECRET.slice(-4)}\x1b[0m`);
+    // Não logar NENHUM fragmento/metadado do secret — nem em dev.
+    console.log('\x1b[33m🔒 App Secret carregado.\x1b[0m');
   });
 }
