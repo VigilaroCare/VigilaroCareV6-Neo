@@ -40,13 +40,13 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 // estilo 3D cerâmico da Home, símbolo solto em fundo transparente.
 // ─────────────────────────────────────────────────────────────────────────
 const PICTOGRAMS = {
-    // Seção 1 — Pessoas & Contexto (lote 2 em andamento: cerâmicos
-    // substituindo os antigos de traço P&B um a um)
+    // Seção 1 — Pessoas & Contexto (lote 2 completo: todos cerâmicos,
+    // normalizados no padrão condo-safety — cobertura 88.5%, aspecto 0.98)
     seguranca_idade: require('../../assets/illustrations/education-pictograms/pictogram-familia-fases.png'),
-    ambientes:       require('../../assets/illustrations/home-pictograms/icone_planta_baixa_ilustrativa.png'),
-    gestante_segura: require('../../assets/illustrations/home-pictograms/icone_gestacao_casa.png'),
-    pets:            require('../../assets/illustrations/education-pictograms/pictogram-pets-hub.png'), // cerâmico da Home, cópia normalizada (88.5%)
-    brinquedos_hub:  require('../../assets/illustrations/home-pictograms/icone_brinquedos_sem_casa.png'),
+    ambientes:       require('../../assets/illustrations/education-pictograms/pictogram-ambientes.png'),
+    gestante_segura: require('../../assets/illustrations/education-pictograms/pictogram-gestacao.png'),
+    pets:            require('../../assets/illustrations/education-pictograms/pictogram-pets-hub.png'),
+    brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
     // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
     utensilios_rev:   require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
     eletro_rev:       require('../../assets/illustrations/education-pictograms/pictogram-eletro-rev.png'),
@@ -65,7 +65,7 @@ const PICTOGRAMS = {
     guias_equipamentos: require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
-const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos-essenciais.png');
+const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos.png');
 
 // Ids cujos assets são do formato CERÂMICO 3D (tile creme + moldura verde
 // embutidos no PNG, como na Home). Esses renderizam SEM NeoCard — o asset É
@@ -76,9 +76,10 @@ const CERAMIC_STYLE_IDS = new Set([
     'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
     'plantas', 'animais', 'produtos', 'riscos_fisicos', 'jardinagem', 'condo_safety',
     'lazer_mobilidade', 'guias_equipamentos',
-    // Lote 2 (seção 1) — adicionados conforme regenerados:
+    // Lote 2 (seção 1) — completo em 2026-06-11:
     'seguranca_idade',
-    'pets', // reaproveita o cerâmico da Home
+    'pets',
+    'ambientes', 'gestante_segura', 'brinquedos_hub',
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {
@@ -434,7 +435,8 @@ const s = StyleSheet.create({
     specialPictogramImage: {
         width: '100%',
         height: '100%',
-        transform: [{ scale: 1.3 }], // Aumentado em 30% visualmente
+        // (sem scale: os cerâmicos já vêm com cobertura 88.5%, sem padding
+        // interno — o scale 1.3 dos antigos P&B estouraria o wrapper)
     },
     radarTitle: {
         fontWeight: '800',
@@ -506,7 +508,9 @@ const s = StyleSheet.create({
     ceramicCell: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        // topo, não center: com labels de 1 vs 2 linhas, a centralização
+        // vertical fazia os tiles "flutuarem" desalinhados entre vizinhos
+        justifyContent: 'flex-start',
     },
     ceramicImage: {
         width: '100%',
