@@ -287,9 +287,13 @@ export default function HomeScreenNeo() {
                         accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: heroHeadline, alert: scoreMessage.alerta })}
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
                     >
+                        {/* Verde suavizado (pedido do autor, 2026-06-11): sai do
+                            forest profundo — o tom mais escuro agora é o 700,
+                            terminando no emerald da marca. O texto fica na zona
+                            700/600 (contraste AA garantido p/ headline 22 bold). */}
                         <LinearGradient
-                            colors={[Neo.colors.primary[900], Neo.colors.primary[700], Neo.colors.primary[600]]}
-                            locations={[0, 0.55, 1]}
+                            colors={[Neo.colors.primary[700], Neo.colors.primary[600], Neo.colors.primary[500]]}
+                            locations={[0, 0.45, 1]}
                             start={{ x: 0, y: 0 }}
                             end={{ x: 1, y: 1 }}
                             style={s.heroCard}
