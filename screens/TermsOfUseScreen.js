@@ -55,7 +55,12 @@ export default function TermsOfUseScreen({ navigation }) {
                     {t('headersFirst.oRecursoDeScannerIAUtilizaInteligNciaArt', 'O recurso de "Scanner IA" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.')}
                 </Text>
 
-                <Text style={styles.sectionTitle}>{t('headersFirst.6Privacidade', '6. Privacidade')}</Text>
+                <Text style={styles.sectionTitle}>{t('terms.monitoringTitle', '6. Recursos de Monitoramento e Alerta')}</Text>
+                <Text style={styles.text}>
+                    {t('terms.monitoringBody', 'Os recursos de monitoramento e alerta (detecção de queda, monitor de áudio, check-in e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: sensores e bateria do aparelho, sinal de celular, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem não detectar todos os eventos ou gerar alertas indevidos, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.')}
+                </Text>
+
+                <Text style={styles.sectionTitle}>{t('terms.privacyTitle', '7. Privacidade')}</Text>
                 <Text style={styles.text}>
                     Para detalhes sobre como tratamos seus dados, consulte nossa <Text style={{ fontWeight: 'bold', color: Colors.primary }} onPress={() => navigation.navigate('PrivacyPolicy')}>Política de Privacidade</Text> específica.
                 </Text>

@@ -27,6 +27,7 @@ import { H1, H3, Body, Small, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import FallDetectionService from '../services/FallDetectionService';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
 
 const PRESETS = [
     {
@@ -156,6 +157,10 @@ export default function FallSensitivityScreen() {
                             thumbColor={Neo.colors.neutral.white}
                         />
                     </NeoCard>
+
+                    {/* Expectativa calibrada onde o recurso é ligado — o app é
+                        camada de apoio, não promessa de detecção garantida */}
+                    <SafetyDisclaimer variant="fall" style={{ marginTop: 10 }} />
 
                     {/* SECTION LABEL */}
                     <Text

@@ -670,6 +670,16 @@
         "cannotDeleteActive": "No es posible eliminar la residencia activa.",
         "finishGoHome": "Finalizar e Ir al Inicio"
     },
+    "disclaimer": {
+        "monitor": "Función auxiliar: no sustituye la supervisión de un adulto responsable.",
+        "fall": "La detección usa los sensores del dispositivo y puede no identificar todas las caídas — o generar alertas falsas. Es una capa extra de protección, no un sustituto del acompañamiento.",
+        "sos": "El envío del SOS depende de que el dispositivo tenga señal y plan para SMS. Acuerde con sus contactos qué hacer al recibir una alerta. Ante un riesgo inmediato, llame al número de emergencias local."
+    },
+    "terms": {
+        "monitoringTitle": "6. Funciones de Monitoreo y Alerta",
+        "monitoringBody": "Las funciones de monitoreo y alerta (detección de caídas, monitor de audio, check-in y SOS) son AUXILIARES y dependen de factores fuera de nuestro control: sensores y batería del dispositivo, señal celular, plan para SMS, restricciones del sistema operativo y configuración correcta.\n\nPueden no detectar todos los eventos o generar alertas indebidas, y NO constituyen un servicio de emergencia, un dispositivo médico ni un sustituto de la supervisión humana. Vigilaro Care es una herramienta de utilidad y prevención para el día a día — use estas funciones como capa adicional de apoyo, nunca como única línea de protección de quienes ama.",
+        "privacyTitle": "7. Privacidad"
+    },
     "privacy": {
         "collectionBody": "La aplicación no exige cuenta ni registro y no recopila datos de identificación personal (como documentos de identidad o dirección).\n\nLa única situación en la que la información sale de su dispositivo son las funciones opcionales de Inteligencia Artificial, descritas en la sección 6 — e incluso en ellas, nombres y contactos nunca se envían.\n\nLos datos anónimos y agregados de uso (p. ej., \"cuántas veces se abrió la pantalla X\") solo se recopilan con su consentimiento explícito (opt-in) y no permiten identificarle.",
         "micUse": "Para monitoreo de audio ambiente (vigilabebés) y mensajes de voz al asistente.",
@@ -1056,7 +1066,7 @@
     },
     "lazerMenu": {
         "headerTitle": "Ocio y Vacaciones",
-        "headerSubtitle": "Diversión con seguridad garantizada.",
+        "headerSubtitle": "Diversión con más seguridad.",
         "lazer": {
             "title": "Ocio y Diversión",
             "subtitulo": "Playa, Piscina, Parques",

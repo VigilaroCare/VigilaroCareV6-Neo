@@ -670,6 +670,16 @@
         "cannotDeleteActive": "Cannot delete the active residence.",
         "finishGoHome": "Finish and Go Home"
     },
+    "disclaimer": {
+        "monitor": "Helper feature: it does not replace supervision by a responsible adult.",
+        "fall": "Detection relies on the device's sensors and may miss some falls — or trigger false alerts. It is an extra layer of protection, not a substitute for care.",
+        "sos": "Sending the SOS requires cell signal and an SMS-capable plan. Agree with your contacts on what to do when they receive an alert. In immediate danger, call your local emergency number."
+    },
+    "terms": {
+        "monitoringTitle": "6. Monitoring & Alert Features",
+        "monitoringBody": "Monitoring and alert features (fall detection, audio monitor, check-in and SOS) are AUXILIARY and depend on factors beyond our control: the device's sensors and battery, cell signal, an SMS-capable plan, operating system restrictions and correct configuration.\n\nThey may miss events or trigger false alerts, and they are NOT an emergency service, a medical device or a substitute for human supervision. Vigilaro Care is a day-to-day utility and prevention tool — use these features as an additional layer of support, never as the only line of protection for the people you love.",
+        "privacyTitle": "7. Privacy"
+    },
     "privacy": {
         "collectionBody": "The app requires no account or sign-up and does not collect personally identifying data (such as national IDs or your address).\n\nThe only situation in which information leaves your device is the optional Artificial Intelligence features described in section 6 — and even there, names and contacts are never sent.\n\nAnonymous, aggregated usage data (e.g. \"how many times screen X was opened\") is only collected with your explicit opt-in consent and cannot identify you.",
         "micUse": "For ambient audio monitoring (baby monitor) and voice messages to the assistant.",
@@ -1056,7 +1066,7 @@
     },
     "lazerMenu": {
         "headerTitle": "Leisure & Vacations",
-        "headerSubtitle": "Fun with guaranteed safety.",
+        "headerSubtitle": "Fun, made safer.",
         "lazer": {
             "title": "Leisure & Fun",
             "subtitulo": "Beach, Pool, Parks",

@@ -26,6 +26,7 @@ import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import NeoAlert from '../../utils/NeoAlert';
+import SafetyDisclaimer from '../../components/SafetyDisclaimer';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
@@ -544,6 +545,9 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               />
             )
           )}
+
+          {/* Expectativa do SOS calibrada onde os contatos são gerenciados */}
+          <SafetyDisclaimer variant="sos" style={{ marginTop: 16 }} />
         </ScrollView>
       </SafeAreaView>
     </AppBackground>

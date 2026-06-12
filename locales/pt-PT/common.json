@@ -670,6 +670,16 @@
         "cannotDeleteActive": "Não e possível apagar a residência ativa.",
         "finishGoHome": "Concluir e Ir para o Inicio"
     },
+    "disclaimer": {
+        "monitor": "Recurso auxiliar: não substitui a supervisão de um adulto responsável.",
+        "fall": "A deteção usa os sensores do aparelho e pode não identificar todas as quedas — ou gerar alertas falsos. É uma camada extra de proteção, não um substituto de acompanhamento.",
+        "sos": "O envio do SOS depende de o aparelho ter rede e plano para SMS. Combine com os seus contactos o que fazer ao receber um alerta. Em risco imediato, ligue para o 112."
+    },
+    "terms": {
+        "monitoringTitle": "6. Recursos de Monitorização e Alerta",
+        "monitoringBody": "Os recursos de monitorização e alerta (deteção de queda, monitor de áudio, check-in e SOS) são AUXILIARES e dependem de fatores fora do nosso controlo: sensores e bateria do aparelho, rede móvel, plano para SMS, restrições do sistema operativo e configuração correta.\n\nPodem não detetar todos os eventos ou gerar alertas indevidos, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use estes recursos como camada adicional de apoio, nunca como única linha de proteção de quem ama.",
+        "privacyTitle": "7. Privacidade"
+    },
     "privacy": {
         "collectionBody": "A aplicação não exige conta ou registo e não recolhe dados de identificação pessoal (como número de identificação ou morada).\n\nA única situação em que informações saem do seu aparelho é nos recursos opcionais de Inteligência Artificial, descritos na secção 6 — e, mesmo neles, nomes e contactos nunca são enviados.\n\nDados anónimos e agregados de utilização (ex.: \"quantas vezes o ecrã X foi aberto\") só são recolhidos mediante o seu consentimento explícito (opt-in) e não permitem identificá-lo.",
         "micUse": "Para monitorização de áudio (intercomunicador de bebé) e mensagens de voz ao assistente.",
@@ -1056,7 +1066,7 @@
     },
     "lazerMenu": {
         "headerTitle": "Lazer & Férias",
-        "headerSubtitle": "Diversão com segurança garantida.",
+        "headerSubtitle": "Diversão com mais segurança.",
         "lazer": {
             "title": "Lazer & Diversão",
             "subtitulo": "Praia, Piscina, Parques",

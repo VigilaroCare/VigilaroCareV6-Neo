@@ -12,6 +12,7 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AudioConsentModal from '../components/AudioConsentModal';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
 
 const AUDIO_CONSENT_KEY = '@audio_consent_accepted';
 
@@ -217,6 +218,10 @@ export default function AudioMonitorScreen({ navigation }) {
                         </Text>
                     </View>
                 </View>
+
+                {/* Ressalva clássica de babá eletrônica — calibra a promessa
+                    onde o recurso vive (filosofia: guia, não autoridade) */}
+                <SafetyDisclaimer variant="monitor" style={{ marginBottom: 12 }} />
 
                 {/* Control Button */}
                 <TouchableOpacity
