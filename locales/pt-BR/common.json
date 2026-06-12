@@ -485,6 +485,17 @@
         "generalPhone": "192"
     },
     "travel": {
+        "stayAlertPrep": "Fique atento antes de partir",
+        "stayAlertArrival": "Fique atento no destino",
+        "stayAlertDuring": "Fique atento durante a viagem",
+        "dcAlertsTitle": "Alertas da Defesa Civil",
+        "dcAlertsBody": "Cadastre o CEP da sua casa e do destino para receber alertas oficiais de chuvas e desastres por SMS — serviço público e gratuito. Basta enviar o CEP para 40199.",
+        "dcAlertsAction": "Cadastrar por SMS (40199)",
+        "intlAlertsTitle": "Alertas de emergência no exterior",
+        "intlAlertsBody": "Muitos países enviam alertas direto ao celular (terremoto, clima severo) — mas só se a opção \"alertas de emergência\" estiver ativa nas configurações do aparelho. Ative antes de embarcar e mantenha ativa no destino.",
+        "itamaratyTitle": "Alertas consulares do Itamaraty",
+        "itamaratyBody": "Consulte as recomendações oficiais do governo brasileiro para o seu destino e anote o contato da embaixada/consulado mais próximo.",
+        "itamaratyAction": "Abrir Portal Consular",
         "departureInspection": "Inspeção de Partida",
         "departureSubtitle": "O que fazer antes de sair de casa",
         "departureIntro": "Evite imprevistos e retornos desnecessários. Repasse este checklist rápido nos minutos finais antes de fechar a porta de casa.",

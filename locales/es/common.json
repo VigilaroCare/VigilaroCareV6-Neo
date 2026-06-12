@@ -451,6 +451,17 @@
         "policePhone": "112"
     },
     "travel": {
+        "stayAlertPrep": "Atención antes de partir",
+        "stayAlertArrival": "Atención en el destino",
+        "stayAlertDuring": "Atención durante el viaje",
+        "dcAlertsTitle": "Alertas de la Defensa Civil",
+        "dcAlertsBody": "En Brasil, registre el código postal de su casa y del destino para recibir alertas oficiales de desastres por SMS — servicio público y gratuito. Basta enviar el código (CEP) al 40199.",
+        "dcAlertsAction": "Registrarse por SMS (40199)",
+        "intlAlertsTitle": "Alertas de emergencia en el extranjero",
+        "intlAlertsBody": "Muchos países envían alertas directamente al celular (terremotos, clima severo) — pero solo si la opción \"alertas de emergencia\" está activa en la configuración del dispositivo. Actívela antes de embarcar y manténgala activa en el destino.",
+        "itamaratyTitle": "Alertas consulares oficiales",
+        "itamaratyBody": "Consulte las recomendaciones oficiales para su destino y anote el contacto de la embajada/consulado más cercano.",
+        "itamaratyAction": "Abrir Portal Consular",
         "departureInspection": "Inspección de Salida",
         "departureSubtitle": "Qué hacer antes de salir de casa",
         "departureIntro": "Evita imprevistos y regresos innecesarios. Repasa esta lista rápida antes de cerrar la puerta de casa.",

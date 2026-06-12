@@ -8,6 +8,7 @@ import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
+import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -162,6 +163,11 @@ export default function InspecaoPartidaScreen({ navigation }) {
                     </View>
 
                     {CHECKLIST_ITEMS.map(renderSection)}
+
+                    {/* Dicas da fase de PREPARAÇÃO (docs, vacinas, logística
+                        intl) + cards de alertas oficiais (Defesa Civil /
+                        Itamaraty) — cada recomendação na sua fase */}
+                    <TravelTipsAccordion phase="preparacao" />
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>

@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
+import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 
 // Dimensões em PIXELS (lição da Home: % não resolve dentro de wrappers
 // auto-dimensionados — a Image assume o tamanho intrínseco do PNG, 480px)
@@ -95,7 +96,6 @@ export default function TravelModeScreen({ navigation }) {
     const textSecondary = themeColors.neutral[700];
     const [activeTrip, setActiveTrip] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [expandedTipIdx, setExpandedTipIdx] = useState(null);
 
     // Wizard State
     const [tripType, setTripType] = useState(null);
@@ -284,30 +284,9 @@ export default function TravelModeScreen({ navigation }) {
     }
 
     // --- DASHBOARD RENDER ---
-    const config = activeTrip.config || {};
-
-    // SHOW ALL TIPS regardless of config (user requested non-personalized)
-    const allTips = [
-        { title: 'Afogamento', title_en: 'Drowning', title_es: 'Ahogamiento', text: '• Nunca deixe crianças sozinhas próximas à água.\n• Atenção ao ralo da piscina.\n• Use boias e coletes salva-vidas.\n• Ensine a regra: "Sem adulto, sem água."', text_en: '• Never leave children alone near water.\n• Pay attention to the pool drain.\n• Use life jackets.\n• Teach the rule: "No adult, no water."', text_es: '• Nunca deje a los niños solos cerca del agua.\n• Atención al desagüe de la piscina.\n• Use chalecos salvavidas.\n• Enseñe la regla: "Sin adulto, no hay agua."', icon: 'SwimmingPool', types: ['praia', 'resort', 'rural'] },
-        { title: 'Janelas e Sacadas', title_en: 'Windows and Balconies', title_es: 'Ventanas y Balcones', text: '• Em hotéis, verifique se há telas nas janelas.\n• Crianças escalam: afaste camas e cadeiras.\n• Se possível, instale travas de janelas.\n• Sacadas sem vidro são um risco grave.', text_en: '• In hotels, check for window screens.\n• Children climb: move beds and chairs away.\n• If possible, install window locks.\n• Glassless balconies are a serious risk.', text_es: '• En hoteles, verifique si hay mosquiteros.\n• Los niños escalan: aleje camas y sillas.\n• Si es posible, instale seguros de ventanas.\n• Los balcones sin vidrio son un riesgo grave.', icon: 'Building', types: ['urbano', 'resort'] },
-        { title: 'Animais e Plantas', title_en: 'Animals and Plants', title_es: 'Animales y Plantas', text: '• Sacuda calçados e roupas antes de usar.\n• Não toque em plantas desconhecidas.\n• Mantenha portas fechadas ao anoitecer.\n• Leve repelente.', text_en: '• Shake out shoes and clothes before use.\n• Do not touch unknown plants.\n• Keep doors closed at dusk.\n• Bring insect repellent.', text_es: '• Sacuda zapatos y ropa antes de usar.\n• No toque plantas desconocidas.\n• Mantenga puertas cerradas al anochecer.\n• Lleve repelente.', icon: 'Plant', types: ['rural'] },
-        { title: 'Distância Médica', title_en: 'Medical Distance', title_es: 'Distancia Médica', text: '• Localize o hospital mais próximo.\n• Verifique se o celular tem sinal.\n• Leve um kit de primeiros socorros.\n• Informe alguém sobre seu destino.', text_en: '• Locate the nearest hospital.\n• Check if your cell phone has a signal.\n• Bring a first aid kit.\n• Inform someone about your destination.', text_es: '• Localice el hospital más cercano.\n• Verifique si el celular tiene señal.\n• Lleve un botiquín de primeros auxilios.\n• Informe a alguien sobre su destino.', icon: 'Hospital', types: ['rural'] },
-        { title: 'Crianças em Viagem', title_en: 'Children Traveling', title_es: 'Niños de Viaje', text: '• Use pulseira de identificação.\n• Combine um "ponto de encontro".\n• Supervisão visual constante.\n• Ensine o telefone dos pais.', text_en: '• Use an ID bracelet.\n• Agree on a "meeting point".\n• Constant visual supervision.\n• Teach them their parents\' phone number.', text_es: '• Use pulsera de identificación.\n• Acuerde un "punto de encuentro".\n• Supervisión visual constante.\n• Enséñeles el teléfono de los padres.', icon: 'Baby', types: ['all'] },
-        { title: 'Idosos em Viagem', title_en: 'Elderly Traveling', title_es: 'Ancianos de Viaje', text: '• Deixe luz acesa para o banheiro.\n• Remova tapetes soltos.\n• Use chinelo antiderrapante.\n• Leve medicamentos organizados.', text_en: '• Leave a light on for the bathroom.\n• Remove loose rugs.\n• Use non-slip slippers.\n• Bring organized medications.', text_es: '• Deje una luz encendida para el baño.\n• Retire alfombras sueltas.\n• Use pantuflas antideslizantes.\n• Lleve medicamentos organizados.', icon: 'Elderly', types: ['all'] },
-        { title: 'Pets em Viagem', title_en: 'Pets Traveling', title_es: 'Mascotas de Viaje', text: '• Mantenha sempre na guia.\n• Cuidado com piso quente.\n• Não permita acesso a plantas tóxicas.\n• Leve água fresca.', text_en: '• Always keep on a leash.\n• Beware of hot pavements.\n• Do not allow access to toxic plants.\n• Bring fresh water.', text_es: '• Mantenga siempre con correa.\n• Cuidado con el pavimento caliente.\n• No permita acceso a plantas tóxicas.\n• Lleve agua fresca.', icon: 'PawPrint', types: ['all'] },
-        { title: 'Plano de Fuga', title_en: 'Escape Plan', title_es: 'Plan de Escape', text: '• Localize o mapa de evacuação.\n• Identifique as 2 saídas mais próximas.\n• Combine um ponto de encontro externo.', text_en: '• Locate the evacuation map.\n• Identify the 2 nearest exits.\n• Agree on an external meeting point.', text_es: '• Localice el mapa de evacuación.\n• Identifique las 2 salidas más cercanas.\n• Acuerde un punto de encuentro externo.', icon: 'SignOut', types: ['all'] },
-        { title: 'PCD / Acessibilidade', title_en: 'Accessibility (PWD)', title_es: 'Accesibilidad', text: '• Localize saídas acessíveis.\n• Cuidado com desníveis.\n• Solicite quarto adaptado.\n• Leve equipamentos de apoio extras.', text_en: '• Locate accessible exits.\n• Beware of uneven surfaces.\n• Request an adapted room.\n• Bring extra support equipment.', text_es: '• Localice salidas accesibles.\n• Cuidado con superficies irregulares.\n• Solicite habitación adaptada.\n• Lleve equipo de apoyo extra.', icon: 'Wheelchair', types: ['all'] },
-        { title: 'Documentos e Vistos', title_en: 'Documents and Visas', title_es: 'Documentos y Visas', text: '• Passaporte válido por 6 meses?\n• O país exige visto?\n• Imprima e salve cópias na nuvem.', text_en: '• Passport valid for 6 months?\n• Does the country require a visa?\n• Print and save copies in the cloud.', text_es: '• ¿Pasaporte válido por 6 meses?\n• ¿El país requiere visa?\n• Imprima y guarde copias en la nube.', icon: 'IdentificationCard', types: ['international'] },
-        { title: 'Saúde e Vacinas', title_en: 'Health and Vaccines', title_es: 'Salud y Vacunas', text: '• Necessidade de vacina para Febre Amarela?\n• Contrate um Seguro Saúde.\n• Leve remédios na bagagem de mão.', text_en: '• Yellow Fever vaccine required?\n• Get Travel Health Insurance.\n• Bring medicines in your carry-on.', text_es: '• ¿Vacuna contra la Fiebre Amarilla?\n• Contrate un Seguro de Salud.\n• Lleve medicamentos en el equipaje de mano.', icon: 'Syringe', types: ['international'] },
-        { title: 'Logística Intl', title_en: 'Intl Logistics', title_es: 'Logística Intl', text: '• Desbloqueie cartões.\n• Tenha moeda local em espécie.\n• Leve um adaptador universal.', text_en: '• Unlock cards.\n• Have local currency in cash.\n• Bring a universal adapter.', text_es: '• Desbloquee tarjetas.\n• Tenga moneda local en efectivo.\n• Lleve un adaptador universal.', icon: 'Wallet', types: ['international'] },
-    ];
-
-    // Filter by trip type (show type-specific + all universal + international)
-    const tips = allTips.filter(tip =>
-        tip.types.includes('all') || 
-        tip.types.includes(activeTrip.type) || 
-        (config.isInternational && tip.types.includes('international'))
-    );
+    // As dicas "Fique Atento" agora vivem POR FASE (TravelTipsAccordion):
+    // 'preparacao' na Inspeção de Partida, 'chegada' na Inspeção de Chegada,
+    // e aqui no dashboard só as de 'durante' (valem a viagem inteira).
 
     return (
         <AppBackground>
@@ -368,51 +347,9 @@ export default function TravelModeScreen({ navigation }) {
                         </ScaleButton>
                     </View>
 
-                    {/* 2. FIQUE ATENTO! */}
-                    <Text style={[s.sectionLabel, { marginTop: 20, marginBottom: 14 }]}>{t('travel.payAttention', 'Fique Atento!')}</Text>
-                    <View style={{ gap: 12 }}>
-                        {tips.map((tip, idx) => {
-                            const isOpen = expandedTipIdx === idx;
-                            const bulletItems = t_field(tip, 'text').split('\n').filter(l => l.trim());
-                            return (
-                                <NeoCard key={idx} variant="elevated" style={{ overflow: 'hidden' }}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-                                            setExpandedTipIdx(isOpen ? null : idx);
-                                        }}
-                                        activeOpacity={0.8}
-                                        style={{ flexDirection: 'row', alignItems: 'center', padding: 14 }}
-                                    >
-                                        {/* Tratamento único premium: forest sobre tint
-                                            suave — sem arco-íris por card */}
-                                        <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: Neo.colors.primary[100], alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                                            {/* TESTE A/B (2026-06-12): duotone no lugar de
-                                                Bold — avaliar percepção de riqueza antes de
-                                                considerar pack pago. Reverter p/ "Bold" se
-                                                não aprovar. */}
-                                            <NeoIcon name={tip.icon} size={22} color={Neo.colors.primary[700]} variant="Bulk" />
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[800], fontSize: 14 }}>{t_field(tip, 'title')}</Body>
-                                        </View>
-                                        {isOpen ? <NeoIcon name="ArrowUp2" size={18} color={Neo.colors.neutral[500]} /> : <NeoIcon name="ArrowDown2" size={18} color={Neo.colors.neutral[500]} />}
-                                    </TouchableOpacity>
-                                    {isOpen && (
-                                        <View style={{ paddingHorizontal: 14, paddingBottom: 14 }}>
-                                            <View style={{ height: 1, backgroundColor: Neo.colors.neutral[100], marginBottom: 12 }} />
-                                            {bulletItems.map((line, li) => (
-                                                <View key={li} style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 }}>
-                                                    <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: Neo.colors.primary[500], marginRight: 10, marginTop: 6 }} />
-                                                    <Body style={{ flex: 1, color: Neo.colors.neutral[700], fontSize: 13, lineHeight: 19 }}>{line.replace(/^[•\s]+/, '')}</Body>
-                                                </View>
-                                            ))}
-                                        </View>
-                                    )}
-                                </NeoCard>
-                            );
-                        })}
-                    </View>
+                    {/* 2. FIQUE ATENTO (durante a viagem) — preparação e chegada
+                        vivem nas respectivas telas de inspeção */}
+                    <TravelTipsAccordion phase="durante" />
 
                     {/* ENCERRAR MODO VIAGEM */}
                     <ScaleButton onPress={endTrip} style={{ marginTop: 24, marginBottom: 16 }}>

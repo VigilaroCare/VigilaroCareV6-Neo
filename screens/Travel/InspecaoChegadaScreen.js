@@ -8,6 +8,7 @@ import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
+import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -179,6 +180,10 @@ export default function InspecaoChegadaScreen({ navigation }) {
                     </View>
 
                     {CHECKLIST_ITEMS.map(renderSection)}
+
+                    {/* Dicas da fase de CHEGADA (janelas, piscina, plano de
+                        fuga, idosos…) — acionáveis no contexto do checklist */}
+                    <TravelTipsAccordion phase="chegada" />
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>

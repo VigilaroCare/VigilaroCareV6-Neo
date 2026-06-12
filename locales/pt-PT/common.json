@@ -451,6 +451,17 @@
         "policePhone": "112"
     },
     "travel": {
+        "stayAlertPrep": "Atenção antes de partir",
+        "stayAlertArrival": "Atenção no destino",
+        "stayAlertDuring": "Atenção durante a viagem",
+        "dcAlertsTitle": "Alertas da Proteção Civil",
+        "dcAlertsBody": "No Brasil, cadastre o CEP da residência e do destino para receber alertas oficiais por SMS (envie o CEP para 40199). Em Portugal, acompanhe os avisos da ANEPC/IPMA.",
+        "dcAlertsAction": "Registar por SMS (40199)",
+        "intlAlertsTitle": "Alertas de emergência no estrangeiro",
+        "intlAlertsBody": "Muitos países enviam alertas diretamente ao telemóvel (sismos, mau tempo) — mas apenas se a opção \"alertas de emergência\" estiver ativa nas definições do aparelho. Ative antes de embarcar e mantenha ativa no destino.",
+        "itamaratyTitle": "Alertas consulares oficiais",
+        "itamaratyBody": "Consulte as recomendações oficiais para o seu destino e anote o contacto da embaixada/consulado mais próximo.",
+        "itamaratyAction": "Abrir Portal Consular",
         "departureInspection": "Inspeção de Partida",
         "departureSubtitle": "O que fazer antes de sair de casa",
         "departureIntro": "Evite imprevistos e regressos desnecessários. Reveja esta checklist nos minutos finais antes de fechar a porta.",

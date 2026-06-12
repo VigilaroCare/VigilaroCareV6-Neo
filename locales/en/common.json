@@ -503,6 +503,17 @@
         "guideP3": "Empty blister packs, bottles, expired pills or leftovers should be returned to pharmacies or designated drop-off sites. Never flush them!"
     },
     "travel": {
+        "stayAlertPrep": "Stay alert before departure",
+        "stayAlertArrival": "Stay alert at your destination",
+        "stayAlertDuring": "Stay alert throughout the trip",
+        "dcAlertsTitle": "Civil Defense Alerts",
+        "dcAlertsBody": "In Brazil, register your home and destination postal codes to receive official disaster alerts by SMS — a free public service. Just text the postal code (CEP) to 40199.",
+        "dcAlertsAction": "Register via SMS (40199)",
+        "intlAlertsTitle": "Emergency alerts abroad",
+        "intlAlertsBody": "Many countries push alerts straight to your phone (earthquakes, severe weather) — but only if \"emergency alerts\" are enabled in your device settings. Turn them on before boarding and keep them on at your destination.",
+        "itamaratyTitle": "Official consular alerts",
+        "itamaratyBody": "Check the Brazilian government's official advisories for your destination and note the contact of the nearest embassy/consulate.",
+        "itamaratyAction": "Open Consular Portal",
         "departureInspection": "Departure Inspection",
         "departureSubtitle": "What to do before leaving home",
         "departureIntro": "Avoid unexpected issues and unnecessary returns. Run through this quick checklist before locking your door.",
