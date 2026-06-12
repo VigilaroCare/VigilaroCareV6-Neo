@@ -1,6 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import * as Phosphor from 'phosphor-react-native';
+import ElderlyIcon from './icons/ElderlyIcon';
+
+// Glifos desenhados em casa, na gramática do Phosphor (viewBox 256,
+// traço 16 arredondado, duotone = massa 0.2 + traço). Para conceitos
+// que o catálogo não cobre.
+const CUSTOM_ICONS = {
+    Elderly: ElderlyIcon,
+};
 
 /**
  * NeoIcon — API ÚNICA de iconografia do Vigilaro Care (DS2026).
@@ -25,6 +33,14 @@ import * as Phosphor from 'phosphor-react-native';
  *                          Uso em: botões inline (Edit, Trash, Add),
  *                          setas (ArrowRight, ArrowLeft), back buttons,
  *                          itens em listas densas, modais, secundários.
+ *
+ *   - variant="Bulk"    →  ícones que INFORMAM (conteúdo educativo).
+ *                          Renderiza como Phosphor weight="duotone".
+ *                          Uso em: accordions de dicas, listas informativas,
+ *                          cards de leitura (aprovado pelo autor 2026-06-12
+ *                          no Fique Atento — percepção de "ilustração rica"
+ *                          sem pack pago). Regra: "Bold ancora, Bulk
+ *                          informa, Linear atua."
  *
  * A regra não é rígida — é um padrão consistente do DS. O caller decide
  * passando `variant` explicitamente. NUNCA omita (default é 'Linear').
@@ -286,6 +302,17 @@ export default function NeoIcon({
 }) {
     const name = mapName(rawName);
     const weight = variantToWeight(variant);
+
+    // 0. Glifos próprios do Vigilaro (conceitos sem equivalente no Phosphor).
+    //    Mesma API: respeitam size/color/weight.
+    if (CUSTOM_ICONS[name]) {
+        const CustomComponent = CUSTOM_ICONS[name];
+        return (
+            <View style={style}>
+                <CustomComponent size={size} color={color} weight={weight} />
+            </View>
+        );
+    }
 
     // 1. Phosphor via PHOSPHOR_MAP (caminho canônico).
     const phosphorName = PHOSPHOR_MAP[name];
