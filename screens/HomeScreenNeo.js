@@ -69,7 +69,7 @@ const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
     atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
-    ferramentas: require('../assets/illustrations/home-pictograms/pictogram-ferramentas-ia.png'),
+    scanner:     require('../assets/illustrations/home-pictograms/pictogram-scanner-ambiente.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
 };
 
@@ -208,7 +208,7 @@ export default function HomeScreenNeo() {
         // item só, sem razão de existir. clipScanner/clipRotulos restauram o
         // respiro da família-ferramenta (PNGs com menos área transparente que
         // vistoria/atividades) pra o label não "colar".
-        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'), image: HOME_PICTOGRAMS.ferramentas, route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'), image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
         { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),    image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
     ];
 
