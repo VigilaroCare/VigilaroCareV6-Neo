@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -17,9 +18,20 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 export default function InspecaoChegadaScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [checkedItems, setCheckedItems] = useState({});
-    const [expandedSections, setExpandedSections] = useState({ windows: true, water: true, electric: true, access: true });
+    const [expandedSections, setExpandedSections] = useState({});
+    const [trip, setTrip] = useState(null);
 
-    const CHECKLIST_ITEMS = [
+    // Personalização efetiva (autor, 2026-06-12): o checklist cruza o
+    // briefing da viagem — tipo de destino condiciona a seção de água,
+    // e cada companhia (crianças/idosos/pets/PCD) traz sua seção própria.
+    useEffect(() => {
+        AsyncStorage.getItem('@active_trip')
+            .then((raw) => { if (raw) setTrip(JSON.parse(raw)); })
+            .catch(() => {});
+    }, []);
+    const cfg = trip?.config || {};
+
+    const BASE_ITEMS = [
         {
             id: 'windows',
             title: t('travel.windowsBalconies', 'Janelas e Sacadas'),
@@ -71,6 +83,66 @@ export default function InspecaoChegadaScreen({ navigation }) {
         }
     ];
 
+    // Seções condicionais — uma por companhia do briefing
+    const COMPANION_SECTIONS = [
+        cfg.hasKids && {
+            id: 'kids',
+            title: t('travel.forKidsTitle', 'Para as Crianças'),
+            icon: 'Baby',
+            color: Neo.colors.secondary[500],
+            items: [
+                { id: 'kids_outlets', label: t('travel.kidsOutlets', 'Tomadas ao alcance protegidas (leve protetores portáteis)') },
+                { id: 'kids_products', label: t('travel.kidsProducts', 'Produtos de limpeza e medicamentos fora do alcance') },
+                { id: 'kids_corners', label: t('travel.kidsCorners', 'Quinas de móveis e objetos escaláveis perto de janelas') },
+                { id: 'kids_sleep', label: t('travel.kidsSleep', 'Local de dormir seguro (sem frestas, longe de cortinas)') },
+            ]
+        },
+        cfg.hasElderly && {
+            id: 'elderly',
+            title: t('travel.forElderlyTitle', 'Para os Idosos'),
+            icon: 'Elderly',
+            color: Neo.colors.primary[600],
+            items: [
+                { id: 'eld_rugs', label: t('travel.elderlyRugs', 'Tapetes soltos removidos ou fixados') },
+                { id: 'eld_nightlight', label: t('travel.elderlyNightlight', 'Caminho quarto-banheiro iluminado à noite') },
+                { id: 'eld_bathroom', label: t('travel.elderlyBathroom', 'Banheiro: piso, apoio e box verificados') },
+                { id: 'eld_bed', label: t('travel.elderlyBed', 'Altura da cama adequada (sentar e levantar com apoio)') },
+            ]
+        },
+        cfg.hasPets && {
+            id: 'pets',
+            title: t('travel.forPetsTitle', 'Para o Pet'),
+            icon: 'PawPrint',
+            color: Neo.colors.feedback.warning,
+            items: [
+                { id: 'pet_screens', label: t('travel.petScreens', 'Telas, portões e cercas sem frestas de fuga') },
+                { id: 'pet_plants', label: t('travel.petPlants', 'Plantas do local verificadas (toxicidade)') },
+                { id: 'pet_products', label: t('travel.petProducts', 'Iscas/venenos e produtos químicos inacessíveis') },
+                { id: 'pet_shade', label: t('travel.petShade', 'Água fresca e sombra disponíveis') },
+            ]
+        },
+        cfg.hasPcd && {
+            id: 'pcd',
+            title: t('travel.forPcdTitle', 'Acessibilidade (PCD)'),
+            icon: 'Wheelchair',
+            color: Neo.colors.feedback.success,
+            items: [
+                { id: 'pcd_route', label: t('travel.pcdRoute', 'Rota de circulação livre de obstáculos e desníveis') },
+                { id: 'pcd_bathroom', label: t('travel.pcdBathroom', 'Banheiro adaptado confere com o anunciado') },
+                { id: 'pcd_exit', label: t('travel.pcdExit', 'Rota de evacuação acessível identificada') },
+                { id: 'pcd_reach', label: t('travel.pcdReach', 'Interruptores e itens essenciais ao alcance') },
+            ]
+        },
+    ].filter(Boolean);
+
+    // Água/piscina só onde faz sentido (praia, resort, rural) — sem viagem
+    // ativa, mostra tudo (fallback completo, não-omisso)
+    const showWater = !trip || ['praia', 'resort', 'rural'].includes(trip.type);
+    const CHECKLIST_ITEMS = [
+        ...BASE_ITEMS.filter(s => s.id !== 'water' || showWater),
+        ...COMPANION_SECTIONS,
+    ];
+
     const toggleItem = (id) => {
         setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));
     };
@@ -84,7 +156,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
     const totalChecked = Object.values(checkedItems).filter(Boolean).length;
 
     const renderSection = (section) => {
-        const isExpanded = expandedSections[section.id];
+        const isExpanded = expandedSections[section.id] !== false; // padrão: aberta
         const completedCount = section.items.filter(item => checkedItems[item.id]).length;
         const totalCount = section.items.length;
         const isCompleted = completedCount === totalCount;
@@ -177,6 +249,11 @@ export default function InspecaoChegadaScreen({ navigation }) {
                         <View style={{ marginTop: 12, backgroundColor: Neo.colors.primary[100], paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20 }}>
                             <Small style={{ fontWeight: 'bold', color: Neo.colors.primary[700] }}>{totalChecked} / {totalItems} verificados</Small>
                         </View>
+                        {!!trip && (
+                            <Small style={{ marginTop: 8, color: Neo.colors.neutral[500], textAlign: 'center' }}>
+                                {t('travel.checklistTailored', 'Checklist ajustado ao briefing da sua viagem.')}
+                            </Small>
+                        )}
                     </View>
 
                     {CHECKLIST_ITEMS.map(renderSection)}

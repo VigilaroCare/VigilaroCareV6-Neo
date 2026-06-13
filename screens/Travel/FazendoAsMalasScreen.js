@@ -139,6 +139,63 @@ const MODULE_IDOSO_PCD = {
     ],
 };
 
+const MODULE_CRIANCAS = {
+    id: 'kit_criancas',
+    title: 'Módulo Crianças',
+    icon: 'Baby',
+    color: Neo.colors.secondary[500],
+    intro: 'Segurança e saúde dos pequenos na estrada.',
+    items: [
+        'Medicação infantil com dosador + receitas',
+        'Pulseira de identificação com telefone dos pais',
+        'Protetores de tomada portáteis',
+        'Cadeirinha/assento de elevação para os trajetos',
+        'Itens de conforto e troca extra na bagagem de mão',
+    ],
+};
+
+const MODULE_PRAIA = {
+    id: 'kit_praia',
+    title: 'Módulo Litoral',
+    icon: 'Waves',
+    color: Neo.colors.primary[500],
+    intro: 'Sol e água pedem proteção específica.',
+    items: [
+        'Colete salva-vidas infantil (boia de braço não protege)',
+        'Guarda-sol ou tenda com proteção UV',
+        'Chinelos antiderrapantes',
+        'Água potável para os trajetos',
+    ],
+};
+
+const MODULE_RURAL = {
+    id: 'kit_rural',
+    title: 'Módulo Campo e Natureza',
+    icon: 'Plant',
+    color: Neo.colors.primary[700],
+    intro: 'Onde o socorro demora, o preparo chega antes.',
+    items: [
+        'Repelente e calçado fechado',
+        'Lanterna + pilhas extras',
+        'Mapa offline da região (sinal pode faltar)',
+        'Capa de chuva e agasalho',
+    ],
+};
+
+const MODULE_INTERNACIONAL = {
+    id: 'kit_internacional',
+    title: 'Módulo Internacional',
+    icon: 'Global',
+    color: Neo.colors.secondary[600] || Neo.colors.secondary[500],
+    intro: 'Documentação e energia para outro país.',
+    items: [
+        'Adaptador universal de tomadas',
+        'Cópias do passaporte (física + nuvem)',
+        'Apólice do seguro viagem acessível offline',
+        'Contato do consulado brasileiro no destino',
+    ],
+};
+
 // --- COMPONENTE ACCORDION CARD (padrão Guia de Segurança) ---
 function CategoryCard({ category, expanded, onToggle }) {
     const toggle = () => {
@@ -226,8 +283,14 @@ export default function FazendoAsMalasScreen({ navigation }) {
             kits.push(MODULE_LAZER);
         }
 
+        if (activeTrip.config?.hasKids) kits.push(MODULE_CRIANCAS);
         if (activeTrip.config?.hasPets) kits.push(MODULE_PETS);
         if (activeTrip.config?.hasElderly || activeTrip.config?.hasPcd) kits.push(MODULE_IDOSO_PCD);
+
+        // Tipo de destino e internacional — completam o cruzamento do briefing
+        if (activeTrip.type === 'praia' || activeTrip.type === 'resort') kits.push(MODULE_PRAIA);
+        if (activeTrip.type === 'rural') kits.push(MODULE_RURAL);
+        if (activeTrip.config?.isInternational) kits.push(MODULE_INTERNACIONAL);
 
         return kits;
     };

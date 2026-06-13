@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -168,6 +169,59 @@ const KIT_DATA = [
     },
 ];
 
+// ── Categorias condicionais (cruzam o briefing da viagem) ──
+const KIT_CRIANCAS = {
+    id: 'kit_criancas',
+    title: 'Para as Crianças',
+    icon: 'Baby',
+    color: Neo.colors.secondary[500],
+    intro: 'Itens que os adultos esquecem e as crianças não dispensam.',
+    sections: [
+        {
+            subtitle: 'Saúde Infantil',
+            items: [
+                'Medicação infantil com dosador + receita pediátrica',
+                'Termômetro e soro fisiológico',
+                'Pomada para assaduras e protetor solar infantil',
+            ],
+        },
+        {
+            subtitle: 'Segurança',
+            items: [
+                'Protetores de tomada portáteis',
+                'Pulseira de identificação com telefone dos pais',
+                'Itens de conforto para o sono em lugar estranho',
+            ],
+        },
+    ],
+};
+
+const KIT_IDOSO_PCD = {
+    id: 'kit_idoso_pcd',
+    title: 'Cuidados Especiais (Idosos/PCD)',
+    icon: 'Elderly',
+    color: Neo.colors.primary[600],
+    intro: 'Saúde e mobilidade não tiram férias.',
+    sections: [
+        {
+            subtitle: 'Saúde e Medicação',
+            items: [
+                'Caixa organizadora de medicamentos por horário',
+                'Lista de medicamentos, dosagens e alergias',
+                'Cópia de laudos e prontuário resumido',
+            ],
+        },
+        {
+            subtitle: 'Mobilidade e Apoio',
+            items: [
+                'Equipamento de apoio + itens de reposição',
+                'Calçado antiderrapante',
+                'Luz noturna portátil (caminho do banheiro)',
+            ],
+        },
+    ],
+};
+
 const TRANSPORT_TIP = {
     title: 'Regras de Transporte Aéreo',
     text: 'Medicamentos devem ir na bagagem de mão, na embalagem original e com receita. Líquidos em frascos de até 100ml, em saco plástico transparente. Medicamentos com receita não têm restrição de volume.',
@@ -224,6 +278,27 @@ function CategoryCard({ category }) {
 
 export default function KitViagemScreen({ navigation }) {
     const { t } = useTranslation('common');
+    const [trip, setTrip] = useState(null);
+
+    useEffect(() => {
+        AsyncStorage.getItem('@active_trip')
+            .then((raw) => { if (raw) setTrip(JSON.parse(raw)); })
+            .catch(() => {});
+    }, []);
+    const cfg = trip?.config || {};
+
+    // Cruzamento do briefing: sem pets, a subseção de pets sai; com
+    // crianças/idosos/PCD, entram categorias dedicadas. Sem viagem ativa,
+    // mostra o kit completo (fallback não-omisso).
+    const categories = KIT_DATA.map((cat) => {
+        if (cat.id === 'adicionais' && trip && !cfg.hasPets) {
+            return { ...cat, sections: cat.sections.filter((s) => s.subtitle !== 'Para Quem Viaja com Pets') };
+        }
+        return cat;
+    });
+    if (cfg.hasKids) categories.push(KIT_CRIANCAS);
+    if (cfg.hasElderly || cfg.hasPcd) categories.push(KIT_IDOSO_PCD);
+
     return (
         <AppBackground>
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -255,8 +330,14 @@ export default function KitViagemScreen({ navigation }) {
                         {t('headersFirst.monteSeuKitEssencialDeViagemComFocoEmSaD', 'Monte seu kit essencial de viagem com foco em saúde, higiene e primeiros socorros. Toque em cada categoria para expandir.')}
                     </Body>
 
+                    {!!trip && (
+                        <Small style={{ textAlign: 'center', color: Neo.colors.neutral[500], marginTop: -10, marginBottom: 16 }}>
+                            {t('travel.checklistTailored', 'Checklist ajustado ao briefing da sua viagem.')}
+                        </Small>
+                    )}
+
                     {/* Categories */}
-                    {KIT_DATA.map((cat) => (
+                    {categories.map((cat) => (
                         <CategoryCard key={cat.id} category={cat} />
                     ))}
 
