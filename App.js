@@ -222,10 +222,6 @@ import ScannerScreen               from "./screens/ScannerScreen";
 import AudioMonitorScreen          from './screens/AudioMonitorScreen';
 import VisionMonitorScreen         from './screens/VisionMonitorScreen';
 import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
-import AssistentePrevencaoIAScreen from './screens/AssistentePrevencaoIAScreen';
-import ConversationalAgentScreen   from './screens/ConversationalAgentScreen';
-import ChatScreen                  from './screens/ChatScreen';
-import AITextChatScreen            from './screens/AITextChatScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import FallSensitivityScreen      from "./screens/FallSensitivityScreen";
 import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
@@ -683,10 +679,6 @@ export default function App() {
                       <Stack.Screen name="AudioMonitor" component={AudioMonitorScreen} />
                       <Stack.Screen name="VisionMonitor" component={VisionMonitorScreen} />
                       <Stack.Screen name="HistoricoAuditoria" component={HistoricoAuditoriaScreen} />
-                      <Stack.Screen name="AssistentePrevencaoIA" component={AssistentePrevencaoIAScreen} />
-                      <Stack.Screen name="ConversationalAgent" component={ConversationalAgentScreen} options={{ presentation: 'modal', headerShown: false }} />
-                      <Stack.Screen name="Chat" component={ChatScreen} />
-                      <Stack.Screen name="AITextChat" component={AITextChatScreen} options={{ headerShown: false }} />
                       <Stack.Screen name="DataHealth" component={DataHealthScreen} />
                       <Stack.Screen name="MapaDeCalor" component={MapaDeCalorScreen} />
 

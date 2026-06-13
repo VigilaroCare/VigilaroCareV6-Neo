@@ -43,9 +43,6 @@ const HIDDEN_ROUTES = new Set([
   'Splash', 'CustomSplashScreen',
   // Câmera / Scanner
   'ScannerScreen', 'Camera',
-  // Assistente de Voz / IA
-  'AssistenteVoz', 'AssistenteVozScreen', 'AssistenteIA',
-  'AssistenteIAScreen', 'ConversationalAgent', 'AITextChat',
   // Auth legacy
   'Login', 'Intro',
   // Emergência — não exibe footer sobre telas de SOS

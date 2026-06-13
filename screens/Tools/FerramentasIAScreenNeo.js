@@ -18,7 +18,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import FadeInView from '../../components/FadeInView';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -37,33 +37,6 @@ export default function FerramentasIAScreenNeo() {
         color: '#10B981', // emerald
         route: 'Scanner',
     };
-
-    // Assistentes (voz + texto)
-    const assistants = [
-        {
-            id: 'voice',
-            title: t('ferramentasIA.voiceTitle', 'Por voz'),
-            sub: t('ferramentasIA.voiceSubtitle', 'Pergunte falando'),
-            iconName: 'Microphone2',
-            color: '#7C3AED', // violet
-            route: 'AssistentePrevencaoIA',
-        },
-        {
-            id: 'text',
-            title: t('ferramentasIA.chatTitle', 'Por texto'),
-            sub: t('ferramentasIA.chatSubtitle', 'Pergunte escrevendo'),
-            iconName: 'Bubble',
-            color: '#0EA5E9', // sky
-            route: 'AITextChat',
-        },
-    ];
-
-
-
-    // Em breve (subtle — só itens ainda não implementados)
-    const upcoming = [
-        t('ferramentasIA.detectorTitle', 'Detector de áudio do ambiente'),
-    ];
 
     return (
         <AppBackground>
@@ -84,7 +57,7 @@ export default function FerramentasIAScreenNeo() {
                             {t('ferramentasIA.headerTitle', 'Ferramentas IA')}
                         </H1>
                         <Caption style={s.subtitle}>
-                            {t('ferramentasIA.headerSubtitle', 'Análise visual, voz e dados')}
+                            {t('ferramentasIA.headerSubtitle', 'Análise visual do ambiente')}
                         </Caption>
                     </View>
                 </View>
@@ -115,49 +88,6 @@ export default function FerramentasIAScreenNeo() {
                         </TouchableOpacity>
                     </FadeInView>
 
-                    {/* ASSISTENTES — 2-col grid */}
-                    <FadeInView delay={150}>
-                        <Text style={[s.sectionLabel, { marginTop: 22 }]}>
-                            {t('ferramentasIA.sectionAssistentes', 'Assistentes')}
-                        </Text>
-                        <View style={s.assistGrid}>
-                            {assistants.map(item => (
-                                <TouchableOpacity
-                                    key={item.id}
-                                    activeOpacity={0.85}
-                                    style={s.assistCell}
-                                    onPress={() => navigation.navigate(item.route)}
-                                >
-                                    <NeoCard variant="elevated" style={s.assistCard}>
-                                        <View style={[s.assistIconWrap, { backgroundColor: item.color + '33' }]}>
-                                            <NeoIcon name={item.iconName} size={24} color={item.color} variant="Bold" />
-                                        </View>
-                                        <H3 style={s.assistTitle}>{item.title}</H3>
-                                        <Small style={s.assistSub}>{item.sub}</Small>
-                                    </NeoCard>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </FadeInView>
-
-
-
-                    {/* EM BREVE — linha sutil em texto, sem cards lockados */}
-                    {upcoming.length > 0 && (
-                        <FadeInView delay={300}>
-                            <View style={s.upcomingBlock}>
-                                <Text style={s.upcomingLabel}>
-                                    {t('ferramentasIA.sectionEmBreve', 'Em breve')}
-                                </Text>
-                                {upcoming.map((text, idx) => (
-                                    <View key={idx} style={s.upcomingRow}>
-                                        <View style={s.upcomingDot} />
-                                        <Small style={s.upcomingText}>{text}</Small>
-                                    </View>
-                                ))}
-                            </View>
-                        </FadeInView>
-                    )}
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>
@@ -233,71 +163,4 @@ const s = StyleSheet.create({
         lineHeight: 17,
     },
 
-    // Assistentes (2-col grid)
-    assistGrid: {
-        flexDirection: 'row',
-        gap: 10,
-    },
-    assistCell: {
-        flex: 1,
-    },
-    assistCard: {
-        padding: 16,
-        borderRadius: 18,
-        alignItems: 'center',
-        minHeight: 130,
-    },
-    assistIconWrap: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 10,
-    },
-    assistTitle: {
-        fontSize: 14,
-        color: Neo.colors.neutral[900],
-        textAlign: 'center',
-        marginBottom: 3,
-    },
-    assistSub: {
-        color: Neo.colors.neutral[600],
-        textAlign: 'center',
-        fontSize: 11,
-    },
-
-
-
-    // Em breve (subtle, texto)
-    upcomingBlock: {
-        marginTop: 28,
-        paddingTop: 16,
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.06)',
-    },
-    upcomingLabel: {
-        fontSize: 10,
-        fontWeight: '800',
-        color: Neo.colors.neutral[500],
-        letterSpacing: 1.4,
-        marginBottom: 10,
-        textTransform: 'uppercase',
-    },
-    upcomingRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        paddingVertical: 4,
-    },
-    upcomingDot: {
-        width: 4,
-        height: 4,
-        borderRadius: 2,
-        backgroundColor: Neo.colors.neutral[400],
-    },
-    upcomingText: {
-        color: Neo.colors.neutral[600],
-        fontSize: 12.5,
-    },
 });
