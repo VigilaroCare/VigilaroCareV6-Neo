@@ -64,13 +64,10 @@ const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
 // os maiores consumidores de altura — fatores calibrados pra caber tudo
 // above-the-fold em telas ~800dp sem sacrificar legibilidade (labels 13px).
 const GRID_IMG_W = CONTENT_W * 0.48 * 0.84;  // célula 48%, imagem compacta
-const TOOL_IMG_W = CONTENT_W * 0.34;         // Ferramentas: 1 linha enxuta
 const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
-    saude:       require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
-    pets:        require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
     atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
     ferramentas: require('../assets/illustrations/home-pictograms/pictogram-ferramentas-ia.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
@@ -615,16 +612,5 @@ const s = StyleSheet.create({
         marginTop: 3,
         letterSpacing: 0,
         paddingHorizontal: 2,
-    },
-
-    // ── Ferramentas — dois pictogramas centralizados ──
-    toolPictogramRow: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        gap: Neo.spacing.md,
-    },
-    toolPictogramCell: {
-        width: '42%',
-        alignItems: 'center',
     },
 });

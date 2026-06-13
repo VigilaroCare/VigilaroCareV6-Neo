@@ -268,15 +268,6 @@ export default function SOSCountdownScreen({ navigation, route }) {
     }
   };
 
-  // Para áudio e vibração imediatamente — o usuário tomou uma decisão.
-  // Útil tanto pra cancelar quanto pra "sair via prompt de sensibilidade".
-  const stopAlerts = () => {
-    try {
-      if (playerRef.current) playerRef.current.stop();
-    } catch (_) { /* silent */ }
-    Vibration.cancel();
-  };
-
   const handleCancel = () => {
     navigation.goBack();
   };
@@ -485,77 +476,4 @@ const s = StyleSheet.create({
     letterSpacing: 0.3,
   },
 
-  // Modal contextual de sensibilidade — tom calmo, branco/cinza,
-  // contrasta com o overlay vermelho atrás. Não usa o vermelho de pânico.
-  promptBackdrop: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
-  },
-  promptCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 24,
-    padding: 24,
-    width: '100%',
-    maxWidth: 360,
-    alignItems: 'center',
-    elevation: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-  },
-  promptIconWrap: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: 'rgba(16,185,129,0.18)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  promptTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#0F172A',
-    textAlign: 'center',
-    marginBottom: 8,
-    letterSpacing: -0.3,
-  },
-  promptDesc: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#475569',
-    textAlign: 'center',
-    lineHeight: 20,
-    marginBottom: 22,
-    paddingHorizontal: 4,
-  },
-  promptPrimaryBtn: {
-    backgroundColor: '#10B981',
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    borderRadius: 14,
-    width: '100%',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  promptPrimaryText: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '800',
-    letterSpacing: 0.2,
-  },
-  promptSecondaryBtn: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    alignItems: 'center',
-  },
-  promptSecondaryText: {
-    color: '#64748B',
-    fontSize: 14,
-    fontWeight: '600',
-  },
 });
