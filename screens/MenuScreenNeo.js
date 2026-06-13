@@ -359,33 +359,36 @@ const s = StyleSheet.create({
         flexWrap: 'wrap',
         gap: 10,
     },
+    // Cards quadrados + verticais (ícone em cima, label embaixo) — mesma
+    // geometria do Hub/Home/Viagem, a identidade de card do app. NeoIcon
+    // segue (configuração = função); muda só a proporção, que estava deitada.
     gridCell: {
         width: '48.5%',
-        aspectRatio: 1.6,
+        aspectRatio: 1,
         marginBottom: 4,
     },
     gridCard: {
         flex: 1,
         borderRadius: 18,
-        paddingVertical: 14,
-        paddingHorizontal: 14,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    gridIconCircle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+        padding: 14,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 12,
+    },
+    gridIconCircle: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10,
     },
     gridLabel: {
-        flex: 1,
         fontSize: 13,
         fontWeight: '800',
         color: Neo.colors.neutral[900],
         lineHeight: 16,
+        textAlign: 'center',
     },
 
     // Destrutivo + footer
