@@ -111,37 +111,40 @@ export default function MenuScreenNeo() {
     };
 
     // ── Seções ──
-    // Cores escolhidas para garantir alto contraste sobre o background verde-claro
-    // do AppBackground. Evitamos neutros (cinza-em-cinza) e amarelos pálidos.
+    // Harmonização iconográfica (2026-06-12): acentos vêm dos gridAccents do
+    // DS (escala Tailwind-700 dessaturada, contraste AA) — fim dos 8 hexes
+    // ad-hoc. O vermelho saiu da "sensibilidade de queda": vermelho é
+    // RESERVADO a pânico/SOS (DS.emergency); configuração usa amber.
     // "Seu mapa sensível" foi removido daqui: é conteúdo principal, não ajuste.
     // Caminhos remanescentes: card na Home (premier) + "Atualizar mapeamento"
     // dentro do Raio X. Menu fica reservado pra ajustes verdadeiros.
+    const GA = Neo.colors.gridAccents;
     const sectionConta = [
         {
             key: 'gerenciar_mapa',
             iconName: 'Home2',
-            color: '#0F766E', // teal — gestão de mapa/locais
+            accent: GA.saude, // teal — gestão de mapa/locais
             label: t('menu.manageMap', 'Locais e moradores'),
             action: () => navigateWithHaptic('GerenciarLocaisPerfis'),
         },
         {
             key: 'acessibilidade',
             iconName: 'Eye',
-            color: '#10B981', // emerald — primary
+            accent: GA.vistorias, // sky
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
         {
             key: 'sensibilidade_queda',
             iconName: 'Activity',
-            color: '#EF4444', // red — sinaliza segurança/emergência
+            accent: GA.eventuais, // amber — atenção sem alarme (vermelho é só SOS)
             label: t('menu.fallSensitivity', 'Sensibilidade de queda'),
             action: () => navigateWithHaptic('FallSensitivity'),
         },
         {
             key: 'idioma',
             iconName: 'LanguageSquare',
-            color: '#0EA5E9', // sky blue — secondary
+            accent: GA.pets, // rose
             label: t('settings.language', 'Idioma'),
             action: () => setShowLangPicker(true),
         },
@@ -151,28 +154,28 @@ export default function MenuScreenNeo() {
         {
             key: 'suporte',
             iconName: 'MessageQuestion',
-            color: '#F59E0B', // amber, mais visível que o yellow do DS
+            accent: GA.eventuais, // amber
             label: t('menu.support'),
             action: () => Linking.openURL('mailto:contato@vigilarocare.ia.br'),
         },
         {
             key: 'sobre',
             iconName: 'InfoCircle',
-            color: '#6366F1', // indigo — distinto dos outros, alto contraste
+            accent: GA.vistorias, // sky
             label: t('menu.about'),
             action: () => navigateWithHaptic('Sobre'),
         },
         {
             key: 'termos',
             iconName: 'DocumentText',
-            color: '#0891B2', // cyan/teal — alto contraste, profissional
+            accent: GA.saude, // teal
             label: t('menu.terms'),
             action: () => navigateWithHaptic('TermsOfUse'),
         },
         {
             key: 'privacidade',
             iconName: 'Shield',
-            color: '#475569', // slate — protetor/sério mas com contraste suficiente
+            accent: GA.pets, // rose
             label: t('menu.privacy'),
             action: () => navigateWithHaptic('PrivacyPolicy'),
         },
@@ -191,8 +194,8 @@ export default function MenuScreenNeo() {
             style={s.gridCell}
         >
             <NeoCard variant="elevated" style={s.gridCard}>
-                <View style={[s.gridIconCircle, { backgroundColor: item.color + '33' }]}>
-                    <NeoIcon name={item.iconName} size={26} color={item.color} variant="Bold" />
+                <View style={[s.gridIconCircle, { backgroundColor: item.accent.bg }]}>
+                    <NeoIcon name={item.iconName} size={26} color={item.accent.color} variant="Bold" />
                 </View>
                 <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
                     {item.label}
