@@ -206,7 +206,6 @@ import UpgradePremiumScreen        from './screens/UpgradePremiumScreen';
 import ScannerScreen               from "./screens/ScannerScreen";
 import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
-import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
 import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
 import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
@@ -619,7 +618,6 @@ export default function App() {
                       <Stack.Screen name="EncerrarSituacao" component={EncerrarSituacaoScreen} />
 
                       {/* ---- IA & Ferramentas ---- */}
-                      <Stack.Screen name="FerramentasIA" component={FerramentasIAScreenNeo} />
                       <Stack.Screen name="InfoRotulos" component={InfoRotulosScreen} />
                       <Stack.Screen name="InfoRotulosResult" component={InfoRotulosResultScreen} />
                       <Stack.Screen name="HistoricoAuditoria" component={HistoricoAuditoriaScreen} />

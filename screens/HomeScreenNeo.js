@@ -204,8 +204,12 @@ export default function HomeScreenNeo() {
     const GRID_ITEMS = [
         { key: 'vistorias',  label: t('home.inspections'),                              image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios' },
         { key: 'atividades', label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
-        { key: 'ferramentas', label: t('home.toolbox', 'Ferramentas IA'),  image: HOME_PICTOGRAMS.ferramentas, route: 'FerramentasIA' },
-        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'), image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos' },
+        // Scanner direto na Home: o antigo hub FerramentasIA virou camada de 1
+        // item só, sem razão de existir. clipScanner/clipRotulos restauram o
+        // respiro da família-ferramenta (PNGs com menos área transparente que
+        // vistoria/atividades) pra o label não "colar".
+        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'), image: HOME_PICTOGRAMS.ferramentas, route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),    image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
     ];
 
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
@@ -381,6 +385,8 @@ export default function HomeScreenNeo() {
                                     item={item}
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
+                                    topClip={item.topClip}
+                                    bottomClip={item.bottomClip}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
