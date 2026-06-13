@@ -33,6 +33,31 @@ class MedicationService {
     }
 
     /**
+     * Frequência segura em horas: número finito e positivo, senão 8h.
+     * Guarda contra 0/''/NaN/negativo — um registro assim TRAVAVA o app
+     * (loop infinito no avanço de ciclos; bug do congelamento, 2026-06-12).
+     */
+    static sanitizeFrequencyHours(value) {
+        const n = Number(value);
+        return Number.isFinite(n) && n > 0 ? n : 8;
+    }
+
+    /**
+     * Avança `baseISO` em ciclos de `frequencyHours` até a primeira data
+     * FUTURA — em O(1), sem loop (à prova de congelamento por dados ruins).
+     */
+    static advanceToFuture(baseISO, frequencyHours) {
+        const stepMs = this.sanitizeFrequencyHours(frequencyHours) * 60 * 60 * 1000;
+        let baseTime = new Date(baseISO).getTime();
+        if (!Number.isFinite(baseTime)) baseTime = Date.now();
+        const now = Date.now();
+        const cycles = baseTime <= now
+            ? Math.floor((now - baseTime) / stepMs) + 1
+            : 0;
+        return new Date(baseTime + cycles * stepMs);
+    }
+
+    /**
      * Adiciona um novo medicamento e agenda a próxima dose
      */
     static async addMedication(medData) {
@@ -53,6 +78,8 @@ class MedicationService {
 
         const newMed = {
             ...medData,
+            // Nunca persistir frequência inválida (0/''/NaN) — ver helper.
+            frequencyHours: this.sanitizeFrequencyHours(medData.frequencyHours),
             id: medData.id || Date.now().toString(),
             createdAt: new Date().toISOString(),
             history: [] // Histórico de tomadas
@@ -80,6 +107,8 @@ class MedicationService {
                 ...medData, // Sobrescreve campos novos
                 // Se a data da dose mudou, reagendamos
             };
+            // Sanitiza também na edição — e conserta registros legados ruins.
+            updatedMed.frequencyHours = this.sanitizeFrequencyHours(updatedMed.frequencyHours);
 
             // Cancelar notificações antigas
             await this.cancelNotifications(existingMed);
@@ -142,13 +171,11 @@ class MedicationService {
 
             // Calcular nova data com base na escolha médica de reagendamento (Prevenção 3D)
             if (med.isRigidSchedule) {
-                // REGRA FIXA: Mantém o horário base. Avança ciclos até atingir um horário futuro válido.
-                let baseDate = new Date(med.nextDoseDate);
-                const now = new Date();
-                do {
-                    baseDate = new Date(baseDate.getTime() + (med.frequencyHours * 60 * 60 * 1000));
-                } while (baseDate <= now);
-                med.nextDoseDate = baseDate.toISOString();
+                // REGRA FIXA: Mantém o horário base. Avança ciclos até o futuro
+                // em O(1) — o do/while anterior congelava o app com frequência 0.
+                med.nextDoseDate = MedicationService
+                    .advanceToFuture(med.nextDoseDate, med.frequencyHours)
+                    .toISOString();
             } else {
                 // REGRA FLEXÍVEL (SINTOMÁTICOS): Zera o relógio a partir da hora do clique para evitar toxicidade
                 const takenTime = new Date();
@@ -216,13 +243,10 @@ class MedicationService {
                 // Usar data pré-calculada pelo modal (que já aplicou a lógica correta)
                 med.nextDoseDate = overrideNextDose;
             } else if (med.isRigidSchedule) {
-                // REGRA FIXA: Mantém o horário base, avança ciclos
-                let baseDate = new Date(med.nextDoseDate);
-                const now = new Date();
-                do {
-                    baseDate = new Date(baseDate.getTime() + (med.frequencyHours * 60 * 60 * 1000));
-                } while (baseDate <= now);
-                med.nextDoseDate = baseDate.toISOString();
+                // REGRA FIXA: avanço de ciclos em O(1) (à prova de freeze)
+                med.nextDoseDate = MedicationService
+                    .advanceToFuture(med.nextDoseDate, med.frequencyHours)
+                    .toISOString();
             } else {
                 // REGRA FLEXÍVEL COM ATRASO:
                 if (delayMinutes <= 30) {

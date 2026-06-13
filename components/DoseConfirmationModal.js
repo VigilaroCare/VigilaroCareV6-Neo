@@ -79,12 +79,15 @@ export default function DoseConfirmationModal({
         const freq = medication.frequencyHours || 8;
 
         if (medication.isRigidSchedule) {
-            // Rígido: avança ciclos do horário base
-            let baseDate = new Date(medication.nextDoseDate);
-            do {
-                baseDate = new Date(baseDate.getTime() + (freq * 60 * 60 * 1000));
-            } while (baseDate <= now);
-            return baseDate;
+            // Rígido: avança ciclos do horário base em O(1) — o do/while
+            // anterior podia congelar o app com dados inválidos.
+            const stepMs = freq * 60 * 60 * 1000;
+            let baseTime = new Date(medication.nextDoseDate).getTime();
+            if (!Number.isFinite(baseTime)) baseTime = now.getTime();
+            const cycles = baseTime <= now.getTime()
+                ? Math.floor((now.getTime() - baseTime) / stepMs) + 1
+                : 0;
+            return new Date(baseTime + cycles * stepMs);
         } else {
             // Flexível com lógica de atraso:
             if (delayMins <= 30) {
