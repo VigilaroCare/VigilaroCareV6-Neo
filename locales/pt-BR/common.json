@@ -485,6 +485,11 @@
         "generalPhone": "192"
     },
     "travel": {
+        "guideForYourTrip": "Montado para a sua viagem:",
+        "guideGenericIntro": "Férias e momentos fora de casa exigem atenção redobrada. Ative o Modo Viagem para um guia montado sob medida.",
+        "guideShowAll": "Ver o guia completo (+{{count}} temas)",
+        "guideShowLess": "Mostrar só o relevante para esta viagem",
+        "internationalChip": "Internacional",
         "stayAlertPrep": "Fique atento antes de partir",
         "stayAlertArrival": "Fique atento no destino",
         "stayAlertDuring": "Fique atento durante a viagem",

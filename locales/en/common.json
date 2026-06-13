@@ -503,6 +503,11 @@
         "guideP3": "Empty blister packs, bottles, expired pills or leftovers should be returned to pharmacies or designated drop-off sites. Never flush them!"
     },
     "travel": {
+        "guideForYourTrip": "Built for your trip:",
+        "guideGenericIntro": "Vacations and time away from home demand extra attention. Activate Travel Mode for a guide tailored to your trip.",
+        "guideShowAll": "See the full guide (+{{count}} topics)",
+        "guideShowLess": "Show only what matters for this trip",
+        "internationalChip": "International",
         "stayAlertPrep": "Stay alert before departure",
         "stayAlertArrival": "Stay alert at your destination",
         "stayAlertDuring": "Stay alert throughout the trip",

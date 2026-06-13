@@ -451,6 +451,11 @@
         "policePhone": "112"
     },
     "travel": {
+        "guideForYourTrip": "Montado para a sua viagem:",
+        "guideGenericIntro": "Férias e momentos fora de casa exigem atenção redobrada. Ative o Modo Viagem para um guia feito à medida.",
+        "guideShowAll": "Ver o guia completo (+{{count}} temas)",
+        "guideShowLess": "Mostrar apenas o relevante para esta viagem",
+        "internationalChip": "Internacional",
         "stayAlertPrep": "Atenção antes de partir",
         "stayAlertArrival": "Atenção no destino",
         "stayAlertDuring": "Atenção durante a viagem",
