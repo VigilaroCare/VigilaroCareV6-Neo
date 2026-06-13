@@ -4,7 +4,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
-  Image,
   Text,
   StyleSheet,
   Modal,
@@ -16,10 +15,9 @@ import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import ProfileService from '../services/ProfileService';
 import SubscriptionService from '../services/SubscriptionService';
-import { useProfiles } from '../contexts/ProfileContext';
 
 import NeoCard from '../components/NeoCard';
-import { H1, H3, Body, Caption, Small } from '../components/NeoTypography';
+import { H1, H3, Body, Small } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import * as Haptics from 'expo-haptics';
@@ -36,15 +34,12 @@ const LANGUAGES = [
 
 export default function MenuScreenNeo() {
     const navigation = useNavigation();
-    const { primaryProfile, loadProfiles } = useProfiles();
     const { t, i18n } = useTranslation();
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
     const textSecondary = themeColors.neutral[700];
 
-    const [displayProfile, setDisplayProfile] = useState(null);
-    const [activeResidenceName, setActiveResidenceName] = useState('');
     const [isPremium, setIsPremium] = useState(false);
     const [showLangPicker, setShowLangPicker] = useState(false);
 
@@ -53,24 +48,12 @@ export default function MenuScreenNeo() {
             let cancelled = false;
             (async () => {
                 try {
-                    const p = await ProfileService.getPrimaryProfile();
-                    if (!cancelled) setDisplayProfile(p || primaryProfile);
-
-                    const res = await ProfileService.getActiveResidence();
-                    if (!cancelled && res?.nome) {
-                        setActiveResidenceName(
-                            res.nome === 'Minha Casa Principal'
-                                ? t('home.mainHouse', 'Minha Casa Principal')
-                                : res.nome
-                        );
-                    }
-
                     const premium = await SubscriptionService.isPremium();
                     if (!cancelled) setIsPremium(!!premium);
                 } catch (_) { /* silent */ }
             })();
             return () => { cancelled = true; };
-        }, [primaryProfile, t])
+        }, [])
     );
 
     const navigateWithHaptic = (route, params) => {
@@ -174,11 +157,6 @@ export default function MenuScreenNeo() {
         },
     ];
 
-    const profileName = (displayProfile?.nome || primaryProfile?.nome || '').split(' ')[0];
-    const profileImageUri = displayProfile?.imagem
-        ? ProfileService.resolveImageUri(displayProfile.imagem)
-        : null;
-
     const renderGridCard = (item) => (
         <TouchableOpacity
             key={item.key}
@@ -211,36 +189,10 @@ export default function MenuScreenNeo() {
                                             // (botão SOS estende acima da barra base)
                     }}
                 >
-                    {/* HEADER — título + contexto do usuário */}
+                    {/* HEADER — só o título (perfil/residência vivem na Home;
+                        status Premium já aparece no cartão dedicado abaixo) */}
                     <View style={s.headerBlock}>
                         <H1 style={s.title}>{t('menu.menuSettings')}</H1>
-                        {!!profileName && (
-                            <View style={s.headerContext}>
-                                {profileImageUri ? (
-                                    <Image source={{ uri: profileImageUri }} style={s.avatar} />
-                                ) : (
-                                    <View style={[s.avatar, s.avatarPlaceholder]}>
-                                        <Body style={{ color: Neo.colors.neutral.white, fontWeight: '800' }}>
-                                            {profileName.charAt(0).toUpperCase()}
-                                        </Body>
-                                    </View>
-                                )}
-                                <View style={{ flex: 1 }}>
-                                    <Body style={s.headerName}>{profileName}</Body>
-                                    {!!activeResidenceName && (
-                                        <Caption style={s.headerHouse} numberOfLines={1}>
-                                            {activeResidenceName}
-                                        </Caption>
-                                    )}
-                                </View>
-                                {isPremium && (
-                                    <View style={s.premiumBadge}>
-                                        <NeoIcon name="TickCircle" size={12} color={Neo.colors.primary[700]} variant="Bold" />
-                                        <Text style={s.premiumBadgeText}>Premium</Text>
-                                    </View>
-                                )}
-                            </View>
-                        )}
                     </View>
 
                     {/* PREMIUM — cartão dedicado, tom convidativo (não vendedor agressivo) */}
@@ -362,47 +314,6 @@ const s = StyleSheet.create({
         fontWeight: '800',
         letterSpacing: -0.5,
         marginBottom: 10,
-    },
-    headerContext: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-    },
-    avatar: {
-        width: 44,
-        height: 44,
-        borderRadius: 14,
-        borderWidth: 2,
-        borderColor: 'rgba(255,255,255,0.9)',
-    },
-    avatarPlaceholder: {
-        backgroundColor: Neo.colors.primary[500],
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    headerName: {
-        fontWeight: '700',
-        fontSize: 16,
-        color: Neo.colors.neutral[900],
-    },
-    headerHouse: {
-        color: Neo.colors.neutral[600],
-        marginTop: 1,
-    },
-    premiumBadge: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'rgba(16,185,129,0.10)',
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 10,
-        gap: 4,
-    },
-    premiumBadgeText: {
-        fontSize: 11,
-        fontWeight: '800',
-        color: Neo.colors.primary[700],
-        letterSpacing: 0.2,
     },
 
     // Premium card
