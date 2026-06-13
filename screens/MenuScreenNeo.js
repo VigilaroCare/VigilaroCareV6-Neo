@@ -121,16 +121,9 @@ export default function MenuScreenNeo() {
     const GA = Neo.colors.gridAccents;
     const sectionConta = [
         {
-            key: 'gerenciar_mapa',
-            iconName: 'Home2',
-            accent: GA.saude, // teal — gestão de mapa/locais
-            label: t('menu.manageMap', 'Locais e moradores'),
-            action: () => navigateWithHaptic('GerenciarLocaisPerfis'),
-        },
-        {
             key: 'acessibilidade',
             iconName: 'Eye',
-            accent: GA.vistorias, // sky
+            accent: GA.saude, // teal
             label: t('menu.accessibility'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
