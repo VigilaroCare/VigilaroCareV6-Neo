@@ -350,6 +350,7 @@ const s = StyleSheet.create({
         letterSpacing: 1.6,
         marginBottom: 8,
         textTransform: 'uppercase',
+        textAlign: 'center', // tela-grid: título centralizado (família Home/Viagem)
         opacity: 0.85,
     },
 
