@@ -111,13 +111,6 @@ export default function MenuScreenNeo() {
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
         {
-            key: 'sensibilidade_queda',
-            iconName: 'Activity',
-            accent: GA.eventuais, // amber — atenção sem alarme (vermelho é só SOS)
-            label: t('menu.fallSensitivity', 'Sensibilidade de queda'),
-            action: () => navigateWithHaptic('FallSensitivity'),
-        },
-        {
             key: 'idioma',
             iconName: 'LanguageSquare',
             accent: GA.pets, // rose

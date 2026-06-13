@@ -36,7 +36,6 @@ export default function SOSCountdownScreen({ navigation, route }) {
   const { triggerReason } = route.params || {};
   const [countdown, setCountdown] = useState(triggerReason ? 10 : 5);
   const [sending, setSending] = useState(false);
-  const [showSensitivityPrompt, setShowSensitivityPrompt] = useState(false);
   // WhatsApp como canal complementar — exposto na view "sending" após o SMS sair.
   // Não é envio automático: precisa de interação do usuário (limitação técnica:
   // WhatsApp não suporta múltiplos destinatários num único link Linking.openURL).
@@ -279,25 +278,6 @@ export default function SOSCountdownScreen({ navigation, route }) {
   };
 
   const handleCancel = () => {
-    // Trigger contextual: se o SOS veio de FALL e ainda não saiu SMS,
-    // oferece o caminho pra ajustar sensibilidade em vez de simplesmente sair.
-    // Não dispara pra VITAL_CHECK (semântica diferente) nem pra SOS manual.
-    if (triggerReason === 'FALL' && !sending) {
-      stopAlerts();
-      setShowSensitivityPrompt(true);
-      return;
-    }
-    navigation.goBack();
-  };
-
-  const handleAdjustSensitivity = () => {
-    setShowSensitivityPrompt(false);
-    // replace pra não deixar a tela vermelha na stack ao voltar de Sensibilidade
-    navigation.replace('FallSensitivity');
-  };
-
-  const handleDismissPrompt = () => {
-    setShowSensitivityPrompt(false);
     navigation.goBack();
   };
 
@@ -399,55 +379,6 @@ export default function SOSCountdownScreen({ navigation, route }) {
           </>
         )}
       </SafeAreaView>
-
-      {/* TRIGGER CONTEXTUAL — só pra FALL cancelado antes do SMS sair.
-          Tom calmo (sem vermelho-pânico), oferece caminho direto pra
-          ajustar sensibilidade. Não fecha por toque fora — força escolha. */}
-      <Modal
-        visible={showSensitivityPrompt}
-        transparent
-        animationType="fade"
-        onRequestClose={handleDismissPrompt}
-      >
-        <View style={s.promptBackdrop}>
-          <View style={s.promptCard}>
-            <View style={s.promptIconWrap}>
-              <NeoIcon name="Activity" size={28} color="#10B981" variant="Bold" />
-            </View>
-            <Text style={s.promptTitle}>
-              {t('sosCountdown.sensitivityPromptTitle', 'Pareceu que não foi uma queda?')}
-            </Text>
-            <Text style={s.promptDesc}>
-              {t(
-                'sosCountdown.sensitivityPromptDesc',
-                'Se o alerta está disparando à toa, dá pra reduzir a sensibilidade aqui mesmo.'
-              )}
-            </Text>
-
-            <TouchableOpacity
-              style={s.promptPrimaryBtn}
-              onPress={handleAdjustSensitivity}
-              activeOpacity={0.85}
-              accessibilityRole="button"
-            >
-              <Text style={s.promptPrimaryText}>
-                {t('sosCountdown.sensitivityPromptAdjust', 'Ajustar sensibilidade')}
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={s.promptSecondaryBtn}
-              onPress={handleDismissPrompt}
-              activeOpacity={0.6}
-              accessibilityRole="button"
-            >
-              <Text style={s.promptSecondaryText}>
-                {t('sosCountdown.sensitivityPromptDismiss', 'Agora não')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </View>
   );
 }

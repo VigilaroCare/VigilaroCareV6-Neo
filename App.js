@@ -219,11 +219,8 @@ import FazendoAsMalasScreen  from "./screens/Travel/FazendoAsMalasScreen";
 // ---------------------------------------------------------------------------
 import UpgradePremiumScreen        from './screens/UpgradePremiumScreen';
 import ScannerScreen               from "./screens/ScannerScreen";
-import AudioMonitorScreen          from './screens/AudioMonitorScreen';
-import VisionMonitorScreen         from './screens/VisionMonitorScreen';
 import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
-import FallSensitivityScreen      from "./screens/FallSensitivityScreen";
 import FerramentasIAScreenNeo      from "./screens/Tools/FerramentasIAScreenNeo";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
 import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
@@ -244,7 +241,6 @@ import GlobalFloatingFooter   from "./components/GlobalFloatingFooter";
 import BatteryMonitor         from "./components/BatteryMonitor";
 import NeoAlertHost           from "./components/NeoAlertHost";
 import * as NavigationService from "./services/NavigationService";
-import FallDetectionService   from "./services/FallDetectionService";
 import VitalCheckService      from "./services/VitalCheckService";
 import AchievementService     from "./services/AchievementService";
 import SubscriptionService    from "./services/SubscriptionService";
@@ -438,28 +434,12 @@ export default function App() {
 
     let mounted = true;
 
-    // Callback estável de queda — usado no boot e na retomada via AppState.
-    const onFallDetected = ({ reason }) => {
-      if (!mounted) return;
-      const current = NavigationService.getCurrentRoute();
-      if (current !== 'SOSCountdown') {
-        // O log de "Queda Detectada / SOS enviado" é gravado pelo próprio
-        // SOSCountdownScreen quando o SMS é disparado — não aqui, para
-        // evitar gravar evento quando o usuário cancela antes do envio.
-        NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'FALL' });
-      }
-    };
-
     const startServices = async () => {
-      // Carrega preset e on/off salvos antes de iniciar
-      await FallDetectionService.loadPersistedConfig();
-      await FallDetectionService.start(onFallDetected);
-
       await VitalCheckService.init(({ reason }) => {
         if (!mounted) return;
         const current = NavigationService.getCurrentRoute();
         if (current !== 'SOSCountdown') {
-          // Idem — log gravado dentro do SOSCountdownScreen.
+          // Log gravado dentro do SOSCountdownScreen.
           NavigationService.navigate('SOSCountdown', { triggerReason: reason || 'VITAL_CHECK' });
         }
       });
@@ -467,25 +447,8 @@ export default function App() {
 
     startServices();
 
-    // Bateria: acelerômetro + giroscópio a 25Hz só fazem sentido com o app
-    // em primeiro plano (sem foreground service, o SO pode matar o processo
-    // em background a qualquer momento — o "monitoramento" seria ilusório).
-    // Pausa os sensores ao sair e retoma ao voltar, respeitando o toggle.
-    const appStateSub = AppState.addEventListener('change', (next) => {
-      if (!mounted) return;
-      if (next === 'active') {
-        if (FallDetectionService.getIsEnabled() && !FallDetectionService.isActive()) {
-          FallDetectionService.start(onFallDetected);
-        }
-      } else {
-        FallDetectionService.stop();
-      }
-    });
-
     return () => {
       mounted = false;
-      appStateSub.remove();
-      FallDetectionService.stop();
       VitalCheckService.logout();
     };
   }, [appIsReady, hasCompletedOnboarding]);
@@ -576,7 +539,6 @@ export default function App() {
                       <Stack.Screen name="BoasVindas" component={BoasVindasScreen} />
                       <Stack.Screen name="WelcomeTour" component={WelcomeTourScreen} />
                       <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
-                      <Stack.Screen name="FallSensitivity" component={FallSensitivityScreen} />
                       <Stack.Screen
                         name="FamilyComposition"
                         component={FamilyCompositionScreen}
@@ -676,8 +638,6 @@ export default function App() {
                       <Stack.Screen name="FerramentasIA" component={FerramentasIAScreenNeo} />
                       <Stack.Screen name="InfoRotulos" component={InfoRotulosScreen} />
                       <Stack.Screen name="InfoRotulosResult" component={InfoRotulosResultScreen} />
-                      <Stack.Screen name="AudioMonitor" component={AudioMonitorScreen} />
-                      <Stack.Screen name="VisionMonitor" component={VisionMonitorScreen} />
                       <Stack.Screen name="HistoricoAuditoria" component={HistoricoAuditoriaScreen} />
                       <Stack.Screen name="DataHealth" component={DataHealthScreen} />
                       <Stack.Screen name="MapaDeCalor" component={MapaDeCalorScreen} />
