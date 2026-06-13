@@ -36,7 +36,6 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import ProfileService from '../services/ProfileService';
-import MedicationService from '../services/MedicationService';
 import { useProfiles } from '../contexts/ProfileContext';
 import ProactiveNotificationService from '../services/ProactiveNotificationService';
 import ScoreService from '../services/ScoreService';
@@ -86,7 +85,6 @@ export default function HomeScreenNeo() {
 
     const [scoreData, setScoreData] = useState({ geral: 0, ambientes: {}, pendencias: 0 });
     const [scoreMessage, setScoreMessage] = useState({ titulo: 'Monitor Ativo', alerta: 'Carregando status...' });
-    const [overdueMeds, setOverdueMeds] = useState([]);
     const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
     const [activeResidence, setActiveResidence] = useState(null);
     const [imageError, setImageError] = useState(false);
@@ -113,9 +111,6 @@ export default function HomeScreenNeo() {
             const sData = await ScoreService.getScoreCompleto();
             setScoreData(sData);
             setScoreMessage(ScoreService.getMensagemImpacto(sData.geral, sData.pendencias));
-
-            const overdue = await MedicationService.getOverdueMeds();
-            setOverdueMeds(overdue);
 
         } catch (e) {
             if (__DEV__) {
@@ -174,7 +169,6 @@ export default function HomeScreenNeo() {
                 : t('home.heroStart', 'Comece sua proteção');
 
     // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
-    const hasOverdueMeds = overdueMeds.length > 0;
     const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
     const hasOffline = !systemStatus.isConnected;
     const hasCriticalBattery = systemStatus.isCriticalBattery;
@@ -195,13 +189,6 @@ export default function HomeScreenNeo() {
                 route: null,
             };
         }
-        if (hasOverdueMeds) {
-            return {
-                tone: 'critical',
-                label: t('home.overdueMeds', { count: overdueMeds.length, defaultValue: `${overdueMeds.length} medicação(ões) atrasada(s)` }),
-                route: 'MedicationScheduler',
-            };
-        }
         if (hasCriticalScore) {
             return {
                 tone: 'warning',
@@ -215,14 +202,11 @@ export default function HomeScreenNeo() {
 
     // Pictogramas proprietários: a imagem carrega a linguagem visual;
     // rótulos continuam nativos para i18n e acessibilidade.
+    // Grid único de acesso rápido (4 tiles). Saúde/PHR foi removido na fase de
+    // subtração — o dado de saúde-de-risco vive no perfil e alimenta o Relatório.
     const GRID_ITEMS = [
-        { key: 'saude',      label: t('home.myHealth'),                                 image: HOME_PICTOGRAMS.saude,      route: 'MinhaSaude' },
-        { key: 'pets',       label: t('home.petHealth'),                                image: HOME_PICTOGRAMS.pets,       route: 'SaudePet' },
         { key: 'vistorias',  label: t('home.inspections'),                              image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios' },
         { key: 'atividades', label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
-    ];
-
-    const TOOL_ITEMS = [
         { key: 'ferramentas', label: t('home.toolbox', 'Ferramentas IA'),  image: HOME_PICTOGRAMS.ferramentas, route: 'FerramentasIA' },
         { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'), image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos' },
     ];
@@ -400,29 +384,6 @@ export default function HomeScreenNeo() {
                                     item={item}
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
-                                    onPress={() => navigateWithHaptic(item.route)}
-                                />
-                            </ScaleInView>
-                        ))}
-                    </View>
-
-                    {/* FERRAMENTAS */}
-                    <Eyebrow style={s.sectionEyebrow}>{t('home.toolsSection', 'Ferramentas')}</Eyebrow>
-                    <View style={s.toolPictogramRow}>
-                        {TOOL_ITEMS.map((item, idx) => (
-                            <ScaleInView
-                                key={item.key}
-                                delay={120 + idx * 45}
-                                skipOnRevisit
-                                screenKey="HomeTools"
-                                style={s.toolPictogramCell}
-                            >
-                                <BarePictogramShortcut
-                                    item={item}
-                                    textColor={textPrimary}
-                                    imageWidth={TOOL_IMG_W}
-                                    topClip={0.03}
-                                    bottomClip={0.03}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>

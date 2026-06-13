@@ -91,7 +91,6 @@ import TeoriaFogoScreen                  from './screens/Education/TeoriaFogoScr
 import KitEmergenciaScreen               from './screens/Emergency/KitEmergenciaScreen';
 import KitPrimeirosSocorrosScreen        from './screens/Emergency/KitPrimeirosSocorrosScreen';
 import KitRemediosScreen                 from './screens/Emergency/KitRemediosScreen';
-import MedicationsScreen                 from './screens/MedicationsScreen';
 import SobreScreen                       from './screens/SobreScreen';
 import TermsOfUseScreen                  from './screens/TermsOfUseScreen';
 import PrivacyPolicyScreen               from './screens/PrivacyPolicyScreen';
@@ -168,20 +167,6 @@ import SegurancaFeriasScreen       from "./screens/SegurancaFeriasScreen";
 import MobilidadeSeguraScreen      from "./screens/MobilidadeSeguraScreen";
 import AcessoriosSegurancaScreen   from "./screens/AcessoriosSegurancaScreen";
 import EpiDomesticoScreen          from "./screens/EPIDomesticoScreen";
-
-// ---------------------------------------------------------------------------
-// SAÚDE
-// ---------------------------------------------------------------------------
-import MedicationSchedulerScreen from "./screens/MedicationSchedulerScreen";
-import MinhaSaudeScreen          from "./screens/Health/MinhaSaudeScreen";
-import AddEventScreen            from "./screens/Health/AddEventScreen";
-import AddTreatmentScreen        from "./screens/Health/AddTreatmentScreen";
-import AddAppointmentScreen      from "./screens/Health/AddAppointmentScreen";
-import AddExamScreen             from "./screens/Health/AddExamScreen";
-import AddProcedureScreen        from "./screens/Health/AddProcedureScreen";
-import AddMedicalRecordScreen    from "./screens/Health/AddMedicalRecordScreen";
-import ShareHealthRecordScreen   from "./screens/Health/ShareHealthRecordScreen";
-import SaudePetScreen            from "./screens/Health/SaudePetScreen";
 
 // ---------------------------------------------------------------------------
 // PERFIS E SEGURANÇA INSTITUCIONAL
@@ -569,7 +554,6 @@ export default function App() {
                       <Stack.Screen name="KitEmergencia" component={KitEmergenciaScreen} />
                       <Stack.Screen name="KitPrimeirosSocorros" component={KitPrimeirosSocorrosScreen} />
                       <Stack.Screen name="KitRemedios" component={KitRemediosScreen} />
-                      <Stack.Screen name="Medications" component={MedicationsScreen} />
                       <Stack.Screen name="Sobre" component={SobreScreen} />
                       <Stack.Screen name="TermsOfUse" component={TermsOfUseScreen} />
                       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
@@ -675,16 +659,6 @@ export default function App() {
                       <Stack.Screen name="KitsMenu" component={KitsMenuScreen} />
                       <Stack.Screen name="Relatorios" component={RelatoriosScreen} />
                       <Stack.Screen name="ChecklistReport" component={ChecklistReportScreen} />
-                      <Stack.Screen name="MedicationScheduler" component={MedicationSchedulerScreen} />
-                      <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />
-                      <Stack.Screen name="AddEvent" component={AddEventScreen} />
-                      <Stack.Screen name="AddTreatment" component={AddTreatmentScreen} />
-                      <Stack.Screen name="AddAppointment" component={AddAppointmentScreen} />
-                      <Stack.Screen name="AddExam" component={AddExamScreen} />
-                      <Stack.Screen name="AddProcedure" component={AddProcedureScreen} />
-                      <Stack.Screen name="AddMedicalRecord" component={AddMedicalRecordScreen} />
-                      <Stack.Screen name="ShareHealthRecord" component={ShareHealthRecordScreen} />
-                      <Stack.Screen name="SaudePet" component={SaudePetScreen} />
                       <Stack.Screen name="EscolaSegura" component={EscolaSeguraScreen} />
                       <Stack.Screen name="EscolaSeguraReport" component={EscolaSeguraReportScreen} />
                       <Stack.Screen name="AreasInternas" component={AreasInternasScreen} />
