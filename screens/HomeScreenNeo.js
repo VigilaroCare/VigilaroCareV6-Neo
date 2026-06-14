@@ -71,6 +71,8 @@ const HOME_PICTOGRAMS = {
     atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
     scanner:     require('../assets/illustrations/home-pictograms/pictogram-scanner-ambiente.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
+    minhasaude:  require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
+    saudepet:    require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
 };
 
 export default function HomeScreenNeo() {
@@ -199,17 +201,20 @@ export default function HomeScreenNeo() {
 
     // Pictogramas proprietários: a imagem carrega a linguagem visual;
     // rótulos continuam nativos para i18n e acessibilidade.
-    // Grid único de acesso rápido (4 tiles). Saúde/PHR foi removido na fase de
-    // subtração — o dado de saúde-de-risco vive no perfil e alimenta o Relatório.
+    // Grid único de acesso rápido (6 tiles). Saúde voltou como REGISTRO por
+    // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
+    // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
     const GRID_ITEMS = [
-        { key: 'vistorias',  label: t('home.inspections'),                              image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios' },
+        { key: 'vistorias',  label: t('home.inspections', 'Vistorias'),                 image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios' },
         { key: 'atividades', label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
+        { key: 'minhasaude', label: t('home.myHealth', 'Sua Saúde'),                    image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude' },
+        { key: 'saudepet',   label: t('home.petHealth', 'Saúde do Pet'),                image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet' },
         // Scanner direto na Home: o antigo hub FerramentasIA virou camada de 1
         // item só, sem razão de existir. clipScanner/clipRotulos restauram o
         // respiro da família-ferramenta (PNGs com menos área transparente que
         // vistoria/atividades) pra o label não "colar".
-        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'), image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
-        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),    image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
+        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'),           image: HOME_PICTOGRAMS.scanner,    route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'inforotulos',label: t('home.infoLabels', 'Info Rótulos'),               image: HOME_PICTOGRAMS.inforotulos,route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
     ];
 
     const houseName = activeResidence?.nome === 'Minha Casa Principal'

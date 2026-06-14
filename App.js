@@ -211,6 +211,8 @@ import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
 import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
 import InfoRotulosScreen           from "./screens/InfoRotulosScreen";
 import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
+import MinhaSaudeScreen            from "./screens/Health/MinhaSaudeScreen";
+import SaudePetScreen              from "./screens/Health/SaudePetScreen";
 
 // ---------------------------------------------------------------------------
 // COMPONENTS / SERVICES
@@ -663,6 +665,8 @@ export default function App() {
                       <Stack.Screen name="AreasExternas" component={AreasExternasScreen} />
                       <Stack.Screen name="VistoriaAsilo" component={VistoriaAsiloScreen} />
                       <Stack.Screen name="VistoriaAsiloReport" component={VistoriaAsiloReportScreen} />
+                      <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />
+                      <Stack.Screen name="SaudePet" component={SaudePetScreen} />
                     </Stack.Group>
                   </Stack.Navigator>
                 </NavigationContainer>
