@@ -501,10 +501,9 @@ Regras de Tom e Estilo:
             }
             return jsonResponse;
         } catch (error) {
-            if (__DEV__) {
-                const isTimeout = error?.name === 'AbortError';
-                console.error(isTimeout ? `Timeout (${TIMEOUT_REPORT}ms) no briefing de viagem` : "Erro no briefing de viagem:", error);
-            }
+            // Camada OPCIONAL: quem chama (TravelReportService) trata a falha e
+            // cai no resumo offline. Não logar como ERRO aqui para não alarmar —
+            // sem proxy/chave configurados, falhar é o comportamento esperado.
             throw error;
         }
     }

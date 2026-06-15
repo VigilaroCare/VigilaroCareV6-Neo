@@ -98,7 +98,10 @@ class TravelReportService {
             if (typeof OpenAIService.generateTravelBriefing !== 'function') return null;
             return await OpenAIService.generateTravelBriefing(data);
         } catch (e) {
-            if (__DEV__) console.error('getAITravelBriefing', e);
+            // IA é OPCIONAL — falha esperada sem o proxy/chave configurados
+            // (deploy Vercel pendente). O dossiê segue com o resumo curado
+            // offline; não é erro de app, então logamos como info.
+            if (__DEV__) console.log('[Dossiê] Briefing de IA indisponível — usando resumo offline:', e?.message);
             return null;
         }
     }
