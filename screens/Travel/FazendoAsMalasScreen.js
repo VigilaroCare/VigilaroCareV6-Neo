@@ -77,9 +77,21 @@ const VOLTANDO_DATA = [
     },
 ];
 
-const TRANSPORT_TIP = {
-    title: 'Regras de Transporte Aéreo',
-    text: 'Medicamentos na bagagem de mão com receita. Líquidos até 100ml em saco transparente.',
+// Regras de transporte aéreo — conteúdo SENSÍVEL (regra errada = barrado no
+// raio-x / multa). Validado em jun/2026 (ANAC/IATA). Power bank teve mudança
+// material em 2026 (máx. 2, sem recarga a bordo, só na mão). Ver memória
+// project-modo-viagem-compliance. NÃO hardcodar regra de companhia específica.
+const TRANSPORTE_AEREO = {
+    title: 'Bagagem Aérea: o que pode e onde',
+    intro: 'Vai de avião? Estas regras evitam barreira no embarque. Mudaram em 2026 — confirme com a sua companhia.',
+    blocos: [
+        { rotulo: 'Power bank e baterias de lítio', regra: 'Só na bagagem de mão (nunca despachar). Máx. 2 por pessoa, até 100 Wh — de 100 a 160 Wh exige autorização da companhia, acima disso é proibido. Não recarregue a bordo e mantenha à vista. Vale para voo nacional e internacional.' },
+        { rotulo: 'Líquidos, géis e aerossóis', regra: 'Voo internacional: frascos de até 100 ml dentro de um saco plástico transparente de até 1 litro. Voo nacional no Brasil: não há esse limite. Exceções: remédio com receita, leite materno e papinha de bebê.' },
+        { rotulo: 'Medicamentos', regra: 'Leve na bagagem de mão, na embalagem original e com a receita (física ou digital) — sobretudo os de uso contínuo e de tarja preta.' },
+        { rotulo: 'Cortantes e isqueiro', regra: 'Tesoura, canivete e lâminas vão na bagagem despachada. Isqueiro: apenas um, levado com você — nunca na mala despachada.' },
+    ],
+    fonte: 'ANAC · IATA',
+    revisao: 'jun/2026',
 };
 
 // --- MÓDULOS DE KITS DINÂMICOS ---
@@ -341,9 +353,20 @@ export default function FazendoAsMalasScreen({ navigation }) {
                             <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: Neo.colors.feedback.warning + '26', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
                                 <NeoIcon name="Airplane" size={20} color={Neo.colors.feedback.warning} />
                             </View>
-                            <H3 style={{ color: Neo.colors.feedback.warning, fontSize: 14, flex: 1 }}>{TRANSPORT_TIP.title}</H3>
+                            <H3 style={{ color: Neo.colors.feedback.warning, fontSize: 14, flex: 1 }}>{TRANSPORTE_AEREO.title}</H3>
                         </View>
-                        <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18 }}>{TRANSPORT_TIP.text}</Body>
+                        <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18, marginBottom: 12 }}>{TRANSPORTE_AEREO.intro}</Body>
+                        {TRANSPORTE_AEREO.blocos.map((b, i) => (
+                            <View key={i} style={{ marginBottom: 10 }}>
+                                <Body style={{ color: Neo.colors.neutral[800], fontSize: 12.5, fontWeight: '800', marginBottom: 2 }}>{b.rotulo}</Body>
+                                <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18 }}>{b.regra}</Body>
+                            </View>
+                        ))}
+                        <View style={{ borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], marginTop: 4, paddingTop: 8 }}>
+                            <Caption style={{ color: Neo.colors.neutral[500], fontSize: 10.5, lineHeight: 15 }}>
+                                Fonte: {TRANSPORTE_AEREO.fonte} · vigente em {TRANSPORTE_AEREO.revisao}. As regras mudam — confirme com a sua companhia antes de viajar.
+                            </Caption>
+                        </View>
                     </NeoCard>
 
                     <SectionBanner

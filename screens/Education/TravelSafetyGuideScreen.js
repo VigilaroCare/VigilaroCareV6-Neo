@@ -170,6 +170,48 @@ const GUIDE_SECTIONS = [
         bullets_en: ['Assess the destination — lakes, sea and waterfalls demand extra caution.', 'Ask about the adult-to-child ratio.', 'If possible, volunteer as an accompanying monitor.'],
         bullets_es: ['Evalúe el destino — lagos, mar y cascadas exigen cautela extra.', 'Pregunte la proporción de adultos por niño.', 'Si es posible, ofrézcase como monitor acompañante.'],
     },
+    // ── Conformidade / exigências (conteúdo SENSÍVEL — regra errada barra o
+    //    embarque). Validado jun/2026; ver memória project-modo-viagem-compliance.
+    //    Cada seção carrega `source` (fonte + data + "confirme antes"). ──
+    {
+        id: 'docs_internacional', prio: 4, international: true, icon: 'Airplane',
+        title: 'Documentos para Sair do País', title_en: 'Documents to Leave the Country', title_es: 'Documentos para Salir del País',
+        content: 'Documento errado ou vencido é o embaraço mais caro da viagem — barra o embarque na hora. Resolva antes de comprar a passagem.',
+        content_en: 'A wrong or expired document is the costliest travel snag — it stops you right at boarding. Sort it out before buying the ticket.',
+        content_es: 'Un documento erróneo o vencido es el contratiempo más caro del viaje — te frena en el embarque. Resuélvelo antes de comprar el boleto.',
+        bullets: ['Passaporte: confira a validade mínima exigida pelo destino — a Europa (Schengen) pede 3 meses após a saída, mas muitos países pedem 6 meses.', 'Visto ou autorização eletrônica varia por país: ESTA (EUA) e eTA (Canadá). O ETIAS europeu só passa a valer no fim de 2026 — hoje o brasileiro ainda não precisa dele.', 'Confirme as exigências de entrada no consulado do destino antes de comprar a passagem; elas mudam sem aviso.'],
+        bullets_en: ['Passport: check the minimum validity your destination requires — Europe (Schengen) asks for 3 months after departure, but many countries require 6 months.', 'A visa or electronic authorization varies by country: ESTA (USA) and eTA (Canada). Europe\'s ETIAS only takes effect in late 2026 — Brazilians do not need it yet.', 'Confirm entry requirements with the destination\'s consulate before buying the ticket; they change without notice.'],
+        bullets_es: ['Pasaporte: verifique la validez mínima que exige el destino — Europa (Schengen) pide 3 meses tras la salida, pero muchos países exigen 6 meses.', 'La visa o autorización electrónica varía por país: ESTA (EE.UU.) y eTA (Canadá). El ETIAS europeo solo entra en vigor a fines de 2026 — los brasileños aún no lo necesitan.', 'Confirme los requisitos de entrada en el consulado del destino antes de comprar el boleto; cambian sin aviso.'],
+        source: 'Fontes: consulados · Polícia Federal · as regras mudam, confirme antes de viajar (jun/2026).',
+        source_en: 'Sources: consulates · Brazilian Federal Police · rules change, confirm before traveling (Jun/2026).',
+        source_es: 'Fuentes: consulados · Policía Federal · las reglas cambian, confirme antes de viajar (jun/2026).',
+    },
+    {
+        id: 'vacinacao_intl', prio: 4, international: true, icon: 'Health',
+        title: 'Vacinação Internacional (Febre Amarela)', title_en: 'International Vaccination (Yellow Fever)', title_es: 'Vacunación Internacional (Fiebre Amarilla)',
+        content: 'Vários países só deixam entrar quem comprova a vacina de febre amarela — e o certificado exige antecedência. Deixar pra última hora impede a viagem.',
+        content_en: 'Several countries only admit travelers who prove yellow fever vaccination — and the certificate needs lead time. Leaving it to the last minute blocks the trip.',
+        content_es: 'Varios países solo admiten a quien comprueba la vacuna de fiebre amarilla — y el certificado exige anticipación. Dejarlo para última hora impide el viaje.',
+        bullets: ['Tome a vacina pelo menos 10 dias antes de viajar — antes disso ela ainda não protege e o certificado não vale.', 'Emita o CIVP de graça pelo app Meu SUS Digital ou no portal gov.br; a validade é vitalícia.', '47 países exigem o certificado (34 na África e 13 nas Américas) — confirme se o seu destino está na lista.'],
+        bullets_en: ['Get the vaccine at least 10 days before traveling — before that it does not protect yet and the certificate is not valid.', 'Issue the CIVP for free via the Meu SUS Digital app or the gov.br portal; it is valid for life.', '47 countries require the certificate (34 in Africa, 13 in the Americas) — check whether your destination is on the list.'],
+        bullets_es: ['Aplíquese la vacuna al menos 10 días antes de viajar — antes de eso aún no protege y el certificado no vale.', 'Emita el CIVP gratis en la app Meu SUS Digital o en el portal gov.br; tiene validez de por vida.', '47 países exigen el certificado (34 en África y 13 en las Américas) — confirme si su destino está en la lista.'],
+        source: 'Fontes: Anvisa · Meu SUS Digital · confirme a exigência do destino (jun/2026).',
+        source_en: 'Sources: Anvisa · Meu SUS Digital · confirm your destination\'s requirement (Jun/2026).',
+        source_es: 'Fuentes: Anvisa · Meu SUS Digital · confirme la exigencia del destino (jun/2026).',
+    },
+    {
+        id: 'autorizacao_menor', prio: 1, companions: ['hasKids'], icon: 'Baby',
+        title: 'Autorização de Viagem de Menor', title_en: 'Travel Authorization for Minors', title_es: 'Autorización de Viaje de Menores',
+        content: 'Criança sem a autorização certa é barrada no embarque, mesmo com a passagem paga. As regras mudam entre viagem nacional e internacional.',
+        content_en: 'A child without the right authorization is denied boarding, even with a paid ticket. The rules differ between domestic and international travel.',
+        content_es: 'Un niño sin la autorización correcta es rechazado en el embarque, aun con el boleto pagado. Las reglas cambian entre viaje nacional e internacional.',
+        bullets: ['Viagem internacional: menor que viaja sem os pais, ou só com um deles, precisa de autorização do outro com firma reconhecida em cartório.', 'Viagem nacional: criança com menos de 12 anos desacompanhada precisa de autorização judicial; de 12 a 17 anos não precisa.', 'Use o formulário padrão do CNJ ou da Polícia Federal e leve uma via impressa — sem o documento, o embarque é negado.'],
+        bullets_en: ['International travel: a minor traveling without both parents, or with only one, needs the other parent\'s authorization with a notarized signature.', 'Domestic travel: an unaccompanied child under 12 needs judicial authorization; ages 12 to 17 do not.', 'Use the standard CNJ or Federal Police form and carry a printed copy — without the document, boarding is denied.'],
+        bullets_es: ['Viaje internacional: un menor que viaja sin los padres, o solo con uno, necesita autorización del otro con firma reconocida ante notario.', 'Viaje nacional: un niño menor de 12 años sin acompañante necesita autorización judicial; de 12 a 17 años no.', 'Use el formulario estándar del CNJ o de la Policía Federal y lleve una copia impresa — sin el documento, se niega el embarque.'],
+        source: 'Fontes: CNJ · Polícia Federal · confirme no embarque (jun/2026).',
+        source_en: 'Sources: CNJ · Brazilian Federal Police · confirm at boarding (Jun/2026).',
+        source_es: 'Fuentes: CNJ · Policía Federal · confirme en el embarque (jun/2026).',
+    },
 ];
 
 const TYPE_LABELS = {
@@ -284,6 +326,12 @@ export default function TravelSafetyGuideScreen({ navigation }) {
                                     </View>
                                 ))}
                             </View>
+
+                            {!!t_field(sec, 'source') && (
+                                <Small style={{ color: Neo.colors.neutral[500], fontSize: 10.5, marginTop: 10, fontStyle: 'italic', lineHeight: 15 }}>
+                                    {t_field(sec, 'source')}
+                                </Small>
+                            )}
                         </NeoCard>
                     ))}
 
