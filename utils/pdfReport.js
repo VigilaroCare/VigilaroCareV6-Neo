@@ -36,8 +36,9 @@ export const REPORT_CSS = `
   ul.bullets { margin: 9px 0 0; padding-left: 20px; }
   ul.bullets li { font-size: 15px; line-height: 1.5; margin-bottom: 7px; }
   .pill { display: inline-block; background: ${SOFT}; color: ${EMERALD}; border: 1px solid ${LINE}; border-radius: 999px; padding: 3px 12px; font-size: 13px; margin: 0 6px 7px 0; }
-  .source { color: ${MUTED}; font-size: 12.5px; font-style: italic; margin-top: 9px; }
-  .footer { margin-top: 36px; border-top: 1px solid ${LINE}; padding-top: 12px; color: ${MUTED}; font-size: 12.5px; text-align: center; }
+  .source { color: ${MUTED}; font-size: 13px; font-style: italic; margin-top: 9px; }
+  .disclaimer { background: #FBF3DF; border: 1px solid ${CHAMPAGNE}; border-left: 5px solid ${CHAMPAGNE}; color: #5C4A1A; border-radius: 8px; padding: 14px 16px; margin: 20px 0 8px; font-size: 14.5px; font-weight: 600; line-height: 1.5; }
+  .footer { margin-top: 28px; border-top: 1px solid ${LINE}; padding-top: 12px; color: ${MUTED}; font-size: 12.5px; text-align: center; }
 `;
 
 /**

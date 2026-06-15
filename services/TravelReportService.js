@@ -199,7 +199,9 @@ class TravelReportService {
             ${(includeHealth && (travelersHtml || petsHtml)) ? `<h2>Fichas de saúde dos viajantes</h2>${travelersHtml}${petsHtml}` : ''}
 
             <h2>Contatos de emergência</h2>
-            ${emergHtml}`;
+            ${emergHtml}
+
+            <div class="disclaimer">As regras de viagem e as exigências de cada destino mudam com frequência. Este dossiê é um guia de orientação — não substitui as fontes oficiais. Confirme com a companhia aérea, o consulado e os órgãos oficiais antes de viajar.</div>`;
 
         const when = new Date(data.generatedAt);
         return htmlDocument({
@@ -207,7 +209,7 @@ class TravelReportService {
             headline: 'Dossiê de Viagem',
             subtitle: `${tripLabel} · ${purpose}${isInternational ? ' · Internacional' : ''}`,
             bodyHtml: body,
-            footerNote: `Gerado em ${when.toLocaleDateString()} · Vigilaro Care — guia de prevenção. As regras de viagem mudam: confirme nas fontes oficiais antes de viajar.`,
+            footerNote: `Gerado em ${when.toLocaleDateString()} · Vigilaro Care — prevenção familiar.`,
         });
     }
 
