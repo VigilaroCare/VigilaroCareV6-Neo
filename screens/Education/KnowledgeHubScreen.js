@@ -63,7 +63,7 @@ const PICTOGRAMS = {
     condo_safety:     require('../../assets/illustrations/education-pictograms/pictogram-condo-safety.png'),
     lazer_mobilidade: require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
     guias_equipamentos: require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
-    teoria_fogo:        require('../../assets/illustrations/education-pictograms/pictogram-teoria-fogo.png'),
+    teoria_fogo:        require('../../assets/illustrations/education-pictograms/pictogram-teoria-do-fogo.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos.png');
