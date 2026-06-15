@@ -430,6 +430,86 @@ Regras de Tom e Estilo:
     }
 
     /**
+     * Gera o "Mapa Consultivo" do Dossiê de Viagem — camada de IA OPCIONAL.
+     * MINIMIZAÇÃO DE PII: nenhum nome sai do device; viajantes entram só como
+     * idade/papel e o destino/briefing. (Mesma disciplina de generateConsultativeReport.)
+     * @param {Object} travelData - Saída do TravelReportService.getTravelReportData()
+     * @returns {Promise<{resumo:string, prioridades:string[]}>}
+     */
+    async generateTravelBriefing(travelData) {
+        const { trip, tripLabel, isInternational, sections, travelers } = travelData || {};
+        const purpose = trip?.purpose === 'trabalho' ? 'trabalho' : 'lazer';
+
+        const roster = (travelers || [])
+            .map((t, i) => `- Viajante ${i + 1}: ${t.idade != null ? t.idade + ' anos' : 'idade não informada'}`)
+            .join('\n');
+
+        const companions = [];
+        if (trip?.config?.hasKids) companions.push('crianças');
+        if (trip?.config?.hasElderly) companions.push('idosos');
+        if (trip?.config?.hasPets) companions.push('pets');
+        if (trip?.config?.hasPcd) companions.push('pessoa com deficiência');
+        const topics = (sections || []).map(s => s.id).join(', ');
+
+        let contextStr = `VIAGEM:\n- Destino: ${tripLabel}\n- Propósito: ${purpose}\n- Internacional: ${isInternational ? 'sim' : 'não'}\n- Acompanhantes: ${companions.join(', ') || 'sem grupos específicos'}\n`;
+        contextStr += `\nVIAJANTES (anonimizados — sem nomes):\n${roster || '- não informado'}\n`;
+        contextStr += `\nTÓPICOS JÁ MAPEADOS PELO APP: ${topics || 'nenhum'}\n`;
+
+        let systemPrompt = `Você é o Vigilaro, consultor de viagem que orienta famílias com competência e empatia. Produza um MAPA CONSULTIVO curto e prático para ESTA viagem.\n`;
+        systemPrompt += `Tom acolhedor e direto, nunca alarmista, nunca bajulador. Você é um guia, não uma autoridade: ao citar regra/exigência, oriente a confirmar na fonte oficial.\n`;
+        systemPrompt += `Não use nomes próprios (você não os recebeu). Fale com o grupo ("vocês").\n\n`;
+        systemPrompt += `Responda em JSON OBRIGATÓRIO no formato:\n{\n  "resumo": "1 parágrafo orientando o foco desta viagem, considerando destino, propósito e quem vai.",\n  "prioridades": ["3 a 5 ações objetivas e priorizadas para a viagem fluir sem sobressalto"]\n}\n`;
+        systemPrompt += `Sem markdown, sem emojis. IMPORTANTE: gere todo o conteúdo no idioma "${i18n.language}".`;
+
+        const messages = [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: contextStr },
+        ];
+
+        try {
+            const response = await fetchWithTimeout(CHAT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-vigilaro-token': APP_SECRET
+                },
+                body: JSON.stringify({
+                    model: "gpt-4o-mini",
+                    messages: messages,
+                    temperature: 0.6,
+                    max_tokens: 800,
+                    response_format: { type: "json_object" }
+                })
+            }, TIMEOUT_REPORT);
+
+            const textResponse = await response.text();
+            let data;
+            try {
+                data = JSON.parse(textResponse);
+            } catch (err) {
+                throw new Error("Servidor retornou uma resposta não-JSON (proxy?).");
+            }
+            if (!response.ok || data.error) {
+                throw new Error(data.error?.message || `Erro HTTP ${response.status}`);
+            }
+
+            let jsonResponse;
+            try {
+                jsonResponse = JSON.parse(data.choices[0].message.content);
+            } catch (err) {
+                throw new Error("OpenAI retornou um JSON incompleto ou mal formatado.");
+            }
+            return jsonResponse;
+        } catch (error) {
+            if (__DEV__) {
+                const isTimeout = error?.name === 'AbortError';
+                console.error(isTimeout ? `Timeout (${TIMEOUT_REPORT}ms) no briefing de viagem` : "Erro no briefing de viagem:", error);
+            }
+            throw error;
+        }
+    }
+
+    /**
      * Extrai dados de uma imagem da carteira de vacinação usando GPT-4o-mini (Vision)
      * @param {string} base64Image - Imagem em formato base64 JPEG ou PNG (sem cabeçalho scheme)
      * @returns {Promise<Array>} - Array de objetos: [{ title: 'Vacina', date: 'YYYY-MM-DD', description: 'Dose X' }]

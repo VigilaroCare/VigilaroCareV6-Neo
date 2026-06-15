@@ -29,7 +29,7 @@ import { t_field, t_array } from '../../utils/getLocalizedField';
 // (2) > propósito (3) > internacional (4) > sempre (5). Sem etiqueta = só
 // aparece no "guia completo".
 // ─────────────────────────────────────────────────────────────────────────
-const GUIDE_SECTIONS = [
+export const GUIDE_SECTIONS = [
     {
         id: 'idosos', prio: 1, companions: ['hasElderly'], icon: 'Elderly',
         title: 'Idosos Fora de Casa', title_en: 'Older Adults Away From Home', title_es: 'Adultos Mayores Fuera de Casa',
@@ -214,14 +214,14 @@ const GUIDE_SECTIONS = [
     },
 ];
 
-const TYPE_LABELS = {
+export const TYPE_LABELS = {
     rural: { label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural' },
     praia: { label: 'Litoral', label_en: 'Coastal', label_es: 'Zona Costera' },
     urbano: { label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana' },
     resort: { label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio' },
 };
 
-function matchesTrip(section, trip) {
+export function matchesTrip(section, trip) {
     if (!trip) return false;
     const cfg = trip.config || {};
     if (section.always) return true;

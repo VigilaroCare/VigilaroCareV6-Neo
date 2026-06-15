@@ -81,7 +81,7 @@ const VOLTANDO_DATA = [
 // raio-x / multa). Validado em jun/2026 (ANAC/IATA). Power bank teve mudança
 // material em 2026 (máx. 2, sem recarga a bordo, só na mão). Ver memória
 // project-modo-viagem-compliance. NÃO hardcodar regra de companhia específica.
-const TRANSPORTE_AEREO = {
+export const TRANSPORTE_AEREO = {
     title: 'Bagagem Aérea: o que pode e onde',
     intro: 'Vai de avião? Estas regras evitam barreira no embarque. Mudaram em 2026 — confirme com a sua companhia.',
     blocos: [
@@ -208,6 +208,30 @@ const MODULE_INTERNACIONAL = {
     ],
 };
 
+// Monta os kits cruzando o briefing da viagem. Pura e exportada para o
+// TravelReportService reusar a MESMA lógica (fonte única dos kits).
+export function buildDynamicKits(activeTrip) {
+    const kits = [...SAINDO_DATA];
+    if (!activeTrip) return kits;
+
+    if (activeTrip.purpose === 'trabalho') {
+        kits.push(MODULE_TRABALHO);
+    } else {
+        kits.push(MODULE_LAZER);
+    }
+
+    if (activeTrip.config?.hasKids) kits.push(MODULE_CRIANCAS);
+    if (activeTrip.config?.hasPets) kits.push(MODULE_PETS);
+    if (activeTrip.config?.hasElderly || activeTrip.config?.hasPcd) kits.push(MODULE_IDOSO_PCD);
+
+    // Tipo de destino e internacional — completam o cruzamento do briefing
+    if (activeTrip.type === 'praia' || activeTrip.type === 'resort') kits.push(MODULE_PRAIA);
+    if (activeTrip.type === 'rural') kits.push(MODULE_RURAL);
+    if (activeTrip.config?.isInternational) kits.push(MODULE_INTERNACIONAL);
+
+    return kits;
+}
+
 // --- COMPONENTE ACCORDION CARD (padrão Guia de Segurança) ---
 function CategoryCard({ category, expanded, onToggle }) {
     const toggle = () => {
@@ -285,29 +309,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
         setExpandedId(prev => prev === id ? null : id);
     };
 
-    const getDynamicKits = () => {
-        const kits = [...SAINDO_DATA];
-        if (!activeTrip) return kits;
-
-        if (activeTrip.purpose === 'trabalho') {
-            kits.push(MODULE_TRABALHO);
-        } else {
-            kits.push(MODULE_LAZER);
-        }
-
-        if (activeTrip.config?.hasKids) kits.push(MODULE_CRIANCAS);
-        if (activeTrip.config?.hasPets) kits.push(MODULE_PETS);
-        if (activeTrip.config?.hasElderly || activeTrip.config?.hasPcd) kits.push(MODULE_IDOSO_PCD);
-
-        // Tipo de destino e internacional — completam o cruzamento do briefing
-        if (activeTrip.type === 'praia' || activeTrip.type === 'resort') kits.push(MODULE_PRAIA);
-        if (activeTrip.type === 'rural') kits.push(MODULE_RURAL);
-        if (activeTrip.config?.isInternational) kits.push(MODULE_INTERNACIONAL);
-
-        return kits;
-    };
-
-    const kitsToDisplay = getDynamicKits();
+    const kitsToDisplay = buildDynamicKits(activeTrip);
 
     return (
         <AppBackground>

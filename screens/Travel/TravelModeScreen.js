@@ -14,6 +14,7 @@ import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 import TravelTipsAccordion from '../../components/TravelTipsAccordion';
+import TravelReportService from '../../services/TravelReportService';
 
 // Dimensões em PIXELS (lição da Home: % não resolve dentro de wrappers
 // auto-dimensionados — a Image assume o tamanho intrínseco do PNG, 480px)
@@ -96,6 +97,7 @@ export default function TravelModeScreen({ navigation }) {
     const textSecondary = themeColors.neutral[700];
     const [activeTrip, setActiveTrip] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [generatingDossie, setGeneratingDossie] = useState(false);
 
     // Wizard State
     const [tripType, setTripType] = useState(null);
@@ -165,6 +167,20 @@ export default function TravelModeScreen({ navigation }) {
         // Query genérica que busca ao redor da localização do usuário
         const url = `https://www.google.com/maps/search/${term}/`;
         Linking.openURL(url);
+    };
+
+    const handleGenerateDossie = async () => {
+        try {
+            setGeneratingDossie(true);
+            await TravelReportService.generateTravelPDF();
+        } catch (e) {
+            NeoAlert.alert(
+                t('travel.dossierError', 'Não foi possível gerar o dossiê'),
+                e?.message || t('common.tryAgain', 'Tente novamente.')
+            );
+        } finally {
+            setGeneratingDossie(false);
+        }
     };
 
     if (loading) return <View style={{ flex: 1 }} />;
@@ -349,6 +365,22 @@ export default function TravelModeScreen({ navigation }) {
                     {/* 2. FIQUE ATENTO (durante a viagem) — preparação e chegada
                         vivem nas respectivas telas de inspeção */}
                     <TravelTipsAccordion phase="durante" />
+
+                    {/* DOSSIÊ DA VIAGEM (PDF) — colhe briefing + guia + kits + fichas */}
+                    <ScaleButton onPress={handleGenerateDossie} style={{ marginTop: 16 }} accessibilityRole="button" accessibilityLabel={t('travel.generateDossier', 'Dossiê da Viagem (PDF)')}>
+                        <NeoCard variant="elevated" style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderRadius: 16 }}>
+                            <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: Neo.colors.primary[600] + '18', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+                                <NeoIcon name="ShareNetwork" size={22} color={Neo.colors.primary[700]} />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[700], fontSize: 14 }}>{t('travel.generateDossier', 'Dossiê da Viagem (PDF)')}</Body>
+                                <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.generateDossierDesc', 'Reúne tudo desta viagem em um PDF para compartilhar.')}</Small>
+                            </View>
+                            {generatingDossie
+                                ? <ActivityIndicator color={Neo.colors.primary[600]} />
+                                : <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />}
+                        </NeoCard>
+                    </ScaleButton>
 
                     {/* ENCERRAR MODO VIAGEM */}
                     <ScaleButton onPress={endTrip} style={{ marginTop: 24, marginBottom: 16 }}>
