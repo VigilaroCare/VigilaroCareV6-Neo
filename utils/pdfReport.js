@@ -17,25 +17,27 @@ const MUTED = '#6B7280';
 const LINE = '#E6E8E6';
 const SOFT = '#F6F8F7';
 
+// Escala tipográfica calibrada para LEGIBILIDADE por idosos / baixa visão
+// (público-alvo do app). PDF é leitura — fonte generosa não é luxo, é função.
 export const REPORT_CSS = `
   * { box-sizing: border-box; }
-  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: ${INK}; margin: 0; padding: 0; line-height: 1.55; }
+  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: ${INK}; margin: 0; padding: 0; font-size: 15px; line-height: 1.65; }
   .page { padding: 32px 40px 64px; }
-  .header { background: ${FOREST}; color: #fff; padding: 28px 40px; }
-  .header .brand { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: .8; margin: 0 0 6px; }
-  .header h1 { font-size: 26px; margin: 0 0 6px; font-weight: 800; }
-  .header .subtitle { font-size: 13px; opacity: .9; margin: 0; }
+  .header { background: ${FOREST}; color: #fff; padding: 30px 40px; }
+  .header .brand { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; opacity: .85; margin: 0 0 6px; }
+  .header h1 { font-size: 30px; margin: 0 0 6px; font-weight: 800; }
+  .header .subtitle { font-size: 15px; opacity: .92; margin: 0; }
   .header .accent { height: 3px; width: 64px; background: ${CHAMPAGNE}; margin-top: 14px; border-radius: 2px; }
-  h2 { color: ${EMERALD}; font-size: 16px; margin: 28px 0 12px; border-bottom: 1px solid ${LINE}; padding-bottom: 6px; }
-  .lead { background: ${SOFT}; border-left: 4px solid ${EMERALD}; padding: 13px 16px; border-radius: 8px; margin: 12px 0 6px; font-size: 13px; }
-  .card { border: 1px solid ${LINE}; border-radius: 10px; padding: 13px 16px; margin-bottom: 12px; }
-  .card h3 { margin: 0 0 6px; font-size: 14px; color: ${INK}; }
-  .muted { color: ${MUTED}; font-size: 12px; }
-  ul.bullets { margin: 8px 0 0; padding-left: 18px; }
-  ul.bullets li { font-size: 12.5px; margin-bottom: 5px; }
-  .pill { display: inline-block; background: ${SOFT}; color: ${EMERALD}; border: 1px solid ${LINE}; border-radius: 999px; padding: 2px 10px; font-size: 11px; margin: 0 6px 6px 0; }
-  .source { color: ${MUTED}; font-size: 10.5px; font-style: italic; margin-top: 8px; }
-  .footer { margin-top: 36px; border-top: 1px solid ${LINE}; padding-top: 12px; color: ${MUTED}; font-size: 10.5px; text-align: center; }
+  h2 { color: ${EMERALD}; font-size: 20px; margin: 30px 0 14px; border-bottom: 1px solid ${LINE}; padding-bottom: 6px; }
+  .lead { background: ${SOFT}; border-left: 4px solid ${EMERALD}; padding: 15px 18px; border-radius: 8px; margin: 12px 0 6px; font-size: 15.5px; line-height: 1.6; }
+  .card { border: 1px solid ${LINE}; border-radius: 10px; padding: 15px 18px; margin-bottom: 13px; }
+  .card h3 { margin: 0 0 7px; font-size: 17px; color: ${INK}; }
+  .muted { color: ${MUTED}; font-size: 14px; }
+  ul.bullets { margin: 9px 0 0; padding-left: 20px; }
+  ul.bullets li { font-size: 15px; line-height: 1.5; margin-bottom: 7px; }
+  .pill { display: inline-block; background: ${SOFT}; color: ${EMERALD}; border: 1px solid ${LINE}; border-radius: 999px; padding: 3px 12px; font-size: 13px; margin: 0 6px 7px 0; }
+  .source { color: ${MUTED}; font-size: 12.5px; font-style: italic; margin-top: 9px; }
+  .footer { margin-top: 36px; border-top: 1px solid ${LINE}; padding-top: 12px; color: ${MUTED}; font-size: 12.5px; text-align: center; }
 `;
 
 /**

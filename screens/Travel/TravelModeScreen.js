@@ -169,10 +169,10 @@ export default function TravelModeScreen({ navigation }) {
         Linking.openURL(url);
     };
 
-    const handleGenerateDossie = async () => {
+    const runDossie = async (includeHealth) => {
         try {
             setGeneratingDossie(true);
-            await TravelReportService.generateTravelPDF();
+            await TravelReportService.generateTravelPDF({ includeHealth });
         } catch (e) {
             NeoAlert.alert(
                 t('travel.dossierError', 'Não foi possível gerar o dossiê'),
@@ -181,6 +181,21 @@ export default function TravelModeScreen({ navigation }) {
         } finally {
             setGeneratingDossie(false);
         }
+    };
+
+    // O dossiê será compartilhado: a inclusão de dados sensíveis (saúde) é
+    // escolha consciente do usuário NO MOMENTO do export, não um padrão fixo.
+    const handleGenerateDossie = () => {
+        if (generatingDossie) return;
+        NeoAlert.alert(
+            t('travel.dossierHealthTitle', 'Incluir fichas de saúde?'),
+            t('travel.dossierHealthMsg', 'O dossiê pode ser compartilhado. As fichas trazem dados sensíveis (medicamentos, alergias, condições). Deseja incluí-las neste PDF?'),
+            [
+                { text: t('travel.dossierWithHealth', 'Incluir'), onPress: () => runDossie(true) },
+                { text: t('travel.dossierNoHealth', 'Não incluir'), onPress: () => runDossie(false) },
+                { text: t('common.cancel', 'Cancelar'), style: 'cancel' },
+            ]
+        );
     };
 
     if (loading) return <View style={{ flex: 1 }} />;

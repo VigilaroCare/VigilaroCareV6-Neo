@@ -103,7 +103,9 @@ class TravelReportService {
         }
     }
 
-    buildHTML(data, ai) {
+    buildHTML(data, ai, opts = {}) {
+        // Dado sensível só entra no PDF exportado se o usuário consentir no export.
+        const includeHealth = opts.includeHealth !== false;
         const { trip, tripLabel, isInternational, sections, kits, transporteAereo, travelers, pets } = data;
 
         const purpose = trip.purpose === 'trabalho' ? 'Trabalho' : 'Lazer';
@@ -191,7 +193,7 @@ class TravelReportService {
 
             ${aereoHtml ? `<h2>Bagagem aérea</h2>${aereoHtml}` : ''}
 
-            ${(travelersHtml || petsHtml) ? `<h2>Fichas de saúde dos viajantes</h2>${travelersHtml}${petsHtml}` : ''}
+            ${(includeHealth && (travelersHtml || petsHtml)) ? `<h2>Fichas de saúde dos viajantes</h2>${travelersHtml}${petsHtml}` : ''}
 
             <h2>Contatos de emergência</h2>
             ${emergHtml}`;
@@ -206,12 +208,12 @@ class TravelReportService {
         });
     }
 
-    async generateTravelPDF({ withAI = true } = {}) {
+    async generateTravelPDF({ withAI = true, includeHealth = true } = {}) {
         const data = await this.getTravelReportData();
         if (!data) throw new Error('Nenhuma viagem ativa para gerar o dossiê.');
 
         const ai = withAI ? await this.getAITravelBriefing(data) : null;
-        const html = this.buildHTML(data, ai);
+        const html = this.buildHTML(data, ai, { includeHealth });
 
         const { uri } = await Print.printToFileAsync({ html });
         if (await Sharing.isAvailableAsync()) {
