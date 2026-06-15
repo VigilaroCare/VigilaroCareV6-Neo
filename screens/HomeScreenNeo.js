@@ -69,7 +69,7 @@ const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
     atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
-    scanner:     require('../assets/illustrations/home-pictograms/pictogram-planta-baixa-scan.png'),
+    scanner:     require('../assets/illustrations/home-pictograms/pictogram-planta-baixa-scan-landscape.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
