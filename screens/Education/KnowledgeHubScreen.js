@@ -123,6 +123,7 @@ export default function KnowledgeHubScreen({ navigation }) {
             title: t('knowledgeHub.emergencies', 'Emergências'),
             items: [
                 { id: 'fire_prev',                titulo: t('knowledgeHub.firePrev'),    iconName: 'PrevencaoIncendio', cor: '#DC2626', route: 'GenericCategory', params: { categoryId: 'fire_prevention' } },
+                { id: 'teoria_fogo',              titulo: t('knowledgeHub.fireTheory', 'Teoria do Fogo'), iconName: 'Fire', cor: '#EA580C', route: 'TeoriaFogo' },
                 { id: 'emergencias',              titulo: t('knowledgeHub.escapePlans'), iconName: 'ExportSquare',      cor: '#E11D48', route: 'PlanoIncendio' },
                 { id: 'primeiros_socorros_hub',   titulo: t('knowledgeHub.firstAid'),    iconName: 'Health',            cor: '#EF4444', route: 'PrimeirosSocorros' },
                 { id: 'kits_emergencia',          titulo: t('knowledgeHub.kitsGuide'),   iconName: 'Briefcase',         cor: '#9F1239', route: 'GuiaKitsEmergencia' },

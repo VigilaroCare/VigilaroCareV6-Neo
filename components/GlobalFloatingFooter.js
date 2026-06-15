@@ -57,7 +57,7 @@ const HIDDEN_ROUTES = new Set([
 // ---------------------------------------------------------------------------
 const TAB_ROUTES = {
   HomeTab: new Set(['Dashboard', 'HomeScreen', 'Relatorios', 'MainTabNavigator', 'MainTabs']),
-  KnowledgeTab: new Set(['KnowledgeHubScreen', 'KnowledgeTab', 'TravelSafetyGuide', 'TeoriaFogoScreen']),
+  KnowledgeTab: new Set(['KnowledgeHubScreen', 'KnowledgeTab', 'TravelSafetyGuide', 'TeoriaFogo']),
   TravelModeTab: new Set(['TravelModeScreen', 'TravelModeTab']),
   MenuTab: new Set(['MenuScreen', 'MenuTab', 'Settings']),
   AcessibilidadeTab: new Set(['AccessibilitySettingsScreen', 'AcessibilidadeTab']),
