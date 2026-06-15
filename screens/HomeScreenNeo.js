@@ -67,9 +67,9 @@ const GRID_IMG_W = CONTENT_W * 0.48 * 0.84;  // célula 48%, imagem compacta
 const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
 
 const HOME_PICTOGRAMS = {
-    vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistoria.png'),
+    vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistorias.png'),
     atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
-    scanner:     require('../assets/illustrations/home-pictograms/pictogram-planta-baixa-scan-landscape.png'),
+    scanner:     require('../assets/illustrations/home-pictograms/pictogram-scanner-ambiente.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
