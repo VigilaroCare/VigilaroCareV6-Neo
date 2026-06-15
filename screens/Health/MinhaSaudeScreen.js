@@ -20,6 +20,15 @@ const asList = (arr) => (Array.isArray(arr) ? arr : [])
     .map(it => (typeof it === 'string' ? it : (it?.nome || it?.label || it?.descricao || '')))
     .filter(Boolean);
 
+// genero pode chegar cru (migração V5 traz gender:"male"; legado "M"/"macho").
+// Normaliza só p/ exibição — vazio fica omitido (não inventa sexo como o form faz).
+const fmtGenero = (g) => {
+    const k = String(g || '').toLowerCase();
+    if (['masculino', 'macho', 'm', 'male'].includes(k)) return 'Masculino';
+    if (['feminino', 'femea', 'fêmea', 'f', 'female'].includes(k)) return 'Feminino';
+    return g || '';
+};
+
 // Hues a partir da paleta de grid do DS (hex → permite alpha +'18').
 // accent só expõe champagne/copper; rose/amber vivem em gridAccents.
 const HUE = {
@@ -60,13 +69,13 @@ export default function MinhaSaudeScreen() {
     }, [perfilId]));
 
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
-    const faixa = profile?.dataNascimento ? ProfileService.getFaixaEtariaDetalhada(profile.dataNascimento) : null;
     const condicoes = asList(profile?.condicoesMedicas);
     const alergias = asList(profile?.alergias);
     const medicamentos = asList(profile?.medicamentosEmUso);
     const necessidades = asList(profile?.necessidadesEspeciais);
     const tipoSanguineo = profile?.tipoSanguineo || '';
-    const metaLine = [idade != null ? `${idade} anos` : null, faixa?.label, profile?.genero].filter(Boolean).join(' · ');
+    // Banner enxuto: idade · sexo. Faixa etária formal (rótulo entre parênteses) é ruído aqui.
+    const metaLine = [idade != null ? `${idade} anos` : null, fmtGenero(profile?.genero)].filter(Boolean).join(' · ');
 
     const handleShare = async () => {
         if (!profile) return;
