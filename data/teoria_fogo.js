@@ -61,25 +61,4 @@ export const TEORIA_FOGO_DATA = {
             'O lacre deve estar intacto.'
         ]
     },
-    'fuga': {
-        titulo: 'Plano de Fuga',
-        subtitulo: 'Evacuação Segura',
-        icon: 'Wind', // Running/Wind concept
-        iconColor: '#10B981', // Emerald
-        bg: '#D1FAE5', // Emerald 100
-        imagemUrl: 'https://images.pexels.com/photos/5036652/pexels-photo-5036652.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        definicao: 'Estratégia pré-definida de como sair da casa em caso de incêndio.',
-        importancia: 'No pânico e na fumaça, você não consegue pensar. O plano deve ser treinado.',
-        comoIdentificar: [
-            'Defina 2 rotas de saída de cada cômodo.',
-            'Defina um ponto de encontro fora da casa.',
-            'Nunca use elevadores.'
-        ],
-        primeirosSocorros: 'Se houver fumaça, engatinhe (o ar limpo fica embaixo). Toque na porta antes de abrir (se quente, não abra).',
-        oQueNaoFazer: [
-            'Não volte para pegar nada.',
-            'Não se tranque em banheiros (se possível, vá para janela).',
-            'Não corra se sua roupa pegar fogo (Pare, Deite, Role).'
-        ]
-    }
 };

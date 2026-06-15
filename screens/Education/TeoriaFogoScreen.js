@@ -23,7 +23,6 @@ export default function TeoriaFogoScreen({ navigation }) {
         { id: 'triangulo', ...TEORIA_FOGO_DATA.triangulo },
         { id: 'classes', ...TEORIA_FOGO_DATA.classes },
         { id: 'extintores', ...TEORIA_FOGO_DATA.extintores },
-        { id: 'fuga', ...TEORIA_FOGO_DATA.fuga },
     ];
 
     const handlePress = (item) => {
