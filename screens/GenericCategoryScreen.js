@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
+import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Shadows } from '../utils/Theme';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
@@ -136,7 +137,9 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             <View style={styles.guideCardOuter}>
                                 <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
                                     <View style={[styles.guideImageContainer, { backgroundColor: THEME_COLOR + '15' }]}>
-                                        {section.icon ? (
+                                        {section.imagemUrl ? (
+                                            <ReviewImage source={{ uri: section.imagemUrl }} tint={THEME_COLOR} accessibilityLabel={section.title} />
+                                        ) : section.icon ? (
                                             <NeoIcon name={section.icon} size={48} color={THEME_COLOR} variant="Bold" />
                                         ) : (
                                             <Text style={{ fontSize: 42 }}>{section.emoji || '📌'}</Text>
