@@ -94,6 +94,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const sosTimer = useRef(null);
   const longPressTriggered = useRef(false);
   const [isTravelModeOn, setIsTravelModeOn] = React.useState(false);
+  const [activeTransportMode, setActiveTransportMode] = React.useState('aviao');
   // Retorno concluído ("checkout seguro" feito): avião inverte = voltando pra casa.
   const [isReturning, setIsReturning] = React.useState(false);
 
@@ -149,14 +150,35 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
     AsyncStorage.getItem('@active_trip').then(val => {
       setIsTravelModeOn(!!val);
       let returning = false;
-      try { returning = !!(val && JSON.parse(val).retornoConcluido); } catch (e) {}
+      let transport = 'aviao';
+      try { 
+        if (val) {
+          const tripData = JSON.parse(val);
+          returning = !!tripData.retornoConcluido;
+          if (tripData.transportMode) transport = tripData.transportMode;
+        }
+      } catch (e) {}
       setIsReturning(returning);
+      setActiveTransportMode(transport);
     }).catch(() => {});
 
     // Escuta ativações e desativações instantâneas na própria tela (Realtime)
     const subMode = DeviceEventEmitter.addListener('travel_mode_changed', (status) => {
         setIsTravelModeOn(status);
-        if (!status) setIsReturning(false); // viagem encerrada zera o retorno
+        if (!status) {
+            setIsReturning(false); // viagem encerrada zera o retorno
+            setActiveTransportMode('aviao');
+        } else {
+            // Em caso de ativação (status=true), precisamos recarregar os dados do AsyncStorage para saber qual é o transportMode
+            AsyncStorage.getItem('@active_trip').then(val => {
+                if (val) {
+                    try {
+                        const tripData = JSON.parse(val);
+                        if (tripData.transportMode) setActiveTransportMode(tripData.transportMode);
+                    } catch (e) {}
+                }
+            }).catch(() => {});
+        }
     });
     // Conclusão do "checkout seguro" → fase de retorno
     const subReturn = DeviceEventEmitter.addListener('travel_return_changed', (returning) => {
@@ -267,26 +289,35 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
               accessibilityState={{ selected: active }}
             >
               {tab.route === 'TravelModeTab' ? (
-                // Narrativa: POUSADO (avião + chão) com o modo desativado →
-                // DECOLANDO (mesmo avião, sem o chão, inclinado e subindo)
-                // quando o Modo Viagem está ativo.
+                // Narrativa: ícone inativo (pousado) quando viagem está desligada.
+                // Quando ativo, usamos a animação de flutuação e ícone dinâmico baseado no modal.
                 <Animated.View
                   style={{
                     transform: [
                       { translateY: ascentAnim },
-                      { rotate: isTravelModeOn ? '-18deg' : '0deg' },
-                      // Fase de retorno: espelha o avião (aponta pra casa).
+                      { rotate: (isTravelModeOn && activeTransportMode === 'aviao') ? '-18deg' : '0deg' },
+                      // Fase de retorno: espelha o ícone (aponta pra casa).
                       { scaleX: isReturning ? -1 : 1 },
                     ],
                   }}
                 >
                   {isTravelModeOn ? (
-                    // Decolando: corpo do avião sem a barra do chão.
-                    <Svg width={26} height={26} viewBox="0 0 256 256">
-                      <Path d={PLANE_NO_GROUND} fill={color} />
-                    </Svg>
+                    // Ícone dinâmico do transporte (ativo)
+                    (() => {
+                        if (activeTransportMode === 'carro') return <NeoIcon name="CarProfile" variant="Bold" size={26} color={color} />;
+                        if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={26} color={color} />;
+                        if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={26} color={color} />;
+                        if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={26} color={color} />;
+                        
+                        // Fallback (avião decolando - corpo do avião sem o chão)
+                        return (
+                          <Svg width={26} height={26} viewBox="0 0 256 256">
+                            <Path d={PLANE_NO_GROUND} fill={color} />
+                          </Svg>
+                        );
+                    })()
                   ) : (
-                    // Pousado: glifo completo (avião sobre a linha do chão).
+                    // Inativo (avião no chão)
                     <NeoIcon name={tab.icon} variant="Linear" size={26} color={color} />
                   )}
                 </Animated.View>

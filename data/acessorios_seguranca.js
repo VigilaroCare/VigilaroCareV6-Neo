@@ -6,7 +6,7 @@
 
 export const ACESSORIOS_SEGURANCA = {
     id: 'acess_seg',
-    titulo: 'Acessórios de Segurança para o Lar',
+    titulo: 'Dispositivos de Proteção Doméstica',
     emoji: '🔐',
     descricao: 'Dispositivos essenciais para proteção de crianças, idosos e pessoas com necessidades especiais.',
 

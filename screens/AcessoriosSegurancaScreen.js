@@ -81,7 +81,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                     <View style={styles.headerContent}>
                         <Text style={styles.headerEmoji}>🔐</Text>
                         <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
-                            {t('headersFirst.acessRiosDeSeguranA', 'Acessórios de Segurança')}
+                            {t('headersFirst.acessRiosDeSeguranA', 'Dispositivos de Proteção Doméstica')}
                         </Text>
                         <Text style={[styles.headerSubtitle, { color: textBody }]}>
                             {t('headersFirst.proteOPersonalizadaParaCadaPerfil', 'Proteção personalizada para cada perfil')}

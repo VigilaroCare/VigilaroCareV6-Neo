@@ -1,110 +1,79 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 import NeoIcon from '../components/NeoIcon';
-import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
-import { H1, H3, Small, Caption } from '../components/NeoTypography';
+import { H1, Caption } from '../components/NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { INTRO_CONCEPTS } from '../data/intro_safety';
-import { t_field } from '../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
-
-/**
- * Ordem de exibição preferida pelo usuário (independente da ordem do array):
- * 1. Introdução à Segurança    (intro_01)
- * 2. Quase Acidentes           (piramide_bird)
- * 3. Metodologia 3D            (prevencao_3d)
- */
-const PREFERRED_ORDER = ['intro_01', 'piramide_bird', 'prevencao_3d'];
 
 export default function IntroSafetyMenuScreen({ navigation }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
-    const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
-
-    // Ordena conforme PREFERRED_ORDER; itens fora da lista vão ao final
-    const orderedConcepts = useMemo(() => {
-        const byId = Object.fromEntries(INTRO_CONCEPTS.map(c => [c.id, c]));
-        const ordered = PREFERRED_ORDER.map(id => byId[id]).filter(Boolean);
-        const extras = INTRO_CONCEPTS.filter(c => !PREFERRED_ORDER.includes(c.id));
-        return [...ordered, ...extras];
-    }, []);
-
-    const renderCard = (concept) => (
-        <TouchableOpacity
-            key={concept.id}
-            onPress={() => navigation.navigate('ConceitoDetail', { conceito: concept })}
-            activeOpacity={0.85}
-            style={{ marginBottom: 12 }}
-        >
-            <NeoCard variant="elevated" style={s.card}>
-                <View style={[s.cardIcon, { backgroundColor: (concept.bg || '#EDE7F6') }]}>
-                    {concept.icone ? (
-                        <NeoIcon name={concept.icone} size={22} color={concept.cor || Neo.colors.primary[600]} variant="Bold" />
-                    ) : (
-                        <Text style={s.cardEmoji}>{concept.emoji || '💡'}</Text>
-                    )}
-                </View>
-
-                <View style={{ flex: 1 }}>
-                    <Text style={[s.cardTitle, { color: textPrimary }]} numberOfLines={1}>
-                        {t_field(concept, 'titulo')}
-                    </Text>
-                    <Text style={[s.cardDesc, { color: textBody }]} numberOfLines={2}>
-                        {t_field(concept, 'definicao')}
-                    </Text>
-                </View>
-
-                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
-            </NeoCard>
-        </TouchableOpacity>
-    );
+    const textPrimary = themeColors.neutral[900];
 
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Header Neo Glass */}
-                <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "rgba(255,255,255,0.4)", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(255,255,255,0.2)" }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-                    <NeoCard variant="glass"
-                        style={Object.assign({
-                            width: "100%",
-                            padding: 16,
-                            justifyContent: "space-between",
-                            minHeight: 140, alignItems: "center"
-                        }, Neo.shadows ? Neo.shadows.sm : {})}
+                {/* HEADER padronizado */}
+                <View style={s.header}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={s.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <View style={{
-                            width: 44, height: 44, borderRadius: 12,
-                            backgroundColor: Neo.colors.primary[100], alignItems: "center", justifyContent: "center",
-                            marginBottom: 12
-                        }}>
-                            <NeoIcon name="Book" size={24} color={Neo.colors.primary[600]} variant="Bold" />
-                        </View>
-                        <View style={{ alignItems: "center" }}>
-                            <H3 style={{ color: Neo.colors.primary[600], fontSize: 16, marginBottom: 4, lineHeight: 18, textAlign: 'center' }}>{t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}</H3>
-                            <Small style={{ color: Neo.colors.neutral[800], fontWeight: "bold", lineHeight: 14, textAlign: 'center' }}>{t('intro.subtitle', 'Base da prevenção doméstica')}</Small>
-                        </View>
-                    </NeoCard>
+                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
+                    </TouchableOpacity>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={s.title}>
+                            {t('headersFirst.conceitosFundamentais', 'Conceitos Fundamentais')}
+                        </H1>
+                        <Caption style={s.subtitle}>
+                            {t('intro.subtitle', 'Base da prevenção doméstica')}
+                        </Caption>
+                    </View>
                 </View>
 
                 <ScrollView
-                    contentContainerStyle={s.content}
+                    style={s.content}
+                    contentContainerStyle={{ paddingBottom: 120 }}
                     showsVerticalScrollIndicator={false}
                 >
-                    {orderedConcepts.map(renderCard)}
+                    <View style={s.textContainer}>
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
+                            Introdução à Segurança
+                        </Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>
+                            Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família. A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa.
+                        </Text>
+                        
+                        <View style={s.divider} />
+
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
+                            Metodologia 3D
+                        </Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>
+                            A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso.
+                        </Text>
+
+                        <View style={s.divider} />
+
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
+                            Quase Acidentes
+                        </Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>
+                            Os “quase acidentes”, e também os acidentes sem ferimentos ou danos materiais, não podem ser ignorados, uma vez que eles são “avisos” do que pode ou, provavelmente, irá acontecer se os atos e condições inseguras forem ignorados. Lembre-se: um acidente acontece, mais cedo ou mais tarde, quando tais “avisos” são ignorados.
+                        </Text>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>
@@ -112,7 +81,6 @@ export default function IntroSafetyMenuScreen({ navigation }) {
 }
 
 const s = StyleSheet.create({
-    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -133,47 +101,33 @@ const s = StyleSheet.create({
         fontWeight: '800',
         letterSpacing: -0.5,
         marginBottom: 2,
-        fontSize: 24,
     },
     subtitle: {
-        color: Neo.colors.neutral[600],
+        // ...
     },
-
-    // Content
     content: {
         paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 190,
     },
-
-    // Card
-    card: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 14,
-        borderRadius: 16,
-        gap: 12,
+    textContainer: {
+        marginTop: 20,
+        backgroundColor: 'rgba(255,255,255,0.6)',
+        padding: 24,
+        borderRadius: 20,
     },
-    cardIcon: {
-        width: 46,
-        height: 46,
-        borderRadius: 23,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    cardEmoji: {
-        fontSize: 22,
-    },
-    cardTitle: {
-        fontSize: 15,
+    sectionTitle: {
+        fontSize: 18,
         fontWeight: '800',
-        color: Neo.colors.neutral[900],
-        marginBottom: 3,
-        letterSpacing: -0.2,
+        marginBottom: 8,
+        letterSpacing: -0.3,
     },
-    cardDesc: {
-        fontSize: 12.5,
-        color: Neo.colors.neutral[600],
-        lineHeight: 17,
+    bodyText: {
+        fontSize: 15,
+        lineHeight: 22,
+        marginBottom: 10,
     },
+    divider: {
+        height: 1,
+        backgroundColor: 'rgba(0,0,0,0.05)',
+        marginVertical: 18,
+    }
 });

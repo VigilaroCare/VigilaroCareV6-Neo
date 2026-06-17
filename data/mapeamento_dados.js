@@ -23,6 +23,7 @@ export const AMBIENTES = [
         descricao_es: 'Iluminación nocturna y pasillos amplios.',
         condicional: 'opcional',
         fase: 2,
+        imagemUrl: 'https://images.pexels.com/photos/1034584/pexels-photo-1034584.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'sala',
@@ -40,6 +41,7 @@ export const AMBIENTES = [
         descricao_es: 'Ocio sin tropiezos y con muebles estables.',
         condicional: 'opcional',
         fase: 1,
+        imagemUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'copa',
@@ -57,6 +59,7 @@ export const AMBIENTES = [
         descricao_es: 'Cuidado con manteles largos y líquidos calientes.',
         condicional: 'opcional',
         fase: 3,
+        imagemUrl: 'https://images.pexels.com/photos/314458/pexels-photo-314458.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'cozinha',
@@ -74,6 +77,7 @@ export const AMBIENTES = [
         descricao_es: 'El área de mayor riesgo (quemaduras y cortes). ¡Atención total!',
         condicional: 'opcional',
         fase: 1,
+        imagemUrl: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'quarto_bebe',
@@ -91,6 +95,7 @@ export const AMBIENTES = [
         descricao_es: 'Nido seguro: Prevención de asfixia y caídas.',
         condicional: 'bebe',
         fase: 1,
+        imagemUrl: 'https://images.pexels.com/photos/3661353/pexels-photo-3661353.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'quarto_crianca',
@@ -141,6 +146,7 @@ export const AMBIENTES = [
         descricao_es: 'Autonomía sin barreras. Prevención de caídas.',
         condicional: 'idoso',
         fase: 1,
+        imagemUrl: 'https://images.pexels.com/photos/3768132/pexels-photo-3768132.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'banheiro',
@@ -158,6 +164,7 @@ export const AMBIENTES = [
         descricao_es: 'Evita caídas y ahogamientos. Un santuario de seguridad.',
         condicional: 'opcional',
         fase: 1,
+        imagemUrl: 'https://images.pexels.com/photos/1910472/pexels-photo-1910472.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'escadas',
@@ -192,6 +199,7 @@ export const AMBIENTES = [
         descricao_es: 'Químicos en alto y cubetas vacías. Área técnica segura.',
         condicional: 'opcional',
         fase: 2,
+        imagemUrl: 'https://images.pexels.com/photos/5591460/pexels-photo-5591460.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'despensa',
@@ -226,6 +234,7 @@ export const AMBIENTES = [
         descricao_es: 'Redes de protección íntegras y piso antideslizante.',
         condicional: 'opcional',
         fase: 3,
+        imagemUrl: 'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'garagem',
@@ -243,6 +252,7 @@ export const AMBIENTES = [
         descricao_es: 'Atención a maniobras, puntos ciegos y monóxido de carbono.',
         condicional: 'opcional',
         fase: 3,
+        imagemUrl: 'https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'quintal',
@@ -294,6 +304,7 @@ export const AMBIENTES = [
         descricao_es: 'Barreras físicas y supervisión visual constante.',
         condicional: 'opcional',
         fase: 2,
+        imagemUrl: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'parquinho',
@@ -328,6 +339,7 @@ export const AMBIENTES = [
         descricao_es: 'Herramientas afiladas lejos de los niños. Ventilación adecuada.',
         condicional: 'opcional',
         fase: 3,
+        imagemUrl: 'https://images.pexels.com/photos/3823488/pexels-photo-3823488.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'deposito',
@@ -396,6 +408,7 @@ export const AMBIENTES = [
         descricao_es: 'Sin garrapaticidas expuestos. Refugio seguro.',
         condicional: 'opcional',
         fase: 3,
+        imagemUrl: 'https://images.pexels.com/photos/731022/pexels-photo-731022.jpeg?auto=compress&cs=tinysrgb&w=1200',
     },
     {
         id: 'central_gas',

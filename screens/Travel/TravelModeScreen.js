@@ -43,17 +43,49 @@ const TRAVEL_PICTOGRAMS = {
     trabalho: require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
     // destino internacional? (wizard)
     internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
-    nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
-    // quem vai junto (wizard)
-    criancas: require('../../assets/illustrations/travel-pictograms/pictogram-companhia-criancas.png'),
-    idosos:   require('../../assets/illustrations/travel-pictograms/pictogram-companhia-idosos.png'),
-    pets:     require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pets.png'),
-    pcd:      require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd.png'),
+    // destinos
+    destino_internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
+    destino_nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
+    destino_litoral:       require('../../assets/illustrations/travel-pictograms/pictogram-destino-litoral.png'),
+    destino_urbano:        require('../../assets/illustrations/travel-pictograms/pictogram-destino-urbano.png'),
+    destino_rural:         require('../../assets/illustrations/travel-pictograms/pictogram-destino-rural.png'),
+    destino_resort:        require('../../assets/illustrations/travel-pictograms/pictogram-destino-resort.png'),
+
+    // propósito
+    proposito_lazer:       require('../../assets/illustrations/travel-pictograms/pictogram-proposito-lazer.png'),
+    proposito_trabalho:    require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
+
+    // transporte
+    transporte_carro:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-carro.png'),
+    transporte_aviao:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-aviao.png'),
+    transporte_onibus:     require('../../assets/illustrations/travel-pictograms/pictogram-transporte-onibus.png'),
+    transporte_trem:       require('../../assets/illustrations/travel-pictograms/pictogram-transporte-trem.png'),
+    transporte_navio:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-navio.png'),
+
+    // companhia
+    companhia_criancas:    require('../../assets/illustrations/travel-pictograms/pictogram-companhia-criancas.png'),
+    companhia_idosos:      require('../../assets/illustrations/travel-pictograms/pictogram-companhia-idosos.png'),
+    companhia_pcd:         require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd.png'),
+    companhia_pets:        require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pets.png'),
+
+    // duração
+    duracao_curta:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-curta.png'),
+    duracao_media:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-media.png'),
+    duracao_longa:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-longa.png'),
+
+    // etapas
+    etapa_malas:           require('../../assets/illustrations/travel-pictograms/pictogram-viagem-malas.png'),
+    etapa_partida:         require('../../assets/illustrations/travel-pictograms/pictogram-viagem-partida.png'),
+    etapa_chegada:         require('../../assets/illustrations/travel-pictograms/pictogram-viagem-chegada.png'),
+    etapa_checkout:        require('../../assets/illustrations/travel-pictograms/pictogram-viagem-checkout.png'),
+
+    // extras
+    guia:                  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-guia.png'),
 };
 
 const TRIP_TYPES = [
     { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: 'Tree', color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_en: 'Aislamiento, animales, ríos.' },
-    { id: 'praia', label: 'Litoral', label_en: 'Coastal Area', label_es: 'Zona Costera', icon: 'Sun1', color: Neo.colors.feedback.warning, desc: 'Sol, mar, piscina.', desc_en: 'Sun, sea, pool.', desc_es: 'Sol, mar, piscina.' },
+    { id: 'praia', label: 'Litoral', label_en: 'Coastal Area', label_es: 'Zona Costera', icon: 'Sun1', color: Neo.colors.feedback.warning, desc: 'Sol, mar, piscina.', desc_en: 'Sun, sea, pool.', desc_es: 'Piscinas, áreas comunes.' },
     { id: 'urbano', label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana', icon: 'Building', color: Neo.colors.secondary[500], desc: 'Janelas, trânsito, aglomeração.', desc_en: 'Windows, traffic, crowds.', desc_es: 'Ventanas, tráfico, multitudes.' },
     { id: 'resort', label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio', icon: 'Sun1', color: Neo.colors.primary[500], desc: 'Piscinas, áreas comuns.', desc_en: 'Pools, common areas.', desc_es: 'Piscinas, áreas comunes.' }
 ];
@@ -71,11 +103,13 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
         >
             <View style={s.ceramicCell}>
                 <View style={s.ceramicTileWrap}>
-                    <Image
-                        source={source}
-                        style={[s.ceramicTile, dimmed && s.ceramicTileDimmed]}
-                        resizeMode="contain"
-                    />
+                    <View style={s.pictogramImageContainer}>
+                        <Image
+                            source={source}
+                            style={[s.ceramicTile, dimmed && s.ceramicTileDimmed, { transform: [{ scale: 1.06 }] }]}
+                            resizeMode="contain"
+                        />
+                    </View>
                     {selected && (
                         <View style={s.ceramicCheckBadge}>
                             <NeoIcon name="TickCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
@@ -101,6 +135,8 @@ export default function TravelModeScreen({ navigation }) {
 
     // Wizard State
     const [tripType, setTripType] = useState(null);
+    const [transportMode, setTransportMode] = useState(null);
+    const [tripDuration, setTripDuration] = useState(null);
     const [hasKids, setHasKids] = useState(true);
     const [hasPets, setHasPets] = useState(false);
     const [hasElderly, setHasElderly] = useState(false);
@@ -125,10 +161,14 @@ export default function TravelModeScreen({ navigation }) {
 
     const startTrip = async () => {
         if (!tripType) return NeoAlert.alert('Selecione o destino');
+        if (!transportMode) return NeoAlert.alert('Selecione o meio de transporte');
+        if (!tripDuration) return NeoAlert.alert('Selecione a duração aproximada');
 
         const newTrip = {
             id: Date.now().toString(),
             type: tripType,
+            transportMode,
+            tripDuration,
             purpose: tripPurpose,
             config: { hasKids, hasPets, hasElderly, hasPcd, isInternational },
             startDate: new Date().toISOString(),
@@ -156,6 +196,8 @@ export default function TravelModeScreen({ navigation }) {
                         await AsyncStorage.removeItem('@active_trip');
                         setActiveTrip(null);
                         setTripType(null);
+                        setTransportMode(null);
+                        setTripDuration(null);
                         DeviceEventEmitter.emit('travel_mode_changed', false);
                     }
                 }
@@ -237,6 +279,46 @@ export default function TravelModeScreen({ navigation }) {
                             ))}
                         </View>
 
+                        {/* MEIO DE TRANSPORTE */}
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.transportModeTitle', 'Como você vai viajar?')}</Text>
+                        <View style={s.gridContainer}>
+                            {[
+                                { key: 'carro', picto: 'transporte_carro', label: t('travel.car', 'Carro') },
+                                { key: 'aviao', picto: 'transporte_aviao', label: t('travel.airplane', 'Avião') },
+                                { key: 'onibus', picto: 'transporte_onibus', label: t('travel.bus', 'Ônibus') },
+                                { key: 'trem', picto: 'transporte_trem', label: t('travel.train', 'Trem') },
+                                { key: 'navio', picto: 'transporte_navio', label: t('travel.ship', 'Cruzeiro / Navio') },
+                            ].map(opt => (
+                                <CeramicSelectTile
+                                    key={opt.key}
+                                    source={TRAVEL_PICTOGRAMS[opt.picto]}
+                                    label={opt.label}
+                                    selected={transportMode === opt.key}
+                                    dimmed={!!transportMode && transportMode !== opt.key}
+                                    onPress={() => setTransportMode(opt.key)}
+                                />
+                            ))}
+                        </View>
+
+                        {/* DURAÇÃO APROXIMADA */}
+                        <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.durationTitle', 'Duração Aproximada')}</Text>
+                        <View style={s.gridContainer}>
+                            {[
+                                { key: 'curta', picto: 'duracao_curta', label: t('travel.durationShort', 'Curta (Até 2h)') },
+                                { key: 'media', picto: 'duracao_media', label: t('travel.durationMedium', 'Média (2h a 4h)') },
+                                { key: 'longa', picto: 'duracao_longa', label: t('travel.durationLong', 'Longa (+4h)') },
+                            ].map(opt => (
+                                <CeramicSelectTile
+                                    key={opt.key}
+                                    source={TRAVEL_PICTOGRAMS[opt.picto]}
+                                    label={opt.label}
+                                    selected={tripDuration === opt.key}
+                                    dimmed={!!tripDuration && tripDuration !== opt.key}
+                                    onPress={() => setTripDuration(opt.key)}
+                                />
+                            ))}
+                        </View>
+
                         {/* PROPÓSITO DA VIAGEM */}
                         <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('travel.travelPurpose', 'Propósito da Viagem')}</Text>
                         <View style={s.gridContainer}>
@@ -279,10 +361,10 @@ export default function TravelModeScreen({ navigation }) {
                             {/* Multi-seleção: cada tile liga/desliga independente —
                                 apagado = não vai junto, aceso com check = vai */}
                             {[
-                                { key: 'criancas', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças') },
-                                { key: 'idosos', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', 'Idosos') },
-                                { key: 'pets', active: hasPets, toggle: () => setHasPets(!hasPets), label: t('travel.pets', 'Pets') },
-                                { key: 'pcd', active: hasPcd, toggle: () => setHasPcd(!hasPcd), label: t('travel.pwds', 'PCDs') },
+                                { key: 'companhia_criancas', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças') },
+                                { key: 'companhia_idosos', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', 'Idosos') },
+                                { key: 'companhia_pets', active: hasPets, toggle: () => setHasPets(!hasPets), label: t('travel.pets', 'Pets') },
+                                { key: 'companhia_pcd', active: hasPcd, toggle: () => setHasPcd(!hasPcd), label: t('travel.pwds', 'PCDs') },
                             ].map(item => (
                                 <CeramicSelectTile
                                     key={item.key}
@@ -358,7 +440,9 @@ export default function TravelModeScreen({ navigation }) {
                                 accessibilityLabel={card.label}
                             >
                                 <View style={s.ceramicCell}>
-                                    <Image source={TRAVEL_PICTOGRAMS[card.key]} style={s.ceramicTile} resizeMode="contain" />
+                                    <View style={s.pictogramImageContainer}>
+                                        <Image source={TRAVEL_PICTOGRAMS[card.key]} style={[s.ceramicTile, { transform: [{ scale: 1.06 }] }]} resizeMode="contain" />
+                                    </View>
                                     <Body style={s.ceramicCardLabel} numberOfLines={2}>{card.label}</Body>
                                 </View>
                             </ScaleButton>
@@ -439,7 +523,6 @@ const s = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 17,
     },
-    // ── Células cerâmicas (pictograma = o próprio card, sem NeoCard) ──
     ceramicCell: {
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -448,13 +531,15 @@ const s = StyleSheet.create({
         width: TILE_W,
         position: 'relative',
     },
+    pictogramImageContainer: {
+        // No background or border needed, the AI image provides the 3D frame
+    },
     ceramicTile: {
         width: TILE_W,
         height: TILE_H,
-        marginBottom: 4,
     },
     ceramicTileDimmed: {
-        opacity: 0.55, // não-selecionados recuam quando há uma seleção ativa
+        opacity: 0.55,
     },
     ceramicCheckBadge: {
         position: 'absolute',

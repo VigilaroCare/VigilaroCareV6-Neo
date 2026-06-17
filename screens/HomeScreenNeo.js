@@ -60,19 +60,19 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 // assumiria o tamanho intrínseco do PNG (1024px+), estourando a tela.
 const SCREEN_W = Dimensions.get('window').width;
 const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
-// Regra do produto: a Home NÃO deve ter scroll vertical. Os pictogramas são
-// os maiores consumidores de altura — fatores calibrados pra caber tudo
-// above-the-fold em telas ~800dp sem sacrificar legibilidade (labels 13px).
-const GRID_IMG_W = CONTENT_W * 0.48 * 0.84;  // célula 48%, imagem compacta
-const PICTO_RATIO = 3 / 4; // altura = largura × 0.75 (proporção dos tiles)
+// Regra do produto: Home sem scroll vertical. Pictogramas são o maior
+// consumidor de altura — fator 0.48 × 0.78 calibrado para caber 6 tiles
+// (3 linhas) above-the-fold em telas ≥720dp sem sacrificar legibilidade.
+const GRID_IMG_W = CONTENT_W * 0.48 * 0.78;
+const PICTO_RATIO = 3 / 4; // proporção 4:3 dos tiles (largura × 0.75 = altura)
 
 const HOME_PICTOGRAMS = {
-    vistorias:   require('../assets/illustrations/home-pictograms/pictogram-vistorias.png'),
-    atividades:  require('../assets/illustrations/home-pictograms/pictogram-atividades-especiais.png'),
-    scanner:     require('../assets/illustrations/home-pictograms/pictogram-scanner-ambiente.png'),
-    inforotulos: require('../assets/illustrations/home-pictograms/pictogram-inforotulos.png'),
-    minhasaude:  require('../assets/illustrations/home-pictograms/pictogram-minha-saude.png'),
-    saudepet:    require('../assets/illustrations/home-pictograms/pictogram-saude-pet.png'),
+    vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
+    atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
+    scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
+    inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
+    minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
+    saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
 };
 
 export default function HomeScreenNeo() {
@@ -205,16 +205,12 @@ export default function HomeScreenNeo() {
     // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
     // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
     const GRID_ITEMS = [
-        { key: 'vistorias',  label: t('home.inspections', 'Vistorias'),                 image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios' },
-        { key: 'atividades', label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
-        { key: 'minhasaude', label: t('home.myHealth', 'Sua Saúde'),                    image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude' },
-        { key: 'saudepet',   label: t('home.petHealth', 'Saúde do Pet'),                image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet' },
-        // Scanner direto na Home: o antigo hub FerramentasIA virou camada de 1
-        // item só, sem razão de existir. clipScanner/clipRotulos restauram o
-        // respiro da família-ferramenta (PNGs com menos área transparente que
-        // vistoria/atividades) pra o label não "colar".
-        { key: 'scanner',    label: t('home.envScanner', 'Scanner Ambiente'),           image: HOME_PICTOGRAMS.scanner,    route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
-        { key: 'inforotulos',label: t('home.infoLabels', 'Info Rótulos'),               image: HOME_PICTOGRAMS.inforotulos,route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
+        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios'   },
+        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
+        { key: 'minhasaude',  label: t('home.myHealth', 'Sua Saúde'),                     image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude'   },
+        { key: 'saudepet',    label: t('home.petHealth', 'Saúde do Pet'),                 image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet'     },
+        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),            image: HOME_PICTOGRAMS.scanner,    route: 'Scanner'      },
+        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                image: HOME_PICTOGRAMS.inforotulos,route: 'InfoRotulos'  },
     ];
 
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
@@ -277,13 +273,12 @@ export default function HomeScreenNeo() {
                         accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: heroHeadline, alert: scoreMessage.alerta })}
                         accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
                     >
-                        {/* Verde suavizado (pedido do autor, 2026-06-11): sai do
-                            forest profundo — o tom mais escuro agora é o 700,
-                            terminando no emerald da marca. O texto fica na zona
-                            700/600 (contraste AA garantido p/ headline 22 bold). */}
+                        {/* Aesthetic cream/3D alinhado com os novos pictogramas.
+                            Sai o verde chapado, entra uma base off-white/cream
+                            com textos em verde profundo. */}
                         <LinearGradient
-                            colors={[Neo.colors.primary[700], Neo.colors.primary[600], Neo.colors.primary[500]]}
-                            locations={[0, 0.45, 1]}
+                            colors={['#FFFFFF', '#F8F6F0', '#F2EFE6']}
+                            locations={[0, 0.6, 1]}
                             start={{ x: 0, y: 0 }}
                             end={{ x: 1, y: 1 }}
                             style={s.heroCard}
@@ -292,10 +287,10 @@ export default function HomeScreenNeo() {
                                 aspecto chapado e alinha o hero ao material
                                 vitrificado do resto do app (mesma do NeoCard). */}
                             <LinearGradient
-                                colors={Neo.gradients.specularDark.colors}
-                                locations={Neo.gradients.specularDark.locations}
-                                start={Neo.gradients.specularDark.start}
-                                end={Neo.gradients.specularDark.end}
+                                colors={['rgba(255,255,255,0.9)', 'rgba(255,255,255,0.0)', 'rgba(0,0,0,0.03)']}
+                                locations={[0, 0.3, 1]}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
                                 style={StyleSheet.absoluteFill}
                                 pointerEvents="none"
                             />
@@ -375,8 +370,7 @@ export default function HomeScreenNeo() {
                         </TouchableOpacity>
                     )}
 
-                    {/* ACESSO RÁPIDO */}
-                    <Eyebrow style={s.sectionEyebrow}>{t('home.quickAccess')}</Eyebrow>
+                    {/* GRID PRINCIPAL */}
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
                             <ScaleInView
@@ -390,8 +384,6 @@ export default function HomeScreenNeo() {
                                     item={item}
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
-                                    topClip={item.topClip}
-                                    bottomClip={item.bottomClip}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
@@ -407,32 +399,25 @@ export default function HomeScreenNeo() {
 
 /**
  * Pictograma NU: o PNG já contém o tile creme com moldura verde 3D — ele É o
- * card. Nenhum fundo, borda ou sombra extra (a dupla moldura criava a deriva
- * creme/âmbar diagnosticada no design review).
+ * card. Renderizamos a imagem inteira sem recortes rudimentares no código.
  */
-// topClip/bottomClip: fração da altura "comida" por margem negativa pra
-// compensar a área transparente interna de cada família de PNG. Os tiles do
-// grid têm mais respiro embutido que os de Ferramentas — fatores distintos.
-function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W, topClip = 0.12, bottomClip = 0.11 }) {
+function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W }) {
     const imageHeight = imageWidth * PICTO_RATIO;
     return (
         <TappablePressable
             style={s.barePictogram}
             onPress={onPress}
-            pressRetentionOffset={{ top: 20, bottom: 20, left: 20, right: 20 }}
+            pressRetentionOffset={{ top: 10, bottom: 10, left: 10, right: 10 }}
             accessibilityRole="button"
             accessibilityLabel={item.accessibilityLabel || item.label}
         >
-            <Image
-                source={item.image}
-                style={{
-                    width: imageWidth,
-                    height: imageHeight,
-                    marginTop: -(imageHeight * topClip),
-                    marginBottom: -(imageHeight * bottomClip),
-                }}
-                resizeMode="contain"
-            />
+            <View style={[s.pictogramImageContainer, { width: imageWidth, height: imageHeight }]}>
+                <Image
+                    source={item.image}
+                    style={{ width: '100%', height: '100%' }}
+                    resizeMode="contain"
+                />
+            </View>
             <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
                 {item.label}
             </Text>
@@ -493,11 +478,10 @@ const s = StyleSheet.create({
         borderRadius: Neo.radius.lg,
         padding: 12,
         overflow: 'hidden', // contém o specular nos cantos arredondados
-        // Aresta de luz no topo (mesma linguagem das bordas vitrificadas
-        // do NeoCard) — quebra o "verde chapado" com volume sutil.
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.14)',
-        borderTopColor: 'rgba(255, 255, 255, 0.34)',
+        // Borda verde escura para casar perfeitamente com a moldura 
+        // dos pictogramas 3D abaixo.
+        borderWidth: 1.5,
+        borderColor: Neo.colors.primary[800],
     },
     heroTopRow: {
         flexDirection: 'row',
@@ -515,7 +499,7 @@ const s = StyleSheet.create({
         fontSize: 10,
         fontWeight: '700',
         letterSpacing: 1.4,
-        color: 'rgba(255, 255, 255, 0.66)',
+        color: Neo.colors.primary[700],
         marginBottom: 3,
     },
     heroHeadline: {
@@ -523,13 +507,13 @@ const s = StyleSheet.create({
         fontWeight: '800',
         letterSpacing: -0.3,
         lineHeight: 27,
-        color: '#FFFFFF',
+        color: Neo.colors.primary[900],
     },
     heroSubline: {
         fontSize: 12,
         fontWeight: '500',
         lineHeight: 16,
-        color: 'rgba(255, 255, 255, 0.78)',
+        color: Neo.colors.neutral[600],
         marginTop: 3,
     },
     heroScoreGroup: {
@@ -541,15 +525,17 @@ const s = StyleSheet.create({
         fontWeight: '800',
         letterSpacing: -1,
         lineHeight: 44,
-        color: '#FFFFFF',
+        color: Neo.colors.primary[800],
     },
     // Poço claro dentro do hero — o monitor mantém seus estilos (pensados
     // para superfície clara) sem reestilização arriscada.
     heroWell: {
-        backgroundColor: 'rgba(255, 255, 255, 0.94)',
+        backgroundColor: '#FFFFFF',
         borderRadius: Neo.radius.md - 4,
         paddingVertical: 8,
         paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.04)',
     },
 
     // ── Seções (Eyebrow do DS) — na Home, centralizados por preferência
@@ -606,22 +592,25 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        rowGap: 8,
+        paddingHorizontal: 8, // Adds a tiny bit of horizontal padding to balance the layout
     },
     gridCell: {
         width: '48%',
+        marginBottom: 10,
     },
     barePictogram: {
         alignItems: 'center',
+        paddingVertical: 4,
+    },
+    pictogramImageContainer: {
+        // Mask removed because images now use true transparency
     },
     barePictogramLabel: {
-        alignSelf: 'stretch',
-        fontSize: 13,
         fontWeight: '700',
-        textAlign: 'center',
+        fontSize: 13,
         lineHeight: 16,
-        marginTop: 3,
-        letterSpacing: 0,
-        paddingHorizontal: 2,
+        textAlign: 'center',
+        marginTop: 5,
+        paddingHorizontal: 4,
     },
 });

@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
+import ReviewImage from '../../components/ReviewImage';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
+import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getFirePreventionContent } from '../../data/fire_prevention_content';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function PlanoIncendioScreen({ navigation }) {
   const { t } = useTranslation('common');
-  const [secaoSelecionada, setSecaoSelecionada] = useState(null);
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textBody = themeColors.neutral[700];
 
   const FIRE_PREVENTION_CONTENT = getFirePreventionContent();
 
@@ -21,26 +28,28 @@ export default function PlanoIncendioScreen({ navigation }) {
     {
       id: 'prevention',
       nome: FIRE_PREVENTION_CONTENT?.prevention?.title || 'Prevenção',
+      subtitulo: 'Ações para evitar o início de incêndios',
       emoji: FIRE_PREVENTION_CONTENT?.prevention?.emoji || '🛡️',
       cor: '#4CAF50',
-      itens: FIRE_PREVENTION_CONTENT?.prevention?.sections
-        ? FIRE_PREVENTION_CONTENT.prevention.sections.map(s => s.title)
-        : [],
-      detalhes: FIRE_PREVENTION_CONTENT?.prevention?.sections,
+      imagemUrl: 'https://images.pexels.com/photos/8910403/pexels-photo-8910403.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      itens: FIRE_PREVENTION_CONTENT?.prevention?.sections || [],
     },
     {
       id: 'action',
       nome: FIRE_PREVENTION_CONTENT?.action?.title || 'Ação',
+      subtitulo: 'Como agir no primeiro minuto',
       emoji: FIRE_PREVENTION_CONTENT?.action?.emoji || '🔥',
-      cor: '#F44336',
+      cor: '#EF4444',
+      imagemUrl: 'https://images.pexels.com/photos/10323326/pexels-photo-10323326.jpeg?auto=compress&cs=tinysrgb&w=1200',
       itens: FIRE_PREVENTION_CONTENT?.action?.steps || [],
-      detalhes: null,
     },
     {
       id: 'plan',
       nome: 'Plano de fuga',
+      subtitulo: 'Estratégia de evacuação em família',
       emoji: '🗺️',
-      cor: '#2196F3',
+      cor: '#3B82F6',
+      imagemUrl: 'https://images.pexels.com/photos/3773199/pexels-photo-3773199.jpeg?auto=compress&cs=tinysrgb&w=1200',
       itens: [
         'Desenhe a planta da casa e marque 2 saídas por cômodo.',
         'COMBINE UM PONTO DE ENCONTRO seguro fora da casa (ex: poste, árvore vizinha).',
@@ -48,95 +57,128 @@ export default function PlanoIncendioScreen({ navigation }) {
         'Toque na porta com as costas da mão antes de abrir. Se quente, NÃO ABRA.',
         'Se suas roupas pegarem fogo: PARE, DEITE e ROLE no chão.',
       ],
-      detalhes: null,
     },
   ];
 
-  // SUB-SCREEN (DETAIL)
-  if (secaoSelecionada) {
-    const accent = secaoSelecionada.cor || '#6366F1';
-    return (
-      <AppBackground>
-        <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-          <StatusBar style="dark" />
+  const handlePress = (secao) => {
+    let passos = [];
+    if (secao.id === 'prevention') {
+      passos = secao.itens.map(s => ({ titulo: s.title, descricao: s.content }));
+    } else {
+      passos = secao.itens.map(s => ({ titulo: s, descricao: '' }));
+    }
 
-          <View style={s.header}>
-            <TouchableOpacity
-              onPress={() => setSecaoSelecionada(null)}
-              style={s.backBtn}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
-              <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
-            </TouchableOpacity>
-            <View style={{ flex: 1 }}>
-              <H1 style={s.title}>{secaoSelecionada.nome}</H1>
-              <Caption style={s.subtitle}>
-                {secaoSelecionada.itens ? `${secaoSelecionada.itens.length} passos` : ''}
-              </Caption>
-            </View>
-          </View>
+    navigation.navigate('PremiumArticle', {
+      conceito: {
+        titulo: secao.nome,
+        subtitulo: secao.subtitulo,
+        emoji: secao.emoji,
+        color: secao.cor,
+        tags: ['Plano de Incêndio'],
+        passos: passos,
+      }
+    });
+  };
 
-          <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
-            {secaoSelecionada.detalhes ? (
-              secaoSelecionada.detalhes.map((item, idx) => (
-                <NeoCard variant="elevated" key={idx} style={s.itemCard}>
-                  <Text style={[s.itemDetailTitle, { color: accent }]}>{item.title}</Text>
-                  <Text style={s.itemDetailText}>{item.content}</Text>
-                </NeoCard>
-              ))
-            ) : (
-              secaoSelecionada.itens.map((item, idx) => (
-                <NeoCard variant="elevated" key={idx} style={s.itemCardRow}>
-                  <View style={[s.itemNumero, { backgroundColor: accent }]}>
-                    <Text style={s.itemNumeroTexto}>{idx + 1}</Text>
-                  </View>
-                  <Text style={s.itemTexto}>{item}</Text>
-                </NeoCard>
-              ))
-            )}
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
-            <View style={s.lembreteBox}>
-              <NeoIcon name="Warning2" size={18} color="#EF4444" variant="Bold" />
-              <View style={{ flex: 1 }}>
-                <Text style={s.lembreteTitle}>{t('headersFirst.lembreSe', 'Lembre-se')}</Text>
-                <Text style={s.lembreteTexto}>
-                  {t('headersFirst.aVidaVemPrimeiroObjetosPodemSerSubstituD', 'A vida vem primeiro. Objetos podem ser substituídos. NUNCA volte para uma casa em chamas.')}
-                </Text>
-              </View>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </AppBackground>
-    );
-  }
+  const heroTransform = [
+      {
+          translateY: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+              outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+              extrapolate: 'clamp',
+          })
+      },
+      {
+          scale: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0],
+              outputRange: [2, 1],
+              extrapolateRight: 'clamp',
+          })
+      }
+  ];
 
-  // MAIN
+  const capaUrl = 'https://images.pexels.com/photos/8910403/pexels-photo-8910403.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Fire prevention
+
+  const title = t('headersFirst.firePlan', 'Plano de incêndio');
+  const subtitle = t('headersFirst.eviteTragediasFamiliares', 'Evite tragédias familiares');
+
   return (
-    <AppBackground>
-      <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-        <StatusBar style="dark" />
+    <View style={{ flex: 1, backgroundColor: surface }}>
+      <StatusBar style="light" />
 
-        <View style={s.header}>
+      {/* Float Header / Back Button */}
+      <SafeAreaView edges={['top']} style={s.safeHeader}>
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={s.backBtn}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              onPress={() => navigation.goBack()}
+              style={s.backBtnFlat}
+              accessibilityRole="button"
+              accessibilityLabel={t('common.back', 'Voltar')}
           >
-            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
           </TouchableOpacity>
-          <View style={{ flex: 1 }}>
-            <H1 style={s.title}>
-              {t('headersFirst.firePlan', 'Plano de incêndio')}
-            </H1>
-            <Caption style={s.subtitle}>
-              {t('headersFirst.preparaOSalvaVidas', 'Preparação salva vidas')}
-            </Caption>
-          </View>
-        </View>
+      </SafeAreaView>
 
-        <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
+      <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+          contentContainerStyle={{ paddingBottom: 120 }}
+      >
+        {/* HERO com parallax */}
+        <Animated.View style={{
+            width: '100%',
+            height: HERO_HEIGHT,
+            backgroundColor: '#EF4444',
+            overflow: 'hidden',
+            transform: heroTransform,
+        }}>
+            <ReviewImage
+                source={{ uri: capaUrl }}
+                style={StyleSheet.absoluteFill}
+                resizeMode="cover"
+            />
+            
+            {/* Gradient para legibilidade do título e fusão com o fundo */}
+            <LinearGradient
+                colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                locations={[0, 0.35, 0.85, 1]}
+                style={StyleSheet.absoluteFill}
+            />
+
+            {/* Hero title — viaja junto com a parallax */}
+            <View style={{
+                position: 'absolute',
+                bottom: 24,
+                paddingHorizontal: 22,
+                width: '100%',
+            }}>
+                <Text style={{
+                    fontSize: 34,
+                    fontWeight: '900',
+                    color: '#FFFFFF',
+                    letterSpacing: -0.8,
+                    lineHeight: 38,
+                }} accessibilityRole="header">
+                    {title}
+                </Text>
+                <Text style={{
+                    fontSize: 16,
+                    color: 'rgba(255,255,255,0.9)',
+                    marginTop: 6,
+                    fontWeight: '600'
+                }}>
+                    {subtitle}
+                </Text>
+            </View>
+        </Animated.View>
+
+        <View style={[s.content, { marginTop: 20 }]}>
           {/* ALERT */}
-          <View style={s.alertCard}>
+          <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: '#FFEDD5' }]}>
             <NeoIcon name="Warning2" size={22} color="#F97316" variant="Bold" />
             <Text style={s.alertText}>
               <Text style={{ fontWeight: '800' }}>{t('headersFirst.critical', 'CRÍTICO:')} </Text>
@@ -148,14 +190,14 @@ export default function PlanoIncendioScreen({ navigation }) {
           <NeoCard variant="elevated" style={s.statsCard}>
             <View style={s.statItem}>
               <Text style={s.statNumber}>3min</Text>
-              <Text style={s.statLabel}>
+              <Text style={[s.statLabel, { color: textBody }]}>
                 {t('headersFirst.tempoParaEvacuar', 'Tempo para evacuar')}
               </Text>
             </View>
             <View style={s.statDivider} />
             <View style={s.statItem}>
               <Text style={s.statNumber}>2×</Text>
-              <Text style={s.statLabel}>
+              <Text style={[s.statLabel, { color: textBody }]}>
                 {t('headersFirst.treinarPorAno', 'Treinar por ano')}
               </Text>
             </View>
@@ -166,208 +208,114 @@ export default function PlanoIncendioScreen({ navigation }) {
           </Small>
 
           {secoes.map(secao => (
-            <TouchableOpacity
-              key={secao.id}
-              onPress={() => setSecaoSelecionada(secao)}
-              activeOpacity={0.85}
-            >
-              <NeoCard variant="elevated" style={s.secaoCard}>
-                <View style={[s.secaoIconBox, { backgroundColor: secao.cor + '20' }]}>
-                  <Text style={s.secaoEmoji}>{secao.emoji}</Text>
-                </View>
-                <View style={s.secaoInfo}>
-                  <H3 style={s.secaoNome}>{secao.nome}</H3>
-                  <Small style={s.secaoItens}>
-                    {secao.itens ? secao.itens.length : 0} passos essenciais
-                  </Small>
-                </View>
-                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
-              </NeoCard>
-            </TouchableOpacity>
+             <NeoHorizontalCard
+                key={secao.id}
+                title={secao.nome}
+                description={secao.subtitulo}
+                emoji={secao.emoji}
+                color={secao.cor}
+                imageUrl={secao.imagemUrl}
+                onPress={() => handlePress(secao)}
+             />
           ))}
 
           {/* INFO 3D */}
-          <View style={s.infoBox}>
+          <View style={[s.infoBox, { backgroundColor: isDark ? 'rgba(79, 70, 229, 0.1)' : '#EEF2FF', borderColor: isDark ? 'rgba(79, 70, 229, 0.2)' : '#E0E7FF' }]}>
             <NeoIcon name="InfoCircle" size={20} color="#4F46E5" variant="Bold" />
             <View style={{ flex: 1 }}>
-              <Text style={s.infoTitle}>
+              <Text style={[s.infoTitle, { color: '#4F46E5' }]}>
                 {t('headersFirst.prevenO3DAplicada', 'Prevenção 3D aplicada')}
               </Text>
-              <Text style={s.infoText}>
+              <Text style={[s.infoText, { color: '#4338CA' }]}>
                 • DIÁRIA: verificar extintores{'\n'}
                 • DINÂMICA: atualizar plano{'\n'}
                 • DURADOURA: treinar regularmente
               </Text>
             </View>
           </View>
-
-          {/* EMERGÊNCIA — vermelho urgente */}
-          <View style={s.emergenciaBox}>
-            <NeoIcon name="Call" size={28} color="#FFF" variant="Bold" />
-            <Text style={s.emergenciaTitle}>
-              {t('headersFirst.emCasoDeIncNdio', 'Em caso de incêndio')}
-            </Text>
-            <Text style={s.emergenciaTexto}>
-              Bombeiros · 193{'\n'}
-              SAMU · 192{'\n'}
-              {'\n'}
-              SAIA PRIMEIRO, LIGUE DEPOIS!
-            </Text>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </AppBackground>
+        </View>
+      </Animated.ScrollView>
+    </View>
   );
 }
 
 const s = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'transparent' },
-
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Neo.spacing.lg,
-    paddingTop: 4,
-    paddingBottom: 14,
-    gap: 12,
-  },
-  backBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.75)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: '800',
-    letterSpacing: -0.5,
-    marginBottom: 2,
-    fontSize: 22,
-  },
-  subtitle: { color: Neo.colors.neutral[600] },
-
   content: {
-    paddingHorizontal: Neo.spacing.lg,
-    paddingBottom: 190,
+    paddingHorizontal: 22,
+    paddingBottom: 40,
   },
-
+  safeHeader: {
+      position: 'absolute',
+      top: 0, left: 0, right: 0,
+      paddingHorizontal: 20,
+      zIndex: 10,
+  },
+  backBtnFlat: {
+      width: 44, height: 44,
+      borderRadius: 22,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      alignItems: 'center', justifyContent: 'center',
+      marginTop: 10,
+      borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
+  },
   alertCard: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: 14,
-    borderRadius: 14,
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    gap: 12,
     marginBottom: 16,
-    backgroundColor: '#FFF3E0',
-    borderLeftWidth: 3,
-    borderLeftColor: '#F97316',
-    gap: 10,
   },
-  alertText: { flex: 1, fontSize: 13, color: '#9A3412', lineHeight: 19 },
-
+  alertText: {
+    flex: 1,
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#9A3412',
+  },
   statsCard: {
     flexDirection: 'row',
-    padding: 18,
-    borderRadius: 16,
-    marginBottom: 20,
+    padding: 16,
+    marginBottom: 24,
+  },
+  statItem: {
+    flex: 1,
     alignItems: 'center',
   },
-  statItem: { flex: 1, alignItems: 'center' },
-  statNumber: { fontSize: 26, fontWeight: '800', color: '#F44336', marginBottom: 4, letterSpacing: -0.5 },
-  statLabel: { fontSize: 11.5, color: Neo.colors.neutral[600], textAlign: 'center' },
-  statDivider: { width: 1, height: 40, backgroundColor: 'rgba(0,0,0,0.08)', marginHorizontal: 16 },
-
-  sectionLabel: {
-    fontSize: 11.5,
+  statNumber: {
+    fontSize: 24,
     fontWeight: '800',
-    letterSpacing: 1.2,
-    color: Neo.colors.neutral[600],
-    marginBottom: 10,
+    color: '#EF4444',
+  },
+  statLabel: {
+    fontSize: 12,
     marginTop: 4,
-    textTransform: 'uppercase',
+    textAlign: 'center',
   },
-
-  secaoCard: {
-    flexDirection: 'row',
-    padding: 14,
-    borderRadius: 16,
-    marginBottom: 10,
-    alignItems: 'center',
-    gap: 12,
+  statDivider: {
+    width: 1,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    marginHorizontal: 16,
   },
-  secaoIconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
+  sectionLabel: {
+    marginBottom: 12,
+    fontWeight: '700',
+    color: '#6B7280',
+    letterSpacing: 0.5,
   },
-  secaoEmoji: { fontSize: 22 },
-  secaoInfo: { flex: 1 },
-  secaoNome: { fontSize: 15, fontWeight: '800', color: Neo.colors.neutral[900], marginBottom: 2 },
-  secaoItens: { fontSize: 11.5, color: Neo.colors.neutral[600] },
-
-  itemCard: {
-    padding: 14,
-    borderRadius: 14,
-    marginBottom: 10,
-  },
-  itemCardRow: {
-    flexDirection: 'row',
-    padding: 14,
-    borderRadius: 14,
-    marginBottom: 10,
-    alignItems: 'flex-start',
-    gap: 12,
-  },
-  itemNumero: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 1,
-  },
-  itemNumeroTexto: { color: '#FFF', fontSize: 13, fontWeight: '800' },
-  itemTexto: { flex: 1, fontSize: 14, lineHeight: 20, color: Neo.colors.neutral[800] },
-  itemDetailTitle: { fontSize: 15, fontWeight: '800', marginBottom: 6 },
-  itemDetailText: { fontSize: 13.5, lineHeight: 20, color: Neo.colors.neutral[800] },
-
   infoBox: {
     flexDirection: 'row',
-    padding: 14,
-    borderRadius: 14,
-    marginTop: 16,
-    marginBottom: 20,
-    backgroundColor: '#EEF2FF',
-    borderLeftWidth: 3,
-    borderLeftColor: '#4F46E5',
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
     gap: 12,
+    marginTop: 8,
   },
-  infoTitle: { fontSize: 14, fontWeight: '800', color: '#3730A3', marginBottom: 6 },
-  infoText: { fontSize: 12.5, lineHeight: 19, color: Neo.colors.neutral[800] },
-
-  emergenciaBox: {
-    padding: 20,
-    borderRadius: 18,
-    marginBottom: 20,
-    alignItems: 'center',
-    backgroundColor: '#F44336',
-    gap: 12,
+  infoTitle: {
+    fontWeight: '800',
+    marginBottom: 4,
   },
-  emergenciaTitle: { fontSize: 16, fontWeight: '800', color: '#FFF', letterSpacing: -0.2 },
-  emergenciaTexto: { fontSize: 14, color: '#FFF', lineHeight: 22, textAlign: 'center', fontWeight: '600' },
-
-  lembreteBox: {
-    flexDirection: 'row',
-    padding: 14,
-    borderRadius: 14,
-    marginTop: 12,
-    backgroundColor: '#FEF2F2',
-    borderLeftWidth: 3,
-    borderLeftColor: '#EF4444',
-    gap: 10,
+  infoText: {
+    fontSize: 13,
+    lineHeight: 20,
   },
-  lembreteTitle: { fontSize: 14, fontWeight: '800', color: '#B91C1C', marginBottom: 4 },
-  lembreteTexto: { fontSize: 12.5, lineHeight: 18, color: '#991B1B' },
 });

@@ -1,30 +1,58 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Vibration } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Vibration, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { ChecklistService } from '../services/ChecklistService';
-import { useState, useEffect } from 'react';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import PetHeroBanner from '../components/PetHeroBanner';
+import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function AgeGroupDetailScreen({ route, navigation }) {
-    const { group } = route.params;
+    const { group } = route.params || {};
     const [checklistState, setChecklistState] = useState({});
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
+
     const textPrimary = themeColors.neutral[900];
-    const textBody = themeColors.neutral[800];
-    const textMuted = themeColors.neutral[600];
+    const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
+    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+
+    if (!group) return null;
+
+    const title = t_field(group, 'title');
+    const cor = group.color || '#3B82F6';
+
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
 
     // Gerar ID único para persistência baseado no título do grupo
-    // Ex: 'Pets Adultos' -> 'custom_Pets_Adultos'
     const areaId = `custom_${group.title.replace(/\s+/g, '_')}`;
 
     useEffect(() => {
@@ -36,70 +64,88 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
         setChecklistState(allState[areaId] || {});
     };
 
-    const handleAnswer = async (itemText, status) => {
-        // Toggle logic: click same status to clear
-        const currentStatus = checklistState[itemText];
-        const newStatus = currentStatus === status ? null : status;
-
-        const newState = {
-            ...checklistState,
-            [itemText]: newStatus
-        };
-        setChecklistState(newState);
-
-        if (newStatus !== null) Vibration.vibrate(10);
-        await ChecklistService.saveItemState(areaId, itemText, newStatus);
-    };
-
     return (
-        <AppBackground>
-        <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top']}>
-            <StatusBar style={isDark ? 'light' : 'dark'} backgroundColor="transparent" />
+        <View style={{ flex: 1, backgroundColor: surface }}>
+            <StatusBar style="light" />
 
-            {/* HEADER padrão Pets: back button + título/subtítulo lado a lado */}
-            <View style={styles.headerRow}>
+            {/* Float Header / Back Button (fixo no topo da tela) */}
+            <SafeAreaView edges={['top']} style={styles.safeHeader}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    style={styles.backBtn}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    style={styles.backBtnFlat}
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
                 </TouchableOpacity>
-                <View style={{ flex: 1 }}>
-                    <Text style={[styles.headerTitleNew, { color: group.color }]} accessibilityRole="header" numberOfLines={1}>
-                        {t_field(group, 'title')}
-                    </Text>
-                    {t_field(group, 'subtitle') ? (
-                        <Text style={[styles.headerSubtitle, { color: textMuted }]} numberOfLines={1}>
-                            {t_field(group, 'subtitle')}
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: 120 }}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: cor,
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={group.imagemUrl ? { uri: group.imagemUrl } : group.imagem}
+                        style={StyleSheet.absoluteFill}
+                        contentFit={group.resizeMode || 'cover'}
+                    />
+
+                    {/* Gradient para legibilidade do título e fusão com o fundo */}
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+
+                    {/* Hero title — viaja junto com a parallax */}
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFFFFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                        }} accessibilityRole="header">
+                            {title}
+                        </Text>
+                        {t_field(group, 'subtitle') ? (
+                            <Text style={{
+                                fontSize: 16,
+                                color: 'rgba(255,255,255,0.9)',
+                                marginTop: 6,
+                                fontWeight: '600'
+                            }}>
+                                {t_field(group, 'subtitle')}
+                            </Text>
+                        ) : null}
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={[styles.content, { marginTop: 20 }]}>
+                    {/* Descrição */}
+                    {t_field(group, 'description') ? (
+                        <Text style={[styles.groupDescription, { color: textBody }]}>
+                            {t_field(group, 'description')}
                         </Text>
                     ) : null}
-                </View>
-            </View>
 
-            <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-
-                {/* Hero banner — imagem do card de origem (continuidade visual) */}
-                <PetHeroBanner
-                    image={group.imagem}
-                    imageUrl={group.imagemUrl}
-                    tint={group.color}
-                    resizeMode={group.resizeMode || 'cover'}
-                    accessibilityLabel={t_field(group, 'title')}
-                    marginHorizontal={0}
-                    marginBottom={14}
-                />
-
-                {/* Descrição (se houver) — texto solto, sem moldura */}
-                {t_field(group, 'description') ? (
-                    <Text style={[styles.groupDescription, { color: textBody }]}>
-                        {t_field(group, 'description')}
-                    </Text>
-                ) : null}
-
-                {/* Risks Section — cada risco vira um NeoCard próprio (sem moldura externa) */}
+                {/* Risks Section */}
                 {group.risks && group.risks.length > 0 && (
                     <>
                         <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('ageGroup.risksTitle', 'Principais Riscos')}</Text>
@@ -135,12 +181,9 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                         })}
                     </>
                 )}
-
-                {/* Checklist Section Removed - Educational Only */}
-
-            </ScrollView>
-        </SafeAreaView>
-        </AppBackground>
+                </View>
+            </Animated.ScrollView>
+        </View>
     );
 }
 
@@ -148,47 +191,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    // Header novo no padrão Pet (back + titulo + subtitulo)
-    headerRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    content: {
+        paddingHorizontal: 22,
+        paddingBottom: 40,
+    },
+    safeHeader: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
         paddingHorizontal: 20,
-        paddingTop: 4,
-        paddingBottom: 14,
-        gap: 12,
+        zIndex: 10,
     },
-    backBtn: {
-        width: 38,
-        height: 38,
-        borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    headerTitleNew: {
-        fontSize: 22,
-        fontWeight: '800',
-        letterSpacing: -0.5,
-        marginBottom: 2,
-    },
-    headerSubtitle: {
-        fontSize: 13,
-        fontWeight: '600',
+    backBtnFlat: {
+        width: 44, height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        alignItems: 'center', justifyContent: 'center',
+        marginTop: 10,
+        borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
     },
     groupDescription: {
         fontSize: 14,
         lineHeight: 20,
         marginBottom: 16,
         marginTop: 2,
-    },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: Spacing.lg,
-        backgroundColor: Neo.colors.neutral.white,
-        borderBottomWidth: 1,
-        borderBottomColor: Neo.colors.neutral[100],
-        gap: Spacing.md,
     },
     backButton: {
         padding: 4,

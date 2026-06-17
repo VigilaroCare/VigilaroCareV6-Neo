@@ -3,14 +3,18 @@
  * Guia Educativo sobre Prenhez e Ninhadas de Pets
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     View,
     Text,
     StyleSheet,
     ScrollView,
     TouchableOpacity,
+    Animated,
+    Dimensions
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -34,50 +38,106 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[800];
 
+    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+
+    const title = t('petPregnancy.title', 'Prenhez e ninhadas');
+    const subtitle = t('petPregnancy.subtitle', 'Guia para mamãe e filhotes');
+    const cor = petHero?.cor || '#E91E63';
+
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
     return (
-        <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={s.container}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+        <View style={{ flex: 1, backgroundColor: surface }}>
+            <StatusBar style="light" />
 
-                {/* HEADER padronizado */}
-                <View style={s.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('common.back', 'Voltar')}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }}>
-                        <H1 style={s.title}>
-                            {t('petPregnancy.title', 'Prenhez e ninhadas')}
-                        </H1>
-                        <Caption style={s.subtitle}>
-                            {t('petPregnancy.subtitle', 'Guia para mamãe e filhotes')}
-                        </Caption>
-                    </View>
-                </View>
-
-                <ScrollView
-                    style={s.content}
-                    contentContainerStyle={{ paddingBottom: 240 }}
-                    showsVerticalScrollIndicator={false}
+            {/* Float Header / Back Button (fixo no topo da tela) */}
+            <SafeAreaView edges={['top']} style={s.safeHeader}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={s.backBtnFlat}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    {/* Hero banner — imagem do card de origem */}
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: 120 }}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: cor,
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
                     {petHero && (
-                        <PetHeroBanner
-                            image={petHero.imagem}
-                            imageUrl={petHero.imagemUrl}
-                            tint={petHero.cor || '#E91E63'}
+                        <ReviewImage
+                            source={petHero.imagemUrl ? { uri: petHero.imagemUrl } : petHero.imagem}
+                            style={StyleSheet.absoluteFill}
                             resizeMode={petHero.resizeMode || 'cover'}
-                            accessibilityLabel={petHero.titulo}
-                            marginHorizontal={0}
-                            marginBottom={16}
                         />
                     )}
 
+                    {/* Gradient para legibilidade do título e fusão com o fundo */}
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+
+                    {/* Hero title — viaja junto com a parallax */}
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFFFFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                        }} accessibilityRole="header">
+                            {title}
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            color: 'rgba(255,255,255,0.9)',
+                            marginTop: 6,
+                            fontWeight: '600'
+                        }}>
+                            {subtitle}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={[s.content, { marginTop: 20 }]}>
                     {/* Alerta */}
                     <NeoCard variant="elevated" style={s.alertCard}>
                         <View style={s.alertHeader}>
@@ -124,37 +184,32 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                             {t('petPregnancy.tipText', 'A castração é a forma mais eficaz de prevenir gestações indesejadas e contribui para a saúde do pet. Converse com seu veterinário sobre o melhor momento.')}
                         </Text>
                     </NeoCard>
-                </ScrollView>
-            </SafeAreaView>
-        </AppBackground>
+                </View>
+            </Animated.ScrollView>
+        </View>
     );
 }
 
 const s = StyleSheet.create({
     container: { flex: 1, backgroundColor: 'transparent' },
 
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 14,
-        gap: 12,
-    },
-    backBtn: {
-        width: 38,
-        height: 38,
-        borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, fontSize: 22 },
-    subtitle: { color: Neo.colors.neutral[600] },
-
     content: {
-        flex: 1,
-        paddingHorizontal: Neo.spacing.lg,
+        paddingHorizontal: 22,
+        paddingBottom: 40,
+    },
+    safeHeader: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        paddingHorizontal: 20,
+        zIndex: 10,
+    },
+    backBtnFlat: {
+        width: 44, height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        alignItems: 'center', justifyContent: 'center',
+        marginTop: 10,
+        borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
     },
 
     alertCard: {

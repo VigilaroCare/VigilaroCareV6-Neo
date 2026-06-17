@@ -212,6 +212,62 @@ export const GUIDE_SECTIONS = [
         source_en: 'Sources: CNJ · Brazilian Federal Police · confirm at boarding (Jun/2026).',
         source_es: 'Fuentes: CNJ · Policía Federal · confirme en el embarque (jun/2026).',
     },
+    // ── Regras de Modal e Duração de Viagem ──
+    {
+        id: 'fadiga_carro', prio: 3, icon: 'Car',
+        match: (trip) => trip.transportMode === 'carro' && trip.tripDuration === 'longa',
+        title: 'Viagem Longa de Carro (Fadiga)', title_en: 'Long Car Trip (Fatigue)', title_es: 'Viaje Largo en Coche (Fatiga)',
+        content: 'Fadiga ao volante reduz os reflexos tanto quanto o álcool. Uma viagem acima de 4h exige planejamento de pausas.',
+        content_en: 'Fatigue behind the wheel reduces reflexes as much as alcohol. A trip over 4 hours requires planned breaks.',
+        content_es: 'La fatiga al volante reduce los reflejos tanto como el alcohol. Un viaje de más de 4h exige planificar pausas.',
+        bullets: ['Pare a cada 2 horas ou 200km para esticar as pernas e beber água.', 'Evite viajar de madrugada; o relógio biológico cobra a conta.', 'Revezem a direção se houver outro motorista descansado.'],
+        bullets_en: ['Stop every 2 hours or 120 miles to stretch your legs and drink water.', 'Avoid driving overnight; your biological clock will take its toll.', 'Take turns driving if there is another rested driver.'],
+        bullets_es: ['Pare cada 2 horas o 200 km para estirar las piernas y beber agua.', 'Evite viajar de madrugada; el reloj biológico pasa factura.', 'Túrnense para conducir si hay otro conductor descansado.'],
+    },
+    {
+        id: 'tvp_aviao', prio: 3, icon: 'Airplane',
+        match: (trip) => trip.transportMode === 'aviao' && trip.tripDuration === 'longa',
+        title: 'Voo Longo (Risco de Trombose)', title_en: 'Long Flight (DVT Risk)', title_es: 'Vuelo Largo (Riesgo de Trombosis)',
+        content: 'Voos com mais de 4 horas aumentam o risco de Trombose Venosa Profunda (TVP) devido à imobilidade prolongada.',
+        content_en: 'Flights over 4 hours increase the risk of Deep Vein Thrombosis (DVT) due to prolonged immobility.',
+        content_es: 'Vuelos de más de 4 horas aumentan el riesgo de Trombosis Venosa Profunda (TVP) debido a la inmovilidad prolongada.',
+        bullets: ['Levante-se e caminhe pelo corredor a cada 2 horas.', 'Faça movimentos circulares com os pés enquanto estiver sentado.', 'Mantenha-se bem hidratado com água e evite álcool.'],
+        bullets_en: ['Stand up and walk down the aisle every 2 hours.', 'Make circular movements with your feet while seated.', 'Stay well hydrated with water and avoid alcohol.'],
+        bullets_es: ['Levántese y camine por el pasillo cada 2 horas.', 'Haga movimientos circulares con los pies mientras esté sentado.', 'Manténgase bien hidratado con agua y evite el alcohol.'],
+    },
+    {
+        id: 'cinetose', prio: 3, icon: 'Health',
+        match: (trip) => ['carro', 'onibus', 'navio'].includes(trip.transportMode),
+        title: 'Cinetose (Enjoo de Movimento)', title_en: 'Motion Sickness', title_es: 'Cinetosis (Mareo por Movimiento)',
+        content: 'O enjoo ocorre quando o cérebro recebe sinais conflitantes dos olhos e do labirinto durante o movimento.',
+        content_en: 'Motion sickness occurs when the brain receives conflicting signals from the eyes and inner ear during movement.',
+        content_es: 'El mareo ocurre cuando el cerebro recibe señales contradictorias de los ojos y del oído interno durante el movimiento.',
+        bullets: ['Olhe para o horizonte ou para um ponto fixo distante.', 'Evite ler ou usar telas durante o trajeto.', 'Se houver propensão, consulte um médico sobre medicação preventiva antes de viajar.'],
+        bullets_en: ['Look at the horizon or a distant fixed point.', 'Avoid reading or using screens during the trip.', 'If prone, consult a doctor about preventive medication before traveling.'],
+        bullets_es: ['Mire hacia el horizonte o a un punto fijo distante.', 'Evite leer o usar pantallas durante el trayecto.', 'Si tiene propensión, consulte a un médico sobre medicación preventiva antes de viajar.'],
+    },
+    {
+        id: 'cinto_onibus', prio: 2, icon: 'Bus',
+        match: (trip) => trip.transportMode === 'onibus',
+        title: 'Cinto de Segurança em Ônibus', title_en: 'Seatbelts on Buses', title_es: 'Cinturón de Seguridad en Autobuses',
+        content: 'O cinto de segurança é obrigatório e salva vidas em ônibus rodoviários, mas muitos passageiros ignoram.',
+        content_en: 'Seatbelts are mandatory and save lives on highway buses, but many passengers ignore them.',
+        content_es: 'El cinturón de seguridad es obligatorio y salva vidas en autobuses de carretera, pero muchos pasajeros lo ignoran.',
+        bullets: ['Mantenha o cinto afivelado durante toda a viagem, inclusive dormindo.', 'Em caso de tombamento, quem está sem cinto é arremessado.', 'Exija que seus acompanhantes também usem o cinto.'],
+        bullets_en: ['Keep your seatbelt fastened throughout the trip, even while sleeping.', 'In a rollover crash, unbelted passengers are thrown around.', 'Demand that your traveling companions also use their seatbelts.'],
+        bullets_es: ['Mantenga el cinturón abrochado durante todo el viaje, incluso al dormir.', 'En caso de vuelco, los pasajeros sin cinturón salen despedidos.', 'Exija que sus acompañantes también usen el cinturón.'],
+    },
+    {
+        id: 'seguranca_auto', prio: 2, icon: 'CarProfile',
+        match: (trip) => trip.transportMode === 'carro' && (trip.config?.hasKids || trip.config?.hasPets),
+        title: 'Crianças e Pets no Carro', title_en: 'Kids and Pets in the Car', title_es: 'Niños y Mascotas en el Coche',
+        content: 'A segurança no carro exige equipamentos específicos para crianças e animais. Eles nunca devem viajar soltos.',
+        content_en: 'Car safety requires specific equipment for children and animals. They must never travel loose.',
+        content_es: 'La seguridad en el coche exige equipos específicos para niños y animales. Nunca deben viajar sueltos.',
+        bullets: ['Use cadeirinha, assento de elevação ou bebê conforto de acordo com peso/idade da criança.', 'Animais devem usar cinto de segurança peitoral ou viajar em caixas de transporte fixadas.', 'Malas soltas viram projéteis em uma freada; guarde tudo no porta-malas.'],
+        bullets_en: ['Use a car seat, booster seat or infant carrier according to the child\'s weight/age.', 'Animals must use a chest harness seatbelt or travel in secured carriers.', 'Loose luggage becomes projectiles in hard braking; store everything in the trunk.'],
+        bullets_es: ['Use sillita, asiento elevador o portabebés según peso/edad del niño.', 'Los animales deben usar cinturón de arnés o viajar en cajas de transporte aseguradas.', 'El equipaje suelto se vuelve proyectiles al frenar; guarde todo en el maletero.'],
+    },
 ];
 
 export const TYPE_LABELS = {
@@ -223,6 +279,7 @@ export const TYPE_LABELS = {
 
 export function matchesTrip(section, trip) {
     if (!trip) return false;
+    if (section.match && section.match(trip)) return true;
     const cfg = trip.config || {};
     if (section.always) return true;
     if (section.types?.includes(trip.type)) return true;

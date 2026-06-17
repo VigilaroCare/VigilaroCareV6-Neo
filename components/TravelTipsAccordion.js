@@ -44,6 +44,11 @@ const TRAVEL_TIPS = [
     // voo doméstico); o bullet internacional alerta para substâncias proibidas
     { phase: 'preparacao', title: 'Medicamentos na Viagem', title_en: 'Medications While Traveling', title_es: 'Medicamentos en el Viaje', text: '• Remédio controlado: leve a receita médica — a comprovação pode ser exigida.\n• Mantenha na embalagem original, na bagagem de mão.\n• Viagem internacional: confirme se a substância é permitida no destino — remédios comuns no Brasil são proibidos em alguns países.\n• Leve quantidade para toda a viagem, com folga.', text_en: '• Controlled medication: carry the prescription — proof may be required.\n• Keep it in the original packaging, in your carry-on.\n• International trips: confirm the substance is allowed at the destination — medications common in Brazil are banned in some countries.\n• Bring enough for the whole trip, with a margin.', text_es: '• Medicamento controlado: lleve la receta médica — pueden exigir comprobación.\n• Manténgalo en el envase original, en el equipaje de mano.\n• Viaje internacional: confirme que la sustancia esté permitida en el destino — medicamentos comunes en Brasil están prohibidos en algunos países.\n• Lleve cantidad para todo el viaje, con margen.', icon: 'Pill', types: ['all'] },
     { phase: 'preparacao', title: 'Logística Internacional', title_en: 'International Logistics', title_es: 'Logística Internacional', text: '• Desbloqueie cartões.\n• Tenha moeda local em espécie.\n• Leve um adaptador universal.', text_en: '• Unlock cards.\n• Have local currency in cash.\n• Bring a universal adapter.', text_es: '• Desbloquee tarjetas.\n• Tenga moneda local en efectivo.\n• Lleve un adaptador universal.', icon: 'Wallet', types: ['international'] },
+    // Dicas Específicas por Modal / Duração
+    { phase: 'durante', match: (trip) => trip.transportMode === 'carro' && trip.tripDuration === 'longa', title: 'Fadiga ao Volante', title_en: 'Driver Fatigue', title_es: 'Fatiga al Volante', text: '• Faça paradas a cada 2h ou 200km.\n• Reveze a direção se possível.\n• Mantenha-se hidratado e evite viajar de madrugada.', text_en: '• Take breaks every 2h or 120 miles.\n• Take turns driving if possible.\n• Stay hydrated and avoid driving overnight.', text_es: '• Haga pausas cada 2h o 200 km.\n• Túrnense para conducir si es posible.\n• Manténgase hidratado y evite viajar de madrugada.', icon: 'CarProfile', types: [] },
+    { phase: 'durante', match: (trip) => trip.transportMode === 'aviao' && trip.tripDuration === 'longa', title: 'Risco de Trombose (TVP)', title_en: 'DVT Risk', title_es: 'Riesgo de Trombosis', text: '• Levante-se e caminhe no corredor a cada 2h.\n• Faça movimentos circulares com os pés.\n• Beba bastante água durante o voo.', text_en: '• Stand up and walk the aisle every 2h.\n• Make circular movements with your feet.\n• Drink plenty of water during the flight.', text_es: '• Levántese y camine por el pasillo cada 2h.\n• Haga movimientos circulares con los pies.\n• Beba mucha agua durante el vuelo.', icon: 'Airplane', types: [] },
+    { phase: 'durante', match: (trip) => ['carro', 'onibus', 'navio'].includes(trip.transportMode), title: 'Prevenção de Cinetose', title_en: 'Motion Sickness', title_es: 'Cinetosis', text: '• Olhe para o horizonte.\n• Evite o uso prolongado de telas.\n• Medicamentos preventivos devem ser tomados ANTES do movimento.', text_en: '• Look at the horizon.\n• Avoid prolonged use of screens.\n• Preventive medication should be taken BEFORE movement starts.', text_es: '• Mire hacia el horizonte.\n• Evite el uso prolongado de pantallas.\n• La medicación preventiva debe tomarse ANTES del movimiento.', icon: 'Health', types: [] },
+    { phase: 'durante', match: (trip) => trip.transportMode === 'onibus', title: 'Cinto de Segurança', title_en: 'Seatbelts', title_es: 'Cinturones de Seguridad', text: '• Mantenha o cinto afivelado o tempo todo, mesmo dormindo.\n• Exija que todos ao lado também usem.', text_en: '• Keep the seatbelt fastened at all times, even when sleeping.\n• Demand that everyone around you uses it too.', text_es: '• Mantenga el cinturón abrochado en todo momento, incluso al dormir.\n• Exija que todos a su alrededor también lo usen.', icon: 'Bus', types: [] },
 ];
 
 const SECTION_TITLES = {
@@ -86,13 +91,15 @@ export default function TravelTipsAccordion({ phase = 'durante', style }) {
     }, []);
 
     const isInternational = !!trip?.config?.isInternational;
-    const tips = TRAVEL_TIPS.filter(tip =>
-        tip.phase === phase && (
-            tip.types.includes('all') ||
-            (trip && tip.types.includes(trip.type)) ||
-            (isInternational && tip.types.includes('international'))
-        )
-    );
+    const tips = TRAVEL_TIPS.filter(tip => {
+        if (tip.phase !== phase) return false;
+        if (tip.match && trip && tip.match(trip)) return true;
+        return (
+            tip.types?.includes('all') ||
+            (trip && tip.types?.includes(trip.type)) ||
+            (isInternational && tip.types?.includes('international'))
+        );
+    });
 
     const showAuthority = phase === 'preparacao';
     if (tips.length === 0 && !showAuthority) return null;

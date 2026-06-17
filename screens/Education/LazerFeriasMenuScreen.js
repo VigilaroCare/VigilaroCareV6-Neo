@@ -1,52 +1,43 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import NeoIcon from '../../components/NeoIcon';
+import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { Shadows, Colors } from '../../utils/Theme';
-import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
-import NeoCard from '../../components/NeoCard';
+import NeoHorizontalCard from '../../components/NeoHorizontalCard';
+import { H1, Caption } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function LazerFeriasMenuScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
-    const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+
     const items = [
         {
             id: 'lazer',
-            title: t('lazerMenu.lazer.title'),
-            subtitulo: t('lazerMenu.lazer.subtitulo'),
-            desc: t('lazerMenu.lazer.desc'),
+            title: t('lazerMenu.lazer.title', 'Lazer ao Ar Livre'),
+            desc: t('lazerMenu.lazer.desc', 'Segurança em parques, piscinas e parquinhos.'),
             iconName: 'Sun1',
-            color: '#E0F7FA', // Cyan 50
             iconColor: '#00ACC1', // Cyan 600
             route: 'SegurancaLazer',
         },
         {
             id: 'ferias',
-            title: t('lazerMenu.ferias.title'),
-            subtitulo: t('lazerMenu.ferias.subtitulo'),
-            desc: t('lazerMenu.ferias.desc'),
+            title: t('lazerMenu.ferias.title', 'Viagens e Férias'),
+            desc: t('lazerMenu.ferias.desc', 'Preparação da casa e segurança no destino.'),
             iconName: 'Airplane',
-            color: '#F3E5F5', // Purple 50
             iconColor: '#8E24AA', // Purple 600
             route: 'SegurancaFerias',
         },
         {
             id: 'mobilidade',
-            title: t('lazerMenu.mobilidade.title'),
-            subtitulo: t('lazerMenu.mobilidade.subtitulo'),
-            desc: t('lazerMenu.mobilidade.desc'),
+            title: t('lazerMenu.mobilidade.title', 'Mobilidade Segura'),
+            desc: t('lazerMenu.mobilidade.desc', 'Transporte seguro de bebês, crianças e pets.'),
             iconName: 'Flash',
-            color: '#FFF8E1', // Amber 50
             iconColor: '#FFB300', // Amber 600
             route: 'MobilidadeSegura',
         }
@@ -54,58 +45,47 @@ export default function LazerFeriasMenuScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Header Neo Glass */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
+                {/* HEADER padronizado */}
+                <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
-                        style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
+                        style={styles.backBtn}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
+                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
                     </TouchableOpacity>
-                    <View style={{ marginLeft: 16 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('lazerMenu.headerTitle')}</Text>
-                        <Text style={{ fontSize: 13, color: textMuted }}>{t('lazerMenu.headerSubtitle')}</Text>
+                    <View style={{ flex: 1 }}>
+                        <H1 style={styles.title}>
+                            {t('lazerMenu.headerTitle', 'Lazer e Viagens')}
+                        </H1>
+                        <Caption style={styles.subtitle}>
+                            {t('lazerMenu.headerSubtitle', 'Guia de segurança fora de casa')}
+                        </Caption>
                     </View>
                 </View>
 
-                {/* List Layout Nível 2 */}
-                <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
-                    {items.map((item) => (
-                            <TouchableOpacity
+                <ScrollView
+                    style={styles.content}
+                    contentContainerStyle={{ paddingBottom: 120 }}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={{ marginTop: 20 }}>
+                        {items.map((item) => (
+                            <NeoHorizontalCard
                                 key={item.id}
-                                style={{ width: '100%', marginBottom: 16 }}
+                                title={item.title}
+                                description={item.desc}
+                                iconName={item.iconName}
+                                color={item.iconColor}
                                 onPress={() => navigation.navigate(item.route)}
-                                activeOpacity={0.8}
-                            >
-                                <View style={styles.guideCardOuter}>
-                                    <View style={styles.guideCardInner}>
-                                        <View style={[styles.guideImageContainer, { backgroundColor: item.color }]}>
-                                            <NeoIcon name={item.iconName} size={48} color={item.iconColor} variant="Bold" />
-                                        </View>
-                                        
-                                        <View style={styles.guideContent}>
-                                            <View style={{ flex: 1, paddingRight: 8 }}>
-                                                <Text style={styles.guideTitle} numberOfLines={1}>
-                                                    {item.title}
-                                                </Text>
-                                                <Text style={styles.guideSubtitle} numberOfLines={1}>
-                                                    {item.subtitulo}
-                                                </Text>
-                                            </View>
-                                            <View style={{ flex: 1 }} />
-                                            <Text style={styles.descText} numberOfLines={2}>
-                                                {item.desc}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                    ))}
+                            />
+                        ))}
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </AppBackground>
@@ -113,47 +93,32 @@ export default function LazerFeriasMenuScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    guideCardOuter: {
-        borderRadius: 24,
-        ...Shadows.sm
-    },
-    guideCardInner: {
+    header: {
         flexDirection: 'row',
-        height: 120,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 24,
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.5)',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 4,
+        paddingBottom: 14,
+        gap: 12,
     },
-    guideImageContainer: {
-        width: 120,
-        height: '100%',
+    backBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 12,
+        backgroundColor: 'rgba(255,255,255,0.75)',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    guideContent: {
-        flex: 1,
-        padding: 16,
-        justifyContent: 'space-between',
+    title: {
+        fontWeight: '800',
+        letterSpacing: -0.5,
+        marginBottom: 2,
+        fontSize: 24,
     },
-    guideTitle: {
-        fontSize: 18,
-        fontFamily: 'PlusJakartaSans_700Bold',
-        fontWeight: '700',
-        color: Neo.colors.neutral[800],
-        marginBottom: 2
-    },
-    guideSubtitle: {
+    subtitle: {
         fontSize: 14,
-        color: Neo.colors.neutral[500],
-        fontFamily: 'PlusJakartaSans_500Medium',
-        fontStyle: 'italic',
     },
-    descText: {
-        fontSize: 13,
-        color: Neo.colors.neutral[600],
-        fontFamily: 'PlusJakartaSans_500Medium',
-        lineHeight: 18,
-    }
+    content: {
+        paddingHorizontal: 20,
+    },
 });

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import { utensiliosDomesticos } from '../../data/utensilios_domesticos';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
@@ -54,49 +55,116 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
         });
     };
 
-    return (
-        <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
-                {/* Header padronizado (alinha com outras telas) */}
-                <View style={[styles.header, { paddingTop: insets.top > 0 ? 4 : 12 }]}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
-                        activeOpacity={0.7}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('common.back', 'Voltar')}
-                    >
-                        <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
-                    </TouchableOpacity>
-                    <View style={styles.headerContent}>
-                        <Text style={styles.headerEmoji}>🍽️</Text>
-                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
-                            {t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos')}
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const capaUrl = 'https://images.pexels.com/photos/108061/pexels-photo-108061.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Kitchen utensils
+
+    const title = t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos');
+    const subtitle = t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço');
+
+    return (
+        <View style={{ flex: 1, backgroundColor: surface }}>
+            <StatusBar style="light" />
+
+            {/* Float Header / Back Button */}
+            <SafeAreaView edges={['top']} style={styles.safeHeader}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backBtnFlat}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: 120 }}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: THEME_COLOR,
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={{ uri: capaUrl }}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                    />
+                    
+                    {/* Gradient para legibilidade do título e fusão com o fundo */}
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+
+                    {/* Hero title — viaja junto com a parallax */}
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFFFFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                        }} accessibilityRole="header">
+                            {title}
                         </Text>
-                        <Text style={[styles.headerSubtitle, { color: textBody }]}>
-                            {t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço')}
+                        <Text style={{
+                            fontSize: 16,
+                            color: 'rgba(255,255,255,0.9)',
+                            marginTop: 6,
+                            fontWeight: '600'
+                        }}>
+                            {subtitle}
                         </Text>
                     </View>
-                </View>
+                </Animated.View>
 
-                {/* Search Bar */}
-                <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300], backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.5)' }]}>
-                    <NeoIcon name="SearchNormal1" size={20} color={textMuted} />
-                    <TextInput
-                        style={[styles.searchInput, { color: textPrimary }]}
-                        placeholder="Buscar utensílio (ex: Facas, Panelas)"
-                        placeholderTextColor={textMuted}
-                        value={search}
-                        onChangeText={setSearch}
-                    />
-                </View>
+                {/* Main Content */}
+                <View style={[styles.content, { marginTop: 20 }]}>
 
-                <ScrollView
-                    contentContainerStyle={styles.listContent}
-                    showsVerticalScrollIndicator={false}
-                >
+                    {/* Search Bar */}
+                    <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300], backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.5)' }]}>
+                        <NeoIcon name="SearchNormal1" size={20} color={textMuted} />
+                        <TextInput
+                            style={[styles.searchInput, { color: textPrimary }]}
+                            placeholder="Buscar utensílio (ex: Facas, Panelas)"
+                            placeholderTextColor={textMuted}
+                            value={search}
+                            onChangeText={setSearch}
+                        />
+                    </View>
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
@@ -153,47 +221,44 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         );
                     })}
 
-                    <View style={{ height: 120 }} />
-                </ScrollView>
-            </SafeAreaView>
-        </AppBackground>
+                    <View style={{ height: 200 }} />
+                </View>
+            </Animated.ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    header: {
+    content: {
+        paddingHorizontal: 22,
+        paddingBottom: 40,
+    },
+    safeHeader: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
         paddingHorizontal: 20,
-        paddingBottom: 16,
-        alignItems: 'center',
+        zIndex: 10,
     },
-    backBtn: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-start',
-        marginBottom: 12,
-    },
-    headerContent: {
-        alignItems: 'center',
-    },
-    headerEmoji: {
-        fontSize: 40,
-        marginBottom: 6,
+    backBtnFlat: {
+        width: 44, height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        alignItems: 'center', justifyContent: 'center',
+        marginTop: 10,
+        borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
     },
     headerTitle: {
-        fontSize: 20,
+        fontFamily: 'PlusJakartaSans_800ExtraBold',
+        fontSize: 32,
         fontWeight: '800',
-        textAlign: 'center',
-        marginBottom: 4,
+        letterSpacing: -1,
     },
     headerSubtitle: {
-        fontSize: 13,
-        textAlign: 'center',
-        lineHeight: 18,
+        fontFamily: 'PlusJakartaSans_400Regular',
+        fontSize: 16,
+        lineHeight: 24,
+        marginTop: 6,
     },
-
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',

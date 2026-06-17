@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, Animated, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
@@ -8,7 +8,8 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';
-import { H2, Small } from '../../components/NeoTypography';
+import { LinearGradient } from 'expo-linear-gradient';
+import { H1, H2, Small, Caption } from '../../components/NeoTypography';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -38,29 +39,104 @@ export default function ProdutosPerigososScreen({ navigation }) {
     });
   };
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+
+  const heroTransform = [
+      {
+          translateY: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+              outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+              extrapolate: 'clamp',
+          })
+      },
+      {
+          scale: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0],
+              outputRange: [2, 1],
+              extrapolateRight: 'clamp',
+          })
+      }
+  ];
+
+  const capaUrl = 'https://images.pexels.com/photos/5412270/pexels-photo-5412270.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Cleaning supplies
+
+  const title = t('headersFirst.chemicals', 'Produtos Químicos');
+  const subtitle = t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa');
+
   return (
-    <AppBackground>
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-        <StatusBar style={isDark ? 'light' : 'dark'} />
+    <View style={{ flex: 1, backgroundColor: surface }}>
+      <StatusBar style="light" />
 
-        {/* Custom Header */}
-        <View style={{ paddingTop: 10, paddingBottom: 20, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center' }}>
+      {/* Float Header / Back Button */}
+      <SafeAreaView edges={['top']} style={styles.safeHeader}>
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', marginRight: 16, borderWidth: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)' }}
-            accessibilityRole="button"
-            accessibilityLabel={t('common.back', 'Voltar')}
+              onPress={() => navigation.goBack()}
+              style={styles.backBtnFlat}
+              accessibilityRole="button"
+              accessibilityLabel={t('common.back', 'Voltar')}
           >
-            <NeoIcon name="ArrowLeft" size={24} color={textBody} />
+              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
           </TouchableOpacity>
-          <View style={{ flex: 1 }}>
-            <H2 style={{ color: textPrimary }} accessibilityRole="header">{t('headersFirst.chemicals', 'Produtos Químicos')}</H2>
-            <Small style={{ color: textMuted, marginTop: 2 }}>{t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa')}</Small>
-          </View>
-        </View>
+      </SafeAreaView>
 
-        {/* Vertical List Layout */}
-      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
+      <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+          contentContainerStyle={{ paddingBottom: 120 }}
+      >
+        {/* HERO com parallax */}
+        <Animated.View style={{
+            width: '100%',
+            height: HERO_HEIGHT,
+            backgroundColor: THEME_COLOR,
+            overflow: 'hidden',
+            transform: heroTransform,
+        }}>
+            <ReviewImage
+                source={{ uri: capaUrl }}
+                style={StyleSheet.absoluteFill}
+                resizeMode="cover"
+            />
+            
+            {/* Gradient para legibilidade do título e fusão com o fundo */}
+            <LinearGradient
+                colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                locations={[0, 0.35, 0.85, 1]}
+                style={StyleSheet.absoluteFill}
+            />
+
+            {/* Hero title — viaja junto com a parallax */}
+            <View style={{
+                position: 'absolute',
+                bottom: 24,
+                paddingHorizontal: 22,
+                width: '100%',
+            }}>
+                <Text style={{
+                    fontSize: 34,
+                    fontWeight: '900',
+                    color: '#FFFFFF',
+                    letterSpacing: -0.8,
+                    lineHeight: 38,
+                }} accessibilityRole="header">
+                    {title}
+                </Text>
+                <Text style={{
+                    fontSize: 16,
+                    color: 'rgba(255,255,255,0.9)',
+                    marginTop: 6,
+                    fontWeight: '600'
+                }}>
+                    {subtitle}
+                </Text>
+            </View>
+        </Animated.View>
+
+        <View style={[styles.content, { marginTop: 20 }]}>
+
         <View style={styles.listContainer}>
           {items.map((item) => (
               <TouchableOpacity key={item.id} style={{ marginBottom: 16 }} onPress={() => handlePress(item)} activeOpacity={0.8}>
@@ -90,14 +166,32 @@ export default function ProdutosPerigososScreen({ navigation }) {
               </TouchableOpacity>
           ))}
         </View>
-        <View style={{ height: 80 }} />
-      </ScrollView>
-      </SafeAreaView>
-    </AppBackground>
+        <View style={{ height: 200 }} />
+        </View>
+      </Animated.ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  content: {
+    paddingHorizontal: 22,
+    paddingBottom: 40,
+  },
+  safeHeader: {
+      position: 'absolute',
+      top: 0, left: 0, right: 0,
+      paddingHorizontal: 20,
+      zIndex: 10,
+  },
+  backBtnFlat: {
+      width: 44, height: 44,
+      borderRadius: 22,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      alignItems: 'center', justifyContent: 'center',
+      marginTop: 10,
+      borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
+  },
   listContainer: {
     flexDirection: 'column',
   },

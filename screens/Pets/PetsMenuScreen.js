@@ -271,15 +271,7 @@ export default function PetsMenuScreen() {
                     </View>
                 </View>
 
-                {/* Banner hero — composite white-bg: contain pra mostrar todos os pets */}
-                <View style={[s.heroBanner, { backgroundColor: '#FAFAFA' }]}>
-                    <Image
-                        source={IMG.header}
-                        style={s.heroImage}
-                        resizeMode="contain"
-                        accessibilityLabel="Todos os tipos de pets"
-                    />
-                </View>
+                {/* Banner hero removido a pedido do usuário */}
 
                 <ScrollView
                     contentContainerStyle={s.scrollContent}

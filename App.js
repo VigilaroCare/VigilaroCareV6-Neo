@@ -142,12 +142,13 @@ import ChecklistDetailScreen       from "./screens/Checklists/ChecklistDetailScr
 import ChecklistReportScreen       from "./screens/Checklists/ChecklistReportScreen";
 import RelatoriosScreen            from "./screens/Checklists/RelatoriosScreenNeo";
 import JardinagemSeguraScreen      from "./screens/Education/JardinagemSeguraScreen";
-import KitsMenuScreen              from "./screens/Checklists/KitsMenuScreen";
-import MicroBlogScreen             from "./screens/Education/MicroBlogScreen";
-import MicroArticleScreen          from "./screens/Education/MicroArticleScreen";
 import RiscosMenuScreen            from "./screens/Education/RiscosMenuScreen";
+import MicroArticleScreen          from "./screens/Education/MicroArticleScreen";
+import PremiumArticleScreen        from "./screens/Education/PremiumArticleScreen";
+import MicroBlogScreen             from "./screens/Education/MicroBlogScreen";
 import KitsHubScreen               from "./screens/Emergency/KitsHubScreen";
 import GuiaKitsEmergenciaScreen    from "./screens/Education/GuiaKitsEmergenciaScreen";
+import KitsMenuScreen              from "./screens/Checklists/KitsMenuScreen";
 import OndeProtegerScreen          from "./screens/Checklists/OndeProtegerScreen";
 import UtensiliosDomesticosScreen  from "./screens/Education/UtensiliosDomesticosScreen";
 import FerramentasTrabalhoScreen   from "./screens/Education/FerramentasTrabalhoScreen";
@@ -576,6 +577,7 @@ export default function App() {
                       <Stack.Screen name="GenericCategory" component={GenericCategoryScreen} />
                       <Stack.Screen name="ConceitoDetail" component={ConceitoDetailScreen} />
                       <Stack.Screen name="AgeGroupDetail" component={AgeGroupDetailScreen} />
+                      <Stack.Screen name="PremiumArticle" component={PremiumArticleScreen} />
                       <Stack.Screen name="MicroBlog" component={MicroBlogScreen} />
                       <Stack.Screen name="MicroArticle" component={MicroArticleScreen} />
                       <Stack.Screen name="RecentActivity" component={RecentActivityScreen} options={{ headerShown: false }} />

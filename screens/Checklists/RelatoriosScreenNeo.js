@@ -15,6 +15,7 @@ import { isAreaRelevant, getRoomChecklistStructure } from '../../utils/ProfileFi
 import { AMBIENTES, CHECKLISTS } from '../../data/mapeamento_dados';
 
 import NeoCard from '../../components/NeoCard';
+import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import NeoText, { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
@@ -118,6 +119,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                     fullName: fullName,
                     emoji: area.emoji,
                     iconName: area.iconName,
+                    imagemUrl: area.imagemUrl,
                     total: stats.total,
                     checked: stats.checked,
                     percent: stats.total > 0 ? Math.round((stats.checked / stats.total) * 100) : 0,
@@ -280,9 +282,9 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                 </NeoCard>
                             </TouchableOpacity>
 
-                            {/* Grid de ambientes com status por cômodo */}
+                            {/* Grid de ambientes com status por cômodo usando NeoHorizontalCard */}
                             {chartData.length > 0 && (
-                                <View style={s.grid}>
+                                <View style={{ flexDirection: 'column', gap: 12, marginTop: 10 }}>
                                     {chartData.map((area) => {
                                         const statusKey = area.percent === 100 && area.total > 0
                                             ? 'Seguro'
@@ -295,11 +297,23 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                         if (statusKey === 'Atenção')  statusLabel = t('reports.statusAttention', 'Atenção');
                                         if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
 
+                                        const progressText = area.total > 0 ? `${area.checked}/${area.total} Itens` : 'Sem itens';
+                                        
+                                        // Pílula customizada que será injetada como subtítulo
+                                        const StatusPill = (
+                                            <View style={[s.statusPill, { backgroundColor: statusStyle.bg, alignSelf: 'flex-start', marginTop: 4 }]}>
+                                                <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
+                                                    {statusLabel}
+                                                </Small>
+                                            </View>
+                                        );
+
                                         return (
-                                            <TouchableOpacity
+                                            <NeoHorizontalCard
                                                 key={area.key}
-                                                activeOpacity={0.85}
-                                                style={s.gridCell}
+                                                title={area.fullName}
+                                                description={`${progressText}`}
+                                                imageUrl={area.imagemUrl}
                                                 onPress={() => navigation.navigate('ChecklistDetail', {
                                                     roomId: area.key,
                                                     roomName: area.fullName,
@@ -307,25 +321,10 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                     roomIcon: area.emoji,
                                                     fullChecklist: false,
                                                 })}
+                                                accessibilityLabel={area.fullName}
                                             >
-                                                <NeoCard variant="elevated" style={s.roomCard}>
-                                                    <View style={[s.roomIconCircle, { backgroundColor: area.color + '26' }]}>
-                                                        {area.iconName ? (
-                                                            <NeoIcon name={area.iconName} size={22} color={area.color} variant="Bold" />
-                                                        ) : (
-                                                            <Text style={{ fontSize: 22 }}>{area.emoji}</Text>
-                                                        )}
-                                                    </View>
-                                                    <Body style={s.roomLabel} numberOfLines={2}>
-                                                        {area.fullName}
-                                                    </Body>
-                                                    <View style={[s.statusPill, { backgroundColor: statusStyle.bg }]}>
-                                                        <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
-                                                            {statusLabel}
-                                                        </Small>
-                                                    </View>
-                                                </NeoCard>
-                                            </TouchableOpacity>
+                                                {StatusPill}
+                                            </NeoHorizontalCard>
                                         );
                                     })}
                                 </View>

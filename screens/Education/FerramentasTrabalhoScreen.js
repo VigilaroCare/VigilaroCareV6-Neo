@@ -100,7 +100,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E3F2FD', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
                                 <NeoIcon name="ShieldTick" size={24} color="#2196F3" variant="Bold" />
                             </View>
-                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Acessórios de{'\n'}Segurança</Text>
+                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Dispositivos{'\n'}de Proteção</Text>
                         </NeoCard>
                     </TouchableOpacity>
                 </View>

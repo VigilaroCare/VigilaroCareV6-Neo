@@ -4,6 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import NeoIcon from '../../components/NeoIcon';
+import NeoCard from '../../components/NeoCard';
+import { Small, Body } from '../../components/NeoTypography';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
@@ -90,6 +92,7 @@ export default function SafetyActionPlanScreen() {
                         areaId: area.id,
                         areaName: t_field(area, 'nome'),
                         areaColor: area.cor,
+                        areaImage: area.imagemUrl,
                         text: t_field(itemDef, 'titulo'),
                         originalText: itemDef.titulo,
                         type: itemDef.tipo,
@@ -283,60 +286,93 @@ export default function SafetyActionPlanScreen() {
                     {displayList.length > 0 ? t('actionPlan.priorityItems') : t('actionPlan.allVerified')}
                 </Text>
 
-                {/* List Items */}
-                {displayList.map((item, index) => (
-                    <View key={item.id} style={styles.card}>
-                        {/* Title & Info */}
-                        <View style={styles.cardContent}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
-                                <View style={[styles.dot, { backgroundColor: item.areaColor || '#ccc' }]} />
-                                <Text style={styles.areaLabel}>{item.areaName}</Text>
-                                {item.status === 'risco' && (
-                                    <View style={styles.riskBadge}>
-                                        <Text style={styles.riskText}>{t('actionPlan.risk')}</Text>
+                {displayList.map((item, index) => {
+                    const isHighPriority = item.type === 'perigo';
+                    const priorityColor = isHighPriority ? '#EF4444' : '#F59E0B';
+
+                    return (
+                        <NeoCard variant="glass"
+                            key={item.id}
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                paddingVertical: 12,
+                                paddingHorizontal: 14,
+                                marginBottom: 8,
+                                marginHorizontal: 20,
+                                backgroundColor: '#FFF',
+                                borderRadius: 18,
+                                borderWidth: 1,
+                                borderColor: '#F3F4F6',
+                                ...Neo.shadows.sm
+                            }}
+                        >
+                            {/* Left: Priority indicator */}
+                            <View style={{ width: 4, alignSelf: 'stretch', borderRadius: 2, backgroundColor: priorityColor, marginRight: 12 }} />
+
+                            {/* Center: Content */}
+                            <View style={{ flex: 1, paddingRight: 12 }}>
+                                <Small style={{ color: '#9CA3AF', fontWeight: '700', fontSize: 9, letterSpacing: 0.6, marginBottom: 3 }}>
+                                    {item.areaName.toUpperCase()}
+                                </Small>
+                                <Body style={{ color: '#1F2937', lineHeight: 20, fontWeight: '600', fontSize: 15 }}>
+                                    {item.text}
+                                </Body>
+                                {isHighPriority && (
+                                    <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                                        <View style={{ backgroundColor: '#FEF2F2', paddingHorizontal: 6, paddingVertical: 1, borderRadius: 4, borderWidth: 1, borderColor: '#FEE2E2' }}>
+                                            <Small style={{ color: '#B91C1C', fontWeight: 'bold', fontSize: 8 }}>CRÍTICO</Small>
+                                        </View>
                                     </View>
                                 )}
                             </View>
-                            <Text style={styles.itemTitle}>{item.text}</Text>
-                        </View>
 
-                        {/* Actions (S / N / NA) */}
-                        <View style={styles.actionRow}>
-                            {/* Sim (Safe) */}
-                            <TouchableOpacity
-                                onPress={() => handleSetStatus(item, 'conforme')}
-                                style={[
-                                    styles.actionBtn,
-                                    item.status === 'conforme' ? styles.btnSuccessActive : styles.btnSuccess
-                                ]}
-                            >
-                                <Text style={[styles.btnText, item.status === 'conforme' ? { color: Neo.colors.neutral.white } : { color: '#166534' }]}>S</Text>
-                            </TouchableOpacity>
+                            {/* Right: Toggles (S/N/NA) — Compact */}
+                            <View style={{ alignItems: 'center', gap: 4 }}>
+                                <View style={{ flexDirection: 'row', gap: 6 }}>
+                                    <TouchableOpacity
+                                        onPress={() => handleSetStatus(item, 'conforme')}
+                                        style={{
+                                            width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center',
+                                            backgroundColor: item.status === 'conforme' ? '#10B981' : '#F8FAFC',
+                                            borderWidth: item.status === 'conforme' ? 0 : 1.5,
+                                            borderColor: item.status === 'conforme' ? 'transparent' : '#E2E8F0',
+                                        }}
+                                        activeOpacity={0.7}
+                                    >
+                                        <Small style={{ fontWeight: 'bold', color: item.status === 'conforme' ? '#FFF' : '#94A3B8' }}>S</Small>
+                                    </TouchableOpacity>
 
-                            {/* Não (Risk) */}
-                            <TouchableOpacity
-                                onPress={() => handleSetStatus(item, 'risco')}
-                                style={[
-                                    styles.actionBtn,
-                                    item.status === 'risco' ? styles.btnErrorActive : styles.btnError
-                                ]}
-                            >
-                                <Text style={[styles.btnText, item.status === 'risco' ? { color: Neo.colors.neutral.white } : { color: '#991B1B' }]}>N</Text>
-                            </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => handleSetStatus(item, 'risco')}
+                                        style={{
+                                            width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center',
+                                            backgroundColor: item.status === 'risco' ? '#EF4444' : '#F8FAFC',
+                                            borderWidth: item.status === 'risco' ? 0 : 1.5,
+                                            borderColor: item.status === 'risco' ? 'transparent' : '#E2E8F0',
+                                        }}
+                                        activeOpacity={0.7}
+                                    >
+                                        <Small style={{ fontWeight: 'bold', color: item.status === 'risco' ? '#FFF' : '#94A3B8' }}>N</Small>
+                                    </TouchableOpacity>
+                                </View>
 
-                            {/* NA */}
-                            <TouchableOpacity
-                                onPress={() => handleSetStatus(item, 'na')}
-                                style={[
-                                    styles.actionBtn,
-                                    item.status === 'na' ? styles.btnNeutralActive : styles.btnNeutral
-                                ]}
-                            >
-                                <Text style={[styles.btnText, { fontSize: 10 }, item.status === 'na' && { color: Neo.colors.neutral.white }]}>NA</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                ))}
+                                <TouchableOpacity
+                                    onPress={() => handleSetStatus(item, 'na')}
+                                    style={{
+                                        paddingHorizontal: 10, paddingVertical: 3, borderRadius: 8, alignItems: 'center', justifyContent: 'center',
+                                        backgroundColor: item.status === 'na' ? '#6B7280' : '#F1F5F9',
+                                        borderWidth: item.status === 'na' ? 0 : 1,
+                                        borderColor: item.status === 'na' ? 'transparent' : '#E2E8F0',
+                                    }}
+                                    activeOpacity={0.7}
+                                >
+                                    <Small style={{ fontWeight: 'bold', fontSize: 9, color: item.status === 'na' ? '#FFF' : '#94A3B8' }}>NA</Small>
+                                </TouchableOpacity>
+                            </View>
+                        </NeoCard>
+                    );
+                })}
 
                 {displayList.length === 0 && (
                     <View style={styles.emptyContainer}>

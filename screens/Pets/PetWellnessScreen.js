@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
-  View, Text, StyleSheet, ScrollView, TouchableOpacity,
+  View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Dimensions
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -52,129 +54,133 @@ export default function PetWellnessScreen({ navigation, route }) {
     </View>
   );
 
+  const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+
+  const title = t('petWellness.title', 'Bem-estar pet');
+  const subtitle = t('petWellness.subtitle', 'Cuidados diários para vida longa e feliz');
+  const cor = petHero?.cor || '#16A34A';
+
+  const heroTransform = [
+      {
+          translateY: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+              outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+              extrapolate: 'clamp',
+          })
+      },
+      {
+          scale: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0],
+              outputRange: [2, 1],
+              extrapolateRight: 'clamp',
+          })
+      }
+  ];
+
   return (
-    <AppBackground>
-      <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar style={isDark ? 'light' : 'dark'} />
+    <View style={{ flex: 1, backgroundColor: surface }}>
+      <StatusBar style="light" />
 
-        {/* HEADER padronizado */}
-        <View style={s.header}>
+      {/* Float Header / Back Button (fixo no topo da tela) */}
+      <SafeAreaView edges={['top']} style={s.safeHeader}>
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={s.backBtn}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              onPress={() => navigation.goBack()}
+              style={s.backBtnFlat}
+              accessibilityRole="button"
+              accessibilityLabel={t('common.back', 'Voltar')}
           >
-            <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
+              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
           </TouchableOpacity>
-          <View style={{ flex: 1 }}>
-            <H1 style={s.title}>
-              {t('petWellness.title', 'Bem-estar pet')}
-            </H1>
-            <Caption style={s.subtitle}>
-              {t('petWellness.subtitle', 'Cuidados diários para vida longa e feliz')}
-            </Caption>
-          </View>
-        </View>
+      </SafeAreaView>
 
-        <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
-          {/* Hero banner — imagem do card de origem */}
-          {petHero && (
-            <PetHeroBanner
-              image={petHero.imagem}
-              imageUrl={petHero.imagemUrl}
-              tint={petHero.cor || '#16A34A'}
-              resizeMode={petHero.resizeMode || 'cover'}
-              accessibilityLabel={petHero.titulo}
-              marginHorizontal={0}
-              marginBottom={14}
-            />
-          )}
+      <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+          contentContainerStyle={{ paddingBottom: 120 }}
+      >
+          {/* HERO com parallax */}
+          <Animated.View style={{
+              width: '100%',
+              height: HERO_HEIGHT,
+              backgroundColor: cor,
+              overflow: 'hidden',
+              transform: heroTransform,
+          }}>
+              {petHero && (
+                  <ReviewImage
+                      source={petHero.imagemUrl ? { uri: petHero.imagemUrl } : petHero.imagem}
+                      style={StyleSheet.absoluteFill}
+                      resizeMode={petHero.resizeMode || 'cover'}
+                  />
+              )}
 
-          {/* Intro card */}
-          <NeoCard variant="elevated" style={s.infoCard}>
-            <View style={s.infoIconCircle}>
-              <NeoIcon name="Heart" size={18} color="#10B981" variant="Bold" />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[s.infoTitle, { color: textPrimary }]} accessibilityRole="header">
-                {t('petWellness.introTitle', 'Prevenção é amor')}
-              </Text>
-              <Text style={[s.infoText, { color: textBody }]}>
-                {t('petWellness.introText', 'Pequenos ajustes na rotina podem evitar grandes emergências no futuro.')}
-              </Text>
-            </View>
-          </NeoCard>
+              {/* Gradient para legibilidade do título e fusão com o fundo */}
+              <LinearGradient
+                  colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                  locations={[0, 0.35, 0.85, 1]}
+                  style={StyleSheet.absoluteFill}
+              />
+
+              {/* Hero title — viaja junto com a parallax */}
+              <View style={{
+                  position: 'absolute',
+                  bottom: 24,
+                  paddingHorizontal: 22,
+                  width: '100%',
+              }}>
+                  <Text style={{
+                      fontSize: 34,
+                      fontWeight: '900',
+                      color: '#FFFFFF',
+                      letterSpacing: -0.8,
+                      lineHeight: 38,
+                  }} accessibilityRole="header">
+                      {title}
+                  </Text>
+                  <Text style={{
+                      fontSize: 16,
+                      color: 'rgba(255,255,255,0.9)',
+                      marginTop: 6,
+                      fontWeight: '600'
+                  }}>
+                      {subtitle}
+                  </Text>
+              </View>
+          </Animated.View>
+
+          {/* Main Content */}
+          <View style={[s.content, { marginTop: 20 }]}>
 
           {/* Categorias */}
           {PET_WELLNESS_DATA.categorias.map(renderCategory)}
-        </ScrollView>
-      </SafeAreaView>
-    </AppBackground>
+          </View>
+      </Animated.ScrollView>
+    </View>
   );
 }
 
 const s = StyleSheet.create({
   // Header
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Neo.spacing.lg,
-    paddingTop: 4,
-    paddingBottom: 14,
-    gap: 12,
-  },
-  backBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.75)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: '800',
-    letterSpacing: -0.5,
-    marginBottom: 2,
-    fontSize: 24,
-  },
-  subtitle: {
-    color: Neo.colors.neutral[600],
-  },
-
-  // Content
   content: {
-    paddingHorizontal: Neo.spacing.lg,
-    paddingTop: 4,
-    paddingBottom: 240,
+    paddingHorizontal: 22,
+    paddingBottom: 40,
   },
-
-  // Info card
-  infoCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 14,
-    borderRadius: 16,
-    gap: 12,
-    marginBottom: 20,
+  safeHeader: {
+      position: 'absolute',
+      top: 0, left: 0, right: 0,
+      paddingHorizontal: 20,
+      zIndex: 10,
   },
-  infoIconCircle: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: 'rgba(16,185,129,0.15)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  infoTitle: {
-    fontSize: 14,
-    fontWeight: '800',
-    color: Neo.colors.neutral[900],
-    marginBottom: 3,
-  },
-  infoText: {
-    fontSize: 12.5,
-    color: Neo.colors.neutral[700],
-    lineHeight: 17,
+  backBtnFlat: {
+      width: 44, height: 44,
+      borderRadius: 22,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      alignItems: 'center', justifyContent: 'center',
+      marginTop: 10,
+      borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
   },
 
   // Section

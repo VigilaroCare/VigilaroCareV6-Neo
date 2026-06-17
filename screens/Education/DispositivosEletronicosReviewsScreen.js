@@ -4,15 +4,16 @@
  * Vigilaro Care V6 Neo
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
     Text,
     Image,
-    ScrollView,
+    Animated,
     TouchableOpacity,
     StyleSheet,
+    Dimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -22,6 +23,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
+import { LinearGradient } from 'expo-linear-gradient';
 import { DISPOSITIVOS_ELETRONICOS_REVIEWS } from '../../data/dispositivos_eletronicos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -63,40 +65,112 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
         navigation.navigate('SafetyReviewDetail', { item });
     };
 
-    return (
-        <AppBackground>
-            <StatusBar style={isDark ? 'light' : 'dark'} />
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
-            {/* ═══ HEADER ═══ */}
-            <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const capaUrl = 'https://images.pexels.com/photos/163143/sackcloth-sackcloth-textured-laptop-ipad-163143.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Electronics
+
+    const title = t('headersFirst.electronicDevices', 'Eletrônicos');
+    const subtitle = t('headersFirst.oPerigoInvisVelNasSuasM', 'O perigo invisível nas suas mãos');
+
+    return (
+        <View style={{ flex: 1, backgroundColor: surface }}>
+            <StatusBar style="light" />
+
+            {/* Float Header / Back Button */}
+            <SafeAreaView edges={['top']} style={styles.safeHeader}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
-                    activeOpacity={0.7}
+                    style={styles.backBtnFlat}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
                 </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    <Text style={styles.headerEmoji}>📱</Text>
-                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.electronicDevices', 'Dispositivos Eletrônicos')}</Text>
-                    <Text style={[styles.headerSubtitle, { color: textBody }]}>
-                        {t('headersFirst.riscosPrevenOEOQueFazerEmCasoDeAcidente', 'Riscos, prevenção e o que fazer em caso de acidente')}
-                    </Text>
-                </View>
-            </View>
+            </SafeAreaView>
 
-            <ScrollView
-                contentContainerStyle={styles.listContent}
+            <Animated.ScrollView
                 showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: 120 }}
             >
-                {/* Info bar */}
-                <FadeInView delay={100}>
-                    <View style={styles.infoBar}>
-                        <Text style={[styles.infoText, { color: textMuted }]}>
-                            📋 {ITEMS.length} itens • Toque para ver o review completo
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: THEME_COLOR,
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={{ uri: capaUrl }}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                    />
+                    
+                    {/* Gradient para legibilidade do título e fusão com o fundo */}
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+
+                    {/* Hero title — viaja junto com a parallax */}
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFFFFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                        }} accessibilityRole="header">
+                            {title}
+                        </Text>
+                        <Text style={{
+                            fontSize: 16,
+                            color: 'rgba(255,255,255,0.9)',
+                            marginTop: 6,
+                            fontWeight: '600'
+                        }}>
+                            {subtitle}
                         </Text>
                     </View>
-                </FadeInView>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={[styles.content, { marginTop: 20 }]}>
+                    {/* Info bar */}
+                    <FadeInView delay={100}>
+                        <View style={styles.infoBar}>
+                            <Text style={[styles.infoText, { color: textMuted }]}>
+                                📋 {ITEMS.length} itens • Toque para ver o review completo
+                            </Text>
+                        </View>
+                    </FadeInView>
 
                 {ITEMS.map((item, idx) => {
                     const riskColor = RISK_COLORS[item.nivelRisco] || '#999';
@@ -145,64 +219,58 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                 })}
 
                 <View style={{ height: 200 }} />
-            </ScrollView>
-        </AppBackground>
+                </View>
+            </Animated.ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    header: {
+    content: {
+        paddingHorizontal: 22,
+        paddingBottom: 40,
+    },
+    safeHeader: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
         paddingHorizontal: 20,
-        paddingBottom: 16,
-        alignItems: 'center',
+        zIndex: 10,
     },
-    backBtn: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-start',
-        marginBottom: 12,
+    backBtnFlat: {
+        width: 44, height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        alignItems: 'center', justifyContent: 'center',
+        marginTop: 10,
+        borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
     },
-    headerContent: {
-        alignItems: 'center',
-    },
-    headerEmoji: {
-        fontSize: 40,
-        marginBottom: 6,
+    headerContentLocal: {
+        marginBottom: 16,
     },
     headerTitle: {
-        fontSize: 20,
+        fontFamily: 'PlusJakartaSans_800ExtraBold',
+        fontSize: 32,
         fontWeight: '800',
-        color: Neo.colors.neutral[900],
-        textAlign: 'center',
-        marginBottom: 4,
+        letterSpacing: -1,
     },
     headerSubtitle: {
-        fontSize: 13,
-        color: Neo.colors.neutral[600],
-        textAlign: 'center',
-        lineHeight: 18,
-    },
-
-    listContent: {
-        paddingHorizontal: 16,
+        fontFamily: 'PlusJakartaSans_400Regular',
+        fontSize: 16,
+        lineHeight: 24,
+        marginTop: 6,
     },
     infoBar: {
-        backgroundColor: 'rgba(0,0,0,0.04)',
+        backgroundColor: 'rgba(150,150,150,0.1)',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
         borderRadius: 12,
-        paddingVertical: 8,
-        paddingHorizontal: 14,
-        marginBottom: 12,
-        alignItems: 'center',
+        marginBottom: 24,
     },
     infoText: {
-        fontSize: 12,
-        color: Neo.colors.neutral[600],
-        fontWeight: '500',
+        fontFamily: 'PlusJakartaSans_500Medium',
+        fontSize: 14,
+        textAlign: 'center',
     },
-
     // Card grande estilo Plantas/Animais
     guideCardOuter: {
         borderRadius: 24,
