@@ -45,7 +45,7 @@ function resolveThemeColor(colors, path) {
     return typeof v === 'string' ? v : null;
 }
 
-export const NeoText = ({ children, style, variant = 'body', color, align = 'left', numberOfLines, ...props }) => {
+export const NeoText = ({ children, style, variant = 'body', color, align = 'left', numberOfLines, forceOnDark, ...props }) => {
     const { Neo } = Theme;
     const { fontSizeLevel = 1, highContrast = false } = useAccessibility() || {};
     const themeColors = useThemeColors();
@@ -55,17 +55,16 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
     const variantStyle = Neo.type[variant] || Neo.type.body;
     const isDisplay = variantStyle?._display === true;
 
-    // Scale Font Size
-    const originalSize = variantStyle.fontSize || 14;
-    const scaledSize = originalSize * fontSizeLevel;
+    // Detecta cor explícita do caller — pode vir via prop `color` ou via `style`.
+    // Se o caller setou cor de qualquer forma, respeitamos a intenção.
+    const flatStyle = style ? (Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style) : {};
+    const callerColor = color || flatStyle.color || null;
 
-    // Cor: explicit prop > tema (light OU dark) > fallback
-    // Usa a cor semântica do tema em ambos os modos, garantindo contraste WCAG AA
-    // (ex.: caption/eyebrow usam neutral[700] em vez do hardcoded #8E8E93).
+    // Cor: explicit (prop/style) > tema > fallback
     const themeDefault = resolveThemeColor(themeColors, DEFAULT_COLOR_FOR_VARIANT[variant]);
     let finalColor;
-    if (color) {
-        finalColor = color;
+    if (callerColor) {
+        finalColor = callerColor;
     } else if (themeDefault) {
         finalColor = themeDefault;
     } else {
@@ -74,8 +73,17 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
     let finalWeight = (variantStyle ? variantStyle.fontWeight : 'normal');
 
     if (highContrast) {
-        // Modo Acessível: Preto Absoluto e Negrito para máxima legibilidade em fundo claro
-        finalColor = '#000000';
+        // Modo Acessível: escolhe preto ou branco conforme a superfície.
+        // - Superfície escura (dark mode ou telas-pânico): branco puro
+        // - Superfície clara: preto absoluto
+        // Quando o caller passou cor explícita (via prop OU style),
+        // respeitamos a intenção — apenas reforçamos o peso para bold.
+        const onDarkSurface = isDark || forceOnDark;
+        if (callerColor) {
+            finalColor = callerColor;
+        } else {
+            finalColor = onDarkSurface ? '#FFFFFF' : '#000000';
+        }
         finalWeight = 'bold';
     }
 
@@ -88,16 +96,16 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
         {
             fontSize: (variantStyle?.fontSize || 16) * (fontSizeLevel || 1),
             color: finalColor,
-            fontWeight: fontFamily ? undefined : finalWeight, // Se tem fontFamily, o peso está no nome da fonte
+            fontWeight: fontFamily ? undefined : finalWeight,
             fontFamily: fontFamily,
             letterSpacing: variantStyle?.letterSpacing || 0,
         },
         { textAlign: align },
         style,
-        // Quando o caller NÃO passou prop `color`, força a cor do tema
-        // como override final. Protege contra `style={{color: ...}}` hardcoded
-        // no callsite (invisível em dark, ou sem contraste em light).
-        (!color && themeDefault) ? { color: themeDefault } : null,
+        // Proteção final: quando o caller NÃO passou cor alguma (nem prop, nem style)
+        // e não está em alto contraste, aplica themeDefault para garantir legibilidade
+        // em dark mode. Se o caller setou cor, confiamos nele.
+        (!callerColor && !highContrast && themeDefault) ? { color: themeDefault } : null,
     ];
 
     return (
