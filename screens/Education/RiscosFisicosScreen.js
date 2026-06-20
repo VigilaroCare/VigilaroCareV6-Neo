@@ -11,26 +11,28 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { riscosFisicos } from '../../data/riscos_fisicos';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 
 
 export default function RiscosFisicosScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
   
   const filter = route.params?.filter || 'fisicos';
   const isEletricos = filter === 'eletricos';
 
-  const THEME_COLOR = isEletricos ? '#D97706' : '#DC2626'; // Amber vs Red
+  const THEME_COLOR = isEletricos ? Neo.colors.accent.champagne : Neo.colors.emergency?.panic || '#DC2626'; // Amber vs Red
 
   // Icon Mapping based on Emoji or ID from data
   const getIconData = (item) => {
-    if (item.emoji === '⚡') return { icon: "Flash", color: '#F59E0B', bg: '#FEF3C7' }; // Amber
-    if (item.emoji === '🔥') return { icon: "Danger", color: '#EF4444', bg: '#FEE2E2' }; // Red
-    if (item.emoji === '🔫') return { icon: "CloseCircle", color: '#6366F1', bg: '#E0E7FF' }; // Indigo
-    if (item.emoji === '🤕') return { icon: "Health", color: '#10B981', bg: '#D1FAE5' }; // Emerald
-    if (item.emoji === '💧') return { icon: "Information", color: '#3B82F6', bg: '#DBEAFE' }; // Blue
-    return { icon: "Warning2", color: '#9CA3AF', bg: '#F3F4F6' }; // Gray Fallback
+    if (item.emoji === '⚡') return { icon: "Flash", color: Neo.colors.feedback.warning, bg: Neo.colors.accent.champagneSubtle }; // Amber
+    if (item.emoji === '🔥') return { icon: "Danger", color: Neo.colors.feedback.error, bg: '#FEE2E2' }; // TODO: map to DS token (red-100 tint)
+    if (item.emoji === '🔫') return { icon: "CloseCircle", color: Neo.colors.secondary[500], bg: '#E0E7FF' }; // TODO: map to DS token (indigo-100 tint)
+    if (item.emoji === '🤕') return { icon: "Health", color: Neo.colors.primary[500], bg: '#D1FAE5' }; // TODO: map to DS token (green-100 tint)
+    if (item.emoji === '💧') return { icon: "Information", color: Neo.colors.secondary[500], bg: '#DBEAFE' }; // TODO: map to DS token (blue-100 tint)
+    return { icon: "Warning2", color: colors.neutral[400], bg: colors.neutral[200] }; // Gray Fallback
   };
 
   const handlePress = (item) => {
@@ -144,7 +146,7 @@ const styles = StyleSheet.create({
   guideCardInner: {
     flexDirection: 'row',
     height: 120, // Altura fixa para manter imagem expandida e padronizada
-    backgroundColor: '#FFFFFF', // Sólido para evitar vazamento de sombra no Android
+    backgroundColor: Neo.colors.neutral.white, // Sólido para evitar vazamento de sombra no Android
     borderRadius: 24,
     overflow: 'hidden',
     borderWidth: 1,

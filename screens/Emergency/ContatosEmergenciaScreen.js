@@ -30,13 +30,14 @@ import SafetyDisclaimer from '../../components/SafetyDisclaimer';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
+// DS: data-level colors — each tipo has its own brand color
 const TIPO_COLORS = {
-  Familiar: '#2196F3',
-  Médico: '#4CAF50',
-  Vizinho: '#FF9800',
-  Amigo: '#9C27B0',
-  Veterinário: '#009688',
-  Outro: '#757575',
+  Familiar: '#2196F3',  // DS: data-level color
+  Médico: '#4CAF50',    // DS: data-level color
+  Vizinho: '#FF9800',   // DS: data-level color
+  Amigo: '#9C27B0',     // DS: data-level color
+  Veterinário: '#009688', // DS: data-level color
+  Outro: '#757575',     // DS: data-level color
 };
 
 const TIPO_ICONS = {
@@ -368,13 +369,13 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         <NeoIcon
                           name={TIPO_ICONS[tp] || 'Call'}
                           size={14}
-                          color={isSelected ? '#FFF' : color}
+                          color={isSelected ? Neo.colors.neutral.white : color}
                           variant="Bold"
                         />
                         <Text
                           style={[
                             s.tipoButtonText,
-                            { color: isSelected ? '#FFF' : Neo.colors.neutral[700] },
+                            { color: isSelected ? Neo.colors.neutral.white : Neo.colors.neutral[700] },
                           ]}
                         >
                           {tp}
@@ -410,7 +411,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               accessibilityLabel={t('headersFirst.adicionarContato', 'Adicionar contato')}
               accessibilityHint={t('contacts.addHint', 'Abre o formulário para cadastrar um novo contato de emergência.')}
             >
-              <NeoIcon name="AddCircle" size={20} color="#FFF" variant="Bold" />
+              <NeoIcon name="AddCircle" size={20} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.addButtonText}>
                 {t('headersFirst.adicionarContato', 'Adicionar contato')}
               </Text>
@@ -439,7 +440,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                       accessibilityLabel={t('contacts.deleteLabel', 'Excluir contato {{name}}', { name: contato.nome })}
                     >
                       <Animated.View style={{ transform: [{ scale }], alignItems: 'center' }}>
-                        <NeoIcon name="Trash" size={22} color="#FFF" variant="Bold" />
+                        <NeoIcon name="Trash" size={22} color={Neo.colors.neutral.white} variant="Bold" />
                         <Text style={s.swipeDeleteText}>{t('contacts.swipeDelete', 'Excluir')}</Text>
                       </Animated.View>
                     </TouchableOpacity>
@@ -479,13 +480,13 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                       <View style={s.quickActions}>
                         <TouchableOpacity
                           onPress={() => whatsappContato(contato.telefone)}
-                          style={[s.quickBtn, { backgroundColor: '#25D366' }]}
+                          style={[s.quickBtn, { backgroundColor: '#25D366' }]}/* DS: WhatsApp brand color */
                           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                           accessibilityRole="button"
                           accessibilityLabel={t('contacts.whatsappLabel', 'Enviar WhatsApp para {{name}}', { name: contato.nome })}
                           accessibilityHint={t('contacts.whatsappHint', 'Abre o WhatsApp com este contato.')}
                         >
-                          <NeoIcon name="MessageText1" size={18} color="#FFF" variant="Bold" />
+                          <NeoIcon name="MessageText1" size={18} color={Neo.colors.neutral.white} variant="Bold" />
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() => ligarContato(contato.telefone)}
@@ -495,7 +496,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                           accessibilityLabel={t('contacts.callLabel', 'Ligar para {{name}}', { name: contato.nome })}
                           accessibilityHint={t('contacts.callHint', 'Inicia uma chamada telefônica para este contato.')}
                         >
-                          <NeoIcon name="Call" size={18} color="#FFF" variant="Bold" />
+                          <NeoIcon name="Call" size={18} color={Neo.colors.neutral.white} variant="Bold" />
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -628,7 +629,7 @@ const s = StyleSheet.create({
     marginBottom: 20,
   },
   addButtonText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 0.1,
@@ -723,7 +724,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   saveButtonText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontSize: 14.5,
     fontWeight: '800',
   },
@@ -774,7 +775,7 @@ const s = StyleSheet.create({
     borderRadius: 8,
   },
   contatoBadgeText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontSize: 10,
     fontWeight: '800',
     letterSpacing: 0.4,
@@ -856,7 +857,7 @@ const s = StyleSheet.create({
     borderBottomRightRadius: 16,
   },
   swipeDeleteText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0.6,

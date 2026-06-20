@@ -4,13 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
-import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../../utils/Theme';
+import { Shadows } from '../../utils/Theme';
 import { EDUCATIONAL_GUIDES } from '../../data/educational_guides';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function EnvironmentGuideScreen({ route, navigation }) {
     const { t } = useTranslation('common');
+    const colors = useThemeColors();
     const { envId } = route.params;
     const guideItem = EDUCATIONAL_GUIDES[envId];
 
@@ -24,10 +26,10 @@ export default function EnvironmentGuideScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <StatusBar style="dark" backgroundColor="#FFF" />
+            <StatusBar style="dark" backgroundColor={colors.neutral.white} />
             <View style={[styles.header, { borderBottomColor: guideItem.color }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Colors.textPrimary} />
+                    <NeoIcon name="ArrowLeft2" size={24} color={colors.neutral[900]} />
                 </TouchableOpacity>
                 <Text style={[styles.headerTitle, { color: guideItem.color }]}>{guideItem.label}</Text>
             </View>
@@ -35,7 +37,7 @@ export default function EnvironmentGuideScreen({ route, navigation }) {
             <ScrollView contentContainerStyle={styles.content}>
 
                 <View style={[styles.iconHeader, { backgroundColor: guideItem.color }]}>
-                    <NeoIcon name={guideItem.iconName} size={64} color="#FFF" />
+                    <NeoIcon name={guideItem.iconName} size={64} color={colors.neutral.white} />
                 </View>
 
                 <View style={styles.contentCard}>
@@ -51,7 +53,7 @@ export default function EnvironmentGuideScreen({ route, navigation }) {
 
                 {/* Extra: Dica visual ou Iconografia */}
                 <View style={styles.tipBox}>
-                    <NeoIcon name="LampCharge" size={20} color="#F57C00" />
+                    <NeoIcon name="LampCharge" size={20} color="#F57C00" /> {/* TODO: map to DS token (amber-700) */}
                     <Text style={styles.tipText}>
                         {t('headersFirst.lembreSeAPrevenOAtivaDependeDeVerificaOC', 'Lembre-se: A prevenção ativa depende de verificação constante.')}
                     </Text>
@@ -79,29 +81,29 @@ const styles = StyleSheet.create({
 
     contentCard: {
         width: '100%',
-        backgroundColor: '#F9F9F9',
+        backgroundColor: Neo.colors.neutral[100],
         borderRadius: 16,
         padding: 24,
         marginBottom: 24,
         borderWidth: 1,
-        borderColor: '#EEE'
+        borderColor: Neo.colors.neutral[300]
     },
     cardHeader: {
         flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 16
     },
     cardTitle: {
-        fontSize: 16, fontWeight: 'bold', color: '#333', textTransform: 'uppercase'
+        fontSize: 16, fontWeight: 'bold', color: Neo.colors.neutral[900], textTransform: 'uppercase'
     },
     guideText: {
         fontSize: 18,
         lineHeight: 28,
-        color: '#444',
+        color: Neo.colors.neutral[700],
         textAlign: 'left' // Leitura mais natural
     },
 
     tipBox: {
         flexDirection: 'row', gap: 10,
-        backgroundColor: '#FFF3E0', padding: 16, borderRadius: 12, width: '100%'
+        backgroundColor: '#FFF3E0', padding: 16, borderRadius: 12, width: '100%' // TODO: map #FFF3E0 to DS token (amber-50 tint)
     },
-    tipText: { fontSize: 13, color: '#E65100', flex: 1 }
+    tipText: { fontSize: 13, color: Neo.colors.accent?.copper || '#E65100', flex: 1 }
 });

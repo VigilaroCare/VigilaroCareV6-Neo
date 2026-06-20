@@ -19,6 +19,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors } from '../utils/ThemeContext';
 import { VisionService } from '../services/VisionService';
 import GamificationService from '../services/GamificationService';
 import { buscarProduto } from '../data/produtos_scanner';
@@ -130,6 +131,7 @@ export default function ScannerScreen({ navigation, route }) {
   const [facing, setFacing] = useState('back');
   const { t } = useTranslation();
   const { reduceMotion } = useAccessibility();
+  const colors = useThemeColors();
 
   // Hook at the top level to avoid rules of hooks issues
   const isFocused = useIsFocused();
@@ -353,7 +355,7 @@ export default function ScannerScreen({ navigation, route }) {
   if (!permission.granted) {
     return (
       <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <Text style={{ color: '#FFF', fontSize: 18, marginBottom: 20 }}>{t('scanner.permReq')}</Text>
+        <Text style={{ color: colors.neutral.white, fontSize: 18, marginBottom: 20 }}>{t('scanner.permReq')}</Text>
         <TouchableOpacity style={styles.permissionButton} onPress={requestPermission}>
           <Text style={styles.permissionButtonText}>{t('scanner.grant')}</Text>
         </TouchableOpacity>
@@ -478,12 +480,12 @@ export default function ScannerScreen({ navigation, route }) {
         <ScrollView style={styles.resultSheet} contentContainerStyle={{ paddingBottom: 190 }}>
           <View style={styles.dragIndicator} />
           
-          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1F2937', marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: colors.neutral[900], marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
             {analysisResult.analises.length} risco(s) detectado(s)
           </Text>
 
           {analysisResult.analises.map((item, index) => (
-            <View key={index} style={{ marginBottom: 24, backgroundColor: '#F9FAFB', borderRadius: 16, padding: 16, borderWidth: 1, borderColor: '#E5E7EB' }}>
+            <View key={index} style={{ marginBottom: 24, backgroundColor: colors.neutral[100], borderRadius: 16, padding: 16, borderWidth: 1, borderColor: colors.neutral[300] }}>
               {/* Header */}
               <View style={[styles.resultHeader, { marginBottom: 12 }]}>
                 <View style={[styles.severityBadge, { backgroundColor: item.cor || '#666' }]}>

@@ -31,7 +31,7 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
     const [searchText, setSearchText] = useState('');
     const THEME_COLOR = '#8B5CF6'; // Violet
 
@@ -42,11 +42,11 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
 
     const getPerigoColor = (nivel) => {
         switch (nivel) {
-            case 'Muito Alto': case 'Very High': case 'Muy Alto': return '#EF4444';
-            case 'Alto': case 'High': return '#F97316';
-            case 'Médio': case 'Medium': case 'Medio': return '#F59E0B';
-            case 'Baixo': case 'Low': case 'Bajo': return '#EAB308';
-            default: return '#6B7280';
+            case 'Muito Alto': case 'Very High': case 'Muy Alto': return Neo.colors.feedback.error; // DS: data-level color
+            case 'Alto': case 'High': return '#F97316'; // DS: data-level color (orange-500, no exact mapping)
+            case 'Médio': case 'Medium': case 'Medio': return Neo.colors.feedback.warning; // DS: data-level color
+            case 'Baixo': case 'Low': case 'Bajo': return '#EAB308'; // DS: data-level color (yellow-500, no exact mapping)
+            default: return Neo.colors.neutral[500];
         }
     };
 
@@ -186,10 +186,10 @@ const styles = StyleSheet.create({
         marginRight: 12
     },
     alertTitle: {
-        color: '#991B1B'
+        color: Neo.colors.emergency?.panicDark || '#991B1B'
     },
     alertDesc: {
-        color: '#B91C1C',
+        color: Neo.colors.emergency?.panicDark || '#B91C1C',
         marginTop: 2
     },
     guideCardOuter: {
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 120, // Altura fixa para manter imagem expandida e padronizada
-        backgroundColor: '#FFFFFF', // Sólido para evitar vazamento de sombra no Android
+        backgroundColor: Neo.colors.neutral.white, // Sólido para evitar vazamento de sombra no Android
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     guideImageContainer: {
         width: 120,
         height: '100%',
-        backgroundColor: '#F3F4F6',
+        backgroundColor: Neo.colors.neutral[200],
         alignItems: 'center',
         justifyContent: 'center'
     },

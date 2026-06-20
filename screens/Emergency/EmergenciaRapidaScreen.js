@@ -19,7 +19,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 
 const EMERGENCIA_TIPOS = [
   {
-    id: 'engasgo', titulo: 'ENGASGO', icon: 'Danger', cor: '#D97706',
+    id: 'engasgo', titulo: 'ENGASGO', icon: 'Danger', cor: Neo.colors.accent?.champagne || '#D97706',
     passos: [
       '1. Posicione-se atrás da pessoa.',
       '2. Abrace a cintura.',
@@ -27,7 +27,7 @@ const EMERGENCIA_TIPOS = [
     ],
   },
   {
-    id: 'parada', titulo: 'PARADA CARDÍACA', icon: 'Heart', cor: '#DC2626',
+    id: 'parada', titulo: 'PARADA CARDÍACA', icon: 'Heart', cor: Neo.colors.emergency?.panic || '#DC2626',
     passos: [
       '1. Deite a pessoa no chão duro.',
       '2. Coloque as mãos no centro do peito.',
@@ -51,7 +51,7 @@ const EMERGENCIA_TIPOS = [
     ],
   },
   {
-    id: 'incendio', titulo: 'INCÊNDIO', icon: 'Flash', cor: '#EF4444',
+    id: 'incendio', titulo: 'INCÊNDIO', icon: 'Flash', cor: Neo.colors.feedback.error,
     passos: [
       '1. Saia do local o mais rápido possível.',
       '2. Se houver fumaça, engatinhe.',
@@ -80,7 +80,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
             style={s.btnVoltar}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <NeoIcon name="ArrowLeft2" size={28} color="#FFF" variant="Bold" />
+            <NeoIcon name="ArrowLeft2" size={28} color={Neo.colors.neutral.white} variant="Bold" />
           </TouchableOpacity>
           <Text style={s.protocolTitle}>{tipoSelecionado.titulo}</Text>
           <View style={{ width: 44 }} />
@@ -97,19 +97,19 @@ export default function EmergenciaRapidaScreen({ navigation }) {
         {/* Botões Telefone no Rodapé */}
         <View style={s.footerCall}>
           {tipoSelecionado.id === 'intoxicacao' ? (
-            <TouchableOpacity onPress={LigarCIT} style={[s.callBtn, { backgroundColor: '#5B21B6' }]}>
-              <NeoIcon name="Call" size={28} color="#FFF" variant="Bold" />
+            <TouchableOpacity onPress={LigarCIT} style={[s.callBtn, { backgroundColor: '#5B21B6' }]}>{/* TODO: map #5B21B6 to DS token */}
+              <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.callText}>CIT 0800 722 6001</Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={LigarSamu} style={[s.callBtn, { backgroundColor: '#B91C1C' }]}>
-              <NeoIcon name="Call" size={28} color="#FFF" variant="Bold" />
+            <TouchableOpacity onPress={LigarSamu} style={[s.callBtn, { backgroundColor: Neo.colors.emergency?.panicDark || '#B91C1C' }]}>
+              <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.callText}>{t('headersFirst.sAMU192', 'SAMU 192')}</Text>
             </TouchableOpacity>
           )}
           {tipoSelecionado.id === 'incendio' && (
-            <TouchableOpacity onPress={LigarBombeiros} style={[s.callBtn, { backgroundColor: '#991B1B', marginTop: 12 }]}>
-              <NeoIcon name="Call" size={28} color="#FFF" variant="Bold" />
+            <TouchableOpacity onPress={LigarBombeiros} style={[s.callBtn, { backgroundColor: Neo.colors.emergency?.panicDark || '#991B1B', marginTop: 12 }]}>
+              <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.callText}>{t('headersFirst.bOMBEIROS193', 'BOMBEIROS 193')}</Text>
             </TouchableOpacity>
           )}
@@ -119,7 +119,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[s.container, { backgroundColor: '#111827' }]}>
+    <SafeAreaView style={[s.container, { backgroundColor: Neo.colors.neutral[900] }]}>
       <StatusBar style="light" />
       <View style={s.headerSelect}>
         <TouchableOpacity
@@ -140,7 +140,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
             style={[s.tipoCard, { backgroundColor: tipo.cor }]}
             onPress={() => setTipoSelecionado(tipo)}
           >
-            <NeoIcon name={tipo.icon} size={32} color="#FFF" variant="Bold" />
+            <NeoIcon name={tipo.icon} size={32} color={Neo.colors.neutral.white} variant="Bold" />
             <Text style={s.cardLabel}>{tipo.titulo}</Text>
           </TouchableOpacity>
         ))}
@@ -156,13 +156,13 @@ const s = StyleSheet.create({
   headerSelect: { alignItems: 'center', marginVertical: 32 },
   btnVoltarMenu: { position: 'absolute', right: 0, padding: 8 },
   fecharText: { color: Neo.colors.neutral[400], fontWeight: '800', fontSize: 16 },
-  mainTitle: { color: '#FFF', fontSize: 28, fontWeight: '900', letterSpacing: 1 },
+  mainTitle: { color: Neo.colors.neutral.white, fontSize: 28, fontWeight: '900', letterSpacing: 1 },
   cardsGrid: { flex: 1, gap: 16, justifyContent: 'center' },
   tipoCard: {
     flexDirection: 'row', alignItems: 'center', padding: 24,
     borderRadius: 20, gap: 16,
   },
-  cardLabel: { color: '#FFF', fontSize: 24, fontWeight: '900' },
+  cardLabel: { color: Neo.colors.neutral.white, fontSize: 24, fontWeight: '900' },
 
   // Protocol Mode
   headerProtocol: {
@@ -173,14 +173,14 @@ const s = StyleSheet.create({
     padding: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 24,
     width: 44, height: 44, alignItems: 'center', justifyContent: 'center',
   },
-  protocolTitle: { color: '#FFF', fontSize: 22, fontWeight: '900', flex: 1, textAlign: 'center' },
+  protocolTitle: { color: Neo.colors.neutral.white, fontSize: 22, fontWeight: '900', flex: 1, textAlign: 'center' },
   contentProtocol: { flex: 1, justifyContent: 'center', paddingHorizontal: 8 },
   passosHeader: {
     color: 'rgba(255,255,255,0.85)', fontSize: 20, fontWeight: '800',
     marginBottom: 24, letterSpacing: 1,
   },
   passoText: {
-    color: '#FFF', fontSize: 26, fontWeight: '800',
+    color: Neo.colors.neutral.white, fontSize: 26, fontWeight: '800',
     lineHeight: 34, marginBottom: 24,
   },
   footerCall: { paddingBottom: 24 },
@@ -188,5 +188,5 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     paddingVertical: 20, borderRadius: 100, gap: 12,
   },
-  callText: { color: '#FFF', fontSize: 22, fontWeight: '900' },
+  callText: { color: Neo.colors.neutral.white, fontSize: 22, fontWeight: '900' },
 });

@@ -24,10 +24,10 @@ import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const FORMAT_CONFIG = {
-  caso:      { label: 'Caso Real',      cor: '#DC2626', bg: '#FFF5F5', iconeBg: '#FECACA' },
-  fato:      { label: 'Dado de Impacto',cor: '#1D4ED8', bg: '#EFF6FF', iconeBg: '#BFDBFE' },
-  protocolo: { label: 'Protocolo',      cor: '#059669', bg: '#F0FDF4', iconeBg: '#A7F3D0' },
-  sazonal:   { label: 'Alerta Sazonal', cor: '#D97706', bg: '#FFFBEB', iconeBg: '#FDE68A' },
+  caso:      { label: 'Caso Real',      cor: '#DC2626', bg: '#FFF5F5', iconeBg: '#FECACA' }, // DS: data-level color
+  fato:      { label: 'Dado de Impacto',cor: '#1D4ED8', bg: '#EFF6FF', iconeBg: '#BFDBFE' }, // DS: data-level color
+  protocolo: { label: 'Protocolo',      cor: '#059669', bg: '#F0FDF4', iconeBg: '#A7F3D0' }, // DS: data-level color
+  sazonal:   { label: 'Alerta Sazonal', cor: '#D97706', bg: '#FFFBEB', iconeBg: '#FDE68A' }, // DS: data-level color
 };
 
 export default function RadarArticleScreen({ route, navigation }) {
@@ -239,7 +239,7 @@ const s = StyleSheet.create({
     opacity: 0.8,
   },
   content: {
-    backgroundColor: '#fff',
+    backgroundColor: Neo.colors.neutral.white,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     marginTop: -16,
@@ -275,7 +275,7 @@ const s = StyleSheet.create({
     padding: 16,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#FDE68A',
+    borderColor: '#FDE68A', // TODO: map to DS token (amber tint)
   },
   causaHeader: {
     flexDirection: 'row',
@@ -286,11 +286,11 @@ const s = StyleSheet.create({
   causaLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#D97706',
+    color: Neo.colors.accent.champagne,
   },
   causaTexto: {
     fontSize: 14,
-    color: '#92400E',
+    color: Neo.colors.accent.copper,
     lineHeight: 22,
   },
   orientacoesBox: {
@@ -330,7 +330,7 @@ const s = StyleSheet.create({
   orientacaoNumText: {
     fontSize: 13,
     fontWeight: '800',
-    color: '#fff',
+    color: Neo.colors.neutral.white,
   },
   orientacaoTexto: {
     fontSize: 14,
@@ -371,7 +371,7 @@ const s = StyleSheet.create({
     borderRadius: 12,
   },
   returnBtnText: {
-    color: '#fff',
+    color: Neo.colors.neutral.white,
     fontWeight: '700',
     fontSize: 15,
   },

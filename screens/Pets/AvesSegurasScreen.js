@@ -14,11 +14,12 @@ import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { AVES_SEGURAS_DATA } from '../../data/aves_seguras_data';
 import { t_field } from '../../utils/getLocalizedField';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function AvesSegurasScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const isDark = useIsDark();
+  const colors = useThemeColors();
   const petHero = route?.params?.petHero;
 
   const renderRiscoCard = (title, message, icon, color, bg) => (
@@ -33,7 +34,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
     </NeoCard>
   );
 
-  const surface = isDark ? Neo.colors.neutral[100] : '#FFFFFF';
+  const surface = isDark ? Neo.colors.neutral[100] : colors.neutral.white;
   const scrollY = useRef(new Animated.Value(0)).current;
   const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
 
@@ -70,7 +71,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
               accessibilityRole="button"
               accessibilityLabel={t('common.back', 'Voltar')}
           >
-              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+              <NeoIcon name="ArrowLeft2" size={24} color={colors.neutral.white} />
           </TouchableOpacity>
       </SafeAreaView>
 
@@ -113,7 +114,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
                   <Text style={{
                       fontSize: 34,
                       fontWeight: '900',
-                      color: '#FFFFFF',
+                      color: colors.neutral.white,
                       letterSpacing: -0.8,
                       lineHeight: 38,
                   }} accessibilityRole="header">
@@ -227,7 +228,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   alertTitle: {
-    color: '#B91C1C',
+    color: Neo.colors.feedback.error, // was #B91C1C
     flex: 1,
     textTransform: 'uppercase',
     fontSize: 12.5,
@@ -235,7 +236,7 @@ const s = StyleSheet.create({
     letterSpacing: 0.8,
   },
   alertDesc: {
-    color: '#7F1D1D',
+    color: '#7F1D1D', // TODO: map to DS token (very dark red, no DS match)
     marginBottom: 10,
     fontWeight: '500',
     fontSize: 13.5,
@@ -247,7 +248,7 @@ const s = StyleSheet.create({
     borderRadius: 8,
   },
   alertSmallText: {
-    color: '#B91C1C',
+    color: Neo.colors.feedback.error, // was #B91C1C
     fontWeight: '700',
     fontSize: 12,
     lineHeight: 17,
@@ -301,7 +302,7 @@ const s = StyleSheet.create({
     borderRadius: 14,
   },
   diagnosticoTitle: {
-    color: '#6A1B9A',
+    color: '#6A1B9A', // TODO: map to DS token (purple, no DS match)
     marginBottom: 6,
     fontSize: 15,
     fontWeight: '800',
@@ -313,13 +314,13 @@ const s = StyleSheet.create({
     lineHeight: 19,
   },
   diagnosticoBtn: {
-    backgroundColor: '#8E24AA',
+    backgroundColor: '#8E24AA', // TODO: map to DS token (purple, no DS match)
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
   },
   diagnosticoBtnText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontWeight: '800',
     fontSize: 14,
   },

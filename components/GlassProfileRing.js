@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     innerCircle: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         alignItems: 'center',
         justifyContent: 'center',
     },

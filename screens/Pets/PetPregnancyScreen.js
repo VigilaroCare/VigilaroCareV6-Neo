@@ -17,12 +17,13 @@ import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { useTranslation } from 'react-i18next';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 
 export default function PetPregnancyScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const isDark = useIsDark();
+    const colors = useThemeColors();
     const [pet, setPet] = useState(route.params?.pet || null);
     const [petsList, setPetsList] = useState([]);
 
@@ -317,7 +318,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                                 keyboardType="numeric"
                             />
                             <TouchableOpacity style={styles.birthButton} onPress={handleBirth}>
-                                <NeoIcon name="Gift" size={24} color="#FFF" />
+                                <NeoIcon name="Gift" size={24} color={colors.neutral.white} />
                                 <Text style={styles.birthButtonText}>{t('petPregnancyTracker.finishPregnancy')}</Text>
                             </TouchableOpacity>
                         </View>
@@ -399,7 +400,7 @@ const styles = StyleSheet.create({
     cardTitle: { fontSize: 16, fontWeight: '800', color: Neo.colors.neutral[900], marginBottom: 12, letterSpacing: -0.2 },
     label: { fontSize: 11.5, fontWeight: '800', color: Neo.colors.neutral[600], marginBottom: 8, letterSpacing: 1, textTransform: 'uppercase' },
     input: {
-        backgroundColor: '#FFF',
+        backgroundColor: Neo.colors.neutral.white,
         padding: 12,
         borderRadius: 12,
         borderWidth: 1,
@@ -415,11 +416,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 16,
     },
-    predictionLabel: { color: '#1565C0', fontWeight: '800', fontSize: 12, letterSpacing: 0.4 },
-    predictionValue: { fontSize: 24, fontWeight: '800', color: '#0D47A1', marginVertical: 4, letterSpacing: -0.5 },
-    predictionSub: { fontSize: 12, color: '#1976D2' },
+    predictionLabel: { color: Neo.colors.secondary[500], fontWeight: '800', fontSize: 12, letterSpacing: 0.4 }, // was #1565C0
+    predictionValue: { fontSize: 24, fontWeight: '800', color: Neo.colors.secondary[500], marginVertical: 4, letterSpacing: -0.5 }, // was #0D47A1
+    predictionSub: { fontSize: 12, color: Neo.colors.secondary[500] }, // was #1976D2
     saveButton: { backgroundColor: ACCENT, padding: 14, borderRadius: 12, alignItems: 'center' },
-    saveButtonText: { color: '#FFF', fontWeight: '800', fontSize: 15 },
+    saveButtonText: { color: Neo.colors.neutral.white, fontWeight: '800', fontSize: 15 },
 
     statusCard: {
         backgroundColor: 'rgba(255,255,255,0.85)',
@@ -459,7 +460,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.05)',
     },
     birthButton: {
-        backgroundColor: '#4CAF50',
+        backgroundColor: Neo.colors.feedback.success, // was #4CAF50
         padding: 14,
         borderRadius: 12,
         alignItems: 'center',
@@ -467,10 +468,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap: 8,
     },
-    birthButtonText: { color: '#FFF', fontWeight: '800', fontSize: 15 },
+    birthButtonText: { color: Neo.colors.neutral.white, fontWeight: '800', fontSize: 15 },
 
     noDataCard: { alignItems: 'center', padding: 32 },
     noDataText: { fontSize: 14, color: Neo.colors.neutral[600], marginBottom: 16, textAlign: 'center' },
     createButton: { paddingVertical: 12, paddingHorizontal: 18, backgroundColor: Neo.colors.primary[600], borderRadius: 12 },
-    createButtonText: { color: '#FFF', fontWeight: '800' },
+    createButtonText: { color: Neo.colors.neutral.white, fontWeight: '800' },
 });

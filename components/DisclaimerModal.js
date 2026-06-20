@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 export default function DisclaimerModal({ visible, onClose }) {
     return (
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         padding: Spacing.lg,
     },
     modalContent: {
-        backgroundColor: '#FFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: BorderRadius.lg,
         padding: Spacing.xl,
         ...Shadows.lg,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
         marginTop: Spacing.md,
     },
     buttonText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: 'bold',
         fontSize: Typography.sizes.md,
     },

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -222,7 +223,7 @@ export default function SafetyPermitScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#F2F2F7' },
+    container: { flex: 1, backgroundColor: Neo.colors.neutral[200] },
     center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     content: { padding: 16 },
 
@@ -234,37 +235,37 @@ const styles = StyleSheet.create({
         flexDirection: 'row', alignItems: 'center', gap: 16,
         ...Shadows.md
     },
-    headerTitle: { fontSize: 20, fontWeight: 'bold', color: '#FFF' },
+    headerTitle: { fontSize: 20, fontWeight: 'bold', color: Neo.colors.neutral.white },
     headerSubtitle: { fontSize: 13, color: 'rgba(255,255,255,0.9)' },
 
     // Card List Style (Igual HomeMapping)
     sectionContainer: { marginBottom: 20 },
-    sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#666', marginBottom: 8, marginLeft: 4 },
+    sectionTitle: { fontSize: 16, fontWeight: 'bold', color: Neo.colors.neutral[700], marginBottom: 8, marginLeft: 4 },
     card: { backgroundColor: 'transparent', borderRadius: 16, ...Shadows.sm, overflow: 'hidden' },
     itemRow: { flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 },
-    borderBottom: { borderBottomWidth: 1, borderBottomColor: '#F0F0F0' },
+    borderBottom: { borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[200] },
 
-    iconBox: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#E3F2FD', justifyContent: 'center', alignItems: 'center' },
-    itemLabel: { flex: 1, fontSize: 14, color: '#333', fontWeight: '500' },
+    iconBox: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#E3F2FD', justifyContent: 'center', alignItems: 'center' }, // TODO: map to DS token
+    itemLabel: { flex: 1, fontSize: 14, color: Neo.colors.neutral[900], fontWeight: '500' },
 
     // Toggle Style
-    toggleContainer: { flexDirection: 'row', backgroundColor: '#F0F0F0', borderRadius: 8, padding: 2 },
+    toggleContainer: { flexDirection: 'row', backgroundColor: Neo.colors.neutral[200], borderRadius: 8, padding: 2 },
     toggleBtn: { paddingVertical: 6, paddingHorizontal: 12, borderRadius: 6, minWidth: 48, alignItems: 'center' },
-    btnNoActive: { backgroundColor: '#757575' },
+    btnNoActive: { backgroundColor: Neo.colors.neutral[500] },
     btnYesActive: { backgroundColor: Colors.primary },
-    toggleText: { fontSize: 11, fontWeight: 'bold', color: '#888' },
-    textActiveWhite: { color: '#FFF' },
+    toggleText: { fontSize: 11, fontWeight: 'bold', color: Neo.colors.neutral[500] },
+    textActiveWhite: { color: Neo.colors.neutral.white },
 
     actionBtn: { backgroundColor: Colors.primary, padding: 18, borderRadius: 16, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 10, ...Shadows.md },
-    actionBtnText: { color: '#FFF', fontSize: 18, fontWeight: 'bold' },
+    actionBtnText: { color: Neo.colors.neutral.white, fontSize: 18, fontWeight: 'bold' },
 
     blockedContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 30 },
-    blockedTitle: { fontSize: 22, fontWeight: 'bold', color: '#D32F2F', marginTop: 20 },
-    blockedReason: { fontSize: 16, color: '#555', textAlign: 'center', marginVertical: 20 },
-    backBtn: { backgroundColor: '#D32F2F', padding: 16, borderRadius: 12, width: '100%', alignItems: 'center', marginTop: 10 },
-    backBtnText: { color: '#FFF', fontWeight: 'bold' },
+    blockedTitle: { fontSize: 22, fontWeight: 'bold', color: Neo.colors.feedback.error, marginTop: 20 },
+    blockedReason: { fontSize: 16, color: Neo.colors.neutral[600], textAlign: 'center', marginVertical: 20 },
+    backBtn: { backgroundColor: Neo.colors.feedback.error, padding: 16, borderRadius: 12, width: '100%', alignItems: 'center', marginTop: 10 },
+    backBtnText: { color: Neo.colors.neutral.white, fontWeight: 'bold' },
     riskLink: { marginTop: 20 },
-    riskLinkText: { color: '#888', textDecorationLine: 'underline' },
-    measurePoint: { fontSize: 16, color: '#333', marginBottom: 6 },
-    safeText: { fontSize: 16, color: '#555', marginBottom: 20 }
+    riskLinkText: { color: Neo.colors.neutral[500], textDecorationLine: 'underline' },
+    measurePoint: { fontSize: 16, color: Neo.colors.neutral[900], marginBottom: 6 },
+    safeText: { fontSize: 16, color: Neo.colors.neutral[600], marginBottom: 20 }
 });

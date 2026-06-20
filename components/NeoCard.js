@@ -45,7 +45,7 @@ export default function NeoCard({
     const baseStyle = {
         padding: spacing,
         borderRadius: Neo.borderRadius.md,
-        backgroundColor: isGlass ? 'transparent' : (isDark ? colors.neutral[200] : '#FFFFFF'),
+        backgroundColor: isGlass ? 'transparent' : (isDark ? colors.neutral[200] : colors.neutral.white),
         overflow: isGlass ? 'hidden' : 'visible',
     };
 

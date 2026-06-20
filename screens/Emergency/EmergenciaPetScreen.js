@@ -10,9 +10,11 @@ import NeoIcon from '../../components/NeoIcon';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 import ProfileService from '../../services/ProfileService';
+import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function EmergenciaPetScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
   const [species, setSpecies] = React.useState([]);
 
   React.useEffect(() => {
@@ -65,13 +67,13 @@ export default function EmergenciaPetScreen({ navigation }) {
             onPress={() => navigation.navigate('PrimeirosSocorros', {
               petHero: {
                 titulo: t('headersFirst.survivalProtocols', 'Protocolos de sobrevivência'),
-                cor: '#10B981',
+                cor: Neo.colors.primary[500],
               }
             })}
           >
             <NeoCard variant="elevated" style={s.heroAction}>
-              <View style={[s.heroIconBox, { backgroundColor: '#10B981' }]}>
-                <NeoIcon name="Heart" size={26} color="#FFF" variant="Bold" />
+              <View style={[s.heroIconBox, { backgroundColor: Neo.colors.primary[500] }]}>
+                <NeoIcon name="Heart" size={26} color={colors.neutral.white} variant="Bold" />
               </View>
               <View style={{ flex: 1 }}>
                 <H3 style={s.heroActionTitle}>
@@ -81,7 +83,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                   {t('headersFirst.guiasPassoAPassoRPidosParaEngasgoEnvenen', 'Guias passo a passo para engasgo, envenenamento e quedas.')}
                 </Body>
               </View>
-              <NeoIcon name="ArrowRight2" size={20} color="#10B981" />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[500]} />
             </NeoCard>
           </TouchableOpacity>
 
@@ -92,9 +94,9 @@ export default function EmergenciaPetScreen({ navigation }) {
 
           {/* PÂNICO: INTOXICAÇÃO */}
           <TouchableOpacity activeOpacity={0.85} onPress={callCiatox}>
-            <View style={[s.panicCard, { backgroundColor: '#EF4444' }]}>
-              <View style={[s.panicIcon, { backgroundColor: '#B91C1C' }]}>
-                <NeoIcon name="Danger" size={26} color="#FFF" variant="Bold" />
+            <View style={[s.panicCard, { backgroundColor: Neo.colors.feedback.error }]}>
+              <View style={[s.panicIcon, { backgroundColor: Neo.colors.emergency?.panicDark || '#B91C1C' }]}>
+                <NeoIcon name="Danger" size={26} color={colors.neutral.white} variant="Bold" />
               </View>
               <View style={{ flex: 1 }}>
                 <H3 style={s.panicTitle}>
@@ -112,9 +114,9 @@ export default function EmergenciaPetScreen({ navigation }) {
 
           {/* PÂNICO: TRAUMA */}
           <TouchableOpacity activeOpacity={0.85} onPress={callVet}>
-            <View style={[s.panicCard, { backgroundColor: '#F59E0B' }]}>
-              <View style={[s.panicIcon, { backgroundColor: '#B45309' }]}>
-                <NeoIcon name="Location" size={26} color="#FFF" variant="Bold" />
+            <View style={[s.panicCard, { backgroundColor: Neo.colors.feedback.warning }]}>
+              <View style={[s.panicIcon, { backgroundColor: Neo.colors.accent?.copper || '#B45309' }]}>
+                <NeoIcon name="Location" size={26} color={colors.neutral.white} variant="Bold" />
               </View>
               <View style={{ flex: 1 }}>
                 <H3 style={s.panicTitle}>
@@ -138,18 +140,18 @@ export default function EmergenciaPetScreen({ navigation }) {
               </Small>
               <TouchableOpacity activeOpacity={0.85} onPress={() => navigation.navigate('AvesSeguras')}>
                 <NeoCard variant="elevated" style={s.specialCard}>
-                  <View style={[s.heroIconBox, { backgroundColor: '#0288D1' + '24', width: 44, height: 44, borderRadius: 12 }]}>
-                    <NeoIcon name="Health" size={22} color="#0288D1" variant="Bold" />
+                  <View style={[s.heroIconBox, { backgroundColor: 'rgba(2, 136, 209, 0.14)', width: 44, height: 44, borderRadius: 12 }]}>
+                    <NeoIcon name="Health" size={22} color={Neo.colors.secondary[500]} variant="Bold" />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <H3 style={{ color: '#0369A1', fontSize: 15 }}>
+                    <H3 style={{ color: Neo.colors.gridAccents?.vistorias?.color || '#0369A1', fontSize: 15 }}>
                       {t('headersFirst.atenOAveNaCasa', 'Atenção: ave na casa')}
                     </H3>
-                    <Body style={{ color: '#0284C7', fontSize: 12, marginTop: 2 }}>
+                    <Body style={{ color: Neo.colors.secondary[500], fontSize: 12, marginTop: 2 }}>
                       {t('headersFirst.riscoRespiratRioCrTicoTeflonVapores', 'Risco respiratório crítico (Teflon/vapores)')}
                     </Body>
                   </View>
-                  <NeoIcon name="ArrowRight2" size={18} color="#0288D1" />
+                  <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.secondary[500]} />
                 </NeoCard>
               </TouchableOpacity>
             </View>
@@ -219,7 +221,7 @@ const s = {
     gap: 14,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#10B98140',
+    borderColor: 'rgba(16, 185, 129, 0.25)',
   },
   heroIconBox: {
     width: 52,
@@ -267,7 +269,7 @@ const s = {
     justifyContent: 'center',
   },
   panicTitle: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontSize: 15,
     marginBottom: 2,
     fontWeight: '800',
@@ -284,7 +286,7 @@ const s = {
     borderRadius: 10,
   },
   panicBtnText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontWeight: '800',
     fontSize: 11.5,
     letterSpacing: 0.5,
@@ -297,7 +299,7 @@ const s = {
     borderRadius: 14,
     gap: 12,
     borderWidth: 1,
-    borderColor: '#0288D140',
+    borderColor: 'rgba(2, 136, 209, 0.25)',
   },
 
   docCard: {

@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         borderRadius: 24,
     },
     ctaLabel: {
-        color: '#FFFFFF',
+        color: Neo.colors.neutral.white,
         fontWeight: '700',
         fontSize: 14,
     },

@@ -102,13 +102,13 @@ export default function NeoAlertHost() {
     let textColor;
     let backgroundColor;
     if (isDestructive) {
-      textColor = '#FFFFFF';
-      backgroundColor = '#EF4444';
+      textColor = themeColors.neutral.white;
+      backgroundColor = Neo.colors.feedback.error; // was #EF4444
     } else if (isCancel) {
       textColor = isDark ? themeColors.neutral[700] : Neo.colors.neutral[700];
       backgroundColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
     } else {
-      textColor = '#FFFFFF';
+      textColor = themeColors.neutral.white;
       backgroundColor = Neo.colors.primary[500];
     }
 

@@ -22,15 +22,15 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const textBody = themeColors.neutral[700];
 
     const petHero = route?.params?.petHero;
-    const THEME_COLOR = '#8B5CF6';
+    const THEME_COLOR = '#8B5CF6'; // TODO: map to DS token (violet, no DS mapping)
 
     const MENU_ITEMS = [
-        { id: 'epis', title: 'EPIs', title_en: 'PPE', title_es: 'EPIs', subtitle: 'Equipamentos de Proteção Individual', subtitle_en: 'Personal Protective Equipment', subtitle_es: 'Equipos de Protección Individual', iconName: 'ShieldTick', color: '#F59E0B', imagemUrl: 'https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1200' },
-        { id: 'first_aid', title: 'Kit de Primeiros Socorros', title_en: 'First Aid Kit', title_es: 'Kit de Primeros Auxilios', subtitle: 'Itens Essenciais', subtitle_en: 'Essential Items', subtitle_es: 'Artículos Esenciales', iconName: 'Health', color: '#EF4444', imagemUrl: 'https://images.pexels.com/photos/5207085/pexels-photo-5207085.jpeg?auto=compress&cs=tinysrgb&w=1200' },
-        { id: 'tools', title: 'Caixa de Ferramentas', title_en: 'Toolbox', title_es: 'Caja de Herramientas', subtitle: 'Manutenção Segura', subtitle_en: 'Safe Maintenance', subtitle_es: 'Mantenimiento Seguro', iconName: 'ArchiveBox', color: '#607D8B', imagemUrl: 'https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=1200' },
-        { id: 'emergency_support', title: 'Utilidades de Apoio', title_en: 'Support Utilities', title_es: 'Utilidades de Apoyo', subtitle: 'Luz e Comunicação', subtitle_en: 'Light & Communication', subtitle_es: 'Luz y Comunicación', iconName: 'Lamp', color: '#8B5CF6', imagemUrl: 'https://images.pexels.com/photos/3326105/pexels-photo-3326105.jpeg?auto=compress&cs=tinysrgb&w=1200' },
-        { id: 'farmacinha', title: 'Kit de Medicamentos', title_en: 'Medication Kit', title_es: 'Kit de Medicamentos', subtitle: 'Farmácia Caseira', subtitle_en: 'Home Pharmacy', subtitle_es: 'Farmacia Casera', iconName: 'Heart', color: '#10B981', imagemUrl: 'https://images.pexels.com/photos/3652103/pexels-photo-3652103.jpeg?auto=compress&cs=tinysrgb&w=1200' },
-        { id: 'pet', title: 'Kit Pet', title_en: 'Pet Kit', title_es: 'Kit Mascotas', subtitle: 'Prevenção e Emergência', subtitle_en: 'Prevention & Emergency', subtitle_es: 'Prevención y Emergencia', iconName: 'Star', color: '#F43F5E', imagemUrl: 'https://images.pexels.com/photos/6234600/pexels-photo-6234600.jpeg?auto=compress&cs=tinysrgb&w=1200' },
+        { id: 'epis', title: 'EPIs', title_en: 'PPE', title_es: 'EPIs', subtitle: 'Equipamentos de Proteção Individual', subtitle_en: 'Personal Protective Equipment', subtitle_es: 'Equipos de Protección Individual', iconName: 'ShieldTick', color: Neo.colors.feedback.warning, imagemUrl: 'https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
+        { id: 'first_aid', title: 'Kit de Primeiros Socorros', title_en: 'First Aid Kit', title_es: 'Kit de Primeros Auxilios', subtitle: 'Itens Essenciais', subtitle_en: 'Essential Items', subtitle_es: 'Artículos Esenciales', iconName: 'Health', color: Neo.colors.feedback.error, imagemUrl: 'https://images.pexels.com/photos/5207085/pexels-photo-5207085.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
+        { id: 'tools', title: 'Caixa de Ferramentas', title_en: 'Toolbox', title_es: 'Caja de Herramientas', subtitle: 'Manutenção Segura', subtitle_en: 'Safe Maintenance', subtitle_es: 'Mantenimiento Seguro', iconName: 'ArchiveBox', color: Neo.colors.neutral[500], imagemUrl: 'https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color (#607D8B)
+        { id: 'emergency_support', title: 'Utilidades de Apoio', title_en: 'Support Utilities', title_es: 'Utilidades de Apoyo', subtitle: 'Luz e Comunicação', subtitle_en: 'Light & Communication', subtitle_es: 'Luz y Comunicación', iconName: 'Lamp', color: '#8B5CF6', imagemUrl: 'https://images.pexels.com/photos/3326105/pexels-photo-3326105.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // TODO: map to DS token (violet, no DS mapping)
+        { id: 'farmacinha', title: 'Kit de Medicamentos', title_en: 'Medication Kit', title_es: 'Kit de Medicamentos', subtitle: 'Farmácia Caseira', subtitle_en: 'Home Pharmacy', subtitle_es: 'Farmacia Casera', iconName: 'Heart', color: Neo.colors.primary[500], imagemUrl: 'https://images.pexels.com/photos/3652103/pexels-photo-3652103.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
+        { id: 'pet', title: 'Kit Pet', title_en: 'Pet Kit', title_es: 'Kit Mascotas', subtitle: 'Prevenção e Emergência', subtitle_en: 'Prevention & Emergency', subtitle_es: 'Prevención y Emergencia', iconName: 'Star', color: Neo.colors.feedback.error, imagemUrl: 'https://images.pexels.com/photos/6234600/pexels-photo-6234600.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color (#F43F5E→feedback.error)
     ];
 
     const handlePress = (item) => {
@@ -69,7 +69,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
-    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+    const surface = isDark ? themeColors.neutral[100] : themeColors.neutral.white;
 
     const heroTransform = [
         {
@@ -105,7 +105,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+                    <NeoIcon name="ArrowLeft2" size={24} color={themeColors.neutral.white} />
                 </TouchableOpacity>
             </SafeAreaView>
 
@@ -146,7 +146,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                         <Text style={{
                             fontSize: 34,
                             fontWeight: '900',
-                            color: '#FFFFFF',
+                            color: themeColors.neutral.white,
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }} accessibilityRole="header">

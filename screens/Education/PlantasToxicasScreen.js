@@ -30,9 +30,9 @@ export default function PlantasToxicasScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
     const [searchText, setSearchText] = useState('');
-    const THEME_COLOR = '#10B981'; // Emerald
+    const THEME_COLOR = Neo.colors.primary[500]; // Emerald
 
     const plantasFiltradas = plantasCiatox.filter(planta =>
         t_field(planta, 'nomePopular').toLowerCase().includes(searchText.toLowerCase()) ||
@@ -42,11 +42,11 @@ export default function PlantasToxicasScreen({ navigation }) {
     const getToxicidadeColor = (nivel) => {
         // Data uses 'nivelPerigo'
         switch (nivel) {
-            case 'Muito Alto': case 'Very High': case 'Muy Alto': return '#EF4444'; // Red 500
-            case 'Alto': case 'High': return '#F97316'; // Orange 500
-            case 'Médio': case 'Medium': case 'Medio': return '#F59E0B'; // Amber 500
-            case 'Baixo': case 'Low': case 'Bajo': return '#10B981'; // Emerald 500
-            default: return '#6B7280'; // Gray 500
+            case 'Muito Alto': case 'Very High': case 'Muy Alto': return Neo.colors.feedback.error; // DS: data-level color
+            case 'Alto': case 'High': return '#F97316'; // DS: data-level color (orange-500, no exact mapping)
+            case 'Médio': case 'Medium': case 'Medio': return Neo.colors.feedback.warning; // DS: data-level color
+            case 'Baixo': case 'Low': case 'Bajo': return Neo.colors.primary[500]; // DS: data-level color
+            default: return Neo.colors.neutral[500];
         }
     };
 
@@ -61,7 +61,7 @@ export default function PlantasToxicasScreen({ navigation }) {
 
                 {/* Header Standardized */}
                 <View style={{ padding: 20, paddingTop: 10 }}>
-                    <View style={styles.headerTop}><TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}><NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} /></TouchableOpacity><H2>{t('plants.title', 'Plantas')}</H2><TouchableOpacity onPress={handleCallCiatox} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(239, 68, 68, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }}><NeoIcon name="Call" size={24} color="#EF4444" variant="Bold" /></TouchableOpacity></View>
+                    <View style={styles.headerTop}><TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}><NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} /></TouchableOpacity><H2>{t('plants.title', 'Plantas')}</H2><TouchableOpacity onPress={handleCallCiatox} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(239, 68, 68, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }}><NeoIcon name="Call" size={24} color={Neo.colors.feedback.error} variant="Bold" /></TouchableOpacity></View>
                     <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 8 }}>{t('plants.subtitle', 'Guia de Identificação')}</Small>
                 </View>
 
@@ -86,7 +86,7 @@ export default function PlantasToxicasScreen({ navigation }) {
 
                     <TouchableOpacity onPress={handleCallCiatox} activeOpacity={0.9} style={{ marginBottom: 16 }}>
                         <View style={[styles.alertCard, { backgroundColor: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)', borderWidth: 1 }]}>
-                            <View style={styles.alertIconBg}><NeoIcon name="Call" size={24} color="#EF4444" variant="Bold" /></View>
+                            <View style={styles.alertIconBg}><NeoIcon name="Call" size={24} color={Neo.colors.feedback.error} variant="Bold" /></View>
                             <View style={{ flex: 1 }}><H3 style={styles.alertTitle}>{t('plants.emergencyTitle', 'Emergência Toxicológica?')}</H3><Small style={styles.alertDesc}>{t('plants.emergencyDesc', 'Ligue para o CIATOX: 0800 722 6001')}</Small></View>
                         </View>
                     </TouchableOpacity>
@@ -170,10 +170,10 @@ const styles = StyleSheet.create({
         marginRight: 12
     },
     alertTitle: {
-        color: '#991B1B'
+        color: Neo.colors.emergency?.panicDark || '#991B1B'
     },
     alertDesc: {
-        color: '#B91C1C',
+        color: Neo.colors.emergency?.panicDark || '#B91C1C',
         marginTop: 2
     },
     guideCardOuter: {
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 120, // Altura fixa para manter imagem expandida e padronizada
-        backgroundColor: '#FFFFFF', // Sólido para evitar vazamento de sombra no Android
+        backgroundColor: Neo.colors.neutral.white, // Sólido para evitar vazamento de sombra no Android
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,

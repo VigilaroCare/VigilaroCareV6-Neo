@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === 'android' ? 16 : 0,
   },
   card: {
-    backgroundColor: Neo.colors.neutral[0] || '#FFF',
+    backgroundColor: Neo.colors.neutral[0] || Neo.colors.neutral.white,
     borderRadius: 20,
     padding: 24,
     ...Neo.shadows.lg,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     backgroundColor: Neo.colors.neutral[300],
   },
   buttonText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontWeight: 'bold',
     fontSize: 16,
   },

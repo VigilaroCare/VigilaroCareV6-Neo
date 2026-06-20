@@ -38,7 +38,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[800];
 
-    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+    const surface = isDark ? themeColors.neutral[100] : themeColors.neutral.white;
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
@@ -76,7 +76,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+                    <NeoIcon name="ArrowLeft2" size={24} color={themeColors.neutral.white} />
                 </TouchableOpacity>
             </SafeAreaView>
 
@@ -119,7 +119,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                         <Text style={{
                             fontSize: 34,
                             fontWeight: '900',
-                            color: '#FFFFFF',
+                            color: themeColors.neutral.white,
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }} accessibilityRole="header">
@@ -141,7 +141,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                     {/* Alerta */}
                     <NeoCard variant="elevated" style={s.alertCard}>
                         <View style={s.alertHeader}>
-                            <NeoIcon name="InfoCircle" size={18} color="#2196F3" variant="Bold" />
+                            <NeoIcon name="InfoCircle" size={18} color={Neo.colors.secondary[500]} variant="Bold" />
                             <Text style={s.alertTitle}>
                                 {t('petPregnancy.importantTitle', 'Importante')}
                             </Text>
@@ -217,7 +217,7 @@ const s = StyleSheet.create({
         marginBottom: 14,
         backgroundColor: '#E3F2FD',
         borderLeftWidth: 3,
-        borderLeftColor: '#2196F3',
+        borderLeftColor: Neo.colors.secondary[500], // was #2196F3
         borderRadius: 14,
     },
     alertHeader: {
@@ -229,7 +229,7 @@ const s = StyleSheet.create({
     alertTitle: {
         fontSize: 14,
         fontWeight: '800',
-        color: '#1565C0',
+        color: Neo.colors.secondary[500], // was #1565C0
     },
     alertText: {
         fontSize: 13,
@@ -298,7 +298,7 @@ const s = StyleSheet.create({
     tipTitle: {
         fontSize: 14,
         fontWeight: '800',
-        color: '#E65100',
+        color: Neo.colors.accent.copper, // was #E65100
     },
     tipText: {
         fontSize: 13,

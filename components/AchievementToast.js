@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { Colors, Shadows, BorderRadius, Typography } from '../utils/Theme';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 const { width } = Dimensions.get('window');
 
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#FFFBEB',
+        backgroundColor: Neo.colors.accent.champagneSubtle, // was #FFFBEB
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,

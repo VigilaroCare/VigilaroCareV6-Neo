@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SafetyReviewDetailScreen.js
  * Tela de detalhe de um Review Educativo de Segurança
  * Vigilaro Care V6 Neo
@@ -27,10 +27,10 @@ import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
-    critico: '#D32F2F',
-    alto: '#E65100',
-    medio: '#F57F17',
-    baixo: '#388E3C',
+    critico: Neo.colors.severity?.high?.bg || '#D32F2F', // DS: data-level color
+    alto: Neo.colors.accent?.copper || '#E65100', // DS: data-level color
+    medio: '#F57F17', // DS: data-level color (no exact mapping)
+    baixo: '#388E3C', // DS: data-level color (no exact mapping)
 };
 
 const RISK_LABELS = {
@@ -63,7 +63,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
         return null;
     }
 
-    const riskColor = RISK_COLORS[item.nivelRisco] || '#666';
+    const riskColor = RISK_COLORS[item.nivelRisco] || themeColors.neutral[700];
     const riskLabel = RISK_LABELS[item.nivelRisco] || 'N/A';
 
     return (
@@ -137,8 +137,8 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={200}>
                     <NeoCard variant="glass" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <NeoIcon name="Danger" size={20} color="#D32F2F" variant="Bold" />
-                            <Text style={[styles.sectionTitle, { color: '#D32F2F' }]}>
+                            <NeoIcon name="Danger" size={20} color={Neo.colors.severity?.high?.bg || Neo.colors.feedback.error} variant="Bold" />
+                            <Text style={[styles.sectionTitle, { color: Neo.colors.severity?.high?.bg || Neo.colors.feedback.error }]}>
                                 {t('headersFirst.riscosIdentificados', 'Riscos Identificados')}
                             </Text>
                         </View>
@@ -146,13 +146,13 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                             <View key={idx} style={styles.riskItem}>
                                 <View style={[
                                     styles.riskDot,
-                                    { backgroundColor: RISK_COLORS[risco.gravidade] || '#999' }
+                                    { backgroundColor: RISK_COLORS[risco.gravidade] || themeColors.neutral[500] }
                                 ]} />
                                 <View style={{ flex: 1 }}>
                                     <Text style={[styles.riskText, { color: textBody }]}>{risco.descricao}</Text>
                                     <Text style={[
                                         styles.riskLevel,
-                                        { color: RISK_COLORS[risco.gravidade] || '#999' }
+                                        { color: RISK_COLORS[risco.gravidade] || themeColors.neutral[500] }
                                     ]}>
                                         {RISK_LABELS[risco.gravidade] || risco.gravidade}
                                     </Text>
@@ -166,8 +166,8 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={300}>
                     <NeoCard variant="glass" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <NeoIcon name="ShieldTick" size={20} color="#2E7D32" variant="Bold" />
-                            <Text style={[styles.sectionTitle, { color: '#2E7D32' }]}>
+                            <NeoIcon name="ShieldTick" size={20} color={Neo.colors.primary[700]} variant="Bold" />
+                            <Text style={[styles.sectionTitle, { color: Neo.colors.primary[700] }]}>
                                 {t('headersFirst.comoPrevenir', 'Como Prevenir')}
                             </Text>
                         </View>
@@ -184,8 +184,8 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={400}>
                     <NeoCard variant="glass" style={[styles.sectionCard, styles.emergencyCard]}>
                         <View style={styles.sectionHeader}>
-                            <NeoIcon name="Heart" size={20} color="#C62828" variant="Bold" />
-                            <Text style={[styles.sectionTitle, { color: '#C62828' }]}>
+                            <NeoIcon name="Heart" size={20} color={Neo.colors.feedback.error} variant="Bold" />
+                            <Text style={[styles.sectionTitle, { color: Neo.colors.feedback.error }]}>
                                 {t('headersFirst.oQueFazerEmCasoDeAcidente', 'O Que Fazer em Caso de Acidente')}
                             </Text>
                         </View>
@@ -241,8 +241,8 @@ const styles = StyleSheet.create({
         borderRadius: 24,
         overflow: 'hidden',
         marginBottom: 16,
-        backgroundColor: '#F3F4F6',
-        shadowColor: '#000',
+        backgroundColor: Neo.colors.neutral[200],
+        shadowColor: Neo.colors.neutral.black,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.10,
         shadowRadius: 12,
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     riskBadgeText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontSize: 12,
         fontWeight: '700',
         letterSpacing: 0.5,
@@ -365,8 +365,8 @@ const styles = StyleSheet.create({
         width: 22,
         height: 22,
         borderRadius: 11,
-        backgroundColor: '#E8F5E9',
-        color: '#2E7D32',
+        backgroundColor: Neo.colors.primary[100],
+        color: Neo.colors.primary[700],
         fontSize: 11,
         fontWeight: '700',
         textAlign: 'center',
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     // Emergência
     emergencyCard: {
         borderLeftWidth: 3,
-        borderLeftColor: '#C62828',
+        borderLeftColor: Neo.colors.feedback.error,
     },
 
     // Estatística

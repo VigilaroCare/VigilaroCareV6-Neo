@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { DS as Neo } from '../utils/DesignSystem2026';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         padding: Spacing.lg,
         borderBottomWidth: 1,
         borderBottomColor: Colors.surfaceVariant,
-        backgroundColor: '#F8FAFC',
+        backgroundColor: Neo.colors.neutral[100], // was #F8FAFC
     },
     title: {
         fontSize: Typography.sizes.xl,
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.textTertiary,
     },
     buttonText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: 'bold',
         fontSize: 16,
     },

@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 
 // Dados
 import { EMERGENCIAS_PETS } from '../../data/primeiros_socorros_pets';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useIsDark, useThemeColors } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
@@ -53,7 +53,7 @@ const getIcon = (iconName, size = 28) => {
         case 'flask': name = 'Drop'; break; // Milk não existe
         default: name = 'Danger'; break;
     }
-    return <NeoIcon name={name} size={size} color="#FFF" variant="Bold" />;
+    return <NeoIcon name={name} size={size} color={Neo.colors.neutral.white} variant="Bold" />;
 };
 
 const EMERGENCIAS_HUMANOS = [
@@ -207,6 +207,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
     const insets = useSafeAreaInsets();
     const { t } = useTranslation();
     const isDark = useIsDark();
+    const colors = useThemeColors();
     const petHero = route?.params?.petHero;
     // Se veio do hub Pet, abre direto na aba PET
     const [mode, setMode] = useState(petHero ? 'PET' : 'HUMAN'); // 'HUMAN' | 'PET'
@@ -228,10 +229,10 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                 <View style={{ flexDirection: 'column', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.7)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.9)', ...Neo.shadows?.sm }}>
-                            <NeoIcon name="ArrowLeft2" size={24} color={isPet ? '#065F46' : '#BE123C'} />
+                            <NeoIcon name="ArrowLeft2" size={24} color={isPet ? Neo.colors.primary[800] : Neo.colors.feedback.error} />
                         </TouchableOpacity>
                         <View style={{ marginLeft: 16, flex: 1 }}>
-                            <Text style={{ fontSize: 24, fontWeight: '800', color: isPet ? '#059669' : '#BE123C', letterSpacing: -0.5 }}>{t('firstAid.whatHappened')}</Text>
+                            <Text style={{ fontSize: 24, fontWeight: '800', color: isPet ? Neo.colors.primary[600] : Neo.colors.feedback.error, letterSpacing: -0.5 }}>{t('firstAid.whatHappened')}</Text>
                             <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('firstAid.tacticalProtocol')}</Text>
                         </View>
                     </View>
@@ -240,17 +241,17 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                     <View style={{ flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: 24, padding: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)', alignSelf: 'flex-start' }}>
                         <TouchableOpacity
                             onPress={() => setMode('HUMAN')}
-                            style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: !isPet ? '#FFF' : 'transparent', borderRadius: 20, flexDirection: 'row', ...(!isPet && Neo.shadows?.sm) }}
+                            style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: !isPet ? colors.neutral.white : 'transparent', borderRadius: 20, flexDirection: 'row', ...(!isPet && Neo.shadows?.sm) }}
                         >
-                            <NeoIcon name="User" size={16} color={!isPet ? '#BE123C' : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
-                            <Small style={{ color: !isPet ? '#BE123C' : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.people')}</Small>
+                            <NeoIcon name="User" size={16} color={!isPet ? Neo.colors.feedback.error : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
+                            <Small style={{ color: !isPet ? Neo.colors.feedback.error : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.people')}</Small>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => setMode('PET')}
-                            style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: isPet ? '#FFF' : 'transparent', borderRadius: 20, flexDirection: 'row', ...(isPet && Neo.shadows?.sm) }}
+                            style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: isPet ? colors.neutral.white : 'transparent', borderRadius: 20, flexDirection: 'row', ...(isPet && Neo.shadows?.sm) }}
                         >
-                            <NeoIcon name="Heart" size={16} color={isPet ? '#059669' : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
-                            <Small style={{ color: isPet ? '#059669' : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.pets')}</Small>
+                            <NeoIcon name="Heart" size={16} color={isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
+                            <Small style={{ color: isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.pets')}</Small>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -315,7 +316,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                 }}>
                     <TouchableOpacity onPress={() => setEmergenciaSelecionada(null)} style={{ 
                         width: 44, height: 44, borderRadius: 22, 
-                        backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center', 
+                        backgroundColor: colors.neutral.white, alignItems: 'center', justifyContent: 'center', 
                         marginBottom: 16,
                         borderWidth: 1, borderColor: 'rgba(0,0,0,0.05)', ...Neo.shadows?.sm
                     }}>
@@ -337,26 +338,26 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                     {emergenciaSelecionada.passos.map((passo, index) => (
                         <NeoCard variant="glass" key={index} style={{
                             marginBottom: 16, padding: 20, flexDirection: 'row', alignItems: 'center',
-                            backgroundColor: passo.critico ? '#FFF1F2' : '#FFF',
-                            borderColor: passo.critico ? '#FDA4AF' : Neo.colors.neutral[200],
+                            backgroundColor: passo.critico ? '#FFF1F2' : colors.neutral.white, // TODO: map #FFF1F2 to DS token (rose-50)
+                            borderColor: passo.critico ? '#FDA4AF' : Neo.colors.neutral[200], // TODO: map #FDA4AF to DS token (rose-300)
                             borderLeftWidth: passo.critico ? 6 : 1,
-                            borderLeftColor: passo.critico ? '#E11D48' : Neo.colors.neutral[200]
+                            borderLeftColor: passo.critico ? '#E11D48' : Neo.colors.neutral[200] // DS: data-level crisis color
                         }}>
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: passo.critico ? '#E11D48' : emergenciaSelecionada.cor + '20', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
-                                <H3 style={{ color: passo.critico ? '#FFF' : emergenciaSelecionada.cor }}>{index + 1}</H3>
+                                <H3 style={{ color: passo.critico ? Neo.colors.neutral.white : emergenciaSelecionada.cor }}>{index + 1}</H3>
                             </View>
                             <View style={{ flex: 1 }}>
-                                <H3 style={{ fontSize: 16, color: passo.critico ? '#BE123C' : Neo.colors.neutral[900], marginBottom: 4 }}>{passo.titulo}</H3>
-                                <Body style={{ fontSize: 14, color: passo.critico ? '#881337' : Neo.colors.neutral[600], lineHeight: 20 }}>{passo.descricao}</Body>
+                                <H3 style={{ fontSize: 16, color: passo.critico ? Neo.colors.feedback.error : Neo.colors.neutral[900], marginBottom: 4 }}>{passo.titulo}</H3>
+                                <Body style={{ fontSize: 14, color: passo.critico ? Neo.colors.feedback.error : Neo.colors.neutral[600], lineHeight: 20 }}>{passo.descricao}</Body>
                             </View>
                         </NeoCard>
                     ))}
 
                     {emergenciaSelecionada.alertas && (
-                        <View style={{ backgroundColor: '#FFFBEB', padding: 20, borderRadius: 16, borderWidth: 1, borderColor: '#FDE68A', marginTop: 12 }}>
-                            <H3 style={{ color: '#D97706', marginBottom: 12 }}>{t('firstAid.criticalWarning')}</H3>
+                        <View style={{ backgroundColor: Neo.colors.accent?.champagneSubtle || '#FFFBEB', padding: 20, borderRadius: 16, borderWidth: 1, borderColor: '#FDE68A', marginTop: 12 }}>{/* TODO: map #FDE68A to DS token (amber-200) */}
+                            <H3 style={{ color: Neo.colors.accent?.champagne || '#D97706', marginBottom: 12 }}>{t('firstAid.criticalWarning')}</H3>
                             {emergenciaSelecionada.alertas.map((alerta, idx) => (
-                                <Body key={idx} style={{ color: '#B45309', marginBottom: 8, fontWeight: 'bold' }}>• {alerta}</Body>
+                                <Body key={idx} style={{ color: Neo.colors.accent?.copper || '#B45309', marginBottom: 8, fontWeight: 'bold' }}>• {alerta}</Body>
                             ))}
                         </View>
                     )}
@@ -373,18 +374,18 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                 {isPet ? (
                     <TouchableOpacity onPress={ligarVet} activeOpacity={0.8} style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                        backgroundColor: '#059669', paddingVertical: 18, borderRadius: 20, ...Neo.shadows?.md
+                        backgroundColor: Neo.colors.primary[600], paddingVertical: 18, borderRadius: 20, ...Neo.shadows?.md
                     }}>
-                        <NeoIcon name="Location" size={24} color="#FFF" variant="Bold" style={{ marginRight: 12 }} />
-                        <H3 style={{ color: '#FFF', fontSize: 18 }}>{t('firstAid.findVet')}</H3>
+                        <NeoIcon name="Location" size={24} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 12 }} />
+                        <H3 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('firstAid.findVet')}</H3>
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity onPress={ligar192} activeOpacity={0.8} style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                         backgroundColor: '#E11D48', paddingVertical: 18, borderRadius: 20, ...Neo.shadows?.md
                     }}>
-                        <NeoIcon name="Call" size={24} color="#FFF" variant="Bold" style={{ marginRight: 12 }} />
-                        <H3 style={{ color: '#FFF', fontSize: 18 }}>{t('firstAid.callEmergency')}</H3>
+                        <NeoIcon name="Call" size={24} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 12 }} />
+                        <H3 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('firstAid.callEmergency')}</H3>
                     </TouchableOpacity>
                 )}
             </View>

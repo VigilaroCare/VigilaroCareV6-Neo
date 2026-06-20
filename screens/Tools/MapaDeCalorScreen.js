@@ -40,11 +40,11 @@ import { t_field } from '../../utils/getLocalizedField';
  *   • Verde:     >= 70%
  */
 const getHeatColor = (stats) => {
-    if (stats.critical > 0) return { bg: '#DC2626', tint: '#FEE2E2', label: 'Crítico' };
+    if (stats.critical > 0) return { bg: '#DC2626', tint: '#FEE2E2', label: 'Crítico' }; // DS: data-level color
     const pct = stats.total > 0 ? (stats.checked / stats.total) * 100 : 0;
-    if (pct < 40) return { bg: '#F97316', tint: '#FFEDD5', label: 'Alto risco' };
-    if (pct < 70) return { bg: '#EAB308', tint: '#FEF9C3', label: 'Atenção' };
-    return { bg: '#16A34A', tint: '#DCFCE7', label: 'Seguro' };
+    if (pct < 40) return { bg: '#F97316', tint: '#FFEDD5', label: 'Alto risco' }; // DS: data-level color
+    if (pct < 70) return { bg: '#EAB308', tint: '#FEF9C3', label: 'Atenção' }; // DS: data-level color
+    return { bg: '#16A34A', tint: '#DCFCE7', label: 'Seguro' }; // DS: data-level color
 };
 
 export default function MapaDeCalorScreen({ navigation }) {
@@ -196,19 +196,19 @@ export default function MapaDeCalorScreen({ navigation }) {
                             {/* SUMÁRIO GLOBAL */}
                             <View style={s.summaryRow}>
                                 <SummaryStat
-                                    icon={<NeoIcon name="Danger" size={18} color="#DC2626" variant="Bold" />}
+                                    icon={<NeoIcon name="Danger" size={18} color={Neo.colors.feedback.error} variant="Bold" />}
                                     label={t('mapaCalor.critical', 'Críticos')}
                                     value={criticalRooms}
                                     sublabel={`${globalCritical} item(s)`}
-                                    color="#DC2626"
+                                    color={Neo.colors.feedback.error}
                                     bg="#FEE2E2"
                                 />
                                 <SummaryStat
-                                    icon={<NeoIcon name="Warning2" size={18} color="#EAB308" variant="Bold" />}
+                                    icon={<NeoIcon name="Warning2" size={18} color={Neo.colors.feedback.warning} variant="Bold" />}
                                     label={t('mapaCalor.attention', 'Atenção')}
                                     value={attentionRooms}
                                     sublabel={`${globalWarning} pendência(s)`}
-                                    color="#A16207"
+                                    color={Neo.colors.accent.champagne}
                                     bg="#FEF9C3"
                                 />
                                 <SummaryStat
@@ -304,16 +304,16 @@ function RoomHeatCard({ room, textPrimary, textBody, onPress }) {
                         <View style={s.problemRow}>
                             {room.stats.critical > 0 && (
                                 <View style={s.problemChip}>
-                                    <NeoIcon name="Danger" size={11} color="#DC2626" variant="Bold" />
-                                    <Caption style={[s.problemText, { color: '#DC2626' }]}>
+                                    <NeoIcon name="Danger" size={11} color={Neo.colors.feedback.error} variant="Bold" />
+                                    <Caption style={[s.problemText, { color: Neo.colors.feedback.error }]}>
                                         {room.stats.critical} crítico{room.stats.critical > 1 ? 's' : ''}
                                     </Caption>
                                 </View>
                             )}
                             {room.stats.warning > 0 && (
                                 <View style={s.problemChip}>
-                                    <NeoIcon name="Warning2" size={11} color="#A16207" variant="Bold" />
-                                    <Caption style={[s.problemText, { color: '#A16207' }]}>
+                                    <NeoIcon name="Warning2" size={11} color={Neo.colors.accent.champagne} variant="Bold" />
+                                    <Caption style={[s.problemText, { color: Neo.colors.accent.champagne }]}>
                                         {room.stats.warning} pend.
                                     </Caption>
                                 </View>

@@ -14,11 +14,12 @@ import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { PET_FOOD_SAFETY } from '../../data/pet_food_safety';
 import { t_field } from '../../utils/getLocalizedField';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function PetFoodSafetyScreen({ navigation, route }) {
   const { t } = useTranslation('common');
   const isDark = useIsDark();
+  const colors = useThemeColors();
   const petHero = route?.params?.petHero;
 
   const callCiatox = () => Linking.openURL('tel:08007226001');
@@ -56,7 +57,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
     </NeoCard>
   );
 
-  const surface = isDark ? Neo.colors.neutral[100] : '#FFFFFF';
+  const surface = isDark ? Neo.colors.neutral[100] : colors.neutral.white;
   const scrollY = useRef(new Animated.Value(0)).current;
   const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
 
@@ -93,7 +94,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
               accessibilityRole="button"
               accessibilityLabel={t('common.back', 'Voltar')}
           >
-              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+              <NeoIcon name="ArrowLeft2" size={24} color={colors.neutral.white} />
           </TouchableOpacity>
       </SafeAreaView>
 
@@ -136,7 +137,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
                   <Text style={{
                       fontSize: 34,
                       fontWeight: '900',
-                      color: '#FFFFFF',
+                      color: colors.neutral.white,
                       letterSpacing: -0.8,
                       lineHeight: 38,
                   }} accessibilityRole="header">
@@ -224,8 +225,8 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  ciatoxTitle: { color: '#B91C1C', fontSize: 14, fontWeight: '800' },
-  ciatoxDesc: { color: '#991B1B', fontSize: 12.5, marginTop: 2 },
+  ciatoxTitle: { color: Neo.colors.feedback.error, fontSize: 14, fontWeight: '800' }, // was #B91C1C
+  ciatoxDesc: { color: Neo.colors.feedback.error, fontSize: 12.5, marginTop: 2 }, // was #991B1B
 
   sectionLabel: {
     fontSize: 11.5,
@@ -270,7 +271,7 @@ const s = StyleSheet.create({
     borderRadius: 6,
   },
   itemBadgeText: {
-    color: '#FFF',
+    color: Neo.colors.neutral.white,
     fontWeight: '800',
     fontSize: 10,
     letterSpacing: 0.5,

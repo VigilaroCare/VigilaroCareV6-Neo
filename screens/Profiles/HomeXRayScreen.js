@@ -59,21 +59,21 @@ export default function HomeXRayScreen() {
         const cs = construction?.toLowerCase() || '';
 
         if (ty.includes('apartamento') || ty.includes('edificio')) {
-            risks.push({ label: t('homeXRay.riskHeight', 'Altura e janelas'), color: '#2196F3' });
-            risks.push({ label: t('homeXRay.riskCollectiveGas', 'Gás coletivo'), color: '#F59E0B' });
-            risks.push({ label: t('homeXRay.riskStairs', 'Evacuação em escadas'), color: '#DC2626' });
+            risks.push({ label: t('homeXRay.riskHeight', 'Altura e janelas'), color: '#2196F3' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskCollectiveGas', 'Gás coletivo'), color: '#F59E0B' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskStairs', 'Evacuação em escadas'), color: '#DC2626' }); // DS: data-level color
         } else if (ty.includes('sobrado') || cs === 'sobrado') {
-            risks.push({ label: t('homeXRay.riskFalls', 'Quedas em escadas'), color: '#F59E0B' });
-            risks.push({ label: t('homeXRay.riskBarriers', 'Barreiras de andar'), color: '#16A34A' });
+            risks.push({ label: t('homeXRay.riskFalls', 'Quedas em escadas'), color: '#F59E0B' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskBarriers', 'Barreiras de andar'), color: '#16A34A' }); // DS: data-level color
         } else if (ty.includes('praia') || ty.includes('litoral')) {
-            risks.push({ label: t('homeXRay.riskHumidity', 'Umidade e elétrica'), color: '#EAB308' });
-            risks.push({ label: t('homeXRay.riskDrowning', 'Risco de afogamento'), color: '#0EA5E9' });
+            risks.push({ label: t('homeXRay.riskHumidity', 'Umidade e elétrica'), color: '#EAB308' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskDrowning', 'Risco de afogamento'), color: '#0EA5E9' }); // DS: data-level color
         } else if (ty.includes('rural') || ty.includes('sitio') || ty.includes('fazenda')) {
-            risks.push({ label: t('homeXRay.riskAnimals', 'Animais peçonhentos'), color: '#78716C' });
-            risks.push({ label: t('homeXRay.riskIsolation', 'Isolamento geográfico'), color: '#475569' });
+            risks.push({ label: t('homeXRay.riskAnimals', 'Animais peçonhentos'), color: '#78716C' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskIsolation', 'Isolamento geográfico'), color: '#475569' }); // DS: data-level color
         } else {
-            risks.push({ label: t('homeXRay.riskIntrusion', 'Intrusão exterior'), color: '#475569' });
-            risks.push({ label: t('homeXRay.riskBackyard', 'Riscos de quintal'), color: '#16A34A' });
+            risks.push({ label: t('homeXRay.riskIntrusion', 'Intrusão exterior'), color: '#475569' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskBackyard', 'Riscos de quintal'), color: '#16A34A' }); // DS: data-level color
         }
 
         return risks;
@@ -134,7 +134,7 @@ export default function HomeXRayScreen() {
                                                 <Image source={{ uri: p.foto }} style={s.avatarImg} />
                                             ) : (
                                                 p.tipo === 'pet'
-                                                    ? <NeoIcon name="Pet" size={14} color="#F59E0B" variant="Bold" />
+                                                    ? <NeoIcon name="Pet" size={14} color={Neo.colors.feedback.warning} variant="Bold" />
                                                     : <NeoIcon name="People" size={14} color={Neo.colors.primary[600]} variant="Bold" />
                                             )}
                                         </View>
@@ -161,7 +161,7 @@ export default function HomeXRayScreen() {
                                                 <Image source={{ uri: p.foto }} style={s.avatarImg} />
                                             ) : (
                                                 p.tipo === 'pet'
-                                                    ? <NeoIcon name="Pet" size={14} color="#F59E0B" variant="Bold" />
+                                                    ? <NeoIcon name="Pet" size={14} color={Neo.colors.feedback.warning} variant="Bold" />
                                                     : <NeoIcon name="People" size={14} color={Neo.colors.neutral[500]} variant="Bold" />
                                             )}
                                         </View>
@@ -225,7 +225,7 @@ export default function HomeXRayScreen() {
                             navigation.navigate('MapeamentoRiscos', { residenceId: res.id, residenceName: res.nome });
                         }}
                     >
-                        <NeoIcon name="Ruler" size={16} color="#FFF" variant="Bold" />
+                        <NeoIcon name="Ruler" size={16} color={Neo.colors.neutral.white} variant="Bold" />
                         <Text style={s.recalcButtonText}>
                             {t('homeXRay.updateMapping', 'Atualizar mapeamento')}
                         </Text>
@@ -466,7 +466,7 @@ const s = StyleSheet.create({
         marginTop: 6,
     },
     recalcButtonText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: '800',
         fontSize: 13.5,
     },

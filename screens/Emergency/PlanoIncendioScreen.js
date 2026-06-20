@@ -30,7 +30,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       nome: FIRE_PREVENTION_CONTENT?.prevention?.title || 'Prevenção',
       subtitulo: 'Ações para evitar o início de incêndios',
       emoji: FIRE_PREVENTION_CONTENT?.prevention?.emoji || '🛡️',
-      cor: '#4CAF50',
+      cor: Neo.colors.feedback.success,
       imagemUrl: 'https://images.pexels.com/photos/8910403/pexels-photo-8910403.jpeg?auto=compress&cs=tinysrgb&w=1200',
       itens: FIRE_PREVENTION_CONTENT?.prevention?.sections || [],
     },
@@ -39,7 +39,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       nome: FIRE_PREVENTION_CONTENT?.action?.title || 'Ação',
       subtitulo: 'Como agir no primeiro minuto',
       emoji: FIRE_PREVENTION_CONTENT?.action?.emoji || '🔥',
-      cor: '#EF4444',
+      cor: Neo.colors.feedback.error,
       imagemUrl: 'https://images.pexels.com/photos/10323326/pexels-photo-10323326.jpeg?auto=compress&cs=tinysrgb&w=1200',
       itens: FIRE_PREVENTION_CONTENT?.action?.steps || [],
     },
@@ -48,7 +48,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       nome: 'Plano de fuga',
       subtitulo: 'Estratégia de evacuação em família',
       emoji: '🗺️',
-      cor: '#3B82F6',
+      cor: Neo.colors.secondary[500],
       imagemUrl: 'https://images.pexels.com/photos/3773199/pexels-photo-3773199.jpeg?auto=compress&cs=tinysrgb&w=1200',
       itens: [
         'Desenhe a planta da casa e marque 2 saídas por cômodo.',
@@ -82,7 +82,7 @@ export default function PlanoIncendioScreen({ navigation }) {
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
-  const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+  const surface = isDark ? themeColors.neutral[100] : themeColors.neutral.white;
 
   const heroTransform = [
       {
@@ -118,7 +118,7 @@ export default function PlanoIncendioScreen({ navigation }) {
               accessibilityRole="button"
               accessibilityLabel={t('common.back', 'Voltar')}
           >
-              <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+              <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
           </TouchableOpacity>
       </SafeAreaView>
 
@@ -132,7 +132,7 @@ export default function PlanoIncendioScreen({ navigation }) {
         <Animated.View style={{
             width: '100%',
             height: HERO_HEIGHT,
-            backgroundColor: '#EF4444',
+            backgroundColor: Neo.colors.feedback.error,
             overflow: 'hidden',
             transform: heroTransform,
         }}>
@@ -159,7 +159,7 @@ export default function PlanoIncendioScreen({ navigation }) {
                 <Text style={{
                     fontSize: 34,
                     fontWeight: '900',
-                    color: '#FFFFFF',
+                    color: Neo.colors.neutral.white,
                     letterSpacing: -0.8,
                     lineHeight: 38,
                 }} accessibilityRole="header">
@@ -178,7 +178,7 @@ export default function PlanoIncendioScreen({ navigation }) {
 
         <View style={[s.content, { marginTop: 20 }]}>
           {/* ALERT */}
-          <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: '#FFEDD5' }]}>
+          <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: '#FFEDD5' }]}>{/* TODO: map #FFF7ED/#FFEDD5 to DS token (amber-50/100 tints) */}
             <NeoIcon name="Warning2" size={22} color="#F97316" variant="Bold" />
             <Text style={s.alertText}>
               <Text style={{ fontWeight: '800' }}>{t('headersFirst.critical', 'CRÍTICO:')} </Text>
@@ -220,13 +220,13 @@ export default function PlanoIncendioScreen({ navigation }) {
           ))}
 
           {/* INFO 3D */}
-          <View style={[s.infoBox, { backgroundColor: isDark ? 'rgba(79, 70, 229, 0.1)' : '#EEF2FF', borderColor: isDark ? 'rgba(79, 70, 229, 0.2)' : '#E0E7FF' }]}>
-            <NeoIcon name="InfoCircle" size={20} color="#4F46E5" variant="Bold" />
+          <View style={[s.infoBox, { backgroundColor: isDark ? 'rgba(79, 70, 229, 0.1)' : '#EEF2FF', borderColor: isDark ? 'rgba(79, 70, 229, 0.2)' : '#E0E7FF' }]}>{/* TODO: map #EEF2FF/#E0E7FF to DS token (indigo-50/100 tints) */}
+            <NeoIcon name="InfoCircle" size={20} color={Neo.colors.secondary[500]} variant="Bold" />
             <View style={{ flex: 1 }}>
-              <Text style={[s.infoTitle, { color: '#4F46E5' }]}>
+              <Text style={[s.infoTitle, { color: Neo.colors.secondary[500] }]}>
                 {t('headersFirst.prevenO3DAplicada', 'Prevenção 3D aplicada')}
               </Text>
-              <Text style={[s.infoText, { color: '#4338CA' }]}>
+              <Text style={[s.infoText, { color: Neo.colors.secondary[500] }]}>
                 • DIÁRIA: verificar extintores{'\n'}
                 • DINÂMICA: atualizar plano{'\n'}
                 • DURADOURA: treinar regularmente
@@ -270,7 +270,7 @@ const s = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     lineHeight: 20,
-    color: '#9A3412',
+    color: Neo.colors.accent?.copper || '#9A3412',
   },
   statsCard: {
     flexDirection: 'row',
@@ -284,7 +284,7 @@ const s = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#EF4444',
+    color: Neo.colors.feedback.error,
   },
   statLabel: {
     fontSize: 12,
@@ -299,7 +299,7 @@ const s = StyleSheet.create({
   sectionLabel: {
     marginBottom: 12,
     fontWeight: '700',
-    color: '#6B7280',
+    color: Neo.colors.neutral[500],
     letterSpacing: 0.5,
   },
   infoBox: {

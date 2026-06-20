@@ -413,13 +413,13 @@ const s = StyleSheet.create({
         marginBottom: 4,
     },
     featuredBadgeText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontSize: 9,
         fontWeight: '800',
         letterSpacing: 0.2,
     },
     featuredTitle: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontSize: 12,
         fontWeight: '800',
         lineHeight: 15,
