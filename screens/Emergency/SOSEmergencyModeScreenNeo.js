@@ -386,18 +386,40 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     {/* Tertiary Action */}
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('PrimeirosSocorros')}
-                        style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 32, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                        style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                     >
                         <NeoIcon name="Warning2" size={20} color="#FFF" style={{ marginRight: 10 }} />
                         <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>
-                            Primeiros socorros guiados
+                            {t('sos.firstAid', 'Primeiros socorros guiados')}
                         </Body>
                     </TouchableOpacity>
+
+                    {/* CIATOX — Emergência toxicológica (apenas tab Humano) */}
+                    {activeTab === 'HUMAN' && (
+                        <TouchableOpacity 
+                            onPress={() => handleCall('08007226001')}
+                            activeOpacity={0.85}
+                            style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 32, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                        >
+                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
+                                <NeoIcon name="Call" size={20} color="#FFF" variant="Bold" />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
+                                    {t('sos.ciatoxTitle', 'CIATOX — Intoxicação')}
+                                </Body>
+                                <Small style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, marginTop: 2 }}>
+                                    {t('sos.ciatoxNumber', '0800 722 6001 · Gratuito 24h')}
+                                </Small>
+                            </View>
+                            <NeoIcon name="Call" size={18} color="rgba(255,255,255,0.5)" />
+                        </TouchableOpacity>
+                    )}
 
                     {/* Safe Exit */}
                     <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={{ paddingVertical: 10 }}>
                         <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>
-                            Estou seguro • cancelar
+                            {t('sos.safeExit', 'Estou seguro • cancelar')}
                         </Body>
                     </TouchableOpacity>
 
