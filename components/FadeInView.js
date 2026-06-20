@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Animated } from 'react-native';
+import { useAccessibility } from '../context/AccessibilityContext';
 
 /**
  * FadeInView
@@ -10,6 +11,8 @@ import { Animated } from 'react-native';
  * - skipOnRevisit: quando true, pula animação em revisitas (session-level cache)
  *   Telas frequentes (Home, Menu) devem aparecer instantaneamente na segunda visita.
  * - screenKey: identificador único da tela para o cache de revisitas
+ * - reduceMotion (global): respeita a preferência do usuário e do SO.
+ *   Quando ativo, o componente renderiza com valores finais (sem transição).
  * 
  * Regra de ouro: Anime a PRIMEIRA vez que o usuário vê algo.
  * Na segunda visita, mostre instantâneo.
@@ -27,14 +30,20 @@ export default function FadeInView({
     skipOnRevisit = false,
     screenKey = null,
 }) {
-    const shouldSkip = skipOnRevisit && screenKey && _animatedScreens.has(screenKey);
+    const { reduceMotion } = useAccessibility() || {};
+    const shouldSkip = (skipOnRevisit && screenKey && _animatedScreens.has(screenKey)) || reduceMotion;
 
     // Usando a API interna e à prova de falhas do React Native
     const opacity = useRef(new Animated.Value(shouldSkip ? 1 : 0)).current;
     const translateY = useRef(new Animated.Value(shouldSkip ? 0 : startY)).current;
 
     useEffect(() => {
-        if (shouldSkip) return;
+        if (shouldSkip) {
+            // Garante o estado final mesmo se reduceMotion ligar após o mount
+            opacity.setValue(1);
+            translateY.setValue(0);
+            return;
+        }
 
         // Animação paralela: Opacidade controla o Fade-In e o translateY o movimento
         Animated.parallel([
@@ -56,7 +65,7 @@ export default function FadeInView({
                 _animatedScreens.add(screenKey);
             }
         });
-    }, []);
+    }, [reduceMotion]);
 
     return (
         <Animated.View style={[style, { opacity, transform: [{ translateY }] }]}>

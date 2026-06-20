@@ -483,6 +483,18 @@ export const DS = {
         whatsapp: '#25D366',                 // Verde oficial WhatsApp (canal complementar)
     },
 
+    // 7b. Escala Unificada de Severidade — usada em InfoRótulos, relatórios,
+    // badges de risco e qualquer classificação ordinal de perigo.
+    // Centralizada no DS para garantir consistência visual e semântica.
+    severity: {
+        extreme:      { bg: '#1A1A1A', text: '#FFF', accent: '#FF1744' },
+        veryHigh:     { bg: '#B71C1C', text: '#FFF', accent: '#FF5252' },
+        high:         { bg: '#D32F2F', text: '#FFF', accent: '#FF8A80' },
+        medium:       { bg: '#F57C00', text: '#FFF', accent: '#FFB74D' },
+        low:          { bg: '#388E3C', text: '#FFF', accent: '#81C784' },
+        indeterminate:{ bg: '#616161', text: '#FFF', accent: '#BDBDBD' },
+    },
+
     // 8. Gradientes utilitários (specular highlights, brand gradients)
     gradients: {
         // Specular highlight — "lambida de luz" sutil no topo do card de vidro.

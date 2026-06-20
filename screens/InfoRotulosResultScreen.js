@@ -35,14 +35,19 @@ import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
 
-// Cores por severidade — sinal visual crítico (mantido por UX de segurança)
-const SEVERITY_COLORS = {
-    'Extremo':       { bg: '#1A1A1A', text: '#FFF', accent: '#FF1744' },
-    'Muito Alto':    { bg: '#B71C1C', text: '#FFF', accent: '#FF5252' },
-    'Alto':          { bg: '#D32F2F', text: '#FFF', accent: '#FF8A80' },
-    'Médio':         { bg: '#F57C00', text: '#FFF', accent: '#FFB74D' },
-    'Baixo':         { bg: '#388E3C', text: '#FFF', accent: '#81C784' },
-    'Indeterminado': { bg: '#616161', text: '#FFF', accent: '#BDBDBD' },
+// Cores por severidade — agora centralizadas no Design System (DS.severity)
+// Mapeador: nome em português (vindo dos dados) → chave canônica no DS
+const SEVERITY_KEY_MAP = {
+    'Extremo':       'extreme',
+    'Muito Alto':    'veryHigh',
+    'Alto':          'high',
+    'Médio':         'medium',
+    'Baixo':         'low',
+    'Indeterminado': 'indeterminate',
+};
+const getSeverityColor = (label) => {
+    const key = SEVERITY_KEY_MAP[label] || SEVERITY_KEY_MAP[findClosestSeverity(label)] || 'indeterminate';
+    return Neo.colors.severity[key];
 };
 
 // Pictogramas funcionais (não "cara de IA" — iconografia universal de primeiros socorros)
@@ -86,7 +91,7 @@ export default function InfoRotulosResultScreen() {
     const categoria = productData.categoria || 'Substância';
     const brandName = marca || productData.marca || '';
     const perigo = productData.perigo || substanceData?.severity || 'Indeterminado';
-    const severityColor = SEVERITY_COLORS[perigo] || SEVERITY_COLORS[findClosestSeverity(perigo)] || SEVERITY_COLORS['Indeterminado'];
+    const severityColor = getSeverityColor(perigo);
     const sourceInfo = SOURCE_LABELS[source] || SOURCE_LABELS['not_found'];
 
     const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb'].includes(source);

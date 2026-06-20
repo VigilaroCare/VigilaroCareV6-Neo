@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, AccessibilityInfo } from 'react-native';
 
 const AccessibilityContext = createContext({
     fontSizeLevel: 1,
@@ -13,7 +13,6 @@ const AccessibilityContext = createContext({
     toggleReduceMotion: () => {},
     toggleScreenReader: () => {},
     toggleLeftHanded: () => {},
-    getThemeColors: () => null,
 });
 
 export const AccessibilityProvider = ({ children }) => {
@@ -26,10 +25,42 @@ export const AccessibilityProvider = ({ children }) => {
 
     const systemScheme = useColorScheme();
 
-    // Carregar preferências salvas
+    // Carregar preferências salvas + sincronizar com o SO
     useEffect(() => {
         loadPreferences();
+        syncWithOS();
     }, []);
+
+    // Sincronizar com ajustes do Sistema Operacional
+    const syncWithOS = () => {
+        // Lê estado inicial do SO
+        AccessibilityInfo.isReduceMotionEnabled().then(enabled => {
+            // Só aplica se o usuário nunca configurou manualmente
+            AsyncStorage.getItem('@acc_motion').then(stored => {
+                if (stored === null && enabled) {
+                    setReduceMotion(true);
+                }
+            });
+        });
+        AccessibilityInfo.isScreenReaderEnabled().then(enabled => {
+            setScreenReaderEnabled(enabled);
+        });
+
+        // Listeners para mudanças em tempo real do SO
+        const motionSub = AccessibilityInfo.addEventListener('reduceMotionChanged', enabled => {
+            setReduceMotion(enabled);
+            AsyncStorage.setItem('@acc_motion', JSON.stringify(enabled));
+        });
+        const readerSub = AccessibilityInfo.addEventListener('screenReaderChanged', enabled => {
+            setScreenReaderEnabled(enabled);
+            AsyncStorage.setItem('@acc_reader', JSON.stringify(enabled));
+        });
+
+        return () => {
+            motionSub?.remove?.();
+            readerSub?.remove?.();
+        };
+    };
 
     const loadPreferences = async () => {
         try {
@@ -75,22 +106,7 @@ export const AccessibilityProvider = ({ children }) => {
         await AsyncStorage.setItem('@acc_left_handed', JSON.stringify(val));
     };
 
-    // Helper para cores acessíveis
-    const getThemeColors = () => {
-        if (highContrast) {
-            return {
-                background: '#000000',
-                text: '#FFFFFF',
-                primary: '#FFFF00', // Amarelo no Preto (máximo contraste)
-                card: '#1C1C1E',
-                border: '#FFFFFF',
-                success: '#00FF00',
-                error: '#FF0000'
-            };
-        }
-        // Retornar null ou objeto vazio para usar cores padrão do tema Neo
-        return null;
-    };
+
 
     return (
         <AccessibilityContext.Provider value={{
@@ -104,7 +120,6 @@ export const AccessibilityProvider = ({ children }) => {
             toggleReduceMotion,
             toggleScreenReader,
             toggleLeftHanded,
-            getThemeColors
         }}>
             {children}
         </AccessibilityContext.Provider>
@@ -126,7 +141,6 @@ export const useAccessibility = () => {
             toggleReduceMotion: () => {},
             toggleScreenReader: () => {},
             toggleLeftHanded: () => {},
-            getThemeColors: () => null,
         };
     }
     return context;

@@ -31,7 +31,9 @@ import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
 import { H1, Body, Small, Caption } from '../components/NeoTypography';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import FadeInView from '../components/FadeInView';
+import { useIsDark } from '../utils/ThemeContext';
 
 import { buscarProdutoPorNome } from '../data/produtos_scanner';
 import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
@@ -42,6 +44,7 @@ import NeoAlert from '../utils/NeoAlert';
 export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
     const navigation = useNavigation();
+    const isDark = useIsDark();
     const searchRef = useRef(null);
     const searchTimeout = useRef(null);
 
@@ -141,26 +144,13 @@ export default function InfoRotulosScreen() {
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* HEADER consistente */}
-                <View style={s.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={s.backBtn}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }}>
-                        <H1 style={s.title}>
-                            {t('inforotulos.headerTitle', 'Info Rótulos')}
-                        </H1>
-                        <Caption style={s.subtitle}>
-                            {t('inforotulos.headerSubtitle', 'Segurança em produtos para sua família')}
-                        </Caption>
-                    </View>
-                </View>
+                <NeoScreenHeader
+                    title={t('inforotulos.headerTitle', 'Info Rótulos')}
+                    subtitle={t('inforotulos.headerSubtitle', 'Segurança em produtos para sua família')}
+                    onBack={() => navigation.goBack()}
+                />
 
                 <ScrollView
                     contentContainerStyle={s.scrollContent}

@@ -10,7 +10,8 @@ import haptic from '../utils/Haptics';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
-import { H1, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { H1, H3, Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 
@@ -28,8 +29,12 @@ export default function AccessibilitySettingsScreen() {
     const { t } = useTranslation();
     const { mode, setMode, isDark, colors } = useTheme();
 
-    const isLargeText = fontSizeLevel > 1;
-    const toggleLargeText = (val) => updateFontSize(val ? 1.4 : 1);
+    // Escala de texto: Normal (1) → Grande (1.4) → Extra Grande (2.0)
+    const fontScaleOptions = [
+        { id: 1,   label: t('settings.fontNormal', 'Normal'),       sample: 'Aa' },
+        { id: 1.4, label: t('settings.fontLarge', 'Grande'),        sample: 'Aa' },
+        { id: 2,   label: t('settings.fontExtraLarge', 'Extra Grande'), sample: 'Aa' },
+    ];
 
     const hapticToggle = (toggleFn) => (val) => {
         haptic.toggle();
@@ -87,21 +92,10 @@ export default function AccessibilitySettingsScreen() {
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* HEADER — back + title (padrão dos detalhes/configurações) */}
-                <View style={s.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('common.back', 'Voltar')}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <H1 style={[s.headerTitle, { color: colors.neutral[900] }]} accessibilityRole="header">
-                        {t('settings.accessibility')}
-                    </H1>
-                </View>
+                <NeoScreenHeader
+                    title={t('settings.accessibility')}
+                    onBack={() => navigation.goBack()}
+                />
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -123,9 +117,9 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO APARÊNCIA — toggle light/dark/system */}
-                    <Text style={[s.sectionLabel, { color: colors.neutral[700] }]}>
+                    <Eyebrow style={{ marginBottom: 10 }}>
                         {t('settings.appearance', 'Aparência')}
-                    </Text>
+                    </Eyebrow>
                     <NeoCard variant="elevated" style={s.settingCard}>
                         <View style={s.settingRow}>
                             <View style={[s.settingIcon, { backgroundColor: '#8B5CF6' + '33' }]}>
@@ -176,18 +170,56 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO VISÃO */}
-                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
+                    <Eyebrow style={{ marginTop: 24, marginBottom: 10 }}>
                         {t('settings.visual', 'Visão')}
-                    </Text>
+                    </Eyebrow>
                     <NeoCard variant="elevated" style={s.settingCard}>
-                        {renderSettingItem({
-                            label: t('settings.largeText'),
-                            desc: t('settings.largeTextDesc'),
-                            iconName: 'TextalignJustifycenter',
-                            color: '#10B981', // emerald
-                            value: isLargeText,
-                            onToggle: toggleLargeText,
-                        })}
+                        {/* Font Scale Picker (3 níveis) */}
+                        <View style={s.settingRow}>
+                            <View style={[s.settingIcon, { backgroundColor: '#10B981' + '33' }]}>
+                                <NeoIcon name="TextalignJustifycenter" size={22} color="#10B981" variant="Bold" />
+                            </View>
+                            <View style={s.settingTextCol}>
+                                <Body style={[s.settingLabel, { color: colors.neutral[900] }]}>
+                                    {t('settings.largeText')}
+                                </Body>
+                                <Small style={[s.settingDesc, { color: colors.neutral[700] }]}>
+                                    {t('settings.largeTextDesc')}
+                                </Small>
+                            </View>
+                        </View>
+                        <View style={s.themePickerRow}>
+                            {fontScaleOptions.map(opt => {
+                                const active = fontSizeLevel === opt.id;
+                                return (
+                                    <TouchableOpacity
+                                        key={opt.id}
+                                        onPress={() => { haptic.toggle(); updateFontSize(opt.id); }}
+                                        activeOpacity={0.85}
+                                        accessibilityRole="button"
+                                        accessibilityState={{ selected: active }}
+                                        accessibilityLabel={`${opt.label} (${Math.round(opt.id * 100)}%)`}
+                                        style={[
+                                            s.themeChip,
+                                            { borderColor: dividerColor, backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)' },
+                                            active && { backgroundColor: '#10B981', borderColor: '#10B981' },
+                                        ]}
+                                    >
+                                        <Small style={[
+                                            s.themeChipLabel,
+                                            { color: active ? '#FFFFFF' : colors.neutral[800], fontSize: 12 + (opt.id * 2) },
+                                        ]}>
+                                            {opt.sample}
+                                        </Small>
+                                        <Caption style={{ color: active ? '#FFFFFF' : colors.neutral[600], marginTop: 1 }}>
+                                            {opt.label}
+                                        </Caption>
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+
+                        <View style={{ borderTopWidth: 1, borderTopColor: dividerColor }} />
                         {renderSettingItem({
                             label: t('settings.highContrast'),
                             desc: t('settings.highContrastDesc'),
@@ -200,9 +232,9 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO MOVIMENTO & ÁUDIO */}
-                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
+                    <Eyebrow style={{ marginTop: 24, marginBottom: 10 }}>
                         {t('settings.audioFeedback', 'Movimento e Áudio')}
-                    </Text>
+                    </Eyebrow>
                     <NeoCard variant="elevated" style={s.settingCard}>
                         {renderSettingItem({
                             label: t('settings.reduceMotion'),
@@ -223,9 +255,9 @@ export default function AccessibilitySettingsScreen() {
                     </NeoCard>
 
                     {/* SEÇÃO INTERAÇÃO */}
-                    <Text style={[s.sectionLabel, { color: colors.neutral[700], marginTop: 24 }]}>
+                    <Eyebrow style={{ marginTop: 24, marginBottom: 10 }}>
                         {t('settings.interaction', 'Interação')}
-                    </Text>
+                    </Eyebrow>
                     <NeoCard variant="elevated" style={s.settingCard}>
                         {renderSettingItem({
                             label: t('settings.leftHanded'),
