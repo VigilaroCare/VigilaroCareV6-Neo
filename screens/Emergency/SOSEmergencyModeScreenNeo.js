@@ -295,7 +295,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 </View>
 
                 {/* Tab Switcher */}
-                <View style={{ alignItems: 'center', marginBottom: 24 }}>
+                <View style={{ alignItems: 'center', marginBottom: 14 }}>
                     <View style={{ flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 30, padding: 4 }}>
                         {(hasPets ? ['HUMAN', 'PET'] : ['HUMAN']).map(tab => {
                             const isActive = activeTab === tab;
@@ -320,18 +320,18 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 60, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
+                <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
                     
                     {/* Hero SOS Graphic */}
-                    <View style={{ alignItems: 'center', marginVertical: 16 }}>
-                        <View style={{ width: 140, height: 140, borderRadius: 70, backgroundColor: 'rgba(255,255,255,0.05)', alignItems: 'center', justifyContent: 'center' }}>
-                            <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ alignItems: 'center', marginVertical: 8 }}>
+                        <View style={{ width: 120, height: 120, borderRadius: 60, backgroundColor: 'rgba(255,255,255,0.05)', alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ width: 84, height: 84, borderRadius: 42, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' }}>
                                 <View style={{ width: 60, height: 60, borderRadius: 16, backgroundColor: '#FF4B4B', alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } }}>
                                     <H2 style={{ color: '#FFF', fontSize: 20 }}>SOS</H2>
                                 </View>
                             </View>
                         </View>
-                        <H1 style={{ color: '#FFF', fontSize: 32, textAlign: 'center', marginTop: 16, marginBottom: 8 }}>
+                        <H1 style={{ color: '#FFF', fontSize: 32, textAlign: 'center', marginTop: 10, marginBottom: 6 }}>
                             Precisa de ajuda agora?
                         </H1>
                         <Body style={{ color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: 15, lineHeight: 22, paddingHorizontal: 16 }}>
@@ -342,7 +342,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     {/* Primary Button */}
                     <TouchableOpacity 
                         onPress={() => handleCall(isPtBr ? t('sos.samuPhone', '192') : t('sos.generalPhone', '911'))}
-                        style={{ width: '100%', backgroundColor: '#FFF', borderRadius: 24, paddingVertical: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 32, marginBottom: 16, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 15, shadowOffset: { width: 0, height: 8 }, elevation: 5 }}
+                        style={{ width: '100%', backgroundColor: '#FFF', borderRadius: 24, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 10, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 15, shadowOffset: { width: 0, height: 8 }, elevation: 5 }}
                     >
                         <NeoIcon name="CallCalling" size={24} color="#991B1B" variant="Bold" style={{ marginRight: 12 }} />
                         <H2 style={{ color: '#991B1B', fontSize: 20 }}>
@@ -353,7 +353,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     </TouchableOpacity>
 
                     {/* Secondary Actions Row */}
-                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginBottom: 16 }}>
+                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginBottom: 10 }}>
                         {/* Filha / First Contact */}
                         <TouchableOpacity 
                             onPress={() => {
@@ -363,7 +363,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                     setContactsModalVisible(true);
                                 }
                             }}
-                            style={{ flex: 1, marginRight: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                            style={{ flex: 1, marginRight: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
                             <NeoIcon name="Profile" size={24} color="#FFF" style={{ marginBottom: 8 }} />
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
@@ -374,7 +374,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         {/* Send Location */}
                         <TouchableOpacity 
                             onPress={handleSOS}
-                            style={{ flex: 1, marginLeft: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                            style={{ flex: 1, marginLeft: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
                             <NeoIcon name="Location" size={24} color="#FFF" style={{ marginBottom: 8 }} />
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
@@ -386,7 +386,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     {/* Tertiary Action */}
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('PrimeirosSocorros')}
-                        style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                        style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 10, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                     >
                         <NeoIcon name="Warning2" size={20} color="#FFF" style={{ marginRight: 10 }} />
                         <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>
@@ -399,7 +399,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         <TouchableOpacity 
                             onPress={() => handleCall('08007226001')}
                             activeOpacity={0.85}
-                            style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 32, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                            style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
                             <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center', marginRight: 14 }}>
                                 <NeoIcon name="Call" size={20} color="#FFF" variant="Bold" />
