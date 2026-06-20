@@ -16,7 +16,7 @@ import NeoIcon from "../../components/NeoIcon";
 import AppBackground from "../../components/AppBackground";
 import NeoScreenHeader from "../../components/NeoScreenHeader";
 import ScaleButton from "../../components/ScaleButton";
-import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
+import { H1, H2, H3, Body, Small, Caption } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -97,11 +97,11 @@ export default function ChecklistWizardScreen({ navigation }) {
           />
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={{ alignItems: 'center', marginBottom: 24, marginTop: 12 }}>
-                <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(26, 115, 232, 0.15)', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                    <NeoIcon name="ClipboardTick" size={32} color="#1A73E8" variant="Bold" />
+                <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: themeColors.primary[500] + '25', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+                    <NeoIcon name="ClipboardTick" size={32} color={themeColors.primary[500]} variant="Bold" />
                 </View>
                 <H2 style={{ marginBottom: 4 }}>{t('checklistWizard.routineInspection')}</H2>
-                <Body style={{ fontSize: 13, color: Neo.colors.neutral[600] }}>
+                <Body style={{ color: themeColors.neutral[600] }}>
                     {t('checklistWizard.selectRoomToAudit')}
                 </Body>
             </View>
@@ -112,10 +112,10 @@ export default function ChecklistWizardScreen({ navigation }) {
                         <NeoIcon name="ShieldTick" size={20} color="#FF9800" variant="Bold"/>
                     </View>
                     <View style={{ flex: 1, marginLeft: 12 }}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#B91C1C' }}>{t('checklistWizard.continuousAttention')}</Text>
-                        <Text style={{ color: '#991B1B', lineHeight: 20, fontSize: 13 }}>
+                        <Body style={{ fontWeight: 'bold', color: '#B91C1C' }}>{t('checklistWizard.continuousAttention')}</Body>
+                        <Small style={{ color: '#991B1B', lineHeight: 20 }}>
                             {t('checklistWizard.continuousAttentionDesc')}
-                        </Text>
+                        </Small>
                     </View>
                 </View>
             </NeoCard>
@@ -125,8 +125,8 @@ export default function ChecklistWizardScreen({ navigation }) {
               onPress={handlePercorrerCasa}
               activeOpacity={0.85}
             >
-              <NeoIcon name="Location" size={22} color="#FFF" style={{ marginRight: 8 }} variant="Bold" />
-              <H3 style={{ color: '#FFF' }}>{t('checklistWizard.startFullAudit')}</H3>
+              <NeoIcon name="Location" size={22} color={themeColors.neutral.white || '#FFF'} style={{ marginRight: 8 }} variant="Bold" />
+              <H3 style={{ color: themeColors.neutral.white || '#FFF' }}>{t('checklistWizard.startFullAudit')}</H3>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -134,8 +134,8 @@ export default function ChecklistWizardScreen({ navigation }) {
               onPress={() => setModo("por_comodo")}
               activeOpacity={0.8}
             >
-              <NeoIcon name="Grid2" size={20} color="#1A73E8" style={{ marginRight: 8 }} variant="Linear" />
-              <Body style={{ color: '#1A73E8', fontWeight: '600' }}>{t('checklistWizard.auditSpecificRoom')}</Body>
+              <NeoIcon name="Grid2" size={20} color={themeColors.primary[500]} style={{ marginRight: 8 }} variant="Linear" />
+              <Body style={{ color: themeColors.primary[500], fontWeight: '600' }}>{t('checklistWizard.auditSpecificRoom')}</Body>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.botaoTexto} onPress={handlePular} hitSlop={{top: 10, bottom: 10}}>
@@ -169,21 +169,21 @@ export default function ChecklistWizardScreen({ navigation }) {
                         <NeoIcon name="Home2" size={24} color={ambiente.cor} variant="Bold" />
                     </View>
                     <View style={{ flex: 1, paddingRight: 8 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '800', color: textPrimary, marginBottom: 2 }}>{t_field(ambiente, 'nome')}</Text>
-                        <Text style={{ fontSize: 12, color: Neo.colors.neutral[600] }}>{t_field(ambiente, 'descricao')}</Text>
+                        <Body style={{ fontWeight: '800', color: textPrimary, marginBottom: 2 }}>{t_field(ambiente, 'nome')}</Body>
+                        <Small style={{ color: themeColors.neutral[600] }}>{t_field(ambiente, 'descricao')}</Small>
                         <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center' }}>
                             <View style={{ backgroundColor: 'rgba(0,0,0,0.05)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12 }}>
-                                <Text style={{ fontSize: 11, fontWeight: '800', color: Neo.colors.neutral[700] }}>{t('checklistWizard.priority')}: {t_field(ambiente, 'prioridade')}</Text>
+                                <Caption style={{ fontWeight: '800', color: themeColors.neutral[700] }}>{t('checklistWizard.priority')}: {t_field(ambiente, 'prioridade')}</Caption>
                             </View>
                         </View>
                     </View>
-                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
+                    <NeoIcon name="ArrowRight2" size={20} color={themeColors.neutral[400]} />
                 </NeoCard>
             </ScaleButton>
           ))}
 
           <TouchableOpacity style={[styles.botaoTexto, { marginTop: 24, marginBottom: 40 }]} onPress={handlePular} hitSlop={{top: 10, bottom: 10}}>
-            <Small style={{ color: Neo.colors.neutral[500], textDecorationLine: 'underline' }}>Voltar para o Início</Small>
+             <Small style={{ color: themeColors.neutral[500], textDecorationLine: 'underline' }}>{t('checklistWizard.backToPanel', 'Voltar para o Início')}</Small>
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
@@ -224,19 +224,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1A73E8",
+    backgroundColor: Neo.colors.primary[500],
     paddingVertical: 16,
     borderRadius: 16,
     ...Neo.shadows.md,
-    shadowColor: '#1A73E8',
+    shadowColor: Neo.colors.primary[500],
   },
   botaoSecundario: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: 'rgba(26, 115, 232, 0.1)',
+    backgroundColor: Neo.colors.primary[500] + '18',
     borderWidth: 1.5,
-    borderColor: 'rgba(26, 115, 232, 0.3)',
+    borderColor: Neo.colors.primary[500] + '40',
     paddingVertical: 16,
     borderRadius: 16,
     marginTop: 16,

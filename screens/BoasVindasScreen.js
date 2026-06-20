@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, ScrollView, Dimensions } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Image, Modal, ScrollView, Dimensions } from "react-native";
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -8,12 +8,25 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { getLocalizedLogo } from '../utils/getLocalizedLogo';
+import { H1, Body, Small, Caption } from '../components/NeoTypography';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function BoasVindasScreen({ navigation }) {
   const { t } = useTranslation('common');
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
   const [accepted, setAccepted] = React.useState(false);
   const [showTermsModal, setShowTermsModal] = React.useState(false);
   const [scrolledToBottom, setScrolledToBottom] = React.useState(false);
+
+  // Cores semânticas do tema (sem hex cravado)
+  const primaryColor = themeColors.primary[500];
+  const primaryDark = themeColors.primary[700];
+  const textPrimary = themeColors.neutral[900];
+  const textSecondary = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
+  const surfaceBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white || '#FFFFFF';
+  const borderSubtle = themeColors.neutral[300];
 
   // Acessibilidade rápida logo no início (Inclusão by Design)
   const openAccessibility = () => {
@@ -49,18 +62,23 @@ export default function BoasVindasScreen({ navigation }) {
   return (
     <AppBackground>
         <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
+      <StatusBar style={isDark ? 'light' : 'dark'} />
 
       {/* Botão de Acessibilidade (Canto Direito Superior) */}
       <View style={styles.topBar}>
         <TouchableOpacity
-          style={styles.acessibilidadeBtn}
+          style={[styles.acessibilidadeBtn, {
+            backgroundColor: primaryColor + '15',
+            borderColor: primaryColor + '30',
+          }]}
           onPress={openAccessibility}
           accessibilityLabel={t('welcome.accessibilityLabel')}
           accessibilityRole="button"
         >
-          <NeoIcon name="Eye" size={24} color="#1A73E8" />
-          <Text style={styles.acessibilidadeText}>{t('welcome.accessibility')}</Text>
+          <NeoIcon name="Eye" size={24} color={primaryColor} />
+          <Small style={{ color: primaryDark, fontWeight: '600', marginLeft: 6, marginRight: 4 }}>
+            {t('welcome.accessibility')}
+          </Small>
         </TouchableOpacity>
       </View>
 
@@ -71,14 +89,16 @@ export default function BoasVindasScreen({ navigation }) {
           resizeMode="contain"
         />
 
-        <Text style={styles.titulo}>{t('welcome.title')}</Text>
-        <Text style={styles.subtitulo}>
-          Para transformar sua casa em um refúgio seguro e aplicar a Prevenção 3D, precisamos conhecer quem mora com você e o seu espaço.
-        </Text>
+        <H1 align="center" style={{ marginBottom: 10 }}>
+          {t('welcome.title')}
+        </H1>
+        <Body align="center" style={{ marginBottom: 40, lineHeight: 24, paddingHorizontal: 20 }}>
+          {t('welcome.description')}
+        </Body>
 
         {/* LGPD Consent */}
         <TouchableOpacity
-          style={styles.checkboxContainer}
+          style={[styles.checkboxContainer, { borderColor: borderSubtle }]}
           onPress={() => {
             if (!accepted) {
                 setScrolledToBottom(false);
@@ -92,37 +112,43 @@ export default function BoasVindasScreen({ navigation }) {
           <NeoIcon
             name={accepted ? 'TickSquare' : 'Stop'}
             size={22}
-            color={accepted ? '#1A73E8' : '#999'}
+            color={accepted ? primaryColor : textMuted}
             variant={accepted ? 'Bold' : 'Linear'}
           />
-          <Text style={styles.checkboxText}>
-            Ler e concordar com os{' '}
-            <Text style={styles.linkText}>Termos de Uso</Text>
-            {' '}e{' '}
-            <Text style={styles.linkText}>Política de Privacidade</Text>.
-          </Text>
+          <Body style={{ marginLeft: 10, flex: 1, lineHeight: 18 }}>
+            {t('welcome.lgpdConsent')}{' '}
+            <Body style={{ fontWeight: 'bold', color: primaryColor }}>{t('welcome.termsOfUse')}</Body>
+            {' '}{t('welcome.lgpdAnd')}{' '}
+            <Body style={{ fontWeight: 'bold', color: primaryColor }}>{t('welcome.privacyPolicy')}</Body>.
+          </Body>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, { opacity: accepted ? 1 : 0.5, backgroundColor: accepted ? "#1A73E8" : "#999" }]}
+          style={[styles.button, {
+            opacity: accepted ? 1 : 0.5,
+            backgroundColor: accepted ? primaryColor : textMuted,
+            shadowColor: primaryColor,
+          }]}
           onPress={iniciar}
           disabled={!accepted}
         >
-          <Text style={styles.buttonText}>Iniciar Mapeamento Doméstico</Text>
-          <NeoIcon name="ArrowRight2" size={24} color="#FFF" />
+          <Body style={{ color: themeColors.neutral.white || '#FFF', fontWeight: 'bold' }}>
+            {t('welcome.startButton')}
+          </Body>
+          <NeoIcon name="ArrowRight2" size={24} color={themeColors.neutral.white || '#FFF'} />
         </TouchableOpacity>
       </View>
 
       {/* TERMOS E CONDIÇÕES MODAL (SCROLL OBRIGATÓRIO) */}
       <Modal visible={showTermsModal} transparent animationType="slide">
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center', padding: 24 }}>
-            <View style={{ backgroundColor: Neo.colors.neutral[0] || '#FFF', borderRadius: 20, padding: 24, maxHeight: '80%', ...Neo.shadows.lg }}>
+            <View style={[styles.modalContainer, { backgroundColor: surfaceBg }]}>
               
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-                  <NeoIcon name="ShieldTick" size={28} color={Neo.colors.primary[600]} />
-                  <Text style={{ fontSize: 20, fontWeight: 'bold', marginLeft: 12, color: Neo.colors.neutral[900] }}>
-                    Termos e Privacidade
-                  </Text>
+                  <NeoIcon name="ShieldTick" size={28} color={primaryColor} />
+                  <H1 style={{ marginLeft: 12, fontSize: 20 }}>
+                    {t('welcome.termsTitle')}
+                  </H1>
               </View>
               
               <ScrollView
@@ -143,43 +169,42 @@ export default function BoasVindasScreen({ navigation }) {
                 scrollEventThrottle={16}
                 showsVerticalScrollIndicator={true}
               >
-                  <Text style={{ fontWeight: 'bold', fontSize: 16, marginTop: 10, color: Neo.colors.neutral[800] }}>1. Natureza Informativa</Text>
-                  <Text style={{ marginBottom: 10, color: Neo.colors.neutral[600], lineHeight: 22 }}>O aplicativo Vigilaro Care é uma ferramenta de auxílio e prevenção. Todo o conteúdo tem caráter EXCLUSIVAMENTE INFORMATIVO e EDUCACIONAL.</Text>
+                  <Body style={{ fontWeight: 'bold', marginTop: 10 }}>{t('welcome.termsNature')}</Body>
+                  <Body style={{ marginBottom: 10, color: textSecondary, lineHeight: 22 }}>{t('welcome.termsNatureDesc')}</Body>
                   
-                  <Text style={{ fontWeight: 'bold', fontSize: 16, marginTop: 10, color: Neo.colors.neutral[800] }}>2. Não Substitui Profissionais</Text>
-                  <Text style={{ marginBottom: 10, color: Neo.colors.neutral[600], lineHeight: 22 }}>As informações aqui contidas NÃO substituem o diagnóstico ou aconselhamento por profissionais de saúde.</Text>
+                  <Body style={{ fontWeight: 'bold', marginTop: 10 }}>{t('welcome.termsProfessionals')}</Body>
+                  <Body style={{ marginBottom: 10, color: textSecondary, lineHeight: 22 }}>{t('welcome.termsProfessionalsDesc')}</Body>
 
-                  <Text style={{ fontWeight: 'bold', fontSize: 16, marginTop: 10, color: Neo.colors.neutral[800] }}>3. Privacidade e LGPD</Text>
-                  <Text style={{ marginBottom: 10, color: Neo.colors.neutral[600], lineHeight: 22 }}>Seus dados ficam EXCLUSIVAMENTE NA MEMÓRIA DO SEU DISPOSITIVO. Não coletamos dados sensíveis para servidores externos.</Text>
+                  <Body style={{ fontWeight: 'bold', marginTop: 10 }}>{t('welcome.termsPrivacy')}</Body>
+                  <Body style={{ marginBottom: 10, color: textSecondary, lineHeight: 22 }}>{t('welcome.termsPrivacyDesc')}</Body>
 
-                  <Text style={{ fontWeight: 'bold', fontSize: 16, marginTop: 10, color: Neo.colors.neutral[800] }}>4. Isenção de Responsabilidade</Text>
-                  <Text style={{ marginBottom: 10, color: Neo.colors.neutral[600], lineHeight: 22 }}>Os desenvolvedores não se responsabilizam por quaisquer danos ou lesões resultantes do uso das informações do aplicativo.</Text>
+                  <Body style={{ fontWeight: 'bold', marginTop: 10 }}>{t('welcome.termsLiability')}</Body>
+                  <Body style={{ marginBottom: 10, color: textSecondary, lineHeight: 22 }}>{t('welcome.termsLiabilityDesc')}</Body>
 
                   {!scrolledToBottom && (
-                      <Text style={{ color: Neo.colors.neutral[400], marginTop: 24, textAlign: 'center', fontStyle: 'italic' }}>
-                          Role até o final para aceitar os termos.
-                      </Text>
+                      <Caption align="center" style={{ marginTop: 24, fontStyle: 'italic' }}>
+                          {t('welcome.scrollToAccept')}
+                      </Caption>
                   )}
               </ScrollView>
 
               <TouchableOpacity 
-                style={{ 
-                    backgroundColor: scrolledToBottom ? Neo.colors.primary[600] : Neo.colors.neutral[300], 
-                    padding: 16, borderRadius: 12, alignItems: 'center', marginTop: 24 
-                }}
+                style={[styles.modalButton, { 
+                    backgroundColor: scrolledToBottom ? primaryColor : themeColors.neutral[300], 
+                }]}
                 disabled={!scrolledToBottom}
                 onPress={() => {
                   setAccepted(true);
                   setShowTermsModal(false);
                 }}
               >
-                <Text style={{ color: scrolledToBottom ? '#FFF' : Neo.colors.neutral[500], fontWeight: 'bold', fontSize: 16 }}>
-                    {scrolledToBottom ? 'Li e Concordo' : 'Role para continuar'}
-                </Text>
+                <Body style={{ color: scrolledToBottom ? (themeColors.neutral.white || '#FFF') : textMuted, fontWeight: 'bold' }}>
+                    {scrolledToBottom ? t('welcome.agreeButton') : t('welcome.scrollToContinue')}
+                </Body>
               </TouchableOpacity>
               
               <TouchableOpacity style={{ marginTop: 16, alignItems: 'center', padding: 8 }} onPress={() => setShowTermsModal(false)}>
-                <Text style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>Cancelar</Text>
+                <Small style={{ color: textMuted, fontWeight: '600' }}>{t('welcome.cancelButton')}</Small>
               </TouchableOpacity>
             </View>
           </View>
@@ -193,7 +218,7 @@ export default function BoasVindasScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    // Sem backgroundColor cravado — AppBackground cuida do fundo
   },
   topBar: {
     paddingHorizontal: 20,
@@ -204,17 +229,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
-    backgroundColor: '#E3F2FD',
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#BBDEFB'
-  },
-  acessibilidadeText: {
-    fontSize: 12,
-    color: '#1565C0',
-    fontWeight: '600',
-    marginLeft: 6,
-    marginRight: 4
   },
   content: {
     flex: 1,
@@ -222,30 +238,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 30,
     marginTop: -40 // Compensar topBar visualmente
-  },
-  iconCircle: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: '#E3F2FD',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30
-  },
-  titulo: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginBottom: 10,
-    textAlign: "center",
-    color: '#333'
-  },
-  subtitulo: {
-    fontSize: 16,
-    color: "#666",
-    marginBottom: 40,
-    textAlign: "center",
-    lineHeight: 24,
-    paddingHorizontal: 20
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -256,21 +248,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#EEE'
-  },
-  checkboxText: {
-    marginLeft: 10,
-    fontSize: 13,
-    color: '#555',
-    flex: 1,
-    lineHeight: 18
-  },
-  linkText: {
-    fontWeight: 'bold',
-    color: '#1A73E8'
   },
   button: {
-    backgroundColor: "#1A73E8",
     paddingVertical: 16,
     paddingHorizontal: 40,
     borderRadius: 30,
@@ -279,15 +258,21 @@ const styles = StyleSheet.create({
     gap: 10,
     width: '100%',
     justifyContent: 'center',
-    shadowColor: "#1A73E8",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 4
   },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-    fontWeight: "bold",
+  modalContainer: {
+    borderRadius: 20,
+    padding: 24,
+    maxHeight: '80%',
+    ...Neo.shadows.lg,
+  },
+  modalButton: {
+    padding: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 24,
   },
 });

@@ -19,7 +19,8 @@ import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBg from '../../components/AppBackground';
 import NeoScreenHeader from '../../components/NeoScreenHeader';
@@ -30,6 +31,13 @@ import NeoAlert from '../../utils/NeoAlert';
 
 const ChecklistDetailScreen = ({ route, navigation }) => {
   const { roomId, roomName, roomIcon, roomColor, categoryFilter, sequentialRooms, currentRoomIndex, fullChecklist } = route.params || {};
+  const themeColors = useThemeColors();
+  const isDark = useIsDark();
+  const textPrimary = themeColors.neutral[900];
+  const textSecondary = themeColors.neutral[700];
+  const textMuted = themeColors.neutral[500];
+  const surfaceBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white || '#FFFFFF';
+  const borderSubtle = themeColors.neutral[300];
 
   const [nextRoomData, setNextRoomData] = useState(null);
   const [nextTargetIndex, setNextTargetIndex] = useState(-1);
@@ -381,10 +389,10 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
-        <StatusBar style="light" backgroundColor={roomColor || '#8B5CF6'} />
+      <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top', 'bottom', 'left', 'right']}>
+        <StatusBar style={isDark ? 'light' : 'dark'} />
         <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>{t('checklists.loading')}</Text>
+          <Body style={{ color: textMuted }}>{t('checklists.loading')}</Body>
         </View>
       </SafeAreaView>
     );
@@ -393,7 +401,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   return (
     <AppBg variant="subtle">
       <SafeAreaView style={[styles.container, { backgroundColor: 'transparent' }]} edges={['top', 'bottom', 'left', 'right']}>
-        <StatusBar style="dark" />
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
         {/* Modern Neo Header */}
         <NeoScreenHeader 
@@ -423,7 +431,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
         accessibilityLabel={`Progresso da vistoria: ${completedCount} de ${totalCount} verificados, equivalente a ${percentage}%`}
       >
         <View style={styles.progressInfo}>
-          <Small style={{ color: '#666', fontWeight: '600' }}>
+          <Small style={{ color: textMuted, fontWeight: '600' }}>
             {completedCount}/{totalCount} {t('checklists.verified')}
           </Small>
           <Small style={{ fontWeight: 'bold', color: percentage === 100 ? '#10B981' : roomColor || '#8B5CF6' }}>{percentage}%</Small>
@@ -487,7 +495,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       >
         {items.length === 0 ? (
           <View style={{ width: '100%', alignItems: 'center', marginTop: 40, paddingHorizontal: 24 }}>
-            <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#F3F4F6', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+            <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: themeColors.neutral[200], alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
               <NeoIcon name="TickCircle" size={40} color={Neo.colors.feedback.success} variant="Bold" />
             </View>
             <H3 style={{ color: Neo.colors.neutral[900], marginBottom: 8, textAlign: 'center' }}>{t('checklists.areaCompleted')}</H3>
@@ -506,10 +514,10 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
                 paddingHorizontal: 14,
                 marginBottom: 8,
                 marginHorizontal: 16,
-                backgroundColor: '#FFF',
+                backgroundColor: surfaceBg,
                 borderRadius: 18,
                 borderWidth: 1,
-                borderColor: '#F3F4F6',
+                borderColor: isDark ? themeColors.neutral[300] : themeColors.neutral[200],
                 ...Neo.shadows.sm
               }}
             >
@@ -518,10 +526,10 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
               {/* Center: Content */}
               <View style={{ flex: 1, paddingRight: 12 }}>
-                <Small style={{ color: '#9CA3AF', fontWeight: '700', fontSize: 9, letterSpacing: 0.6, marginBottom: 3 }}>
+                <Caption style={{ color: textMuted, fontWeight: '700', letterSpacing: 0.6, marginBottom: 3 }}>
                     {item.categoryObj ? t_field(item.categoryObj, 'nome').toUpperCase() : item.category.toUpperCase()}
-                </Small>
-                <Body style={{ color: '#1F2937', lineHeight: 20, fontWeight: '600', fontSize: 15 }}>
+                </Caption>
+                <Body style={{ color: textPrimary, lineHeight: 20, fontWeight: '600' }}>
                   {item.itemObj ? t_field(item.itemObj, 'titulo') : item.text}
                 </Body>
                 {item.priority === 'high' && (

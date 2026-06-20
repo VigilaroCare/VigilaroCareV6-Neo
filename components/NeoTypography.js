@@ -59,13 +59,14 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
     const originalSize = variantStyle.fontSize || 14;
     const scaledSize = originalSize * fontSizeLevel;
 
-    // Cor: explicit prop > tema (se dark) > variante hardcoded do DS (se light)
-    // Em dark, NUNCA usar variantStyle.color (que é #1C1C1E, invisível em dark mode).
+    // Cor: explicit prop > tema (light OU dark) > fallback
+    // Usa a cor semântica do tema em ambos os modos, garantindo contraste WCAG AA
+    // (ex.: caption/eyebrow usam neutral[700] em vez do hardcoded #8E8E93).
     const themeDefault = resolveThemeColor(themeColors, DEFAULT_COLOR_FOR_VARIANT[variant]);
     let finalColor;
     if (color) {
         finalColor = color;
-    } else if (isDark && themeDefault) {
+    } else if (themeDefault) {
         finalColor = themeDefault;
     } else {
         finalColor = variantStyle?.color || '#000';
@@ -93,10 +94,10 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
         },
         { textAlign: align },
         style,
-        // Em dark mode, quando o caller NÃO passou prop `color`, força a cor do tema
-        // como override final. Isso protege contra `style={{color: Neo.colors.neutral[900]}}`
-        // hardcoded no callsite (que seria invisível em dark).
-        (isDark && !color && themeDefault) ? { color: themeDefault } : null,
+        // Quando o caller NÃO passou prop `color`, força a cor do tema
+        // como override final. Protege contra `style={{color: ...}}` hardcoded
+        // no callsite (invisível em dark, ou sem contraste em light).
+        (!color && themeDefault) ? { color: themeDefault } : null,
     ];
 
     return (

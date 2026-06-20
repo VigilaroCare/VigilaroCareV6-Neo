@@ -5,7 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
-import { Small, Body } from '../../components/NeoTypography';
+import { Small, Body, H2, H3, Caption } from '../../components/NeoTypography';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
@@ -17,11 +18,17 @@ import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 import AppBackground from '../../components/AppBackground';
 import NeoAlert from '../../utils/NeoAlert';
+import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 
 export default function SafetyActionPlanScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation();
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
+    const textPrimary = themeColors.neutral[900];
+    const textMuted = themeColors.neutral[500];
+    const surfaceBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white || '#FFFFFF';
     const [loading, setLoading] = useState(true);
     const [items, setItems] = useState([]);
     const [stats, setStats] = useState({ risk: 0, pending: 0, safe: 0 });
@@ -189,48 +196,46 @@ export default function SafetyActionPlanScreen() {
     };
 
     const renderHeader = () => (
-        <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
-            </TouchableOpacity>
-            <View style={{ flex: 1 }}>
-                <Text style={styles.headerTitle}>{t('actionPlan.title')}</Text>
-                <Text style={styles.headerSubtitle}>{t('actionPlan.subtitle')}</Text>
-            </View>
-            <TouchableOpacity
-                onPress={async () => {
-                    try {
-                        const profile = await ProfileService.getPerfilAtivo();
-                        if (!profile) {
-                            NeoAlert.alert(t('actionPlan.error'), t('actionPlan.noProfile'));
-                            return;
-                        }
-                        NeoAlert.alert(
-                            t('actionPlan.generateReport'),
-                            t('actionPlan.generatePDFConfirm'),
-                            [
-                                { text: t('actionPlan.cancel'), style: 'cancel' },
-                                { 
-                                    text: t('actionPlan.generate'), 
-                                    onPress: async () => {
-                                        try {
-                                            await SafetyReportService.generatePDFReport(profile.id);
-                                        } catch (err) {
-                                            NeoAlert.alert(t('actionPlan.error'), t('actionPlan.pdfError') + err.message);
+        <NeoScreenHeader
+            title={t('actionPlan.title')}
+            subtitle={t('actionPlan.subtitle')}
+            onBack={() => navigation.goBack()}
+            rightAction={
+                <TouchableOpacity
+                    onPress={async () => {
+                        try {
+                            const profile = await ProfileService.getPerfilAtivo();
+                            if (!profile) {
+                                NeoAlert.alert(t('actionPlan.error'), t('actionPlan.noProfile'));
+                                return;
+                            }
+                            NeoAlert.alert(
+                                t('actionPlan.generateReport'),
+                                t('actionPlan.generatePDFConfirm'),
+                                [
+                                    { text: t('actionPlan.cancel'), style: 'cancel' },
+                                    { 
+                                        text: t('actionPlan.generate'), 
+                                        onPress: async () => {
+                                            try {
+                                                await SafetyReportService.generatePDFReport(profile.id);
+                                            } catch (err) {
+                                                NeoAlert.alert(t('actionPlan.error'), t('actionPlan.pdfError') + err.message);
+                                            }
                                         }
                                     }
-                                }
-                            ]
-                        );
-                    } catch (e) {
-                        console.error(e);
-                    }
-                }}
-                style={{ padding: 8, backgroundColor: Neo.colors.primary[100], borderRadius: 8 }}
-            >
-                <NeoIcon name="DocumentText" size={20} color={Neo.colors.primary[600]} />
-            </TouchableOpacity>
-        </View>
+                                ]
+                            );
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }}
+                    style={{ padding: 8, backgroundColor: themeColors.primary[100], borderRadius: 8 }}
+                >
+                    <NeoIcon name="DocumentText" size={20} color={themeColors.primary[600]} />
+                </TouchableOpacity>
+            }
+        />
     );
 
     if (loading) {
@@ -250,7 +255,7 @@ export default function SafetyActionPlanScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="dark" />
+            <StatusBar style={isDark ? 'light' : 'dark'} />
             {renderHeader()}
 
             <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -259,32 +264,32 @@ export default function SafetyActionPlanScreen() {
                 <View style={styles.summaryCard}>
                     <View style={styles.summaryRow}>
                         <View style={styles.summaryItem}>
-                            <Text style={[styles.summaryValue, { color: Neo.colors.feedback.error }]}>
+                            <H2 style={{ color: Neo.colors.feedback.error }}>
                                 {stats.risk}
-                            </Text>
-                            <Text style={styles.summaryLabel}>{t('actionPlan.critical')}</Text>
+                            </H2>
+                            <Caption style={{ color: textMuted, textTransform: 'uppercase' }}>{t('actionPlan.critical')}</Caption>
                         </View>
                         <View style={[styles.summaryDivider]} />
                         <View style={styles.summaryItem}>
-                            <Text style={[styles.summaryValue, { color: Neo.colors.neutral[500] }]}>
+                            <H2 style={{ color: textMuted }}>
                                 {stats.pending}
-                            </Text>
-                            <Text style={styles.summaryLabel}>{t('actionPlan.pending')}</Text>
+                            </H2>
+                            <Caption style={{ color: textMuted, textTransform: 'uppercase' }}>{t('actionPlan.pending')}</Caption>
                         </View>
                         <View style={[styles.summaryDivider]} />
                         <View style={styles.summaryItem}>
-                            <Text style={[styles.summaryValue, { color: Neo.colors.feedback.success }]}>
+                            <H2 style={{ color: Neo.colors.feedback.success }}>
                                 {stats.safe}
-                            </Text>
-                            <Text style={styles.summaryLabel}>{t('actionPlan.resolved')}</Text>
+                            </H2>
+                            <Caption style={{ color: textMuted, textTransform: 'uppercase' }}>{t('actionPlan.resolved')}</Caption>
                         </View>
                     </View>
                 </View>
 
                 {/* List Header */}
-                <Text style={styles.sectionTitle}>
+                <H3 style={{ marginBottom: 16 }}>
                     {displayList.length > 0 ? t('actionPlan.priorityItems') : t('actionPlan.allVerified')}
-                </Text>
+                </H3>
 
                 {displayList.map((item, index) => {
                     const isHighPriority = item.type === 'perigo';
@@ -300,10 +305,10 @@ export default function SafetyActionPlanScreen() {
                                 paddingHorizontal: 14,
                                 marginBottom: 8,
                                 marginHorizontal: 20,
-                                backgroundColor: '#FFF',
+                                backgroundColor: surfaceBg,
                                 borderRadius: 18,
                                 borderWidth: 1,
-                                borderColor: '#F3F4F6',
+                                borderColor: isDark ? themeColors.neutral[300] : themeColors.neutral[200],
                                 ...Neo.shadows.sm
                             }}
                         >
@@ -312,10 +317,10 @@ export default function SafetyActionPlanScreen() {
 
                             {/* Center: Content */}
                             <View style={{ flex: 1, paddingRight: 12 }}>
-                                <Small style={{ color: '#9CA3AF', fontWeight: '700', fontSize: 9, letterSpacing: 0.6, marginBottom: 3 }}>
+                                <Caption style={{ color: textMuted, fontWeight: '700', letterSpacing: 0.6, marginBottom: 3 }}>
                                     {item.areaName.toUpperCase()}
-                                </Small>
-                                <Body style={{ color: '#1F2937', lineHeight: 20, fontWeight: '600', fontSize: 15 }}>
+                                </Caption>
+                                <Body style={{ color: textPrimary, lineHeight: 20, fontWeight: '600' }}>
                                     {item.text}
                                 </Body>
                                 {isHighPriority && (
@@ -377,9 +382,9 @@ export default function SafetyActionPlanScreen() {
                 {displayList.length === 0 && (
                     <View style={styles.emptyContainer}>
                         <NeoIcon name="TickCircle" size={64} color={Neo.colors.feedback.success} variant="Bold" />
-                        <Text style={styles.emptyText}>{t('actionPlan.safeZone')}</Text>
+                        <Body style={{ color: textMuted, marginTop: 16 }}>{t('actionPlan.safeZone')}</Body>
                         <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={{ marginTop: 20 }}>
-                            <Text style={{ color: Neo.colors.primary[500], fontWeight: 'bold' }}>{t('actionPlan.backHome')}</Text>
+                            <Body style={{ color: themeColors.primary[500], fontWeight: 'bold' }}>{t('actionPlan.backHome')}</Body>
                         </TouchableOpacity>
                     </View>
                 )}
