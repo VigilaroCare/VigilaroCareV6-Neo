@@ -30,7 +30,7 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
-import { H1, Body, Small, Caption } from '../components/NeoTypography';
+import { H1, Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
 import NeoScreenHeader from '../components/NeoScreenHeader';
 import FadeInView from '../components/FadeInView';
 import { useIsDark } from '../utils/ThemeContext';
@@ -275,11 +275,11 @@ export default function InfoRotulosScreen() {
                     )}
 
                     {/* HISTÓRICO */}
-                    {history.length > 0 && (
-                        <FadeInView delay={280}>
-                            <Text style={[s.sectionLabel, { marginTop: 22 }]}>
-                                {t('inforotulos.recentSearches', 'Consultas recentes')}
-                            </Text>
+                    <FadeInView delay={280}>
+                        <Eyebrow style={{ marginTop: 22, marginBottom: 10 }}>
+                            {t('inforotulos.recentSearches', 'Consultas recentes')}
+                        </Eyebrow>
+                        {history.length > 0 ? (
                             <NeoCard variant="elevated" style={s.historyCard}>
                                 {history.map((item, idx) => (
                                     <TouchableOpacity
@@ -288,7 +288,7 @@ export default function InfoRotulosScreen() {
                                         onPress={() => handleHistorySelect(item)}
                                         activeOpacity={0.7}
                                     >
-                                        <Text style={{ fontSize: 18, marginRight: 12 }}>{item.icone || '🧪'}</Text>
+                                        <Small style={{ fontSize: 18, marginRight: 12 }}>{item.icone || '🧪'}</Small>
                                         <View style={{ flex: 1 }}>
                                             <Body style={s.historyName}>{item.nome}</Body>
                                             <Caption style={s.historyDate}>
@@ -299,14 +299,24 @@ export default function InfoRotulosScreen() {
                                     </TouchableOpacity>
                                 ))}
                             </NeoCard>
-                        </FadeInView>
-                    )}
+                        ) : (
+                            <NeoCard variant="elevated" style={{ padding: 24, alignItems: 'center', borderRadius: 18 }}>
+                                <NeoIcon name="SearchNormal1" size={32} color={Neo.colors.neutral[400]} />
+                                <Body style={{ color: Neo.colors.neutral[500], marginTop: 10, textAlign: 'center' }}>
+                                    {t('inforotulos.emptyHistory', 'Seus produtos consultados aparecerão aqui.')}
+                                </Body>
+                                <Caption style={{ color: Neo.colors.neutral[400], marginTop: 4, textAlign: 'center' }}>
+                                    {t('inforotulos.emptyHistoryHint', 'Use a busca ou o scanner para começar.')}
+                                </Caption>
+                            </NeoCard>
+                        )}
+                    </FadeInView>
 
                     {/* CIATOX — destaque vermelho contido (emergência real) */}
                     <FadeInView delay={350}>
-                        <Text style={[s.sectionLabel, { marginTop: 22 }]}>
+                        <Eyebrow style={{ marginTop: 22, marginBottom: 10 }}>
                             {t('inforotulos.emergencyLabel', 'Em caso de intoxicação')}
-                        </Text>
+                        </Eyebrow>
                         <TouchableOpacity
                             activeOpacity={0.85}
                             onPress={() => Linking.openURL('tel:08007226001')}
