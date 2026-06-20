@@ -118,7 +118,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     sem card-moldura (PADRAO_ANATOMIA_PAGINAS.md) */}
                 <NeoScreenHeader
                     title={t('headersFirst.atividadesEventuais', 'Atividades Eventuais')}
-                    subtitle={t('headersFirst.monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar')}
+                    subtitle={t('monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar')}
                     onBack={() => navigation.goBack()}
                 />
 

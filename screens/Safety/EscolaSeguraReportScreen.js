@@ -94,7 +94,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                 </TouchableOpacity>
             </View>
 
-            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
+            <ScrollView style={styles.content} contentContainerStyle={{ paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
 
                 {/* Nível de Segurança */}
                 <NeoCard variant="elevated" style={[styles.nivelCard, { borderLeftWidth: 6, borderLeftColor: nivelSeguranca.cor }]}>

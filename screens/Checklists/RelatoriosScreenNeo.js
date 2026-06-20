@@ -21,6 +21,7 @@ import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { SkeletonCard } from '../../components/SkeletonLoader';
 
 // Helper de cor para badge de status do ambiente
 const getStatusStyle = (status) => {
@@ -197,7 +198,11 @@ export default function RelatoriosScreenNeo({ navigation }) {
                     contentContainerStyle={s.scrollContent}
                 >
                     {loading ? (
-                        <ActivityIndicator size="large" color={Neo.colors.primary[500]} style={{ marginTop: 60 }} />
+                        <View style={{ paddingHorizontal: Neo.spacing.lg, marginTop: 12 }}>
+                            <SkeletonCard hasAvatar={false} lines={3} />
+                            <SkeletonCard hasAvatar={false} lines={2} />
+                            <SkeletonCard hasAvatar={false} lines={2} />
+                        </View>
                     ) : (
                         <>
                             {/* AÇÕES — relatório detalhado + histórico */}
@@ -308,18 +313,29 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                             </View>
                                         );
 
+                                        const sequentialRooms = chartData.map(item => ({
+                                            roomId: item.key,
+                                            roomName: item.fullName,
+                                            roomColor: item.color,
+                                            roomIcon: item.emoji,
+                                        }));
+
                                         return (
                                             <NeoHorizontalCard
                                                 key={area.key}
                                                 title={area.fullName}
                                                 description={`${progressText}`}
-                                                imageUrl={area.imagemUrl}
+                                                emoji={area.emoji}
+                                                iconName={area.iconName}
+                                                color={area.color}
                                                 onPress={() => navigation.navigate('ChecklistDetail', {
                                                     roomId: area.key,
                                                     roomName: area.fullName,
                                                     roomColor: area.color,
                                                     roomIcon: area.emoji,
                                                     fullChecklist: false,
+                                                    sequentialRooms,
+                                                    currentRoomIndex: index,
                                                 })}
                                                 accessibilityLabel={area.fullName}
                                             >
@@ -455,11 +471,20 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                     setDetailsModalVisible(false);
                                                     const fullArea = AMBIENTES.find((a) => a.id === area.key);
                                                     if (fullArea) {
+                                                        const sequentialRooms = chartData.map(item => ({
+                                                            roomId: item.key,
+                                                            roomName: item.fullName,
+                                                            roomColor: item.color,
+                                                            roomIcon: item.emoji,
+                                                        }));
+                                                        const currentRoomIndex = chartData.findIndex(item => item.key === area.key);
                                                         navigation.navigate('ChecklistDetail', {
                                                             roomId: fullArea.id,
                                                             roomName: fullArea.nome,
                                                             roomColor: fullArea.cor,
                                                             roomIcon: fullArea.emoji,
+                                                            sequentialRooms,
+                                                            currentRoomIndex: currentRoomIndex !== -1 ? currentRoomIndex : undefined,
                                                         });
                                                     }
                                                 }}

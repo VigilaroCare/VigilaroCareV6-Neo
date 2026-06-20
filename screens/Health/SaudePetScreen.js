@@ -14,6 +14,8 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import EmptyState from '../../components/EmptyState';
+import { SkeletonCard } from '../../components/SkeletonLoader';
 
 const asList = (arr) => (Array.isArray(arr) ? arr : [])
     .map(it => (typeof it === 'string' ? it : (it?.nome || it?.label || it?.descricao || '')))
@@ -91,10 +93,16 @@ export default function SaudePetScreen() {
     const renderFicha = () => {
         if (!pet) {
             return (
-                <View style={s.center}>
-                    <NeoIcon name="PawPrint" variant="Bulk" color={Neo.colors.neutral[400]} size={48} />
-                    <Body style={s.emptyBig}>Pet não encontrado.</Body>
-                </View>
+                <EmptyState
+                    icon="PawPrint"
+                    title={t('health.petNotFound', 'Pet não encontrado')}
+                    description={t('health.petNotFoundDesc', 'O pet selecionado não foi encontrado ou foi removido.')}
+                    cta={{
+                        label: t('common.back', 'Voltar'),
+                        onPress: () => navigation.goBack(),
+                        color: Neo.colors.neutral[500]
+                    }}
+                />
             );
         }
         const condicoes = asList(pet.condicoesMedicas);
@@ -165,10 +173,16 @@ export default function SaudePetScreen() {
     const renderGrid = () => {
         if (!pets.length) {
             return (
-                <View style={s.center}>
-                    <NeoIcon name="PawPrint" variant="Bulk" color={Neo.colors.neutral[400]} size={48} />
-                    <Body style={s.emptyBig}>Nenhum pet cadastrado ainda.</Body>
-                </View>
+                <EmptyState
+                    icon="PawPrint"
+                    title={t('health.noPets', 'Nenhum pet cadastrado')}
+                    description={t('health.noPetsDesc', 'Cadastre seus pets para acompanhar as informações de saúde e prevenção.')}
+                    cta={{
+                        label: t('health.addPet', 'Cadastrar Pet'),
+                        onPress: () => navigation.navigate('QuemProteger'),
+                        color: Neo.colors.primary[500]
+                    }}
+                />
             );
         }
         return (
@@ -207,7 +221,13 @@ export default function SaudePetScreen() {
                     onBack={() => navigation.goBack()}
                 />
                 {loading ? (
-                    <View style={s.center}><ActivityIndicator color={Neo.colors.primary[600]} /></View>
+                    <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
+                        <View style={{ marginTop: Neo.spacing.md }}>
+                            <SkeletonCard lines={2} />
+                            <SkeletonCard lines={3} />
+                            <SkeletonCard lines={2} />
+                        </View>
+                    </ScrollView>
                 ) : petId ? renderFicha() : renderGrid()}
             </SafeAreaView>
         </AppBackground>

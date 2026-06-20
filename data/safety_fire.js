@@ -15,7 +15,7 @@ export const SAFETY_FIRE = {
         {
             title: 'Instalações Elétricas',
             icon: 'flash',
-            imagemUrl: 'https://images.pexels.com/photos/7937305/pexels-photo-7937305.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: null,
             content: 'Evite o uso de muitos adaptadores ("benjamins") na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga.'
         }
     ],

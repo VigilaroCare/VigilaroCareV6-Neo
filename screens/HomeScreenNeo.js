@@ -26,6 +26,7 @@ import {
     UIManager,
     Platform,
     Dimensions,
+    useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -40,14 +41,15 @@ import { useProfiles } from '../contexts/ProfileContext';
 import ProactiveNotificationService from '../services/ProactiveNotificationService';
 import ScoreService from '../services/ScoreService';
 
-import { H2, Eyebrow } from '../components/NeoTypography';
-import CompactActiveMonitor from '../components/CompactActiveMonitor';
+import { H2, Eyebrow, Body, Caption } from '../components/NeoTypography';
+import HeroScoreCard from '../components/HeroScoreCard';
+import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
 import TappablePressable from '../components/TappablePressable';
 import AnimatedCounter from '../components/AnimatedCounter';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
-import { useThemeColors } from '../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 import GlassProfileRing from '../components/GlassProfileRing';
 
@@ -55,22 +57,15 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// Largura das células calculada em px: dentro do TappablePressable o Pressable
-// dimensiona pelo conteúdo, então width percentual NÃO resolve e a Image
-// assumiria o tamanho intrínseco do PNG (1024px+), estourando a tela.
-const SCREEN_W = Dimensions.get('window').width;
-const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
 // Regra do produto: Home sem scroll vertical. Pictogramas são o maior
-// consumidor de altura — fator 0.48 × 0.78 calibrado para caber 6 tiles
-// (3 linhas) above-the-fold em telas ≥720dp sem sacrificar legibilidade.
-const GRID_IMG_W = CONTENT_W * 0.48 * 0.78;
-const PICTO_RATIO = 3 / 4; // proporção 4:3 dos tiles (largura × 0.75 = altura)
+// consumidor de altura. Proporção 4:3 dos tiles (largura × 0.75 = altura).
+const PICTO_RATIO = 3 / 4;
 
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
     atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
     scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
-    inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
+    cuidar:      require('../assets/illustrations/home-pictograms/cuidar-proteger.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
 };
@@ -96,6 +91,48 @@ export default function HomeScreenNeo() {
 
     const { primaryProfile, profiles: contextProfiles } = useProfiles();
     const currentProfile = primaryProfile;
+
+    const { width: SCREEN_W } = useWindowDimensions();
+    const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
+    const isTablet = SCREEN_W >= 768;
+    const isCompactPhone = SCREEN_W <= 360;
+
+    const birthDate = currentProfile?.dataNascimento;
+    const idade = birthDate ? ProfileService.calcularIdade(birthDate) : null;
+    const isSenior = idade !== null && idade >= 60;
+
+    let columns = 2;
+    if (isSenior) {
+        columns = isTablet ? 2 : 1;
+    } else {
+        if (isCompactPhone) {
+            columns = 1;
+        } else if (isTablet) {
+            columns = 3;
+        } else {
+            columns = 2;
+        }
+    }
+
+    const isRowLayout = columns === 1;
+
+    let GRID_IMG_W = CONTENT_W * 0.49;
+    let cellWidth = '49%';
+    if (columns === 3) {
+        GRID_IMG_W = CONTENT_W * 0.32;
+        cellWidth = '32%';
+    } else if (columns === 2) {
+        GRID_IMG_W = CONTENT_W * 0.49;
+        cellWidth = '49%';
+    } else {
+        GRID_IMG_W = CONTENT_W;
+        cellWidth = '100%';
+    }
+
+    const isDark = useIsDark();
+    const cardBgColorResolved = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBorderColorResolved = isDark ? 'rgba(255,255,255,0.15)' : (themeColors.primary?.[800] || Neo.colors.primary[800]);
+    const cardBorderWidthResolved = isDark ? 1 : 1.5;
 
     React.useEffect(() => { setImageError(false); }, [currentProfile?.id]);
 
@@ -205,24 +242,26 @@ export default function HomeScreenNeo() {
     // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
     // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
     const GRID_ITEMS = [
-        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios'   },
-        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo' },
-        { key: 'minhasaude',  label: t('home.myHealth', 'Sua Saúde'),                     image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude'   },
-        { key: 'saudepet',    label: t('home.petHealth', 'Saúde do Pet'),                 image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet'     },
-        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),            image: HOME_PICTOGRAMS.scanner,    route: 'Scanner'      },
-        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                image: HOME_PICTOGRAMS.inforotulos,route: 'InfoRotulos'  },
+        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios'      },
+        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo'   },
+        { key: 'minhasaude',  label: t('home.myHealth', 'Sua Saúde'),                     image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude'      },
+        { key: 'saudepet',    label: t('home.petHealth', 'Saúde do Pet'),                 image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet'        },
+        { key: 'scanner',     label: t('home.vigilaroScan', 'Vigilaro Scan'),             image: HOME_PICTOGRAMS.scanner,    route: 'VigilaroScanHub'  },
+        { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),       image: HOME_PICTOGRAMS.cuidar,     route: 'CuidarProtegerHub' },
     ];
-
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
         : (activeResidence?.nome || t('home.mainHouse', 'Minha Casa Principal'));
+
+    const cardBgColor = isDark ? [Neo.colors.neutral[800], Neo.colors.neutral[900]] : ['#FCFBF8', '#F4F2EC'];
+    const cardBorderColor = isDark ? 'rgba(255,255,255,0.1)' : Neo.colors.primary[800];
+    const cardBorderWidth = isDark ? 1 : 1.5;
 
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                {/* HEADER — saudação usuário-primeiro + anel de perfil */}
                 <View style={[s.homeHeader, { flexDirection: rowDirection }]}>
                     <View style={s.greetingGroup}>
                         <H2 style={s.greetingText} numberOfLines={1} accessibilityRole="header">
@@ -261,80 +300,16 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 100, // só a folga do footer flutuante
-                        paddingTop: 4,
+                        paddingBottom: 220, // Aumentado significativamente para desgrudar do botão SOS / Tab bar
+                        paddingTop: 0,
                     }}
                 >
-                    {/* HERO — "Casa sob Controle" (mockup aprovado). Forest lidera. */}
-                    <TappablePressable
-                        onPress={toggleMonitor}
-                        style={s.heroShadowWrap}
-                        accessibilityState={{ expanded: monitorExpanded }}
-                        accessibilityLabel={t('home.monitorLabel', 'Monitor ativo: {{title}}. {{alert}}', { title: heroHeadline, alert: scoreMessage.alerta })}
-                        accessibilityHint={monitorExpanded ? t('home.monitorCollapse', 'Toque para recolher detalhes.') : t('home.monitorExpand', 'Toque para ver detalhes do status.')}
-                    >
-                        {/* Aesthetic cream/3D alinhado com os novos pictogramas.
-                            Sai o verde chapado, entra uma base off-white/cream
-                            com textos em verde profundo. */}
-                        <LinearGradient
-                            colors={['#FFFFFF', '#F8F6F0', '#F2EFE6']}
-                            locations={[0, 0.6, 1]}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 1 }}
-                            style={s.heroCard}
-                        >
-                            {/* Specular highlight — a "lambida de luz" que tira o
-                                aspecto chapado e alinha o hero ao material
-                                vitrificado do resto do app (mesma do NeoCard). */}
-                            <LinearGradient
-                                colors={['rgba(255,255,255,0.9)', 'rgba(255,255,255,0.0)', 'rgba(0,0,0,0.03)']}
-                                locations={[0, 0.3, 1]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 1 }}
-                                style={StyleSheet.absoluteFill}
-                                pointerEvents="none"
-                            />
-                            <View style={s.heroTopRow}>
-                                <View style={s.heroHeadlineGroup}>
-                                    <Text style={s.heroEyebrow}>
-                                        {t('home.inspectedEnvironments', 'Ambientes Vistoriados').toUpperCase()}
-                                    </Text>
-                                    <Text style={s.heroHeadline} numberOfLines={1}>
-                                        {heroHeadline}
-                                    </Text>
-                                    {!!scoreMessage.alerta && (
-                                        <Text style={s.heroSubline} numberOfLines={2}>
-                                            {scoreMessage.alerta}
-                                        </Text>
-                                    )}
-                                </View>
-                                <View style={s.heroScoreGroup}>
-                                    <AnimatedCounter
-                                        value={score}
-                                        duration={1100}
-                                        suffix="%"
-                                        style={s.heroScore}
-                                        accessibilityLabel={t('home.scoreLabel', 'Score geral da residência: {{score}}%', { score })}
-                                    />
-                                </View>
-                            </View>
+                    <HeroScoreCard 
+                        scoreData={scoreData}
+                        heroHeadline={heroHeadline}
+                        onPress={() => navigateWithHaptic('Relatorios')}
+                    />
 
-                            {/* Poço claro: o detalhamento por ambiente vive numa
-                                superfície clara dentro do hero — contraste garantido
-                                sem reestilizar o monitor. */}
-                            <View style={s.heroWell}>
-                                <CompactActiveMonitor
-                                    scoreData={scoreData}
-                                    scoreMessage={scoreMessage}
-                                    isExpanded={monitorExpanded}
-                                    onStatusChange={setSystemStatus}
-                                    hideScore
-                                />
-                            </View>
-                        </LinearGradient>
-                    </TappablePressable>
-
-                    {/* ALERTA CONTEXTUAL */}
                     {contextualAlert && (
                         <TouchableOpacity
                             activeOpacity={contextualAlert.route ? 0.7 : 1}
@@ -370,7 +345,6 @@ export default function HomeScreenNeo() {
                         </TouchableOpacity>
                     )}
 
-                    {/* GRID PRINCIPAL */}
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
                             <ScaleInView
@@ -378,20 +352,89 @@ export default function HomeScreenNeo() {
                                 delay={80 + idx * 60}
                                 skipOnRevisit
                                 screenKey="HomeGrid"
-                                style={s.gridCell}
+                                style={[s.gridCell, { width: cellWidth, marginBottom: isRowLayout ? 12 : 2 }]}
                             >
                                 <BarePictogramShortcut
                                     item={item}
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
+                                    isRowLayout={isRowLayout}
+                                    isSenior={isSenior}
+                                    cardBgColor={cardBgColorResolved}
+                                    cardBorderColor={cardBorderColorResolved}
+                                    cardBorderWidth={cardBorderWidthResolved}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </ScaleInView>
                         ))}
                     </View>
 
-                </ScrollView>
+                    <Eyebrow style={[s.sectionEyebrow, { marginTop: 15 }]}>
+                        {t('home.reportsEyebrow', 'Inteligência & Relatórios')}
+                    </Eyebrow>
 
+                    <View style={{ gap: 12 }}>
+                        {currentProfile && (
+                            <TouchableOpacity onPress={() => navigateWithHaptic('ProfileRiskSummary', { profile: currentProfile })} activeOpacity={0.85}>
+                                <View style={s.heroShadowWrap}>
+                                    <LinearGradient
+                                        colors={cardBgColor}
+                                        style={[s.heroCard, { 
+                                            padding: 16, flexDirection: 'row', alignItems: 'center',
+                                            borderColor: cardBorderColor, borderWidth: cardBorderWidth 
+                                        }]}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 1 }}
+                                    >
+                                    <Image 
+                                        source={require('../assets/illustrations/home-pictograms/relatorio-personalizado.png')}
+                                        style={{ width: 60, height: 60, marginRight: 16, transform: [{ scale: 1.1 }] }}
+                                        resizeMode="contain"
+                                    />
+                                    <View style={{ flex: 1 }}>
+                                        <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>
+                                            {t('home.customReport', 'Relatório Personalizado')}
+                                        </Body>
+                                        <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>
+                                            Análise de riscos para {currentProfile.nome}
+                                        </Caption>
+                                    </View>
+                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[700]} />
+                                </LinearGradient>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                    <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
+                        <View style={s.heroShadowWrap}>
+                            <LinearGradient
+                                colors={cardBgColor}
+                                style={[s.heroCard, { 
+                                    padding: 16, flexDirection: 'row', alignItems: 'center',
+                                    borderColor: cardBorderColor, borderWidth: cardBorderWidth 
+                                }]}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
+                            >
+                                <Image 
+                                    source={require('../assets/illustrations/home-pictograms/raio-x.png')}
+                                    style={{ width: 60, height: 60, marginRight: 16 }}
+                                    resizeMode="contain"
+                                />
+                                    <View style={{ flex: 1 }}>
+                                        <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>
+                                            {t('home.homeXray', 'Raio-X da Casa')}
+                                        </Body>
+                                        <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>
+                                            Diagnóstico estrutural e pontos cegos
+                                        </Caption>
+                                    </View>
+                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
+                                </LinearGradient>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+
+                </ScrollView>
             </SafeAreaView>
         </AppBackground>
     );
@@ -401,7 +444,62 @@ export default function HomeScreenNeo() {
  * Pictograma NU: o PNG já contém o tile creme com moldura verde 3D — ele É o
  * card. Renderizamos a imagem inteira sem recortes rudimentares no código.
  */
-function BarePictogramShortcut({ item, textColor, onPress, imageWidth = GRID_IMG_W }) {
+function BarePictogramShortcut({
+    item,
+    textColor,
+    onPress,
+    imageWidth,
+    isRowLayout,
+    isSenior,
+    cardBgColor,
+    cardBorderColor,
+    cardBorderWidth,
+}) {
+    if (isRowLayout) {
+        const rowImageWidth = isSenior ? 80 : 64;
+        const rowImageHeight = rowImageWidth * PICTO_RATIO;
+        return (
+            <TappablePressable
+                style={[
+                    s.barePictogramRow,
+                    {
+                        backgroundColor: cardBgColor,
+                        borderColor: cardBorderColor,
+                        borderWidth: isSenior ? 2.5 : cardBorderWidth,
+                        padding: isSenior ? 16 : 12,
+                    }
+                ]}
+                onPress={onPress}
+                pressRetentionOffset={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                accessibilityRole="button"
+                accessibilityLabel={item.accessibilityLabel || item.label}
+            >
+                <View style={[s.pictogramImageContainer, { width: rowImageWidth, height: rowImageHeight }]}>
+                    <Image
+                        source={item.image}
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="contain"
+                    />
+                </View>
+                <Text
+                    style={[
+                        s.barePictogramLabelRow,
+                        {
+                            color: textColor,
+                            fontSize: isSenior ? 18 : 15,
+                            fontWeight: isSenior ? '800' : '700',
+                            lineHeight: isSenior ? 22 : 18,
+                        }
+                    ]}
+                    numberOfLines={2}
+                >
+                    {item.label}
+                </Text>
+                <NeoIcon name="ArrowRight2" size={isSenior ? 24 : 20} color={Neo.colors.primary[700]} />
+            </TappablePressable>
+        );
+    }
+
     const imageHeight = imageWidth * PICTO_RATIO;
     return (
         <TappablePressable
@@ -592,15 +690,35 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        paddingHorizontal: 8, // Adds a tiny bit of horizontal padding to balance the layout
+        marginTop: 12,
     },
     gridCell: {
-        width: '48%',
-        marginBottom: 10,
+        width: '49%',
+        marginBottom: 2,
+    },
+    heroShadowWrap: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.25,
+        shadowRadius: 20,
+        elevation: 8,
+    },
+    heroCard: {
+        borderRadius: 24,
     },
     barePictogram: {
         alignItems: 'center',
-        paddingVertical: 4,
+        paddingVertical: 2,
+    },
+    barePictogramRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 2,
     },
     pictogramImageContainer: {
         // Mask removed because images now use true transparency
@@ -612,5 +730,11 @@ const s = StyleSheet.create({
         textAlign: 'center',
         marginTop: 5,
         paddingHorizontal: 4,
+    },
+    barePictogramLabelRow: {
+        flex: 1,
+        fontWeight: '700',
+        marginLeft: 12,
+        marginRight: 8,
     },
 });

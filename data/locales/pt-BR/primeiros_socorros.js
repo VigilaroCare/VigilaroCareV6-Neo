@@ -5,17 +5,17 @@ export const primeirosSocorrosPTBR = [
         emoji: '🔥',
         situacao: 'Térmica, Química ou Elétrica',
         oQueFazer: [
-            'Afaste a vítima da fonte de calor.',
-            'Resfrie a área com água corrente (temperatura ambiente) por 15-20 minutos.',
-            'Remova acessórios (anéis, relógios) antes que a área inche.',
-            'Cubra com pano limpo e úmido.',
+            'Tire a pessoa de perto do fogo ou da fonte de calor.',
+            'Resfrie o local jogando água corrente em temperatura ambiente por 15 a 20 minutos.',
+            'Tire anéis, pulseiras e relógios antes que a região comece a inchar.',
+            'Cubra a ferida de leve com um pano limpo e úmido.',
         ],
         oQueNaoFazer: [
-            'NUNCA passe pasta de dente, manteiga, pó de café ou gelo direto.',
-            'NÃO estoure bolhas.',
-            'NÃO tente desgrudar roupas queimadas da pele.',
+            'NUNCA passe pomadas, pasta de dente, manteiga, pó de café ou gelo direto sobre a queimadura.',
+            'NÃO estoure as bolhas que se formarem.',
+            'NÃO tente arrancar pedaços de roupa que tenham grudado na pele queimada.',
         ],
-        quandoChamarAjuda: 'Se a queimadura for extensa, no rosto, mãos, genitais ou em crianças/idosos.'
+        quandoChamarAjuda: 'Se a queimadura for maior que a palma da mão, atingir o rosto, mãos, genitais ou ocorrer em crianças e idosos.'
     },
     {
         id: 'ps_2',
@@ -23,16 +23,16 @@ export const primeirosSocorrosPTBR = [
         emoji: '🤢',
         situacao: 'Obstrução da via aérea',
         oQueFazer: [
-            'Incentive a tosse se a pessoa conseguir tossir.',
-            'Se não emitir som: Inicie a Manobra de Heimlich.',
-            'Posicione-se atrás, feche o punho na boca do estômago.',
-            'Faça compressões fortes para dentro e para cima (formato de J).',
+            'Incentive a pessoa a tossir forte se ela ainda conseguir tossir.',
+            'Se ela não conseguir falar ou emitir som, comece a Manobra de Heimlich.',
+            'Fique de pé atrás da pessoa e feche o punho na boca do estômago dela.',
+            'Com a outra mão por cima, faça compressões rápidas para dentro e para cima (em formato de "J").',
         ],
         oQueNaoFazer: [
-            'Não dê tapas nas costas se a pessoa estiver em pé (pode piorar).',
-            'Não ofereça água.',
+            'Não dê tapas nas costas se a pessoa estiver de pé ou sentada (isso pode empurrar o objeto ainda mais para baixo).',
+            'Não ofereça água ou comida.',
         ],
-        quandoChamarAjuda: 'Se a pessoa perder a consciência (iniciar RCP) ou não desengasgar.'
+        quandoChamarAjuda: 'Se a pessoa desmaiar (nesse caso, inicie a massagem cardíaca) ou se o objeto não sair após as compressões.'
     },
     {
         id: 'ps_3',
@@ -40,16 +40,16 @@ export const primeirosSocorrosPTBR = [
         emoji: '👶',
         situacao: 'Obstrução em lactentes',
         oQueFazer: [
-            'Apoie o bebê de bruços no seu antebraço, cabeça mais baixa que o corpo.',
-            'Dê 5 tapas firmes nas costas (entre as escápulas).',
-            'Vire de barriga para cima e faça 5 compressões no peito com dois dedos.',
-            'Repita até desengasgar.',
+            'Apoie o bebê de bruços sobre o seu antebraço, deixando a cabeça dele mais baixa que o bumbum.',
+            'Dê 5 batidas firmes com a base da mão nas costas dele (entre as escápulas).',
+            'Vire o bebê de barriga para cima no seu braço e faça 5 compressões no peito usando dois dedos.',
+            'Repita esses passos até o bebê desengasgar ou chorar.',
         ],
         oQueNaoFazer: [
-            'Não sacuda o bebê.',
-            'Não tente retirar o objeto com o dedo às cegas.',
+            'Nunca sacuda o bebê.',
+            'Não coloque os dedos na boca do bebê às cegas para tentar pescar o objeto.',
         ],
-        quandoChamarAjuda: 'Se o bebê ficar roxo ou perder a consciência.'
+        quandoChamarAjuda: 'Se o bebê ficar roxo, sem ar ou perder a consciência.'
     },
     {
         id: 'ps_4',
@@ -57,15 +57,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🩸',
         situacao: 'Ferimentos abertos',
         oQueFazer: [
-            'Lave com água e sabão neutro.',
-            'Comprima o local com um pano limpo fazendo pressão direta por 5-10 min.',
-            'Mantenha o membro elevado se possível.',
+            'Lave o corte delicadamente com soro ou água e sabão neutro.',
+            'Aperte o local com firmeza usando um pano limpo por 5 a 10 minutos sem parar.',
+            'Se for nos braços ou pernas, mantenha o membro levantado para diminuir o fluxo de sangue.',
         ],
         oQueNaoFazer: [
-            'Não faça torniquete (exceto em amputação ou risco de vida extremo).',
-            'Não coloque pó de café ou açúcar.',
+            'Não faça torniquetes (use apenas em amputações ou sangramentos gravíssimos que não param de jeito nenhum).',
+            'Não coloque pó de café, açúcar ou pomadas no corte.',
         ],
-        quandoChamarAjuda: 'Se o sangramento não parar, for profundo, ou precisar de pontos.'
+        quandoChamarAjuda: 'Se o sangramento não parar após 10 minutos de pressão direta, se o corte for muito profundo ou se as bordas ficarem abertas.'
     },
     {
         id: 'ps_5',
@@ -73,14 +73,14 @@ export const primeirosSocorrosPTBR = [
         emoji: '⚡',
         situacao: 'Contato com corrente elétrica',
         oQueFazer: [
-            'Desligue a fonte de energia (disjuntor) IMEDIATAMENTE.',
-            'Se não puder desligar, afaste a vítima usando objeto NÃO condutor (cabo de vassoura seco, madeira).',
-            'Verifique respiração e pulso.',
+            'Corra para o quadro de luz e desligue o disjuntor geral IMEDIATAMENTE.',
+            'Se não puder desligar a energia, empurre o fio ou afaste a pessoa usando um objeto de madeira ou plástico seco (como um cabo de vassoura seco).',
+            'Depois de afastar da energia, cheque se a pessoa está respirando e se tem batimentos.',
         ],
         oQueNaoFazer: [
-            'NUNCA toque na vítima se ela ainda estiver ligada à corrente.',
+            'NUNCA encoste na pessoa se ela ainda estiver colada ao fio ou tomada elétrica.',
         ],
-        quandoChamarAjuda: 'SEMPRE chame o 192. Choques podem causar arritmias tardias.'
+        quandoChamarAjuda: 'SEMPRE chame o SAMU (192). A corrente elétrica pode causar arritmias no coração horas após o choque.'
     },
     {
         id: 'ps_6',
@@ -88,13 +88,13 @@ export const primeirosSocorrosPTBR = [
         emoji: '☠️',
         situacao: 'Ingestão de veneno/químicos',
         oQueFazer: [
-            'Identifique o produto ingerido.',
-            'Ligue para o CIATOX: 0800 722 6001.',
-            'Siga as instruções do atendente.',
+            'Identifique na hora qual produto ou remédio a pessoa engoliu.',
+            'Ligue imediatamente para o CIATOX no telefone 0800 722 6001.',
+            'Siga exatamente o que o atendente médico orientar.',
         ],
         oQueNaoFazer: [
-            'NÃO provoque vômito (pode queimar o esôfago novamente).',
-            'Não dê leite ou água sem orientação.',
+            'NÃO provoque vômito (se o produto for corrosivo, vai queimar a garganta duas vezes).',
+            'Não dê leite, água ou remédios caseiros sem orientação médica.',
         ],
         quandoChamarAjuda: 'Imediatamente.'
     },
@@ -104,15 +104,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🤕',
         situacao: 'Queda de altura ou impacto forte',
         oQueFazer: [
-            'Mantenha a vítima imóvel, especialmente se houver dor nas costas ou pescoço.',
-            'Aplique gelo no local do impacto (com pano, não direto na pele).',
-            'Se houver sangramento, faça compressão.',
+            'Deixe a pessoa deitada imóvel, principalmente se ela reclamar de dor nas costas ou no pescoço.',
+            'Coloque uma bolsa de gelo enrolada em uma toalha sobre o local dolorido.',
+            'Se houver corte com sangue, pressione de leve com um pano limpo.',
         ],
         oQueNaoFazer: [
-            'NÃO tente colocar o osso no lugar.',
-            'NÃO mova a vítima se suspeitar de lesão na coluna.',
+            'NÃO tente colocar o osso de volta no lugar.',
+            'NÃO mexa ou levante a pessoa se houver suspeita de lesão na coluna.',
         ],
-        quandoChamarAjuda: 'Se houver deformidade, dor intensa, impossibilidade de movimento ou desmaio.'
+        quandoChamarAjuda: 'Se houver deformidade visível no osso, dor muito forte, incapacidade de mover o membro ou se a pessoa desmaiou.'
     },
     {
         id: 'ps_8',
@@ -120,15 +120,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🧠',
         situacao: 'Batida forte na cabeça',
         oQueFazer: [
-            'Observe a vítima nas próximas 24 horas.',
-            'Mantenha a pessoa acordada se estiver sonolenta logo após a batida.',
-            'Aplique compressa fria para reduzir o inchaço.',
+            'Fique de olho na pessoa pelas próximas 24 horas.',
+            'Mantenha a pessoa acordada e conversando por algum tempo após a pancada.',
+            'Coloque uma compressa fria no local para diminuir o inchaço (o famoso "galo").',
         ],
         oQueNaoFazer: [
-            'Não ignore sintomas como vômito ou confusão mental.',
-            'Não dê medicamentos para dormir.',
+            'Não ignore sintomas como vômitos, tonturas ou falhas de memória.',
+            'Não dê remédios fortes para dor ou para dormir sem orientação.',
         ],
-        quandoChamarAjuda: 'Vômitos, desmaio, sangramento pelo nariz/ouvido, pupilas de tamanhos diferentes.'
+        quandoChamarAjuda: 'Se a pessoa vomitar, desmaiar, tiver sangramento pelo nariz ou ouvidos, ou se as pupilas ficarem com tamanhos diferentes.'
     },
     {
         id: 'ps_9',
@@ -136,15 +136,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🤢',
         situacao: 'Vômitos e diarreia após comer',
         oQueFazer: [
-            'Hidrate-se com soro caseiro ou água de coco em pequenos goles.',
-            'Faça repouso.',
-            'Mantenha dieta leve (sem gordura/leite) quando a fome voltar.',
+            'Tome soro caseiro ou água de coco em pequenos goles ao longo do dia.',
+            'Fique de repouso.',
+            'Quando a fome voltar, coma alimentos leves e sem gordura (como arroz branco, batata e torradas).',
         ],
         oQueNaoFazer: [
-            'Não tome remédios para "prender" o intestino (a toxina precisa sair).',
-            'Não force alimentação se estiver vomitando.',
+            'Não tome remédios para "prender" o intestino (as toxinas precisam ser eliminadas pelo corpo).',
+            'Não se force a comer se ainda estiver com muita náusea.',
         ],
-        quandoChamarAjuda: 'Sinais de desidratação (boca seca, sem urina), sangue nas fezes ou febre alta.'
+        quandoChamarAjuda: 'Se notar sinais de desidratação (boca muito seca, choro sem lágrimas, ficar horas sem urinar), se tiver sangue nas fezes ou febre alta.'
     },
     {
         id: 'ps_10',
@@ -152,16 +152,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '👁️',
         situacao: 'Objeto no olho, nariz ou ouvido',
         oQueFazer: [
-            'Olhos: Lave com soro fisiológico ou água corrente abundante.',
-            'Nariz/Ouvido: Se estiver visível e fácil, tente retirar com pinça (CUIDADO).',
-            'Melhor opção: Procure atendimento médico.',
+            'Olhos: lave com bastante soro fisiológico ou água morna corrente.',
+            'Nariz/Ouvido: se o objeto estiver bem na pontinha e for fácil, tente tirar delicadamente com uma pinça.',
+            'Se estiver difícil ou profundo, vá direto ao pronto-socorro.',
         ],
         oQueNaoFazer: [
-            'NÃO esfregue os olhos (pode arranhar a córnea).',
-            'NÃO use cotonete para empurrar objetos no ouvido.',
-            'NÃO tente retirar objetos profundos.',
+            'NÃO esfregue os olhos (um grão de areia ou metal pode riscar a córnea).',
+            'NÃO use cotonetes para cutucar o ouvido (você vai empurrar o objeto ainda mais para dentro).',
         ],
-        quandoChamarAjuda: 'Sempre que não sair facilmente com lavagem ou se houver dor/visão turva.'
+        quandoChamarAjuda: 'Sempre que o objeto não sair com facilidade na primeira lavagem ou se a pessoa sentir dor e vista embaçada.'
     },
     {
         id: 'ps_11',
@@ -169,15 +168,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🐕',
         situacao: 'Cão, gato ou outros',
         oQueFazer: [
-            'Lave o ferimento com água e sabão por 5-10 minutos.',
-            'Comprima para estancar sangramento.',
-            'Procure atendimento para avaliar vacina antirrábica/tétano.',
+            'Lave bem o ferimento com água corrente e sabão neutro por 10 minutos.',
+            'Se estiver sangrando, pressione com um pano limpo.',
+            'Vá ao pronto-socorro para limpar profundamente e avaliar a necessidade de vacina contra Raiva e Tétano.',
         ],
         oQueNaoFazer: [
-            'Não feche o ferimento com pontos em casa.',
-            'Não ignore mordidas pequenas (risco alto de infecção).',
+            'Não tente costurar ou fechar o machucado em casa.',
+            'Não ignore mordidas pequenas (a saliva do animal tem bactérias que causam infecções rápidas).',
         ],
-        quandoChamarAjuda: 'Sempre, para protocolo de vacinação e limpeza profunda.'
+        quandoChamarAjuda: 'Sempre. Qualquer mordida que rasgue a pele precisa de avaliação e protocolo preventivo de vacinação.'
     },
     {
         id: 'ps_12',
@@ -185,50 +184,50 @@ export const primeirosSocorrosPTBR = [
         emoji: '😵',
         situacao: 'Tontura, fraqueza, palidez ou dor no peito',
         oQueFazer: [
-            'Sente ou deite a vítima em local ventilado.',
-            'Afrouxe roupas apertadas (gola, cinto).',
-            'Pergunte se ela toma algum remédio e se já sentiu isso antes.',
+            'Ajude a pessoa a sentar ou deitar em um local fresco e ventilado.',
+            'Afrouxe roupas apertadas, como golas de camisa e cintos.',
+            'Pergunte se a pessoa tem algum problema de saúde conhecido ou toma remédios diários.',
         ],
         oQueNaoFazer: [
-            'NÃO dê água ou comida se a pessoa estiver confusa.',
-            'NÃO deixe a vítima sozinha.',
+            'NÃO dê água ou comida se a pessoa estiver confusa ou desorientada.',
+            'NÃO deixe a pessoa sozinha.',
         ],
-        quandoChamarAjuda: 'Se os sintomas não passarem em poucos minutos ou se houver dor no peito intensa.'
+        quandoChamarAjuda: 'Se a pessoa não melhorar em 2 minutos, se desmaiar ou se relatar uma dor forte ou aperto no peito.'
     },
     {
         id: 'ps_13',
-        titulo: 'Desmaio (Síncope)',
+        titulo: 'Desmaio',
         emoji: '💤',
         situacao: 'Perda súbita e breve da consciência',
         oQueFazer: [
             'Deite a pessoa de barriga para cima.',
-            'Eleve as pernas (acima do nível do coração) para facilitar o retorno do sangue.',
-            'Monitore a respiração.',
+            'Levante as pernas dela (cerca de 30 cm do chão) para ajudar o sangue a voltar para a cabeça.',
+            'Fique de olho na respiração dela.',
         ],
         oQueNaoFazer: [
-            'NÃO jogue água no rosto.',
-            'NÃO ofereça álcool ou amônia para cheirar.',
-            'NÃO tente levantar a pessoa rapidamente.',
+            'NÃO jogue água fria no rosto da pessoa.',
+            'NÃO dê álcool ou perfume para ela cheirar.',
+            'NÃO tente levantar a pessoa com pressa assim que ela acordar.',
         ],
-        quandoChamarAjuda: 'Se a pessoa não acordar em 1-2 minutos ou se caiu e bateu a cabeça.'
+        quandoChamarAjuda: 'Se a pessoa demorar mais de 2 minutos para acordar ou se caiu de forma brusca e bateu a cabeça.'
     },
     {
         id: 'ps_14',
         titulo: 'Convulsão',
         emoji: '🧠',
-        situacao: 'Abalos musculares, perda de consciência, salivação',
+        situacao: 'Abalos musculares, rigidez, salivação',
         oQueFazer: [
-            'Proteja a cabeça (coloque uma almofada ou casaco embaixo).',
-            'Afaste objetos perigosos ao redor.',
-            'Cronometre o tempo da crise.',
-            'Ao terminar, vire a pessoa de lado (posição de recuperação).',
+            'Proteja a cabeça da pessoa colocando um casaco dobrado ou almofada por baixo.',
+            'Afaste cadeiras ou objetos duros para ela não se machucar durante os tremores.',
+            'Cronometre a duração da crise.',
+            'Assim que a crise passar, vire a pessoa de lado (posição de segurança) para ajudá-la a respirar.',
         ],
         oQueNaoFazer: [
-            'NUNCA segure a língua ou coloque a mão na boca da vítima.',
-            'NÃO tente conter os movimentos à força.',
-            'NÃO dê água ou remédios durante a crise.',
+            'NUNCA tente segurar a língua da pessoa ou colocar objetos/dedos na boca dela.',
+            'NÃO tente segurar os braços ou pernas dela à força.',
+            'NÃO ofereça água ou remédios enquanto ela estiver tremendo.',
         ],
-        quandoChamarAjuda: 'Se a crise durar mais de 5 minutos, se for a primeira vez, ou se uma crise vier seguida de outra.'
+        quandoChamarAjuda: 'Se a crise durar mais de 5 minutos, se for a primeira vez que a pessoa tem isso, ou se ela tiver uma convulsão atrás da outra.'
     },
     {
         id: 'ps_15',
@@ -236,15 +235,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '🥴',
         situacao: 'Boca torta, fala enrolada, perda de força',
         oQueFazer: [
-            'Faça o teste SAMU: Sorria (boca torta?), Abrace (perda de força?), Música (fala enrolada?), Urgente (ligue 192).',
-            'Anote a hora exata do início dos sintomas.',
-            'Mantenha a vítima em repouso absoluto.',
+            'Faça o teste SAMU: peça para ela Sorrir (boca entorta?), dar um Abraço (um braço cai?), cantar uma Música (fala enrolada?). Se sim, é Urgente.',
+            'Marque no relógio a hora exata em que os sintomas começaram.',
+            'Ligue imediatamente para o SAMU no 192.',
         ],
         oQueNaoFazer: [
-            'NÃO espere os sintomas passarem.',
-            'NÃO dê aspirina ou qualquer remédio (pode piorar se for hemorrágico).',
+            'Não espere os sintomas melhorarem sozinhos.',
+            'Não dê remédios como aspirina ou calmantes (pode piorar gravemente se for um AVC hemorrágico).',
         ],
-        quandoChamarAjuda: 'IMEDIATAMENTE (192). Tempo é cérebro.'
+        quandoChamarAjuda: 'Na mesma hora (192). O tempo de resposta é vital para evitar sequelas permanentes.'
     },
     {
         id: 'ps_16',
@@ -252,15 +251,15 @@ export const primeirosSocorrosPTBR = [
         emoji: '💔',
         situacao: 'Vítima inconsciente e SEM respiração',
         oQueFazer: [
-            'Ligue 192 e peça um DEA (Desfibrilador) se houver.',
-            'Inicie a RCP (Massagem Cardíaca) IMEDIATAMENTE.',
-            'Comprima o centro do peito com força e rapidez (100-120 por minuto).',
-            'Permita o retorno total do tórax após cada compressão.',
+            'Ligue imediatamente para o 192 e peça a um ajudante para buscar um DEA (Desfibrilador), se houver um por perto.',
+            'Comece as massagens cardíacas (RCP) sem perder tempo.',
+            'Apoie as mãos no centro do peito e empurre com força e rapidez (ritmo de 100 a 120 compressões por minuto).',
+            'Deixe o peito voltar à posição normal após cada empurrão.',
         ],
         oQueNaoFazer: [
-            'NÃO pare a massagem até o socorro chegar ou a vítima reagir.',
-            'NÃO tenha medo de quebrar costelas (é melhor que a morte).',
+            'Não interrompa as compressões até o socorro chegar ou a pessoa reagir.',
+            'Não tenha medo de fraturar uma costela — fazer o coração voltar a bater é a prioridade.',
         ],
-        quandoChamarAjuda: 'IMEDIATAMENTE.'
+        quandoChamarAjuda: 'Imediatamente.'
     }
 ];

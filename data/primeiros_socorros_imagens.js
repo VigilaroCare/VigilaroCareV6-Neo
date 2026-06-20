@@ -13,16 +13,16 @@
 export const PRIMEIROS_SOCORROS_IMAGENS = {
     // ============ HUMANOS ============
     ps_1:  'https://images.pexels.com/photos/27404939/pexels-photo-27404939.jpeg?auto=compress&cs=tinysrgb&w=1200', // Queimaduras — chama em fogao
-    ps_2:  require('../assets/images/prevencao/engasgo.jpg'),                                                        // Engasgo — foto do autor (acervo Drive)
+    ps_2:  null,                                                        // Engasgo — foto do autor (acervo Drive)
     ps_3:  'https://images.pexels.com/photos/5272653/pexels-photo-5272653.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Engasgo bebe — bebe sendo cuidado
     ps_4:  'https://images.pexels.com/photos/6519905/pexels-photo-6519905.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Cortes — bandagem mao
     ps_5:  'https://images.pexels.com/photos/11837458/pexels-photo-11837458.jpeg?auto=compress&cs=tinysrgb&w=1200', // Choque eletrico — cabos
     ps_6:  'https://images.pexels.com/photos/3873149/pexels-photo-3873149.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Intoxicacao — cartelas medicamentos
-    ps_7:  require('../assets/images/prevencao/queda.jpg'),                                                          // Quedas — foto do autor (acervo Drive)
+    ps_7:  null,                                                          // Quedas — foto do autor (acervo Drive)
     ps_8:  'https://images.pexels.com/photos/5207242/pexels-photo-5207242.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Traumatismo craniano — mulher c/ bandagem na cabeca
     ps_9:  'https://images.pexels.com/photos/5938362/pexels-photo-5938362.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Intoxicacao alimentar — dor de barriga
     ps_10: 'https://images.pexels.com/photos/7723629/pexels-photo-7723629.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Corpos estranhos — gaze first aid
-    ps_11: require('../assets/images/prevencao/mordida-cachorro.jpg'),                                               // Mordidas — foto do autor (acervo Drive)
+    ps_11: null,                                               // Mordidas — foto do autor (acervo Drive)
     ps_12: 'https://images.pexels.com/photos/6129152/pexels-photo-6129152.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Mal subito — paciente em leito
     ps_13: 'https://images.pexels.com/photos/3769151/pexels-photo-3769151.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Desmaio — mulher em leito iluminado
     ps_14: 'https://images.pexels.com/photos/6129211/pexels-photo-6129211.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Convulsao — paciente recebendo IV

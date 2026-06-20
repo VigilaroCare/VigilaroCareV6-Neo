@@ -241,7 +241,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         cardTitle: 'Bebês', cardTitle_en: 'Babies', cardTitle_es: 'Bebés',
         desc: '7 a 12 meses', desc_en: '7 to 12 months', desc_es: '7 a 12 meses',
         emoji: '🚼',
-        imagemUrl: 'https://images.pexels.com/photos/3995926/pexels-photo-3995926.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: null,
         icon: 'EmojiHappy',
         iconColor: '#0369A1', // Sky 700
         bg: '#BAE6FD', // Sky 200
@@ -485,7 +485,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '3-12 anos', desc_en: '3-12 years', desc_es: '3-12 años',
         emoji: '🧸',
-        imagemUrl: 'https://images.pexels.com/photos/437747/pexels-photo-437747.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: null,
         icon: 'Profile2User',
         iconColor: '#D97706', // Amber 600
         bg: '#FEF3C7', // Amber 100
@@ -1121,7 +1121,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Adolescentes', cardTitle_en: 'Teenagers', cardTitle_es: 'Adolescentes',
         desc: '13-17 anos', desc_en: '13-17 years', desc_es: '13-17 años',
         emoji: '🛹',
-        imagemUrl: 'https://images.pexels.com/photos/1400249/pexels-photo-1400249.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: null,
         icon: 'Flash',
         iconColor: '#6366F1', // Indigo 500
         bg: '#E0E7FF', // Indigo 100

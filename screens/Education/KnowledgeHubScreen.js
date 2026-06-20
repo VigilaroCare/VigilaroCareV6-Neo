@@ -29,6 +29,7 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import NeoIcon from '../../components/NeoIcon';
 import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blog';
+import { t_field } from '../../utils/getLocalizedField';
 
 // Featured rotativo (5 aleatórios por sessão)
 const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random()).slice(0, 5);
@@ -47,6 +48,7 @@ const PICTOGRAMS = {
     gestante_segura: require('../../assets/illustrations/education-pictograms/pictogram-gestacao.png'),
     pets:            require('../../assets/illustrations/education-pictograms/pictogram-pets-hub.png'),
     brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
+    mentes_atipicas: require('../../assets/illustrations/education-pictograms/pictogram-neurodivergence.png'),
     // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
     utensilios_rev:   require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
     eletro_rev:       require('../../assets/illustrations/education-pictograms/pictogram-eletro-rev.png'),
@@ -64,6 +66,8 @@ const PICTOGRAMS = {
     lazer_mobilidade: require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
     guias_equipamentos: require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
     teoria_fogo:        require('../../assets/illustrations/education-pictograms/pictogram-teoria-do-fogo.png'),
+    riscos_eletricos:   require('../../assets/illustrations/education-pictograms/pictogram-riscos-eletricos.png'),
+    dispositivos_protecao: require('../../assets/illustrations/education-pictograms/pictogram-dispositivos-protecao.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos.png');
@@ -75,14 +79,16 @@ const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictogr
 const CERAMIC_STYLE_IDS = new Set([
     'utensilios_rev', 'eletro_rev', 'disp_eletronicos',
     'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
-    'plantas', 'animais', 'produtos', 'riscos_fisicos', 'jardinagem', 'condo_safety',
+    'plantas', 'animais', 'produtos', 'riscos_fisicos', 'riscos_eletricos', 'jardinagem', 'condo_safety',
     'lazer_mobilidade', 'guias_equipamentos',
     // Lote 2 (seção 1) — completo em 2026-06-11:
     'seguranca_idade',
     'pets',
-    'ambientes', 'gestante_segura', 'brinquedos_hub',
+    'ambientes', 'gestante_segura', 'brinquedos_hub', 'mentes_atipicas',
     // Teoria do Fogo (asset cerâmico pronto 2026-06-15):
     'teoria_fogo',
+    // Dispositivos de Proteção (2026-06-18):
+    'dispositivos_protecao',
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {
@@ -101,17 +107,6 @@ export default function KnowledgeHubScreen({ navigation }) {
 
     // 5 seções com grid 3-col
     const SECTIONS = [
-        {
-            key: 'contexto',
-            title: t('knowledgeHub.lifeContext', 'Pessoas & Contexto'),
-            items: [
-                { id: 'ambientes',         titulo: t('knowledgeHub.envPrevention'),  pictogram: 'environmentPrevention', iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments' },
-                { id: 'pets',              titulo: t('knowledgeHub.protectPet'),     pictogram: 'petHealth', iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu' },
-                { id: 'seguranca_idade',   titulo: t('knowledgeHub.ageCare'),        pictogram: 'familyAgeCare', iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu' },
-                { id: 'gestante_segura',   titulo: t('knowledgeHub.pregnancyCare'),  pictogram: 'pregnancyCare', iconName: 'Woman',      cor: '#E91E63', route: 'GenericCategory', params: { categoryId: 'gestante_segura' } },
-                { id: 'brinquedos_hub',    titulo: t('knowledgeHub.toyGuide'),       pictogram: 'toyGuide', iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' } },
-            ],
-        },
         {
             key: 'analises',
             title: t('knowledgeHub.safetyReviews', 'Análises de Segurança'),
@@ -138,10 +133,12 @@ export default function KnowledgeHubScreen({ navigation }) {
                 { id: 'plantas',         titulo: t('knowledgeHub.toxicPlants'),       iconName: 'Tree',     cor: '#10B981', route: 'PlantasToxicas' },
                 { id: 'animais',         titulo: t('knowledgeHub.venomousAnimals'),   iconName: 'Danger',   cor: '#8B5CF6', route: 'AnimaisPeconhentos' },
                 { id: 'produtos',        titulo: t('knowledgeHub.hazardousProducts'), iconName: 'Reserve',  cor: '#F97316', route: 'ProdutosPerigosos' },
-                { id: 'riscos_fisicos',  titulo: t('knowledgeHub.electricalRisks'),   iconName: 'Flash',    cor: '#EAB308', route: 'RiscosFisicos' },
+                { id: 'riscos_fisicos',  titulo: t('knowledgeHub.physicalRisks'),   iconName: 'Warning2',    cor: '#EF4444', route: 'RiscosFisicos', params: { filter: 'fisicos' } },
+                { id: 'riscos_eletricos', titulo: t('knowledgeHub.electricalRisks'), iconName: 'Flash', cor: '#EAB308', route: 'RiscosFisicos', params: { filter: 'eletricos' } },
                 { id: 'jardinagem',      titulo: t('knowledgeHub.safeGardening'),     iconName: 'Tree',     cor: '#16A34A', route: 'JardinagemSegura' },
                 { id: 'condo_safety',    titulo: t('knowledgeHub.condoSafety'),       iconName: 'Building4',cor: '#78716C', route: 'GenericCategory', params: { categoryId: 'condominio_seguranca' } },
                 { id: 'teoria_fogo',     titulo: t('knowledgeHub.fireTheory', 'Teoria do Fogo'), iconName: 'Fire', cor: '#EA580C', route: 'TeoriaFogo' },
+                { id: 'dispositivos_protecao', titulo: t('knowledgeHub.protectionDevices', 'Acessórios de Proteção'), iconName: 'Shield', cor: '#047857', route: 'DispositivosProtecao' },
             ],
         },
         {
@@ -250,14 +247,27 @@ export default function KnowledgeHubScreen({ navigation }) {
                                     onPress={() => navigation.navigate('MicroArticle', { articleId: item.id })}
                                     style={s.featuredCard}
                                 >
-                                    <Image source={{ uri: item.thumbnail }} style={s.featuredImg} resizeMode="cover" />
+                                    <View style={[StyleSheet.absoluteFillObject, { backgroundColor: cat?.color || Neo.colors.primary[800] }]} />
+                                    <NeoIcon 
+                                        name={cat?.icon || 'Document'} 
+                                        size={80} 
+                                        color="#FFF" 
+                                        style={{ position: 'absolute', right: -15, bottom: -15, opacity: 0.15 }} 
+                                        variant="Bulk"
+                                    />
                                     <View style={s.featuredOverlay} />
                                     <View style={s.featuredContent}>
-                                        {!!cat && (
-                                            <View style={[s.featuredBadge, { backgroundColor: cat.color || '#666' }]}>
-                                                <Text style={s.featuredBadgeText}>{cat.label || ''}</Text>
-                                            </View>
-                                        )}
+                                        {!!cat && (() => {
+                                            const label = t_field(cat, 'label') || '';
+                                            const displayLabel = (label === 'Primeiros Socorros' || label === 'Primeiros socorros' || label === 'Primeros Auxilios') ? 'Socorros' : label;
+                                            return (
+                                                <View style={[s.featuredBadge, { backgroundColor: cat.color || '#666' }]}>
+                                                    <Text style={s.featuredBadgeText} numberOfLines={1} adjustsFontSizeToFit>
+                                                        {displayLabel}
+                                                    </Text>
+                                                </View>
+                                            );
+                                        })()}
                                         <Text style={s.featuredTitle} numberOfLines={2}>
                                             {item.title}
                                         </Text>
@@ -290,12 +300,14 @@ export default function KnowledgeHubScreen({ navigation }) {
                             <View style={s.radarIconWrap}>
                                 <Image source={REAL_CASES_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
                             </View>
-                            <View style={{ flex: 1, marginLeft: 14 }}>
+                            <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
                                 <Body style={s.radarTitle}>
                                     {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
                                 </Body>
                             </View>
-                            <NeoIcon name="ArrowRight2" size={18} color="#B91C1C" />
+                            <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
+                                <NeoIcon name="ArrowRight2" size={18} color="#B91C1C" />
+                            </View>
                         </NeoCard>
                     </TouchableOpacity>
 
@@ -313,10 +325,14 @@ export default function KnowledgeHubScreen({ navigation }) {
                             <View style={s.conceptPictogramWrap}>
                                 <Image source={CONCEPTS_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
                             </View>
-                            <Body style={{ flex: 1, fontWeight: '800', color: textPrimary, fontSize: 14 }}>
-                                {conceitoItem.titulo}
-                            </Body>
-                            <NeoIcon name="ArrowRight2" size={18} color={themeColors.neutral[500]} />
+                            <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
+                                <Body style={{ fontWeight: '800', color: textPrimary, fontSize: 14 }}>
+                                    {conceitoItem.titulo}
+                                </Body>
+                            </View>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
+                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.neutral[500]} />
+                            </View>
                         </NeoCard>
                     </TouchableOpacity>
 
@@ -393,7 +409,7 @@ const s = StyleSheet.create({
         alignSelf: 'flex-start',
         paddingHorizontal: 7,
         paddingVertical: 2,
-        borderRadius: 6,
+        borderRadius: 12, // Pill shape
         marginBottom: 4,
     },
     featuredBadgeText: {

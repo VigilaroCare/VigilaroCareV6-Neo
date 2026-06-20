@@ -14,7 +14,7 @@ import {
     TouchableOpacity,
     StyleSheet,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -22,6 +22,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
 import { UTENSILIOS_REVIEWS } from '../../data/utensilios_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -47,7 +48,6 @@ const RISK_BG = {
 };
 
 export default function UtensiliosReviewsScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -63,32 +63,32 @@ export default function UtensiliosReviewsScreen({ navigation }) {
         navigation.navigate('SafetyReviewDetail', { item });
     };
 
+    const capaUrl = 'https://loremflickr.com/1200/800/kitchen,utensil?lock=6';
+
     return (
         <AppBackground>
-            <StatusBar style={isDark ? 'light' : 'dark'} />
+            <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style={isDark ? 'light' : 'dark'} translucent={false} />
 
-            {/* ═══ HEADER ═══ */}
-            <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
-                    activeOpacity={0.7}
+                {/* Header Padronizado */}
+                <NeoScreenHeader
+                    title={t('headersFirst.householdUtensils', 'Utensílios Domésticos')}
+                    subtitle={t('headersFirst.riscosPrevenOEOQueFazerEmCasoDeAcidente', 'Riscos, prevenção e o que fazer em caso de acidente')}
+                    onBack={() => navigation.goBack()}
+                />
+
+                <ScrollView
+                    contentContainerStyle={[styles.listContent, { paddingHorizontal: Neo.layout.screenHPadding, paddingBottom: Neo.layout.scrollBottomFooter }]}
+                    showsVerticalScrollIndicator={false}
                 >
-                    <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
-                </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    <Text style={styles.headerEmoji}>🍽️</Text>
-                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.householdUtensils', 'Utensílios Domésticos')}</Text>
-                    <Text style={[styles.headerSubtitle, { color: textBody }]}>
-                        {t('headersFirst.riscosPrevenOEOQueFazerEmCasoDeAcidente', 'Riscos, prevenção e o que fazer em caso de acidente')}
-                    </Text>
-                </View>
-            </View>
-
-            <ScrollView
-                contentContainerStyle={styles.listContent}
-                showsVerticalScrollIndicator={false}
-            >
+                    {/* Imagem em banner arredondado flat */}
+                    <View style={{ width: '100%', height: 180, borderRadius: 24, overflow: 'hidden', marginBottom: 24 }}>
+                        <ReviewImage
+                            source={{ uri: capaUrl }}
+                            style={{ width: '100%', height: '100%' }}
+                            resizeMode="cover"
+                        />
+                    </View>
                 {/* Info bar */}
                 <FadeInView delay={100}>
                     <View style={styles.infoBar}>
@@ -146,6 +146,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
 
                 <View style={{ height: 200 }} />
             </ScrollView>
+            </SafeAreaView>
         </AppBackground>
     );
 }

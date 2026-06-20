@@ -215,7 +215,7 @@ export const animaisCatalog = [
         gravidade: "MUITO GRAVE - Taxa de mortalidade de 0,3% quando não tratada. Com tratamento adequado em até 6 horas, a taxa cai para 0,04%. Pode causar sequelas permanentes como perda de dedos ou membros.",
         gravidade_en: "VERY SERIOUS - Mortality rate of 0.3% when untreated. With adequate treatment within 6 hours, the rate drops to 0.04%. May cause permanent complications such as loss of fingers or limbs.",
         gravidade_es: "MUY GRAVE - Tasa de mortalidad del 0,3% sin tratamiento. Con tratamiento adecuado en hasta 6 horas, la tasa baja al 0,04%. Puede causar secuelas permanentes como pérdida de dedos o miembros.",
-        imagem: require('../assets/images/sinitox/animais/bj_jararaca.jpg'),
+        imagem: require('../assets/sinitox/animais/bj_jararaca.jpg'),
         tipo: "cobra",
     },
     {
@@ -396,7 +396,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antiescorpiônico disponível em hospitais. CRIANÇA sempre deve receber soro. Adultos dependendo da gravidade.",
         gravidade: "EXTREMAMENTE GRAVE em crianças menores de 7 anos. Pode levar à morte em 2-3 horas sem tratamento adequado.",
-        imagem: require('../assets/images/sinitox/animais/ts_amarelo.jpg'),
+        imagem: require('../assets/sinitox/animais/ts_amarelo.jpg'),
         tipo: "escorpiao",
     },
     {
@@ -564,7 +564,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Tratamento com soro antiaracnídeo nos casos graves. Pode necessitar desbridamento cirúrgico da necrose.",
         gravidade: "GRAVE - Pode causar necrose extensa necessitando cirurgia e enxertos. Cicatrizes permanentes são comuns.",
-        imagem: require('../assets/images/sinitox/animais/li_marrom.jpg'),
+        imagem: require('../assets/sinitox/animais/li_marrom.jpg'),
         tipo: "aranha",
     },
     {
@@ -735,7 +735,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro anticoral (antielapídico). URGÊNCIA ABSOLUTA mesmo sem sintomas. Ventilação mecânica pode ser necessária.",
         gravidade: "EXTREMAMENTE GRAVE - Alta letalidade se não tratada rapidamente. Sintomas podem demorar horas para aparecer mas evolução é rápida.",
-        imagem: require('../assets/images/sinitox/animais/mc_coral.jpg'),
+        imagem: require('../assets/sinitox/animais/mc_coral.jpg'),
         tipo: "cobra",
     },
     {
@@ -910,7 +910,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antiaracnídico. Analgésicos para controle da dor intensa. Hospitalização recomendada.",
         gravidade: "MUITO GRAVE - Dor extrema, pode ser fatal em crianças. Acidentes são comuns por ser agressiva.",
-        imagem: require('../assets/images/sinitox/animais/pp_armadeira.jpg'),
+        imagem: require('../assets/sinitox/animais/pp_armadeira.jpg'),
         tipo: "aranha",
     },
     {
@@ -1069,7 +1069,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático: analgésicos e anti-inflamatórios. Raramente necessita soro.",
         gravidade: "MODERADO - Dor intensa mas raramente grave. Risco maior é infecção secundária.",
-        imagem: require('../assets/images/sinitox/animais/sc_lacraia.jpg'),
+        imagem: require('../assets/sinitox/animais/sc_lacraia.jpg'),
         tipo: "centopeia",
     },
     {
@@ -1227,7 +1227,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Remoção do ferrão, analgésicos, anti-histamínicos. Corticoides em casos moderados. Adrenalina para anafilaxia.",
         gravidade: "VARIÁVEL - De leve (picada única em não alérgico) a FATAL (alérgicos ou ataque de enxame).",
-        imagem: require('../assets/images/sinitox/animais/honey_bee.jpg'), // Updated to new AI image
+        imagem: require('../assets/sinitox/animais/honey_bee.jpg'), // Updated to new AI image
         tipo: "inseto",
     },
     {
@@ -1375,7 +1375,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático para dor e inchaço. Atendimento médico se houver reação alérgica.",
         gravidade: "MODERADA - Dolorosa, mas geralmente não fatal, exceto em alérgicos.",
-        imagem: require('../assets/images/sinitox/animais/vespa.jpg'),
+        imagem: require('../assets/sinitox/animais/vespa.jpg'),
         tipo: "inseto",
     },
     {
@@ -1488,7 +1488,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/cd_cascavel.jpg'),
+        imagem: require('../assets/sinitox/animais/cd_cascavel.jpg'),
         tipo: "outro",
     },
     {
@@ -1601,7 +1601,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/bj_jararacussu.jpg'),
+        imagem: require('../assets/sinitox/animais/bj_jararacussu.jpg'),
         tipo: "outro",
     },
     {
@@ -1714,7 +1714,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/bj_albina.jpg'),
+        imagem: require('../assets/sinitox/animais/bj_albina.jpg'),
         tipo: "outro",
     },
     {
@@ -1827,7 +1827,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/lm_surucucu.jpg'),
+        imagem: require('../assets/sinitox/animais/lm_surucucu.jpg'),
         tipo: "outro",
     },
     {
@@ -1940,32 +1940,32 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/mc_coral.jpg'),
+        imagem: require('../assets/sinitox/animais/mc_coral.jpg'),
         tipo: "outro",
     },
 
     {
-        id: "unknown",
-        nomePopular: "Unknown",
-        nomePopular_en: "Unknown",
-        nomePopular_es: "Desconocido",
-        nomeCientifico: "41a_%20Tityus_serrulatus",
-        emoji: "⚠️",
-        nivelPerigo: "Atenção",
-        nivelPerigo_en: "Warning",
-        nivelPerigo_es: "Atención",
-        descricao: "Espécie identificada na base do SINITOX. Informações detalhadas sobre comportamento e primeiros socorros serão adicionadas em breve.",
-        descricao_en: "Species identified in the SINITOX database. Detailed information about behavior and first aid will be added soon.",
-        descricao_es: "Especie identificada en la base del SINITOX. Información detallada sobre comportamiento y primeros auxilios será añadida pronto.",
-        habitat: "Consulte especialistas locais.",
-        habitat_en: "Consult local specialists.",
-        habitat_es: "Consulte especialistas locales.",
-        comportamento: "Evite contato.",
-        comportamento_en: "Avoid contact.",
-        comportamento_es: "Evite contacto.",
-        tipoVeneno: "Peçonhento",
-        tipoVeneno_en: "Venomous",
-        tipoVeneno_es: "Ponzoñoso",
+        id: "escorpiao_marrom",
+        nomePopular: "Escorpião Marrom",
+        nomePopular_en: "Brown Scorpion",
+        nomePopular_es: "Escorpión Marrón",
+        nomeCientifico: "Tityus bahiensis",
+        emoji: "🦂",
+        nivelPerigo: "Alto",
+        nivelPerigo_en: "High",
+        nivelPerigo_es: "Alto",
+        descricao: "Espécie muito comum nas regiões Sul e Sudeste do Brasil. Menos perigoso que o amarelo, mas exige cuidado médico.",
+        descricao_en: "Species very common in the South and Southeast regions of Brazil. Less dangerous than the yellow one, but requires medical care.",
+        descricao_es: "Especie muy común en las regiones Sur y Sudeste de Brasil. Menos peligroso que el amarillo, pero exige cuidado médico.",
+        habitat: "Entulhos, tijolos, telhas, terrenos baldios.",
+        habitat_en: "Rubble, bricks, roof tiles, vacant lots.",
+        habitat_es: "Escombros, ladrillos, tejas, terrenos baldíos.",
+        comportamento: "Noturno. Esconde-se em locais escuros e úmidos.",
+        comportamento_en: "Nocturnal. Hides in dark and damp places.",
+        comportamento_es: "Nocturno. Se esconde en lugares oscuros y húmedos.",
+        tipoVeneno: "Peçonhento (Neurotóxico)",
+        tipoVeneno_en: "Venomous (Neurotoxic)",
+        tipoVeneno_es: "Ponzoñoso (Neurotóxico)",
         efeito: "Pode causar acidentes.",
         efeito_en: "Can cause accidents.",
         efeito_es: "Puede causar accidentes.",
@@ -2054,7 +2054,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/ts_amarelo.jpg'),
+        imagem: require('../assets/sinitox/animais/ts_amarelo.jpg'),
         tipo: "outro",
     },
     {
@@ -2167,7 +2167,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/images/sinitox/animais/gm_caranguejeira.jpg'),
+        imagem: require('../assets/sinitox/animais/gm_caranguejeira.jpg'),
         tipo: "outro",
     },
     {
@@ -2235,7 +2235,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antilatrodéctico e relaxantes musculares.",
         gravidade: "GRAVE - Requer atendimento médico urgente.",
-        imagem: require('../assets/images/sinitox/animais/viuva_negra.png'),
+        imagem: require('../assets/sinitox/animais/viuva_negra.png'),
         tipo: "aranha",
     },
     {
@@ -2299,7 +2299,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático. Adrenalina em caso de anafilaxia.",
         gravidade: "MODERADA - Risco alto apenas para alérgicos.",
-        imagem: require('../assets/images/sinitox/animais/formiga_lava_pes.png'),
+        imagem: require('../assets/sinitox/animais/formiga_lava_pes.png'),
         tipo: "inseto",
     },
     {
@@ -2366,7 +2366,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Soro antilonômico.",
         gravidade: "MUITO GRAVE - Risco de morte por hemorragia.",
-        imagem: require('../assets/images/sinitox/animais/lonomia_taturana.png'),
+        imagem: require('../assets/sinitox/animais/lonomia_taturana.png'),
         tipo: "outro",
     },
     {
@@ -2432,7 +2432,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Vinagre e controle da dor.",
         gravidade: "MODERADA - Dor intensa.",
-        imagem: require('../assets/images/sinitox/animais/agua_viva.png'),
+        imagem: require('../assets/sinitox/animais/agua_viva.png'),
         tipo: "aquatico",
     },
     {
@@ -2497,7 +2497,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Vinagre, analgésicos potentes, suporte hospitalar.",
         gravidade: "GRAVE - Dor incapacitante.",
-        imagem: require('../assets/images/sinitox/animais/caravela.png'),
+        imagem: require('../assets/sinitox/animais/caravela.png'),
         tipo: "aquatico",
     },
     {
@@ -2561,7 +2561,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Água quente, limpeza cirúrgica, antibióticos.",
         gravidade: "MODERADA a GRAVE (pela infecção/necrose).",
-        imagem: require('../assets/images/sinitox/animais/arraia.jpg'),
+        imagem: require('../assets/sinitox/animais/arraia.jpg'),
         tipo: "aquatico",
     },
     {
@@ -2623,7 +2623,7 @@ export const animaisCatalog = [
             "Não tocar em pedras/corais"
         ],
         tratamento: "Água quente, soro específico (para Peixe-pedra, se disponível), suporte.",
-        imagem: require('../assets/images/sinitox/animais/peixe_escorpiao.png'),
+        imagem: require('../assets/sinitox/animais/peixe_escorpiao.png'),
         tipo: "aquatico",
     },
     {
@@ -2683,7 +2683,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Lavagem e suporte sintomático.",
         gravidade: "LEVE (humanos) / GRAVE (pets).",
-        imagem: require('../assets/images/sinitox/animais/sapo_cururu.png'),
+        imagem: require('../assets/sinitox/animais/sapo_cururu.png'),
         tipo: "anfibio",
     },
     {
@@ -2745,7 +2745,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Suporte ventilatório até o veneno sair do corpo.",
         gravidade: "EXTREMAMENTE GRAVE - Mortal.",
-        imagem: require('../assets/images/sinitox/animais/baiacu.png'),
+        imagem: require('../assets/sinitox/animais/baiacu.png'),
         tipo: "aquatico",
     },
     {
@@ -2807,7 +2807,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Ventilação mecânica.",
         gravidade: "MORTAL.",
-        imagem: require('../assets/images/sinitox/animais/polvo_aneis_azuis.png'),
+        imagem: require('../assets/sinitox/animais/polvo_aneis_azuis.png'),
         tipo: "aquatico",
     },
     {
@@ -2865,7 +2865,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático.",
         gravidade: "LEVE.",
-        imagem: require('../assets/images/sinitox/animais/salamandra.png'),
+        imagem: require('../assets/sinitox/animais/salamandra.png'),
         tipo: "anfibio",
     },
 ];

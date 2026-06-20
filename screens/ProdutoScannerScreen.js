@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -207,7 +207,6 @@ const styles = StyleSheet.create({
     margin: 16,
     padding: 16,
     borderRadius: 12,
-    elevation: 2,
   },
   codigoLabel: {
     fontSize: 14,
@@ -225,7 +224,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     padding: 16,
     borderRadius: 12,
-    elevation: 2,
   },
   sectionTitle: {
     fontSize: 18,
@@ -338,7 +336,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     padding: 20,
     borderRadius: 12,
-    elevation: 4,
   },
   botaoIcon: {
     fontSize: 40,

@@ -78,7 +78,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-          contentContainerStyle={{ paddingBottom: 120 }}
+          contentContainerStyle={{ paddingBottom: 240 }}
       >
           {/* HERO com parallax */}
           <Animated.View style={{

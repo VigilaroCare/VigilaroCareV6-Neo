@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, TextInput, Dimensions } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import { utensiliosDomesticos } from '../../data/utensilios_domesticos';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
@@ -13,6 +12,7 @@ import ReviewImage from '../../components/ReviewImage';
 import FadeInView from '../../components/FadeInView';
 import { Shadows } from '../../utils/Theme';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
 
 // Cor de risco por nivel (heuristica baseada no texto do campo)
 const getRiscoColor = (risco) => {
@@ -26,7 +26,6 @@ const getRiscoColor = (risco) => {
 const getRiscoBg = (color) => color + '15';
 
 export default function UtensiliosDomesticosScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -55,104 +54,38 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
         });
     };
 
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
-    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
-
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
-
-    const capaUrl = 'https://images.pexels.com/photos/108061/pexels-photo-108061.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Kitchen utensils
+    const capaUrl = 'https://loremflickr.com/1200/800/kitchen,utensil?lock=6'; // Kitchen utensils
 
     const title = t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos');
     const subtitle = t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço');
 
     return (
-        <View style={{ flex: 1, backgroundColor: surface }}>
-            <StatusBar style="light" />
+        <AppBackground>
+            <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style={isDark ? 'light' : 'dark'} translucent={false} />
 
-            {/* Float Header / Back Button */}
-            <SafeAreaView edges={['top']} style={styles.safeHeader}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={styles.backBtnFlat}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('common.back', 'Voltar')}
+                {/* Header Padronizado */}
+                <NeoScreenHeader
+                    title={title}
+                    subtitle={subtitle}
+                    onBack={() => navigation.goBack()}
+                />
+
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingHorizontal: Neo.layout.screenHPadding, paddingBottom: Neo.layout.scrollBottomFooter }}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
-
-            <Animated.ScrollView
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-                contentContainerStyle={{ paddingBottom: 120 }}
-            >
-                {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: THEME_COLOR,
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <ReviewImage
-                        source={{ uri: capaUrl }}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                    />
-                    
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
-                    {/* Hero title — viaja junto com a parallax */}
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFFFFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                        }} accessibilityRole="header">
-                            {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: 'rgba(255,255,255,0.9)',
-                            marginTop: 6,
-                            fontWeight: '600'
-                        }}>
-                            {subtitle}
-                        </Text>
+                    {/* Imagem em banner arredondado flat */}
+                    <View style={{ width: '100%', height: 180, borderRadius: 24, overflow: 'hidden', marginTop: 12, marginBottom: 24 }}>
+                        <ReviewImage
+                            source={{ uri: capaUrl }}
+                            style={{ width: '100%', height: '100%' }}
+                            resizeMode="cover"
+                        />
                     </View>
-                </Animated.View>
 
-                {/* Main Content */}
-                <View style={[styles.content, { marginTop: 20 }]}>
+                    {/* Main Content */}
+                    <View style={{ marginTop: 0 }}>
 
                     {/* Search Bar */}
                     <View style={[styles.searchContainer, { borderColor: themeColors.neutral[300], backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.5)' }]}>
@@ -223,8 +156,9 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
 
                     <View style={{ height: 200 }} />
                 </View>
-            </Animated.ScrollView>
-        </View>
+            </ScrollView>
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 

@@ -8,7 +8,7 @@
         "sosHint": "Toque para abrir emergência. Mantenha pressionado para rápida."
     },
     "home": {
-        "mainHouse": "Casa Principal",
+        "mainHouse": "Minha Casa Principal",
         "myProfile": "Meu Perfil",
         "overdueMeds": "{{count}} Remédios Atrasados",
         "activeMonitor": "MONITOR ATIVO",
@@ -627,6 +627,7 @@
         "venomousAnimals": "Animais Peçonhentos",
         "hazardousProducts": "Produtos Químicos",
         "electricalRisks": "Riscos Elétricos",
+        "physicalRisks": "Riscos Físicos",
         "safeGardening": "Jardinagem Segura",
         "kitCare": "Kit e Cuidados",
         "condoSafety": "Segurança em Condomínio",
@@ -706,6 +707,19 @@
         "findVet": "BUSCAR CLINICA 24H"
     },
     "profiles": {
+        "whoAndWhereToProtect": "Quem e onde proteger",
+        "residentsAndLocations": "Moradores e locais",
+        "whereAreWe": "Onde estamos?",
+        "tapToChangeLocation": "Toque para trocar de local",
+        "noResidence": "Nenhuma Residência",
+        "eventualVisitor": "Visitante Eventual",
+        "fixedResident": "Morador Fixo",
+        "registeredLocations": "Locais Cadastrados",
+        "addNewResidence": "Adicionar nova residência",
+        "addMemberTo": "Adicionar integrante à {{local}}",
+        "whoIsHere": "Quem está na {{local}}?",
+        "linkExistingTo": "Vincular pessoas existentes à {{local}}",
+        "confirmContext": "Confirmar Contexto",
         "title": "Quem e Onde",
         "subtitle": "Gerencie perfis e lares",
         "peopleTab": "Pessoas",
@@ -739,7 +753,11 @@
         "actionBlocked": "Acao Bloqueada",
         "cannotDeleteMain": "O perfil principal não pode ser excluido.",
         "cannotDeleteActive": "Não e possível apagar a residência ativa.",
-        "finishGoHome": "Concluir e Ir para o Inicio"
+        "finishGoHome": "Concluir e Ir para o Inicio",
+        "residenceChangedTitle": "Local Alterado",
+        "residenceChangedMsg": "Agora monitorando: {{name}}",
+        "linkSuccessTitle": "Sucesso",
+        "linkSuccessMsg": "{{name}} foi vinculado(a) a este local."
     },
     "disclaimer": {
         "monitor": "Recurso auxiliar: não substitui a supervisão de um adulto responsável.",
@@ -1883,7 +1901,16 @@
         "recentTitle": "Atividade recente",
         "recentSub": "Eventos e ações do app",
         "dataHealthTitle": "Saúde dos dados",
-        "dataHealthSub": "Diagnóstico de integridade"
+        "dataHealthSub": "Diagnóstico de integridade",
+        "scanTitle": "Vigilaro Scan",
+        "scanSubtitle": "Inteligência Artificial e Análise",
+        "cameraScanning": "Escaneamento por Câmera",
+        "scannerAmbienteTitle": "Escanear Ambiente",
+        "scannerAmbienteDesc": "Análise de riscos físicos em cômodos",
+        "labelScanTitle": "Analisar Rótulo com IA",
+        "labelScanSubtitle": "Fotografe os ingredientes do produto",
+        "barcodeTitle": "Código de Barras",
+        "barcodeDesc": "Identificação rápida na base de dados"
     },
     "mapaCalor": {
         "title": "Mapa de calor",
@@ -1923,5 +1950,16 @@
         "acceptA11y": "Entendi e aceito o monitoramento de áudio",
         "decline": "Agora não",
         "declineA11y": "Não usar a função de monitoramento de áudio"
+    },
+    "cuidarProteger": {
+        "headerTitle": "Cuidar & Proteger",
+        "headerSubtitle": "Adaptação ativa e segurança para todos",
+        "description": "Personalize e adapte a sua casa de acordo com o perfil de quem mora ou visita o seu lar.",
+        "descAmbientes": "Prevenção de acidentes e riscos fatiados por cada cômodo da sua casa.",
+        "descMentesAtipicas": "Segurança inclusiva e adaptação do lar para perfis neurodivergentes.",
+        "descPets": "Plantas tóxicas, alimentos proibidos e adaptação de ambientes para animais.",
+        "descSegurancaIdade": "Adaptações cruciais para a segurança e independência da terceira idade.",
+        "descGestanteSegura": "Cuidados estruturais e de hábitos para a segurança durante a gestação.",
+        "descBrinquedosHub": "Guia sobre classificação etária, riscos de engasgo e brinquedos perigosos."
     }
 }

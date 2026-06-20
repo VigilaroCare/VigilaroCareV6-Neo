@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Platform,
   Modal,
+  AccessibilityInfo,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -21,6 +22,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBg from '../../components/AppBackground';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
 import TriColorBar from '../../components/TriColorBar';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
@@ -43,6 +45,28 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   const [pendingNavigation, setPendingNavigation] = useState(null);
   const [scheduleModalVisible, setScheduleModalVisible] = useState(false);
   const { t } = useTranslation();
+
+  const completedCount = items.filter((item) => item.status === 'conforme' || item.checked === true).length;
+  const naCount = items.filter((item) => item.status === 'na').length;
+  const effectiveTotal = items.length - naCount;
+  const totalCount = effectiveTotal;
+  const percentage = effectiveTotal > 0 ? Math.round((completedCount / effectiveTotal) * 100) : 0;
+
+  // Evita disparar anúncio no primeiro render
+  const isInitialRender = useRef(true);
+  useEffect(() => {
+    if (loading || totalCount === 0) return;
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+    const timer = setTimeout(() => {
+      AccessibilityInfo.announceForAccessibility(
+        t('checklists.progressAnnounce', `Progresso da vistoria: ${completedCount} de ${totalCount} verificados (${percentage}%)`)
+      );
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [completedCount, totalCount, percentage, loading]);
 
   useEffect(() => {
     // Carrega a residência ativa UMA VEZ antes de carregar o checklist
@@ -157,7 +181,15 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       let foundIndex = -1;
 
       // Procura a partir da sala atual se index for conhecido, senão do começo
-      const startIndex = currentRoomIndex !== undefined ? currentRoomIndex + 1 : 0;
+      let startIndex = 0;
+      if (currentRoomIndex !== undefined) {
+        startIndex = currentRoomIndex + 1;
+      } else {
+        const activeIdx = currentRoomList.findIndex(r => r.roomId === roomId);
+        if (activeIdx !== -1) {
+          startIndex = activeIdx + 1;
+        }
+      }
 
       // Look forward
       for (let i = startIndex; i < currentRoomList.length; i++) {
@@ -346,11 +378,6 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
     );
   };
 
-  const completedCount = items.filter((item) => item.status === 'conforme' || item.checked === true).length;
-  const naCount = items.filter((item) => item.status === 'na').length;
-  const effectiveTotal = items.length - naCount;
-  const totalCount = effectiveTotal;
-  const percentage = effectiveTotal > 0 ? Math.round((completedCount / effectiveTotal) * 100) : 0;
 
   if (loading) {
     return (
@@ -369,38 +396,32 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
         <StatusBar style="dark" />
 
         {/* Modern Neo Header */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          >
-            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-          </TouchableOpacity>
-          
-          <View style={styles.headerContent}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={styles.headerIcon}>{roomIcon || '🏠'}</Text>
-                <H2 style={[styles.headerTitle, { color: Neo.colors.neutral[800], marginLeft: 8 }]} numberOfLines={1}>{displayRoomName || t('checklists.room')}</H2>
-            </View>
-            {categoryFilter && (
-              <Small style={styles.headerSubtitle} numberOfLines={1}>{t('checklists.category')} {categoryFilter}</Small>
-            )}
-          </View>
-          
-          <TouchableOpacity
-            style={{ 
-                paddingHorizontal: 12, paddingVertical: 8, 
-                backgroundColor: 'rgba(107, 114, 128, 0.1)', 
-                borderRadius: 12, borderWidth: 1, borderColor: 'rgba(107, 114, 128, 0.2)' 
-            }}
-            onPress={mapAllToNA}
-          >
-            <Small style={{ color: Neo.colors.neutral[600], fontWeight: 'bold', textAlign: 'center' }}>{t('checklists.notApplicable')}</Small>
-          </TouchableOpacity>
-        </View>
+        <NeoScreenHeader 
+            title={`${roomIcon || '🏠'} ${displayRoomName || t('checklists.room')}`}
+            subtitle={categoryFilter ? `${t('checklists.category')} ${categoryFilter}` : undefined}
+            onBack={() => navigation.goBack()}
+            rightAction={
+              <TouchableOpacity
+                style={{ 
+                    paddingHorizontal: 12, paddingVertical: 8, 
+                    backgroundColor: 'rgba(107, 114, 128, 0.1)', 
+                    borderRadius: 12, borderWidth: 1, borderColor: 'rgba(107, 114, 128, 0.2)' 
+                }}
+                onPress={mapAllToNA}
+              >
+                <Small style={{ color: Neo.colors.neutral[600], fontWeight: 'bold', textAlign: 'center' }}>{t('checklists.notApplicable')}</Small>
+              </TouchableOpacity>
+            }
+        />
 
       {/* Progress + Tri-Color Bar */}
-      <View style={[styles.progressContainer, { padding: 12, marginBottom: 12 }]}>
+      <NeoCard
+        variant="elevated"
+        style={[styles.progressContainer, { padding: 12, marginBottom: 12 }]}
+        accessible={true}
+        accessibilityRole="summary"
+        accessibilityLabel={`Progresso da vistoria: ${completedCount} de ${totalCount} verificados, equivalente a ${percentage}%`}
+      >
         <View style={styles.progressInfo}>
           <Small style={{ color: '#666', fontWeight: '600' }}>
             {completedCount}/{totalCount} {t('checklists.verified')}
@@ -417,7 +438,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           });
           return <TriColorBar baixo={baixo} atencao={atencao} critico={critico} height={8} showLabels={completedCount > 0} style={{ marginTop: 6 }} />;
         })()}
-      </View>
+      </NeoCard>
 
       {/* --- SMART TIP (Banner Compacto) --- */}
       {activeTip && tipVisible && (
@@ -476,7 +497,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           </View>
         ) : (
           items.filter(i => !categoryFilter || i.category === categoryFilter).map((item) => (
-            <NeoCard variant="glass"
+            <NeoCard variant="flat"
               key={item.id}
               style={{
                 flexDirection: 'row',
@@ -524,6 +545,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
                       borderColor: item.status === 'conforme' ? 'transparent' : '#E2E8F0',
                     }}
                     activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('checklists.statusConforme', 'Conforme')}
+                    accessibilityState={{ selected: item.status === 'conforme' }}
                   >
                     <Small style={{ fontWeight: 'bold', color: item.status === 'conforme' ? '#FFF' : '#94A3B8' }}>S</Small>
                   </TouchableOpacity>
@@ -537,6 +561,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
                       borderColor: item.status === 'risco' ? 'transparent' : '#E2E8F0',
                     }}
                     activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('checklists.statusRisco', 'Risco')}
+                    accessibilityState={{ selected: item.status === 'risco' }}
                   >
                     <Small style={{ fontWeight: 'bold', color: item.status === 'risco' ? '#FFF' : '#94A3B8' }}>N</Small>
                   </TouchableOpacity>
@@ -551,6 +578,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
                     borderColor: item.status === 'na' ? 'transparent' : '#E2E8F0'
                   }}
                   activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel={t('checklists.statusNA', 'Não aplicável')}
+                  accessibilityState={{ selected: item.status === 'na' }}
                 >
                   <Small style={{ fontSize: 9, fontWeight: '800', color: item.status === 'na' ? '#FFF' : '#94A3B8' }}>{t('headersFirst.nA', 'N/A')}</Small>
                 </TouchableOpacity>
@@ -645,11 +675,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 16,
     borderRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
   },
   progressInfo: {
     flexDirection: 'row',
@@ -695,11 +720,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderWidth: 2,
     borderColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
     justifyContent: 'space-between'
   },
   cardHeader: {
@@ -757,11 +777,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 40,
     width: '100%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4,
   },
   nextButtonText: {
     color: '#FFF',

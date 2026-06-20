@@ -24,7 +24,8 @@ export const Config = {
     // BACKEND PROXY — Vigilaro
     // O fallback aponta para o IP local do seu computador rodando o server.js
     // ---------------------------------------------------------------------------
-    VIGILARO_PROXY_URL: process.env.EXPO_PUBLIC_VIGILARO_PROXY_URL || 'http://192.168.100.65:3000',
+    VIGILARO_PROXY_URL: process.env.EXPO_PUBLIC_VIGILARO_PROXY_URL || 
+        (__DEV__ ? 'http://192.168.100.65:3000' : 'https://vigilaro-proxy.onrender.com'),
     VIGILARO_APP_SECRET: process.env.EXPO_PUBLIC_VIGILARO_APP_SECRET || '',
 
     // ---------------------------------------------------------------------------

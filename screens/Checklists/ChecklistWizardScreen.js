@@ -14,6 +14,7 @@ import { t_field } from "../../utils/getLocalizedField";
 import NeoCard from "../../components/NeoCard";
 import NeoIcon from "../../components/NeoIcon";
 import AppBackground from "../../components/AppBackground";
+import NeoScreenHeader from "../../components/NeoScreenHeader";
 import ScaleButton from "../../components/ScaleButton";
 import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
@@ -88,8 +89,12 @@ export default function ChecklistWizardScreen({ navigation }) {
   if (modo === "inicio") {
     return (
       <AppBackground>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
           <StatusBar style={isDark ? 'light' : 'dark'} />
+          <NeoScreenHeader 
+            title={t('checklistWizard.routineInspection')} 
+            onBack={() => navigation.goBack()} 
+          />
           <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
             <View style={{ alignItems: 'center', marginBottom: 24, marginTop: 12 }}>
                 <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: 'rgba(26, 115, 232, 0.15)', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
@@ -144,17 +149,13 @@ export default function ChecklistWizardScreen({ navigation }) {
 
   return (
     <AppBackground>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <StatusBar style={isDark ? 'light' : 'dark'} />
-        <View style={styles.header}>
-            <TouchableOpacity onPress={() => setModo("inicio")} style={styles.backButton}>
-                <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-            </TouchableOpacity>
-            <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
-                <H2>{t('checklistWizard.routineInspection')}</H2>
-                <Small style={{ color: Neo.colors.neutral[500] }}>{t('checklistWizard.specificAudit')}</Small>
-            </View>
-        </View>
+        <NeoScreenHeader 
+            title={t('checklistWizard.routineInspection')} 
+            subtitle={t('checklistWizard.specificAudit')} 
+            onBack={() => setModo("inicio")} 
+        />
 
         <ScrollView contentContainerStyle={styles.scrollContentList} showsVerticalScrollIndicator={false}>
           <Body style={{ color: Neo.colors.neutral[600], marginBottom: 20, textAlign: 'center' }}>

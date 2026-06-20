@@ -128,7 +128,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
 
                 <ScrollView
                     style={styles.content}
-                    contentContainerStyle={{ paddingBottom: 190, paddingTop: 8 }}
+                    contentContainerStyle={{ paddingBottom: 240, paddingTop: 8 }}
                     showsVerticalScrollIndicator={false}
                 >
 
@@ -183,29 +183,34 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                 {CHECKLIST_ASILO_SEGURA.categorias.map((categoria) => {
                                     const progress = getCategoryProgress(categoria);
                                     return (
-                                        <NeoCard
-                                            variant="glass"
+                                        <TouchableOpacity
                                             key={categoria.id}
-                                            style={styles.gridCard}
+                                            style={styles.gridCell}
+                                            activeOpacity={0.8}
                                             onPress={() => setActiveCategory(categoria.id)}
                                         >
-                                            <View style={[styles.iconCircle, { backgroundColor: categoria.cor + '15' }]}>
-                                                <NeoText style={{ fontSize: 26 }}>{categoria.icone}</NeoText>
-                                            </View>
-                                            <NeoText style={styles.gridCardTitle} numberOfLines={3}>
-                                                {t_field(categoria, 'nome')}
-                                            </NeoText>
-                                            {progress.percentual > 0 && (
-                                                <View style={styles.gridMiniBar}>
-                                                    <View style={{
-                                                        width: `${progress.percentual}%`,
-                                                        height: '100%',
-                                                        backgroundColor: categoria.cor,
-                                                        borderRadius: 2,
-                                                    }} />
+                                            <NeoCard
+                                                variant="glass"
+                                                style={styles.gridCard}
+                                            >
+                                                <View style={[styles.iconCircle, { backgroundColor: categoria.cor + '15' }]}>
+                                                    <NeoText style={{ fontSize: 26 }}>{categoria.icone}</NeoText>
                                                 </View>
-                                            )}
-                                        </NeoCard>
+                                                <NeoText style={styles.gridCardTitle} numberOfLines={2}>
+                                                    {t_field(categoria, 'nome')}
+                                                </NeoText>
+                                                {progress.percentual > 0 && (
+                                                    <View style={styles.gridMiniBar}>
+                                                        <View style={{
+                                                            width: `${progress.percentual}%`,
+                                                            height: '100%',
+                                                            backgroundColor: categoria.cor,
+                                                            borderRadius: 2,
+                                                        }} />
+                                                    </View>
+                                                )}
+                                            </NeoCard>
+                                        </TouchableOpacity>
                                     );
                                 })}
                             </View>
@@ -222,7 +227,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                                 onPress={() => setActiveCategory(null)}
                                             >
                                                 <View style={styles.backCircle}>
-                                                    <ArrowLeft size={16} color={Neo.colors.neutral[700]} />
+                                                    <NeoIcon name="ArrowLeft2" size={16} color={Neo.colors.neutral[700]} />
                                                 </View>
                                                 <H3 style={{ color: Neo.colors.neutral[700] }}>
                                                     {t('headersFirst.voltarParaCategorias', 'Voltar para Categorias')}
@@ -280,7 +285,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
 
                                                     return (
                                                         <NeoCard
-                                                            variant="glass"
+                                                            variant="flat"
                                                             key={item.id}
                                                             style={styles.itemCard}
                                                         >
@@ -498,22 +503,25 @@ const styles = StyleSheet.create({
         marginTop: 12,
         gap: 12,
     },
+    gridCell: {
+        width: '31.5%',
+        aspectRatio: 0.85,
+        marginBottom: 8,
+    },
     gridCard: {
-        width: '48%',
-        minHeight: 140,
-        padding: 14,
+        flex: 1,
+        padding: 10,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: 16,
     },
     gridCardTitle: {
-        fontSize: 13,
+        fontSize: 11,
         fontWeight: '700',
         color: Neo.colors.neutral[800],
         textAlign: 'center',
-        lineHeight: 17,
-        paddingHorizontal: 4,
-        marginTop: 4,
+        lineHeight: 14,
+        paddingHorizontal: 2,
     },
     iconCircle: {
         width: 56,
@@ -555,6 +563,11 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 14,
         marginBottom: 8,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: '#F3F4F6',
+        ...Neo.shadows.sm,
     },
     itemPriorityBar: {
         width: 4,

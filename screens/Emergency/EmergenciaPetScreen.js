@@ -62,7 +62,12 @@ export default function EmergenciaPetScreen({ navigation }) {
           {/* PROTOCOLOS DE SOBREVIVÊNCIA */}
           <TouchableOpacity
             activeOpacity={0.85}
-            onPress={() => navigation.navigate('PrimeirosSocorrosEmergencia')}
+            onPress={() => navigation.navigate('PrimeirosSocorros', {
+              petHero: {
+                titulo: t('headersFirst.survivalProtocols', 'Protocolos de sobrevivência'),
+                cor: '#10B981',
+              }
+            })}
           >
             <NeoCard variant="elevated" style={s.heroAction}>
               <View style={[s.heroIconBox, { backgroundColor: '#10B981' }]}>

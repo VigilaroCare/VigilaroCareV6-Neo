@@ -142,7 +142,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para o Corpo',
             icone: 'shirt-outline',
             emoji: '👷',
-            imagemUrl: 'https://images.pexels.com/photos/8487783/pexels-photo-8487783.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: null,
             quando: [
                 'Podar plantas (espinhos, alergia)',
                 'Manusear materiais abrasivos',

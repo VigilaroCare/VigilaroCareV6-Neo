@@ -9,7 +9,7 @@ export const MICRO_BLOG_CATEGORIES = [
     { id: 'idosos', label: 'Idosos', label_en: 'Seniors', label_es: 'Adultos Mayores', icon: 'Man', color: '#8B5CF6' },
     { id: 'casa', label: 'Casa Segura', label_en: 'Safe Home', label_es: 'Hogar Seguro', icon: 'Home2', color: '#3B82F6' },
     { id: 'riscos', label: 'Riscos', label_en: 'Risks', label_es: 'Riesgos', icon: 'Danger', color: '#EF4444' },
-    { id: 'socorros', label: 'Primeiros Socorros', label_en: 'First Aid', label_es: 'Primeros Auxilios', icon: 'Health', color: '#10B981' },
+    { id: 'socorros', label: 'Socorros', label_en: 'First Aid', label_es: 'Primeros Auxilios', icon: 'Health', color: '#10B981' },
     { id: 'pets', label: 'Pets', label_en: 'Pets', label_es: 'Mascotas', icon: 'Lovely', color: '#F97316' },
     { id: 'acessibilidade', label: 'Acessibilidade', label_en: 'Accessibility', label_es: 'Accesibilidad', icon: 'Eye', color: '#6366F1' },
     { id: 'kits', label: 'Kits', label_en: 'Kits', label_es: 'Kits', icon: 'Briefcase', color: '#14B8A6' },

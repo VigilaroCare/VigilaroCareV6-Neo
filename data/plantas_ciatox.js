@@ -67,7 +67,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Interiores, vasos.",
         ondeEncontrada_en: "Interiors, pots.",
         ondeEncontrada_es: "Interiores, macetas.",
-        imagem: require('../assets/plantas/comigo.png'),
+        imagem: require('../assets/sinitox/plantas/comigo_ninguem_pode.jpg'),
         tipo: "planta",
     },
     {
@@ -113,7 +113,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Calçadas, parques.",
         ondeEncontrada_en: "Sidewalks, parks.",
         ondeEncontrada_es: "Aceras, parques.",
-        imagem: require('../assets/plantas/espirradeira.png'),
+        imagem: require('../assets/sinitox/plantas/nerium_oleander_espirradeira.jpg'),
         tipo: "planta",
     },
     {
@@ -159,7 +159,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Decoração, jardins.",
         ondeEncontrada_en: "Decoration, gardens.",
         ondeEncontrada_es: "Decoración, jardines.",
-        imagem: require('../assets/plantas/bico_papagaio.png'),
+        imagem: require('../assets/sinitox/plantas/bico_papagaio.jpg'),
         tipo: "planta",
     },
     {
@@ -205,7 +205,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Cercas vivas.",
         ondeEncontrada_en: "Hedges.",
         ondeEncontrada_es: "Setos.",
-        imagem: require('../assets/plantas/coroa_cristo.png'),
+        imagem: require('../assets/sinitox/plantas/euphobia_milii_coroa_de_cristo.jpg'),
         tipo: "planta",
     },
     {
@@ -251,7 +251,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Terrenos baldios.",
         ondeEncontrada_en: "Vacant lots.",
         ondeEncontrada_es: "Terrenos baldíos.",
-        imagem: require('../assets/plantas/mamona.png'),
+        imagem: require('../assets/sinitox/plantas/ricinus_communis_mamona.jpg'),
         tipo: "planta",
     },
     {
@@ -297,7 +297,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Jardins úmidos.",
         ondeEncontrada_en: "Humid gardens.",
         ondeEncontrada_es: "Jardines húmedos.",
-        imagem: require('../assets/plantas/copo_leite.png'),
+        imagem: require('../assets/sinitox/plantas/copo_leite.png'),
         tipo: "planta",
     },
     {
@@ -343,7 +343,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Calçadas.",
         ondeEncontrada_en: "Sidewalks.",
         ondeEncontrada_es: "Aceras.",
-        imagem: require('../assets/plantas/chapeu_napoleao.png'),
+        imagem: require('../assets/sinitox/plantas/chapeu_napoleao.jpg'),
         tipo: "planta",
     },
     {
@@ -389,7 +389,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Sítios.",
         ondeEncontrada_en: "Farms.",
         ondeEncontrada_es: "Fincas.",
-        imagem: require('../assets/plantas/mandioca.png'),
+        imagem: require('../assets/sinitox/plantas/mandioca.png'),
         tipo: "planta",
     },
     {
@@ -435,7 +435,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Matas.",
         ondeEncontrada_en: "Forests.",
         ondeEncontrada_es: "Bosques.",
-        imagem: require('../assets/plantas/aroeira.png'),
+        imagem: require('../assets/sinitox/plantas/schinus_brasiliens_aroeira.jpg'),
         tipo: "planta",
     },
     {
@@ -481,7 +481,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Hortas.",
         ondeEncontrada_en: "Vegetable gardens.",
         ondeEncontrada_es: "Huertos.",
-        imagem: require('../assets/plantas/taioba.png'),
+        imagem: require('../assets/sinitox/plantas/taioba.png'),
         tipo: "planta",
     },
     // Plantas sem imagem no pacote do usuário (usando placeholder null ou emoji)
@@ -519,7 +519,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Interiores.",
         ondeEncontrada_en: "Interiors.",
         ondeEncontrada_es: "Interiores.",
-        imagem: require('../assets/plantas/zamioculca.png'),
+        imagem: require('../assets/sinitox/plantas/zamioculca.png'),
         tipo: "planta",
     },
     {
@@ -556,7 +556,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Cercas.",
         ondeEncontrada_en: "Fences.",
         ondeEncontrada_es: "Cercas.",
-        imagem: require('../assets/plantas/avelos.png'),
+        imagem: require('../assets/sinitox/plantas/avelos.png'),
         tipo: "planta",
     },
     {
@@ -593,7 +593,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Calçadas.",
         ondeEncontrada_en: "Sidewalks.",
         ondeEncontrada_es: "Aceras.",
-        imagem: require('../assets/plantas/cinamomo.png'),
+        imagem: require('../assets/sinitox/plantas/cinamomo.png'),
         tipo: "planta",
     },
     {
@@ -630,7 +630,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Jardins.",
         ondeEncontrada_en: "Gardens.",
         ondeEncontrada_es: "Jardines.",
-        imagem: require('../assets/plantas/pinhao_roxo.png'),
+        imagem: require('../assets/sinitox/plantas/jatropha_gossypiifolia_pinh_o_roxo.jpg'),
         tipo: "planta",
     },
     {
@@ -667,7 +667,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Beira de rios.",
         ondeEncontrada_en: "Riverbanks.",
         ondeEncontrada_es: "Orillas de ríos.",
-        imagem: require('../assets/plantas/saia_branca.png'),
+        imagem: require('../assets/sinitox/plantas/saia_branca.png'),
         tipo: "planta",
     },
     {
@@ -704,7 +704,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Jardins.",
         ondeEncontrada_en: "Gardens.",
         ondeEncontrada_es: "Jardines.",
-        imagem: require('../assets/plantas/tinhorao.png'),
+        imagem: require('../assets/sinitox/plantas/calandium_bicolor_tinhor_o.jpg'),
         tipo: "planta",
     },
     {
@@ -741,7 +741,7 @@ export const plantasCiatox = [
         ondeEncontrada: "Matas.",
         ondeEncontrada_en: "Forests.",
         ondeEncontrada_es: "Bosques.",
-        imagem: require('../assets/plantas/urtiga.png'),
+        imagem: require('../assets/sinitox/plantas/urtiga.png'),
         tipo: "planta",
     }
 ];

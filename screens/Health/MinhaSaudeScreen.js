@@ -14,6 +14,8 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import EmptyState from '../../components/EmptyState';
+import { SkeletonCard } from '../../components/SkeletonLoader';
 
 // Campos médicos são arrays no schema. Normaliza item string OU objeto em texto.
 const asList = (arr) => (Array.isArray(arr) ? arr : [])
@@ -129,12 +131,24 @@ export default function MinhaSaudeScreen() {
                 />
 
                 {loading ? (
-                    <View style={s.center}><ActivityIndicator color={Neo.colors.primary[600]} /></View>
+                    <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
+                        <View style={{ marginTop: Neo.spacing.md }}>
+                            <SkeletonCard lines={2} />
+                            <SkeletonCard lines={3} />
+                            <SkeletonCard lines={2} />
+                        </View>
+                    </ScrollView>
                 ) : !profile ? (
-                    <View style={s.center}>
-                        <NeoIcon name="Users" variant="Bulk" color={Neo.colors.neutral[400]} size={48} />
-                        <Body style={s.emptyBig}>Nenhum perfil cadastrado ainda.</Body>
-                    </View>
+                    <EmptyState
+                        icon="Users"
+                        title={t('health.noProfiles', 'Nenhum perfil cadastrado')}
+                        description={t('health.noProfilesDesc', 'Cadastre perfis humanos para gerenciar as informações de saúde.')}
+                        cta={{
+                            label: t('health.addProfile', 'Cadastrar Perfil'),
+                            onPress: () => navigation.navigate('QuemProteger'),
+                            color: Neo.colors.primary[500]
+                        }}
+                    />
                 ) : (
                     <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
                         {/* HERO — identidade: foto à esquerda + lead à direita (formato único §2) */}

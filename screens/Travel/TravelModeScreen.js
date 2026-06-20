@@ -43,6 +43,7 @@ const TRAVEL_PICTOGRAMS = {
     trabalho: require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
     // destino internacional? (wizard)
     internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
+    nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
     // destinos
     destino_internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
     destino_nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
@@ -362,7 +363,7 @@ export default function TravelModeScreen({ navigation }) {
                                 apagado = não vai junto, aceso com check = vai */}
                             {[
                                 { key: 'companhia_criancas', active: hasKids, toggle: () => setHasKids(!hasKids), label: t('travel.children', 'Crianças') },
-                                { key: 'companhia_idosos', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', 'Idosos') },
+                                { key: 'companhia_idosos', active: hasElderly, toggle: () => setHasElderly(!hasElderly), label: t('travel.elderly', '60+') },
                                 { key: 'companhia_pets', active: hasPets, toggle: () => setHasPets(!hasPets), label: t('travel.pets', 'Pets') },
                                 { key: 'companhia_pcd', active: hasPcd, toggle: () => setHasPcd(!hasPcd), label: t('travel.pwds', 'PCDs') },
                             ].map(item => (

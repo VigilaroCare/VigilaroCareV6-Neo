@@ -141,7 +141,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
     },
     {
         id: 'microondas',
-        imagemUrl: 'https://images.pexels.com/photos/4686822/pexels-photo-4686822.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: null,
         nome: 'Micro-ondas',
         emoji: '📡',
         nivelRisco: 'medio',

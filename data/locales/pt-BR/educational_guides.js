@@ -3,127 +3,127 @@ export const EDUCATIONAL_GUIDES_PT_BR = {
         label: 'Quintal / Jardim',
         iconName: 'Tree',
         color: '#388E3C',
-        content: 'Remova plantas tóxicas e elimine entulhos que abrigam animais peçonhentos.'
+        content: 'Tire plantas venenosas e limpe qualquer entulho acumulado onde aranhas, escorpiões ou ratos possam fazer ninho.'
     },
     jardinagem: {
         label: 'Jardinagem/Plantas',
         iconName: 'Tree',
         color: '#8BC34A',
-        content: 'Ao cultivar seu jardim, identifique e remova espécies tóxicas se houver crianças ou pets em casa. Armazene fertilizantes e pesticidas exclusivamente em armários altos e trancados. Durante o manuseio da terra, proteja-se sempre com luvas e calçado fechado para evitar ferimentos ou o contato com parasitas.'
+        content: 'Antes de plantar, cheque se a espécie não é tóxica para crianças e bichos de estimação. Guarde venenos e adubos em armários trancados e bem altos. E use sempre luvas e sapato fechado ao mexer na terra para evitar cortes ou parasitas.'
     },
     areas_coletivas: {
         label: 'Áreas Comuns',
         iconName: 'Profile2User',
         color: '#FFC107',
-        content: 'Em playgrounds e áreas comuns, faça inspeção visual rápida nos brinquedos procurando por ferrugem, parafusos soltos ou pontas perigosas antes de permitir o uso. A supervisão das crianças nesses locais deve ser constante.'
+        content: 'Antes de deixar a garotada brincar em parquinhos ou áreas do condomínio, dê uma olhada rápida se os brinquedos não têm ferrugem, pontas afiadas ou parafusos soltos. E não tire o olho deles nem por um minuto.'
     },
     piscina: {
         label: 'Piscina',
         iconName: 'Pool',
         color: '#03A9F4',
-        content: 'A segurança na piscina exige barreiras físicas intransponíveis: instale cercas de pelo menos 1.20 de altura (Lei Federal 14.327/2022) com portões de travamento automático ou bloqueio físico manual. Utilize ralos anti-aprisionamento. Designe sempre um "vigilante" adulto focado exclusivamente nas crianças, sem distrações como celular.'
+        content: 'Piscina precisa de cerca alta (pelo menos 1,20m) e portão que tranca sozinho para nenhuma criança entrar sem querer. Use ralos que não sugam o cabelo. E escolha um adulto para vigiar os pequenos o tempo todo — sem celular nem distrações.'
     },
     praia_rios: {
         label: 'Áreas Naturais',
         iconName: 'Map',
         color: '#0288D1',
-        content: 'Em praias e rios, respeite rigorosamente a sinalização de perigo e avalie a força da correnteza antes de entrar na água. Para crianças e não nadadores, o uso de colete salva-vidas homologado é obrigatório e insubstituível por boias de braço. Mantenha atenção a animais marinhos.'
+        content: 'Respeite as placas de perigo e cheque a força da correnteza antes de entrar na água. Boias de braço furam ou escapam fácil; use sempre colete salva-vidas adequado nas crianças e em quem não sabe nadar.'
     },
     oficinas: {
         label: 'Oficinas/Ferramentas',
         iconName: 'Setting2',
         color: '#455A64',
-        content: 'Organize sua oficina mantendo ferramentas cortantes e pontiagudas guardadas em painéis fixos ou caixas apropriadas fechadas. Verifique regularmente a integridade de fios e extensões elétricas. Adote o hábito de usar óculos de proteção e luvas, e armazene produtos inflamáveis longe de qualquer fonte de calor.'
+        content: 'Guarde ferramentas cortantes ou pesadas em caixas trancadas ou painéis bem fixos na parede. Cheque se os fios de furadeiras e extensões não estão descascados. Use óculos de proteção e nunca deixe solventes ou tintas perto do calor.'
     },
     depositos: {
         label: 'Depósitos',
         iconName: 'Box',
         color: '#5D4037',
-        content: 'Mantenha depósitos limpos e organizados para evitar que se tornem ninhos de aranhas e roedores. Siga a regra de ouro da gravidade: coloque caixas pesadas sempre no chão e deixe as partes altas para itens leves. Mantenha corredores de circulação livres de obstáculos.'
+        content: 'Mantenha caixas pesadas no chão e guarde as coisas leves no alto. Limpe o quartinho de bagunça com frequência para evitar aranhas e baratas. Deixe a passagem livre para não ter risco de tropeções.'
     },
     sala: {
         label: 'Sala',
         iconName: 'Monitor',
         color: '#7B1FA2',
-        content: 'Para garantir uma sala segura, priorize a circulação livre: fixe estantes e televisões à parede para evitar tombamentos graves e remova tapetes soltos ou fixe-os com fita dupla face. Mantenha garrafas de vidro e bebidas alcoólicas em móveis fechados e supervisione plantas ornamentais.'
+        content: 'Prenda estantes e a TV na parede para evitar que tombem sobre as crianças. Prenda ou tire tapetes soltos para ninguém escorregar. Bebidas e garrafas de vidro devem ficar em móveis fechados ou prateleiras altas.'
     },
     cozinha: {
         label: 'Cozinha',
         iconName: 'Kitchen',
         color: '#F57C00',
-        content: 'Área de exclusão total para crianças durante a preparação das refeições. Use as bocas de trás do fogão e vire os cabos das panelas para dentro.'
+        content: 'Mantenha as crianças longe do fogão quando estiver cozinhando. Use as bocas de trás e vire todos os cabos das panelas para dentro para evitar acidentes graves com óleo ou água quente.'
     },
     varanda: {
         label: 'Varanda',
         iconName: 'Sun1',
         color: '#FBC02D',
-        content: 'Varandas exigem proteção vertical: instale redes certificadas em todas as aberturas. Elimine qualquer móvel próximo ao guarda-corpo que possa servir de "escada" para crianças. Garanta piso antiderrapante.'
+        content: 'Coloque rede de proteção em todas as janelas e sacadas. Tire cadeiras, vasos ou sofás de perto do parapeito para que ninguém use como escada. Garanta que o piso não fique escorregadio quando chover.'
     },
     despensa: {
         label: 'Despensa',
         iconName: 'Reserve',
         color: '#795548',
-        content: 'A segurança na despensa começa com a separação: jamais armazene produtos de limpeza ou venenos junto com alimentos. Para famílias com bebês, mantenha grãos como arroz e feijão em prateleiras altas. Ao precisar alcançar itens no alto, utilize escadas firmes e evite improvisos.'
+        content: 'Nunca guarde veneno ou produto de limpeza perto da comida. Se tiver bebês, deixe sacos de grãos e plásticos nas prateleiras de cima. E use uma escada firme para alcançar o alto, nada de subir em cadeira bamba.'
     },
     quartos: {
         label: 'Quarto de Adulto',
         iconName: 'Bed',
         color: '#512DA8',
-        content: 'Carregadores sob travesseiro, velas perfumadas esquecidas acesas e cabos pelo chão são causas comuns de incêndios e quedas noturnas. Mantenha o caminho até o banheiro desimpedido, com luz noturna LED próxima ao chão. Eletrônicos sempre carregando em superfície rígida — nunca sobre a cama ou tecidos.'
+        content: 'Nunca carregue o celular ou tablet na cama ou debaixo do travesseiro — eles esquentam e podem queimar. Deixe o caminho do quarto até o banheiro livre de fios ou tapetes soltos, e coloque uma luz noturna fraquinha no corredor.'
     },
     banheiros: {
         label: 'Banheiros',
         iconName: 'Bathroom',
         color: '#0288D1',
-        content: 'Louças sanitárias quebram como lâminas. Jamais use pias como apoio. Para idosos, instale tapetes emborrachados estritamente dentro do box e também barras de apoio fixas.'
+        content: 'Nunca se apoie na pia do banheiro; ela pode desabar e cortar como navalha. Para evitar tombos, coloque barras de apoio na parede e use tapete de borracha antiderrapante dentro do box.'
     },
     quarto_bebe: {
         label: 'Quarto do Bebê',
         iconName: 'Heart',
         color: '#FF4081',
-        content: 'O berço deve ser o lugar mais seguro: use um colchão firme e justo, sem almofadas, protetores acolchoados ou ursinhos de pelúcia que possam representam risco de asfixia. Posicione o berço longe de janelas, tomadas e fios. Todas as tomadas devem ter protetores. Nas trocas, mantenha sempre uma mão sobre o bebê e não se afaste nunca!'
+        content: 'Berço seguro é berço vazio: use colchão firme e justo, sem travesseiros, protetores laterais fofos, cobertores soltos ou bichos de pelúcia que possam sufocar o bebê. Coloque o berço longe de janelas, cortinas e tomadas. E durante a troca de fraldas, nunca tire as mãos dele.'
     },
     quarto_crianca: {
         label: 'Quarto Infantil',
         iconName: 'EmojiHappy',
         color: '#E91E63',
-        content: 'Beliches devem ter grades laterais mínimas de 30cm e escada fixa. Brinquedos eletrônicos com baterias-botão devem ter compartimentos parafusados — a ingestão queima o esôfago em poucas horas. Verifique brinquedos regularmente: peças soltas e tintas descascando são perigos reais.'
+        content: 'As beliches devem ter proteção lateral alta e escada bem firme. Brinquedos com aquelas pilhas redondas (baterias botão) precisam ter a tampinha parafusada — se uma criança engolir, a queima química destrói o esôfago rapidamente. Jogue fora brinquedos quebrados ou lascados.'
     },
     quarto_idoso: {
         label: 'Quarto do Idoso',
         iconName: 'Health',
         color: '#8D6E63',
-        content: 'A prioridade é a autonomia segura: a cama deve permitir apoiar os pés no chão ao sentar. Instale barras de apoio para levantar e garanta um caminho livre e bem iluminado até o banheiro. Remova tapetes soltos. Mantenha um telefone de emergência acessível. Prefira calçado antiderrapante e de solado baixo em casa.'
+        content: 'A cama deve ser baixa o suficiente para apoiar os pés inteiros no chão antes de levantar. Instale barras de apoio na parede ao lado da cama e deixe um abajur ou interruptor fácil de alcançar. Tire tapetes soltos e chinelos velhos e escorregadios.'
     },
     armarios: {
         label: 'Armários',
         iconName: 'FolderOpen',
         color: '#6D4C41',
-        content: 'Coloque objetos pesados nas prateleiras inferiores. Itens perigosos como medicamentos, pilhas e produtos químicos devem ficar trancados. Mantenha os produtos químicos em suas embalagens originais, evitando que sejam confundidas com bebidas ou alimentos.'
+        content: 'Deixe as coisas mais pesadas embaixo e as leves em cima. Remédios, pilhas e venenos devem ficar trancados sob chave. Nunca guarde desinfetantes ou solventes em garrafas de refrigerante ou potes de sorvete.'
     },
     lavanderia: {
         label: 'Lavanderia',
         iconName: 'WashingMachine',
         color: '#00ACC1',
-        content: 'Misturar água sanitária com amônia gera gases letais. Mantenha os baldes secos e virados para baixo. A lavanderia é um ambiente com elevado risco de afogamento em poucos centímetros de água.'
+        content: 'Nunca misture água sanitária com amônia (ou desinfetantes que tenham amônia); essa mistura solta um gás altamente tóxico. Mantenha baldes e bacias secos e guardados de cabeça para baixo para evitar afogamentos de bebês.'
     },
     garagem: {
         label: 'Garagem',
         iconName: 'Car',
         color: '#455A64',
-        content: 'Sempre faça uma inspeção visual debaixo e atrás do veículo antes de dar a partida. Remova plantas tóxicas e elimine entulhos que abrigam animais indesejados.'
+        content: 'Dê uma olhada rápida atrás e embaixo do carro antes de dar a partida. Guarde óleos de motor, ferramentas e tintas fora do alcance das crianças.'
     },
     central_gas: {
         label: 'Gás (GLP)',
         iconName: 'Danger',
         color: '#D32F2F',
-        content: 'Lide com o gás com cautela: botijões devem ficar em área externa e ventilada. Ao sentir cheiro de gás, não acenda luzes nem risque fósforos; abra as janelas e feche o registro. Para testar vazamentos, utilize apenas espuma de sabão. Se o vazamento persistir, evacue e chame os bombeiros (193).'
+        content: 'Botijões de gás devem ficar do lado de fora da casa, em local ventilado. Se sentir cheiro de vazamento, não ligue lâmpadas, aparelhos ou fósforos; abra as janelas na hora e feche a chave de segurança. Se o cheiro continuar, saia de casa e chame os bombeiros no 193.'
     },
     escadas: {
         label: 'Escadas',
         iconName: 'Stairs',
         color: '#C62828',
-        content: 'Escadas são pontos críticos: instale portões de segurança no topo e na base se houver crianças ou cães. O corrimão deve ser firme e contínuo. Garanta excelente iluminação e jamais deixe objetos soltos nos degraus.'
+        content: 'Coloque portões de proteção no topo e na base da escada se tiver bebês ou pets. Garanta que o corrimão esteja bem firme e nunca deixe brinquedos ou sapatos nos degraus.'
     }
 };
 

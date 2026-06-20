@@ -155,10 +155,7 @@ export default function HomeXRayScreen() {
                                 {visitors.length > 0 ? visitors.map((p) => (
                                     <View key={p.id} style={s.avatarItem}>
                                         <View style={[s.miniAvatar, {
-                                            backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.12)' : 'rgba(16,24,40,0.06)',
-                                            borderWidth: 1.5,
-                                            borderStyle: 'dashed',
-                                            borderColor: Neo.colors.neutral[400]
+                                            backgroundColor: p.tipo === 'pet' ? 'rgba(245,158,11,0.22)' : Neo.colors.primary[100],
                                         }]}>
                                             {p.foto ? (
                                                 <Image source={{ uri: p.foto }} style={s.avatarImg} />

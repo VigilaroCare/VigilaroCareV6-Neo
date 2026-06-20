@@ -1,33 +1,273 @@
 export const riscosFisicos = [
     {
-        id: 'rf_1',
-        nome: 'Segurança Elétrica', nome_en: 'Electrical Safety', nome_es: 'Seguridad Eléctrica',
+        id: 'rf_e1',
+        nome: 'Benjamins e Tês (Sobrecarga)', nome_en: 'Power Strips (Overload)', nome_es: 'Regletas (Sobrecarga)',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
-        emoji: '⚡',
+        emoji: '🔌',
         imagemUrl: 'https://images.pexels.com/photos/11837458/pexels-photo-11837458.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        risco: 'Choque e Incêndio', risco_en: 'Shock and Fire', risco_es: 'Choque e Incendio',
-        descricao: 'Instalações antigas e sobrecarga são as maiores causas de incêndio.', descricao_en: 'Old installations and overload are the main causes of fire.', descricao_es: 'Instalaciones antiguas y sobrecarga son las principales causas de incendio.',
+        risco: 'Superaquecimento e Incêndio', risco_en: 'Overheating and Fire', risco_es: 'Sobrecalentamiento e Incendio',
+        descricao: 'Principal causa de incêndios elétricos no Brasil (Abracopel). Plásticos derretem e propagam fogo rapidamente.', descricao_en: 'Main cause of electrical fires. Plastics melt and spread fire quickly.', descricao_es: 'Principal causa de incendios eléctricos. Los plásticos se derriten y propagan el fuego.',
         prevencao: [
-            'Nunca ligue vários aparelhos potentes (micro-ondas, airfryer) no mesmo benjamim.',
-            'Substitua fios descascados imediatamente.',
-            'Instale protetores de tomada se houver crianças.',
-            'Não passe fios por baixo de tapetes (aquecimento).',
+            'Nunca ligue aparelhos de resistência (micro-ondas, airfryer, secador) em benjamins.',
+            'Prefira filtros de linha com fusível embutido.',
+            'Se a tomada ou o pino do aparelho estiverem quentes, desligue imediatamente.'
         ],
         prevencao_en: [
-            'Never plug multiple powerful appliances (microwave, airfryer) into the same power strip.',
-            'Replace frayed wires immediately.',
-            'Install outlet protectors if there are children.',
-            'Do not run wires under rugs (heating).',
+            'Never plug heating appliances (microwave, airfryer, dryer) into power strips.',
+            'Prefer surge protectors with built-in fuses.',
+            'If the outlet or plug is hot, unplug immediately.'
         ],
         prevencao_es: [
-            'Nunca enchufe varios aparatos potentes (microondas, airfryer) en la misma regleta.',
-            'Reemplace los cables pelados inmediatamente.',
-            'Instale protectores de enchufe si hay niños.',
-            'No pase cables por debajo de alfombras (calentamiento).',
+            'Nunca enchufe aparatos de resistencia (microondas, airfryer, secador) en regletas.',
+            'Prefiera regletas con fusible incorporado.',
+            'Si el enchufe o la clavija están calientes, desconecte inmediatamente.'
         ],
-        primeirosSocorros: 'Desligue a chave geral. Não toque na vítima se ela ainda estiver em contato com a corrente. Chame 192.',
-        primeirosSocorros_en: 'Turn off the main switch. Do not touch the victim if they are still in contact with the current. Call 911.',
-        primeirosSocorros_es: 'Apague el interruptor principal. No toque a la víctima si todavía está en contacto con la corriente. Llame al 911.'
+        primeirosSocorros: 'Se houver princípio de incêndio, NUNCA jogue água. Desligue a chave geral e use extintor pó químico ou CO2.',
+        primeirosSocorros_en: 'If a fire starts, NEVER throw water. Turn off the main switch and use a dry chemical or CO2 extinguisher.',
+        primeirosSocorros_es: 'Si hay principio de incendio, NUNCA arroje agua. Apague el interruptor principal y use extintor de polvo o CO2.'
+    },
+    {
+        id: 'rf_e2',
+        nome: 'Celular no Banheiro/Molhado', nome_en: 'Phone in Bathroom/Wet', nome_es: 'Celular en Baño/Mojado',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '📱',
+        imagemUrl: 'https://images.pexels.com/photos/4004071/pexels-photo-4004071.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Choque Fatal por Umidade', risco_en: 'Fatal Shock from Moisture', risco_es: 'Choque Fatal por Humedad',
+        descricao: 'O corpo molhado reduz drasticamente a resistência da pele, tornando o choque de carregadores letal.', descricao_en: 'A wet body drastically reduces skin resistance, making charger shocks lethal.', descricao_es: 'El cuerpo mojado reduce drásticamente la resistencia de la piel, haciendo letal el choque.',
+        prevencao: [
+            'NUNCA use o celular conectado à tomada enquanto estiver no banho ou com o corpo úmido.',
+            'Carregue o celular fora de banheiros ou áreas de piscina.',
+            'Evite cabos piratas ou falsificados, que não possuem isolamento seguro.'
+        ],
+        prevencao_en: [
+            'NEVER use the phone plugged in while bathing or with a wet body.',
+            'Charge the phone outside bathrooms or pool areas.',
+            'Avoid counterfeit cables with poor insulation.'
+        ],
+        prevencao_es: [
+            'NUNCA use el celular conectado mientras se baña o con el cuerpo húmedo.',
+            'Cargue el celular fuera de baños o áreas de piscina.',
+            'Evite cables falsificados sin aislamiento seguro.'
+        ],
+        primeirosSocorros: 'Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o SAMU (192).',
+        primeirosSocorros_en: 'Unplug the charger using a dry broomstick. Call 911.',
+        primeirosSocorros_es: 'Desconecte el cargador usando un palo de escoba seco. Llame al 911.'
+    },
+    {
+        id: 'rf_e3',
+        nome: 'Fios Desencapados (Pets e Bebês)', nome_en: 'Exposed Wires (Pets/Babies)', nome_es: 'Cables Pelados (Mascotas/Bebés)',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🐶',
+        imagemUrl: 'https://images.pexels.com/photos/731022/pexels-photo-731022.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Eletrocussão e Asfixia', risco_en: 'Electrocution and Asphyxiation', risco_es: 'Electrocución y Asfixia',
+        descricao: 'Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, fechando curto-circuito.', descricao_en: 'Pets chew low cables and babies put them in their mouths, causing short circuits.', descricao_es: 'Las mascotas muerden cables bajos y los bebés se los llevan a la boca, causando cortos.',
+        prevencao: [
+            'Passe cabos por dentro de canaletas de PVC rígidas.',
+            'Use organizadores de fios em formato de conduíte espiral duro.',
+            'Retire extensões rasteiras do chão, subindo a fiação.'
+        ],
+        prevencao_en: [
+            'Run cables through rigid PVC conduits.',
+            'Use hard spiral cable organizers.',
+            'Remove trailing extension cords from the floor.'
+        ],
+        prevencao_es: [
+            'Pase los cables por canaletas de PVC rígidas.',
+            'Use organizadores de cables en espiral dura.',
+            'Retire las extensiones del piso.'
+        ],
+        primeirosSocorros: 'Desligue a energia geral. Se for pet, afaste-o do fio com material plástico/madeira. Faça RCP se houver parada.',
+        primeirosSocorros_en: 'Turn off power. Move pet/baby with plastic/wood. Perform CPR if stopped breathing.',
+        primeirosSocorros_es: 'Apague la energía. Aleje a la mascota/bebé con plástico/madera. Haga RCP si no respira.'
+    },
+    {
+        id: 'rf_e4',
+        nome: 'Troca da Resistência do Chuveiro', nome_en: 'Shower Heater Replacement', nome_es: 'Cambio de Resistencia de Ducha',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🚿',
+        imagemUrl: 'https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Choque Fibrilar no Banho', risco_en: 'Fibrillating Shock in Shower', risco_es: 'Choque Fibrilar en la Ducha',
+        descricao: 'Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas desligando a torneira.', descricao_en: 'Very common accident when fixing a shower with a wet floor without cutting power.', descricao_es: 'Accidente muy común al reparar una ducha con el piso mojado sin cortar la energía.',
+        prevencao: [
+            'Sempre desligue o DISJUNTOR no quadro de força, não apenas a torneira.',
+            'Use calçado de borracha (chinelo seco) durante a troca.',
+            'Após a troca, deixe a água correr no Frio primeiro, para não queimar a nova resistência.'
+        ],
+        prevencao_en: [
+            'Always turn off the BREAKER, not just the tap.',
+            'Wear rubber footwear (dry slippers) during replacement.',
+            'After replacement, let cold water run first to avoid burning the new element.'
+        ],
+        prevencao_es: [
+            'Siempre apague el DISYUNTOR, no solo la llave de agua.',
+            'Use calzado de goma (chanclas secas) durante el cambio.',
+            'Después del cambio, deje correr agua Fría primero.'
+        ],
+        primeirosSocorros: 'Derrube a chave geral da casa. Arraste a vítima para fora do box seco e inicie ressuscitação se necessário.',
+        primeirosSocorros_en: 'Turn off the main switch. Drag victim to a dry area and start CPR if needed.',
+        primeirosSocorros_es: 'Apague el interruptor general. Arrastre a la víctima a un área seca y comience RCP si es necesario.'
+    },
+    {
+        id: 'rf_e5',
+        nome: 'Tomadas Desprotegidas (Crianças)', nome_en: 'Unprotected Outlets (Children)', nome_es: 'Enchufes Desprotegidos (Niños)',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '👶',
+        imagemUrl: 'https://images.pexels.com/photos/3661267/pexels-photo-3661267.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Queimaduras Graves nas Mãos', risco_en: 'Severe Hand Burns', risco_es: 'Quemaduras Graves en Manos',
+        descricao: 'Crianças de 1 a 5 anos frequentemente inserem clipes, grampos ou chaves nos buracos das tomadas baixas.', descricao_en: 'Toddlers often insert clips, hairpins, or keys into low outlets.', descricao_es: 'Niños pequeños a menudo insertan clips, horquillas o llaves en enchufes bajos.',
+        prevencao: [
+            'Coloque protetores de plástico em todas as tomadas não utilizadas.',
+            'Bloqueie o acesso a tomadas com móveis pesados (sofás, estantes).',
+            'Ensine as crianças sobre o risco do choque de forma lúdica.'
+        ],
+        prevencao_en: [
+            'Put plastic protectors in all unused outlets.',
+            'Block access to outlets with heavy furniture.',
+            'Teach children about shock risks playfully.'
+        ],
+        prevencao_es: [
+            'Coloque protectores de plástico en todos los enchufes no utilizados.',
+            'Bloquee el acceso a los enchufes con muebles pesados.',
+            'Enseñe a los niños sobre el riesgo de manera lúdica.'
+        ],
+        primeirosSocorros: 'Não toque na criança se ela estiver grudada. Desligue a energia geral. Verifique batimentos e respiração.',
+        primeirosSocorros_en: 'Do not touch the child if stuck. Turn off main power. Check pulse and breathing.',
+        primeirosSocorros_es: 'No toque al niño si está pegado. Apague la energía general. Verifique pulso y respiración.'
+    },
+    {
+        id: 'rf_e6',
+        nome: 'Eletrodomésticos Perto de Pias/Piscinas', nome_en: 'Appliances near Sinks/Pools', nome_es: 'Electrodomésticos cerca de Fregaderos/Piscinas',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🔌',
+        imagemUrl: 'https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Choque por Queda na Água', risco_en: 'Shock from Falling in Water', risco_es: 'Choque por Caída en el Agua',
+        descricao: 'Secadores na pia, rádios na borda da piscina ou liquidificadores molhados causam acidentes com alta letalidade.', descricao_en: 'Hairdryers near sinks, radios by pools cause highly lethal accidents.', descricao_es: 'Secadores en el lavabo, radios en piscinas causan accidentes muy letales.',
+        prevencao: [
+            'Mantenha aparelhos elétricos a pelo menos 1 metro de pias, banheiras e piscinas.',
+            'Instale tomadas com Dispositivo DR (Diferencial Residual) nestas áreas.',
+            'Seque bem as mãos antes de tocar em qualquer eletrodoméstico.'
+        ],
+        prevencao_en: [
+            'Keep appliances at least 3 feet from sinks, tubs, and pools.',
+            'Install GFCI (Ground Fault Circuit Interrupter) outlets in these areas.',
+            'Dry hands well before touching any appliance.'
+        ],
+        prevencao_es: [
+            'Mantenga los aparatos al menos a 1 metro de lavabos, bañeras y piscinas.',
+            'Instale enchufes con Dispositivo DR (Diferencial Residual).',
+            'Séquese bien las manos antes de tocar cualquier electrodoméstico.'
+        ],
+        primeirosSocorros: 'NÃO tente tirar o aparelho da água! Vá até o quadro e desligue o disjuntor.',
+        primeirosSocorros_en: 'DO NOT try to pull the appliance out of the water! Go to the panel and flip the breaker.',
+        primeirosSocorros_es: '¡NO intente sacar el aparato del agua! Vaya al cuadro y baje el disyuntor.'
+    },
+    {
+        id: 'rf_e7',
+        nome: 'Pipas na Rede Elétrica', nome_en: 'Kites on Power Lines', nome_es: 'Cometas en la Red Eléctrica',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🪁',
+        imagemUrl: 'https://images.pexels.com/photos/1359325/pexels-photo-1359325.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Arco Elétrico de Alta Tensão', risco_en: 'High Voltage Arc', risco_es: 'Arco de Alta Tensión',
+        descricao: 'Acidente grave em ruas e condomínios. Linhas chilenas ou úmidas conduzem a alta tensão direto para o adolescente.', descricao_en: 'Severe accident on streets. Wet or metallic lines conduct high voltage to the user.', descricao_es: 'Accidente grave en calles. Líneas húmedas o metálicas conducen alto voltaje al usuario.',
+        prevencao: [
+            'Solte pipas apenas em parques abertos, longe de postes de rua.',
+            'Jamais use linha com cerol, linha chilena ou fios metálicos.',
+            'Se a pipa enroscar no fio, NÃO tente tirar com cabos de vassoura, canos ou pedras.'
+        ],
+        prevencao_en: [
+            'Fly kites only in open parks, away from power poles.',
+            'Never use metallic or glass-coated strings.',
+            'If the kite gets stuck, DO NOT try to remove it with poles or stones.'
+        ],
+        prevencao_es: [
+            'Vuele cometas solo en parques abiertos, lejos de postes.',
+            'Nunca use hilo curado o hilos metálicos.',
+            'Si la cometa se enreda, NO intente sacarla con palos o piedras.'
+        ],
+        primeirosSocorros: 'Afaste curiosos (risco de cabo partido no chão). Ligue imediatamente para 193 e para a concessionária de energia.',
+        primeirosSocorros_en: 'Keep onlookers away (risk of downed line). Call 911 and the power company immediately.',
+        primeirosSocorros_es: 'Aleje a los curiosos (riesgo de cable caído). Llame al 911 y a la compañía eléctrica.'
+    },
+    {
+        id: 'rf_e8',
+        nome: 'Instalações Antigas e Gambiarras', nome_en: 'Old Wiring and DIY Fixes', nome_es: 'Instalaciones Antiguas',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🏚️',
+        imagemUrl: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Incêndio Noturno (Idosos)', risco_en: 'Nighttime Fire (Elderly)', risco_es: 'Incendio Nocturno (Ancianos)',
+        descricao: 'Casas construídas há mais de 20 anos não suportam as cargas atuais. Fios ressecam no forro, causando fogo.', descricao_en: 'Houses older than 20 years cannot handle modern loads. Wires dry out in the attic, causing fires.', descricao_es: 'Casas de más de 20 años no soportan cargas modernas. Los cables se secan en el techo, causando fuego.',
+        prevencao: [
+            'Realize uma revisão com eletricista qualificado a cada 10 anos.',
+            'Substitua quadros de força de fusível antigo por disjuntores DIN e DR.',
+            'Evite emendas malfeitas com fita isolante de baixa qualidade.'
+        ],
+        prevencao_en: [
+            'Have a qualified electrician review wiring every 10 years.',
+            'Replace old fuse boxes with modern breakers and GFCIs.',
+            'Avoid poorly made splices with cheap electrical tape.'
+        ],
+        prevencao_es: [
+            'Realice una revisión con un electricista calificado cada 10 años.',
+            'Reemplace las cajas de fusibles antiguas por disyuntores modernos.',
+            'Evite empalmes mal hechos con cinta aislante barata.'
+        ],
+        primeirosSocorros: 'Instale detectores de fumaça, especialmente em lares de idosos, para alerta precoce.',
+        primeirosSocorros_en: 'Install smoke detectors, especially in homes with elderly, for early warning.',
+        primeirosSocorros_es: 'Instale detectores de humo, especialmente en hogares de ancianos, para alerta temprana.'
+    },
+    {
+        id: 'rf_e9',
+        nome: 'Extensões sob Tapetes e Portas', nome_en: 'Extension Cords under Rugs', nome_es: 'Extensiones bajo Alfombras',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🧶',
+        imagemUrl: 'https://images.pexels.com/photos/2085739/pexels-photo-2085739.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Curto-circuito e Fogo em Tecido', risco_en: 'Short Circuit and Fabric Fire', risco_es: 'Cortocircuito y Fuego en Tela',
+        descricao: 'O pisoteio constante ou esmagamento sob portas quebra os filamentos de cobre, gerando um ponto de calor extremo.', descricao_en: 'Constant trampling breaks copper filaments, generating extreme heat points.', descricao_es: 'El pisoteo constante rompe los filamentos de cobre, generando puntos de calor extremo.',
+        prevencao: [
+            'Nunca passe fios elétricos debaixo de tapetes, sofás ou colchões.',
+            'Não passe extensões por frestas de portas que possam "prensar" o cabo.',
+            'Se precisar cruzar um cômodo, use passadores de piso protetores de borracha.'
+        ],
+        prevencao_en: [
+            'Never run electrical cords under rugs, sofas, or mattresses.',
+            'Do not run extensions through door jambs that can pinch the cable.',
+            'If you must cross a room, use rubber floor cord covers.'
+        ],
+        prevencao_es: [
+            'Nunca pase cables eléctricos debajo de alfombras, sofás o colchones.',
+            'No pase extensiones por huecos de puertas que puedan pellizcar el cable.',
+            'Si debe cruzar una habitación, use protectores de cables de goma para el piso.'
+        ],
+        primeirosSocorros: 'Ao sentir cheiro de queimado ou ver fumaça no tapete, desligue o aparelho e depois a chave geral.',
+        primeirosSocorros_en: 'If you smell burning or see smoke on the rug, unplug the appliance then turn off main power.',
+        primeirosSocorros_es: 'Si huele a quemado o ve humo en la alfombra, desconecte el aparato y luego la energía principal.'
+    },
+    {
+        id: 'rf_e10',
+        nome: 'O Choque do Resgatista', nome_en: 'The Rescuer\'s Shock', nome_es: 'El Choque del Rescatista',
+        categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
+        emoji: '🚫',
+        imagemUrl: 'https://images.pexels.com/photos/5699509/pexels-photo-5699509.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        risco: 'Múltiplas Vítimas Fatais', risco_en: 'Multiple Fatalities', risco_es: 'Múltiples Víctimas Fatales',
+        descricao: 'Muitas mortes ocorrem quando um familiar tenta puxar a pessoa que está tomando o choque e acaba eletrocutado junto.', descricao_en: 'Many deaths occur when a family member tries to pull the victim being shocked and gets electrocuted too.', descricao_es: 'Muchas muertes ocurren cuando un familiar intenta jalar a la víctima y también se electrocuta.',
+        prevencao: [
+            'A primeira regra é: o corpo humano conduz eletricidade. NÃO TOQUE NA VÍTIMA DIRETAMENTE.',
+            'Mapeie e conheça onde fica o quadro de força (disjuntores) da casa.',
+            'Tenha sempre lanternas caso o desligamento ocorra à noite.'
+        ],
+        prevencao_en: [
+            'The first rule is: the human body conducts electricity. DO NOT TOUCH THE VICTIM DIRECTLY.',
+            'Map and know where the breaker panel is located.',
+            'Always have flashlights in case of nighttime power shutoff.'
+        ],
+        prevencao_es: [
+            'La primera regla es: el cuerpo humano conduce electricidad. NO TOQUE A LA VÍCTIMA DIRECTAMENTE.',
+            'Conozca dónde está el panel de disyuntores.',
+            'Tenga linternas en caso de corte nocturno.'
+        ],
+        primeirosSocorros: 'Desligue a chave geral. Se impossível, afaste a vítima usando cabo de vassoura seco, tábua ou tapete de borracha grosso.',
+        primeirosSocorros_en: 'Turn off main switch. If impossible, move victim using a dry broomstick, board, or thick rubber mat.',
+        primeirosSocorros_es: 'Apague el interruptor general. Si es imposible, aleje a la víctima usando un palo de escoba seco, tabla o tapete de goma grueso.'
     },
     {
         id: 'rf_2',

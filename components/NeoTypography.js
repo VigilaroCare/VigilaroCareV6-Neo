@@ -29,8 +29,8 @@ const DEFAULT_COLOR_FOR_VARIANT = {
     h3: 'neutral.900',
     body: 'neutral.800',
     bodySmall: 'neutral.800',
-    caption: 'neutral.500', // caption já era cinza em light; cinza em dark também funciona
-    eyebrow: 'neutral.600', // label de seção — secundário sem ser apagado
+    caption: 'neutral.700', // Muted text (passes WCAG AA)
+    eyebrow: 'neutral.700', // Eyebrow text (passes WCAG AA)
     button: 'neutral.900',
 };
 

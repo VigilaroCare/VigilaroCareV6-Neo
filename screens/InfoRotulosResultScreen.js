@@ -29,6 +29,7 @@ import NeoCard from '../components/NeoCard';
 import { Body, Small, Caption } from '../components/NeoTypography';
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
+import { SkeletonCard } from '../components/SkeletonLoader';
 
 import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
@@ -175,6 +176,8 @@ export default function InfoRotulosResultScreen() {
                                     onPress={() => navigation.goBack()}
                                     style={s.heroBackBtn}
                                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                                    accessibilityRole="button"
+                                    accessibilityLabel={t('common.back', 'Voltar')}
                                 >
                                     <NeoIcon name="ArrowLeft2" size={22} color={severityColor.text} />
                                 </TouchableOpacity>
@@ -214,12 +217,9 @@ export default function InfoRotulosResultScreen() {
                     <View style={s.contentArea}>
 
                         {loading && (
-                            <NeoCard variant="elevated" style={s.sectionCard}>
-                                <ActivityIndicator color={Neo.colors.primary[500]} />
-                                <Small style={{ textAlign: 'center', marginTop: 8, color: Neo.colors.neutral[500] }}>
-                                    {t('scanner.loadingTox', 'Carregando dados toxicológicos…')}
-                                </Small>
-                            </NeoCard>
+                            <View style={{ marginTop: 12 }}>
+                                <SkeletonCard hasAvatar={false} lines={3} />
+                            </View>
                         )}
 
                         {/* ALERTAS PERSONALIZADOS */}

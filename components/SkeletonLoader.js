@@ -124,3 +124,40 @@ export function SkeletonContactCard({ style }) {
         </View>
     );
 }
+
+/**
+ * SkeletonCard
+ * Um componente de esqueleto genérico com imagem/avatar à esquerda
+ * e 1 a 3 linhas de texto ao lado.
+ */
+export function SkeletonCard({ style, hasAvatar = true, lines = 2 }) {
+    const themeColors = useThemeColors();
+    return (
+        <View
+            style={[
+                {
+                    padding: 16,
+                    borderRadius: 16,
+                    backgroundColor: themeColors.neutral.white === '#FFFFFF'
+                        ? 'rgba(255,255,255,0.6)'
+                        : 'rgba(28,28,30,0.4)',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 16,
+                    marginBottom: 12,
+                },
+                style,
+            ]}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+        >
+            {hasAvatar && <SkeletonLoader width={48} height={48} borderRadius={24} />}
+            <View style={{ flex: 1, gap: 8 }}>
+                <SkeletonLoader width="75%" height={14} />
+                {lines > 1 && <SkeletonLoader width="45%" height={11} />}
+                {lines > 2 && <SkeletonLoader width="60%" height={11} />}
+            </View>
+        </View>
+    );
+}
+

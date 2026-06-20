@@ -5,6 +5,7 @@
 
 import { Config } from "../utils/Config";
 import { fetchWithTimeout as fetchWithTimeoutBase } from "../utils/fetchWithTimeout";
+import { getFamilySummary } from "./InfoRotulosRuleEngine";
 
 // Rota do backend-proxy: /api/openai/* (o proxy reescreve para /v1/* na OpenAI).
 // /v1/... direto não existe no proxy e retorna 404.
@@ -89,32 +90,49 @@ const fetchWithTimeout = (url, options, timeout = VISION_TIMEOUT) =>
 
 export const VisionService = {
 
-    analyzeImage: async (imageBase64) => {
+    analyzeImage: async (imageBase64, mode = 'environment') => {
         if (Config.USE_MOCK_VISION) {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            return VisionService._getMockAnalysis();
+            return { analises: [VisionService._getMockAnalysis()] };
         }
 
         try {
+            // 1. Fetch Dynamic Family Context
+            const familyContext = await getFamilySummary();
+            const profileString = familyContext?.hasVulnerables || familyContext?.hasPets 
+                ? `O usuário mora com: ${familyContext.text}. ${
+                    familyContext.context.allergies.length > 0 
+                      ? `Alergias conhecidas na família: ${familyContext.context.allergies.map(a => a.allergen).join(', ')}.`
+                      : ''
+                  } FOCAR ESTRITAMENTE em riscos para este perfil.`
+                : `O usuário é adulto. Focar em perigos gerais severos (incêndio, choques, quedas fatais). Não liste riscos infantis se não houver crianças na família.`;
+
+            // 2. Select Prompt based on Mode
+            let systemPrompt = "";
+            let userPrompt = "";
+
+            if (mode === 'label_scan') {
+                systemPrompt = "Você é um toxicologista e especialista em segurança doméstica. Responda APENAS em JSON válido. Formato: { \"analises\": [ { \"risco\": \"Alto/Médio/Baixo/Info\", \"titulo\": \"string\", \"descricao\": \"string\", \"acao\": \"string\", \"cor\": \"HEX\" } ] }";
+                userPrompt = `Leia este rótulo de produto (fórmula/ingredientes/INCI). Identifique substâncias tóxicas ou alérgenos. CONTEXTO FAMILIAR: ${profileString}. Retorne um array das analises de riscos encontrados no JSON.`;
+            } else {
+                systemPrompt = "Você é um especialista em segurança doméstica e prevenção de acidentes. Responda APENAS em JSON válido. Formato: { \"analises\": [ { \"risco\": \"Alto/Médio/Baixo\", \"titulo\": \"string\", \"descricao\": \"string\", \"acao\": \"string\", \"cor\": \"HEX\" } ] }";
+                userPrompt = `Analise a foto deste ambiente. Procure ativamente por múltiplos riscos de segurança. CONTEXTO FAMILIAR: ${profileString}. Retorne TODOS os riscos físicos encontrados num array JSON.`;
+            }
+
             const response = await fetchWithTimeout(CHAT_URL, {
                 method: "POST",
                 headers: PROXY_HEADERS,
                 body: JSON.stringify({
                     model: "gpt-4o-mini",
                     messages: [
-                        {
-                            role: "system",
-                            content: "Você é um especialista em segurança doméstica e prevenção de acidentes. Responda APENAS em JSON válido e em português do Brasil. Formato: { \"risco\": \"Alto/Médio/Baixo\", \"titulo\": \"string\", \"descricao\": \"string\", \"acao\": \"string\", \"cor\": \"HEX\" }"
-                        },
-                        {
-                            role: "user",
-                            content: [
-                                { type: "text", text: "Analise os riscos desta imagem para crianças, pets e idosos. Responda APENAS com o JSON em português do Brasil." },
+                        { role: "system", content: systemPrompt },
+                        { role: "user", content: [
+                                { type: "text", text: userPrompt },
                                 { type: "image_url", image_url: { url: `data:image/jpeg;base64,${imageBase64}` } }
                             ]
                         }
                     ],
-                    max_tokens: 500,
+                    max_tokens: 800,
                     response_format: { type: "json_object" }
                 })
             });
@@ -137,12 +155,14 @@ export const VisionService = {
         } catch (error) {
             if (__DEV__) { console.error("Vision Error:", error); }
             return {
-                error: true,
-                titulo: "Erro ou Timeout",
-                descricao: "A análise demorou muito ou falhou.",
-                acao: "Tente novamente.",
-                risco: "Erro",
-                cor: "#6B7280"
+                analises: [{
+                    error: true,
+                    titulo: "Erro ou Timeout",
+                    descricao: "A análise demorou muito ou falhou.",
+                    acao: "Tente novamente.",
+                    risco: "Erro",
+                    cor: "#6B7280"
+                }]
             };
         }
     },

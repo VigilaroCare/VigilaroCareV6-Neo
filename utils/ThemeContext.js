@@ -2,7 +2,8 @@ import React, { createContext, useState, useEffect, useContext, useMemo, useCall
 import { useColorScheme } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { DS, DarkDS, LightColors, DarkColors } from './DesignSystem2026';
+import { DS, DarkDS, LightColors, DarkColors, HighContrastLightColors, HighContrastDarkColors } from './DesignSystem2026';
+import { useAccessibility } from '../context/AccessibilityContext';
 
 const STORAGE_KEY = '@vigilaro_theme_mode'; // 'system' | 'light' | 'dark'
 
@@ -61,7 +62,15 @@ export const ThemeProvider = ({ children }) => {
         return mode === 'dark';
     }, [mode, systemScheme]);
 
-    const colors = isDark ? DarkColors : LightColors;
+    const { highContrast } = useAccessibility();
+
+    const colors = useMemo(() => {
+        if (highContrast) {
+            return isDark ? HighContrastDarkColors : HighContrastLightColors;
+        }
+        return isDark ? DarkColors : LightColors;
+    }, [highContrast, isDark]);
+
     const theme = useMemo(() => buildLegacyTheme(colors), [colors]);
 
     const setMode = useCallback(async (newMode) => {

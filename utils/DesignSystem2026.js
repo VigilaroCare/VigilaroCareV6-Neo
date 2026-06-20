@@ -77,11 +77,11 @@ const LightColors = {
     info: '#5AC8FA',
     surface: '#FFFFFF',
     neutral: {
-        900: '#1C1C1E', // iOS Dark Text (Não é 100% preto, reduz fadiga ocular)
-        800: '#3A3A3C', // iOS Secondary Text
-        700: '#636366',
-        600: '#787880', // iOS Tertiary Label resolved — intermediário entre 700 e 500
-        500: '#8E8E93', // iOS System Gray (Desabilitados, placeholders)
+        900: '#16241D', // ink (Forest charcoal)
+        800: '#38473F', // body (Dark forest slate)
+        700: '#566159', // muted (Subtitles/captions)
+        600: '#566159', // muted (Subtitles/captions)
+        500: '#7C8A80', // faint (Non-text/icons/borders only)
         400: '#C7C7CC', // Bordas médias
         300: '#E5E5EA', // iOS Gray 5 (Divisores e bordas leves)
         200: '#F2F2F7', // iOS Gray 6 (Fundo de seções/cards internos)
@@ -96,16 +96,16 @@ const LightColors = {
         border: 'rgba(255, 255, 255, 0.4)',
         dark: 'rgba(28, 28, 30, 0.65)',
     },
-    // Mist premium 2026 — off-white quente com leve gradiente neutro.
-    // Substitui o "mist verde" anterior (que criava sopa esverdeada quando
-    // empilhado com cards de vidro verdes + accents verdes).
-    // Identidade vem dos cards/elementos, não do background.
+    // Mist premium 2026 — verde pastel suave (sage/mint).
+    // Aprovado via mockup Claude Design: fundo verde saúde premium,
+    // complementa pictogramas cerâmicos e cards glass sem criar "sopa".
+    // Tons: #EFF5F0 (sage claro) → #E8F0EA (sage médio) → #EFF5F0.
     mist: {
-        gradient: ['#FAFAF7', '#F7F6F1', '#F4F2EC', '#F7F6F1', '#FAFAF7', '#FCFBF8'],
+        gradient: ['#EFF5F0', '#EBF2ED', '#E5EDE7', '#E8F0EA', '#EDF4EF', '#F2F7F3'],
         stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
-        accent: 'rgba(4, 120, 87, 0.04)',       // Forest Deep ultra-sutil
-        accentStrong: 'rgba(161, 98, 7, 0.05)', // Champagne signature ultra-sutil
-        fallback: '#FAFAF7',
+        accent: 'rgba(4, 120, 87, 0.06)',       // Forest Deep sutil (reforçado p/ harmonizar)
+        accentStrong: 'rgba(4, 120, 87, 0.04)', // Forest secundário (substituiu champagne)
+        fallback: '#EFF5F0',
     },
     // Accent "signature" — champagne / cobre para momentos premium pontuais
     // (badges raros, score 100%, highlights de luxo). Uso parcimonioso.
@@ -202,6 +202,144 @@ const DarkColors = {
         pets:      { color: '#F472B6', bg: 'rgba(244, 114, 182, 0.14)' }, // Pink-400
         vistorias: { color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.14)' },  // Sky-400
         eventuais: { color: '#FBBF24', bg: 'rgba(251, 191, 36, 0.14)' },  // Amber-400
+    },
+};
+
+const HighContrastLightColors = {
+    primary: {
+        900: '#022C22',
+        800: '#044E35', // Deep dark green for text/borders (contrast > 7:1)
+        700: '#045E40',
+        600: '#047857',
+        500: '#057A55',
+        300: '#34D399',
+        200: '#A7F3D0',
+        100: '#D1FAE5',
+        50:  '#ECFDF5',
+        main: '#044E35',
+    },
+    secondary: {
+        500: '#025D8C', // High contrast blue (contrast > 7:1)
+        100: '#E0F2FE',
+        main: '#025D8C',
+    },
+    feedback: {
+        success: '#006E22', // High contrast green
+        error: '#BA1A1A',   // High contrast red
+        warning: '#805000', // High contrast warning (brownish gold)
+        info: '#005D90',    // High contrast info
+    },
+    success: '#006E22',
+    error: '#BA1A1A',
+    warning: '#805000',
+    info: '#005D90',
+    surface: '#FFFFFF',
+    neutral: {
+        900: '#000000', // Pure black text
+        800: '#000000', // Pure black body text
+        700: '#1F2421', // Very dark slate for subtitles
+        600: '#1F2421', // Very dark slate
+        500: '#4B534E', // High contrast icons/borders
+        400: '#7A847F',
+        300: '#000000', // Solid black borders in high contrast
+        200: '#F2F2F7',
+        100: '#FFFFFF', // Pure white background
+        50:  '#FAFAFA',
+        white: '#FFFFFF',
+        black: '#000000',
+    },
+    glass: {
+        light: '#FFFFFF', // Flat white, no transparency to preserve contrast
+        border: '#000000', // Solid black border
+        dark: '#000000',
+    },
+    mist: {
+        gradient: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'], // No gradient
+        stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
+        accent: 'rgba(0, 0, 0, 0.08)',
+        accentStrong: 'rgba(0, 0, 0, 0.12)',
+        fallback: '#FFFFFF',
+    },
+    accent: {
+        champagne: '#78350F', // Very dark copper/gold
+        champagneLight: '#A16207',
+        champagneSubtle: '#FEF3C7',
+        copper: '#9A3412',
+    },
+    gridAccents: {
+        saude:     { color: '#0F766E', bg: 'rgba(15, 118, 110, 0.14)' },
+        pets:      { color: '#BE185D', bg: 'rgba(190, 24, 93, 0.14)' },
+        vistorias: { color: '#0369A1', bg: 'rgba(3, 105, 161, 0.14)' },
+        eventuais: { color: '#B45309', bg: 'rgba(180, 83, 9, 0.14)' },
+    },
+};
+
+const HighContrastDarkColors = {
+    primary: {
+        900: '#ECFDF5',
+        800: '#D1FAE5',
+        700: '#A7F3D0',
+        600: '#6EE7B7',
+        500: '#34D399', // Bright emerald for high contrast on black
+        300: '#A7F3D0',
+        200: '#065F46',
+        100: '#064E3B',
+        50:  '#022C22',
+        main: '#34D399',
+    },
+    secondary: {
+        500: '#38BDF8', // Bright sky blue
+        100: '#082F49',
+        main: '#38BDF8',
+    },
+    feedback: {
+        success: '#30D158',
+        error: '#FF453A',
+        warning: '#FFD60A',
+        info: '#64D2FF',
+    },
+    success: '#30D158',
+    error: '#FF453A',
+    warning: '#FFD60A',
+    info: '#64D2FF',
+    surface: '#000000',
+    neutral: {
+        900: '#FFFFFF', // Pure white text
+        800: '#FFFFFF', // Pure white body text
+        700: '#E5E5EA',
+        600: '#D1D1D6',
+        500: '#AEAEB2',
+        400: '#48484A',
+        300: '#FFFFFF', // Solid white borders in high contrast dark
+        200: '#1C1C1E',
+        100: '#000000', // Pure black background
+        50:  '#000000',
+        white: '#FFFFFF',
+        black: '#000000',
+    },
+    glass: {
+        light: '#000000', // Flat black
+        border: '#FFFFFF', // Solid white border
+        dark: '#000000',
+    },
+    mist: {
+        gradient: ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000'],
+        stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
+        accent: 'rgba(255, 255, 255, 0.12)',
+        accentStrong: 'rgba(255, 255, 255, 0.18)',
+        fallback: '#000000',
+    },
+    accent: {
+        champagne: '#FCD34D',
+        champagneLight: '#FBBF24',
+        champagneSubtle: 'rgba(252, 211, 77, 0.18)',
+        copper: '#FB923C',
+    },
+    gridAccents: {
+        saude:     { color: '#2DD4BF', bg: 'rgba(45, 212, 191, 0.18)' },
+        pets:      { color: '#F472B6', bg: 'rgba(244, 114, 182, 0.18)' },
+        vistorias: { color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.18)' },
+        eventuais: { color: '#FBBF24', bg: 'rgba(251, 191, 36, 0.18)' },
     },
 };
 
@@ -325,7 +463,7 @@ export const DS = {
     // Fim dos paddings mágicos por tela: todo scroll usa estes tokens.
     layout: {
         screenHPadding: 24,      // = spacing.lg — padding horizontal de todo scroll
-        scrollBottomFooter: 140, // folga única p/ footer flutuante + respiro
+        scrollBottomFooter: 190, // folga única p/ footer flutuante + respiro
         scrollBottomBare: 40,    // telas sem footer (modais, wizards)
         headerMinHeight: 56,
     },
@@ -385,8 +523,18 @@ export const DarkDS = {
     colors: DarkColors,
 };
 
+export const HighContrastDS = {
+    ...DS,
+    colors: HighContrastLightColors,
+};
+
+export const HighContrastDarkDS = {
+    ...DS,
+    colors: HighContrastDarkColors,
+};
+
 // Exports nominais das paletas para uso direto fora do ThemeContext
-export { LightColors, DarkColors };
+export { LightColors, DarkColors, HighContrastLightColors, HighContrastDarkColors };
 
 // Aliases para manter a retrocompatibilidade de importações nas telas
 export const Neo = DS;

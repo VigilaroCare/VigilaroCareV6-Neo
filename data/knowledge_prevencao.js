@@ -388,7 +388,7 @@ export const MAPA_PREVENCAO = {
         emoji: '🌿',
         cor: '#26A69A',
         capa: [
-            'https://images.pexels.com/photos/17758798/pexels-photo-17758798.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            'https://loremflickr.com/1200/800/safety,home?lock=1',
             'https://images.pexels.com/photos/36903438/pexels-photo-36903438.jpeg?auto=compress&cs=tinysrgb&w=1200',
         ],
         conteudo: [

@@ -339,7 +339,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
       <Animated.View style={[
         styles.sosPulseWrapper,
         {
-          bottom: insets.bottom > 0 ? insets.bottom + 10 : 15,
+          bottom: insets.bottom > 0 ? insets.bottom + 16 : 22,
           transform: [{ scale: pulseAnim }],
         },
       ]}>

@@ -158,11 +158,15 @@ import UtensiliosReviewsScreen            from "./screens/Education/UtensiliosRe
 import EletrodomesticosReviewsScreen      from "./screens/Education/EletrodomesticosReviewsScreen";
 import DispositivosEletronicosReviewsScreen from "./screens/Education/DispositivosEletronicosReviewsScreen";
 import SafetyReviewDetailScreen           from "./screens/Education/SafetyReviewDetailScreen";
+import DispositivosProtecaoScreen         from "./screens/Education/DispositivosProtecaoScreen";
 import EnvironmentGuideScreen      from "./screens/Education/EnvironmentGuideScreen";
 import EnvironmentGuideNeoScreen   from "./screens/Education/EnvironmentGuideNeoScreen";
 import FasesVidaMenuScreen         from "./screens/Education/FasesVidaMenuScreen";
 import TravelSafetyGuideScreen     from "./screens/Education/TravelSafetyGuideScreen";
 import LazerFeriasMenuScreen       from "./screens/Education/LazerFeriasMenuScreen";
+import NeurodivergenceMenuScreen   from "./screens/Education/NeurodivergenceMenuScreen";
+import VigilaroScanHubScreen       from "./screens/VigilaroScanHubScreen";
+import CuidarProtegerHubScreen     from "./screens/CuidarProtegerHubScreen";
 import SegurancaLazerScreen        from "./screens/SegurancaLazerScreen";
 import SegurancaFeriasScreen       from "./screens/SegurancaFeriasScreen";
 import MobilidadeSeguraScreen      from "./screens/MobilidadeSeguraScreen";
@@ -585,6 +589,7 @@ export default function App() {
                       {/* ---- Educação & Emergência ---- */}
                       <Stack.Screen name="PlanoIncendio" component={PlanoIncendioScreen} />
                       <Stack.Screen name="EducationEnvironments" component={EducationEnvironmentsScreen} />
+                      <Stack.Screen name="NeurodivergenceMenu" component={NeurodivergenceMenuScreen} />
                       <Stack.Screen name="PlantasToxicas" component={PlantasToxicasScreen} />
                       <Stack.Screen name="AnimaisPeconhentos" component={AnimaisPeconhentosScreen} />
                       <Stack.Screen name="ProdutosPerigosos" component={ProdutosPerigososScreen} />
@@ -596,6 +601,7 @@ export default function App() {
                       <Stack.Screen name="EletrodomesticosReviews" component={EletrodomesticosReviewsScreen} />
                       <Stack.Screen name="DispositivosEletronicosReviews" component={DispositivosEletronicosReviewsScreen} />
                       <Stack.Screen name="SafetyReviewDetail" component={SafetyReviewDetailScreen} />
+                      <Stack.Screen name="DispositivosProtecao" component={DispositivosProtecaoScreen} />
                       
                       {/* ---- Lazer & Mobilidade ---- */}
                       <Stack.Screen name="LazerFeriasMenu" component={LazerFeriasMenuScreen} />
@@ -669,6 +675,10 @@ export default function App() {
                       <Stack.Screen name="VistoriaAsiloReport" component={VistoriaAsiloReportScreen} />
                       <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />
                       <Stack.Screen name="SaudePet" component={SaudePetScreen} />
+
+                      {/* ---- Novos Hubs da Home ---- */}
+                      <Stack.Screen name="VigilaroScanHub" component={VigilaroScanHubScreen} />
+                      <Stack.Screen name="CuidarProtegerHub" component={CuidarProtegerHubScreen} />
                     </Stack.Group>
                   </Stack.Navigator>
                 </NavigationContainer>

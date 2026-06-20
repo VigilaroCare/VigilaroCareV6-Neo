@@ -39,6 +39,14 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    if (process.env.NODE_ENV !== 'production') {
+      const isLocal = origin.startsWith('http://localhost') || 
+                      origin.startsWith('http://127.0.0.1') || 
+                      origin.startsWith('http://192.168.') || 
+                      origin.startsWith('http://10.') || 
+                      origin.startsWith('http://172.');
+      if (isLocal) return callback(null, true);
+    }
     return callback(new Error('Not allowed by CORS'));
   },
   methods: ['GET', 'POST'],
@@ -126,13 +134,11 @@ const openaiProxy = createProxyMiddleware({
     }
     return '/v1' + path;
   },
-  on: {
-    proxyReq: (proxyReq, req, res) => {
-      if (OPENAI_API_KEY) {
-        proxyReq.setHeader('Authorization', `Bearer ${OPENAI_API_KEY}`);
-      } else {
-        console.error('⚠️ ALERTA: OPENAI_API_KEY ESTÁ UNDEFINED!');
-      }
+  onProxyReq: (proxyReq, req, res) => {
+    if (OPENAI_API_KEY) {
+      proxyReq.setHeader('Authorization', `Bearer ${OPENAI_API_KEY}`);
+    } else {
+      console.error('⚠️ ALERTA: OPENAI_API_KEY ESTÁ UNDEFINED!');
     }
   },
 });
@@ -144,11 +150,9 @@ const elevenLabsProxy = createProxyMiddleware({
   pathRewrite: {
     '^/api/elevenlabs': '/v1', // rewrites /api/elevenlabs/text-to-speech to /v1/text-to-speech
   },
-  on: {
-    proxyReq: (proxyReq, req, res) => {
-      if (ELEVEN_API_KEY) {
-        proxyReq.setHeader('xi-api-key', ELEVEN_API_KEY);
-      }
+  onProxyReq: (proxyReq, req, res) => {
+    if (ELEVEN_API_KEY) {
+      proxyReq.setHeader('xi-api-key', ELEVEN_API_KEY);
     }
   },
 });
@@ -160,11 +164,9 @@ const epaProxy = createProxyMiddleware({
   pathRewrite: {
     '^/api/epa': '/', // rewrites /api/epa/chemical... to /chemical...
   },
-  on: {
-    proxyReq: (proxyReq, req, res) => {
-      if (EPA_CTX_API_KEY) {
-        proxyReq.setHeader('x-api-key', EPA_CTX_API_KEY);
-      }
+  onProxyReq: (proxyReq, req, res) => {
+    if (EPA_CTX_API_KEY) {
+      proxyReq.setHeader('x-api-key', EPA_CTX_API_KEY);
     }
   },
 });
@@ -173,6 +175,15 @@ const epaProxy = createProxyMiddleware({
 app.use('/api/openai', requireAppSecret, allowPaths(OPENAI_ALLOWED), openaiProxy);
 app.use('/api/elevenlabs', requireAppSecret, allowPaths(ELEVEN_ALLOWED), elevenLabsProxy);
 app.use('/api/epa', requireAppSecret, allowPaths(EPA_ALLOWED), epaProxy);
+
+// Error Handling Middleware (always return JSON)
+app.use((err, req, res, next) => {
+  console.error('❌ Proxy Error:', err);
+  const statusCode = err.status || (res.statusCode >= 400 ? res.statusCode : 500);
+  res.status(statusCode === 200 ? 500 : statusCode).json({
+    error: err.message || 'Internal Server Error'
+  });
+});
 
 // Export app for Vercel Serverless
 module.exports = app;

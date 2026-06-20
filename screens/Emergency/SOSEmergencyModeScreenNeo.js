@@ -4,6 +4,7 @@ import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Pl
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
 import * as Clipboard from 'expo-clipboard';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
@@ -265,64 +266,37 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         } catch (e) { console.error(e); }
     };
 
-    // Square Card Component (Grid) - CENTERED
-    const SquareCard = ({ title, subtitle, iconNode, color, bgColor, onPress, fullWidth }) => (
-        <TouchableOpacity
-            onPress={onPress}
-            activeOpacity={0.8}
-            style={{
-                width: fullWidth ? '100%' : '48%',
-                marginBottom: 10
-            }}
-        >
-            <NeoCard variant="elevated" style={{
-                backgroundColor: bgColor || '#FFFFFF',
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.06)',
-                borderRadius: 20,
-                padding: 12,
-                height: 125,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-                <View style={{
-                    width: 48, height: 48, borderRadius: 24,
-                    backgroundColor: color, alignItems: 'center', justifyContent: 'center', marginBottom: 8
-                }}>
-                    {iconNode}
-                </View>
-                <View style={{ alignItems: 'center' }}>
-                    <H3 style={{ fontSize: 16, color: color, marginBottom: 2, textAlign: 'center' }}>{title}</H3>
-                    <Small style={{ color: '#666', fontSize: 11, textAlign: 'center' }}>{subtitle}</Small>
-                </View>
-            </NeoCard>
-        </TouchableOpacity>
-    );
-
     return (
-        <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+        <LinearGradient colors={['#991B1B', '#450A0A']} style={{ flex: 1 }}>
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1 }}>
+                <StatusBar style="light" />
 
                 {/* Offline Banner */}
                 {isOffline && (
-                    <View style={{ backgroundColor: '#000', padding: 12, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-                        <NeoIcon name="CloudCross" size={20} color="#FFD700" />
-                        <Body style={{ color: '#FFD700', fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>
+                    <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', padding: 12, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+                        <NeoIcon name="CloudCross" size={16} color="#FFF" />
+                        <Small style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 8 }}>
                             {t('sos.noInternet')}
-                        </Body>
+                        </Small>
                     </View>
                 )}
 
                 {/* Header */}
-                <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-                        <NeoIcon name="Warning2" size={32} color="#DC2626" style={{ marginRight: 8 }} />
-                        <H2 style={{ color: '#DC2626', fontSize: 24, letterSpacing: 1 }}>{t('sos.title')}</H2>
-                    </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 24, paddingVertical: 16 }}>
+                    <Text style={{ color: '#FFF', fontSize: 13, fontWeight: '800', letterSpacing: 1.5, opacity: 0.9 }}>
+                        {t('sos.title', 'MODO EMERGÊNCIA').toUpperCase()}
+                    </Text>
+                    <TouchableOpacity 
+                        onPress={() => navigation.navigate('MainTabs')}
+                        style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: 'rgba(255,255,255,0.15)', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                        <NeoIcon name="CloseSquare" size={20} color="#FFF" />
+                    </TouchableOpacity>
+                </View>
 
-                    {/* Tab Switcher */}
-                    <View style={{ flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: 30, padding: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
+                {/* Tab Switcher */}
+                <View style={{ alignItems: 'center', marginBottom: 24 }}>
+                    <View style={{ flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 30, padding: 4 }}>
                         {(hasPets ? ['HUMAN', 'PET'] : ['HUMAN']).map(tab => {
                             const isActive = activeTab === tab;
                             return (
@@ -331,13 +305,14 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                     onPress={() => setActiveTab(tab)}
                                     style={{
                                         paddingVertical: 10, paddingHorizontal: 32, borderRadius: 26,
-                                        backgroundColor: isActive ? '#DC2626' : 'transparent',
+                                        backgroundColor: isActive ? '#FFF' : 'transparent',
                                         flexDirection: 'row', alignItems: 'center'
                                     }}
                                 >
-                                    <NeoIcon name={tab === 'HUMAN' ? 'User' : 'Heart'} size={16} color={isActive ? '#FFF' : '#DC2626'} variant="Bold" style={{ marginRight: 6 }} />
-                                    <Small style={{ color: isActive ? '#FFF' : '#DC2626', fontWeight: 'bold' }}>
-                                        {tab === 'HUMAN' ? 'Pessoas' : 'Pets'}
+                                    {tab === 'HUMAN' && <Text style={{ fontSize: 16, marginRight: 6 }}>🚑</Text>}
+                                    {tab === 'PET' && <NeoIcon name="Heart" size={16} color={isActive ? '#991B1B' : 'rgba(255,255,255,0.6)'} variant="Bold" style={{ marginRight: 6 }} />}
+                                    <Small style={{ color: isActive ? '#991B1B' : 'rgba(255,255,255,0.6)', fontWeight: 'bold' }}>
+                                        {tab === 'HUMAN' ? 'Humano' : 'Pet'}
                                     </Small>
                                 </TouchableOpacity>
                             )
@@ -345,204 +320,108 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     </View>
                 </View>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
-                    {/* 6. PRIMEIROS SOCORROS PROTAGONISTA */}
-                    <ScaleButton onPress={() => navigation.navigate('PrimeirosSocorrosEmergencia')} style={{ marginBottom: 16 }}>
-                        <NeoCard variant="elevated" style={{
-                            backgroundColor: '#FFFFFF',
-                            borderWidth: 1,
-                            borderColor: 'rgba(0,0,0,0.06)',
-                            borderRadius: 20,
-                            alignItems: 'center',
-                            paddingVertical: 12,
-                        }}>
-                            <View style={{
-                                width: 44, height: 44, borderRadius: 22,
-                                backgroundColor: '#FFEBEE', alignItems: 'center',
-                                justifyContent: 'center', marginBottom: 6
-                            }}>
-                                <NeoIcon name="HeartAdd" size={22} color="#D32F2F" variant="Outline" />
+                <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 60, alignItems: 'center' }} showsVerticalScrollIndicator={false}>
+                    
+                    {/* Hero SOS Graphic */}
+                    <View style={{ alignItems: 'center', marginVertical: 16 }}>
+                        <View style={{ width: 140, height: 140, borderRadius: 70, backgroundColor: 'rgba(255,255,255,0.05)', alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' }}>
+                                <View style={{ width: 60, height: 60, borderRadius: 16, backgroundColor: '#FF4B4B', alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } }}>
+                                    <H2 style={{ color: '#FFF', fontSize: 20 }}>SOS</H2>
+                                </View>
                             </View>
-                            <H3 style={{ color: '#D32F2F', fontSize: 15 }}>{t('sos.firstAid')}</H3>
-                            <Small style={{ color: Neo.colors.neutral[500], fontSize: 10 }}>{t('sos.firstAidSub')}</Small>
-                        </NeoCard>
-                    </ScaleButton>
-
-                    {activeTab === 'HUMAN' ? (
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                            {isPtBr ? (
-                                <>
-                                    {/* SAMU */}
-                                    <SquareCard
-                                        title={t('sos.samuTitle')}
-                                        subtitle={t('sos.samuSub')}
-                                        color="#EF4444"
-                                        bgColor="#FEF2F2"
-                                        iconNode={<NeoIcon name="CallCalling" size={28} color="#FFF" variant="Bold" />}
-                                        onPress={() => handleCall(t('sos.samuPhone'))}
-                                    />
-                                    {/* Bombeiros */}
-                                    <SquareCard
-                                        title={t('sos.fireTitle')}
-                                        subtitle={t('sos.fireSub')}
-                                        color="#F97316"
-                                        bgColor="#FFF7ED"
-                                        iconNode={<NeoIcon name="Danger" size={32} color="#FFF" />}
-                                        onPress={() => handleCall(t('sos.firePhone'))}
-                                    />
-                                    {/* Polícia */}
-                                    <SquareCard
-                                        title={t('sos.policeTitle')}
-                                        subtitle={t('sos.policeSub')}
-                                        color="#3B82F6"
-                                        bgColor="#EFF6FF"
-                                        iconNode={<NeoIcon name="Shield" size={28} color="#FFF" variant="Bold" />}
-                                        onPress={() => handleCall(t('sos.policePhone'))}
-                                    />
-                                    {/* CIATOX */}
-                                    <SquareCard
-                                        title={t('sos.toxTitle')}
-                                        subtitle={t('sos.toxSub')}
-                                        color="#10B981"
-                                        bgColor="#ECFDF5"
-                                        iconNode={<NeoIcon name="Danger" size={28} color="#FFF" variant="Bold" />}
-                                        onPress={() => handleCall(t('sos.toxPhone'))}
-                                    />
-                                </>
-                            ) : (
-                                <>
-                                    {/* Emergência Unificada (911/112) */}
-                                    <SquareCard
-                                        title={t('sos.generalTitle')}
-                                        subtitle={t('sos.generalSub')}
-                                        color="#EF4444"
-                                        bgColor="#FEF2F2"
-                                        iconNode={<NeoIcon name="CallCalling" size={28} color="#FFF" variant="Bold" />}
-                                        onPress={() => handleCall(t('sos.generalPhone'))}
-                                        fullWidth
-                                    />
-                                    {/* Toxicologia */}
-                                    <SquareCard
-                                        title={t('sos.toxTitle')}
-                                        subtitle={t('sos.toxSub')}
-                                        color="#10B981"
-                                        bgColor="#ECFDF5"
-                                        iconNode={<NeoIcon name="Danger" size={28} color="#FFF" variant="Bold" />}
-                                        onPress={() => handleCall(t('sos.toxPhone'))}
-                                        fullWidth
-                                    />
-                                </>
-                            )}
                         </View>
-                    ) : (
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                            {/* Veterinário */}
-                            <SquareCard
-                                title={t('sos.vetTitle')}
-                                subtitle={t('sos.vetSub')}
-                                color="#059669"
-                                bgColor="#ECFDF5"
-                                iconNode={<NeoIcon name="Location" size={28} color="#FFF" variant="Bold" />}
-                                onPress={() => Linking.openURL('geo:0,0?q=veterinario 24h')}
-                                fullWidth
-                            />
-                            {isPtBr ? (
-                                /* Bombeiros BR */
-                                <SquareCard
-                                    title={t('sos.fireTitle')}
-                                    subtitle={t('sos.fireSub')}
-                                    color="#F97316"
-                                    bgColor="#FFF7ED"
-                                    iconNode={<NeoIcon name="Danger" size={32} color="#FFF" />}
-                                    onPress={() => handleCall(t('sos.firePhone'))}
-                                    fullWidth
-                                />
-                            ) : null}
-                        </View>
-                    )}
+                        <H1 style={{ color: '#FFF', fontSize: 32, textAlign: 'center', marginTop: 16, marginBottom: 8 }}>
+                            Precisa de ajuda agora?
+                        </H1>
+                        <Body style={{ color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: 15, lineHeight: 22, paddingHorizontal: 16 }}>
+                            Acionaremos seus contatos de emergência com sua localização atual.
+                        </Body>
+                    </View>
 
-                    {/* 3 Action Cards em Linha (SOS, Ficha, Contatos) */}
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 16 }}>
-                        {/* SOS SMS */}
+                    {/* Primary Button */}
+                    <TouchableOpacity 
+                        onPress={() => handleCall(isPtBr ? t('sos.samuPhone', '192') : t('sos.generalPhone', '911'))}
+                        style={{ width: '100%', backgroundColor: '#FFF', borderRadius: 24, paddingVertical: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 32, marginBottom: 16, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 15, shadowOffset: { width: 0, height: 8 }, elevation: 5 }}
+                    >
+                        <NeoIcon name="CallCalling" size={24} color="#991B1B" variant="Bold" style={{ marginRight: 12 }} />
+                        <H2 style={{ color: '#991B1B', fontSize: 20 }}>
+                            {activeTab === 'HUMAN' 
+                                ? (isPtBr ? 'Ligar 192 • SAMU' : 'Ligar 911 • Emergência') 
+                                : 'Ligar Veterinário'}
+                        </H2>
+                    </TouchableOpacity>
+
+                    {/* Secondary Actions Row */}
+                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginBottom: 16 }}>
+                        {/* Filha / First Contact */}
                         <TouchableOpacity 
                             onPress={() => {
-                                if (longPressTriggered.current) {
-                                    longPressTriggered.current = false;
-                                    return;
-                                }
-                                handleSOS();
-                            }} 
-                            onPressIn={() => {
-                                longPressTriggered.current = false;
-                                sosTimer.current = setTimeout(() => {
-                                    longPressTriggered.current = true;
-                                    Vibration.vibrate([0, 100, 50, 100]);
-                                    navigation.navigate("SOSCountdown");
-                                }, 1500); // Reduzido para 1.5s
-                            }}
-                            onPressOut={() => {
-                                if (sosTimer.current) {
-                                    clearTimeout(sosTimer.current);
-                                    sosTimer.current = null;
+                                if (customContacts.length > 0) {
+                                    handleCall(customContacts[0].phone);
+                                } else {
+                                    setContactsModalVisible(true);
                                 }
                             }}
-                            style={{ width: '31%', aspectRatio: 1 }}
+                            style={{ flex: 1, marginRight: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
-                            <NeoCard variant="elevated" style={{ flex: 1, backgroundColor: '#FEF2F2', borderWidth: 1, borderColor: '#FECACA', borderRadius: 16, alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-                                <NeoIcon name="Message" size={28} color="#DC2626" variant="Bold" style={{ marginBottom: 4 }} />
-                                <Body style={{ color: '#DC2626', fontWeight: 'bold', fontSize: 12, textAlign: 'center' }}>{t('sos.sendSos')}</Body>
-                                <Small style={{ color: '#DC2626', fontSize: 9, textAlign: 'center', marginTop: 2 }}>{t('sos.holdButton')}</Small>
-                            </NeoCard>
+                            <NeoIcon name="Profile" size={24} color="#FFF" style={{ marginBottom: 8 }} />
+                            <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
+                                {customContacts.length > 0 ? customContacts[0].name.split(' ')[0] : 'Contatos'}
+                            </Body>
                         </TouchableOpacity>
 
-                        {/* Ficha Médica */}
-                        <TouchableOpacity onPress={handleFichaMedica} disabled={loadingFicha} style={{ width: '31%', aspectRatio: 1 }}>
-                            <NeoCard variant="elevated" style={{ flex: 1, backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)', borderRadius: 16, alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-                                {loadingFicha ? <ActivityIndicator size="small" color="#3B82F6" style={{ marginBottom: 8 }} /> : <NeoIcon name="Personalcard" size={28} color="#3B82F6" variant="Outline" style={{ marginBottom: 8 }} />}
-                                <Body style={{ color: '#3B82F6', fontWeight: 'bold', fontSize: 12, textAlign: 'center' }}>{t('sos.medCard')} </Body>
-                                <Small style={{ color: '#3B82F6', fontSize: 10, textAlign: 'center' }}>{t('sos.medCardSub')}</Small>
-                            </NeoCard>
-                        </TouchableOpacity>
-
-                        {/* Contatos */}
-                        <TouchableOpacity onPress={() => setContactsModalVisible(true)} style={{ width: '31%', aspectRatio: 1 }}>
-                            <NeoCard variant="elevated" style={{ flex: 1, backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: 'rgba(0,0,0,0.06)', borderRadius: 16, alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-                                <NeoIcon name="Profile" size={28} color="#9333EA" style={{ marginBottom: 8 }} />
-                                <Body style={{ color: '#9333EA', fontWeight: 'bold', fontSize: 12, textAlign: 'center' }}>{t('sos.contacts')}</Body>
-                                <Small style={{ color: '#9333EA', fontSize: 10, textAlign: 'center' }}>{customContacts.length} {t('sos.saved')}</Small>
-                            </NeoCard>
+                        {/* Send Location */}
+                        <TouchableOpacity 
+                            onPress={handleSOS}
+                            style={{ flex: 1, marginLeft: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 16, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                        >
+                            <NeoIcon name="Location" size={24} color="#FFF" style={{ marginBottom: 8 }} />
+                            <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
+                                Enviar local
+                            </Body>
                         </TouchableOpacity>
                     </View>
 
-                    {/* Exit Button */}
-                    <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={{ marginTop: 24, marginBottom: 40 }}>
-                        <NeoCard variant="elevated" style={{ padding: 16, backgroundColor: '#FEF2F2', borderWidth: 1, borderColor: '#FECACA', borderRadius: 12, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-                            <NeoIcon name="Logout" size={24} color="#991B1B" style={{ marginRight: 10 }} />
-                            <H3 style={{ color: '#991B1B' }}>{t('sos.exitSOS')}</H3>
-                        </NeoCard>
+                    {/* Tertiary Action */}
+                    <TouchableOpacity 
+                        onPress={() => navigation.navigate('PrimeirosSocorros')}
+                        style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 32, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
+                    >
+                        <NeoIcon name="Warning2" size={20} color="#FFF" style={{ marginRight: 10 }} />
+                        <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>
+                            Primeiros socorros guiados
+                        </Body>
+                    </TouchableOpacity>
+
+                    {/* Safe Exit */}
+                    <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={{ paddingVertical: 10 }}>
+                        <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>
+                            Estou seguro • cancelar
+                        </Body>
                     </TouchableOpacity>
 
                 </ScrollView>
 
-                {/* ═══ MODAL: FICHA MÉDICA ═══ */}
+                {/* ═══ MODAL: FICHA MÉDICA (Refinado para combinar) ═══ */}
                 <Modal visible={fichaModalVisible} transparent animationType="slide" onRequestClose={() => setFichaModalVisible(false)}>
-                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'flex-end' }}>
-                        <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 24, maxHeight: '85%' }}>
+                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'flex-end' }}>
+                        <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 32, borderTopRightRadius: 32, padding: 32, maxHeight: '85%' }}>
                             {/* Header */}
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <NeoIcon name="Personalcard" size={24} color="#DC2626" style={{ marginRight: 8 }} />
-                                    <H2 style={{ color: '#DC2626', fontSize: 18 }}>{t('headersFirst.fichaMDica', 'Ficha Médica')}</H2>
+                                    <NeoIcon name="Personalcard" size={28} color="#991B1B" style={{ marginRight: 12 }} />
+                                    <H2 style={{ color: '#991B1B', fontSize: 20 }}>{t('headersFirst.fichaMDica', 'Ficha Médica')}</H2>
                                 </View>
                                 <TouchableOpacity onPress={() => setFichaModalVisible(false)}>
-                                    <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[400]} />
+                                    <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[300]} />
                                 </TouchableOpacity>
                             </View>
 
                             {/* Conteúdo da ficha */}
-                            <ScrollView style={{ marginBottom: 16, maxHeight: 300 }}>
-                                <View style={{ backgroundColor: '#FEF2F2', borderRadius: 16, padding: 16, borderWidth: 1, borderColor: '#FECACA' }}>
-                                    <Text style={{ fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace', fontSize: 12, color: '#1F2937', lineHeight: 20 }}>
+                            <ScrollView style={{ marginBottom: 24, maxHeight: 300 }}>
+                                <View style={{ backgroundColor: Neo.colors.neutral[50], borderRadius: 16, padding: 20, borderWidth: 1, borderColor: Neo.colors.neutral[200] }}>
+                                    <Text style={{ fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace', fontSize: 13, color: '#1F2937', lineHeight: 22 }}>
                                         {fichaTexto}
                                     </Text>
                                 </View>
@@ -550,105 +429,91 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
                             {/* Ações */}
                             <View>
-                                {/* WhatsApp */}
-                                <TouchableOpacity
-                                    onPress={handleShareFichaWhatsApp}
-                                    style={{ backgroundColor: '#25D366', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 14, borderRadius: 14, marginBottom: 10 }}
-                                >
-                                    <NeoIcon name="Whatsapp" size={22} color="#FFF" style={{ marginRight: 10 }} />
-                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>{t('headersFirst.enviarPorWhatsApp', 'Enviar por WhatsApp')}</Text>
+                                <TouchableOpacity onPress={handleShareFichaWhatsApp} style={{ backgroundColor: '#25D366', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
+                                    <NeoIcon name="Whatsapp" size={24} color="#FFF" style={{ marginRight: 12 }} />
+                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Enviar por WhatsApp</Text>
                                 </TouchableOpacity>
-
-                                {/* Copiar */}
-                                <TouchableOpacity
-                                    onPress={handleCopyFicha}
-                                    style={{ backgroundColor: '#3B82F6', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 14, borderRadius: 14, marginBottom: 10 }}
-                                >
-                                    <NeoIcon name="Copy" size={22} color="#FFF" style={{ marginRight: 10 }} />
-                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>{t('headersFirst.copiarFicha', 'Copiar Ficha')}</Text>
+                                <TouchableOpacity onPress={handleCopyFicha} style={{ backgroundColor: Neo.colors.neutral[800], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
+                                    <NeoIcon name="Copy" size={24} color="#FFF" style={{ marginRight: 12 }} />
+                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Copiar Ficha</Text>
                                 </TouchableOpacity>
-
-                                {/* Compartilhar genérico */}
-                                <TouchableOpacity
-                                    onPress={handleShareFicha}
-                                    style={{ backgroundColor: '#6B7280', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 14, borderRadius: 14 }}
-                                >
-                                    <NeoIcon name="ShareNetwork" size={22} color="#FFF" style={{ marginRight: 10 }} />
-                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>{t('headersFirst.compartilhar', 'Compartilhar')}</Text>
+                                <TouchableOpacity onPress={handleShareFicha} style={{ backgroundColor: Neo.colors.neutral[200], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16 }}>
+                                    <NeoIcon name="ShareNetwork" size={24} color={Neo.colors.neutral[800]} style={{ marginRight: 12 }} />
+                                    <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 16 }}>Compartilhar</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     </View>
                 </Modal>
 
-                {/* Contacts Modal (Simplified) */}
+                {/* Contacts Modal (Refinado) */}
                 <Modal visible={contactsModalVisible} transparent animationType="slide" onRequestClose={() => setContactsModalVisible(false)}>
-                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' }}>
-                        <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 24, maxHeight: '80%' }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                                <H2>{t('headersFirst.meusContatos', 'Meus Contatos')}</H2>
+                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'flex-end' }}>
+                        <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 32, borderTopRightRadius: 32, padding: 32, maxHeight: '85%' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                                <H2 style={{ color: '#1A1A1A' }}>{t('headersFirst.meusContatos', 'Meus Contatos')}</H2>
                                 <TouchableOpacity onPress={() => setContactsModalVisible(false)}>
-                                    <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[400]} />
+                                    <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[300]} />
                                 </TouchableOpacity>
                             </View>
 
-                            <ScrollView>
+                            <ScrollView showsVerticalScrollIndicator={false}>
                                 {customContacts.map(c => (
-                                    <View key={c.id} style={{ marginBottom: 12 }}>
-                                        <NeoCard variant="glass" style={{ flexDirection: 'row', alignItems: 'center', padding: 12 }}>
-                                            <View style={{ padding: 10, backgroundColor: Neo.colors.primary[100], borderRadius: 20, marginRight: 12 }}>
-                                                <NeoIcon name={c.isProfile ? "SecurityUser" : "Profile"} size={20} color={Neo.colors.primary[600]} />
+                                    <View key={c.id} style={{ marginBottom: 16 }}>
+                                        <NeoCard variant="elevated" style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderRadius: 20, borderWidth: 1, borderColor: Neo.colors.neutral[100] }}>
+                                            <View style={{ padding: 12, backgroundColor: Neo.colors.neutral[50], borderRadius: 20, marginRight: 16 }}>
+                                                <NeoIcon name={c.isProfile ? "SecurityUser" : "Profile"} size={24} color={Neo.colors.neutral[800]} />
                                             </View>
                                             <View style={{ flex: 1 }}>
-                                                <Body style={{ fontWeight: 'bold' }}>{c.name}</Body>
-                                                <Small>{c.phone}</Small>
-                                                {c.isProfile && <Small style={{ color: Neo.colors.primary[500], fontSize: 9 }}>{t('headersFirst.redeDeApoioPerfil', 'Rede de Apoio Perfil')}</Small>}
+                                                <Body style={{ fontWeight: 'bold', fontSize: 16, color: '#1A1A1A' }}>{c.name}</Body>
+                                                <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>{c.phone}</Small>
+                                                {c.isProfile && <Small style={{ color: Neo.colors.primary[500], fontSize: 10, marginTop: 4 }}>Rede de Apoio Perfil</Small>}
                                             </View>
                                             
-                                            <View style={{ flexDirection: 'row', gap: 10 }}>
-                                                <TouchableOpacity onPress={() => handleWhatsAppDirect(c.phone)} style={{ padding: 8, backgroundColor: '#E8F5E9', borderRadius: 10 }}>
+                                            <View style={{ flexDirection: 'row', gap: 12 }}>
+                                                <TouchableOpacity onPress={() => handleWhatsAppDirect(c.phone)} style={{ padding: 10, backgroundColor: '#E8F5E9', borderRadius: 14 }}>
                                                     <NeoIcon name="Whatsapp" size={24} color="#25D366" />
                                                 </TouchableOpacity>
-                                                <TouchableOpacity onPress={() => handleCall(c.phone)} style={{ padding: 8, backgroundColor: '#FFEBEE', borderRadius: 10 }}>
+                                                <TouchableOpacity onPress={() => handleCall(c.phone)} style={{ padding: 10, backgroundColor: '#FEF2F2', borderRadius: 14 }}>
                                                     <NeoIcon name="Call" size={24} color="#DC2626" />
                                                 </TouchableOpacity>
                                             </View>
                                         </NeoCard>
                                     </View>
                                 ))}
+                                
+                                {customContacts.length === 0 && (
+                                    <Body style={{ textAlign: 'center', color: Neo.colors.neutral[400], marginVertical: 32 }}>Nenhum contato tático cadastrado.</Body>
+                                )}
+
+                                <TouchableOpacity style={{ marginTop: 8, marginBottom: 32 }} onPress={() => setAddContactModalVisible(true)}>
+                                    <NeoCard variant="glass" style={{ backgroundColor: Neo.colors.neutral[50], alignItems: 'center', padding: 20, borderStyle: 'dashed', borderWidth: 1, borderColor: Neo.colors.neutral[300], borderRadius: 20 }}>
+                                        <Body style={{ color: Neo.colors.neutral[600], fontWeight: 'bold' }}>+ Adicionar Novo</Body>
+                                    </NeoCard>
+                                </TouchableOpacity>
                             </ScrollView>
-
-                            {customContacts.length === 0 ? (
-                                <Body style={{ textAlign: 'center', color: '#999', marginVertical: 20 }}>{t('headersFirst.aRedeDeApoioPrioritRiaEstVaziaCadastreCo', 'A rede de apoio prioritária está vazia. Cadastre contatos táticos essenciais.')}</Body>
-                            ) : null}
-
-                            <TouchableOpacity style={{ marginTop: 16 }} onPress={() => setAddContactModalVisible(true)}>
-                                <NeoCard variant="glass" style={{ backgroundColor: Neo.colors.neutral[100], alignItems: 'center', padding: 16, borderStyle: 'dashed', borderWidth: 1, borderColor: '#CCC' }}>
-                                    <Body>{t('headersFirst.AdicionarNovo', '+ Adicionar Novo')}</Body>
-                                </NeoCard>
-                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
 
                 {/* Add Contact Modal */}
                 <Modal visible={addContactModalVisible} transparent animationType="fade">
-                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: '85%', backgroundColor: '#FFF', borderRadius: 16, padding: 24 }}>
-                            <H3 style={{ marginBottom: 16 }}>{t('headersFirst.novoContato', 'Novo Contato')}</H3>
+                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ width: '85%', backgroundColor: '#FFF', borderRadius: 24, padding: 32 }}>
+                            <H3 style={{ marginBottom: 24, color: '#1A1A1A' }}>{t('headersFirst.novoContato', 'Novo Contato')}</H3>
                             <TextInput
-                                placeholder="Nome" value={newContactName} onChangeText={setNewContactName}
-                                style={{ borderWidth: 1, borderColor: '#DDD', padding: 12, borderRadius: 8, marginBottom: 12, fontSize: 16 }}
+                                placeholder="Nome (Ex: Filha Ana)" value={newContactName} onChangeText={setNewContactName}
+                                style={{ borderWidth: 1, borderColor: Neo.colors.neutral[200], padding: 16, borderRadius: 16, marginBottom: 16, fontSize: 16, backgroundColor: Neo.colors.neutral[50] }}
                             />
                             <TextInput
                                 placeholder="Telefone" value={newContactPhone} onChangeText={setNewContactPhone} keyboardType="phone-pad"
-                                style={{ borderWidth: 1, borderColor: '#DDD', padding: 12, borderRadius: 8, marginBottom: 24, fontSize: 16 }}
+                                style={{ borderWidth: 1, borderColor: Neo.colors.neutral[200], padding: 16, borderRadius: 16, marginBottom: 32, fontSize: 16, backgroundColor: Neo.colors.neutral[50] }}
                             />
-                            <View style={{ flexDirection: 'row', gap: 12 }}>
-                                <TouchableOpacity style={{ flex: 1, padding: 12, alignItems: 'center', backgroundColor: '#EEE', borderRadius: 8 }} onPress={() => setAddContactModalVisible(false)}>
-                                    <Body>{t('headersFirst.cancelar', 'Cancelar')}</Body>
+                            <View style={{ flexDirection: 'row', gap: 16 }}>
+                                <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: Neo.colors.neutral[100], borderRadius: 16 }} onPress={() => setAddContactModalVisible(false)}>
+                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[600] }}>Cancelar</Body>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ flex: 1, padding: 12, alignItems: 'center', backgroundColor: '#DC2626', borderRadius: 8 }} onPress={() => {
+                                <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: '#991B1B', borderRadius: 16 }} onPress={() => {
                                     if (newContactName && newContactPhone) {
                                         const novaLista = [...customContacts, { id: Date.now().toString(), name: newContactName, phone: newContactPhone }];
                                         setCustomContacts(novaLista);
@@ -657,7 +522,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         setNewContactName(''); setNewContactPhone('');
                                     }
                                 }}>
-                                    <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.salvar', 'Salvar')}</Body>
+                                    <Body style={{ color: '#FFF', fontWeight: 'bold' }}>Salvar</Body>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -665,6 +530,6 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 </Modal>
 
             </SafeAreaView>
-        </AppBackground>
+        </LinearGradient>
     );
 }

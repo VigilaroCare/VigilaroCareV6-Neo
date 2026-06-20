@@ -10,9 +10,11 @@ import {
   Easing,
   ScrollView,
   Vibration,
+  AccessibilityInfo,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from '@react-navigation/native';
+import { useAccessibility } from '../context/AccessibilityContext';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -37,7 +39,12 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
     <View style={styles.introContainer}>
       <StatusBar style="dark" backgroundColor="transparent" translucent />
       <View style={styles.introHeader}>
-        <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+        <TouchableOpacity
+          onPress={onClose}
+          style={styles.closeButton}
+          accessibilityRole="button"
+          accessibilityLabel={t('common.close', 'Fechar')}
+        >
           <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[800]} />
         </TouchableOpacity>
         <View style={styles.iconBadge}>
@@ -54,6 +61,8 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         style={styles.modeCard}
         activeOpacity={0.9}
         onPress={() => onSelectMode('environment')}
+        accessibilityRole="button"
+        accessibilityLabel={`${t('scanner.modeEnv')} — ${t('scanner.modeEnvDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(33, 150, 243, 0.12)' }]}>
           <NeoIcon name="Home2" size={32} color="#2196F3" variant="Bold" />
@@ -69,6 +78,8 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         style={styles.modeCard}
         activeOpacity={0.9}
         onPress={() => onSelectMode('label_scan')}
+        accessibilityRole="button"
+        accessibilityLabel={`${t('scanner.modeLabel')} — ${t('scanner.modeLabelDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(156, 39, 176, 0.12)' }]}>
           <NeoIcon name="DocumentText" size={32} color="#9C27B0" variant="Bold" />
@@ -84,6 +95,8 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         style={styles.modeCard}
         activeOpacity={0.9}
         onPress={() => onSelectMode('barcode_scan')}
+        accessibilityRole="button"
+        accessibilityLabel={`${t('scanner.modeBarcode')} — ${t('scanner.modeBarcodeDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(76, 175, 80, 0.12)' }]}>
           <NeoIcon name="Barcode" size={32} color="#4CAF50" variant="Bold" />
@@ -116,6 +129,7 @@ export default function ScannerScreen({ navigation, route }) {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [facing, setFacing] = useState('back');
   const { t } = useTranslation();
+  const { reduceMotion } = useAccessibility();
 
   // Hook at the top level to avoid rules of hooks issues
   const isFocused = useIsFocused();
@@ -138,7 +152,7 @@ export default function ScannerScreen({ navigation, route }) {
   const scanLineAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (isAnalyzing) {
+    if (isAnalyzing && !reduceMotion) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(pulseAnim, { toValue: 1.2, duration: 1000, useNativeDriver: true }),
@@ -148,18 +162,20 @@ export default function ScannerScreen({ navigation, route }) {
     } else {
       pulseAnim.setValue(1);
     }
-  }, [isAnalyzing]);
+  }, [isAnalyzing, reduceMotion]);
 
   useEffect(() => {
-    if (currentMode && permission?.granted) {
+    if (currentMode && permission?.granted && !reduceMotion) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(scanLineAnim, { toValue: 1, duration: 2000, useNativeDriver: true, easing: Easing.linear }),
           Animated.timing(scanLineAnim, { toValue: 0, duration: 0, useNativeDriver: true })
         ])
       ).start();
+    } else {
+      scanLineAnim.setValue(0);
     }
-  }, [permission, currentMode]);
+  }, [permission, currentMode, reduceMotion]);
 
   const takePicture = async () => {
     if (cameraRef) {
@@ -183,6 +199,7 @@ export default function ScannerScreen({ navigation, route }) {
 
   const analyzePhoto = async (imageUri) => {
     const startTime = Date.now();
+    AccessibilityInfo.announceForAccessibility(t('scanner.analyzing', 'Analisando imagem…'));
     try {
       // ① Verificar conectividade com proxy antes de comprimir
       if (__DEV__) console.log('[Scanner] Verificando proxy...');
@@ -223,17 +240,16 @@ export default function ScannerScreen({ navigation, route }) {
         console.log(`[Scanner] 📷 Imagem pronta: ${compressed.width}x${compressed.height} | ~${sizeKB}KB | ${Date.now() - startTime}ms`);
       }
 
-      // ③ Enviar para IA
+      // ③ Enviar para IA (Passamos o currentMode para a Vision AI injetar o contexto correto)
       if (__DEV__) console.log('[Scanner] Enviando para GPT-4o-mini...');
       const base64 = compressed.base64;
 
-      const result = currentMode === 'label_scan'
-        ? await VisionService.analyzeProductLabel(base64)
-        : await VisionService.analyzeImage(base64);
+      const result = await VisionService.analyzeImage(base64, currentMode);
 
       if (__DEV__) console.log(`[Scanner] ✅ Análise concluída em ${Date.now() - startTime}ms`);
 
       setAnalysisResult(result);
+      AccessibilityInfo.announceForAccessibility(t('scanner.analysisComplete', { count: result?.analises?.length || 0, defaultValue: `Análise concluída. ${result?.analises?.length || 0} riscos detectados.` }));
       await GamificationService.addPoints('USE_SCANNER');
     } catch (error) {
       const elapsed = Date.now() - startTime;
@@ -250,6 +266,7 @@ export default function ScannerScreen({ navigation, route }) {
       } else {
         NeoAlert.alert('Erro', 'Falha na análise. Tente novamente.');
       }
+      AccessibilityInfo.announceForAccessibility(t('scanner.analysisFailed', 'Falha na análise. Tente novamente.'));
       setAnalysisResult(null);
     } finally {
       setIsAnalyzing(false);
@@ -277,11 +294,13 @@ export default function ScannerScreen({ navigation, route }) {
     Vibration.vibrate(50);
 
     if (__DEV__) console.log(`[Scanner] Barcode lido: ${data} (tipo: ${type})`);
+    AccessibilityInfo.announceForAccessibility(t('scanner.lookupBarcode', 'Buscando dados do produto…'));
 
     // Filtrar URLs (QR codes com links) — não são códigos de produto
     if (data.startsWith('http') || data.startsWith('www') || data.includes('://')) {
       if (__DEV__) console.log('[Scanner] ⏭️ URL detectada, mudando para foto do rótulo');
       setCurrentMode('label_scan');
+      AccessibilityInfo.announceForAccessibility(t('scanner.barcodeUrlDetected', 'Código lido é um link. Câmera alternada para foto do rótulo.'));
       NeoAlert.alert('📷 Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
       setTimeout(() => setIsAnalyzing(false), 500);
       return;
@@ -293,6 +312,7 @@ export default function ScannerScreen({ navigation, route }) {
       
       if (result && result.found && result.product) {
           if (__DEV__) console.log(`[Scanner] ✅ Produto encontrado via: ${result.source}`, result.product.nome);
+          AccessibilityInfo.announceForAccessibility(t('scanner.barcodeSuccess', 'Produto encontrado. Redirecionando.'));
 
           navigation.navigate('InfoRotulosResult', {
             product: result.product,
@@ -310,6 +330,7 @@ export default function ScannerScreen({ navigation, route }) {
 
           // Muda direto para modo label_scan — fluxo automático
           setCurrentMode('label_scan');
+          AccessibilityInfo.announceForAccessibility(t('scanner.barcodeNotFound', 'Produto não cadastrado. Câmera alternada para foto do rótulo.'));
 
           // Alerta breve informativo — atribui causa ao fabricante, não ao app
           NeoAlert.alert(
@@ -382,7 +403,12 @@ export default function ScannerScreen({ navigation, route }) {
           </Text>
           <View style={styles.controls}>
             {currentMode !== 'barcode_scan' && (
-              <TouchableOpacity style={styles.captureButton} onPress={takePicture}>
+              <TouchableOpacity
+                style={styles.captureButton}
+                onPress={takePicture}
+                accessibilityRole="button"
+                accessibilityLabel={t('scanner.capturePhoto', 'Tirar foto')}
+              >
                 <View style={styles.captureInner}>
                   <NeoIcon name="Camera" size={32} color={Neo.colors.primary[600]} />
                 </View>
@@ -394,7 +420,12 @@ export default function ScannerScreen({ navigation, route }) {
 
       {/* Header */}
       <View style={[styles.floatingHeader, { top: insets.top }]}>
-        <TouchableOpacity onPress={changeMode} style={styles.glassButton}>
+        <TouchableOpacity
+          onPress={changeMode}
+          style={styles.glassButton}
+          accessibilityRole="button"
+          accessibilityLabel={t('common.back', 'Voltar')}
+        >
           <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
         </TouchableOpacity>
 
@@ -405,7 +436,12 @@ export default function ScannerScreen({ navigation, route }) {
           </Text>
         </View>
 
-        <TouchableOpacity onPress={() => setFacing(facing === 'back' ? 'front' : 'back')} style={styles.glassButton}>
+        <TouchableOpacity
+          onPress={() => setFacing(facing === 'back' ? 'front' : 'back')}
+          style={styles.glassButton}
+          accessibilityRole="button"
+          accessibilityLabel={t('scanner.flipCamera', 'Alternar câmera')}
+        >
           <NeoIcon name="Camera" size={24} color="#FFF" />
         </TouchableOpacity>
       </View>
@@ -417,7 +453,12 @@ export default function ScannerScreen({ navigation, route }) {
       <Image source={{ uri: photo }} style={styles.previewImage} />
 
       <View style={[styles.floatingHeader, { top: insets.top }]}>
-        <TouchableOpacity onPress={resetScanner} style={styles.glassButton}>
+        <TouchableOpacity
+          onPress={resetScanner}
+          style={styles.glassButton}
+          accessibilityRole="button"
+          accessibilityLabel={t('common.close', 'Fechar')}
+        >
           <NeoIcon name="CloseSquare" size={24} color="#FFF" />
         </TouchableOpacity>
       </View>
@@ -433,54 +474,52 @@ export default function ScannerScreen({ navigation, route }) {
         </View>
       )}
 
-      {!isAnalyzing && analysisResult && (
+      {!isAnalyzing && analysisResult && analysisResult.analises && (
         <ScrollView style={styles.resultSheet} contentContainerStyle={{ paddingBottom: 190 }}>
           <View style={styles.dragIndicator} />
-          {/* Header */}
-          <View style={styles.resultHeader}>
-            <View style={[styles.severityBadge, { backgroundColor: analysisResult.cor || '#666' }]}>
-              <Text style={styles.severityText}>{analysisResult.risco || 'Info'}</Text>
-            </View>
-          </View>
+          
+          <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1F2937', marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
+            {analysisResult.analises.length} risco(s) detectado(s)
+          </Text>
 
-          <Text style={styles.resultTitle}>{analysisResult.titulo}</Text>
-          <Text style={styles.resultDescription}>{analysisResult.descricao}</Text>
-
-          {/* Actions */}
-          <View style={styles.actionBox}>
-            <View style={styles.actionHeader}>
-              <NeoIcon name="LampOn" size={24} color={Neo.colors.primary[600]} />
-              <Text style={styles.actionTitle}>{t('headersFirst.recomendaEs', 'Recomendações')}</Text>
-            </View>
-            <Text style={styles.actionText}>{analysisResult.acao || analysisResult.recomendacao}</Text>
-          </View>
-
-          {/* Emergency Actions Section */}
-          {analysisResult.emergencia && (
-            <View style={[styles.actionBox, { backgroundColor: '#FEF2F2', borderLeftColor: '#EF4444' }]}>
-              <View style={styles.actionHeader}>
-                <NeoIcon name="Health" size={24} color="#EF4444" />
-                <Text style={[styles.actionTitle, { color: '#B91C1C' }]}>{t('headersFirst.emCasoDeExposiO', 'Em Caso de Exposição')}</Text>
+          {analysisResult.analises.map((item, index) => (
+            <View key={index} style={{ marginBottom: 24, backgroundColor: '#F9FAFB', borderRadius: 16, padding: 16, borderWidth: 1, borderColor: '#E5E7EB' }}>
+              {/* Header */}
+              <View style={[styles.resultHeader, { marginBottom: 12 }]}>
+                <View style={[styles.severityBadge, { backgroundColor: item.cor || '#666' }]}>
+                  <Text style={styles.severityText}>{item.risco || 'Info'}</Text>
+                </View>
               </View>
-              <Text style={[styles.actionText, { color: '#B91C1C', fontWeight: 'bold' }]}>{analysisResult.emergencia}</Text>
-              <Text style={{ marginTop: 8, fontSize: 13, color: '#7F1D1D', fontStyle: 'italic' }}>
-                {t('headersFirst.fonteOrientaEsDeSeguranAEProtocolosDeEme', 'Fonte: Orientações de segurança e protocolos de emergência (CIATOX/Fabricante).')}
-              </Text>
-            </View>
-          )}
 
-          {/* Detailed Risks if available */}
-          {analysisResult.riscos && (
-            <View style={[styles.actionBox, { backgroundColor: '#FFF3E0', borderLeftColor: '#FF9800' }]}>
-              <View style={styles.actionHeader}>
-                <NeoIcon name="Warning2" size={24} color="#FF9800" />
-                <Text style={[styles.actionTitle, { color: '#E65100' }]}>{t('headersFirst.detalhesDoProduto', 'Detalhes do Produto')}</Text>
+              <Text style={[styles.resultTitle, { marginTop: 0 }]}>{item.titulo}</Text>
+              <Text style={styles.resultDescription}>{item.descricao}</Text>
+
+              {/* Actions */}
+              <View style={[styles.actionBox, { marginTop: 12 }]}>
+                <View style={styles.actionHeader}>
+                  <NeoIcon name="LampOn" size={24} color={Neo.colors.primary[600]} />
+                  <Text style={styles.actionTitle}>{t('headersFirst.recomendaEs', 'Recomendações')}</Text>
+                </View>
+                <Text style={styles.actionText}>{item.acao || item.recomendacao}</Text>
               </View>
-              <Text style={[styles.actionText, { color: '#E65100' }]}>{analysisResult.riscos}</Text>
-            </View>
-          )}
 
-          <TouchableOpacity style={styles.primaryButton} onPress={resetScanner}>
+              {/* Emergency Actions Section */}
+              {item.emergencia && (
+                <View style={[styles.actionBox, { backgroundColor: '#FEF2F2', borderLeftColor: '#EF4444', marginTop: 12 }]}>
+                  <View style={styles.actionHeader}>
+                    <NeoIcon name="Health" size={24} color="#EF4444" />
+                    <Text style={[styles.actionTitle, { color: '#B91C1C' }]}>{t('headersFirst.emCasoDeExposiO', 'Em Caso de Exposição')}</Text>
+                  </View>
+                  <Text style={[styles.actionText, { color: '#B91C1C', fontWeight: 'bold' }]}>{item.emergencia}</Text>
+                  <Text style={{ marginTop: 8, fontSize: 13, color: '#7F1D1D', fontStyle: 'italic' }}>
+                    {t('headersFirst.fonteOrientaEsDeSeguranAEProtocolosDeEme', 'Fonte: Orientações de segurança e protocolos de emergência.')}
+                  </Text>
+                </View>
+              )}
+            </View>
+          ))}
+
+          <TouchableOpacity style={[styles.primaryButton, { marginTop: 16 }]} onPress={resetScanner}>
             <NeoIcon name="Scan" size={20} color="#FFF" />
             <Text style={styles.primaryButtonText}>{t('scanner.newScan')}</Text>
           </TouchableOpacity>

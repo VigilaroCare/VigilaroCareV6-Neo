@@ -14,6 +14,7 @@ import {
   Linking,
   Platform,
   Modal,
+  AccessibilityInfo,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -78,6 +79,14 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
     startAlert();
 
+    // Anúncio de voz inicial
+    const initialTitle = triggerReason === 'FALL'
+      ? t('sosCountdown.fallDetected', 'QUEDA DETECTADA')
+      : triggerReason === 'VITAL_CHECK'
+        ? t('sosCountdown.vitalCheck', 'VERIFICAÇÃO VITAL')
+        : t('sosCountdown.sendingSOS', 'ENVIANDO SOS');
+    AccessibilityInfo.announceForAccessibility(`${initialTitle}. ${t('sosCountdown.secondsLeft', { count: countdown, defaultValue: `${countdown} segundos restantes` })}`);
+
     // Pulse desabilitado quando o user prefere movimento reduzido (vertigem, idosos)
     if (!reduceMotion) {
       Animated.loop(
@@ -89,7 +98,13 @@ export default function SOSCountdownScreen({ navigation, route }) {
     }
 
     countdownTimerRef.current = setInterval(() => {
-      setCountdown((prev) => Math.max(0, prev - 1));
+      setCountdown((prev) => {
+        const next = Math.max(0, prev - 1);
+        if (next > 0) {
+          AccessibilityInfo.announceForAccessibility(String(next));
+        }
+        return next;
+      });
     }, 1000);
 
     return () => {
@@ -152,6 +167,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
   const triggerSOSAction = async () => {
     setSending(true);
+    AccessibilityInfo.announceForAccessibility(t('sosCountdown.sendingAlert', 'ENVIANDO ALERTA…'));
     try {
       // O socorro NUNCA espera o GPS: race de 4s + última posição conhecida;
       // sem nada, o SMS sai sem localização (ver utils/getEmergencyLocation).
@@ -202,6 +218,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
       const url = `sms:${phones}${separator}body=${encodeURIComponent(message)}`;
 
       await Linking.openURL(url);
+      AccessibilityInfo.announceForAccessibility(t('sosCountdown.confirmSend', 'Alerta de SOS disparado. Confirme o envio no aplicativo de mensagens.'));
 
       // Guarda dados pro botão de WhatsApp complementar
       sosMessageRef.current = message;

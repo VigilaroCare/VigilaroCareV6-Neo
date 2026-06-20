@@ -4,18 +4,17 @@
  * Vigilaro Care V6 Neo
  */
 
-import React, { useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
     Text,
     Image,
-    Animated,
+    ScrollView,
     TouchableOpacity,
     StyleSheet,
-    Dimensions,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -23,7 +22,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
-import { LinearGradient } from 'expo-linear-gradient';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
 import { ELETRODOMESTICOS_REVIEWS } from '../../data/eletrodomesticos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -49,7 +48,6 @@ const RISK_BG = {
 };
 
 export default function EletrodomesticosReviewsScreen({ navigation }) {
-    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -65,104 +63,38 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
         navigation.navigate('SafetyReviewDetail', { item });
     };
 
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
-    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
-
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
-
-    const capaUrl = 'https://images.pexels.com/photos/208933/pexels-photo-208933.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Washing machine / Appliances
+    const capaUrl = 'https://loremflickr.com/1200/800/microwave,appliance?lock=8'; // Washing machine / Appliances
 
     const title = t('headersFirst.homeAppliances', 'Eletrodomésticos');
     const subtitle = t('headersFirst.riscosPrevenOEOQueFazerEmCasoDeAcidente', 'Riscos, prevenção e o que fazer em caso de acidente');
 
     return (
-        <View style={{ flex: 1, backgroundColor: surface }}>
-            <StatusBar style="light" />
+        <AppBackground>
+            <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style={isDark ? 'light' : 'dark'} translucent={false} />
 
-            {/* Float Header / Back Button */}
-            <SafeAreaView edges={['top']} style={styles.safeHeader}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={styles.backBtnFlat}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('common.back', 'Voltar')}
+                {/* Header Padronizado */}
+                <NeoScreenHeader
+                    title={title}
+                    subtitle={subtitle}
+                    onBack={() => navigation.goBack()}
+                />
+
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingHorizontal: Neo.layout.screenHPadding, paddingBottom: Neo.layout.scrollBottomFooter }}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
-
-            <Animated.ScrollView
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-                contentContainerStyle={{ paddingBottom: 120 }}
-            >
-                {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: THEME_COLOR,
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <ReviewImage
-                        source={{ uri: capaUrl }}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                    />
-                    
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
-                    {/* Hero title — viaja junto com a parallax */}
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFFFFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                        }} accessibilityRole="header">
-                            {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: 'rgba(255,255,255,0.9)',
-                            marginTop: 6,
-                            fontWeight: '600'
-                        }}>
-                            {subtitle}
-                        </Text>
+                    {/* Imagem em banner arredondado flat */}
+                    <View style={{ width: '100%', height: 180, borderRadius: 24, overflow: 'hidden', marginTop: 12, marginBottom: 24 }}>
+                        <ReviewImage
+                            source={{ uri: capaUrl }}
+                            style={{ width: '100%', height: '100%' }}
+                            resizeMode="cover"
+                        />
                     </View>
-                </Animated.View>
 
-                {/* Main Content */}
-                <View style={[styles.content, { marginTop: 20 }]}>
+                    {/* Main Content */}
+                    <View style={{ marginTop: 0 }}>
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
@@ -220,8 +152,9 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
 
                 <View style={{ height: 200 }} />
                 </View>
-            </Animated.ScrollView>
-        </View>
+            </ScrollView>
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 

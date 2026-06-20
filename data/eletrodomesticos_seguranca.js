@@ -13,7 +13,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'microondas',
                 nome: 'Micro-ondas',
-                imagemUrl: 'https://images.pexels.com/photos/4686822/pexels-photo-4686822.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Explosão', 'Queimaduras', 'Incêndio'],
                 descricao: 'Risco de explosão com metais e queimaduras graves em crianças.',
                 prevencao: [
@@ -27,7 +27,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'processadores',
                 nome: 'Liquidificador / Batedeira / Mixer',
-                imagemUrl: 'https://images.pexels.com/photos/19599327/pexels-photo-19599327.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Cortes Graves', 'Choque Elétrico'],
                 descricao: 'Lâminas afiadas e partes rotativas acessíveis.',
                 prevencao: [
@@ -41,7 +41,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'fogao',
                 nome: 'Fogão e Forno',
-                imagemUrl: 'https://images.pexels.com/photos/25852330/pexels-photo-25852330.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Queimaduras', 'Vazamento de Gás', 'Incêndio'],
                 descricao: 'Principal fonte de calor e riscos na cozinha.',
                 prevencao: [
@@ -62,7 +62,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'aquecedor',
                 nome: 'Aquecedores Portáteis',
-                imagemUrl: 'https://images.pexels.com/photos/36788832/pexels-photo-36788832.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Incêndio', 'Queimaduras', 'Choque'],
                 descricao: 'Equipamentos com resistência elétrica exposta ou interna.',
                 prevencao: [
@@ -76,7 +76,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'ventilador',
                 nome: 'Ventiladores',
-                imagemUrl: 'https://images.pexels.com/photos/4389919/pexels-photo-4389919.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Cortes', 'Choque'],
                 descricao: 'Hélices em movimento acessíveis a dedos pequenos.',
                 prevencao: [
@@ -96,7 +96,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'ferro',
                 nome: 'Ferro de Passar / Chapinha',
-                imagemUrl: 'https://images.pexels.com/photos/28576618/pexels-photo-28576618.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: null,
                 riscos: ['Queimaduras', 'Incêndio'],
                 descricao: 'Superfícies extremamente quentes que demoram a esfriar.',
                 prevencao: [

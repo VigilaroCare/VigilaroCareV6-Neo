@@ -30,15 +30,15 @@ import { PET_SAFETY_CONTENT } from '../../data/pet_safety_content';
 // Apenas fotos com enquadramento landscape que funcionam em cover.
 // adultos e pequenos usam Pexels (não havia equivalente no acervo).
 const IMG = {
-    header:    require('../../assets/images/prevencao/pet-todos-tipos.jpg'),
-    filhotes:  require('../../assets/images/prevencao/pet-filhotes.jpg'),
-    wellness:  require('../../assets/images/prevencao/pet-wellness-gato.jpg'),
-    socorros:  require('../../assets/images/prevencao/pet-socorros.jpg'),
+    header:    null,
+    filhotes:  null,
+    wellness:  null,
+    socorros:  null,
 };
 
 // ── Pexels para cards sem foto local ─────────────────────────────────────────
 const PEXELS = (id) =>
-    `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600`;
+    'https://loremflickr.com/1200/800/pet,dog?lock=9';
 
 export default function PetsMenuScreen() {
     const navigation = useNavigation();
@@ -63,7 +63,8 @@ export default function PetsMenuScreen() {
         {
             id: 'filhotes',
             cor: '#2196F3',
-            imagem: IMG.filhotes,
+            imagem: null,
+            imagemUrl: PEXELS('4588435'), // Pexels puppy
             titulo: t('petsMenu.filhotes.titulo'),
             descricao: t('petsMenu.filhotes.descricao'),
             tela: 'AgeGroupDetail',
@@ -119,7 +120,8 @@ export default function PetsMenuScreen() {
         {
             id: 'wellness',
             cor: '#16A34A',
-            imagem: IMG.wellness,
+            imagem: null,
+            imagemUrl: PEXELS('1741205'), // Pexels cat and dog
             titulo: t('petsMenu.wellness.titulo'),
             descricao: t('petsMenu.wellness.descricao'),
             tela: 'PetWellness',
@@ -143,7 +145,8 @@ export default function PetsMenuScreen() {
         {
             id: 'primeiros_socorros_pet',
             cor: '#DC2626',
-            imagem: IMG.socorros,
+            imagem: null,
+            imagemUrl: PEXELS('7468202'), // Pexels vet/first aid
             titulo: t('petsMenu.primeiros_socorros_pet.titulo', 'Primeiros socorros pet'),
             descricao: t('petsMenu.primeiros_socorros_pet.descricao', 'Guia completo + ação rápida em emergências'),
             tela: 'PrimeirosSocorros',

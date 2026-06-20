@@ -50,7 +50,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: 'TruckFast', // Maintenance/Work generic
         iconColor: '#F59E0B', // Amber
         bg: '#FEF3C7', // Amber 100
-        imagemUrl: 'https://images.pexels.com/photos/6068901/pexels-photo-6068901.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: null,
         definicao: 'Tintas, vernizes, colas e solventes (thinner) emitem vapores tóxicos e são inflamáveis.',
         importancia: 'Risco duplo: Intoxicação por inalação e Incêndio.',
         comoIdentificar: [

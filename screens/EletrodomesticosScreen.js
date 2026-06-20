@@ -16,6 +16,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import ReviewImage from '../components/ReviewImage';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { eletrodomesticosSeguranca } from '../data/eletrodomesticos_seguranca';
@@ -161,16 +162,12 @@ export default function EletrodomesticosScreen({ navigation }) {
             <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
                 <StatusBar style="dark" />
 
-                {/* Header Neo Glass */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <View style={{ marginLeft: 16, flex: 1 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.eletrodomesticos', 'Eletrodomesticos')}</Text>
-                        <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.')}</Text>
-                    </View>
-                </View>
+                {/* Cabeçalho Padronizado */}
+                <NeoScreenHeader 
+                    title={t('headersFirst.eletrodomesticos', 'Eletrodomesticos')}
+                    subtitle={t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.')}
+                    onBack={() => navigation.goBack()}
+                />
 
                 <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 {eletrodomesticosSeguranca.map((categoria) => (

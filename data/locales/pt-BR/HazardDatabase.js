@@ -1,25 +1,16 @@
 /**
  * HazardDatabase.js
  * Base de Conhecimento "Vigilaro Expert" - Riscos Domésticos Inerentes
- * 
- * Este banco de dados atua como a "Inteligência Central" do mapeamento de riscos.
- * Ele lista ambientes, itens comuns nesses ambientes e os riscos ocultos ou óbvios associados.
- * 
- * Estrutura:
- * - Environment (Ambiente)
- * - Items (Itens/Características)
- * - Risks (Riscos associados: Físico, Químico, Biológico, Ergonômico, Acidente)
- * - Target Groups (Quem corre mais perigo?)
  */
 
 export const HAZARD_DATABASE_PT_BR = {
     // ==========================================
-    // COZINHA: O "Laboratório" de Riscos
+    // COZINHA
     // ==========================================
     'cozinha': {
         label: 'Cozinha',
         emoji: '🍳',
-        risks_inherent: ['Queimaduras', 'Cortes', 'Incêndio', 'Intoxicação por Gás'],
+        risks_inherent: ['Queimaduras', 'Cortes', 'Incêndio', 'Vazamento de Gás'],
         items: [
             {
                 id: 'airfryer',
@@ -27,10 +18,10 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'eletro',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Superfície externa aquece muito durante o uso.', target: ['crianca'] },
-                    { type: 'queda', desc: 'Puxar pelo fio (efeito chicote) derrubando óleo/alimento quente.', target: ['crianca', 'pet'] }
+                    { type: 'queimadura', desc: 'As laterais externas da fritadeira esquentam muito no uso e queimam se encostar.', target: ['crianca'] },
+                    { type: 'queda', desc: 'O aparelho pode tombar e derramar gordura ou comida quente se puxarem o fio.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Jamais use em toalhas de mesa que podem ser puxadas. Mantenha o fio enrolado e curto.'
+                expert_tip: 'Nunca deixe a fritadeira em cima de toalhas que crianças ou pets possam puxar. Deixe o fio elétrico curto e bem organizado.'
             },
             {
                 id: 'processador_mixer',
@@ -38,21 +29,21 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'eletro',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'corte', desc: 'Lâminas extremamente afiadas, risco de amputação de dedos.', target: ['crianca', 'adulto'] },
-                    { type: 'eletrico', desc: 'Acionamento acidental durante limpeza.', target: ['adulto'] }
+                    { type: 'corte', desc: 'As lâminas cortam muito rápido, com risco de acidentes sérios nos dedos.', target: ['crianca', 'adulto'] },
+                    { type: 'eletrico', desc: 'Ligar o aparelho por engano com a mão nas lâminas durante a limpeza.', target: ['adulto'] }
                 ],
-                expert_tip: 'Sempre tire da tomada antes de qualquer limpeza. Guarde lâminas separadas e altas.'
+                expert_tip: 'Tire sempre o aparelho da tomada antes de mexer ou limpar as lâminas. Guarde as peças cortantes desmontadas e no alto.'
             },
             {
                 id: 'potes_vidro',
-                label: 'Utensílios de Vidro / Refratários',
+                label: 'Travessas e Potes de Vidro',
                 type: 'utensilio',
                 riskLevel: 'MEDIO',
                 hazards: [
-                    { type: 'corte', desc: 'Explosão por choque térmico (quente -> frio).', target: ['todos'] },
-                    { type: 'ingestao', desc: 'Fragmentos invisíveis após quebra.', target: ['crianca', 'pet'] }
+                    { type: 'corte', desc: 'Vidros comuns podem estourar com mudanças bruscas de temperatura.', target: ['todos'] },
+                    { type: 'ingestao', desc: 'Cacos microscópicos que ficam no chão após a quebra.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Ao quebrar vidro, use lanterna contra o chão para achar micro-cacos brilhantes.'
+                expert_tip: 'Se quebrar um refratário ou copo, apague a luz e mire a lanterna do celular paralela ao chão. Os caquinhos invisíveis vão brilhar no escuro.'
             },
             {
                 id: 'forno_embutido',
@@ -60,9 +51,9 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'eletro',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Vidro da porta atinge altas temperaturas. Altura dos olhos de crianças.', target: ['crianca', 'pet'] }
+                    { type: 'queimadura', desc: 'O vidro da porta do forno fica muito quente, bem na altura do rosto de crianças pequenas.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Instale travas de porta de forno. O isolamento térmico nem sempre é 100% eficaz.'
+                expert_tip: 'O vidro externo pode queimar mesmo com isolamento térmico. Coloque uma trava de porta específica para fornos.'
             },
             {
                 id: 'produtos_limpeza_pia',
@@ -70,195 +61,195 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'quimico',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'intoxicacao', desc: 'Ingestão acidental (confusão com bebidas) e queimaduras químicas.', target: ['crianca', 'pet', 'idoso_demencia'] },
-                    { type: 'quimico', desc: 'Misturas perigosas (Cloro + Amônia = Gás Tóxico).', target: ['adulto'] }
+                    { type: 'intoxicacao', desc: 'Ingerir desinfetante ou sabão por achar que é suco ou refrigerante.', target: ['crianca', 'pet', 'idoso_demencia'] },
+                    { type: 'quimico', desc: 'Misturar água sanitária com amônia solta gases que asfixiam.', target: ['adulto'] }
                 ],
-                expert_tip: 'O armário "embaixo da pia" é o local mais perigoso da casa. Use travas magnéticas ou mude o local.'
+                expert_tip: 'O armário debaixo da pia é a maior armadilha de envenenamento da casa. Mude os produtos para um armário alto ou instale travas plásticas.'
             }
         ]
     },
 
     // ==========================================
-    // ÁREA DE SERVIÇO: Química e Máquinas
+    // ÁREA DE SERVIÇO
     // ==========================================
     'area_servico': {
         label: 'Área de Serviço',
         emoji: 'guantes',
-        risks_inherent: ['Intoxicação', 'Choque', 'Afogamento'],
+        risks_inherent: ['Intoxicação', 'Choque Elétrico', 'Afogamento'],
         items: [
             {
                 id: 'maquina_lavar_frontal',
-                label: 'Máquina de Lavar (Abertura Frontal)',
+                label: 'Máquina de Lavar (Porta Frontal)',
                 type: 'eletro',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'sufocamento', desc: 'Crianças pequenas e pets podem entrar e ficar presos (esconde-esconde).', target: ['crianca', 'pet'] }
+                    { type: 'sufocamento', desc: 'Crianças pequenas ou gatos podem entrar na máquina durante brincadeiras de esconde-esconde.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Mantenha a porta da máquina sempre fechada e, se possível, travada quando fora de uso.'
+                expert_tip: 'Mantenha a porta da máquina de lavar trancada ou fechada quando ela não estiver batendo roupas.'
             },
             {
                 id: 'baldes_bacias',
-                label: 'Baldes e Bacias com Água (Molho)',
+                label: 'Baldes e Bacias com Água de Molho',
                 type: 'objeto',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'afogamento', desc: 'Bebês podem se afogar em 5cm de água silenciosamente.', target: ['bebe', 'crianca'] }
+                    { type: 'afogamento', desc: 'Bebês podem se afogar de cabeça para baixo em baldes com apenas 5 centímetros de água.', target: ['bebe', 'crianca'] }
                 ],
-                expert_tip: 'Regra de ouro: Balde usado é balde vazio e virado para baixo. Nunca deixe molho no chão.'
+                expert_tip: 'Acabou de usar o balde? Esvazie-o na mesma hora e guarde de cabeça para baixo no chão.'
             },
             {
                 id: 'ferro_aquecido',
-                label: 'Ferro de Passar',
+                label: 'Ferro de Passar Roupas',
                 type: 'eletro',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Demora até 30min para esfriar totalmente após desligado.', target: ['crianca'] },
-                    { type: 'queda', desc: 'Queda do objeto pesado sobre o pé ou cabeça ao puxar fio.', target: ['crianca'] }
+                    { type: 'queimadura', desc: 'A base do ferro continua quente o suficiente para queimar por até 30 minutos depois de desligado.', target: ['crianca'] },
+                    { type: 'queda', desc: 'Puxar o cabo pendurado e derrubar o ferro pesado sobre a cabeça ou pé.', target: ['crianca'] }
                 ],
-                expert_tip: 'O risco continua após desligar. Guarde em local alto enquanto esfria (não no chão).'
+                expert_tip: 'Não deixe o ferro esfriando na tábua de passar. Coloque-o em uma prateleira alta e fora do alcance enquanto esfria.'
             }
         ]
     },
 
     // ==========================================
-    // BANHEIRO: O Vilão das Quedas
+    // BANHEIRO
     // ==========================================
     'banheiro': {
         label: 'Banheiro',
         emoji: '🚿',
-        risks_inherent: ['Quedas', 'Choque', 'Afogamento'],
+        risks_inherent: ['Quedas', 'Choques', 'Afogamento'],
         items: [
             {
                 id: 'box_blindex',
-                label: 'Box de Vidro (Blindex)',
+                label: 'Box de Vidro',
                 type: 'estrutura',
                 riskLevel: 'MEDIO',
                 hazards: [
-                    { type: 'corte', desc: 'Estouro espontâneo ou por impacto, gerando milhares de cacos.', target: ['todos'] },
-                    { type: 'aprisionamento', desc: 'Trancar/emperrar com pessoa passando mal dentro.', target: ['idoso'] }
+                    { type: 'corte', desc: 'O vidro temperado pode estourar com impactos nas quinas, espalhando cacos afiados.', target: ['todos'] },
+                    { type: 'aprisionamento', desc: 'A porta do box pode emperrar se alguém cair desmaiado encostado nela.', target: ['idoso'] }
                 ],
-                expert_tip: 'Aplique película de segurança no vidro. Tenha chave reserva ou abertura fácil por fora.'
+                expert_tip: 'Coloque uma película de segurança transparente no vidro do box. Ela impede que os cacos voem se o vidro quebrar.'
             },
             {
                 id: 'tapete_comum',
-                label: 'Tapete de Tecido (Sem antiderrapante)',
+                label: 'Tapetes de Tecido Soltos',
                 type: 'objeto',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queda', desc: 'Deslizamento fatal em piso molhado, risco de fratura de fêmur/bacia.', target: ['idoso'] }
+                    { type: 'queda', desc: 'Escorregar no tapete de pano ao sair do banho, causando fraturas graves.', target: ['idoso'] }
                 ],
-                expert_tip: 'Banheiro de idoso NÃO deve ter tapete de tecido. Use apenas emborrachados fixos.'
+                expert_tip: 'Nunca use tapetes de tecido soltos em banheiros de idosos. Dê preferência a tapetes de borracha com ventosas.'
             },
             {
                 id: 'tomada_pia',
-                label: 'Tomada Próxima à Pia/Banheira',
+                label: 'Tomadas perto da Pia ou Banheira',
                 type: 'eletrico',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'choque', desc: 'Queda de secador/barbeador na água (eletrocução).', target: ['todos'] }
+                    { type: 'choque', desc: 'Secadores ou pranchas de cabelo que caem na pia com água (risco de eletrocussão).', target: ['todos'] }
                 ],
-                expert_tip: 'Instale interruptor DR (Diferencial Residual) que desliga em milissegundos em caso de choque.'
+                expert_tip: 'Veja se o seu banheiro conta com o disjuntor DR no quadro elétrico para cortar a energia em caso de contato com a água.'
             }
         ]
     },
 
     // ==========================================
-    // SALA / QUARTOS: Riscos "Confortáveis"
+    // SALA / QUARTOS
     // ==========================================
     'sala_quarto': {
         label: 'Sala e Quartos',
         emoji: '🛋️',
-        risks_inherent: ['Quedas', 'Sufocamento', 'Tombamento'],
+        risks_inherent: ['Quedas', 'Asfixia', 'Esmagamento'],
         items: [
             {
                 id: 'tv_nao_fixada',
-                label: 'TV em Rack/Móvel (Não fixada)',
+                label: 'Televisor sobre Racks (Solto)',
                 type: 'eletro',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'esmagamento', desc: 'Tombamento sobre crianças que tentam escalar o móvel para pegar algo.', target: ['crianca'] }
+                    { type: 'esmagamento', desc: 'A TV pode tombar por cima se a criança subir nas gavetas do rack para alcançar a tela.', target: ['crianca'] }
                 ],
-                expert_tip: 'TVs modernas são leves mas instáveis. Use fitas de ancoragem na parede ou no móvel.'
+                expert_tip: 'TVs finas são muito leves na frente. Prenda a TV na parede com suporte ou use cabos de aço ancorados no móvel.'
             },
             {
                 id: 'mesa_centro_vidro',
-                label: 'Mesa de Centro (Vidro/Quinas)',
+                label: 'Mesa de Centro de Vidro ou com Quinas',
                 type: 'movel',
                 riskLevel: 'MEDIO',
                 hazards: [
-                    { type: 'corte', desc: 'Trauma craniano ou corte supercílio em quedas de crianças aprendendo a andar.', target: ['bebe', 'crianca'] },
-                    { type: 'quebra', desc: 'Quebra do vidro com peso ou impacto.', target: ['todos'] }
+                    { type: 'corte', desc: 'Bebês em fase de dar os primeiros passos podem cair de rosto nas quinas afiadas da mesa.', target: ['bebe', 'crianca'] },
+                    { type: 'quebra', desc: 'Subir na mesa de vidro ou apoiar peso excessivo e quebrá-la.', target: ['todos'] }
                 ],
-                expert_tip: 'Se tem criança começando a andar, retire a mesa de centro temporariamente ou proteja quinas.'
+                expert_tip: 'Se tiver bebês aprendendo a andar, guarde a mesa de centro por alguns meses ou cubra as quinas com protetores macios.'
             },
             {
                 id: 'cortinas_cordoes',
-                label: 'Cortinas com Cordões Longos',
+                label: 'Cordonês de Persianas e Cortinas',
                 type: 'decoracao',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'estrangulamento', desc: 'Crianças brincam com o cordão e podem se enrolar no pescoço.', target: ['crianca', 'pet'] }
+                    { type: 'estrangulamento', desc: 'Crianças pequenas colocam a cabeça nos laços dos cordões e se asfixiam.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Corte os loops dos cordões ou use ganchos altos para mantê-los fora de alcance.'
+                expert_tip: 'Enrole ou prenda as cordinhas em ganchos no alto da parede, bem longe do chão e do alcance das mãos.'
             },
             {
                 id: 'baterias_botao',
-                label: 'Controles Remotos / Brinquedos (Bateria Botão)',
+                label: 'Controles e Chaves com Pilha Redonda',
                 type: 'objeto',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'ingestao', desc: 'Ingestão de bateria causa queimadura química esofágica em 2 horas.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Engolir a pilha redonda causa queimadura química severa no estômago em 2 horas.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Parafuse os compartimentos de bateria. Se sumir uma bateria, vá ao hospital imediatamente.'
+                expert_tip: 'Garanta que controles remotos ou chaves de carro tenham a tampinha das pilhas parafusada ou muito bem travada.'
             }
         ]
     },
 
     // ==========================================
-    // ÁREAS EXTERNAS: O Perigo Aberto
+    // QUINTAL E JARDIM
     // ==========================================
     'externo': {
         label: 'Quintal e Jardim',
         emoji: '🌳',
-        risks_inherent: ['Afogamento', 'Envenenamento', 'Animais'],
+        risks_inherent: ['Afogamento', 'Envenenamento', 'Animais peçonhentos'],
         items: [
             {
                 id: 'plantas_toxicas',
-                label: 'Plantas Ornamentais (Comigo-ninguém-pode, Azaleia)',
+                label: 'Plantas Tóxicas (Comigo-ninguém-pode, Copo-de-leite)',
                 type: 'biologico',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'intoxicacao', desc: 'Ingestão causa edema de glote e asfixia rápida.', target: ['crianca', 'pet'] },
-                    { type: 'alergia', desc: 'Seiva pode causar queimaduras na pele/olhos.', target: ['todos'] }
+                    { type: 'intoxicacao', desc: 'Mastigar folhas causa inchaço na garganta e impede a passagem de ar.', target: ['crianca', 'pet'] },
+                    { type: 'alergia', desc: 'A seiva líquida da planta gera irritações e coceiras fortes nos olhos e pele.', target: ['todos'] }
                 ],
-                expert_tip: 'Conheça suas plantas pelo nome científico. Em caso de dúvida, eleve-as ou remova.'
+                expert_tip: 'Identifique as plantas do seu quintal. Se notar espécies tóxicas, mude-as para vasos suspensos ou doe.'
             },
             {
                 id: 'churrasqueira',
-                label: 'Churrasqueira / Fogo de Chão',
+                label: 'Churrasqueira e Fogareiros',
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Brasas permanecem quentes por horas sob cinzas (crianças pisam).', target: ['crianca', 'pet'] },
-                    { type: 'explosao', desc: 'Uso de álcool líquido para acender.', target: ['todos'] }
+                    { type: 'queimadura', desc: 'Cinzas por cima podem esconder brasas ainda muito quentes por horas no quintal.', target: ['crianca', 'pet'] },
+                    { type: 'explosao', desc: 'Jogar álcool líquido direto no carvão para acender ou atiçar a chama.', target: ['todos'] }
                 ],
-                expert_tip: 'Isole a área da churrasqueira. Apague totalmente as brasas com água ao terminar.'
+                expert_tip: 'Resfrie as cinzas jogando água fria assim que o churrasco terminar. Nunca use álcool líquido inflamável.'
             },
             {
                 id: 'piscina',
-                label: 'Piscina / Espelho d\'água',
+                label: 'Piscina e Fontes de Água',
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'afogamento', desc: 'Silencioso e rápido (segundos). Ralos de sucção prendem cabelos.', target: ['crianca', 'pet'] }
+                    { type: 'afogamento', desc: 'Afogamento é rápido, não faz barulho e ocorre em menos de 2 minutos.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Cerca física de 1.20m com portão autotravante é a única barreira eficaz. Capas não bastam.'
+                expert_tip: 'Use cercas de alumínio de 1,20m ao redor da piscina com portão trancado por fora. Capas de lona não impedem quedas.'
             }
         ]
     },
 
     // ==========================================
-    // CIRCULAÇÃO E GERAL: Riscos Estruturais
+    // CIRCULAÇÃO
     // ==========================================
     'circulacao': {
         label: 'Circulação e Estrutura',
@@ -267,40 +258,40 @@ export const HAZARD_DATABASE_PT_BR = {
         items: [
             {
                 id: 'escadas_internas',
-                label: 'Escadas Internas',
+                label: 'Escadas de Acesso Interno',
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Queda de degraus (falta de corrimão ou portão). Altíssimo risco para bebês e idosos.', target: ['bebe', 'idoso'] },
-                    { type: 'escorregamento', desc: 'Piso liso ou carpete solto nos degraus.', target: ['todos'] }
+                    { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês e idosos.', target: ['bebe', 'idoso'] },
+                    { type: 'escorregamento', desc: 'Pisos muito polidos ou tapetes decorativos colocados nos degraus.', target: ['todos'] }
                 ],
-                expert_tip: 'Instale portões de segurança (baby gates) no topo e na base. Use faixas antiderrapantes.'
+                expert_tip: 'Use portõezinhos de segurança (grades) aparafusados no topo e na base das escadas se tiver bebês.'
             },
             {
                 id: 'janelas_sacadas',
-                label: 'Janelas e Sacadas (Acima do Térreo)',
+                label: 'Janelas e Sacadas Altas',
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda_altura', desc: 'Queda fatal. Crianças escalam móveis para olhar a janela.', target: ['crianca', 'pet'] }
+                    { type: 'queda_altura', desc: 'Queda fatal. Crianças sobem em sofás ou cadeiras para espiar fora da janela.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Redes de proteção certificadas são obrigatórias. Travas limitadoras ajudam, mas não substituem a rede.'
+                expert_tip: 'A única proteção confiável contra quedas em apartamentos é a rede de proteção instalada por empresa certificada.'
             },
             {
                 id: 'portas_vidro',
-                label: 'Portas de Vidro (Correr)',
+                label: 'Portas de Correr de Vidro',
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'colisao', desc: 'Vidro muito limpo fica invisível. Crianças correm e colidem.', target: ['crianca', 'pet'] }
+                    { type: 'colisao', desc: 'Vidro transparente muito limpo fica invisível. Crianças correndo podem colidir e quebrar o vidro.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Use adesivos visuais na altura dos olhos das crianças para sinalizar o vidro.'
+                expert_tip: 'Cole faixas adesivas decorativas na altura dos olhos das crianças para que elas vejam se a porta está fechada.'
             }
         ]
     },
 
     // ==========================================
-    // GARAGEM E OFICINA: Química e Cortes
+    // GARAGEM E OFICINA
     // ==========================================
     'garagem': {
         label: 'Garagem e Oficina',
@@ -309,24 +300,24 @@ export const HAZARD_DATABASE_PT_BR = {
         items: [
             {
                 id: 'ferramentas_eletricas',
-                label: 'Ferramentas Elétricas (Furadeira, Serra)',
+                label: 'Ferramentas de Corte e Furadeiras',
                 type: 'ferramenta',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'corte', desc: 'Acionamento acidental por curiosidade.', target: ['crianca'] }
+                    { type: 'corte', desc: 'Curiosidade em ligar aparelhos elétricos com serras ou brocas expostas.', target: ['crianca'] }
                 ],
-                expert_tip: 'Guarde em caixas trancadas e desconectadas. Nunca deixe "plugado" no intervalo do uso.'
+                expert_tip: 'Nunca guarde ferramentas na tomada. Guarde furadeiras e serras elétricas em caixas fechadas no alto.'
             },
             {
                 id: 'quimicos_automotivos',
-                label: 'Produtos Automotivos / Inflamáveis',
+                label: 'Fluidos de Carro e Inflamáveis',
                 type: 'quimico',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'intoxicacao', desc: 'Ingestão de líquidos coloridos (gasolina, aditivos).', target: ['crianca', 'pet'] },
-                    { type: 'incendio', desc: 'Armazenamento inadequado gera vapores explosivos.', target: ['todos'] }
+                    { type: 'intoxicacao', desc: 'Líquidos coloridos e doces (como fluido de radiador) ingeridos por engano.', target: ['crianca', 'pet'] },
+                    { type: 'incendio', desc: 'Armazenar galões de combustível ou tiner perto de tomadas ou faíscas da garagem.', target: ['todos'] }
                 ],
-                expert_tip: 'Armazene em local ventilado, alto e trancado. Longe de fontes de calor.'
+                expert_tip: 'Guarde óleos, fluidos e tintas em prateleiras altas da garagem, longe do calor do motor do carro.'
             }
         ]
     }
@@ -337,8 +328,8 @@ export const HAZARD_DATABASE_PT_BR = {
  */
 export function getAllHazardItems() {
     let items = [];
-    Object.keys(HAZARD_DATABASE).forEach(key => {
-        const area = HAZARD_DATABASE[key];
+    Object.keys(HAZARD_DATABASE_PT_BR).forEach(key => {
+        const area = HAZARD_DATABASE_PT_BR[key];
         const labeledItems = area.items.map(i => ({ ...i, areaId: key, areaLabel: area.label }));
         items = [...items, ...labeledItems];
     });
@@ -349,20 +340,13 @@ export function getAllHazardItems() {
  * Função inteligente de filtro
  */
 export function getRisksForProfile(inventoryIds, userProfiles) {
-    // InventoryIds: Array de strings ['airfryer', 'piscina']
-    // UserProfiles: Array de objetos perfil
-
-    // Simplificação para MVP: Retorna lista de riscos baseada APENAS no inventário
-    // O filtro de perfil deve ser feito na camada superior
-
     const risks = [];
 
     // Para cada item que o usuário TEM
     inventoryIds.forEach(itemId => {
-        // Achar item no DB
         let foundItem = null;
-        Object.keys(HAZARD_DATABASE).forEach(key => {
-            const item = HAZARD_DATABASE[key].items.find(i => i.id === itemId);
+        Object.keys(HAZARD_DATABASE_PT_BR).forEach(key => {
+            const item = HAZARD_DATABASE_PT_BR[key].items.find(i => i.id === itemId);
             if (item) foundItem = item;
         });
 

@@ -107,7 +107,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
 
     const categoryImages = {
         'escola_segura': 'https://images.pexels.com/photos/256450/pexels-photo-256450.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'ferias_seguras': 'https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-landscape.jpg?auto=compress&cs=tinysrgb&w=1200',
+        'ferias_seguras': 'https://loremflickr.com/1200/800/vacation,trip?lock=4',
         'gestante_segura': 'https://images.pexels.com/photos/7055934/pexels-photo-7055934.jpeg?auto=compress&cs=tinysrgb&w=1200',
         'mobilidade_reduzida': 'https://images.pexels.com/photos/4064303/pexels-photo-4064303.jpeg?auto=compress&cs=tinysrgb&w=1200',
         'brinquedos': 'https://images.pexels.com/photos/3661353/pexels-photo-3661353.jpeg?auto=compress&cs=tinysrgb&w=1200',

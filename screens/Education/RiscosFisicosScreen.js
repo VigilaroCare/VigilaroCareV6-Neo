@@ -14,10 +14,14 @@ import { t_field, t_array } from '../../utils/getLocalizedField';
 
 
 
-export default function RiscosFisicosScreen({ navigation }) {
+export default function RiscosFisicosScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation('common');
-  const THEME_COLOR = '#D97706'; // Amber 600 - Darker for white text contrast
+  
+  const filter = route.params?.filter || 'fisicos';
+  const isEletricos = filter === 'eletricos';
+
+  const THEME_COLOR = isEletricos ? '#D97706' : '#DC2626'; // Amber vs Red
 
   // Icon Mapping based on Emoji or ID from data
   const getIconData = (item) => {
@@ -78,14 +82,14 @@ export default function RiscosFisicosScreen({ navigation }) {
           >
               <View style={{
                   width: 48, height: 48, borderRadius: 12,
-                  backgroundColor: '#FFF8E1', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: isEletricos ? '#FFF8E1' : '#FEE2E2', alignItems: 'center', justifyContent: 'center',
                   marginRight: 16
               }}>
-                  <Text style={{ fontSize: 24 }}>⚡</Text>
+                  <Text style={{ fontSize: 24 }}>{isEletricos ? '⚡' : '🚷'}</Text>
               </View>
               <View style={{ flex: 1 }}>
-                  <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{t('riscosFisicos.headerTitle')}</Text>
-                  <Text style={{ color: Neo.colors.neutral[600], fontSize: 13, fontWeight: '600' }}>{t('riscosFisicos.headerSubtitle')}</Text>
+                  <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{isEletricos ? t('knowledgeHub.electricalRisks', 'Riscos Elétricos') : t('riscosFisicos.headerTitle', 'Riscos Físicos')}</Text>
+                  <Text style={{ color: Neo.colors.neutral[600], fontSize: 13, fontWeight: '600' }}>{isEletricos ? 'Choques, Fiações e Segurança' : t('riscosFisicos.headerSubtitle', 'Quedas, Queimaduras e Engasgos')}</Text>
               </View>
           </NeoCard>
       </View>
@@ -93,7 +97,7 @@ export default function RiscosFisicosScreen({ navigation }) {
       {/* Vertical List */}
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
         <View style={styles.listContainer}>
-          {riscosFisicos.map((item) => {
+          {riscosFisicos.filter(item => isEletricos ? item.categoria === 'Eletricidade' : item.categoria !== 'Eletricidade').map((item) => {
             const { icon: IconStr, color, bg } = getIconData(item);
             return (
               <TouchableOpacity key={item.id} style={{ marginBottom: 16 }} onPress={() => handlePress(item)} activeOpacity={0.8}>

@@ -12,7 +12,7 @@ import ReviewImage from '../../components/ReviewImage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { H1, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
-import { t_field } from '../../utils/getLocalizedField';
+import { t_field, t_array } from '../../utils/getLocalizedField';
 
 export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -35,7 +35,8 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
 
     const handlePress = (item) => {
         const rawContent = KITS_EDUCATIONAL_CONTENT[item.id] || {};
-        const { sections, description, ...restContent } = rawContent;
+        const description = t_field(rawContent, 'description');
+        const sections = t_array(rawContent, 'sections');
 
         const formatSections = (desc, secs) => {
             let res = desc || '';
@@ -90,7 +91,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const capaUrl = 'https://images.pexels.com/photos/5452202/pexels-photo-5452202.jpeg?auto=compress&cs=tinysrgb&w=1200'; // First Aid
 
     const title = t('headersFirst.guiaDeKits', 'Guia de Kits');
-    const subtitle = t('headersFirst.estejaPreparadoQuandoPrecisar', 'Esteja preparado quando precisar.');
+    const subtitle = t('estejaPreparadoQuandoPrecisar', 'Esteja preparado quando precisar.');
 
     return (
         <View style={{ flex: 1, backgroundColor: surface }}>

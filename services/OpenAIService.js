@@ -39,6 +39,15 @@ const TIMEOUT_TTS = 20000;           // TTS (resposta de áudio)
 const AVAILABLE_VOICES = ['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer'];
 const VOICE_STORAGE_KEY = '@vigilaro_voice_preference';
 
+const cleanJsonString = (str) => {
+    if (!str) return '';
+    let cleaned = str.trim();
+    cleaned = cleaned.replace(/^```json\s*/i, '');
+    cleaned = cleaned.replace(/^```\s*/, '');
+    cleaned = cleaned.replace(/\s*```$/, '');
+    return cleaned.trim();
+};
+
 class OpenAIService {
     constructor() {
         this.context = null;
@@ -393,7 +402,7 @@ Regras de Tom e Estilo:
             }
 
             let jsonResponse;
-            const content = data.choices[0].message.content;
+            const content = cleanJsonString(data.choices[0].message.content);
             try {
                 jsonResponse = JSON.parse(content);
             } catch (err) {
@@ -494,8 +503,9 @@ Regras de Tom e Estilo:
             }
 
             let jsonResponse;
+            const content = cleanJsonString(data.choices[0].message.content);
             try {
-                jsonResponse = JSON.parse(data.choices[0].message.content);
+                jsonResponse = JSON.parse(content);
             } catch (err) {
                 throw new Error("OpenAI retornou um JSON incompleto ou mal formatado.");
             }
@@ -563,7 +573,8 @@ Regras de Tom e Estilo:
                 throw new Error(data.error.message);
             }
 
-            const jsonResponse = JSON.parse(data.choices[0].message.content);
+            const content = cleanJsonString(data.choices[0].message.content);
+            const jsonResponse = JSON.parse(content);
             return jsonResponse.vaccines || [];
         } catch (error) {
             if (__DEV__) {

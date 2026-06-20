@@ -135,6 +135,151 @@ export default function ConceitoDetailScreen({ route, navigation }) {
     });
   };
 
+  const renderLifeStageLayout = () => {
+    const definicao = t_field(conceito, 'definicao') || t_field(conceito, 'descricao');
+    const importancia = t_field(conceito, 'importancia');
+    const estatisticas = t_field(conceito, 'estatisticas');
+    
+    const comoEvitar = t_array(conceito, 'comoEvitar') || t_array(conceito, 'prevencao') || [];
+    const oQueNaoFazer = t_array(conceito, 'oQueNaoFazer') || [];
+    
+    const socorros = t_object(conceito, 'primeirosSocorros') || t_array(conceito, 'oQueFazer') || t_field(conceito, 'oQueFazer') || t_field(conceito, 'primeirosSocorros');
+    
+    return (
+      <View style={{ gap: 20 }}>
+        {/* CARD 1: VISÃO GERAL */}
+        <NeoCard variant="glass" style={[styles.premiumCard, { borderLeftWidth: 4, borderLeftColor: HeroColor }]}>
+          <View style={styles.cardHeader}>
+            <NeoIcon name="InfoCircle" size={24} color={HeroColor} variant="Bold" />
+            <H3 style={[styles.cardTitle, { color: textPrimary }]}>{t('detail.overview', 'Visão Geral')}</H3>
+          </View>
+          
+          {!!definicao && (
+            <View style={{ marginBottom: 12 }}>
+              <Body style={[styles.sectionSubtitle, { fontWeight: '700', color: textPrimary, fontSize: 15 }]}>
+                {t('detail.definition', 'Definição')}
+              </Body>
+              <Text style={[styles.text, { color: textBody, marginTop: 4 }]}>{definicao}</Text>
+            </View>
+          )}
+          
+          {!!importancia && (
+            <View style={{ marginBottom: 12 }}>
+              <Body style={[styles.sectionSubtitle, { fontWeight: '700', color: '#1E40AF', fontSize: 15 }]}>
+                {t('detail.mainRisks', 'Principais Riscos')}
+              </Body>
+              <Text style={[styles.text, { color: textBody, marginTop: 4 }]}>{importancia}</Text>
+            </View>
+          )}
+          
+          {!!estatisticas && (
+            <View style={{
+              marginTop: 6,
+              padding: 10,
+              borderRadius: 8,
+              backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: 8
+            }}>
+              <NeoIcon name="Warning2" size={16} color={Neo.colors.neutral[500]} style={{ marginTop: 2 }} />
+              <Text style={[styles.text, { color: textMuted, fontSize: 13, flex: 1, lineHeight: 18 }]}>{estatisticas}</Text>
+            </View>
+          )}
+        </NeoCard>
+
+        {/* CARD 2: PREVENÇÃO & ALERTAS */}
+        <NeoCard variant="glass" style={[styles.premiumCard, { borderLeftWidth: 4, borderLeftColor: '#10B981' }]}>
+          <View style={styles.cardHeader}>
+            <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
+            <H3 style={[styles.cardTitle, { color: textPrimary }]}>{t('detail.preventionAlerts', 'Prevenção & Alertas')}</H3>
+          </View>
+
+          {comoEvitar.length > 0 && (
+            <View style={{ marginBottom: 16 }}>
+              <Body style={{ fontWeight: '700', color: '#065F46', marginBottom: 8, fontSize: 15 }}>
+                {t('detail.howToPrevent', 'Como Evitar / Prevenir')}
+              </Body>
+              {comoEvitar.map((item, idx) => (
+                <View key={`evitar-${idx}`} style={styles.listItem}>
+                  <NeoIcon name="TickCircle" size={18} color="#10B981" variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                  <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+
+          {oQueNaoFazer.length > 0 && (
+            <View>
+              <Body style={{ fontWeight: '700', color: '#991B1B', marginBottom: 8, fontSize: 15 }}>
+                {t('detail.whatNotToDo', 'O que NÃO fazer')}
+              </Body>
+              {oQueNaoFazer.map((item, idx) => (
+                <View key={`naofazer-${idx}`} style={styles.listItem}>
+                  <NeoIcon name="CloseCircle" size={18} color="#EF4444" variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                  <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+        </NeoCard>
+
+        {/* CARD 3: PRIMEIROS SOCORROS */}
+        {!!socorros && (
+          <NeoCard variant="glass" style={[
+            styles.premiumCard, 
+            { 
+              borderLeftWidth: 4, 
+              borderLeftColor: '#EF4444', 
+              backgroundColor: isDark ? 'rgba(239, 68, 68, 0.08)' : 'rgba(239, 68, 68, 0.03)',
+              borderColor: isDark ? 'rgba(239, 68, 68, 0.2)' : 'rgba(239, 68, 68, 0.1)'
+            }
+          ]}>
+            <View style={styles.cardHeader}>
+              <NeoIcon name="Health" size={24} color="#EF4444" variant="Bold" />
+              <H3 style={[styles.cardTitle, { color: '#991B1B' }]}>{t('detail.firstAid', 'Primeiros Socorros')}</H3>
+            </View>
+            <View style={{ gap: 8 }}>
+              {typeof socorros === 'string' ? (
+                <Text style={[styles.text, { color: textBody, fontSize: 15, lineHeight: 22 }]}>{socorros}</Text>
+              ) : Array.isArray(socorros) ? (
+                socorros.map((item, idx) => (
+                  <View key={`socorro-${idx}`} style={styles.listItem}>
+                    <View style={[styles.bullet, { backgroundColor: '#EF4444', marginTop: 8 }]} />
+                    <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
+                  </View>
+                ))
+              ) : typeof socorros === 'object' ? (
+                Object.entries(socorros).map(([key, value]) => {
+                  if (!value) return null;
+                  const label = key === 'fazer' ? t('detail.whatToDo', 'O que Fazer') : (key === 'naoFazer' ? t('detail.whatNotToDo', 'O que NÃO Fazer') : key);
+                  return (
+                    <View key={key} style={{ marginBottom: 12 }}>
+                      <Body style={{ fontWeight: '700', color: key === 'naoFazer' ? '#991B1B' : '#065F46', marginBottom: 4, fontSize: 14 }}>{label}:</Body>
+                      {typeof value === 'string' ? (
+                        <Text style={[styles.text, { color: textBody, fontSize: 15 }]}>{value}</Text>
+                      ) : Array.isArray(value) ? (
+                        value.map((item, idx) => (
+                          <View key={idx} style={styles.listItem}>
+                            <NeoIcon name={key === 'naoFazer' ? "CloseCircle" : "TickCircle"} size={16} color={key === 'naoFazer' ? "#EF4444" : "#10B981"} variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                            <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
+                          </View>
+                        ))
+                      ) : null}
+                    </View>
+                  );
+                })
+              ) : null}
+            </View>
+          </NeoCard>
+        )}
+
+        {/* ARTIGO COMPLETO (Se houver conteúdo markdown) */}
+        {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'), t_field(conceito, 'conteudoTitulo'))}
+      </View>
+    );
+  };
+
   return (
     <AppBackground>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
@@ -172,6 +317,8 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           
           {conceito.secoes ? (
             renderSecoes(conceito.secoes)
+          ) : (conceito.comoEvitar && (conceito.importancia || conceito.oQueNaoFazer)) ? (
+            renderLifeStageLayout()
           ) : (
             <>
               {(t_field(conceito, 'definicao') || t_field(conceito, 'descricao')) && (<NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t_field(conceito, 'definicao') ? t('detail.definition', 'Definição') : t('detail.description', 'Descrição')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'definicao') || t_field(conceito, 'descricao')}</Text></NeoCard>)}
@@ -361,5 +508,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     lineHeight: 24
+  },
+  premiumCard: {
+    padding: 20,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(28,28,30,0.08)',
+    marginBottom: 20,
+  },
+  sectionSubtitle: {
+    marginBottom: 4,
   }
 });
