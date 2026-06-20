@@ -31,10 +31,10 @@ export default function ConceitoDetailScreen({ route, navigation }) {
   const HeroImage = conceito.imagem; // Support for Image (require or uri)
 
   // Default blue if not provided
-  const HeroColor = conceito.iconColor || conceito.color || '#3B82F6';
+  const HeroColor = conceito.iconColor || conceito.color || Neo.colors.secondary[500];
   const HeroBg = conceito.bg || (HeroColor + '20') || '#EFF6FF';
 
-  const renderList = (items, bulletColor = '#374151') => {
+  const renderList = (items, bulletColor = Neo.colors.neutral[800]) => {
     if (!items) return null;
     if (typeof items === 'string') return <Text style={[styles.text, { color: textBody, fontSize: 16 }]}>{items}</Text>;
     if (Array.isArray(items)) {
@@ -65,9 +65,9 @@ export default function ConceitoDetailScreen({ route, navigation }) {
 
   const renderFirstAid = (socorros) => {
     if (!socorros) return null;
-    if (Array.isArray(socorros) || typeof socorros === 'string') return renderSection(t('detail.firstAid', 'Primeiros Socorros'), socorros, 'Health', '#EF4444');
+    if (Array.isArray(socorros) || typeof socorros === 'string') return renderSection(t('detail.firstAid', 'Primeiros Socorros'), socorros, 'Health', Neo.colors.feedback.error);
     return (
-      <View key="first_aid_complex">{socorros.fazer && renderSection(t('detail.whatToDo', 'O que Fazer'), socorros.fazer, 'TickCircle', '#10B981')}{socorros.naoFazer && renderSection(t('detail.whatNotToDo', 'O que NÃO Fazer'), socorros.naoFazer, 'CloseCircle', '#EF4444')}</View>
+      <View key="first_aid_complex">{socorros.fazer && renderSection(t('detail.whatToDo', 'O que Fazer'), socorros.fazer, 'TickCircle', Neo.colors.primary[500])}{socorros.naoFazer && renderSection(t('detail.whatNotToDo', 'O que NÃO Fazer'), socorros.naoFazer, 'CloseCircle', Neo.colors.feedback.error)}</View>
     );
   };
 
@@ -96,7 +96,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
       
       let sectionColor = HeroColor;
       if (secao.tipo === 'alerta') {
-        sectionColor = '#EF4444';
+        sectionColor = Neo.colors.feedback.error;
       }
 
       return (
@@ -118,7 +118,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
                     <NeoIcon name="TickCircle" size={16} color={HeroColor} variant="Bold" style={{ marginRight: 12, marginTop: 4 }} />
                   ) : secao.tipo === 'passos' ? (
                     <View style={[styles.bullet, { backgroundColor: HeroColor, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', marginTop: 3, marginRight: 12 }]}>
-                      <Text style={{ color: '#FFF', fontSize: 10, fontWeight: 'bold' }}>{idx + 1}</Text>
+                      <Text style={{ color: Neo.colors.neutral.white, fontSize: 10, fontWeight: 'bold' }}>{idx + 1}</Text>
                     </View>
                   ) : (
                     <View style={[styles.bullet, { backgroundColor: HeroColor }]} />
@@ -165,7 +165,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           
           {!!importancia && (
             <View style={{ marginBottom: 12 }}>
-              <Body style={[styles.sectionSubtitle, { fontWeight: '700', color: '#1E40AF', fontSize: 15 }]}>
+              <Body style={[styles.sectionSubtitle, { fontWeight: '700', color: Neo.colors.secondary[500], fontSize: 15 }]}>
                 {t('detail.mainRisks', 'Principais Riscos')}
               </Body>
               <Text style={[styles.text, { color: textBody, marginTop: 4 }]}>{importancia}</Text>
@@ -189,20 +189,20 @@ export default function ConceitoDetailScreen({ route, navigation }) {
         </NeoCard>
 
         {/* CARD 2: PREVENÇÃO & ALERTAS */}
-        <NeoCard variant="glass" style={[styles.premiumCard, { borderLeftWidth: 4, borderLeftColor: '#10B981' }]}>
+        <NeoCard variant="glass" style={[styles.premiumCard, { borderLeftWidth: 4, borderLeftColor: Neo.colors.primary[500] }]}>
           <View style={styles.cardHeader}>
-            <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
+            <NeoIcon name="ShieldTick" size={24} color={Neo.colors.primary[500]} variant="Bold" />
             <H3 style={[styles.cardTitle, { color: textPrimary }]}>{t('detail.preventionAlerts', 'Prevenção & Alertas')}</H3>
           </View>
 
           {comoEvitar.length > 0 && (
             <View style={{ marginBottom: 16 }}>
-              <Body style={{ fontWeight: '700', color: '#065F46', marginBottom: 8, fontSize: 15 }}>
+              <Body style={{ fontWeight: '700', color: Neo.colors.primary[800], marginBottom: 8, fontSize: 15 }}>
                 {t('detail.howToPrevent', 'Como Evitar / Prevenir')}
               </Body>
               {comoEvitar.map((item, idx) => (
                 <View key={`evitar-${idx}`} style={styles.listItem}>
-                  <NeoIcon name="TickCircle" size={18} color="#10B981" variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                  <NeoIcon name="TickCircle" size={18} color={Neo.colors.primary[500]} variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
                   <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
                 </View>
               ))}
@@ -211,12 +211,12 @@ export default function ConceitoDetailScreen({ route, navigation }) {
 
           {oQueNaoFazer.length > 0 && (
             <View>
-              <Body style={{ fontWeight: '700', color: '#991B1B', marginBottom: 8, fontSize: 15 }}>
+              <Body style={{ fontWeight: '700', color: Neo.colors.feedback.error, marginBottom: 8, fontSize: 15 }}>
                 {t('detail.whatNotToDo', 'O que NÃO fazer')}
               </Body>
               {oQueNaoFazer.map((item, idx) => (
                 <View key={`naofazer-${idx}`} style={styles.listItem}>
-                  <NeoIcon name="CloseCircle" size={18} color="#EF4444" variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                  <NeoIcon name="CloseCircle" size={18} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
                   <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
                 </View>
               ))}
@@ -230,14 +230,14 @@ export default function ConceitoDetailScreen({ route, navigation }) {
             styles.premiumCard, 
             { 
               borderLeftWidth: 4, 
-              borderLeftColor: '#EF4444', 
+              borderLeftColor: Neo.colors.feedback.error, 
               backgroundColor: isDark ? 'rgba(239, 68, 68, 0.08)' : 'rgba(239, 68, 68, 0.03)',
               borderColor: isDark ? 'rgba(239, 68, 68, 0.2)' : 'rgba(239, 68, 68, 0.1)'
             }
           ]}>
             <View style={styles.cardHeader}>
-              <NeoIcon name="Health" size={24} color="#EF4444" variant="Bold" />
-              <H3 style={[styles.cardTitle, { color: '#991B1B' }]}>{t('detail.firstAid', 'Primeiros Socorros')}</H3>
+              <NeoIcon name="Health" size={24} color={Neo.colors.feedback.error} variant="Bold" />
+              <H3 style={[styles.cardTitle, { color: Neo.colors.feedback.error }]}>{t('detail.firstAid', 'Primeiros Socorros')}</H3>
             </View>
             <View style={{ gap: 8 }}>
               {typeof socorros === 'string' ? (
@@ -245,7 +245,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               ) : Array.isArray(socorros) ? (
                 socorros.map((item, idx) => (
                   <View key={`socorro-${idx}`} style={styles.listItem}>
-                    <View style={[styles.bullet, { backgroundColor: '#EF4444', marginTop: 8 }]} />
+                    <View style={[styles.bullet, { backgroundColor: Neo.colors.feedback.error, marginTop: 8 }]} />
                     <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
                   </View>
                 ))
@@ -255,13 +255,13 @@ export default function ConceitoDetailScreen({ route, navigation }) {
                   const label = key === 'fazer' ? t('detail.whatToDo', 'O que Fazer') : (key === 'naoFazer' ? t('detail.whatNotToDo', 'O que NÃO Fazer') : key);
                   return (
                     <View key={key} style={{ marginBottom: 12 }}>
-                      <Body style={{ fontWeight: '700', color: key === 'naoFazer' ? '#991B1B' : '#065F46', marginBottom: 4, fontSize: 14 }}>{label}:</Body>
+                      <Body style={{ fontWeight: '700', color: key === 'naoFazer' ? Neo.colors.feedback.error : Neo.colors.primary[800], marginBottom: 4, fontSize: 14 }}>{label}:</Body>
                       {typeof value === 'string' ? (
                         <Text style={[styles.text, { color: textBody, fontSize: 15 }]}>{value}</Text>
                       ) : Array.isArray(value) ? (
                         value.map((item, idx) => (
                           <View key={idx} style={styles.listItem}>
-                            <NeoIcon name={key === 'naoFazer' ? "CloseCircle" : "TickCircle"} size={16} color={key === 'naoFazer' ? "#EF4444" : "#10B981"} variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
+                            <NeoIcon name={key === 'naoFazer' ? "CloseCircle" : "TickCircle"} size={16} color={key === 'naoFazer' ? Neo.colors.feedback.error : Neo.colors.primary[500]} variant="Bold" style={{ marginRight: 8, marginTop: 3 }} />
                             <Text style={[styles.text, { color: textBody, fontSize: 15, flex: 1 }]}>{item}</Text>
                           </View>
                         ))
@@ -312,7 +312,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               )}
               <H1 style={styles.heroTitle}>{t_field(conceito, 'titulo') || t_field(conceito, 'nomePopular') || t_field(conceito, 'nome') || t('detail.details', 'Detalhes')}</H1>
               {(t_field(conceito, 'nomeCientifico') || t_field(conceito, 'subtitulo')) && (<Text style={[styles.heroSubtitle, { color: Neo.colors.neutral[500], textAlign: 'center', fontStyle: 'italic' }]}>{t_field(conceito, 'nomeCientifico') || t_field(conceito, 'subtitulo')}</Text>)}
-              {(t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')) && (<View style={[styles.badge, { backgroundColor: 'rgba(239, 68, 68, 0.1)', marginTop: 12, borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }]}><NeoIcon name="Warning2" size={16} color="#EF4444" variant="Bold" /><Text style={{ color: '#EF4444', fontWeight: 'bold', marginLeft: 6 }}>{t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')}</Text></View>)}
+              {(t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')) && (<View style={[styles.badge, { backgroundColor: 'rgba(239, 68, 68, 0.1)', marginTop: 12, borderWidth: 1, borderColor: 'rgba(239, 68, 68, 0.2)' }]}><NeoIcon name="Warning2" size={16} color={Neo.colors.feedback.error} variant="Bold" /><Text style={{ color: Neo.colors.feedback.error, fontWeight: 'bold', marginLeft: 6 }}>{t_field(conceito, 'nivelPerigo') || t_field(conceito, 'nivelToxicidade')}</Text></View>)}
           </View>
           
           {conceito.secoes ? (
@@ -325,16 +325,16 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), 'SearchNormal1', '#8B5CF6')}
               {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'), t_field(conceito, 'conteudoTitulo'))}
               {renderSection(t('detail.toxicParts', 'Partes Tóxicas'), t_array(conceito, 'partesToxicas'), 'Warning2', '#F59E0B')}
-              {renderSection(t('detail.humanSymptoms', 'Sintomas em Humanos'), t_array(conceito, 'sintomasHumanos'), 'User', '#EF4444')}
+              {renderSection(t('detail.humanSymptoms', 'Sintomas em Humanos'), t_array(conceito, 'sintomasHumanos'), 'User', Neo.colors.feedback.error)}
               {renderSection(t('detail.petSymptoms', 'Sintomas em Pets'), t_array(conceito, 'sintomasPets'), 'Pet', '#F97316')}
-              {renderSection(t('detail.generalSymptoms', 'Sintomas Gerais'), t_object(conceito, 'sintomas'), 'Health', '#EF4444')}
+              {renderSection(t('detail.generalSymptoms', 'Sintomas Gerais'), t_object(conceito, 'sintomas'), 'Health', Neo.colors.feedback.error)}
               {renderSection(t('detail.whereFound', '📍 Onde é Encontrado'), t_field(conceito, 'ondeEncontrada'), 'InfoCircle', '#6366F1')}
-              {renderSection(t('detail.safeAlternatives', '🌱 Alternativas Seguras'), t_array(conceito, 'alternativasSeguras'), 'ShieldTick', '#10B981')}
-              {renderSection(t('detail.howToPrevent', 'Como Evitar / Prevenir'), t_array(conceito, 'comoEvitar') || t_array(conceito, 'prevencao'), 'ShieldTick', '#10B981')}
-              {t_field(conceito, 'importancia') && (<NeoCard variant="glass" style={[styles.card, { borderColor: 'rgba(37, 99, 235, 0.2)' }]}><View style={styles.cardHeader}><NeoIcon name="Star1" size={24} color="#2563EB" variant="Bold" /><H3 style={[styles.cardTitle, { color: '#1E40AF' }]}>{t('detail.importance', 'Importância')}</H3></View><Text style={[styles.text, { color: '#1E3A8A' }]}>{t_field(conceito, 'importancia')}</Text></NeoCard>)}
+              {renderSection(t('detail.safeAlternatives', '🌱 Alternativas Seguras'), t_array(conceito, 'alternativasSeguras'), 'ShieldTick', Neo.colors.primary[500])}
+              {renderSection(t('detail.howToPrevent', 'Como Evitar / Prevenir'), t_array(conceito, 'comoEvitar') || t_array(conceito, 'prevencao'), 'ShieldTick', Neo.colors.primary[500])}
+              {t_field(conceito, 'importancia') && (<NeoCard variant="glass" style={[styles.card, { borderColor: 'rgba(37, 99, 235, 0.2)' }]}><View style={styles.cardHeader}><NeoIcon name="Star1" size={24} color={Neo.colors.secondary[500]} variant="Bold" /><H3 style={[styles.cardTitle, { color: Neo.colors.secondary[500] }]}>{t('detail.importance', 'Importância')}</H3></View><Text style={[styles.text, { color: Neo.colors.secondary[500] }]}>{t_field(conceito, 'importancia')}</Text></NeoCard>)}
               {renderSection(t('detail.practicalExamples', 'Exemplos Práticos'), t_array(conceito, 'exemplos'), 'Note', '#6366F1')}
               {renderFirstAid(t_object(conceito, 'primeirosSocorros') || t_array(conceito, 'oQueFazer') || t_field(conceito, 'oQueFazer'))}
-              {renderSection(t('detail.whatNotToDo', 'O que NÃO fazer'), t_array(conceito, 'oQueNaoFazer'), 'CloseCircle', '#DC2626')}
+              {renderSection(t('detail.whatNotToDo', 'O que NÃO fazer'), t_array(conceito, 'oQueNaoFazer'), 'CloseCircle', Neo.colors.feedback.error)}
               {t_field(conceito, 'estatisticas') && (<NeoCard variant="glass" style={[styles.card, { marginTop: 12 }]}><View style={styles.cardHeader}><NeoIcon name="InfoCircle" size={24} color={Neo.colors.neutral[500]} variant="Bold" /><H3 style={styles.cardTitle}>{t('detail.dataStats', 'Dados & Estatísticas')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'estatisticas')}</Text></NeoCard>)}
               {renderSection(t('detail.curiosities', 'Curiosidades'), t_array(conceito, 'curiosidades'), 'Star1', '#F59E0B')}
             </>
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     overflow: 'hidden',
     marginBottom: 24,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: Neo.colors.neutral[200],
   },
   heroImageLarge: {
     width: '100%',
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#111827',
+    color: Neo.colors.neutral[900],
     textAlign: 'center',
     marginBottom: 4,
   },
@@ -479,7 +479,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: '#4B5563',
+    color: Neo.colors.neutral[700],
     lineHeight: 24,
   },
   listItem: {

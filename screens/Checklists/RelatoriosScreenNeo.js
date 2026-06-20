@@ -25,11 +25,11 @@ import { SkeletonCard } from '../../components/SkeletonLoader';
 
 // Helper de cor para badge de status do ambiente
 const getStatusStyle = (status) => {
-    if (status === 'Seguro')   return { bg: 'rgba(46,125,50,0.12)',   color: '#2E7D32' };
-    if (status === 'Pendente') return { bg: 'rgba(120,120,128,0.12)', color: '#636366' };
-    if (status === 'Atenção')  return { bg: 'rgba(245,158,11,0.14)',  color: '#B45309' };
-    if (status === 'Risco')    return { bg: 'rgba(229,57,53,0.12)',   color: '#D32F2F' };
-    return { bg: 'rgba(0,0,0,0.05)', color: '#757575' };
+    if (status === 'Seguro')   return { bg: 'rgba(46,125,50,0.12)',   color: Neo.colors.primary[700] };
+    if (status === 'Pendente') return { bg: 'rgba(120,120,128,0.12)', color: Neo.colors.neutral[700] };
+    if (status === 'Atenção')  return { bg: 'rgba(245,158,11,0.14)',  color: Neo.colors.accent.copper };
+    if (status === 'Risco')    return { bg: 'rgba(229,57,53,0.12)',   color: Neo.colors.feedback.error };
+    return { bg: 'rgba(0,0,0,0.05)', color: Neo.colors.neutral[500] };
 };
 
 export default function RelatoriosScreenNeo({ navigation }) {
@@ -243,10 +243,10 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                 >
                                     <NeoCard variant="elevated" style={[s.actionCard, { borderColor: 'rgba(229,57,53,0.3)', borderWidth: 1 }]}>
                                         <View style={[s.actionIconWrap, { backgroundColor: 'rgba(229,57,53,0.20)' }]}>
-                                            <NeoIcon name="Warning2" size={22} color="#D32F2F" variant="Bold" />
+                                            <NeoIcon name="Warning2" size={22} color={Neo.colors.feedback.error} variant="Bold" />
                                         </View>
                                         <View style={{ flex: 1, marginLeft: 14 }}>
-                                            <Body style={[s.actionTitle, { color: '#D32F2F' }]}>
+                                            <Body style={[s.actionTitle, { color: Neo.colors.feedback.error }]}>
                                                 {t('reports.pendencies', 'Pendências')}
                                             </Body>
                                             <Small style={s.actionSub} numberOfLines={2}>
@@ -273,7 +273,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             >
                                 <NeoCard variant="elevated" style={s.heatmapCard}>
                                     <View style={[s.heatmapIconWrap, { backgroundColor: 'rgba(220,38,38,0.18)' }]}>
-                                        <NeoIcon name="Map1" size={24} color="#DC2626" variant="Bold" />
+                                        <NeoIcon name="Map1" size={24} color={Neo.colors.feedback.error} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Body style={[s.heatmapTitle, { color: themeColors.neutral[900] }]}>
@@ -358,7 +358,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                 >
                                     <NeoCard variant="elevated" style={s.specialCard}>
                                         <View style={[s.specialIconWrap, { backgroundColor: 'rgba(46,125,50,0.22)' }]}>
-                                            <NeoIcon name="Teacher" size={24} color="#2E7D32" variant="Bold" />
+                                            <NeoIcon name="Teacher" size={24} color={Neo.colors.primary[700]} variant="Bold" />
                                         </View>
                                         <H3 style={s.specialTitle}>
                                             {t('reports.safeSchool', 'Escola Segura')}
@@ -431,20 +431,20 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                     <NeoCard variant="elevated" style={{ padding: 16, marginBottom: 16, borderRadius: 16 }}>
                                         <View style={{ flexDirection: 'row', gap: 12 }}>
                                             <View style={{ backgroundColor: 'rgba(229,57,53,0.14)', width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}>
-                                                <NeoIcon name="Profile2User" size={22} color="#D32F2F" />
+                                                <NeoIcon name="Profile2User" size={22} color={Neo.colors.feedback.error} />
                                             </View>
                                             <View style={{ flex: 1 }}>
-                                                <Body style={{ color: '#D32F2F', fontWeight: '800' }}>
+                                                <Body style={{ color: Neo.colors.feedback.error, fontWeight: '800' }}>
                                                     {t('reports.incompleteReg', 'Cadastro incompleto')}
                                                 </Body>
                                                 <Small>{t('reports.missingPeople', { count: missingProfilesCount })}</Small>
                                             </View>
                                         </View>
                                         <TouchableOpacity
-                                            style={{ marginTop: 12, backgroundColor: '#D32F2F', padding: 10, borderRadius: 10, alignItems: 'center' }}
+                                            style={{ marginTop: 12, backgroundColor: Neo.colors.feedback.error, padding: 10, borderRadius: 10, alignItems: 'center' }}
                                             onPress={() => { setDetailsModalVisible(false); navigation.navigate('QuemProteger'); }}
                                         >
-                                            <Small style={{ color: '#FFF', fontWeight: '800' }}>{t('reports.resolve', 'Resolver')}</Small>
+                                            <Small style={{ color: Neo.colors.neutral.white, fontWeight: '800' }}>{t('reports.resolve', 'Resolver')}</Small>
                                         </TouchableOpacity>
                                     </NeoCard>
                                 )}
@@ -456,7 +456,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
                                                 <Body style={{ fontWeight: '800' }}>{area.fullName}</Body>
                                                 <View style={{ backgroundColor: 'rgba(229,57,53,0.14)', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 8 }}>
-                                                    <Small style={{ color: '#D32F2F', fontWeight: '800' }}>
+                                                    <Small style={{ color: Neo.colors.feedback.error, fontWeight: '800' }}>
                                                         {t('reports.pendenciesCount', { count: area.total - area.checked })}
                                                     </Small>
                                                 </View>
@@ -489,7 +489,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                     }
                                                 }}
                                             >
-                                                <Body style={{ color: '#FFF', fontWeight: '800' }}>{t('reports.verifyNow', 'Verificar agora')}</Body>
+                                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: '800' }}>{t('reports.verifyNow', 'Verificar agora')}</Body>
                                             </TouchableOpacity>
                                         </NeoCard>
                                     );
@@ -690,7 +690,7 @@ const s = {
         justifyContent: 'flex-end',
     },
     modalContent: {
-        backgroundColor: '#FFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         height: '85%',

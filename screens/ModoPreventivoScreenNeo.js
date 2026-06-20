@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 
 // Services & Utils
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { RISK_CATEGORIES } from '../data/RiskCategories';
 
 // Neo Components
@@ -20,6 +21,8 @@ import NeoAlert from '../utils/NeoAlert';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation('common');
+    const themeColors = useThemeColors();
+    const isDark = useIsDark();
     const [selectedRisk, setSelectedRisk] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -217,7 +220,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                 style={{ backgroundColor: selectedRisk.color, padding: 16, borderRadius: 12, alignItems: 'center', marginTop: 16 }}
                                                 onPress={startAudit}
                                             >
-                                                <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.iniciarVerificaO', 'Iniciar Verificação')}</Body>
+                                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.iniciarVerificaO', 'Iniciar Verificação')}</Body>
                                             </TouchableOpacity>
                                         </View>
                                     )}
@@ -242,7 +245,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                                                 {/* Educational Tip (Compact) */}
                                                 <View style={{ padding: 16, backgroundColor: selectedRisk.color + '10', margin: 16, borderRadius: 12, borderLeftWidth: 4, borderLeftColor: selectedRisk.color }}>
-                                                    <Body style={{ fontSize: 13, color: '#444', lineHeight: 19 }}>
+                                                    <Body style={{ fontSize: 13, color: Neo.colors.neutral[800], lineHeight: 19 }}>
                                                         {selectedRisk.educational?.description}
                                                     </Body>
                                                 </View>
@@ -269,24 +272,24 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                 onPress={() => handleStatusSelect(item.id, 'conforme')}
                                                                 style={{
                                                                     width: 42, height: 42, borderRadius: 8, alignItems: 'center', justifyContent: 'center',
-                                                                    backgroundColor: item.status === 'conforme' ? '#16A34A' : '#F0FDF4',
+                                                                    backgroundColor: item.status === 'conforme' ? Neo.colors.feedback.success : '#F0FDF4',
                                                                     borderWidth: item.status === 'conforme' ? 0 : 1.5,
-                                                                    borderColor: '#86EFAC'
+                                                                    borderColor: Neo.colors.primary[200]
                                                                 }}
                                                             >
-                                                                <Text style={{ fontWeight: 'bold', color: item.status === 'conforme' ? '#FFF' : '#166534' }}>S</Text>
+                                                                <Text style={{ fontWeight: 'bold', color: item.status === 'conforme' ? Neo.colors.neutral.white : Neo.colors.primary[900] }}>S</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity
                                                                 onPress={() => handleStatusSelect(item.id, 'risco')}
                                                                 style={{
                                                                     width: 42, height: 42, borderRadius: 8, alignItems: 'center', justifyContent: 'center',
-                                                                    backgroundColor: item.status === 'risco' ? '#DC2626' : '#FEF2F2',
+                                                                    backgroundColor: item.status === 'risco' ? Neo.colors.feedback.error : '#FEF2F2',
                                                                     borderWidth: item.status === 'risco' ? 0 : 1.5,
-                                                                    borderColor: '#FCA5A5'
+                                                                    borderColor: '#FCA5A5' // TODO: map to DS token — light red accent, no exact match
                                                                 }}
                                                             >
-                                                                <Text style={{ fontWeight: 'bold', color: item.status === 'risco' ? '#FFF' : '#991B1B' }}>N</Text>
+                                                                <Text style={{ fontWeight: 'bold', color: item.status === 'risco' ? Neo.colors.neutral.white : '#991B1B' }}>N</Text>
                                                             </TouchableOpacity>
 
                                                             <TouchableOpacity
@@ -320,12 +323,12 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                 }}
                                                                 style={{
                                                                     width: 42, height: 42, borderRadius: 8, alignItems: 'center', justifyContent: 'center',
-                                                                    backgroundColor: item.status === 'na' ? '#4B5563' : '#F3F4F6',
+                                                                    backgroundColor: item.status === 'na' ? Neo.colors.neutral[700] : Neo.colors.neutral[200],
                                                                     borderWidth: item.status === 'na' ? 0 : 1.5,
-                                                                    borderColor: '#D1D5DB'
+                                                                    borderColor: Neo.colors.neutral[300]
                                                                 }}
                                                             >
-                                                                <Text style={{ fontWeight: 'bold', fontSize: 12, color: item.status === 'na' ? '#FFF' : '#4B5563' }}>NA</Text>
+                                                                <Text style={{ fontWeight: 'bold', fontSize: 12, color: item.status === 'na' ? Neo.colors.neutral.white : Neo.colors.neutral[700] }}>NA</Text>
                                                             </TouchableOpacity>
                                                         </View>
                                                     </View>
@@ -345,7 +348,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                             else NeoAlert.alert("Atenção", "Responda a todas as questões para concluir.");
                                                         }}
                                                     >
-                                                        <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.finalizarProtocolo', 'Finalizar Protocolo')}</Body>
+                                                        <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.finalizarProtocolo', 'Finalizar Protocolo')}</Body>
                                                     </TouchableOpacity>
                                                 </View>
                                             </ScrollView>
@@ -356,7 +359,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                         <ScrollView contentContainerStyle={{ padding: 24 }}>
                                             <View style={{ alignItems: 'center', marginBottom: 24 }}>
                                                 <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: getStatusColor(), alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                                                    <NeoIcon name={safetyScore === 100 ? "TickCircle" : "Danger"} size={40} color="#FFF" />
+                                                    <NeoIcon name={safetyScore === 100 ? "TickCircle" : "Danger"} size={40} color={Neo.colors.neutral.white} />
                                                 </View>
                                                 <H2>{safetyScore}% Seguro</H2>
                                                 <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], marginTop: 8 }}>
@@ -377,10 +380,10 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                 const pendencias = userAnswers.filter(a => !a.isSafe && a.status !== 'na');
                                                 if (pendencias.length === 0) {
                                                     return (
-                                                        <NeoCard style={{ padding: 20, alignItems: 'center', backgroundColor: '#E8F5E9' }}>
-                                                            <NeoIcon name="TickCircle" size={32} color="#4CAF50" />
-                                                            <H3 style={{ color: '#2E7D32', marginTop: 12 }}>{t('headersFirst.excelente', 'Excelente!')}</H3>
-                                                            <Body style={{ textAlign: 'center', color: '#1B5E20', marginTop: 8 }}>
+                                                        <NeoCard style={{ padding: 20, alignItems: 'center', backgroundColor: Neo.colors.primary[100] }}>
+                                                            <NeoIcon name="TickCircle" size={32} color={Neo.colors.feedback.success} />
+                                                            <H3 style={{ color: Neo.colors.primary[700], marginTop: 12 }}>{t('headersFirst.excelente', 'Excelente!')}</H3>
+                                                            <Body style={{ textAlign: 'center', color: Neo.colors.primary[900], marginTop: 8 }}>
                                                                 {t('headersFirst.nenhumaPendNciaIdentificadaOAmbienteEstS', 'Nenhuma pendência identificada. O ambiente está seguro.')}
                                                             </Body>
                                                         </NeoCard>
@@ -405,13 +408,13 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                 const isCritico = qObj?.critico;
 
                                                                 return (
-                                                                    <NeoCard key={index} style={{ padding: 16, backgroundColor: 'rgba(255,255,255,0.8)', borderLeftWidth: 4, borderLeftColor: isCritico ? '#D32F2F' : '#FFB300' }} variant="glass">
+                                                                    <NeoCard key={index} style={{ padding: 16, backgroundColor: 'rgba(255,255,255,0.8)', borderLeftWidth: 4, borderLeftColor: isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning }} variant="glass">
                                                                         <View style={{ flexDirection: 'row', gap: 12 }}>
-                                                                            <NeoIcon name="Danger" size={22} color={isCritico ? '#D32F2F' : '#FFB300'} />
+                                                                            <NeoIcon name="Danger" size={22} color={isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning} />
                                                                             <View style={{ flex: 1 }}>
                                                                                 <Body style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 4 }}>{answer.questionText}</Body>
                                                                                 <View style={{ marginTop: 8, padding: 10, backgroundColor: isCritico ? 'rgba(211, 47, 47, 0.1)' : 'rgba(255, 179, 0, 0.1)', borderRadius: 8 }}>
-                                                                                    <Small style={{ color: isCritico ? '#D32F2F' : '#FF9800', fontWeight: 'bold' }}>
+                                                                                    <Small style={{ color: isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning, fontWeight: 'bold' }}>
                                                                                         AÇÃO: {answer.checkAction}
                                                                                     </Small>
                                                                                 </View>
@@ -429,7 +432,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                 style={{ backgroundColor: getStatusColor(), padding: 16, borderRadius: 12, alignItems: 'center', marginTop: 32, marginBottom: 40 }}
                                                 onPress={closeAudit}
                                             >
-                                                <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('headersFirst.fechar', 'Fechar')}</Body>
+                                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.fechar', 'Fechar')}</Body>
                                             </TouchableOpacity>
                                         </ScrollView>
                                     )}

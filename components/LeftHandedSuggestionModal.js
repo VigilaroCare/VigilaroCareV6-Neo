@@ -9,7 +9,7 @@
  * - Dois botões: "Ativar" e "Manter Padrão"
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import {
     View,
     Text,
@@ -23,13 +23,27 @@ import {
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
 import { useAccessibility } from '../context/AccessibilityContext';
+import { useThemeColors } from '../utils/ThemeContext';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
     const { toggleLeftHanded } = useAccessibility();
+    const colors = useThemeColors();
     const slideAnim = useRef(new Animated.Value(300)).current;
     const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    const themed = useMemo(() => ({
+        sheet: { backgroundColor: colors.neutral.white },
+        handleBar: { backgroundColor: colors.neutral[300] },
+        title: { color: colors.neutral[900] },
+        description: { color: colors.neutral[500] },
+        bold: { color: colors.neutral[800] },
+        benefitText: { color: colors.neutral[700] },
+        dismissButton: { backgroundColor: colors.neutral[200] },
+        dismissText: { color: colors.neutral[500] },
+        activateText: { color: colors.neutral.white },
+    }), [colors]);
 
     useEffect(() => {
         if (visible) {
@@ -78,9 +92,9 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
             <Animated.View style={[styles.overlay, { opacity: fadeAnim }]}>
                 <TouchableOpacity style={styles.overlayTouch} activeOpacity={1} onPress={handleDismiss} />
 
-                <Animated.View style={[styles.sheet, { transform: [{ translateY: slideAnim }] }]}>
+                <Animated.View style={[styles.sheet, themed.sheet, { transform: [{ translateY: slideAnim }] }]}>
                     {/* Handle bar */}
-                    <View style={styles.handleBar} />
+                    <View style={[styles.handleBar, themed.handleBar]} />
 
                     {/* Icon */}
                     <View style={styles.iconContainer}>
@@ -90,12 +104,12 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
                     </View>
 
                     {/* Title */}
-                    <Text style={styles.title}>Modo Canhoto Detectado</Text>
+                    <Text style={[styles.title, themed.title]}>Modo Canhoto Detectado</Text>
 
                     {/* Description */}
-                    <Text style={styles.description}>
+                    <Text style={[styles.description, themed.description]}>
                         Notamos que você usa mais o lado esquerdo da tela. Ative o{' '}
-                        <Text style={styles.bold}>Modo Canhoto</Text> para botões e controles mais
+                        <Text style={[styles.bold, themed.bold]}>Modo Canhoto</Text> para botões e controles mais
                         acessíveis à sua mão.
                     </Text>
 
@@ -108,20 +122,20 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
                         ].map((item, idx) => (
                             <View key={idx} style={styles.benefitRow}>
                                 <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[500]} />
-                                <Text style={styles.benefitText}>{item}</Text>
+                                <Text style={[styles.benefitText, themed.benefitText]}>{item}</Text>
                             </View>
                         ))}
                     </View>
 
                     {/* Action Buttons */}
                     <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.dismissButton} onPress={handleDismiss}>
-                            <Text style={styles.dismissText}>Manter Padrão</Text>
+                        <TouchableOpacity style={[styles.dismissButton, themed.dismissButton]} onPress={handleDismiss}>
+                            <Text style={[styles.dismissText, themed.dismissText]}>Manter Padrão</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.activateButton} onPress={handleActivate}>
-                            <NeoIcon name="Hand" size={18} color="#FFF" />
-                            <Text style={styles.activateText}>Ativar</Text>
+                            <NeoIcon name="Hand" size={18} color={colors.neutral.white} />
+                            <Text style={[styles.activateText, themed.activateText]}>Ativar</Text>
                         </TouchableOpacity>
                     </View>
                 </Animated.View>
@@ -140,7 +154,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     sheet: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderTopLeftRadius: 28,
         borderTopRightRadius: 28,
         paddingHorizontal: 24,
@@ -151,7 +165,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 4,
         borderRadius: 2,
-        backgroundColor: '#D1D5DB',
+        backgroundColor: Neo.colors.neutral[300],
         alignSelf: 'center',
         marginBottom: 20,
     },
@@ -170,7 +184,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: '800',
-        color: '#1F2937',
+        color: Neo.colors.neutral[900],
         textAlign: 'center',
         marginBottom: 8,
         fontFamily: Platform.OS === 'ios' ? 'System' : 'Roboto',
@@ -178,14 +192,14 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 14,
         lineHeight: 21,
-        color: '#6B7280',
+        color: Neo.colors.neutral[500],
         textAlign: 'center',
         marginBottom: 20,
         paddingHorizontal: 8,
     },
     bold: {
         fontWeight: '700',
-        color: '#374151',
+        color: Neo.colors.neutral[800],
     },
     benefitsList: {
         marginBottom: 24,
@@ -199,7 +213,7 @@ const styles = StyleSheet.create({
     },
     benefitText: {
         fontSize: 13,
-        color: '#4B5563',
+        color: Neo.colors.neutral[700],
         fontWeight: '500',
         flex: 1,
     },
@@ -211,14 +225,14 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,
         borderRadius: 16,
-        backgroundColor: '#F3F4F6',
+        backgroundColor: Neo.colors.neutral[200],
         justifyContent: 'center',
         alignItems: 'center',
     },
     dismissText: {
         fontSize: 15,
         fontWeight: '600',
-        color: '#6B7280',
+        color: Neo.colors.neutral[500],
     },
     activateButton: {
         flex: 1.2,
@@ -233,6 +247,6 @@ const styles = StyleSheet.create({
     activateText: {
         fontSize: 15,
         fontWeight: '700',
-        color: '#FFFFFF',
+        color: Neo.colors.neutral.white,
     },
 });

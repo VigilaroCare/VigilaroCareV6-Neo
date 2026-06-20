@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { H3, Body, Small } from '../../components/NeoTypography';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
@@ -27,7 +28,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
     const [expandedSection, setExpandedSection] = useState(null);
 
     const toggleSection = (id) => {
@@ -53,8 +54,8 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
                     </TouchableOpacity>
                     <View style={{ marginLeft: 16 }}>
-                        <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.toolsAndRepairs', 'Ferramentas & Reparos')}</Text>
-                        <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.safetyAndMaintenance', 'Segurança e Manutenção.')}</Text>
+                        <H3 style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.toolsAndRepairs', 'Ferramentas & Reparos')}</H3>
+                        <Small style={{ color: textMuted }}>{t('headersFirst.safetyAndMaintenance', 'Segurança e Manutenção.')}</Small>
                     </View>
                 </View>
 
@@ -62,15 +63,15 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                 {/* Regras de Ouro */}
                 <View style={styles.goldenRulesCard}>
                     <View style={styles.goldenHeader}>
-                        <NeoIcon name="Star1" size={24} color="#FFD700" variant="Bold" />
-                        <Text style={styles.goldenTitle}>{t('headersFirst.regrasDeOuro', 'Regras de Ouro')}</Text>
+                        <NeoIcon name="Star1" size={24} color={Neo.colors.feedback.warning} variant="Bold" />
+                        <H3 style={styles.goldenTitle}>{t('headersFirst.regrasDeOuro', 'Regras de Ouro')}</H3>
                     </View>
                     {goldenRules.map((rule) => (
                         <View key={rule.id} style={styles.ruleItem}>
                             <Text style={styles.ruleNumber}>{rule.id}</Text>
                             <View style={{ flex: 1 }}>
-                                <Text style={styles.ruleTitle}>{rule.title}</Text>
-                                <Text style={styles.ruleText}>{rule.text}</Text>
+                                <Body style={styles.ruleTitle}>{rule.title}</Body>
+                                <Small style={styles.ruleText}>{rule.text}</Small>
                             </View>
                         </View>
                     ))}
@@ -85,9 +86,9 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                     >
                         <NeoCard variant="glass" style={{ padding: 16, borderRadius: 16, alignItems: 'center' }}>
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E8F5E9', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                <NeoIcon name="Health" size={24} color="#4CAF50" variant="Bold" />
+                                <NeoIcon name="Health" size={24} color={Neo.colors.feedback.success} variant="Bold" />
                             </View>
-                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Guia de{'\n'}EPIs</Text>
+                            <Small style={{ color: textPrimary, fontWeight: 'bold', textAlign: 'center' }}>Guia de{'\n'}EPIs</Small>
                         </NeoCard>
                     </TouchableOpacity>
 
@@ -98,9 +99,9 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                     >
                         <NeoCard variant="glass" style={{ padding: 16, borderRadius: 16, alignItems: 'center' }}>
                             <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E3F2FD', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                <NeoIcon name="ShieldTick" size={24} color="#2196F3" variant="Bold" />
+                                <NeoIcon name="ShieldTick" size={24} color={Neo.colors.secondary[500]} variant="Bold" />
                             </View>
-                            <Text style={{ color: textPrimary, fontWeight: 'bold', fontSize: 13, textAlign: 'center' }}>Dispositivos{'\n'}de Proteção</Text>
+                            <Small style={{ color: textPrimary, fontWeight: 'bold', textAlign: 'center' }}>Dispositivos{'\n'}de Proteção</Small>
                         </NeoCard>
                     </TouchableOpacity>
                 </View>
@@ -127,8 +128,8 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                                     </View>
                                     <View style={styles.guideContent}>
                                         <View style={{ flex: 1, paddingRight: 8 }}>
-                                            <Text style={styles.guideTitle}>{category.title}</Text>
-                                            <Text style={styles.guideSubtitle}>{category.subtitle}</Text>
+                                            <Body style={styles.guideTitle}>{category.title}</Body>
+                                            <Small style={styles.guideSubtitle}>{category.subtitle}</Small>
                                         </View>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                             <NeoIcon
@@ -147,26 +148,26 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                                 {category.items.map((item, index) => (
                                     <View key={index} style={styles.toolCard}>
                                         <View style={styles.toolHeader}>
-                                            <Text style={styles.toolName}>{item.name}</Text>
+                                            <Body style={styles.toolName}>{item.name}</Body>
                                             <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: '#FFEBEE', alignItems: 'center', justifyContent: 'center' }}>
                                                 <NeoIcon name="InfoCircle" size={20} color="#D32F2F" variant="Bold" />
                                             </View>
                                         </View>
 
                                         <View style={styles.toolDetail}>
-                                            <Text style={styles.label}>{t('headersFirst.risco', 'Risco:')}</Text>
-                                            <Text style={styles.value}>{item.risk}</Text>
+                                            <Small style={styles.label}>{t('headersFirst.risco', 'Risco:')}</Small>
+                                            <Body style={styles.value}>{item.risk}</Body>
                                         </View>
 
                                         <View style={styles.toolDetail}>
-                                            <Text style={styles.label}>{t('headersFirst.ePIs', 'EPIs:')}</Text>
-                                            <Text style={styles.value}>{item.epi}</Text>
+                                            <Small style={styles.label}>{t('headersFirst.ePIs', 'EPIs:')}</Small>
+                                            <Body style={styles.value}>{item.epi}</Body>
                                         </View>
 
                                         {item.care && (
-                                            <View style={[styles.toolDetail, { borderLeftColor: '#4CAF50' }]}>
-                                                <Text style={styles.label}>{t('headersFirst.cuidado', 'Cuidado:')}</Text>
-                                                <Text style={styles.value}>{item.care}</Text>
+                                            <View style={[styles.toolDetail, { borderLeftColor: Neo.colors.feedback.success }]}>
+                                                <Small style={styles.label}>{t('headersFirst.cuidado', 'Cuidado:')}</Small>
+                                                <Body style={styles.value}>{item.care}</Body>
                                             </View>
                                         )}
                                     </View>
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         marginBottom: 4,
     },
     headerSubtitle: {
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
     goldenTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFD700',
+        color: Neo.colors.feedback.warning,
         marginLeft: 8,
     },
     ruleItem: {
@@ -243,8 +244,8 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
         borderRadius: 12,
-        backgroundColor: '#FFD700',
-        color: '#000',
+        backgroundColor: Neo.colors.feedback.warning,
+        color: Neo.colors.neutral.black,
         textAlign: 'center',
         lineHeight: 24,
         fontWeight: 'bold',
@@ -252,13 +253,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     ruleTitle: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: 'bold',
         fontSize: 16,
         marginBottom: 2,
     },
     ruleText: {
-        color: '#B0BEC5',
+        color: Neo.colors.neutral[400],
         fontSize: 14,
         lineHeight: 20,
     },
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 120,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
@@ -312,12 +313,12 @@ const styles = StyleSheet.create({
         zIndex: -1
     },
     toolCard: {
-        backgroundColor: '#FFF',
+        backgroundColor: Neo.colors.neutral.white,
         padding: 16,
         borderRadius: 12,
         marginBottom: 12,
         borderWidth: 1,
-        borderColor: '#EEE',
+        borderColor: Neo.colors.neutral[300],
     },
     toolHeader: {
         flexDirection: 'row',
@@ -328,23 +329,23 @@ const styles = StyleSheet.create({
     toolName: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#333',
+        color: Neo.colors.neutral[900],
         flex: 1,
     },
     toolDetail: {
         marginBottom: 8,
         paddingLeft: 8,
         borderLeftWidth: 2,
-        borderLeftColor: '#DDD',
+        borderLeftColor: Neo.colors.neutral[300],
     },
     label: {
         fontSize: 12,
-        color: '#888',
+        color: Neo.colors.neutral[500],
         fontWeight: 'bold',
     },
     value: {
         fontSize: 14,
-        color: '#444',
+        color: Neo.colors.neutral[700],
         lineHeight: 20,
     },
 });

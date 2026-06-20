@@ -8,6 +8,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { getConteudoPrevencao } from '../../data/knowledge_prevencao';
 import { Shadows } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useThemeColors } from '../../utils/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../../context/AccessibilityContext';
 
@@ -92,6 +93,7 @@ function adjustColor(hex, percent) {
 
 export default function EnvironmentGuideNeoScreen({ route, navigation }) {
     const { t } = useTranslation('common');
+    const colors = useThemeColors();
     const { ambienteId } = route.params || { ambienteId: 'sala' };
     const guideData = useMemo(() => getConteudoPrevencao(ambienteId), [ambienteId]);
     const { reduceMotion } = useAccessibility() || {};
@@ -141,7 +143,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
     const dicas = guideData.conteudo.filter(c => c.tipo === 'dica');
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+        <View style={{ flex: 1, backgroundColor: colors.neutral.white }}>
             <StatusBar style="light" translucent />
 
             <Animated.ScrollView
@@ -180,7 +182,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
 
                     {/* Gradient para legibilidade do título */}
                     <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', '#FFFFFF']}
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', colors.neutral.white]}
                         locations={[0, 0.35, 0.85, 1]}
                         style={{ position: 'absolute', width: '100%', height: '100%' }}
                     />
@@ -195,7 +197,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         <Text style={{
                             fontSize: 34,
                             fontWeight: '900',
-                            color: '#111827',
+                            color: colors.neutral[900],
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }} accessibilityRole="header">
@@ -209,7 +211,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                 {destaqueText && (
                     <Text style={{
                         fontSize: 16.5,
-                        color: '#4B5563',
+                        color: colors.neutral[700],
                         lineHeight: 25,
                         fontStyle: 'italic',
                         marginBottom: 26,
@@ -236,7 +238,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                             <Text style={{
                                 fontSize: 18.5,
                                 fontWeight: '800',
-                                color: '#1F2937',
+                                color: colors.neutral[900],
                                 letterSpacing: -0.4,
                                 flex: 1,
                                 lineHeight: 24,
@@ -246,7 +248,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         </View>
                         <Text style={{
                             fontSize: 15,
-                            color: '#4B5563',
+                            color: colors.neutral[700],
                             lineHeight: 24,
                         }}>
                             {topico.texto}
@@ -257,11 +259,11 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                 {dicas.length > 0 && (
                     <View style={{
                         marginTop: 12,
-                        backgroundColor: '#F8FAFC',
+                        backgroundColor: colors.neutral[100],
                         borderRadius: 18,
                         padding: 18,
                         borderLeftWidth: 4,
-                        borderLeftColor: '#3B82F6',
+                        borderLeftColor: colors.secondary[500],
                         ...Shadows.sm,
                     }}>
                         <View style={{
@@ -269,11 +271,11 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                             alignItems: 'center',
                             marginBottom: 10,
                         }}>
-                            <NeoIcon name="LampCharge" size={20} color="#3B82F6" variant="Bold" style={{ marginRight: 8 }} />
+                            <NeoIcon name="LampCharge" size={20} color={colors.secondary[500]} variant="Bold" style={{ marginRight: 8 }} />
                             <Text style={{
                                 fontSize: 15,
                                 fontWeight: '800',
-                                color: '#1E293B',
+                                color: colors.neutral[900],
                                 letterSpacing: -0.2,
                             }}>
                                 {t('headersFirst.goldenTip', 'Dica de ouro')}
@@ -283,7 +285,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         {dicas.map((dica, idx) => (
                             <Text key={idx} style={{
                                 fontSize: 14.5,
-                                color: '#475569',
+                                color: colors.neutral[700],
                                 lineHeight: 22,
                                 marginBottom: idx < dicas.length - 1 ? 10 : 0,
                             }}>
@@ -312,9 +314,9 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         ...Shadows.md,
                     }}
                 >
-                    <NeoIcon name="TickSquare" size={22} color="#FFF" variant="Bold" />
+                    <NeoIcon name="TickSquare" size={22} color={colors.neutral.white} variant="Bold" />
                     <Text style={{
-                        color: '#FFF',
+                        color: colors.neutral.white,
                         fontSize: 16,
                         fontWeight: '800',
                         marginLeft: 10,
@@ -346,7 +348,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={t('common.back', 'Voltar')}
                     >
-                        <NeoIcon name="ArrowLeft2" size={22} color="#FFF" variant="Bold" />
+                        <NeoIcon name="ArrowLeft2" size={22} color={colors.neutral.white} variant="Bold" />
                     </TouchableOpacity>
 
                     <View style={{

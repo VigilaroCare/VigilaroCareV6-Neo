@@ -12,12 +12,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Small } from './NeoTypography';
+import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors } from '../utils/ThemeContext';
 
 const COLORS = {
-  baixo:    '#3B82F6', // Blue-500
-  atencao:  '#F59E0B', // Amber-500
-  critico:  '#EF4444', // Red-500
-  empty:    '#E5E7EB', // Gray-200
+  baixo:    Neo.colors.secondary[500],  // Blue-500
+  atencao:  Neo.colors.feedback.warning, // Amber-500
+  critico:  Neo.colors.feedback.error,   // Red-500
+  empty:    Neo.colors.neutral[300],     // Gray-200
 };
 
 /**
@@ -41,6 +43,7 @@ export default function TriColorBar({
   showLegend = false,
   style,
 }) {
+  const colors = useThemeColors();
   const effective = total || (baixo + atencao + critico);
   if (effective === 0) {
     return (
@@ -48,7 +51,7 @@ export default function TriColorBar({
         <View style={{ height, backgroundColor: COLORS.empty, borderRadius: height / 2, overflow: 'hidden' }} />
         {showLabels && (
           <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 6 }}>
-            <Small style={{ color: '#9CA3AF', fontSize: 11 }}>Nenhum item respondido</Small>
+            <Small style={{ color: colors.neutral[400], fontSize: 11 }}>Nenhum item respondido</Small>
           </View>
         )}
       </View>
@@ -106,15 +109,15 @@ export default function TriColorBar({
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 6, paddingHorizontal: 2 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.baixo }} />
-            <Small style={{ color: '#6B7280', fontSize: 11, fontWeight: '600' }}>Atende {pctB}%</Small>
+            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>Atende {pctB}%</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.atencao }} />
-            <Small style={{ color: '#6B7280', fontSize: 11, fontWeight: '600' }}>Atenção {pctA}%</Small>
+            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>Atenção {pctA}%</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.critico }} />
-            <Small style={{ color: '#6B7280', fontSize: 11, fontWeight: '600' }}>Crítico {pctV > 0 && critico > 0 ? pctV : 0}%</Small>
+            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>Crítico {pctV > 0 && critico > 0 ? pctV : 0}%</Small>
           </View>
         </View>
       )}
@@ -124,15 +127,15 @@ export default function TriColorBar({
         <View style={{ marginTop: 10, gap: 4 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.baixo }} />
-            <Small style={{ color: '#374151', fontSize: 12 }}>Conforme (Baixo risco)</Small>
+            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>Conforme (Baixo risco)</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.atencao }} />
-            <Small style={{ color: '#374151', fontSize: 12 }}>Atenção (Risco moderado)</Small>
+            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>Atenção (Risco moderado)</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.critico }} />
-            <Small style={{ color: '#374151', fontSize: 12 }}>Crítico (Risco alto)</Small>
+            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>Crítico (Risco alto)</Small>
           </View>
         </View>
       )}

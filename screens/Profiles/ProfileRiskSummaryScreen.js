@@ -24,6 +24,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 
+// DS: data-level color — profile-type accent palette, kept as hex for data lookup
 const TYPE_COLOR = {
     baby: '#EC4899', toddler: '#F59E0B', child: '#3B82F6',
     teen: '#8B5CF6', adult: Neo.colors.primary[500], senior: '#10B981', pet: '#F97316',
@@ -70,7 +71,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                         {item.medidaCorretiva ? (
                             <View style={s.measureBlockCorretiva}>
                                 <View style={s.measureHeader}>
-                                    <NeoIcon name="TickSquare" size={13} color="#10B981" variant="Bold" />
+                                    <NeoIcon name="TickSquare" size={13} color={Neo.colors.primary[500]} variant="Bold" />
                                     <Text style={s.measureTitleCorretiva}>Medida Corretiva (Ação Física)</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaCorretiva}</Text>
@@ -80,7 +81,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                         {item.medidaPreventiva ? (
                             <View style={s.measureBlockPreventiva}>
                                 <View style={s.measureHeader}>
-                                    <NeoIcon name="Shield" size={13} color="#3B82F6" variant="Bold" />
+                                    <NeoIcon name="Shield" size={13} color={Neo.colors.secondary[500]} variant="Bold" />
                                     <Text style={s.measureTitlePreventiva}>Medida Preventiva (Hábito/Cuidado)</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaPreventiva}</Text>
@@ -113,7 +114,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                             onPress={() => onNavigate(item)}
                             activeOpacity={0.85}
                         >
-                            <NeoIcon name="TickCircle" size={14} color="#FFF" variant="Bold" />
+                            <NeoIcon name="TickCircle" size={14} color={Neo.colors.neutral.white} variant="Bold" />
                             <Text style={s.btnResolveText}>
                                 {t('riskSummary.willResolve', 'Vou resolver')}
                             </Text>
@@ -407,10 +408,10 @@ export default function ProfileRiskSummaryScreen() {
                         </View>
                         {stats.answeredCount === 0 ? (
                             <View style={[s.scoreBox, { backgroundColor: 'rgba(245,158,11,0.12)' }]}>
-                                <Text style={[s.scoreNumber, { color: '#B45309', fontSize: 20 }]}>
+                                <Text style={[s.scoreNumber, { color: Neo.colors.accent.copper, fontSize: 20 }]}>
                                     -
                                 </Text>
-                                <Caption style={[s.scoreLabel, { color: '#B45309', fontSize: 8 }]}>
+                                <Caption style={[s.scoreLabel, { color: Neo.colors.accent.copper, fontSize: 8 }]}>
                                     Pendente
                                 </Caption>
                             </View>
@@ -431,7 +432,7 @@ export default function ProfileRiskSummaryScreen() {
                         <NeoCard variant="elevated" style={s.healthNoticeCard}>
                             <View style={s.healthNoticeHeader}>
                                 <View style={[s.healthNoticeIconWrap, { backgroundColor: 'rgba(245,158,11,0.12)' }]}>
-                                    <NeoIcon name="InfoCircle" size={20} color="#D97706" variant="Bold" />
+                                    <NeoIcon name="InfoCircle" size={20} color={Neo.colors.accent.champagne} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={s.healthNoticeTitle}>Ficha de Saúde Incompleta</Text>
@@ -445,7 +446,7 @@ export default function ProfileRiskSummaryScreen() {
                                 onPress={() => navigation.navigate('AddPerfil', { profile })}
                                 activeOpacity={0.85}
                             >
-                                <NeoIcon name="Heart" size={14} color="#FFF" variant="Bold" />
+                                <NeoIcon name="Heart" size={14} color={Neo.colors.neutral.white} variant="Bold" />
                                 <Text style={s.btnHealthNoticeText}>Completar Ficha de Saúde</Text>
                             </TouchableOpacity>
                         </NeoCard>
@@ -459,7 +460,7 @@ export default function ProfileRiskSummaryScreen() {
                         <NeoCard variant="elevated" style={s.onboardingCard}>
                             <View style={s.onboardingHeader}>
                                 <View style={[s.onboardingIconWrap, { backgroundColor: 'rgba(245,158,11,0.14)' }]}>
-                                    <NeoIcon name="Warning2" size={20} color="#D97706" variant="Bold" />
+                                    <NeoIcon name="Warning2" size={20} color={Neo.colors.accent.champagne} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={s.onboardingTitle}>Configuração Inicial Pendente</Text>
@@ -470,26 +471,26 @@ export default function ProfileRiskSummaryScreen() {
                             <View style={s.stepListContainer}>
                                 <View style={s.stepRow}>
                                     <View style={[s.stepBadge, stats.answeredCount > 0 ? s.stepBadgeDone : s.stepBadgePending]}>
-                                        <NeoIcon name={stats.answeredCount > 0 ? "TickCircle" : "Clock"} size={13} color={stats.answeredCount > 0 ? "#16A34A" : "#D97706"} variant="Bold" />
+                                        <NeoIcon name={stats.answeredCount > 0 ? "TickCircle" : "Clock"} size={13} color={stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={s.stepTitle}>1. Vistoria dos Ambientes</Text>
                                         <Text style={s.stepDesc}>Responder aos checklists dos ambientes informados no onboarding.</Text>
                                     </View>
-                                    <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? '#16A34A' : '#D97706' }]}>
+                                    <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne }]}>
                                         {stats.answeredCount > 0 ? "Concluído" : "Pendente"}
                                     </Text>
                                 </View>
 
                                 <View style={s.stepRow}>
                                     <View style={[s.stepBadge, hasHealthInfo ? s.stepBadgeDone : s.stepBadgePending]}>
-                                        <NeoIcon name={hasHealthInfo ? "TickCircle" : "InfoCircle"} size={13} color={hasHealthInfo ? "#16A34A" : "#3B82F6"} variant="Bold" />
+                                        <NeoIcon name={hasHealthInfo ? "TickCircle" : "InfoCircle"} size={13} color={hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500]} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={s.stepTitle}>2. Ficha de Saúde (Medicações/Limitações)</Text>
                                         <Text style={s.stepDesc}>Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.</Text>
                                     </View>
-                                    <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? '#16A34A' : '#3B82F6' }]}>
+                                    <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500] }]}>
                                         {hasHealthInfo ? "Concluído" : "Recomendado"}
                                     </Text>
                                 </View>
@@ -501,7 +502,7 @@ export default function ProfileRiskSummaryScreen() {
                                     onPress={() => navigation.navigate('Relatorios')}
                                     activeOpacity={0.85}
                                 >
-                                    <NeoIcon name="ClipboardText" size={16} color="#FFF" variant="Bold" />
+                                    <NeoIcon name="ClipboardText" size={16} color={Neo.colors.neutral.white} variant="Bold" />
                                     <Text style={s.btnOnboardingText}>Iniciar Vistoria dos Ambientes</Text>
                                 </TouchableOpacity>
 
@@ -556,7 +557,7 @@ export default function ProfileRiskSummaryScreen() {
                             />
                             <AiCard
                                 iconName="Home2"
-                                color="#F59E0B"
+                                color={Neo.colors.feedback.warning}
                                 title={t('riskSummary.aiEnvironment', 'O ambiente')}
                                 text={aiReport.onde}
                             />
@@ -568,7 +569,7 @@ export default function ProfileRiskSummaryScreen() {
                             />
                             <AiCard
                                 iconName="ShieldTick"
-                                color="#16A34A"
+                                color={Neo.colors.feedback.success}
                                 title={t('riskSummary.aiPlan', 'Plano de ação')}
                                 text={aiReport.como}
                             />
@@ -636,7 +637,7 @@ export default function ProfileRiskSummaryScreen() {
                                     {t('riskSummary.unverified', 'Não verificados')}
                                 </Text>
                                 <View style={[s.countBadge, { backgroundColor: 'rgba(245,158,11,0.18)' }]}>
-                                    <Caption style={[s.countBadgeText, { color: '#B45309' }]}>
+                                    <Caption style={[s.countBadgeText, { color: Neo.colors.accent.copper }]}>
                                         {pendingItems.length}
                                     </Caption>
                                 </View>
@@ -855,7 +856,7 @@ const s = StyleSheet.create({
         flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
         backgroundColor: Neo.colors.primary[500], borderRadius: 10, paddingVertical: 9, gap: 6,
     },
-    btnResolveText: { color: '#FFF', fontWeight: '800', fontSize: 12.5 },
+    btnResolveText: { color: Neo.colors.neutral.white, fontWeight: '800', fontSize: 12.5 },
     btnAck: {
         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
         backgroundColor: 'rgba(0,0,0,0.05)', borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, gap: 5,
@@ -921,14 +922,14 @@ const s = StyleSheet.create({
         borderRadius: 12,
         padding: 10,
         borderLeftWidth: 3,
-        borderLeftColor: '#10B981',
+        borderLeftColor: Neo.colors.primary[500],
     },
     measureBlockPreventiva: {
         backgroundColor: 'rgba(59,130,246,0.08)',
         borderRadius: 12,
         padding: 10,
         borderLeftWidth: 3,
-        borderLeftColor: '#3B82F6',
+        borderLeftColor: Neo.colors.secondary[500],
     },
     measureBlockMitigacao: {
         backgroundColor: 'rgba(249,115,22,0.09)',
@@ -946,21 +947,21 @@ const s = StyleSheet.create({
     measureTitleCorretiva: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: '#059669',
+        color: Neo.colors.primary[600],
         textTransform: 'uppercase',
         letterSpacing: 0.3,
     },
     measureTitlePreventiva: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: '#2563EB',
+        color: Neo.colors.secondary[500],
         textTransform: 'uppercase',
         letterSpacing: 0.3,
     },
     measureTitleMitigacao: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: '#D97706',
+        color: Neo.colors.accent.champagne,
         textTransform: 'uppercase',
         letterSpacing: 0.3,
     },
@@ -1013,7 +1014,7 @@ const s = StyleSheet.create({
         gap: 8,
     },
     btnOnboardingText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: '800',
         fontSize: 13,
     },
@@ -1096,7 +1097,7 @@ const s = StyleSheet.create({
     healthNoticeTitle: {
         fontSize: 13.5,
         fontWeight: '800',
-        color: '#D97706',
+        color: Neo.colors.accent.champagne,
     },
     healthNoticeText: {
         fontSize: 12,
@@ -1114,7 +1115,7 @@ const s = StyleSheet.create({
         gap: 6,
     },
     btnHealthNoticeText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontWeight: '800',
         fontSize: 12,
     },

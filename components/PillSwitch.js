@@ -67,7 +67,7 @@ export function HousePill({ label, isModalOpen = false, onPress }) {
                 {/* Ícone de casa com dot de status */}
                 <View style={styles.houseIconContainer}>
                     <View style={styles.houseIconBg}>
-                        <NeoIcon name="Home2" size={16} color="#FFF" variant="Bold" />
+                        <NeoIcon name="Home2" size={16} color={Neo.colors.neutral.white} variant="Bold" />
                     </View>
                     <View style={styles.statusDot} />
                 </View>
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(14, 59, 59, 0.25)',
         borderBottomWidth: 1.2,
         // Sombra Apple-style: discreta, espalhada, neutra (sem tinge colorido).
-        shadowColor: '#0E3B3B',
+        shadowColor: Neo.colors.primary[900],
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.055,
         shadowRadius: 12,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 9,
-        backgroundColor: '#0E3B3B',
+        backgroundColor: Neo.colors.primary[900],
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -147,9 +147,9 @@ const styles = StyleSheet.create({
         width: 9,
         height: 9,
         borderRadius: 4.5,
-        backgroundColor: '#2DD4BF',
+        backgroundColor: Neo.colors.primary[300],
         borderWidth: 2,
-        borderColor: '#FFFBF4',
+        borderColor: Neo.colors.accent.champagneSubtle,
     },
     houseLabelGroup: {
         flex: 1,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     housePillLabel: {
         fontSize: 14,
         fontWeight: '700',
-        color: '#0E3B3B',
+        color: Neo.colors.primary[900],
         letterSpacing: 0,
     },
     arrowContainer: {

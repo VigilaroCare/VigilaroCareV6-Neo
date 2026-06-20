@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { View, Text, Animated, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { H1, H3, Body, Small } from '../../components/NeoTypography';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -34,9 +35,9 @@ function StyledHero({ cor, emoji, icon }) {
                 {emoji ? (
                     <Text style={s.emojiLarge}>{emoji}</Text>
                 ) : icon ? (
-                    <NeoIcon name={icon} size={110} color="#FFFFFF" variant="Bold" />
+                    <NeoIcon name={icon} size={110} color={Neo.colors.neutral.white} variant="Bold" />
                 ) : (
-                    <NeoIcon name="Book" size={110} color="#FFFFFF" variant="Bold" />
+                    <NeoIcon name="Book" size={110} color={Neo.colors.neutral.white} variant="Bold" />
                 )}
             </View>
         </View>
@@ -72,7 +73,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
+    const surface = isDark ? themeColors.neutral[100] : themeColors.neutral.white;
     
     const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -80,7 +81,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
 
     const title = conceito.titulo || conceito.title;
     const content = conceito.definicao || conceito.conteudo || conceito.descricao || conceito.description;
-    const cor = conceito.color || '#3B82F6';
+    const cor = conceito.color || Neo.colors.secondary[500];
 
     const heroTransform = [
         {
@@ -111,7 +112,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFFFFF" />
+                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
                 </TouchableOpacity>
             </SafeAreaView>
 
@@ -153,21 +154,21 @@ export default function PremiumArticleScreen({ route, navigation }) {
                         paddingHorizontal: 22,
                         width: '100%',
                     }}>
-                        <Text style={{
+                        <H1 style={{
                             fontSize: 34,
                             fontWeight: '900',
-                            color: isDark ? '#FFFFFF' : '#111827',
+                            color: isDark ? themeColors.neutral.white : themeColors.neutral[900],
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }} accessibilityRole="header">
                             {title}
-                        </Text>
+                        </H1>
                         
                         {conceito.tags && conceito.tags.length > 0 && (
                             <View style={[s.tagsRow, { marginTop: 12 }]}>
                                 {conceito.tags.map(tag => (
                                     <View key={tag} style={[s.tagBadge, { backgroundColor: isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.25)' }]}>
-                                        <Text style={[s.tagText, { color: '#FFFFFF' }]}>#{tag}</Text>
+                                        <Small style={[s.tagText, { color: Neo.colors.neutral.white }]}>#{tag}</Small>
                                     </View>
                                 ))}
                             </View>
@@ -181,34 +182,34 @@ export default function PremiumArticleScreen({ route, navigation }) {
                     {/* Main Content */}
                     <View style={s.bodyContent}>
                         {content ? (
-                            <Text style={[s.bodyText, { color: textBody }]}>{content}</Text>
+                            <Body style={[s.bodyText, { color: textBody }]}>{content}</Body>
                         ) : null}
 
                         {conceito.exemplos && conceito.exemplos.length > 0 && (
-                            <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : '#F9FAFB' }]}>
+                            <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : themeColors.neutral[100] }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                                     <NeoIcon name="Star" size={20} color={cor} variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: textPrimary }]}>{t('common.examples', 'Exemplos')}</Text>
+                                    <H3 style={[s.sessaoTitulo, { color: textPrimary }]}>{t('common.examples', 'Exemplos')}</H3>
                                 </View>
                                 {conceito.exemplos.map((ex, i) => (
                                     <View key={i} style={s.listItem}>
                                         <View style={[s.bullet, { backgroundColor: cor }]} />
-                                        <Text style={[s.listText, { color: textBody }]}>{ex}</Text>
+                                        <Body style={[s.listText, { color: textBody }]}>{ex}</Body>
                                     </View>
                                 ))}
                             </View>
                         )}
 
                         {conceito.prevencao && conceito.prevencao.length > 0 && (
-                            <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : '#F9FAFB', marginTop: 16 }]}>
+                            <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : themeColors.neutral[100], marginTop: 16 }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <NeoIcon name="ShieldTick" size={20} color="#10B981" variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: textPrimary }]}>{t('common.prevention', 'Prevenção')}</Text>
+                                    <NeoIcon name="ShieldTick" size={20} color={Neo.colors.primary[500]} variant="Bold" style={{ marginRight: 8 }} />
+                                    <H3 style={[s.sessaoTitulo, { color: textPrimary }]}>{t('common.prevention', 'Prevenção')}</H3>
                                 </View>
                                 {conceito.prevencao.map((prev, i) => (
                                     <View key={i} style={s.listItem}>
-                                        <View style={[s.bullet, { backgroundColor: '#10B981' }]} />
-                                        <Text style={[s.listText, { color: textBody }]}>{prev}</Text>
+                                        <View style={[s.bullet, { backgroundColor: Neo.colors.primary[500] }]} />
+                                        <Body style={[s.listText, { color: textBody }]}>{prev}</Body>
                                     </View>
                                 ))}
                             </View>
@@ -217,14 +218,14 @@ export default function PremiumArticleScreen({ route, navigation }) {
                             <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : cor + '10', marginBottom: 16 }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                                     <NeoIcon name="Lovely" size={20} color={cor} variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: cor }]}>{t('headersFirst.cOMOAGIR', 'COMO AGIR')}</Text>
+                                    <H3 style={[s.sessaoTitulo, { color: cor }]}>{t('headersFirst.cOMOAGIR', 'COMO AGIR')}</H3>
                                 </View>
                                 {conceito.passos.map((step, i) => (
                                     <View key={i} style={[s.listItem, { marginBottom: 16 }]}>
-                                        <Text style={{ fontSize: 16, fontWeight: '800', color: step.critico ? '#EF4444' : cor, marginRight: 10, marginTop: 2 }}>{i + 1}.</Text>
+                                        <Body style={{ fontSize: 16, fontWeight: '800', color: step.critico ? Neo.colors.feedback.error : cor, marginRight: 10, marginTop: 2 }}>{i + 1}.</Body>
                                         <View style={{ flex: 1 }}>
-                                            <Text style={{ fontSize: 16, fontWeight: '700', color: textPrimary }}>{step.titulo}</Text>
-                                            <Text style={{ fontSize: 15, color: textBody, marginTop: 4, lineHeight: 22 }}>{step.descricao}</Text>
+                                            <Body style={{ fontSize: 16, fontWeight: '700', color: textPrimary }}>{step.titulo}</Body>
+                                            <Body style={{ fontSize: 15, color: textBody, marginTop: 4, lineHeight: 22 }}>{step.descricao}</Body>
                                         </View>
                                     </View>
                                 ))}
@@ -234,28 +235,28 @@ export default function PremiumArticleScreen({ route, navigation }) {
                         {conceito.alertaVeterinario && (
                             <View style={[s.cardSessao, { backgroundColor: '#FEF2F2' }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <NeoIcon name="Warning2" size={20} color="#EF4444" variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: '#B91C1C' }]}>{t('headersFirst.aTENOVETERINRIA', 'ATENÇÃO VETERINÁRIA')}</Text>
+                                    <NeoIcon name="Warning2" size={20} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 8 }} />
+                                    <H3 style={[s.sessaoTitulo, { color: Neo.colors.feedback.error }]}>{t('headersFirst.aTENOVETERINRIA', 'ATENÇÃO VETERINÁRIA')}</H3>
                                 </View>
-                                <Text style={{ color: '#991B1B', fontSize: 15, lineHeight: 22 }}>{conceito.alertaVeterinario}</Text>
+                                <Body style={{ color: Neo.colors.feedback.error, fontSize: 15, lineHeight: 22 }}>{conceito.alertaVeterinario}</Body>
                             </View>
                         )}
 
                         {conceito.sinaisCriticos && (Array.isArray(conceito.sinaisCriticos) ? conceito.sinaisCriticos.length > 0 : true) && (
                             <View style={[s.cardSessao, { backgroundColor: '#FFFBEB' }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <NeoIcon name="Health" size={20} color="#D97706" variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: '#B45309' }]}>{t('headersFirst.sINAISDEALERTA', 'SINAIS DE ALERTA')}</Text>
+                                    <NeoIcon name="Health" size={20} color={Neo.colors.accent.champagne} variant="Bold" style={{ marginRight: 8 }} />
+                                    <H3 style={[s.sessaoTitulo, { color: Neo.colors.accent.copper }]}>{t('headersFirst.sINAISDEALERTA', 'SINAIS DE ALERTA')}</H3>
                                 </View>
                                 {Array.isArray(conceito.sinaisCriticos) ? conceito.sinaisCriticos.map((sinal, i) => (
                                     <View key={i} style={s.listItem}>
-                                        <View style={[s.bullet, { backgroundColor: '#D97706' }]} />
-                                        <Text style={[s.listText, { color: '#92400E' }]}>{sinal}</Text>
+                                        <View style={[s.bullet, { backgroundColor: Neo.colors.accent.champagne }]} />
+                                        <Body style={[s.listText, { color: Neo.colors.accent.copper }]}>{sinal}</Body>
                                     </View>
                                 )) : (
                                     <View style={s.listItem}>
-                                        <View style={[s.bullet, { backgroundColor: '#D97706' }]} />
-                                        <Text style={[s.listText, { color: '#92400E' }]}>{conceito.sinaisCriticos}</Text>
+                                        <View style={[s.bullet, { backgroundColor: Neo.colors.accent.champagne }]} />
+                                        <Body style={[s.listText, { color: Neo.colors.accent.copper }]}>{conceito.sinaisCriticos}</Body>
                                     </View>
                                 )}
                             </View>
@@ -264,18 +265,18 @@ export default function PremiumArticleScreen({ route, navigation }) {
                         {conceito.naoFazer && (Array.isArray(conceito.naoFazer) ? conceito.naoFazer.length > 0 : true) && (
                             <View style={[s.cardSessao, { backgroundColor: '#FEF2F2' }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <NeoIcon name="CloseCircle" size={20} color="#EF4444" variant="Bold" style={{ marginRight: 8 }} />
-                                    <Text style={[s.sessaoTitulo, { color: '#B91C1C' }]}>{t('headersFirst.oQUENAOFAZER', 'O QUE NÃO FAZER')}</Text>
+                                    <NeoIcon name="CloseCircle" size={20} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 8 }} />
+                                    <H3 style={[s.sessaoTitulo, { color: Neo.colors.feedback.error }]}>{t('headersFirst.oQUENAOFAZER', 'O QUE NÃO FAZER')}</H3>
                                 </View>
                                 {Array.isArray(conceito.naoFazer) ? conceito.naoFazer.map((item, i) => (
                                     <View key={i} style={s.listItem}>
-                                        <NeoIcon name="CloseSquare" size={16} color="#EF4444" style={{ marginTop: 4, marginRight: 8 }} />
-                                        <Text style={[s.listText, { color: '#991B1B' }]}>{item}</Text>
+                                        <NeoIcon name="CloseSquare" size={16} color={Neo.colors.feedback.error} style={{ marginTop: 4, marginRight: 8 }} />
+                                        <Body style={[s.listText, { color: Neo.colors.feedback.error }]}>{item}</Body>
                                     </View>
                                 )) : (
                                     <View style={s.listItem}>
-                                        <NeoIcon name="CloseSquare" size={16} color="#EF4444" style={{ marginTop: 4, marginRight: 8 }} />
-                                        <Text style={[s.listText, { color: '#991B1B' }]}>{conceito.naoFazer}</Text>
+                                        <NeoIcon name="CloseSquare" size={16} color={Neo.colors.feedback.error} style={{ marginTop: 4, marginRight: 8 }} />
+                                        <Body style={[s.listText, { color: Neo.colors.feedback.error }]}>{conceito.naoFazer}</Body>
                                     </View>
                                 )}
                             </View>

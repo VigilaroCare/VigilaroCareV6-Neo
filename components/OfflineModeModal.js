@@ -6,10 +6,12 @@ import NetInfo from '@react-native-community/netinfo';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoText, { H3, Body, Small } from './NeoTypography';
 import NeoCard from './NeoCard';
+import { useThemeColors } from '../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
 export default function OfflineModeModal() {
+    const colors = useThemeColors();
     const [visible, setVisible] = useState(false);
     const [isOffline, setIsOffline] = useState(false);
     const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
@@ -101,10 +103,10 @@ export default function OfflineModeModal() {
                         {/* Header Warning */}
                         <View style={styles.header}>
                             <View style={styles.iconContainer}>
-                                <NeoIcon name="CloudCross" size={32} color="#FFF" />
+                                <NeoIcon name="CloudCross" size={32} color={colors.neutral.white} />
                             </View>
                             <View style={{ flex: 1 }}>
-                                <H3 style={{ color: '#D32F2F', fontSize: 18 }}>Modo Offline Ativado</H3>
+                                <H3 style={{ color: colors.feedback.error, fontSize: 18 }}>Modo Offline Ativado</H3>
                                 <Body style={{ fontSize: 13, color: Neo.colors.neutral[600] }}>
                                     Detectamos falta de sinal de rede.
                                 </Body>
@@ -130,7 +132,7 @@ export default function OfflineModeModal() {
                         {/* Ação */}
                         <TouchableOpacity onPress={handleDismiss}>
                             <View style={styles.button}>
-                                <Body style={{ color: '#FFF', fontWeight: 'bold' }}>Entendi, manter protegido</Body>
+                                <Body style={{ color: colors.neutral.white, fontWeight: 'bold' }}>Entendi, manter protegido</Body>
                             </View>
                         </TouchableOpacity>
 
@@ -143,7 +145,7 @@ export default function OfflineModeModal() {
 
 const FeatureItem = ({ icon, text }) => (
     <View style={styles.featureItem}>
-        <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: '#E8F5E9', alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: Neo.colors.primary[50], alignItems: 'center', justifyContent: 'center' }}>
             <NeoIcon name={icon || "checkmark-circle"} size={18} color={Neo.colors.feedback.success} />
         </View>
         <Body style={{ fontSize: 14, flex: 1 }}>{text}</Body>
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
     },
     card: {
-        backgroundColor: '#FFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 24,
         padding: 20,
         ...Neo.shadows.lg,
@@ -180,7 +182,7 @@ const styles = StyleSheet.create({
         width: 56,
         height: 56,
         borderRadius: 28,
-        backgroundColor: '#FFEBEE',
+        backgroundColor: 'rgba(239, 68, 68, 0.08)', // DS: feedback.error with subtle opacity
         alignItems: 'center',
         justifyContent: 'center',
     },

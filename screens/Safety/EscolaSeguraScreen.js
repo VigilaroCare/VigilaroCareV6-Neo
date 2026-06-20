@@ -24,6 +24,7 @@ import TriColorBar from '../../components/TriColorBar';
 
 // Services & Utils
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useThemeColors } from '../../utils/ThemeContext';
 import { CHECKLIST_ESCOLA_SEGURA, calcularPontuacao, getNivelSeguranca } from '../../data/escola_segura_data';
 import { t_field } from '../../utils/getLocalizedField';
 
@@ -36,7 +37,8 @@ import FadeInView from '../../components/FadeInView';
 
 export default function EscolaSeguraScreen({ navigation }) {
     const { t } = useTranslation('common');
-    const THEME_COLOR = '#4CAF50';
+    const colors = useThemeColors();
+    const THEME_COLOR = colors.feedback.success;
 
     const [responses, setResponses] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
@@ -284,7 +286,7 @@ export default function EscolaSeguraScreen({ navigation }) {
                                                         >
                                                             {/* Barra lateral de prioridade */}
                                                             <View style={[styles.itemPriorityBar, {
-                                                                backgroundColor: item.critico ? '#EF4444' : categoria.cor,
+                                                                backgroundColor: item.critico ? colors.feedback.error : categoria.cor,
                                                             }]} />
 
                                                             {/* Conteúdo central */}
@@ -320,38 +322,38 @@ export default function EscolaSeguraScreen({ navigation }) {
                                                                     <TouchableOpacity
                                                                         onPress={() => handleSetStatus(item.id, 'conforme')}
                                                                         style={[styles.statusBtn, {
-                                                                            backgroundColor: isChecked === 'conforme' ? '#10B981' : '#F8FAFC',
+                                                                            backgroundColor: isChecked === 'conforme' ? colors.primary[500] : colors.neutral[100],
                                                                             borderWidth: isChecked === 'conforme' ? 0 : 1.5,
-                                                                            borderColor: isChecked === 'conforme' ? 'transparent' : '#E2E8F0',
+                                                                            borderColor: isChecked === 'conforme' ? 'transparent' : colors.neutral[300],
                                                                         }]}
                                                                         activeOpacity={0.7}
                                                                     >
-                                                                        <Small style={{ fontWeight: 'bold', color: isChecked === 'conforme' ? '#FFF' : '#94A3B8' }}>S</Small>
+                                                                        <Small style={{ fontWeight: 'bold', color: isChecked === 'conforme' ? colors.neutral.white : colors.neutral[400] }}>S</Small>
                                                                     </TouchableOpacity>
 
                                                                     <TouchableOpacity
                                                                         onPress={() => handleSetStatus(item.id, 'risco')}
                                                                         style={[styles.statusBtn, {
-                                                                            backgroundColor: isChecked === 'risco' ? '#EF4444' : '#F8FAFC',
+                                                                            backgroundColor: isChecked === 'risco' ? colors.feedback.error : colors.neutral[100],
                                                                             borderWidth: isChecked === 'risco' ? 0 : 1.5,
-                                                                            borderColor: isChecked === 'risco' ? 'transparent' : '#E2E8F0',
+                                                                            borderColor: isChecked === 'risco' ? 'transparent' : colors.neutral[300],
                                                                         }]}
                                                                         activeOpacity={0.7}
                                                                     >
-                                                                        <Small style={{ fontWeight: 'bold', color: isChecked === 'risco' ? '#FFF' : '#94A3B8' }}>N</Small>
+                                                                        <Small style={{ fontWeight: 'bold', color: isChecked === 'risco' ? colors.neutral.white : colors.neutral[400] }}>N</Small>
                                                                     </TouchableOpacity>
                                                                 </View>
 
                                                                 <TouchableOpacity
                                                                     onPress={() => handleSetStatus(item.id, 'na')}
                                                                     style={[styles.naBtn, {
-                                                                        backgroundColor: isChecked === 'na' ? '#6B7280' : '#F1F5F9',
+                                                                        backgroundColor: isChecked === 'na' ? colors.neutral[500] : colors.neutral[200],
                                                                         borderWidth: isChecked === 'na' ? 0 : 1,
-                                                                        borderColor: isChecked === 'na' ? 'transparent' : '#E2E8F0',
+                                                                        borderColor: isChecked === 'na' ? 'transparent' : colors.neutral[300],
                                                                     }]}
                                                                     activeOpacity={0.7}
                                                                 >
-                                                                    <Small style={{ fontSize: 9, fontWeight: '800', color: isChecked === 'na' ? '#FFF' : '#94A3B8' }}>
+                                                                    <Small style={{ fontSize: 9, fontWeight: '800', color: isChecked === 'na' ? colors.neutral.white : colors.neutral[400] }}>
                                                                         {t('headersFirst.nA', 'N/A')}
                                                                     </Small>
                                                                 </TouchableOpacity>
@@ -373,8 +375,8 @@ export default function EscolaSeguraScreen({ navigation }) {
                             onPress={() => navigation.navigate('EscolaSeguraReport', { responses, pontuacao, nivelSeguranca })}
                         >
                             <NeoCard variant="glass" style={[styles.reportButton, { backgroundColor: THEME_COLOR }]}>
-                                <NeoIcon name="DocumentText" size={24} color="#FFF" />
-                                <H3 style={{ color: '#FFF', marginLeft: 12 }}>
+                                <NeoIcon name="DocumentText" size={24} color={colors.neutral.white} />
+                                <H3 style={{ color: colors.neutral.white, marginLeft: 12 }}>
                                     {t('headersFirst.verRelatRioCompleto', 'Ver Relatório Completo')}
                                 </H3>
                             </NeoCard>
@@ -410,7 +412,7 @@ export default function EscolaSeguraScreen({ navigation }) {
                                     </Body>
                                     {selectedItem.critico && (
                                         <View style={[styles.criticalBadge, { marginTop: 16, alignSelf: 'flex-start' }]}>
-                                            <Caption style={{ color: '#D32F2F', fontWeight: '600' }}>
+                                            <Caption style={{ color: Neo.colors.severity.high.bg, fontWeight: '600' }}>
                                                 {t('headersFirst.ITEMCRTICO', '⚠️ ITEM CRÍTICO')}
                                             </Caption>
                                         </View>
@@ -530,7 +532,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         width: '80%',
         height: 4,
-        backgroundColor: '#F2F2F7',
+        backgroundColor: Neo.colors.neutral[200],
         borderRadius: 2,
         overflow: 'hidden',
     },
@@ -558,10 +560,10 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 14,
         marginBottom: 8,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 18,
         borderWidth: 1,
-        borderColor: '#F3F4F6',
+        borderColor: Neo.colors.neutral[200],
         ...Neo.shadows.sm,
     },
     itemPriorityBar: {
@@ -571,29 +573,29 @@ const styles = StyleSheet.create({
         marginRight: 12,
     },
     itemCategoryLabel: {
-        color: '#9CA3AF',
+        color: Neo.colors.neutral[400],
         fontWeight: '700',
         fontSize: 9,
         letterSpacing: 0.6,
         marginBottom: 3,
     },
     itemText: {
-        color: '#1F2937',
+        color: Neo.colors.neutral[900],
         lineHeight: 20,
         fontWeight: '600',
         fontSize: 15,
         flex: 1,
     },
     criticoBadge: {
-        backgroundColor: '#FEF2F2',
+        backgroundColor: '#FEF2F2', // TODO: map to DS token (red-50 equivalent)
         paddingHorizontal: 6,
         paddingVertical: 1,
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: '#FEE2E2',
+        borderColor: Neo.colors.feedback.error + '33', // ~FEE2E2 equivalent
     },
     criticoBadgeText: {
-        color: '#B91C1C',
+        color: Neo.colors.emergency?.panicDark || '#B91C1C',
         fontWeight: 'bold',
         fontSize: 8,
     },
@@ -632,7 +634,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     modalContent: {
-        backgroundColor: '#FFFFFF',   // CORRIGIDO: era 'transparent'
+        backgroundColor: Neo.colors.neutral.white,   // CORRIGIDO: era 'transparent'
         borderRadius: 20,
         padding: 24,
         width: '100%',
@@ -646,7 +648,7 @@ const styles = StyleSheet.create({
     criticalBadge: {
         paddingHorizontal: 8,
         paddingVertical: 4,
-        backgroundColor: '#FFEBEE',
+        backgroundColor: '#FFEBEE', // TODO: map to DS token (red-50 equivalent)
         borderRadius: 4,
     },
 });
