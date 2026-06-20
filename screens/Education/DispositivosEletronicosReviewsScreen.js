@@ -26,11 +26,12 @@ import NeoScreenHeader from '../../components/NeoScreenHeader';
 import { DISPOSITIVOS_ELETRONICOS_REVIEWS } from '../../data/dispositivos_eletronicos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
+// DS: data-level color
 const RISK_COLORS = {
-    critico: '#D32F2F',
-    alto: '#E65100',
-    medio: '#F57F17',
-    baixo: '#388E3C',
+    critico: '#D32F2F', // TODO: map to DS token
+    alto: '#E65100', // TODO: map to DS token
+    medio: '#F57F17', // TODO: map to DS token
+    baixo: '#388E3C', // TODO: map to DS token
 };
 
 const RISK_LABELS = {
@@ -40,11 +41,12 @@ const RISK_LABELS = {
     baixo: 'Baixo',
 };
 
+// DS: data-level color
 const RISK_BG = {
-    critico: '#FFEBEE',
-    alto: '#FFF3E0',
-    medio: '#FFFDE7',
-    baixo: '#E8F5E9',
+    critico: '#FFEBEE', // TODO: map to DS token
+    alto: '#FFF3E0', // TODO: map to DS token
+    medio: '#FFFDE7', // TODO: map to DS token
+    baixo: '#E8F5E9', // TODO: map to DS token
 };
 
 export default function DispositivosEletronicosReviewsScreen({ navigation }) {
@@ -54,9 +56,9 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
 
-    const THEME_COLOR = '#00695C';
+    const THEME_COLOR = themeColors.primary[700];
     const ITEMS = DISPOSITIVOS_ELETRONICOS_REVIEWS;
 
     const handlePress = (item) => {
@@ -105,8 +107,8 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                     </FadeInView>
 
                 {ITEMS.map((item, idx) => {
-                    const riskColor = RISK_COLORS[item.nivelRisco] || '#999';
-                    const riskBg = RISK_BG[item.nivelRisco] || '#F5F5F5';
+                    const riskColor = RISK_COLORS[item.nivelRisco] || themeColors.neutral[500];
+                    const riskBg = RISK_BG[item.nivelRisco] || themeColors.neutral[200];
                     const riskLabel = RISK_LABELS[item.nivelRisco] || '';
 
                     return (
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
     // Card grande estilo Plantas/Animais
     guideCardOuter: {
         borderRadius: 24,
-        shadowColor: '#000',
+        shadowColor: Neo.colors.neutral.black,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.06,
         shadowRadius: 8,
@@ -216,7 +218,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 120,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
@@ -225,7 +227,7 @@ const styles = StyleSheet.create({
     guideImageContainer: {
         width: 120,
         height: '100%',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: Neo.colors.neutral[200],
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -311,7 +313,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     badgeText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontSize: 10,
         fontWeight: '700',
     },

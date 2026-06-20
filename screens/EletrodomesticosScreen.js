@@ -26,16 +26,16 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// Cor por dispositivo (usada como tint do ReviewImage)
+// DS: data-level color (used as tint)
 const DEVICE_COLORS = {
-    microondas:    '#E65100',
-    processadores: '#7C3AED',
-    fogao:         '#D32F2F',
-    aquecedor:     '#F57F17',
-    ventilador:    '#0EA5E9',
-    ferro:         '#EC4899',
-    secador:       '#EC4899',
-    geladeira:     '#3B82F6',
+    microondas:    '#E65100', // TODO: map to DS token
+    processadores: '#7C3AED', // TODO: map to DS token
+    fogao:         '#D32F2F', // TODO: map to DS token
+    aquecedor:     '#F57F17', // TODO: map to DS token
+    ventilador:    '#0EA5E9', // DS: mapped to colors.secondary[500]
+    ferro:         '#EC4899', // TODO: map to DS token
+    secador:       '#EC4899', // TODO: map to DS token
+    geladeira:     '#3B82F6', // DS: mapped to colors.secondary[500]
 };
 
 export default function EletrodomesticosScreen({ navigation }) {
@@ -55,8 +55,8 @@ export default function EletrodomesticosScreen({ navigation }) {
 
     const renderDeviceCard = (device) => {
         const isExpanded = expandedId === device.id;
-        const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
-        const deviceColor = DEVICE_COLORS[device.id] || '#6366F1';
+        const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
+        const deviceColor = DEVICE_COLORS[device.id] || themeColors.primary[500];
 
         return (
             <TouchableOpacity
@@ -98,7 +98,7 @@ export default function EletrodomesticosScreen({ navigation }) {
                             <View style={styles.badgesRow}>
                                 {device.travas && (
                                     <View style={styles.badgeLock}>
-                                        <NeoIcon name="Lock" size={10} color="#FFF" style={{ marginRight: 3 }} />
+                                        <NeoIcon name="Lock" size={10} color={Neo.colors.neutral.white} style={{ marginRight: 3 }} />
                                         <Text style={styles.badgeLockText}>Trava</Text>
                                     </View>
                                 )}
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: Typography.sizes.xl,
         fontFamily: Typography.fontFamily.bold,
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
     },
     headerSubtitle: {
         fontSize: Typography.sizes.md,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 130,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     guideImageContainer: {
         width: 130,
         height: '100%',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: Neo.colors.neutral[200],
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         borderRadius: BorderRadius.sm,
     },
     badgeLockText: {
-        color: '#FFF',
+        color: Neo.colors.neutral.white,
         fontSize: 10,
         fontFamily: Typography.fontFamily.bold,
     },
@@ -326,12 +326,12 @@ const styles = StyleSheet.create({
     riskTag: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#FFF0F0',
+        backgroundColor: 'rgba(239, 68, 68, 0.1)', // DS: emergency panic bg
         paddingHorizontal: 10,
         paddingVertical: 6,
         borderRadius: BorderRadius.sm,
         borderWidth: 1,
-        borderColor: '#FFD0D0',
+        borderColor: 'rgba(239, 68, 68, 0.2)', // DS: emergency panic border
     },
     riskTagText: {
         color: Colors.error,

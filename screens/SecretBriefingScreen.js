@@ -13,10 +13,12 @@ import NeoIcon from '../components/NeoIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors } from '../utils/ThemeContext';
 
 export default function SecretBriefingScreen({ navigation }) {
     const { t } = useTranslation('common');
     const fadeAnim = useRef(new Animated.Value(0)).current;
+    const themeColors = useThemeColors();
 
     useEffect(() => {
         // Efeito dramático de entrada
@@ -39,11 +41,11 @@ export default function SecretBriefingScreen({ navigation }) {
     };
 
     return (
-        <View style={styles.container}>
-            <StatusBar style="light" backgroundColor="#111" />
+        <View style={[styles.container, { backgroundColor: themeColors.neutral[900] }]}>
+            <StatusBar style="light" backgroundColor={themeColors.neutral[900]} />
 
             <LinearGradient
-                colors={['#1F2937', '#111827']}
+                colors={[themeColors.neutral[800] || '#1F2937', themeColors.neutral[900]]}
                 style={styles.gradient}
             >
                 <AppBackground>
@@ -51,40 +53,40 @@ export default function SecretBriefingScreen({ navigation }) {
 
                     <Animated.View style={{ opacity: fadeAnim, alignItems: 'center' }}>
                         <View style={styles.iconContainer}>
-                            <NeoIcon name="Lock" size={48} color="#F59E0B" />
+                            <NeoIcon name="Lock" size={48} color={Neo.colors.feedback.warning} />
                         </View>
 
-                        <Text style={styles.title}> {t('headersFirst.pROTOCOLOSOCULTOS', 'PROTOCOLOS OCULTOS')} </Text>
-                        <Text style={styles.subtitle}>{t('headersFirst.confidencialLeiaApenasSeEstiverSozinho', 'Confidencial - Leia apenas se estiver sozinho')}</Text>
+                        <Text style={[styles.title, { color: Neo.colors.neutral.white }]}> {t('headersFirst.pROTOCOLOSOCULTOS', 'PROTOCOLOS OCULTOS')} </Text>
+                        <Text style={[styles.subtitle, { color: themeColors.neutral[400] }]}>{t('headersFirst.confidencialLeiaApenasSeEstiverSozinho', 'Confidencial - Leia apenas se estiver sozinho')}</Text>
 
                         <View style={styles.card}>
                             <View style={styles.cardHeader}>
-                                <NeoIcon name="EyeSlash" size={24} color="#EF4444" />
+                                <NeoIcon name="EyeSlash" size={24} color={Neo.colors.emergency.panic} />
                                 <Text style={styles.cardTitle}>{t('headersFirst.mODOPNICODISCRETO', 'MODO PÂNICO DISCRETO')}</Text>
                             </View>
-                            <Text style={styles.cardText}>
+                            <Text style={[styles.cardText, { color: themeColors.neutral[300] }]}>
                                 {t('headersFirst.emSituaEsDeCoaOOndeVocNOPodeRevelarQueEs', 'Em situações de coação onde você não pode revelar que está pedindo ajuda:')}
                             </Text>
                             <View style={styles.instructionBox}>
-                                <Text style={styles.instructionText}>
-                                    Segure o botão <Text style={{ color: '#EF4444', fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text> no rodapé por <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
+                                <Text style={[styles.instructionText, { color: Neo.colors.neutral.white }]}>
+                                    Segure o botão <Text style={{ color: Neo.colors.emergency.panic, fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text> no rodapé por <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
                                 </Text>
                             </View>
-                            <Text style={styles.cardDetail}>
+                            <Text style={[styles.cardDetail, { color: themeColors.neutral[400] }]}>
                                 • O app vibrará discretamente.{'\n'}
                                 • Gravação de áudio e GPS iniciam na hora.{'\n'}
                                 • Alertas são enviados após 15s se não cancelar.
                             </Text>
                         </View>
 
-                        <Text style={styles.disclaimer}>
+                        <Text style={[styles.disclaimer, { color: themeColors.neutral[500] }]}>
                             {t('headersFirst.estaTelaNOAparecerNovamenteParaSuaSegura', 'Esta tela não aparecerá novamente para sua segurança.')}
                         </Text>
                     </Animated.View>
 
                     <TouchableOpacity style={styles.burnButton} onPress={handleFinish}>
-                        <NeoIcon name="Trash" size={20} color="#FFF" style={{ marginRight: 8 }} />
-                        <Text style={styles.burnButtonText}>{t('headersFirst.mEMORIZAREDESTRUIRMENSAGEM', 'MEMORIZAR E DESTRUIR MENSAGEM')}</Text>
+                        <NeoIcon name="Trash" size={20} color={Neo.colors.neutral.white} style={{ marginRight: 8 }} />
+                        <Text style={[styles.burnButtonText, { color: Neo.colors.neutral.white }]}>{t('headersFirst.mEMORIZAREDESTRUIRMENSAGEM', 'MEMORIZAR E DESTRUIR MENSAGEM')}</Text>
                     </TouchableOpacity>
 
                 </SafeAreaView>
@@ -129,7 +131,6 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 14,
-        color: '#9CA3AF',
         marginBottom: 40,
         textTransform: 'uppercase',
         letterSpacing: 1,
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 16,
         borderLeftWidth: 4,
-        borderLeftColor: '#EF4444',
+        borderLeftColor: Neo.colors.emergency.panic,
     },
     cardHeader: {
         flexDirection: 'row',
@@ -148,13 +149,12 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     cardTitle: {
-        color: '#EF4444',
+        color: Neo.colors.emergency.panic,
         fontSize: 16,
         fontWeight: 'bold',
         marginLeft: 12,
     },
     cardText: {
-        color: '#E5E7EB',
         fontSize: 15,
         marginBottom: 16,
         lineHeight: 22,
@@ -168,24 +168,21 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(239, 68, 68, 0.2)',
     },
     instructionText: {
-        color: '#FFF',
         fontSize: 16,
         textAlign: 'center',
     },
     cardDetail: {
-        color: '#9CA3AF',
         fontSize: 13,
         lineHeight: 20,
     },
     disclaimer: {
         marginTop: 40,
-        color: '#6B7280',
         fontSize: 12,
         fontStyle: 'italic',
         textAlign: 'center',
     },
     burnButton: {
-        backgroundColor: '#DC2626',
+        backgroundColor: Neo.colors.emergency.panic,
         width: '100%',
         paddingVertical: 18,
         borderRadius: 12,
@@ -194,13 +191,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20,
         elevation: 8,
-        shadowColor: "#DC2626",
+        shadowColor: Neo.colors.emergency.panic,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.4,
         shadowRadius: 8,
     },
     burnButtonText: {
-        color: '#FFF',
         fontSize: 14,
         fontWeight: 'bold',
         letterSpacing: 1,

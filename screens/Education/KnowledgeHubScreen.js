@@ -111,42 +111,42 @@ export default function KnowledgeHubScreen({ navigation }) {
             key: 'analises',
             title: t('knowledgeHub.safetyReviews', 'Análises de Segurança'),
             items: [
-                { id: 'utensilios_rev',    titulo: t('knowledgeHub.kitchenUtensils'),   iconName: 'Scissor', cor: '#E65100', route: 'UtensiliosReviews' },
-                { id: 'eletro_rev',        titulo: t('knowledgeHub.homeAppliances'),    iconName: 'Cpu',     cor: '#1565C0', route: 'EletrodomesticosReviews' },
-                { id: 'disp_eletronicos',  titulo: t('knowledgeHub.electronicDevices'), iconName: 'Monitor', cor: '#0F766E', route: 'DispositivosEletronicosReviews' },
+                { id: 'utensilios_rev',    titulo: t('knowledgeHub.kitchenUtensils'),   iconName: 'Scissor', cor: themeColors.accent.copper, route: 'UtensiliosReviews' },
+                { id: 'eletro_rev',        titulo: t('knowledgeHub.homeAppliances'),    iconName: 'Cpu',     cor: themeColors.secondary[500], route: 'EletrodomesticosReviews' },
+                { id: 'disp_eletronicos',  titulo: t('knowledgeHub.electronicDevices'), iconName: 'Monitor', cor: themeColors.primary[800], route: 'DispositivosEletronicosReviews' },
             ],
         },
         {
             key: 'emergencias',
             title: t('knowledgeHub.emergencies', 'Emergências'),
             items: [
-                { id: 'fire_prev',                titulo: t('knowledgeHub.firePrev'),    iconName: 'PrevencaoIncendio', cor: '#DC2626', route: 'GenericCategory', params: { categoryId: 'fire_prevention' } },
-                { id: 'emergencias',              titulo: t('knowledgeHub.escapePlans'), iconName: 'ExportSquare',      cor: '#E11D48', route: 'PlanoIncendio' },
-                { id: 'primeiros_socorros_hub',   titulo: t('knowledgeHub.firstAid'),    iconName: 'Health',            cor: '#EF4444', route: 'PrimeirosSocorros' },
-                { id: 'kits_emergencia',          titulo: t('knowledgeHub.kitsGuide'),   iconName: 'Briefcase',         cor: '#9F1239', route: 'GuiaKitsEmergencia' },
+                { id: 'fire_prev',                titulo: t('knowledgeHub.firePrev'),    iconName: 'PrevencaoIncendio', cor: themeColors.feedback.error, route: 'GenericCategory', params: { categoryId: 'fire_prevention' } },
+                { id: 'emergencias',              titulo: t('knowledgeHub.escapePlans'), iconName: 'ExportSquare',      cor: themeColors.feedback.error, route: 'PlanoIncendio' },
+                { id: 'primeiros_socorros_hub',   titulo: t('knowledgeHub.firstAid'),    iconName: 'Health',            cor: themeColors.feedback.error, route: 'PrimeirosSocorros' },
+                { id: 'kits_emergencia',          titulo: t('knowledgeHub.kitsGuide'),   iconName: 'Briefcase',         cor: themeColors.feedback.error, route: 'GuiaKitsEmergencia' },
             ],
         },
         {
             key: 'riscos',
             title: t('knowledgeHub.practicalGuides', 'Riscos Comuns'),
             items: [
-                { id: 'plantas',         titulo: t('knowledgeHub.toxicPlants'),       iconName: 'Tree',     cor: '#10B981', route: 'PlantasToxicas' },
-                { id: 'animais',         titulo: t('knowledgeHub.venomousAnimals'),   iconName: 'Danger',   cor: '#8B5CF6', route: 'AnimaisPeconhentos' },
-                { id: 'produtos',        titulo: t('knowledgeHub.hazardousProducts'), iconName: 'Reserve',  cor: '#F97316', route: 'ProdutosPerigosos' },
-                { id: 'riscos_fisicos',  titulo: t('knowledgeHub.physicalRisks'),   iconName: 'Warning2',    cor: '#EF4444', route: 'RiscosFisicos', params: { filter: 'fisicos' } },
-                { id: 'riscos_eletricos', titulo: t('knowledgeHub.electricalRisks'), iconName: 'Flash', cor: '#EAB308', route: 'RiscosFisicos', params: { filter: 'eletricos' } },
-                { id: 'jardinagem',      titulo: t('knowledgeHub.safeGardening'),     iconName: 'Tree',     cor: '#16A34A', route: 'JardinagemSegura' },
-                { id: 'condo_safety',    titulo: t('knowledgeHub.condoSafety'),       iconName: 'Building4',cor: '#78716C', route: 'GenericCategory', params: { categoryId: 'condominio_seguranca' } },
-                { id: 'teoria_fogo',     titulo: t('knowledgeHub.fireTheory', 'Teoria do Fogo'), iconName: 'Fire', cor: '#EA580C', route: 'TeoriaFogo' },
-                { id: 'dispositivos_protecao', titulo: t('knowledgeHub.protectionDevices', 'Acessórios de Proteção'), iconName: 'Shield', cor: '#047857', route: 'DispositivosProtecao' },
+                { id: 'plantas',         titulo: t('knowledgeHub.toxicPlants'),       iconName: 'Tree',     cor: themeColors.primary[500], route: 'PlantasToxicas' },
+                { id: 'animais',         titulo: t('knowledgeHub.venomousAnimals'),   iconName: 'Danger',   cor: themeColors.secondary[500], route: 'AnimaisPeconhentos' },
+                { id: 'produtos',        titulo: t('knowledgeHub.hazardousProducts'), iconName: 'Reserve',  cor: themeColors.accent.copper, route: 'ProdutosPerigosos' },
+                { id: 'riscos_fisicos',  titulo: t('knowledgeHub.physicalRisks'),   iconName: 'Warning2',    cor: themeColors.feedback.error, route: 'RiscosFisicos', params: { filter: 'fisicos' } },
+                { id: 'riscos_eletricos', titulo: t('knowledgeHub.electricalRisks'), iconName: 'Flash', cor: themeColors.feedback.warning, route: 'RiscosFisicos', params: { filter: 'eletricos' } },
+                { id: 'jardinagem',      titulo: t('knowledgeHub.safeGardening'),     iconName: 'Tree',     cor: themeColors.primary[600], route: 'JardinagemSegura' },
+                { id: 'condo_safety',    titulo: t('knowledgeHub.condoSafety'),       iconName: 'Building4',cor: themeColors.neutral[500], route: 'GenericCategory', params: { categoryId: 'condominio_seguranca' } },
+                { id: 'teoria_fogo',     titulo: t('knowledgeHub.fireTheory', 'Teoria do Fogo'), iconName: 'Fire', cor: themeColors.accent.copper, route: 'TeoriaFogo' },
+                { id: 'dispositivos_protecao', titulo: t('knowledgeHub.protectionDevices', 'Acessórios de Proteção'), iconName: 'Shield', cor: themeColors.primary[700], route: 'DispositivosProtecao' },
             ],
         },
         {
             key: 'mobilidade',
             title: t('knowledgeHub.mobilityMaintenance', 'Viagem & Equipamentos'),
             items: [
-                { id: 'lazer_mobilidade',   titulo: t('knowledgeHub.leisureTravel'), iconName: 'Airplane',  cor: '#0891B2', route: 'LazerFeriasMenu' },
-                { id: 'guias_equipamentos', titulo: t('knowledgeHub.ppeTools'),      iconName: 'Setting2',  cor: '#475569', route: 'FerramentasTrabalho' },
+                { id: 'lazer_mobilidade',   titulo: t('knowledgeHub.leisureTravel'), iconName: 'Airplane',  cor: themeColors.secondary[500], route: 'LazerFeriasMenu' },
+                { id: 'guias_equipamentos', titulo: t('knowledgeHub.ppeTools'),      iconName: 'Setting2',  cor: themeColors.neutral[700], route: 'FerramentasTrabalho' },
             ],
         },
     ];
@@ -251,7 +251,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                     <NeoIcon 
                                         name={cat?.icon || 'Document'} 
                                         size={80} 
-                                        color="#FFF" 
+                                        color={Neo.colors.neutral.white} 
                                         style={{ position: 'absolute', right: -15, bottom: -15, opacity: 0.15 }} 
                                         variant="Bulk"
                                     />
@@ -261,7 +261,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                             const label = t_field(cat, 'label') || '';
                                             const displayLabel = (label === 'Primeiros Socorros' || label === 'Primeiros socorros' || label === 'Primeros Auxilios') ? 'Socorros' : label;
                                             return (
-                                                <View style={[s.featuredBadge, { backgroundColor: cat.color || '#666' }]}>
+                                                <View style={[s.featuredBadge, { backgroundColor: cat.color || themeColors.neutral[500] }]}>
                                                     <Text style={s.featuredBadgeText} numberOfLines={1} adjustsFontSizeToFit>
                                                         {displayLabel}
                                                     </Text>
@@ -306,7 +306,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                 </Body>
                             </View>
                             <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color="#B91C1C" />
+                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.feedback.error} />
                             </View>
                         </NeoCard>
                     </TouchableOpacity>

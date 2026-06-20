@@ -215,7 +215,7 @@ export default function GerenciarLocaisPerfisScreen() {
                                                 <H3 style={{ fontSize: 16 }}>{res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : res.nome}</H3>
                                                 {isActive && (
                                                     <View style={s.activeBadge}>
-                                                        <NeoIcon name="TickCircle" size={12} color="#FFF" variant="Bold" />
+                                                        <NeoIcon name="TickCircle" size={12} color={C.neutral.white} variant="Bold" />
                                                         <Small style={s.activeBadgeText}>Ativa</Small>
                                                     </View>
                                                 )}
@@ -258,9 +258,9 @@ export default function GerenciarLocaisPerfisScreen() {
                                         style={s.card}
                                         onPress={() => handleEditProfile(p)}
                                     >
-                                        <View style={[s.avatar, { backgroundColor: isPet ? '#FFF3E0' : C.primary[100] }]}>
+                                        <View style={[s.avatar, { backgroundColor: isPet ? C.accent.champagneSubtle : C.primary[100] }]}>
                                             {isPet ? (
-                                                <NeoIcon name="Heart" size={20} color="#EF6C00" variant="Bold" />
+                                                <NeoIcon name="Heart" size={20} color={C.accent.copper} variant="Bold" />
                                             ) : (
                                                 <NeoIcon name="User" size={20} color={C.primary[600]} variant="Bold" />
                                             )}
@@ -302,18 +302,18 @@ export default function GerenciarLocaisPerfisScreen() {
                 <View style={s.footer}>
                     {activeTab === 'locais' ? (
                         <TouchableOpacity style={s.mainBtn} onPress={handleAddResidence} activeOpacity={0.9}>
-                            <NeoIcon name="Add" size={22} color="#FFF" />
-                            <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Adicionar Nova Residência</Body>
+                            <NeoIcon name="Add" size={22} color={C.neutral.white} />
+                            <Body style={{ color: C.neutral.white, fontWeight: 'bold', fontSize: 16 }}>Adicionar Nova Residência</Body>
                         </TouchableOpacity>
                     ) : (
                         <View style={{ flexDirection: 'row', gap: 12 }}>
                             <TouchableOpacity style={[s.mainBtn, { flex: 1 }]} onPress={() => handleAddProfile('humano')} activeOpacity={0.9}>
-                                <NeoIcon name="Add" size={20} color="#FFF" />
-                                <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 15 }}>Adicionar Pessoa</Body>
+                                <NeoIcon name="Add" size={20} color={C.neutral.white} />
+                                <Body style={{ color: C.neutral.white, fontWeight: 'bold', fontSize: 15 }}>Adicionar Pessoa</Body>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[s.mainBtn, { flex: 1, backgroundColor: '#FFF', borderWidth: 2, borderColor: '#EF6C00' }]} onPress={() => handleAddProfile('pet')} activeOpacity={0.9}>
-                                <NeoIcon name="Add" size={20} color="#EF6C00" />
-                                <Body style={{ color: '#EF6C00', fontWeight: 'bold', fontSize: 15 }}>Adicionar Pet</Body>
+                            <TouchableOpacity style={[s.mainBtn, { flex: 1, backgroundColor: C.neutral.white, borderWidth: 2, borderColor: C.accent.copper }]} onPress={() => handleAddProfile('pet')} activeOpacity={0.9}>
+                                <NeoIcon name="Add" size={20} color={C.accent.copper} />
+                                <Body style={{ color: C.accent.copper, fontWeight: 'bold', fontSize: 15 }}>Adicionar Pet</Body>
                             </TouchableOpacity>
                         </View>
                     )}
@@ -355,7 +355,7 @@ export default function GerenciarLocaisPerfisScreen() {
                                     style={[s.modalBtn, { backgroundColor: C.primary[600] }]} 
                                     onPress={handleSaveRename}
                                 >
-                                    <Body style={{ color: '#FFF', fontWeight: '600' }}>Salvar</Body>
+                                    <Body style={{ color: C.neutral.white, fontWeight: '600' }}>Salvar</Body>
                                 </TouchableOpacity>
                             </View>
                         </NeoCard>
@@ -412,7 +412,7 @@ const s = StyleSheet.create({
         borderRadius: 10,
     },
     tabButtonActive: {
-        backgroundColor: '#FFF',
+        backgroundColor: C.neutral.white,
         ...Neo.shadows.sm,
     },
     tabText: {
@@ -458,7 +458,7 @@ const s = StyleSheet.create({
         gap: 4,
     },
     activeBadgeText: {
-        color: '#FFF',
+        color: C.neutral.white,
         fontSize: 10,
         fontWeight: 'bold',
     },

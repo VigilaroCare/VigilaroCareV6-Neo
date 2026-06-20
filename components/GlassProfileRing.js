@@ -54,17 +54,17 @@ export default function GlassProfileRing({
 
     // Gradiente dinâmico baseado no score
     const getGradientColors = () => {
-        if (score >= 80) return ['#059669', '#10B981', '#0EA5E9', '#6366F1']; // Verde → Azul → Índigo
-        if (score >= 50) return ['#F59E0B', '#FF9800', '#EF4444']; // Amarelo → Laranja → Vermelho
-        if (score > 0)   return ['#EF4444', '#DC2626', '#F97316']; // Vermelho intenso
+        if (score >= 80) return [Neo.colors.primary[600], Neo.colors.primary[500], Neo.colors.secondary[500], Neo.colors.secondary[500]]; // Verde → Azul → Índigo
+        if (score >= 50) return [Neo.colors.feedback.warning, Neo.colors.accent.copper || Neo.colors.feedback.warning, Neo.colors.feedback.error]; // Amarelo → Laranja → Vermelho
+        if (score > 0)   return [Neo.colors.feedback.error, Neo.colors.feedback.error, Neo.colors.accent.copper || Neo.colors.feedback.warning]; // Vermelho intenso
         return [Neo.colors.neutral[300], Neo.colors.neutral[400], Neo.colors.neutral[300]]; // Neutro
     };
 
     // Cor da sombra baseada no score
     const getShadowColor = () => {
-        if (score >= 80) return '#10B981';
-        if (score >= 50) return '#F59E0B';
-        if (score > 0) return '#EF4444';
+        if (score >= 80) return Neo.colors.primary[500];
+        if (score >= 50) return Neo.colors.feedback.warning;
+        if (score > 0) return Neo.colors.feedback.error;
         return 'transparent';
     };
 

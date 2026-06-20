@@ -33,8 +33,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_es: 'Playa',
       emoji: '🏖️', // Mantido para fallback se precisar
       icon: 'Sun1',
-      iconColor: '#F59E0B',
-      bg: '#FFFBEB',
+      iconColor: themeColors.feedback.warning,
+      bg: themeColors.neutral[50],
       riscosPrincipais: [
         'Afogamento (correntes de retorno)',
         'Insolação e queimaduras solares',
@@ -114,8 +114,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'River and Lake',
       local_es: 'Río y Lago',
       icon: 'Drop',
-      iconColor: '#0EA5E9',
-      bg: '#E0F2FE',
+      iconColor: themeColors.secondary[500],
+      bg: themeColors.neutral[100],
       riscosPrincipais: [
         'Correntezas invisíveis',
         'Buracos e profundidade súbita',
@@ -183,8 +183,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'Pool',
       local_es: 'Piscina',
       icon: 'Drop', // Reusing Drop generally
-      iconColor: '#06B6D4',
-      bg: '#CFFAFE',
+      iconColor: themeColors.secondary[500],
+      bg: themeColors.neutral[100],
       riscosPrincipais: [
         'Afogamento silencioso',
         'Escorregões na borda molhada',
@@ -250,8 +250,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'Camping and Trails',
       local_es: 'Camping',
       icon: 'Tree',
-      iconColor: '#10B981',
-      bg: '#ECFDF5',
+      iconColor: themeColors.primary[500],
+      bg: themeColors.primary[50],
       riscosPrincipais: [
         'Animais peçonhentos (escorpiões, cobras)',
         'Fogueiras (incêndios)',
@@ -316,8 +316,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'Amusement Parks',
       local_es: 'Parques de Diversiones',
       icon: 'Ticket',
-      iconColor: '#EC4899',
-      bg: '#FCE7F3',
+      iconColor: themeColors.secondary[500],
+      bg: themeColors.neutral[50],
       riscosPrincipais: [
         'Perder-se na multidão',
         'Insolação/Desidratação',
@@ -382,8 +382,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       local_en: 'Barbecue Grill',
       local_es: 'Parrilla',
       icon: 'Fire',
-      iconColor: '#EF4444',
-      bg: '#FEF2F2',
+      iconColor: themeColors.feedback.error,
+      bg: themeColors.neutral[50],
       riscosPrincipais: [
         'Queimaduras',
         'Incêndio'
@@ -489,8 +489,8 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Riscos */}
             <View style={{ marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <NeoIcon name="Warning2" size={24} color="#F59E0B" variant="Bold" />
-                <Text style={{ fontSize: 15, fontWeight: '800', color: '#D97706', letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
+                <NeoIcon name="Warning2" size={24} color={themeColors.feedback.warning} variant="Bold" />
+                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.accent.champagne, letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
               </View>
               <View style={{ gap: 8, paddingLeft: 4 }}>
                 {t_array(item, 'riscosPrincipais').map((r, i) => (
@@ -502,8 +502,8 @@ export default function SegurancaLazerScreen({ navigation }) {
             {/* Prevenção */}
             <View style={{ marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
-                <Text style={{ fontSize: 15, fontWeight: '800', color: Neo.colors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
+                <NeoIcon name="ShieldTick" size={24} color={themeColors.primary[500]} variant="Bold" />
+                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
               </View>
               <View style={{ gap: 10 }}>
                 {t_array(item, 'prevencao').map((p, i) => (
@@ -516,10 +516,10 @@ export default function SegurancaLazerScreen({ navigation }) {
             </View>
 
             {/* Emergência */}
-            <View style={{ backgroundColor: '#FEF2F2', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: '#FECACA', marginBottom: 24 }}>
+            <View style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: themeColors.feedback.error, marginBottom: 24 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <NeoIcon name="Health" size={24} color="#DC2626" variant="Bold" />
-                <Text style={{ fontSize: 14, fontWeight: '800', color: '#B91C1C' }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
+                <NeoIcon name="Health" size={24} color={themeColors.feedback.error} variant="Bold" />
+                <Text style={{ fontSize: 14, fontWeight: '800', color: themeColors.feedback.error }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
               </View>
               <View style={{ gap: 8 }}>
                 {t_array(item, 'emergencias').map((e, i) => (
@@ -529,14 +529,14 @@ export default function SegurancaLazerScreen({ navigation }) {
             </View>
 
             {/* Dicas */}
-            <View style={{ backgroundColor: '#F3E8FF', padding: 16, borderRadius: 16 }}>
+            <View style={{ backgroundColor: themeColors.neutral[100], padding: 16, borderRadius: 16 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <NeoIcon name="LampOn" size={24} color="#9333EA" variant="Bold" />
-                <Text style={{ fontSize: 14, fontWeight: '800', color: '#7E22CE' }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
+                <NeoIcon name="LampOn" size={24} color={themeColors.secondary[500]} variant="Bold" />
+                <Text style={{ fontSize: 14, fontWeight: '800', color: themeColors.secondary[500] }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
               </View>
               <View style={{ gap: 8 }}>
                 {t_array(item, 'dicasExtras').map((d, i) => (
-                  <Text key={i} style={{ fontSize: 14, color: '#6B21A8', lineHeight: 20 }}>• {d}</Text>
+                  <Text key={i} style={{ fontSize: 14, color: themeColors.secondary[500], lineHeight: 20 }}>• {d}</Text>
                 ))}
               </View>
             </View>

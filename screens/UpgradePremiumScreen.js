@@ -25,6 +25,7 @@ import * as Haptics from 'expo-haptics';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Shadows } from '../utils/Theme';
+import { useThemeColors } from '../utils/ThemeContext';
 import SubscriptionService from '../services/SubscriptionService';
 import { useTranslation } from 'react-i18next';
 import NeoAlert from '../utils/NeoAlert';
@@ -75,6 +76,9 @@ const resolvePackage = (packages, tier, period) => {
 
 export default function UpgradePremiumScreen({ navigation }) {
   const { t } = useTranslation();
+  const colors = useThemeColors();
+  const styles = useMemo(() => getStyles(colors), [colors]);
+
   const [selectedTier, setSelectedTier] = useState('premium');
   const [selectedPeriod, setSelectedPeriod] = useState('annual');
   const [packages, setPackages] = useState(null);
@@ -244,7 +248,7 @@ export default function UpgradePremiumScreen({ navigation }) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={Colors.primary} />
+        <ActivityIndicator size="large" color={colors.secondary[500]} />
       </View>
     );
   }
@@ -253,7 +257,7 @@ export default function UpgradePremiumScreen({ navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <NeoIcon name="CloseSquare" size={48} color={Colors.textSecondary} />
+          <NeoIcon name="CloseSquare" size={48} color={colors.neutral[500]} />
           <Text style={styles.errorTitle}>{t('upgrade.cannotLoad')}</Text>
           <Text style={styles.errorSubtitle}>
             {t('upgrade.checkConnection')}
@@ -276,8 +280,8 @@ export default function UpgradePremiumScreen({ navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.subscribedContainer}>
-          <LinearGradient colors={['#6366F1', '#8B5CF6']} style={styles.subscribedBadge}>
-            <NeoIcon name="Diamonds" size={48} color="#FFF" />
+          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || '#8B5CF6']} style={styles.subscribedBadge}>
+            <NeoIcon name="Diamonds" size={48} color={colors.neutral.white} />
           </LinearGradient>
           <Text style={styles.subscribedTitle}>{t('upgrade.alreadyProtected')}</Text>
           <Text style={styles.subscribedText}>
@@ -313,14 +317,14 @@ export default function UpgradePremiumScreen({ navigation }) {
             style={styles.closeButton}
             onPress={() => navigation.canGoBack() && navigation.goBack()}
           >
-            <NeoIcon name="CloseSquare" size={28} color={Colors.textPrimary} />
+            <NeoIcon name="CloseSquare" size={28} color={colors.neutral[900]} />
           </TouchableOpacity>
         </View>
 
         {/* Hero */}
         <View style={styles.hero}>
-          <LinearGradient colors={['#6366F1', '#8B5CF6']} style={styles.heroIcon}>
-            <NeoIcon name="Diamonds" size={40} color="#FFF" />
+          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || '#8B5CF6']} style={styles.heroIcon}>
+            <NeoIcon name="Diamonds" size={40} color={colors.neutral.white} />
           </LinearGradient>
           <Text style={styles.heroTitle}>{t('upgrade.heroTitle')}</Text>
           <Text style={styles.heroSubtitle}>
@@ -355,7 +359,7 @@ export default function UpgradePremiumScreen({ navigation }) {
               <NeoIcon
                 name={feature.icon}
                 size={22}
-                color={feature.highlight ? '#6366F1' : feature.included ? '#10B981' : '#9CA3AF'}
+                color={feature.highlight ? colors.secondary[500] : feature.included ? colors.primary[500] : colors.neutral[400]}
               />
               <Text style={[
                 styles.featureText,
@@ -409,13 +413,13 @@ export default function UpgradePremiumScreen({ navigation }) {
           disabled={!isPriceLoaded || purchasing}
         >
           <LinearGradient
-            colors={isPriceLoaded ? ['#6366F1', '#8B5CF6'] : ['#9CA3AF', '#6B7280']}
+            colors={isPriceLoaded ? [colors.secondary[500], colors.secondary[600] || '#8B5CF6'] : [colors.neutral[400], colors.neutral[500]]}
             style={styles.purchaseGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
             {purchasing ? (
-              <ActivityIndicator color="#FFF" />
+              <ActivityIndicator color={colors.neutral.white} />
             ) : (
               <>
                 <Text style={styles.purchaseText}>
@@ -423,7 +427,7 @@ export default function UpgradePremiumScreen({ navigation }) {
                     ? `${t('upgrade.subscribe')} ${selectedTier === 'premium' ? t('upgrade.premium') : t('upgrade.family')}`
                     : t('upgrade.loadingPlans')}
                 </Text>
-                {isPriceLoaded && <NeoIcon name="ArrowRight2" size={20} color="#FFF" />}
+                {isPriceLoaded && <NeoIcon name="ArrowRight2" size={20} color={colors.neutral.white} />}
               </>
             )}
           </LinearGradient>
@@ -455,54 +459,54 @@ export default function UpgradePremiumScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors) => StyleSheet.create({
   container: { flex: 1, backgroundColor: 'transparent' },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 },
-  errorTitle: { fontSize: 18, fontWeight: '600', color: Colors.textPrimary, textAlign: 'center', marginTop: 16, marginBottom: 8 },
-  errorSubtitle: { fontSize: 14, color: Colors.textSecondary, textAlign: 'center', marginBottom: 24 },
-  retryButton: { paddingHorizontal: 32, paddingVertical: 14, backgroundColor: '#6366F1', borderRadius: 12 },
-  retryButtonText: { fontSize: 16, fontWeight: '600', color: '#FFF' },
+  errorTitle: { fontSize: 18, fontWeight: '600', color: colors.neutral[900], textAlign: 'center', marginTop: 16, marginBottom: 8 },
+  errorSubtitle: { fontSize: 14, color: colors.neutral[500], textAlign: 'center', marginBottom: 24 },
+  retryButton: { paddingHorizontal: 32, paddingVertical: 14, backgroundColor: colors.secondary[500], borderRadius: 12 },
+  retryButtonText: { fontSize: 16, fontWeight: '600', color: colors.neutral.white },
   header: { flexDirection: 'row', justifyContent: 'flex-end', padding: 16 },
-  closeButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#F3F4F6', justifyContent: 'center', alignItems: 'center' },
+  closeButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.neutral[200], justifyContent: 'center', alignItems: 'center' },
   hero: { alignItems: 'center', paddingHorizontal: 24, marginBottom: 24 },
   heroIcon: { width: 80, height: 80, borderRadius: 40, justifyContent: 'center', alignItems: 'center', marginBottom: 16 },
-  heroTitle: { fontSize: 24, fontWeight: 'bold', color: Colors.textPrimary, textAlign: 'center', marginBottom: 8 },
-  heroSubtitle: { fontSize: 16, color: Colors.textSecondary, textAlign: 'center' },
-  tierSelector: { flexDirection: 'row', marginHorizontal: 24, backgroundColor: '#F3F4F6', borderRadius: 12, padding: 4, marginBottom: 24 },
+  heroTitle: { fontSize: 24, fontWeight: 'bold', color: colors.neutral[900], textAlign: 'center', marginBottom: 8 },
+  heroSubtitle: { fontSize: 16, color: colors.neutral[500], textAlign: 'center' },
+  tierSelector: { flexDirection: 'row', marginHorizontal: 24, backgroundColor: colors.neutral[200], borderRadius: 12, padding: 4, marginBottom: 24 },
   tierTab: { flex: 1, paddingVertical: 12, alignItems: 'center', borderRadius: 10, flexDirection: 'row', justifyContent: 'center' },
-  tierTabActive: { backgroundColor: '#FFF', ...Shadows.sm },
-  tierTabText: { fontSize: 16, fontWeight: '600', color: Colors.textSecondary },
-  tierTabTextActive: { color: Colors.textPrimary },
-  bestValueBadge: { backgroundColor: '#10B981', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4, marginLeft: 6 },
-  bestValueText: { fontSize: 12, fontWeight: 'bold', color: '#FFF' },
+  tierTabActive: { backgroundColor: colors.neutral.white, ...Shadows.sm },
+  tierTabText: { fontSize: 16, fontWeight: '600', color: colors.neutral[500] },
+  tierTabTextActive: { color: colors.neutral[900] },
+  bestValueBadge: { backgroundColor: colors.primary[500], paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4, marginLeft: 6 },
+  bestValueText: { fontSize: 12, fontWeight: 'bold', color: colors.neutral.white },
   featuresContainer: { paddingHorizontal: 24, marginBottom: 24 },
-  featureRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' },
-  featureText: { fontSize: 15, color: Colors.textPrimary, marginLeft: 12, flex: 1 },
-  featureHighlight: { fontWeight: '600', color: '#6366F1' },
-  featureDisabled: { color: '#9CA3AF' },
+  featureRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: colors.neutral[200] },
+  featureText: { fontSize: 15, color: colors.neutral[900], marginLeft: 12, flex: 1 },
+  featureHighlight: { fontWeight: '600', color: colors.secondary[500] },
+  featureDisabled: { color: colors.neutral[400] },
   periodContainer: { flexDirection: 'row', paddingHorizontal: 24, gap: 12, marginBottom: 24 },
-  periodOption: { flex: 1, backgroundColor: '#F9FAFB', borderRadius: 16, padding: 16, alignItems: 'center', borderWidth: 2, borderColor: 'transparent' },
-  periodOptionActive: { borderColor: '#6366F1', backgroundColor: '#EEF2FF' },
-  periodLabel: { fontSize: 14, color: Colors.textSecondary, marginBottom: 4 },
-  periodPrice: { fontSize: 22, fontWeight: 'bold', color: Colors.textPrimary },
-  periodSub: { fontSize: 12, color: Colors.textSecondary },
-  saveBadge: { position: 'absolute', top: -10, backgroundColor: '#10B981', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },
-  saveText: { fontSize: 11, fontWeight: 'bold', color: '#FFF' },
+  periodOption: { flex: 1, backgroundColor: colors.neutral[100], borderRadius: 16, padding: 16, alignItems: 'center', borderWidth: 2, borderColor: 'transparent' },
+  periodOptionActive: { borderColor: colors.secondary[500], backgroundColor: colors.neutral[200] },
+  periodLabel: { fontSize: 14, color: colors.neutral[500], marginBottom: 4 },
+  periodPrice: { fontSize: 22, fontWeight: 'bold', color: colors.neutral[900] },
+  periodSub: { fontSize: 12, color: colors.neutral[500] },
+  saveBadge: { position: 'absolute', top: -10, backgroundColor: colors.primary[500], paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },
+  saveText: { fontSize: 11, fontWeight: 'bold', color: colors.neutral.white },
   purchaseButton: { marginHorizontal: 24, marginBottom: 16 },
   purchaseButtonDisabled: { opacity: 0.7 },
   purchaseGradient: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 16, borderRadius: 16, gap: 8 },
-  purchaseText: { fontSize: 18, fontWeight: 'bold', color: '#FFF' },
+  purchaseText: { fontSize: 18, fontWeight: 'bold', color: colors.neutral.white },
   footer: { alignItems: 'center', paddingHorizontal: 24, paddingBottom: 32 },
-  restoreText: { fontSize: 14, color: '#6366F1', fontWeight: '600', marginBottom: 12 },
-  termsText: { fontSize: 11, color: Colors.textSecondary, textAlign: 'center', lineHeight: 16, marginBottom: 12 },
+  restoreText: { fontSize: 14, color: colors.secondary[500], fontWeight: '600', marginBottom: 12 },
+  termsText: { fontSize: 11, color: colors.neutral[500], textAlign: 'center', lineHeight: 16, marginBottom: 12 },
   legalLinks: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' },
-  legalLink: { fontSize: 12, color: '#6366F1', fontWeight: '600', textDecorationLine: 'underline' },
-  legalSeparator: { fontSize: 12, color: Colors.textSecondary },
+  legalLink: { fontSize: 12, color: colors.secondary[500], fontWeight: '600', textDecorationLine: 'underline' },
+  legalSeparator: { fontSize: 12, color: colors.neutral[500] },
   subscribedContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 },
   subscribedBadge: { width: 100, height: 100, borderRadius: 50, justifyContent: 'center', alignItems: 'center', marginBottom: 24 },
-  subscribedTitle: { fontSize: 24, fontWeight: 'bold', color: Colors.textPrimary, marginBottom: 8 },
-  subscribedText: { fontSize: 16, color: Colors.textSecondary, textAlign: 'center', marginBottom: 16 },
-  expirationText: { fontSize: 14, color: Colors.textSecondary },
-  backButton: { marginTop: 24, paddingHorizontal: 32, paddingVertical: 12, backgroundColor: '#F3F4F6', borderRadius: 12 },
-  backButtonText: { fontSize: 16, fontWeight: '600', color: Colors.textPrimary },
+  subscribedTitle: { fontSize: 24, fontWeight: 'bold', color: colors.neutral[900], marginBottom: 8 },
+  subscribedText: { fontSize: 16, color: colors.neutral[500], textAlign: 'center', marginBottom: 16 },
+  expirationText: { fontSize: 14, color: colors.neutral[500] },
+  backButton: { marginTop: 24, paddingHorizontal: 32, paddingVertical: 12, backgroundColor: colors.neutral[200], borderRadius: 12 },
+  backButtonText: { fontSize: 16, fontWeight: '600', color: colors.neutral[900] },
 });

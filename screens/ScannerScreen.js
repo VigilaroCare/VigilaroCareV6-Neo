@@ -35,6 +35,7 @@ const { width, height } = Dimensions.get('window');
 // INTRO COMPONENT
 const ScannerIntro = ({ onSelectMode, onClose }) => {
   const { t } = useTranslation();
+  const colors = useThemeColors();
   return (
   <AppBackground>
     <View style={styles.introContainer}>
@@ -66,7 +67,7 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         accessibilityLabel={`${t('scanner.modeEnv')} — ${t('scanner.modeEnvDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(33, 150, 243, 0.12)' }]}>
-          <NeoIcon name="Home2" size={32} color="#2196F3" variant="Bold" />
+          <NeoIcon name="Home2" size={32} color={colors.secondary[500]} variant="Bold" />
         </View>
         <View style={styles.modeInfo}>
           <Text style={styles.modeTitle}>{t('scanner.modeEnv')}</Text>
@@ -83,7 +84,7 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         accessibilityLabel={`${t('scanner.modeLabel')} — ${t('scanner.modeLabelDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(156, 39, 176, 0.12)' }]}>
-          <NeoIcon name="DocumentText" size={32} color="#9C27B0" variant="Bold" />
+          <NeoIcon name="DocumentText" size={32} color={colors.secondary[500]} variant="Bold" />
         </View>
         <View style={styles.modeInfo}>
           <Text style={styles.modeTitle}>{t('scanner.modeLabel')}</Text>
@@ -100,7 +101,7 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
         accessibilityLabel={`${t('scanner.modeBarcode')} — ${t('scanner.modeBarcodeDesc')}`}
       >
         <View style={[styles.modeIcon, { backgroundColor: 'rgba(76, 175, 80, 0.12)' }]}>
-          <NeoIcon name="Barcode" size={32} color="#4CAF50" variant="Bold" />
+          <NeoIcon name="Barcode" size={32} color={colors.primary[500]} variant="Bold" />
         </View>
         <View style={styles.modeInfo}>
           <Text style={styles.modeTitle}>{t('scanner.modeBarcode')}</Text>
@@ -110,8 +111,8 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
       </TouchableOpacity>
 
       {/* Info Box */}
-      <View style={styles.infoBox}>
-        <NeoIcon name="LampOn" size={20} color="#F57C00" />
+      <View style={[styles.infoBox, { backgroundColor: colors.neutral[100] }]}>
+        <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} />
         <Text style={styles.infoText}>
           {t('scanner.hint')}
         </Text>
@@ -488,7 +489,7 @@ export default function ScannerScreen({ navigation, route }) {
             <View key={index} style={{ marginBottom: 24, backgroundColor: colors.neutral[100], borderRadius: 16, padding: 16, borderWidth: 1, borderColor: colors.neutral[300] }}>
               {/* Header */}
               <View style={[styles.resultHeader, { marginBottom: 12 }]}>
-                <View style={[styles.severityBadge, { backgroundColor: item.cor || '#666' }]}>
+                <View style={[styles.severityBadge, { backgroundColor: item.cor || colors.neutral[500] }]}>
                   <Text style={styles.severityText}>{item.risco || 'Info'}</Text>
                 </View>
               </View>
@@ -507,13 +508,13 @@ export default function ScannerScreen({ navigation, route }) {
 
               {/* Emergency Actions Section */}
               {item.emergencia && (
-                <View style={[styles.actionBox, { backgroundColor: '#FEF2F2', borderLeftColor: '#EF4444', marginTop: 12 }]}>
+                <View style={[styles.actionBox, { backgroundColor: 'rgba(239, 68, 68, 0.1)', borderLeftColor: colors.feedback.error, marginTop: 12 }]}>
                   <View style={styles.actionHeader}>
-                    <NeoIcon name="Health" size={24} color="#EF4444" />
-                    <Text style={[styles.actionTitle, { color: '#B91C1C' }]}>{t('headersFirst.emCasoDeExposiO', 'Em Caso de Exposição')}</Text>
+                    <NeoIcon name="Health" size={24} color={colors.feedback.error} />
+                    <Text style={[styles.actionTitle, { color: colors.feedback.error }]}>{t('headersFirst.emCasoDeExposiO', 'Em Caso de Exposição')}</Text>
                   </View>
-                  <Text style={[styles.actionText, { color: '#B91C1C', fontWeight: 'bold' }]}>{item.emergencia}</Text>
-                  <Text style={{ marginTop: 8, fontSize: 13, color: '#7F1D1D', fontStyle: 'italic' }}>
+                  <Text style={[styles.actionText, { color: colors.feedback.error, fontWeight: 'bold' }]}>{item.emergencia}</Text>
+                  <Text style={{ marginTop: 8, fontSize: 13, color: colors.feedback.error, fontStyle: 'italic' }}>
                     {t('headersFirst.fonteOrientaEsDeSeguranAEProtocolosDeEme', 'Fonte: Orientações de segurança e protocolos de emergência.')}
                   </Text>
                 </View>
@@ -566,10 +567,10 @@ const styles = StyleSheet.create({
   modeTitle: { fontSize: 18, fontWeight: 'bold', color: Neo.colors.neutral[800], marginBottom: 4 },
   modeDesc: { fontSize: 14, color: Neo.colors.neutral[600], lineHeight: 20 },
   infoBox: {
-    flexDirection: 'row', backgroundColor: '#FFF7ED', padding: 16,
+    flexDirection: 'row', padding: 16,
     borderRadius: 12, alignItems: 'center', gap: 12, marginTop: 8
   },
-  infoText: { flex: 1, color: '#C2410C', fontSize: 14, fontWeight: '500' },
+  infoText: { flex: 1, fontSize: 14, fontWeight: '500', color: Neo.colors.neutral[800] },
 
   // PERMISSION
   permissionButton: { backgroundColor: Neo.colors.primary[600], paddingHorizontal: 24, paddingVertical: 12, borderRadius: 8 },
@@ -621,7 +622,7 @@ const styles = StyleSheet.create({
   severityText: { color: '#FFF', fontWeight: 'bold', fontSize: 12, textTransform: 'uppercase' },
   resultTitle: { fontSize: 24, fontWeight: 'bold', color: Neo.colors.neutral[900], marginBottom: 8 },
   resultDescription: { fontSize: 16, color: Neo.colors.neutral[600], marginBottom: 24, lineHeight: 24 },
-  actionBox: { backgroundColor: '#F0F9FF', padding: 20, borderRadius: 16, marginBottom: 24, borderLeftWidth: 4, borderLeftColor: Neo.colors.primary[600] },
+  actionBox: { backgroundColor: 'rgba(33, 150, 243, 0.1)', padding: 20, borderRadius: 16, marginBottom: 24, borderLeftWidth: 4, borderLeftColor: Neo.colors.primary[600] },
   actionHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 },
   actionTitle: { fontSize: 16, fontWeight: 'bold', color: Neo.colors.primary[600] },
   actionText: { fontSize: 15, color: Neo.colors.neutral[700], lineHeight: 22 },

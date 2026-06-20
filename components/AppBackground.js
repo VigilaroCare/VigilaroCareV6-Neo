@@ -18,16 +18,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 // Variante 'subtle' — 2-stop limpo para telas de conteúdo (light)
 const SUBTLE_LIGHT = {
-    primary: ['#F0F7F3', '#F7FAF8'],
+    primary: [Neo.colors.primary[50], Neo.colors.neutral[50]],
     stops: [0, 1],
 };
 
 // Variante 'subtle' dark — mantém a base escura sem o gradient esverdeado
 const SUBTLE_DARK = {
-    primary: ['#13191E', '#0B1014'],
+    primary: [Neo.colors.neutral[900], Neo.colors.neutral.black],
     stops: [0, 1],
 };
 
@@ -65,7 +66,7 @@ export default function AppBackground({
         gradientColors = mist.gradient;
         gradientStops = mist.stops;
     } else if (isSolid) {
-        gradientColors = isDark ? ['#1C1C1E', '#1C1C1E'] : ['#F7F8FA', '#F7F8FA'];
+        gradientColors = isDark ? [colors.neutral[900], colors.neutral[900]] : [colors.neutral[100], colors.neutral[100]];
         gradientStops = [0, 1];
     } else {
         // subtle
@@ -114,7 +115,7 @@ export default function AppBackground({
  * Sincronizado com o novo mist premium (off-white quente neutro).
  */
 export const MIST = {
-    primary: ['#FAFAF7', '#F7F6F1', '#F4F2EC', '#F7F6F1', '#FAFAF7', '#FCFBF8'],
+    primary: [Neo.colors.neutral[50], Neo.colors.neutral[100], Neo.colors.neutral[200], Neo.colors.neutral[100], Neo.colors.neutral[50], Neo.colors.neutral.white],
     stops: [0, 0.2, 0.45, 0.65, 0.85, 1],
     accent: 'rgba(4, 120, 87, 0.04)',
     accentStrong: 'rgba(161, 98, 7, 0.05)',

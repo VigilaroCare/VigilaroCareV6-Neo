@@ -27,10 +27,10 @@ import { DISPOSITIVOS_PROTECAO } from '../../data/dispositivos_protecao';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
-    critico: '#D32F2F',
-    alto: '#E65100',
-    medio: '#F57F17',
-    baixo: '#388E3C',
+    critico: '#D32F2F', // DS: data-level color (severity)
+    alto: '#E65100',    // DS: data-level color (severity)
+    medio: '#F57F17',   // DS: data-level color (severity)
+    baixo: '#388E3C',   // DS: data-level color (severity)
 };
 
 const RISK_LABELS = {
@@ -41,10 +41,10 @@ const RISK_LABELS = {
 };
 
 const RISK_BG = {
-    critico: '#FFEBEE',
-    alto: '#FFF3E0',
-    medio: '#FFFDE7',
-    baixo: '#E8F5E9',
+    critico: '#FFEBEE', // DS: data-level color
+    alto: '#FFF3E0',    // DS: data-level color
+    medio: '#FFFDE7',   // DS: data-level color
+    baixo: '#E8F5E9',   // DS: data-level color
 };
 
 export default function DispositivosProtecaoScreen({ navigation }) {
@@ -55,9 +55,9 @@ export default function DispositivosProtecaoScreen({ navigation }) {
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
 
-    const THEME_COLOR = '#047857'; // Forest/Emerald — identidade de "proteção"
+    const THEME_COLOR = Neo.colors.primary[700]; // Forest/Emerald — identidade de "proteção"
     const ITEMS = DISPOSITIVOS_PROTECAO;
 
     const handlePress = (item) => {
@@ -102,8 +102,8 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                 </FadeInView>
 
                 {ITEMS.map((item, idx) => {
-                    const riskColor = RISK_COLORS[item.nivelRisco] || '#999';
-                    const riskBg = RISK_BG[item.nivelRisco] || '#F5F5F5';
+                    const riskColor = RISK_COLORS[item.nivelRisco] || themeColors.neutral[500];
+                    const riskBg = RISK_BG[item.nivelRisco] || themeColors.neutral[200];
                     const riskLabel = RISK_LABELS[item.nivelRisco] || '';
 
                     return (
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     // Card grande estilo Utensílios (imagem retangular à esquerda)
     guideCardOuter: {
         borderRadius: 24,
-        shadowColor: '#000',
+        shadowColor: Neo.colors.neutral.black,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.06,
         shadowRadius: 8,
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     guideCardInner: {
         flexDirection: 'row',
         height: 120,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Neo.colors.neutral.white,
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     guideImageContainer: {
         width: 120,
         height: '100%',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: Neo.colors.neutral[200],
         alignItems: 'center',
         justifyContent: 'center',
     },

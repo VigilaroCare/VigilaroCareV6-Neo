@@ -37,7 +37,7 @@ export default function RadarArticleScreen({ route, navigation }) {
   const textPrimary = themeColors.neutral[900];
   const textBody = themeColors.neutral[700];
   const textMuted = themeColors.neutral[500];
-  const contentBg = isDark ? themeColors.neutral[200] : '#fff';
+  const contentBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
   const headerBg = isDark ? 'rgba(28,28,30,0.85)' : 'rgba(255,255,255,0.85)';
 
   if (!article) {
@@ -127,7 +127,7 @@ export default function RadarArticleScreen({ route, navigation }) {
           {article.causaRaiz && (
             <View style={s.causaBox}>
               <View style={s.causaHeader}>
-                <NeoIcon name="Danger" size={16} color="#D97706" variant="Bold" />
+                <NeoIcon name="Danger" size={16} color={Neo.colors.accent.champagne} variant="Bold" />
                 <Text style={s.causaLabel}>Por que aconteceu</Text>
               </View>
               <Text style={s.causaTexto}>{article.causaRaiz}</Text>
@@ -270,12 +270,12 @@ const s = StyleSheet.create({
     marginBottom: 24,
   },
   causaBox: {
-    backgroundColor: '#FFFBEB',
+    backgroundColor: Neo.colors.accent.champagneSubtle,
     borderRadius: 12,
     padding: 16,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#FDE68A', // TODO: map to DS token (amber tint)
+    borderColor: Neo.colors.accent.champagneLight,
   },
   causaHeader: {
     flexDirection: 'row',

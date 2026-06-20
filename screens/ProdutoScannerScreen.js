@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,9 +7,12 @@ import { getTelefoneCiatox } from '../data/telefones_ciatox';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
+import { useThemeColors } from '../utils/ThemeContext';
 
 export default function ProdutoScannerScreen({ route, navigation }) {
-    const { t } = useTranslation('common');
+  const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { codigo } = route.params;
   const produto = buscarProduto(codigo);
   const nivelInfo = NIVEIS_PERIGO[produto.perigo];
@@ -148,7 +151,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -160,7 +163,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   backButtonText: {
-    color: '#FFFFFF',
+    color: colors.neutral.white,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -176,7 +179,7 @@ const styles = StyleSheet.create({
   produtoNome: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: colors.neutral.white,
     textAlign: 'center',
     marginBottom: 8,
   },
@@ -198,28 +201,28 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   nivelTexto: {
-    color: '#FFFFFF',
+    color: colors.neutral.white,
     fontWeight: 'bold',
     fontSize: 14,
   },
   codigoCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.neutral.white,
     margin: 16,
     padding: 16,
     borderRadius: 12,
   },
   codigoLabel: {
     fontSize: 14,
-    color: '#666',
+    color: colors.neutral[500],
     marginBottom: 4,
   },
   codigoTexto: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: colors.neutral[900],
   },
   section: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.neutral.white,
     margin: 16,
     marginTop: 0,
     padding: 16,
@@ -228,7 +231,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: colors.neutral[900],
     marginBottom: 12,
   },
   item: {
@@ -239,37 +242,37 @@ const styles = StyleSheet.create({
   bullet: {
     fontSize: 16,
     marginRight: 8,
-    color: '#666',
+    color: colors.neutral[500],
     marginTop: 2,
   },
   itemText: {
     flex: 1,
     fontSize: 15,
-    color: '#555',
+    color: colors.neutral[600],
     lineHeight: 22,
   },
   riscosSection: {
-    backgroundColor: '#FFEBEE',
+    backgroundColor: colors.feedback.error + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#F44336',
+    borderLeftColor: colors.feedback.error,
   },
   riscoBullet: {
     fontSize: 16,
     marginRight: 8,
-    color: '#F44336',
+    color: colors.feedback.error,
     marginTop: 2,
   },
   riscoText: {
     flex: 1,
     fontSize: 15,
-    color: '#C62828',
+    color: colors.feedback.error,
     lineHeight: 22,
     fontWeight: '500',
   },
   socorrosSection: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: colors.feedback.info + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
+    borderLeftColor: colors.feedback.info,
   },
   socorroItem: {
     marginBottom: 12,
@@ -277,39 +280,39 @@ const styles = StyleSheet.create({
   socorroTitulo: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#1565C0',
+    color: colors.feedback.info,
     marginBottom: 4,
   },
   socorroTexto: {
     fontSize: 14,
-    color: '#01579B',
+    color: colors.neutral[700],
     lineHeight: 20,
   },
   prevencaoSection: {
-    backgroundColor: '#E8F5E9',
+    backgroundColor: colors.feedback.success + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#4CAF50',
+    borderLeftColor: colors.feedback.success,
   },
   prevBullet: {
     fontSize: 18,
     marginRight: 8,
-    color: '#4CAF50',
+    color: colors.feedback.success,
     marginTop: 2,
   },
   prevText: {
     flex: 1,
     fontSize: 15,
-    color: '#2E7D32',
+    color: colors.neutral[700],
     lineHeight: 22,
   },
   alertaCard: {
-    backgroundColor: '#FFF8E1',
+    backgroundColor: colors.feedback.warning + '1A',
     margin: 16,
     marginTop: 0,
     padding: 16,
     borderRadius: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#FFC107',
+    borderLeftColor: colors.feedback.warning,
     alignItems: 'center',
   },
   alertaIcon: {
@@ -319,19 +322,19 @@ const styles = StyleSheet.create({
   alertaTitulo: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#F57F17',
+    color: colors.feedback.warning,
     marginBottom: 8,
   },
   alertaTexto: {
     fontSize: 14,
-    color: '#F57F17',
+    color: colors.feedback.warning,
     textAlign: 'center',
     lineHeight: 20,
   },
   botaoCiatox: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F44336',
+    backgroundColor: Neo.colors.emergency?.panic || colors.feedback.error,
     marginHorizontal: 16,
     marginTop: 0,
     padding: 20,
@@ -347,13 +350,13 @@ const styles = StyleSheet.create({
   botaoTitulo: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: colors.neutral.white,
     marginBottom: 4,
   },
   botaoSubtitulo: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: colors.neutral.white,
   },
 });
 

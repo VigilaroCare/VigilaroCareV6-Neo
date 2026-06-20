@@ -136,20 +136,20 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                 {/* Pontos de Atenção (Riscos Críticos) */}
                 {pontosFracos.length > 0 && (
                     <View style={{ marginTop: 24 }}>
-                        <H3 style={{ marginBottom: 12, color: '#D32F2F' }}>{t('headersFirst.RiscosCrTicosIdentificados', '🚨 Riscos Críticos Identificados')}</H3>
+                        <H3 style={{ marginBottom: 12, color: Neo.colors.feedback.error }}>{t('headersFirst.RiscosCrTicosIdentificados', '🚨 Riscos Críticos Identificados')}</H3>
                         {pontosFracos.map((ponto, index) => (
-                            <NeoCard variant="elevated" key={index} style={[styles.pontoCard, { borderLeftWidth: 4, borderLeftColor: '#D32F2F' }]}>
+                            <NeoCard variant="elevated" key={index} style={[styles.pontoCard, { borderLeftWidth: 4, borderLeftColor: Neo.colors.feedback.error }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <View style={[styles.pontoIcon, { backgroundColor: '#FFEBEE' }]}>
+                                    <View style={[styles.pontoIcon, { backgroundColor: Neo.colors.feedback.error + '15' }]}>
                                         <Small style={{ fontSize: 20 }}>{ponto.icone}</Small>
                                     </View>
-                                    <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600', color: '#B91C1C' }}>
+                                    <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600', color: Neo.colors.emergency?.panicDark || Neo.colors.feedback.error }}>
                                         {ponto.categoria}
                                     </Body>
                                 </View>
                                 {ponto.itens.map((item, idx) => (
                                     <View key={idx} style={styles.itemFraco}>
-                                        <NeoIcon name={item.critico ? "Danger" : "Warning2"} size={16} color={item.critico ? "#D32F2F" : "#F57C00"} />
+                                        <NeoIcon name={item.critico ? "Danger" : "Warning2"} size={16} color={item.critico ? Neo.colors.feedback.error : Neo.colors.feedback.warning} />
                                         <Small style={{ flex: 1, marginLeft: 8, color: Neo.colors.neutral[700], fontWeight: item.critico ? 'bold' : 'normal' }}>
                                             {item.texto}
                                         </Small>
@@ -174,10 +174,10 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                 </View>
 
                 {/* Orientações Finais */}
-                <NeoCard variant="elevated" style={{ padding: 20, marginTop: 24, backgroundColor: '#E3F2FD' }}>
+                <NeoCard variant="elevated" style={{ padding: 20, marginTop: 24, backgroundColor: Neo.colors.feedback.info + '15' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                        <NeoIcon name="InfoCircle" size={24} color="#1976D2" variant="Bold" />
-                        <H3 style={{ marginLeft: 12, color: '#1976D2' }}>{t('headersFirst.notaDeAuditoria', 'Nota de Auditoria')}</H3>
+                        <NeoIcon name="InfoCircle" size={24} color={Neo.colors.secondary[600]} variant="Bold" />
+                        <H3 style={{ marginLeft: 12, color: Neo.colors.secondary[600] }}>{t('headersFirst.notaDeAuditoria', 'Nota de Auditoria')}</H3>
                     </View>
                     <Body style={{ lineHeight: 22 }}>
                         {t('headersFirst.esteRelatRioSubsidiRioENOSubstituiAVisto', `Este relatório é subsidiário e não substitui a vistoria oficial do Corpo de Bombeiros ou Vigilância Sanitária. 
@@ -189,8 +189,8 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                 <View style={{ marginTop: 24, gap: 12 }}>
                     <ScaleButton onPress={handleShare}>
                         <NeoCard variant="elevated" style={styles.actionButton}>
-                            <NeoIcon name="ShareNetwork" size={24} color="#FFF" />
-                            <Body style={{ color: '#FFF', marginLeft: 12, fontWeight: '600' }}>
+                            <NeoIcon name="ShareNetwork" size={24} color={Neo.colors.neutral.white} />
+                            <Body style={{ color: Neo.colors.neutral.white, marginLeft: 12, fontWeight: '600' }}>
                                 {t('headersFirst.compartilharRelatRio', 'Compartilhar Relatório')}
                             </Body>
                         </NeoCard>
@@ -198,8 +198,8 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
 
                     <ScaleButton onPress={() => navigation.goBack()}>
                         <NeoCard variant="elevated" style={[styles.actionButton, { backgroundColor: Neo.colors.neutral[700] }]}>
-                            <NeoIcon name="Edit2" size={24} color="#FFF" />
-                            <Body style={{ color: '#FFF', marginLeft: 12, fontWeight: '600' }}>
+                            <NeoIcon name="Edit2" size={24} color={Neo.colors.neutral.white} />
+                            <Body style={{ color: Neo.colors.neutral.white, marginLeft: 12, fontWeight: '600' }}>
                                 {t('headersFirst.revisarRespostas', 'Revisar Respostas')}
                             </Body>
                         </NeoCard>

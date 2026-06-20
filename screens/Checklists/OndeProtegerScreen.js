@@ -37,7 +37,7 @@ import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
-// Lista unificada com IDs nativos do mapeamento_dados.js
+// DS: data-level color
 const AMBIENTES_DISPONIVEIS = [
     // Convivência
     { id: 'cozinha', label: 'Cozinha', icon: 'Kitchen', color: '#FF9800', riscos: ['Incêndio', 'Cortes', 'Queimaduras', 'Gás'] },
@@ -213,7 +213,7 @@ export default function OndeProtegerScreen({ navigation }) {
 
             {/* Gradient Header */}
             <LinearGradient
-                colors={['#FF9800', '#F57C00']}
+                colors={[themeColors.feedback.warning, themeColors.accent.copper]}
                 style={[styles.header, { paddingTop: insets.top + 10 }]}
             >
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -282,11 +282,11 @@ export default function OndeProtegerScreen({ navigation }) {
                             onPress={() => navigation.navigate('HazardMapping')}
                         >
                             <LinearGradient
-                                colors={['#FF5722', '#F4511E']}
+                                colors={[themeColors.accent.copper, themeColors.feedback.warning]}
                                 style={styles.inventoryGradient}
                             >
                                 <View style={styles.inventoryIconBox}>
-                                    <NeoIcon name="Box" size={32} color="#FF5722" variant="Bold" />
+                                    <NeoIcon name="Box" size={32} color={themeColors.accent.copper} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={[styles.inventoryTitle, { color: textPrimary }]}>{t('headersFirst.inventRioDeRisco', 'Inventário de Risco')}</Text>

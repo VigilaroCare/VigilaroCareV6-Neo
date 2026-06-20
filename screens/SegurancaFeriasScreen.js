@@ -31,8 +31,9 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local_en: 'On the Road (Car)',
             local_es: 'En la Carretera (Coche)',
             icon: 'Car',
-            iconColor: '#EF4444',
-            bg: '#FEF2F2',
+            // DS: data-level color mapped to DS
+            iconColor: themeColors.feedback.error,
+            bg: '#FEF2F2', // TODO: map to DS token
             riscosPrincipais: [
                 'Acidentes de trânsito',
                 'Falhas mecânicas',
@@ -103,6 +104,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local_en: 'Hotel and Airbnb',
             local_es: 'Hotel y Airbnb',
             icon: 'Building',
+            // DS: data-level color
             iconColor: '#8B5CF6',
             bg: '#F3E8FF',
             riscosPrincipais: [
@@ -172,7 +174,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local_en: 'Airport and Airplane',
             local_es: 'Aeropuerto y Avión',
             icon: 'Airplane',
-            iconColor: '#3B82F6',
+            // DS: data-level color
+            iconColor: themeColors.secondary[500],
             bg: '#EFF6FF',
             riscosPrincipais: [
                 'Perder-se na multidão',
@@ -238,7 +241,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local_en: 'Documents and Luggage',
             local_es: 'Documentos y Equipaje',
             icon: 'DocumentText',
-            iconColor: '#F59E0B',
+            // DS: data-level color
+            iconColor: themeColors.feedback.warning,
             bg: '#FFFBEB',
             riscosPrincipais: [
                 'Esquecer remédios controlados',
@@ -348,8 +352,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Riscos */}
                         <View style={{ marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                                <NeoIcon name="Warning2" size={24} color="#F59E0B" variant="Bold" />
-                                <Text style={{ fontSize: 15, fontWeight: '800', color: '#D97706', letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
+                                <NeoIcon name="Warning2" size={24} color={themeColors.feedback.warning} variant="Bold" />
+                                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.accent.champagne, letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
                             </View>
                             <View style={{ gap: 8, paddingLeft: 4 }}>
                                 {t_array(item, 'riscosPrincipais').map((r, i) => (
@@ -361,8 +365,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Prevenção */}
                         <View style={{ marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                                <NeoIcon name="ShieldTick" size={24} color="#10B981" variant="Bold" />
-                                <Text style={{ fontSize: 15, fontWeight: '800', color: Neo.colors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
+                                <NeoIcon name="ShieldTick" size={24} color={themeColors.primary[500]} variant="Bold" />
+                                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
                             </View>
                             <View style={{ gap: 10 }}>
                                 {t_array(item, 'prevencao').map((p, i) => (
@@ -377,8 +381,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Emergência */}
                         <View style={{ backgroundColor: '#FEF2F2', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: '#FECACA', marginBottom: 24 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                                <NeoIcon name="Health" size={24} color="#DC2626" variant="Bold" />
-                                <Text style={{ fontSize: 14, fontWeight: '800', color: '#B91C1C' }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
+                                <NeoIcon name="Health" size={24} color={Neo.colors.emergency.panic} variant="Bold" />
+                                <Text style={{ fontSize: 14, fontWeight: '800', color: Neo.colors.emergency.panicDark }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
                             </View>
                             <View style={{ gap: 8 }}>
                                 {t_array(item, 'emergencias').map((e, i) => (
@@ -390,12 +394,12 @@ export default function SegurancaFeriasScreen({ navigation }) {
                         {/* Dicas */}
                         <View style={{ backgroundColor: '#F3E8FF', padding: 16, borderRadius: 16 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                                <NeoIcon name="LampOn" size={24} color="#9333EA" variant="Bold" />
-                                <Text style={{ fontSize: 14, fontWeight: '800', color: '#7E22CE' }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
+                                <NeoIcon name="LampOn" size={24} color="#9333EA" variant="Bold" /> {/* TODO: map to DS token */}
+                                <Text style={{ fontSize: 14, fontWeight: '800', color: '#7E22CE' }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text> {/* TODO: map to DS token */}
                             </View>
                             <View style={{ gap: 8 }}>
                                 {t_array(item, 'dicasExtras').map((d, i) => (
-                                    <Text key={i} style={{ fontSize: 14, color: '#6B21A8', lineHeight: 20 }}>• {d}</Text>
+                                    <Text key={i} style={{ fontSize: 14, color: '#6B21A8', lineHeight: 20 }}>• {d}</Text> /* TODO: map to DS token */
                                 ))}
                             </View>
                         </View>

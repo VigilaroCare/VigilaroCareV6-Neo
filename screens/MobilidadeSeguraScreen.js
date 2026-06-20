@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   View,
@@ -34,10 +34,11 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const themeColors = useThemeColors();
   const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(themeColors, isDark), [themeColors, isDark]);
   const textPrimary = themeColors.neutral[900];
   const textBody = themeColors.neutral[700];
   const textMuted = themeColors.neutral[500];
-  const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+  const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
 
   const TABS = [
     { id: 'drv', label: 'Carros', emoji: '🚗' },
@@ -102,6 +103,9 @@ export default function MobilidadeSeguraScreen({ navigation }) {
 function ConteudoDRV() {
   const { t } = useTranslation('common');
   const [dispositivoExpandido, setDispositivoExpandido] = useState(null);
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
 
   return (
     <View style={styles.conteudo}>
@@ -185,6 +189,9 @@ function ConteudoDRV() {
 
 function DispositivoCard({ dispositivo, expandido, onToggle }) {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
   return (
     <View style={styles.categoryContainer}>
       <TouchableOpacity
@@ -280,6 +287,9 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
 function ConteudoAtiva() {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
   return (
     <View style={styles.conteudo}>
       {/* Introdução */}
@@ -321,6 +331,9 @@ function ConteudoAtiva() {
 
 function TipoMobilidadeCard({ tipo }) {
   const [expandido, setExpandido] = useState(false);
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
 
   return (
     <View style={styles.categoryContainer}>
@@ -414,6 +427,9 @@ function TipoMobilidadeCard({ tipo }) {
 
 function ConteudoPedestre() {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
   return (
     <View style={styles.conteudo}>
       {/* Idade de autonomia */}
@@ -483,6 +499,9 @@ function ConteudoPedestre() {
 
 function ConteudoMoto() {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
   return (
     <View style={styles.conteudo}>
       {/* Idade mínima */}
@@ -555,6 +574,9 @@ function ConteudoMoto() {
 
 function ConteudoEletrica() {
   const { t } = useTranslation('common');
+  const colors = useThemeColors();
+  const isDark = useIsDark();
+  const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
   return (
     <View style={styles.conteudo}>
       {/* Introdução */}
@@ -615,13 +637,13 @@ function ConteudoEletrica() {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors, isDark) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
   },
   tabsWrapper: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: isDark ? colors.neutral[900] : colors.neutral.white,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.05)',
     height: 70,
@@ -635,7 +657,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: colors.neutral[200],
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
@@ -644,17 +666,17 @@ const styles = StyleSheet.create({
     minWidth: 80
   },
   tabAtiva: {
-    backgroundColor: '#FFFFFF',
-    borderColor: Neo.colors.primary[500],
+    backgroundColor: isDark ? colors.neutral[800] : colors.neutral.white,
+    borderColor: colors.primary[500],
     ...Shadows.sm
   },
   tabText: {
     fontSize: 11,
-    color: Neo.colors.neutral[500],
+    color: colors.neutral[500],
     fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   tabTextAtiva: {
-    color: Neo.colors.primary[600],
+    color: colors.primary[600],
   },
   scrollView: {
     flex: 1,
@@ -673,7 +695,7 @@ const styles = StyleSheet.create({
   guideCardInner: {
     flexDirection: 'row',
     height: 120,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: isDark ? colors.neutral[800] : colors.neutral.white,
     borderRadius: 24,
     overflow: 'hidden',
     borderWidth: 1,
@@ -694,18 +716,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'PlusJakartaSans_700Bold',
     fontWeight: '700',
-    color: Neo.colors.neutral[800],
+    color: colors.neutral[800],
     marginBottom: 2
   },
   guideSubtitle: {
     fontSize: 13,
-    color: Neo.colors.neutral[500],
+    color: colors.neutral[500],
     fontFamily: 'PlusJakartaSans_500Medium',
     fontStyle: 'italic',
   },
   itemsList: {
     padding: 12,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.4)',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     marginTop: -16,
@@ -714,12 +736,12 @@ const styles = StyleSheet.create({
   },
   descText: {
     fontSize: 13,
-    color: Neo.colors.neutral[600],
+    color: colors.neutral[600],
     fontFamily: 'PlusJakartaSans_500Medium',
     lineHeight: 18,
   },
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: isDark ? colors.neutral[800] : colors.neutral.white,
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
@@ -728,29 +750,29 @@ const styles = StyleSheet.create({
   cardTitulo: {
     fontSize: 18,
     fontFamily: 'PlusJakartaSans_700Bold',
-    color: Neo.colors.neutral[800],
+    color: colors.neutral[800],
     marginBottom: 12,
   },
   cardSubtitulo: {
     fontSize: 14,
-    color: Neo.colors.neutral[500],
+    color: colors.neutral[500],
     fontFamily: 'PlusJakartaSans_600SemiBold',
     marginBottom: 8,
   },
   cardTexto: {
     fontSize: 14,
-    color: Neo.colors.neutral[600],
+    color: colors.neutral[600],
     lineHeight: 22,
     fontFamily: 'PlusJakartaSans_500Medium',
   },
   alertaImportante: {
     flexDirection: 'row',
-    backgroundColor: '#FFEBEE',
+    backgroundColor: colors.feedback.error + '1A',
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
     borderLeftWidth: 4,
-    borderLeftColor: '#F44336',
+    borderLeftColor: colors.feedback.error,
   },
   alertaIcon: {
     fontSize: 32,
@@ -762,12 +784,12 @@ const styles = StyleSheet.create({
   alertaTitulo: {
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_700Bold',
-    color: '#D32F2F',
+    color: colors.feedback.error,
     marginBottom: 4,
   },
   alertaDescricao: {
     fontSize: 13,
-    color: '#B71C1C',
+    color: colors.feedback.error,
     lineHeight: 18,
     fontFamily: 'PlusJakartaSans_500Medium',
   },
@@ -779,18 +801,18 @@ const styles = StyleSheet.create({
   idadeBotao: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: colors.neutral[200],
     borderRadius: 12,
     alignItems: 'center',
   },
   idadeBotaoText: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: Neo.colors.neutral[700],
+    color: colors.neutral[700],
   },
   dispositivoConteudo: {
     padding: 16,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.4)',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     marginTop: -16,
@@ -798,7 +820,7 @@ const styles = StyleSheet.create({
   },
   tipoConteudo: {
     padding: 16,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.4)',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
     marginTop: -16,
@@ -810,72 +832,72 @@ const styles = StyleSheet.create({
   secaoTitulo: {
     fontSize: 14,
     fontFamily: 'PlusJakartaSans_700Bold',
-    color: Neo.colors.primary[600],
+    color: colors.primary[600],
     marginBottom: 6,
   },
   secaoTexto: {
     fontSize: 13,
-    color: Neo.colors.neutral[600],
+    color: colors.neutral[600],
     lineHeight: 18,
   },
   listaItem: {
     fontSize: 13,
-    color: Neo.colors.neutral[600],
+    color: colors.neutral[600],
     lineHeight: 20,
     marginBottom: 4,
   },
   listaItemSucesso: {
-    color: '#2E7D32',
+    color: colors.feedback.success,
   },
   listaItemAviso: {
-    color: '#D32F2F',
+    color: colors.feedback.error,
   },
   textoDestaque: {
     fontFamily: 'PlusJakartaSans_700Bold',
-    color: Neo.colors.primary[600],
+    color: colors.primary[600],
   },
   cardDestaque: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: colors.feedback.info + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#2196F3',
+    borderLeftColor: colors.feedback.info,
   },
   cardAviso: {
-    backgroundColor: '#FFF3E0',
+    backgroundColor: colors.feedback.warning + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#FF9800',
+    borderLeftColor: colors.feedback.warning,
   },
   cardEmergencia: {
-    backgroundColor: '#FFEBEE',
+    backgroundColor: colors.feedback.error + '1A',
     borderLeftWidth: 4,
-    borderLeftColor: '#F44336',
+    borderLeftColor: colors.feedback.error,
   },
   cardDica: {
-    backgroundColor: '#FFF9C4',
+    backgroundColor: colors.accent?.champagneSubtle || '#FFFBEB',
     borderLeftWidth: 4,
-    borderLeftColor: '#FBC02D',
+    borderLeftColor: colors.accent?.champagne || '#FBC02D',
   },
   dicaIcon: { fontSize: 32, marginBottom: 8 },
-  dicaTitulo: { fontSize: 16, fontWeight: 'bold', color: '#FBC02D', marginBottom: 4 },
-  dicaTexto: { fontSize: 13, color: '#FBC02D', lineHeight: 18 },
+  dicaTitulo: { fontSize: 16, fontWeight: 'bold', color: colors.accent?.champagne || '#FBC02D', marginBottom: 4 },
+  dicaTexto: { fontSize: 13, color: colors.accent?.champagne || '#FBC02D', lineHeight: 18 },
   destaqueIcon: { fontSize: 32, marginBottom: 8 },
-  destaqueTitulo: { fontSize: 16, fontWeight: 'bold', color: '#2196F3', marginBottom: 4 },
-  destaqueTexto: { fontSize: 14, color: '#1565C0', lineHeight: 20 },
-  destaqueSubtitulo: { fontSize: 13, fontWeight: 'bold', color: '#1565C0', marginTop: 8, marginBottom: 4 },
+  destaqueTitulo: { fontSize: 16, fontWeight: 'bold', color: colors.feedback.info, marginBottom: 4 },
+  destaqueTexto: { fontSize: 14, color: colors.feedback.info, lineHeight: 20 },
+  destaqueSubtitulo: { fontSize: 13, fontWeight: 'bold', color: colors.feedback.info, marginTop: 8, marginBottom: 4 },
   sinalizacaoItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
   sinalizacaoSinal: { fontSize: 24, marginRight: 12 },
-  sinalizacaoAcao: { fontSize: 14, color: Neo.colors.neutral[700], flex: 1 },
-  emergenciaTitulo: { fontSize: 16, fontWeight: 'bold', color: '#D32F2F', marginBottom: 8 },
-  emergenciaNumero: { fontSize: 20, fontWeight: '800', color: '#D32F2F', marginBottom: 4 },
+  sinalizacaoAcao: { fontSize: 14, color: colors.neutral[700], flex: 1 },
+  emergenciaTitulo: { fontSize: 16, fontWeight: 'bold', color: colors.feedback.error, marginBottom: 8 },
+  emergenciaNumero: { fontSize: 20, fontWeight: '800', color: colors.feedback.error, marginBottom: 4 },
   subtitulo: {
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_700Bold',
-    color: Neo.colors.neutral[800],
+    color: colors.neutral[800],
     marginTop: 16,
     marginBottom: 8,
   },
   beneficioItem: {
     fontSize: 14,
-    color: '#2E7D32',
+    color: colors.feedback.success,
     fontFamily: 'PlusJakartaSans_500Medium',
     marginLeft: 8,
     marginBottom: 4,
