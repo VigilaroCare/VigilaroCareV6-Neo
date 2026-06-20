@@ -394,9 +394,8 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         </Body>
                     </TouchableOpacity>
 
-                    {/* CIATOX — Emergência toxicológica (apenas tab Humano) */}
-                    {activeTab === 'HUMAN' && (
-                        <TouchableOpacity 
+                    {/* CIATOX — Emergência toxicológica (Humano e Pet) */}
+                    <TouchableOpacity 
                             onPress={() => handleCall('08007226001')}
                             activeOpacity={0.85}
                             style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
@@ -413,8 +412,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 </Small>
                             </View>
                             <NeoIcon name="Call" size={18} color="rgba(255,255,255,0.5)" />
-                        </TouchableOpacity>
-                    )}
+                    </TouchableOpacity>
 
                     {/* Safe Exit */}
                     <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={{ paddingVertical: 10 }}>
