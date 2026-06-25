@@ -187,11 +187,12 @@ const PHOSPHOR_MAP = {
     Lock1: 'Lock',
     LampOn: 'Lamp',
 
-    // ── Pessoas / perfis ───────────────────────────────────────────
+    // 🧍 Pessoas / perfis 🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍🧍
     User: 'User',
     People: 'Users',
     Personalcard: 'IdentificationCard',
     Woman: 'Person',
+    Man: 'Person',
     EmojiHappy: 'Smiley',
 
     // ── Pet ────────────────────────────────────────────────────────

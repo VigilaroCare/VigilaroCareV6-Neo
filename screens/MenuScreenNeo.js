@@ -150,22 +150,31 @@ export default function MenuScreenNeo() {
         },
     ];
 
-    const renderGridCard = (item) => (
-        <TouchableOpacity
-            key={item.key}
-            onPress={item.action}
-            activeOpacity={0.85}
-            style={s.gridCell}
-        >
-            <NeoCard variant="elevated" style={s.gridCard}>
-                <View style={[s.gridIconCircle, { backgroundColor: item.accent.bg }]}>
-                    <NeoIcon name={item.iconName} size={26} color={item.accent.color} variant="Bold" />
-                </View>
-                <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
-                    {item.label}
-                </Text>
+    const renderSectionBlock = (title, items) => (
+        <View style={s.sectionContainer}>
+            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
+                {title}
+            </Text>
+            <NeoCard variant="elevated" style={s.sectionBlockCard}>
+                {items.map((item, index) => {
+                    const isLast = index === items.length - 1;
+                    return (
+                        <TouchableOpacity
+                            key={item.key}
+                            onPress={item.action}
+                            activeOpacity={0.7}
+                            style={[s.rowItem, !isLast && { borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)' }]}
+                        >
+                            <View style={[s.rowIconCircle, { backgroundColor: item.accent.bg }]}>
+                                <NeoIcon name={item.iconName} size={20} color={item.accent.color} variant="Bold" />
+                            </View>
+                            <Text style={[s.rowLabel, { color: textPrimary }]}>{item.label}</Text>
+                            <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
+                        </TouchableOpacity>
+                    );
+                })}
             </NeoCard>
-        </TouchableOpacity>
+        </View>
     );
 
     return (
@@ -214,21 +223,9 @@ export default function MenuScreenNeo() {
                         </NeoCard>
                     </TouchableOpacity>
 
-                    {/* SEÇÃO 1 — CONTA & PREFERÊNCIAS */}
-                    <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
-                        {t('menu.sectionAccount', 'Conta & Preferências')}
-                    </Text>
-                    <View style={s.grid}>
-                        {sectionConta.map(renderGridCard)}
-                    </View>
-
-                    {/* SEÇÃO 2 — AJUDA & INFORMAÇÕES */}
-                    <Text style={[s.sectionLabel, { marginTop: 20, color: textSecondary }]} accessibilityRole="header">
-                        {t('menu.sectionHelp', 'Ajuda & Informações')}
-                    </Text>
-                    <View style={s.grid}>
-                        {sectionAjuda.map(renderGridCard)}
-                    </View>
+                                        {/* SEÇÕES - BLOCOS CONTÍNUOS */}
+                    {renderSectionBlock(t('menu.sectionAccount', 'Conta & Preferências'), sectionConta)}
+                    {renderSectionBlock(t('menu.sectionHelp', 'Ajuda & Informações'), sectionAjuda)}
 
                     {/* DIVISOR + LINK DESTRUTIVO — visualmente quieto, isolado */}
                     <View style={s.divider} />
@@ -334,58 +331,48 @@ const s = StyleSheet.create({
         marginTop: 2,
         lineHeight: 16,
     },
-
     // Seções
+    sectionContainer: {
+        marginTop: 24,
+    },
     sectionLabel: {
         fontSize: 11,
         fontWeight: '900',
         color: Neo.colors.neutral[700],
         letterSpacing: 1.6,
-        marginBottom: 8,
+        marginBottom: 10,
+        marginLeft: 16,
         textTransform: 'uppercase',
-        textAlign: 'center', // tela-grid: título centralizado (família Home/Viagem)
+        textAlign: 'left',
         opacity: 0.85,
     },
 
-    // Grid 2 colunas — uniforme, sem placeholders
-    grid: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10,
-    },
-    // Cards quadrados + verticais (ícone em cima, label embaixo) — mesma
-    // geometria do Hub/Home/Viagem, a identidade de card do app. NeoIcon
-    // segue (configuração = função); muda só a proporção, que estava deitada.
-    gridCell: {
-        width: '48.5%',
-        aspectRatio: 1,
-        marginBottom: 4,
-    },
-    gridCard: {
-        flex: 1,
+    // Blocos Contínuos (iOS Settings style)
+    sectionBlockCard: {
         borderRadius: 18,
-        padding: 14,
-        flexDirection: 'column',
+        overflow: 'hidden',
+        padding: 0,
+    },
+    rowItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+    },
+    rowIconCircle: {
+        width: 36,
+        height: 36,
+        borderRadius: 18,
         alignItems: 'center',
         justifyContent: 'center',
+        marginRight: 14,
     },
-    gridIconCircle: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 10,
+    rowLabel: {
+        flex: 1,
+        fontSize: 15,
+        fontWeight: '600',
     },
-    gridLabel: {
-        fontSize: 13,
-        fontWeight: '800',
-        color: Neo.colors.neutral[900],
-        lineHeight: 16,
-        textAlign: 'center',
-    },
-
-    // Destrutivo + footer
+// Destrutivo + footer
     divider: {
         height: 1,
         backgroundColor: 'rgba(0,0,0,0.08)',

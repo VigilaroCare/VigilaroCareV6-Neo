@@ -4,7 +4,7 @@ export const riscosFisicos = [
         nome: 'Benjamins e Tês (Sobrecarga)', nome_en: 'Power Strips (Overload)', nome_es: 'Regletas (Sobrecarga)',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🔌',
-        imagemUrl: 'https://images.pexels.com/photos/11837458/pexels-photo-11837458.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/pessoas-lifestyle_convertkit-yrdsq-1gyre-unsplash_003.jpg'),
         risco: 'Superaquecimento e Incêndio', risco_en: 'Overheating and Fire', risco_es: 'Sobrecalentamiento e Incendio',
         descricao: 'Principal causa de incêndios elétricos no Brasil (Abracopel). Plásticos derretem e propagam fogo rapidamente.', descricao_en: 'Main cause of electrical fires. Plastics melt and spread fire quickly.', descricao_es: 'Principal causa de incendios eléctricos. Los plásticos se derriten y propagan el fuego.',
         prevencao: [
@@ -31,7 +31,7 @@ export const riscosFisicos = [
         nome: 'Celular no Banheiro/Molhado', nome_en: 'Phone in Bathroom/Wet', nome_es: 'Celular en Baño/Mojado',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '📱',
-        imagemUrl: 'https://images.pexels.com/photos/4004071/pexels-photo-4004071.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_rf_e2.png'),
         risco: 'Choque Fatal por Umidade', risco_en: 'Fatal Shock from Moisture', risco_es: 'Choque Fatal por Humedad',
         descricao: 'O corpo molhado reduz drasticamente a resistência da pele, tornando o choque de carregadores letal.', descricao_en: 'A wet body drastically reduces skin resistance, making charger shocks lethal.', descricao_es: 'El cuerpo mojado reduce drásticamente la resistencia de la piel, haciendo letal el choque.',
         prevencao: [
@@ -58,7 +58,7 @@ export const riscosFisicos = [
         nome: 'Fios Desencapados (Pets e Bebês)', nome_en: 'Exposed Wires (Pets/Babies)', nome_es: 'Cables Pelados (Mascotas/Bebés)',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🐶',
-        imagemUrl: 'https://images.pexels.com/photos/731022/pexels-photo-731022.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_bebe-mordendo-fios-eletricos_020.jpg'),
         risco: 'Eletrocussão e Asfixia', risco_en: 'Electrocution and Asphyxiation', risco_es: 'Electrocución y Asfixia',
         descricao: 'Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, fechando curto-circuito.', descricao_en: 'Pets chew low cables and babies put them in their mouths, causing short circuits.', descricao_es: 'Las mascotas muerden cables bajos y los bebés se los llevan a la boca, causando cortos.',
         prevencao: [
@@ -85,7 +85,7 @@ export const riscosFisicos = [
         nome: 'Troca da Resistência do Chuveiro', nome_en: 'Shower Heater Replacement', nome_es: 'Cambio de Resistencia de Ducha',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🚿',
-        imagemUrl: 'https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/eletrico_chuveiro-eletrico_007.jpg'),
         risco: 'Choque Fibrilar no Banho', risco_en: 'Fibrillating Shock in Shower', risco_es: 'Choque Fibrilar en la Ducha',
         descricao: 'Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas desligando a torneira.', descricao_en: 'Very common accident when fixing a shower with a wet floor without cutting power.', descricao_es: 'Accidente muy común al reparar una ducha con el piso mojado sin cortar la energía.',
         prevencao: [
@@ -112,7 +112,7 @@ export const riscosFisicos = [
         nome: 'Tomadas Desprotegidas (Crianças)', nome_en: 'Unprotected Outlets (Children)', nome_es: 'Enchufes Desprotegidos (Niños)',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '👶',
-        imagemUrl: 'https://images.pexels.com/photos/3661267/pexels-photo-3661267.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/outros_bebe-tomada-eletrica_028.jpg'),
         risco: 'Queimaduras Graves nas Mãos', risco_en: 'Severe Hand Burns', risco_es: 'Quemaduras Graves en Manos',
         descricao: 'Crianças de 1 a 5 anos frequentemente inserem clipes, grampos ou chaves nos buracos das tomadas baixas.', descricao_en: 'Toddlers often insert clips, hairpins, or keys into low outlets.', descricao_es: 'Niños pequeños a menudo insertan clips, horquillas o llaves en enchufes bajos.',
         prevencao: [
@@ -139,7 +139,7 @@ export const riscosFisicos = [
         nome: 'Eletrodomésticos Perto de Pias/Piscinas', nome_en: 'Appliances near Sinks/Pools', nome_es: 'Electrodomésticos cerca de Fregaderos/Piscinas',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🔌',
-        imagemUrl: 'https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_rf_e6.png'),
         risco: 'Choque por Queda na Água', risco_en: 'Shock from Falling in Water', risco_es: 'Choque por Caída en el Agua',
         descricao: 'Secadores na pia, rádios na borda da piscina ou liquidificadores molhados causam acidentes com alta letalidade.', descricao_en: 'Hairdryers near sinks, radios by pools cause highly lethal accidents.', descricao_es: 'Secadores en el lavabo, radios en piscinas causan accidentes muy letales.',
         prevencao: [
@@ -166,7 +166,7 @@ export const riscosFisicos = [
         nome: 'Pipas na Rede Elétrica', nome_en: 'Kites on Power Lines', nome_es: 'Cometas en la Red Eléctrica',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🪁',
-        imagemUrl: 'https://images.pexels.com/photos/1359325/pexels-photo-1359325.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_rf_e7.png'),
         risco: 'Arco Elétrico de Alta Tensão', risco_en: 'High Voltage Arc', risco_es: 'Arco de Alta Tensión',
         descricao: 'Acidente grave em ruas e condomínios. Linhas chilenas ou úmidas conduzem a alta tensão direto para o adolescente.', descricao_en: 'Severe accident on streets. Wet or metallic lines conduct high voltage to the user.', descricao_es: 'Accidente grave en calles. Líneas húmedas o metálicas conducen alto voltaje al usuario.',
         prevencao: [
@@ -193,7 +193,7 @@ export const riscosFisicos = [
         nome: 'Instalações Antigas e Gambiarras', nome_en: 'Old Wiring and DIY Fixes', nome_es: 'Instalaciones Antiguas',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🏚️',
-        imagemUrl: 'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/eletrico_photo-of-electrical-wirings-on-white-wal_018.jpg'),
         risco: 'Incêndio Noturno (Idosos)', risco_en: 'Nighttime Fire (Elderly)', risco_es: 'Incendio Nocturno (Ancianos)',
         descricao: 'Casas construídas há mais de 20 anos não suportam as cargas atuais. Fios ressecam no forro, causando fogo.', descricao_en: 'Houses older than 20 years cannot handle modern loads. Wires dry out in the attic, causing fires.', descricao_es: 'Casas de más de 20 años no soportan cargas modernas. Los cables se secan en el techo, causando fuego.',
         prevencao: [
@@ -220,7 +220,7 @@ export const riscosFisicos = [
         nome: 'Extensões sob Tapetes e Portas', nome_en: 'Extension Cords under Rugs', nome_es: 'Extensiones bajo Alfombras',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🧶',
-        imagemUrl: 'https://images.pexels.com/photos/2085739/pexels-photo-2085739.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_rf_e9.png'),
         risco: 'Curto-circuito e Fogo em Tecido', risco_en: 'Short Circuit and Fabric Fire', risco_es: 'Cortocircuito y Fuego en Tela',
         descricao: 'O pisoteio constante ou esmagamento sob portas quebra os filamentos de cobre, gerando um ponto de calor extremo.', descricao_en: 'Constant trampling breaks copper filaments, generating extreme heat points.', descricao_es: 'El pisoteo constante rompe los filamentos de cobre, generando puntos de calor extremo.',
         prevencao: [
@@ -247,7 +247,7 @@ export const riscosFisicos = [
         nome: 'O Choque do Resgatista', nome_en: 'The Rescuer\'s Shock', nome_es: 'El Choque del Rescatista',
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🚫',
-        imagemUrl: 'https://images.pexels.com/photos/5699509/pexels-photo-5699509.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_rf_e10.png'),
         risco: 'Múltiplas Vítimas Fatais', risco_en: 'Multiple Fatalities', risco_es: 'Múltiples Víctimas Fatales',
         descricao: 'Muitas mortes ocorrem quando um familiar tenta puxar a pessoa que está tomando o choque e acaba eletrocutado junto.', descricao_en: 'Many deaths occur when a family member tries to pull the victim being shocked and gets electrocuted too.', descricao_es: 'Muchas muertes ocurren cuando un familiar intenta jalar a la víctima y también se electrocuta.',
         prevencao: [
@@ -269,34 +269,11 @@ export const riscosFisicos = [
         primeirosSocorros_en: 'Turn off main switch. If impossible, move victim using a dry broomstick, board, or thick rubber mat.',
         primeirosSocorros_es: 'Apague el interruptor general. Si es imposible, aleje a la víctima usando un palo de escoba seco, tabla o tapete de goma grueso.'
     },
-    {
-        id: 'rf_2',
-        nome: 'Prevenção de Incêndios', nome_en: 'Fire Prevention', nome_es: 'Prevención de Incendios',
-        categoria: 'Fogo', categoria_en: 'Fire', categoria_es: 'Fuego',
-        emoji: '🔥',
-        imagemUrl: 'https://images.pexels.com/photos/27404939/pexels-photo-27404939.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        risco: 'Queimaduras e Morte', risco_en: 'Burns and Death', risco_es: 'Quemaduras y Muerte',
-        descricao: 'Acesse o módulo de Teoria do Fogo e Plano de Fuga para o guia completo.', descricao_en: 'Access the Fire Theory module for the complete guide.', descricao_es: 'Acceda al módulo Teoría del Fuego para la guía completa.',
-        prevencao: [
-            'Consulte o módulo Teoria do Fogo para aprender sobre classes de incêndio e uso de extintores.',
-            'O plano de fuga detalhado e a regra do Triângulo do Fogo estão no guia específico.'
-        ],
-        prevencao_en: [
-            'See the Fire Theory module to learn about fire classes and extinguishers.',
-            'The detailed escape plan is in the specific guide.'
-        ],
-        prevencao_es: [
-            'Consulte el módulo Teoría del Fuego para aprender sobre clases de incendio y extintores.',
-            'El plan de escape detallado está en la guía específica.'
-        ],
-        primeirosSocorros: 'Ligue 193. Se a roupa pegar fogo: Pare, Deite e Role.',
-        primeirosSocorros_en: 'Call 911. If clothing catches fire: Stop, Drop, and Roll.',
-        primeirosSocorros_es: 'Llame al 911. Si la ropa se incendia: Deténgase, Tírese al piso y Ruede.'
-    },
+    
     {
         id: 'rf_3',
         nome: 'Armas de Fogo', nome_en: 'Firearms', nome_es: 'Armas de Fuego',
-        imagemUrl: 'https://images.pexels.com/photos/32334240/pexels-photo-32334240.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/arma-de-fogo-em-casa.jpg'),
         categoria: 'Armas', categoria_en: 'Weapons', categoria_es: 'Armas',
         emoji: '🔫',
         risco: 'Morte Acidental', risco_en: 'Accidental Death', risco_es: 'Muerte Accidental',
@@ -326,28 +303,31 @@ export const riscosFisicos = [
     {
         id: 'rf_4',
         nome: 'Prevenção de Quedas', nome_en: 'Fall Prevention', nome_es: 'Prevención de Caídas',
-        imagemUrl: 'https://images.pexels.com/photos/19079390/pexels-photo-19079390.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/Como-evitar-quedas-na-terceira-idade-1.jpg'),
         categoria: 'Quedas', categoria_en: 'Falls', categoria_es: 'Caídas',
         emoji: '🤕',
         risco: 'Fraturas e Traumas', risco_en: 'Fractures and Trauma', risco_es: 'Fracturas y Traumas',
         descricao: 'Principal causa de acidentes com idosos e crianças.', descricao_en: 'Main cause of accidents with elderly and children.', descricao_es: 'Principal causa de accidentes con ancianos y niños.',
         prevencao: [
             'Instale corrimão em ambos os lados da escada.',
-            'Iluminação adequada em corredores e banheiros.',
+            'Iluminação adequada em corredores e banheiros (luz noturna).',
             'Remova tapetes soltos ou use antiderrapantes.',
             'Instale grades de proteção em janelas e sacadas.',
+            'Instale barras de apoio na parede do chuveiro e ao lado do vaso sanitário.'
         ],
         prevencao_en: [
             'Install handrails on both sides of the stairs.',
-            'Adequate lighting in hallways and bathrooms.',
+            'Adequate lighting in hallways and bathrooms (night light).',
             'Remove loose rugs or use non-slip mats.',
             'Install safety gates on windows and balconies.',
+            'Install grab bars in the shower and next to the toilet.'
         ],
         prevencao_es: [
             'Instale pasamanos a ambos lados de la escalera.',
-            'Iluminación adecuada en pasillos y baños.',
+            'Iluminación adecuada en pasillos y baños (luz nocturna).',
             'Retire alfombras sueltas o use antideslizantes.',
             'Instale rejas de protección en ventanas y balcones.',
+            'Instale barras de apoyo en la ducha y junto al inodoro.'
         ],
         primeirosSocorros: 'Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame 192.',
         primeirosSocorros_en: 'Do not move the victim if a spine/neck fracture is suspected. Call 911.',
@@ -356,7 +336,7 @@ export const riscosFisicos = [
     {
         id: 'rf_5',
         nome: 'Afogamento', nome_en: 'Drowning', nome_es: 'Ahogamiento',
-        imagemUrl: 'https://images.pexels.com/photos/5425095/pexels-photo-5425095.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/Afogamento.webp'),
         categoria: 'Água', categoria_en: 'Water', categoria_es: 'Agua',
         emoji: '💧',
         risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
@@ -382,5 +362,134 @@ export const riscosFisicos = [
         primeirosSocorros: 'Retire da água. Se não respirar, inicie RCP imediatamente. Chame 193/192.',
         primeirosSocorros_en: 'Remove from water. If not breathing, start CPR immediately. Call 911.',
         primeirosSocorros_es: 'Retírelo del agua. Si no respira, inicie la RCP inmediatamente. Llame al 911.'
+    },
+    // NOVOS CARDS - RISCOS FÍSICOS (DOMÉSTICOS E LAZER)
+    {
+        id: 'rf_esmagamento',
+        nome: 'Esmagamento por Tombamento', nome_en: 'Crushing by Tipping Furniture', nome_es: 'Aplastamiento por Vuelco',
+        categoria: 'Traumatismos', categoria_en: 'Trauma', categoria_es: 'Traumatismos',
+        emoji: '📺',
+        imagemUrl: require('../assets/illustrations/pad/acidentes-estatisticas_acidentes-domesticos-no-brasil_002.jpg'),
+        risco: 'Lesões Fatais', risco_en: 'Fatal Injuries', risco_es: 'Lesiones Fatales',
+        descricao: 'O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas lesões.',
+        prevencao: [
+            'Fixe estantes altas e cômodas na parede usando suportes.',
+            'Fixe televisores de tela plana na parede ou no rack.',
+            'Use protetores salva-dedos (trava antiesmagamento) em todas as portas.',
+            'Não coloque brinquedos no topo de móveis altos, evitando que a criança tente escalar.'
+        ],
+        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue 192.'
+    },
+    {
+        id: 'rf_queimaduras_domesticas',
+        nome: 'Queimaduras', nome_en: 'Burns', nome_es: 'Quemaduras',
+        categoria: 'Fogo', categoria_en: 'Fire', categoria_es: 'Fuego',
+        emoji: '🔥',
+        imagemUrl: require('../assets/illustrations/pad/outros_bebe-alcancando-panela-fogao_009.jpg'),
+        risco: 'Queimaduras Térmicas Graves', risco_en: 'Severe Thermal Burns', risco_es: 'Quemaduras Térmicas Graves',
+        descricao: 'A cozinha é o ambiente mais crítico. Tombamento de líquidos ferventes (ao puxar toalhas) e cabos de panela para fora causam lesões irreparáveis.',
+        prevencao: [
+            'Vire os cabos das panelas para o centro do fogão.',
+            'Use as bocas de trás do fogão sempre que possível.',
+            'Não use toalhas de mesa compridas se houver crianças que possam puxá-las.',
+            'Atenção ao abrir a porta do forno quente e ao usar panelas de pressão.'
+        ],
+        primeirosSocorros: 'Resfrie o local com água corrente em temperatura ambiente por 10-15 minutos. NUNCA aplique gelo, pasta de dente ou manteiga. Procure o pronto-socorro.'
+    },
+    {
+        id: 'rf_sufocacao',
+        nome: 'Sufocação e Engasgo', nome_en: 'Choking and Suffocation', nome_es: 'Asfixia y Atragantamiento',
+        categoria: 'Vias Aéreas', categoria_en: 'Airways', categoria_es: 'Vías Respiratorias',
+        emoji: '👶',
+        imagemUrl: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),
+        risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
+        descricao: 'Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros no berço, peças pequenas e alimentos granulados.',
+        prevencao: [
+            'Bebês devem dormir de barriga para cima, em berço vazio (sem protetores, ursos ou travesseiros).',
+            'Corte alimentos redondos (uvas, tomate cereja) ao comprido antes de servir a crianças.',
+            'Verifique a indicação de idade e selo do INMETRO nos brinquedos.',
+            'Mantenha feijões crus, milho e moedas longe do alcance.'
+        ],
+        primeirosSocorros: 'Realize a Manobra de Heimlich imediatamente. Para bebês, 5 tapas nas costas e 5 compressões no peito. Ligue 192 se não desengasgar.'
+    },
+    {
+        id: 'rf_cortes',
+        nome: 'Cortes Profundos', nome_en: 'Deep Cuts', nome_es: 'Cortes Profundos',
+        categoria: 'Ferimentos', categoria_en: 'Injuries', categoria_es: 'Heridas',
+        emoji: '🔪',
+        imagemUrl: require('../assets/illustrations/pad/outros_conjunto-facas-cozinha_005.jpg'),
+        risco: 'Hemorragia Severa', risco_en: 'Severe Hemorrhage', risco_es: 'Hemorragia Severa',
+        descricao: 'Facas mal armazenadas e louças de banheiro (pias) usadas como apoio por idosos, que quebram e geram lâminas mortais.',
+        prevencao: [
+            'Guarde facas e ferramentas cortantes em gavetas altas ou com trava.',
+            'NUNCA se apoie na pia do banheiro (cerâmica). Instale barras de apoio de metal fixadas na alvenaria.',
+            'Use luvas anticorte (EPI) ao manusear ferramentas pesadas.',
+            'Coloque películas protetoras ou redes em portas de vidro.'
+        ],
+        primeirosSocorros: 'Faça compressão direta no ferimento com um pano limpo para estancar o sangramento. Eleve o membro se possível. Vá ao hospital.'
+    },
+    {
+        id: 'rf_ebikes',
+        nome: 'E-bikes e Bicicletas', nome_en: 'E-bikes & Bicycles', nome_es: 'E-bikes y Bicicletas',
+        categoria: 'Lazer e Esporte', categoria_en: 'Sports & Leisure', categoria_es: 'Deporte',
+        emoji: '🚴',
+        imagemUrl: require('../assets/illustrations/pad/pessoas-lifestyle_photo-of-family-having-fun-3820210_010.jpg'),
+        risco: 'Trauma Craniano e Fraturas', risco_en: 'Head Trauma & Fractures', risco_es: 'Trauma Craneal',
+        descricao: 'O aumento de veículos elétricos e em alta velocidade (32-60 km/h) transformou ciclovias em zonas de tensão, causando colisões e atropelamentos.',
+        prevencao: [
+            'O uso do capacete é INEGOCIÁVEL para todos os ocupantes, incluindo em patinetes.',
+            'Respeite a velocidade da via e a desproporção de massa com os pedestres.',
+            'Crianças em bikes comuns devem pedalar em locais seguros, longe do trânsito de carros.',
+            'Sinalize suas ações e evite usar fones de ouvido no trânsito.'
+        ],
+        primeirosSocorros: 'Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue 192 e mantenha a pessoa calma até o resgate.'
+    },
+    {
+        id: 'rf_playgrounds',
+        nome: 'Lesões em Parquinhos', nome_en: 'Playground Injuries', nome_es: 'Lesiones en Parques',
+        categoria: 'Lazer e Esporte', categoria_en: 'Sports & Leisure', categoria_es: 'Deporte',
+        emoji: '🛝',
+        imagemUrl: require('../assets/illustrations/pad/criancas-bebes_playground-aventura_004.jpg'),
+        risco: 'Cortes, Tétano e Fraturas', risco_en: 'Cuts, Tetanus and Fractures', risco_es: 'Cortes, Tétanos y Fracturas',
+        descricao: 'Falta de manutenção gera ferrugem, pregos expostos e partes soltas. Brincar em áreas não compatíveis com a idade também causa choques violentos.',
+        prevencao: [
+            'Faça uma vistoria visual rápida antes da criança brincar (Vistoria Dinâmica).',
+            'Supervisione ativamente. Acidentes acontecem em frações de segundo.',
+            'Certifique-se de que o piso do parquinho seja de borracha ou areia fofa, não asfalto.',
+            'Evite roupas com cordões no parquinho para prevenir enforcamento.'
+        ],
+        primeirosSocorros: 'Lave cortes com água e sabão. Se o metal estava enferrujado, verifique a vacina antitetânica. Imobilize fraturas e vá ao PS.'
+    },
+    {
+        id: 'rf_eventos',
+        nome: 'Queimaduras em Eventos', nome_en: 'Event Burns', nome_es: 'Quemaduras en Eventos',
+        categoria: 'Lazer e Esporte', categoria_en: 'Sports & Leisure', categoria_es: 'Deporte',
+        emoji: '🎆',
+        imagemUrl: require('../assets/illustrations/pad/Churrasco.png'),
+        risco: 'Explosões e Queimaduras Graves', risco_en: 'Explosions and Severe Burns', risco_es: 'Explosiones y Quemaduras Graves',
+        descricao: 'Uso de álcool líquido em churrasqueiras e manuseio amador de fogos de artifício em festas representam os maiores picos de acidentes do ano.',
+        prevencao: [
+            'NUNCA use álcool líquido (seja de qual volume for) para acender o carvão. Use acendedores sólidos.',
+            'Mantenha as crianças longe (pelo menos 2 metros) da churrasqueira.',
+            'Fogos de artifício só devem ser manuseados por profissionais com licença.',
+            'Não acenda fogueiras próximo à rede elétrica ou vegetação seca.'
+        ],
+        primeirosSocorros: 'Apague as chamas (abafando). Resfrie com muita água corrente. Cubra com pano limpo úmido e corra para o hospital. Não estoure bolhas.'
+    },
+
+    {
+        id: 'rf_clima',
+        nome: 'Exposição ao Clima e Insolação', nome_en: 'Climate Exposure & Sunstroke', nome_es: 'Exposición al Clima e Insolación',
+        categoria: 'Lazer e Esporte', categoria_en: 'Sports & Leisure', categoria_es: 'Deporte',
+        emoji: '☀️',
+        imagemUrl: require('../assets/illustrations/pad/ambientes-casa_forma-de-gota-de-gua-tempestade-previs-o_017.jpg'),
+        risco: 'Desidratação e Mal-Estar Térmico', risco_en: 'Dehydration and Heat Stress', risco_es: 'Deshidratación y Estrés Térmico',
+        descricao: 'Ficar exposto ao sol quente por longos períodos cuidando do jardim ou quintal é um risco silencioso que pode levar à desidratação severa e insolação.',
+        prevencao: [
+            'Priorize o trabalho no jardim nas primeiras horas da manhã ou no fim da tarde.',
+            'Use sempre chapéus de abas largas, óculos de sol e protetor solar.',
+            'Mantenha uma garrafa de água por perto e faça pausas regulares à sombra.'
+        ],
+        primeirosSocorros: 'Vá para um local fresco e arejado. Beba água aos poucos. Faça compressas frias na cabeça. Se houver tontura forte ou vômito, procure um médico.'
     }
 ];

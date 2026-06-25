@@ -150,7 +150,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                                             <View style={[styles.guideImageContainer, { backgroundColor: catColor + '15' }]}>
                                                 {cat.imagemUrl ? (
                                                     <ReviewImage
-                                                        source={{ uri: cat.imagemUrl }}
+                                                        source={typeof cat.imagemUrl === 'string' ? (typeof cat.imagemUrl === 'string' ? { uri: cat.imagemUrl } : cat.imagemUrl) : cat.imagemUrl}
                                                         tint={catColor}
                                                         accessibilityLabel={cat.titulo}
                                                     />

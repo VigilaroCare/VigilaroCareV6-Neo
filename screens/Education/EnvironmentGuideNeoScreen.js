@@ -171,9 +171,10 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         <Image
                             // key força reload quando trocar de URL
                             key={`${guideData.id}-${imgIndex}`}
-                            source={{ uri: currentUrl }}
+                            source={typeof currentUrl === 'number' ? currentUrl : { uri: currentUrl }}
                             style={{ width: '100%', height: '100%' }}
                             resizeMode="cover"
+                            accessibilityLabel={guideData.nome}
                             onError={handleImgError}
                         />
                     ) : (

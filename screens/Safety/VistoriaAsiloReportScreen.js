@@ -143,7 +143,7 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                                     <View style={[styles.pontoIcon, { backgroundColor: Neo.colors.feedback.error + '15' }]}>
                                         <Small style={{ fontSize: 20 }}>{ponto.icone}</Small>
                                     </View>
-                                    <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600', color: Neo.colors.emergency?.panicDark || Neo.colors.feedback.error }}>
+                                    <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600', color: Neo.emergency?.panicDark || Neo.colors.feedback.error }}>
                                         {ponto.categoria}
                                     </Body>
                                 </View>

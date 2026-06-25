@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 /**
  * AcessoriosSegurancaScreen.js
  * Tela de Acessórios de Segurança (Baby-proof, Idosos, Pets, PCD)
@@ -7,9 +8,10 @@
  * ConceitoDetail (hero = foto do card). Sem expand inline.
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+    Animated,
     View,
     Text,
     StyleSheet,
@@ -62,37 +64,99 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
         });
     };
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const titleStr = t('headersFirst.acessRiosDeSeguranA', 'Dispositivos de Proteção Doméstica');
+    const subtitleStr = "Equipamentos, adaptações e travas";
+    const capaSource = { uri: 'file:///C:/Users/User/Pictures/Imagens PAD/imagens_blog_pad/Acidentes.jpg' };
+
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+                        <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
 
-                {/* Header padronizado */}
-                <View style={styles.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
-                        activeOpacity={0.7}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('common.back', 'Voltar')}
-                    >
-                        <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
-                    </TouchableOpacity>
-                    <View style={styles.headerContent}>
-                        <Text style={styles.headerEmoji}>🔐</Text>
-                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
-                            {t('headersFirst.acessRiosDeSeguranA', 'Dispositivos de Proteção Doméstica')}
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 40 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={titleStr}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {titleStr}
                         </Text>
-                        <Text style={[styles.headerSubtitle, { color: textBody }]}>
-                            {t('headersFirst.proteOPersonalizadaParaCadaPerfil', 'Proteção personalizada para cada perfil')}
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitleStr}
                         </Text>
                     </View>
-                </View>
+                </Animated.View>
 
-                <ScrollView
-                    contentContainerStyle={styles.listContent}
-                    showsVerticalScrollIndicator={false}
-                >
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
@@ -114,7 +178,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                                         <View style={[styles.guideImageContainer, { backgroundColor: THEME_COLOR + '15' }]}>
                                             {(cat.imagem || cat.imagemUrl) ? (
                                                 <ReviewImage
-                                                    source={cat.imagem || { uri: cat.imagemUrl }}
+                                                    source={cat.imagem || (typeof cat.imagemUrl === 'string' ? { uri: cat.imagemUrl } : cat.imagemUrl)}
                                                     tint={THEME_COLOR}
                                                     accessibilityLabel={cat.titulo}
                                                 />
@@ -134,8 +198,9 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                     ))}
 
                     <View style={{ height: 140 }} />
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </Animated.ScrollView>
+            
         </AppBackground>
     );
 }

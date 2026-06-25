@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
@@ -58,7 +59,31 @@ export default function EletrodomesticosScreen({ navigation }) {
         const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
         const deviceColor = DEVICE_COLORS[device.id] || themeColors.primary[500];
 
-        return (
+        const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const titleStr = t('headersFirst.eletrodomesticos', 'Eletrodomésticos');
+    const subtitleStr = t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.');
+    const capaSource = require('../assets/illustrations/pad/hero_eletro.png');
+
+    return (
             <TouchableOpacity
                 key={device.id}
                 onPress={() => toggleExpand(device.id)}
@@ -71,7 +96,7 @@ export default function EletrodomesticosScreen({ navigation }) {
                         <View style={[styles.guideImageContainer, { backgroundColor: deviceColor + '15' }]}>
                             {device.imagemUrl ? (
                                 <ReviewImage
-                                    source={{ uri: device.imagemUrl }}
+                                    source={typeof device.imagemUrl === 'string' ? (typeof device.imagemUrl === 'string' ? { uri: device.imagemUrl } : device.imagemUrl) : device.imagemUrl}
                                     tint={deviceColor}
                                     accessibilityLabel={device.nome}
                                 />
@@ -159,17 +184,79 @@ export default function EletrodomesticosScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top']}>
-                <StatusBar style="dark" />
 
                 {/* Cabeçalho Padronizado */}
-                <NeoScreenHeader 
-                    title={t('headersFirst.eletrodomesticos', 'Eletrodomesticos')}
-                    subtitle={t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.')}
-                    onBack={() => navigation.goBack()}
-                />
+                
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
 
-                <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 40 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={titleStr}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {titleStr}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitleStr}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
+
+
+                
                 {eletrodomesticosSeguranca.map((categoria) => (
                     <View key={categoria.id} style={styles.categorySection}>
                         <View style={styles.categoryHeader}>
@@ -180,8 +267,9 @@ export default function EletrodomesticosScreen({ navigation }) {
                     </View>
                 ))}
                 <View style={{ height: 40 }} />
-            </ScrollView>
-            </SafeAreaView>
+            </View>
+            </Animated.ScrollView>
+            
         </AppBackground>
     );
 }

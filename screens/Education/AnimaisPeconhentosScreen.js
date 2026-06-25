@@ -186,10 +186,10 @@ const styles = StyleSheet.create({
         marginRight: 12
     },
     alertTitle: {
-        color: Neo.colors.emergency?.panicDark || '#991B1B'
+        color: Neo.emergency?.panicDark || '#991B1B'
     },
     alertDesc: {
-        color: Neo.colors.emergency?.panicDark || '#B91C1C',
+        color: Neo.emergency?.panicDark || '#B91C1C',
         marginTop: 2
     },
     guideCardOuter: {

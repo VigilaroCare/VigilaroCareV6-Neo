@@ -12,6 +12,7 @@ import ReviewImage from '../../components/ReviewImage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { H1, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { DS as Neo } from '../../utils/DesignSystem2026';
 import { t_field, t_array } from '../../utils/getLocalizedField';
 
 export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
@@ -25,12 +26,12 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const THEME_COLOR = '#8B5CF6'; // TODO: map to DS token (violet, no DS mapping)
 
     const MENU_ITEMS = [
-        { id: 'epis', title: 'EPIs', title_en: 'PPE', title_es: 'EPIs', subtitle: 'Equipamentos de Proteção Individual', subtitle_en: 'Personal Protective Equipment', subtitle_es: 'Equipos de Protección Individual', iconName: 'ShieldTick', color: Neo.colors.feedback.warning, imagemUrl: 'https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
-        { id: 'first_aid', title: 'Kit de Primeiros Socorros', title_en: 'First Aid Kit', title_es: 'Kit de Primeros Auxilios', subtitle: 'Itens Essenciais', subtitle_en: 'Essential Items', subtitle_es: 'Artículos Esenciales', iconName: 'Health', color: Neo.colors.feedback.error, imagemUrl: 'https://images.pexels.com/photos/5207085/pexels-photo-5207085.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
-        { id: 'tools', title: 'Caixa de Ferramentas', title_en: 'Toolbox', title_es: 'Caja de Herramientas', subtitle: 'Manutenção Segura', subtitle_en: 'Safe Maintenance', subtitle_es: 'Mantenimiento Seguro', iconName: 'ArchiveBox', color: Neo.colors.neutral[500], imagemUrl: 'https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color (#607D8B)
+        { id: 'epis', title: 'EPIs', title_en: 'PPE', title_es: 'EPIs', subtitle: 'Equipamentos de Proteção Individual', subtitle_en: 'Personal Protective Equipment', subtitle_es: 'Equipos de Protección Individual', iconName: 'ShieldTick', color: Neo.colors.feedback.warning, imagemUrl: require('../../assets/illustrations/pad/outros_limpeza-geladeira_035.jpg') }, // DS: data-level color
+        { id: 'first_aid', title: 'Kit de Primeiros Socorros', title_en: 'First Aid Kit', title_es: 'Kit de Primeros Auxilios', subtitle: 'Itens Essenciais', subtitle_en: 'Essential Items', subtitle_es: 'Artículos Esenciales', iconName: 'Health', color: Neo.colors.feedback.error, imagemUrl: require('../../assets/illustrations/pad/protetores-seguranca_first-aid-1882049-1920_010.jpg') }, // DS: data-level color
+        { id: 'tools', title: 'Caixa de Ferramentas', title_en: 'Toolbox', title_es: 'Caja de Herramientas', subtitle: 'Manutenção Segura', subtitle_en: 'Safe Maintenance', subtitle_es: 'Mantenimiento Seguro', iconName: 'ArchiveBox', color: Neo.colors.neutral[500], imagemUrl: require('../../assets/illustrations/pad/fotos-stock-genericas_caixa-ferramentas_048.jpg') }, // DS: data-level color (#607D8B)
         { id: 'emergency_support', title: 'Utilidades de Apoio', title_en: 'Support Utilities', title_es: 'Utilidades de Apoyo', subtitle: 'Luz e Comunicação', subtitle_en: 'Light & Communication', subtitle_es: 'Luz y Comunicación', iconName: 'Lamp', color: '#8B5CF6', imagemUrl: 'https://images.pexels.com/photos/3326105/pexels-photo-3326105.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // TODO: map to DS token (violet, no DS mapping)
-        { id: 'farmacinha', title: 'Kit de Medicamentos', title_en: 'Medication Kit', title_es: 'Kit de Medicamentos', subtitle: 'Farmácia Caseira', subtitle_en: 'Home Pharmacy', subtitle_es: 'Farmacia Casera', iconName: 'Heart', color: Neo.colors.primary[500], imagemUrl: 'https://images.pexels.com/photos/3652103/pexels-photo-3652103.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color
-        { id: 'pet', title: 'Kit Pet', title_en: 'Pet Kit', title_es: 'Kit Mascotas', subtitle: 'Prevenção e Emergência', subtitle_en: 'Prevention & Emergency', subtitle_es: 'Prevención y Emergencia', iconName: 'Star', color: Neo.colors.feedback.error, imagemUrl: 'https://images.pexels.com/photos/6234600/pexels-photo-6234600.jpeg?auto=compress&cs=tinysrgb&w=1200' }, // DS: data-level color (#F43F5E→feedback.error)
+        { id: 'farmacinha', title: 'Kit de Medicamentos', title_en: 'Medication Kit', title_es: 'Kit de Medicamentos', subtitle: 'Farmácia Caseira', subtitle_en: 'Home Pharmacy', subtitle_es: 'Farmacia Casera', iconName: 'Heart', color: Neo.colors.primary[500], imagemUrl: require('../../assets/illustrations/pad/encontradas_farmacinha-kit-domestico.webp') }, // DS: data-level color
+        { id: 'pet', title: 'Kit Pet', title_en: 'Pet Kit', title_es: 'Kit Mascotas', subtitle: 'Prevenção e Emergência', subtitle_en: 'Prevention & Emergency', subtitle_es: 'Prevención y Emergencia', iconName: 'Star', color: Neo.colors.feedback.error, imagemUrl: require('../../assets/illustrations/pad/generated_pet_kit.png') }, // DS: data-level color (#F43F5E→feedback.error)
     ];
 
     const handlePress = (item) => {
@@ -88,7 +89,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
         }
     ];
 
-    const capaUrl = 'https://images.pexels.com/photos/5452202/pexels-photo-5452202.jpeg?auto=compress&cs=tinysrgb&w=1200'; // First Aid
+    const capaUrl = require('../../assets/illustrations/pad/acidentes-estatisticas_como-se-proteger-de-acidentes-domesticos_006.png'); // First Aid
 
     const title = t('headersFirst.guiaDeKits', 'Guia de Kits');
     const subtitle = t('estejaPreparadoQuandoPrecisar', 'Esteja preparado quando precisar.');
@@ -124,7 +125,7 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                     transform: heroTransform,
                 }}>
                     <ReviewImage
-                        source={{ uri: capaUrl }}
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />

@@ -60,7 +60,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
             emoji: item.emoji,
             color: THEME_COLOR,
             tags: [isPet ? 'Pets' : 'Pessoas'],
-            imagemUrl: item.imagemUrl,
+            imagemUrl: item.imagem || item.imagemUrl,
         };
 
         if (isPet) {
@@ -105,8 +105,8 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
     ];
 
     const capaUrl = type === 'HUMAN' 
-        ? 'https://images.pexels.com/photos/5452202/pexels-photo-5452202.jpeg?auto=compress&cs=tinysrgb&w=1200' 
-        : 'https://images.pexels.com/photos/6816869/pexels-photo-6816869.jpeg?auto=compress&cs=tinysrgb&w=1200';
+        ? require('../../assets/illustrations/pad/fotos-stock-genericas_kit-primeiros-socorros_044.jpg') 
+        : require('../../assets/illustrations/pad/fotos-stock-genericas_kit-primeiros-socorros_044.jpg');
 
     const title = t('headersFirst.firstAid', 'Primeiros socorros');
     const subtitle = t('headersFirst.respostaRPidaEmEmergNcias', 'Resposta rápida em emergências');
@@ -143,7 +143,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                     transform: heroTransform,
                 }}>
                     <ReviewImage
-                        source={{ uri: capaUrl }}
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />

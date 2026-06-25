@@ -20,6 +20,7 @@ import { SAFETY_MOBILITY } from '../data/safety_mobility';
 import { SAFETY_TOYS } from '../data/safety_toys';
 import { SAFETY_FIRE } from '../data/safety_fire';
 import { SAFETY_CONDO } from '../data/safety_condo';
+import { SAFETY_GAS } from '../data/safety_gas';
 import { getArticlesByCategory } from '../data/SafetyArticlesDB';
 
 // Mapping ID -> Data
@@ -31,6 +32,7 @@ const DATA_MAP = {
     'brinquedos': SAFETY_TOYS,
     'fire_prevention': SAFETY_FIRE,
     'condominio_seguranca': SAFETY_CONDO,
+    'vazamento_gas': SAFETY_GAS,
 };
 
 export default function GenericCategoryScreen({ route, navigation }) {
@@ -106,60 +108,111 @@ export default function GenericCategoryScreen({ route, navigation }) {
     // Hero transform removido pois a tela passa a ser flat
 
     const categoryImages = {
-        'escola_segura': 'https://images.pexels.com/photos/256450/pexels-photo-256450.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'ferias_seguras': 'https://loremflickr.com/1200/800/vacation,trip?lock=4',
+        'escola_segura': require('../assets/illustrations/pad/encontradas_brinquedos-seguros-escola.webp'),
+        'ferias_seguras': require('../assets/illustrations/pad/ambientes-casa_area-externa-praia_005.jpg'),
         'gestante_segura': 'https://images.pexels.com/photos/7055934/pexels-photo-7055934.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'mobilidade_reduzida': 'https://images.pexels.com/photos/4064303/pexels-photo-4064303.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'brinquedos': 'https://images.pexels.com/photos/3661353/pexels-photo-3661353.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'fire_prevention': 'https://images.pexels.com/photos/279979/pexels-photo-279979.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'condominio_seguranca': 'https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'pets': 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'faixa_etaria': 'https://images.pexels.com/photos/1682497/pexels-photo-1682497.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'mobilidade_reduzida': require('../assets/illustrations/pad/encontradas_mobilidade-barra-apoio.webp'),
+        'brinquedos': require('../assets/illustrations/pad/criancas-bebes_brinquedos-cuidados-ao-escolher-2_029.jpg'),
+        'fire_prevention': require('../assets/illustrations/pad/queimaduras-fogo_incendio-chamas_007.jpg'),
+        'condominio_seguranca': require('../assets/illustrations/pad/encontradas_redes-protecao-condominio.webp'),
+        'pets': require('../assets/illustrations/pad/fotos-stock-genericas_crianca-cachorrinho_030.jpg'),
+        'faixa_etaria': require('../assets/illustrations/pad/pessoas-lifestyle_photo-of-family-having-fun-3820210_010.jpg'),
     };
 
     const finalImageUrl = content.imagemUrl || categoryImages[categoryId];
     const showImage = !!finalImageUrl;
 
+        const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
     return (
         <AppBackground>
-            <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: isDark ? '#000' : '#F6F6F6' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} translucent={false} />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                {/* Header Simples (Sem Parallax) */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24, paddingTop: 10, paddingBottom: 16 }}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={styles.backBtnFlat}
-                        accessibilityRole="button"
-                    >
-                        <NeoIcon name="ArrowLeft2" size={24} color={textPrimary} />
-                    </TouchableOpacity>
-                    <View style={{ marginLeft: 16, flex: 1 }}>
-                        <H1 style={[styles.titleFlat, { color: textPrimary }]} numberOfLines={1}>
+            {/* Float Header / Back Button */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: 40 }}
+            >
+                {/* HERO com parallax */}
+                {showImage ? (
+                    <Animated.View style={{
+                        width: '100%',
+                        height: HERO_HEIGHT,
+                        backgroundColor: isDark ? '#1C1C1E' : '#E5E5EA',
+                        overflow: 'hidden',
+                        transform: heroTransform,
+                    }}>
+                        <ReviewImage
+                            source={typeof finalImageUrl === 'number' ? finalImageUrl : { uri: finalImageUrl }}
+                            style={StyleSheet.absoluteFill}
+                            resizeMode="cover"
+                            accessibilityLabel={t_field(content, 'title')}
+                        />
+                        <LinearGradient
+                            colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? '#000' : '#F6F6F6']}
+                            locations={[0, 0.35, 0.85, 1]}
+                            style={StyleSheet.absoluteFill}
+                        />
+                        <View style={{
+                            position: 'absolute',
+                            bottom: 24,
+                            paddingHorizontal: 24,
+                            width: '100%',
+                        }}>
+                            <H1 style={{ color: '#FFF', marginBottom: 4 }}>
+                                {t_field(content, 'title')}
+                            </H1>
+                            <Caption style={{ color: 'rgba(255,255,255,0.9)' }}>
+                                {t_field(content, 'subtitle')}
+                            </Caption>
+                        </View>
+                    </Animated.View>
+                ) : (
+                    <View style={{ marginTop: 100, paddingHorizontal: 24 }}>
+                        <H1 style={{ color: textPrimary, marginBottom: 4 }}>
                             {t_field(content, 'title')}
                         </H1>
-                        <Caption style={[styles.subtitleFlat, { color: textBody, marginTop: 2 }]} numberOfLines={1}>
+                        <Caption style={{ color: textBody }}>
                             {t_field(content, 'subtitle')}
                         </Caption>
                     </View>
-                </View>
+                )}
 
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 40 }}
-                >
-                    {/* Imagem em banner arredondado flat */}
-                    {showImage && (
-                        <View style={{ width: '100%', height: 180, borderRadius: 24, overflow: 'hidden', marginBottom: 24 }}>
-                            <ReviewImage
-                                source={{ uri: finalImageUrl }}
-                                style={{ width: '100%', height: '100%' }}
-                                resizeMode="cover"
-                            />
-                        </View>
-                    )}
-
-                    <View style={{ marginTop: 24 }}>
+                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
                         {content.sections && content.sections.length > 0 ? (
                             content.sections.map((sec, idx) => renderSectionCard(sec, idx))
                         ) : null}
@@ -176,8 +229,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             </View>
                         )}
                     </View>
-                </ScrollView>
-            </SafeAreaView>
+                </Animated.ScrollView>
         </AppBackground>
     );
 }

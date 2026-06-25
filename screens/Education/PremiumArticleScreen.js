@@ -132,7 +132,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                 }}>
                     {conceito.imagemUrl ? (
                         <ReviewImage
-                            source={{ uri: conceito.imagemUrl }}
+                            source={typeof conceito.imagemUrl === 'string' ? (typeof conceito.imagemUrl === 'string' ? { uri: conceito.imagemUrl } : conceito.imagemUrl) : conceito.imagemUrl}
                             style={StyleSheet.absoluteFill}
                             resizeMode="cover"
                         />

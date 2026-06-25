@@ -7,7 +7,7 @@ export const FASES_VIDA_DATA = {
         cardTitle: 'Bebês', cardTitle_en: 'Babies', cardTitle_es: 'Bebés',
         desc: '0-2 anos', desc_en: '0-2 years', desc_es: '0-2 años',
         emoji: '👶',
-        imagemUrl: 'https://images.pexels.com/photos/4005601/pexels-photo-4005601.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/criancas-bebes_brinquedos-cuidados-ao-escolher-2_029.jpg'),
         icon: 'EmojiHappy',
         iconColor: '#0284C7', // Sky 600
         bg: '#E0F2FE', // Sky 100
@@ -739,7 +739,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '3 a 5 anos', desc_en: '3 to 5 years', desc_es: '3 a 5 años',
         emoji: '🚲',
-        imagemUrl: 'https://images.pexels.com/photos/8612916/pexels-photo-8612916.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/seguranca-geral-quarentena_seguranca-em-casa-durante-a-quarentena-3_004.jpg'),
         icon: 'Profile2User',
         iconColor: '#B45309', // Amber 700
         bg: '#FDE68A', // Amber 200
@@ -989,7 +989,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '6 a 14 anos', desc_en: '6 to 14 years', desc_es: '6 a 14 años',
         emoji: '⚽',
-        imagemUrl: 'https://images.pexels.com/photos/8926555/pexels-photo-8926555.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/acidentes-estatisticas_as-consequencias-dos-acidentes-domestico_004.png'),
         icon: 'Broadcast',
         iconColor: '#059669', // Emerald 600
         bg: '#DCFCE7', // Emerald 100
@@ -1276,7 +1276,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Idosos', cardTitle_en: 'Elderly', cardTitle_es: 'Tercera Edad',
         desc: '60+ anos', desc_en: '60+ years', desc_es: '60+ años',
         emoji: '👴',
-        imagemUrl: 'https://images.pexels.com/photos/8317775/pexels-photo-8317775.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/idosos_acessibilidade-direito-de-todos-hd-2_001.jpg'),
         icon: 'HeartCircle',
         iconColor: '#DB2777', // Pink 600
         bg: '#FCE7F3', // Pink 100

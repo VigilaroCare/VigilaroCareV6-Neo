@@ -91,7 +91,7 @@ export const MICRO_BLOG_ARTICLES = [
         title_en: 'Safety nets for windows and balconies',
         title_es: 'Mallas de seguridad para ventanas y balcones',
         category: 'bebes',
-        thumbnail: 'https://preveniremcasa.com.br/wp-content/uploads/2019/03/Redes-de-prote%C3%A7%C3%A3o-1.jpg',
+        thumbnail: require('../assets/illustrations/pad/rede_de_protecao.jpg'),
         readTime: 1,
         fullUrl: 'https://preveniremcasa.com.br/redes-de-protecao-para-janelas-e-sacadas/',
         summary: 'Prevenção de quedas:\n• Onde usar: Todas as janelas e sacadas do pavimento superior ou apartamentos.\n• Especificações: Redes em polietileno com malha máxima de 6 cm e selo INMETRO.\n• O que evitar: Não deixe móveis ou cadeiras perto das janelas, eles servem de "escada".\n• Atenção: Tela mosquiteira NÃO suporta o peso de uma criança.',

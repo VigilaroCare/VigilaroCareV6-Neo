@@ -53,7 +53,7 @@ export default function MicroArticleScreen({ navigation, route }) {
             {/* Hero Image */}
             <View style={{ position: 'relative' }}>
                 <Image
-                    source={{ uri: article.thumbnail }}
+                    source={typeof article.thumbnail === 'number' ? article.thumbnail : { uri: article.thumbnail }}
                     style={styles.heroImage}
                     resizeMode="cover"
                 />

@@ -7,10 +7,12 @@
  * (card horizontal com imagem à esquerda, badge de risco, resumo)
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
+    Animated,
+    Dimensions,
     Text,
     ScrollView,
     TouchableOpacity,
@@ -19,6 +21,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
@@ -60,6 +63,27 @@ export default function DispositivosProtecaoScreen({ navigation }) {
     const THEME_COLOR = Neo.colors.primary[700]; // Forest/Emerald — identidade de "proteção"
     const ITEMS = DISPOSITIVOS_PROTECAO;
 
+    
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.4],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
     const handlePress = (item) => {
         navigation.navigate('SafetyReviewDetail', { item });
     };
@@ -68,29 +92,47 @@ export default function DispositivosProtecaoScreen({ navigation }) {
         <AppBackground>
             <StatusBar style={isDark ? 'light' : 'dark'} />
 
-            {/* ═══ HEADER ═══ */}
-            <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+                        {/* PARALLAX HERO */}
+            <View style={[styles.heroWrapper, { height: HERO_HEIGHT }]}>
+                <Animated.View style={[styles.heroContainer, { transform: heroTransform }]}>
+                    <ReviewImage
+                        source={require('../../assets/illustrations/pad/hero_dispositivos_protecao.png')}
+                        style={styles.heroImage}
+                    />
+                    <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                        style={StyleSheet.absoluteFill}
+                    />
+                </Animated.View>
+            </View>
+
+            {/* HEADER OVERLAY */}
+            <View style={[styles.headerOverlay, { paddingTop: insets.top + 12 }]}>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
-                    style={[styles.backBtn, { backgroundColor: THEME_COLOR + '20' }]}
+                    style={[styles.backBtn, { backgroundColor: 'rgba(255,255,255,0.2)' }]}
                     activeOpacity={0.7}
                 >
-                    <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
+                    <NeoIcon name="ArrowLeft" size={22} color="#FFFFFF" />
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
-                    <Text style={styles.headerEmoji}>🛡️</Text>
-                    <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
+                    <Text style={[styles.headerTitle, { color: '#FFFFFF' }]} accessibilityRole="header">
                         {t('knowledgeHub.protectionDevices', 'Acessórios de Proteção')}
                     </Text>
-                    <Text style={[styles.headerSubtitle, { color: textBody }]}>
+                    <Text style={[styles.headerSubtitle, { color: 'rgba(255,255,255,0.8)' }]}>
                         {t('knowledgeHub.protectionDevicesDesc', 'Itens essenciais para proteger sua casa')}
                     </Text>
                 </View>
             </View>
 
-            <ScrollView
-                contentContainerStyle={styles.listContent}
+            <Animated.ScrollView
+                contentContainerStyle={[styles.listContent, { paddingTop: HERO_HEIGHT + 24 }]}
                 showsVerticalScrollIndicator={false}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
             >
                 {/* Info bar */}
                 <FadeInView delay={100}>
@@ -119,7 +161,7 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                                         <View style={[styles.guideImageContainer, { backgroundColor: riskBg }]}>
                                             {item.imagemUrl ? (
                                                 <ReviewImage
-                                                    source={{ uri: item.imagemUrl }}
+                                                    source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                                                     tint={THEME_COLOR}
                                                     accessibilityLabel={item.nome}
                                                 />
@@ -148,12 +190,39 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                 })}
 
                 <View style={{ height: 200 }} />
-            </ScrollView>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
+    heroWrapper: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        overflow: 'hidden',
+        zIndex: 0,
+    },
+    heroContainer: {
+        width: '100%',
+        height: '100%',
+    },
+    heroImage: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+    },
+    headerOverlay: {
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        flexDirection: 'row',
+        paddingHorizontal: 24,
+        paddingBottom: 20,
+        alignItems: 'flex-start',
+        zIndex: 10,
+    },
+
     header: {
         paddingHorizontal: 20,
         paddingBottom: 16,

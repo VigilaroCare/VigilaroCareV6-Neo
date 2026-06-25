@@ -58,7 +58,7 @@ const HIDDEN_ROUTES = new Set([
 const TAB_ROUTES = {
   HomeTab: new Set(['Dashboard', 'HomeScreen', 'Relatorios', 'MainTabNavigator', 'MainTabs']),
   KnowledgeTab: new Set(['KnowledgeHubScreen', 'KnowledgeTab', 'TravelSafetyGuide', 'TeoriaFogo']),
-  TravelModeTab: new Set(['TravelModeScreen', 'TravelModeTab']),
+  RelatorioTab: new Set(['ProfileRiskSummaryScreen', 'ProfileRiskSummary', 'RelatorioTab']),
   MenuTab: new Set(['MenuScreen', 'MenuTab', 'Settings']),
   AcessibilidadeTab: new Set(['AccessibilitySettingsScreen', 'AcessibilidadeTab']),
 };
@@ -77,11 +77,11 @@ const isTabActive = (tab, currentRouteName) => {
 // Glifos escolhidos para assimilar o footer de referência (recorte antigo):
 // casa, livro ABERTO, avião, hambúrguer (3 linhas) — agora via NeoIcon/Phosphor.
 const TAB_BUTTONS = [
-  { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'Home2' },
-  { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'BookOpen' },
+  { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'HouseSimple' },
+  { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'GraduationCap' },
   null, // espaçador central para o SOS
-  { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'AirplaneInFlight' },
-  { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'List' },
+  { labelKey: 'navigation.report',    route: 'RelatorioTab',  icon: 'ClipboardText' },
+  { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'SquaresFour' },
 ];
 
 export default function GlobalFloatingFooter({ currentRouteName }) {
@@ -254,9 +254,10 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
   const bottomPadding = insets.bottom > 0 ? insets.bottom : 10;
   const buttons = isLeftHanded ? [...TAB_BUTTONS].reverse() : TAB_BUTTONS;
 
+  // Fundo suave que remete à identidade visual do app (leve toque de verde/teal)
   const containerThemed = isDark
-    ? { backgroundColor: 'rgba(28,28,30,0.94)', borderTopColor: 'rgba(255,255,255,0.08)' }
-    : { backgroundColor: 'rgba(255,255,255,0.96)', borderTopColor: 'rgba(0,0,0,0.05)' };
+    ? { backgroundColor: 'rgba(20, 28, 26, 0.96)', borderTopColor: 'rgba(255,255,255,0.15)' }
+    : { backgroundColor: 'rgba(244, 251, 250, 0.96)', borderTopColor: 'rgba(0,0,0,0.12)' };
   const inactiveTabColor = isDark ? themeColors.neutral[700] : Neo.colors.neutral[500];
 
   return (

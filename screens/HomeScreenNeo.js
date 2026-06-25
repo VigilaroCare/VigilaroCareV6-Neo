@@ -65,9 +65,11 @@ const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
     atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
     scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
+    inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
     cuidar:      require('../assets/illustrations/home-pictograms/cuidar-proteger.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
+    viagem:      require('../assets/illustrations/home-pictograms/viagem.png'),
 };
 
 export default function HomeScreenNeo() {
@@ -238,16 +240,18 @@ export default function HomeScreenNeo() {
 
     // Pictogramas proprietários: a imagem carrega a linguagem visual;
     // rótulos continuam nativos para i18n e acessibilidade.
-    // Grid único de acesso rápido (6 tiles). Saúde voltou como REGISTRO por
+    // Grid único de acesso rápido (8 tiles). Saúde voltou como REGISTRO por
     // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
     // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
-    const GRID_ITEMS = [
-        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,  route: 'Relatorios'      },
-        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades, route: 'ModoPreventivo'   },
-        { key: 'minhasaude',  label: t('home.myHealth', 'Sua Saúde'),                     image: HOME_PICTOGRAMS.minhasaude, route: 'MinhaSaude'      },
-        { key: 'saudepet',    label: t('home.petHealth', 'Saúde do Pet'),                 image: HOME_PICTOGRAMS.saudepet,   route: 'SaudePet'        },
-        { key: 'scanner',     label: t('home.vigilaroScan', 'Vigilaro Scan'),             image: HOME_PICTOGRAMS.scanner,    route: 'VigilaroScanHub'  },
-        { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),       image: HOME_PICTOGRAMS.cuidar,     route: 'CuidarProtegerHub' },
+        const GRID_ITEMS = [
+        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,   route: 'Relatorios'      },
+        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades,  route: 'ModoPreventivo'  },
+        { key: 'minhasaude',  label: t('home.myHealth', 'Minha Saúde'),                    image: HOME_PICTOGRAMS.minhasaude,  route: 'MinhaSaude'      },
+        { key: 'saudepet',    label: t('home.petHealth', 'Saúde Pet'),                     image: HOME_PICTOGRAMS.saudepet,    route: 'SaudePet'        },
+        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),              image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                  image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
+        { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),         image: HOME_PICTOGRAMS.cuidar,      route: 'CuidarProtegerHub' },
+        { key: 'viagem',      label: t('home.travelMode', 'Modo Viagem'),                   image: HOME_PICTOGRAMS.viagem,      route: 'TravelModeScreen' },
     ];
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
@@ -300,14 +304,16 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 220, // Aumentado significativamente para desgrudar do botão SOS / Tab bar
+                        paddingBottom: 140, // Espaço para o botão SOS + floating footer
                         paddingTop: 0,
                     }}
                 >
                     <HeroScoreCard 
                         scoreData={scoreData}
                         heroHeadline={heroHeadline}
-                        onPress={() => navigateWithHaptic('Relatorios')}
+                        onPress={toggleMonitor}
+                        isExpanded={monitorExpanded}
+                        scoreMessage={scoreMessage}
                     />
 
                     {contextualAlert && (
@@ -369,57 +375,25 @@ export default function HomeScreenNeo() {
                         ))}
                     </View>
 
-                    <Eyebrow style={[s.sectionEyebrow, { marginTop: 15 }]}>
-                        {t('home.reportsEyebrow', 'Inteligência & Relatórios')}
-                    </Eyebrow>
 
-                    <View style={{ gap: 12 }}>
-                        {currentProfile && (
-                            <TouchableOpacity onPress={() => navigateWithHaptic('ProfileRiskSummary', { profile: currentProfile })} activeOpacity={0.85}>
-                                <View style={s.heroShadowWrap}>
-                                    <LinearGradient
-                                        colors={cardBgColor}
-                                        style={[s.heroCard, { 
-                                            padding: 16, flexDirection: 'row', alignItems: 'center',
-                                            borderColor: cardBorderColor, borderWidth: cardBorderWidth 
-                                        }]}
-                                        start={{ x: 0, y: 0 }}
-                                        end={{ x: 1, y: 1 }}
-                                    >
+
+                    <View style={{ marginTop: 32 }}>
+                        <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
+                            <View style={s.heroShadowWrap}>
+                                <LinearGradient
+                                    colors={cardBgColor}
+                                    style={[s.heroCard, { 
+                                        padding: 16, flexDirection: 'row', alignItems: 'center',
+                                        borderColor: cardBorderColorResolved, borderWidth: cardBorderWidthResolved 
+                                    }]}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 1 }}
+                                >
                                     <Image 
-                                        source={require('../assets/illustrations/home-pictograms/relatorio-personalizado.png')}
-                                        style={{ width: 60, height: 60, marginRight: 16, transform: [{ scale: 1.1 }] }}
+                                        source={require('../assets/illustrations/home-pictograms/raio-x.png')}
+                                        style={{ width: 60, height: 60, marginRight: 16 }}
                                         resizeMode="contain"
                                     />
-                                    <View style={{ flex: 1 }}>
-                                        <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>
-                                            {t('home.customReport', 'Relatório Personalizado')}
-                                        </Body>
-                                        <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>
-                                            Análise de riscos para {currentProfile.nome}
-                                        </Caption>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[700]} />
-                                </LinearGradient>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                    <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
-                        <View style={s.heroShadowWrap}>
-                            <LinearGradient
-                                colors={cardBgColor}
-                                style={[s.heroCard, { 
-                                    padding: 16, flexDirection: 'row', alignItems: 'center',
-                                    borderColor: cardBorderColor, borderWidth: cardBorderWidth 
-                                }]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 1 }}
-                            >
-                                <Image 
-                                    source={require('../assets/illustrations/home-pictograms/raio-x.png')}
-                                    style={{ width: 60, height: 60, marginRight: 16 }}
-                                    resizeMode="contain"
-                                />
                                     <View style={{ flex: 1 }}>
                                         <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>
                                             {t('home.homeXray', 'Raio-X da Casa')}
@@ -501,6 +475,7 @@ function BarePictogramShortcut({
     }
 
     const imageHeight = imageWidth * PICTO_RATIO;
+
     return (
         <TappablePressable
             style={s.barePictogram}
@@ -524,6 +499,16 @@ function BarePictogramShortcut({
 }
 
 const s = StyleSheet.create({
+    heroShadowWrap: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+        elevation: 8,
+    },
+    heroCard: {
+        borderRadius: 24,
+    },
     // ── Header: saudação + perfil ──
     homeHeader: {
         justifyContent: 'space-between',
@@ -708,7 +693,7 @@ const s = StyleSheet.create({
     },
     barePictogram: {
         alignItems: 'center',
-        paddingVertical: 2,
+        paddingVertical: 0,
     },
     barePictogramRow: {
         flexDirection: 'row',
@@ -728,7 +713,7 @@ const s = StyleSheet.create({
         fontSize: 13,
         lineHeight: 16,
         textAlign: 'center',
-        marginTop: 5,
+        marginTop: -10,
         paddingHorizontal: 4,
     },
     barePictogramLabelRow: {

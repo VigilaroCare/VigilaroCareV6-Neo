@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 /**
  * InfoRotulosScreen.js
  * Hub do módulo InfoRótulos
@@ -21,6 +22,8 @@ import {
   TextInput,
   Linking,
   ActivityIndicator,
+  Animated,
+  Image
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -33,7 +36,7 @@ import NeoIcon from '../components/NeoIcon';
 import { H1, Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
 import NeoScreenHeader from '../components/NeoScreenHeader';
 import FadeInView from '../components/FadeInView';
-import { useIsDark } from '../utils/ThemeContext';
+import { useIsDark, useThemeColors } from '../utils/ThemeContext';
 
 import { buscarProdutoPorNome } from '../data/produtos_scanner';
 import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
@@ -45,6 +48,7 @@ export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
     const navigation = useNavigation();
     const isDark = useIsDark();
+    const themeColors = useThemeColors();
     const searchRef = useRef(null);
     const searchTimeout = useRef(null);
 
@@ -141,22 +145,106 @@ export default function InfoRotulosScreen() {
         }
     };
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const titleStr = t('inforotulos.headerTitle', 'Info Rótulos');
+    const subtitleStr = t('inforotulos.headerSubtitle', 'Segurança em produtos para sua família');
+    const capaSource = require('../assets/illustrations/pad/hero_rotulos.jpg');
+
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+            
+                
 
-                <NeoScreenHeader
-                    title={t('inforotulos.headerTitle', 'Info Rótulos')}
-                    subtitle={t('inforotulos.headerSubtitle', 'Segurança em produtos para sua família')}
-                    onBack={() => navigation.goBack()}
-                />
-
-                <ScrollView
-                    contentContainerStyle={s.scrollContent}
-                    showsVerticalScrollIndicator={false}
-                    keyboardShouldPersistTaps="handled"
+                
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
                 >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 40 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <Image
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={titleStr}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {titleStr}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitleStr}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
+
+
+                
                     {/* CAMPO DE BUSCA */}
                     <FadeInView delay={80}>
                         <NeoCard variant="elevated" style={s.searchCard}>
@@ -342,8 +430,9 @@ export default function InfoRotulosScreen() {
                     <Small style={s.disclaimer}>
                         {t('inforotulos.disclaimer', 'O Vigilaro Care não substitui avaliação de um toxicologista, engenheiro químico ou profissional de saúde. Use as informações como referência educativa. Em caso de intoxicação, ligue imediatamente para o CIATOX ou SAMU.')}
                     </Small>
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </Animated.ScrollView>
+            
         </AppBackground>
     );
 }

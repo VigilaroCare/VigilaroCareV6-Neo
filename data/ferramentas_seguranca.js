@@ -11,6 +11,7 @@ export const FERRAMENTAS_DATA = {
         { id: 3, title: 'Desconexão', text: 'Sempre desligar da TOMADA (não apenas o botão) após uso e antes de trocar acessórios.' },
         { id: 4, title: 'Guarda Segura', text: 'Armazene em local seco, trancado e longe de crianças.' },
         { id: 5, title: 'Não Improvise', text: 'Use a ferramenta correta para a função correta. Improviso é um ato inseguro.' },
+        { id: 6, title: 'Proteções de Fábrica', text: 'Nunca retire as capas de proteção originais de serras ou lixadeiras.' },
     ],
     categories: [
         {
@@ -18,7 +19,7 @@ export const FERRAMENTAS_DATA = {
             title: 'Ferramentas Manuais',
             subtitle: '10 Itens Essenciais',
             image: null,
-            imagemUrl: 'https://images.pexels.com/photos/34471533/pexels-photo-34471533.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/ferramentas-bricolagem_ferramentas-domesticas_006.jpg'),
             color: '#FFA000',
             icon: 'Setting2',
             items: [
@@ -40,7 +41,7 @@ export const FERRAMENTAS_DATA = {
             title: 'Ferramentas Elétricas',
             subtitle: '10 Itens de Atenção',
             image: null,
-            imagemUrl: 'https://images.pexels.com/photos/30413428/pexels-photo-30413428.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/ferramentas-bricolagem_teal-and-black-bosch-cordless-hand-drill_015.jpg'),
             color: '#D32F2F',
             icon: 'Flash',
             items: [

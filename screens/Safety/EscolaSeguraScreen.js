@@ -595,7 +595,7 @@ const styles = StyleSheet.create({
         borderColor: Neo.colors.feedback.error + '33', // ~FEE2E2 equivalent
     },
     criticoBadgeText: {
-        color: Neo.colors.emergency?.panicDark || '#B91C1C',
+        color: Neo.emergency?.panicDark || '#B91C1C',
         fontWeight: 'bold',
         fontSize: 8,
     },

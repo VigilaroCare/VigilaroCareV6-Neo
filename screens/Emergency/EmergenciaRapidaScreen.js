@@ -27,7 +27,7 @@ const EMERGENCIA_TIPOS = [
     ],
   },
   {
-    id: 'parada', titulo: 'PARADA CARDÍACA', icon: 'Heart', cor: Neo.colors.emergency?.panic || '#DC2626',
+    id: 'parada', titulo: 'PARADA CARDÍACA', icon: 'Heart', cor: Neo.emergency?.panic || '#DC2626',
     passos: [
       '1. Deite a pessoa no chão duro.',
       '2. Coloque as mãos no centro do peito.',
@@ -102,13 +102,13 @@ export default function EmergenciaRapidaScreen({ navigation }) {
               <Text style={s.callText}>CIT 0800 722 6001</Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={LigarSamu} style={[s.callBtn, { backgroundColor: Neo.colors.emergency?.panicDark || '#B91C1C' }]}>
+            <TouchableOpacity onPress={LigarSamu} style={[s.callBtn, { backgroundColor: Neo.emergency?.panicDark || '#B91C1C' }]}>
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.callText}>{t('headersFirst.sAMU192', 'SAMU 192')}</Text>
             </TouchableOpacity>
           )}
           {tipoSelecionado.id === 'incendio' && (
-            <TouchableOpacity onPress={LigarBombeiros} style={[s.callBtn, { backgroundColor: Neo.colors.emergency?.panicDark || '#991B1B', marginTop: 12 }]}>
+            <TouchableOpacity onPress={LigarBombeiros} style={[s.callBtn, { backgroundColor: Neo.emergency?.panicDark || '#991B1B', marginTop: 12 }]}>
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
               <Text style={s.callText}>{t('headersFirst.bOMBEIROS193', 'BOMBEIROS 193')}</Text>
             </TouchableOpacity>

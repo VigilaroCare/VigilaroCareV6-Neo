@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { View, ScrollView, StyleSheet, Share, ActivityIndicator } from 'react-native';
+
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useRef, useState, useCallback } from 'react';
+import { View, Text, Image, Animated, ScrollView, StyleSheet, Share, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -70,6 +72,32 @@ export default function MinhaSaudeScreen() {
         return () => { alive = false; };
     }, [perfilId]));
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const titleStr = perfilId ? (profile?.nome || 'Perfil') : t('health.myHealth', 'Sua Saúde');
+    const subtitleStr = perfilId ? 'Ficha de saúde' : (profile?.nome || null);
+    const capaSource = { uri: 'https://images.pexels.com/photos/3768005/pexels-photo-3768005.jpeg?auto=compress&cs=tinysrgb&w=1200' };
+    const themeColors = Neo.colors;
+    const isDark = false;
+
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
     const condicoes = asList(profile?.condicoesMedicas);
     const alergias = asList(profile?.alergias);
@@ -122,22 +150,84 @@ export default function MinhaSaudeScreen() {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+            
                 <StatusBar style="dark" />
-                <NeoScreenHeader
-                    title={perfilId ? (profile?.nome || 'Perfil') : t('health.myHealth', 'Sua Saúde')}
-                    subtitle={perfilId ? 'Ficha de saúde' : (profile?.nome || null)}
-                    onBack={() => navigation.goBack()}
-                />
+                            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 40 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <Image
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={titleStr}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {titleStr}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitleStr}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
 
                 {loading ? (
-                    <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
+                    <View style={s.scroll}>
                         <View style={{ marginTop: Neo.spacing.md }}>
                             <SkeletonCard lines={2} />
                             <SkeletonCard lines={3} />
                             <SkeletonCard lines={2} />
                         </View>
-                    </ScrollView>
+                    </View>
                 ) : !profile ? (
                     <EmptyState
                         icon="Users"
@@ -150,7 +240,7 @@ export default function MinhaSaudeScreen() {
                         }}
                     />
                 ) : (
-                    <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
+                    <View style={s.scroll}>
                         {/* HERO — identidade: foto à esquerda + lead à direita (formato único §2) */}
                         <NeoCard variant="premium" style={s.hero}>
                             <View style={s.heroRow}>
@@ -221,9 +311,11 @@ export default function MinhaSaudeScreen() {
                                 type="primary"
                             />
                         </View>
-                    </ScrollView>
+                    </View>
                 )}
-            </SafeAreaView>
+            
+            </View>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

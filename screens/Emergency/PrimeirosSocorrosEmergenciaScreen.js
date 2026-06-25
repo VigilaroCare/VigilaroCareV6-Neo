@@ -262,7 +262,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                         <PetHeroBanner
                             image={petHero.imagem}
                             imageUrl={petHero.imagemUrl}
-                            tint={petHero.cor || Neo.colors.emergency?.panic}
+                            tint={petHero.cor || Neo.emergency?.panic}
                             resizeMode={petHero.resizeMode || 'cover'}
                             accessibilityLabel={petHero.titulo}
                             marginHorizontal={0}
@@ -341,9 +341,9 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                             backgroundColor: passo.critico ? '#FFF1F2' : colors.neutral.white, // TODO: map #FFF1F2 to DS token (rose-50)
                             borderColor: passo.critico ? '#FDA4AF' : Neo.colors.neutral[200], // TODO: map #FDA4AF to DS token (rose-300)
                             borderLeftWidth: passo.critico ? 6 : 1,
-                            borderLeftColor: passo.critico ? Neo.colors.emergency?.panic : Neo.colors.neutral[200] // DS: data-level crisis color
+                            borderLeftColor: passo.critico ? Neo.emergency?.panic : Neo.colors.neutral[200] // DS: data-level crisis color
                         }}>
-                            <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: passo.critico ? Neo.colors.emergency?.panic : emergenciaSelecionada.cor + '20', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
+                            <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: passo.critico ? Neo.emergency?.panic : emergenciaSelecionada.cor + '20', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
                                 <H3 style={{ color: passo.critico ? Neo.colors.neutral.white : emergenciaSelecionada.cor }}>{index + 1}</H3>
                             </View>
                             <View style={{ flex: 1 }}>
@@ -382,7 +382,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                 ) : (
                     <TouchableOpacity onPress={ligar192} activeOpacity={0.8} style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                        backgroundColor: Neo.colors.emergency?.panic, paddingVertical: 18, borderRadius: 20, ...Neo.shadows?.md
+                        backgroundColor: Neo.emergency?.panic, paddingVertical: 18, borderRadius: 20, ...Neo.shadows?.md
                     }}>
                         <NeoIcon name="Call" size={24} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 12 }} />
                         <H3 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('firstAid.callEmergency')}</H3>

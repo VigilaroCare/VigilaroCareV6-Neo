@@ -4,6 +4,7 @@
         "education": "Aprender",
         "travel": "Viagem",
         "menu": "Menu",
+        "report": "Relatório",
         "sosLabel": "Botão SOS de emergência",
         "sosHint": "Toque para abrir emergência. Mantenha pressionado para rápida."
     },
@@ -1238,7 +1239,7 @@
         "electronicDevices": "Dispositivos Eletrónicos",
         "homeAppliances": "Eletrodomésticos",
         "householdUtensils": "Utensílios Domésticos",
-        "toolsAndRepairs": "Ferramentas & Reparações",
+        "toolsAndRepairs": "Ferramentas & Reparos",
         "safetyAndMaintenance": "Segurança e Manutenção.",
         "gardening": "Jardinagem",
         "chemicals": "Produtos Químicos",

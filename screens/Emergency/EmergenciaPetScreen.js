@@ -95,7 +95,7 @@ export default function EmergenciaPetScreen({ navigation }) {
           {/* PÂNICO: INTOXICAÇÃO */}
           <TouchableOpacity activeOpacity={0.85} onPress={callCiatox}>
             <View style={[s.panicCard, { backgroundColor: Neo.colors.feedback.error }]}>
-              <View style={[s.panicIcon, { backgroundColor: Neo.colors.emergency?.panicDark || '#B91C1C' }]}>
+              <View style={[s.panicIcon, { backgroundColor: Neo.emergency?.panicDark || '#B91C1C' }]}>
                 <NeoIcon name="Danger" size={26} color={colors.neutral.white} variant="Bold" />
               </View>
               <View style={{ flex: 1 }}>

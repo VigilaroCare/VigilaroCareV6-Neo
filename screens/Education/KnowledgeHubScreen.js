@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 /**
  * KnowledgeHubScreen.js
  * Aba Aprender — Biblioteca de Guias e Conteúdo Educacional
@@ -11,9 +12,9 @@
  *  - Conceitos Essenciais (1 item) vira card único, evita grid órfão
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, FlatList,
+    View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, FlatList, Animated
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -24,6 +25,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
+import ReviewImage from '../../components/ReviewImage';
 import { H1, Body } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -124,6 +126,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                 { id: 'emergencias',              titulo: t('knowledgeHub.escapePlans'), iconName: 'ExportSquare',      cor: themeColors.feedback.error, route: 'PlanoIncendio' },
                 { id: 'primeiros_socorros_hub',   titulo: t('knowledgeHub.firstAid'),    iconName: 'Health',            cor: themeColors.feedback.error, route: 'PrimeirosSocorros' },
                 { id: 'kits_emergencia',          titulo: t('knowledgeHub.kitsGuide'),   iconName: 'Briefcase',         cor: themeColors.feedback.error, route: 'GuiaKitsEmergencia' },
+                { id: 'vazamento_gas',            titulo: t('knowledgeHub.gasLeak', 'Vazamento de Gás'), iconName: 'Danger', cor: themeColors.feedback.error, route: 'GenericCategory', params: { categoryId: 'vazamento_gas' } },
             ],
         },
         {
@@ -213,21 +216,101 @@ export default function KnowledgeHubScreen({ navigation }) {
         );
     };
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const title = t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção');
+    const subtitle = t('knowledgeHub.featured', 'Biblioteca de Guias e Conteúdo Educacional');
+    const capaSource = require('../../assets/illustrations/pad/hero_knowledge.png');
+
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={s.scrollContent}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
                 >
-                    {/* HEADER — consistente com Home + Menu */}
-                    <View style={s.headerBlock}>
-                        <H1 style={[s.title, { color: textPrimary }]} accessibilityRole="header">
-                            {t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção')}
-                        </H1>
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 110 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={title}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {title}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitle}
+                        </Text>
                     </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
 
                     {/* DESTAQUES — carrossel horizontal */}
                     <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
@@ -348,8 +431,8 @@ export default function KnowledgeHubScreen({ navigation }) {
                         </View>
                     ))}
 
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

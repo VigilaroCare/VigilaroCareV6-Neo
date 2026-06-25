@@ -334,7 +334,7 @@ const getStyles = (colors) => StyleSheet.create({
   botaoCiatox: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Neo.colors.emergency?.panic || colors.feedback.error,
+    backgroundColor: Neo.emergency?.panic || colors.feedback.error,
     marginHorizontal: 16,
     marginTop: 0,
     padding: 20,

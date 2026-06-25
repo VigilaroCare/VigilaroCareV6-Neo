@@ -263,6 +263,17 @@ export const produtosPerigosos = [
         primeirosSocorros: 'Hospital se ingestão significativa.'
     },
     {
+        id: 'jardim_2',
+        nome: 'Pesticidas e Inseticidas',
+        categoria: 'Jardinagem',
+        emoji: '☠️',
+        nivelPerigo: 'EXTREMO',
+        descricao: 'Risco altíssimo de intoxicação letal para crianças e pets por contato ou ingestão acidental.',
+        prevencao: 'Trancar em armários altos. Manter SEMPRE no rótulo original. Priorizar opções orgânicas ou naturais.',
+        sintomas: 'Convulsões, salivação excessiva, pupilas contraídas, taquicardia.',
+        primeirosSocorros: 'Ligar para o CIATOX/SAMU. Levar a embalagem ao pronto-socorro. NÃO induzir vômito.'
+    },
+    {
         id: 'misturas_perigo',
         nome: 'Misturas Caseiras Perigosas',
         categoria: 'Alerta',

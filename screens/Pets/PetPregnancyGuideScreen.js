@@ -96,7 +96,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                 }}>
                     {petHero && (
                         <ReviewImage
-                            source={petHero.imagemUrl ? { uri: petHero.imagemUrl } : petHero.imagem}
+                            source={petHero.imagemUrl ? (typeof petHero.imagemUrl === 'string' ? { uri: petHero.imagemUrl } : petHero.imagemUrl) : petHero.imagem}
                             style={StyleSheet.absoluteFill}
                             resizeMode={petHero.resizeMode || 'cover'}
                         />

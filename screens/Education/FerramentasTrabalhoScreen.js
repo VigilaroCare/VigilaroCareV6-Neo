@@ -77,35 +77,6 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                     ))}
                 </View>
 
-                {/* Acessos Rápidos - Guias de EPI e Acessórios */}
-                <View style={{ flexDirection: 'row', gap: 12, marginBottom: 24 }}>
-                    <TouchableOpacity
-                        style={{ flex: 1 }}
-                        onPress={() => navigation.navigate('EpiDomestico')}
-                        activeOpacity={0.8}
-                    >
-                        <NeoCard variant="glass" style={{ padding: 16, borderRadius: 16, alignItems: 'center' }}>
-                            <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E8F5E9', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                <NeoIcon name="Health" size={24} color={Neo.colors.feedback.success} variant="Bold" />
-                            </View>
-                            <Small style={{ color: textPrimary, fontWeight: 'bold', textAlign: 'center' }}>Guia de{'\n'}EPIs</Small>
-                        </NeoCard>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={{ flex: 1 }}
-                        onPress={() => navigation.navigate('AcessoriosSeguranca')}
-                        activeOpacity={0.8}
-                    >
-                        <NeoCard variant="glass" style={{ padding: 16, borderRadius: 16, alignItems: 'center' }}>
-                            <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E3F2FD', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
-                                <NeoIcon name="ShieldTick" size={24} color={Neo.colors.secondary[500]} variant="Bold" />
-                            </View>
-                            <Small style={{ color: textPrimary, fontWeight: 'bold', textAlign: 'center' }}>Dispositivos{'\n'}de Proteção</Small>
-                        </NeoCard>
-                    </TouchableOpacity>
-                </View>
-
                 {/* Categorias - Estilo Nível 2 */}
                 {categories.map((category) => (
                     <View key={category.id} style={styles.categoryContainer}>
@@ -118,7 +89,7 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
                                     <View style={[styles.guideImageContainer, { backgroundColor: category.color + '15' }]}>
                                         {category.imagemUrl ? (
                                             <ReviewImage
-                                                source={{ uri: category.imagemUrl }}
+                                                source={typeof category.imagemUrl === 'string' ? (typeof category.imagemUrl === 'string' ? { uri: category.imagemUrl } : category.imagemUrl) : category.imagemUrl}
                                                 tint={category.color}
                                                 accessibilityLabel={category.title}
                                             />

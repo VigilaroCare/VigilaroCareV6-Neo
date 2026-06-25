@@ -22,40 +22,80 @@ export default function JardinagemSeguraScreen({ navigation }) {
 
     const topics = [
         {
-            id: 'kit',
-            titulo: t('headersFirst.preparaODoSolo', 'O Kit Essencial'),
-            subtitulo: 'Ferramentas seguras para preparar o solo, podar, regar e limpar.',
-            icon: 'Setting2',
-            conteudo: 'A jardinagem exige ferramentas específicas para garantir a segurança e evitar acidentes.\n\nPreparo do Solo:\n- Pá de Jardinagem: Fundamental para mover terra.\n- Garfo de Mão: Essencial para afofar a terra.\n- Ancinho (Rastelo): Nivela o solo.\n\nPoda e Manutenção:\n- Tesoura de Poda: Indispensável para aparar ramos secos e colheitas.\n- Serrote: Para galhos espessos.\n\nRega e Limpeza:\n- Regador e Pulverizador: Para irrigação suave.\n- Carrinho de Mão: Transporte pesado para evitar lesões.',
-            prevencao: [
-                'Sempre guarde as ferramentas limpas e secas.',
-                'Cuidado com ferramentas enferrujadas (risco de tétano).',
-                'Mantenha fora do alcance das crianças.'
-            ]
-        },
-        {
             id: 'epis',
-            titulo: t('headersFirst.proteOObrigatRia', 'Segurança e EPIs'),
-            subtitulo: 'Proteção obrigatória: luvas, calçados fechados e chapéu.',
+            titulo: t('headersFirst.proteOObrigatRia', 'A "Armadura" do Jardineiro'),
+            subtitulo: 'Proteção obrigatória: luvas, calçados fechados e camisas de manga longa.',
             icon: 'ShieldTick',
-            conteudo: 'A prática da jardinagem e o cultivo de hortas em casa requerem o uso de Equipamentos de Proteção Individual (EPIs) para evitar cortes, alergias, picadas e exposição excessiva ao sol.',
+            imagemUrl: require('../../assets/illustrations/pad/generated_jardim_tools_centered.png'),
+            conteudo: 'A prática da jardinagem e a manutenção de hortas apresentam riscos específicos. É essencial e obrigatório o uso de luvas de jardinagem de boa qualidade, calçados fechados (ou botas de cano longo), além de camisas de manga comprida e calças com as barras fechadas.',
             prevencao: [
-                'Luvas: Proteção contra espinhos, cortes e produtos químicos.',
-                'Calçados Fechados: Botas de couro ou cano longo (proteção contra picadas de animais).',
-                'Roupas: Calças compridas e manga longa contra sol e insetos.',
-                'Proteção Solar: Chapéu, boné e evitar horários de pico solar.'
+                'Essa armadura impede que insetos entrem na roupa e piquem a pele.',
+                'Evita que a pele seja queimada pelo contato com seiva leitosa (látex) de plantas nocivas ao podá-las.'
             ]
         },
         {
-            id: 'riscos',
-            titulo: t('headersFirst.PlantasTXicas', 'Riscos Específicos'),
-            subtitulo: 'Plantas tóxicas, produtos químicos e animais peçonhentos.',
+            id: 'riscos_quimicos',
+            titulo: 'Fertilizantes e Pesticidas',
+            subtitulo: 'Armazenamento inadequado é um alto risco de intoxicação.',
             icon: 'Danger',
-            conteudo: 'Alguns elementos do jardim podem representar riscos graves para crianças, pets e adultos se não forem manejados corretamente.',
-            exemplos: [
-                'Produtos Químicos: Fertilizantes e pesticidas devem ficar na embalagem original e trancados. Jamais reutilize garrafas de refrigerante para venenos.',
-                'Plantas Tóxicas: Comigo-ninguém-pode, Bico-de-papagaio. O contato com a seiva pode causar queimaduras.',
-                'Animais Peçonhentos: Entulhos atraem escorpiões e aranhas. Mantenha o quintal limpo e examine calçados e luvas antes de calçar.'
+            imagemUrl: require('../../assets/illustrations/pad/generated_jardim_chemicals.png'),
+            conteudo: 'O uso e, principalmente, o armazenamento inadequado de produtos químicos de jardinagem (como adubos, inseticidas e pesticidas) representam um alto risco de intoxicação letal para crianças pequenas e pets, que podem ingerir esses produtos acidentalmente.',
+            prevencao: [
+                'Fertilizantes e pesticidas devem ser mantidos trancados em armários altos.',
+                'Sempre manter na caixa original bem rotulada.',
+                'Dê preferência a fertilizantes e pesticidas orgânicos/naturais.'
+            ]
+        },
+        {
+            id: 'riscos_clima',
+            titulo: 'Exposição ao Clima e Insolação',
+            subtitulo: 'Proteção contra o sol ardente durante o cultivo.',
+            icon: 'Sun1',
+            imagemUrl: require('../../assets/illustrations/pad/plantas-toxicas_equinacea-flor_014.jpg'),
+            conteudo: 'Ficar exposto ao sol quente por longos períodos durante o cuidado com o jardim também é considerado um risco silencioso, podendo causar forte desidratação e mal-estar térmico (insolação).',
+            prevencao: [
+                'Priorize o trabalho nas primeiras horas da manhã ou no fim da tarde.',
+                'Utilizar chapéus ou bonés e protetor solar sempre que estiver no jardim.',
+                'Mantenha-se hidratado constantemente.'
+            ]
+        },
+        {
+            id: 'riscos_biologicos',
+            titulo: 'Plantas Tóxicas',
+            subtitulo: 'Contato e ingestão de plantas ornamentais tóxicas.',
+            icon: 'Danger',
+            imagemUrl: require('../../assets/illustrations/pad/plantas-toxicas_plantas-toxicas_030.jpg'),
+            conteudo: 'Plantas muito comuns (Comigo-ninguém-pode, Bico-de-papagaio, Tinhorão, Coroa-de-cristo, Aroeira e Mamona) oferecem grande risco de intoxicação para crianças e animais.',
+            prevencao: [
+                'Identificar e evitar o cultivo dessas plantas em áreas de fácil acesso.',
+                'Ao podá-las, o uso de luvas é fundamental.',
+                'Lembrar que reações vão desde bolhas na pele até asfixia e convulsões se ingeridas.'
+            ]
+        },
+        {
+            id: 'riscos_ferramentas',
+            titulo: 'Ferramentas Manuais e Elétricas',
+            subtitulo: 'Atenção redobrada com lâminas e pontas.',
+            icon: 'Setting2',
+            imagemUrl: require('../../assets/illustrations/pad/generated_jardim_tools_centered.png'),
+            conteudo: 'Acidentes com tesouras de poda, ancinhos ou cortadores de grama causam lesões sérias e profundas.',
+            prevencao: [
+                'Sempre desligue cortadores de grama da tomada antes de mexer na lâmina para limpá-la.',
+                'Guarde enxadas, ancinhos e tesouras em local alto e trancado, longe do alcance de crianças.',
+                'Ao caminhar pelo jardim, não deixe ferramentas com pontas viradas para cima na grama.'
+            ]
+        },
+        {
+            id: 'riscos_ergonomicos_animais',
+            titulo: 'Vasos Pesados e Animais Escondidos',
+            subtitulo: 'Proteja a coluna e fuja dos insetos e escorpiões.',
+            icon: 'Health',
+            imagemUrl: require('../../assets/illustrations/pad/fotos-stock-genericas_vespa-inseto_001.jpg'),
+            conteudo: 'Abaixo de vasos pesados e úmidos costumam se abrigar aranhas e escorpiões. Além disso, levantar o peso de forma incorreta pode travar a sua coluna lombar.',
+            prevencao: [
+                'Antes de mover um vaso no chão, bata levemente nas laterais e sacuda-o usando um graveto para afugentar animais peçonhentos.',
+                'Evite carregar vasos muito pesados sozinho. Se for levantar, dobre os joelhos e mantenha a coluna reta.',
+                'Sempre use luvas de raspa de couro ao mexer em entulhos de jardim.'
             ]
         }
     ];
@@ -91,7 +131,7 @@ export default function JardinagemSeguraScreen({ navigation }) {
         }
     ];
 
-    const capaUrl = 'https://images.pexels.com/photos/1084199/pexels-photo-1084199.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Gardening
+    const capaUrl = require('../../assets/illustrations/pad/ambientes-casa_jardim_019.jpg'); // Jardinagem // Gardening
 
     const title = t('headersFirst.gardening', 'Jardinagem Segura');
     const subtitle = t('headersFirst.cultivoSeguro', 'Práticas seguras de cultivo');
@@ -127,7 +167,7 @@ export default function JardinagemSeguraScreen({ navigation }) {
                     transform: heroTransform,
                 }}>
                     <ReviewImage
-                        source={{ uri: capaUrl }}
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />
@@ -176,6 +216,7 @@ export default function JardinagemSeguraScreen({ navigation }) {
                             title={item.titulo}
                             description={item.subtitulo}
                             iconName={item.icon}
+                              imageUrl={item.imagemUrl}
                             color={THEME_COLOR}
                             onPress={() => handlePress(item)}
                         />

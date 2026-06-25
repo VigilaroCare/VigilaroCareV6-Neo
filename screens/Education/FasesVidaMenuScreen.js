@@ -1,5 +1,6 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions, Animated } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
@@ -58,34 +59,101 @@ export default function FasesVidaMenuScreen({ navigation }) {
         });
     };
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const title = t('fasesVida.title', 'Fases da Vida');
+    const subtitle = t('fasesVida.subtitle', 'Guia de proteção por faixa etária');
+    const capaSource = require('../../assets/illustrations/pad/hero_fases_vida.png');
+
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                {/* HEADER padronizado (alinha com outras telas premium) */}
-                <View style={styles.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                        accessibilityRole="button"
-                        accessibilityLabel={t('common.back', 'Voltar')}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }}>
-                        <H1 style={styles.title} accessibilityRole="header">
-                            {t('fasesVida.title', 'Fases da Vida')}
-                        </H1>
-                        <Caption style={styles.subtitle}>
-                            {t('fasesVida.subtitle', 'Guia de proteção por faixa etária')}
-                        </Caption>
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 40 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={title}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {title}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitle}
+                        </Text>
                     </View>
-                </View>
+                </Animated.View>
 
-                {/* Vertical List Layout */}
-                <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
+                {/* Main Content */}
+                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
                     <View style={styles.listContainer}>
                         {items.map((item) => {
                             const iconName = item.icon;
@@ -103,7 +171,7 @@ export default function FasesVidaMenuScreen({ navigation }) {
                                             <View style={[styles.guideImageContainer, { backgroundColor: item.color + '33' }]}>
                                                 {item.imagemUrl && !imageErrors[item.id] ? (
                                                     <ReviewImage
-                                                        source={{ uri: item.imagemUrl }}
+                                                        source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                                                         tint={item.iconColor}
                                                         accessibilityLabel={item.cardTitle}
                                                         onError={() => setImageErrors(prev => ({ ...prev, [item.id]: true }))}
@@ -124,8 +192,8 @@ export default function FasesVidaMenuScreen({ navigation }) {
                         })}
                     </View>
 
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

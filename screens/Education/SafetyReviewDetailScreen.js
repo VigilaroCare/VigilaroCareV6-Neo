@@ -84,7 +84,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 {item.imagemUrl ? (
                     <View style={styles.heroBanner}>
                         <ReviewImage
-                            source={{ uri: item.imagemUrl }}
+                            source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                             tint={riskColor}
                             accessibilityLabel={item.nome}
                         />

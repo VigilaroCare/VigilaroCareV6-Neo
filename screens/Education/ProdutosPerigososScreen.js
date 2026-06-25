@@ -60,7 +60,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
       }
   ];
 
-  const capaUrl = 'https://images.pexels.com/photos/5412270/pexels-photo-5412270.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Cleaning supplies
+  const capaUrl = require('../../assets/illustrations/pad/Novo-Acidente-1.jpg'); // Cleaning supplies
 
   const title = t('headersFirst.chemicals', 'Produtos Químicos');
   const subtitle = t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa');
@@ -96,7 +96,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
             transform: heroTransform,
         }}>
             <ReviewImage
-                source={{ uri: capaUrl }}
+                source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                 style={StyleSheet.absoluteFill}
                 resizeMode="cover"
             />
@@ -145,7 +145,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
                     <View style={[styles.guideImageContainer, { backgroundColor: item.bg || THEME_COLOR + '15' }]}>
                       {item.imagemUrl ? (
                         <ReviewImage
-                          source={{ uri: item.imagemUrl }}
+                          source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                           tint={item.iconColor || THEME_COLOR}
                           accessibilityLabel={item.titulo}
                         />

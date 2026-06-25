@@ -290,7 +290,7 @@ export default function ConceitoDetailScreen({ route, navigation }) {
               {HeroImageUrl ? (
                   <View style={[styles.heroImageBanner, { ...Neo.shadows.md }]}>
                       <ReviewImage
-                          source={{ uri: HeroImageUrl }}
+                          source={typeof HeroImageUrl === 'string' ? { uri: HeroImageUrl } : HeroImageUrl}
                           tint={HeroColor}
                           accessibilityLabel={t_field(conceito, 'titulo') || t_field(conceito, 'nome')}
                       />

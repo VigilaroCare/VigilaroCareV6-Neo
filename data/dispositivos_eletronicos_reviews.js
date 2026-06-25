@@ -11,7 +11,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         id: 'carregadores_cabos',
         nome: 'Carregadores e Cabos USB',
         emoji: '🔌',
-        imagemUrl: 'https://images.pexels.com/photos/36012993/pexels-photo-36012993.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/Carregadores-e-cabos.jpg'),
         nivelRisco: 'alto',
         corRisco: '#E65100',
         frequenciaUso: 'Muito Alta',
@@ -36,7 +36,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'extensoes_filtros',
-        imagemUrl: 'https://images.pexels.com/photos/5544612/pexels-photo-5544612.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/eletrico_tomada-com-obturador-e-o-ideal-para-evit_026.jpg'),
         nome: 'Extensões e Filtros de Linha',
         emoji: '🔗',
         nivelRisco: 'alto',
@@ -63,7 +63,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'power_banks',
-        imagemUrl: 'https://images.pexels.com/photos/8325381/pexels-photo-8325381.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/Power-banks.png'),
         nome: 'Power Banks',
         emoji: '🔋',
         nivelRisco: 'medio',
@@ -89,7 +89,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'televisores',
-        imagemUrl: 'https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/criancas-bebes_menino-tv_062.jpg'),
         nome: 'Televisores de Tela Plana',
         emoji: '📺',
         nivelRisco: 'medio',
@@ -114,7 +114,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'baba_eletronica',
-        imagemUrl: 'https://images.pexels.com/photos/27588251/pexels-photo-27588251.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/baba_eletronica_zoomed_v2.png'),
         nome: 'Babá Eletrônica e Câmeras Wi-Fi',
         emoji: '📹',
         nivelRisco: 'baixo',
@@ -139,7 +139,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'consoles_videogame',
-        imagemUrl: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_consoles_videogame.png'),
         nome: 'Consoles de Videogame',
         emoji: '🎮',
         nivelRisco: 'baixo',
@@ -164,7 +164,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
     },
     {
         id: 'pilhas_baterias',
-        imagemUrl: 'https://images.pexels.com/photos/7019805/pexels-photo-7019805.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/ambientes-casa_controle-remoto-pilhas-botao_025.jpg'),
         nome: 'Pilhas e Baterias (Botão/AA/AAA)',
         emoji: '🪫',
         nivelRisco: 'critico',

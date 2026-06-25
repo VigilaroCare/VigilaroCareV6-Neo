@@ -31,7 +31,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       subtitulo: 'Ações para evitar o início de incêndios',
       emoji: FIRE_PREVENTION_CONTENT?.prevention?.emoji || '🛡️',
       cor: Neo.colors.feedback.success,
-      imagemUrl: 'https://images.pexels.com/photos/8910403/pexels-photo-8910403.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      imagemUrl: require('../../assets/illustrations/pad/queimaduras-fogo_combustao_006.jpg'),
       itens: FIRE_PREVENTION_CONTENT?.prevention?.sections || [],
     },
     {
@@ -40,7 +40,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       subtitulo: 'Como agir no primeiro minuto',
       emoji: FIRE_PREVENTION_CONTENT?.action?.emoji || '🔥',
       cor: Neo.colors.feedback.error,
-      imagemUrl: 'https://images.pexels.com/photos/10323326/pexels-photo-10323326.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      imagemUrl: require('../../assets/illustrations/pad/generated_action_incendio.png'),
       itens: FIRE_PREVENTION_CONTENT?.action?.steps || [],
     },
     {
@@ -49,7 +49,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       subtitulo: 'Estratégia de evacuação em família',
       emoji: '🗺️',
       cor: Neo.colors.secondary[500],
-      imagemUrl: 'https://images.pexels.com/photos/3773199/pexels-photo-3773199.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      imagemUrl: require('../../assets/illustrations/pad/acidentes-estatisticas_acidentes-domesticos-no-brasil_002.jpg'),
       itens: [
         'Desenhe a planta da casa e marque 2 saídas por cômodo.',
         'COMBINE UM PONTO DE ENCONTRO seguro fora da casa (ex: poste, árvore vizinha).',
@@ -101,7 +101,7 @@ export default function PlanoIncendioScreen({ navigation }) {
       }
   ];
 
-  const capaUrl = 'https://images.pexels.com/photos/8910403/pexels-photo-8910403.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Fire prevention
+  const capaUrl = require('../../assets/illustrations/pad/fotos-stock-genericas_incendio-casa-fumaca_041.jpg'); // Fire prevention
 
   const title = t('headersFirst.firePlan', 'Plano de incêndio');
   const subtitle = t('headersFirst.eviteTragediasFamiliares', 'Evite tragédias familiares');
@@ -137,9 +137,10 @@ export default function PlanoIncendioScreen({ navigation }) {
             transform: heroTransform,
         }}>
             <ReviewImage
-                source={{ uri: capaUrl }}
+                source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                 style={StyleSheet.absoluteFill}
                 resizeMode="cover"
+                accessibilityLabel={title}
             />
             
             {/* Gradient para legibilidade do título e fusão com o fundo */}

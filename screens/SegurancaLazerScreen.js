@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../utils/getLocalizedField';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AppBackground from '../components/AppBackground';
@@ -19,16 +19,14 @@ export default function SegurancaLazerScreen({ navigation }) {
   const textPrimary = themeColors.neutral[900];
   const textBody = themeColors.neutral[700];
   const textMuted = themeColors.neutral[500];
-  const [expandedId, setExpandedId] = useState(null);
+  
 
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
 
   const locaisLazer = [
     {
       id: 1,
       local: 'Praia',
+        image: require('../assets/illustrations/pad/sub_lazer_praia.png'),
       local_en: 'Beach',
       local_es: 'Playa',
       emoji: '🏖️', // Mantido para fallback se precisar
@@ -111,6 +109,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     {
       id: 2,
       local: 'Rio e Lago',
+        image: require('../assets/illustrations/pad/sub_lazer_rio_lago.png'),
       local_en: 'River and Lake',
       local_es: 'Río y Lago',
       icon: 'Drop',
@@ -180,6 +179,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     {
       id: 3,
       local: 'Piscina',
+        image: require('../assets/illustrations/pad/sub_lazer_piscina.png'),
       local_en: 'Pool',
       local_es: 'Piscina',
       icon: 'Drop', // Reusing Drop generally
@@ -247,6 +247,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     {
       id: 4,
       local: 'Camping e Trilhas',
+      image: require('../assets/illustrations/pad/sub_lazer_camping.png'),
       local_en: 'Camping and Trails',
       local_es: 'Camping',
       icon: 'Tree',
@@ -313,6 +314,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     {
       id: 5,
       local: 'Parques e Playgrounds',
+      image: require('../assets/illustrations/pad/sub_lazer_parque.png'),
       local_en: 'Amusement Parks',
       local_es: 'Parques de Diversiones',
       icon: 'Ticket',
@@ -379,6 +381,7 @@ export default function SegurancaLazerScreen({ navigation }) {
     {
       id: 6,
       local: 'Churrasqueira',
+      image: require('../assets/illustrations/pad/sub_lazer_churrasco.png'),
       local_en: 'Barbecue Grill',
       local_es: 'Parrilla',
       icon: 'Fire',
@@ -438,113 +441,73 @@ export default function SegurancaLazerScreen({ navigation }) {
     }
   ];
 
+  const handlePress = (item) => {
+      navigation.navigate('EduContentDetail', {
+          title: t_field(item, 'local'),
+          image: item.image,
+          sections: [
+              {
+                  title: t('lazer.riscos', 'Riscos Principais'),
+                  icon: 'Warning2',
+                  color: themeColors.feedback.warning,
+                  bullets: t_array(item, 'riscosPrincipais')
+              },
+              {
+                  title: t('lazer.prevencao', 'Dicas de Prevenção'),
+                  icon: 'ShieldTick',
+                  color: themeColors.primary[600],
+                  bullets: t_array(item, 'prevencao')
+              },
+              item.emergencias && {
+                  title: t('lazer.emergencia', 'Emergência'),
+                  icon: 'Health',
+                  color: themeColors.feedback.error,
+                  bullets: t_array(item, 'emergencias')
+              },
+              item.dicasExtras && {
+                  title: t('lazer.dicasExtras', 'Dicas Extras'),
+                  icon: 'LampOn',
+                  color: themeColors.secondary[500],
+                  bullets: t_array(item, 'dicasExtras')
+              }
+          ].filter(Boolean)
+      });
+  };
+
   const renderItem = ({ item }) => {
-    const isExpanded = expandedId === item.id;
-    const iconName = item.icon;
-
-    return (
-      <TouchableOpacity
-        style={{
-          backgroundColor: Neo.colors.neutral.white,
-          borderRadius: 20,
-          marginBottom: 16,
-          padding: 20,
-          ...Neo.shadows.sm,
-          borderWidth: 1,
-          borderColor: isExpanded ? item.iconColor : 'rgba(0,0,0,0.03)'
-        }}
-        onPress={() => toggleExpand(item.id)}
-        activeOpacity={0.9}
-      >
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <View style={{
-            width: 56, height: 56, borderRadius: 28,
-            backgroundColor: item.bg,
-            alignItems: 'center', justifyContent: 'center',
-            marginRight: 16
-          }}>
-            <NeoIcon name={iconName} size={32} color={item.iconColor} variant="Bold" />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: Neo.colors.neutral[900] }}>{t_field(item, 'local')}</Text>
-            <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>
-              {t_array(item, 'riscosPrincipais').length} {t('lazer.riscos', 'riscos principais')}
-            </Text>
-          </View>
-          <View style={{
-            width: 32, height: 32, borderRadius: 16,
-            backgroundColor: Neo.colors.neutral[100],
-            alignItems: 'center', justifyContent: 'center'
-          }}>
-            {isExpanded ?
-              <NeoIcon name="ArrowUp2" size={20} color={Neo.colors.neutral[400]} /> :
-              <NeoIcon name="ArrowDown2" size={20} color={Neo.colors.neutral[400]} />
-            }
-          </View>
-        </View>
-
-        {isExpanded && (
-          <View style={{ marginTop: 24, paddingTop: 0 }}>
-
-            {/* Riscos */}
-            <View style={{ marginBottom: 24 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <NeoIcon name="Warning2" size={24} color={themeColors.feedback.warning} variant="Bold" />
-                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.accent.champagne, letterSpacing: 0.5 }}>{t('headersFirst.rISCOS', 'RISCOS')}</Text>
-              </View>
-              <View style={{ gap: 8, paddingLeft: 4 }}>
-                {t_array(item, 'riscosPrincipais').map((r, i) => (
-                  <Text key={i} style={{ fontSize: 15, color: Neo.colors.neutral[700], lineHeight: 22 }}>• {r}</Text>
-                ))}
-              </View>
+      return (
+        <NeoCard
+          variant="elevated"
+          padding={0}
+          onPress={() => handlePress(item)}
+          style={{ marginBottom: 20 }}
+        >
+          {item.image ? (
+            <Image 
+              source={item.image} 
+              style={{ width: '100%', height: 180 }}
+              resizeMode="cover"
+            />
+          ) : (
+            <View style={{ width: '100%', height: 180, backgroundColor: item.bg, alignItems: 'center', justifyContent: 'center' }}>
+                <NeoIcon name={item.icon} size={48} color={item.iconColor} variant="Bold" />
             </View>
-
-            {/* Prevenção */}
-            <View style={{ marginBottom: 24 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 }}>
-                <NeoIcon name="ShieldTick" size={24} color={themeColors.primary[500]} variant="Bold" />
-                <Text style={{ fontSize: 15, fontWeight: '800', color: themeColors.primary[600], letterSpacing: 0.5 }}>{t('headersFirst.pREVENO', 'PREVENÇÃO')}</Text>
-              </View>
-              <View style={{ gap: 10 }}>
-                {t_array(item, 'prevencao').map((p, i) => (
-                  <View key={i} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
-                    <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: Neo.colors.primary[500], marginTop: 8 }} />
-                    <Text style={{ fontSize: 15, color: Neo.colors.neutral[800], flex: 1, lineHeight: 22 }}>{p}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-
-            {/* Emergência */}
-            <View style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', padding: 16, borderRadius: 16, borderWidth: 1, borderColor: themeColors.feedback.error, marginBottom: 24 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <NeoIcon name="Health" size={24} color={themeColors.feedback.error} variant="Bold" />
-                <Text style={{ fontSize: 14, fontWeight: '800', color: themeColors.feedback.error }}>{t('headersFirst.eMERGNCIA', 'EMERGÊNCIA')}</Text>
-              </View>
-              <View style={{ gap: 8 }}>
-                {t_array(item, 'emergencias').map((e, i) => (
-                  <Text key={i} style={{ fontSize: 15, color: Neo.colors.neutral[900], lineHeight: 22, fontWeight: '500' }}>{e}</Text>
-                ))}
-              </View>
-            </View>
-
-            {/* Dicas */}
-            <View style={{ backgroundColor: themeColors.neutral[100], padding: 16, borderRadius: 16 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-                <NeoIcon name="LampOn" size={24} color={themeColors.secondary[500]} variant="Bold" />
-                <Text style={{ fontSize: 14, fontWeight: '800', color: themeColors.secondary[500] }}>{t('headersFirst.dICASEXTRAS', 'DICAS EXTRAS')}</Text>
-              </View>
-              <View style={{ gap: 8 }}>
-                {t_array(item, 'dicasExtras').map((d, i) => (
-                  <Text key={i} style={{ fontSize: 14, color: themeColors.secondary[500], lineHeight: 20 }}>• {d}</Text>
-                ))}
-              </View>
-            </View>
-
+          )}
+          <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+             <View style={{ flex: 1, paddingRight: 16 }}>
+                 <Text style={{ fontSize: 22, fontWeight: '800', color: Neo.colors.neutral[900] }}>
+                    {t_field(item, 'local')}
+                 </Text>
+                 <Text style={{ fontSize: 14, color: Neo.colors.neutral[500], marginTop: 4 }}>
+                    {t_array(item, 'riscosPrincipais').length} {t('lazer.riscos', 'riscos')} · {t_array(item, 'prevencao').length} {t('lazer.dicas', 'dicas')}
+                 </Text>
+             </View>
+             <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: Neo.colors.neutral[50], alignItems: 'center', justifyContent: 'center' }}>
+                 <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
+             </View>
           </View>
-        )}
-      </TouchableOpacity>
-    );
+        </NeoCard>
+      );
   };
 
   return (

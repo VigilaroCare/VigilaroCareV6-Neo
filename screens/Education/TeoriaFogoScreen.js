@@ -61,7 +61,7 @@ export default function TeoriaFogoScreen({ navigation }) {
         }
     ];
 
-    const capaUrl = 'https://images.pexels.com/photos/1572973/pexels-photo-1572973.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Fire
+    const capaUrl = require('../../assets/illustrations/pad/Desastres-em-casa-1.jpg'); // Fire
 
     const title = t('headersFirst.basicoSobreFogo', 'Básico sobre fogo');
     const subtitle = t('knowledgeHub.fireTheory', 'Teoria do Fogo');
@@ -97,7 +97,7 @@ export default function TeoriaFogoScreen({ navigation }) {
                     transform: heroTransform,
                 }}>
                     <ReviewImage
-                        source={{ uri: capaUrl }}
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />

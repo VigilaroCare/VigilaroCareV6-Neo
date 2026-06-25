@@ -60,6 +60,16 @@ export const SAFETY_TOYS = {
             content: '• Separação: Irmãos mais velhos devem manter seus brinquedos (Lego, peças pequenas) longe dos caçulas.\n• Berço Livre: Nada de pelúcias ou brinquedos gigantes no berço (risco de sufocamento).\n• Móbiles: Retire assim que o bebê conseguir sentar ou alcançar (risco de se enrolar).',
             content_en: '• Separation: Older siblings must keep their toys (Lego, small parts) away from younger ones.\n• Clear Crib: No plush toys or giant toys in the crib (risk of suffocation).\n• Mobiles: Remove as soon as the baby can sit up or reach them (risk of entanglement).',
             content_es: '• Separación: Los hermanos mayores deben mantener sus juguetes (Lego, piezas pequeñas) lejos de los más pequeños.\n• Cuna Libre: Nada de peluches o juguetes gigantes en la cuna (riesgo de asfixia).\n• Móviles: Retire tan pronto como el bebé pueda sentarse o alcanzarlos (riesgo de enredarse).'
+        },
+        {
+            title: '6. Brincadeiras ao Ar Livre e Água',
+            title_en: '6. Outdoor and Water Play',
+            title_es: '6. Juego al Aire Libre y Agua',
+            icon: 'sun',
+            imagemUrl: null,
+            content: '• Piscinas Infláveis e Baldes: Esvazie imediatamente após o término da brincadeira. Afogamentos infantis ocorrem em vãos com menos de 10 centímetros de água.\n• Bicicletas e Patinetes: O uso de capacete afivelado deve ser obrigatório. Quedas sem proteção na cabeça são a maior causa de traumas infantis graves.',
+            content_en: '• Inflatable Pools and Buckets: Empty immediately after playtime ends. Child drownings occur in gaps with less than 10 centimeters of water.\n• Bicycles and Scooters: Buckled helmets must be mandatory. Unprotected head falls are the leading cause of severe childhood trauma.',
+            content_es: '• Piscinas Inflables y Baldes: Vacíe inmediatamente después de que termine el juego. Los ahogamientos infantiles ocurren en espacios con menos de 10 centímetros de agua.\n• Bicicletas y Patinetas: El uso de casco abrochado debe ser obligatorio. Las caídas sin protección en la cabeza son la principal causa de trauma infantil severo.'
         }
     ],
     checklist: [
@@ -67,6 +77,8 @@ export const SAFETY_TOYS = {
         'Verifiquei se os compartimentos de pilha estão parafusados',
         'Removi cordões longos (>15cm) dos brinquedos',
         'Descartei embalagens plásticas imediatamente',
-        'Ensinei o irmão mais velho a separar seus brinquedos'
+        'Ensinei o irmão mais velho a separar seus brinquedos',
+        'Esvaziei piscinas de plástico e baldes após o uso',
+        'Crianças usam capacete em bikes e patinetes'
     ]
 };

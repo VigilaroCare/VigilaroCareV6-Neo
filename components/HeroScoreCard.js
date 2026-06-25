@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Circle } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
+import CompactActiveMonitor from './CompactActiveMonitor';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { useIsDark } from '../utils/ThemeContext';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-export default function HeroScoreCard({ scoreData, onPress, heroHeadline }) {
+export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpanded = false, scoreMessage = {} }) {
     const { t } = useTranslation();
     const isDark = useIsDark();
     const animValue = useRef(new Animated.Value(0)).current;
@@ -57,7 +58,7 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline }) {
                          score >= 50 ? t('home.heroAttention', 'ATENÇÃO NECESSÁRIA') : 
                          t('home.heroAct', 'AJA IMEDIATAMENTE')}
                     </Text>
-                    <NeoIcon name="ArrowRight2" size={14} color={textMuted} style={{ opacity: 0.7 }} />
+                    <NeoIcon name="ArrowDown2" size={14} color={textMuted} style={{ opacity: 0.7, transform: [{ rotate: isExpanded ? '180deg' : '0deg' }] }} />
                 </View>
 
                 <View style={styles.mainRow}>
@@ -117,6 +118,16 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline }) {
                         </View>
                     </View>
                 </View>
+                {isExpanded && (
+                    <View style={styles.heroWell}>
+                        <CompactActiveMonitor
+                            scoreData={scoreData}
+                            scoreMessage={scoreMessage}
+                            isExpanded={isExpanded}
+                            hideScore
+                        />
+                    </View>
+                )}
             </LinearGradient>
         </TouchableOpacity>
     );
@@ -195,5 +206,14 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '600',
         marginLeft: 6,
+    },
+    heroWell: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        borderRadius: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.04)',
+        marginTop: 16,
     }
 });

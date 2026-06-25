@@ -36,8 +36,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🛋️',
         cor: '#9C27B0',
         capa: [
-            'https://images.pexels.com/photos/1571469/pexels-photo-1571469.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/37542305/pexels-photo-37542305.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_sala-estar_036.jpg'),
+            require('../assets/illustrations/pad/ambientes-casa_sala-estar_036.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'A sala de estar é o coração da casa, mas também o local onde mais ocorrem pequenos acidentes domésticos devido ao alto fluxo de circulação.' },
@@ -53,8 +53,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🍳',
         cor: '#FF9800',
         capa: [
-            'https://images.pexels.com/photos/5524067/pexels-photo-5524067.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/12477583/pexels-photo-12477583.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/cozinha-utensilios_como-funciona-e-como-usar-panela-de-pres_001.jpg'),
+            require('../assets/illustrations/pad/cozinha-utensilios_como-funciona-e-como-usar-panela-de-pres_001.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Estatisticamente, a cozinha é o ambiente mais perigoso de toda a residência. Fogo, lâminas, gás e água fervente coabitam este espaço.' },
@@ -108,8 +108,8 @@ export const MAPA_PREVENCAO = {
         emoji: '👶',
         cor: '#FF4081',
         capa: [
-            'https://images.pexels.com/photos/4713247/pexels-photo-4713247.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/3875087/pexels-photo-3875087.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_bebe-expressao-surpresa_001.jpg'),
+            require('../assets/illustrations/pad/ambientes-casa_bebe-expressao-surpresa_001.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'O berço deve ser o lugar mais seguro do mundo. Infelizmente, práticas estéticas muitas vezes ignoram protocolos vitais de segurança.' },
@@ -125,8 +125,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🧸',
         cor: '#E91E63',
         capa: [
-            'https://images.pexels.com/photos/5008397/pexels-photo-5008397.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/4221413/pexels-photo-4221413.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/acidentes-estatisticas_crianca-descendo-escada-bola_020.jpg'),
+            require('../assets/illustrations/pad/acidentes-estatisticas_crianca-descendo-escada-bola_020.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Um reino de brincadeiras precisa blindar a criatividade da criança contra armadilhas estruturais.' },
@@ -141,8 +141,8 @@ export const MAPA_PREVENCAO = {
         emoji: '👴',
         cor: '#8D6E63',
         capa: [
-            'https://images.pexels.com/photos/8899457/pexels-photo-8899457.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/8899472/pexels-photo-8899472.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/cozinha-utensilios_como-funciona-e-como-usar-panela-de-pres_001.jpg'),
+            require('../assets/illustrations/pad/ambientes-casa_placa-idoso_016.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'O santuário de repouso do idoso precisa de visão clara noturna, mobilidade descomplicada e zero barreiras — três pilares contra a queda, sua maior causa de hospitalização.' },
@@ -159,8 +159,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🚿',
         cor: '#2196F3',
         capa: [
-            'https://images.pexels.com/photos/5524223/pexels-photo-5524223.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/22330617/pexels-photo-22330617.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/idosos_barra-para-banheiros-1_008.jpg'),
+            require('../assets/illustrations/pad/idosos_barra-para-banheiros-1_008.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Água e superfícies lisas formam uma combinação fatal. O banheiro exige atenção extrema à aderência e organização.' },
@@ -176,7 +176,7 @@ export const MAPA_PREVENCAO = {
         emoji: '🗄️',
         cor: '#6D4C41',
         capa: [
-            'https://images.pexels.com/photos/8893908/pexels-photo-8893908.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/cozinha-utensilios_como-funciona-e-como-usar-panela-de-pres_001.jpg'),
             'https://images.pexels.com/photos/5705496/pexels-photo-5705496.jpeg?auto=compress&cs=tinysrgb&w=1200',
         ],
         conteudo: [
@@ -195,8 +195,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🧺',
         cor: '#00BCD4',
         capa: [
-            'https://images.pexels.com/photos/5365777/pexels-photo-5365777.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/31602334/pexels-photo-31602334.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_lavanderia-maquina-roupa_015.jpg'),
+            require('../assets/illustrations/pad/ambientes-casa_lavanderia-maquina-roupa_015.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'A lavanderia doméstica reúne potentes fatores de risco: alto fluxo elétrico de máquinas, produtos químicos puros e pisos habitualmente molhados.' },
@@ -213,8 +213,7 @@ export const MAPA_PREVENCAO = {
         emoji: '🚗',
         cor: '#546E7A',
         capa: [
-            'https://images.pexels.com/photos/6200441/pexels-photo-6200441.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/32073602/pexels-photo-32073602.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_carro-na-garagem_011.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'A garagem combina veículo em movimento, ferramentas pesadas, produtos químicos e baixa visibilidade — uma equação que exige protocolos rigorosos.' },
@@ -267,8 +266,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🔥',
         cor: '#D32F2F',
         capa: [
-            'https://images.pexels.com/photos/36285352/pexels-photo-36285352.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/17334258/pexels-photo-17334258.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/gas-vazamento_central-de-gu00e1s_003.jpg'),
+            require('../assets/illustrations/pad/gas-vazamento_central-de-gu00e1s_003.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'O poder adormecido do gás GLP não perdoa falha de ventilação ou confinamento. Cada protocolo aqui foi escrito após acidentes reais.' },
@@ -286,8 +285,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🌳',
         cor: '#43A047',
         capa: [
-            'https://images.pexels.com/photos/25972319/pexels-photo-25972319.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/24820434/pexels-photo-24820434.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_jardim_019.jpg'),
+              require('../assets/illustrations/pad/ambientes-casa_jardim_019.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'O quintal é zona de liberdade — e exatamente por isso, exige mapeamento minucioso.' },
@@ -302,14 +301,16 @@ export const MAPA_PREVENCAO = {
         emoji: '🌱',
         cor: '#8BC34A',
         capa: [
-            'https://images.pexels.com/photos/6231714/pexels-photo-6231714.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/8543388/pexels-photo-8543388.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        ],
+              require('../assets/illustrations/pad/ambientes-casa_jardim_019.jpg'),
+              require('../assets/illustrations/pad/generated_jardim.png'),
+          ],
         conteudo: [
-            { tipo: 'destaque', texto: 'O ato de cultivar conecta a casa à terra — mas exige cuidados com parasitas, fungos e químicos que entram pelo pulmão e pele.' },
-            { tipo: 'topico', titulo: 'Guia de Jardinagem Segura', texto: 'Consolidados todos os protocolos: desde EPIs do jardineiro, fertilizantes e defensivos até lista de plantas perigosas.' },
-            { tipo: 'dica', texto: 'Acesse o "Guia de Jardinagem Segura" completo na seção de Educação para ver todas as precauções e primeiros socorros em caso de lesões e contato com lagartas.' }
-        ]
+              { tipo: 'destaque', texto: 'A prática da jardinagem e a manutenção de hortas apresentam riscos específicos que exigem bastante atenção (desde insolação até intoxicação letal).' },
+              { tipo: 'topico', titulo: 'Fertilizantes e Pesticidas', texto: 'O uso e o armazenamento inadequado de químicos de jardinagem representam alto risco de intoxicação letal para crianças e pets. Mantenha trancados em armários altos ou caixas originais rotuladas. Dê preferência aos naturais.' },
+              { tipo: 'topico', titulo: 'Exposição ao Clima e Insolação', texto: 'Ficar exposto ao sol quente por longos períodos pode causar mal-estar severo. Utilize chapéus, protetor solar e priorize o trabalho nas primeiras horas da manhã ou no fim da tarde.' },
+              { tipo: 'topico', titulo: 'A "Armadura" do Jardineiro', texto: 'É obrigatório o uso de luvas, calçados fechados (ou botas), além de camisas de manga comprida e calças com as barras fechadas para impedir que insetos subam e plantas nocivas queimem a pele.' },
+              { tipo: 'dica', texto: 'Identifique e evite cultivar plantas tóxicas em áreas de fácil acesso a crianças e animais. Ao podá-las, use luvas, pois muitas liberam látex corrosivo.' }
+          ]
     },
 
     areas_coletivas: {
@@ -334,8 +335,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🏊',
         cor: '#03A9F4',
         capa: [
-            'https://images.pexels.com/photos/17568046/pexels-photo-17568046.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/8134744/pexels-photo-8134744.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/engasgo-afogamento_capa-piscina_005.jpg'),
+            require('../assets/illustrations/pad/engasgo-afogamento_capa-piscina_005.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Afogamentos são predominantemente mudos, velozes e a forma suprema de letalidade entre crianças de 1 a 4 anos no verão domiciliar.' },
@@ -350,8 +351,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🌊',
         cor: '#0288D1',
         capa: [
-            'https://images.pexels.com/photos/4321954/pexels-photo-4321954.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/18424823/pexels-photo-18424823.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_area-externa-praia_005.jpg'),
+            require('../assets/illustrations/pad/ambientes-casa_area-externa-praia_005.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Praia, rio, cachoeira e represa são ambientes não controlados — correntezas, marés, fauna marinha e clima variável exigem leitura ativa do risco.' },
@@ -370,8 +371,8 @@ export const MAPA_PREVENCAO = {
         emoji: '🪜',
         cor: '#F44336',
         capa: [
-            'https://images.pexels.com/photos/13005094/pexels-photo-13005094.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            'https://images.pexels.com/photos/34574591/pexels-photo-34574591.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/quedas-escadas_acidente-queda_001.jpg'),
+            require('../assets/illustrations/pad/quedas-escadas_acidente-queda_001.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'A gravidade sempre vence na ausência de limites e aderência. Escadas merecem atenção militar em casas com crianças e idosos.' },
@@ -388,8 +389,7 @@ export const MAPA_PREVENCAO = {
         emoji: '🌿',
         cor: '#26A69A',
         capa: [
-            'https://loremflickr.com/1200/800/safety,home?lock=1',
-            'https://images.pexels.com/photos/36903438/pexels-photo-36903438.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            require('../assets/illustrations/pad/ambientes-casa_homem-varanda_029.jpg'),
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'Varandas concentram dois riscos altos e silenciosos: quedas de altura (crianças e idosos) e queda de objetos sobre transeuntes.' },
@@ -414,6 +414,7 @@ export const getConteudoPrevencao = (ambienteId) => {
         'jardim': 'quintal',
         'pomar': 'quintal',
         'horta': 'quintal',
+        'jardim_horta': 'jardinagem',
         'oficina': 'oficinas',
         'ferramentas': 'oficinas',
         'deposito': 'depositos',

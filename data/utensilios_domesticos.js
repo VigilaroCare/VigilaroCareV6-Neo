@@ -4,7 +4,7 @@ export const utensiliosDomesticos = [
         nome: 'Facas e Cortantes',
         categoria: 'Cozinha',
         emoji: '🔪',
-        imagemUrl: 'https://images.pexels.com/photos/5778289/pexels-photo-5778289.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/idosos_barra-para-banheiros-1_008.jpg'),
         risco: 'Cortes Graves',
         descricao: 'Facas afiadas, tesouras e lâminas são causas frequentes de acidentes domésticos.',
         prevencao: [
@@ -20,7 +20,7 @@ export const utensiliosDomesticos = [
         nome: 'Panelas e Fogão',
         categoria: 'Cozinha',
         emoji: '🍳',
-        imagemUrl: 'https://images.pexels.com/photos/1277939/pexels-photo-1277939.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/criancas-bebes_brinquedos-cuidados-ao-escolher-2_029.jpg'),
         risco: 'Queimaduras Térmicas',
         descricao: 'Cabos de panelas para fora e panelas pesadas são riscos de tombamento e queimadura.',
         prevencao: [
@@ -36,7 +36,7 @@ export const utensiliosDomesticos = [
         nome: 'Vidros e Louças',
         categoria: 'Geral',
         emoji: '🍷',
-        imagemUrl: 'https://images.pexels.com/photos/6995259/pexels-photo-6995259.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/app-pad-assets_leia-como-quiser-3-01-03_060.jpg'),
         risco: 'Cortes e Perfurações',
         descricao: 'Quebra por choque térmico ou impacto. Cacos de vidro são extremamente perigosos.',
         prevencao: [
@@ -52,7 +52,7 @@ export const utensiliosDomesticos = [
         nome: 'Plásticos e Potes',
         categoria: 'Cozinha',
         emoji: '🥡',
-        imagemUrl: 'https://images.pexels.com/photos/4096909/pexels-photo-4096909.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/ambientes-casa_white-wooden-4-layered-shelf-3190559_045.jpg'),
         risco: 'Contaminação Química',
         descricao: 'Alguns plásticos liberam substâncias tóxicas (BPA) quando aquecidos.',
         prevencao: [
@@ -67,7 +67,7 @@ export const utensiliosDomesticos = [
         nome: 'Panela de Pressão',
         categoria: 'Cozinha',
         emoji: '🥘',
-        imagemUrl: 'https://images.pexels.com/photos/35041643/pexels-photo-35041643.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/numerados-png_5_005.png'),
         risco: 'Explosão',
         descricao: 'Mal uso ou falta de manutenção pode causar explosões graves.',
         prevencao: [
@@ -83,7 +83,7 @@ export const utensiliosDomesticos = [
         nome: 'Eletrodomésticos (Liquidificador/Mixer)',
         categoria: 'Eletro',
         emoji: 'blender', // Ionicons name mapping might be needed or use emoji text
-        imagemUrl: 'https://images.pexels.com/photos/5946625/pexels-photo-5946625.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/engasgo-afogamento_sunglasses-girl-swimming-pool-swimming-6_024.jpg'),
         risco: 'Cortes e Choque',
         descricao: 'Lâminas afiadas e risco elétrico.',
         prevencao: [

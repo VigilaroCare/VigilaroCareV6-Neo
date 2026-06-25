@@ -18,7 +18,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para a Cabeça',
             icone: 'helmet-outline',
             emoji: '⛑️',
-            imagemUrl: 'https://images.pexels.com/photos/13507074/pexels-photo-13507074.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_capaceteproteu00e7u00e3o_008.jpg'),
             quando: [
                 'Reparos sob o telhado ou forros',
                 'Podas de árvores com risco de queda de galhos',
@@ -33,7 +33,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Olhos',
             icone: 'glasses-outline',
             emoji: '🥽',
-            imagemUrl: 'https://images.pexels.com/photos/7789650/pexels-photo-7789650.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_oculos-de-seguranca_009.jpg'),
             quando: [
                 'Usar furadeira, esmerilhadeira ou lixadeira',
                 'Cortar madeira ou metal',
@@ -49,7 +49,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para as Mãos',
             icone: 'hand-left-outline',
             emoji: '🧤',
-            imagemUrl: 'https://images.pexels.com/photos/8488002/pexels-photo-8488002.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/generated_epi_maos_luvas.png'),
             tipos: [
                 {
                     tipo: 'Luvas de borracha/látex',
@@ -79,7 +79,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Ouvidos',
             icone: 'ear-outline',
             emoji: '👂',
-            imagemUrl: 'https://images.pexels.com/photos/5974011/pexels-photo-5974011.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_boot-4485515_004.jpg'),
             quando: [
                 'Usar furadeira por mais de 5 minutos',
                 'Usar roçadeira/cortador de grama',
@@ -96,7 +96,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para os Pés',
             icone: 'footsteps-outline',
             emoji: '👟',
-            imagemUrl: 'https://images.pexels.com/photos/30493107/pexels-photo-30493107.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_bota-de-seguranca_007.jpg'),
             quando: [
                 'Jardinagem (risco de animais peçonhentos)',
                 'Limpeza de quintais e áreas com entulho',
@@ -113,7 +113,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção Respiratória',
             icone: 'thermometer-outline',
             emoji: '😷',
-            imagemUrl: 'https://images.pexels.com/photos/3992946/pexels-photo-3992946.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_mulher-mascara-alcool-gel_029.jpg'),
             quando: [
                 'Usar tintas, vernizes ou solventes',
                 'Lixar paredes ou madeiras',
@@ -142,7 +142,7 @@ export const EPI_DOMESTICO = {
             titulo: 'Proteção para o Corpo',
             icone: 'shirt-outline',
             emoji: '👷',
-            imagemUrl: null,
+            imagemUrl: require('../assets/illustrations/pad/protetores-seguranca_avental-de-protecao_004.jpg'),
             quando: [
                 'Podar plantas (espinhos, alergia)',
                 'Manusear materiais abrasivos',
@@ -160,6 +160,21 @@ export const EPI_DOMESTICO = {
             atividade: 'Jardinagem e Poda',
             epis: ['Luvas de couro', 'Óculos', 'Botina fechada', 'Manga comprida'],
             riscos: ['Espinhos', 'Animais peçonhentos', 'Galhos nos olhos']
+        },
+
+        {
+            id: 'epi_jardim',
+            titulo: 'Armadura do Jardineiro',
+            icone: 'leaf-outline',
+            emoji: '🧑‍🌾',
+            imagemUrl: require('../assets/illustrations/pad/generated_jardim.png'),
+            quando: [
+                'Mexer na terra ou podar arbustos espessos',
+                'Trabalhar em áreas de mato alto no quintal',
+                'Aplicar produtos químicos de jardinagem'
+            ],
+            equipamento: 'Calças compridas (barras fechadas), blusa de manga longa e botas de cano longo.',
+            dica: 'Essa "armadura" impede que insetos subam pelas pernas e protege a pele da seiva corrosiva (látex) de plantas tóxicas.'
         },
         {
             atividade: 'Pintura de Paredes',

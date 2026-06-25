@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 // Screens
 import HomeScreen from '../screens/HomeScreenNeo';
 import KnowledgeHubScreen from '../screens/Education/KnowledgeHubScreen';
-import RelatoriosScreen from '../screens/Checklists/RelatoriosScreenNeo';
+import ProfileRiskSummaryScreen from '../screens/Profiles/ProfileRiskSummaryScreen';
 import MenuScreen from '../screens/MenuScreenNeo';
 import AccessibilitySettingsScreen from '../screens/AccessibilitySettingsScreen';
 import TravelModeScreen from '../screens/Travel/TravelModeScreen';
@@ -91,12 +91,12 @@ export default function MainTabNavigator() {
             />
 
             <Tab.Screen
-                name="TravelModeTab"
-                component={TravelModeScreen}
+                name="RelatorioTab"
+                component={ProfileRiskSummaryScreen}
                 options={{
-                    tabBarLabel: 'Viagem',
+                    tabBarLabel: 'Relatório',
                     tabBarIcon: ({ color, focused }) => (
-                        <NeoIcon name="Airplane" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
+                        <NeoIcon name="ChartBar" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />

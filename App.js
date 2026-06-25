@@ -163,10 +163,12 @@ import EnvironmentGuideScreen      from "./screens/Education/EnvironmentGuideScr
 import EnvironmentGuideNeoScreen   from "./screens/Education/EnvironmentGuideNeoScreen";
 import FasesVidaMenuScreen         from "./screens/Education/FasesVidaMenuScreen";
 import TravelSafetyGuideScreen     from "./screens/Education/TravelSafetyGuideScreen";
+import TravelModeScreen            from "./screens/Travel/TravelModeScreen";
 import LazerFeriasMenuScreen       from "./screens/Education/LazerFeriasMenuScreen";
 import NeurodivergenceMenuScreen   from "./screens/Education/NeurodivergenceMenuScreen";
 import VigilaroScanHubScreen       from "./screens/VigilaroScanHubScreen";
 import CuidarProtegerHubScreen     from "./screens/CuidarProtegerHubScreen";
+import EduContentDetailScreen      from './screens/EduContentDetailScreen';
 import SegurancaLazerScreen        from "./screens/SegurancaLazerScreen";
 import SegurancaFeriasScreen       from "./screens/SegurancaFeriasScreen";
 import MobilidadeSeguraScreen      from "./screens/MobilidadeSeguraScreen";
@@ -605,6 +607,7 @@ export default function App() {
                       
                       {/* ---- Lazer & Mobilidade ---- */}
                       <Stack.Screen name="LazerFeriasMenu" component={LazerFeriasMenuScreen} />
+                                            <Stack.Screen name="EduContentDetail" component={EduContentDetailScreen} />
                       <Stack.Screen name="SegurancaLazer" component={SegurancaLazerScreen} />
                       <Stack.Screen name="SegurancaFerias" component={SegurancaFeriasScreen} />
                       <Stack.Screen name="MobilidadeSegura" component={MobilidadeSeguraScreen} />
@@ -651,6 +654,7 @@ export default function App() {
                       <Stack.Screen name="PetFoodSafety" component={PetFoodSafetyScreen} />
                       <Stack.Screen name="AvesSeguras" component={AvesSegurasScreen} />
                       <Stack.Screen name="TravelSafetyGuide" component={TravelSafetyGuideScreen} />
+                      <Stack.Screen name="TravelModeScreen" component={TravelModeScreen} />
                       <Stack.Screen name="KitViagem" component={KitViagemScreen} />
                       <Stack.Screen name="InspecaoChegada" component={InspecaoChegadaScreen} />
                       <Stack.Screen name="InspecaoPartida" component={InspecaoPartidaScreen} />

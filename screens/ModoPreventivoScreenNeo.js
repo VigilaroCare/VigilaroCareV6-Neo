@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, Animated, StyleSheet } from 'react-native';
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -112,20 +113,108 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
         return Neo.colors.feedback.error;
     };
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const titleStr = t('headersFirst.atividadesEventuais', 'Atividades Eventuais');
+    const subtitleStr = t('monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar');
+    const capaSource = require('../assets/illustrations/pad/hero_preventivo.png');
+
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+            
+                
 
                 {/* Padrão "Anatomia Editorial": título solto H1 à esquerda,
                     sem card-moldura (PADRAO_ANATOMIA_PAGINAS.md) */}
-                <NeoScreenHeader
-                    title={t('headersFirst.atividadesEventuais', 'Atividades Eventuais')}
-                    subtitle={t('monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar')}
-                    onBack={() => navigation.goBack()}
-                />
+                
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
+            </SafeAreaView>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: Neo.layout.scrollBottomFooter }}>
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingBottom: 140 }}
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors?.neutral?.[800] || '#222',
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <Image
+                        source={capaSource}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                        accessibilityLabel={titleStr}
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {titleStr}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitleStr}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ paddingTop: 24 }}>
+
+
+                
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         {RISK_CATEGORIES.map((item) => (
                             <TouchableOpacity
@@ -170,7 +259,8 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                             </TouchableOpacity>
                         ))}
                     </View>
-                </ScrollView>
+                </View>
+            </Animated.ScrollView>
                 {/* AUDIT MODAL */}
                 <Modal
                     animationType="slide"
@@ -442,7 +532,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                         </SafeAreaView>
                     </AppBackground>
                 </Modal>
-            </SafeAreaView>
+            
         </AppBackground>
     );
 }

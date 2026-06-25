@@ -61,7 +61,7 @@ export default function SecretBriefingScreen({ navigation }) {
 
                         <View style={styles.card}>
                             <View style={styles.cardHeader}>
-                                <NeoIcon name="EyeSlash" size={24} color={Neo.colors.emergency.panic} />
+                                <NeoIcon name="EyeSlash" size={24} color={Neo.emergency.panic} />
                                 <Text style={styles.cardTitle}>{t('headersFirst.mODOPNICODISCRETO', 'MODO PÂNICO DISCRETO')}</Text>
                             </View>
                             <Text style={[styles.cardText, { color: themeColors.neutral[300] }]}>
@@ -69,7 +69,7 @@ export default function SecretBriefingScreen({ navigation }) {
                             </Text>
                             <View style={styles.instructionBox}>
                                 <Text style={[styles.instructionText, { color: Neo.colors.neutral.white }]}>
-                                    Segure o botão <Text style={{ color: Neo.colors.emergency.panic, fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text> no rodapé por <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
+                                    Segure o botão <Text style={{ color: Neo.emergency.panic, fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text> no rodapé por <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
                                 </Text>
                             </View>
                             <Text style={[styles.cardDetail, { color: themeColors.neutral[400] }]}>
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 16,
         borderLeftWidth: 4,
-        borderLeftColor: Neo.colors.emergency.panic,
+        borderLeftColor: Neo.emergency.panic,
     },
     cardHeader: {
         flexDirection: 'row',
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
     },
     cardTitle: {
-        color: Neo.colors.emergency.panic,
+        color: Neo.emergency.panic,
         fontSize: 16,
         fontWeight: 'bold',
         marginLeft: 12,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     burnButton: {
-        backgroundColor: Neo.colors.emergency.panic,
+        backgroundColor: Neo.emergency.panic,
         width: '100%',
         paddingVertical: 18,
         borderRadius: 12,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 20,
         elevation: 8,
-        shadowColor: Neo.colors.emergency.panic,
+        shadowColor: Neo.emergency.panic,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.4,
         shadowRadius: 8,

@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useRef } from 'react';
+import { View, Animated, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
@@ -19,11 +20,12 @@ export default function RiscosFisicosScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation('common');
   const colors = useThemeColors();
+  const isDark = useIsDark();
   
   const filter = route.params?.filter || 'fisicos';
   const isEletricos = filter === 'eletricos';
 
-  const THEME_COLOR = isEletricos ? Neo.colors.accent.champagne : Neo.colors.emergency?.panic || '#DC2626'; // Amber vs Red
+  const THEME_COLOR = isEletricos ? Neo.colors.accent.champagne : Neo.emergency?.panic || '#DC2626'; // Amber vs Red
 
   // Icon Mapping based on Emoji or ID from data
   const getIconData = (item) => {
@@ -59,46 +61,105 @@ export default function RiscosFisicosScreen({ route, navigation }) {
     });
   };
 
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const HERO_HEIGHT = 280;
+  const heroTransform = [
+      {
+          translateY: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+              outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+              extrapolate: 'clamp',
+          })
+      },
+      {
+          scale: scrollY.interpolate({
+              inputRange: [-HERO_HEIGHT, 0],
+              outputRange: [2, 1],
+              extrapolateLeft: 'extend',
+              extrapolateRight: 'clamp',
+          })
+      }
+  ];
+
+  const titleStr = isEletricos ? t('headersFirst.electrical', 'Riscos Elétricos e Incêndio') : t('headersFirst.physical', 'Riscos Físicos e Quedas');
+  const subtitleStr = isEletricos ? t('knowledgeHub.electricalRisks', 'Eletricidade e Prevenção') : t('knowledgeHub.physicalRisks', 'Prevenção de Acidentes');
+  
+  // Imagens temporárias até o usuário definir
+  const capaSource = isEletricos 
+    ? require('../../assets/illustrations/education-pictograms/pictogram-riscos-eletricos.png') 
+    : require('../../assets/illustrations/pad/1.png');
+
   return (
     <AppBackground>
-    <View style={{ flex: 1, backgroundColor: 'transparent' }}>
-      <StatusBar style="dark" backgroundColor="transparent" />
-
-      {/* Custom Colored Header - NOW TACTICAL CALM COMPACT */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 10, paddingBottom: 16 }}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-            <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
-        </TouchableOpacity>
-      </View>
-
-      <View style={{ paddingHorizontal: 20, marginBottom: 8 }}>
-          <NeoCard variant="glass"
+          <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+          <TouchableOpacity
+              onPress={() => navigation.goBack()}
               style={{
-                  width: '100%',
-                  padding: 16,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  ...Neo.shadows?.sm
+                  width: 44, height: 44, borderRadius: 22,
+                  backgroundColor: 'rgba(0,0,0,0.35)',
+                  justifyContent: 'center', alignItems: 'center',
+                  marginLeft: 16, marginTop: 12,
               }}
           >
-              <View style={{
-                  width: 48, height: 48, borderRadius: 12,
-                  backgroundColor: isEletricos ? '#FFF8E1' : '#FEE2E2', alignItems: 'center', justifyContent: 'center',
-                  marginRight: 16
-              }}>
-                  <Text style={{ fontSize: 24 }}>{isEletricos ? '⚡' : '🚷'}</Text>
-              </View>
-              <View style={{ flex: 1 }}>
-                  <Text style={{ color: THEME_COLOR, fontSize: 16, marginBottom: 2, fontWeight: 'bold' }}>{isEletricos ? t('knowledgeHub.electricalRisks', 'Riscos Elétricos') : t('riscosFisicos.headerTitle', 'Riscos Físicos')}</Text>
-                  <Text style={{ color: Neo.colors.neutral[600], fontSize: 13, fontWeight: '600' }}>{isEletricos ? 'Choques, Fiações e Segurança' : t('riscosFisicos.headerSubtitle', 'Quedas, Queimaduras e Engasgos')}</Text>
-              </View>
-          </NeoCard>
-      </View>
+              <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+          </TouchableOpacity>
+      </SafeAreaView>
 
-      {/* Vertical List */}
-      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 240 }} showsVerticalScrollIndicator={false}>
-        <View style={styles.listContainer}>
+      <Animated.ScrollView
+          contentContainerStyle={{ paddingBottom: 40 }}
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+      >
+          {/* HERO com parallax */}
+          <Animated.View style={{
+              width: '100%',
+              height: HERO_HEIGHT,
+              backgroundColor: colors.neutral[800],
+              overflow: 'hidden',
+              transform: heroTransform,
+          }}>
+              <ReviewImage
+                  source={capaSource}
+                  style={StyleSheet.absoluteFill}
+                  resizeMode="cover"
+                  accessibilityLabel={titleStr}
+              />
+              <LinearGradient
+                  colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? colors.neutral[100] : '#F6F6F6']}
+                  locations={[0, 0.35, 0.85, 1]}
+                  style={StyleSheet.absoluteFill}
+              />
+              <View style={{
+                  position: 'absolute',
+                  bottom: 24,
+                  paddingHorizontal: 22,
+                  width: '100%',
+              }}>
+                  <Text style={{
+                      fontSize: 34,
+                      fontWeight: '900',
+                      color: '#FFF',
+                      letterSpacing: -0.8,
+                      lineHeight: 38,
+                      marginBottom: 8,
+                  }}>
+                      {titleStr}
+                  </Text>
+                  <Text style={{
+                      fontSize: 17,
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 24,
+                  }}>
+                      {subtitleStr}
+                  </Text>
+              </View>
+          </Animated.View>
+
+          {/* Main Content */}
+          <View style={{ paddingTop: 24, paddingHorizontal: 20 }}>
+          <View style={styles.listContainer}>
           {riscosFisicos.filter(item => isEletricos ? item.categoria === 'Eletricidade' : item.categoria !== 'Eletricidade').map((item) => {
             const { icon: IconStr, color, bg } = getIconData(item);
             return (
@@ -108,7 +169,7 @@ export default function RiscosFisicosScreen({ route, navigation }) {
                     <View style={[styles.guideImageContainer, { backgroundColor: bg }]}>
                       {item.imagemUrl ? (
                         <ReviewImage
-                          source={{ uri: item.imagemUrl }}
+                          source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                           tint={color}
                           accessibilityLabel={t_field(item, 'nome')}
                         />
@@ -129,8 +190,8 @@ export default function RiscosFisicosScreen({ route, navigation }) {
           })}
         </View>
         <View style={{ height: 80 }} />
-      </ScrollView>
-    </View>
+      </View>
+      </Animated.ScrollView>
     </AppBackground>
   );
 }

@@ -95,7 +95,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                     transform: heroTransform,
                 }}>
                     <ReviewImage
-                        source={group.imagemUrl ? { uri: group.imagemUrl } : group.imagem}
+                        source={group.imagemUrl ? (typeof group.imagemUrl === 'string' ? { uri: group.imagemUrl } : group.imagemUrl) : group.imagem}
                         style={StyleSheet.absoluteFill}
                         contentFit={group.resizeMode || 'cover'}
                     />
@@ -147,7 +147,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
 
                 {/* Risks Section */}
                 {group.risks && group.risks.length > 0 && (
-                    <>
+                    <View>
                         <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('ageGroup.risksTitle', 'Principais Riscos')}</Text>
                         {group.risks.map((risk, index) => {
                             const riskColor = risk.cor || Neo.colors.feedback.error;
@@ -179,7 +179,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                                 </NeoCard>
                             );
                         })}
-                    </>
+                    </View>
                 )}
                 </View>
             </Animated.ScrollView>

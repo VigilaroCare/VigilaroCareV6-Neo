@@ -9,7 +9,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: 'Trash', // Cleaning bucket generic
         iconColor: '#0EA5E9', // Sky
         bg: '#E0F2FE', // Sky 100
-        imagemUrl: 'https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/ambientes-casa_produto-limpeza-luvas-esponja_033.jpg'),
         definicao: 'Produtos usados na higiene da casa contêm substâncias corrosivas e tóxicas (cloro, amônia).',
         importancia: 'O armazenamento incorreto (embaixo da pia) é a causa nº 1 de intoxicação infantil.',
         comoIdentificar: [
@@ -30,7 +30,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: 'Brush', // Gardening tool generic
         iconColor: '#059669', // Emerald
         bg: '#D1FAE5', // Emerald 100
-        imagemUrl: 'https://images.pexels.com/photos/4894608/pexels-photo-4894608.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/generated_jardim.png'),
         definicao: 'Produtos para matar pragas e adubar plantas são altamente tóxicos para humanos e pets.',
         importancia: 'A ingestão acidental pode causar falência de órgãos.',
         comoIdentificar: [
@@ -70,7 +70,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         icon: 'Health', // Medical cross
         iconColor: '#EF4444', // Red
         bg: '#FEE2E2', // Red 100
-        imagemUrl: 'https://images.pexels.com/photos/3873149/pexels-photo-3873149.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_cartelas-comprimidos-medicamentos_038.jpg'),
         definicao: 'Remédios parecem "balinhas" para crianças. A sobredosagem é fatal.',
         importancia: 'Intoxicação medicamentosa é comum em crianças (curiosas) e idosos (confusão).',
         comoIdentificar: [

@@ -109,7 +109,7 @@ export const eletrodomesticosSeguranca = [
             {
                 id: 'secador',
                 nome: 'Secador de Cabelo',
-                imagemUrl: 'https://images.pexels.com/photos/973406/pexels-photo-973406.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                imagemUrl: require('../assets/illustrations/pad/criancas-bebes_menina-linda-com-secador-de-cabelo-23-21_061.jpg'),
                 riscos: ['Choque Elétrico'],
                 descricao: 'Risco altíssimo se usado próximo à água.',
                 prevencao: [

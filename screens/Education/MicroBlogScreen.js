@@ -50,7 +50,7 @@ export default function MicroBlogScreen({ navigation }) {
         >
             <NeoCard variant="elevated" style={styles.articleCard}>
                 <Image
-                    source={{ uri: article.thumbnail }}
+                    source={typeof article.thumbnail === 'number' ? article.thumbnail : { uri: article.thumbnail }}
                     style={styles.thumbnail}
                     resizeMode="cover"
                 />

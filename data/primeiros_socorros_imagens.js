@@ -12,33 +12,33 @@
 
 export const PRIMEIROS_SOCORROS_IMAGENS = {
     // ============ HUMANOS ============
-    ps_1:  'https://images.pexels.com/photos/27404939/pexels-photo-27404939.jpeg?auto=compress&cs=tinysrgb&w=1200', // Queimaduras — chama em fogao
+    ps_1:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // Queimaduras — chama em fogao
     ps_2:  null,                                                        // Engasgo — foto do autor (acervo Drive)
-    ps_3:  'https://images.pexels.com/photos/5272653/pexels-photo-5272653.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Engasgo bebe — bebe sendo cuidado
-    ps_4:  'https://images.pexels.com/photos/6519905/pexels-photo-6519905.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Cortes — bandagem mao
-    ps_5:  'https://images.pexels.com/photos/11837458/pexels-photo-11837458.jpeg?auto=compress&cs=tinysrgb&w=1200', // Choque eletrico — cabos
+    ps_3:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Engasgo bebe — bebe sendo cuidado
+    ps_4:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Cortes — bandagem mao
+    ps_5:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // Choque eletrico — cabos
     ps_6:  'https://images.pexels.com/photos/3873149/pexels-photo-3873149.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Intoxicacao — cartelas medicamentos
     ps_7:  null,                                                          // Quedas — foto do autor (acervo Drive)
-    ps_8:  'https://images.pexels.com/photos/5207242/pexels-photo-5207242.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Traumatismo craniano — mulher c/ bandagem na cabeca
-    ps_9:  'https://images.pexels.com/photos/5938362/pexels-photo-5938362.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Intoxicacao alimentar — dor de barriga
+    ps_8:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Traumatismo craniano — mulher c/ bandagem na cabeca
+    ps_9:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Intoxicacao alimentar — dor de barriga
     ps_10: 'https://images.pexels.com/photos/7723629/pexels-photo-7723629.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Corpos estranhos — gaze first aid
     ps_11: null,                                               // Mordidas — foto do autor (acervo Drive)
-    ps_12: 'https://images.pexels.com/photos/6129152/pexels-photo-6129152.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Mal subito — paciente em leito
-    ps_13: 'https://images.pexels.com/photos/3769151/pexels-photo-3769151.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Desmaio — mulher em leito iluminado
-    ps_14: 'https://images.pexels.com/photos/6129211/pexels-photo-6129211.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Convulsao — paciente recebendo IV
-    ps_15: 'https://images.pexels.com/photos/20897576/pexels-photo-20897576.jpeg?auto=compress&cs=tinysrgb&w=1200', // AVC — mao com soro
-    ps_16: 'https://images.pexels.com/photos/8943274/pexels-photo-8943274.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Parada cardiaca — desfibrilador
+    ps_12: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Mal subito — paciente em leito
+    ps_13: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Desmaio — mulher em leito iluminado
+    ps_14: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Convulsao — paciente recebendo IV
+    ps_15: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // AVC — mao com soro
+    ps_16: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Parada cardiaca — desfibrilador
 
     // ============ PETS ============
-    engasgo_pet:        'https://images.pexels.com/photos/6235650/pexels-photo-6235650.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Veterinario c/ estetoscopio
-    atropelamento_pet:  'https://images.pexels.com/photos/6234608/pexels-photo-6234608.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Pomeranian na mesa de exame
-    rcp_pet:            'https://images.pexels.com/photos/6235017/pexels-photo-6235017.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Vet examina cao
+    engasgo_pet:        require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Veterinario c/ estetoscopio
+    atropelamento_pet:  require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Pomeranian na mesa de exame
+    rcp_pet:            require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Vet examina cao
     calor_pet:          'https://images.pexels.com/photos/36760220/pexels-photo-36760220.jpeg?auto=compress&cs=tinysrgb&w=1200', // Cao ofegante ao sol
-    convulsao_pet:      'https://images.pexels.com/photos/6234612/pexels-photo-6234612.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Vets examinando cao
-    sangramento_pet:    'https://images.pexels.com/photos/36653927/pexels-photo-36653927.jpeg?auto=compress&cs=tinysrgb&w=1200', // Cao c/ colar pos-cirurgia
-    picada_peconhentos: 'https://images.pexels.com/photos/6443133/pexels-photo-6443133.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Cascavel
-    plantas_toxicas_pet:'https://images.pexels.com/photos/11496984/pexels-photo-11496984.jpeg?auto=compress&cs=tinysrgb&w=1200', // Beagle curioso c/ planta
-    quimicos_pet:       'https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&w=1200',  // Produtos de limpeza
+    convulsao_pet:      require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Cuidados pos-convulsao
+    sangramento_pet:    require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // Cao c/ colar pos-cirurgia
+    picada_peconhentos: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Cascavel
+    plantas_toxicas_pet:require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // Beagle curioso c/ planta
+    quimicos_pet:       require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Produtos de limpeza
 };
 
 export default PRIMEIROS_SOCORROS_IMAGENS;

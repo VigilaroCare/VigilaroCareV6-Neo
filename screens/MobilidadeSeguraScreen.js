@@ -203,7 +203,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
             <View style={[styles.guideImageContainer, { backgroundColor: dispositivo.cor + '15' }]}>
               {dispositivo.imagemUrl ? (
                 <ReviewImage
-                  source={{ uri: dispositivo.imagemUrl }}
+                  source={typeof dispositivo.imagemUrl === 'string' ? (typeof dispositivo.imagemUrl === 'string' ? { uri: dispositivo.imagemUrl } : dispositivo.imagemUrl) : dispositivo.imagemUrl}
                   tint={dispositivo.cor}
                   accessibilityLabel={dispositivo.nome}
                 />
