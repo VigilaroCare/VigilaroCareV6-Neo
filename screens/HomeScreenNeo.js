@@ -390,7 +390,7 @@ export default function HomeScreenNeo() {
                                     end={{ x: 1, y: 1 }}
                                 >
                                     <Image 
-                                        source={require('../assets/illustrations/home-pictograms/raio-x.png')}
+                                        source={require('../assets/illustrations/home-pictograms/raio-x-casa.png')}
                                         style={{ width: 60, height: 60, marginRight: 16 }}
                                         resizeMode="contain"
                                     />
