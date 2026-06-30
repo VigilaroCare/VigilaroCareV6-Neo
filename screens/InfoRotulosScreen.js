@@ -170,75 +170,55 @@ export default function InfoRotulosScreen() {
     const capaSource = require('../assets/illustrations/pad/hero_rotulos.jpg');
 
     return (
-        <AppBackground>
+        <View style={{ flex: 1, backgroundColor: '#020617' }}>
+            <StatusBar style="light" backgroundColor="transparent" translucent />
             
                 
 
                 
-            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{
-                        width: 44, height: 44, borderRadius: 22,
-                        backgroundColor: 'rgba(0,0,0,0.35)',
-                        justifyContent: 'center', alignItems: 'center',
-                        marginLeft: 16, marginTop: 12,
-                    }}
-                >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-                </TouchableOpacity>
+            <Image
+                source={capaSource}
+                style={[StyleSheet.absoluteFill, { opacity: 0.15 }]}
+                resizeMode="cover"
+                blurRadius={30}
+                accessibilityLabel={titleStr}
+            />
+            <LinearGradient
+                colors={['rgba(2,6,23,0.4)', '#020617']}
+                style={StyleSheet.absoluteFill}
+            />
+
+            {/* HEADER CENTRALIZADO (Estilo Scanner) */}
+            <SafeAreaView edges={['top']} style={{ zIndex: 100 }}>
+                <View style={{
+                    padding: 24, paddingTop: 20,
+                    alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.05)'
+                }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{ position: 'absolute', top: 20, left: 20, padding: 8 }}
+                        accessibilityRole="button"
+                    >
+                        <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                    </TouchableOpacity>
+                    <View style={{
+                        width: 80, height: 80, borderRadius: 40,
+                        backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)',
+                        justifyContent: 'center', alignItems: 'center', marginBottom: 16
+                    }}>
+                        <NeoIcon name="Barcode" size={40} color="#FFF" />
+                    </View>
+                    <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#FFF', marginBottom: 8 }}>{titleStr}</Text>
+                    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.7)', textAlign: 'center', paddingHorizontal: 20, lineHeight: 24 }}>
+                        {subtitleStr}
+                    </Text>
+                </View>
             </SafeAreaView>
 
-            <Animated.ScrollView
+            <ScrollView
                 contentContainerStyle={{ paddingBottom: 40 }}
                 showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
             >
-                {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors?.neutral?.[800] || '#222',
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <Image
-                        source={capaSource}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                        accessibilityLabel={titleStr}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                            marginBottom: 8,
-                        }}>
-                            {titleStr}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitleStr}
-                        </Text>
-                    </View>
-                </Animated.View>
 
                 {/* Main Content */}
                 <View style={{ paddingTop: 24 }}>
@@ -431,9 +411,8 @@ export default function InfoRotulosScreen() {
                         {t('inforotulos.disclaimer', 'O Vigilaro Care não substitui avaliação de um toxicologista, engenheiro químico ou profissional de saúde. Use as informações como referência educativa. Em caso de intoxicação, ligue imediatamente para o CIATOX ou SAMU.')}
                     </Small>
                 </View>
-            </Animated.ScrollView>
-            
-        </AppBackground>
+            </ScrollView>
+        </View>
     );
 }
 
@@ -452,139 +431,88 @@ function formatRelativeTime(timestamp) {
 const s = StyleSheet.create({
     // Header
     header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 18,
-        gap: 12,
+        flexDirection: 'row', alignItems: 'center', paddingHorizontal: Neo.spacing.lg,
+        paddingTop: 4, paddingBottom: 18, gap: 12,
     },
     backBtn: {
-        width: 38, height: 38, borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.75)',
-        alignItems: 'center', justifyContent: 'center',
+        width: 38, height: 38, borderRadius: 12, backgroundColor: 'rgba(255,255,255,0.1)',
+        alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)'
     },
-    title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2 },
-    subtitle: { color: Neo.colors.neutral[600] },
+    title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2, color: '#FFF' },
+    subtitle: { color: 'rgba(255,255,255,0.7)' },
 
-    scrollContent: {
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 190,
-    },
+    scrollContent: { paddingHorizontal: Neo.spacing.lg, paddingTop: 4, paddingBottom: 190 },
 
     // Section labels
     sectionLabel: {
-        fontSize: 11, fontWeight: '900', color: Neo.colors.neutral[700],
-        letterSpacing: 1.6, marginBottom: 10, textTransform: 'uppercase', opacity: 0.85,
+        fontSize: 11, fontWeight: '900', color: 'rgba(255,255,255,0.6)',
+        letterSpacing: 1.6, marginBottom: 10, textTransform: 'uppercase',
     },
 
     // Search
     searchCard: {
-        borderRadius: 20,
-        padding: 0,
-        overflow: 'hidden',
+        borderRadius: 20, padding: 0, overflow: 'hidden',
+        backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)',
     },
-    searchRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16, paddingVertical: 12,
-        gap: 10,
-    },
-    searchInput: {
-        flex: 1,
-        fontSize: 15,
-        color: Neo.colors.neutral[900],
-        fontWeight: '500',
-    },
-    searchResults: {
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.06)',
-    },
+    searchRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 10 },
+    searchInput: { flex: 1, fontSize: 15, color: '#FFF', fontWeight: '500' },
+    searchResults: { borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.05)' },
     searchResultItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16, paddingVertical: 12,
-        borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.04)',
+        flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12,
+        borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.02)',
     },
     searchResultIcon: { fontSize: 22, marginRight: 12 },
-    searchResultName: { fontSize: 14, fontWeight: '700', color: Neo.colors.neutral[900] },
-    searchResultCat: { color: Neo.colors.neutral[600], marginTop: 1 },
+    searchResultName: { fontSize: 14, fontWeight: '700', color: '#FFF' },
+    searchResultCat: { color: 'rgba(255,255,255,0.6)', marginTop: 1 },
     perigoTag: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8 },
     perigoTagText: { fontSize: 9.5, fontWeight: '800', letterSpacing: 0.3 },
     searchOnlineBtn: {
-        flexDirection: 'row', alignItems: 'center',
-        paddingHorizontal: 16, paddingVertical: 12, gap: 8,
-        backgroundColor: 'rgba(16,185,129,0.10)',
+        flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 8,
+        backgroundColor: 'rgba(16,185,129,0.15)',
     },
-    searchOnlineText: { flex: 1, fontWeight: '700', color: Neo.colors.primary[700], fontSize: 12 },
+    searchOnlineText: { flex: 1, fontWeight: '700', color: '#81C784', fontSize: 12 },
 
     // Generic action card (Barcode)
     actionCard: {
-        flexDirection: 'row', alignItems: 'center',
-        padding: 14, borderRadius: 18,
+        flexDirection: 'row', alignItems: 'center', padding: 14, borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)',
     },
-    actionIconWrap: {
-        width: 48, height: 48, borderRadius: 24,
-        alignItems: 'center', justifyContent: 'center',
-    },
-    actionTitle: {
-        fontWeight: '800', fontSize: 15, color: Neo.colors.neutral[900], marginBottom: 2,
-    },
-    actionSub: {
-        color: Neo.colors.neutral[600], lineHeight: 16,
-    },
+    actionIconWrap: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+    actionTitle: { fontWeight: '800', fontSize: 15, color: '#FFF', marginBottom: 2 },
+    actionSub: { color: 'rgba(255,255,255,0.6)', lineHeight: 16 },
 
     // Family card
     familyCard: {
-        flexDirection: 'row', alignItems: 'flex-start',
-        padding: 14, borderRadius: 18, gap: 12,
+        flexDirection: 'row', alignItems: 'flex-start', padding: 14, borderRadius: 18, gap: 12,
+        backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)',
     },
-    familyIconWrap: {
-        width: 40, height: 40, borderRadius: 20,
-        alignItems: 'center', justifyContent: 'center',
-    },
-    familyTitle: { fontWeight: '800', color: Neo.colors.neutral[900], marginBottom: 2 },
-    familyText: { color: Neo.colors.neutral[700], lineHeight: 17 },
-    familyWarning: {
-        color: '#B45309', fontWeight: '700', marginTop: 6,
-    },
+    familyIconWrap: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+    familyTitle: { fontWeight: '800', color: '#FFF', marginBottom: 2 },
+    familyText: { color: 'rgba(255,255,255,0.7)', lineHeight: 17 },
+    familyWarning: { color: '#F59E0B', fontWeight: '700', marginTop: 6 },
 
     // History
-    historyCard: { padding: 0, borderRadius: 18, overflow: 'hidden' },
-    historyItem: {
-        flexDirection: 'row', alignItems: 'center',
-        paddingHorizontal: 14, paddingVertical: 12,
+    historyCard: { 
+        padding: 0, borderRadius: 18, overflow: 'hidden', 
+        backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' 
     },
-    historyItemBorder: {
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.05)',
-    },
-    historyName: { fontWeight: '700', fontSize: 14, color: Neo.colors.neutral[900] },
-    historyDate: { color: Neo.colors.neutral[500], marginTop: 1 },
+    historyItem: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12 },
+    historyItemBorder: { borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.05)' },
+    historyName: { fontWeight: '700', fontSize: 14, color: '#FFF' },
+    historyDate: { color: 'rgba(255,255,255,0.5)', marginTop: 1 },
 
     // CIATOX
     ciatoxCard: {
-        flexDirection: 'row', alignItems: 'center',
-        backgroundColor: '#D32F2F',
-        padding: 14, borderRadius: 18,
+        flexDirection: 'row', alignItems: 'center', backgroundColor: '#D32F2F', padding: 14, borderRadius: 18,
     },
     ciatoxIconWrap: {
-        width: 44, height: 44, borderRadius: 22,
-        backgroundColor: 'rgba(255,255,255,0.22)',
+        width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.22)',
         alignItems: 'center', justifyContent: 'center',
     },
-    ciatoxTitle: {
-        fontWeight: '800', color: '#FFF', fontSize: 14,
-    },
+    ciatoxTitle: { fontWeight: '800', color: '#FFF', fontSize: 14 },
     ciatoxNumber: { color: 'rgba(255,255,255,0.85)', marginTop: 2 },
 
     disclaimer: {
-        color: Neo.colors.neutral[500],
-        textAlign: 'center',
-        marginTop: 22,
-        lineHeight: 16,
-        fontSize: 11,
-        paddingHorizontal: 8,
+        color: 'rgba(255,255,255,0.4)', textAlign: 'center', marginTop: 22, lineHeight: 16, fontSize: 11, paddingHorizontal: 8,
     },
 });

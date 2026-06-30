@@ -172,7 +172,7 @@ export default function MinhaSaudeScreen() {
                 scrollEventThrottle={16}
                 onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
             >
-                {/* HERO com parallax */}
+                {/* HERO com Glassmorphism Pessoal */}
                 <Animated.View style={{
                     width: '100%',
                     height: HERO_HEIGHT,
@@ -181,39 +181,86 @@ export default function MinhaSaudeScreen() {
                     transform: heroTransform,
                 }}>
                     <Image
-                        source={capaSource}
-                        style={StyleSheet.absoluteFill}
+                        source={profile?.foto ? { uri: ProfileService.resolveImageUri(profile.foto) } : capaSource}
+                        style={[StyleSheet.absoluteFill, { opacity: 0.7 }]}
                         resizeMode="cover"
+                        blurRadius={40}
                         accessibilityLabel={titleStr}
                     />
                     <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
+                        colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.6)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
+                        locations={[0, 0.6, 1]}
                         style={StyleSheet.absoluteFill}
                     />
+                    
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
                         paddingHorizontal: 22,
                         width: '100%',
+                        flexDirection: 'row',
+                        alignItems: 'flex-end',
                     }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                            marginBottom: 8,
-                        }}>
-                            {titleStr}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitleStr}
-                        </Text>
+                        {profile ? (
+                            <>
+                                {/* Foto Principal Quadrada */}
+                                <View style={{
+                                    width: 110,
+                                    height: 110,
+                                    borderRadius: 20,
+                                    backgroundColor: 'rgba(255,255,255,0.2)',
+                                    borderWidth: 3,
+                                    borderColor: 'rgba(255,255,255,0.6)',
+                                    overflow: 'hidden',
+                                    marginRight: 16,
+                                    elevation: 8,
+                                    shadowColor: '#000',
+                                    shadowOffset: { width: 0, height: 4 },
+                                    shadowOpacity: 0.3,
+                                    shadowRadius: 8,
+                                }}>
+                                    <Image
+                                        source={profile?.foto ? { uri: ProfileService.resolveImageUri(profile.foto) } : capaSource}
+                                        style={{ width: '100%', height: '100%' }}
+                                        resizeMode="cover"
+                                    />
+                                </View>
+
+                                <View style={{ flex: 1, paddingBottom: 4 }}>
+                                    <View style={{ backgroundColor: Neo.colors.success[500], paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: 'flex-start', marginBottom: 8 }}>
+                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>Monitoramento Ativo</Text>
+                                    </View>
+                                    <Text style={{
+                                        fontSize: 28,
+                                        fontWeight: '900',
+                                        color: '#FFF',
+                                        letterSpacing: -0.5,
+                                        lineHeight: 32,
+                                        marginBottom: 4,
+                                    }} numberOfLines={2}>
+                                        {profile.nome || 'Perfil'}
+                                    </Text>
+                                    {!!metaLine && (
+                                        <Text style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', marginBottom: 2 }}>{metaLine}</Text>
+                                    )}
+                                    {!!tipoSanguineo && (
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                                            <NeoIcon name="Drop" variant="Bold" color={HUE.rose} size={14} />
+                                            <Text style={{ fontSize: 14, color: '#FFF', fontWeight: 'bold', marginLeft: 4 }}>{tipoSanguineo}</Text>
+                                        </View>
+                                    )}
+                                </View>
+                            </>
+                        ) : (
+                            <View style={{ paddingBottom: 4 }}>
+                                <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38, marginBottom: 8 }}>
+                                    {titleStr}
+                                </Text>
+                                <Text style={{ fontSize: 17, color: 'rgba(255,255,255,0.9)', lineHeight: 24 }}>
+                                    {subtitleStr}
+                                </Text>
+                            </View>
+                        )}
                     </View>
                 </Animated.View>
 
@@ -241,31 +288,7 @@ export default function MinhaSaudeScreen() {
                     />
                 ) : (
                     <View style={s.scroll}>
-                        {/* HERO — identidade: foto à esquerda + lead à direita (formato único §2) */}
-                        <NeoCard variant="premium" style={s.hero}>
-                            <View style={s.heroRow}>
-                                <GlassProfileRing
-                                    profile={profile}
-                                    score={0}
-                                    imageError={imageError}
-                                    onImageError={() => setImageError(true)}
-                                    resolveUri={ProfileService.resolveImageUri}
-                                    size={72}
-                                    ringWidth={3}
-                                />
-                                <View style={s.heroLead}>
-                                    <H2 style={s.heroName} numberOfLines={1}>{profile.nome || 'Perfil'}</H2>
-                                    {!!metaLine && <Small style={s.heroMeta}>{metaLine}</Small>}
-                                    {!!tipoSanguineo && (
-                                        <View style={s.bloodBadge}>
-                                            <NeoIcon name="Drop" variant="Bold" color={HUE.rose} size={13} />
-                                            <Small style={s.bloodText}>{tipoSanguineo}</Small>
-                                        </View>
-                                    )}
-                                </View>
-                            </View>
-                        </NeoCard>
-
+                        {/* Profile stats now in Hero */}
                         <Eyebrow style={s.eyebrow}>Perfil de Risco e Prevenção</Eyebrow>
                         <Section icon="Heartbeat" color={HUE.rose} title="Condições Médicas">
                             {renderChips(condicoes, HUE.rose)}

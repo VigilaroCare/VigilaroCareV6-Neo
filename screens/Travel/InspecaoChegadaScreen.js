@@ -1,142 +1,148 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform, Animated, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import NeoCard from '../../components/NeoCard';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H2, Body, Small } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import TravelTipsAccordion from '../../components/TravelTipsAccordion';
+import TravelChecklistCard from '../../components/TravelChecklistCard';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
+const SCREEN_W = Dimensions.get('window').width;
+
 export default function InspecaoChegadaScreen({ navigation }) {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation();
     const [checkedItems, setCheckedItems] = useState({});
     const [expandedSections, setExpandedSections] = useState({});
     const [trip, setTrip] = useState(null);
 
-    // Personalização efetiva (autor, 2026-06-12): o checklist cruza o
-    // briefing da viagem — tipo de destino condiciona a seção de água,
-    // e cada companhia (crianças/idosos/pets/PCD) traz sua seção própria.
+    // Parallax Hero
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 200;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolate: 'clamp',
+            })
+        }
+    ];
+
     useEffect(() => {
         AsyncStorage.getItem('@active_trip')
-            .then((raw) => { if (raw) setTrip(JSON.parse(raw)); })
+            .then(raw => {
+                if (raw) setTrip(JSON.parse(raw));
+            })
             .catch(() => {});
     }, []);
-    const cfg = trip?.config || {};
 
     const BASE_ITEMS = [
         {
-            id: 'windows',
-            title: t('travel.windowsBalconies', 'Janelas e Sacadas'),
-            icon: 'Window',
-            color: Neo.colors.secondary[500],
+            id: 'doors_windows',
+            title: t('travel.doorsAndWindows', 'Portas, Janelas e Sacadas'),
+            icon: 'Building',
+            color: Neo.colors.primary[600],
             items: [
-                { id: 'window_locks', label: t('travel.windowLocksWork', 'Travas de janelas funcionam corretamente') },
-                { id: 'balcony_rail', label: t('travel.balconyRailHeight', 'Grade/proteção da sacada com altura adequada') },
-                { id: 'curtain_cords', label: t('travel.curtainCords', 'Cordas de cortina fora do alcance de crianças') },
-                { id: 'glass_condition', label: t('travel.glassCondition', 'Vidros sem trincas ou soltos') },
+                { id: 'main_door', label: t('travel.mainDoorLocked', 'Porta principal trancada por dentro') },
+                { id: 'windows_locked', label: t('travel.windowsLockedDest', 'Janelas acessíveis travadas') },
+                { id: 'balcony', label: t('travel.balconySafe', 'Sacada livre de móveis que sirvam de escada') },
+                { id: 'peephole', label: t('travel.peepholeChecked', 'Olho mágico desobstruído/funcional') },
             ]
         },
         {
             id: 'water',
-            title: t('travel.poolsWater', 'Piscinas e Água'),
-            icon: 'Candle2',
-            color: Neo.colors.primary[500],
+            title: t('travel.waterRisk', 'Riscos de Água e Afogamento'),
+            icon: 'SwimmingPool',
+            color: '#2196F3',
             items: [
-                { id: 'pool_fence', label: t('travel.poolFence', 'Piscina tem cerca/grade de proteção') },
-                { id: 'pool_depth', label: t('travel.poolDepth', 'Profundidade sinalizada e visível') },
-                { id: 'slippery_floor', label: t('travel.slipperyFloor', 'Piso ao redor da piscina antiderrapante') },
-                { id: 'hot_water', label: t('travel.hotWaterTemp', 'Água quente do chuveiro com temperatura segura') },
+                { id: 'pool_access', label: t('travel.poolAccess', 'Acesso à piscina tem portão fechado') },
+                { id: 'bathroom_floor', label: t('travel.bathroomFloor', 'Piso do banheiro sem poças/escorregadio') },
+                { id: 'bathtub', label: t('travel.bathtubEmpty', 'Banheira esvaziada após o uso') },
             ]
         },
         {
-            id: 'electric',
-            title: t('travel.electricGas', 'Elétrica e Gás'),
-            icon: 'Electricity',
-            color: Neo.colors.feedback.warning,
+            id: 'fire_evac',
+            title: t('travel.fireAndEvac', 'Incêndio e Evacuação'),
+            icon: 'Fire',
+            color: '#F44336',
             items: [
-                { id: 'outlet_covers', label: t('travel.outletCovers', 'Tomadas com proteção (especialmente perto de água)') },
-                { id: 'exposed_wires', label: t('travel.noExposedWires', 'Sem fios expostos ou danificados') },
-                { id: 'gas_smell', label: t('travel.noGasSmell', 'Sem cheiro de gás no ambiente') },
-                { id: 'fire_extinguisher', label: t('travel.fireExtinguisher', 'Extintor de incêndio localizado e acessível') },
+                { id: 'evac_map', label: t('travel.evacMapLocated', 'Mapa de evacuação localizado (atrás da porta)') },
+                { id: 'fire_stairs', label: t('travel.fireStairsLocated', 'Escada de emergência localizada (nunca elevador)') },
+                { id: 'smoke_detector', label: t('travel.smokeDetector', 'Detector de fumaça visível no teto') },
+                { id: 'meet_point', label: t('travel.meetPoint', 'Ponto de encontro externo combinado') },
             ]
         },
-        {
-            id: 'access',
-            title: t('travel.accessExits', 'Acessos e Saídas'),
-            icon: 'Routing',
-            color: Neo.colors.feedback.success,
-            items: [
-                { id: 'emergency_exit', label: t('travel.emergencyExit', 'Saída de emergência identificada e desobstruída') },
-                { id: 'stairs_rail', label: t('travel.stairsRail', 'Escadas com corrimão em bom estado') },
-                { id: 'floor_obstacles', label: t('travel.noFloorObstacles', 'Sem obstáculos no caminho (tapetes soltos, cabos)') },
-                { id: 'door_locks', label: t('travel.doorLocks', 'Fechaduras e trancas da porta principal funcionam') },
-                { id: 'lighting', label: t('travel.adequateLighting', 'Iluminação adequada em corredores e escadas') },
-            ]
-        }
     ];
 
-    // Seções condicionais — uma por companhia do briefing
+    const hasKids = trip?.config?.hasKids;
+    const hasPets = trip?.config?.hasPets;
+    const hasElderly = trip?.config?.hasElderly;
+    const hasPcd = trip?.config?.hasPcd;
+
     const COMPANION_SECTIONS = [
-        cfg.hasKids && {
-            id: 'kids',
-            title: t('travel.forKidsTitle', 'Para as Crianças'),
+        hasKids && {
+            id: 'kids_safety',
+            title: t('travel.kidsSafety', 'Proteção para Crianças'),
             icon: 'Baby',
             color: Neo.colors.secondary[500],
             items: [
-                { id: 'kids_outlets', label: t('travel.kidsOutlets', 'Tomadas ao alcance protegidas (leve protetores portáteis)') },
-                { id: 'kids_products', label: t('travel.kidsProducts', 'Produtos de limpeza e medicamentos fora do alcance') },
-                { id: 'kids_corners', label: t('travel.kidsCorners', 'Quinas de móveis e objetos escaláveis perto de janelas') },
-                { id: 'kids_sleep', label: t('travel.kidsSleep', 'Local de dormir seguro (sem frestas, longe de cortinas)') },
+                { id: 'outlets', label: t('travel.outletsCovered', 'Tomadas baixas bloqueadas ou escondidas') },
+                { id: 'sharp_edges', label: t('travel.sharpEdges', 'Quinas perigosas isoladas (toalha/espuma)') },
+                { id: 'blind_cords', label: t('travel.blindCords', 'Cordões de persianas amarrados no alto') },
+                { id: 'choking', label: t('travel.chokingHazards', 'Chão livre de peças pequenas/moedas') },
             ]
         },
-        cfg.hasElderly && {
-            id: 'elderly',
-            title: t('travel.forElderlyTitle', 'Para os Idosos'),
-            icon: 'Elderly',
-            color: Neo.colors.primary[600],
-            items: [
-                { id: 'eld_rugs', label: t('travel.elderlyRugs', 'Tapetes soltos removidos ou fixados') },
-                { id: 'eld_nightlight', label: t('travel.elderlyNightlight', 'Caminho quarto-banheiro iluminado à noite') },
-                { id: 'eld_bathroom', label: t('travel.elderlyBathroom', 'Banheiro: piso, apoio e box verificados') },
-                { id: 'eld_bed', label: t('travel.elderlyBed', 'Altura da cama adequada (sentar e levantar com apoio)') },
-            ]
-        },
-        cfg.hasPets && {
-            id: 'pets',
-            title: t('travel.forPetsTitle', 'Para o Pet'),
-            icon: 'PawPrint',
+        hasPets && {
+            id: 'pets_safety',
+            title: t('travel.petsSafety', 'Segurança do Pet'),
+            icon: 'Pet',
             color: Neo.colors.feedback.warning,
             items: [
-                { id: 'pet_screens', label: t('travel.petScreens', 'Telas, portões e cercas sem frestas de fuga') },
-                { id: 'pet_plants', label: t('travel.petPlants', 'Plantas do local verificadas (toxicidade)') },
-                { id: 'pet_products', label: t('travel.petProducts', 'Iscas/venenos e produtos químicos inacessíveis') },
-                { id: 'pet_shade', label: t('travel.petShade', 'Água fresca e sombra disponíveis') },
+                { id: 'pet_escape', label: t('travel.petEscape', 'Vãos e frestas onde o pet possa fugir bloqueados') },
+                { id: 'toxic_plants', label: t('travel.toxicPlants', 'Sem plantas desconhecidas ao alcance') },
+                { id: 'trash_pet', label: t('travel.trashPet', 'Lixeiras fora do alcance do pet') },
             ]
         },
-        cfg.hasPcd && {
-            id: 'pcd',
-            title: t('travel.forPcdTitle', 'Acessibilidade (PCD)'),
-            icon: 'Wheelchair',
-            color: Neo.colors.feedback.success,
+        hasElderly && {
+            id: 'elderly_safety',
+            title: t('travel.elderlySafety', 'Apoio ao Idoso'),
+            icon: 'Elderly',
+            color: Neo.colors.primary[400],
             items: [
-                { id: 'pcd_route', label: t('travel.pcdRoute', 'Rota de circulação livre de obstáculos e desníveis') },
-                { id: 'pcd_bathroom', label: t('travel.pcdBathroom', 'Banheiro adaptado confere com o anunciado') },
+                { id: 'rugs', label: t('travel.removeRugs', 'Tapetes soltos removidos do caminho') },
+                { id: 'night_light', label: t('travel.nightLight', 'Luz noturna ligada no caminho do banheiro') },
+                { id: 'bath_mat', label: t('travel.bathMat', 'Tapete antiderrapante dentro do box') },
+            ]
+        },
+        hasPcd && {
+            id: 'pcd_safety',
+            title: t('travel.pcdSafety', 'Acessibilidade (PCD)'),
+            icon: 'Wheelchair',
+            color: Neo.colors.primary[800],
+            items: [
+                { id: 'pcd_path', label: t('travel.pcdPath', 'Caminho livre de obstáculos e móveis') },
                 { id: 'pcd_exit', label: t('travel.pcdExit', 'Rota de evacuação acessível identificada') },
                 { id: 'pcd_reach', label: t('travel.pcdReach', 'Interruptores e itens essenciais ao alcance') },
             ]
         },
     ].filter(Boolean);
 
-    // Água/piscina só onde faz sentido (praia, resort, rural) — sem viagem
-    // ativa, mostra tudo (fallback completo, não-omisso)
     const showWater = !trip || ['praia', 'resort', 'rural'].includes(trip.type);
     const CHECKLIST_ITEMS = [
         ...BASE_ITEMS.filter(s => s.id !== 'water' || showWater),
@@ -148,121 +154,88 @@ export default function InspecaoChegadaScreen({ navigation }) {
     };
 
     const toggleSection = (id) => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
+        setExpandedSections(prev => ({ ...prev, [id]: prev[id] === undefined ? false : !prev[id] }));
     };
 
     const totalItems = CHECKLIST_ITEMS.reduce((acc, s) => acc + s.items.length, 0);
     const totalChecked = Object.values(checkedItems).filter(Boolean).length;
 
-    const renderSection = (section) => {
-        const isExpanded = expandedSections[section.id] !== false; // padrão: aberta
-        const completedCount = section.items.filter(item => checkedItems[item.id]).length;
-        const totalCount = section.items.length;
-        const isCompleted = completedCount === totalCount;
-
-        return (
-            <NeoCard key={section.id} variant="elevated" style={{ marginBottom: 16, overflow: 'hidden' }}>
-                <TouchableOpacity
-                    onPress={() => toggleSection(section.id)}
-                    style={{
-                        flexDirection: 'row', alignItems: 'center', padding: 16,
-                        backgroundColor: isCompleted ? Neo.colors.feedback.success + '1A' : 'transparent'
-                    }}
-                >
-                    <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: section.color + '15', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                        <NeoIcon name={section.icon} size={20} color={isCompleted ? Neo.colors.feedback.success : section.color} variant="Bold" />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <H3 style={{ color: isCompleted ? Neo.colors.feedback.success : Neo.colors.neutral[800] }}>{section.title}</H3>
-                        <Small style={{ color: Neo.colors.neutral[500] }}>{completedCount} {t('travel.completedOf', 'de')} {totalCount} {t('travel.completed', 'concluídos')}</Small>
-                    </View>
-                </TouchableOpacity>
-
-                {isExpanded && (
-                    <View style={{ padding: 16, paddingTop: 0 }}>
-                        <View style={{ height: 1, backgroundColor: Neo.colors.neutral[100], marginBottom: 12 }} />
-                        {section.items.map(item => {
-                            const isChecked = checkedItems[item.id];
-                            return (
-                                <TouchableOpacity
-                                    key={item.id}
-                                    onPress={() => toggleItem(item.id)}
-                                    style={{
-                                        flexDirection: 'row', alignItems: 'center', paddingVertical: 12,
-                                        borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[50],
-                                        opacity: isChecked ? 0.6 : 1
-                                    }}
-                                >
-                                    <View style={{
-                                        width: 24, height: 24, borderRadius: 12,
-                                        borderWidth: 2, borderColor: isChecked ? Neo.colors.feedback.success : Neo.colors.neutral[300],
-                                        backgroundColor: isChecked ? Neo.colors.feedback.success : 'transparent',
-                                        alignItems: 'center', justifyContent: 'center', marginRight: 12
-                                    }}>
-                                        {isChecked && <NeoIcon name="TickCircle" size={14} color={Neo.colors.neutral.white} variant="Bold" />}
-                                    </View>
-                                    <Body style={{ flex: 1, color: isChecked ? Neo.colors.neutral[500] : Neo.colors.neutral[800], textDecorationLine: isChecked ? 'line-through' : 'none' }}>
-                                        {item.label}
-                                    </Body>
-                                </TouchableOpacity>
-                            );
-                        })}
-                    </View>
-                )}
-            </NeoCard>
-        );
-    };
-
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+            <StatusBar style="light" />
 
-                {/* Header */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16 }}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={{
-                            width: 44, height: 44, borderRadius: 22,
-                            backgroundColor: 'rgba(255,255,255,0.4)',
-                            alignItems: 'center', justifyContent: 'center',
-                            borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)'
-                        }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+            {/* Header Translúcido Flutuante */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
-                        <H2>{t('travel.arrivalInspection', 'Verificações no Destino')}</H2>
-                        <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.arrivalSubtitle', 'Segurança no seu destino')}</Small>
+                        <H2 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('travel.arrivalInspection', 'Verificações no Destino')}</H2>
                     </View>
                 </View>
-
-                <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 190 }}>
-                    <View style={{ alignItems: 'center', marginBottom: 24 }}>
-                        <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: Neo.colors.feedback.success + '26', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-                            <NeoIcon name="Routing" size={32} color={Neo.colors.feedback.success} variant="Bold" />
-                        </View>
-                        <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600] }}>
-                            {t('travel.arrivalIntro', 'Ao chegar no destino, faça esta inspeção rápida para identificar riscos e garantir a segurança de todos.')}
-                        </Body>
-                        <View style={{ marginTop: 12, backgroundColor: Neo.colors.primary[100], paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20 }}>
-                            <Small style={{ fontWeight: 'bold', color: Neo.colors.primary[700] }}>{totalChecked} / {totalItems} verificados</Small>
-                        </View>
-                        {!!trip && (
-                            <Small style={{ marginTop: 8, color: Neo.colors.neutral[500], textAlign: 'center' }}>
-                                {t('travel.checklistTailored', 'Checklist ajustado ao briefing da sua viagem.')}
-                            </Small>
-                        )}
-                    </View>
-
-                    {CHECKLIST_ITEMS.map(renderSection)}
-
-                    {/* Dicas da fase de CHEGADA (janelas, piscina, plano de
-                        fuga, idosos…) — acionáveis no contexto do checklist */}
-                    <TravelTipsAccordion phase="chegada" />
-                </ScrollView>
             </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}
+                showsVerticalScrollIndicator={false}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
+                style={{ flex: 1, zIndex: 10 }}
+            >
+                {/* Hero Imersivo */}
+                <Animated.View style={{
+                    width: SCREEN_W,
+                    height: HERO_HEIGHT,
+                    transform: heroTransform,
+                    marginBottom: 24,
+                    marginHorizontal: -16,
+                }}>
+                    <Image
+                        source={{ uri: 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800' }}
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="cover"
+                    />
+                    <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                        locations={[0.3, 1]}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}
+                    >
+                        <H2 style={{ color: Neo.colors.neutral.white, marginBottom: 4 }}>{t('travel.arrivalInspection', 'Verificações no Destino')}</H2>
+                        <Small style={{ color: 'rgba(255,255,255,0.8)' }}>{t('travel.arrivalSubtitle', 'Segurança no seu destino')}</Small>
+                    </LinearGradient>
+                </Animated.View>
+
+                <View style={{ alignItems: 'center', marginBottom: 24, paddingHorizontal: 8 }}>
+                    <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], lineHeight: 20 }}>
+                        {t('travel.arrivalIntro', 'Ao chegar no destino, faça esta inspeção rápida para identificar riscos e garantir a segurança de todos.')}
+                    </Body>
+                    <View style={{ marginTop: 12, backgroundColor: Neo.colors.primary[100], paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20 }}>
+                        <Small style={{ fontWeight: 'bold', color: Neo.colors.primary[700] }}>{totalChecked} / {totalItems} verificados</Small>
+                    </View>
+                    {!!trip && (
+                        <Small style={{ marginTop: 8, color: Neo.colors.neutral[500], textAlign: 'center' }}>
+                            {t('travel.checklistTailored', 'Checklist ajustado ao briefing da sua viagem.')}
+                        </Small>
+                    )}
+                </View>
+
+                {CHECKLIST_ITEMS.map((section) => (
+                    <TravelChecklistCard
+                        key={section.id}
+                        section={section}
+                        isExpanded={expandedSections[section.id] !== false}
+                        onToggleSection={() => toggleSection(section.id)}
+                        checkedItems={checkedItems}
+                        onToggleItem={toggleItem}
+                    />
+                ))}
+
+                <TravelTipsAccordion phase="chegada" />
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

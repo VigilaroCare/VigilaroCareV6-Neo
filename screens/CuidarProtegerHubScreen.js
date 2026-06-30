@@ -1,12 +1,14 @@
-import React from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoHorizontalCard from '../components/NeoHorizontalCard';
 import NeoIcon from '../components/NeoIcon';
-import { H1, Caption } from '../components/NeoTypography';
+import ReviewImage from '../components/ReviewImage';
+import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
@@ -16,14 +18,15 @@ export default function CuidarProtegerHubScreen({ navigation }) {
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textBody = themeColors.neutral[700];
+    const textMuted = themeColors.neutral[500];
 
     const contextItems = [
-        { id: 'ambientes',       titulo: t('knowledgeHub.envPrevention', 'Segurança por Ambiente'),  iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments' },
-        { id: 'mentes_atipicas', titulo: t('knowledgeHub.neurodivergence', 'Lar Neurodiverso'), iconName: 'Activity', cor: '#8B5CF6', route: 'NeurodivergenceMenu' },
-        { id: 'pets',            titulo: t('knowledgeHub.protectPet', 'Proteção para Pets'),     iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu' },
-        { id: 'seguranca_idade', titulo: t('knowledgeHub.ageCare', 'Segurança 60+'),        iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu' },
-        { id: 'gestante_segura', titulo: t('knowledgeHub.pregnancyCare', 'Gestante Segura'),  iconName: 'Woman',      cor: '#E91E63', route: 'GenericCategory', params: { categoryId: 'gestante_segura' } },
-        { id: 'brinquedos_hub',  titulo: t('knowledgeHub.toyGuide', 'Guia de Brinquedos'),       iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' } },
+        { id: 'ambientes',       titulo: t('knowledgeHub.envPrevention', 'Segurança por Ambiente'),  iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments', imageUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'mentes_atipicas', titulo: t('knowledgeHub.neurodivergence', 'Lar Neurodiverso'), iconName: 'Activity', cor: '#8B5CF6', route: 'NeurodivergenceMenu', imageUrl: 'https://images.pexels.com/photos/7162002/pexels-photo-7162002.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'pets',            titulo: t('knowledgeHub.protectPet', 'Proteção para Pets'),     iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu', imageUrl: 'https://images.pexels.com/photos/4587979/pexels-photo-4587979.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'seguranca_idade', titulo: t('knowledgeHub.ageCare', 'Segurança 60+'),        iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu', imageUrl: 'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'gestante_segura', titulo: t('knowledgeHub.pregnancyCare', 'Gestante Segura'),  iconName: 'Woman',      cor: '#E91E63', route: 'GenericCategory', params: { categoryId: 'gestante_segura' }, imageUrl: 'https://images.pexels.com/photos/7055935/pexels-photo-7055935.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'brinquedos_hub',  titulo: t('knowledgeHub.toyGuide', 'Guia de Brinquedos'),       iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' }, imageUrl: 'https://images.pexels.com/photos/3662804/pexels-photo-3662804.jpeg?auto=compress&cs=tinysrgb&w=800' },
     ];
 
     const itemDescriptions = {
@@ -36,71 +39,143 @@ export default function CuidarProtegerHubScreen({ navigation }) {
     };
 
     const handlePress = (item) => {
-        navigation.navigate(item.route, item.params || {});
+        const params = item.params || {};
+        navigation.navigate(item.route, { ...params, heroImage: item.imageUrl });
     };
+
+    const capaUrl = require('../assets/illustrations/pad/hero_fases_vida.png');
+    const title = t('cuidarProteger.headerTitle', 'Cuidar & Proteger');
+    const subtitle = t('cuidarProteger.headerSubtitle', 'Adaptação ativa e segurança para todos');
+
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 280;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
 
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                {/* HEADER */}
-                <View style={styles.header}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={[styles.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.75)' : 'rgba(255,255,255,0.75)' }]}
-                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={textBody} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1 }}>
-                        <H1 style={styles.title}>{t('cuidarProteger.headerTitle', 'Cuidar & Proteger')}</H1>
-                        <Caption style={styles.subtitle}>{t('cuidarProteger.headerSubtitle', 'Adaptação ativa e segurança para todos')}</Caption>
-                    </View>
-                </View>
-
-                {/* CONTENT */}
-                <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 120 }} showsVerticalScrollIndicator={false}>
-                    <Caption style={{ marginBottom: 24, fontSize: 16 }}>{t('cuidarProteger.description', 'Personalize e adapte a sua casa de acordo com o perfil de quem mora ou visita o seu lar.')}</Caption>
-                    
-                    {contextItems.map((item, index) => (
-                        <NeoHorizontalCard
-                            key={item.id}
-                            title={item.titulo}
-                            description={itemDescriptions[item.id]}
-                            iconName={item.iconName}
-                            color={item.cor}
-                            onPress={() => handlePress(item)}
-                        />
-                    ))}
-                </ScrollView>
+            {/* Float Header / Back Button */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: 44, height: 44, borderRadius: 22,
+                        backgroundColor: 'rgba(0,0,0,0.35)',
+                        justifyContent: 'center', alignItems: 'center',
+                        marginLeft: 16, marginTop: 12,
+                    }}
+                >
+                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                </TouchableOpacity>
             </SafeAreaView>
+
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: '100%',
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors.neutral[800],
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                }}>
+                    <ReviewImage
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {title}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {subtitle}
+                        </Text>
+                    </View>
+                </Animated.View>
+
+                {/* Main Content */}
+                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
+                    {/* Info bar */}
+                    <FadeInView delay={100}>
+                        <View style={styles.infoBar}>
+                            <Text style={[styles.infoText, { color: textMuted }]}>
+                                📋 {contextItems.length} categorias • Explore as adaptações
+                            </Text>
+                        </View>
+                    </FadeInView>
+
+                    {contextItems.map((item, index) => (
+                        <FadeInView key={item.id} delay={150 + index * 50}>
+                            <NeoHorizontalCard
+                                title={item.titulo}
+                                description={itemDescriptions[item.id]}
+                                iconName={item.iconName}
+                                imageUrl={item.imageUrl}
+                                color={item.cor}
+                                onPress={() => handlePress(item)}
+                            />
+                        </FadeInView>
+                    ))}
+                    <View style={{ height: 120 }} />
+                </View>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }
 
 const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 14,
-        gap: 12,
-    },
-    backBtn: {
-        width: 38,
-        height: 38,
+    infoBar: {
+        backgroundColor: 'rgba(150,150,150,0.1)',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
         borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
+        marginBottom: 24,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: '800',
+    infoText: {
+        fontSize: 13,
+        fontWeight: '500',
     },
-    subtitle: {
-        fontSize: 14,
-        marginTop: 2,
-    }
 });

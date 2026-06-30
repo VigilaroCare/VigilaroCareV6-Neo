@@ -122,7 +122,7 @@ export default function GlassProfileRing({
                     >
                         {profile?.foto && !imageError ? (
                             <Image
-                                source={{ uri: resolveUri ? resolveUri(profile.foto) : profile.foto }}
+                                source={typeof (resolveUri ? resolveUri(profile.foto) : profile.foto) === 'number' ? (resolveUri ? resolveUri(profile.foto) : profile.foto) : { uri: resolveUri ? resolveUri(profile.foto) : profile.foto }}
                                 style={styles.photo}
                                 onError={onImageError}
                             />

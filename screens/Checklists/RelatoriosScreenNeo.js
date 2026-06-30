@@ -1,11 +1,13 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
-    View, ScrollView, TouchableOpacity, Modal, ActivityIndicator, Text,
+    View, ScrollView, TouchableOpacity, Modal, ActivityIndicator, Text, Animated, StyleSheet, Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
+import { LinearGradient } from 'expo-linear-gradient';
+import ReviewImage from '../../components/ReviewImage';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
@@ -181,22 +183,101 @@ export default function RelatoriosScreenNeo({ navigation }) {
     };
 
     const missingProfilesCount = Math.max(0, (familyMeta?.totalMoradoresEsperados || 0) - profilesCount);
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 200;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const capaUrl = require('../../assets/illustrations/pad/hero_preventivo.png');
 
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style={isDark ? 'light' : 'dark'} />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                {/* HEADER */}
-                <View style={s.headerBlock}>
-                    <H1 style={s.title}>{t('reports.title')}</H1>
-                    <Caption style={s.subtitle}>{t('reports.subtitle')}</Caption>
-                </View>
+            {/* Float Header / Back Button */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                {navigation.canGoBack() && (
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={{
+                            width: 44, height: 44, borderRadius: 22,
+                            backgroundColor: 'rgba(0,0,0,0.35)',
+                            justifyContent: 'center', alignItems: 'center',
+                            marginLeft: 16, marginTop: 12,
+                        }}
+                    >
+                        <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
+                    </TouchableOpacity>
+                )}
+            </SafeAreaView>
 
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={s.scrollContent}
-                >
+            <Animated.ScrollView
+                showsVerticalScrollIndicator={false}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                contentContainerStyle={[s.scrollContent, { paddingBottom: 120 }]}
+            >
+                {/* HERO com parallax */}
+                <Animated.View style={{
+                    width: Dimensions.get('window').width,
+                    alignSelf: 'center',
+                    marginTop: -4,
+                    height: HERO_HEIGHT,
+                    backgroundColor: themeColors.neutral[800],
+                    overflow: 'hidden',
+                    transform: heroTransform,
+                    marginBottom: 16,
+                }}>
+                    <ReviewImage
+                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                    />
+                    <LinearGradient
+                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
+                        locations={[0, 0.35, 0.85, 1]}
+                        style={StyleSheet.absoluteFill}
+                    />
+                    <View style={{
+                        position: 'absolute',
+                        bottom: 24,
+                        paddingHorizontal: 22,
+                        width: '100%',
+                    }}>
+                        <Text style={{
+                            fontSize: 34,
+                            fontWeight: '900',
+                            color: '#FFF',
+                            letterSpacing: -0.8,
+                            lineHeight: 38,
+                            marginBottom: 8,
+                        }}>
+                            {t('reports.title', 'Vistorias da Casa')}
+                        </Text>
+                        <Text style={{
+                            fontSize: 17,
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 24,
+                        }}>
+                            {t('reports.subtitle', 'Acompanhe as rondas de segurança')}
+                        </Text>
+                    </View>
+                </Animated.View>
                     {loading ? (
                         <View style={{ paddingHorizontal: Neo.spacing.lg, marginTop: 12 }}>
                             <SkeletonCard hasAvatar={false} lines={3} />
@@ -290,7 +371,23 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             {/* Grid de ambientes com status por cômodo usando NeoHorizontalCard */}
                             {chartData.length > 0 && (
                                 <View style={{ flexDirection: 'column', gap: 12, marginTop: 10 }}>
-                                    {chartData.map((area) => {
+                                    {chartData.map((area, index) => {
+                                        const getRoomImage = (roomId) => {
+                                            switch (roomId) {
+                                                case 'cozinha': return require('../../assets/illustrations/pad/cozinha-utensilios_cozinha-fogao-panelas_006.jpg');
+                                                case 'quarto': return require('../../assets/illustrations/pad/ambientes-casa_quarto-casal_007.jpg');
+                                                case 'banheiro': return require('../../assets/illustrations/pad/ambientes-casa_stockvault-blue-bathroom-124784_038.jpg');
+                                                case 'sala': return require('../../assets/illustrations/pad/ambientes-casa_sala-estar_036.jpg');
+                                                case 'quintal': return require('../../assets/illustrations/pad/ambientes-casa_quintal-arvores_037.jpg');
+                                                case 'lavanderia': 
+                                                case 'area_servico': return require('../../assets/illustrations/pad/ambientes-casa_laundry-room_026.jpg');
+                                                case 'escada': return require('../../assets/illustrations/pad/quedas-escadas_escada-madeira_022.jpg');
+                                                case 'garagem': return require('../../assets/illustrations/pad/ambientes-casa_carro-na-garagem_011.jpg');
+                                                case 'central_gas': return require('../../assets/illustrations/pad/gas-vazamento_central-de-gu00e1s_003.jpg');
+                                                default: return require('../../assets/illustrations/pad/hero_preventivo.png');
+                                            }
+                                        };
+
                                         const statusKey = area.percent === 100 && area.total > 0
                                             ? 'Seguro'
                                             : area.checked === 0 ? 'Pendente'
@@ -327,6 +424,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                 description={`${progressText}`}
                                                 emoji={area.emoji}
                                                 iconName={area.iconName}
+                                                imageUrl={getRoomImage(area.key)}
                                                 color={area.color}
                                                 onPress={() => navigation.navigate('ChecklistDetail', {
                                                     roomId: area.key,
@@ -356,16 +454,23 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                     style={s.specialCell}
                                     onPress={() => navigation.navigate('EscolaSegura')}
                                 >
-                                    <NeoCard variant="elevated" style={s.specialCard}>
-                                        <View style={[s.specialIconWrap, { backgroundColor: 'rgba(46,125,50,0.22)' }]}>
-                                            <NeoIcon name="Teacher" size={24} color={Neo.colors.primary[700]} variant="Bold" />
+                                    <NeoCard variant="elevated" style={[s.specialCard, { padding: 0, overflow: 'hidden' }]}>
+                                        <ReviewImage 
+                                            source={require('../../assets/illustrations/pad/encontradas_brinquedos-seguros-escola.webp')} 
+                                            style={{ width: '100%', height: 76, backgroundColor: '#E8F5E9' }}
+                                            resizeMode="cover"
+                                        />
+                                        <View style={{ padding: 12, alignItems: 'center', marginTop: -28 }}>
+                                            <View style={[s.specialIconWrap, { backgroundColor: '#2E7D32', borderWidth: 2, borderColor: '#fff' }]}>
+                                                <NeoIcon name="Teacher" size={24} color="#FFF" variant="Bold" />
+                                            </View>
+                                            <H3 style={s.specialTitle}>
+                                                {t('reports.safeSchool', 'Escola Segura')}
+                                            </H3>
+                                            <Small style={s.specialSub} numberOfLines={2}>
+                                                {t('reports.safeSchoolDesc', 'Vistoria escolar')}
+                                            </Small>
                                         </View>
-                                        <H3 style={s.specialTitle}>
-                                            {t('reports.safeSchool', 'Escola Segura')}
-                                        </H3>
-                                        <Small style={s.specialSub} numberOfLines={2}>
-                                            {t('reports.safeSchoolDesc', 'Vistoria escolar')}
-                                        </Small>
                                     </NeoCard>
                                 </TouchableOpacity>
 
@@ -374,22 +479,29 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                     style={s.specialCell}
                                     onPress={() => navigation.navigate('VistoriaAsilo')}
                                 >
-                                    <NeoCard variant="elevated" style={s.specialCard}>
-                                        <View style={[s.specialIconWrap, { backgroundColor: 'rgba(21,101,192,0.22)' }]}>
-                                            <NeoIcon name="Building" size={24} color="#1565C0" variant="Bold" />
+                                    <NeoCard variant="elevated" style={[s.specialCard, { padding: 0, overflow: 'hidden' }]}>
+                                        <ReviewImage 
+                                            source={require('../../assets/illustrations/pad/idosos_acessibilidade-direito-de-todos-hd-2_001.jpg')} 
+                                            style={{ width: '100%', height: 76, backgroundColor: '#E3F2FD' }}
+                                            resizeMode="cover"
+                                        />
+                                        <View style={{ padding: 12, alignItems: 'center', marginTop: -28 }}>
+                                            <View style={[s.specialIconWrap, { backgroundColor: '#1565C0', borderWidth: 2, borderColor: '#fff' }]}>
+                                                <NeoIcon name="Building" size={24} color="#FFF" variant="Bold" />
+                                            </View>
+                                            <H3 style={s.specialTitle}>
+                                                {t('reports.safeNursingHome', 'Asilo Seguro')}
+                                            </H3>
+                                            <Small style={s.specialSub} numberOfLines={2}>
+                                                {t('reports.safeNursingHomeDesc', 'Vistoria de instituição')}
+                                            </Small>
                                         </View>
-                                        <H3 style={s.specialTitle}>
-                                            {t('reports.safeNursingHome', 'Asilo Seguro')}
-                                        </H3>
-                                        <Small style={s.specialSub} numberOfLines={2}>
-                                            {t('reports.safeNursingHomeDesc', 'Vistoria de instituição')}
-                                        </Small>
                                     </NeoCard>
                                 </TouchableOpacity>
                             </View>
                         </>
                     )}
-                </ScrollView>
+                </Animated.ScrollView>
 
                 {/* MODAL — relatório detalhado (não reestilizado nesta passada) */}
                 <Modal
@@ -508,7 +620,6 @@ export default function RelatoriosScreenNeo({ navigation }) {
                         </View>
                     </View>
                 </Modal>
-            </SafeAreaView>
         </AppBackground>
     );
 }

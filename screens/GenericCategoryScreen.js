@@ -37,7 +37,7 @@ const DATA_MAP = {
 
 export default function GenericCategoryScreen({ route, navigation }) {
     const { t } = useTranslation('common');
-    const { categoryId } = route.params;
+    const { categoryId, heroImage } = route.params;
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
@@ -119,7 +119,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
         'faixa_etaria': require('../assets/illustrations/pad/pessoas-lifestyle_photo-of-family-having-fun-3820210_010.jpg'),
     };
 
-    const finalImageUrl = content.imagemUrl || categoryImages[categoryId];
+    const finalImageUrl = heroImage || content.imagemUrl || categoryImages[categoryId];
     const showImage = !!finalImageUrl;
 
         const scrollY = useRef(new Animated.Value(0)).current;

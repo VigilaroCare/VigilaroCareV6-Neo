@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, Animated, StyleSheet } from 'react-native';
 import NeoIcon from '../components/NeoIcon';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 // Services & Utils
@@ -13,17 +13,20 @@ import { RISK_CATEGORIES } from '../data/RiskCategories';
 
 // Neo Components
 import NeoCard from '../components/NeoCard';
+import NeoHorizontalCard from '../components/NeoHorizontalCard';
 import NeoScreenHeader from '../components/NeoScreenHeader';
 import NeoText, { H2, H3, Body, Small, Caption } from '../components/NeoTypography';
 import TriColorBar from '../components/TriColorBar';
+import FadeInView from '../components/FadeInView';
 
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation();
     const themeColors = useThemeColors();
     const isDark = useIsDark();
+    const insets = useSafeAreaInsets();
     const [selectedRisk, setSelectedRisk] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -211,54 +214,30 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                 </Animated.View>
 
                 {/* Main Content */}
-                <View style={{ paddingTop: 24 }}>
+                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
+                    {/* Info bar */}
+                    <FadeInView delay={100}>
+                        <View style={styles.infoBar}>
+                            <Text style={[styles.infoText, { color: themeColors.neutral[500] }]}>
+                                📋 {RISK_CATEGORIES.length} categorias • Toque para iniciar a verificação
+                            </Text>
+                        </View>
+                    </FadeInView>
 
-
-                
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        {RISK_CATEGORIES.map((item) => (
-                            <TouchableOpacity
-                                key={item.id}
-                                activeOpacity={0.8}
-                                onPress={() => handleRiskPress(item)}
-                                style={{ width: '48.5%', marginBottom: 16 }}
-                            >
-                                <NeoCard
-                                    variant="glass"
-                                    style={{
-                                        padding: 16,
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        height: 140, // Increased height for better proportions
-                                        borderColor: item.color + '40',
-                                        borderWidth: 1.5
-                                    }}
-                                >
-                                    {/* Icon */}
-                                    <View style={{
-                                        width: 52, height: 52, borderRadius: 26,
-                                        backgroundColor: item.color + '15',
-                                        alignItems: 'center', justifyContent: 'center',
-                                        marginBottom: 12
-                                    }}>
-                                        <NeoIcon name={item.icon} size={26} color={item.color} variant="Bold" />
-                                    </View>
-
-                                    <View style={{ flex: 1, justifyContent: 'center' }}>
-                                        <Body style={{
-                                            fontWeight: 'bold',
-                                            fontSize: 14,
-                                            textAlign: 'center',
-                                            lineHeight: 18,
-                                            color: Neo.colors.neutral[800]
-                                        }} numberOfLines={2}>
-                                            {item.title}
-                                        </Body>
-                                    </View>
-                                </NeoCard>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
+                    {RISK_CATEGORIES.map((item, idx) => {
+                        return (
+                            <FadeInView key={item.id} delay={150 + idx * 50}>
+                                <NeoHorizontalCard
+                                    title={item.title}
+                                    description={item.educational?.description || "Auditoria preventiva do ambiente"}
+                                    iconName={item.icon}
+                                    imageUrl={item.image}
+                                    color={item.color}
+                                    onPress={() => handleRiskPress(item)}
+                                />
+                            </FadeInView>
+                        );
+                    })}
                 </View>
             </Animated.ScrollView>
                 {/* AUDIT MODAL */}
@@ -267,51 +246,66 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={closeAudit}
+                    statusBarTranslucent={true}
                 >
                     <AppBackground>
-                        <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+                        <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={showEducation ? ['bottom', 'left', 'right'] : ['top', 'bottom', 'left', 'right']}>
                             {selectedRisk && (
                                 <View style={{ flex: 1 }}>
 
-                                    {/* Modal Header */}
-                                    <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[200] }}>
-                                        <TouchableOpacity onPress={closeAudit}>
-                                            <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[900]} />
-                                        </TouchableOpacity>
-                                        <Body style={{ fontWeight: 'bold' }}>{selectedRisk.title}</Body>
-                                        <View style={{ width: 24 }} />
-                                    </View>
+                                    {/* Modal Header for Checklists/Results */}
+                                    {!showEducation && (
+                                        <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[200] }}>
+                                            <TouchableOpacity onPress={closeAudit}>
+                                                <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[900]} />
+                                            </TouchableOpacity>
+                                            <Body style={{ fontWeight: 'bold' }}>{selectedRisk.title}</Body>
+                                            <View style={{ width: 24 }} />
+                                        </View>
+                                    )}
 
                                     {/* CONTENT */}
                                     {showEducation && (
-                                        <View style={{ flex: 1, padding: 24 }}>
-                                            <View style={{ alignItems: 'center', marginBottom: 24 }}>
-                                                <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: selectedRisk.color + '20', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-                                                    <NeoIcon name={selectedRisk.icon} size={32} color={selectedRisk.color} />
-                                                </View>
-                                                <H2 style={{ textAlign: 'center' }}>{t('headersFirst.guiaDeSeguranA', 'Guia de Segurança')}</H2>
+                                        <View style={{ flex: 1 }}>
+                                            <View style={{ position: 'absolute', top: Math.max(insets.top, 16) + 16, left: 16, zIndex: 10 }}>
+                                                <TouchableOpacity onPress={closeAudit} style={{ backgroundColor: 'rgba(255,255,255,0.9)', padding: 8, borderRadius: 20, elevation: 3, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4 }}>
+                                                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
+                                                </TouchableOpacity>
                                             </View>
-
-                                            <ScrollView style={{ flex: 1 }}>
-                                                <Body style={{ marginBottom: 24, lineHeight: 22 }}>
-                                                    {selectedRisk.educational?.description || "Siga as instruções de segurança abaixo."}
-                                                </Body>
-
-                                                <H3 style={{ marginBottom: 16 }}>{t('headersFirst.dicasDeOuro', 'Dicas de Ouro:')}</H3>
-                                                {selectedRisk.educational?.keyPoints?.map((point, index) => (
-                                                    <View key={index} style={{ flexDirection: 'row', marginBottom: 12 }}>
-                                                        <NeoIcon name="TickCircle" size={20} color={selectedRisk.color} style={{ marginRight: 12, marginTop: 2 }} />
-                                                        <Body style={{ flex: 1 }}>{point}</Body>
+                                            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 24 }} showsVerticalScrollIndicator={false}>
+                                                <Image 
+                                                    source={typeof selectedRisk.image === 'string' ? { uri: selectedRisk.image } : selectedRisk.image} 
+                                                    style={{ width: '100%', height: 260, backgroundColor: themeColors.neutral[200] }} 
+                                                    resizeMode="cover" 
+                                                />
+                                                <View style={{ paddingHorizontal: 24 }}>
+                                                    <View style={{ alignItems: 'center', marginBottom: 24 }}>
+                                                        <View style={{ width: 72, height: 72, borderRadius: 36, backgroundColor: selectedRisk.color + '15', alignItems: 'center', justifyContent: 'center', marginTop: -36, borderWidth: 4, borderColor: '#fff', elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4 }}>
+                                                            <NeoIcon name={selectedRisk.icon} size={36} color={selectedRisk.color} variant="Bold" />
+                                                        </View>
+                                                        <H2 style={{ textAlign: 'center', marginTop: 12 }}>{t('headersFirst.guiaDeSeguranA', 'Guia de Segurança')}</H2>
                                                     </View>
-                                                ))}
-                                            </ScrollView>
 
-                                            <TouchableOpacity
-                                                style={{ backgroundColor: selectedRisk.color, padding: 16, borderRadius: 12, alignItems: 'center', marginTop: 16 }}
-                                                onPress={startAudit}
-                                            >
-                                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.iniciarVerificaO', 'Iniciar Verificação')}</Body>
-                                            </TouchableOpacity>
+                                                    <Body style={{ marginBottom: 24, lineHeight: 22 }}>
+                                                        {selectedRisk.educational?.description || "Siga as instruções de segurança abaixo."}
+                                                    </Body>
+
+                                                    <H3 style={{ marginBottom: 16 }}>{t('headersFirst.dicasDeOuro', 'Dicas de Ouro:')}</H3>
+                                                    {selectedRisk.educational?.keyPoints?.map((point, index) => (
+                                                        <View key={index} style={{ flexDirection: 'row', marginBottom: 12 }}>
+                                                            <NeoIcon name="TickCircle" size={20} color={selectedRisk.color} style={{ marginRight: 12, marginTop: 2 }} />
+                                                            <Body style={{ flex: 1 }}>{point}</Body>
+                                                        </View>
+                                                    ))}
+
+                                                    <TouchableOpacity
+                                                        style={{ backgroundColor: selectedRisk.color, padding: 16, borderRadius: 12, alignItems: 'center', marginTop: 24 }}
+                                                        onPress={startAudit}
+                                                    >
+                                                        <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.iniciarVerificaO', 'Iniciar Verificação')}</Body>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </ScrollView>
                                         </View>
                                     )}
 
@@ -536,3 +530,63 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
         </AppBackground>
     );
 }
+
+const styles = StyleSheet.create({
+    infoBar: {
+        backgroundColor: 'rgba(150,150,150,0.1)',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderRadius: 12,
+        marginBottom: 24,
+    },
+    infoText: {
+        fontSize: 13,
+        fontWeight: '500',
+    },
+    guideCardOuter: {
+        borderRadius: 24,
+        shadowColor: Neo.colors.neutral.black,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
+    guideCardInner: {
+        flexDirection: 'row',
+        height: 120,
+        backgroundColor: Neo.colors.neutral.white,
+        borderRadius: 24,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.5)',
+    },
+    guideImageContainer: {
+        width: 120,
+        height: '100%',
+        backgroundColor: Neo.colors.neutral[200],
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    guideContent: {
+        flex: 1,
+        padding: 14,
+        justifyContent: 'flex-start',
+    },
+    guideTitle: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: Neo.colors.neutral[900],
+        marginBottom: 2,
+    },
+    guideSubtitle: {
+        fontSize: 11.5,
+        fontStyle: 'italic',
+        color: Neo.colors.neutral[500],
+        marginBottom: 6,
+    },
+    sptText: {
+        fontSize: 11.5,
+        color: Neo.colors.neutral[600],
+        lineHeight: 16,
+    },
+});

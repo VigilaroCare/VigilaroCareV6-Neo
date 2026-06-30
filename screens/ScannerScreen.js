@@ -12,6 +12,7 @@ import {
   Vibration,
   AccessibilityInfo,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from '@react-navigation/native';
 import { useAccessibility } from '../context/AccessibilityContext';
@@ -37,89 +38,99 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
   const { t } = useTranslation();
   const colors = useThemeColors();
   return (
-  <AppBackground>
+  <View style={{ flex: 1, backgroundColor: '#020617' }}>
+    <StatusBar style="light" backgroundColor="transparent" translucent />
+    <Image 
+      source={require('../assets/illustrations/pad/hero_rotulos.jpg')} 
+      style={[StyleSheet.absoluteFill, { opacity: 0.15 }]} 
+      resizeMode="cover" 
+      blurRadius={30}
+    />
+    <LinearGradient
+        colors={['rgba(2,6,23,0.4)', '#020617']}
+        style={StyleSheet.absoluteFill}
+    />
     <View style={styles.introContainer}>
-      <StatusBar style="dark" backgroundColor="transparent" translucent />
-      <View style={styles.introHeader}>
+      <View style={[styles.introHeader, { borderBottomColor: 'rgba(255,255,255,0.05)' }]}>
         <TouchableOpacity
           onPress={onClose}
           style={styles.closeButton}
           accessibilityRole="button"
           accessibilityLabel={t('common.close', 'Fechar')}
         >
-          <NeoIcon name="CloseSquare" size={24} color={Neo.colors.neutral[800]} />
+          <NeoIcon name="CloseSquare" size={24} color="#FFF" />
         </TouchableOpacity>
-        <View style={styles.iconBadge}>
-          <NeoIcon name="Scan" size={48} color={Neo.colors.primary[600]} />
+        <View style={[styles.iconBadge, { backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }]}>
+          <NeoIcon name="Scan" size={40} color="#FFF" />
         </View>
-        <Text style={styles.introTitle}>{t('scanner.introTitle')}</Text>
-        <Text style={styles.introSubtitle}>
+        <Text style={[styles.introTitle, { color: '#FFF' }]}>{t('scanner.introTitle')}</Text>
+        <Text style={[styles.introSubtitle, { color: 'rgba(255,255,255,0.7)' }]}>
           {t('scanner.introSub')}
         </Text>
       </View>
 
-    <ScrollView contentContainerStyle={styles.introContent}>
-      <TouchableOpacity
-        style={styles.modeCard}
-        activeOpacity={0.9}
-        onPress={() => onSelectMode('environment')}
-        accessibilityRole="button"
-        accessibilityLabel={`${t('scanner.modeEnv')} — ${t('scanner.modeEnvDesc')}`}
-      >
-        <View style={[styles.modeIcon, { backgroundColor: 'rgba(33, 150, 243, 0.12)' }]}>
-          <NeoIcon name="Home2" size={32} color={colors.secondary[500]} variant="Bold" />
-        </View>
-        <View style={styles.modeInfo}>
-          <Text style={styles.modeTitle}>{t('scanner.modeEnv')}</Text>
-          <Text style={styles.modeDesc}>{t('scanner.modeEnvDesc')}</Text>
-        </View>
-        <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[300]} />
-      </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.introContent}>
+        <TouchableOpacity
+          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
+          activeOpacity={0.7}
+          onPress={() => onSelectMode('environment')}
+          accessibilityRole="button"
+          accessibilityLabel={`${t('scanner.modeEnv')} — ${t('scanner.modeEnvDesc')}`}
+        >
+          <View style={[styles.modeIcon, { backgroundColor: 'rgba(33, 150, 243, 0.2)' }]}>
+            <NeoIcon name="Home2" size={32} color="#4FC3F7" variant="Bold" />
+          </View>
+          <View style={styles.modeInfo}>
+            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeEnv')}</Text>
+            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeEnvDesc')}</Text>
+          </View>
+          <NeoIcon name="ArrowRight2" size={24} color="rgba(255,255,255,0.3)" />
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.modeCard}
-        activeOpacity={0.9}
-        onPress={() => onSelectMode('label_scan')}
-        accessibilityRole="button"
-        accessibilityLabel={`${t('scanner.modeLabel')} — ${t('scanner.modeLabelDesc')}`}
-      >
-        <View style={[styles.modeIcon, { backgroundColor: 'rgba(156, 39, 176, 0.12)' }]}>
-          <NeoIcon name="DocumentText" size={32} color={colors.secondary[500]} variant="Bold" />
-        </View>
-        <View style={styles.modeInfo}>
-          <Text style={styles.modeTitle}>{t('scanner.modeLabel')}</Text>
-          <Text style={styles.modeDesc}>{t('scanner.modeLabelDesc')}</Text>
-        </View>
-        <NeoIcon name="Camera" size={24} color={Neo.colors.neutral[300]} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
+          activeOpacity={0.7}
+          onPress={() => onSelectMode('label_scan')}
+          accessibilityRole="button"
+          accessibilityLabel={`${t('scanner.modeLabel')} — ${t('scanner.modeLabelDesc')}`}
+        >
+          <View style={[styles.modeIcon, { backgroundColor: 'rgba(156, 39, 176, 0.2)' }]}>
+            <NeoIcon name="DocumentText" size={32} color="#E040FB" variant="Bold" />
+          </View>
+          <View style={styles.modeInfo}>
+            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeLabel')}</Text>
+            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeLabelDesc')}</Text>
+          </View>
+          <NeoIcon name="Camera" size={24} color="rgba(255,255,255,0.3)" />
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.modeCard}
-        activeOpacity={0.9}
-        onPress={() => onSelectMode('barcode_scan')}
-        accessibilityRole="button"
-        accessibilityLabel={`${t('scanner.modeBarcode')} — ${t('scanner.modeBarcodeDesc')}`}
-      >
-        <View style={[styles.modeIcon, { backgroundColor: 'rgba(76, 175, 80, 0.12)' }]}>
-          <NeoIcon name="Barcode" size={32} color={colors.primary[500]} variant="Bold" />
-        </View>
-        <View style={styles.modeInfo}>
-          <Text style={styles.modeTitle}>{t('scanner.modeBarcode')}</Text>
-          <Text style={styles.modeDesc}>{t('scanner.modeBarcodeDesc')}</Text>
-        </View>
-        <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[300]} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
+          activeOpacity={0.7}
+          onPress={() => onSelectMode('barcode_scan')}
+          accessibilityRole="button"
+          accessibilityLabel={`${t('scanner.modeBarcode')} — ${t('scanner.modeBarcodeDesc')}`}
+        >
+          <View style={[styles.modeIcon, { backgroundColor: 'rgba(76, 175, 80, 0.2)' }]}>
+            <NeoIcon name="Barcode" size={32} color="#81C784" variant="Bold" />
+          </View>
+          <View style={styles.modeInfo}>
+            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeBarcode')}</Text>
+            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeBarcodeDesc')}</Text>
+          </View>
+          <NeoIcon name="ArrowRight2" size={24} color="rgba(255,255,255,0.3)" />
+        </TouchableOpacity>
 
-      {/* Info Box */}
-      <View style={[styles.infoBox, { backgroundColor: colors.neutral[100] }]}>
-        <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} />
-        <Text style={styles.infoText}>
-          {t('scanner.hint')}
-        </Text>
-      </View>
-    </ScrollView>
+        {/* Info Box */}
+        <View style={[styles.infoBox, { backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1 }]}>
+          <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} />
+          <Text style={[styles.infoText, { color: 'rgba(255,255,255,0.8)' }]}>
+            {t('scanner.hint')}
+          </Text>
+        </View>
+      </ScrollView>
     </View>
-  </AppBackground>
+  </View>
 )};
 
 export default function ScannerScreen({ navigation, route }) {
@@ -382,25 +393,37 @@ export default function ScannerScreen({ navigation, route }) {
         />
       )}
 
-      {/* Overlay */}
+      {/* Overlay: AR HUD */}
       <View style={styles.overlayContainer}>
-        {/* Dark Frame */}
-        <View style={styles.darkOverlay} />
-        <View style={styles.middleOverlay}>
-          <View style={styles.darkOverlaySide} />
-          <View style={styles.scanWindow}>
-            <View style={[styles.corner, styles.cornerTL]} />
-            <View style={[styles.corner, styles.cornerTR]} />
-            <View style={[styles.corner, styles.cornerBL]} />
-            <View style={[styles.corner, styles.cornerBR]} />
+        {/* Top Space */}
+        <View style={{ flex: 1 }} />
+        {/* Center Reticle */}
+        <View style={{ flexDirection: 'row', height: width * 0.85 }}>
+          <View style={{ flex: 1 }} />
+          <View style={{ width: width * 0.85, height: width * 0.85, position: 'relative' }}>
+            <View style={[styles.corner, styles.cornerTL, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
+            <View style={[styles.corner, styles.cornerTR, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
+            <View style={[styles.corner, styles.cornerBL, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
+            <View style={[styles.corner, styles.cornerBR, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
             <Animated.View style={[styles.scanLine, {
-              transform: [{ translateY: scanLineAnim.interpolate({ inputRange: [0, 1], outputRange: [0, width * 0.7] }) }]
+              height: 4,
+              borderRadius: 2,
+              backgroundColor: '#4CAF50', // Tech green
+              shadowColor: '#4CAF50',
+              shadowOpacity: 0.8,
+              shadowRadius: 12,
+              elevation: 8,
+              transform: [{ translateY: scanLineAnim.interpolate({ inputRange: [0, 1], outputRange: [0, width * 0.85] }) }]
             }]} />
           </View>
-          <View style={styles.darkOverlaySide} />
+          <View style={{ flex: 1 }} />
         </View>
-        <View style={styles.darkOverlayBottom}>
-          <Text style={styles.instructionText}>
+        {/* Bottom Space & Controls */}
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 60 }}>
+          <Text style={{ 
+              color: '#FFF', fontSize: 16, marginBottom: 30, fontWeight: '600', 
+              textShadowColor: 'rgba(0,0,0,0.8)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 4 
+          }}>
             {currentMode === 'label_scan' ? t('scanner.guideLabel') : 
              currentMode === 'barcode_scan' ? t('scanner.guideBarcode') : t('scanner.guideEnv')}
           </Text>
@@ -412,8 +435,8 @@ export default function ScannerScreen({ navigation, route }) {
                 accessibilityRole="button"
                 accessibilityLabel={t('scanner.capturePhoto', 'Tirar foto')}
               >
-                <View style={styles.captureInner}>
-                  <NeoIcon name="Camera" size={32} color={Neo.colors.primary[600]} />
+                <View style={[styles.captureInner, { backgroundColor: 'rgba(255,255,255,0.3)' }]}>
+                  <NeoIcon name="Camera" size={32} color="#FFF" />
                 </View>
               </TouchableOpacity>
             )}
@@ -453,7 +476,7 @@ export default function ScannerScreen({ navigation, route }) {
 
   const renderAnalysis = () => (
     <View style={styles.analysisContainer}>
-      <Image source={{ uri: photo }} style={styles.previewImage} />
+      <Image source={{ uri: photo }} style={styles.previewImage} blurRadius={isAnalyzing ? 40 : 0} />
 
       <View style={[styles.floatingHeader, { top: insets.top }]}>
         <TouchableOpacity

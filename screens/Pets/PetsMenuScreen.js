@@ -13,7 +13,7 @@ import React, { useRef } from 'react';
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Animated
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -38,10 +38,10 @@ const IMG = {
 };
 
 // ── Placeholder para cards sem foto local (retorna null → fallback emoji/ícone) ──
-const PEXELS = (id) => null;
+const PEXELS = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800`;
 
-export default function PetsMenuScreen() {
-    const navigation = useNavigation();
+export default function PetsMenuScreen({ navigation, route }) {
+    const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -270,7 +270,8 @@ export default function PetsMenuScreen() {
 
     const title = t('petsMenu.headerTitle', 'Saúde Pet');
     const subtitle = t('petsMenu.headerSubtitle', 'Cuidados e segurança para seus pets');
-    const capaSource = require('../../assets/illustrations/pad/hero_pets.png');
+    const { heroImage } = route?.params || {};
+    const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/illustrations/pad/hero_pets.png');
 
     return (
         <AppBackground>

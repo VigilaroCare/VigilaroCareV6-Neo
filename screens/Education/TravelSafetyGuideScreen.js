@@ -11,7 +11,7 @@
  * criancasegura.org, SBP e SBGG (curadoria do autor, Téc. Seg. do Trabalho).
  */
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Animated, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -19,6 +19,7 @@ import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
@@ -29,6 +30,9 @@ import { t_field, t_array } from '../../utils/getLocalizedField';
 // (2) > propósito (3) > internacional (4) > sempre (5). Sem etiqueta = só
 // aparece no "guia completo".
 // ─────────────────────────────────────────────────────────────────────────
+const SCREEN_W = Dimensions.get('window').width;
+const HERO_HEIGHT = 220;
+
 export const GUIDE_SECTIONS = [
     {
         id: 'idosos', prio: 1, companions: ['hasElderly'], icon: 'Elderly',
@@ -297,6 +301,7 @@ export default function TravelSafetyGuideScreen({ navigation }) {
     const [trip, setTrip] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const [showAll, setShowAll] = useState(false);
+    const scrollY = React.useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         AsyncStorage.getItem('@active_trip')
@@ -330,86 +335,134 @@ export default function TravelSafetyGuideScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
-                <StatusBar style="dark" />
+            <StatusBar style="light" />
 
-                {/* Header */}
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 8 }}>
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
+            {/* Header Translúcido Flutuante */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
                     </TouchableOpacity>
-                    <H2 style={{ marginLeft: 16, fontSize: 20 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</H2>
+                    <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
+                        <H2 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</H2>
+                    </View>
                 </View>
-
-                <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-
-                    {trip ? (
-                        <>
-                            <Small style={styles.personalizedIntro}>
-                                {t('travel.guideForYourTrip', 'Montado para a sua viagem:')}
-                            </Small>
-                            <View style={styles.chipsRow}>
-                                {chips.map((c, i) => (
-                                    <View key={i} style={styles.chip}>
-                                        <Small style={styles.chipText}>{c}</Small>
-                                    </View>
-                                ))}
-                            </View>
-                        </>
-                    ) : (
-                        <Body style={{ marginBottom: 20, textAlign: 'center', fontStyle: 'italic', color: Neo.colors.neutral[600] }}>
-                            {t('travel.guideGenericIntro', 'Férias e momentos fora de casa exigem atenção redobrada. Ative o Modo Viagem para um guia montado sob medida.')}
-                        </Body>
-                    )}
-
-                    {sections.map((sec) => (
-                        <NeoCard key={sec.id} variant="elevated" style={{ marginBottom: 16, padding: 16 }}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                <View style={styles.iconCircle}>
-                                    <NeoIcon name={sec.icon} size={24} color={Neo.colors.primary[700]} variant="Bulk" />
-                                </View>
-                                <H3 style={{ color: Neo.colors.neutral[800], flex: 1 }}>{t_field(sec, 'title')}</H3>
-                            </View>
-
-                            <Body style={{ color: Neo.colors.neutral[600], marginBottom: 12, lineHeight: 20 }}>
-                                {t_field(sec, 'content')}
-                            </Body>
-
-                            <View style={{ backgroundColor: Neo.colors.neutral[50], padding: 12, borderRadius: 8 }}>
-                                {t_array(sec, 'bullets').map((point, index) => (
-                                    <View key={index} style={{ flexDirection: 'row', marginBottom: 6 }}>
-                                        <Text style={{ color: Neo.colors.primary[500], marginRight: 6, fontWeight: 'bold' }}>•</Text>
-                                        <Small style={{ color: Neo.colors.neutral[700], flex: 1, lineHeight: 18 }}>{point}</Small>
-                                    </View>
-                                ))}
-                            </View>
-
-                            {!!t_field(sec, 'source') && (
-                                <Small style={{ color: Neo.colors.neutral[500], fontSize: 10.5, marginTop: 10, fontStyle: 'italic', lineHeight: 15 }}>
-                                    {t_field(sec, 'source')}
-                                </Small>
-                            )}
-                        </NeoCard>
-                    ))}
-
-                    {/* Não-omissão: o conteúdo completo está a um toque */}
-                    {trip && hiddenCount > 0 && (
-                        <TouchableOpacity
-                            onPress={() => setShowAll(!showAll)}
-                            style={styles.showAllBtn}
-                            accessibilityRole="button"
-                        >
-                            <Body style={{ color: Neo.colors.primary[700], fontWeight: 'bold', fontSize: 14 }}>
-                                {showAll
-                                    ? t('travel.guideShowLess', 'Mostrar só o relevante para esta viagem')
-                                    : t('travel.guideShowAll', 'Ver o guia completo (+{{count}} temas)', { count: hiddenCount })}
-                            </Body>
-                        </TouchableOpacity>
-                    )}
-
-                    <View style={{ height: 40 }} />
-                </ScrollView>
             </SafeAreaView>
+
+            <Animated.ScrollView 
+                contentContainerStyle={styles.content} 
+                showsVerticalScrollIndicator={false}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
+                style={{ flex: 1, zIndex: 10 }}
+            >
+                {/* Hero Imersivo */}
+                <Animated.View style={{
+                    width: SCREEN_W,
+                    height: HERO_HEIGHT,
+                    transform: [
+                        {
+                            translateY: scrollY.interpolate({
+                                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                                extrapolate: 'clamp',
+                            })
+                        },
+                        {
+                            scale: scrollY.interpolate({
+                                inputRange: [-HERO_HEIGHT, 0],
+                                outputRange: [2, 1],
+                                extrapolateRight: 'clamp',
+                            })
+                        }
+                    ],
+                    marginBottom: 24,
+                    marginHorizontal: -20,
+                    marginTop: -20,
+                }}>
+                    <Image
+                        source={{ uri: 'https://images.pexels.com/photos/844141/pexels-photo-844141.jpeg?auto=compress&cs=tinysrgb&w=800' }}
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="cover"
+                    />
+                    <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                        locations={[0.3, 1]}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}
+                    >
+                        <H2 style={{ color: Neo.colors.neutral.white, marginBottom: 4 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</H2>
+                        <Small style={{ color: 'rgba(255,255,255,0.8)' }}>Recomendações e cautela</Small>
+                    </LinearGradient>
+                </Animated.View>
+
+                {trip ? (
+                    <>
+                        <Small style={styles.personalizedIntro}>
+                            {t('travel.guideForYourTrip', 'Montado para a sua viagem:')}
+                        </Small>
+                        <View style={styles.chipsRow}>
+                            {chips.map((c, i) => (
+                                <View key={i} style={styles.chip}>
+                                    <Small style={styles.chipText}>{c}</Small>
+                                </View>
+                            ))}
+                        </View>
+                    </>
+                ) : (
+                    <Body style={{ marginBottom: 20, textAlign: 'center', fontStyle: 'italic', color: Neo.colors.neutral[600] }}>
+                        {t('travel.guideGenericIntro', 'Férias e momentos fora de casa exigem atenção redobrada. Ative o Modo Viagem para um guia montado sob medida.')}
+                    </Body>
+                )}
+
+                {sections.map((sec) => (
+                    <NeoCard key={sec.id} variant="elevated" style={{ marginBottom: 16, padding: 16 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+                            <View style={styles.iconCircle}>
+                                <NeoIcon name={sec.icon} size={24} color={Neo.colors.primary[700]} variant="Bulk" />
+                            </View>
+                            <H3 style={{ color: Neo.colors.neutral[800], flex: 1 }}>{t_field(sec, 'title')}</H3>
+                        </View>
+
+                        <Body style={{ color: Neo.colors.neutral[600], marginBottom: 12, lineHeight: 20 }}>
+                            {t_field(sec, 'content')}
+                        </Body>
+
+                        <View style={{ backgroundColor: Neo.colors.neutral[50], padding: 12, borderRadius: 8 }}>
+                            {t_array(sec, 'bullets').map((point, index) => (
+                                <View key={index} style={{ flexDirection: 'row', marginBottom: 6 }}>
+                                    <Text style={{ color: Neo.colors.primary[500], marginRight: 6, fontWeight: 'bold' }}>•</Text>
+                                    <Small style={{ color: Neo.colors.neutral[700], flex: 1, lineHeight: 18 }}>{point}</Small>
+                                </View>
+                            ))}
+                        </View>
+
+                        {!!t_field(sec, 'source') && (
+                            <Small style={{ color: Neo.colors.neutral[500], fontSize: 10.5, marginTop: 10, fontStyle: 'italic', lineHeight: 15 }}>
+                                {t_field(sec, 'source')}
+                            </Small>
+                        )}
+                    </NeoCard>
+                ))}
+
+                {trip && hiddenCount > 0 && (
+                    <TouchableOpacity
+                        onPress={() => setShowAll(!showAll)}
+                        style={styles.showAllBtn}
+                        accessibilityRole="button"
+                    >
+                        <Body style={{ color: Neo.colors.primary[700], fontWeight: 'bold', fontSize: 14 }}>
+                            {showAll
+                                ? t('travel.guideShowLess', 'Mostrar só o relevante para esta viagem')
+                                : t('travel.guideShowAll', `Ver o guia completo (+${hiddenCount} temas)`)}
+                        </Body>
+                    </TouchableOpacity>
+                )}
+
+                <View style={{ height: 40 }} />
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

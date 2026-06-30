@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions, Animated } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +17,7 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
 
-export default function FasesVidaMenuScreen({ navigation }) {
+export default function FasesVidaMenuScreen({ navigation, route }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
@@ -81,7 +81,8 @@ export default function FasesVidaMenuScreen({ navigation }) {
 
     const title = t('fasesVida.title', 'Fases da Vida');
     const subtitle = t('fasesVida.subtitle', 'Guia de proteção por faixa etária');
-    const capaSource = require('../../assets/illustrations/pad/hero_fases_vida.png');
+    const { heroImage } = route?.params || {};
+    const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/illustrations/pad/hero_fases_vida.png');
 
     return (
         <AppBackground>

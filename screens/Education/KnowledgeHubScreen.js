@@ -70,6 +70,7 @@ const PICTOGRAMS = {
     teoria_fogo:        require('../../assets/illustrations/education-pictograms/pictogram-teoria-do-fogo.png'),
     riscos_eletricos:   require('../../assets/illustrations/education-pictograms/pictogram-riscos-eletricos.png'),
     dispositivos_protecao: require('../../assets/illustrations/education-pictograms/pictogram-dispositivos-protecao.png'),
+    vazamento_gas: require('../../assets/illustrations/education-pictograms/pictogram-vazamento-gas.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos.png');
@@ -91,6 +92,7 @@ const CERAMIC_STYLE_IDS = new Set([
     'teoria_fogo',
     // Dispositivos de Proteção (2026-06-18):
     'dispositivos_protecao',
+    'vazamento_gas',
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {

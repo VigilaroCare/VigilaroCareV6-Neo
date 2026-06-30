@@ -649,7 +649,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 <TouchableOpacity onPress={pickImage} style={{ position: 'relative' }}>
                                     <View style={styles.avatarCircle}>
                                         {foto ? (
-                                            <Image source={{ uri: foto }} style={{ width: 92, height: 92, borderRadius: 46 }} />
+                                            <Image source={typeof foto === 'number' ? foto : { uri: foto }} style={{ width: 92, height: 92, borderRadius: 46 }} />
                                         ) : (
                                             <NeoIcon name={tipo === 'pet' ? 'Heart' : 'User'} size={40} color={Neo.colors.neutral[400]} />
                                         )}

@@ -44,7 +44,7 @@ export default function PetFormStep({
                 <TouchableOpacity onPress={onPickPhoto} activeOpacity={0.8} style={{ alignSelf: 'center', marginBottom: 24 }}>
                     <View style={ss.photoCircle}>
                         {formPhoto ? (
-                            <Image source={{ uri: formPhoto }} style={{ width: 100, height: 100, borderRadius: 50 }} />
+                            <Image source={typeof formPhoto === 'number' ? formPhoto : { uri: formPhoto }} style={{ width: 100, height: 100, borderRadius: 50 }} />
                         ) : (
                             <NeoIcon name="Heart" size={48} color={C.neutral[400]} variant="Bold" />
                         )}

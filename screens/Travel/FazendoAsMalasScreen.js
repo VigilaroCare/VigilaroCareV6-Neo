@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager, Animated, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
@@ -13,6 +14,8 @@ import AppBackground from '../../components/AppBackground';
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
+const SCREEN_W = Dimensions.get('window').width;
 
 // ═══════════════════════════════════════════════════
 // SEÇÃO 1: SAINDO DE VIAGEM (BASE)
@@ -28,71 +31,36 @@ const SAINDO_DATA = [
             'Uso contínuo + margem de 3 a 5 dias extras',
             'Manter na embalagem original',
             'Analgésicos, antitérmicos e antialérgicos',
-            'Receitas médicas atualizadas',
+            'Receitas médicas atualizadas (físicas ou digitais)',
         ],
     },
     {
-        id: 'primeiros_socorros',
-        title: 'Primeiros Socorros',
-        icon: 'Health',
-        color: Neo.colors.feedback.error,
-        intro: 'Um kit fixo para pequenas emergências.',
+        id: 'docs_ida',
+        title: 'Documentos Vitais',
+        icon: 'DocumentText',
+        color: Neo.colors.primary[500],
+        intro: 'Imprevistos acontecem; tenha cópias e acesso offline.',
         items: [
-            'Band-aids, gaze e esparadrapo',
-            'Antisséptico e soro fisiológico',
-            'Termômetro digital e luvas',
-            'Pomada para queimaduras e picadas',
-        ],
-    },
-];
-
-// ═══════════════════════════════════════════════════
-// SEÇÃO 2: VOLTANDO PRA CASA (FIXO)
-// ═══════════════════════════════════════════════════
-const VOLTANDO_DATA = [
-    {
-        id: 'objetos',
-        title: 'Objetos Pessoais',
-        icon: 'Bag2',
-        color: Neo.colors.secondary[500],
-        intro: 'Evite o esquecimento nos locais mais comuns.',
-        items: [
-            'Tomadas (carregadores)',
-            'Cofre, gavetas e armários',
-            'Banheiro (itens pendurados)',
-            'Embaixo da cama e travesseiros',
+            'Passaporte/RG válidos e em bom estado',
+            'Cartão de vacinas (físico e digital)',
+            'Certidão de nascimento (menores de idade)',
+            'Cartão do plano de saúde e SUS',
         ],
     },
     {
-        id: 'checkout',
-        title: 'Hospedagem e Segurança',
-        icon: 'Building',
+        id: 'conforto_ida',
+        title: 'Kit Conforto',
+        icon: 'Coffee',
         color: Neo.colors.feedback.warning,
-        intro: 'Encerramento seguro da estadia.',
+        intro: 'Prevenção de pequenos estresses durante o trajeto.',
         items: [
-            'Devolver chaves e cartões',
-            'Verificar frigobar',
-            'Conferir pneus e combustível antes de partir',
+            'Garrafa de água (vazia para encher após raio-x no aeroporto)',
+            'Lanche não perecível',
+            'Muda de roupa leve na bagagem de mão (caso a despachada atrase)',
+            'Itens de higiene básica (escova, pasta de até 100ml)',
         ],
     },
 ];
-
-// Regras de transporte aéreo — conteúdo SENSÍVEL (regra errada = barrado no
-// raio-x / multa). Validado em jun/2026 (ANAC/IATA). Power bank teve mudança
-// material em 2026 (máx. 2, sem recarga a bordo, só na mão). Ver memória
-// project-modo-viagem-compliance. NÃO hardcodar regra de companhia específica.
-export const TRANSPORTE_AEREO = {
-    title: 'Bagagem Aérea: o que pode e onde',
-    intro: 'Vai de avião? Estas regras evitam barreira no embarque. Mudaram em 2026 — confirme com a sua companhia.',
-    blocos: [
-        { rotulo: 'Power bank e baterias de lítio', regra: 'Só na bagagem de mão (nunca despachar). Máx. 2 por pessoa, até 100 Wh — de 100 a 160 Wh exige autorização da companhia, acima disso é proibido. Não recarregue a bordo e mantenha à vista. Vale para voo nacional e internacional.' },
-        { rotulo: 'Líquidos, géis e aerossóis', regra: 'Voo internacional: frascos de até 100 ml dentro de um saco plástico transparente de até 1 litro. Voo nacional no Brasil: não há esse limite. Exceções: remédio com receita, leite materno e papinha de bebê.' },
-        { rotulo: 'Medicamentos', regra: 'Leve na bagagem de mão, na embalagem original e com a receita (física ou digital) — sobretudo os de uso contínuo e de tarja preta.' },
-        { rotulo: 'Cortantes e isqueiro', regra: 'Tesoura, canivete e lâminas vão na bagagem despachada. Isqueiro: apenas um, levado com você — nunca na mala despachada.' },
-    ],
-    fonte: 'ANAC · IATA',
-    revisao: 'jun/2026',
-};
 
 // --- MÓDULOS DE KITS DINÂMICOS ---
 const MODULE_LAZER = {
@@ -128,69 +96,67 @@ const MODULE_PETS = {
     title: 'Módulo Pet',
     icon: 'Pet',
     color: Neo.colors.feedback.error,
-    intro: 'Segurança e saúde do seu animal.',
+    intro: 'Segurança e bem-estar do seu animal.',
     items: [
-        'Ração e bebedouro portátil',
-        'Guia e coleira com identificação',
-        'Carteira de vacinação',
-        'Tapetes higiênicos',
-    ],
-};
-
-const MODULE_IDOSO_PCD = {
-    id: 'kit_especial',
-    title: 'Módulo Cuidados Especiais',
-    icon: 'User',
-    color: Neo.colors.neutral[700],
-    intro: 'Itens críticos para mobilidade e saúde.',
-    items: [
-        'Cópia de prontuários médicos',
-        'Lista de contatos de emergência',
-        'Equipamentos de apoio (bengala, etc)',
-        'Pulseira de identificação',
+        'Carteira de vacinação atualizada do pet',
+        'Caixa de transporte adequada ao modal',
+        'Coleira extra com plaquinha de identificação',
+        'Alimento e água para o trajeto',
     ],
 };
 
 const MODULE_CRIANCAS = {
     id: 'kit_criancas',
-    title: 'Módulo Crianças',
+    title: 'Módulo Infantil',
     icon: 'Baby',
     color: Neo.colors.secondary[500],
-    intro: 'Segurança e saúde dos pequenos na estrada.',
+    intro: 'Entretenimento e cuidados extras para os pequenos.',
     items: [
-        'Medicação infantil com dosador + receitas',
-        'Pulseira de identificação com telefone dos pais',
-        'Protetores de tomada portáteis',
-        'Cadeirinha/assento de elevação para os trajetos',
-        'Itens de conforto e troca extra na bagagem de mão',
+        'Medicamentos pediátricos específicos (enjoo, febre)',
+        'Pulseiras de identificação (nome + tel)',
+        'Lanches fáceis e sem farelo',
+        'Brinquedo de apego e itens de distração (jogos/tablet)',
+    ],
+};
+
+const MODULE_IDOSO_PCD = {
+    id: 'kit_idoso_pcd',
+    title: 'Módulo Acessibilidade e Apoio',
+    icon: 'Heart',
+    color: Neo.colors.primary[400],
+    intro: 'Facilitadores de locomoção e conforto.',
+    items: [
+        'Bengala, andador ou cadeira de rodas bem revisados',
+        'Laudos médicos (especialmente para voos e cruzeiros)',
+        'Calçados muito confortáveis e antiderrapantes',
+        'Travesseiro de pescoço ergonômico',
     ],
 };
 
 const MODULE_PRAIA = {
     id: 'kit_praia',
-    title: 'Módulo Litoral',
-    icon: 'Waves',
-    color: Neo.colors.primary[500],
-    intro: 'Sol e água pedem proteção específica.',
+    title: 'Módulo Praia & Resort',
+    icon: 'SwimmingPool',
+    color: Neo.colors.feedback.success,
+    intro: 'Cuidados essenciais sob o sol.',
     items: [
-        'Colete salva-vidas infantil (boia de braço não protege)',
-        'Guarda-sol ou tenda com proteção UV',
-        'Chinelos antiderrapantes',
-        'Água potável para os trajetos',
+        'Repelente resistente à água',
+        'Boia de corpo ou colete salva-vidas infantil',
+        'Saco estanque para proteger celular da areia e água',
     ],
 };
 
 const MODULE_RURAL = {
     id: 'kit_rural',
-    title: 'Módulo Campo e Natureza',
+    title: 'Módulo Campo & Natureza',
     icon: 'Plant',
-    color: Neo.colors.primary[700],
-    intro: 'Onde o socorro demora, o preparo chega antes.',
+    color: Neo.colors.feedback.success,
+    intro: 'Prevenção contra insetos e clima imprevisível.',
     items: [
-        'Repelente e calçado fechado',
-        'Lanterna + pilhas extras',
-        'Mapa offline da região (sinal pode faltar)',
-        'Capa de chuva e agasalho',
+        'Repelente forte (icaridina) para carrapatos e mosquitos',
+        'Botas ou calçados fechados (prevenção de animais peçonhentos)',
+        'Capa de chuva leve ou anorak',
+        'Lanterna de cabeça com pilhas extras',
     ],
 };
 
@@ -232,7 +198,7 @@ export function buildDynamicKits(activeTrip) {
     return kits;
 }
 
-// --- COMPONENTE ACCORDION CARD (padrão Guia de Segurança) ---
+// --- COMPONENTE ACCORDION CARD (padrão estático, pois as malas são checklists físicos) ---
 function CategoryCard({ category, expanded, onToggle }) {
     const toggle = () => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -271,24 +237,6 @@ function CategoryCard({ category, expanded, onToggle }) {
     );
 }
 
-function SectionBanner({ emoji, title, subtitle, color, first }) {
-    return (
-        <View style={{ marginTop: first ? 0 : 24, marginBottom: 16 }}>
-            <View style={{
-                flexDirection: 'row', alignItems: 'center',
-                backgroundColor: color + '15', paddingVertical: 14, paddingHorizontal: 20,
-                borderRadius: 16, borderWidth: 1.5, borderColor: color + '30',
-            }}>
-                <Body style={{ fontSize: 24, marginRight: 14 }}>{emoji}</Body>
-                <View style={{ flex: 1 }}>
-                    <H3 style={{ color: color, fontSize: 18 }}>{title}</H3>
-                    <Small style={{ color: color + 'AA', fontSize: 12 }}>{subtitle}</Small>
-                </View>
-            </View>
-        </View>
-    );
-}
-
 // ═══════════════════════════════════════════════════
 // TELA PRINCIPAL
 // ═══════════════════════════════════════════════════
@@ -296,6 +244,26 @@ export default function FazendoAsMalasScreen({ navigation }) {
     const { t } = useTranslation('common');
     const [expandedId, setExpandedId] = useState(null);
     const [activeTrip, setActiveTrip] = useState(null);
+
+    // Parallax Hero
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 200;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolate: 'clamp',
+            })
+        }
+    ];
 
     React.useEffect(() => {
         const loadTrip = async () => {
@@ -313,80 +281,66 @@ export default function FazendoAsMalasScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+            <StatusBar style="light" />
 
-                {/* Header */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16 }}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={{
-                            width: 44, height: 44, borderRadius: 22,
-                            backgroundColor: 'rgba(255,255,255,0.4)',
-                            alignItems: 'center', justifyContent: 'center',
-                            borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)'
-                        }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
+            {/* Header Translúcido Flutuante */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.3)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
+                        <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
                     </TouchableOpacity>
+                    <View style={{ flex: 1, alignItems: 'center', marginRight: 44 }}>
+                        <H2 style={{ color: Neo.colors.neutral.white, fontSize: 18 }}>{t('travel.packing', 'Saindo de Viagem')}</H2>
+                    </View>
                 </View>
-
-                <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 190 }}>
-
-                    <SectionBanner
-                        emoji="✈️"
-                        title="Saindo de Viagem"
-                        subtitle="Kits sugeridos para você"
-                        color={Neo.colors.secondary[500]}
-                        first
-                    />
-
-                    {/* Intro */}
-                    <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], marginBottom: 16, paddingHorizontal: 8, lineHeight: 20 }}>
-                        {t('travel.packingIntro', 'Monte seus kits essenciais de viagem. Toque em cada categoria para expandir.')}
-                    </Body>
-
-                    {kitsToDisplay.map((cat) => (
-                        <CategoryCard key={cat.id} category={cat} expanded={expandedId === cat.id} onToggle={handleToggle} />
-                    ))}
-
-                    <NeoCard variant="elevated" style={{ marginTop: 4, marginBottom: 8, padding: 16 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-                            <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: Neo.colors.feedback.warning + '26', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
-                                <NeoIcon name="Airplane" size={20} color={Neo.colors.feedback.warning} />
-                            </View>
-                            <H3 style={{ color: Neo.colors.feedback.warning, fontSize: 14, flex: 1 }}>{TRANSPORTE_AEREO.title}</H3>
-                        </View>
-                        <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18, marginBottom: 12 }}>{TRANSPORTE_AEREO.intro}</Body>
-                        {TRANSPORTE_AEREO.blocos.map((b, i) => (
-                            <View key={i} style={{ marginBottom: 10 }}>
-                                <Body style={{ color: Neo.colors.neutral[800], fontSize: 12.5, fontWeight: '800', marginBottom: 2 }}>{b.rotulo}</Body>
-                                <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18 }}>{b.regra}</Body>
-                            </View>
-                        ))}
-                        <View style={{ borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], marginTop: 4, paddingTop: 8 }}>
-                            <Caption style={{ color: Neo.colors.neutral[500], fontSize: 10.5, lineHeight: 15 }}>
-                                Fonte: {TRANSPORTE_AEREO.fonte} · vigente em {TRANSPORTE_AEREO.revisao}. As regras mudam — confirme com a sua companhia antes de viajar.
-                            </Caption>
-                        </View>
-                    </NeoCard>
-
-                    <SectionBanner
-                        emoji="🏠"
-                        title="Voltando pra Casa"
-                        subtitle="O que conferir antes de sair"
-                        color={Neo.colors.primary[500]}
-                    />
-
-                    {VOLTANDO_DATA.map((cat) => (
-                        <CategoryCard key={cat.id} category={cat} expanded={expandedId === cat.id} onToggle={handleToggle} />
-                    ))}
-
-                    <Caption style={{ textAlign: 'center', marginTop: 20, color: Neo.colors.neutral[500] }}>
-                        {t('headersFirst.boaViagemSeguranAEmPrimeiroLugar', 'Boa viagem! Segurança em primeiro lugar. 🧳')}
-                    </Caption>
-                </ScrollView>
             </SafeAreaView>
+
+            <Animated.ScrollView
+                contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}
+                showsVerticalScrollIndicator={false}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: true }
+                )}
+                scrollEventThrottle={16}
+                style={{ flex: 1, zIndex: 10 }}
+            >
+                {/* Hero Imersivo */}
+                <Animated.View style={{
+                    width: SCREEN_W,
+                    height: HERO_HEIGHT,
+                    transform: heroTransform,
+                    marginBottom: 24,
+                    marginHorizontal: -16,
+                }}>
+                    <Image
+                        source={{ uri: 'https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=800' }}
+                        style={{ width: '100%', height: '100%' }}
+                        resizeMode="cover"
+                    />
+                    <LinearGradient
+                        colors={['transparent', 'rgba(0,0,0,0.8)']}
+                        locations={[0.3, 1]}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}
+                    >
+                        <H2 style={{ color: Neo.colors.neutral.white, marginBottom: 4 }}>{t('travel.packing', 'Saindo de Viagem')}</H2>
+                        <Small style={{ color: 'rgba(255,255,255,0.8)' }}>Kits sugeridos para você</Small>
+                    </LinearGradient>
+                </Animated.View>
+
+                {/* Intro */}
+                <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], marginBottom: 16, paddingHorizontal: 8, lineHeight: 20 }}>
+                    {t('travel.packingIntro', 'Monte seus kits essenciais de viagem. Toque em cada categoria para expandir.')}
+                </Body>
+
+                {kitsToDisplay.map((cat) => (
+                    <CategoryCard key={cat.id} category={cat} expanded={expandedId === cat.id} onToggle={handleToggle} />
+                ))}
+
+                <Caption style={{ textAlign: 'center', marginTop: 20, color: Neo.colors.neutral[500] }}>
+                    {t('headersFirst.boaViagemSeguranAEmPrimeiroLugar', 'Boa viagem! Segurança em primeiro lugar. 🧳')}
+                </Caption>
+            </Animated.ScrollView>
         </AppBackground>
     );
 }

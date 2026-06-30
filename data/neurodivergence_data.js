@@ -7,6 +7,7 @@ export const NEURODIVERGENCE_DATA = {
             id: "nd_fuga",
             icon: "ExportSquare",
             color: "#EAB308",
+            imagemUrl: "https://images.pexels.com/photos/208358/pexels-photo-208358.jpeg?auto=compress&cs=tinysrgb&w=800",
             title: "Fuga e Perambulação",
             short_desc: "Estratégias vitais contra saídas não assistidas.",
             content: `
@@ -32,6 +33,7 @@ O tempo de reação é crucial. Cada porta que dá acesso à rua deve ter um sis
             id: "nd_agua",
             icon: "Ship",
             color: "#3B82F6",
+            imagemUrl: "https://images.pexels.com/photos/1263348/pexels-photo-1263348.jpeg?auto=compress&cs=tinysrgb&w=800",
             title: "Atração Fatal por Água",
             short_desc: "Prevenção de afogamentos e fascínio aquático.",
             content: `
@@ -53,6 +55,7 @@ Uma cerca ao redor da piscina é o mínimo, mas não é suficiente.
             id: "nd_sensorial",
             icon: "Sound",
             color: "#8B5CF6",
+            imagemUrl: "https://images.pexels.com/photos/7162002/pexels-photo-7162002.jpeg?auto=compress&cs=tinysrgb&w=800",
             title: "Emergências e Sensorialidade",
             short_desc: "Lidando com alarmes e planos de evacuação.",
             content: `
@@ -73,6 +76,7 @@ Toda casa deve ter um "canto do refúgio" seguro projetado para momentos de desr
             id: "nd_pica",
             icon: "Warning2",
             color: "#EF4444",
+            imagemUrl: "https://images.pexels.com/photos/6620959/pexels-photo-6620959.jpeg?auto=compress&cs=tinysrgb&w=800",
             title: "Pica e Ingestão de Perigos",
             short_desc: "Prevenção contra ingestão de produtos químicos.",
             content: `
@@ -94,6 +98,7 @@ Cápsulas de sabão (pods) e produtos fluorescentes ativam os centros de recompe
             id: "nd_quedas",
             icon: "Building",
             color: "#10B981",
+            imagemUrl: "https://images.pexels.com/photos/4033321/pexels-photo-4033321.jpeg?auto=compress&cs=tinysrgb&w=800",
             title: "Janelas e Alturas",
             short_desc: "Segurança avançada contra quedas.",
             content: `

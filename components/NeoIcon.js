@@ -140,6 +140,9 @@ const PHOSPHOR_MAP = {
     TickCircle: 'CheckCircle',
     TickSquare: 'CheckSquare',
     Eye: 'Eye',
+    Musicnote: 'MusicNotes',
+    UserAdd: 'UserPlus',
+    HammerWrench: 'Wrench',
 
     // ── Busca / localização ────────────────────────────────────────
     SearchNormal: 'MagnifyingGlass',

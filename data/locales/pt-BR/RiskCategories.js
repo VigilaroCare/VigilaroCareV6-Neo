@@ -7,6 +7,7 @@ export const RISK_CATEGORIES = [
     icon: 'Musicnote',
     color: '#E91E63',
     gradient: [ '#C2185B', '#F48FB1' ],
+    image: 'https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
       description: 'Quando a casa está cheia de convidados, é comum achar que "alguém" está cuidando das crianças. A distração em eventos faz com que copos com bebidas alcóolicas e facas de churrasco fiquem jogados ao alcance dos pequenos.',
       keyPoints: [
@@ -118,6 +119,7 @@ export const RISK_CATEGORIES = [
     icon: 'UserAdd',
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
+    image: 'https://images.pexels.com/photos/6348123/pexels-photo-6348123.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
       description: 'Receber visitas exige adaptar a casa para quem não a conhece. Idosos e bebês têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia.',
       keyPoints: [
@@ -222,6 +224,7 @@ export const RISK_CATEGORIES = [
     icon: 'hammer-wrench',
     color: '#795548',
     gradient: [ '#5D4037', '#D7CCC8' ],
+    image: 'https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
       description: 'Obras em casa sempre deixam o ambiente de pernas para o ar. Fios expostos provisórios e pregos ou pedaços de madeira espalhados no chão são as maiores armadilhas de acidentes.',
       keyPoints: [
@@ -302,6 +305,7 @@ export const RISK_CATEGORIES = [
     icon: 'HomeHash',
     color: '#FF5722',
     gradient: [ '#BF360C', '#FF8A65' ],
+    image: 'https://images.pexels.com/photos/4569340/pexels-photo-4569340.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
       description: 'Novas casas trazem novidades perigosas: tomadas sem proteção, janelas altas sem rede e caixas pesadas empilhadas que podem tombar sobre os pequenos.',
       keyPoints: [
@@ -365,6 +369,7 @@ export const RISK_CATEGORIES = [
     icon: 'eye-outline',
     color: '#009688',
     gradient: [ '#00695C', '#4DB6AC' ],
+    image: 'https://images.pexels.com/photos/8612920/pexels-photo-8612920.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
       description: 'Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são ágeis e encontram perigos em segundos.',
       keyPoints: [
@@ -432,6 +437,7 @@ export const RISK_CATEGORIES = [
     icon: 'ladder',
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
+    image: require('../../../assets/illustrations/pad/quedas-escadas_riscos-escadas-portateis_020.jpg'),
     educational: {
       description: 'Quedas de escadas ou cadeiras improvisadas causam traumas sérios. Mantenha os pés no chão firme ao fazer limpezas domésticas.',
       keyPoints: [
@@ -510,6 +516,7 @@ export const RISK_CATEGORIES = [
     icon: 'bottle-tonic-skull',
     color: '#9C27B0',
     gradient: [ '#7B1FA2', '#E1BEE7' ],
+    image: require('../../../assets/illustrations/pad/produtos-limpeza_como-organizar-utensilios-domesticos-per_011.jpg'),
     educational: {
       description: 'Misturar produtos de limpeza pode soltar gases venenosos invisíveis que queimam os pulmões. Use um produto por vez e deixe a casa ventilada.',
       keyPoints: [

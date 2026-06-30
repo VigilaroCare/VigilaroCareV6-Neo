@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../../components/NeoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -145,6 +146,28 @@ export default function TravelModeScreen({ navigation }) {
     const [isInternational, setIsInternational] = useState(false);
     const [tripPurpose, setTripPurpose] = useState('lazer'); // 'lazer' | 'trabalho'
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const HERO_HEIGHT = 200;
+    const heroTransform = [
+        {
+            translateY: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+                extrapolate: 'clamp',
+            })
+        },
+        {
+            scale: scrollY.interpolate({
+                inputRange: [-HERO_HEIGHT, 0],
+                outputRange: [2, 1],
+                extrapolateLeft: 'extend',
+                extrapolateRight: 'clamp',
+            })
+        }
+    ];
+
+    const capaSource = { uri: 'https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=1200' };
+
     useEffect(() => {
         loadTrip();
     }, []);
@@ -247,20 +270,48 @@ export default function TravelModeScreen({ navigation }) {
     if (!activeTrip) {
         return (
             <AppBackground>
-                <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                    <StatusBar style={isDark ? 'light' : 'dark'} />
-                    <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingTop: 12, paddingBottom: 190 }}>
-                        {/* HEADER — título simples, consistente com o dashboard
-                            pós-ativação (card com avião aposentado, 2026-06-12) */}
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
-                            <TouchableOpacity onPress={() => navigation.goBack()} style={s.backButton}>
-                                <NeoIcon name="ArrowLeft" size={20} color={Neo.colors.neutral[800]} />
-                            </TouchableOpacity>
-                            <View style={{ flex: 1, alignItems: 'center' }}>
-                                <H2>{t('headersFirst.modoViagem', 'Modo Viagem')}</H2>
-                            </View>
-                            <View style={{ width: 44 }} />
+                <StatusBar style="light" translucent={true} backgroundColor="transparent" />
+
+                {/* Header Translúcido Flutuante */}
+                <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 }}>
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.25)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)' }}>
+                            <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral.white} />
+                        </TouchableOpacity>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
+                            <H2 style={{ color: Neo.colors.neutral.white }}>{t('headersFirst.modoViagem', 'Modo Viagem')}</H2>
                         </View>
+                        <View style={{ width: 44 }} />
+                    </View>
+                </SafeAreaView>
+
+                <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['bottom', 'left', 'right']}>
+                    <Animated.ScrollView
+                        contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 190 }}
+                        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                        scrollEventThrottle={16}
+                        style={{ flex: 1, zIndex: 10 }}
+                    >
+                        {/* Hero Imersivo (Movido para dentro do Scroll) */}
+                        <Animated.View style={{
+                            width: SCREEN_W,
+                            height: HERO_HEIGHT,
+                            transform: heroTransform,
+                            marginBottom: 24,
+                            marginHorizontal: -Neo.spacing.lg, // Para ignorar o padding horizontal do ScrollView
+                        }}>
+                            <Image
+                                source={capaSource}
+                                style={{ width: '100%', height: '100%' }}
+                                resizeMode="cover"
+                            />
+                            <LinearGradient
+                                colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.2)', isDark ? Neo.colors.neutral[900] : '#FCFBF8']}
+                                locations={[0, 0.4, 1]}
+                                style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                            />
+                        </Animated.View>
+
                         <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginBottom: 12 }}>
                             {t('travel.activateMode', 'Ative o Modo Viagem para checklists de segurança específicos.')}
                         </Small>
@@ -390,7 +441,7 @@ export default function TravelModeScreen({ navigation }) {
                                 </H3>
                             </NeoCard>
                         </ScaleButton>
-                    </ScrollView>
+                    </Animated.ScrollView>
                 </SafeAreaView>
             </AppBackground>
         );
@@ -403,21 +454,47 @@ export default function TravelModeScreen({ navigation }) {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-                <StatusBar style="dark" />
+            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
 
-                {/* Header */}
-                <View style={{ padding: 16, paddingBottom: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.4)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}>
-                        <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
+            {/* Header Translúcido Flutuante */}
+            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.25)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)' }}>
+                        <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral.white} />
                     </TouchableOpacity>
-                    <View style={{ alignItems: 'center' }}>
-                        <H2>{t('headersFirst.modoViagem', 'Modo Viagem')}</H2>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                        <H2 style={{ color: Neo.colors.neutral.white }}>{t('headersFirst.modoViagem', 'Modo Viagem')}</H2>
                     </View>
                     <View style={{ width: 44 }} />
                 </View>
+            </SafeAreaView>
 
-                <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['bottom', 'left', 'right']}>
+                <Animated.ScrollView
+                    contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}
+                    onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+                    scrollEventThrottle={16}
+                    style={{ flex: 1, zIndex: 10 }}
+                >
+                    {/* Hero Imersivo (Movido para dentro do Scroll) */}
+                    <Animated.View style={{
+                        width: SCREEN_W,
+                        height: HERO_HEIGHT,
+                        transform: heroTransform,
+                        marginBottom: 24,
+                        marginHorizontal: -16, // Para ignorar o padding horizontal do ScrollView
+                    }}>
+                        <Image
+                            source={capaSource}
+                            style={{ width: '100%', height: '100%' }}
+                            resizeMode="cover"
+                        />
+                        <LinearGradient
+                            colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.2)', isDark ? Neo.colors.neutral[900] : '#FCFBF8']}
+                            locations={[0, 0.4, 1]}
+                            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                        />
+                    </Animated.View>
 
                     {/* 1. ASSISTENTE DE VIAGEM */}
                     <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 14 }}>
@@ -489,7 +566,7 @@ export default function TravelModeScreen({ navigation }) {
                         </NeoCard>
                     </ScaleButton>
 
-                </ScrollView>
+                </Animated.ScrollView>
             </SafeAreaView>
         </AppBackground>
     );

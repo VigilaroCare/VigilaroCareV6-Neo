@@ -485,7 +485,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         cardTitle: 'Crianças', cardTitle_en: 'Children', cardTitle_es: 'Niños',
         desc: '3-12 anos', desc_en: '3-12 years', desc_es: '3-12 años',
         emoji: '🧸',
-        imagemUrl: null,
+        imagemUrl: 'https://images.pexels.com/photos/8612920/pexels-photo-8612920.jpeg?auto=compress&cs=tinysrgb&w=800',
         icon: 'Profile2User',
         iconColor: '#D97706', // Amber 600
         bg: '#FEF3C7', // Amber 100
@@ -1121,7 +1121,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
         cardTitle: 'Adolescentes', cardTitle_en: 'Teenagers', cardTitle_es: 'Adolescentes',
         desc: '13-17 anos', desc_en: '13-17 years', desc_es: '13-17 años',
         emoji: '🛹',
-        imagemUrl: null,
+        imagemUrl: 'https://images.pexels.com/photos/10184469/pexels-photo-10184469.jpeg?auto=compress&cs=tinysrgb&w=800',
         icon: 'Flash',
         iconColor: '#6366F1', // Indigo 500
         bg: '#E0E7FF', // Indigo 100
