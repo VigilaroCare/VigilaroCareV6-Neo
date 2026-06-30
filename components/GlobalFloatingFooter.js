@@ -74,14 +74,16 @@ const isTabActive = (tab, currentRouteName) => {
 // ---------------------------------------------------------------------------
 // Iconografia unificada via NeoIcon (contrato único: "Bold ancora, Linear atua").
 // Bold + cor da marca no item ativo; Linear + neutro no inativo.
-// Glifos escolhidos para assimilar o footer de referência (recorte antigo):
-// casa, livro ABERTO, avião, hambúrguer (3 linhas) — agora via NeoIcon/Phosphor.
+// Glifos PRÓPRIOS da família "eco do tile" (custom Vigilaro): cada glifo mora
+// dentro de um quadrado de cantos arredondados que cita os tiles cerâmicos, e
+// "acende" preenchido no ativo. Casa = telhado duas-águas contemporâneo;
+// Menu = grade 2×2 (a própria grade de tiles).
 const TAB_BUTTONS = [
-  { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'HouseSimple' },
-  { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'GraduationCap' },
+  { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'HomeTile' },
+  { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'EducationTile' },
   null, // espaçador central para o SOS
-  { labelKey: 'navigation.report',    route: 'RelatorioTab',  icon: 'ClipboardText' },
-  { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'SquaresFour' },
+  { labelKey: 'navigation.report',    route: 'RelatorioTab',  icon: 'ReportTile' },
+  { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'MenuTile' },
 ];
 
 export default function GlobalFloatingFooter({ currentRouteName }) {

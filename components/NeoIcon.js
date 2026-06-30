@@ -2,12 +2,23 @@ import React from 'react';
 import { View } from 'react-native';
 import * as Phosphor from 'phosphor-react-native';
 import ElderlyIcon from './icons/ElderlyIcon';
+import HomeTileIcon from './icons/HomeTileIcon';
+import EducationTileIcon from './icons/EducationTileIcon';
+import ReportTileIcon from './icons/ReportTileIcon';
+import MenuTileIcon from './icons/MenuTileIcon';
 
 // Glifos desenhados em casa, na gramática do Phosphor (viewBox 256,
 // traço 16 arredondado, duotone = massa 0.2 + traço). Para conceitos
 // que o catálogo não cobre.
+// Família "eco do tile" (abas do menu inferior): glifo contemporâneo dentro de
+// um quadrado de cantos arredondados que cita os tiles cerâmicos; "acende"
+// preenchido no ativo (variant='Bold' → weight='fill').
 const CUSTOM_ICONS = {
     Elderly: ElderlyIcon,
+    HomeTile: HomeTileIcon,
+    EducationTile: EducationTileIcon,
+    ReportTile: ReportTileIcon,
+    MenuTile: MenuTileIcon,
 };
 
 /**
