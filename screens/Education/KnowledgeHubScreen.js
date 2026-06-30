@@ -47,7 +47,6 @@ const PICTOGRAMS = {
     // normalizados no padrão condo-safety — cobertura 88.5%, aspecto 0.98)
     seguranca_idade: require('../../assets/illustrations/education-pictograms/pictogram-familia-fases.png'),
     ambientes:       require('../../assets/illustrations/education-pictograms/pictogram-ambientes.png'),
-    gestante_segura: require('../../assets/illustrations/education-pictograms/pictogram-gestacao.png'),
     pets:            require('../../assets/illustrations/education-pictograms/pictogram-pets-hub.png'),
     brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
     mentes_atipicas: require('../../assets/illustrations/education-pictograms/pictogram-neurodivergence.png'),
@@ -87,7 +86,7 @@ const CERAMIC_STYLE_IDS = new Set([
     // Lote 2 (seção 1) — completo em 2026-06-11:
     'seguranca_idade',
     'pets',
-    'ambientes', 'gestante_segura', 'brinquedos_hub', 'mentes_atipicas',
+    'ambientes', 'brinquedos_hub', 'mentes_atipicas',
     // Teoria do Fogo (asset cerâmico pronto 2026-06-15):
     'teoria_fogo',
     // Dispositivos de Proteção (2026-06-18):
