@@ -43,13 +43,9 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 // estilo 3D cerâmico da Home, símbolo solto em fundo transparente.
 // ─────────────────────────────────────────────────────────────────────────
 const PICTOGRAMS = {
-    // Seção 1 — Pessoas & Contexto (lote 2 completo: todos cerâmicos,
-    // normalizados no padrão condo-safety — cobertura 88.5%, aspecto 0.98)
-    seguranca_idade: require('../../assets/illustrations/education-pictograms/pictogram-familia-fases.png'),
-    ambientes:       require('../../assets/illustrations/education-pictograms/pictogram-ambientes.png'),
-    pets:            require('../../assets/illustrations/education-pictograms/pictogram-pets-hub.png'),
+    // Seção 1 — Pessoas & Contexto: pets/ambientes/seguranca_idade/mentes_atipicas
+    // DESCONTINUADOS (migraram p/ Cuidar & Proteger com FOTO — reestruturação de fluxos).
     brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
-    mentes_atipicas: require('../../assets/illustrations/education-pictograms/pictogram-neurodivergence.png'),
     // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
     utensilios_rev:   require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
     eletro_rev:       require('../../assets/illustrations/education-pictograms/pictogram-eletro-rev.png'),
@@ -83,10 +79,9 @@ const CERAMIC_STYLE_IDS = new Set([
     'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
     'plantas', 'animais', 'produtos', 'riscos_fisicos', 'riscos_eletricos', 'jardinagem', 'condo_safety',
     'lazer_mobilidade', 'guias_equipamentos',
-    // Lote 2 (seção 1) — completo em 2026-06-11:
-    'seguranca_idade',
-    'pets',
-    'ambientes', 'brinquedos_hub', 'mentes_atipicas',
+    // Lote 2 (seção 1) — pets/ambientes/seguranca_idade/mentes_atipicas
+    // descontinuados (foto no Cuidar & Proteger). Restou:
+    'brinquedos_hub',
     // Teoria do Fogo (asset cerâmico pronto 2026-06-15):
     'teoria_fogo',
     // Dispositivos de Proteção (2026-06-18):
