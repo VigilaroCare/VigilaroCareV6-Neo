@@ -21,8 +21,9 @@ def white_to_alpha(img):
     return o
 
 # Medir: corpo solido do creme (ancora a mediana no alvo com precisao).
+# Guard "quente" (r-b>8) exclui cinza/branco neutro (assets legados P&B/line-art).
 def _is_body(r, g, b, a):
-    return a > 240 and min(r, g, b) > 150 and r >= g
+    return a > 240 and min(r, g, b) > 150 and r >= g and (r - b) > 8
 # Aplicar: creme amplo (inclui realces/sombras quentes) p/ deslocar o degrade
 # inteiro junto. Bordas anti-alias (r baixo) ficam fora => sem halo.
 def _is_cream(r, g, b, a):
@@ -56,6 +57,17 @@ def fix_cream(src, dst):
 
 if __name__ == '__main__':
     import sys, glob
+    # Modo lista explicita: paths como argumentos -> processa IN PLACE.
+    if len(sys.argv) > 1 and sys.argv[1] not in ('preview', 'apply'):
+        for src in sys.argv[1:]:
+            name = os.path.basename(src)
+            res = fix_cream(src, src)
+            if res:
+                med, off = res
+                print('%-36s creme #%02X%02X%02X offset(%+d,%+d,%+d)' % (name, med[0], med[1], med[2], off[0], off[1], off[2]))
+            else:
+                print('%-36s SEM CREME quente -> NAO tocado' % name)
+        sys.exit(0)
     HOME = 'assets/illustrations/home-pictograms'
     mode = sys.argv[1] if len(sys.argv) > 1 else 'preview'
     OUT = 'scratch/imagegen/cream-fix-preview'
