@@ -124,7 +124,10 @@ export default function HomeScreenNeo() {
         GRID_IMG_W = CONTENT_W * 0.32;
         cellWidth = '32%';
     } else if (columns === 2) {
-        GRID_IMG_W = CONTENT_W * 0.49;
+        // 0.42 (era 0.49): comprime a altura do grid p/ as 4 fileiras (8 tiles)
+        // caberem ACIMA do footer — Raio-X fica tuckado atrás dele. Regra do
+        // produto: "Home sem scroll, compensar altura nos pictogramas".
+        GRID_IMG_W = CONTENT_W * 0.42;
         cellWidth = '49%';
     } else {
         GRID_IMG_W = CONTENT_W;
@@ -261,6 +264,13 @@ export default function HomeScreenNeo() {
     const cardBorderColor = isDark ? 'rgba(255,255,255,0.1)' : Neo.colors.primary[800];
     const cardBorderWidth = isDark ? 1 : 1.5;
 
+    // Chip de moradia ativa — tom de marca suave (saiu do glass tímido que
+    // sumia no fundo sage). Presente sem exagerar; adapta ao dark.
+    const chipBg = isDark ? 'rgba(52, 211, 153, 0.14)' : Neo.colors.primary[100];
+    const chipBorder = isDark ? 'rgba(52, 211, 153, 0.32)' : Neo.colors.primary[200];
+    const chipText = isDark ? Neo.colors.primary[200] : Neo.colors.primary[800];
+    const chipIconColor = isDark ? Neo.colors.primary[300] : Neo.colors.primary[700];
+
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -272,13 +282,13 @@ export default function HomeScreenNeo() {
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
                         <View
-                            style={s.residenceChip}
+                            style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
                             accessible
                             accessibilityRole="summary"
                             accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
                         >
-                            <NeoIcon name="Home2" size={13} color={Neo.colors.primary[700]} variant="Bold" />
-                            <Text style={s.residenceChipText} numberOfLines={1}>{houseName}</Text>
+                            <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
+                            <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
                         </View>
                     </View>
 
@@ -514,8 +524,8 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 4,
-        paddingBottom: 4,
+        paddingTop: 2,
+        paddingBottom: 2,
     },
     greetingGroup: {
         flex: 1,
@@ -532,19 +542,19 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'flex-start',
-        gap: 5,
-        marginTop: 4,
-        paddingHorizontal: 10,
-        paddingVertical: 4,
+        gap: 6,
+        marginTop: 6,
+        paddingHorizontal: 11,
+        paddingVertical: 5,
         borderRadius: Neo.radius.pill,
-        backgroundColor: Neo.colors.glass.light,
+        // bg/border vêm inline (chipBg/chipBorder) p/ adaptar ao tema
         borderWidth: 1,
-        borderColor: 'rgba(120, 113, 108, 0.18)',
     },
     residenceChipText: {
-        fontSize: 12,
+        fontSize: 12.5,
         fontWeight: '700',
-        color: Neo.colors.primary[800],
+        letterSpacing: -0.1,
+        // color vem inline (chipText) p/ adaptar ao tema
     },
     profileRingPress: {
         borderRadius: Neo.radius.pill,
@@ -675,7 +685,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 12,
+        marginTop: 8,
     },
     gridCell: {
         width: '49%',
