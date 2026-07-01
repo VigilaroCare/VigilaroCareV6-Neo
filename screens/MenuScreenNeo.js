@@ -3,7 +3,6 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Linking,
   Text,
   StyleSheet,
   Modal,
@@ -121,11 +120,11 @@ export default function MenuScreenNeo() {
 
     const sectionAjuda = [
         {
-            key: 'suporte',
-            iconName: 'MessageQuestion',
+            key: 'contato',
+            iconName: 'Sms',
             accent: GA.eventuais, // amber
-            label: t('menu.support'),
-            action: () => Linking.openURL('mailto:contato@vigilarocare.ia.br'),
+            label: t('menu.contact', 'Contato'),
+            action: () => navigateWithHaptic('Contato'),
         },
         {
             key: 'sobre',
@@ -150,30 +149,32 @@ export default function MenuScreenNeo() {
         },
     ];
 
-    const renderSectionBlock = (title, items) => (
+    const renderSectionGrid = (title, items) => (
         <View style={s.sectionContainer}>
             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                 {title}
             </Text>
-            <NeoCard variant="elevated" style={s.sectionBlockCard}>
-                {items.map((item, index) => {
-                    const isLast = index === items.length - 1;
-                    return (
-                        <TouchableOpacity
-                            key={item.key}
-                            onPress={item.action}
-                            activeOpacity={0.7}
-                            style={[s.rowItem, !isLast && { borderBottomWidth: 1, borderBottomColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)' }]}
-                        >
-                            <View style={[s.rowIconCircle, { backgroundColor: item.accent.bg }]}>
-                                <NeoIcon name={item.iconName} size={20} color={item.accent.color} variant="Bold" />
+            <View style={s.gridWrap}>
+                {items.map((item) => (
+                    <TouchableOpacity
+                        key={item.key}
+                        onPress={item.action}
+                        activeOpacity={0.85}
+                        style={s.gridCellWrap}
+                        accessibilityRole="button"
+                        accessibilityLabel={item.label}
+                    >
+                        <NeoCard variant="elevated" style={s.gridCard}>
+                            <View style={[s.gridIconCircle, { backgroundColor: item.accent.bg }]}>
+                                <NeoIcon name={item.iconName} size={26} color={item.accent.color} variant="Bold" />
                             </View>
-                            <Text style={[s.rowLabel, { color: textPrimary }]}>{item.label}</Text>
-                            <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
-                        </TouchableOpacity>
-                    );
-                })}
-            </NeoCard>
+                            <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
+                                {item.label}
+                            </Text>
+                        </NeoCard>
+                    </TouchableOpacity>
+                ))}
+            </View>
         </View>
     );
 
@@ -224,8 +225,8 @@ export default function MenuScreenNeo() {
                     </TouchableOpacity>
 
                                         {/* SEÇÕES - BLOCOS CONTÍNUOS */}
-                    {renderSectionBlock(t('menu.sectionAccount', 'Conta & Preferências'), sectionConta)}
-                    {renderSectionBlock(t('menu.sectionHelp', 'Ajuda & Informações'), sectionAjuda)}
+                    {renderSectionGrid(t('menu.sectionAccount', 'Conta & Preferências'), sectionConta)}
+                    {renderSectionGrid(t('menu.sectionHelp', 'Ajuda & Informações'), sectionAjuda)}
 
                     {/* DIVISOR + LINK DESTRUTIVO — visualmente quieto, isolado */}
                     <View style={s.divider} />
@@ -347,30 +348,35 @@ const s = StyleSheet.create({
         opacity: 0.85,
     },
 
-    // Blocos Contínuos (iOS Settings style)
-    sectionBlockCard: {
-        borderRadius: 18,
-        overflow: 'hidden',
-        padding: 0,
-    },
-    rowItem: {
+    // Grade de cards QUADRADOS (2 colunas)
+    gridWrap: {
         flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 14,
-        paddingHorizontal: 16,
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
-    rowIconCircle: {
-        width: 36,
-        height: 36,
+    gridCellWrap: {
+        width: '48%',
+        marginBottom: 12,
+    },
+    gridCard: {
+        aspectRatio: 1,
         borderRadius: 18,
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 14,
+        padding: 14,
     },
-    rowLabel: {
-        flex: 1,
-        fontSize: 15,
-        fontWeight: '600',
+    gridIconCircle: {
+        width: 54,
+        height: 54,
+        borderRadius: 27,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12,
+    },
+    gridLabel: {
+        fontSize: 14,
+        fontWeight: '700',
+        textAlign: 'center',
     },
 // Destrutivo + footer
     divider: {

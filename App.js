@@ -92,6 +92,7 @@ import KitEmergenciaScreen               from './screens/Emergency/KitEmergencia
 import KitPrimeirosSocorrosScreen        from './screens/Emergency/KitPrimeirosSocorrosScreen';
 import KitRemediosScreen                 from './screens/Emergency/KitRemediosScreen';
 import SobreScreen                       from './screens/SobreScreen';
+import ContatoScreen                     from './screens/ContatoScreen';
 import TermsOfUseScreen                  from './screens/TermsOfUseScreen';
 import PrivacyPolicyScreen               from './screens/PrivacyPolicyScreen';
 import HomeCompletaScreen                from './screens/HomeScreenNeo';
@@ -563,6 +564,7 @@ export default function App() {
                       <Stack.Screen name="KitPrimeirosSocorros" component={KitPrimeirosSocorrosScreen} />
                       <Stack.Screen name="KitRemedios" component={KitRemediosScreen} />
                       <Stack.Screen name="Sobre" component={SobreScreen} />
+                      <Stack.Screen name="Contato" component={ContatoScreen} />
                       <Stack.Screen name="TermsOfUse" component={TermsOfUseScreen} />
                       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
                       <Stack.Screen name="HomeCompleta" component={HomeCompletaScreen} />
