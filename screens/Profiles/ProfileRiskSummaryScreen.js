@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
-  Share,
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -149,6 +148,7 @@ export default function ProfileRiskSummaryScreen() {
     const [report, setReport] = useState(null);
     const [riskItems, setRiskItems] = useState([]);
     const [activeProfileId, setActiveProfileId] = useState(route.params?.profile?.id || null);
+    const [sharing, setSharing] = useState(false);
 
     const [aiReport, setAiReport] = useState(null);
     const [generatingAi, setGeneratingAi] = useState(false);
@@ -273,38 +273,24 @@ export default function ProfileRiskSummaryScreen() {
         );
     };
 
+    // Compartilha o relatório em PDF (template de marca via SafetyReportService)
+    // — não mais texto solto. O gerador é offline-first (IA opcional) e monta o
+    // dossiê com disclaimer em destaque, sem emojis.
     const handleShare = async () => {
-        if (!report) return;
+        if (!report || sharing) return;
+        setSharing(true);
         try {
-            const activeRisks = riskItems.filter(r => !r.acknowledged);
-            const ackRisks = riskItems.filter(r => r.acknowledged);
-
-            let text = `🛡️ RELATÓRIO DE PROTEÇÃO — ${report.profile.nome}\n`;
-            text += `Gerado em: ${new Date(report.generatedAt).toLocaleDateString('pt-BR')}\n\n`;
-            text += `Irregularidades ativas: ${activeRisks.length}\n`;
-            text += `Itens reconhecidos: ${ackRisks.length}\n`;
-            text += `Pendentes de vistoria: ${report.pendingItems?.length || 0}\n\n`;
-
-            if (activeRisks.length > 0) {
-                text += `IRREGULARIDADES:\n`;
-                activeRisks.forEach(r => {
-                    text += `• ${r.roomEmoji} ${r.roomLabel} — ${r.titulo}\n`;
-                    if (r.tip) text += `  ↳ ${r.tip}\n`;
-                });
-                text += '\n';
-            }
-
-            if (ackRisks.length > 0) {
-                text += `RECONHECIDOS:\n`;
-                ackRisks.forEach(r => {
-                    text += `• ${r.titulo} — por ${r.acknowledged.responsibleName} em ${formatAckDate(r.acknowledged.date)}\n`;
-                });
-                text += '\n';
-            }
-
-            text += `Vigilaro Care — Prevenção inteligente.`;
-            await Share.share({ message: text, title: `Relatório — ${report.profile.nome}` });
-        } catch (e) { console.error('Share error:', e); }
+            await SafetyReportService.generatePDFReport(report.profile.id);
+        } catch (e) {
+            if (__DEV__) console.error('Share PDF error:', e);
+            NeoAlert.alert(
+                t('riskSummary.shareErrorTitle', 'Não foi possível gerar o PDF'),
+                t('riskSummary.shareErrorBody', 'Tente novamente em instantes.'),
+                [{ text: t('common.ok', 'Entendi'), style: 'default' }]
+            );
+        } finally {
+            setSharing(false);
+        }
     };
 
     // ── Loading ──
@@ -367,10 +353,15 @@ export default function ProfileRiskSummaryScreen() {
                     </View>
                     <TouchableOpacity
                         onPress={handleShare}
+                        disabled={sharing}
                         style={s.backBtn}
                         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        accessibilityRole="button"
+                        accessibilityLabel={t('riskSummary.sharePdf', 'Compartilhar relatório em PDF')}
                     >
-                        <NeoIcon name="ShareNetwork" size={20} color={Neo.colors.neutral[800]} />
+                        {sharing
+                            ? <ActivityIndicator size="small" color={Neo.colors.neutral[800]} />
+                            : <NeoIcon name="ShareNetwork" size={20} color={Neo.colors.neutral[800]} />}
                     </TouchableOpacity>
                 </View>
 
