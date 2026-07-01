@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { CHECKLISTS, AMBIENTES } from '../data/mapeamento_dados';
+import { htmlDocument } from '../utils/pdfReport';
 
 // ─── BIBLIOTECA DE IMPLICAÇÕES ESTATÍSTICAS ────────────────────────────────
 // Fonte: DATASUS, SINAN/MS, ABNT NBR 9050, INMETRO, OMS, IBGE, literatura de
@@ -735,76 +736,59 @@ class SafetyReportService {
             const reportData = await this.getDeepDiveReport(profileId);
             if (!reportData) throw new Error("Dados do relatório não encontrados");
 
-            const aiReport = await this.getAIAugmentedReport(profileId);
-            
-            const html = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Relatório Vigilaro Care - ${reportData.profile.nome}</title>
-                    <style>
-                        body { font-family: 'Helvetica', sans-serif; padding: 40px; color: #333; line-height: 1.6; }
-                        h1 { color: #2C3E50; border-bottom: 2px solid #3498DB; padding-bottom: 10px; }
-                        h2 { color: #2980B9; margin-top: 30px; }
-                        .header { text-align: center; margin-bottom: 40px; }
-                        .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.9em; font-weight: bold; background: #E1F5FE; color: #01579B; }
-                        .summary { background: #F8F9FA; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #3498DB; }
-                        .risk-item { margin-bottom: 20px; padding: 15px; border: 1px solid #EEE; border-radius: 8px; }
-                        .risk-title { font-weight: bold; color: #C0392B; display: flex; align-items: center; }
-                        .room { font-size: 0.8em; color: #7F8C8D; text-transform: uppercase; margin-bottom: 5px; }
-                        .tip { background: #E8F5E9; padding: 10px; margin-top: 10px; border-radius: 5px; font-size: 0.9em; }
-                        .footer { margin-top: 50px; text-align: center; font-size: 0.8em; color: #95A5A6; border-top: 1px solid #EEE; padding-top: 10px; }
-                        .pill { display: inline-block; padding: 2px 8px; background: #EEE; border-radius: 4px; margin-right: 5px; font-size: 0.75em; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <h1>Vigilaro Care Neo</h1>
-                        <p>Relatório de Segurança e Prevenção de Acidentes</p>
-                    </div>
+            // IA é opcional (offline-first): se falhar/sem proxy, o relatório
+            // gera mesmo assim — só sem a seção de análise estratégica.
+            let aiReport = null;
+            try { aiReport = await this.getAIAugmentedReport(profileId); } catch (_) { aiReport = null; }
 
-                    <div class="summary">
-                        <h2>Sumário para ${reportData.profile.nome}</h2>
-                        <p><strong>Perfil:</strong> ${reportData.typeLabel} (${reportData.age} anos)</p>
-                        <p><strong>Residência:</strong> ${reportData.moradia.tipo || 'Casa'} - ${reportData.moradia.location || 'Local não informado'}</p>
-                        <p>${reportData.executiveSummary}</p>
-                    </div>
+            const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+            const when = new Date(reportData.generatedAt);
+            const moradiaLinha = [reportData.moradia?.tipo || 'Casa', reportData.moradia?.location]
+                .filter(Boolean).map(esc).join(' · ') || 'Não informado';
 
-                    ${aiReport ? `
-                    <div class="ai-insight">
-                        <h2>Análise Estratégica</h2>
-                        <p><strong>Onde focar:</strong> ${aiReport.onde}</p>
-                        <p><strong>O que fazer:</strong> ${aiReport.o_que}</p>
-                    </div>
-                    ` : ''}
+            const riskHtml = reportData.riskItems.length > 0
+                ? reportData.riskItems.map((item) => `
+                    <div class="card">
+                        <p class="muted">${esc(item.roomLabel)}</p>
+                        <h3>${esc(item.titulo)}</h3>
+                        <p>${esc(item.implication || 'Risco potencial de acidente doméstico.')}</p>
+                        ${item.tip ? `<p style="margin-top:8px;"><strong>Ação recomendada:</strong> ${esc(item.tip)}</p>` : ''}
+                        ${(item.tags && item.tags.length) ? `<div style="margin-top:8px;">${item.tags.map((tg) => `<span class="pill">${esc(tg)}</span>`).join('')}</div>` : ''}
+                    </div>`).join('')
+                : '<div class="card"><p>Nenhuma irregularidade ativa foi encontrada nos ambientes vistoriados.</p></div>';
 
-                    <h2>Irregularidades Identificadas (${reportData.riskItems.length})</h2>
-                    ${reportData.riskItems.length > 0 ? reportData.riskItems.map(item => `
-                        <div class="risk-item">
-                            <div class="room">${item.roomEmoji} ${item.roomLabel}</div>
-                            <div class="risk-title">${item.titulo}</div>
-                            <p>${item.implication || 'Risco iminente de acidente doméstico.'}</p>
-                            ${item.tip ? `<div class="tip"><strong>Ação Recomendada:</strong> ${item.tip}</div>` : ''}
-                            <div>${item.tags.map(t => `<span class="pill">${t}</span>`).join('')}</div>
-                        </div>
-                    `).join('') : '<p>Parabéns! Nenhuma irregularidade ativa foi encontrada nos ambientes vistoriados.</p>'}
+            const pendingHtml = reportData.pendingItems.length > 0
+                ? `<h2>Itens pendentes de vistoria (${reportData.pendingItems.length})</h2>
+                   <p class="muted">Os ambientes abaixo ainda têm itens não verificados — podem ocultar riscos reais.</p>
+                   <ul class="bullets">${Array.from(new Set(reportData.pendingItems.map((p) => p.roomLabel))).map((room) => `<li>${esc(room)}</li>`).join('')}</ul>`
+                : '';
 
-                    ${reportData.pendingItems.length > 0 ? `
-                        <h2>Itens Pendentes de Vistoria (${reportData.pendingItems.length})</h2>
-                        <p>Atenção: Os ambientes abaixo ainda possuem itens não verificados, o que pode ocultar riscos reais.</p>
-                        <ul>
-                            ${Array.from(new Set(reportData.pendingItems.map(p => p.roomLabel))).map(room => `<li>${room}</li>`).join('')}
-                        </ul>
-                    ` : ''}
+            const aiHtml = aiReport
+                ? `<h2>Análise estratégica</h2>
+                   <div class="card">
+                       <h3>Onde focar</h3>
+                       <p>${esc(aiReport.onde)}</p>
+                       <h3 style="margin-top:12px;">O que fazer</h3>
+                       <p>${esc(aiReport.o_que)}</p>
+                   </div>`
+                : '';
 
-                    <div class="footer">
-                        <p>Gerado em ${new Date(reportData.generatedAt).toLocaleDateString()} às ${new Date(reportData.generatedAt).toLocaleTimeString()}</p>
-                        <p>Vigilaro Care - Inteligência de Proteção Familiar</p>
-                    </div>
-                </body>
-                </html>
-            `;
+            const body = `
+                <div class="lead">${esc(reportData.executiveSummary)}</div>
+                <p class="muted" style="margin-top:6px;">Residência: ${moradiaLinha}</p>
+                ${aiHtml}
+                <h2>Irregularidades identificadas (${reportData.riskItems.length})</h2>
+                ${riskHtml}
+                ${pendingHtml}
+                <div class="disclaimer">Este relatório é um guia de prevenção baseado nas suas respostas de vistoria. Não substitui a avaliação de um profissional de saúde ou de um especialista em segurança. Em risco imediato, ligue 192 (SAMU) ou 193 (Bombeiros).</div>`;
+
+            const html = htmlDocument({
+                title: `Relatório de Prevenção — ${esc(reportData.profile.nome)}`,
+                headline: 'Relatório de Prevenção',
+                subtitle: `${esc(reportData.profile.nome)} · ${esc(reportData.typeLabel)} · ${reportData.age} anos`,
+                bodyHtml: body,
+                footerNote: `Gerado em ${when.toLocaleDateString()} às ${when.toLocaleTimeString()} · Vigilaro Care — prevenção familiar.`,
+            });
 
             const { uri } = await Print.printToFileAsync({ html });
             

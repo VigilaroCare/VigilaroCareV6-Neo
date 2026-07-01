@@ -10,6 +10,7 @@ import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
+import SafetyDisclaimer from '../../components/SafetyDisclaimer';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -371,9 +372,11 @@ export default function FazendoAsMalasScreen({ navigation }) {
                     ))}
                     <View style={{ borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], marginTop: 4, paddingTop: 8 }}>
                         <Caption style={{ color: Neo.colors.neutral[500], fontSize: 10.5, lineHeight: 15 }}>
-                            Fonte: {TRANSPORTE_AEREO.fonte} · vigente em {TRANSPORTE_AEREO.revisao}. As regras mudam — confirme com a sua companhia antes de viajar.
+                            Fonte: {TRANSPORTE_AEREO.fonte} · vigente em {TRANSPORTE_AEREO.revisao}.
                         </Caption>
                     </View>
+                    {/* Aviso de segurança em DESTAQUE (não mais grudado na fonte miúda) */}
+                    <SafetyDisclaimer variant="travelAir" style={{ marginTop: 10 }} />
                 </NeoCard>
 
                 <Caption style={{ textAlign: 'center', marginTop: 20, color: Neo.colors.neutral[500] }}>
