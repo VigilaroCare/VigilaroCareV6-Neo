@@ -15,9 +15,9 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors } from '../utils/ThemeContext';
 
 // Canais oficiais Vigilaro. Estrutura pensada p/ crescer (WhatsApp/redes depois).
-const EMAIL = 'contato@vigilarocare.ai.br';
-const SITE = 'https://www.vigilarocare.ai.br';
-const SITE_LABEL = 'www.vigilarocare.ai.br';
+const EMAIL = 'contato@vigilarocare.ia.br';
+const SITE = 'https://www.vigilarocare.ia.br';
+const SITE_LABEL = 'www.vigilarocare.ia.br';
 
 export default function ContatoScreen({ navigation }) {
     const { t } = useTranslation();

@@ -79,7 +79,7 @@ export default function SobreScreen({ navigation }) {
           {/* Credits / Contact */}
           <Small style={styles.sectionTitle}>{t('about.contactSupport')}</Small>
           <NeoCard variant="glass" style={styles.menuGroup}>
-            <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('mailto:contato@vigilarocare.ai.br')}>
+            <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('mailto:contato@vigilarocare.ia.br')}>
               <View style={styles.menuIconRow}>
                 <NeoIcon name="Sms" size={20} color={Neo.colors.primary[500]} variant="Bold" />
                 <Body style={styles.menuText}>{t('about.contactUs')}</Body>
@@ -87,7 +87,7 @@ export default function SobreScreen({ navigation }) {
               <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
             </TouchableOpacity>
             <View style={styles.divider} />
-            <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('https://www.vigilarocare.ai.br')}>
+            <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('https://www.vigilarocare.ia.br')}>
               <View style={styles.menuIconRow}>
                 <NeoIcon name="Global" size={20} color={Neo.colors.primary[500]} variant="Bold" />
                 <Body style={styles.menuText}>{t('about.visitSite')}</Body>
