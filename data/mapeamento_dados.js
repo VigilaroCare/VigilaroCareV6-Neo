@@ -613,7 +613,7 @@ export const CHECKLISTS = {
                 emoji: '⚡',
                 itens: [
                     { titulo: 'Fios elétricos organizados ou protegidos em canaletas', titulo_en: 'Electrical wires organized or protected in conduits', titulo_es: 'Cables eléctricos organizados o protegidos en canaletas', tipo: 'normal', tags: ['tropeço'] },
-                    { titulo: 'Janelas e basculantes possuem redes de proteção garantida', titulo_en: 'Windows and transoms have guaranteed safety nets', titulo_es: 'Ventanas y tragaluces tienen redes de protección garantizadas', tipo: 'perigo', tags: ['queda'] },
+                    { titulo: 'Janelas e basculantes possuem redes de proteção instaladas', titulo_en: 'Windows and transoms have safety nets installed', titulo_es: 'Ventanas y tragaluces tienen redes de protección instaladas', tipo: 'perigo', tags: ['queda'] },
                     { titulo: 'Carregadores de celular fora da tomada se não usados (risco bucal e de incêndio)', titulo_en: 'Cell phone chargers unplugged if not used (mouth and fire risk)', titulo_es: 'Cargadores de celular desenchufados si no se usan (riesgo bucal y de incendio)', tipo: 'perigo', tags: ['choque'] },
                 ],
             },
@@ -821,7 +821,7 @@ export const CHECKLISTS = {
                 nome: 'Ambiente', nome_en: 'Environment', nome_es: 'Ambiente',
                 emoji: '🏠',
                 itens: [
-                    { titulo: 'Janelas do quarto possuem redes de proteção garantidas', titulo_en: 'Bedroom windows have guaranteed safety nets', titulo_es: 'Las ventanas del dormitorio tienen redes de protección garantizadas', tipo: 'perigo', tags: ['queda'] },
+                    { titulo: 'Janelas do quarto possuem redes de proteção instaladas', titulo_en: 'Bedroom windows have safety nets installed', titulo_es: 'Las ventanas del dormitorio tienen redes de protección instaladas', tipo: 'perigo', tags: ['queda'] },
                     { titulo: 'Móveis instáveis, como cômodas de gaveta, estão fixados na parede (anti tombamento)', titulo_en: 'Unstable furniture, like drawer dressers, are fixed to the wall (anti-tip)', titulo_es: 'Los muebles inestables, como las cómodas, están fijados a la pared (antivuelco)', tipo: 'perigo', tags: ['tombamento'] },
                     { titulo: 'Todas as tomadas baixas têm protetores instalados', titulo_en: 'All low outlets have installed protectors', titulo_es: 'Todos los enchufes bajos tienen protectores instalados', tipo: 'normal', tags: ['choque'] },
                 ],
