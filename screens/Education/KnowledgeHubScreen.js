@@ -233,7 +233,6 @@ export default function KnowledgeHubScreen({ navigation }) {
     ];
 
     const title = t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção');
-    const subtitle = t('knowledgeHub.featured', 'Biblioteca de Guias e Conteúdo Educacional');
     const capaSource = require('../../assets/illustrations/pad/hero_knowledge.png');
 
     return (
@@ -291,16 +290,8 @@ export default function KnowledgeHubScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

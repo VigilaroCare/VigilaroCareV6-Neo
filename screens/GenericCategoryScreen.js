@@ -65,7 +65,6 @@ export default function GenericCategoryScreen({ route, navigation }) {
                 iconName={section.icon}
                 emoji={section.emoji}
                 color={THEME_COLOR}
-                imageUrl={section.imagemUrl}
                 onPress={() => navigation.navigate('PremiumArticle', {
                     conceito: {
                         titulo: t_field(section, 'title'),

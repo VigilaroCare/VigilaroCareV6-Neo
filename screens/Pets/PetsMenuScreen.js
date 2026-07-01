@@ -268,8 +268,7 @@ export default function PetsMenuScreen({ navigation, route }) {
         }
     ];
 
-    const title = t('petsMenu.headerTitle', 'Saúde Pet');
-    const subtitle = t('petsMenu.headerSubtitle', 'Cuidados e segurança para seus pets');
+    const title = t('knowledgeHub.protectPet', 'Proteção para Pets');
     const { heroImage } = route?.params || {};
     const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/illustrations/pad/hero_pets.png');
 
@@ -328,16 +327,8 @@ export default function PetsMenuScreen({ navigation, route }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

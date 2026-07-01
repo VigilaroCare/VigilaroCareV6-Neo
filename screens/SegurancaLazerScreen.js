@@ -521,8 +521,7 @@ export default function SegurancaLazerScreen({ navigation }) {
             <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16, flex: 1 }}>
-            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.lazerDiversO', 'Lazer & Diversão')}</Text>
-            <Text style={{ fontSize: 13, color: Neo.colors.neutral[500] }}>{t('headersFirst.aproveiteOsMomentosDeLazerComSeguranA', 'Aproveite os momentos de lazer com segurança.')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('lazerMenu.lazer.title', 'Lazer ao Ar Livre')}</Text>
           </View>
         </View>
 

@@ -152,13 +152,6 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                         }}>
                             {title}
                         </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
-                        </Text>
                     </View>
                 </Animated.View>
 

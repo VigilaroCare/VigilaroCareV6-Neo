@@ -30,7 +30,7 @@ import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
 import ReviewImage from '../../components/ReviewImage';
-import { H1, H3, Caption } from '../../components/NeoTypography';
+import { H1, H3 } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 /**
@@ -185,11 +185,8 @@ export default function EducationEnvironmentsScreen({ navigation, route }) {
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H1 style={[styles.title, heroImage && { color: '#FFF' }]}>
-                            {t('envScreens.title', 'Riscos por Ambiente')}
+                            {t('knowledgeHub.envPrevention', 'Prevenção por ambientes')}
                         </H1>
-                        <Caption style={[styles.subtitle, heroImage ? { color: 'rgba(255,255,255,0.9)' } : { color: themeColors.neutral[600] }]}>
-                            {t('envScreens.subtitle', 'Prevenção 3D em cada espaço da sua casa')}
-                        </Caption>
                     </View>
                 </View>
 
@@ -254,7 +251,6 @@ const styles = StyleSheet.create({
         letterSpacing: -0.5,
         marginBottom: 2,
     },
-    subtitle: {},
 
     // Scroll
     content: {

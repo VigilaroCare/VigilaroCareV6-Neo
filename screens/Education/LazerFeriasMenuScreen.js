@@ -65,8 +65,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
         }
     ];
 
-    const title = t('lazerMenu.headerTitle', 'Lazer & Férias');
-    const subtitle = t('lazerMenu.headerSubtitle', 'Diversão com mais segurança.');
+    const title = t('knowledgeHub.leisureTravel', 'Lazer & Viagens');
     const capaSource = require('../../assets/illustrations/pad/hero_lazer_ferias.jpg');
 
     return (
@@ -124,16 +123,8 @@ export default function LazerFeriasMenuScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

@@ -166,14 +166,6 @@ export default function PlanoIncendioScreen({ navigation }) {
                 }} accessibilityRole="header">
                     {title}
                 </Text>
-                <Text style={{
-                    fontSize: 16,
-                    color: 'rgba(255,255,255,0.9)',
-                    marginTop: 6,
-                    fontWeight: '600'
-                }}>
-                    {subtitle}
-                </Text>
             </View>
         </Animated.View>
 

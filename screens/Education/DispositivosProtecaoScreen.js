@@ -119,9 +119,6 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                     <Text style={[styles.headerTitle, { color: '#FFFFFF' }]} accessibilityRole="header">
                         {t('knowledgeHub.protectionDevices', 'Acessórios de Proteção')}
                     </Text>
-                    <Text style={[styles.headerSubtitle, { color: 'rgba(255,255,255,0.8)' }]}>
-                        {t('knowledgeHub.protectionDevicesDesc', 'Itens essenciais para proteger sua casa')}
-                    </Text>
                 </View>
             </View>
 

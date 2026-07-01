@@ -79,8 +79,7 @@ export default function FasesVidaMenuScreen({ navigation, route }) {
         }
     ];
 
-    const title = t('fasesVida.title', 'Fases da Vida');
-    const subtitle = t('fasesVida.subtitle', 'Guia de proteção por faixa etária');
+    const title = t('knowledgeHub.ageCare', 'Segurança 60+');
     const { heroImage } = route?.params || {};
     const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/illustrations/pad/hero_fases_vida.png');
 
@@ -142,13 +141,6 @@ export default function FasesVidaMenuScreen({ navigation, route }) {
                             marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

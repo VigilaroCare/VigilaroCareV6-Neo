@@ -21,7 +21,7 @@ export default function CuidarProtegerHubScreen({ navigation }) {
     const textMuted = themeColors.neutral[500];
 
     const contextItems = [
-        { id: 'ambientes',       titulo: t('knowledgeHub.envPrevention', 'Segurança por Ambiente'),  iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments', imageUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'ambientes',       titulo: t('knowledgeHub.envPrevention', 'Prevenção por ambientes'),  iconName: 'Home2',      cor: '#F59E0B', route: 'EducationEnvironments', imageUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'mentes_atipicas', titulo: t('knowledgeHub.neurodivergence', 'Lar Neurodiverso'), iconName: 'Activity', cor: '#8B5CF6', route: 'NeurodivergenceMenu', imageUrl: 'https://images.pexels.com/photos/7162002/pexels-photo-7162002.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'pets',            titulo: t('knowledgeHub.protectPet', 'Proteção para Pets'),     iconName: 'ProtejaPet', cor: '#EC4899', route: 'PetsMenu', imageUrl: 'https://images.pexels.com/photos/4587979/pexels-photo-4587979.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'seguranca_idade', titulo: t('knowledgeHub.ageCare', 'Segurança 60+'),        iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu', imageUrl: 'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=800' },
@@ -45,7 +45,6 @@ export default function CuidarProtegerHubScreen({ navigation }) {
 
     const capaUrl = require('../assets/illustrations/pad/hero_fases_vida.png');
     const title = t('cuidarProteger.headerTitle', 'Cuidar & Proteger');
-    const subtitle = t('cuidarProteger.headerSubtitle', 'Adaptação ativa e segurança para todos');
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
@@ -122,16 +121,8 @@ export default function CuidarProtegerHubScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

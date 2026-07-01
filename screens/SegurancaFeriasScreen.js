@@ -372,8 +372,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
 
                 {/* Cabeçalho Padronizado */}
                 <NeoScreenHeader 
-                    title={t('headersFirst.viagemSegura', 'Viagem Segura')}
-                    subtitle={t('headersFirst.carroHotelAviOEDocumentos', 'Carro, hotel, avião e documentos.')}
+                    title={t('lazerMenu.ferias.title', 'Viagens e Férias')}
                     onBack={() => navigation.goBack()}
                 />
 

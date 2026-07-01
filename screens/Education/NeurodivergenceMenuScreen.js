@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Animated, Image } from 'react-native';
+import { View, ScrollView, TouchableOpacity, StyleSheet, Animated, Image, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -112,16 +112,8 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {data.title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {data.subtitle}
                         </Text>
                     </View>
                 </Animated.View>

@@ -64,8 +64,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
             <NeoIcon name="ArrowLeft2" size={24} color={textBody} />
           </TouchableOpacity>
           <View style={{ marginLeft: 16 }}>
-            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('headersFirst.mobilidade', 'Mobilidade')}</Text>
-            <Text style={{ fontSize: 13, color: textMuted }}>{t('headersFirst.trNsitoESeguranA', 'Trânsito e Segurança.')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: '800', color: textPrimary, letterSpacing: -0.5 }} accessibilityRole="header">{t('lazerMenu.mobilidade.title', 'Mobilidade Segura')}</Text>
           </View>
         </View>
 
