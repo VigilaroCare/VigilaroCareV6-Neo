@@ -42,7 +42,7 @@ import ProactiveNotificationService from '../services/ProactiveNotificationServi
 import ScoreService from '../services/ScoreService';
 
 import { H2, Eyebrow, Body, Caption } from '../components/NeoTypography';
-import HeroScoreCard from '../components/HeroScoreCard';
+import HubCasaSobControle from '../components/HubCasaSobControle';
 import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
@@ -246,13 +246,9 @@ export default function HomeScreenNeo() {
     // Grid único de acesso rápido (8 tiles). Saúde voltou como REGISTRO por
     // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
     // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
-        const GRID_ITEMS = [
-        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,   route: 'Relatorios'      },
-        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades,  route: 'ModoPreventivo'  },
+    const GRID_ITEMS = [
         { key: 'minhasaude',  label: t('home.myHealth', 'Minha Saúde'),                    image: HOME_PICTOGRAMS.minhasaude,  route: 'MinhaSaude'      },
         { key: 'saudepet',    label: t('home.petHealth', 'Saúde Pet'),                     image: HOME_PICTOGRAMS.saudepet,    route: 'SaudePet'        },
-        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),              image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
-        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                  image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
         { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),         image: HOME_PICTOGRAMS.cuidar,      route: 'CuidarProtegerHub' },
         { key: 'viagem',      label: t('home.travelMode', 'Modo Viagem'),                   image: HOME_PICTOGRAMS.viagem,      route: 'TravelModeScreen' },
     ];
@@ -318,7 +314,7 @@ export default function HomeScreenNeo() {
                         paddingTop: 0,
                     }}
                 >
-                    <HeroScoreCard 
+                    <HubCasaSobControle 
                         scoreData={scoreData}
                         heroHeadline={heroHeadline}
                         onPress={toggleMonitor}
