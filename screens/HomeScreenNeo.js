@@ -310,7 +310,7 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 140, // Espaço para o botão SOS + floating footer
+                        paddingBottom: 110, // Reduzido de 140 para puxar o limite do scroll pra cima
                         paddingTop: 0,
                     }}
                 >
@@ -383,7 +383,7 @@ export default function HomeScreenNeo() {
 
 
 
-                    <View style={{ marginTop: 32 }}>
+                    <View style={{ marginTop: 12 }}>
                         <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
                             <View style={s.heroShadowWrap}>
                                 <LinearGradient
@@ -681,7 +681,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 8,
+        marginTop: 2,
     },
     gridCell: {
         width: '49%',

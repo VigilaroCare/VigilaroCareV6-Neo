@@ -1,128 +1,119 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, StyleSheet, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { useIsDark } from '../utils/ThemeContext';
-import ThreeRingChart from './ThreeRingChart';
-import NeoIcon from './NeoIcon';
 import CompactActiveMonitor from './CompactActiveMonitor';
 import ScoreLegendModal from './ScoreLegendModal';
 import * as NavigationService from '../services/NavigationService';
 
-// Importaremos as imagens. 
-// O App confia que esses arquivos serão substituídos pelas novas imagens "peças de quebra-cabeça" 
-// que o designer está gerando, contendo os recortes (furo central).
-const HUB_PICTOGRAMS = {
-    vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
-    atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
-    scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
-    inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
+// Nova imagem base com recorte retangular no centro
+const HUB_BASE_RECT = require('../assets/illustrations/home-pictograms/hub-base-rect.png');
+
+// Cor semântica do score
+const getScoreColor = (score) => {
+    if (score >= 80) return '#15803D'; // Verde
+    if (score >= 50) return '#B45309'; // Âmbar
+    return '#B91C1C';                  // Vermelho
 };
 
 export default function HubCasaSobControle({ scoreData, onPress, isExpanded, scoreMessage }) {
     const { t } = useTranslation();
     const isDark = useIsDark();
     const [isLegendVisible, setIsLegendVisible] = useState(false);
-
-    // Usa bege sólido no light mode para casar com o fundo das peças do Canva
-    // e remover o aspecto "fundo branco" do Hero.
-    const getBgColor = () => {
-        return isDark ? [Neo.colors.neutral[800], Neo.colors.neutral[900]] : ['#F4F2EC', '#F4F2EC'];
-    };
-
-    const cardBorderColor = isDark ? 'rgba(255,255,255,0.1)' : Neo.colors.primary[800];
-    const textColor = isDark ? '#FFFFFF' : Neo.colors.neutral[900];
-    const textMuted = isDark ? '#A1A1AA' : Neo.colors.neutral[600];
+    const { width: windowWidth } = useWindowDimensions();
 
     const navigate = (route, params) => {
         NavigationService.navigate(route, params);
     };
 
+    // ── Dimensões do board (mesma lógica do original) ──
+    const IMAGE_ASPECT_RATIO = 1536 / 1024;
+    const boardWidth = windowWidth - 16;
+    const boardHeight = boardWidth / IMAGE_ASPECT_RATIO;
+
     return (
         <TouchableOpacity activeOpacity={1} onPress={onPress}>
-            <LinearGradient
-                colors={getBgColor()}
-                style={[styles.card, { borderColor: cardBorderColor, borderWidth: isDark ? 1 : 1.5 }]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-            >
-                {/* Header */}
-                <View style={styles.hubHeader}>
-                    <Text style={[styles.hubTitle, { color: textColor }]}>
-                        VigilaroCare - Visão Geral
-                    </Text>
-                    <NeoIcon name="ArrowDown2" size={14} color={textMuted} style={{ position: 'absolute', right: 0, opacity: 0.7, transform: [{ rotate: isExpanded ? '180deg' : '0deg' }] }} />
-                </View>
+            <View style={styles.container}>
 
-                {/* Tabuleiro do Quebra-Cabeça (Sem gaps, para que as peças se unam perfeitamente) */}
-                <View style={styles.puzzleBoard}>
-                    
-                    {/* Linha Superior */}
-                    <View style={styles.puzzleRow}>
-                        {/* Esquerda superior: Vistorias */}
-                        <TouchableOpacity 
-                            style={styles.puzzlePieceContainer} 
-                            onPress={() => navigate('Relatorios')}
-                            activeOpacity={0.8}
-                            accessibilityLabel={t('home.inspections', 'Vistorias')}
-                        >
-                            <Image source={HUB_PICTOGRAMS.vistorias} style={styles.puzzleImage} resizeMode="contain" />
-                            <Text style={[styles.overlayText, { bottom: 10 }]}>{t('home.inspections', 'Vistorias')}</Text>
-                        </TouchableOpacity>
+                <View style={[styles.puzzleBoard, { width: boardWidth, height: boardHeight }]}>
+                    {/* Imagem base com recorte retangular */}
+                    <Image source={HUB_BASE_RECT} style={styles.compositeImage} resizeMode="stretch" />
 
-                        {/* Direita superior: Atividades eventuais */}
-                        <TouchableOpacity 
-                            style={styles.puzzlePieceContainer} 
-                            onPress={() => navigate('ModoPreventivo')}
-                            activeOpacity={0.8}
-                            accessibilityLabel={t('home.eventualActivities', 'Atividades')}
-                        >
-                            <Image source={HUB_PICTOGRAMS.atividades} style={styles.puzzleImage} resizeMode="contain" />
-                            <Text style={styles.overlayText}>{t('home.eventualActivities', 'Atividades')}</Text>
-                        </TouchableOpacity>
+                    {/* Títulos já embutidos na imagem — sem overlay de texto */}
+
+                    {/* 4 zonas de toque invisíveis nos quadrantes */}
+                    <View style={styles.touchOverlay}>
+                        <View style={styles.touchRow}>
+                            <TouchableOpacity
+                                style={styles.touchQuadrant}
+                                onPress={() => navigate('Relatorios')}
+                                activeOpacity={0.7}
+                            />
+                            <TouchableOpacity
+                                style={styles.touchQuadrant}
+                                onPress={() => navigate('ModoPreventivo')}
+                                activeOpacity={0.7}
+                            />
+                        </View>
+                        <View style={styles.touchRow}>
+                            <TouchableOpacity
+                                style={styles.touchQuadrant}
+                                onPress={() => navigate('Scanner')}
+                                activeOpacity={0.7}
+                            />
+                            <TouchableOpacity
+                                style={styles.touchQuadrant}
+                                onPress={() => navigate('InfoRotulos')}
+                                activeOpacity={0.7}
+                            />
+                        </View>
                     </View>
 
-                    {/* Linha Inferior */}
-                    <View style={styles.puzzleRow}>
-                        {/* Esquerda inferior: Scanner Ambiente */}
-                        <TouchableOpacity 
-                            style={styles.puzzlePieceContainer} 
-                            onPress={() => navigate('Scanner')}
-                            activeOpacity={0.8}
-                            accessibilityLabel={t('home.envScanner', 'Scanner Ambiente')}
-                        >
-                            <Image source={HUB_PICTOGRAMS.scanner} style={styles.puzzleImage} resizeMode="contain" />
-                            <Text style={[styles.overlayText, { bottom: 10 }]}>{t('home.envScanner', 'Scanner Ambiente')}</Text>
-                        </TouchableOpacity>
-
-                        {/* Direita inferior: Info Rótulos */}
-                        <TouchableOpacity 
-                            style={styles.puzzlePieceContainer} 
-                            onPress={() => navigate('InfoRotulos')}
-                            activeOpacity={0.8}
-                            accessibilityLabel={t('home.infoLabels', 'Info Rótulos')}
-                        >
-                            <Image source={HUB_PICTOGRAMS.inforotulos} style={styles.puzzleImage} resizeMode="contain" />
-                            <Text style={styles.overlayText}>{t('home.infoLabels', 'Info Rótulos')}</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    {/* Gráfico Central flutuando no "buraco" do quebra-cabeça */}
-                    <TouchableOpacity 
-                        style={styles.centerChartWrapper}
-                        activeOpacity={0.9}
+                    {/* Score — conteúdo sobreposto no card central nativo da imagem */}
+                    <TouchableOpacity
+                        style={[styles.scoreOverlay, {
+                            width:  boardWidth * 0.135,
+                            height: boardHeight * 0.17,
+                            left:   boardWidth * 0.5 - (boardWidth * 0.135) / 2,
+                            top:    boardHeight * 0.5 - (boardHeight * 0.17) / 2,
+                        }]}
+                        activeOpacity={0.8}
                         onPress={() => navigate('AmbientesVistoriados', { scoreData })}
                     >
-                        <ThreeRingChart scoreData={scoreData} size={80} shape="squircle" />
+                        {/* Número do Score */}
+                        <Text style={[styles.scoreNumber, { color: '#29402d' }]}>
+                            {scoreData?.geral || 0}
+                        </Text>
+
+                        {/* Barra Tracejada — 20 segmentos de 5% cada */}
+                        <View style={styles.progressBarTrack}>
+                            {Array.from({ length: 20 }, (_, i) => {
+                                const segmentThreshold = (i + 1) * 5;
+                                const score = scoreData?.geral || 0;
+                                const isFilled = score >= segmentThreshold;
+                                return (
+                                    <View
+                                        key={i}
+                                        style={[
+                                            styles.progressSegment,
+                                            {
+                                                backgroundColor: isFilled
+                                                    ? getScoreColor(score)
+                                                    : 'rgba(0,0,0,0.08)',
+                                            }
+                                        ]}
+                                    />
+                                );
+                            })}
+                        </View>
                     </TouchableOpacity>
 
                 </View>
 
-                {/* ScoreLegend Modal */}
-                <ScoreLegendModal 
-                    visible={isLegendVisible} 
-                    onClose={() => setIsLegendVisible(false)} 
+                <ScoreLegendModal
+                    visible={isLegendVisible}
+                    onClose={() => setIsLegendVisible(false)}
                 />
 
                 {isExpanded && (
@@ -135,80 +126,62 @@ export default function HubCasaSobControle({ scoreData, onPress, isExpanded, sco
                         />
                     </View>
                 )}
-
-            </LinearGradient>
+            </View>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    card: {
-        borderRadius: 24,
-        padding: 16,
-        paddingTop: 16,
+    container: {
         marginTop: 10,
         marginBottom: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.15,
-        shadowRadius: 20,
-        elevation: 8,
-    },
-    hubHeader: {
-        alignItems: 'center',
-        marginBottom: 16,
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-    hubTitle: {
-        fontSize: 18,
-        fontWeight: '800',
-        letterSpacing: -0.2,
     },
     puzzleBoard: {
-        aspectRatio: 4 / 3, 
-        width: '100%',
+        alignSelf: 'center',
         position: 'relative',
+        backgroundColor: '#f4ecdc',
+        borderRadius: 20,
     },
-    puzzleRow: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    puzzlePieceContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 6, // Cria 12px de espaço real entre os cards (universal)
-    },
-    puzzleImage: {
+    compositeImage: {
         width: '100%',
         height: '100%',
     },
-    centerChartWrapper: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: [{ translateX: -42 }, { translateY: -43 }],
-        width: 80, 
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 10,
+    touchOverlay: {
+        ...StyleSheet.absoluteFillObject,
     },
-    overlayText: {
-        position: 'absolute',
-        bottom: 8,
-        width: '100%',
-        textAlign: 'center',
-        fontSize: 11,
-        fontWeight: '800',
-        color: Neo.colors.neutral[900], 
-        letterSpacing: -0.2,
-        paddingHorizontal: 2,
+    touchRow: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    touchQuadrant: {
+        flex: 1,
     },
     heroWell: {
         backgroundColor: 'transparent',
         borderRadius: 12,
         padding: 8,
-    }
+    },
+    scoreOverlay: {
+        position: 'absolute',
+        zIndex: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    scoreNumber: {
+        fontSize: 24,
+        fontWeight: '900',
+        letterSpacing: -1,
+    },
+    progressBarTrack: {
+        width: '85%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 3,
+    },
+    progressSegment: {
+        flex: 1,
+        height: 6,
+        borderRadius: 1,
+        marginHorizontal: 0.5,
+    },
 });
