@@ -135,7 +135,7 @@ export default function HomeScreenNeo() {
     }
 
     const isDark = useIsDark();
-    const cardBgColorResolved = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    const cardBgColorResolved = isDark ? themeColors.neutral[200] : '#F4F2EC';
     const cardBorderColorResolved = isDark ? 'rgba(255,255,255,0.15)' : (themeColors.primary?.[800] || Neo.colors.primary[800]);
     const cardBorderWidthResolved = isDark ? 1 : 1.5;
 
