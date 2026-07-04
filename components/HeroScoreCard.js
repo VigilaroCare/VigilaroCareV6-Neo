@@ -7,8 +7,19 @@ import CompactActiveMonitor from './CompactActiveMonitor';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { useIsDark } from '../utils/ThemeContext';
+import ScoreService from '../services/ScoreService';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
+// Cor do anel por FAIXA (getBanda) — tints claros p/ o card creme da Home.
+// O limiar mora no ScoreService; aqui só mapeamos a chave da faixa → cor.
+const RING_COLOR_BY_BAND = {
+    maxima:   '#6EE7B7', // Verde claro
+    controle: '#6EE7B7', // Verde claro
+    atencao:  '#FCD34D', // Amarelo/Laranja claro
+    critico:  '#FCA5A5', // Vermelho claro
+    inicio:   Neo.colors.neutral[300],
+};
 
 export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpanded = false, scoreMessage = {} }) {
     const { t } = useTranslation();
@@ -17,7 +28,12 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpa
 
     const score = scoreData?.geral || 0;
     const pendencias = scoreData?.pendencias || 0;
-    
+
+    // ── FAIXA ÚNICA ── cor, eyebrow e manchete saem todas do mesmo limiar.
+    const banda = ScoreService.getBanda(score);
+    // Se o caller não passar heroHeadline, usa a manchete da própria faixa.
+    const headline = heroHeadline || banda.headline;
+
     // Calcula quantos ambientes estão com score 100% ou sem riscos.
     const totalAmbientes = Object.keys(scoreData?.ambientes || {}).length;
     const ambientesOk = Math.max(0, totalAmbientes - (pendencias > 0 ? 1 : 0)); // Simplificação visual rápida
@@ -25,12 +41,8 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpa
     const circumference = 2 * Math.PI * 38; // radius = 38
     const strokeDashoffset = circumference - (score / 100) * circumference;
 
-    // Cores Dinâmicas
-    const getRingColor = () => {
-        if (score >= 80) return '#6EE7B7'; // Verde Claro
-        if (score >= 50) return '#FCD34D'; // Amarelo/Laranja Claro
-        return '#FCA5A5'; // Vermelho Claro
-    };
+    // Cor dinâmica do anel — via faixa (era ternário 80/50 solto).
+    const getRingColor = () => RING_COLOR_BY_BAND[banda.key] || RING_COLOR_BY_BAND.inicio;
 
     const getBgColor = () => {
         // Usa as cores do tile cerâmico da Home (warm cream/ivory) no modo claro
@@ -53,10 +65,9 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpa
                 end={{ x: 1, y: 1 }}
             >
                 <View style={styles.topRow}>
+                    {/* Eyebrow por faixa — mesmo limiar do heroHeadline e do ScoreService */}
                     <Text style={[styles.topLabel, { color: textMuted }]}>
-                        {score >= 80 ? t('home.heroControl', 'CASA SOB CONTROLE') : 
-                         score >= 50 ? t('home.heroAttention', 'ATENÇÃO NECESSÁRIA') : 
-                         t('home.heroAct', 'AJA IMEDIATAMENTE')}
+                        {banda.headline.toUpperCase()}
                     </Text>
                     <NeoIcon name="ArrowDown2" size={14} color={textMuted} style={{ opacity: 0.7, transform: [{ rotate: isExpanded ? '180deg' : '0deg' }] }} />
                 </View>
@@ -96,7 +107,7 @@ export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpa
                     {/* Lado Direito: Textos e Pílulas */}
                     <View style={styles.infoContainer}>
                         <Text style={[styles.heroHeadline, { color: textColor }]} numberOfLines={2}>
-                            {heroHeadline}
+                            {headline}
                         </Text>
 
                         <View style={styles.badgesWrapper}>

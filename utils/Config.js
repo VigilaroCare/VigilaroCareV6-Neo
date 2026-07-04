@@ -26,7 +26,11 @@ export const Config = {
     // ---------------------------------------------------------------------------
     VIGILARO_PROXY_URL: process.env.EXPO_PUBLIC_VIGILARO_PROXY_URL || 
         (__DEV__ ? 'http://192.168.100.65:3000' : 'https://vigilaro-proxy.onrender.com'),
-    VIGILARO_APP_SECRET: process.env.EXPO_PUBLIC_VIGILARO_APP_SECRET || '',
+    // Token publico do cliente mobile. Nao trate como segredo: qualquer APK/IPA
+    // pode expor esse valor. O backend deve combinar isso com rate limiting,
+    // allow-list, monitoramento e, idealmente, attestation por plataforma.
+    VIGILARO_APP_SECRET: process.env.EXPO_PUBLIC_VIGILARO_PROXY_TOKEN ||
+        process.env.EXPO_PUBLIC_VIGILARO_APP_SECRET || '',
 
     // ---------------------------------------------------------------------------
     // REVENUECAT — Assinaturas

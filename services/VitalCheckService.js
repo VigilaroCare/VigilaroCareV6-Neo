@@ -6,11 +6,12 @@
  *   Ao expirar a janela sem resposta, chama this.onEscalate({ reason })
  *   e a UI decide a rota.
  * Regra 5: Nenhum dado pessoal hardcoded.
- *   O nome do usuário é sempre lido do AsyncStorage em tempo de execução.
+ *   O nome do usuário é sempre lido do storage seguro em tempo de execução.
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
+import { Storage } from '../utils/SecureStorage';
 
 const VITAL_CHECK_CONFIG_KEY = '@vital_check_config';
 const VIGILARO_DATA_KEY = '@vigilaro_data';
@@ -229,7 +230,7 @@ class VitalCheckService {
     // [FIX-A02] Lê nome do usuário da estrutura real do ProfileService (@vigilaro_data)
     let userName = '';
     try {
-      const profileRaw = await AsyncStorage.getItem(VIGILARO_DATA_KEY);
+      const profileRaw = await Storage.getItem(VIGILARO_DATA_KEY);
       if (profileRaw) {
         const data = JSON.parse(profileRaw);
         // Busca o perfil ativo na estrutura unificada

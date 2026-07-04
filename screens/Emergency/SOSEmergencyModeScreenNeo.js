@@ -153,10 +153,17 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 if (!unified.some(u => u.phone === pc.phone)) unified.push(pc);
             });
             setCustomContacts(unified);
-        } catch (e) { console.error(e); }
+        } catch (e) { if (__DEV__) console.error(e); }
     };
 
-    const handleCall = (number) => Linking.openURL(`tel:${number}`);
+    const handleCall = async (number) => {
+        try {
+            await Linking.openURL(`tel:${number}`);
+        } catch (e) {
+            if (__DEV__) console.warn('Falha ao abrir discador:', e);
+            NeoAlert.alert('Ligacao', 'Nao foi possivel abrir o discador neste aparelho.');
+        }
+    };
 
     const handleSOS = async () => {
         if (customContacts.length === 0) {
@@ -174,7 +181,21 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         const phones = customContacts.map(c => c.phone).join(Platform.OS === 'ios' ? '&' : ';');
         const separator = Platform.OS === 'ios' ? '&' : '?';
 
-        Linking.openURL(`sms:${phones}${separator}body=${encodeURIComponent(message)}`);
+        const messageForSms = `SOS! Preciso de ajuda urgente.${locationText} (Vigilaro Care - confirme o envio no app de mensagens)`;
+        const smsUrl = `sms:${phones}${separator}body=${encodeURIComponent(messageForSms)}`;
+
+        try {
+            const firstPhone = customContacts[0]?.phone || '';
+            const canOpenSms = await Linking.canOpenURL(`sms:${firstPhone}`);
+            if (!canOpenSms) {
+                NeoAlert.alert('SMS indisponivel', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.');
+                return;
+            }
+            await Linking.openURL(smsUrl);
+        } catch (e) {
+            if (__DEV__) console.warn('Falha ao abrir SMS de emergencia:', e);
+            NeoAlert.alert('SMS indisponivel', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.');
+        }
     };
 
     // ── Gerar e exibir Ficha Médica ──
@@ -263,7 +284,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const handleShareFicha = async () => {
         try {
             await Share.share({ message: fichaTexto, title: 'Ficha Médica de Emergência' });
-        } catch (e) { console.error(e); }
+        } catch (e) { if (__DEV__) console.error(e); }
     };
 
     return (

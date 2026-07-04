@@ -42,7 +42,7 @@ import ProactiveNotificationService from '../services/ProactiveNotificationServi
 import ScoreService from '../services/ScoreService';
 
 import { H2, Eyebrow, Body, Caption } from '../components/NeoTypography';
-import HubCasaSobControle from '../components/HubCasaSobControle';
+import HeroScoreCard from '../components/HeroScoreCard';
 import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
 import ScaleInView from '../components/ScaleInView';
@@ -201,13 +201,8 @@ export default function HomeScreenNeo() {
 
     // ── ESTADO-HERÓI (manchete do hero verde) ──
     const score = scoreData.geral;
-    const heroHeadline = score >= 80
-        ? t('home.heroControl', 'Casa sob controle')
-        : score >= 50
-            ? t('home.heroAttention', 'Atenção necessária')
-            : score > 0
-                ? t('home.heroAct', 'Aja imediatamente')
-                : t('home.heroStart', 'Comece sua proteção');
+    // Faixa única (ScoreService.getBanda) — mesmo limiar do HeroScoreCard.
+    const heroHeadline = ScoreService.getBanda(score).headline;
 
     // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
     const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
@@ -246,9 +241,13 @@ export default function HomeScreenNeo() {
     // Grid único de acesso rápido (8 tiles). Saúde voltou como REGISTRO por
     // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
     // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
-    const GRID_ITEMS = [
+        const GRID_ITEMS = [
+        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,   route: 'Relatorios'      },
+        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades,  route: 'ModoPreventivo'  },
         { key: 'minhasaude',  label: t('home.myHealth', 'Minha Saúde'),                    image: HOME_PICTOGRAMS.minhasaude,  route: 'MinhaSaude'      },
         { key: 'saudepet',    label: t('home.petHealth', 'Saúde Pet'),                     image: HOME_PICTOGRAMS.saudepet,    route: 'SaudePet'        },
+        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),              image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                  image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
         { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),         image: HOME_PICTOGRAMS.cuidar,      route: 'CuidarProtegerHub' },
         { key: 'viagem',      label: t('home.travelMode', 'Modo Viagem'),                   image: HOME_PICTOGRAMS.viagem,      route: 'TravelModeScreen' },
     ];
@@ -310,11 +309,11 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 110, // Reduzido de 140 para puxar o limite do scroll pra cima
+                        paddingBottom: 140, // Espaço para o botão SOS + floating footer
                         paddingTop: 0,
                     }}
                 >
-                    <HubCasaSobControle 
+                    <HeroScoreCard 
                         scoreData={scoreData}
                         heroHeadline={heroHeadline}
                         onPress={toggleMonitor}
@@ -383,7 +382,7 @@ export default function HomeScreenNeo() {
 
 
 
-                    <View style={{ marginTop: 12 }}>
+                    <View style={{ marginTop: 32 }}>
                         <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
                             <View style={s.heroShadowWrap}>
                                 <LinearGradient
@@ -505,16 +504,7 @@ function BarePictogramShortcut({
 }
 
 const s = StyleSheet.create({
-    heroShadowWrap: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.15,
-        shadowRadius: 20,
-        elevation: 8,
-    },
-    heroCard: {
-        borderRadius: 24,
-    },
+
     // ── Header: saudação + perfil ──
     homeHeader: {
         justifyContent: 'space-between',
@@ -681,22 +671,13 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 2,
+        marginTop: 8,
     },
     gridCell: {
         width: '49%',
         marginBottom: 2,
     },
-    heroShadowWrap: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.25,
-        shadowRadius: 20,
-        elevation: 8,
-    },
-    heroCard: {
-        borderRadius: 24,
-    },
+
     barePictogram: {
         alignItems: 'center',
         paddingVertical: 0,

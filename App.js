@@ -49,6 +49,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import './i18n'; // Configuração do i18next
 import * as SplashScreen from "expo-splash-screen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Storage } from "./utils/SecureStorage";
 import * as NavigationBar from 'expo-navigation-bar';
 import { useFonts } from 'expo-font';
 const PlusJakartaSans_400Regular = require('@expo-google-fonts/plus-jakarta-sans/400Regular/PlusJakartaSans_400Regular.ttf');
@@ -311,7 +312,7 @@ export default function App() {
 
         // 2. Polling de onboarding com ref — sem stale closure
         _onboardingIntervalRef.current = setInterval(async () => {
-          const d = await AsyncStorage.getItem('@vigilaro_data');
+          const d = await Storage.getItem('@vigilaro_data');
           if (d) {
             try {
               const parsed = JSON.parse(d);

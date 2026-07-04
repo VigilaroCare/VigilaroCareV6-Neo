@@ -15,7 +15,6 @@ import {
 import { Swipeable } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
@@ -27,6 +26,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import NeoAlert from '../../utils/NeoAlert';
 import SafetyDisclaimer from '../../components/SafetyDisclaimer';
+import { Storage } from '../../utils/SecureStorage';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
@@ -91,7 +91,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
   const carregarContatos = async (key, profile) => {
     try {
-      const dados = await AsyncStorage.getItem(key);
+      const dados = await Storage.getItem(key);
       if (dados) {
         setContatos(JSON.parse(dados));
       } else {
@@ -109,7 +109,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
   const checkAndProposeImport = async (currentProfileKey) => {
     try {
-      const globalData = await AsyncStorage.getItem('contatos_emergencia');
+      const globalData = await Storage.getItem('contatos_emergencia');
       if (globalData) {
         const globalContacts = JSON.parse(globalData);
         if (globalContacts.length > 0) {
@@ -121,7 +121,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               {
                 text: 'Sim, importar',
                 onPress: async () => {
-                  await AsyncStorage.setItem(currentProfileKey, JSON.stringify(globalContacts));
+                  await Storage.setItem(currentProfileKey, JSON.stringify(globalContacts));
                   setContatos(globalContacts);
                 },
               },
@@ -137,7 +137,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
   const salvarContatos = async (novosContatos) => {
     if (!storageKey) return;
     try {
-      await AsyncStorage.setItem(storageKey, JSON.stringify(novosContatos));
+      await Storage.setItem(storageKey, JSON.stringify(novosContatos));
       setContatos(novosContatos);
     } catch (error) {
       if (__DEV__) console.log('Erro ao salvar contatos:', error);

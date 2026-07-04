@@ -6,6 +6,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDefaultData, getDefaultProfile, VIGILARO_DATA_KEY } from './ProfileModels';
+import { Storage } from '../utils/SecureStorage';
 
 // Chaves antigas para migração
 const LEGACY_KEYS = {
@@ -138,8 +139,7 @@ class LegacyMigrationService {
             newData.migrado = true;
             newData.onboardingCompleto = newData.perfis.length > 0 && newData.moradia.tipo !== null;
 
-            // Salvar dados migrados USANDO ASYNC STORAGE DIRETAMENTE
-            await AsyncStorage.setItem(VIGILARO_DATA_KEY, JSON.stringify(newData));
+            await Storage.setItem(VIGILARO_DATA_KEY, JSON.stringify(newData));
 
             console.log('✅ Migração completa!');
 

@@ -10,7 +10,6 @@ import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
@@ -18,6 +17,7 @@ import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { Neo } from '../../utils/Theme';
 import { validateVigilaroData, SEVERITY } from '../../utils/DataIntegrityUtils';
+import { Storage } from '../../utils/SecureStorage';
 
 const VIGILARO_DATA_KEY = '@vigilaro_data';
 
@@ -46,9 +46,9 @@ export default function DataHealthScreen({ navigation }) {
         setLoading(true);
         setError(null);
         try {
-            const raw = await AsyncStorage.getItem(VIGILARO_DATA_KEY);
+            const raw = await Storage.getItem(VIGILARO_DATA_KEY);
             if (!raw) {
-                setError('Nenhum dado encontrado no AsyncStorage.');
+                setError('Nenhum dado encontrado no armazenamento local.');
                 setLoading(false);
                 return;
             }

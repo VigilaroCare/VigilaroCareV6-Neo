@@ -22,6 +22,7 @@ import LegacyMigrationService from './LegacyMigrationService';
 import { getDefaultData, getDefaultProfile, VIGILARO_DATA_KEY } from './ProfileModels';
 import { areasInternas } from '../data/areas_internas';
 import { areasExternas } from '../data/areas_externas';
+import { Storage } from '../utils/SecureStorage';
 
 class ProfileService {
 
@@ -32,7 +33,7 @@ class ProfileService {
      */
     static async getData() {
         try {
-            const dataJson = await AsyncStorage.getItem(VIGILARO_DATA_KEY);
+            const dataJson = await Storage.getItem(VIGILARO_DATA_KEY);
 
             if (dataJson) {
                 return JSON.parse(dataJson);
@@ -57,7 +58,7 @@ class ProfileService {
     static async saveData(data) {
         try {
             data.dataAtualizacao = new Date().toISOString();
-            await AsyncStorage.setItem(VIGILARO_DATA_KEY, JSON.stringify(data));
+            await Storage.setItem(VIGILARO_DATA_KEY, JSON.stringify(data));
             return true;
         } catch (error) {
             if (__DEV__) { console.error('ProfileService.saveData error:', error); }
@@ -1213,6 +1214,29 @@ class ProfileService {
     // RESET GERAL (DANGER ZONE)
     // =============================================
 
+    static async cleanupUserFiles() {
+        try {
+            if (!FileSystem.documentDirectory) return;
+
+            const entries = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory).catch(() => []);
+            const userFilePrefixes = ['profile_', 'pet_', 'home_'];
+
+            await Promise.all(entries.map(async (entry) => {
+                const shouldDelete =
+                    entry === 'panic_recordings' ||
+                    userFilePrefixes.some(prefix => entry.startsWith(prefix));
+
+                if (!shouldDelete) return;
+
+                await FileSystem.deleteAsync(FileSystem.documentDirectory + entry, {
+                    idempotent: true,
+                }).catch(() => {});
+            }));
+        } catch (error) {
+            if (__DEV__) { console.warn('ProfileService.cleanupUserFiles error:', error); }
+        }
+    }
+
     /**
      * Reseta TODO o app para o estado inicial.
      * Apaga perfis, moradia, riscos e tudo mais.
@@ -1220,6 +1244,8 @@ class ProfileService {
     static async resetAllData() {
         try {
             if (__DEV__) { console.warn('⚠️ ProfileService: RESETANDO TUDO...'); }
+
+            const existingData = await this.getData().catch(() => null);
 
             const KEYS_TO_NUKE = [
                 VIGILARO_DATA_KEY,
@@ -1229,18 +1255,50 @@ class ProfileService {
                 '@vigilaro_xp',
                 '@vigilaro_xp_history',
                 '@onboarding_complete',
-                '@daily_tips_read'
+                '@daily_tips_read',
+                '@analytics_consent',
+                '@vigilaro_error_log',
+                '@active_trip',
+                'historicoAvaliacoes',
+                'termsAccepted_v1',
             ];
 
+            const SENSITIVE_KEYS_TO_NUKE = [
+                VIGILARO_DATA_KEY,
+                '@emergency_contacts',
+                'contatos_emergencia',
+                '@panic_button_state',
+                '@medications',
+                '@medications_timeline',
+                '@medications_history',
+                '@vigilaro_medications_v1',
+                '@medical_history',
+                '@treatments',
+                '@appointments',
+                '@procedures',
+            ];
+
+            const profileContactKeys = (existingData?.perfis || [])
+                .map(profile => profile?.id)
+                .filter(Boolean)
+                .map(id => `@contacts_${id}`);
+
             await AsyncStorage.multiRemove(KEYS_TO_NUKE);
+            await Promise.all(SENSITIVE_KEYS_TO_NUKE.map(key => Storage.removeItem(key)));
 
             // Limpeza de chaves de checklist
             const allKeys = await AsyncStorage.getAllKeys();
             const checklistKeys = allKeys.filter(key => key.startsWith('@checklist_state'));
+            const contactKeys = Array.from(new Set([
+                ...profileContactKeys,
+                ...allKeys.filter(key => key.startsWith('@contacts_')),
+            ]));
             if (checklistKeys.length > 0) {
                 await AsyncStorage.multiRemove(checklistKeys);
                 if (__DEV__) { console.log('Chaves de checklist removidas:', checklistKeys); }
             }
+            await Promise.all(contactKeys.map(key => Storage.removeItem(key)));
+            await this.cleanupUserFiles();
 
             // Limpa cache em memória do ChecklistService
             const { ChecklistService } = require('./ChecklistService');

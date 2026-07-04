@@ -215,13 +215,19 @@ export default function SOSCountdownScreen({ navigation, route }) {
       const phones = unifiedContacts.join(Platform.OS === 'ios' ? '&' : ';');
 
       const separator = Platform.OS === 'ios' ? '&' : '?';
-      const url = `sms:${phones}${separator}body=${encodeURIComponent(message)}`;
+      const messageForSms = `${messagePrefix}${locationText} (Vigilaro Care - confirme o envio no app de mensagens)`;
+      const url = `sms:${phones}${separator}body=${encodeURIComponent(messageForSms)}`;
+
+      const canOpenSms = await Linking.canOpenURL(`sms:${unifiedContacts[0]}`);
+      if (!canOpenSms) {
+        throw new Error('SMS_UNAVAILABLE');
+      }
 
       await Linking.openURL(url);
       AccessibilityInfo.announceForAccessibility(t('sosCountdown.confirmSend', 'Alerta de SOS disparado. Confirme o envio no aplicativo de mensagens.'));
 
       // Guarda dados pro botão de WhatsApp complementar
-      sosMessageRef.current = message;
+      sosMessageRef.current = messageForSms;
       firstContactRef.current = unifiedContacts[0];
 
       // Detecta disponibilidade de WhatsApp (não bloqueia o fluxo se falhar)

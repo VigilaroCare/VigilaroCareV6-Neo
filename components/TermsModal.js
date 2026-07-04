@@ -10,6 +10,8 @@ const { width, height } = Dimensions.get('window');
 export default function TermsModal({ onAccept }) {
     const [visible, setVisible] = useState(false);
     const [canAccept, setCanAccept] = useState(false);
+    const [scrollHeight, setScrollHeight] = useState(0);
+    const [contentHeight, setContentHeight] = useState(0);
 
     useEffect(() => {
         checkTerms();
@@ -34,17 +36,19 @@ export default function TermsModal({ onAccept }) {
         }
     };
 
-    // Auto-enable if content is short enough to not need scrolling
     useEffect(() => {
-        // Timeout to ensure layout is done
-        setTimeout(() => {
-            setCanAccept(true); // Temporarily auto-enable to fix "button not working" report
-        }, 1000);
-    }, []);
+        if (visible && scrollHeight > 0 && contentHeight > 0 && contentHeight <= scrollHeight + 20) {
+            setCanAccept(true);
+        }
+    }, [visible, scrollHeight, contentHeight]);
 
     const handleAccept = async () => {
         try {
-            await AsyncStorage.setItem('termsAccepted_v1', 'true');
+            await AsyncStorage.setItem('termsAccepted_v1', JSON.stringify({
+                accepted: true,
+                version: 1,
+                acceptedAt: new Date().toISOString(),
+            }));
             setVisible(false);
             if (onAccept) onAccept();
         } catch (e) {
@@ -72,6 +76,8 @@ export default function TermsModal({ onAccept }) {
                     <ScrollView
                         style={styles.scrollView}
                         onScroll={handleScroll}
+                        onLayout={(event) => setScrollHeight(event.nativeEvent.layout.height)}
+                        onContentSizeChange={(_, h) => setContentHeight(h)}
                         scrollEventThrottle={400}
                         showsVerticalScrollIndicator={true}
                     >

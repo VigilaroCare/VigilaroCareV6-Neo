@@ -217,6 +217,51 @@ class PanicButtonService {
         return true;
     }
 
+    // Implementacao efetiva: abre o compositor de SMS e exige confirmacao do usuario.
+    async sendSilentAlerts() {
+        const contacts = await this.getEmergencyContacts();
+
+        const phones = contacts
+            .map(contact => contact.phone || contact.telefone)
+            .filter(Boolean)
+            .map(phone => String(phone).replace(/\D/g, ''))
+            .filter(Boolean);
+
+        if (phones.length === 0) {
+            if (__DEV__) console.warn('Nenhum contato de emergencia com telefone valido');
+            return false;
+        }
+
+        let message = `ALERTA DE PANICO - Vigilaro Care\n\n`;
+        message += `Acionado as: ${new Date().toLocaleString('pt-BR')}\n`;
+
+        if (this.location) {
+            message += `\nLocalizacao:\n`;
+            message += `https://maps.google.com/?q=${this.location.latitude},${this.location.longitude}\n`;
+        }
+
+        message += `\nEsta pessoa pode estar em perigo. Verifique imediatamente.`;
+        message += `\n\nConfirme o envio no aplicativo de mensagens.`;
+
+        try {
+            const phonesParam = phones.join(Platform.OS === 'ios' ? '&' : ';');
+            const separator = Platform.OS === 'ios' ? '&' : '?';
+            const smsUrl = `sms:${phonesParam}${separator}body=${encodeURIComponent(message)}`;
+            const canOpen = await Linking.canOpenURL(`sms:${phones[0]}`);
+
+            if (!canOpen) {
+                if (__DEV__) console.warn('Nenhum app de SMS disponivel para alerta de panico');
+                return false;
+            }
+
+            await Linking.openURL(smsUrl);
+            return true;
+        } catch (error) {
+            if (__DEV__) { console.error('Erro ao abrir SMS de panico:', error); }
+            return false;
+        }
+    }
+
     // ATIVAR MODO PÂNICO
     async activate() {
         if (this.isActive) {

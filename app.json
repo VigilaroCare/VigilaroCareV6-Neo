@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Vigilaro Audit",
-    "slug": "vigilaro-care-audit",
+    "name": "Vigilaro Care",
+    "slug": "vigilaro-care",
     "scheme": "vigilarocare",
     "version": "1.0.2",
     "orientation": "portrait",

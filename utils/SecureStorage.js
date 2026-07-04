@@ -32,9 +32,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // criar uma chave sensível nova, adicione aqui E use Storage em vez de
 // AsyncStorage em todos os pontos de leitura/escrita.
 //
-// NOTA: '@vigilaro_data' (perfis) fica fora por decisão documentada — é lida
-// no caminho crítico de boot (App.js) e pode crescer além do razoável para o
-// Keystore; contém nomes/idades, sensibilidade menor que medicação/contatos.
+// NOTA: '@vigilaro_data' agora é sensível: contém perfis, nomes, idade,
+// saúde, contatos e dados de onboarding. Use Storage em todos os leitores e
+// escritores para manter a migração automática sem split-brain.
 //
 // VEREDITO das demais chaves avaliadas (auditoria 2026-06-12, item C15) —
 // permanecem em AsyncStorage por decisão consciente:
@@ -45,7 +45,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //        ciclo de vida curto, apagada no fim da viagem.
 // Reavaliar se qualquer uma passar a carregar nome/saúde/identificadores.
 const SENSITIVE_KEYS = new Set([
+    '@vigilaro_data',           // perfis, moradia, saúde, contatos, onboarding
     '@emergency_contacts',      // SOS*, PanicButtonService, OpenAIService
+    'contatos_emergencia',      // contatos legados globais
+    '@panic_button_state',      // estado de pânico, horário e localização
     '@medications',             // OpenAIService (chave legada, só leitura)
     '@medications_timeline',    // MedicationsScreen
     '@medications_history',     // MedicationsScreen
@@ -55,6 +58,10 @@ const SENSITIVE_KEYS = new Set([
     '@appointments',            // HealthService
     '@procedures',              // HealthService
 ]);
+
+const SENSITIVE_KEY_PREFIXES = [
+    '@contacts_',               // contatos por perfil
+];
 
 // expo-secure-store só aceita [A-Za-z0-9._-] na chave; '@' não é válido.
 const secureKey = (key) => 'vgl_' + key.replace(/[^A-Za-z0-9._-]/g, '_');
@@ -68,7 +75,10 @@ const serialize = (value) =>
 // ---------------------------------------------------------------------------
 const CHUNK_SIZE = 1800;
 const CHUNK_MARKER = '__chunked:';
-const MAX_CHUNKS = 64; // ~115KB — acima disso o dado não pertence ao Keystore
+const MAX_CHUNKS = 256; // ~460KB, folga para perfis familiares com metadata
+
+const isSensitiveKey = (key) =>
+    SENSITIVE_KEYS.has(key) || SENSITIVE_KEY_PREFIXES.some(prefix => key.startsWith(prefix));
 
 async function setSecureValue(sKey, data) {
     if (data.length <= CHUNK_SIZE) {
@@ -132,22 +142,23 @@ async function clearChunks(sKey, fromIndex) {
 export const Storage = {
     async setItem(key, value) {
         const data = serialize(value);
-        if (SENSITIVE_KEYS.has(key)) {
+        if (isSensitiveKey(key)) {
             try {
                 await setSecureValue(secureKey(key), data);
                 // Remove eventual resíduo legado em texto plano.
                 await AsyncStorage.removeItem(key).catch(() => {});
                 return;
             } catch (e) {
-                // Fallback defensivo: nunca quebrar gravação de dado crítico.
                 if (__DEV__) console.warn('[SecureStorage] setItem fallback:', key, e?.message);
+                // Em produção, não gravar dado sensível em texto plano.
+                if (!__DEV__) throw e;
             }
         }
         return AsyncStorage.setItem(key, data);
     },
 
     async getItem(key) {
-        if (SENSITIVE_KEYS.has(key)) {
+        if (isSensitiveKey(key)) {
             try {
                 const secure = await getSecureValue(secureKey(key));
                 if (secure != null) return secure;
@@ -169,7 +180,7 @@ export const Storage = {
     },
 
     async removeItem(key) {
-        if (SENSITIVE_KEYS.has(key)) {
+        if (isSensitiveKey(key)) {
             const sKey = secureKey(key);
             await SecureStore.deleteItemAsync(sKey).catch(() => {});
             await clearChunks(sKey, 0).catch(() => {});
@@ -180,7 +191,11 @@ export const Storage = {
     },
 
     isSensitive(key) {
-        return SENSITIVE_KEYS.has(key);
+        return isSensitiveKey(key);
+    },
+
+    sensitiveKeys() {
+        return Array.from(SENSITIVE_KEYS);
     },
 };
 

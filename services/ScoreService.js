@@ -4,6 +4,12 @@
  * preenchimento e resolução de Checklists de Inspeção.
  *
  * Unificado com ChecklistService para evitar redundância e erros de importação.
+ *
+ * ── FONTE ÚNICA DE FAIXAS DE SCORE (getBanda) ──────────────────────────────
+ * Antes deste ajuste, três lugares decidiam o significado do mesmo número com
+ * limiares diferentes: HeroScoreCard (cor/label em 80/50), HomeScreenNeo
+ * (heroHeadline em 80/50) e getMensagemImpacto (texto em 90/70/40). Um score 75
+ * saía âmbar + "Ambiente Seguro" ao mesmo tempo. Agora todos consomem getBanda.
  */
 
 import { AMBIENTES, CHECKLISTS } from '../data/mapeamento_dados';
@@ -130,40 +136,38 @@ class ScoreService {
   }
 
   /**
-   * Retorna a saudação/mensagem de segurança baseada no Score
+   * FONTE ÚNICA DE VERDADE das faixas de score.
+   * Retorna a semântica da faixa (chave + textos). A COR fica a cargo de cada
+   * superfície (o hero creme usa tints claros; o monitor usa tokens semânticos
+   * fortes), mapeando por `key` — assim o limiar é único e a cor é contextual.
+   *
+   * Faixas (alinhadas ao histórico do getMensagemImpacto): 90 / 70 / 40.
+   *   >=90  maxima    · >=70 controle · >=40 atencao · >0 critico · 0 inicio
+   */
+  getBanda(score) {
+    const s = Number(score) || 0;
+    if (s <= 0)  return { key: 'inicio',   headline: 'Comece sua proteção', titulo: 'Monitor Ativo' };
+    if (s >= 90) return { key: 'maxima',   headline: 'Segurança máxima',    titulo: 'Segurança Máxima' };
+    if (s >= 70) return { key: 'controle', headline: 'Casa sob controle',   titulo: 'Ambiente Seguro' };
+    if (s >= 40) return { key: 'atencao',  headline: 'Atenção necessária',  titulo: 'Atenção Necessária' };
+    return         { key: 'critico',  headline: 'Aja imediatamente',   titulo: 'Alerta de Risco' };
+  }
+
+  /**
+   * Retorna a saudação/mensagem de segurança baseada no Score.
+   * Agora delega o limiar ao getBanda — os textos de alerta seguem idênticos
+   * aos anteriores, garantindo zero regressão de conteúdo.
    */
   getMensagemImpacto(score, pendencias) {
-    if (score === 0) {
-      return {
-        titulo: 'Monitor Ativo',
-        alerta: 'Inicie o mapeamento para proteger sua família.',
-      };
-    }
-    if (score >= 90) {
-      return {
-        titulo: 'Segurança Máxima',
-        alerta: 'Sua casa está blindada contra acidentes.',
-      };
-    }
-    if (score >= 70) {
-      return {
-        titulo: 'Ambiente Seguro',
-        alerta:
-          pendencias > 0
-            ? `Existem ${pendencias} pontos de melhoria.`
-            : 'Proteção em dia.',
-      };
-    }
-    if (score >= 40) {
-      return {
-        titulo: 'Atenção Necessária',
-        alerta: `Sua casa tem ${pendencias} riscos ativos.`,
-      };
-    }
-    return {
-      titulo: 'Alerta de Risco',
-      alerta: `Muitos riscos pendentes (${pendencias}). Priorize a correção.`,
+    const b = this.getBanda(score);
+    const alertas = {
+      inicio:   'Inicie o mapeamento para proteger sua família.',
+      maxima:   'Sua casa está blindada contra acidentes.',
+      controle: pendencias > 0 ? `Existem ${pendencias} pontos de melhoria.` : 'Proteção em dia.',
+      atencao:  `Sua casa tem ${pendencias} riscos ativos.`,
+      critico:  `Muitos riscos pendentes (${pendencias}). Priorize a correção.`,
     };
+    return { titulo: b.titulo, alerta: alertas[b.key] };
   }
 }
 
