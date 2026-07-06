@@ -42,13 +42,18 @@ export default function ScaleInView({
 
     useEffect(() => {
         if (shouldSkip) {
-            // Garante o estado final mesmo se reduceMotion ligar após o mount
+            // FIX: parar qualquer animação nativa em andamento ANTES de definir
+            // o estado final. Sem isso, com useNativeDriver: true, a thread nativa
+            // pode sobrescrever o setValue(1) ao disparar um delay pendente —
+            // causando opacity < 1 (pictograma esmaecido).
+            opacity.stopAnimation();
+            scale.stopAnimation();
             opacity.setValue(1);
             scale.setValue(1);
             return;
         }
 
-        Animated.parallel([
+        const anim = Animated.parallel([
             Animated.timing(opacity, {
                 toValue: 1,
                 duration,
@@ -62,11 +67,18 @@ export default function ScaleInView({
                 easing: Easing.out(Easing.back(1.2)), // Leve overshoot orgânico
                 useNativeDriver: true,
             }),
-        ]).start(() => {
-            if (skipOnRevisit && screenKey) {
+        ]);
+
+        anim.start(({ finished }) => {
+            // Só marca como visitado se a animação completou naturalmente
+            // (não foi interrompida por um re-render ou unmount).
+            if (finished && skipOnRevisit && screenKey) {
                 _animatedScreens.add(screenKey);
             }
         });
+
+        // Cleanup: para a animação se o componente desmontar ou shouldSkip mudar
+        return () => anim.stop();
     }, [shouldSkip]);
 
     return (

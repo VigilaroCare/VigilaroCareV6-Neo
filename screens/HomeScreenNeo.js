@@ -66,10 +66,10 @@ const HOME_PICTOGRAMS = {
     atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
     scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
-    cuidar:      require('../assets/illustrations/home-pictograms/cuidar-proteger.png'),
+    cuidar:      require('../assets/illustrations/home-pictograms/cuidar-e-proteger.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
-    viagem:      require('../assets/illustrations/home-pictograms/viagem.png'),
+    viagem:      require('../assets/illustrations/home-pictograms/modo-viagem.png'),
 };
 
 export default function HomeScreenNeo() {
@@ -353,11 +353,8 @@ export default function HomeScreenNeo() {
 
                     <View style={s.gridContainer}>
                         {GRID_ITEMS.map((item, idx) => (
-                            <ScaleInView
+                            <View
                                 key={item.key}
-                                delay={80 + idx * 60}
-                                skipOnRevisit
-                                screenKey="HomeGrid"
                                 style={[s.gridCell, { width: cellWidth, marginBottom: isRowLayout ? 12 : 2 }]}
                             >
                                 <BarePictogramShortcut
@@ -365,13 +362,12 @@ export default function HomeScreenNeo() {
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
                                     isRowLayout={isRowLayout}
-
                                     cardBgColor={cardBgColorResolved}
                                     cardBorderColor={cardBorderColorResolved}
                                     cardBorderWidth={cardBorderWidthResolved}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
-                            </ScaleInView>
+                            </View>
                         ))}
                     </View>
 
