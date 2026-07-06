@@ -101,19 +101,14 @@ export default function HomeScreenNeo() {
 
     const birthDate = currentProfile?.dataNascimento;
     const idade = birthDate ? ProfileService.calcularIdade(birthDate) : null;
-    const isSenior = idade !== null && idade >= 60;
 
     let columns = 2;
-    if (isSenior) {
-        columns = isTablet ? 2 : 1;
+    if (isCompactPhone) {
+        columns = 1;
+    } else if (isTablet) {
+        columns = 3;
     } else {
-        if (isCompactPhone) {
-            columns = 1;
-        } else if (isTablet) {
-            columns = 3;
-        } else {
-            columns = 2;
-        }
+        columns = 2;
     }
 
     const isRowLayout = columns === 1;
@@ -370,7 +365,7 @@ export default function HomeScreenNeo() {
                                     textColor={textPrimary}
                                     imageWidth={GRID_IMG_W}
                                     isRowLayout={isRowLayout}
-                                    isSenior={isSenior}
+
                                     cardBgColor={cardBgColorResolved}
                                     cardBorderColor={cardBorderColorResolved}
                                     cardBorderWidth={cardBorderWidthResolved}
@@ -429,13 +424,12 @@ function BarePictogramShortcut({
     onPress,
     imageWidth,
     isRowLayout,
-    isSenior,
     cardBgColor,
     cardBorderColor,
     cardBorderWidth,
 }) {
     if (isRowLayout) {
-        const rowImageWidth = isSenior ? 80 : 64;
+        const rowImageWidth = 64;
         const rowImageHeight = rowImageWidth * PICTO_RATIO;
         return (
             <TappablePressable
@@ -444,8 +438,8 @@ function BarePictogramShortcut({
                     {
                         backgroundColor: cardBgColor,
                         borderColor: cardBorderColor,
-                        borderWidth: isSenior ? 2.5 : cardBorderWidth,
-                        padding: isSenior ? 16 : 12,
+                        borderWidth: cardBorderWidth,
+                        padding: 12,
                     }
                 ]}
                 onPress={onPress}
@@ -465,16 +459,16 @@ function BarePictogramShortcut({
                         s.barePictogramLabelRow,
                         {
                             color: textColor,
-                            fontSize: isSenior ? 18 : 15,
-                            fontWeight: isSenior ? '800' : '700',
-                            lineHeight: isSenior ? 22 : 18,
+                            fontSize: 15,
+                            fontWeight: '700',
+                            lineHeight: 18,
                         }
                     ]}
                     numberOfLines={2}
                 >
                     {item.label}
                 </Text>
-                <NeoIcon name="ArrowRight2" size={isSenior ? 24 : 20} color={Neo.colors.primary[700]} />
+                <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[700]} />
             </TappablePressable>
         );
     }
