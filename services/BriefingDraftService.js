@@ -1,6 +1,6 @@
 // services/BriefingDraftService.js
 //
-// Persiste o progresso parcial do wizard de onboarding em AsyncStorage.
+// Persiste o progresso parcial do wizard de onboarding em SecureStorage.
 // Permite o usuário tocar em "Continuar depois" em qualquer passo e
 // retomar exatamente onde parou — alinhado ao princípio de "briefing
 // vivo" (a casa muda, as pessoas mudam, mapas não se preenchem de uma vez).
@@ -11,7 +11,7 @@
 //   const draft = await BriefingDraftService.load(); // null se não houver
 //   await BriefingDraftService.clear(); // chamar quando o wizard finalizar
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Storage } from '../utils/SecureStorage';
 
 const STORAGE_KEY = '@vigilaro/briefing_draft';
 
@@ -29,7 +29,7 @@ const BriefingDraftService = {
         ...draft,
         savedAt: new Date().toISOString(),
       };
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      await Storage.setItem(STORAGE_KEY, JSON.stringify(payload));
       if (__DEV__) {
         console.log('[BriefingDraftService] draft salvo:', { phase: payload.phase, keys: Object.keys(payload) });
       }
@@ -47,7 +47,7 @@ const BriefingDraftService = {
    */
   async load() {
     try {
-      const raw = await AsyncStorage.getItem(STORAGE_KEY);
+      const raw = await Storage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
       if (__DEV__ && parsed) {
@@ -67,7 +67,7 @@ const BriefingDraftService = {
    */
   async hasDraft() {
     try {
-      const raw = await AsyncStorage.getItem(STORAGE_KEY);
+      const raw = await Storage.getItem(STORAGE_KEY);
       return !!raw;
     } catch {
       return false;
@@ -81,7 +81,7 @@ const BriefingDraftService = {
    */
   async clear() {
     try {
-      await AsyncStorage.removeItem(STORAGE_KEY);
+      await Storage.removeItem(STORAGE_KEY);
       if (__DEV__) console.log('[BriefingDraftService] draft limpo.');
       return true;
     } catch (error) {

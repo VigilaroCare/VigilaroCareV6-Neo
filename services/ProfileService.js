@@ -440,7 +440,10 @@ class ProfileService {
                     .filter(p => habitantes.includes(p.id) || frequentadores.includes(p.id))
                     .map(p => ({
                         ...p,
-                        isVisitante: frequentadores.includes(p.id) && !habitantes.includes(p.id)
+                        isVisitante: frequentadores.includes(p.id) && !habitantes.includes(p.id),
+                        vinculoResidencia: frequentadores.includes(p.id) && !habitantes.includes(p.id)
+                            ? 'frequentador'
+                            : 'habitante'
                     }));
             } else if (todos.length > 0 && activeId === 'default_home' && (!data.residences || data.residences.length <= 1)) {
                 // AUTO-REPAIR: perfis existem globalmente mas não estão vinculados
@@ -455,11 +458,11 @@ class ProfileService {
                     await this.saveData(data);
                     if (__DEV__) console.log('[ProfileService] Auto-repair: vinculou', todos.length, 'perfis órfãos à casa ativa');
                 }
-                result = todos.map(p => ({ ...p, isVisitante: false }));
+                result = todos.map(p => ({ ...p, isVisitante: false, vinculoResidencia: 'habitante' }));
             }
         } else {
             // Fallback de emergência caso não exista nenhuma residência (app legado)
-            result = todos;
+            result = todos.map(p => ({ ...p, isVisitante: false, vinculoResidencia: 'habitante' }));
         }
 
         // FIX #5: NÃO aplicar resolveImageUri novamente — já foi feito em getAllPerfis()
@@ -576,29 +579,29 @@ class ProfileService {
 
     /**
      * Vincula um perfil existente à casa ativa (se ainda não estiver).
+     *
+     * Preserva a distinção habitante × frequentador:
+     * - se o perfil JÁ está vinculado, mantém o vínculo atual (não promove
+     *   frequentador a habitante nem sobrescreve perfil.vinculo);
+     * - se NÃO está vinculado, usa o vínculo declarado no próprio perfil
+     *   (perfil.vinculo === 'frequentador' → frequentadores), com
+     *   fallback 'habitante'.
+     *
+     * @param {string} perfilId
+     * @param {'habitante'|'frequentador'} [relationship] - força um vínculo específico (opcional)
      */
-    static async linkProfileToActiveResidence(perfilId) {
-        const data = await this.getData();
-        const activeId = data.activeResidenceId || 'default_home';
-        const resIndex = (data.residences || []).findIndex(r => r.id === activeId);
-
-        if (resIndex !== -1) {
-            if (!data.residences[resIndex].moradia) {
-                data.residences[resIndex].moradia = {};
+    static async linkProfileToActiveResidence(perfilId, relationship = null) {
+        if (!relationship) {
+            const current = await this.getProfileResidenceRelationship(perfilId);
+            if (current !== 'nenhum') {
+                return true; // já vinculado — não sobrescreve a distinção
             }
+            const data = await this.getData();
             const perfil = (data.perfis || []).find(p => p.id === perfilId);
-            const vinculo = perfil?.vinculo === 'frequentador' ? 'frequentadores' : 'habitantes';
-
-            if (!Array.isArray(data.residences[resIndex].moradia[vinculo])) {
-                data.residences[resIndex].moradia[vinculo] = [];
-            }
-            if (!data.residences[resIndex].moradia[vinculo].includes(perfilId)) {
-                data.residences[resIndex].moradia[vinculo].push(perfilId);
-                await this.saveData(data);
-                return true;
-            }
+            relationship = perfil?.vinculo === 'frequentador' ? 'frequentador' : 'habitante';
         }
-        return false;
+        const relation = await this.setProfileResidenceRelationship(perfilId, relationship);
+        return relation !== 'nenhum';
     }
 
     /**
@@ -651,6 +654,70 @@ class ProfileService {
             (Array.isArray(m.habitantes) && m.habitantes.includes(perfilId)) ||
             (Array.isArray(m.frequentadores) && m.frequentadores.includes(perfilId))
         );
+    }
+
+    static normalizeResidenceRelationship(relationship) {
+        const value = String(relationship || '').toLowerCase();
+        if (['habitante', 'morador', 'resident', 'residente'].includes(value)) return 'habitante';
+        if (['frequentador', 'visitante', 'visitor'].includes(value)) return 'frequentador';
+        return 'nenhum';
+    }
+
+    static async getProfileResidenceRelationship(perfilId, residenceId = null) {
+        const data = await this.getData();
+        const targetResidenceId = residenceId || data.activeResidenceId || 'default_home';
+        const residence = (data.residences || []).find(r => r.id === targetResidenceId);
+        const moradia = residence?.moradia || {};
+        const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
+        const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
+
+        if (habitantes.includes(perfilId)) return 'habitante';
+        if (frequentadores.includes(perfilId)) return 'frequentador';
+        return 'nenhum';
+    }
+
+    static async setProfileResidenceRelationship(perfilId, relationship, residenceId = null) {
+        const data = await this.getData();
+        if (!Array.isArray(data.residences) || data.residences.length === 0) {
+            data.residences = [{
+                id: 'default_home',
+                nome: 'Minha Casa Principal',
+                moradia: { habitantes: [], frequentadores: [] },
+                mapping: [],
+                checklists: {},
+                foto: null
+            }];
+            data.activeResidenceId = 'default_home';
+        }
+
+        const targetResidenceId = residenceId || data.activeResidenceId || 'default_home';
+        const resIndex = data.residences.findIndex(r => r.id === targetResidenceId);
+        if (resIndex === -1) return 'nenhum';
+
+        const normalized = this.normalizeResidenceRelationship(relationship);
+        if (!data.residences[resIndex].moradia) data.residences[resIndex].moradia = {};
+        const moradia = data.residences[resIndex].moradia;
+        const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
+        const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
+
+        moradia.habitantes = habitantes.filter(id => id !== perfilId);
+        moradia.frequentadores = frequentadores.filter(id => id !== perfilId);
+
+        if (normalized === 'habitante') {
+            moradia.habitantes.push(perfilId);
+        } else if (normalized === 'frequentador') {
+            moradia.frequentadores.push(perfilId);
+        }
+
+        const profileIndex = (data.perfis || []).findIndex(p => p.id === perfilId);
+        if (profileIndex !== -1 && normalized !== 'nenhum') {
+            data.perfis[profileIndex].vinculo = normalized === 'frequentador' ? 'frequentador' : 'morador';
+            data.perfis[profileIndex].dataAtualizacao = new Date().toISOString();
+        }
+
+        data.residences[resIndex].moradia = moradia;
+        await this.saveData(data);
+        return normalized;
     }
 
     /**

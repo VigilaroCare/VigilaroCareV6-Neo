@@ -116,30 +116,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     const handleChangeVinculo = async (perfilId, novoVinculo) => {
         try {
-            const data = await ProfileService.getData();
-            const activeId = await ProfileService.getActiveResidenceId();
-            const resIndex = (data.residences || []).findIndex(r => r.id === activeId);
-
-            if (resIndex !== -1) {
-                if (!data.residences[resIndex].moradia) {
-                    data.residences[resIndex].moradia = {};
-                }
-                const m = data.residences[resIndex].moradia;
-                if (!Array.isArray(m.habitantes)) m.habitantes = [];
-                if (!Array.isArray(m.frequentadores)) m.frequentadores = [];
-
-                if (novoVinculo === 'habitante') {
-                    // Mover para habitantes
-                    m.frequentadores = m.frequentadores.filter(id => id !== perfilId);
-                    if (!m.habitantes.includes(perfilId)) m.habitantes.push(perfilId);
-                } else {
-                    // Mover para frequentadores
-                    m.habitantes = m.habitantes.filter(id => id !== perfilId);
-                    if (!m.frequentadores.includes(perfilId)) m.frequentadores.push(perfilId);
-                }
-                await ProfileService.saveData(data);
-                await reloadLinkedIds();
-            }
+            await ProfileService.setProfileResidenceRelationship(perfilId, novoVinculo);
+            await reloadLinkedIds();
         } catch (e) {
             if (__DEV__) console.warn('[handleChangeVinculo]', e);
         }

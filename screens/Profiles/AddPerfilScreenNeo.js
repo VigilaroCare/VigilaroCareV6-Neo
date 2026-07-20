@@ -328,6 +328,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
         const loadResidencesData = async () => {
             try {
                 const list = await ProfileService.getResidences();
+                const activeResidenceId = await ProfileService.getActiveResidenceId();
                 setResidencesList(list || []);
 
                 const relationships = {};
@@ -344,7 +345,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                     } else {
                         // Se for um perfil novo, ele padrão é 'morador' da residência ativa, e 'nenhum' das outras
                         if (!profileId) {
-                            relationships[res.id] = res.id === 'default_home' || res.ativo ? 'morador' : 'nenhum';
+                            relationships[res.id] = res.id === activeResidenceId ? 'morador' : 'nenhum';
                         } else {
                             relationships[res.id] = 'nenhum';
                         }

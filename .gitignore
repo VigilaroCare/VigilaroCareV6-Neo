@@ -53,6 +53,7 @@ backend-proxy/.env
 !app.json
 !package.json
 !package-lock.json
+!tsconfig.json
 !iconMapUpdates.json
 !unique_icons.json
 !files_to_modify.json
@@ -76,3 +77,9 @@ extract_texts.js
 migrateIcons.js
 migrateIconsPhase2.js
 update_menu.js
+
+# IDE
+.idea/
+
+# QA local (dumps de storage podem conter dados sensiveis)
+qa-artifacts/

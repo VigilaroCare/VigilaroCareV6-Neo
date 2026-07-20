@@ -1,230 +1,466 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Svg, { Circle } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
-import CompactActiveMonitor from './CompactActiveMonitor';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { useIsDark } from '../utils/ThemeContext';
 import ScoreService from '../services/ScoreService';
+import ProfileService from '../services/ProfileService';
+import { AMBIENTES, hydrateChecklistItem } from '../data/mapeamento_dados';
+import { getDynamicAreaName } from '../utils/ProfileFilterEngine';
+import { t_field } from '../utils/getLocalizedField';
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-
-// Cor do anel por FAIXA (getBanda) — tints claros p/ o card creme da Home.
-// O limiar mora no ScoreService; aqui só mapeamos a chave da faixa → cor.
-const RING_COLOR_BY_BAND = {
-    maxima:   '#6EE7B7', // Verde claro
-    controle: '#6EE7B7', // Verde claro
-    atencao:  '#FCD34D', // Amarelo/Laranja claro
-    critico:  '#FCA5A5', // Vermelho claro
-    inicio:   Neo.colors.neutral[300],
+const STATUS_COLOR_BY_BAND = {
+    maxima: '#16A34A',
+    controle: '#16A34A',
+    atencao: '#D97706',
+    critico: '#DC2626',
+    inicio: Neo.colors.neutral[500],
 };
 
-export default function HeroScoreCard({ scoreData, onPress, heroHeadline, isExpanded = false, scoreMessage = {} }) {
-    const { t } = useTranslation();
+export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, heroHeadline, isExpanded = false }) {
+    const { t, i18n } = useTranslation();
     const isDark = useIsDark();
-    const animValue = useRef(new Animated.Value(0)).current;
+    const [mapping, setMapping] = useState([]);
 
     const score = scoreData?.geral || 0;
-    const pendencias = scoreData?.pendencias || 0;
-
-    // ── FAIXA ÚNICA ── cor, eyebrow e manchete saem todas do mesmo limiar.
     const banda = ScoreService.getBanda(score);
-    // Se o caller não passar heroHeadline, usa a manchete da própria faixa.
     const headline = heroHeadline || banda.headline;
+    const scoreColor = STATUS_COLOR_BY_BAND[banda.key] || STATUS_COLOR_BY_BAND.inicio;
+    const statsGeral = scoreData?.statsGeral || { total: 0, checked: 0, warning: 0, critical: 0 };
+    const ambientesAllSorted = Object.entries(scoreData?.ambientes || {}).sort((a, b) => a[1] - b[1]);
+    const ambientesSorted = ambientesAllSorted.slice(0, 6);
+    const pendingAmbientes = ambientesAllSorted.filter(([id]) => {
+        const stats = scoreData?.statsAmbientes?.[id];
+        return !!stats && ((stats.warning || 0) > 0 || (stats.critical || 0) > 0 || (stats.failedItems || []).length > 0);
+    });
 
-    // Calcula quantos ambientes estão com score 100% ou sem riscos.
-    const totalAmbientes = Object.keys(scoreData?.ambientes || {}).length;
-    const ambientesOk = Math.max(0, totalAmbientes - (pendencias > 0 ? 1 : 0)); // Simplificação visual rápida
-    
-    const circumference = 2 * Math.PI * 38; // radius = 38
-    const strokeDashoffset = circumference - (score / 100) * circumference;
+    useEffect(() => {
+        let mounted = true;
+        ProfileService.getMapping()
+            .then(data => {
+                if (mounted) setMapping(data || []);
+            })
+            .catch(() => {
+                if (mounted) setMapping([]);
+            });
+        return () => { mounted = false; };
+    }, [scoreData]);
 
-    // Cor dinâmica do anel — via faixa (era ternário 80/50 solto).
-    const getRingColor = () => RING_COLOR_BY_BAND[banda.key] || RING_COLOR_BY_BAND.inicio;
+    const getAmbienteName = (id) => {
+        const found = AMBIENTES.find(a => a.id === id);
+        if (!found) return id.charAt(0).toUpperCase() + id.slice(1).replace(/_/g, ' ');
 
-    const getBgColor = () => {
-        // Usa as cores do tile cerâmico da Home (warm cream/ivory) no modo claro
-        return isDark ? [Neo.colors.neutral[800], Neo.colors.neutral[900]] : ['#FCFBF8', '#F4F2EC'];
+        const lang = i18n.language || 'pt-BR';
+        let name = found.nome;
+        if (lang.startsWith('en') && found.nome_en) name = found.nome_en;
+        if (lang.startsWith('es') && found.nome_es) name = found.nome_es;
+        return getDynamicAreaName(id, name, mapping, t);
     };
 
-    const textColor = isDark ? '#FFFFFF' : Neo.colors.neutral[900];
-    const textMuted = isDark ? '#A1A1AA' : Neo.colors.neutral[600];
-    const badgeBg = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
-    const badgeBorder = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-    const ringTrack = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)';
-    const cardBorderColor = isDark ? 'rgba(255,255,255,0.1)' : Neo.colors.primary[800];
+    const getScoreTextColor = (value) => {
+        if (value >= 80) return Neo.colors.feedback.success;
+        if (value >= 50) return '#B7791F';
+        if (value > 0) return Neo.colors.feedback.error;
+        return Neo.colors.neutral[500];
+    };
+
+    const getScoreBarColor = (value) => {
+        if (value >= 80) return Neo.colors.feedback.success;
+        if (value >= 50) return Neo.colors.feedback.warning;
+        if (value > 0) return Neo.colors.feedback.error;
+        return Neo.colors.neutral[300];
+    };
+
+    const getSegments = (stats, fallbackScore = 0) => {
+        const total = stats?.total || 0;
+        if (total <= 0) {
+            return {
+                safePct: Math.max(0, Math.min(100, fallbackScore)),
+                warningPct: 0,
+                criticalPct: 0,
+            };
+        }
+        return {
+            safePct: ((stats.checked || 0) / total) * 100,
+            warningPct: ((stats.warning || 0) / total) * 100,
+            criticalPct: ((stats.critical || 0) / total) * 100,
+        };
+    };
+
+    const renderSegmentBar = (stats, height = 5, fallbackScore = 0) => {
+        const { safePct, warningPct, criticalPct } = getSegments(stats, fallbackScore);
+        const remainder = Math.max(0, 100 - safePct - warningPct - criticalPct);
+
+        return (
+            <View style={[styles.segmentTrack, { height, borderRadius: height / 2 }]}>
+                {safePct > 0 && <View style={{ width: `${safePct}%`, backgroundColor: Neo.colors.feedback.success }} />}
+                {warningPct > 0 && <View style={{ width: `${warningPct}%`, backgroundColor: Neo.colors.feedback.warning }} />}
+                {criticalPct > 0 && <View style={{ width: `${criticalPct}%`, backgroundColor: Neo.colors.feedback.error }} />}
+                {remainder > 0 && <View style={{ width: `${remainder}%`, backgroundColor: 'transparent' }} />}
+            </View>
+        );
+    };
+
+    const renderAmbienteItem = ([id, value]) => {
+        const stats = scoreData?.statsAmbientes?.[id] || null;
+        return (
+            <View key={id} style={styles.ambienteRow}>
+                <View style={[styles.ambienteDot, { backgroundColor: getScoreBarColor(value) }]} />
+                <Text style={[styles.ambienteName, { color: mutedText }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
+                <View style={styles.ambienteBarWrap}>
+                    {renderSegmentBar(stats, 4, value)}
+                </View>
+                <Text style={[styles.ambienteScore, { color: getScoreTextColor(value) }]}>{value}%</Text>
+            </View>
+        );
+    };
+
+    const renderPendingItem = ([id, value]) => {
+        const stats = scoreData?.statsAmbientes?.[id] || {};
+        const failedItems = stats.failedItems || [];
+        const firstIssue = failedItems[0];
+        const hydratedIssue = firstIssue ? hydrateChecklistItem(firstIssue) : null;
+        const issueTitle = hydratedIssue ? t_field(hydratedIssue, 'titulo') : '';
+        const issueTip = hydratedIssue ? t_field(hydratedIssue, 'dica') : '';
+        const pendingCount = (stats.warning || 0) + (stats.critical || 0);
+        const isCritical = firstIssue?.isCritical || (stats.critical || 0) > 0;
+        const issueLabel = isCritical
+            ? t('home.criticalRisk', 'Risco crítico')
+            : t('home.attentionPoint', 'Ponto de atenção');
+        const issueText = firstIssue
+            ? (issueTip || t('home.verifyItem', {
+                item: (issueTitle || getAmbienteName(id)).toLowerCase(),
+                defaultValue: `Verifique: ${(issueTitle || getAmbienteName(id)).toLowerCase()}`,
+            }))
+            : t(pendingCount === 1 ? 'home.pendingItemOne' : 'home.pendingItemsMany', {
+                count: pendingCount,
+                defaultValue: pendingCount === 1 ? '1 pendência' : `${pendingCount} pendências`,
+            });
+
+        return (
+            <View key={id} style={[styles.pendingRow, { borderTopColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(8, 68, 47, 0.12)' }]}>
+                <View style={styles.pendingHeader}>
+                    <View style={[styles.pendingDot, { backgroundColor: isCritical ? Neo.colors.feedback.error : Neo.colors.feedback.warning }]} />
+                    <Text style={[styles.pendingName, { color: primaryText }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
+                    <Text style={[styles.pendingScore, { color: getScoreTextColor(value) }]}>{value}%</Text>
+                </View>
+                <Text style={[styles.pendingIssueLabel, { color: isCritical ? Neo.colors.feedback.error : '#B7791F' }]} numberOfLines={1}>
+                    {issueLabel}
+                </Text>
+                <Text style={[styles.pendingIssueText, { color: mutedText }]} numberOfLines={2}>
+                    {issueText}
+                </Text>
+            </View>
+        );
+    };
+
+    const bgColors = isDark ? [Neo.colors.neutral[800], Neo.colors.neutral[900]] : ['#E1F4EA', '#C8EAD7'];
+    const cardBorderColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(8, 68, 47, 0.16)';
+    const titleColor = isDark ? Neo.colors.neutral[100] : 'rgba(21, 52, 40, 0.78)';
+    const primaryText = isDark ? Neo.colors.neutral[0] : Neo.colors.neutral[900];
+    const mutedText = isDark ? Neo.colors.neutral[300] : 'rgba(48, 54, 47, 0.72)';
+    const helperText = isDark ? Neo.colors.neutral[400] : Neo.colors.neutral[500];
 
     return (
-        <TouchableOpacity activeOpacity={0.85} onPress={onPress}>
-            <LinearGradient
-                colors={getBgColor()}
-                style={[styles.card, { borderColor: cardBorderColor, borderWidth: isDark ? 1 : 1.5 }]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
+        <LinearGradient
+            colors={bgColors}
+            style={[styles.card, { borderColor: cardBorderColor, borderWidth: isDark ? 1 : 1.5 }]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+        >
+            <TouchableOpacity
+                activeOpacity={0.88}
+                onPress={onPress}
+                accessibilityRole="button"
+                accessibilityState={{ expanded: isExpanded }}
             >
-                <View style={styles.topRow}>
-                    {/* Eyebrow por faixa — mesmo limiar do heroHeadline e do ScoreService */}
-                    <Text style={[styles.topLabel, { color: textMuted }]}>
-                        {banda.headline.toUpperCase()}
-                    </Text>
-                    <NeoIcon name="ArrowDown2" size={14} color={textMuted} style={{ opacity: 0.7, transform: [{ rotate: isExpanded ? '180deg' : '0deg' }] }} />
-                </View>
+                <Text style={[styles.heroTitle, { color: titleColor }]} numberOfLines={1}>
+                    {t('home.inspectedEnvironments', 'Ambientes Vistoriados').toUpperCase()}
+                </Text>
 
-                <View style={styles.mainRow}>
-                    {/* Lado Esquerdo: Anel */}
-                    <View style={styles.ringContainer}>
-                        <Svg width={100} height={100} viewBox="0 0 100 100">
-                            <Circle
-                                cx="50"
-                                cy="50"
-                                r={38}
-                                stroke={ringTrack}
-                                strokeWidth={8}
-                                fill="none"
-                            />
-                            {/* Progresso estático (sem Animated para evitar freeze no Android) */}
-                            <Circle
-                                cx="50"
-                                cy="50"
-                                r={38}
-                                stroke={getRingColor()}
-                                strokeWidth={8}
-                                fill="none"
-                                strokeDasharray={`${circumference} ${circumference}`}
-                                strokeDashoffset={strokeDashoffset}
-                                strokeLinecap="round"
-                                transform="rotate(-90 50 50)"
-                            />
-                        </Svg>
-                        {/* Score no centro */}
-                        <View style={styles.scoreTextContainer}>
-                            <Text style={[styles.scoreText, { color: textColor }]}>{score}</Text>
-                        </View>
-                    </View>
-
-                    {/* Lado Direito: Textos e Pílulas */}
-                    <View style={styles.infoContainer}>
-                        <Text style={[styles.heroHeadline, { color: textColor }]} numberOfLines={2}>
-                            {headline}
-                        </Text>
-
-                        <View style={styles.badgesWrapper}>
-                            <View style={[styles.badge, { backgroundColor: badgeBg, borderColor: badgeBorder }]}>
-                                <NeoIcon name="TickSquare" size={12} color={getRingColor()} variant="Bold" />
-                                <Text style={[styles.badgeText, { color: textColor }]}>
-                                    {t('home.okEnvs', '{{count}} ambientes ok', { count: ambientesOk })}
-                                </Text>
+                <View style={styles.compactPanel}>
+                    <View style={styles.compactMain}>
+                        <View style={styles.scoreColumn}>
+                            <Text style={[styles.scoreValue, { color: scoreColor }]} numberOfLines={1}>
+                                {score}%
+                            </Text>
+                            <Text style={[styles.scoreHeadline, { color: primaryText }]} numberOfLines={2}>
+                                {headline}
+                            </Text>
+                            <View style={styles.globalBarWrap}>
+                                {renderSegmentBar(statsGeral, 8, score)}
                             </View>
+                        </View>
 
-                            {pendencias > 0 && (
-                                <View style={[styles.badge, { backgroundColor: badgeBg, borderColor: badgeBorder }]}>
-                                    <NeoIcon name="Warning2" size={12} color="#F59E0B" variant="Bold" />
-                                    <Text style={[styles.badgeText, { color: textColor }]}>
-                                        {t('home.pendingItems', '{{count}} pendência(s)', { count: pendencias })}
-                                    </Text>
-                                </View>
+                        <View style={styles.verticalDivider} />
+
+                        <View style={styles.ambientesColumn}>
+                            {ambientesSorted.length > 0 ? (
+                                ambientesSorted.map(renderAmbienteItem)
+                            ) : (
+                                <Text style={[styles.noAmbienteText, { color: helperText }]}>{t('home.noInspectedEnvironment', 'Nenhum ambiente vistoriado.')}</Text>
                             )}
                         </View>
                     </View>
-                </View>
-                {isExpanded && (
-                    <View style={styles.heroWell}>
-                        <CompactActiveMonitor
-                            scoreData={scoreData}
-                            scoreMessage={scoreMessage}
-                            isExpanded={isExpanded}
-                            hideScore
+
+                    <View style={styles.footerChevron}>
+                        <NeoIcon
+                            name={isExpanded ? 'ArrowUp2' : 'ArrowDown2'}
+                            size={18}
+                            color={isDark ? Neo.colors.neutral[300] : 'rgba(8, 68, 47, 0.30)'}
                         />
                     </View>
-                )}
-            </LinearGradient>
-        </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
+
+            {isExpanded && (
+                <View style={[styles.heroWell, { borderTopColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(8, 68, 47, 0.13)' }]}>
+                    <Text style={[styles.pendingTitle, { color: titleColor }]} numberOfLines={1}>
+                        {t('home.pendingEnvironmentsTitle', 'Ambientes com pendência')}
+                    </Text>
+                    {pendingAmbientes.length > 0 ? (
+                        pendingAmbientes.map(renderPendingItem)
+                    ) : (
+                        <Text style={[styles.noPendingText, { color: mutedText }]}>
+                            {t('home.noPendingEnvironments', 'Nenhum ambiente com pendência ativa.')}
+                        </Text>
+                    )}
+
+                    {onOpenHomeXRay && (
+                        <TouchableOpacity
+                            style={[styles.xrayAction, { borderTopColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(8, 68, 47, 0.14)' }]}
+                            activeOpacity={0.82}
+                            onPress={onOpenHomeXRay}
+                            accessibilityRole="button"
+                            accessibilityLabel={t('home.homeXRay', 'Raio-X da Casa')}
+                        >
+                            <View style={[styles.xrayIconBox, { backgroundColor: isDark ? 'rgba(52, 211, 153, 0.16)' : 'rgba(8, 68, 47, 0.10)' }]}>
+                                <NeoIcon name="Home2" size={17} color={isDark ? Neo.colors.primary[200] : Neo.colors.primary[800]} variant="Bold" />
+                            </View>
+                            <View style={styles.xrayTextGroup}>
+                                <Text style={[styles.xrayTitle, { color: primaryText }]} numberOfLines={1}>
+                                    {t('home.homeXRay', 'Raio-X da Casa')}
+                                </Text>
+                                <Text style={[styles.xraySubtitle, { color: mutedText }]} numberOfLines={1}>
+                                    {t('home.homeXRayDesc', 'Resumo da casa, dos moradores e dos cômodos')}
+                                </Text>
+                            </View>
+                            <NeoIcon name="ArrowRight2" size={18} color={isDark ? Neo.colors.neutral[300] : 'rgba(8, 68, 47, 0.48)'} />
+                        </TouchableOpacity>
+                    )}
+                </View>
+            )}
+        </LinearGradient>
     );
 }
 
 const styles = StyleSheet.create({
     card: {
         borderRadius: 24,
-        padding: 16,
-        marginTop: 10,
-        marginBottom: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.25,
-        shadowRadius: 20,
-        elevation: 8,
-    },
-    topRow: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginBottom: 12,
-    },
-    topLabel: {
-        fontSize: 11,
-        fontWeight: '800',
-        letterSpacing: 1.2,
-        marginRight: 4,
-    },
-    mainRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    ringContainer: {
-        width: 100,
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 20,
-    },
-    scoreTextContainer: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    scoreText: {
-        fontSize: 32,
-        fontWeight: '800',
-        letterSpacing: -1,
-    },
-    infoContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    heroHeadline: {
-        fontSize: 26,
-        lineHeight: 30,
-        fontWeight: '800',
-        letterSpacing: -0.5,
-        marginBottom: 12,
-    },
-    badgesWrapper: {
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        gap: 6,
-    },
-    badge: {
-        flexDirection: 'row',
-        alignItems: 'center',
         paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 100,
-        borderWidth: 1,
+        paddingTop: 4,
+        paddingBottom: 6,
+        marginTop: 6,
+        marginBottom: 2,
+        shadowColor: '#073B2A',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.14,
+        shadowRadius: 18,
+        elevation: 7,
     },
-    badgeText: {
+    heroTitle: {
+        textAlign: 'center',
+        fontSize: 11,
+        lineHeight: 14,
+        fontWeight: '900',
+        letterSpacing: 0,
+        marginBottom: 3,
+    },
+    compactPanel: {
+        paddingHorizontal: 14,
+        paddingTop: 7,
+        paddingBottom: 1,
+    },
+    compactMain: {
+        minHeight: 94,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    scoreColumn: {
+        flex: 0.88,
+        minWidth: 0,
+        paddingRight: 12,
+    },
+    scoreValue: {
+        fontSize: 40,
+        lineHeight: 42,
+        fontWeight: '900',
+        letterSpacing: 0,
+    },
+    scoreHeadline: {
+        marginTop: 4,
         fontSize: 12,
-        fontWeight: '600',
-        marginLeft: 6,
+        lineHeight: 14,
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: 0,
+    },
+    globalBarWrap: {
+        marginTop: 11,
+    },
+    verticalDivider: {
+        width: 1,
+        height: 92,
+        backgroundColor: 'rgba(8, 68, 47, 0.14)',
+        marginRight: 12,
+    },
+    ambientesColumn: {
+        flex: 1.42,
+        justifyContent: 'center',
+        minWidth: 0,
+        paddingTop: 1,
+    },
+    ambienteRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 15,
+        marginBottom: 0,
+    },
+    ambienteDot: {
+        width: 5,
+        height: 5,
+        borderRadius: 2.5,
+        marginRight: 6,
+    },
+    ambienteName: {
+        width: 82,
+        fontSize: 10.5,
+        lineHeight: 13,
+        fontWeight: '800',
+    },
+    ambienteBarWrap: {
+        flex: 1,
+        minWidth: 42,
+        marginHorizontal: 7,
+    },
+    ambienteScore: {
+        width: 32,
+        textAlign: 'right',
+        fontSize: 10.5,
+        lineHeight: 13,
+        fontWeight: '900',
+    },
+    segmentTrack: {
+        flexDirection: 'row',
+        overflow: 'hidden',
+        backgroundColor: 'rgba(8, 68, 47, 0.10)',
+    },
+    noAmbienteText: {
+        fontSize: 12,
+        lineHeight: 16,
+        fontWeight: '700',
+        textAlign: 'center',
+    },
+    footerChevron: {
+        height: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 1,
     },
     heroWell: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
-        borderRadius: 12,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.04)',
-        marginTop: 16,
-    }
+        marginTop: 8,
+        paddingTop: 8,
+        paddingHorizontal: 14,
+        borderTopWidth: 1,
+    },
+    pendingTitle: {
+        fontSize: 11,
+        lineHeight: 14,
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: 0,
+        marginBottom: 6,
+    },
+    pendingRow: {
+        paddingVertical: 7,
+        borderTopWidth: 1,
+    },
+    pendingHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 4,
+    },
+    pendingDot: {
+        width: 7,
+        height: 7,
+        borderRadius: 3.5,
+        marginRight: 7,
+    },
+    pendingName: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: 13,
+        lineHeight: 16,
+        fontWeight: '900',
+    },
+    pendingScore: {
+        marginLeft: 8,
+        fontSize: 12,
+        lineHeight: 15,
+        fontWeight: '900',
+    },
+    pendingIssueLabel: {
+        fontSize: 10.5,
+        lineHeight: 13,
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: 0,
+        marginBottom: 2,
+    },
+    pendingIssueText: {
+        fontSize: 11.5,
+        lineHeight: 15,
+        fontWeight: '600',
+    },
+    noPendingText: {
+        paddingTop: 2,
+        fontSize: 12,
+        lineHeight: 16,
+        fontWeight: '700',
+    },
+    xrayAction: {
+        minHeight: 48,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 6,
+        paddingTop: 9,
+        paddingBottom: 1,
+        borderTopWidth: 1,
+    },
+    xrayIconBox: {
+        width: 34,
+        height: 34,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+    },
+    xrayTextGroup: {
+        flex: 1,
+        minWidth: 0,
+    },
+    xrayTitle: {
+        fontSize: 13,
+        lineHeight: 16,
+        fontWeight: '900',
+        letterSpacing: 0,
+    },
+    xraySubtitle: {
+        marginTop: 1,
+        fontSize: 11,
+        lineHeight: 14,
+        fontWeight: '600',
+    },
 });

@@ -9,7 +9,6 @@
  *   O nome do usuário é sempre lido do storage seguro em tempo de execução.
  */
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 import { Storage } from '../utils/SecureStorage';
 
@@ -85,7 +84,7 @@ class VitalCheckService {
 
   async _loadConfig() {
     try {
-      const data = await AsyncStorage.getItem(VITAL_CHECK_CONFIG_KEY);
+      const data = await Storage.getItem(VITAL_CHECK_CONFIG_KEY);
       if (data) {
         const parsed = JSON.parse(data);
         this.config = { ...DEFAULT_CONFIG, ...parsed };
@@ -100,7 +99,7 @@ class VitalCheckService {
 
   async _saveConfig() {
     try {
-      await AsyncStorage.setItem(VITAL_CHECK_CONFIG_KEY, JSON.stringify(this.config));
+      await Storage.setItem(VITAL_CHECK_CONFIG_KEY, JSON.stringify(this.config));
     } catch (e) {
       if (__DEV__) { console.error('[VitalCheckService] _saveConfig: erro ao salvar configuração:', e?.message); }
     }

@@ -25,11 +25,9 @@ import {
     LayoutAnimation,
     UIManager,
     Platform,
-    Dimensions,
     useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 
@@ -41,13 +39,10 @@ import { useProfiles } from '../contexts/ProfileContext';
 import ProactiveNotificationService from '../services/ProactiveNotificationService';
 import ScoreService from '../services/ScoreService';
 
-import { H2, Eyebrow, Body, Caption } from '../components/NeoTypography';
+import { H2 } from '../components/NeoTypography';
 import HeroScoreCard from '../components/HeroScoreCard';
-import NeoCard from '../components/NeoCard';
 import AppBackground from '../components/AppBackground';
-import ScaleInView from '../components/ScaleInView';
 import TappablePressable from '../components/TappablePressable';
-import AnimatedCounter from '../components/AnimatedCounter';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
@@ -80,7 +75,6 @@ export default function HomeScreenNeo() {
     const textPrimary = themeColors.neutral[900];
 
     const [scoreData, setScoreData] = useState({ geral: 0, ambientes: {}, pendencias: 0 });
-    const [scoreMessage, setScoreMessage] = useState({ titulo: 'Monitor Ativo', alerta: 'Carregando status...' });
     const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
     const [activeResidence, setActiveResidence] = useState(null);
     const [imageError, setImageError] = useState(false);
@@ -120,8 +114,8 @@ export default function HomeScreenNeo() {
         cellWidth = '32%';
     } else if (columns === 2) {
         // 0.42 (era 0.49): comprime a altura do grid p/ as 4 fileiras (8 tiles)
-        // caberem ACIMA do footer — Raio-X fica tuckado atrás dele. Regra do
-        // produto: "Home sem scroll, compensar altura nos pictogramas".
+        // caberem acima do footer. Regra do produto: "Home sem scroll,
+        // compensar altura nos pictogramas".
         GRID_IMG_W = CONTENT_W * 0.42;
         cellWidth = '49%';
     } else {
@@ -146,7 +140,6 @@ export default function HomeScreenNeo() {
 
             const sData = await ScoreService.getScoreCompleto();
             setScoreData(sData);
-            setScoreMessage(ScoreService.getMensagemImpacto(sData.geral, sData.pendencias));
 
         } catch (e) {
             if (__DEV__) {
@@ -250,10 +243,6 @@ export default function HomeScreenNeo() {
         ? t('home.mainHouse', 'Minha Casa Principal')
         : (activeResidence?.nome || t('home.mainHouse', 'Minha Casa Principal'));
 
-    const cardBgColor = isDark ? [Neo.colors.neutral[800], Neo.colors.neutral[900]] : ['#FCFBF8', '#F4F2EC'];
-    const cardBorderColor = isDark ? 'rgba(255,255,255,0.1)' : Neo.colors.primary[800];
-    const cardBorderWidth = isDark ? 1 : 1.5;
-
     // Chip de moradia ativa — tom de marca suave (saiu do glass tímido que
     // sumia no fundo sage). Presente sem exagerar; adapta ao dark.
     const chipBg = isDark ? 'rgba(52, 211, 153, 0.14)' : Neo.colors.primary[100];
@@ -304,7 +293,7 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: 140, // Espaço para o botão SOS + floating footer
+                        paddingBottom: isRowLayout ? 128 : 96,
                         paddingTop: 0,
                     }}
                 >
@@ -312,8 +301,8 @@ export default function HomeScreenNeo() {
                         scoreData={scoreData}
                         heroHeadline={heroHeadline}
                         onPress={toggleMonitor}
+                        onOpenHomeXRay={() => navigateWithHaptic('HomeXRay')}
                         isExpanded={monitorExpanded}
-                        scoreMessage={scoreMessage}
                     />
 
                     {contextualAlert && (
@@ -372,37 +361,6 @@ export default function HomeScreenNeo() {
                     </View>
 
 
-
-                    <View style={{ marginTop: 32 }}>
-                        <TouchableOpacity onPress={() => navigateWithHaptic('HomeXRay')} activeOpacity={0.85}>
-                            <View style={s.heroShadowWrap}>
-                                <LinearGradient
-                                    colors={cardBgColor}
-                                    style={[s.heroCard, { 
-                                        padding: 16, flexDirection: 'row', alignItems: 'center',
-                                        borderColor: cardBorderColorResolved, borderWidth: cardBorderWidthResolved 
-                                    }]}
-                                    start={{ x: 0, y: 0 }}
-                                    end={{ x: 1, y: 1 }}
-                                >
-                                    <Image 
-                                        source={require('../assets/illustrations/home-pictograms/raio-x-casa.png')}
-                                        style={{ width: 60, height: 60, marginRight: 16 }}
-                                        resizeMode="contain"
-                                    />
-                                    <View style={{ flex: 1 }}>
-                                        <Body style={{ fontWeight: '700', color: Neo.colors.neutral[900], letterSpacing: -0.2 }}>
-                                            {t('home.homeXray', 'Raio-X da Casa')}
-                                        </Body>
-                                        <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>
-                                            Diagnóstico estrutural e pontos cegos
-                                        </Caption>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
-                                </LinearGradient>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
 
                 </ScrollView>
             </SafeAreaView>
@@ -534,91 +492,6 @@ const s = StyleSheet.create({
     },
     profileRingPress: {
         borderRadius: Neo.radius.pill,
-    },
-
-    // ── HERO "Casa sob Controle" ──
-    // Sombra no wrapper externo: overflow hidden no card mataria a sombra no iOS
-    heroShadowWrap: {
-        borderRadius: Neo.radius.lg,
-        marginBottom: 4,
-        ...Neo.shadows.premium,
-    },
-    heroCard: {
-        borderRadius: Neo.radius.lg,
-        padding: 12,
-        overflow: 'hidden', // contém o specular nos cantos arredondados
-        // Borda verde escura para casar perfeitamente com a moldura 
-        // dos pictogramas 3D abaixo.
-        borderWidth: 1.5,
-        borderColor: Neo.colors.primary[800],
-    },
-    heroTopRow: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        marginBottom: Neo.spacing.sm,
-        paddingHorizontal: 2,
-    },
-    heroHeadlineGroup: {
-        flex: 1,
-        minWidth: 0,
-        paddingRight: Neo.spacing.sm,
-    },
-    heroEyebrow: {
-        fontSize: 10,
-        fontWeight: '700',
-        letterSpacing: 1.4,
-        color: Neo.colors.primary[700],
-        marginBottom: 3,
-    },
-    heroHeadline: {
-        fontSize: 22,
-        fontWeight: '800',
-        letterSpacing: -0.3,
-        lineHeight: 27,
-        color: Neo.colors.primary[900],
-    },
-    heroSubline: {
-        fontSize: 12,
-        fontWeight: '500',
-        lineHeight: 16,
-        color: Neo.colors.neutral[600],
-        marginTop: 3,
-    },
-    heroScoreGroup: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-    },
-    heroScore: {
-        fontSize: 40,
-        fontWeight: '800',
-        letterSpacing: -1,
-        lineHeight: 44,
-        color: Neo.colors.primary[800],
-    },
-    // Poço claro dentro do hero — o monitor mantém seus estilos (pensados
-    // para superfície clara) sem reestilização arriscada.
-    heroWell: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: Neo.radius.md - 4,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.04)',
-    },
-
-    // ── Seções (Eyebrow do DS) — na Home, centralizados por preferência
-    // do autor (telas internas seguem o padrão à esquerda do
-    // PADRAO_ANATOMIA_PAGINAS.md) ──
-    sectionEyebrow: {
-        // Calibração do autor (2026-06-10):
-        // - acima do título: 10 (+4 do hero) = 14dp até a seção anterior
-        // - abaixo do título: 8dp até os cards da própria seção
-        // Vale para Acesso Rápido E Ferramentas (mesmo ritmo).
-        marginTop: 10,
-        marginBottom: 8,
-        textAlign: 'center',
-        width: '100%',
     },
 
     // ── Alerta contextual ──

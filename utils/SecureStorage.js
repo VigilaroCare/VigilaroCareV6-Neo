@@ -46,9 +46,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Reavaliar se qualquer uma passar a carregar nome/saúde/identificadores.
 const SENSITIVE_KEYS = new Set([
     '@vigilaro_data',           // perfis, moradia, saúde, contatos, onboarding
+    '@vigilaro/briefing_draft', // rascunho de briefing/onboarding familiar
     '@emergency_contacts',      // SOS*, PanicButtonService, OpenAIService
     'contatos_emergencia',      // contatos legados globais
     '@panic_button_state',      // estado de pânico, horário e localização
+    '@vital_check_config',      // monitoramento de bem-estar e janelas de resposta
     '@medications',             // OpenAIService (chave legada, só leitura)
     '@medications_timeline',    // MedicationsScreen
     '@medications_history',     // MedicationsScreen
@@ -61,6 +63,9 @@ const SENSITIVE_KEYS = new Set([
 
 const SENSITIVE_KEY_PREFIXES = [
     '@contacts_',               // contatos por perfil
+    '@ai_report_',              // relatório IA personalizado por perfil
+    '@safety_acknowledgment_',   // reconhecimento de riscos por perfil/responsável
+    '@safety_resolution_',       // resolução de riscos por perfil
 ];
 
 // expo-secure-store só aceita [A-Za-z0-9._-] na chave; '@' não é válido.

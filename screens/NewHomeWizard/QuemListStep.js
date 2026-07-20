@@ -57,6 +57,9 @@ export default function QuemListStep({
                 <View style={{ gap: 12, marginBottom: 24 }}>
                     {profiles.map(p => {
                         const isLinked = linkedSet.has(p.id);
+                        const relationLabel = isLinked
+                            ? (habitanteSet.has(p.id) ? 'Morador Fixo' : 'Visitante Eventual')
+                            : 'NÃ£o vinculado a esta residÃªncia';
                         return (
                             <View key={p.id} style={[
                                 ss.profileCard,
@@ -104,7 +107,7 @@ export default function QuemListStep({
                                     <Caption style={{ color: C.neutral[500] }}>
                                         {p.tipo === 'pet'
                                             ? (p.especie || 'Pet')
-                                            : `${p.vinculo === 'frequentador' ? 'Visitante Eventual' : 'Morador Fixo'} • ${formatBirthdate(p.dataNascimento)}`}
+                                            : `${relationLabel} • ${formatBirthdate(p.dataNascimento)}`}
                                     </Caption>
                                     {isLinked && p.tipo !== 'pet' && (
                                         <View style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>

@@ -2,10 +2,9 @@
  * OpenAIService.js
  * Integração com API OpenAI para chat, TTS, transcrição e visão computacional.
  *
- * ⚠️ SEGURANÇA: A chave de API é lida de Config, que por sua vez lê de
- * EXPO_PUBLIC_OPENAI_API_KEY. Em produção, SUBSTITUA por um backend proxy
- * que adicione a chave server-side. Variáveis EXPO_PUBLIC_ são extraíveis
- * por engenharia reversa do bundle.
+ * SEGURANÇA: chamadas OpenAI passam pelo backend proxy. Nenhuma chave OpenAI
+ * deve existir no app cliente; variáveis EXPO_PUBLIC_ são extraíveis por
+ * engenharia reversa do bundle.
  */
 
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
@@ -303,6 +302,12 @@ ${this.context}`;
         let contextStr = `\nDADOS DO ${isPet ? 'ANIMAL (PET)' : 'MORADOR'}:\n`;
         contextStr += `- Referência: {{NOME}} (token de privacidade — use-o exatamente assim onde usaria o nome)\n`;
         contextStr += `- Perfil: ${typeLabel} (${age ? age + ' anos' : 'Idade não informada'})\n`;
+        if (profile?.residenceRelationshipLabel || moradia?.vinculoPerfilLabel) {
+            contextStr += `- Vínculo com esta residência: ${profile?.residenceRelationshipLabel || moradia?.vinculoPerfilLabel}\n`;
+        }
+        if (Array.isArray(profile?.usedRoomLabels) && profile.usedRoomLabels.length > 0) {
+            contextStr += `- Ambientes de uso informado nesta residência: ${profile.usedRoomLabels.join(', ')}\n`;
+        }
         if (profile?.condicoesEspeciais) {
             contextStr += `- Condições/Atenções: ${profile.condicoesEspeciais}\n`;
         }
@@ -312,9 +317,20 @@ ${this.context}`;
 
         contextStr += `\nDADOS DO AMBIENTE:\n`;
         const mParts = [moradia?.tipo, moradia?.andar ? `${moradia.andar}º andar` : null, moradia?.location].filter(Boolean);
+        if (moradia?.nome) {
+            // MINIMIZAÇÃO DE PII: o nome da residência pode reidentificar a
+            // família (ex: "Casa da Avó Maria"). Segue o mesmo padrão do
+            // {{NOME}}: só o token sai do dispositivo.
+            contextStr += `- Residência ativa: {{RESIDENCIA}} (token de privacidade — use-o exatamente assim onde usaria o nome da residência)\n`;
+        }
         contextStr += `- Tipo: ${mParts.join(' · ') || 'Não informado'}\n`;
         if (moradia?.caracteristicas?.length > 0) {
             contextStr += `- Características: ${moradia.caracteristicas.join(', ')}\n`;
+        }
+        if (moradia?.vinculoPerfil === 'frequentador') {
+            contextStr += `- Leitura de uso: o perfil avaliado é visitante eventual nesta residência. Ajuste o raciocínio para exposição intermitente, rotinas de visita e ambientes que ele realmente usa.\n`;
+        } else if (moradia?.vinculoPerfil === 'desvinculado') {
+            contextStr += `- Atenção: o perfil avaliado não está vinculado à residência ativa. Trate a análise como cenário excepcional e não como rotina do lar.\n`;
         }
 
         contextStr += `\nIRREGULARIDADES ATIVAS (VISTORIA):\n`;
@@ -340,6 +356,9 @@ ${this.context}`;
             systemPrompt += `Dirija-se ao usuário como o "tutor" ou responsável do {{NOME}}, e NÃO como se o animal fosse ler o relatório.\n`;
         } else {
             systemPrompt += `O usuário quer o Relatório Personalizado de Proteção para a sua casa e para o perfil avaliado (que pode ser ele mesmo ou um familiar).\n`;
+        }
+        if (moradia?.vinculoPerfil === 'frequentador') {
+            systemPrompt += `Considere explicitamente que o perfil avaliado é visitante eventual da residência ativa: priorize riscos de chegada, permanência curta, supervisão, acessibilidade temporária e ambientes usados durante visitas.\n`;
         }
 
         systemPrompt += `\nBaseie-se na metodologia "Quem, Onde, O Que, Como".
@@ -415,10 +434,14 @@ Regras de Tom e Estilo:
             // Re-personalização LOCAL: o token {{NOME}} (único dado que a
             // OpenAI viu) vira o nome real aqui, dentro do dispositivo.
             const localName = (profile?.nome || (isPet ? 'seu pet' : 'você')).trim();
+            const localResidence = (moradia?.nome || 'sua residência').trim();
             const NAME_TOKEN = /\{\{\s*NOME\s*\}\}/g;
+            const RESIDENCE_TOKEN = /\{\{\s*RESIDENCIA\s*\}\}/g;
             for (const k of Object.keys(jsonResponse)) {
                 if (typeof jsonResponse[k] === 'string') {
-                    jsonResponse[k] = jsonResponse[k].replace(NAME_TOKEN, localName);
+                    jsonResponse[k] = jsonResponse[k]
+                        .replace(NAME_TOKEN, localName)
+                        .replace(RESIDENCE_TOKEN, localResidence);
                 }
             }
 

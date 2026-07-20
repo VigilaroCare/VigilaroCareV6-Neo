@@ -8,7 +8,11 @@
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "validate:locales": "node scripts/audit_locales.js",
+    "validate:types": "tsc --noEmit",
+    "validate:android-export": "expo export --platform android",
+    "validate": "npm run validate:locales && npm run validate:types && npm run validate:android-export"
   },
   "dependencies": {
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",

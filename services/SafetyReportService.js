@@ -1,8 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { CHECKLISTS, AMBIENTES } from '../data/mapeamento_dados';
 import { htmlDocument } from '../utils/pdfReport';
+import { Storage } from '../utils/SecureStorage';
 
 // ─── BIBLIOTECA DE IMPLICAÇÕES ESTATÍSTICAS ────────────────────────────────
 // Fonte: DATASUS, SINAN/MS, ABNT NBR 9050, INMETRO, OMS, IBGE, literatura de
@@ -346,6 +346,38 @@ function typeLabel(type, age) {
 // ─── CLASSE PRINCIPAL ─────────────────────────────────────────────────────────
 class SafetyReportService {
 
+    async getProfileResidenceStorageKey(prefix, profileId) {
+        try {
+            const ProfileService = require('./ProfileService').default;
+            const residenceId = await ProfileService.getActiveResidenceId();
+            return `${prefix}_${residenceId || 'default_home'}_${profileId}`;
+        } catch (_) {
+            return `${prefix}_default_home_${profileId}`;
+        }
+    }
+
+    async readProfileResidenceJson(prefix, profileId) {
+        const storageKey = await this.getProfileResidenceStorageKey(prefix, profileId);
+        const scoped = await Storage.getItem(storageKey);
+        if (scoped) {
+            return { storageKey, data: JSON.parse(scoped) };
+        }
+
+        try {
+            const ProfileService = require('./ProfileService').default;
+            const residences = await ProfileService.getResidences();
+            if (!Array.isArray(residences) || residences.length <= 1) {
+                const legacyKey = `${prefix}_${profileId}`;
+                const legacy = await Storage.getItem(legacyKey);
+                if (legacy) {
+                    return { storageKey, data: JSON.parse(legacy) };
+                }
+            }
+        } catch (_) { }
+
+        return { storageKey, data: {} };
+    }
+
     async getDeepDiveReport(profileId) {
         try {
             const ProfileService = require('./ProfileService').default;
@@ -354,8 +386,10 @@ class SafetyReportService {
             const CS = require('./ChecklistService').ChecklistService || require('./ChecklistService').default;
 
             // ── 1. PERFIL ──────────────────────────────────────────────────
+            const houseProfiles = await ProfileService.getPerfis();
             const profiles = await ProfileService.getAllPerfis();
-            const profile = profiles.find(p => p.id === profileId);
+            const linkedProfile = houseProfiles.find(p => p.id === profileId);
+            const profile = linkedProfile || profiles.find(p => p.id === profileId);
             if (!profile) return null;
 
             const type = resolveProfileType(profile);
@@ -372,6 +406,19 @@ class SafetyReportService {
             const tipoMoradia = moradia.tipo || moradia.tipoMoradia || null;
             const andar = moradia.andar || null;
             const caract = moradia.caracteristicas || [];
+            const residenceRelationship = linkedProfile
+                ? (linkedProfile.isVisitante ? 'frequentador' : 'habitante')
+                : 'desvinculado';
+            const residenceRelationshipLabel = residenceRelationship === 'frequentador'
+                ? 'Visitante eventual'
+                : residenceRelationship === 'habitante'
+                    ? 'Morador fixo'
+                    : 'Nao vinculado a esta residencia';
+            const usedRoomLabels = Array.isArray(profile.comodosUsados)
+                ? profile.comodosUsados
+                    .map(roomId => AMBIENTES.find(a => a.id === roomId)?.nome || roomId)
+                    .filter(Boolean)
+                : [];
 
             // ── 3. SAÚDE ───────────────────────────────────────────────────
             let medications = [], treatments = [], medicalHistory = [];
@@ -516,7 +563,13 @@ class SafetyReportService {
             const curiosity = SafetyKnowledge.getCuriosity(type);
 
             return {
-                profile,
+                profile: {
+                    ...profile,
+                    residenceRelationship,
+                    residenceRelationshipLabel,
+                    isLinkedToActiveResidence: !!linkedProfile,
+                    usedRoomLabels
+                },
                 reportType: type,
                 typeLabel: typeLabel(type, age),
                 age,
@@ -526,7 +579,10 @@ class SafetyReportService {
                     tipo: tipoMoradia,
                     andar,
                     caracteristicas: caract,
-                    location
+                    location,
+                    vinculoPerfil: residenceRelationship,
+                    vinculoPerfilLabel: residenceRelationshipLabel,
+                    perfilVinculado: !!linkedProfile
                 },
                 health: {
                     hasMeds,
@@ -539,7 +595,7 @@ class SafetyReportService {
                 pendingItems,   // não verificados
                 intro,
                 curiosity,
-                otherProfiles: profiles.filter(p => p.id !== profileId),
+                otherProfiles: houseProfiles.filter(p => p.id !== profileId),
                 stats: {
                     total: riskItems.length + pendingItems.length,
                     risks: riskItems.length,
@@ -562,16 +618,14 @@ class SafetyReportService {
      */
     async saveAcknowledgment(profileId, itemKey, responsibleName) {
         try {
-            const storageKey = `@safety_acknowledgment_${profileId}`;
-            const existing = await AsyncStorage.getItem(storageKey);
-            const data = existing ? JSON.parse(existing) : {};
+            const { storageKey, data } = await this.readProfileResidenceJson('@safety_acknowledgment', profileId);
 
             data[itemKey] = {
                 responsibleName,
                 date: new Date().toISOString()
             };
 
-            await AsyncStorage.setItem(storageKey, JSON.stringify(data));
+            await Storage.setItem(storageKey, JSON.stringify(data));
             return true;
         } catch (e) {
             if (__DEV__) { console.error('saveAcknowledgment error:', e); }
@@ -584,9 +638,8 @@ class SafetyReportService {
      */
     async getAcknowledgments(profileId) {
         try {
-            const storageKey = `@safety_acknowledgment_${profileId}`;
-            const data = await AsyncStorage.getItem(storageKey);
-            return data ? JSON.parse(data) : {};
+            const { data } = await this.readProfileResidenceJson('@safety_acknowledgment', profileId);
+            return data || {};
         } catch (e) {
             return {};
         }
@@ -597,11 +650,9 @@ class SafetyReportService {
      */
     async removeAcknowledgment(profileId, itemKey) {
         try {
-            const storageKey = `@safety_acknowledgment_${profileId}`;
-            const existing = await AsyncStorage.getItem(storageKey);
-            const data = existing ? JSON.parse(existing) : {};
+            const { storageKey, data } = await this.readProfileResidenceJson('@safety_acknowledgment', profileId);
             delete data[itemKey];
-            await AsyncStorage.setItem(storageKey, JSON.stringify(data));
+            await Storage.setItem(storageKey, JSON.stringify(data));
             return true;
         } catch (e) {
             return false;
@@ -617,19 +668,30 @@ class SafetyReportService {
             const ProfileService = require('./ProfileService').default;
             const CS = require('./ChecklistService').ChecklistService || require('./ChecklistService').default;
 
+            const houseProfiles = await ProfileService.getPerfis();
             const profiles = await ProfileService.getAllPerfis();
-            const profile = profiles.find(p => p.id === profileId);
+            const linkedProfile = houseProfiles.find(p => p.id === profileId);
+            const profile = linkedProfile || profiles.find(p => p.id === profileId);
             const moradia = await ProfileService.getMoradia();
             const residenceId = await ProfileService.getActiveResidenceId();
             const checklistState = await CS.getAllState(residenceId);
+            const residenceRelationship = linkedProfile
+                ? (linkedProfile.isVisitante ? 'frequentador' : 'habitante')
+                : 'desvinculado';
 
             // Concatena dados relevantes em uma string e gera hash simples
             const dataStr = JSON.stringify({
+                residenceId,
                 nome: profile?.nome,
                 tipo: profile?.tipo,
                 idade: profile?.idade,
                 dataNascimento: profile?.dataNascimento,
                 condicoesEspeciais: profile?.condicoesEspeciais,
+                comodosUsados: profile?.comodosUsados,
+                residenceRelationship,
+                houseProfileIds: houseProfiles
+                    .map(p => `${p.id}:${p.isVisitante ? 'frequentador' : 'habitante'}`)
+                    .sort(),
                 tipoImovel: moradia?.tipoImovel || moradia?.tipo,
                 caracteristicas: moradia?.caracteristicas,
                 estrutura: moradia?.estrutura,
@@ -658,13 +720,12 @@ class SafetyReportService {
      */
     async getAIAugmentedReport(profileId, forceRefresh = false) {
         try {
-            const cacheKey = `@ai_report_${profileId}`;
+            const cacheKey = await this.getProfileResidenceStorageKey('@ai_report', profileId);
             const currentHash = await this.computeDataHash(profileId);
 
             if (!forceRefresh) {
-                const cached = await AsyncStorage.getItem(cacheKey);
-                if (cached) {
-                    const parsed = JSON.parse(cached);
+                const { data: parsed } = await this.readProfileResidenceJson('@ai_report', profileId);
+                if (parsed?.quem) {
                     // Se o hash bate, os dados não mudaram → cache válido
                     if (parsed.dataHash === currentHash) {
                         return parsed;
@@ -693,7 +754,7 @@ class SafetyReportService {
                     dataHash: currentHash,
                     generatedAt: new Date().toISOString()
                 };
-                await AsyncStorage.setItem(cacheKey, JSON.stringify(fullResponse));
+                await Storage.setItem(cacheKey, JSON.stringify(fullResponse));
                 return fullResponse;
             }
 
@@ -702,8 +763,8 @@ class SafetyReportService {
             if (__DEV__) { console.error('Erro getAIAugmentedReport:', error); }
             // Fallback: tenta retornar cache antigo se existir
             try {
-                const cached = await AsyncStorage.getItem(`@ai_report_${profileId}`);
-                if (cached) return JSON.parse(cached);
+                const { data: cached } = await this.readProfileResidenceJson('@ai_report', profileId);
+                if (cached?.quem) return cached;
             } catch (_) { }
             return null;
         }
@@ -711,22 +772,18 @@ class SafetyReportService {
 
     async resolveRisk(profileId, riskTitle) {
         try {
-            const key = `@safety_resolution_${profileId}`;
-            const json = await AsyncStorage.getItem(key);
-            const data = json ? JSON.parse(json) : {};
+            const { storageKey, data } = await this.readProfileResidenceJson('@safety_resolution', profileId);
             data[riskTitle] = { resolved: true, timestamp: new Date().toISOString() };
-            await AsyncStorage.setItem(key, JSON.stringify(data));
+            await Storage.setItem(storageKey, JSON.stringify(data));
             return true;
         } catch (e) { return false; }
     }
 
     async unresolveRisk(profileId, riskTitle) {
         try {
-            const key = `@safety_resolution_${profileId}`;
-            const json = await AsyncStorage.getItem(key);
-            const data = json ? JSON.parse(json) : {};
+            const { storageKey, data } = await this.readProfileResidenceJson('@safety_resolution', profileId);
             delete data[riskTitle];
-            await AsyncStorage.setItem(key, JSON.stringify(data));
+            await Storage.setItem(storageKey, JSON.stringify(data));
             return true;
         } catch (e) { return false; }
     }

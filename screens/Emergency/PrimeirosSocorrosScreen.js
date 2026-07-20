@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
+import React, { useMemo, useState, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,40 @@ import ReviewImage from '../../components/ReviewImage';
 const HUMAN_ACCENT = '#EF4444'; // red — pessoas (urgência)
 const PET_ACCENT = '#10B981';   // green — pets (cuidado)
 
+const SEARCH_ALIASES = {
+    engasgo: 'engasgo engasgado choking heimlich tosse sufocamento asfixia garganta objeto',
+    afogamento: 'afogamento afogado drowning piscina agua banheira balde rcp cpr reanimacao ressuscitacao respiracao',
+    choqueEletrico: 'choque eletrico eletrocutado tomada energia descarga flash rcp cpr parada cardiaca',
+    queimadura: 'queimadura queimou burn fogo oleo agua quente quimico quimica bolha pele',
+    queda: 'queda caiu cair fratura pancada cabeca idoso tropeço escorregao',
+    quedaAltura: 'queda altura escada degrau janela cama coluna cervical trauma',
+    desmaio: 'desmaio desmaiou inconsciente apagou respiracao rcp cpr parada',
+    convulsao: 'convulsao convulsao crise epilepsia tremores movimentos involuntarios',
+    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao',
+    sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete',
+    aspiracao: 'vomito aspiracao engasgo vomitou lateral seguranca',
+};
+
+const normalizeSearch = (value = '') =>
+    String(value)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+const buildSearchText = (item) => normalizeSearch([
+    item.id,
+    item.titulo,
+    item.situacao,
+    item.descricao,
+    item.emoji,
+    SEARCH_ALIASES[item.id],
+    ...(item.oQueFazer || []),
+    ...(item.oQueNaoFazer || []),
+    ...(item.quandoChamarAjuda || []),
+    ...(item.passos || []).flatMap(step => [step?.titulo, step?.descricao]),
+    ...(item.alertas || []),
+].filter(Boolean).join(' '));
+
 export default function PrimeirosSocorrosScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
@@ -29,6 +63,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
     const petHero = route?.params?.petHero;
     const [showDisclaimer, setShowDisclaimer] = useState(true);
     const [type, setType] = useState(petHero ? 'PET' : 'HUMAN');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const getData = () => {
         if (type === 'HUMAN') {
@@ -82,6 +117,11 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
 
     const accent = type === 'HUMAN' ? HUMAN_ACCENT : PET_ACCENT;
     const items = getData();
+    const normalizedQuery = normalizeSearch(searchQuery.trim());
+    const filteredItems = useMemo(() => {
+        if (!normalizedQuery) return items;
+        return items.filter(item => buildSearchText(item).includes(normalizedQuery));
+    }, [items, normalizedQuery]);
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
@@ -189,7 +229,10 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                     <View style={styles.tabsWrap}>
                         <View style={[styles.tabsTrack, { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }]}>
                             <TouchableOpacity
-                                onPress={() => setType('HUMAN')}
+                                onPress={() => {
+                                    setType('HUMAN');
+                                    setSearchQuery('');
+                                }}
                                 style={[
                                     styles.tabBtn,
                                     type === 'HUMAN' && { backgroundColor: isDark ? Neo.colors.neutral[800] : '#FFF' },
@@ -206,7 +249,10 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                                 </Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                onPress={() => setType('PET')}
+                                onPress={() => {
+                                    setType('PET');
+                                    setSearchQuery('');
+                                }}
                                 style={[
                                     styles.tabBtn,
                                     type === 'PET' && { backgroundColor: isDark ? Neo.colors.neutral[800] : '#FFF' },
@@ -225,6 +271,37 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                         </View>
                     </View>
 
+                    <View style={[
+                        styles.searchBox,
+                        {
+                            borderColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(120, 113, 108, 0.18)',
+                            backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : '#FFFFFF',
+                        }
+                    ]}>
+                        <NeoIcon name="SearchNormal" size={20} color={accent} />
+                        <TextInput
+                            value={searchQuery}
+                            onChangeText={setSearchQuery}
+                            placeholder={t('firstAid.searchPlaceholder', 'Buscar RCP, engasgo...')}
+                            placeholderTextColor={Neo.colors.neutral[500]}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            returnKeyType="search"
+                            style={[styles.searchInput, { color: textPrimary }]}
+                            accessibilityLabel={t('firstAid.searchPlaceholder', 'Buscar RCP, engasgo...')}
+                        />
+                        {searchQuery.length > 0 ? (
+                            <TouchableOpacity
+                                onPress={() => setSearchQuery('')}
+                                accessibilityRole="button"
+                                accessibilityLabel={t('firstAid.clearSearch', 'Limpar busca')}
+                                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                            >
+                                <NeoIcon name="CloseCircle" size={20} color={Neo.colors.neutral[500]} />
+                            </TouchableOpacity>
+                        ) : null}
+                    </View>
+
                 {/* Vertical List */}
                 <View style={{ paddingBottom: 120 }}>
                     {petHero && type === 'PET' && (
@@ -240,9 +317,18 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                         />
                     )}
 
-                    {items.map((item, idx) => (
+                    {filteredItems.length === 0 ? (
+                        <View style={styles.emptyState}>
+                            <NeoIcon name="SearchNormal" size={24} color={Neo.colors.neutral[500]} />
+                            <Caption style={{ color: Neo.colors.neutral[600], textAlign: 'center', marginTop: 8 }}>
+                                {t('firstAid.searchNoResults', 'Nenhum protocolo encontrado.')}
+                            </Caption>
+                        </View>
+                    ) : null}
+
+                    {filteredItems.map((item, idx) => (
                         <NeoHorizontalCard
-                            key={`ps-${idx}`}
+                            key={`ps-${item.id || idx}`}
                             title={item.titulo}
                             description={item.situacao}
                             emoji={item.emoji}
@@ -297,6 +383,31 @@ const styles = StyleSheet.create({
     tabText: {
         fontSize: 15,
         fontWeight: '700',
+    },
+    searchBox: {
+        minHeight: 54,
+        borderRadius: 18,
+        borderWidth: 1,
+        paddingHorizontal: 16,
+        marginBottom: 16,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    searchInput: {
+        flex: 1,
+        fontSize: 15,
+        fontWeight: '700',
+        paddingVertical: 10,
+    },
+    emptyState: {
+        minHeight: 110,
+        borderRadius: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        marginBottom: 16,
+        backgroundColor: 'rgba(120, 113, 108, 0.08)',
     },
     scrollContent: {
         paddingHorizontal: 24,

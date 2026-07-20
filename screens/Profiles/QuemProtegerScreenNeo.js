@@ -89,11 +89,53 @@ export default function QuemProtegerScreenNeo() {
                 NeoAlert.alert(t('profiles.petCareTitle'), t('profiles.petCareMsg'));
                 return;
             }
+            const isLinkedToActiveResidence = await ProfileService.isProfileLinkedToActiveResidence(perfilSelecionado.id);
+            if (!isLinkedToActiveResidence) {
+                NeoAlert.alert(
+                    t('profiles.profileNotLinkedTitle', 'Perfil fora deste local'),
+                    t('profiles.profileNotLinkedMsg', 'Este perfil precisa estar vinculado ao local ativo antes de ser selecionado.')
+                );
+                await loadHomeData();
+                return;
+            }
             setActiveProfile(perfilSelecionado);
             await setPrimaryProfile(perfilSelecionado);
         } catch (error) {
             console.error('Erro ao selecionar perfil:', error);
         }
+    };
+
+    const handleChangeProfileResidenceRelation = async (profile, relationship) => {
+        try {
+            await ProfileService.setProfileResidenceRelationship(profile.id, relationship);
+            await loadProfiles();
+            await loadHomeData();
+        } catch (error) {
+            if (__DEV__) console.error('Erro ao alterar vinculo do perfil:', error);
+        }
+    };
+
+    const handleLinkExistingProfile = (profile) => {
+        const local = getResidenceName(activeResidence) || t('profiles.thisResidence', 'esta residência');
+        const linkAs = async (relationship) => {
+            await ProfileService.setProfileResidenceRelationship(profile.id, relationship);
+            await loadProfiles();
+            await loadHomeData();
+            NeoAlert.alert(
+                t('profiles.linkSuccessTitle', 'Sucesso'),
+                t('profiles.linkSuccessMsg', { name: profile.nome, defaultValue: `${profile.nome} foi vinculado(a) a este local.` })
+            );
+        };
+
+        NeoAlert.alert(
+            t('profiles.chooseRelationTitle', 'Qual é o vínculo?'),
+            t('profiles.chooseRelationMsg', { name: profile.nome, local, defaultValue: `Como ${profile.nome} se relaciona com ${local}?` }),
+            [
+                { text: t('profiles.fixedResident', 'Morador Fixo'), onPress: () => linkAs('habitante') },
+                { text: t('profiles.eventualVisitor', 'Visitante Eventual'), onPress: () => linkAs('frequentador') },
+                { text: t('profiles.cancel', 'Cancelar'), style: 'cancel' },
+            ]
+        );
     };
 
     const handleSelectResidence = async (residence) => {
@@ -150,6 +192,19 @@ export default function QuemProtegerScreenNeo() {
         );
     };
 
+    const handleProfileActions = (p) => {
+        NeoAlert.alert(
+            t('profiles.profileActionsTitle', 'Ações do perfil'),
+            t('profiles.profileActionsMsg', { name: p.nome, defaultValue: `Escolha o que deseja fazer com ${p.nome}.` }),
+            [
+                { text: t('profiles.viewRiskSummary', 'Ver relatório de risco'), onPress: () => navigation.navigate('ProfileRiskSummary', { profile: p }) },
+                { text: t('profiles.editProfile', 'Editar perfil'), onPress: () => handleEditProfile(p) },
+                { text: t('profiles.delete', 'Excluir'), style: 'destructive', onPress: () => handleDeleteProfile(p) },
+                { text: t('profiles.cancel', 'Cancelar'), style: 'cancel' },
+            ],
+        );
+    };
+
     const handleEditResidence = (res) => {
         setEditingResidenceId(res.id);
         setIsEditingResidence(true);
@@ -196,6 +251,56 @@ export default function QuemProtegerScreenNeo() {
         return Neo.colors.neutral[500];
     };
 
+    const getRelationshipMeta = (p) => {
+        if (!p) {
+            return {
+                label: t('profiles.noActiveProfile', 'Nenhum perfil selecionado'),
+                detail: t('profiles.activeContextFallback', 'Selecione um perfil para personalizar a proteção.'),
+                icon: 'User',
+                color: Neo.colors.neutral[600],
+                backgroundColor: 'rgba(120, 113, 108, 0.10)',
+                borderColor: 'rgba(120, 113, 108, 0.18)',
+            };
+        }
+
+        if (p.tipo === 'pet') {
+            return {
+                label: t('profiles.pet', 'Pet'),
+                detail: t('profiles.petContextImpact', 'Pets entram na análise do local, mas não como perfil ativo principal.'),
+                icon: 'Heart',
+                color: Neo.colors.accent.champagne,
+                backgroundColor: 'rgba(180, 83, 9, 0.10)',
+                borderColor: 'rgba(180, 83, 9, 0.22)',
+            };
+        }
+
+        if (p.isVisitante) {
+            return {
+                label: t('profiles.eventualVisitor', 'Visitante Eventual'),
+                detail: t('profiles.visitorImpact', 'A análise considera presença eventual e permanência parcial.'),
+                icon: 'Footprints',
+                color: Neo.colors.feedback.warning,
+                backgroundColor: 'rgba(245, 158, 11, 0.14)',
+                borderColor: 'rgba(245, 158, 11, 0.34)',
+            };
+        }
+
+        return {
+            label: t('profiles.fixedResident', 'Morador Fixo'),
+            detail: t('profiles.residentImpact', 'A análise considera exposição diária aos riscos deste local.'),
+            icon: 'People',
+            color: Neo.colors.primary[700],
+            backgroundColor: Neo.colors.primary[100],
+            borderColor: 'rgba(4, 120, 87, 0.26)',
+        };
+    };
+
+    const activeLocalName = getResidenceName(activeResidence) || t('profiles.thisResidence', 'esta residência');
+    const activeContextMeta = getRelationshipMeta(activeProfile);
+    const activeContextLabel = activeProfile
+        ? `${activeProfile.nome} - ${activeContextMeta.label}`
+        : t('profiles.noActiveProfile', 'Nenhum perfil selecionado');
+
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -226,16 +331,76 @@ export default function QuemProtegerScreenNeo() {
                         <NeoIcon name="ArrowLeft2" size={20} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H1 style={{ fontWeight: '700', letterSpacing: -0.5, fontSize: 24 }}>{t('profiles.whoAndWhereToProtect', 'Quem e onde proteger')}</H1>
-                        <Eyebrow style={{ marginTop: 4 }}>{t('profiles.residentsAndLocations', 'Moradores e locais')}</Eyebrow>
+                        <H1 style={{ fontWeight: '700', fontSize: 23 }} numberOfLines={2}>{t('profiles.whoAndWhereToProtect', 'Quem e onde proteger')}</H1>
+                        <Eyebrow style={{ marginTop: 4 }}>{t('profiles.contextSetupSubtitle', 'Defina o contexto da análise')}</Eyebrow>
                     </View>
                 </View>
 
                 <ScrollView contentContainerStyle={{ paddingHorizontal: Neo.spacing.lg, paddingBottom: 190 }} showsVerticalScrollIndicator={false}>
 
-                    {/* ONDE: LOCAL ATIVO — card hero (variant premium) */}
-                    <Eyebrow style={{ marginBottom: 8 }}>{t('profiles.whereAreWe', 'Onde estamos?')}</Eyebrow>
-                    <NeoCard variant="premium" style={{ padding: 14, marginBottom: 10, flexDirection: 'row', alignItems: 'center' }} onPress={() => setHouseModalVisible(true)}>
+                    <NeoCard variant="premium" style={{ padding: 16, marginBottom: 18 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                            <View style={{
+                                width: 46,
+                                height: 46,
+                                borderRadius: 15,
+                                backgroundColor: Neo.colors.primary[100],
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}>
+                                <NeoIcon name="ShieldTick" size={24} color={Neo.colors.primary[700]} variant="Bold" />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Eyebrow>{t('profiles.activeProtectionContext', 'Contexto ativo de proteção')}</Eyebrow>
+                                <H3 style={{ marginTop: 4, fontSize: 18 }} numberOfLines={1}>{activeLocalName}</H3>
+                                <Caption style={{ marginTop: 2, color: Neo.colors.neutral[700] }} numberOfLines={1}>
+                                    {activeContextLabel}
+                                </Caption>
+                            </View>
+                        </View>
+                        <View style={{
+                            marginTop: 12,
+                            padding: 10,
+                            borderRadius: 12,
+                            borderWidth: 1,
+                            borderColor: activeContextMeta.borderColor,
+                            backgroundColor: activeContextMeta.backgroundColor,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            gap: 8,
+                        }}>
+                            <NeoIcon name={activeContextMeta.icon} size={18} color={activeContextMeta.color} variant="Bold" />
+                            <Caption style={{ flex: 1, color: activeContextMeta.color, fontWeight: '700' }}>
+                                {activeContextMeta.detail}
+                            </Caption>
+                        </View>
+                    </NeoCard>
+
+                    {/* ONDE: LOCAL ATIVO */}
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                        <Eyebrow>{t('profiles.whereAreWe', 'Onde estamos?')}</Eyebrow>
+                        <TouchableOpacity
+                            onPress={() => { setIsEditingResidence(false); setNewResidenceName(''); setModalVisible(true); }}
+                            activeOpacity={0.85}
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                paddingVertical: 6,
+                                paddingHorizontal: 10,
+                                borderRadius: 999,
+                                borderWidth: 1,
+                                borderColor: 'rgba(4, 120, 87, 0.22)',
+                                backgroundColor: 'rgba(209, 250, 229, 0.62)',
+                                gap: 5,
+                            }}
+                        >
+                            <NeoIcon name="Add" size={14} color={Neo.colors.primary[700]} />
+                            <Caption style={{ color: Neo.colors.primary[800], fontWeight: '800', fontSize: 10 }}>
+                                {t('profiles.newResidenceShort', 'Nova residência')}
+                            </Caption>
+                        </TouchableOpacity>
+                    </View>
+                    <NeoCard variant="glass" style={{ padding: 14, marginBottom: 22, flexDirection: 'row', alignItems: 'center' }} onPress={() => setHouseModalVisible(true)}>
                         <View style={{
                             width: 44, height: 44, borderRadius: 14,
                             backgroundColor: Neo.colors.primary[100],
@@ -244,33 +409,11 @@ export default function QuemProtegerScreenNeo() {
                             <NeoIcon name="Home2" size={22} color={Neo.colors.primary[700]} variant="Bold" />
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Body style={{ fontWeight: '700', letterSpacing: -0.2 }}>{getResidenceName(activeResidence) || t('profiles.noResidence', 'Nenhuma Residência')}</Body>
+                            <Body style={{ fontWeight: '700' }}>{getResidenceName(activeResidence) || t('profiles.noResidence', 'Nenhuma Residência')}</Body>
                             <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>{t('profiles.tapToChangeLocation', 'Toque para trocar de local')}</Caption>
                         </View>
                         <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
                     </NeoCard>
-
-                    {/* BOTÃO ADICIONAR NOVO LOCAL — simetria com "Adicionar integrante" abaixo */}
-                    <TouchableOpacity
-                        onPress={() => { setIsEditingResidence(false); setNewResidenceName(''); setModalVisible(true); }}
-                        activeOpacity={0.85}
-                        style={{
-                            flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                            paddingVertical: 14, paddingHorizontal: 16,
-                            backgroundColor: Neo.colors.primary[100],
-                            borderRadius: 14,
-                            marginBottom: 22,
-                            borderWidth: 1,
-                            borderColor: 'rgba(4, 120, 87, 0.20)',
-                            borderTopColor: 'rgba(255, 255, 255, 0.9)',
-                            borderTopWidth: 1.5,
-                        }}
-                    >
-                        <NeoIcon name="Add" size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
-                        <Body style={{ color: Neo.colors.primary[800], fontWeight: '700', letterSpacing: -0.1 }}>
-                            {t('profiles.addNewResidence', 'Adicionar nova residência')}
-                        </Body>
-                    </TouchableOpacity>
 
                     {/* QUEM: MORADORES */}
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
@@ -283,78 +426,137 @@ export default function QuemProtegerScreenNeo() {
                         {houseProfiles.map((p) => {
                             const isSelected = activeProfile?.id === p.id;
                             const isGhost = p.pendente;
+                            const relationMeta = getRelationshipMeta(p);
 
                             return (
-                                <TouchableOpacity key={p.id} onPress={() => handleSelectProfile(p)} activeOpacity={0.8}>
-                                    <NeoCard variant={isSelected ? 'premium' : 'glass'} style={{
-                                        padding: 14, flexDirection: 'row', alignItems: 'center',
-                                        ...(isSelected ? {
-                                            borderColor: Neo.colors.primary[700],
-                                            borderWidth: 1.5,
-                                        } : {}),
-                                    }}>
-                                        <View style={{
-                                            width: 48, height: 48, borderRadius: 14,
-                                            backgroundColor: isGhost ? Neo.colors.neutral[200] : getProfileColor(p) + '26',
-                                            alignItems: 'center', justifyContent: 'center', marginRight: 14,
-                                            overflow: 'hidden'
-                                        }}>
-                                            {p.foto ? (
-                                                <Image source={{ uri: ProfileService.resolveImageUri ? ProfileService.resolveImageUri(p.foto) : p.foto }} style={{ width: 48, height: 48 }} />
-                                            ) : (
-                                                p.tipo === 'pet' ? <Pet size={22} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} /> : <NeoIcon name="User" size={22} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} variant="Bold" />
-                                            )}
-                                        </View>
-
-                                        <View style={{ flex: 1 }}>
-                                             <Body style={{ fontWeight: 'bold' }}>{p.nome}</Body>
-                                             <Caption style={{ color: p.isVisitante ? Neo.colors.feedback.warning : Neo.colors.neutral[500] }}>
-                                                 {p.isVisitante ? t('profiles.eventualVisitor', 'Visitante Eventual') : (p.tipo === 'pet' ? t('profiles.pet', 'Pet') : t('profiles.fixedResident', 'Morador Fixo'))}
-                                             </Caption>
-                                         </View>
-
-                                        {/* Relatório — abre análise de risco do perfil */}
+                                <NeoCard key={p.id} variant={isSelected ? 'premium' : 'glass'} style={{
+                                    padding: 14, flexDirection: 'row', alignItems: 'center',
+                                    ...(isSelected ? {
+                                        borderColor: Neo.colors.primary[700],
+                                        borderWidth: 1.5,
+                                    } : {}),
+                                }}>
                                         <TouchableOpacity
-                                            onPress={() => navigation.navigate('ProfileRiskSummary', { profile: p })}
-                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-                                            style={{ padding: 10, marginRight: 8 }}
+                                            onPress={() => handleSelectProfile(p)}
+                                            activeOpacity={0.82}
+                                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                                             accessibilityRole="button"
-                                            accessibilityLabel={`Ver relatório de ${p.nome}`}
+                                            accessibilityLabel={t('profiles.selectProfileByPhotoLabel', 'Selecionar perfil {{nome}}', { nome: p.nome })}
+                                            accessibilityState={{ selected: isSelected }}
+                                            style={{
+                                                width: 54,
+                                                height: 54,
+                                                borderRadius: 17,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                marginRight: 14,
+                                                borderWidth: isSelected ? 2 : 1,
+                                                borderColor: isSelected ? Neo.colors.primary[700] : 'rgba(120, 113, 108, 0.18)',
+                                                backgroundColor: isSelected ? Neo.colors.primary[100] : 'rgba(255,255,255,0.38)',
+                                            }}
                                         >
-                                            <NeoIcon name="DocumentText" size={22} color={Neo.colors.primary[700]} variant="Linear" />
+                                            <View style={{
+                                                width: 46, height: 46, borderRadius: 14,
+                                                backgroundColor: isGhost ? Neo.colors.neutral[200] : getProfileColor(p) + '26',
+                                                alignItems: 'center', justifyContent: 'center',
+                                                overflow: 'hidden'
+                                            }}>
+                                                {p.foto ? (
+                                                    <Image source={{ uri: ProfileService.resolveImageUri ? ProfileService.resolveImageUri(p.foto) : p.foto }} style={{ width: 46, height: 46 }} />
+                                                ) : (
+                                                    p.tipo === 'pet' ? <Pet size={22} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} /> : <NeoIcon name="User" size={22} color={isGhost ? Neo.colors.neutral[400] : getProfileColor(p)} variant="Bold" />
+                                                )}
+                                            </View>
+                                            {isSelected ? (
+                                                <View style={{
+                                                    position: 'absolute',
+                                                    right: -2,
+                                                    bottom: -2,
+                                                    width: 22,
+                                                    height: 22,
+                                                    borderRadius: 11,
+                                                    backgroundColor: '#FFFFFF',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    borderWidth: 1,
+                                                    borderColor: Neo.colors.primary[100],
+                                                }}>
+                                                    <NeoIcon name="TickCircle" size={18} color={Neo.colors.primary[700]} variant="Bold" />
+                                                </View>
+                                            ) : null}
                                         </TouchableOpacity>
 
-                                        {/* Editar — abre formulário pré-preenchido (AddPerfil já suporta).
-                                            Ergonomia: size 22 + padding 10 + marginRight 14 + hitSlop 14 pra
-                                            acessibilidade (alvo de toque mín 44x44 do iOS HIG / 48dp Material). */}
-                                        <TouchableOpacity
-                                            onPress={() => handleEditProfile(p)}
-                                            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-                                            style={{ padding: 10, marginRight: 8 }}
-                                            accessibilityRole="button"
-                                            accessibilityLabel={t('profiles.editProfileLabel', 'Editar perfil {{nome}}', { nome: p.nome })}
-                                        >
-                                            <NeoIcon name="Edit2" size={22} color={Neo.colors.neutral[700]} variant="Linear" />
-                                        </TouchableOpacity>
+                                         <View style={{ flex: 1 }}>
+                                              <Body style={{ fontWeight: 'bold' }} numberOfLines={2}>{p.nome}</Body>
+                                              <Caption style={{ color: relationMeta.color, fontWeight: isSelected ? '700' : '500' }}>
+                                                  {relationMeta.label}
+                                              </Caption>
+                                              {isSelected && p.tipo !== 'pet' ? (
+                                                  <View style={{ marginTop: 8 }}>
+                                                      <Caption style={{ color: Neo.colors.neutral[600], fontSize: 10, fontWeight: '700', marginBottom: 6 }}>
+                                                          {t('profiles.relationWithThisLocation', 'Relacao com este local')}
+                                                      </Caption>
+                                                      <View style={{ flexDirection: 'row', gap: 6, flexWrap: 'wrap' }}>
+                                                          <TouchableOpacity
+                                                              onPress={() => handleChangeProfileResidenceRelation(p, 'habitante')}
+                                                              activeOpacity={0.85}
+                                                              style={{
+                                                                  paddingHorizontal: 9,
+                                                                  paddingVertical: 5,
+                                                                  borderRadius: 8,
+                                                                  borderWidth: 1,
+                                                                  borderColor: !p.isVisitante ? Neo.colors.primary[600] : Neo.colors.neutral[300],
+                                                                  backgroundColor: !p.isVisitante ? Neo.colors.primary[100] : 'rgba(255,255,255,0.45)',
+                                                              }}
+                                                          >
+                                                              <Caption style={{ fontSize: 10, fontWeight: '800', color: !p.isVisitante ? Neo.colors.primary[800] : Neo.colors.neutral[600] }}>
+                                                                  {t('profiles.fixedResident', 'Morador Fixo')}
+                                                              </Caption>
+                                                          </TouchableOpacity>
+                                                          <TouchableOpacity
+                                                              onPress={() => handleChangeProfileResidenceRelation(p, 'frequentador')}
+                                                              activeOpacity={0.85}
+                                                              style={{
+                                                                  paddingHorizontal: 9,
+                                                                  paddingVertical: 5,
+                                                                  borderRadius: 8,
+                                                                  borderWidth: 1,
+                                                                  borderColor: p.isVisitante ? Neo.colors.feedback.warning : Neo.colors.neutral[300],
+                                                                  backgroundColor: p.isVisitante ? 'rgba(245,158,11,0.14)' : 'rgba(255,255,255,0.45)',
+                                                              }}
+                                                          >
+                                                              <Caption style={{ fontSize: 10, fontWeight: '800', color: p.isVisitante ? Neo.colors.feedback.warning : Neo.colors.neutral[600] }}>
+                                                                  {t('profiles.eventualVisitor', 'Visitante Eventual')}
+                                                              </Caption>
+                                                          </TouchableOpacity>
+                                                      </View>
+                                                      <Caption style={{ marginTop: 6, color: relationMeta.color, fontSize: 10, fontWeight: '700' }}>
+                                                          {relationMeta.detail}
+                                                      </Caption>
+                                                  </View>
+                                              ) : null}
+                                          </View>
 
-                                        {/* Excluir — confirma antes */}
                                         <TouchableOpacity
-                                            onPress={() => handleDeleteProfile(p)}
+                                            onPress={() => handleProfileActions(p)}
                                             hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-                                            style={{ padding: 10, marginRight: 14 }}
+                                            style={{
+                                                width: 42,
+                                                height: 42,
+                                                borderRadius: 13,
+                                                backgroundColor: isSelected ? 'rgba(4, 120, 87, 0.10)' : 'rgba(120, 113, 108, 0.10)',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                borderWidth: 1,
+                                                borderColor: isSelected ? 'rgba(4, 120, 87, 0.20)' : 'rgba(120, 113, 108, 0.16)',
+                                                marginLeft: 10,
+                                            }}
                                             accessibilityRole="button"
-                                            accessibilityLabel={t('profiles.deleteProfileLabel', 'Excluir perfil {{nome}}', { nome: p.nome })}
+                                            accessibilityLabel={t('profiles.profileActionsTitle', 'Acoes do perfil')}
                                         >
-                                            <NeoIcon name="Trash" size={22} color={Neo.colors.feedback.error} variant="Linear" />
+                                            <NeoIcon name="DotsThreeVertical" size={22} color={isSelected ? Neo.colors.primary[800] : Neo.colors.neutral[700]} variant="Linear" />
                                         </TouchableOpacity>
-
-                                        {isSelected ? (
-                                            <NeoIcon name="TickCircle" size={28} color={Neo.colors.primary[700]} variant="Bold" />
-                                        ) : (
-                                            <View style={{ width: 24, height: 24, borderRadius: 12, borderWidth: 1.5, borderColor: Neo.colors.neutral[400] }} />
-                                        )}
                                     </NeoCard>
-                                </TouchableOpacity>
                             );
                         })}
 
@@ -375,7 +577,7 @@ export default function QuemProtegerScreenNeo() {
                             }}
                         >
                             <NeoIcon name="Add" size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
-                            <Body style={{ color: Neo.colors.primary[800], fontWeight: '700', letterSpacing: -0.1 }}>
+                            <Body style={{ color: Neo.colors.primary[800], fontWeight: '700' }}>
                                 {t('profiles.addMemberTo', 'Adicionar integrante à {{local}}', { local: getResidenceName(activeResidence) || 'esta residência' })}
                             </Body>
                         </TouchableOpacity>
@@ -390,19 +592,12 @@ export default function QuemProtegerScreenNeo() {
                                         {t('profiles.linkExistingTo', 'Vincular pessoas existentes à {{local}}', { local: getResidenceName(activeResidence) || 'esta residência' })}
                                     </Eyebrow>
                                     <View style={{ gap: 10 }}>
-                                        {unlinkedProfiles.map((p) => (
-                                            <TouchableOpacity
-                                                key={p.id}
-                                                onPress={async () => {
-                                                    await ProfileService.linkProfileToActiveResidence(p.id);
-                                                    await loadHomeData();
-                                                    NeoAlert.alert(
-                                                        t('profiles.linkSuccessTitle', 'Sucesso'),
-                                                        t('profiles.linkSuccessMsg', { name: p.nome, defaultValue: `${p.nome} foi vinculado(a) a este local.` })
-                                                    );
-                                                }}
-                                                activeOpacity={0.85}
-                                            >
+                                         {unlinkedProfiles.map((p) => (
+                                             <TouchableOpacity
+                                                 key={p.id}
+                                                 onPress={() => handleLinkExistingProfile(p)}
+                                                 activeOpacity={0.85}
+                                             >
                                                 <NeoCard variant="glass" style={{ padding: 14, flexDirection: 'row', alignItems: 'center' }}>
                                                     <View style={{
                                                         width: 40, height: 40, borderRadius: 12,
@@ -419,7 +614,7 @@ export default function QuemProtegerScreenNeo() {
                                                     <View style={{ flex: 1 }}>
                                                         <Body style={{ fontSize: 14, fontWeight: '600' }}>{p.nome}</Body>
                                                         <Caption style={{ fontSize: 11, color: Neo.colors.neutral[600], marginTop: 1 }}>
-                                                            {p.tipo === 'pet' ? t('profiles.pet', 'Pet') : (p.vinculo === 'frequentador' ? t('profiles.eventualVisitor', 'Visitante Eventual') : t('profiles.fixedResident', 'Morador Fixo'))}
+                                                            {p.tipo === 'pet' ? t('profiles.pet', 'Pet') : t('profiles.chooseRelationHint', 'Escolha o vínculo com este local')}
                                                         </Caption>
                                                     </View>
                                                     <NeoIcon name="AddCircle" size={22} color={Neo.colors.primary[700]} />
@@ -481,7 +676,7 @@ export default function QuemProtegerScreenNeo() {
                                                     </View>
 
                                                     <View style={{ flex: 1 }}>
-                                                        <Body style={{ fontWeight: '700', color: isSelected ? Neo.colors.primary[800] : Neo.colors.neutral[900], letterSpacing: -0.2 }}>
+                                                        <Body style={{ fontWeight: '700', color: isSelected ? Neo.colors.primary[800] : Neo.colors.neutral[900] }}>
                                                             {getResidenceName(res)}
                                                         </Body>
                                                         <Caption style={{ color: Neo.colors.neutral[600], marginTop: 2 }}>
@@ -560,7 +755,7 @@ export default function QuemProtegerScreenNeo() {
                                 }}
                             >
                                 <NeoIcon name="Add" size={20} color={Neo.colors.primary[700]} style={{ marginRight: 8 }} />
-                                <Body style={{ color: Neo.colors.primary[800], fontWeight: '700', letterSpacing: -0.1 }}>{t('profiles.newLocation', 'Novo Local')}</Body>
+                                <Body style={{ color: Neo.colors.primary[800], fontWeight: '700' }}>{t('profiles.newLocation', 'Novo Local')}</Body>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -630,7 +825,12 @@ export default function QuemProtegerScreenNeo() {
                         }}
                     >
                         <NeoIcon name="TickCircle" size={24} color="#FFF" variant="Bold" />
-                        <H3 style={{ color: '#FFF', fontSize: 17, letterSpacing: 0.2, fontWeight: '700' }}>{t('profiles.confirmContext', 'Confirmar Contexto')}</H3>
+                        <View style={{ flexShrink: 1 }}>
+                            <H3 style={{ color: '#FFF', fontSize: 17, fontWeight: '700' }}>{t('profiles.useThisContext', 'Usar este contexto')}</H3>
+                            <Caption style={{ color: 'rgba(255,255,255,0.78)', fontSize: 11, marginTop: 1 }} numberOfLines={1}>
+                                {activeContextLabel}
+                            </Caption>
+                        </View>
                     </TouchableOpacity>
                 </View>
 

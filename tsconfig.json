@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-native",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "esnext",
+    "types": []
+  },
+  "include": [
+    "App.js",
+    "index.js",
+    "i18n.js",
+    "components/**/*.js",
+    "constants/**/*.js",
+    "context/**/*.js",
+    "contexts/**/*.js",
+    "data/**/*.js",
+    "hooks/**/*.js",
+    "navigation/**/*.js",
+    "screens/**/*.js",
+    "services/**/*.js",
+    "utils/**/*.js"
+  ],
+  "exclude": [
+    "android",
+    "backend-proxy",
+    "dist",
+    "ios",
+    "node_modules",
+    "qa-artifacts",
+    "scratch",
+    "temp_out"
+  ],
+  "extends": "expo/tsconfig.base"
+}

@@ -5,8 +5,8 @@
  * Vigilaro Care V6
  */
 
-import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, StatusBar, Linking, Dimensions, Text } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { View, ScrollView, TouchableOpacity, StatusBar, Linking, Dimensions, Text, TextInput } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -27,6 +27,38 @@ import { EMERGENCIAS_PETS } from '../../data/primeiros_socorros_pets';
 import { useIsDark, useThemeColors } from '../../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
+
+const SEARCH_ALIASES = {
+    queda: 'queda caiu cair fratura pancada cabeca idoso tropeço escorregao',
+    quedaAltura: 'queda altura escada degrau janela cama coluna cervical trauma',
+    engasgo: 'engasgo engasgado choking heimlich tosse sufocamento asfixia garganta objeto',
+    aspiracao: 'vomito aspiracao engasgo vomitou lateral seguranca',
+    choqueEletrico: 'choque eletrico eletrocutado tomada energia descarga flash rcp cpr parada cardiaca',
+    afogamento: 'afogamento afogado drowning piscina agua banheira balde rcp cpr reanimacao ressuscitacao respiracao',
+    queimadura: 'queimadura queimou burn fogo oleo agua quente quimico quimica bolha pele',
+    incendio: 'incendio fumaca fogo bombeiros 193 inalacao',
+    desmaio: 'desmaio desmaiou inconsciente apagou respiracao rcp cpr parada',
+    convulsao: 'convulsao crise epilepsia tremores movimentos involuntarios',
+    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao',
+    sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete',
+};
+
+const normalizeSearch = (value = '') =>
+    String(value)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+const buildSearchText = (item) => normalizeSearch([
+    item.id,
+    item.titulo,
+    item.descricao,
+    item.frequencia,
+    item.emoji,
+    SEARCH_ALIASES[item.id],
+    ...(item.passos || []).flatMap(step => [step?.titulo, step?.descricao]),
+    ...(item.alertas || []),
+].filter(Boolean).join(' '));
 
 // Helper to map icon strings to NeoIcon names (Phosphor válidos)
 const getIcon = (iconName, size = 28) => {
@@ -215,6 +247,12 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
     const EMERGENCIAS = isPet ? EMERGENCIAS_PETS : EMERGENCIAS_HUMANOS;
 
     const [emergenciaSelecionada, setEmergenciaSelecionada] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const normalizedQuery = normalizeSearch(searchQuery.trim());
+    const filteredEmergencias = useMemo(() => {
+        if (!normalizedQuery) return EMERGENCIAS;
+        return EMERGENCIAS.filter(item => buildSearchText(item).includes(normalizedQuery));
+    }, [EMERGENCIAS, normalizedQuery]);
 
     const ligar192 = () => Linking.openURL('tel:192');
     const ligarVet = () => Linking.openURL('geo:0,0?q=veterinario 24h');
@@ -240,19 +278,66 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                     {/* TABS (Switcher Human/Pet) */}
                     <View style={{ flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: 24, padding: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)', alignSelf: 'flex-start' }}>
                         <TouchableOpacity
-                            onPress={() => setMode('HUMAN')}
+                            onPress={() => {
+                                setMode('HUMAN');
+                                setSearchQuery('');
+                            }}
                             style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: !isPet ? colors.neutral.white : 'transparent', borderRadius: 20, flexDirection: 'row', ...(!isPet && Neo.shadows?.sm) }}
                         >
                             <NeoIcon name="User" size={16} color={!isPet ? Neo.colors.feedback.error : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
                             <Small style={{ color: !isPet ? Neo.colors.feedback.error : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.people')}</Small>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => setMode('PET')}
+                            onPress={() => {
+                                setMode('PET');
+                                setSearchQuery('');
+                            }}
                             style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: isPet ? colors.neutral.white : 'transparent', borderRadius: 20, flexDirection: 'row', ...(isPet && Neo.shadows?.sm) }}
                         >
                             <NeoIcon name="Heart" size={16} color={isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
                             <Small style={{ color: isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.pets')}</Small>
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{
+                        minHeight: 52,
+                        borderRadius: 18,
+                        borderWidth: 1,
+                        borderColor: isPet ? 'rgba(4,120,87,0.18)' : 'rgba(225,29,72,0.18)',
+                        backgroundColor: colors.neutral.white,
+                        paddingHorizontal: 14,
+                        marginTop: 14,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}>
+                        <NeoIcon name="SearchNormal" size={19} color={isPet ? Neo.colors.primary[700] : Neo.colors.feedback.error} style={{ marginRight: 10 }} />
+                        <TextInput
+                            value={searchQuery}
+                            onChangeText={setSearchQuery}
+                            placeholder={t('firstAid.searchPlaceholder', 'Buscar RCP, engasgo...')}
+                            placeholderTextColor={Neo.colors.neutral[500]}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            returnKeyType="search"
+                            accessibilityLabel={t('firstAid.searchPlaceholder', 'Buscar RCP, engasgo...')}
+                            style={{
+                                flex: 1,
+                                color: Neo.colors.neutral[900],
+                                fontSize: 15,
+                                fontWeight: '700',
+                                paddingVertical: 10,
+                            }}
+                        />
+                        {searchQuery.length > 0 ? (
+                            <TouchableOpacity
+                                onPress={() => setSearchQuery('')}
+                                accessibilityRole="button"
+                                accessibilityLabel={t('firstAid.clearSearch', 'Limpar busca')}
+                                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                            >
+                                <NeoIcon name="CloseCircle" size={20} color={Neo.colors.neutral[500]} />
+                            </TouchableOpacity>
+                        ) : null}
                     </View>
                 </View>
 
@@ -271,7 +356,26 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                         />
                     )}
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        {EMERGENCIAS.map((item) => (
+                        {filteredEmergencias.length === 0 ? (
+                            <View style={{
+                                width: '100%',
+                                minHeight: 120,
+                                borderRadius: 22,
+                                backgroundColor: 'rgba(255,255,255,0.72)',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingHorizontal: 24,
+                                borderWidth: 1,
+                                borderColor: 'rgba(255,255,255,0.8)',
+                            }}>
+                                <NeoIcon name="SearchNormal" size={24} color={Neo.colors.neutral[500]} />
+                                <Small style={{ color: Neo.colors.neutral[600], textAlign: 'center', marginTop: 8, fontWeight: '700' }}>
+                                    {t('firstAid.searchNoResults', 'Nenhum protocolo encontrado.')}
+                                </Small>
+                            </View>
+                        ) : null}
+
+                        {filteredEmergencias.map((item) => (
                             <TouchableOpacity activeOpacity={0.8} key={item.id} onPress={() => setEmergenciaSelecionada(item)} style={{ width: '48%', marginBottom: 16 }}>
                                 <NeoCard variant="glass" style={{ 
                                     padding: 16, 

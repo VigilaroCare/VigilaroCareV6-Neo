@@ -15,8 +15,8 @@
 export const Config = {
     // ---------------------------------------------------------------------------
     // VISÃO COMPUTACIONAL
-    // Verdadeiro por padrão; falso apenas quando a variável de ambiente
-    // explicitamente indicar "false" (string).
+    // Falso por padrão; verdadeiro apenas quando a variável de ambiente
+    // explicitamente indicar "true" (string).
     // ---------------------------------------------------------------------------
     USE_MOCK_VISION: process.env.EXPO_PUBLIC_USE_MOCK_VISION === 'true',
 

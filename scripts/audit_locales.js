@@ -15,23 +15,26 @@ const fs = require('fs');
 const path = require('path');
 
 const LOCALES_DIR = path.join(__dirname, '..', 'locales');
-const LOCALE_IDS = ['pt-BR', 'en', 'es'];
+const LOCALE_IDS = ['pt-BR', 'pt-PT', 'en', 'es'];
 
-// Mojibake patterns — common UTF-8 → Latin-1 misinterpretation sequences
+// Mojibake patterns — common UTF-8 -> Latin-1 misinterpretation sequences.
+// Do not match plain "Ã": it is valid in Portuguese words such as "NÃO".
 const MOJIBAKE_PATTERNS = [
-    /Ã¡/g, /Ã©/g, /Ã­/g, /Ã³/g, /Ãº/g,  // á é í ó ú
-    /Ã£/g, /Ãµ/g,                          // ã õ
-    /Ã§/g,                                  // ç
-    /Ã€/g, /Ã‰/g, /Ã/g,                   // À É Í
-    /Ã"/g, /Ãš/g,                          // Ó Ú
-    /Ã‚/g, /Ãƒ/g,                          // Â Ã
-    /Ã¢/g, /Ãª/g, /Ã®/g, /Ã´/g, /Ã»/g,  // â ê î ô û
-    /Ã¼/g,                                  // ü
-    /â€"/g, /â€"/g, /â€˜/g, /â€™/g,       // — – ' '
-    /â€œ/g, /â€/g,                        // " "
-    /Ã\u0083/g, /Ã\u0082/g,                // double-encoded
-    /Â /g, /Â©/g,                           // non-breaking space artifacts
+    /Ã[\u0080-\u00BF]/g,                   // Ã¡, Ã§, Ã£, Ã©...
+    /Ãƒ[\u0080-\u00BF]?/g,                 // double-encoded accents
+    /Ã‚[\u0080-\u00BF]?/g,                 // double-encoded Â artifacts
+    /Â[\u00A0©®ºª·]/g,                     // non-breaking/copyright/ordinal artifacts
+    /â[\u0080-\u009F]/g,                   // corrupted punctuation/control range
+    /â€[\u0080-\u009Fœ�˜™“”]/g,            // smart quotes/dashes artifacts
+    /â‚¬/g,                                  // euro-sign artifact inside corrupted text
 ];
+
+const BLOCKING_TYPES = new Set([
+    'MISSING_KEYS',
+    'MOJIBAKE',
+    'EMPTY_VALUES',
+    'ACCENT_MISSING',
+]);
 
 // pt-BR accentuation patterns that SHOULD have accents but don't
 const PT_BR_ACCENT_CHECKS = [
@@ -246,6 +249,7 @@ function main() {
     console.log(`  Locales analisados: ${loadedIds.join(', ')}`);
     console.log(`  Total de chaves únicas: ${totalKeys}`);
     console.log(`  Problemas encontrados: ${issues.length} categorias`);
+    console.log(`  Problemas bloqueantes: ${issues.filter(issue => BLOCKING_TYPES.has(issue.type)).length} categorias`);
     console.log('');
 
     if (issues.length === 0) {
@@ -310,6 +314,10 @@ function main() {
 
     console.log('══════════════════════════════════════════════════════════════');
     console.log('');
+
+    if (issues.some(issue => BLOCKING_TYPES.has(issue.type))) {
+        process.exitCode = 1;
+    }
 }
 
 main();

@@ -271,7 +271,7 @@ export default function GerenciarLocaisPerfisScreen() {
                                             <Caption style={{ color: C.neutral[600], marginTop: 2 }}>
                                                 {isPet 
                                                     ? (p.especie || 'Pet') 
-                                                    : (p.vinculo === 'frequentador' ? 'Visitante Eventual' : 'Morador Fixo')}
+                                                    : 'VÃ­nculos definidos por residÃªncia'}
                                             </Caption>
                                         </View>
 
