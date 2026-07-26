@@ -12,7 +12,8 @@
     "validate:locales": "node scripts/audit_locales.js",
     "validate:types": "tsc --noEmit",
     "validate:android-export": "expo export --platform android",
-    "validate": "npm run validate:locales && npm run validate:types && npm run validate:android-export"
+    "validate": "npm run validate:locales && npm run validate:types && npm run validate:android-export",
+    "check:contrast": "node scripts/checkContrast.mjs"
   },
   "dependencies": {
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",

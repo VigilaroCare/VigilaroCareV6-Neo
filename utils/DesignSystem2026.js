@@ -5,6 +5,21 @@
  *
  * Fonte display: Plus Jakarta Sans (headings, botões)
  * Fonte body: System (iOS SF Pro, Android Roboto) — performance nativa
+ *
+ * ── POLITICA DE CONTRASTE (auditoria 2026-07) ──────────────────────────
+ * As cores de sistema do iOS (#34C759, #FF3B30, #FFCC00, #5AC8FA) sao
+ * especificadas pela Apple como PREENCHIMENTO, nao como texto. Aplicadas
+ * a texto sobre fundo claro elas reprovam em WCAG AA — #FFCC00 chega a
+ * 1.27:1. Por isso existe agora uma camada separada:
+ *
+ *   colors.feedback.*  → preenchimento: pontos, barras, badges, icones
+ *                        decorativos, fundos de chip.  NUNCA texto.
+ *   colors.textOn.*    → texto e icone informativo. Todos >= 4.5:1 sobre
+ *                        a superficie clara mais exigente do app.
+ *
+ * Regra pratica: se a cor vai dentro de <Text> ou de um icone que carrega
+ * informacao, use textOn. Se vai em backgroundColor, use feedback.
+ * Rode `node scripts/checkContrast.mjs` antes de alterar qualquer hex.
  */
 
 import { Platform } from 'react-native';
@@ -64,17 +79,45 @@ const LightColors = {
         100: '#E0F2FE',
         main: '#0EA5E9',
     },
+    // PREENCHIMENTO APENAS. Para texto use colors.textOn.* (ver cabeçalho).
     feedback: {
-        success: '#34C759', // Padrão exato iOS System Green
-        error: '#FF3B30',   // Padrão exato iOS System Red (SOS)
-        warning: '#FFCC00', // Padrão exato iOS System Yellow
-        info: '#5AC8FA',    // Padrão exato iOS System Teal/Blue
+        success: '#34C759', // iOS System Green  — fill (1.86:1 como texto)
+        error: '#FF3B30',   // iOS System Red    — fill (2.97:1 como texto)
+        warning: '#FFCC00', // iOS System Yellow — fill (1.27:1 como texto)
+        info: '#5AC8FA',    // iOS System Teal   — fill (1.59:1 como texto)
     },
     // Aliases retrocompatíveis usados em ~16 telas
     success: '#34C759',
     error: '#FF3B30',
     warning: '#FFCC00',
     info: '#5AC8FA',
+
+    // Texto semântico sobre superfícies CLARAS.
+    // Aferido contra a superfície clara mais exigente do app (mist #E5EDE7)
+    // e contra o creme dos tiles (#F4EBDC), nesta ordem nos comentários.
+    textOn: {
+        ink:     '#16241D', // 14.35:1 · 14.47:1  (= neutral.900)
+        muted:   '#5C6660', //  4.99:1 ·  5.04:1  (substitui neutral.500 em texto)
+        brand:   '#065F46', //  6.44:1 ·  6.50:1  (= primary.800)
+        success: '#1C6E36', //  5.28:1 ·  5.33:1
+        warning: '#9C5000', //  4.94:1 ·  4.99:1
+        error:   '#B3261E', //  5.48:1 ·  5.53:1
+        info:    '#2A6C88', //  4.89:1 ·  4.94:1
+        copper:  '#9A4708', //  5.37:1 ·  5.42:1  (accent.copper legível)
+    },
+
+    // Superfície dos tiles creme. É o mesmo creme que os PNGs dos
+    // pictogramas da Home já carregam impresso na imagem.
+    // O card do score usa ESTE token: uma terceira superfície tingida
+    // (o menta #D9F1E4) é o que hoje desarmoniza a tela.
+    tile: {
+        cream: '#F4EBDC',
+        creamRaised: '#FAF5EC',
+        border: '#065F46',
+        borderWidth: 1.5,
+        track: 'rgba(6, 95, 70, 0.14)', // trilho de barra de progresso
+    },
+
     surface: '#FFFFFF',
     neutral: {
         900: '#16241D', // ink (Forest charcoal)
@@ -122,7 +165,7 @@ const LightColors = {
         saude:     { color: '#0F766E', bg: 'rgba(15, 118, 110, 0.10)' },  // Teal-700
         pets:      { color: '#BE185D', bg: 'rgba(190, 24, 93, 0.10)' },   // Rose-700 (rebaixado)
         vistorias: { color: '#0369A1', bg: 'rgba(3, 105, 161, 0.10)' },   // Sky-700
-        eventuais: { color: '#B45309', bg: 'rgba(180, 83, 9, 0.10)' },    // Amber-700
+        eventuais: { color: '#9A4708', bg: 'rgba(180, 83, 9, 0.10)' },    // Amber-700 rebaixado (4.21 -> 5.37:1)
     },
 };
 
@@ -158,6 +201,28 @@ const DarkColors = {
     error: '#FF453A',
     warning: '#FFD60A',
     info: '#64D2FF',
+
+    // Texto semântico em dark. Aferido sobre neutral.100 (#1C1C1E) e
+    // neutral.200 (#2C2C2E) — o fundo de card, que é o caso mais exigente.
+    textOn: {
+        ink:     '#F2F2F7', // 15.25:1 · 12.49:1
+        muted:   '#9E9EA4', //  6.39:1 ·  5.23:1
+        brand:   '#34D399', //  8.85:1 ·  7.25:1
+        success: '#30D158', //  8.42:1 ·  6.89:1
+        warning: '#FFD60A', // 12.05:1 ·  9.87:1
+        error:   '#FF6B61', //  6.06:1 ·  4.96:1  (#FF453A caía a 4.09 no card)
+        info:    '#64D2FF', //  9.89:1 ·  8.10:1
+        copper:  '#E5C28A', //  9.83:1 ·  8.05:1
+    },
+
+    tile: {
+        cream: '#2C2C2E',
+        creamRaised: '#3A3A3C',
+        border: 'rgba(255, 255, 255, 0.15)',
+        borderWidth: 1,
+        track: 'rgba(255, 255, 255, 0.14)',
+    },
+
     surface: '#1C1C1E',   // dark surface base
     neutral: {
         900: '#F2F2F7',   // texto principal (invertido) — alta luminância
@@ -233,6 +298,27 @@ const HighContrastLightColors = {
     error: '#BA1A1A',
     warning: '#805000',
     info: '#005D90',
+
+    // Alto contraste: os próprios valores já são >= 7:1 sobre branco.
+    textOn: {
+        ink:     '#000000',
+        muted:   '#1F2421',
+        brand:   '#044E35',
+        success: '#006E22',
+        warning: '#805000',
+        error:   '#BA1A1A',
+        info:    '#005D90',
+        copper:  '#78350F',
+    },
+
+    tile: {
+        cream: '#FFFFFF',
+        creamRaised: '#FFFFFF',
+        border: '#000000',
+        borderWidth: 2,
+        track: 'rgba(0, 0, 0, 0.22)',
+    },
+
     surface: '#FFFFFF',
     neutral: {
         900: '#000000', // Pure black text
@@ -302,6 +388,26 @@ const HighContrastDarkColors = {
     error: '#FF453A',
     warning: '#FFD60A',
     info: '#64D2FF',
+
+    textOn: {
+        ink:     '#FFFFFF',
+        muted:   '#D1D1D6',
+        brand:   '#34D399',
+        success: '#30D158',
+        warning: '#FFD60A',
+        error:   '#FF6B61',
+        info:    '#64D2FF',
+        copper:  '#FCD34D',
+    },
+
+    tile: {
+        cream: '#000000',
+        creamRaised: '#1C1C1E',
+        border: '#FFFFFF',
+        borderWidth: 2,
+        track: 'rgba(255, 255, 255, 0.28)',
+    },
+
     surface: '#000000',
     neutral: {
         900: '#FFFFFF', // Pure white text
@@ -358,12 +464,12 @@ export const DS = {
 
         body: { fontSize: 17, fontWeight: '400', lineHeight: 24, color: '#3A3A3C', letterSpacing: -0.1 }, // System font
         bodySmall: { fontSize: 15, fontWeight: '400', lineHeight: 20, color: '#3A3A3C', letterSpacing: -0.1 }, // System font
-        caption: { fontSize: 13, fontWeight: '500', lineHeight: 18, color: '#8E8E93', letterSpacing: 0.1 }, // System font
+        caption: { fontSize: 13, fontWeight: '500', lineHeight: 18, color: '#63636A', letterSpacing: 0.1 }, // #8E8E93 reprovava (2.73:1)
 
         // Eyebrow — labels de seção premium. Substitui o "sectionLabel" inline da Home
         // (fontSize 11, fontWeight 900, uppercase opacity 0.9 — visual de planilha).
         // Premium = peso médio (600), tracking generoso, cor secundária.
-        eyebrow: { fontSize: 11, fontWeight: '600', lineHeight: 14, color: '#787880', letterSpacing: 1.4, textTransform: 'uppercase', _display: true },
+        eyebrow: { fontSize: 11, fontWeight: '600', lineHeight: 14, color: '#63636A', letterSpacing: 1.4, textTransform: 'uppercase', _display: true },
 
         button: { fontSize: 17, fontWeight: '600', letterSpacing: 0, textTransform: 'none', _display: true } // Display font
     },
@@ -480,7 +586,8 @@ export const DS = {
         onPanicMuted: 'rgba(255,255,255,0.85)', // Texto secundário sobre pânico
         surfaceOnPanic: 'rgba(255,255,255,0.18)', // Círculos/chips sobre pânico
         ctaDark: '#000000',                  // Botão CANCELAR (máximo contraste)
-        whatsapp: '#25D366',                 // Verde oficial WhatsApp (canal complementar)
+        whatsapp: '#25D366',                 // Verde oficial WhatsApp — FILL apenas
+        onWhatsapp: '#07231A',               // Rótulo sobre o verde: branco dá 1.98:1
     },
 
     // 7b. Escala Unificada de Severidade — usada em InfoRótulos, relatórios,
@@ -490,8 +597,8 @@ export const DS = {
         extreme:      { bg: '#1A1A1A', text: '#FFF', accent: '#FF1744' },
         veryHigh:     { bg: '#B71C1C', text: '#FFF', accent: '#FF5252' },
         high:         { bg: '#D32F2F', text: '#FFF', accent: '#FF8A80' },
-        medium:       { bg: '#F57C00', text: '#FFF', accent: '#FFB74D' },
-        low:          { bg: '#388E3C', text: '#FFF', accent: '#81C784' },
+        medium:       { bg: '#A85400', text: '#FFF', accent: '#FFB74D' }, // 2.70 -> 5.34:1
+        low:          { bg: '#2E7D32', text: '#FFF', accent: '#81C784' }, // 4.12 -> 5.13:1
         indeterminate:{ bg: '#616161', text: '#FFF', accent: '#BDBDBD' },
     },
 
@@ -528,25 +635,78 @@ export const DS = {
     },
 };
 
+/**
+ * Devolve uma cópia da escala tipográfica com as cores trocadas pelas do tema.
+ *
+ * Existe porque DS.type carregava hex claros fixos e DarkDS os herdava: no
+ * dark, type.h1 ficava #1C1C1E sobre #1C1C1E — 1.00:1, texto invisível. Só
+ * não aparecia em tela porque as telas sobrescreviam a cor na mão, uma a uma.
+ *
+ * Função pura, sem StyleSheet e sem dependência de render — segura para rodar
+ * no escopo do módulo (o padrão que já derrubou o app no Hermes uma vez).
+ */
+function applyTypeColors(type, colors) {
+    const byRole = {
+        display:   colors.neutral[900],
+        h1:        colors.neutral[900],
+        h2:        colors.neutral[900],
+        h3:        colors.neutral[900],
+        body:      colors.neutral[800],
+        bodySmall: colors.neutral[800],
+        caption:   colors.textOn.muted,
+        eyebrow:   colors.textOn.muted,
+    };
+    const out = {};
+    for (const key of Object.keys(type)) {
+        out[key] = byRole[key] ? { ...type[key], color: byRole[key] } : { ...type[key] };
+    }
+    return out;
+}
+
 // DarkDS — mesma estrutura do DS, mas com a paleta dark.
-// Tipografia, spacing, radii e shadows são neutros ao tema.
+// Spacing, radii e shadows são neutros ao tema; a tipografia NÃO é, e por
+// isso passa por applyTypeColors em cada variante.
 export const DarkDS = {
     ...DS,
     colors: DarkColors,
+    type: applyTypeColors(DS.type, DarkColors),
 };
 
 export const HighContrastDS = {
     ...DS,
     colors: HighContrastLightColors,
+    type: applyTypeColors(DS.type, HighContrastLightColors),
 };
 
 export const HighContrastDarkDS = {
     ...DS,
     colors: HighContrastDarkColors,
+    type: applyTypeColors(DS.type, HighContrastDarkColors),
 };
 
 // Exports nominais das paletas para uso direto fora do ThemeContext
 export { LightColors, DarkColors, HighContrastLightColors, HighContrastDarkColors };
+
+/**
+ * Aplica alpha a um token hex, devolvendo rgba().
+ *
+ * Existe para as telas pararem de cravar 'rgba(8, 68, 47, 0.14)' na mão: o
+ * matiz passa a vir do tema e só a opacidade fica na chamada.
+ *
+ * NÃO use em texto. Alpha reduz o contraste efetivo e invalida as medições
+ * do checkContrast, que não sabe o que está por baixo. Fundos, trilhos,
+ * divisores e bordas — sim.
+ */
+export function withAlpha(hex, alpha) {
+    const h = String(hex).replace('#', '');
+    const full = h.length === 3 ? h.replace(/(.)/g, '$1$1') : h;
+    const n = parseInt(full, 16);
+    const r = (n >> 16) & 255;
+    const g = (n >> 8) & 255;
+    const b = n & 255;
+    const a = Math.max(0, Math.min(1, Number(alpha)));
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
 
 // Aliases para manter a retrocompatibilidade de importações nas telas
 export const Neo = DS;

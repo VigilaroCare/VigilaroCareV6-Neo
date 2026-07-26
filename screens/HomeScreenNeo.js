@@ -12,6 +12,18 @@
  *    o wrapper creme/âmbar criava dupla moldura e invertia a paleta da marca
  *  - Seções em Eyebrow à esquerda (token DS) — sem títulos centralizados
  *  - Ritmo vertical na escala 8pt (spacing tokens), scroll com respiro
+ *
+ * ── REVISÃO DE COR E ACESSIBILIDADE (2026-07) ─────────────────────────────
+ *  - Todo hex cravado saiu. O creme do tile em row layout era '#F4F2EC', que
+ *    não é o creme dos PNGs (#F4EBDC): havia dois cremes convivendo. Agora
+ *    ambos vêm de colors.tile.
+ *  - O alerta contextual usava feedback.error (2.97:1) e accent.copper
+ *    (4.21:1) como TEXTO — as duas reprovavam em AA. Passou a usar textOn.*.
+ *  - s.greetingText cravava Neo.colors.neutral[900] no StyleSheet, que é a
+ *    paleta LIGHT: no dark a saudação ficava quase invisível. Cor agora é
+ *    prop inline vinda do tema.
+ *  - Os rgba('8, 68, 47') do alerta viraram withAlpha(token) — matiz do tema,
+ *    só a opacidade na chamada.
  */
 import React, { useState, useCallback, useRef } from 'react';
 import * as NavigationService from '../services/NavigationService';
@@ -31,7 +43,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 
-import { DS as Neo } from '../utils/DesignSystem2026';
+import { DS as Neo, withAlpha } from '../utils/DesignSystem2026';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import ProfileService from '../services/ProfileService';
@@ -124,9 +136,11 @@ export default function HomeScreenNeo() {
     }
 
     const isDark = useIsDark();
-    const cardBgColorResolved = isDark ? themeColors.neutral[200] : '#F4F2EC';
-    const cardBorderColorResolved = isDark ? 'rgba(255,255,255,0.15)' : (themeColors.primary?.[800] || Neo.colors.primary[800]);
-    const cardBorderWidthResolved = isDark ? 1 : 1.5;
+    // Superfície dos tiles em row layout (telas estreitas). O mesmo creme que
+    // os PNGs dos pictogramas carregam impresso — e o mesmo do HeroScoreCard.
+    const cardBgColorResolved = themeColors.tile.cream;
+    const cardBorderColorResolved = themeColors.tile.border;
+    const cardBorderWidthResolved = themeColors.tile.borderWidth;
 
     React.useEffect(() => { setImageError(false); }, [currentProfile?.id]);
 
@@ -243,12 +257,28 @@ export default function HomeScreenNeo() {
         ? t('home.mainHouse', 'Minha Casa Principal')
         : (activeResidence?.nome || t('home.mainHouse', 'Minha Casa Principal'));
 
+    // Tons do alerta contextual. Texto vem de textOn (aferido em AA);
+    // preenchimento e borda vêm de feedback com alpha — nunca o contrário.
+    const alertTone = {
+        critical: { text: themeColors.textOn.error,   fill: themeColors.feedback.error },
+        warning:  { text: themeColors.textOn.warning, fill: themeColors.feedback.warning },
+        system:   { text: themeColors.textOn.muted,   fill: themeColors.neutral[500] },
+    };
+    const tone = contextualAlert ? (alertTone[contextualAlert.tone] || alertTone.system) : null;
+
     // Chip de moradia ativa — tom de marca suave (saiu do glass tímido que
     // sumia no fundo sage). Presente sem exagerar; adapta ao dark.
-    const chipBg = isDark ? 'rgba(52, 211, 153, 0.14)' : Neo.colors.primary[100];
-    const chipBorder = isDark ? 'rgba(52, 211, 153, 0.32)' : Neo.colors.primary[200];
-    const chipText = isDark ? Neo.colors.primary[200] : Neo.colors.primary[800];
-    const chipIconColor = isDark ? Neo.colors.primary[300] : Neo.colors.primary[700];
+    const chipBg = isDark
+        ? withAlpha(themeColors.primary[700], 0.14)
+        : themeColors.primary[100];
+    const chipBorder = isDark
+        ? withAlpha(themeColors.primary[700], 0.32)
+        : themeColors.primary[200];
+    // textOn.brand já resolve por tema (#065F46 no light, #34D399 no dark) e é
+    // aferido em AA. O código anterior lia Neo.colors (paleta LIGHT sempre):
+    // trocar por themeColors.primary[200] teria escurecido o texto no dark.
+    const chipText = themeColors.textOn.brand;
+    const chipIconColor = themeColors.textOn.brand;
 
     return (
         <AppBackground>
@@ -257,7 +287,7 @@ export default function HomeScreenNeo() {
 
                 <View style={[s.homeHeader, { flexDirection: rowDirection }]}>
                     <View style={s.greetingGroup}>
-                        <H2 style={s.greetingText} numberOfLines={1} accessibilityRole="header">
+                        <H2 style={[s.greetingText, { color: textPrimary }]} numberOfLines={1} accessibilityRole="header">
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
                         <View
@@ -311,31 +341,20 @@ export default function HomeScreenNeo() {
                             onPress={contextualAlert.route ? () => navigateWithHaptic(contextualAlert.route, contextualAlert.params) : undefined}
                             style={[
                                 s.contextAlert,
-                                contextualAlert.tone === 'critical' && s.contextAlertCritical,
-                                contextualAlert.tone === 'warning'  && s.contextAlertWarning,
-                                contextualAlert.tone === 'system'   && s.contextAlertSystem,
+                                {
+                                    backgroundColor: withAlpha(tone.fill, 0.08),
+                                    borderColor: withAlpha(tone.fill, 0.24),
+                                },
                             ]}
+                            accessibilityRole={contextualAlert.route ? 'button' : 'text'}
+                            accessibilityLabel={contextualAlert.label}
                         >
-                            <View style={[
-                                s.contextAlertDot,
-                                contextualAlert.tone === 'critical' && { backgroundColor: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { backgroundColor: Neo.colors.accent.copper },
-                                contextualAlert.tone === 'system'   && { backgroundColor: Neo.colors.neutral[700] },
-                            ]} />
-                            <Text style={[
-                                s.contextAlertText,
-                                contextualAlert.tone === 'critical' && { color: Neo.colors.feedback.error },
-                                contextualAlert.tone === 'warning'  && { color: Neo.colors.accent.copper },
-                                contextualAlert.tone === 'system'   && { color: Neo.colors.neutral[800] },
-                            ]} numberOfLines={1}>
+                            <View style={[s.contextAlertDot, { backgroundColor: tone.fill }]} />
+                            <Text style={[s.contextAlertText, { color: tone.text }]} numberOfLines={1}>
                                 {contextualAlert.label}
                             </Text>
                             {contextualAlert.route && (
-                                <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={
-                                    contextualAlert.tone === 'critical' ? Neo.colors.feedback.error :
-                                    contextualAlert.tone === 'warning'  ? Neo.colors.accent.copper :
-                                    Neo.colors.neutral[700]
-                                } />
+                                <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={tone.text} />
                             )}
                         </TouchableOpacity>
                     )}
@@ -354,6 +373,7 @@ export default function HomeScreenNeo() {
                                     cardBgColor={cardBgColorResolved}
                                     cardBorderColor={cardBorderColorResolved}
                                     cardBorderWidth={cardBorderWidthResolved}
+                                    accentColor={themeColors.textOn.brand}
                                     onPress={() => navigateWithHaptic(item.route)}
                                 />
                             </View>
@@ -381,6 +401,7 @@ function BarePictogramShortcut({
     cardBgColor,
     cardBorderColor,
     cardBorderWidth,
+    accentColor,
 }) {
     if (isRowLayout) {
         const rowImageWidth = 64;
@@ -422,7 +443,7 @@ function BarePictogramShortcut({
                 >
                     {item.label}
                 </Text>
-                <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.primary[700]} />
+                <NeoIcon name="ArrowRight2" size={20} color={accentColor} />
             </TappablePressable>
         );
     }
@@ -466,11 +487,12 @@ const s = StyleSheet.create({
         minWidth: 0,
         marginRight: Neo.spacing.md,
     },
+    // Sem color aqui: o StyleSheet é avaliado no escopo do módulo, antes de o
+    // tema existir. A cor entra como prop inline no <H2>.
     greetingText: {
         fontSize: 24,
         lineHeight: 29,
         letterSpacing: -0.4,
-        color: Neo.colors.neutral[900],
     },
     residenceChip: {
         flexDirection: 'row',
@@ -504,18 +526,8 @@ const s = StyleSheet.create({
         marginTop: Neo.spacing.sm,
         borderWidth: 1,
     },
-    contextAlertCritical: {
-        backgroundColor: 'rgba(255, 59, 48, 0.08)',
-        borderColor: 'rgba(255, 59, 48, 0.24)',
-    },
-    contextAlertWarning: {
-        backgroundColor: 'rgba(180, 83, 9, 0.08)',
-        borderColor: 'rgba(180, 83, 9, 0.24)',
-    },
-    contextAlertSystem: {
-        backgroundColor: 'rgba(60, 60, 67, 0.06)',
-        borderColor: 'rgba(60, 60, 67, 0.16)',
-    },
+    // As três variantes de tom saíram daqui: cor vem de withAlpha(token) no
+    // render, para o alerta acompanhar o tema em vez de cravar rgba.
     contextAlertDot: {
         width: 8,
         height: 8,
