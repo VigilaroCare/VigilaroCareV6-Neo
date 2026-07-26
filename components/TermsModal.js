@@ -76,9 +76,11 @@ export default function TermsModal({ onAccept }) {
                     <ScrollView
                         style={styles.scrollView}
                         onScroll={handleScroll}
+                        onMomentumScrollEnd={handleScroll}
+                        onScrollEndDrag={handleScroll}
                         onLayout={(event) => setScrollHeight(event.nativeEvent.layout.height)}
                         onContentSizeChange={(_, h) => setContentHeight(h)}
-                        scrollEventThrottle={400}
+                        scrollEventThrottle={16}
                         showsVerticalScrollIndicator={true}
                     >
                         <Text style={styles.sectionTitle}>1. Natureza Informativa</Text>
