@@ -16,6 +16,7 @@ import ProfileService from '../services/ProfileService';
 import SubscriptionService from '../services/SubscriptionService';
 
 import NeoCard from '../components/NeoCard';
+import NeoHorizontalCard from '../components/NeoHorizontalCard';
 import { H1, H3, Body, Small } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +37,6 @@ export default function MenuScreenNeo() {
     const { t, i18n } = useTranslation();
     const themeColors = useThemeColors();
     const isDark = useIsDark();
-    const textPrimary = themeColors.neutral[900];
     const textSecondary = themeColors.neutral[700];
 
     const [isPremium, setIsPremium] = useState(false);
@@ -104,16 +104,20 @@ export default function MenuScreenNeo() {
     const sectionConta = [
         {
             key: 'acessibilidade',
-            iconName: 'Eye',
+            iconName: 'PersonSimpleCircle',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-acessibilidade.png'),
             accent: GA.saude, // teal
             label: t('menu.accessibility'),
+            description: t('menu.accessibilityDesc', 'Tamanho de fonte, tema e ajustes de leitura.'),
             action: () => navigateWithHaptic('AccessibilitySettings'),
         },
         {
             key: 'idioma',
             iconName: 'LanguageSquare',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-idioma.png'),
             accent: GA.pets, // rose
             label: t('settings.language', 'Idioma'),
+            description: t('menu.languageDesc', 'Escolha o idioma do aplicativo.'),
             action: () => setShowLangPicker(true),
         },
     ];
@@ -122,29 +126,37 @@ export default function MenuScreenNeo() {
         {
             key: 'contato',
             iconName: 'Sms',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-contato.png'),
             accent: GA.eventuais, // amber
             label: t('menu.contact', 'Contato'),
+            description: t('menu.contactDesc', 'Fale com a equipe Vigilaro Care.'),
             action: () => navigateWithHaptic('Contato'),
         },
         {
             key: 'sobre',
             iconName: 'InfoCircle',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-sobre.png'),
             accent: GA.vistorias, // sky
             label: t('menu.about'),
+            description: t('menu.aboutDesc', 'Versão, créditos e informações do app.'),
             action: () => navigateWithHaptic('Sobre'),
         },
         {
             key: 'termos',
             iconName: 'DocumentText',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-termos.png'),
             accent: GA.saude, // teal
             label: t('menu.terms'),
+            description: t('menu.termsDesc', 'Termos de uso da plataforma.'),
             action: () => navigateWithHaptic('TermsOfUse'),
         },
         {
             key: 'privacidade',
             iconName: 'Shield',
+            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-privacidade.png'),
             accent: GA.pets, // rose
             label: t('menu.privacy'),
+            description: t('menu.privacyDesc', 'Como cuidamos e protegemos seus dados.'),
             action: () => navigateWithHaptic('PrivacyPolicy'),
         },
     ];
@@ -154,27 +166,19 @@ export default function MenuScreenNeo() {
             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                 {title}
             </Text>
-            <View style={s.gridWrap}>
-                {items.map((item) => (
-                    <TouchableOpacity
-                        key={item.key}
-                        onPress={item.action}
-                        activeOpacity={0.85}
-                        style={s.gridCellWrap}
-                        accessibilityRole="button"
-                        accessibilityLabel={item.label}
-                    >
-                        <NeoCard variant="elevated" style={s.gridCard}>
-                            <View style={[s.gridIconCircle, { backgroundColor: item.accent.bg }]}>
-                                <NeoIcon name={item.iconName} size={26} color={item.accent.color} variant="Bold" />
-                            </View>
-                            <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
-                                {item.label}
-                            </Text>
-                        </NeoCard>
-                    </TouchableOpacity>
-                ))}
-            </View>
+            {items.map((item) => (
+                <NeoHorizontalCard
+                    key={item.key}
+                    title={item.label}
+                    description={item.description}
+                    iconName={item.iconName}
+                    imageUrl={item.image}
+                    plainImage
+                    centerText
+                    color={item.accent.color}
+                    onPress={item.action}
+                />
+            ))}
         </View>
     );
 
@@ -348,36 +352,6 @@ const s = StyleSheet.create({
         opacity: 0.85,
     },
 
-    // Grade de cards QUADRADOS (2 colunas)
-    gridWrap: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    },
-    gridCellWrap: {
-        width: '48%',
-        marginBottom: 12,
-    },
-    gridCard: {
-        aspectRatio: 1,
-        borderRadius: 18,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 14,
-    },
-    gridIconCircle: {
-        width: 54,
-        height: 54,
-        borderRadius: 27,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 12,
-    },
-    gridLabel: {
-        fontSize: 14,
-        fontWeight: '700',
-        textAlign: 'center',
-    },
 // Destrutivo + footer
     divider: {
         height: 1,

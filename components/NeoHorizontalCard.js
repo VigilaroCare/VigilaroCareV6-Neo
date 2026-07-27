@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Shadows } from '../utils/Theme';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
@@ -20,7 +20,9 @@ export default function NeoHorizontalCard({
     color = '#FF9800',
     onPress,
     style,
-    children
+    children,
+    plainImage = false, // true p/ assets ja estilizados (ex: pictograma ceramico) — pula tint/vinheta do ReviewImage (pensado pra harmonizar fotos de origens diferentes) e usa contain em vez de cover, pra nao cortar a moldura do pictograma
+    centerText = false, // true agrupa titulo+descricao centralizados (vertical e horizontalmente) em vez do padrao titulo-em-cima/descricao-embaixo
 }) {
     const themeColors = useThemeColors();
     const isDark = useIsDark();
@@ -52,13 +54,23 @@ export default function NeoHorizontalCard({
                     {/* Container Esquerdo (120x120) */}
                     <View style={[styles.imageContainer, { backgroundColor: color + '18' }]}>
                         {showImage ? (
-                            <ReviewImage
-                                source={typeof imageUrl === 'number' ? imageUrl : { uri: imageUrl }}
-                                tint={color}
-                                tintOpacity={0.10}
-                                accessibilityLabel={title}
-                                onError={handleImgError}
-                            />
+                            plainImage ? (
+                                <Image
+                                    source={typeof imageUrl === 'number' ? imageUrl : { uri: imageUrl }}
+                                    style={{ width: '100%', height: '100%' }}
+                                    resizeMode="contain"
+                                    accessibilityLabel={title}
+                                    onError={handleImgError}
+                                />
+                            ) : (
+                                <ReviewImage
+                                    source={typeof imageUrl === 'number' ? imageUrl : { uri: imageUrl }}
+                                    tint={color}
+                                    tintOpacity={0.10}
+                                    accessibilityLabel={title}
+                                    onError={handleImgError}
+                                />
+                            )
                         ) : iconName ? (
                             <NeoIcon name={iconName} size={40} color={color} variant="Bold" />
                         ) : emoji ? (
@@ -69,13 +81,19 @@ export default function NeoHorizontalCard({
                     </View>
 
                     {/* Container Direito (Textos) */}
-                    <View style={styles.textCol}>
-                        <Text style={[styles.cardTitle, { color: textPrimary }]} numberOfLines={2}>
+                    <View style={[styles.textCol, centerText && styles.textColCentered]}>
+                        <Text
+                            style={[styles.cardTitle, { color: textPrimary }, centerText && styles.textCentered]}
+                            numberOfLines={2}
+                        >
                             {title}
                         </Text>
-                        <View style={{ flex: 1 }} />
+                        {centerText ? null : <View style={{ flex: 1 }} />}
                         {description ? (
-                            <Text style={[styles.cardDesc, { color: textBody }]} numberOfLines={3}>
+                            <Text
+                                style={[styles.cardDesc, { color: textBody }, centerText && styles.textCentered]}
+                                numberOfLines={3}
+                            >
                                 {description}
                             </Text>
                         ) : null}
@@ -114,6 +132,13 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 14,
         justifyContent: 'flex-start',
+    },
+    textColCentered: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textCentered: {
+        textAlign: 'center',
     },
     cardTitle: {
         fontSize: 15,
