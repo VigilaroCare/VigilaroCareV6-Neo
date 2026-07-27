@@ -2,9 +2,14 @@ const path = require('path');
 const { isOpaqueInk, connectedComponents, Jimp, intToRGBA, rgbaToInt } = require('./lib.js');
 
 const CANVAS_W = 577, CANVAS_H = 433;
-// Alvo do sujeito dentro do canvas — media medida nos home-pictograms originais
-const TARGET_W = Math.round(CANVAS_W * 0.73);
-const TARGET_H = Math.round(CANVAS_H * 0.76);
+// Alvo do SUJEITO ISOLADO (sem a moldura) dentro do canvas — media medida
+// isolando o simbolo (connected-components, maior componente = moldura) nos
+// 7 home-pictograms bem comportados (exclui modo-viagem.png, outlier estreito).
+// Correcao de bug: os valores antigos (0.73/0.76) eram o fill do CARTAO
+// INTEIRO (moldura+simbolo) do diagnostico original, nao do simbolo sozinho —
+// isso inflava o simbolo quase ate o tamanho externo da moldura.
+const TARGET_W = Math.round(CANVAS_W * 0.472);
+const TARGET_H = Math.round(CANVAS_H * 0.530);
 
 async function isolateSubject(srcPath) {
     const img = await Jimp.read(srcPath);
