@@ -318,14 +318,22 @@ export default function KnowledgeHubScreen({ navigation }) {
                                     onPress={() => navigation.navigate('MicroArticle', { articleId: item.id })}
                                     style={s.featuredCard}
                                 >
+                                    {/* Fundo cor+icone — serve de base sempre visivel e fallback caso a foto falhe/nao carregue */}
                                     <View style={[StyleSheet.absoluteFillObject, { backgroundColor: cat?.color || Neo.colors.primary[800] }]} />
-                                    <NeoIcon 
-                                        name={cat?.icon || 'Document'} 
-                                        size={80} 
-                                        color={Neo.colors.neutral.white} 
-                                        style={{ position: 'absolute', right: -15, bottom: -15, opacity: 0.15 }} 
+                                    <NeoIcon
+                                        name={cat?.icon || 'Document'}
+                                        size={80}
+                                        color={Neo.colors.neutral.white}
+                                        style={{ position: 'absolute', right: -15, bottom: -15, opacity: 0.15 }}
                                         variant="Bulk"
                                     />
+                                    {!!item.thumbnail && (
+                                        <Image
+                                            source={typeof item.thumbnail === 'number' ? item.thumbnail : { uri: item.thumbnail }}
+                                            style={s.featuredImg}
+                                            resizeMode="cover"
+                                        />
+                                    )}
                                     <View style={s.featuredOverlay} />
                                     <View style={s.featuredContent}>
                                         {!!cat && (() => {

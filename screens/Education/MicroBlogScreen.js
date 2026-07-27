@@ -40,6 +40,11 @@ export default function MicroBlogScreen({ navigation }) {
         return cat ? cat.color : '#666';
     };
 
+    const getCategoryIcon = (catId) => {
+        const cat = MICRO_BLOG_CATEGORIES.find(c => c.id === catId);
+        return cat?.icon || 'Document';
+    };
+
     const renderArticleCard = (article) => (
 
         <TouchableOpacity
@@ -49,11 +54,24 @@ export default function MicroBlogScreen({ navigation }) {
             style={{ marginBottom: 8 }}
         >
             <NeoCard variant="elevated" style={styles.articleCard}>
-                <Image
-                    source={typeof article.thumbnail === 'number' ? article.thumbnail : { uri: article.thumbnail }}
-                    style={styles.thumbnail}
-                    resizeMode="cover"
-                />
+                <View style={styles.thumbnail}>
+                    {/* Fundo cor+icone — fallback caso a foto (geralmente hotlink externo) falhe */}
+                    <View style={[StyleSheet.absoluteFillObject, { backgroundColor: getCategoryColor(article.category) }]} />
+                    <NeoIcon
+                        name={getCategoryIcon(article.category)}
+                        size={40}
+                        color="#FFF"
+                        style={{ position: 'absolute', right: -8, bottom: -8, opacity: 0.25 }}
+                        variant="Bulk"
+                    />
+                    {!!article.thumbnail && (
+                        <Image
+                            source={typeof article.thumbnail === 'number' ? article.thumbnail : { uri: article.thumbnail }}
+                            style={StyleSheet.absoluteFillObject}
+                            resizeMode="cover"
+                        />
+                    )}
+                </View>
                 <View style={styles.articleContent}>
                     <View style={styles.articleMeta}>
                         <View style={[styles.categoryBadge, { backgroundColor: getCategoryColor(article.category) + '20' }]}>
@@ -176,7 +194,7 @@ const styles = StyleSheet.create({
         borderColor: Neo.colors.neutral[200],
         padding: 0, // Remover padding do NeoCard para a imagem encostar na borda
     },
-    thumbnail: { width: 100, height: 110 },
+    thumbnail: { width: 100, height: 110, overflow: 'hidden' },
     articleContent: { flex: 1, padding: 12, justifyContent: 'center' },
     articleMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 },
     categoryBadge: { paddingHorizontal: 8, paddingVertical: 2, borderRadius: 8 },
