@@ -14,13 +14,16 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
 import { useAccessibility } from '../context/AccessibilityContext';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import NeoCard from '../components/NeoCard';
+import ReviewImage from '../components/ReviewImage';
+import FadeInView from '../components/FadeInView';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { useThemeColors } from '../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { VisionService } from '../services/VisionService';
 import GamificationService from '../services/GamificationService';
 import { buscarProduto } from '../data/produtos_scanner';
@@ -33,105 +36,138 @@ import NeoAlert from '../utils/NeoAlert';
 
 const { width, height } = Dimensions.get('window');
 
-// INTRO COMPONENT
+// INTRO COMPONENT — hero com foto+gradiente+parallax e cards theme-aware,
+// mesmo padrao do resto do app (Cuidar&Proteger, Riscos Fisicos, Info Rotulos).
 const ScannerIntro = ({ onSelectMode, onClose }) => {
   const { t } = useTranslation();
   const colors = useThemeColors();
+  const isDark = useIsDark();
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const HERO_HEIGHT = 240;
+  const heroTransform = [
+    {
+      translateY: scrollY.interpolate({
+        inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
+        outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
+        extrapolate: 'clamp',
+      })
+    },
+    {
+      scale: scrollY.interpolate({
+        inputRange: [-HERO_HEIGHT, 0],
+        outputRange: [2, 1],
+        extrapolateLeft: 'extend',
+        extrapolateRight: 'clamp',
+      })
+    }
+  ];
+
+  const textMuted = colors.neutral[500];
+  const textBody = colors.neutral[700];
+
+  const MODES = [
+    { key: 'environment', icon: 'Home2', color: '#0284C7', title: t('scanner.modeEnv'), desc: t('scanner.modeEnvDesc'), trailingIcon: 'ArrowRight2' },
+    { key: 'label_scan', icon: 'DocumentText', color: '#9333EA', title: t('scanner.modeLabel'), desc: t('scanner.modeLabelDesc'), trailingIcon: 'Camera' },
+    { key: 'barcode_scan', icon: 'Barcode', color: Neo.colors.primary[600], title: t('scanner.modeBarcode'), desc: t('scanner.modeBarcodeDesc'), trailingIcon: 'ArrowRight2' },
+  ];
+
   return (
-  <View style={{ flex: 1, backgroundColor: '#020617' }}>
-    <StatusBar style="light" backgroundColor="transparent" translucent />
-    <Image 
-      source={require('../assets/illustrations/pad/hero_rotulos.jpg')} 
-      style={[StyleSheet.absoluteFill, { opacity: 0.15 }]} 
-      resizeMode="cover" 
-      blurRadius={30}
-    />
-    <LinearGradient
-        colors={['rgba(2,6,23,0.4)', '#020617']}
-        style={StyleSheet.absoluteFill}
-    />
-    <View style={styles.introContainer}>
-      <View style={[styles.introHeader, { borderBottomColor: 'rgba(255,255,255,0.05)' }]}>
+    <AppBackground>
+      <StatusBar style="light" translucent backgroundColor="transparent" />
+
+      <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
         <TouchableOpacity
           onPress={onClose}
-          style={styles.closeButton}
+          style={{
+            width: 44, height: 44, borderRadius: 22,
+            backgroundColor: 'rgba(0,0,0,0.35)',
+            justifyContent: 'center', alignItems: 'center',
+            marginLeft: 16, marginTop: 12,
+          }}
           accessibilityRole="button"
           accessibilityLabel={t('common.close', 'Fechar')}
         >
-          <NeoIcon name="CloseSquare" size={24} color="#FFF" />
+          <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
         </TouchableOpacity>
-        <View style={[styles.iconBadge, { backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }]}>
-          <NeoIcon name="Scan" size={40} color="#FFF" />
+      </SafeAreaView>
+
+      <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
+        contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}
+      >
+        {/* HERO com parallax */}
+        <Animated.View style={{
+          width: '100%',
+          height: HERO_HEIGHT,
+          backgroundColor: colors.neutral[800],
+          overflow: 'hidden',
+          transform: heroTransform,
+        }}>
+          <ReviewImage
+            source={require('../assets/illustrations/pad/hero_rotulos.jpg')}
+            style={StyleSheet.absoluteFill}
+            resizeMode="cover"
+            accessibilityLabel={t('scanner.introTitle')}
+          />
+          <LinearGradient
+            colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? colors.neutral[100] : colors.neutral.white]}
+            locations={[0, 0.35, 0.85, 1]}
+            style={StyleSheet.absoluteFill}
+          />
+          <View style={{ position: 'absolute', bottom: 24, paddingHorizontal: 22, width: '100%' }}>
+            <Text style={{ fontSize: 30, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 34 }}>
+              {t('scanner.introTitle')}
+            </Text>
+            <Text style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', marginTop: 6, lineHeight: 20 }}>
+              {t('scanner.introSub')}
+            </Text>
+          </View>
+        </Animated.View>
+
+        <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
+          {MODES.map((mode, idx) => (
+            <FadeInView key={mode.key} delay={80 + idx * 70}>
+              <TouchableOpacity
+                activeOpacity={0.85}
+                onPress={() => onSelectMode(mode.key)}
+                style={{ marginBottom: 14 }}
+                accessibilityRole="button"
+                accessibilityLabel={`${mode.title} — ${mode.desc}`}
+              >
+                <NeoCard variant="elevated" style={styles.modeCard}>
+                  <View style={[styles.modeIcon, { backgroundColor: mode.color + '22' }]}>
+                    <NeoIcon name={mode.icon} size={32} color={mode.color} variant="Bold" />
+                  </View>
+                  <View style={styles.modeInfo}>
+                    <Text style={[styles.modeTitle, { color: colors.neutral[900] }]}>{mode.title}</Text>
+                    <Text style={[styles.modeDesc, { color: textMuted }]}>{mode.desc}</Text>
+                  </View>
+                  <NeoIcon name={mode.trailingIcon} size={22} color={textMuted} />
+                </NeoCard>
+              </TouchableOpacity>
+            </FadeInView>
+          ))}
+
+          {/* Info Box */}
+          <FadeInView delay={80 + MODES.length * 70}>
+            <View style={[styles.infoBox, {
+              backgroundColor: colors.feedback.warning + '1A',
+              borderColor: colors.feedback.warning + '40',
+            }]}>
+              <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} variant="Bold" />
+              <Text style={[styles.infoText, { color: textBody }]}>
+                {t('scanner.hint')}
+              </Text>
+            </View>
+          </FadeInView>
         </View>
-        <Text style={[styles.introTitle, { color: '#FFF' }]}>{t('scanner.introTitle')}</Text>
-        <Text style={[styles.introSubtitle, { color: 'rgba(255,255,255,0.7)' }]}>
-          {t('scanner.introSub')}
-        </Text>
-      </View>
-
-      <ScrollView contentContainerStyle={styles.introContent}>
-        <TouchableOpacity
-          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
-          activeOpacity={0.7}
-          onPress={() => onSelectMode('environment')}
-          accessibilityRole="button"
-          accessibilityLabel={`${t('scanner.modeEnv')} — ${t('scanner.modeEnvDesc')}`}
-        >
-          <View style={[styles.modeIcon, { backgroundColor: 'rgba(33, 150, 243, 0.2)' }]}>
-            <NeoIcon name="Home2" size={32} color="#4FC3F7" variant="Bold" />
-          </View>
-          <View style={styles.modeInfo}>
-            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeEnv')}</Text>
-            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeEnvDesc')}</Text>
-          </View>
-          <NeoIcon name="ArrowRight2" size={24} color="rgba(255,255,255,0.3)" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
-          activeOpacity={0.7}
-          onPress={() => onSelectMode('label_scan')}
-          accessibilityRole="button"
-          accessibilityLabel={`${t('scanner.modeLabel')} — ${t('scanner.modeLabelDesc')}`}
-        >
-          <View style={[styles.modeIcon, { backgroundColor: 'rgba(156, 39, 176, 0.2)' }]}>
-            <NeoIcon name="DocumentText" size={32} color="#E040FB" variant="Bold" />
-          </View>
-          <View style={styles.modeInfo}>
-            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeLabel')}</Text>
-            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeLabelDesc')}</Text>
-          </View>
-          <NeoIcon name="Camera" size={24} color="rgba(255,255,255,0.3)" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.modeCard, { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }]}
-          activeOpacity={0.7}
-          onPress={() => onSelectMode('barcode_scan')}
-          accessibilityRole="button"
-          accessibilityLabel={`${t('scanner.modeBarcode')} — ${t('scanner.modeBarcodeDesc')}`}
-        >
-          <View style={[styles.modeIcon, { backgroundColor: 'rgba(76, 175, 80, 0.2)' }]}>
-            <NeoIcon name="Barcode" size={32} color="#81C784" variant="Bold" />
-          </View>
-          <View style={styles.modeInfo}>
-            <Text style={[styles.modeTitle, { color: '#FFF' }]}>{t('scanner.modeBarcode')}</Text>
-            <Text style={[styles.modeDesc, { color: 'rgba(255,255,255,0.7)' }]}>{t('scanner.modeBarcodeDesc')}</Text>
-          </View>
-          <NeoIcon name="ArrowRight2" size={24} color="rgba(255,255,255,0.3)" />
-        </TouchableOpacity>
-
-        {/* Info Box */}
-        <View style={[styles.infoBox, { backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1 }]}>
-          <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} />
-          <Text style={[styles.infoText, { color: 'rgba(255,255,255,0.8)' }]}>
-            {t('scanner.hint')}
-          </Text>
-        </View>
-      </ScrollView>
-    </View>
-  </View>
-)};
+      </Animated.ScrollView>
+    </AppBackground>
+  );
+};
 
 export default function ScannerScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
@@ -565,35 +601,19 @@ export default function ScannerScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'transparent' },
 
-  // INTRO STYLES
-  introContainer: { flex: 1, backgroundColor: 'transparent' },
-  introHeader: {
-    padding: 24, paddingTop: 60, backgroundColor: 'transparent',
-    alignItems: 'center', borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[100]
-  },
-  closeButton: { position: 'absolute', top: 50, left: 20, padding: 8 },
-  iconBadge: {
-    width: 80, height: 80, borderRadius: 40, backgroundColor: Neo.colors.primary[50],
-    justifyContent: 'center', alignItems: 'center', marginBottom: 16
-  },
-  introTitle: { fontSize: 28, fontWeight: 'bold', color: Neo.colors.neutral[900], marginBottom: 8 },
-  introSubtitle: { fontSize: 16, color: Neo.colors.neutral[600], textAlign: 'center', paddingHorizontal: 20, lineHeight: 24 },
-  introContent: { padding: 24 },
+  // INTRO STYLES — cor/fundo aplicados inline (theme-aware); aqui so estrutura
   modeCard: {
-    flexDirection: 'row', alignItems: 'center',
-    backgroundColor: Neo.colors.surface, padding: 16, borderRadius: 20,
-    marginBottom: 16, borderWidth: 1, borderColor: Neo.colors.neutral[100],
-    ...Neo.shadows.sm
+    flexDirection: 'row', alignItems: 'center', padding: 16, borderRadius: 20,
   },
   modeIcon: { width: 56, height: 56, borderRadius: 28, justifyContent: 'center', alignItems: 'center', marginRight: 16 },
   modeInfo: { flex: 1 },
-  modeTitle: { fontSize: 18, fontWeight: 'bold', color: Neo.colors.neutral[800], marginBottom: 4 },
-  modeDesc: { fontSize: 14, color: Neo.colors.neutral[600], lineHeight: 20 },
+  modeTitle: { fontSize: 17, fontWeight: '800', marginBottom: 4 },
+  modeDesc: { fontSize: 13, lineHeight: 18 },
   infoBox: {
     flexDirection: 'row', padding: 16,
-    borderRadius: 12, alignItems: 'center', gap: 12, marginTop: 8
+    borderRadius: 14, alignItems: 'flex-start', gap: 12, borderWidth: 1,
   },
-  infoText: { flex: 1, fontSize: 14, fontWeight: '500', color: Neo.colors.neutral[800] },
+  infoText: { flex: 1, fontSize: 13.5, lineHeight: 18, fontWeight: '500' },
 
   // PERMISSION
   permissionButton: { backgroundColor: Neo.colors.primary[600], paddingHorizontal: 24, paddingVertical: 12, borderRadius: 8 },
