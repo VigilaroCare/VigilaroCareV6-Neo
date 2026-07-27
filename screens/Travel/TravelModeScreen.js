@@ -10,6 +10,7 @@ import NeoCard from '../../components/NeoCard';
 import NeoText, { H2, H3, Body, Small } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
+import PictogramTile from '../../components/PictogramTile';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -23,7 +24,9 @@ const SCREEN_W = Dimensions.get('window').width;
 const CONTENT_W = SCREEN_W - Neo.spacing.lg * 2; // padding horizontal do scroll
 const CELL_W = CONTENT_W * 0.48;                 // célula do grid 2-col
 const TILE_W = Math.round(CELL_W * 0.88);
-const TILE_H = Math.round(TILE_W * (436 / 428)); // proporção dos assets normalizados
+// Altura vem de PictogramTile (PICTOGRAM_ASPECT_RATIO) — a proporção real
+// do PNG, não mais uma constante local (436/428 estava invertida: mais
+// alta que larga, o oposto do asset, causava letterboxing no contain).
 
 // Pictogramas cerâmicos 3D (tile creme + moldura verde embutidos no PNG,
 // mesma linguagem da Home e do Hub). O asset É o card — render sem NeoCard.
@@ -105,13 +108,11 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
         >
             <View style={s.ceramicCell}>
                 <View style={s.ceramicTileWrap}>
-                    <View style={s.pictogramImageContainer}>
-                        <Image
-                            source={source}
-                            style={[s.ceramicTile, dimmed && s.ceramicTileDimmed, { transform: [{ scale: 1.06 }] }]}
-                            resizeMode="contain"
-                        />
-                    </View>
+                    <PictogramTile
+                        source={source}
+                        width={TILE_W}
+                        style={dimmed && s.ceramicTileDimmed}
+                    />
                     {selected && (
                         <View style={s.ceramicCheckBadge}>
                             <NeoIcon name="TickCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
@@ -518,9 +519,7 @@ export default function TravelModeScreen({ navigation }) {
                                 accessibilityLabel={card.label}
                             >
                                 <View style={s.ceramicCell}>
-                                    <View style={s.pictogramImageContainer}>
-                                        <Image source={TRAVEL_PICTOGRAMS[card.key]} style={[s.ceramicTile, { transform: [{ scale: 1.06 }] }]} resizeMode="contain" />
-                                    </View>
+                                    <PictogramTile source={TRAVEL_PICTOGRAMS[card.key]} width={TILE_W} />
                                     <Body style={s.ceramicCardLabel} numberOfLines={2}>{card.label}</Body>
                                 </View>
                             </ScaleButton>
@@ -529,7 +528,7 @@ export default function TravelModeScreen({ navigation }) {
                         {/* Card 5: Guia de Segurança — horizontal com thumbnail cerâmico */}
                         <ScaleButton onPress={() => navigation.navigate('TravelSafetyGuide')} style={{ width: '100%' }} accessibilityRole="button">
                             <NeoCard variant="elevated" style={{ height: 80, padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', paddingHorizontal: 16 }}>
-                                <Image source={TRAVEL_PICTOGRAMS.guia} style={s.guiaThumb} resizeMode="contain" />
+                                <PictogramTile source={TRAVEL_PICTOGRAMS.guia} width={54} style={s.guiaThumb} />
                                 <View style={{ flex: 1 }}>
                                     <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[700], fontSize: 14 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</Body>
                                     <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.safetyGuideDesc', 'Dicas, telefones úteis e mais.')}</Small>
@@ -609,13 +608,6 @@ const s = StyleSheet.create({
         width: TILE_W,
         position: 'relative',
     },
-    pictogramImageContainer: {
-        // No background or border needed, the AI image provides the 3D frame
-    },
-    ceramicTile: {
-        width: TILE_W,
-        height: TILE_H,
-    },
     ceramicTileDimmed: {
         opacity: 0.55,
     },
@@ -635,8 +627,6 @@ const s = StyleSheet.create({
         lineHeight: 15,
     },
     guiaThumb: {
-        width: 54,
-        height: 54,
         marginRight: 14,
     },
     backButton: {

@@ -85,10 +85,9 @@ export default function RiscosFisicosScreen({ route, navigation }) {
   const titleStr = isEletricos ? t('headersFirst.electrical', 'Riscos Elétricos e Incêndio') : t('headersFirst.physical', 'Riscos Físicos e Quedas');
   const subtitleStr = isEletricos ? t('knowledgeHub.electricalRisks', 'Eletricidade e Prevenção') : t('knowledgeHub.physicalRisks', 'Prevenção de Acidentes');
   
-  // Imagens temporárias até o usuário definir
-  const capaSource = isEletricos 
-    ? require('../../assets/illustrations/education-pictograms/pictogram-riscos-eletricos.png') 
-    : require('../../assets/illustrations/pad/1.png');
+  const capaSource = isEletricos
+    ? require('../../assets/illustrations/pad/Choque-eletrico-1.jpg')
+    : require('../../assets/illustrations/pad/quedas-escadas_escada-madeira_022.jpg');
 
   return (
     <AppBackground>

@@ -31,7 +31,6 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
-    Image,
     StyleSheet,
     Text,
     LayoutAnimation,
@@ -55,6 +54,7 @@ import { H2 } from '../components/NeoTypography';
 import HeroScoreCard from '../components/HeroScoreCard';
 import AppBackground from '../components/AppBackground';
 import TappablePressable from '../components/TappablePressable';
+import PictogramTile from '../components/PictogramTile';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
@@ -65,8 +65,8 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 }
 
 // Regra do produto: Home sem scroll vertical. Pictogramas são o maior
-// consumidor de altura. Proporção 4:3 dos tiles (largura × 0.75 = altura).
-const PICTO_RATIO = 3 / 4;
+// consumidor de altura. Proporção real do PNG vem de PictogramTile
+// (PICTOGRAM_ASPECT_RATIO) — fonte única, não duplicar aqui.
 
 const HOME_PICTOGRAMS = {
     vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
@@ -404,8 +404,6 @@ function BarePictogramShortcut({
     accentColor,
 }) {
     if (isRowLayout) {
-        const rowImageWidth = 64;
-        const rowImageHeight = rowImageWidth * PICTO_RATIO;
         return (
             <TappablePressable
                 style={[
@@ -422,13 +420,7 @@ function BarePictogramShortcut({
                 accessibilityRole="button"
                 accessibilityLabel={item.accessibilityLabel || item.label}
             >
-                <View style={[s.pictogramImageContainer, { width: rowImageWidth, height: rowImageHeight }]}>
-                    <Image
-                        source={item.image}
-                        style={{ width: '100%', height: '100%' }}
-                        resizeMode="contain"
-                    />
-                </View>
+                <PictogramTile source={item.image} width={64} />
                 <Text
                     style={[
                         s.barePictogramLabelRow,
@@ -448,8 +440,6 @@ function BarePictogramShortcut({
         );
     }
 
-    const imageHeight = imageWidth * PICTO_RATIO;
-
     return (
         <TappablePressable
             style={s.barePictogram}
@@ -458,13 +448,7 @@ function BarePictogramShortcut({
             accessibilityRole="button"
             accessibilityLabel={item.accessibilityLabel || item.label}
         >
-            <View style={[s.pictogramImageContainer, { width: imageWidth, height: imageHeight }]}>
-                <Image
-                    source={item.image}
-                    style={{ width: '100%', height: '100%' }}
-                    resizeMode="contain"
-                />
-            </View>
+            <PictogramTile source={item.image} width={imageWidth} />
             <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
                 {item.label}
             </Text>
@@ -566,9 +550,6 @@ const s = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 4,
         elevation: 2,
-    },
-    pictogramImageContainer: {
-        // Mask removed because images now use true transparency
     },
     barePictogramLabel: {
         fontWeight: '700',

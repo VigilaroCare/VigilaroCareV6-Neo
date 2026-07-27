@@ -26,6 +26,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
+import PictogramTile from '../../components/PictogramTile';
 import { H1, Body } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -165,7 +166,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={item.titulo}
                     >
-                        <Image source={pictogramSource} style={s.ceramicImage} resizeMode="contain" />
+                        <PictogramTile source={pictogramSource} style={s.ceramicImage} />
                         <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
                             {item.titulo}
                         </Text>
@@ -367,9 +368,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         style={{ marginTop: 18, marginBottom: 8 }}
                     >
                         <NeoCard variant="elevated" style={s.radarCard}>
-                            <View style={s.radarIconWrap}>
-                                <Image source={REAL_CASES_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
-                            </View>
+                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={66} />
                             <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
                                 <Body style={s.radarTitle}>
                                     {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
@@ -392,9 +391,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityLabel={conceitoItem.titulo}
                     >
                         <NeoCard variant="elevated" style={s.conceitoCard}>
-                            <View style={s.conceptPictogramWrap}>
-                                <Image source={CONCEPTS_PICTOGRAM} style={s.specialPictogramImage} resizeMode="contain" />
-                            </View>
+                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={66} style={s.conceptPictogramWrap} />
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
                                 <Body style={{ fontWeight: '800', color: textPrimary, fontSize: 14 }}>
                                     {conceitoItem.titulo}
@@ -517,18 +514,6 @@ const s = StyleSheet.create({
         padding: 16,
         borderRadius: 18,
     },
-    radarIconWrap: {
-        width: 66,
-        height: 52,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    specialPictogramImage: {
-        width: '100%',
-        height: '100%',
-        // (sem scale: os cerâmicos já vêm com cobertura 88.5%, sem padding
-        // interno — o scale 1.3 dos antigos P&B estouraria o wrapper)
-    },
     radarTitle: {
         fontWeight: '800',
         fontSize: 15,
@@ -542,10 +527,6 @@ const s = StyleSheet.create({
         borderRadius: 16,
     },
     conceptPictogramWrap: {
-        width: 66,
-        height: 52,
-        alignItems: 'center',
-        justifyContent: 'center',
         marginRight: 14,
     },
 
@@ -605,7 +586,6 @@ const s = StyleSheet.create({
     },
     ceramicImage: {
         width: '100%',
-        height: '74%',
         marginBottom: 2,
     },
 });

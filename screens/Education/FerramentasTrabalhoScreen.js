@@ -4,7 +4,6 @@ import { H3, Body, Small } from '../../components/NeoTypography';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
-import CustomIcon from '../../components/CustomIcon';
 import { Colors, Spacing, Shadows, BorderRadius } from '../../utils/Theme';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
