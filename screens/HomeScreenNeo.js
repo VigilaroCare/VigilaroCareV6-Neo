@@ -285,37 +285,42 @@ export default function HomeScreenNeo() {
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                <View style={[s.homeHeader, { flexDirection: rowDirection }]}>
-                    <View style={s.greetingGroup}>
+                <View style={s.homeHeader}>
+                    {/* Par alinhado: saudacao + avatar centralizados na mesma
+                        linha — o avatar ancora no nome, nao no bloco inteiro. */}
+                    <View style={[s.identityRow, { flexDirection: rowDirection }]}>
                         <H2 style={[s.greetingText, { color: textPrimary }]} numberOfLines={1} accessibilityRole="header">
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
-                        <View
-                            style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
-                            accessible
-                            accessibilityRole="summary"
-                            accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
+
+                        <TappablePressable
+                            onPress={() => navigateWithHaptic('QuemProteger')}
+                            style={s.profileRingPress}
+                            accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
                         >
-                            <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
-                            <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
-                        </View>
+                            <GlassProfileRing
+                                profile={currentProfile}
+                                score={scoreData.geral}
+                                imageError={imageError}
+                                onImageError={() => setImageError(true)}
+                                resolveUri={ProfileService.resolveImageUri}
+                                size={48}
+                                ringWidth={3}
+                            />
+                        </TappablePressable>
                     </View>
 
-                    <TappablePressable
-                        onPress={() => navigateWithHaptic('QuemProteger')}
-                        style={s.profileRingPress}
-                        accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
+                    {/* Linha propria, largura livre — nao disputa mais o
+                        centro vertical do avatar. */}
+                    <View
+                        style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
+                        accessible
+                        accessibilityRole="summary"
+                        accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
                     >
-                        <GlassProfileRing
-                            profile={currentProfile}
-                            score={scoreData.geral}
-                            imageError={imageError}
-                            onImageError={() => setImageError(true)}
-                            resolveUri={ProfileService.resolveImageUri}
-                            size={48}
-                            ringWidth={3}
-                        />
-                    </TappablePressable>
+                        <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
+                        <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
+                    </View>
                 </View>
 
                 <ScrollView
@@ -323,8 +328,14 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingBottom: isRowLayout ? 128 : 96,
-                        paddingTop: 0,
+                        // Respiro redistribuido (soma zero, preserva "Home sem scroll"):
+                        // +12 no topo (colado no header, quase sem folga) tirado da
+                        // folga de baixo, que reserva espaco pro footer flutuante +
+                        // botao SOS (este ultimo "flutua" ainda mais alto que a barra,
+                        // ver GlobalFloatingFooter.js) — o restante do clearance de
+                        // baixo (84/116) ainda cobre esse minimo com folga.
+                        paddingBottom: isRowLayout ? 116 : 84,
+                        paddingTop: 12,
                     }}
                 >
                     <HeroScoreCard 
@@ -460,20 +471,20 @@ const s = StyleSheet.create({
 
     // ── Header: saudação + perfil ──
     homeHeader: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
         paddingTop: 2,
         paddingBottom: 2,
     },
-    greetingGroup: {
-        flex: 1,
-        minWidth: 0,
-        marginRight: Neo.spacing.md,
+    identityRow: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     // Sem color aqui: o StyleSheet é avaliado no escopo do módulo, antes de o
     // tema existir. A cor entra como prop inline no <H2>.
     greetingText: {
+        flex: 1,
+        minWidth: 0,
+        marginRight: Neo.spacing.md,
         fontSize: 24,
         lineHeight: 29,
         letterSpacing: -0.4,
