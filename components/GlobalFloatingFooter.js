@@ -328,7 +328,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                 <NeoIcon
                   name={tab.icon}
                   variant={isIconActive ? 'Bold' : 'Linear'}
-                  size={26}
+                  size={32}
                   color={color}
                 />
               )}

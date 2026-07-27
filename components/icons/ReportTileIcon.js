@@ -8,7 +8,7 @@ import Svg, { Rect, Path, Line } from 'react-native-svg';
  *   - weight='fill'    (ATIVA):   prancheta PREENCHIDA com as linhas VAZADAS
  *                                  (fillRule evenodd → buracos reais, em
  *                                  qualquer fundo).
- * Traço fino (12 / linhas 11 / tile 10). Consumido via NeoIcon (name="ReportTile").
+ * Traço reforçado p/ legibilidade no footer (14 / linhas 13 / tile 12). Consumido via NeoIcon (name="ReportTile").
  */
 export default function ReportTileIcon({ size = 24, color = '#000', weight = 'regular' }) {
     const active = weight === 'fill';
@@ -16,7 +16,7 @@ export default function ReportTileIcon({ size = 24, color = '#000', weight = 're
         <Svg width={size} height={size} viewBox="0 0 256 256" fill="none">
             {/* Tile — assinatura constante */}
             <Rect x={20} y={20} width={216} height={216} rx={58}
-                  stroke={color} strokeWidth={10} fill="none" />
+                  stroke={color} strokeWidth={12} fill="none" />
             {active ? (
                 <>
                     <Path
@@ -33,12 +33,12 @@ export default function ReportTileIcon({ size = 24, color = '#000', weight = 're
             ) : (
                 <>
                     <Rect x={78} y={82} width={100} height={104} rx={16}
-                          stroke={color} strokeWidth={12} fill="none" />
+                          stroke={color} strokeWidth={14} fill="none" />
                     <Rect x={108} y={66} width={40} height={26} rx={8}
-                          stroke={color} strokeWidth={12} fill="none" />
-                    <Line x1={96} y1={118} x2={160} y2={118} stroke={color} strokeWidth={11} strokeLinecap="round" />
-                    <Line x1={96} y1={140} x2={160} y2={140} stroke={color} strokeWidth={11} strokeLinecap="round" />
-                    <Line x1={96} y1={162} x2={138} y2={162} stroke={color} strokeWidth={11} strokeLinecap="round" />
+                          stroke={color} strokeWidth={14} fill="none" />
+                    <Line x1={96} y1={118} x2={160} y2={118} stroke={color} strokeWidth={13} strokeLinecap="round" />
+                    <Line x1={96} y1={140} x2={160} y2={140} stroke={color} strokeWidth={13} strokeLinecap="round" />
+                    <Line x1={96} y1={162} x2={138} y2={162} stroke={color} strokeWidth={13} strokeLinecap="round" />
                 </>
             )}
         </Svg>
