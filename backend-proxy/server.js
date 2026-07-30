@@ -176,6 +176,122 @@ app.use('/api/openai', requireAppSecret, allowPaths(OPENAI_ALLOWED), openaiProxy
 app.use('/api/elevenlabs', requireAppSecret, allowPaths(ELEVEN_ALLOWED), elevenLabsProxy);
 app.use('/api/epa', requireAppSecret, allowPaths(EPA_ALLOWED), epaProxy);
 
+// ---------------------------------------------------------------------------
+// MÓDULO CUIDADOR REMOTO — Notificação via SMS / WhatsApp
+// ---------------------------------------------------------------------------
+// Chaves de terceiros (Zenvia / Twilio) ficam EXCLUSIVAMENTE aqui no servidor.
+// O app envia apenas o payload; as chaves nunca chegam ao cliente.
+//
+// Variáveis de ambiente necessárias (adicionar no painel do Render/Railway):
+//   ZENVIA_TOKEN      — token Bearer da API Zenvia
+//   ZENVIA_FROM_WHATSAPP — número de origem aprovado (ex: "+5511999999999")
+//   ZENVIA_FROM_SMS   — número de origem SMS
+//   (alternativa) TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN / TWILIO_FROM
+
+app.use(express.json()); // body parser apenas para esta rota, pós-proxy
+
+app.post('/api/notify/medication-reminder', requireAppSecret, async (req, res) => {
+  const {
+    recipientPhone,
+    caregiverName,
+    recipientName,
+    medicationName,
+    channel = 'whatsapp',
+    type = 'reminder',
+  } = req.body || {};
+
+  // Validação mínima
+  if (!recipientPhone || !caregiverName || !recipientName || !medicationName) {
+    return res.status(400).json({ error: 'Campos obrigatórios: recipientPhone, caregiverName, recipientName, medicationName' });
+  }
+
+  // Sanitiza número — aceita apenas E.164 básico
+  const phoneRe = /^\+\d{10,15}$/;
+  if (!phoneRe.test(recipientPhone)) {
+    return res.status(400).json({ error: 'recipientPhone deve estar no formato E.164 (ex: +5511999999999)' });
+  }
+
+  // Monta texto da mensagem
+  const msgText = type === 'optin'
+    ? `${caregiverName} está usando o VigilaroCare para te enviar lembretes de medicamentos. Responda *SIM* para aceitar ou *NÃO* para recusar.\n\n_VigilaroCare — Prevenção Familiar_ 🛡️`
+    : `Olá, ${recipientName}! 💊\n\nLembrete configurado por ${caregiverName}:\n*${medicationName}*\n\nConsulte sempre seu médico ou farmacêutico.\n_VigilaroCare — Organização pessoal_`;
+
+  const ZENVIA_TOKEN = process.env.ZENVIA_TOKEN;
+  const TWILIO_SID   = process.env.TWILIO_ACCOUNT_SID;
+  const TWILIO_TOKEN = process.env.TWILIO_AUTH_TOKEN;
+  const TWILIO_FROM  = process.env.TWILIO_FROM;
+
+  // Tenta Zenvia primeiro; cai no Twilio como fallback
+  if (ZENVIA_TOKEN) {
+    try {
+      const zenviaChannel = (channel === 'sms') ? 'sms' : 'whatsapp';
+      const zenviaFrom = (channel === 'sms')
+        ? process.env.ZENVIA_FROM_SMS
+        : process.env.ZENVIA_FROM_WHATSAPP;
+
+      const zResponse = await fetch('https://api.zenvia.com/v2/channels/' + zenviaChannel + '/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-TOKEN': ZENVIA_TOKEN,
+        },
+        body: JSON.stringify({
+          from: zenviaFrom,
+          to: recipientPhone,
+          contents: [{ type: 'text', text: msgText }],
+        }),
+      });
+
+      if (!zResponse.ok) {
+        const zErr = await zResponse.json().catch(() => ({}));
+        console.error('[Zenvia] Erro:', zErr);
+        // Não retorna erro imediatamente — tenta Twilio abaixo
+      } else {
+        const zData = await zResponse.json();
+        return res.status(200).json({ provider: 'zenvia', id: zData.id, status: 'sent' });
+      }
+    } catch (e) {
+      console.error('[Zenvia] Exceção:', e.message);
+    }
+  }
+
+  // Fallback: Twilio
+  if (TWILIO_SID && TWILIO_TOKEN && TWILIO_FROM) {
+    try {
+      const tTo = (channel !== 'sms') ? `whatsapp:${recipientPhone}` : recipientPhone;
+      const tFrom = (channel !== 'sms') ? `whatsapp:${TWILIO_FROM}` : TWILIO_FROM;
+
+      const tResponse = await fetch(
+        `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + Buffer.from(`${TWILIO_SID}:${TWILIO_TOKEN}`).toString('base64'),
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({ To: tTo, From: tFrom, Body: msgText }).toString(),
+        }
+      );
+
+      if (!tResponse.ok) {
+        const tErr = await tResponse.json().catch(() => ({}));
+        return res.status(502).json({ error: 'Falha ao enviar mensagem', detail: tErr });
+      }
+
+      const tData = await tResponse.json();
+      return res.status(200).json({ provider: 'twilio', sid: tData.sid, status: tData.status });
+    } catch (e) {
+      return res.status(500).json({ error: 'Erro interno ao enviar via Twilio', detail: e.message });
+    }
+  }
+
+  // Nenhum provider configurado
+  return res.status(503).json({
+    error: 'Nenhum provider de mensagens configurado no servidor (ZENVIA_TOKEN ou TWILIO_ACCOUNT_SID).',
+  });
+});
+
+
 // Error Handling Middleware (always return JSON)
 app.use((err, req, res, next) => {
   console.error('❌ Proxy Error:', err);

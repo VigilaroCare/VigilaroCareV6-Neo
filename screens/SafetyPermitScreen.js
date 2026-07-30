@@ -192,13 +192,13 @@ export default function SafetyPermitScreen({ route, navigation }) {
 
     const renderApproved = () => (
         <View style={styles.blockedContainer}>
-            <NeoIcon name="TickCircle" size={80} color="#388E3C" />
-            <Text style={[styles.blockedTitle, { color: '#388E3C' }]}>{t('headersFirst.aTIVIDADELIBERADA', 'ATIVIDADE LIBERADA')}</Text>
+            <NeoIcon name="TickCircle" size={80} color={Neo.colors.feedback.success} />
+            <Text style={[styles.blockedTitle, { color: Neo.colors.feedback.success }]}>{t('headersFirst.aTIVIDADELIBERADA', 'ATIVIDADE LIBERADA')}</Text>
             <Text style={styles.safeText}>{t('headersFirst.sigaAsMedidasRecomendadas', 'Siga as medidas recomendadas:')}</Text>
             <View style={{ marginTop: 20 }}>
                 {activeProtocol.measures.map((m, i) => (<Text key={i} style={styles.measurePoint}>• {m}</Text>))}
             </View>
-            <TouchableOpacity style={[styles.backBtn, { backgroundColor: '#388E3C' }]} onPress={() => navigation.goBack()}>
+            <TouchableOpacity style={[styles.backBtn, { backgroundColor: Neo.colors.primary[600] }]} onPress={() => navigation.goBack()}>
                 <Text style={styles.backBtnText}>{t('headersFirst.finalizar', 'Finalizar')}</Text>
             </TouchableOpacity>
         </View>
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     itemRow: { flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 },
     borderBottom: { borderBottomWidth: 1, borderBottomColor: Neo.colors.neutral[200] },
 
-    iconBox: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#E3F2FD', justifyContent: 'center', alignItems: 'center' }, // TODO: map to DS token
+    iconBox: { width: 40, height: 40, borderRadius: 20, backgroundColor: Neo.colors.primary[100] || 'rgba(16,185,129,0.1)', justifyContent: 'center', alignItems: 'center' },
     itemLabel: { flex: 1, fontSize: 14, color: Neo.colors.neutral[900], fontWeight: '500' },
 
     // Toggle Style

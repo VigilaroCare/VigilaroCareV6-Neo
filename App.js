@@ -223,6 +223,9 @@ import InfoRotulosScreen           from "./screens/InfoRotulosScreen";
 import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
 import MinhaSaudeScreen            from "./screens/Health/MinhaSaudeScreen";
 import SaudePetScreen              from "./screens/Health/SaudePetScreen";
+import MedicationRemindersScreen   from "./screens/Health/MedicationRemindersScreen";
+import MedicationReminderFormScreen from "./screens/Health/MedicationReminderFormScreen";
+import MedicationDoseHistoryScreen  from "./screens/Health/MedicationDoseHistoryScreen";
 
 // ---------------------------------------------------------------------------
 // COMPONENTS / SERVICES
@@ -684,6 +687,9 @@ export default function App() {
                       <Stack.Screen name="VistoriaAsiloReport" component={VistoriaAsiloReportScreen} />
                       <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />
                       <Stack.Screen name="SaudePet" component={SaudePetScreen} />
+                      <Stack.Screen name="MedicationReminders" component={MedicationRemindersScreen} />
+                      <Stack.Screen name="MedicationReminderForm" component={MedicationReminderFormScreen} options={{ presentation: 'modal' }} />
+                      <Stack.Screen name="MedicationDoseHistory" component={MedicationDoseHistoryScreen} />
 
                       {/* ---- Novos Hubs da Home ---- */}
                       <Stack.Screen name="VigilaroScanHub" component={VigilaroScanHubScreen} />

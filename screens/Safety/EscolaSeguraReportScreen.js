@@ -136,9 +136,9 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                     <View style={{ marginTop: 24 }}>
                         <H3 style={{ marginBottom: 12 }}>{t('headersFirst.PontosDeAtenO', '⚠️ Pontos de Atenção')}</H3>
                         {pontosFracos.map((ponto, index) => (
-                            <NeoCard variant="elevated" key={index} style={[styles.pontoCard, { borderLeftWidth: 4, borderLeftColor: '#D32F2F' }]}>
+                            <NeoCard variant="elevated" key={index} style={[styles.pontoCard, { borderLeftWidth: 4, borderLeftColor: Neo.colors.feedback.error }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                                    <View style={[styles.pontoIcon, { backgroundColor: '#FFEBEE' }]}>
+                                    <View style={[styles.pontoIcon, { backgroundColor: 'rgba(239,68,68,0.10)' }]}>
                                         <Small style={{ fontSize: 20 }}>{ponto.icone}</Small>
                                     </View>
                                     <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600' }}>
@@ -147,7 +147,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                                 </View>
                                 {ponto.itens.map((item, idx) => (
                                     <View key={idx} style={styles.itemFraco}>
-                                        <NeoIcon name={item.critico ? "Danger" : "Warning2"} size={16} color={item.critico ? "#D32F2F" : "#F57C00"} />
+                                        <NeoIcon name={item.critico ? "Danger" : "Warning2"} size={16} color={item.critico ? Neo.colors.feedback.error : Neo.colors.feedback.warning} />
                                         <Small style={{ flex: 1, marginLeft: 8, color: Neo.colors.neutral[700], fontWeight: item.critico ? 'bold' : 'normal' }}>
                                             {item.texto}
                                         </Small>
@@ -172,10 +172,10 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                 </View>
 
                 {/* Orientações Finais */}
-                <NeoCard variant="elevated" style={{ padding: 20, marginTop: 24, backgroundColor: '#F3E5F5' }}>
+                <NeoCard variant="elevated" style={{ padding: 20, marginTop: 24, backgroundColor: 'rgba(180,83,9,0.08)' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-                        <NeoIcon name="LampOn" size={24} color="#9C27B0" />
-                        <H3 style={{ marginLeft: 12, color: '#9C27B0' }}>{t('headersFirst.dicaImportante', 'Dica Importante')}</H3>
+                        <NeoIcon name="LampOn" size={24} color={Neo.colors.gridAccents.eventuais.color} />
+                        <H3 style={{ marginLeft: 12, color: Neo.colors.gridAccents.eventuais.color }}>{t('headersFirst.dicaImportante', 'Dica Importante')}</H3>
                     </View>
                     <Body style={{ lineHeight: 22 }}>
                         {t('headersFirst.nenhumaInstituiOAtingirPontuaOMXimaEmTod', `Nenhuma instituição atingirá pontuação máxima em todos os itens. Priorize as intervenções nos quesitos classificados como críticos.

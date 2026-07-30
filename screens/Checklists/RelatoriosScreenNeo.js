@@ -24,6 +24,7 @@ import AppBackground from '../../components/AppBackground';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { SkeletonCard } from '../../components/SkeletonLoader';
+import NeoHeroHeader from '../../components/NeoHeroHeader';
 
 // Helper de cor para badge de status do ambiente
 const getStatusStyle = (status) => {
@@ -184,24 +185,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
 
     const missingProfilesCount = Math.max(0, (familyMeta?.totalMoradoresEsperados || 0) - profilesCount);
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 200;
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateLeft: 'extend',
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
+
 
     const capaUrl = require('../../assets/illustrations/pad/hero_preventivo.png');
 
@@ -233,51 +217,13 @@ export default function RelatoriosScreenNeo({ navigation }) {
                 contentContainerStyle={[s.scrollContent, { paddingBottom: 120 }]}
             >
                 {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: Dimensions.get('window').width,
-                    alignSelf: 'center',
-                    marginTop: -4,
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors.neutral[800],
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                    marginBottom: 16,
-                }}>
-                    <ReviewImage
-                        source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                            marginBottom: 8,
-                        }}>
-                            {t('reports.title', 'Vistorias da Casa')}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {t('reports.subtitle', 'Acompanhe as rondas de segurança')}
-                        </Text>
-                    </View>
-                </Animated.View>
+                <NeoHeroHeader
+                    scrollY={scrollY}
+                    source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
+                    title={t('reports.title', 'Vistorias da Casa')}
+                    subtitle={t('reports.subtitle', 'Acompanhe as rondas de segurança')}
+                    height={260}
+                />
                     {loading ? (
                         <View style={{ paddingHorizontal: Neo.spacing.lg, marginTop: 12 }}>
                             <SkeletonCard hasAvatar={false} lines={3} />

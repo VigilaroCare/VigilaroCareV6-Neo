@@ -491,9 +491,9 @@ const s = StyleSheet.create({
     historyName: { fontWeight: '700', fontSize: 14 },
     historyDate: { marginTop: 1 },
 
-    // CIATOX — vermelho solido fixo, nao usa NeoCard/glass (emergencia = sempre visivel igual)
+    // CIATOX — vermelho sólido: emergência = sempre visível. Usa DS feedback.error.
     ciatoxCard: {
-        flexDirection: 'row', alignItems: 'center', backgroundColor: '#D32F2F', padding: 14, borderRadius: 18,
+        flexDirection: 'row', alignItems: 'center', backgroundColor: Neo.colors.feedback.error, padding: 14, borderRadius: 18,
     },
     ciatoxIconWrap: {
         width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.22)',

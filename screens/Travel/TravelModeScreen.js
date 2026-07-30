@@ -70,7 +70,7 @@ const TRAVEL_PICTOGRAMS = {
     // companhia
     companhia_criancas:    require('../../assets/illustrations/travel-pictograms/pictogram-companhia-criancas.png'),
     companhia_idosos:      require('../../assets/illustrations/travel-pictograms/pictogram-companhia-idosos.png'),
-    companhia_pcd:         require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd.png'),
+    companhia_pcd:         require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd-v3.png'),
     companhia_pets:        require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pets.png'),
 
     // duração
@@ -119,7 +119,7 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
                         </View>
                     )}
                 </View>
-                <Text style={[s.gridLabel, selected && { color: Neo.colors.primary[700] }]}>
+                <Text style={[s.gridLabel, selected && { color: Neo.colors.primary[700] }, { marginTop: -10 }]}>
                     {label}
                 </Text>
             </View>
@@ -167,7 +167,7 @@ export default function TravelModeScreen({ navigation }) {
         }
     ];
 
-    const capaSource = { uri: 'https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=1200' };
+    const capaSource = require('../../assets/images/headers/header-travel-mode.jpeg');
 
     useEffect(() => {
         loadTrip();
@@ -589,6 +589,7 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         gap: 10,
         marginBottom: 4,
+        marginTop: -14, // Compensa o padding transparente no topo dos assets 3D
     },
     gridCell: {
         width: '48%',

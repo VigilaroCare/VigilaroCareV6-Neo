@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   Modal,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -17,6 +18,7 @@ import SubscriptionService from '../services/SubscriptionService';
 
 import NeoCard from '../components/NeoCard';
 import NeoHorizontalCard from '../components/NeoHorizontalCard';
+import PictogramTile from '../components/PictogramTile';
 import { H1, H3, Body, Small } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
@@ -105,7 +107,7 @@ export default function MenuScreenNeo() {
         {
             key: 'acessibilidade',
             iconName: 'PersonSimpleCircle',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-acessibilidade.png'),
+            image: require('../assets/illustrations/travel-pictograms/pictogram-companhia-pcd-v3.png'),
             accent: GA.saude, // teal
             label: t('menu.accessibility'),
             description: t('menu.accessibilityDesc', 'Tamanho de fonte, tema e ajustes de leitura.'),
@@ -166,19 +168,24 @@ export default function MenuScreenNeo() {
             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                 {title}
             </Text>
-            {items.map((item) => (
-                <NeoHorizontalCard
-                    key={item.key}
-                    title={item.label}
-                    description={item.description}
-                    iconName={item.iconName}
-                    imageUrl={item.image}
-                    plainImage
-                    centerText
-                    color={item.accent.color}
-                    onPress={item.action}
-                />
-            ))}
+            <View style={s.gridContainer}>
+                {items.map((item) => (
+                    <TouchableOpacity
+                        key={item.key}
+                        activeOpacity={0.85}
+                        onPress={item.action}
+                        style={s.gridItem}
+                    >
+                        <PictogramTile 
+                            source={item.image} 
+                            width="100%"
+                        />
+                        <Small style={s.gridItemText} numberOfLines={2}>
+                            {item.label}
+                        </Small>
+                    </TouchableOpacity>
+                ))}
+            </View>
         </View>
     );
 
@@ -189,11 +196,12 @@ export default function MenuScreenNeo() {
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
+                    bounces={false}
                     contentContainerStyle={{
+                        flexGrow: 1,
                         paddingHorizontal: Neo.spacing.lg,
-                        paddingTop: 8,
-                        paddingBottom: 190, // libera espaço para o GlobalFloatingFooter
-                                            // (botão SOS estende acima da barra base)
+                        paddingTop: 0,
+                        paddingBottom: 20, // Strict minimum for scroll zero
                     }}
                 >
                     {/* HEADER — só o título (perfil/residência vivem na Home;
@@ -206,11 +214,11 @@ export default function MenuScreenNeo() {
                     <TouchableOpacity
                         activeOpacity={0.85}
                         onPress={() => navigateWithHaptic('UpgradePremium')}
-                        style={{ marginTop: 4, marginBottom: 18 }}
+                        style={{ marginTop: 0, marginBottom: 8 }}
                     >
-                        <NeoCard variant="elevated" style={s.premiumCard}>
+                        <NeoCard variant="premium" style={[s.premiumCard, { backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)' }]}>
                             <View style={s.premiumIconWrap}>
-                                <NeoIcon name="Crown" size={26} color={Neo.colors.primary[700]} variant="Bulk" />
+                                <NeoIcon name="Sparkle" size={26} color={Neo.colors.primary[700]} variant="Bulk" />
                             </View>
                             <View style={{ flex: 1, marginLeft: 14 }}>
                                 <Body style={s.premiumTitle}>
@@ -338,30 +346,50 @@ const s = StyleSheet.create({
     },
     // Seções
     sectionContainer: {
-        marginTop: 24,
+        marginTop: 8,
     },
     sectionLabel: {
-        fontSize: 11,
+        fontSize: 12,
         fontWeight: '900',
         color: Neo.colors.neutral[700],
         letterSpacing: 1.6,
-        marginBottom: 10,
-        marginLeft: 16,
+        marginBottom: 8, // Padronizado com o grid da Home (8px)
+        marginLeft: 4,
         textTransform: 'uppercase',
         textAlign: 'left',
         opacity: 0.85,
+    },
+    gridContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        marginTop: -14, // Compensa o padding transparente no topo dos assets 3D cerâmicos
+    },
+    gridItem: {
+        alignItems: 'center',
+        width: '49%', // 2 columns like Home
+        marginBottom: 8,
+    },
+    gridItemText: {
+        textAlign: 'center',
+        fontSize: 13,
+        fontWeight: '700',
+        color: Neo.colors.neutral[900],
+        lineHeight: 16,
+        marginTop: -10, // pulls text closer to the image
+        paddingHorizontal: 4,
     },
 
 // Destrutivo + footer
     divider: {
         height: 1,
         backgroundColor: 'rgba(0,0,0,0.08)',
-        marginTop: 28,
-        marginBottom: 6,
+        marginTop: 8,
+        marginBottom: 0,
     },
     resetLink: {
         alignSelf: 'center',
-        paddingVertical: 12,
+        paddingVertical: 6,
         paddingHorizontal: 16,
     },
     resetLinkText: {
@@ -374,7 +402,7 @@ const s = StyleSheet.create({
     versionText: {
         textAlign: 'center',
         color: Neo.colors.neutral[400],
-        marginTop: 8,
+        marginTop: 4,
         fontSize: 11,
     },
 

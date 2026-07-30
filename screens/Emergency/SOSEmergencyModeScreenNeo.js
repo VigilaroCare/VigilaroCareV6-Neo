@@ -447,12 +447,12 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 {/* ═══ MODAL: FICHA MÉDICA (Refinado para combinar) ═══ */}
                 <Modal visible={fichaModalVisible} transparent animationType="slide" onRequestClose={() => setFichaModalVisible(false)}>
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'flex-end' }}>
-                        <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 32, borderTopRightRadius: 32, padding: 32, maxHeight: '85%' }}>
+                        <View style={{ backgroundColor: 'rgba(22,22,26,0.97)', borderTopLeftRadius: 32, borderTopRightRadius: 32, padding: 32, maxHeight: '85%' }}>
                             {/* Header */}
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <NeoIcon name="Personalcard" size={28} color="#991B1B" style={{ marginRight: 12 }} />
-                                    <H2 style={{ color: '#991B1B', fontSize: 20 }}>{t('headersFirst.fichaMDica', 'Ficha Médica')}</H2>
+                                    <NeoIcon name="Personalcard" size={28} color={Neo.colors.feedback.error} style={{ marginRight: 12 }} />
+                                    <H2 style={{ color: Neo.colors.feedback.error, fontSize: 20 }}>{t('headersFirst.fichaMDica', 'Ficha Médica')}</H2>
                                 </View>
                                 <TouchableOpacity onPress={() => setFichaModalVisible(false)}>
                                     <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[300]} />
@@ -492,7 +492,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'flex-end' }}>
                         <View style={{ backgroundColor: '#FFF', borderTopLeftRadius: 32, borderTopRightRadius: 32, padding: 32, maxHeight: '85%' }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-                                <H2 style={{ color: '#1A1A1A' }}>{t('headersFirst.meusContatos', 'Meus Contatos')}</H2>
+                                <H2 style={{ color: Neo.colors.neutral.white }}>{t('headersFirst.meusContatos', 'Meus Contatos')}</H2>
                                 <TouchableOpacity onPress={() => setContactsModalVisible(false)}>
                                     <NeoIcon name="CloseCircle" size={32} color={Neo.colors.neutral[300]} />
                                 </TouchableOpacity>
@@ -512,11 +512,11 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                             </View>
                                             
                                             <View style={{ flexDirection: 'row', gap: 12 }}>
-                                                <TouchableOpacity onPress={() => handleWhatsAppDirect(c.phone)} style={{ padding: 10, backgroundColor: '#E8F5E9', borderRadius: 14 }}>
+                                                <TouchableOpacity onPress={() => handleWhatsAppDirect(c.phone)} style={{ padding: 10, backgroundColor: 'rgba(37,211,102,0.15)', borderRadius: 14 }}>
                                                     <NeoIcon name="Whatsapp" size={24} color="#25D366" />
                                                 </TouchableOpacity>
-                                                <TouchableOpacity onPress={() => handleCall(c.phone)} style={{ padding: 10, backgroundColor: '#FEF2F2', borderRadius: 14 }}>
-                                                    <NeoIcon name="Call" size={24} color="#DC2626" />
+                                                <TouchableOpacity onPress={() => handleCall(c.phone)} style={{ padding: 10, backgroundColor: 'rgba(239,68,68,0.12)', borderRadius: 14 }}>
+                                                    <NeoIcon name="Call" size={24} color={Neo.colors.feedback.error} />
                                                 </TouchableOpacity>
                                             </View>
                                         </NeoCard>
@@ -540,8 +540,8 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 {/* Add Contact Modal */}
                 <Modal visible={addContactModalVisible} transparent animationType="fade">
                     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: '85%', backgroundColor: '#FFF', borderRadius: 24, padding: 32 }}>
-                            <H3 style={{ marginBottom: 24, color: '#1A1A1A' }}>{t('headersFirst.novoContato', 'Novo Contato')}</H3>
+                        <View style={{ width: '85%', backgroundColor: 'rgba(22,22,26,0.97)', borderRadius: 24, padding: 32 }}>
+                            <H3 style={{ marginBottom: 24, color: Neo.colors.neutral.white }}>{t('headersFirst.novoContato', 'Novo Contato')}</H3>
                             <TextInput
                                 placeholder="Nome (Ex: Filha Ana)" value={newContactName} onChangeText={setNewContactName}
                                 style={{ borderWidth: 1, borderColor: Neo.colors.neutral[200], padding: 16, borderRadius: 16, marginBottom: 16, fontSize: 16, backgroundColor: Neo.colors.neutral[50] }}
@@ -554,7 +554,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: Neo.colors.neutral[100], borderRadius: 16 }} onPress={() => setAddContactModalVisible(false)}>
                                     <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[600] }}>Cancelar</Body>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: '#991B1B', borderRadius: 16 }} onPress={() => {
+                                <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: Neo.colors.feedback.error, borderRadius: 16 }} onPress={() => {
                                     if (newContactName && newContactPhone) {
                                         const novaLista = [...customContacts, { id: Date.now().toString(), name: newContactName, phone: newContactPhone }];
                                         setCustomContacts(novaLista);

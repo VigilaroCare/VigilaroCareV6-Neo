@@ -80,7 +80,7 @@ export default function SaudePetScreen() {
 
     const titleStr = petId ? (pet?.nome || 'Pet') : t('health.petHealth', 'Saúde do Pet');
     const subtitleStr = petId ? 'Ficha de saúde' : null;
-    const capaSource = { uri: 'https://images.pexels.com/photos/6235017/pexels-photo-6235017.jpeg?auto=compress&cs=tinysrgb&w=1200' };
+    const capaSource = require('../../assets/images/headers/header-pet.jpeg');
     const themeColors = Neo.colors;
     const isDark = false;
 

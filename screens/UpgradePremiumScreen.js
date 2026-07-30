@@ -74,12 +74,17 @@ const resolvePackage = (packages, tier, period) => {
   );
 };
 
-export default function UpgradePremiumScreen({ navigation }) {
+export default function UpgradePremiumScreen({ route, navigation }) {
   const { t } = useTranslation();
   const colors = useThemeColors();
   const styles = useMemo(() => getStyles(colors), [colors]);
 
-  const [selectedTier, setSelectedTier] = useState('premium');
+  const featureContext = route.params?.featureContext;
+  const contextTitle = route.params?.contextTitle;
+  const contextDescription = route.params?.contextDescription;
+  const contextIcon = route.params?.contextIcon;
+
+  const selectedTier = 'premium'; // Família é roadmap futuro
   const [selectedPeriod, setSelectedPeriod] = useState('annual');
   const [packages, setPackages] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -321,6 +326,19 @@ export default function UpgradePremiumScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
+        {/* Context Card */}
+        {featureContext && (
+          <View style={styles.contextCard}>
+            <View style={styles.contextIconWrap}>
+              <NeoIcon name={contextIcon || 'Crown1'} size={24} color={colors.secondary[600] || '#8B5CF6'} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.contextTitle}>{contextTitle}</Text>
+              <Text style={styles.contextDesc}>{contextDescription}</Text>
+            </View>
+          </View>
+        )}
+
         {/* Hero */}
         <View style={styles.hero}>
           <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || '#8B5CF6']} style={styles.heroIcon}>
@@ -330,26 +348,6 @@ export default function UpgradePremiumScreen({ navigation }) {
           <Text style={styles.heroSubtitle}>
             {t('upgrade.heroSub')}
           </Text>
-        </View>
-
-        {/* Tier Selector */}
-        <View style={styles.tierSelector}>
-          {['premium', 'familia'].map(tier => (
-            <TouchableOpacity
-              key={tier}
-              style={[styles.tierTab, selectedTier === tier && styles.tierTabActive]}
-              onPress={() => setSelectedTier(tier)}
-            >
-              <Text style={[styles.tierTabText, selectedTier === tier && styles.tierTabTextActive]}>
-                {tier === 'premium' ? t('upgrade.premium') : t('upgrade.family')}
-              </Text>
-              {tier === 'familia' && (
-                <View style={styles.bestValueBadge}>
-                  <Text style={styles.bestValueText}>{t('upgrade.mostComplete')}</Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          ))}
         </View>
 
         {/* Features */}
@@ -468,6 +466,10 @@ const getStyles = (colors) => StyleSheet.create({
   retryButtonText: { fontSize: 16, fontWeight: '600', color: colors.neutral.white },
   header: { flexDirection: 'row', justifyContent: 'flex-end', padding: 16 },
   closeButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.neutral[200], justifyContent: 'center', alignItems: 'center' },
+  contextCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.secondary[50], marginHorizontal: 24, padding: 16, borderRadius: 16, marginBottom: 24, borderWidth: 1, borderColor: colors.secondary[100] },
+  contextIconWrap: { width: 48, height: 48, borderRadius: 24, backgroundColor: colors.secondary[100], justifyContent: 'center', alignItems: 'center', marginRight: 16 },
+  contextTitle: { fontSize: 16, fontWeight: 'bold', color: colors.secondary[900], marginBottom: 4 },
+  contextDesc: { fontSize: 13, color: colors.secondary[700], lineHeight: 18 },
   hero: { alignItems: 'center', paddingHorizontal: 24, marginBottom: 24 },
   heroIcon: { width: 80, height: 80, borderRadius: 40, justifyContent: 'center', alignItems: 'center', marginBottom: 16 },
   heroTitle: { fontSize: 24, fontWeight: 'bold', color: colors.neutral[900], textAlign: 'center', marginBottom: 8 },

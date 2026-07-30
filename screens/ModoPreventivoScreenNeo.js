@@ -21,6 +21,7 @@ import FadeInView from '../components/FadeInView';
 
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
+import NeoHeroHeader from '../components/NeoHeroHeader';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation();
@@ -116,29 +117,12 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
         return Neo.colors.feedback.error;
     };
 
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateLeft: 'extend',
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
+
 
     const titleStr = t('headersFirst.atividadesEventuais', 'Atividades Eventuais');
     const subtitleStr = t('monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar');
     const capaSource = require('../assets/illustrations/pad/hero_preventivo.png');
+    const scrollY = useRef(new Animated.Value(0)).current;
 
     return (
         <AppBackground>
@@ -169,49 +153,13 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                 onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
             >
                 {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors?.neutral?.[800] || '#222',
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <Image
-                        source={capaSource}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                        accessibilityLabel={titleStr}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                            marginBottom: 8,
-                        }}>
-                            {titleStr}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitleStr}
-                        </Text>
-                    </View>
-                </Animated.View>
+                <NeoHeroHeader
+                    scrollY={scrollY}
+                    source={capaSource}
+                    title={titleStr}
+                    subtitle={subtitleStr}
+                    height={260}
+                />
 
                 {/* Main Content */}
                 <View style={{ marginTop: 24, paddingHorizontal: 24 }}>

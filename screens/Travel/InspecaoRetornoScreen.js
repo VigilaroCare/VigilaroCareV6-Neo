@@ -149,7 +149,7 @@ export default function InspecaoRetornoScreen({ navigation }) {
                     marginHorizontal: -16,
                 }}>
                     <Image
-                        source={{ uri: 'https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=800' }}
+                        source={require('../../assets/images/headers/header-retorno.jpeg')}
                         style={{ width: '100%', height: '100%' }}
                         resizeMode="cover"
                     />

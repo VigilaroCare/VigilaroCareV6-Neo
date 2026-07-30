@@ -48,11 +48,11 @@ export default function PetFormStep({
                         ) : (
                             <NeoIcon name="Heart" size={48} color={C.neutral[400]} variant="Bold" />
                         )}
-                        <View style={[ss.cameraBadge, { backgroundColor: '#EF6C00' }]}>
+                        <View style={[ss.cameraBadge, { backgroundColor: Neo.colors.primary[600] }]}>
                             <NeoIcon name="Camera" size={16} color="#FFF" />
                         </View>
                     </View>
-                    <Caption style={{ textAlign: 'center', marginTop: 8, color: '#EF6C00' }}>Adicionar Foto</Caption>
+                    <Caption style={{ textAlign: 'center', marginTop: 8, color: Neo.colors.primary[600] }}>Adicionar Foto</Caption>
                 </TouchableOpacity>
 
                 <NeoInput label="Nome" value={formName} onChangeText={setFormName} placeholder="Ex: Rex" />
@@ -116,7 +116,7 @@ export default function PetFormStep({
                     </View>
                 )}
 
-                <TouchableOpacity style={[ss.saveBtn, { backgroundColor: '#EF6C00' }]} onPress={onSave} activeOpacity={0.9}>
+                <TouchableOpacity style={[ss.saveBtn, { backgroundColor: Neo.colors.primary[600] }]} onPress={onSave} activeOpacity={0.9}>
                     <NeoIcon name="TickCircle" size={22} color="#FFF" />
                     <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar pet</Body>
                 </TouchableOpacity>

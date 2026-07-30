@@ -2054,7 +2054,7 @@ export const animaisCatalog = [
         ],
         tratamento: "Sintomático e soro específico se disponível.",
         gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
-        imagem: require('../assets/sinitox/animais/ts_amarelo.jpg'),
+        imagem: require('../assets/sinitox/animais/tb_marrom.png'),
         tipo: "outro",
     },
     {

@@ -167,7 +167,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityLabel={item.titulo}
                     >
                         <PictogramTile source={pictogramSource} style={s.ceramicImage} />
-                        <Text style={[s.gridLabel, { color: textPrimary }]} numberOfLines={2}>
+                        <Text style={[s.gridLabel, { color: textPrimary, marginTop: -10 }]} numberOfLines={2}>
                             {item.titulo}
                         </Text>
                     </TouchableOpacity>
@@ -298,7 +298,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                 </Animated.View>
 
                 {/* Main Content */}
-                <View style={{ paddingTop: 24 }}>
+                <View style={{ paddingTop: 24, paddingHorizontal: Neo.spacing.lg }}>
 
                     {/* DESTAQUES — carrossel horizontal */}
                     <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
@@ -376,14 +376,14 @@ export default function KnowledgeHubScreen({ navigation }) {
                         style={{ marginTop: 18, marginBottom: 8 }}
                     >
                         <NeoCard variant="elevated" style={s.radarCard}>
-                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={66} />
+                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={110} />
                             <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
                                 <Body style={s.radarTitle}>
                                     {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
                                 </Body>
                             </View>
                             <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.feedback.error} />
+                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.neutral[600]} />
                             </View>
                         </NeoCard>
                     </TouchableOpacity>
@@ -399,7 +399,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityLabel={conceitoItem.titulo}
                     >
                         <NeoCard variant="elevated" style={s.conceitoCard}>
-                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={66} style={s.conceptPictogramWrap} />
+                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={110} style={s.conceptPictogramWrap} />
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
                                 <Body style={{ fontWeight: '800', color: textPrimary, fontSize: 14 }}>
                                     {conceitoItem.titulo}
@@ -413,7 +413,7 @@ export default function KnowledgeHubScreen({ navigation }) {
 
                     {/* 5 SEÇÕES — grid 3 colunas */}
                     {SECTIONS.map((section) => (
-                        <View key={section.key} style={{ marginTop: 20 }}>
+                        <View key={section.key} style={{ marginTop: 12 }}>
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                                 {section.title}
                             </Text>
@@ -452,7 +452,7 @@ const s = StyleSheet.create({
         fontWeight: '900',
         color: Neo.colors.neutral[700],
         letterSpacing: 1.6,
-        marginBottom: 10,
+        marginBottom: 8, // Padronizado com o grid da Home (8px)
         textTransform: 'uppercase',
         textAlign: 'center', // tela-grid: título centralizado (família Home/Viagem)
         opacity: 0.85,
@@ -519,8 +519,10 @@ const s = StyleSheet.create({
     radarCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 16,
+        paddingVertical: 6,
+        paddingHorizontal: 12,
         borderRadius: 18,
+        backgroundColor: Neo.colors.tile.cream,
     },
     radarTitle: {
         fontWeight: '800',
@@ -531,8 +533,10 @@ const s = StyleSheet.create({
     conceitoCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 14,
+        paddingVertical: 6,
+        paddingHorizontal: 12,
         borderRadius: 16,
+        backgroundColor: Neo.colors.tile.cream,
     },
     conceptPictogramWrap: {
         marginRight: 14,
@@ -542,7 +546,9 @@ const s = StyleSheet.create({
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'center',
         gap: 8,
+        marginTop: -14, // Compensa o padding transparente no topo dos assets 3D
     },
     gridCell: {
         width: '31.5%',

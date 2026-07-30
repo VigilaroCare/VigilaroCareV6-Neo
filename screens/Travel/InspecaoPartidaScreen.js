@@ -126,7 +126,7 @@ export default function InspecaoPartidaScreen({ navigation }) {
                     marginHorizontal: -16,
                 }}>
                     <Image
-                        source={{ uri: 'https://images.pexels.com/photos/279810/pexels-photo-279810.jpeg?auto=compress&cs=tinysrgb&w=800' }}
+                        source={require('../../assets/images/headers/header-partida.jpeg')}
                         style={{ width: '100%', height: '100%' }}
                         resizeMode="cover"
                     />

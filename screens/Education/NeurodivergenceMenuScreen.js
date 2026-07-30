@@ -22,7 +22,7 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
     const data = NEURODIVERGENCE_DATA;
 
     const { heroImage } = route?.params || {};
-    const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : { uri: 'https://images.pexels.com/photos/7162002/pexels-photo-7162002.jpeg?auto=compress&cs=tinysrgb&w=800' };
+    const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/images/headers/header-neuro.jpeg');
 
     const scrollY = React.useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;

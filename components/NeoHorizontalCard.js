@@ -29,7 +29,12 @@ export default function NeoHorizontalCard({
     
     const textPrimary = themeColors.neutral[900];
     const textBody = themeColors.neutral[700];
-    const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
+    // Quando exibe pictograma cerâmico (plainImage), o fundo usa o mesmo
+    // creme da moldura do tile (#F4EBDC) para fundir card e pictograma.
+    // Para fotos e ícones, mantém o fundo glass/branco padrão.
+    const cardBg = plainImage
+        ? Neo.colors.tile.cream
+        : isDark ? themeColors.neutral[200] : '#FFFFFF';
     const borderColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)';
 
     const [imgFailed, setImgFailed] = useState(false);
@@ -51,14 +56,14 @@ export default function NeoHorizontalCard({
                     backgroundColor: cardBg,
                     borderColor: borderColor,
                 }]}>
-                    {/* Container Esquerdo (120x120) */}
-                    <View style={[styles.imageContainer, { backgroundColor: color + '18' }]}>
+                    {/* Container Esquerdo */}
+                    <View style={[styles.imageContainer, plainImage ? styles.imageContainerPlain : { backgroundColor: color + '18' }]}>
                         {showImage ? (
                             plainImage ? (
                                 <Image
                                     source={typeof imageUrl === 'number' ? imageUrl : { uri: imageUrl }}
                                     style={{ width: '100%', height: '100%' }}
-                                    resizeMode="contain"
+                                    resizeMode="cover"
                                     accessibilityLabel={title}
                                     onError={handleImgError}
                                 />
@@ -127,6 +132,10 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    imageContainerPlain: {
+        width: 160, // 120 height * (4/3 aspect ratio) to perfectly fit the ceramic tile
+        backgroundColor: 'transparent',
     },
     textCol: {
         flex: 1,

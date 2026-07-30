@@ -94,7 +94,7 @@ export default function MinhaSaudeScreen() {
 
     const titleStr = perfilId ? (profile?.nome || 'Perfil') : t('health.myHealth', 'Sua Saúde');
     const subtitleStr = perfilId ? 'Ficha de saúde' : (profile?.nome || null);
-    const capaSource = { uri: 'https://images.pexels.com/photos/3768005/pexels-photo-3768005.jpeg?auto=compress&cs=tinysrgb&w=1200' };
+    const capaSource = require('../../assets/images/headers/header-saude.jpeg');
     const themeColors = Neo.colors;
     const isDark = false;
 
@@ -303,7 +303,28 @@ export default function MinhaSaudeScreen() {
                         <Eyebrow style={s.eyebrow}>Mural de Rotina</Eyebrow>
                         <Section icon="Plus" color={HUE.sky} title="Medicamentos em Uso">
                             {renderChips(medicamentos, HUE.sky)}
-                            <Body style={s.hintText}>Lista informativa — sem alarmes ou lembretes ativos.</Body>
+                            <TouchableOpacity
+                                style={{
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 6,
+                                    marginTop: 12,
+                                    alignSelf: 'flex-start',
+                                    backgroundColor: HUE.sky + '12',
+                                    paddingHorizontal: 14,
+                                    paddingVertical: 8,
+                                    borderRadius: 999,
+                                    borderWidth: 1,
+                                    borderColor: HUE.sky + '30',
+                                }}
+                                onPress={() => navigation.navigate('MedicationReminders', { perfilId: profile?.id, perfilNome: profile?.nome })}
+                                accessibilityLabel="Gerenciar lembretes de medicamentos"
+                            >
+                                <NeoIcon name="Clock" variant="Bold" size={14} color={HUE.sky} />
+                                <Small style={{ color: HUE.sky, fontWeight: '700', fontSize: 13 }}>
+                                    Gerenciar lembretes
+                                </Small>
+                            </TouchableOpacity>
                         </Section>
 
                         {/* OUTROS PERFIS — linhas dentro de um NeoCard (§4); voltar retorna ao ativo */}
