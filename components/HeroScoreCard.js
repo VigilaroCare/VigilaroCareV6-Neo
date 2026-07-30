@@ -216,9 +216,13 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, hero
         headline,
         defaultValue: `${sectionTitle}: ${score} por cento. ${headline}.`,
     });
-    const a11yHint = isExpanded
-        ? t('home.collapsePending', 'Toque para recolher os ambientes com pendência')
-        : t('home.expandPending', 'Toque para ver os ambientes com pendência');
+    // Score 0: o poco ja fica sempre aberto (nada pra recolher), entao o hint
+    // de expandir/recolher nao se aplica — auditoria UX 2026-07-30, achado 1.
+    const a11yHint = score === 0
+        ? undefined
+        : (isExpanded
+            ? t('home.collapsePending', 'Toque para recolher os ambientes com pendência')
+            : t('home.expandPending', 'Toque para ver os ambientes com pendência'));
 
     return (
         <View
@@ -235,6 +239,20 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, hero
                 <Text style={[styles.heroTitle, { color: mutedText }]} numberOfLines={1}>
                     {sectionTitle.toUpperCase()}
                 </Text>
+
+                {scoreData?.pendencias > 0 && (
+                    <View style={styles.pendenciaPillWrap}>
+                        <View style={[styles.pendenciaPill, { backgroundColor: colors.feedback.error }]}>
+                            <NeoIcon name="Warning2" size={12} color={colors.neutral.white} variant="Bold" />
+                            <Text style={styles.pendenciaPillText} numberOfLines={1}>
+                                {t('home.pendenciasPill', {
+                                    count: scoreData.pendencias,
+                                    defaultValue: scoreData.pendencias === 1 ? '1 pendência' : `${scoreData.pendencias} pendências`,
+                                })}
+                            </Text>
+                        </View>
+                    </View>
+                )}
 
                 <View style={styles.compactPanel}>
                     <View style={styles.compactMain}>
@@ -273,17 +291,25 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, hero
                 </View>
             </TouchableOpacity>
 
-            {isExpanded && (
+            {(isExpanded || score === 0) && (
                 <View style={[styles.heroWell, { borderTopColor: track }]}>
-                    <Text style={[styles.pendingTitle, { color: mutedText }]} numberOfLines={1}>
-                        {t('home.pendingEnvironmentsTitle', 'Ambientes com pendência')}
-                    </Text>
-                    {pendingAmbientes.length > 0 ? (
-                        pendingAmbientes.map(renderPendingItem)
-                    ) : (
+                    {score === 0 ? (
                         <Text style={[styles.noPendingText, { color: mutedText }]}>
-                            {t('home.noPendingEnvironments', 'Nenhum ambiente com pendência ativa.')}
+                            {ScoreService.getMensagemImpacto(score, scoreData?.pendencias || 0).alerta}
                         </Text>
+                    ) : (
+                        <>
+                            <Text style={[styles.pendingTitle, { color: mutedText }]} numberOfLines={1}>
+                                {t('home.pendingEnvironmentsTitle', 'Ambientes com pendência')}
+                            </Text>
+                            {pendingAmbientes.length > 0 ? (
+                                pendingAmbientes.map(renderPendingItem)
+                            ) : (
+                                <Text style={[styles.noPendingText, { color: mutedText }]}>
+                                    {t('home.noPendingEnvironments', 'Nenhum ambiente com pendência ativa.')}
+                                </Text>
+                            )}
+                        </>
                     )}
 
                     {onOpenHomeXRay && (
@@ -337,6 +363,27 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         letterSpacing: 1.2,
         marginBottom: 3,
+    },
+    // Selo de pendencias — so aparece quando ha alguma (soma zero visual em
+    // relacao ao card de hoje quando pendencias=0). Consolidado aqui em vez
+    // de duplicado num tile do grid, a pedido do Agnaldo (2026-07-30): o Hero
+    // ja e "o campo onde aparecem as pendencias", nao faz sentido replicar.
+    pendenciaPillWrap: {
+        alignItems: 'center',
+        marginBottom: 6,
+    },
+    pendenciaPill: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 12,
+    },
+    pendenciaPillText: {
+        color: '#FFF',
+        fontSize: 12,
+        fontWeight: '800',
     },
     compactPanel: {
         paddingHorizontal: 14,

@@ -125,9 +125,13 @@ export default function HomeScreenNeo() {
         GRID_IMG_W = CONTENT_W * 0.32;
         cellWidth = '32%';
     } else if (columns === 2) {
-        // 0.42 (era 0.49): comprime a altura do grid p/ as 4 fileiras (8 tiles)
-        // caberem acima do footer. Regra do produto: "Home sem scroll,
-        // compensar altura nos pictogramas".
+        // 0.42 (era 0.49 originalmente): comprime a altura do grid p/ as 4
+        // fileiras (8 tiles) caberem acima do footer. Regra do produto:
+        // "Home sem scroll, compensar altura nos pictogramas".
+        // Tentativa de bump p/ 0.43 em 2026-07-30 foi revertida: mesmo com
+        // trims compensando a altura total, cada tile ficava mais alto, o
+        // que empurrava o rotulo da ULTIMA fileira (Cuidar&Proteger/Modo
+        // Viagem) pra tras do footer flutuante no device real.
         GRID_IMG_W = CONTENT_W * 0.42;
         cellWidth = '49%';
     } else {
@@ -228,8 +232,12 @@ export default function HomeScreenNeo() {
             };
         }
         if (hasCriticalScore) {
+            // Faixa "critico" do ScoreService (score < 40) ganha tom solido —
+            // risco real aberto na casa nao pode ter menos peso visual que
+            // elementos decorativos da tela (auditoria UX 2026-07-30, achado 2).
+            const isSevere = scoreData.geral < 40;
             return {
-                tone: 'warning',
+                tone: isSevere ? 'critical' : 'warning',
                 label: t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` }),
                 route: 'Relatorios',
                 params: { focus: 'pendencias' },
@@ -285,42 +293,44 @@ export default function HomeScreenNeo() {
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
                 <StatusBar style="dark" />
 
-                <View style={s.homeHeader}>
-                    {/* Par alinhado: saudacao + avatar centralizados na mesma
-                        linha — o avatar ancora no nome, nao no bloco inteiro. */}
-                    <View style={[s.identityRow, { flexDirection: rowDirection }]}>
+                <View style={[s.homeHeader, { flexDirection: rowDirection }]}>
+                    {/* Coluna esquerda: saudacao + chip empilhados. O avatar
+                        (a direita) centraliza contra ESSE bloco de 2 linhas,
+                        nao so contra a saudacao — mais compacto (max() em vez
+                        de soma de duas fileiras) e libera altura real pro
+                        resto da Home. Ajustado 2026-07-30 depois de o par
+                        "so saudacao" ter empurrado os titulos da ultima
+                        fileira do grid pra tras do footer flutuante. */}
+                    <View style={s.greetingGroup}>
                         <H2 style={[s.greetingText, { color: textPrimary }]} numberOfLines={1} accessibilityRole="header">
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
-
-                        <TappablePressable
-                            onPress={() => navigateWithHaptic('QuemProteger')}
-                            style={s.profileRingPress}
-                            accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
+                        <View
+                            style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
+                            accessible
+                            accessibilityRole="summary"
+                            accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
                         >
-                            <GlassProfileRing
-                                profile={currentProfile}
-                                score={scoreData.geral}
-                                imageError={imageError}
-                                onImageError={() => setImageError(true)}
-                                resolveUri={ProfileService.resolveImageUri}
-                                size={48}
-                                ringWidth={3}
-                            />
-                        </TappablePressable>
+                            <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
+                            <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
+                        </View>
                     </View>
 
-                    {/* Linha propria, largura livre — nao disputa mais o
-                        centro vertical do avatar. */}
-                    <View
-                        style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
-                        accessible
-                        accessibilityRole="summary"
-                        accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
+                    <TappablePressable
+                        onPress={() => navigateWithHaptic('QuemProteger')}
+                        style={s.profileRingPress}
+                        accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
                     >
-                        <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
-                        <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
-                    </View>
+                        <GlassProfileRing
+                            profile={currentProfile}
+                            score={scoreData.geral}
+                            imageError={imageError}
+                            onImageError={() => setImageError(true)}
+                            resolveUri={ProfileService.resolveImageUri}
+                            size={48}
+                            ringWidth={3}
+                        />
+                    </TappablePressable>
                 </View>
 
                 <ScrollView
@@ -328,14 +338,16 @@ export default function HomeScreenNeo() {
                     bounces={false}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
-                        // Respiro redistribuido (soma zero, preserva "Home sem scroll"):
-                        // +12 no topo (colado no header, quase sem folga) tirado da
-                        // folga de baixo, que reserva espaco pro footer flutuante +
-                        // botao SOS (este ultimo "flutua" ainda mais alto que a barra,
-                        // ver GlobalFloatingFooter.js) — o restante do clearance de
-                        // baixo (84/116) ainda cobre esse minimo com folga.
-                        paddingBottom: isRowLayout ? 116 : 84,
-                        paddingTop: 12,
+                        // Respiro redistribuido (soma zero, preserva "Home sem
+                        // scroll"): +6 no topo (era 0) tirado do clearance de
+                        // baixo (era 96/128). O header voltou a ser uma unica
+                        // linha (saudacao+chip numa coluna, avatar full-size
+                        // 48px centralizado contra ESSE bloco de 2 linhas — ver
+                        // greetingGroup) em vez de duas fileiras empilhadas;
+                        // isso mantem a altura do header igual a original, sem
+                        // precisar encolher o avatar pra sobrar espaco.
+                        paddingBottom: isRowLayout ? 122 : 90,
+                        paddingTop: 6,
                     }}
                 >
                     <HeroScoreCard 
@@ -352,20 +364,26 @@ export default function HomeScreenNeo() {
                             onPress={contextualAlert.route ? () => navigateWithHaptic(contextualAlert.route, contextualAlert.params) : undefined}
                             style={[
                                 s.contextAlert,
-                                {
-                                    backgroundColor: withAlpha(tone.fill, 0.08),
-                                    borderColor: withAlpha(tone.fill, 0.24),
-                                },
+                                contextualAlert.tone === 'critical'
+                                    ? { backgroundColor: tone.fill, borderColor: tone.fill }
+                                    : { backgroundColor: withAlpha(tone.fill, 0.08), borderColor: withAlpha(tone.fill, 0.24) },
                             ]}
                             accessibilityRole={contextualAlert.route ? 'button' : 'text'}
                             accessibilityLabel={contextualAlert.label}
                         >
-                            <View style={[s.contextAlertDot, { backgroundColor: tone.fill }]} />
-                            <Text style={[s.contextAlertText, { color: tone.text }]} numberOfLines={1}>
+                            {contextualAlert.tone === 'critical' ? (
+                                <NeoIcon name="Warning2" size={16} color={themeColors.neutral.white} variant="Bold" style={{ marginRight: 8 }} />
+                            ) : (
+                                <View style={[s.contextAlertDot, { backgroundColor: tone.fill }]} />
+                            )}
+                            <Text
+                                style={[s.contextAlertText, { color: contextualAlert.tone === 'critical' ? themeColors.neutral.white : tone.text }]}
+                                numberOfLines={contextualAlert.tone === 'critical' ? 2 : 1}
+                            >
                                 {contextualAlert.label}
                             </Text>
                             {contextualAlert.route && (
-                                <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={tone.text} />
+                                <NeoIcon name="ArrowRight2" variant="Linear" size={14} color={contextualAlert.tone === 'critical' ? themeColors.neutral.white : tone.text} />
                             )}
                         </TouchableOpacity>
                     )}
@@ -471,20 +489,20 @@ const s = StyleSheet.create({
 
     // ── Header: saudação + perfil ──
     homeHeader: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
         paddingHorizontal: Neo.spacing.lg,
         paddingTop: 2,
         paddingBottom: 2,
     },
-    identityRow: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
+    greetingGroup: {
+        flex: 1,
+        minWidth: 0,
+        marginRight: Neo.spacing.md,
     },
     // Sem color aqui: o StyleSheet é avaliado no escopo do módulo, antes de o
     // tema existir. A cor entra como prop inline no <H2>.
     greetingText: {
-        flex: 1,
-        minWidth: 0,
-        marginRight: Neo.spacing.md,
         fontSize: 24,
         lineHeight: 29,
         letterSpacing: -0.4,
