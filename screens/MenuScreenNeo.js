@@ -216,7 +216,12 @@ export default function MenuScreenNeo() {
                         onPress={() => navigateWithHaptic('UpgradePremium')}
                         style={{ marginTop: 0, marginBottom: 8 }}
                     >
-                        <NeoCard variant="premium" style={[s.premiumCard, { backgroundColor: isDark ? 'rgba(28,28,30,0.4)' : 'rgba(255,255,255,0.4)' }]}>
+                        {/* Sem backgroundColor cravado aqui — deixa o proprio
+                            NeoCard variant="premium" render seu "vidro de luxo"
+                            (opacidade 0.82/0.68, specular, sombra da marca).
+                            O override anterior (alpha 0.4) deixava o card
+                            "lavado" antes de o vidro aparecer. */}
+                        <NeoCard variant="premium" style={s.premiumCard}>
                             <View style={s.premiumIconWrap}>
                                 <NeoIcon name="Sparkle" size={26} color={Neo.colors.primary[700]} variant="Bulk" />
                             </View>
