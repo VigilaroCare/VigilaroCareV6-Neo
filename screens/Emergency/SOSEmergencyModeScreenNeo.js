@@ -6,6 +6,8 @@ import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
+import { detectEmergencyCountry } from '../../utils/getEmergencyCountry';
+import { getEmergencyNumbersForCountry } from '../../data/emergencyNumbersByCountry';
 import * as Clipboard from 'expo-clipboard';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
@@ -104,7 +106,11 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const longPressTriggered = useRef(false);
     // i18n is defined at the top of the component
 
-    const isPtBr = i18n.language === 'pt-BR';
+    // Numero de emergencia por LOCALIZACAO real, nao pelo idioma escolhido
+    // (decisao de produto 2026-07-30 — ver data/emergencyNumbersByCountry.js).
+    // Default imediato = Brasil (mercado principal do app), atualiza assim
+    // que GPS/regiao do aparelho responderem — nunca deixa o botao sem numero.
+    const [emergencyNumbers, setEmergencyNumbers] = useState(() => getEmergencyNumbersForCountry('BR'));
 
     useEffect(() => {
         if (route?.params?.initialTab === 'pets') setActiveTab('PET');
@@ -123,6 +129,13 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const captureLocation = async () => {
         const coords = await getEmergencyLocation();
         if (coords) setLastLocation(coords);
+
+        // Mesma filosofia "nunca trava o SOS": deteccao 100% offline (GPS
+        // contra poligono local + regionCode do aparelho), sem chamada de
+        // rede. country pode vir null (indeterminado) — o helper ja cai
+        // pro fallback generico (112) nesse caso.
+        const country = detectEmergencyCountry(coords);
+        setEmergencyNumbers(getEmergencyNumbersForCountry(country));
     };
 
     const checkPetsProfile = async () => {
@@ -287,6 +300,14 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         } catch (e) { if (__DEV__) console.error(e); }
     };
 
+    // Numero/label do botao principal: Brasil usa SAMU (sem numero geral
+    // unico), resto do mapa usa o "geral" (112/911); pais desconhecido cai
+    // no fallback generico ja embutido em emergencyNumbers.
+    const primaryEmergencyNumber = emergencyNumbers.samu || emergencyNumbers.geral;
+    const primaryEmergencyLabel = emergencyNumbers.samu
+        ? `Ligar ${emergencyNumbers.samu} • SAMU`
+        : `Ligar ${emergencyNumbers.geral}${emergencyNumbers.label ? ` • ${emergencyNumbers.label}` : ''}`;
+
     return (
         <LinearGradient colors={['#991B1B', '#450A0A']} style={{ flex: 1 }}>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1 }}>
@@ -361,14 +382,14 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                     </View>
 
                     {/* Primary Button */}
-                    <TouchableOpacity 
-                        onPress={() => handleCall(isPtBr ? t('sos.samuPhone', '192') : t('sos.generalPhone', '911'))}
+                    <TouchableOpacity
+                        onPress={() => handleCall(primaryEmergencyNumber)}
                         style={{ width: '100%', backgroundColor: '#FFF', borderRadius: 24, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 10, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 15, shadowOffset: { width: 0, height: 8 }, elevation: 5 }}
                     >
                         <NeoIcon name="CallCalling" size={24} color="#991B1B" variant="Bold" style={{ marginRight: 12 }} />
                         <H2 style={{ color: '#991B1B', fontSize: 20 }}>
-                            {activeTab === 'HUMAN' 
-                                ? (isPtBr ? 'Ligar 192 • SAMU' : 'Ligar 911 • Emergência') 
+                            {activeTab === 'HUMAN'
+                                ? primaryEmergencyLabel
                                 : 'Ligar Veterinário'}
                         </H2>
                     </TouchableOpacity>
