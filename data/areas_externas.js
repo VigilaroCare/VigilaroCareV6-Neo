@@ -32,7 +32,7 @@ export const areasExternas = [
             'Não toque em plantas desconhecidas.',
             'Não deixe crianças brincarem com terra adubada/química.'
         ],
-        quandoChamarAjuda: 'Ingestão de planta: Foto da planta + CIATOX (0800-722-6001).'
+        quandoChamarAjuda: 'Ingestão de planta: Foto da planta + {{POISON_CONTROL}}.'
     },
     {
         id: 'collective_areas',

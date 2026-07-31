@@ -31,7 +31,7 @@ export const UTENSILIOS_REVIEWS = [
             'Nunca force a abertura — se a tampa não girar, ainda há pressão interna',
             'Descarte panelas com corpo amassado, vedação comprometida ou válvula danificada',
         ],
-        oQueFazer: 'Em caso de queimadura por vapor: resfrie a região imediatamente com água corrente fria por pelo menos 15 minutos. Não aplique pasta de dente, manteiga ou qualquer remédio caseiro. Cubra com pano limpo e procure atendimento médico. Ligue 192 (SAMU) em queimaduras extensas.',
+        oQueFazer: 'Em caso de queimadura por vapor: resfrie a região imediatamente com água corrente fria por pelo menos 15 minutos. Não aplique pasta de dente, manteiga ou qualquer remédio caseiro. Cubra com pano limpo e procure atendimento médico. Ligue {{EMERGENCY_NUMBER}} (SAMU) em queimaduras extensas.',
         estatistica: 'Cerca de 1.200 explosões de panelas de pressão acontecem por ano no Brasil — a maioria por mau uso ou falta de manutenção da borracha e válvula.',
     },
     {
@@ -57,7 +57,7 @@ export const UTENSILIOS_REVIEWS = [
             'Facas, garfos, tesouras e raladores devem ser guardados separados e organizados, nunca misturados',
             'Oriente crianças maiores sobre o uso seguro e supervisione sempre',
         ],
-        oQueFazer: 'Cortes superficiais: lave com água corrente e aplique curativo. Cortes profundos: pressione com pano limpo por 10 minutos e procure atendimento médico. Se o corte não parar de sangrar após 10 minutos de pressão, ligue 192.',
+        oQueFazer: 'Cortes superficiais: lave com água corrente e aplique curativo. Cortes profundos: pressione com pano limpo por 10 minutos e procure atendimento médico. Se o corte não parar de sangrar após 10 minutos de pressão, ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'Cortes e perfurações são responsáveis por uma em cada quatro idas ao pronto-socorro por acidente doméstico no Brasil.',
     },
     {
@@ -82,7 +82,7 @@ export const UTENSILIOS_REVIEWS = [
             'Observe o símbolo de reciclagem: plásticos com "5" (PP) são mais seguros para calor',
             'Descarte utensílios de plástico descascando, trincados ou com mudança de cor',
         ],
-        oQueFazer: 'Se houver ingestão de alimento com gosto/cheiro de plástico derretido, suspenda o consumo imediatamente. Em caso de mal-estar, procure orientação médica ou ligue para o CIATOX: 0800 722 6001.',
+        oQueFazer: 'Se houver ingestão de alimento com gosto/cheiro de plástico derretido, suspenda o consumo imediatamente. Em caso de mal-estar, procure orientação médica ou ligue para o {{POISON_CONTROL}}.',
         estatistica: 'Estudos recentes identificaram mais de 400 substâncias químicas em utensílios de plástico reciclado, incluindo desreguladores endócrinos presentes no dia a dia da cozinha.',
     },
     {
@@ -184,7 +184,7 @@ export const UTENSILIOS_REVIEWS = [
             'Fixe as bordas — pontas dobradas são convites para tropeços',
             'Em áreas molhadas (banheiro, cozinha), use apenas tapetes emborrachados próprios',
         ],
-        oQueFazer: 'Se um idoso cair por causa de tapete: não o levante bruscamente. Pergunte sobre dores nas costas, quadril e cabeça. Se houver dor intensa ou incapacidade de se mover, ligue 192 (SAMU). Fraturas de fêmur em idosos são emergências.',
+        oQueFazer: 'Se um idoso cair por causa de tapete: não o levante bruscamente. Pergunte sobre dores nas costas, quadril e cabeça. Se houver dor intensa ou incapacidade de se mover, ligue {{EMERGENCY_NUMBER}} (SAMU). Fraturas de fêmur em idosos são emergências.',
         estatistica: 'Tapetes e passadeiras estão envolvidos em 30% das quedas de idosos dentro de casa, sendo o fator de mais fácil correção.',
     },
     {
@@ -234,7 +234,7 @@ export const UTENSILIOS_REVIEWS = [
             'Jamais deixe sacos plásticos dentro ou próximo do berço, cama ou área de brincadeira',
             'Substitua sacos plásticos por recipientes reutilizáveis quando possível',
         ],
-        oQueFazer: 'Se a criança estiver sufocando com saco plástico: remova imediatamente o saco do rosto e vias aéreas. Se a criança estiver inconsciente e não respirando, inicie ressuscitação e ligue 192 (SAMU).',
+        oQueFazer: 'Se a criança estiver sufocando com saco plástico: remova imediatamente o saco do rosto e vias aéreas. Se a criança estiver inconsciente e não respirando, inicie ressuscitação e ligue {{EMERGENCY_NUMBER}} (SAMU).',
         estatistica: 'Sacos plásticos causam em média 25 mortes por sufocamento de crianças por ano nos EUA. No Brasil, o dado é subnotificado mas igualmente preocupante.',
     },
 ];

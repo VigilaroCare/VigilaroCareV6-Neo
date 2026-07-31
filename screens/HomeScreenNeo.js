@@ -38,7 +38,8 @@ import {
     Platform,
     useWindowDimensions,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getFooterClearance } from '../components/GlobalFloatingFooter';
 import NeoIcon from '../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 
@@ -51,7 +52,7 @@ import ProactiveNotificationService from '../services/ProactiveNotificationServi
 import ScoreService from '../services/ScoreService';
 
 import { H2 } from '../components/NeoTypography';
-import HeroScoreCard from '../components/HeroScoreCard';
+import HeroScoreCard, { HERO_COMPACT_SAVING } from '../components/HeroScoreCard';
 import AppBackground from '../components/AppBackground';
 import TappablePressable from '../components/TappablePressable';
 import PictogramTile from '../components/PictogramTile';
@@ -101,6 +102,47 @@ export default function HomeScreenNeo() {
     const currentProfile = primaryProfile;
 
     const { width: SCREEN_W } = useWindowDimensions();
+    const insets = useSafeAreaInsets();
+    // Clearance REAL do footer flutuante, derivado da geometria dele — nao um
+    // numero fixo. Ver components/GlobalFloatingFooter.js.
+    const footerClearance = getFooterClearance(insets.bottom);
+    // 90 era o valor fixo antigo. O que exceder isso e altura que o aparelho
+    // deste utilizador consome a mais (barra de gestos), e precisa sair de
+    // outro lugar — senao a ultima fileira de pictogramas volta pra tras do
+    // footer, que e exatamente o bug que este calculo resolve.
+    const clearanceExtra = Math.max(0, footerClearance - 90);
+    // Parte do clearance extra sai do hero (mais barato visualmente do que
+    // encolher os 8 pictogramas), o resto sai do grid.
+    const heroCompact = clearanceExtra > 0;
+
+    // ── "HOME SEM SCROLL": AJUSTE MEDIDO, NAO ESTIMADO ──────────────────────
+    // Toda a estimativa aqui (altura do header, do hero, do rotulo de 2 linhas,
+    // do inset) e uma aproximacao, e foi por acumular aproximacoes que a
+    // ultima fileira ficou escondida tantas vezes. Em vez de estimar melhor,
+    // fechamos o laco: renderiza, mede o excedente REAL de altura e encolhe o
+    // grid exatamente nesse tanto. Converge em 1-2 frames e vale para qualquer
+    // aparelho, fonte de acessibilidade ou tamanho de ecra.
+    const [excedenteMedido, setExcedenteMedido] = useState(0);
+    const alturaVisivel = useRef(0);
+
+    // Qualquer mudanca de geometria invalida a medicao anterior.
+    React.useEffect(() => { setExcedenteMedido(0); }, [SCREEN_W, insets.bottom]);
+
+    const medirAreaVisivel = useCallback((e) => {
+        alturaVisivel.current = e.nativeEvent.layout.height;
+    }, []);
+
+    const medirConteudo = useCallback((_w, alturaConteudo) => {
+        const visivel = alturaVisivel.current;
+        if (!visivel) return;
+        const sobra = alturaConteudo - visivel;
+        // Só encolhe, nunca cresce de volta: crescer reintroduz o excedente e
+        // o laco oscila. Banda morta de 1px evita ajuste por arredondamento.
+        if (sobra > 1) {
+            setExcedenteMedido((anterior) => anterior + sobra);
+        }
+    }, []);
+
     const CONTENT_W = SCREEN_W - 24 * 2; // paddingHorizontal do scroll (spacing.lg)
     const isTablet = SCREEN_W >= 768;
     const isCompactPhone = SCREEN_W <= 360;
@@ -132,7 +174,29 @@ export default function HomeScreenNeo() {
         // trims compensando a altura total, cada tile ficava mais alto, o
         // que empurrava o rotulo da ULTIMA fileira (Cuidar&Proteger/Modo
         // Viagem) pra tras do footer flutuante no device real.
-        GRID_IMG_W = CONTENT_W * 0.42;
+        //
+        // ADAPTATIVO (2026-07-31): em vez de tentar de novo um numero fixo
+        // — 0.42 vs 0.43 ja foi e voltou — o grid agora absorve o clearance
+        // EXTRA que este aparelho exige. Aparelho sem barra de gestos fica
+        // exatamente como estava (clearanceExtra = 0, ratio = 0.42); aparelho
+        // com barra encolhe so o necessario.
+        //
+        // Geometria: PICTOGRAM_ASPECT_RATIO e 577/433 (largura:altura), logo
+        // altura = largura * 0.75. Sao 4 fileiras, entao a altura total do
+        // grid = 4 * GRID_IMG_W * 0.75 = 3 * GRID_IMG_W. Para poupar S px de
+        // altura: delta_ratio = S / (3 * CONTENT_W).
+        const poupancaDoHero = heroCompact ? HERO_COMPACT_SAVING : 0;
+        // Estimativa inicial (primeiro frame) + correcao medida (frames
+        // seguintes). A medida manda: se a estimativa errou, `excedenteMedido`
+        // corrige exatamente a diferenca.
+        const faltaAbsorver = Math.max(0, clearanceExtra - poupancaDoHero) + excedenteMedido;
+        const deltaRatio = faltaAbsorver / (3 * CONTENT_W);
+        // Piso de 0.32: abaixo disso o pictograma fica pequeno demais para o
+        // rotulo de 2 linhas respirar. Se nem assim couber (fonte de
+        // acessibilidade no maximo, por exemplo), a Home rola — melhor rolar
+        // do que esconder.
+        const ratioGrid = Math.max(0.32, 0.42 - deltaRatio);
+        GRID_IMG_W = CONTENT_W * ratioGrid;
         cellWidth = '49%';
     } else {
         GRID_IMG_W = CONTENT_W;
@@ -336,6 +400,8 @@ export default function HomeScreenNeo() {
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     bounces={false}
+                    onLayout={medirAreaVisivel}
+                    onContentSizeChange={medirConteudo}
                     contentContainerStyle={{
                         paddingHorizontal: Neo.spacing.lg,
                         // Respiro redistribuido (soma zero, preserva "Home sem
@@ -346,7 +412,13 @@ export default function HomeScreenNeo() {
                         // greetingGroup) em vez de duas fileiras empilhadas;
                         // isso mantem a altura do header igual a original, sem
                         // precisar encolher o avatar pra sobrar espaco.
-                        paddingBottom: isRowLayout ? 122 : 90,
+                        // Derivado da geometria real do footer flutuante, nao
+                        // um numero fixo — ver getFooterClearance(). O valor
+                        // fixo anterior (90) ignorava insets.bottom e por isso
+                        // escondia a ultima fileira de pictogramas em aparelho
+                        // com barra de gestos. O extra do row layout (+32)
+                        // continua, porque la os tiles sao mais altos.
+                        paddingBottom: footerClearance + (isRowLayout ? 32 : 0),
                         paddingTop: 6,
                     }}
                 >
@@ -356,6 +428,7 @@ export default function HomeScreenNeo() {
                         onPress={toggleMonitor}
                         onOpenHomeXRay={() => navigateWithHaptic('HomeXRay')}
                         isExpanded={monitorExpanded}
+                        compact={heroCompact}
                     />
 
                     {contextualAlert && (

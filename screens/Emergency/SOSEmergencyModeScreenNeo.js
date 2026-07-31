@@ -8,6 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
 import { detectEmergencyCountry } from '../../utils/getEmergencyCountry';
 import { getEmergencyNumbersForCountry } from '../../data/emergencyNumbersByCountry';
+import { getPoisonControlDial, getPoisonControlLabel } from '../../utils/emergencyTokens';
 import * as Clipboard from 'expo-clipboard';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
@@ -112,6 +113,12 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     // que GPS/regiao do aparelho responderem — nunca deixa o botao sem numero.
     const [emergencyNumbers, setEmergencyNumbers] = useState(() => getEmergencyNumbersForCountry('BR'));
 
+    // Mesmo raciocinio para o centro de intoxicacao: o botao discava
+    // a linha brasileira em qualquer pais. Guardamos o codigo do pais
+    // detectado para resolver a linha correta — CIATOX no Brasil, CIAV em
+    // Portugal, servico de emergencia geral onde nao ha centro mapeado.
+    const [emergencyCountry, setEmergencyCountry] = useState('BR');
+
     useEffect(() => {
         if (route?.params?.initialTab === 'pets') setActiveTab('PET');
         loadContacts();
@@ -136,6 +143,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         // pro fallback generico (112) nesse caso.
         const country = detectEmergencyCountry(coords);
         setEmergencyNumbers(getEmergencyNumbersForCountry(country));
+        setEmergencyCountry(country);
     };
 
     const checkPetsProfile = async () => {
@@ -438,7 +446,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
                     {/* CIATOX — Emergência toxicológica (Humano e Pet) */}
                     <TouchableOpacity 
-                            onPress={() => handleCall('08007226001')}
+                            onPress={() => handleCall(getPoisonControlDial(emergencyCountry))}
                             activeOpacity={0.85}
                             style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 16, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
@@ -450,7 +458,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                     {t('sos.ciatoxTitle', 'CIATOX — Intoxicação')}
                                 </Body>
                                 <Small style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, marginTop: 2 }}>
-                                    {t('sos.ciatoxNumber', '0800 722 6001 · Gratuito 24h')}
+                                    {t('sos.ciatoxNumber', { defaultValue: '{{poisonControl}} · 24h', poisonControl: getPoisonControlLabel(emergencyCountry) })}
                                 </Small>
                             </View>
                             <NeoIcon name="Call" size={18} color="rgba(255,255,255,0.5)" />

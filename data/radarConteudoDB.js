@@ -70,7 +70,7 @@ export const FATOS_IMPACTO = [
     orientacoes: [
       'O horário de maior risco é o fim da tarde: cuidadores cansados, crianças ativas.',
       'Produtos de limpeza fora do armário por "só um minuto" são os mais perigosos.',
-      'CIATOX: 0800-722-6001 (24h, gratuito, todo o Brasil).'
+      '{{POISON_CONTROL}} (24h, gratuito, todo o Brasil).'
     ],
     icone: 'Warning2',
     cor: '#9C27B0',
@@ -172,7 +172,7 @@ export const FATOS_IMPACTO = [
     orientacoes: [
       'Férias escolares = revisão das medidas de segurança em casa.',
       'Combinado de férias: explique às crianças as regras sobre piscina, sacada e cozinha.',
-      'Mantenha o número do SAMU (192) e Bombeiros (193) visível em casa.'
+      'Mantenha o número do {{EMERGENCY_MEDICAL}} e Bombeiros (193) visível em casa.'
     ],
     icone: 'ChartSquare',
     cor: '#F44336',
@@ -250,12 +250,12 @@ export const FATOS_IMPACTO = [
     formato: 'fato',
     categoria: 'intoxicacao',
     perfil: 'geral',
-    titulo: 'CIATOX: 0800-722-6001 — gratuito, 24 horas, todo o Brasil',
+    titulo: '{{POISON_CONTROL}} — gratuito, 24 horas, todo o Brasil',
     resumo: 'O Centro de Informação e Assistência Toxicológica atende gratuitamente qualquer brasileiro 24 horas por dia. Ao ligar, tenha em mãos: o produto ou planta ingerida, o peso da vítima e a hora da ingestão. Essas informações aceleram a orientação e podem salvar vidas.',
-    destaque: '0800-722-6001',
+    destaque: '{{POISON_CONTROL}}',
     fonte: 'CIATOX Nacional',
     orientacoes: [
-      'Salve o número agora: 0800-722-6001. Gratuito de qualquer telefone, inclusive celular.',
+      'Salve o número agora: {{POISON_CONTROL}}. Gratuito de qualquer telefone, inclusive celular.',
       'NUNCA induza vômito sem orientação do CIATOX — em alguns casos piora a lesão.',
       'Leve a embalagem do produto ao hospital — facilita o diagnóstico e o tratamento.'
     ],
@@ -277,7 +277,7 @@ export const PROTOCOLOS_DESTAQUE = [
     orientacoes: [
       'Bebê (< 1 ano): 5 tapas firmes nas costas (inclinado cabeça para baixo) + 5 compressões no peito com 2 dedos.',
       'Criança (> 1 ano): 5 golpes entre as escápulas com a base da palma + Heimlich se necessário.',
-      'Adulto: Heimlich clássico — mãos acima do umbigo, compressões para dentro e para cima. Chame o SAMU (192).'
+      'Adulto: Heimlich clássico — mãos acima do umbigo, compressões para dentro e para cima. Chame o {{EMERGENCY_MEDICAL}}.'
     ],
     fonte: 'Protocolo AHA / ACLS 2025 — SBP',
     icone: 'Health',
@@ -307,7 +307,7 @@ export const PROTOCOLOS_DESTAQUE = [
     titulo: 'O que fazer ao resgatar afogado',
     resumo: 'Nunca entre na água sem equipamento para resgatar vítima de afogamento — o pavor faz a vítima se agarrar ao resgatante e ambos podem afundar. O resgate seguro deve ser feito com a vítima fora d\'água antes de iniciar os primeiros socorros.',
     orientacoes: [
-      'Fora d\'água: chame o SAMU (192) e Bombeiros (193) imediatamente.',
+      'Fora d\'água: chame o {{EMERGENCY_MEDICAL}} e Bombeiros (193) imediatamente.',
       'Não entre na água sem treinamento e equipamento. Use um objeto (corda, galho, isopor) para puxar a vítima.',
       'Se a vítima não respira: inicie a RCP (30 compressões + 2 ventilações) até a chegada do socorro.'
     ],
@@ -321,11 +321,11 @@ export const PROTOCOLOS_DESTAQUE = [
     categoria: 'intoxicacao',
     perfil: 'geral',
     titulo: 'Suspeita de intoxicação — primeiros passos',
-    resumo: 'Se houver suspeita de ingestão de produto tóxico, a primeira ligação deve ser para o CIATOX (0800-722-6001). Eles orientam sobre o que fazer — e o que NÃO fazer — com base no produto específico ingerido.',
+    resumo: 'Se houver suspeita de ingestão de produto tóxico, a primeira ligação deve ser para o {{POISON_CONTROL}}. Eles orientam sobre o que fazer — e o que NÃO fazer — com base no produto específico ingerido.',
     orientacoes: [
       'NUNCA induza vômito sem orientação do CIATOX. Em intoxicações com cáusticos (ácidos, água sanitária), piora as lesões.',
       'Tenha em mãos: produto exato, quantidade aproximada, peso da vítima, hora da ingestão.',
-      'CIATOX: 0800-722-6001 (24h, gratuito). SAMU: 192 se a vítima estiver inconsciente ou com convulsão.'
+      '{{POISON_CONTROL}} (24h, gratuito). SAMU: 192 se a vítima estiver inconsciente ou com convulsão.'
     ],
     fonte: 'CIATOX Nacional / Ministério da Saúde 2024',
     icone: 'Warning2',
@@ -340,7 +340,7 @@ export const PROTOCOLOS_DESTAQUE = [
     resumo: 'Mover um idoso que caiu sem avaliação prévia pode agravar fraturas — especialmente de quadril e coluna. A avaliação inicial deve vir antes de qualquer movimento.',
     orientacoes: [
       'Converse com a vítima: ela está consciente? Sente dor em algum ponto específico?',
-      'Não mova se houver suspeita de fratura de quadril ou dor na coluna. Chame o SAMU (192).',
+      'Não mova se houver suspeita de fratura de quadril ou dor na coluna. Chame o {{EMERGENCY_MEDICAL}}.',
       'Se o idoso estiver consciente e sem dor: ajude-o a levantar apoiando pelos dois lados, nunca puxando pelo braço.'
     ],
     fonte: 'SBP / Sociedade Brasileira de Geriatria e Gerontologia 2024',
@@ -356,7 +356,7 @@ export const PROTOCOLOS_DESTAQUE = [
     resumo: 'Socorrer uma vítima de choque elétrico sem desligar a corrente pode eletrificar o socorrista. A primeira ação é sempre cortar a energia — não tocar na vítima antes disso.',
     orientacoes: [
       'Desligue o disjuntor ou o quadro de força ANTES de tocar na vítima. Nunca use objeto de metal para afastar a vítima do fio.',
-      'Após desligar: verifique se a vítima respira. Se não, inicie RCP e chame o SAMU (192).',
+      'Após desligar: verifique se a vítima respira. Se não, inicie RCP e chame o {{EMERGENCY_MEDICAL}}.',
       'Mesmo que a vítima pareça bem, leve ao médico — choques internos podem não ter sinal externo imediato.'
     ],
     fonte: 'CBMSP — Protocolo de Atendimento a Vítimas de Choque Elétrico 2024',

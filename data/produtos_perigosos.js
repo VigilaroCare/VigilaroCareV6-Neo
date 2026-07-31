@@ -9,7 +9,7 @@ export const produtosPerigosos = [
         descricao: 'Solução de hipoclorito de sódio. Corrosiva e libera gases tóxicos se misturada.',
         prevencao: 'Nunca misturar com outros produtos (ácidos/amônia). Manter em local alto e ventilado.',
         sintomas: 'Queimaduras, tosse, dificuldade respiratória.',
-        primeirosSocorros: 'Lavar com água corrente. NÃO provocar vômito. Ligar 0800 722 6001.'
+        primeirosSocorros: 'Lavar com água corrente. NÃO provocar vômito. Ligar {{POISON_CONTROL}}.'
     },
     {
         id: 'limpeza_2',
@@ -20,7 +20,7 @@ export const produtosPerigosos = [
         descricao: 'Altamente corrosiva. Causa queimaduras graves e cegueira.',
         prevencao: 'Usar luvas/óculos. Armazenar trancado. Substituir por métodos mecânicos.',
         sintomas: 'Dor intensa, queimaduras profundas, perfuração de órgãos.',
-        primeirosSocorros: 'Lavar com MUITA água. NÃO provocar vômito. SAMU 192 urgente.'
+        primeirosSocorros: 'Lavar com MUITA água. NÃO provocar vômito. {{EMERGENCY_MEDICAL}} urgente.'
     },
     {
         id: 'limpeza_3',
@@ -90,7 +90,7 @@ export const produtosPerigosos = [
         descricao: 'Veneno ilegal (carbamato). Mata rapidamente.',
         prevencao: 'NÃO USAR. Denunciar venda. Usar ratoeiras mecânicas.',
         sintomas: 'Salivação, tremores, convulsão, parada respiratória.',
-        primeirosSocorros: 'SAMU 192 IMEDIATAMENTE.'
+        primeirosSocorros: '{{EMERGENCY_MEDICAL}} IMEDIATAMENTE.'
     },
     {
         id: 'agro_2',
@@ -114,7 +114,7 @@ export const produtosPerigosos = [
         descricao: 'Principal causa de intoxicação infantil. Analgésicos, antidepressivos, etc.',
         prevencao: 'Caixa de remédios trancada. Não chamar de "doce".',
         sintomas: 'Sonolência, vômito, alteração cardíaca.',
-        primeirosSocorros: 'Ligar 0800 722 6001 com nome do remédio.'
+        primeirosSocorros: 'Ligar {{POISON_CONTROL}} com nome do remédio.'
     },
     {
         id: 'med_2',
@@ -183,7 +183,7 @@ export const produtosPerigosos = [
         descricao: 'Podem causar irritações e lesões gástricas graves se ingeridos puros.',
         prevencao: 'Manter fora do alcance de crianças. Nunca reutilizar embalagens para bebidas.',
         sintomas: 'Vômito, dor abdominal, irritação na boca e garganta.',
-        primeirosSocorros: 'Não provocar vômito. Oferecer água em pequenos goles. Ligar 0800 722 6001.'
+        primeirosSocorros: 'Não provocar vômito. Oferecer água em pequenos goles. Ligar {{POISON_CONTROL}}.'
     },
     {
         id: 'ind_1',
@@ -205,7 +205,7 @@ export const produtosPerigosos = [
         descricao: 'Ex: Glifosato, Paraquat. Altamente tóxicos, podem causar falência de órgãos.',
         prevencao: 'Não aplicar com vento. Manter crianças/pets afastados por 24-48h.',
         sintomas: 'Vômito, dificuldade respiratória, queimaduras na pele.',
-        primeirosSocorros: 'Banho imediato se contato com pele. SAMU 192 se ingestão.'
+        primeirosSocorros: 'Banho imediato se contato com pele. {{EMERGENCY_MEDICAL}} se ingestão.'
     },
     {
         id: 'vet_1',
@@ -216,7 +216,7 @@ export const produtosPerigosos = [
         descricao: 'Pipetas, sprays e coleiras contêm inseticidas potentes.',
         prevencao: 'Seguir dosagem por peso. Lavar mãos após aplicação. Não deixar crianças tocarem logo após.',
         sintomas: 'Salivação excessiva, tremores, vômito (se ingerido ou overdose).',
-        primeirosSocorros: 'Lavar local com água e sabão. Ligar 0800 722 6001.'
+        primeirosSocorros: 'Lavar local com água e sabão. Ligar {{POISON_CONTROL}}.'
     },
     {
         id: 'vet_2',
@@ -282,6 +282,6 @@ export const produtosPerigosos = [
         descricao: 'Misturar Cloro (Água Sanitária) com Vinagre, Amônia ou Desinfetantes gera gases letais.',
         prevencao: 'NUNCA misturar produtos de limpeza. Usar apenas um por vez.',
         sintomas: 'Queimadura via aérea, tosse intensa, edema pulmonar.',
-        primeirosSocorros: 'Sair do local para ar fresco imediatamente. SAMU 192.'
+        primeirosSocorros: 'Sair do local para ar fresco imediatamente. {{EMERGENCY_MEDICAL}}.'
     }
 ];

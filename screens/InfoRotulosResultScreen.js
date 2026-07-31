@@ -34,6 +34,7 @@ import { SkeletonCard } from '../components/SkeletonLoader';
 import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
+import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
 
 // Cores por severidade — agora centralizadas no Design System (DS.severity)
 // Mapeador: nome em português (vindo dos dados) → chave canônica no DS
@@ -410,13 +411,13 @@ export default function InfoRotulosResultScreen() {
                         <FadeInView delay={450}>
                             <TouchableOpacity
                                 activeOpacity={0.85}
-                                onPress={() => Linking.openURL('tel:08007226001')}
+                                onPress={() => Linking.openURL(`tel:${getPoisonControlDial()}`)}
                                 style={s.ciatoxButton}
                             >
                                 <NeoIcon name="Call" size={22} color="#FFF" variant="Bold" />
                                 <View style={{ flex: 1, marginLeft: 12 }}>
                                     <Text style={s.ciatoxTitle}>{t('scanner.callCiatox', 'Ligar para o CIATOX')}</Text>
-                                    <Text style={s.ciatoxNumber}>{t('scanner.ciatoxNumber', '0800 722 6001 · gratuito 24h')}</Text>
+                                    <Text style={s.ciatoxNumber}>{t('scanner.ciatoxNumber', { defaultValue: '{{poisonControl}} · gratuito 24h', poisonControl: getPoisonControlLabel() })}</Text>
                                 </View>
                             </TouchableOpacity>
                         </FadeInView>

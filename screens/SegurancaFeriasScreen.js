@@ -144,15 +144,15 @@ export default function SegurancaFeriasScreen({ navigation }) {
             ],
             emergencias: [
                 'Incêndio: Use escadas, NUNCA elevador.',
-                'Intoxicação: Tenha número do CIATOX (0800 722 6001).'
+                'Intoxicação: Tenha o número do centro de intoxicação — {{POISON_CONTROL}}.'
             ],
             emergencias_en: [
                 'Fire: Use stairs, NEVER the elevator.',
-                'Intoxication: Have the Poison Control Center number (0800 722 6001).'
+                'Intoxication: Have the Poison Control Center number {{POISON_CONTROL}}.'
             ],
             emergencias_es: [
                 'Incendio: Use escaleras, NUNCA el ascensor.',
-                'Intoxicación: Tenga el número del Centro de Control de Envenenamientos (0800 722 6001).'
+                'Intoxicación: Tenga el número del Centro de Control de Envenenamientos {{POISON_CONTROL}}.'
             ],
             dicasExtras: [
                 'Leve protetores de quina e tomada na mala.',

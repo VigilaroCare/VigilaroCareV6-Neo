@@ -11,6 +11,7 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import AppBackground from '../../components/AppBackground';
 import ProfileService from '../../services/ProfileService';
 import { useThemeColors } from '../../utils/ThemeContext';
+import { getPoisonControlDial, getPoisonControlLabel } from '../../utils/emergencyTokens';
 
 export default function EmergenciaPetScreen({ navigation }) {
   const { t } = useTranslation('common');
@@ -30,7 +31,7 @@ export default function EmergenciaPetScreen({ navigation }) {
     loadData();
   }, []);
 
-  const callCiatox = () => Linking.openURL('tel:08007226001');
+  const callCiatox = () => Linking.openURL(`tel:${getPoisonControlDial()}`);
   const callVet = () => Linking.openURL('geo:0,0?q=veterinario 24h');
 
   return (
@@ -103,7 +104,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                   {t('headersFirst.poisoning', 'Envenenamento / tóxicos')}
                 </H3>
                 <Body style={s.panicSub}>
-                  {t('headersFirst.cIATOXLIGUE08007226001', 'CIATOX · 0800 722 6001')}
+                  {t('headersFirst.callPoisonControl', { defaultValue: 'Ligue para {{poisonControl}}', poisonControl: getPoisonControlLabel() })}
                 </Body>
               </View>
               <View style={s.panicBtn}>

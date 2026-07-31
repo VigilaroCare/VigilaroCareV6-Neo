@@ -18,7 +18,7 @@ import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
 const COPY = {
-    sos: ['disclaimer.sos', 'O envio do SOS depende de o aparelho ter sinal e plano para SMS. Combine com seus contatos o que fazer ao receber um alerta. Em risco imediato, ligue 192 (SAMU) ou 193 (Bombeiros).'],
+    sos: ['disclaimer.sos', 'O envio do SOS depende de o aparelho ter sinal e plano para SMS. Combine com seus contatos o que fazer ao receber um alerta. Em risco imediato, ligue {{EMERGENCY_NUMBER}} (SAMU) ou 193 (Bombeiros).'],
     travelAir: ['disclaimer.travelAir', 'As regras de viagem e os limites de bagagem mudam com frequência. Confirme sempre com a sua companhia aérea — e, em viagem internacional, com o consulado — antes de viajar.'],
 };
 

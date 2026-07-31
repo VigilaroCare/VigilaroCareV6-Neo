@@ -80,7 +80,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Verifique se a trava suporta o peso e a força da criança conforme a faixa etária',
             'Não utilize travas que possam ser removidas facilmente por crianças acima de 3 anos — prefira as magnéticas',
         ],
-        oQueFazer: 'Em caso de ingestão de produto tóxico: ligue imediatamente para o CIATOX (0800-722-6001) ou SAMU (192). Não induza vômito. Guarde a embalagem do produto ingerido.',
+        oQueFazer: 'Em caso de ingestão de produto tóxico: ligue imediatamente para o {{POISON_CONTROL}} ou {{EMERGENCY_MEDICAL}}. Não induza vômito. Guarde a embalagem do produto ingerido.',
         estatistica: 'Intoxicação por medicamentos e produtos de limpeza lidera as emergências pediátricas no Brasil (SINITOX/Fiocruz).',
     },
     {
@@ -148,7 +148,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Combine com protetores de quina nos cantos das portas dos armários',
             'Reavalie o tipo de trava conforme a criança cresce e ganha mais força',
         ],
-        oQueFazer: 'Se a criança acessar produto perigoso: identifique o produto, ligue para o CIATOX (0800-722-6001) e siga as orientações. Não induza vômito.',
+        oQueFazer: 'Se a criança acessar produto perigoso: identifique o produto, ligue para o {{POISON_CONTROL}} e siga as orientações. Não induza vômito.',
         estatistica: 'Crianças de 1 a 3 anos são as mais vulneráveis a intoxicação doméstica.',
     },
     {
@@ -172,7 +172,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Combine com alarmes sonoros para portas de acesso à piscina',
             'Em condomínios, use também nas portas que dão acesso a áreas comuns',
         ],
-        oQueFazer: 'Se a criança acessar área de risco: verifique imediatamente se há lesão. Em caso de afogamento, inicie RCP e ligue 192 (SAMU).',
+        oQueFazer: 'Se a criança acessar área de risco: verifique imediatamente se há lesão. Em caso de afogamento, inicie RCP e ligue {{EMERGENCY_NUMBER}} (SAMU).',
         estatistica: 'Afogamento é a segunda causa de morte acidental em crianças de 1 a 4 anos no Brasil.',
     },
     {
@@ -195,7 +195,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Substitua quando começarem a descolar ou perder a textura',
             'Em casas com idosos, combine com barras de apoio no box e próximo ao vaso',
         ],
-        oQueFazer: 'Em caso de queda de idoso: não tente levantar imediatamente. Verifique se há dor no quadril ou impossibilidade de mover a perna. Ligue 192 (SAMU) em caso de suspeita de fratura.',
+        oQueFazer: 'Em caso de queda de idoso: não tente levantar imediatamente. Verifique se há dor no quadril ou impossibilidade de mover a perna. Ligue {{EMERGENCY_NUMBER}} (SAMU) em caso de suspeita de fratura.',
         estatistica: 'Fraturas de fêmur em idosos acima de 65 anos têm mortalidade de até 30% no primeiro ano (SBG).',
     },
     {
@@ -291,7 +291,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Prefira telas de proteção como complemento ao limitador',
             'Verifique se o limitador é resistente a impacto — testes com certificação Inmetro',
         ],
-        oQueFazer: 'Em caso de queda de altura: NÃO movimente a vítima. Ligue 192 (SAMU) imediatamente. Mantenha a vítima estável e aquecida até a chegada do socorro.',
+        oQueFazer: 'Em caso de queda de altura: NÃO movimente a vítima. Ligue {{EMERGENCY_NUMBER}} (SAMU) imediatamente. Mantenha a vítima estável e aquecida até a chegada do socorro.',
         estatistica: 'Quedas de janelas e varandas são responsáveis por 40% dos óbitos por acidente doméstico infantil em grandes cidades (SBP).',
     },
     {
@@ -314,7 +314,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Ao trocar tomadas, opte por modelos com proteção interna (padrão NBR 14136)',
             'Verifique periodicamente se os protetores estão firmes e sem folga',
         ],
-        oQueFazer: 'Em caso de choque elétrico: desligue a fonte de energia. NÃO toque na vítima se ela ainda estiver em contato com a fonte. Ligue 192 (SAMU). Se necessário, inicie RCP.',
+        oQueFazer: 'Em caso de choque elétrico: desligue a fonte de energia. NÃO toque na vítima se ela ainda estiver em contato com a fonte. Ligue {{EMERGENCY_NUMBER}} (SAMU). Se necessário, inicie RCP.',
         estatistica: 'Choques elétricos causam cerca de 1.000 mortes por ano no Brasil — crianças de 0 a 6 anos são as mais vulneráveis (Abracopel).',
     },
     {
@@ -335,7 +335,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Mantenha sempre travado após o uso do banheiro.',
             'O vaso sanitário representa um risco real de afogamento para bebês.'
         ],
-        oQueFazer: 'Em caso de queda na água ou acidente, verifique se há lesão e mantenha vigilância constante. Ligue 192 se houver engasgo ou perda de consciência.',
+        oQueFazer: 'Em caso de queda na água ou acidente, verifique se há lesão e mantenha vigilância constante. Ligue {{EMERGENCY_NUMBER}} se houver engasgo ou perda de consciência.',
         estatistica: 'O vaso sanitário é um local de risco de afogamento para crianças pequenas que ainda não têm equilíbrio ou força para sair do recipiente.',
     },
     {
@@ -383,7 +383,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Mantenha a piscina coberta sempre que não estiver em uso',
             'Em piscinas de montar/infláveis: esvazie quando não estiverem em uso',
         ],
-        oQueFazer: 'Em caso de afogamento: retire a vítima da água, verifique respiração, inicie RCP se necessário. Ligue 192 (SAMU). NÃO tente drenar água forçando — o corpo faz isso naturalmente.',
+        oQueFazer: 'Em caso de afogamento: retire a vítima da água, verifique respiração, inicie RCP se necessário. Ligue {{EMERGENCY_NUMBER}} (SAMU). NÃO tente drenar água forçando — o corpo faz isso naturalmente.',
         estatistica: 'O afogamento é a principal causa de morte acidental em crianças de 1 a 4 anos no Brasil. Piscinas domésticas respondem por uma parcela significativa dos casos.',
     },
     {
@@ -407,7 +407,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Nunca use grades do tipo sanfona (acordeão) — há risco de prender a cabeça ou os dedos',
             'Para idosos, combine com corrimão bilateral e iluminação adequada',
         ],
-        oQueFazer: 'Em caso de queda de escada: não movimente a vítima se houver suspeita de lesão na coluna. Ligue 192 (SAMU). Mantenha a vítima estável.',
+        oQueFazer: 'Em caso de queda de escada: não movimente a vítima se houver suspeita de lesão na coluna. Ligue {{EMERGENCY_NUMBER}} (SAMU). Mantenha a vítima estável.',
         estatistica: 'Quedas de escada são a terceira causa de atendimento traumático em pronto-socorros brasileiros.',
     },
     {
@@ -430,7 +430,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Escolha modelos em aço inox com revestimento antiderrapante',
             'Combine com assento elevado para o vaso sanitário para facilitar o uso',
         ],
-        oQueFazer: 'Em caso de queda no banheiro: verifique nível de consciência, dor no quadril e capacidade de movimentação. Não force o idoso a levantar. Ligue 192 se houver suspeita de fratura.',
+        oQueFazer: 'Em caso de queda no banheiro: verifique nível de consciência, dor no quadril e capacidade de movimentação. Não force o idoso a levantar. Ligue {{EMERGENCY_NUMBER}} se houver suspeita de fratura.',
         estatistica: 'Barras de apoio reduzem em até 40% o risco de quedas de idosos no banheiro (OMS).',
     },
     {
@@ -501,7 +501,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'Faça manutenção anual: verifique ganchos, tensão da rede e pontos de fixação',
             'Nunca instale por conta própria — exija instalador credenciado',
         ],
-        oQueFazer: 'Em caso de queda: NÃO movimente a vítima. Ligue 192 (SAMU). Mantenha a vítima aquecida e estável até o socorro.',
+        oQueFazer: 'Em caso de queda: NÃO movimente a vítima. Ligue {{EMERGENCY_NUMBER}} (SAMU). Mantenha a vítima aquecida e estável até o socorro.',
         estatistica: 'Quedas de altura são a maior causa de morte acidental de crianças entre 1 e 9 anos em grandes centros urbanos brasileiros.',
     },
 ];

@@ -15,6 +15,7 @@ import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import { PET_FOOD_SAFETY } from '../../data/pet_food_safety';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { getPoisonControlDial, getPoisonControlLabel } from '../../utils/emergencyTokens';
 
 export default function PetFoodSafetyScreen({ navigation, route }) {
   const { t } = useTranslation('common');
@@ -22,7 +23,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
   const colors = useThemeColors();
   const petHero = route?.params?.petHero;
 
-  const callCiatox = () => Linking.openURL('tel:08007226001');
+  const callCiatox = () => Linking.openURL(`tel:${getPoisonControlDial()}`);
 
   const renderCard = (item) => (
     <NeoCard variant="elevated" key={item.id} style={s.itemCard}>
@@ -168,7 +169,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
                   {t('petFood.alertTitle', 'Intoxicação recente?')}
                 </H3>
                 <Body style={s.ciatoxDesc}>
-                  {t('petFood.alertDesc', 'Acione o CIATOX · 0800 722 6001')}
+                  {t('petFood.alertDesc', { defaultValue: 'Ligue para {{poisonControl}}', poisonControl: getPoisonControlLabel() })}
                 </Body>
               </View>
               <NeoIcon name="ArrowRight2" size={18} color="#D32F2F" />

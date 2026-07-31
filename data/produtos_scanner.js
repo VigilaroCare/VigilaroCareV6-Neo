@@ -19,7 +19,7 @@ export const PRODUTOS_PERIGOSOS = {
     componentes: ['Hipoclorito de sódio 2-2,5%'],
     riscos: ['Corrosivo para pele e olhos', 'Gás tóxico se misturado com ácidos/amônia'],
     primeiros_socorros: {
-      ingestao: 'NÃO induzir vômito. Dar água. CIATOX 0800-722-6001.',
+      ingestao: 'NÃO induzir vômito. Dar água. {{POISON_CONTROL}}.',
       pele: 'Lavar por 15 min.',
       olhos: 'Lavar por 20 min.'
     },
@@ -186,7 +186,7 @@ export const PRODUTOS_PERIGOSOS = {
     componentes: ['Tolueno', 'Xileno', 'Hidrocarbonetos'],
     riscos: ['Pneumonia química se aspirado', 'Neurotóxico', 'Inflamável'],
     primeiros_socorros: {
-      ingestao: 'NÃO provocar vômito (risco de aspiração). SAMU 192.',
+      ingestao: 'NÃO provocar vômito (risco de aspiração). {{EMERGENCY_MEDICAL}}.',
       inalacao: 'Ar fresco imediato.',
       pele: 'Lavar com água e sabão.'
     },
@@ -207,7 +207,7 @@ export const PRODUTOS_PERIGOSOS = {
     componentes: ['Piretróides', 'Solventes'],
     riscos: ['Neurotóxico (tremores, convulsão)', 'Fatal para Gatos e Peixes'],
     primeiros_socorros: {
-      ingestao: 'CIATOX 0800-722-6001.',
+      ingestao: '{{POISON_CONTROL}}.',
       pele: 'Lavar com água e sabão.'
     },
     prevencao: ['Não aplicar com pessoas/pets no quarto', 'Guardar trancado'],
@@ -238,7 +238,7 @@ export const PRODUTOS_PERIGOSOS = {
     componentes: ['Naftaleno', 'Paradiclorobenzeno'],
     riscos: ['Parece bala — atrai crianças', 'Tóxica para fígado e sangue', 'Anemia hemolítica'],
     primeiros_socorros: {
-      ingestao: 'NÃO provocar vômito. CIATOX 0800-722-6001.'
+      ingestao: 'NÃO provocar vômito. {{POISON_CONTROL}}.'
     },
     prevencao: ['Evitar uso — preferir sachês de cedro/lavanda', 'Nunca deixar ao alcance de crianças'],
     icone: '⚪',
@@ -253,7 +253,7 @@ export const PRODUTOS_PERIGOSOS = {
     componentes: ['Glifosato'],
     riscos: ['Altamente tóxico se ingerido', 'Queimaduras na pele', 'Risco ambiental'],
     primeiros_socorros: {
-      ingestao: 'SAMU 192. NÃO provocar vômito.',
+      ingestao: '{{EMERGENCY_MEDICAL}}. NÃO provocar vômito.',
       pele: 'Banho imediato com água e sabão.'
     },
     prevencao: ['Não aplicar com vento', 'Manter crianças/pets afastados por 24-48h'],
@@ -384,7 +384,7 @@ export const PRODUTOS_PERIGOSOS = {
     categoria: 'Desconhecido',
     perigo: 'Indeterminado',
     riscos: ['Não consta na base, tratar como perigoso'],
-    primeiros_socorros: { ingestao: 'Ligar CIATOX 0800-722-6001' },
+    primeiros_socorros: { ingestao: 'Ligar {{POISON_CONTROL}}' },
     prevencao: ['Ler rótulo', 'Afastar crianças'],
     icone: '❓',
     cor: '#9E9E9E',

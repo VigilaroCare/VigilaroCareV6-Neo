@@ -21,7 +21,7 @@ export const areasInternas = [
             'Não posicione móveis perto de janelas (efeito escada).',
             'Não deixe bibelôs pequenos acessíveis (risco de engasgo).'
         ],
-        quandoChamarAjuda: 'Em caso de queda de móvel sobre criança, não mova se houver suspeita de trauma. Chame 192/193.'
+        quandoChamarAjuda: 'Em caso de queda de móvel sobre criança, não mova se houver suspeita de trauma. Chame {{EMERGENCY_NUMBER}}/193.'
     },
     {
         id: 'dining_room', // Mantido para compatibilidade, mas conteúdo mesclado ou refinado
@@ -84,7 +84,7 @@ export const areasInternas = [
             'Não armazene produtos químicos em garrafas de alimentos/bebidas.',
             'Não deixe sacos plásticos ao alcance (risco de sufocamento).'
         ],
-        quandoChamarAjuda: 'Ingestão de tóxicos: Ligue CIATOX 0800-722-6001.'
+        quandoChamarAjuda: 'Ingestão de tóxicos: Ligue {{POISON_CONTROL}}.'
     },
     {
         id: 'laundry',
@@ -104,7 +104,7 @@ export const areasInternas = [
             'Nunca armazene produtos em garrafas pet de refrigerante.',
             'Não deixe baldes com "molho" no chão acessíveis a bebês.'
         ],
-        quandoChamarAjuda: 'Ingestão de químicos: Não provoque vômito. Ligue 192 ou CIATOX.'
+        quandoChamarAjuda: 'Ingestão de químicos: Não provoque vômito. Ligue {{EMERGENCY_NUMBER}} ou CIATOX.'
     },
 
     // === DORMITÓRIOS (Segmentados) ===

@@ -49,7 +49,7 @@ export const riscosFisicos = [
             'Cargue el celular fuera de baños o áreas de piscina.',
             'Evite cables falsificados sin aislamiento seguro.'
         ],
-        primeirosSocorros: 'Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o SAMU (192).',
+        primeirosSocorros: 'Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o {{EMERGENCY_MEDICAL}}.',
         primeirosSocorros_en: 'Unplug the charger using a dry broomstick. Call 911.',
         primeirosSocorros_es: 'Desconecte el cargador usando un palo de escoba seco. Llame al 911.'
     },
@@ -296,7 +296,7 @@ export const riscosFisicos = [
             'La llave/combinación de la caja fuerte debe estar restringida a los dueños.',
             'Eduque a los niños: si ven un arma, NO TOCAR, alejarse y llamar a un adulto.',
         ],
-        primeirosSocorros: 'Ligue 192 e 190. Estanque sangramentos com compressão forte.',
+        primeirosSocorros: 'Ligue {{EMERGENCY_NUMBER}} e 190. Estanque sangramentos com compressão forte.',
         primeirosSocorros_en: 'Call 911. Stop bleeding with strong compression.',
         primeirosSocorros_es: 'Llame al 911. Detenga el sangrado con fuerte compresión.'
     },
@@ -329,7 +329,7 @@ export const riscosFisicos = [
             'Instale rejas de protección en ventanas y balcones.',
             'Instale barras de apoyo en la ducha y junto al inodoro.'
         ],
-        primeirosSocorros: 'Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame 192.',
+        primeirosSocorros: 'Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame {{EMERGENCY_NUMBER}}.',
         primeirosSocorros_en: 'Do not move the victim if a spine/neck fracture is suspected. Call 911.',
         primeirosSocorros_es: 'No mueva a la víctima si se sospecha una fractura de columna/cuello. Llame al 911.'
     },
@@ -378,7 +378,7 @@ export const riscosFisicos = [
             'Use protetores salva-dedos (trava antiesmagamento) em todas as portas.',
             'Não coloque brinquedos no topo de móveis altos, evitando que a criança tente escalar.'
         ],
-        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue 192.'
+        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue {{EMERGENCY_NUMBER}}.'
     },
     {
         id: 'rf_queimaduras_domesticas',
@@ -410,7 +410,7 @@ export const riscosFisicos = [
             'Verifique a indicação de idade e selo do INMETRO nos brinquedos.',
             'Mantenha feijões crus, milho e moedas longe do alcance.'
         ],
-        primeirosSocorros: 'Realize a Manobra de Heimlich imediatamente. Para bebês, 5 tapas nas costas e 5 compressões no peito. Ligue 192 se não desengasgar.'
+        primeirosSocorros: 'Realize a Manobra de Heimlich imediatamente. Para bebês, 5 tapas nas costas e 5 compressões no peito. Ligue {{EMERGENCY_NUMBER}} se não desengasgar.'
     },
     {
         id: 'rf_cortes',
@@ -442,7 +442,7 @@ export const riscosFisicos = [
             'Crianças em bikes comuns devem pedalar em locais seguros, longe do trânsito de carros.',
             'Sinalize suas ações e evite usar fones de ouvido no trânsito.'
         ],
-        primeirosSocorros: 'Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue 192 e mantenha a pessoa calma até o resgate.'
+        primeirosSocorros: 'Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue {{EMERGENCY_NUMBER}} e mantenha a pessoa calma até o resgate.'
     },
     {
         id: 'rf_playgrounds',

@@ -55,7 +55,7 @@ export const animaisCatalog = [
         primeirosSocorros: {
             "fazer": [
                 "Mantenha a vítima calma e deitada",
-                "Chame SAMU (192) imediatamente",
+                "Chame {{EMERGENCY_MEDICAL}} imediatamente",
                 "Lave o local com água e sabão",
                 "Mantenha o membro afetado em posição neutra",
                 "Remova anéis, pulseiras e roupas apertadas",
@@ -124,7 +124,7 @@ export const animaisCatalog = [
         primeirosSocorros_en: {
             "fazer": [
                 "Keep victim calm and lying down",
-                "Call emergency services (192) immediately",
+                "Call {{EMERGENCY_MEDICAL}} immediately",
                 "Wash the site with soap and water",
                 "Keep affected limb in a neutral position",
                 "Remove rings, bracelets, and tight clothing",
@@ -145,7 +145,7 @@ export const animaisCatalog = [
         primeirosSocorros_es: {
             "fazer": [
                 "Mantenga a la víctima tranquila y acostada",
-                "Llame a emergencias (192) inmediatamente",
+                "Llame a {{EMERGENCY_MEDICAL}} inmediatamente",
                 "Lave el lugar con agua y jabón",
                 "Mantenga el miembro afectado en posición neutra",
                 "Quítese anillos, pulseras y ropa ajustada",
@@ -269,7 +269,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar o local com água e sabão",
                 "Aplicar compressa fria (NÃO gelo direto)",
-                "Chamar SAMU (192) IMEDIATAMENTE",
+                "Chamar {{EMERGENCY_MEDICAL}} IMEDIATAMENTE",
                 "Manter a pessoa calma",
                 "Anotar hora do acidente",
                 "Se possível, capturar o escorpião com cuidado",
@@ -338,7 +338,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Wash the site with soap and water",
                 "Apply cold compress (NOT direct ice)",
-                "Call emergency services (192) IMMEDIATELY",
+                "Call {{EMERGENCY_MEDICAL}} IMMEDIATELY",
                 "Keep the person calm",
                 "Note the time of the accident",
                 "If possible, carefully capture the scorpion",
@@ -356,7 +356,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar el lugar con agua y jabón",
                 "Aplicar compresa fría (NO hielo directo)",
-                "Llamar a emergencias (192) INMEDIATAMENTE",
+                "Llamar a {{EMERGENCY_MEDICAL}} INMEDIATAMENTE",
                 "Mantener a la persona tranquila",
                 "Anotar la hora del accidente",
                 "Si es posible, capturar cuidadosamente al escorpión",
@@ -613,7 +613,7 @@ export const animaisCatalog = [
         },
         primeirosSocorros: {
             "fazer": [
-                "Chamar SAMU (192) URGENTEMENTE",
+                "Chamar {{EMERGENCY_MEDICAL}} URGENTEMENTE",
                 "Manter vítima ABSOLUTAMENTE calma e deitada",
                 "Imobilizar membro afetado",
                 "Observar sinais respiratórios",
@@ -676,7 +676,7 @@ export const animaisCatalog = [
         },
         primeirosSocorros_en: {
             "fazer": [
-                "Call emergency services (192) URGENTLY",
+                "Call {{EMERGENCY_MEDICAL}} URGENTLY",
                 "Keep victim ABSOLUTELY calm and lying down",
                 "Immobilize affected limb",
                 "Observe respiratory signs",
@@ -693,7 +693,7 @@ export const animaisCatalog = [
         },
         primeirosSocorros_es: {
             "fazer": [
-                "Llamar a emergencias (192) URGENTEMENTE",
+                "Llamar a {{EMERGENCY_MEDICAL}} URGENTEMENTE",
                 "Mantener a la víctima ABSOLUTAMENTE tranquila y acostada",
                 "Inmovilizar el miembro afectado",
                 "Observar signos respiratorios",
@@ -788,7 +788,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar com água e sabão",
                 "Compressa fria",
-                "Chamar SAMU (192) imediatamente",
+                "Chamar {{EMERGENCY_MEDICAL}} imediatamente",
                 "Manter pessoa calma",
                 "Capturar aranha se possível (com segurança)",
                 "Levar ao hospital urgentemente"
@@ -854,7 +854,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Wash with soap and water",
                 "Cold compress",
-                "Call emergency services (192) immediately",
+                "Call {{EMERGENCY_MEDICAL}} immediately",
                 "Keep person calm",
                 "Capture spider if possible (safely)",
                 "Take to the hospital urgently"
@@ -870,7 +870,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar con agua y jabón",
                 "Compresa fría",
-                "Llamar a emergencias (192) inmediatamente",
+                "Llamar a {{EMERGENCY_MEDICAL}} inmediatamente",
                 "Mantener a la persona tranquila",
                 "Capturar la araña si es posible (con seguridad)",
                 "Llevar al hospital urgentemente"
@@ -1487,7 +1487,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/cd_cascavel.jpg'),
         tipo: "outro",
     },
@@ -1600,7 +1600,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/bj_jararacussu.jpg'),
         tipo: "outro",
     },
@@ -1713,7 +1713,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/bj_albina.jpg'),
         tipo: "outro",
     },
@@ -1826,7 +1826,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/lm_surucucu.jpg'),
         tipo: "outro",
     },
@@ -1939,7 +1939,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/mc_coral.jpg'),
         tipo: "outro",
     },
@@ -2053,7 +2053,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/tb_marrom.png'),
         tipo: "outro",
     },
@@ -2166,7 +2166,7 @@ export const animaisCatalog = [
             "Use calçados fechados"
         ],
         tratamento: "Sintomático e soro específico se disponível.",
-        gravidade: "Variável - Consulte CIATOX (0800 014 8110)",
+        gravidade: "Variável - Consulte {{POISON_CONTROL}}",
         imagem: require('../assets/sinitox/animais/gm_caranguejeira.jpg'),
         tipo: "outro",
     },

@@ -41,6 +41,7 @@ import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
 import { getHistory, addToHistory } from '../services/inforotulos_cache';
 import { getSubstanceByName } from '../services/InfoRotulosSubstanceService';
 import NeoAlert from '../utils/NeoAlert';
+import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
 
 export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
@@ -390,7 +391,7 @@ export default function InfoRotulosScreen() {
                         </Eyebrow>
                         <TouchableOpacity
                             activeOpacity={0.85}
-                            onPress={() => Linking.openURL('tel:08007226001')}
+                            onPress={() => Linking.openURL(`tel:${getPoisonControlDial()}`)}
                         >
                             <View style={s.ciatoxCard}>
                                 <View style={s.ciatoxIconWrap}>
@@ -401,7 +402,7 @@ export default function InfoRotulosScreen() {
                                         {t('inforotulos.ciatoxTitle', 'CIATOX — Emergência toxicológica')}
                                     </Body>
                                     <Small style={s.ciatoxNumber}>
-                                        {t('inforotulos.ciatoxNumber', '0800 722 6001 · Gratuito, 24h')}
+                                        {t('inforotulos.ciatoxNumber', { defaultValue: '{{poisonControl}} · 24h', poisonControl: getPoisonControlLabel() })}
                                     </Small>
                                 </View>
                                 <NeoIcon name="ArrowRight2" size={18} color="rgba(255,255,255,0.85)" />

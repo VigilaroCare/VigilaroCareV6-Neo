@@ -16,6 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import NeoIcon from '../../components/NeoIcon';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { resolveEmergencyTokens, getPoisonControlLabel, getMedicalLabel, getPoisonControlDial, getMedicalDial, getFireDial } from '../../utils/emergencyTokens';
 
 const EMERGENCIA_TIPOS = [
   {
@@ -47,7 +48,7 @@ const EMERGENCIA_TIPOS = [
     passos: [
       '1. NÃO provoque vômito!',
       '2. Identifique o produto ou medicamento.',
-      '3. Ligue imediatamente para o CIT: 0800 722 6001.',
+      '3. Ligue imediatamente para {{POISON_CONTROL}}.',
     ],
   },
   {
@@ -64,9 +65,9 @@ export default function EmergenciaRapidaScreen({ navigation }) {
   const { t } = useTranslation('common');
   const [tipoSelecionado, setTipoSelecionado] = useState(null);
 
-  const LigarSamu = () => Linking.openURL('tel:192');
-  const LigarBombeiros = () => Linking.openURL('tel:193');
-  const LigarCIT = () => Linking.openURL('tel:08007226001');
+  const LigarSamu = () => Linking.openURL(`tel:${getMedicalDial()}`);
+  const LigarBombeiros = () => Linking.openURL(`tel:${getFireDial()}`);
+  const LigarCIT = () => Linking.openURL(`tel:${getPoisonControlDial()}`);
 
   if (tipoSelecionado) {
     return (
@@ -90,7 +91,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
         <View style={s.contentProtocol}>
           <Text style={s.passosHeader}>{t('headersFirst.fAAAGORA', 'FAÇA AGORA:')}</Text>
           {tipoSelecionado.passos.map((passo, i) => (
-            <Text key={i} style={s.passoText}>{passo}</Text>
+            <Text key={i} style={s.passoText}>{resolveEmergencyTokens(passo)}</Text>
           ))}
         </View>
 
@@ -99,12 +100,12 @@ export default function EmergenciaRapidaScreen({ navigation }) {
           {tipoSelecionado.id === 'intoxicacao' ? (
             <TouchableOpacity onPress={LigarCIT} style={[s.callBtn, { backgroundColor: '#5B21B6' }]}>{/* TODO: map #5B21B6 to DS token */}
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
-              <Text style={s.callText}>CIT 0800 722 6001</Text>
+              <Text style={s.callText}>{getPoisonControlLabel()}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={LigarSamu} style={[s.callBtn, { backgroundColor: Neo.emergency?.panicDark || '#B91C1C' }]}>
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
-              <Text style={s.callText}>{t('headersFirst.sAMU192', 'SAMU 192')}</Text>
+              <Text style={s.callText}>{getMedicalLabel()}</Text>
             </TouchableOpacity>
           )}
           {tipoSelecionado.id === 'incendio' && (

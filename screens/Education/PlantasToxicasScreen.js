@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     View,
     Text,
@@ -21,6 +21,8 @@ import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { getMercadoAtual, separarPorRelevancia } from '../../utils/relevanciaRegional';
+import { getPoisonControlLabel, getPoisonControlDial } from '../../utils/emergencyTokens';
 
 export default function PlantasToxicasScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -50,8 +52,55 @@ export default function PlantasToxicasScreen({ navigation }) {
         }
     };
 
+    // Relevancia regional — ordena e separa, nunca remove.
+    // Ver utils/relevanciaRegional.js e data/ocorrencia_regional.js.
+    const mercado = useMemo(() => getMercadoAtual(), []);
+    const buscando = searchText.trim().length > 0;
+    const { locais, outrasRegioes } = useMemo(
+        () => (buscando
+            ? { locais: plantasFiltradas, outrasRegioes: [] }
+            : separarPorRelevancia(plantasFiltradas, 'plantas', mercado)),
+        [plantasFiltradas, mercado, buscando]
+    );
+
+    // Centro de intoxicacao do pais onde o utilizador esta — nao o do Brasil.
+    const poisonControlLabel = getPoisonControlLabel();
     const handleCallCiatox = () => {
-        Linking.openURL('tel:08007226001');
+        Linking.openURL(`tel:${getPoisonControlDial()}`);
+    };
+
+    // Card extraido para reuso nas duas seccoes, sem duplicar markup.
+    const renderPlantaCard = (planta) => {
+        const sintomas = t_array(planta, 'sintomasHumanos') || [];
+        const nivel = t_field(planta, 'nivelPerigo') || 'Baixo';
+        const sintomasText = sintomas.length > 0 ? `${sintomas[0]}${sintomas.length > 1 ? ` ${t('plants.andMore', { count: sintomas.length - 1 }).replace('+', '+ ')}` : ''}` : t('plants.variedSymptoms', 'Sintomas variados');
+        return (
+            <TouchableOpacity key={planta.id} onPress={() => navigation.navigate('ConceitoDetail', { conceito: planta })} activeOpacity={0.8} style={{ marginBottom: 16 }}>
+                <View style={styles.guideCardOuter}>
+                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                        <View style={styles.guideImageContainer}>
+                            {planta.imagem ? <Image source={planta.imagem} style={styles.guideImage} /> : <NeoIcon name="Leaf" size={48} color={THEME_COLOR} variant="Bold" />}
+                        </View>
+                        <View style={styles.guideContent}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                <View style={{ flex: 1, paddingRight: 8 }}>
+                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(planta, 'nomePopular')}</Text>
+                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{planta.nomeCientifico}</Text>
+                                </View>
+                                <View style={[styles.toxicBadge, { backgroundColor: getToxicidadeColor(nivel) + '15' }]}>
+                                    <Text style={[styles.toxicText, { color: getToxicidadeColor(nivel) }]}>{nivel}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flex: 1 }} />
+                            <View style={styles.sptContainer}>
+                                <NeoIcon name="Warning2" size={12} color={Neo.colors.neutral[500]} />
+                                <Text style={styles.sptText} numberOfLines={2}>{sintomasText}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        );
     };
 
     return (
@@ -87,44 +136,27 @@ export default function PlantasToxicasScreen({ navigation }) {
                     <TouchableOpacity onPress={handleCallCiatox} activeOpacity={0.9} style={{ marginBottom: 16 }}>
                         <View style={[styles.alertCard, { backgroundColor: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)', borderWidth: 1 }]}>
                             <View style={styles.alertIconBg}><NeoIcon name="Call" size={24} color={Neo.colors.feedback.error} variant="Bold" /></View>
-                            <View style={{ flex: 1 }}><H3 style={styles.alertTitle}>{t('plants.emergencyTitle', 'Emergência Toxicológica?')}</H3><Small style={styles.alertDesc}>{t('plants.emergencyDesc', 'Ligue para o CIATOX: 0800 722 6001')}</Small></View>
+                            <View style={{ flex: 1 }}><H3 style={styles.alertTitle}>{t('plants.emergencyTitle', 'Emergência Toxicológica?')}</H3><Small style={styles.alertDesc}>{t('plants.emergencyDesc', { poisonControl: poisonControlLabel })}</Small></View>
                         </View>
                     </TouchableOpacity>
 
                     <View style={{ height: 16 }} />
 
-                    {plantasFiltradas.map((planta) => {
-                        const sintomas = t_array(planta, 'sintomasHumanos') || [];
-                        const nivel = t_field(planta, 'nivelPerigo') || 'Baixo';
-                        const sintomasText = sintomas.length > 0 ? `${sintomas[0]}${sintomas.length > 1 ? ` ${t('plants.andMore', { count: sintomas.length - 1 }).replace('+', '+ ')}` : ''}` : 'Sintomas variados';
-                        return (
-                            <TouchableOpacity key={planta.id} onPress={() => navigation.navigate('ConceitoDetail', { conceito: planta })} activeOpacity={0.8} style={{ marginBottom: 16 }}>
-                                <View style={styles.guideCardOuter}>
-                                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
-                                        <View style={styles.guideImageContainer}>
-                                            {planta.imagem ? <Image source={planta.imagem} style={styles.guideImage} /> : <NeoIcon name="Leaf" size={48} color={THEME_COLOR} variant="Bold" />}
-                                        </View>
-                                        <View style={styles.guideContent}>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                                <View style={{ flex: 1, paddingRight: 8 }}>
-                                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(planta, 'nomePopular')}</Text>
-                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{planta.nomeCientifico}</Text>
-                                                </View>
-                                                <View style={[styles.toxicBadge, { backgroundColor: getToxicidadeColor(nivel) + '15' }]}>
-                                                    <Text style={[styles.toxicText, { color: getToxicidadeColor(nivel) }]}>{nivel}</Text>
-                                                </View>
-                                            </View>
-                                            <View style={{ flex: 1 }} />
-                                            <View style={styles.sptContainer}>
-                                                <NeoIcon name="Warning2" size={12} color={Neo.colors.neutral[500]} />
-                                                <Text style={styles.sptText} numberOfLines={2}>{sintomasText}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    })}
+                    {locais.length > 0 && outrasRegioes.length > 0 && (
+                        <H3 style={{ color: textPrimary, marginBottom: 12 }}>{t('plants.localSection')}</H3>
+                    )}
+
+                    {locais.map(renderPlantaCard)}
+
+                    {outrasRegioes.length > 0 && (
+                        <>
+                            <View style={{ marginTop: 8, marginBottom: 12 }}>
+                                <H3 style={{ color: textPrimary }}>{t('plants.otherRegionsSection')}</H3>
+                                <Small style={{ color: textMuted, marginTop: 2 }}>{t('plants.otherRegionsHint')}</Small>
+                            </View>
+                            {outrasRegioes.map(renderPlantaCard)}
+                        </>
+                    )}
 
                     {plantasFiltradas.length === 0 && (
                         <View style={{ alignItems: 'center', marginTop: 40 }}><NeoIcon name="Leaf" size={48} color={Neo.colors.neutral[300]} variant="Bold" /><Body style={{ marginTop: 16, color: Neo.colors.neutral[400] }}>{t('plants.noResults', 'Nenhuma planta encontrada.')}</Body></View>

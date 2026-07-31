@@ -22,7 +22,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
             'Detergentes (Irritantes).',
             'Desengordurantes (Cáusticos).'
         ],
-        primeirosSocorros: 'Se ingerir: NÃO provoque vômito. Ligue 0800 722 6001 (CIATOX). Se cair no olho: Lavar com água corrente 20 min.'
+        primeirosSocorros: 'Se ingerir: NÃO provoque vômito. Ligue {{POISON_CONTROL}} (CIATOX). Se cair no olho: Lavar com água corrente 20 min.'
     },
     'jardim': {
         titulo: 'Jardinagem',

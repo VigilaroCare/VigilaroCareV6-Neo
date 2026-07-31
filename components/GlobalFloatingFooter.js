@@ -32,11 +32,59 @@ import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 const PLANE_NO_GROUND = 'M248 136v24a8 8 0 0 1-8 8H61.07a39.75 39.75 0 0 1-38.31-28.51L8.69 92.6A16 16 0 0 1 24 72h8a8 8 0 0 1 5.65 2.34L59.32 96h22.49l-9-26.94A16 16 0 0 1 88 48h8a8 8 0 0 1 5.66 2.34L147.32 96H208a40 40 0 0 1 40 40m-16 0a24 24 0 0 0-24-24h-64a8 8 0 0 1-5.65-2.34L92.69 64H88l12.49 37.47A8 8 0 0 1 92.91 112H56a8 8 0 0 1-5.66-2.34L28.69 88H24l14.07 46.9a23.85 23.85 0 0 0 23 17.1H232Z';
 
 // ---------------------------------------------------------------------------
+// GEOMETRIA DO FOOTER — FONTE ÚNICA
+// ---------------------------------------------------------------------------
+// Quem desenha conteúdo por baixo do footer flutuante precisa saber quanta
+// altura ele realmente ocupa. Antes cada tela chutava um número fixo (a Home
+// usava 90), e o número fixo funcionava em aparelho sem barra de gestos e
+// falhava em aparelho com ela — porque a altura ocupada DEPENDE do
+// insets.bottom. Foi assim que os rótulos da última fileira de pictogramas
+// foram parar atrás do footer mais de uma vez.
+//
+// Duas coisas ocupam espaço, e a maior manda:
+//   • a barra:  60 + bottomPadding   (ver style `container` abaixo)
+//   • o SOS:    (insets.bottom + 16) + 64, porque ele flutua ACIMA da barra
+export const FOOTER_BAR_BASE_HEIGHT = 60;
+export const SOS_BUTTON_SIZE = 64;
+export const FOOTER_BREATHING_ROOM = 8;
+
+/**
+ * Clearance da BARRA — a que vale para conteúdo em toda a largura do ecrã.
+ *
+ * É esta que a maior parte das telas quer. O botão SOS é mais alto, mas é um
+ * círculo de 64px CENTRADO (alignSelf: 'center'), não uma faixa: ele só tapa
+ * a coluna do meio. Reservar a altura do SOS em toda a largura cobra ~20px a
+ * mais do que o necessário — foi o que fez os pictogramas da Home encolherem
+ * sem precisar.
+ *
+ * @param {number} insetBottom - de useSafeAreaInsets().bottom
+ */
+export function getFooterClearance(insetBottom = 0) {
+    const bottomPadding = insetBottom > 0 ? insetBottom : 10;
+    return FOOTER_BAR_BASE_HEIGHT + bottomPadding + FOOTER_BREATHING_ROOM;
+}
+
+/**
+ * Clearance do SOS — só para conteúdo que fica na COLUNA CENTRAL do ecrã,
+ * onde o botão flutuante realmente passa por cima.
+ */
+export function getSosClearance(insetBottom = 0) {
+    return (insetBottom > 0 ? insetBottom + 16 : 22) + SOS_BUTTON_SIZE + FOOTER_BREATHING_ROOM;
+}
+
+/** Largura ocupada pelo SOS, para quem precisar saber o que ele tapa. */
+export const SOS_OCCLUSION_WIDTH = SOS_BUTTON_SIZE;
+
+// ---------------------------------------------------------------------------
 // ROTAS ONDE O FOOTER NÃO DEVE APARECER
 // ---------------------------------------------------------------------------
 const HIDDEN_ROUTES = new Set([
   // Onboarding
-  'BoasVindas', 'PerfilWizard', 'Briefing', 'NewHomeWizard',
+  // 'WelcomeTour' faltava aqui: o footer flutuante renderizava por cima do
+  // tour de boas-vindas e o botao SOS cobria metade do botao "Proximo".
+  // Durante o onboarding o utilizador ainda nem configurou o app — nao ha
+  // nada para o footer navegar.
+  'BoasVindas', 'WelcomeTour', 'PerfilWizard', 'Briefing', 'NewHomeWizard',
   'SecretBriefing', 'SafetyPermit', 'FamilyComposition',
   'FamilyCompositionScreen', 'QuemProtegerScreenNeo', 'QuemProteger',
   // Splash

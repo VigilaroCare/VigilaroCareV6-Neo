@@ -80,7 +80,7 @@ export const primeirosSocorrosPTBR = [
         oQueNaoFazer: [
             'NUNCA encoste na pessoa se ela ainda estiver colada ao fio ou tomada elétrica.',
         ],
-        quandoChamarAjuda: 'SEMPRE chame o SAMU (192). A corrente elétrica pode causar arritmias no coração horas após o choque.'
+        quandoChamarAjuda: 'SEMPRE chame o {{EMERGENCY_MEDICAL}}. A corrente elétrica pode causar arritmias no coração horas após o choque.'
     },
     {
         id: 'ps_6',
@@ -89,7 +89,7 @@ export const primeirosSocorrosPTBR = [
         situacao: 'Ingestão de veneno/químicos',
         oQueFazer: [
             'Identifique na hora qual produto ou remédio a pessoa engoliu.',
-            'Ligue imediatamente para o CIATOX no telefone 0800 722 6001.',
+            'Ligue imediatamente para o CIATOX no telefone {{POISON_CONTROL}}.',
             'Siga exatamente o que o atendente médico orientar.',
         ],
         oQueNaoFazer: [

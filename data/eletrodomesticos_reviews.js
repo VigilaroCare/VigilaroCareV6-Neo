@@ -57,7 +57,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
             'Nunca troque a temperatura do chuveiro com as mãos molhadas ou durante o banho',
             'Substitua o chuveiro a cada 3-5 anos ou ao notar sinais de ferrugem/escurecimento',
         ],
-        oQueFazer: 'Se alguém levar choque no chuveiro: NÃO toque na pessoa com as mãos nuas. Desligue o disjuntor geral. Se a pessoa estiver inconsciente, ligue 192 (SAMU) e inicie ressuscitação se souber. Choque no chuveiro pode causar parada cardíaca.',
+        oQueFazer: 'Se alguém levar choque no chuveiro: NÃO toque na pessoa com as mãos nuas. Desligue o disjuntor geral. Se a pessoa estiver inconsciente, ligue {{EMERGENCY_NUMBER}} (SAMU) e inicie ressuscitação se souber. Choque no chuveiro pode causar parada cardíaca.',
         estatistica: 'O chuveiro elétrico é a principal causa de mortes por choque elétrico residencial no Brasil. Em 2024, 84% dos acidentes elétricos domésticos resultaram em óbito.',
     },
     {
@@ -83,7 +83,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
             'Nunca use extensões ou adaptadores "T" para ligar a máquina — potência muito alta',
             'Desligue da tomada ao sair de casa ou ao dormir',
         ],
-        oQueFazer: 'Choque: desligue o disjuntor antes de tocar na vítima. Se criança for encontrada dentro do tambor: retire imediatamente, verifique respiração e ligue 192 (SAMU).',
+        oQueFazer: 'Choque: desligue o disjuntor antes de tocar na vítima. Se criança for encontrada dentro do tambor: retire imediatamente, verifique respiração e ligue {{EMERGENCY_NUMBER}} (SAMU).',
         estatistica: 'A máquina de lavar está entre os 3 eletrodomésticos que mais causam choques fatais no Brasil, segundo a Abracopel.',
     },
     {
@@ -136,7 +136,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
             'Mantenha os fios em bom estado — fio descascado perto de água é risco fatal',
             'Guarde fora do alcance de crianças, especialmente a chapinha (parece um "brinquedo brilhante")',
         ],
-        oQueFazer: 'Se o aparelho cair na água: NÃO coloque a mão na água. Desligue o disjuntor geral. Se alguém levou choque: desligue a energia, afaste a pessoa da fonte e ligue 192.',
+        oQueFazer: 'Se o aparelho cair na água: NÃO coloque a mão na água. Desligue o disjuntor geral. Se alguém levou choque: desligue a energia, afaste a pessoa da fonte e ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'Secadores e chapinhas estão entre os aparelhos que mais causam acidentes elétricos em banheiros residenciais no Brasil.',
     },
     {
@@ -346,7 +346,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
             'Recolha objetos pequenos do chão antes de ligar o robô (peças de brinquedo, pilhas, moedas)',
             'Mantenha o aspirador em local onde idosos não tropecem nele ao levantar de madrugada',
         ],
-        oQueFazer: 'Em caso de queda por tropeço no cabo: avalie dores nas costas, quadril e cabeça. Se houver dor intensa ao mover, mantenha a pessoa imóvel e ligue 192.',
+        oQueFazer: 'Em caso de queda por tropeço no cabo: avalie dores nas costas, quadril e cabeça. Se houver dor intensa ao mover, mantenha a pessoa imóvel e ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'Robôs aspiradores representam risco de tropeço para 1 em cada 5 idosos que moram em casas com os dispositivos, segundo levantamentos internacionais.',
     },
     {

@@ -5,6 +5,38 @@ import { FONTS, displayFont } from '../utils/DesignSystem2026';
 
 import { useAccessibility } from '../context/AccessibilityContext';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import { resolveEmergencyTokens } from '../utils/emergencyTokens';
+
+/**
+ * REDE DE SEGURANCA DOS TOKENS DE EMERGENCIA (2026-07-31)
+ *
+ * O conteudo em /data usa tokens ({{EMERGENCY_MEDICAL}}, {{POISON_CONTROL}},
+ * {{EMERGENCY_NUMBER}}) no lugar de numeros de telefone escritos, para que o
+ * numero mostrado seja o do pais onde o utilizador esta. A maior parte desse
+ * conteudo passa por utils/getLocalizedField.js, que ja resolve os tokens.
+ *
+ * Mas nem todo ecra usa t_field — parte do conteudo e renderizada direto. Sem
+ * esta rede, um token nao resolvido apareceria cru na tela ("{{POISON_CONTROL}}")
+ * exatamente numa instrucao de emergencia.
+ *
+ * Resolver aqui cobre qualquer caminho de renderizacao de uma vez. O custo e
+ * um indexOf('{{') por string — praticamente nulo, porque quase nenhuma tem
+ * token. Strings ja resolvidas passam intactas (a substituicao e idempotente).
+ */
+function resolverTokensEmFilhos(children) {
+    if (typeof children === 'string') return resolveEmergencyTokens(children);
+    if (Array.isArray(children)) {
+        let mudou = false;
+        const novos = children.map((filho) => {
+            if (typeof filho !== 'string') return filho;
+            const resolvido = resolveEmergencyTokens(filho);
+            if (resolvido !== filho) mudou = true;
+            return resolvido;
+        });
+        return mudou ? novos : children;
+    }
+    return children;
+}
 
 /**
  * Mapeia fontWeight CSS → nome da fonte Plus Jakarta Sans carregada.
@@ -110,7 +142,7 @@ export const NeoText = ({ children, style, variant = 'body', color, align = 'lef
 
     return (
         <Text style={textStyle} numberOfLines={numberOfLines} {...props}>
-            {children}
+            {resolverTokensEmFilhos(children)}
         </Text>
     );
 };

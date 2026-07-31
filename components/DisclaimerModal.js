@@ -3,6 +3,7 @@ import { Modal, View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'rea
 import NeoIcon from './NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { getMedicalLabel, getPoisonControlLabel } from '../utils/emergencyTokens';
 
 export default function DisclaimerModal({ visible, onClose }) {
     return (
@@ -27,10 +28,10 @@ export default function DisclaimerModal({ visible, onClose }) {
                             Ele <Text style={styles.bold}>NÃO substitui</Text> o aconselhamento, diagnóstico ou tratamento médico profissional.
                         </Text>
                         <Text style={styles.text}>
-                            Em caso de emergência médica, ligue imediatamente para o <Text style={styles.bold}>SAMU (192)</Text> ou <Text style={styles.bold}>Bombeiros (193)</Text>.
+                            Em caso de emergência médica, ligue imediatamente para o <Text style={styles.bold}>{getMedicalLabel()}</Text>.
                         </Text>
                         <Text style={styles.text}>
-                            Para casos de intoxicação, contate o <Text style={styles.bold}>CIATOX (0800 722 6001)</Text>.
+                            Para casos de intoxicação, contate o <Text style={styles.bold}>{getPoisonControlLabel()}</Text>.
                         </Text>
                     </ScrollView>
 

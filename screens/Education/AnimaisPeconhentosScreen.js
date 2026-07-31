@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     View,
     Text,
@@ -22,6 +22,8 @@ import { animaisCatalog } from '../../data/animais_ciatox';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_object } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { getMercadoAtual, separarPorRelevancia } from '../../utils/relevanciaRegional';
+import { getPoisonControlLabel, getPoisonControlDial } from '../../utils/emergencyTokens';
 
 export default function AnimaisPeconhentosScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -40,6 +42,20 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
         animal.nomeCientifico.toLowerCase().includes(searchText.toLowerCase())
     ) : [];
 
+    // Relevancia regional: separa o que ocorre na regiao do utilizador do que
+    // nao ocorre. NUNCA remove — o resto continua listado abaixo, porque o
+    // brasileiro em Lisboa e quem vai viajar precisam do catalogo inteiro.
+    // Durante a busca a lista fica plana, para o resultado nao "sumir" numa
+    // secao que o utilizador nao esperava.
+    const mercado = useMemo(() => getMercadoAtual(), []);
+    const buscando = searchText.trim().length > 0;
+    const { locais, outrasRegioes } = useMemo(
+        () => (buscando
+            ? { locais: animaisFiltrados, outrasRegioes: [] }
+            : separarPorRelevancia(animaisFiltrados, 'animais', mercado)),
+        [animaisFiltrados, mercado, buscando]
+    );
+
     const getPerigoColor = (nivel) => {
         switch (nivel) {
             case 'Muito Alto': case 'Very High': case 'Muy Alto': return Neo.colors.feedback.error; // DS: data-level color
@@ -50,8 +66,48 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
         }
     };
 
+    // Centro de intoxicacao do pais onde o utilizador esta — nao o do Brasil.
+    // Antes discava a linha brasileira em qualquer lugar do mundo.
+    const poisonControlLabel = getPoisonControlLabel();
     const handleCallCiatox = () => {
-        Linking.openURL('tel:08007226001');
+        Linking.openURL(`tel:${getPoisonControlDial()}`);
+    };
+
+    // Card extraido para ser reusado nas duas seccoes (local / outras regioes)
+    // sem duplicar o markup.
+    const renderAnimalCard = (animal) => {
+        const nivel = t_field(animal, 'nivelPerigo') || 'Médio';
+        const sintomas = t_object(animal, 'sintomas') || {};
+        const sintomasList = sintomas.imediatos || sintomas.humanos || [];
+        const sintomasText = sintomasList.length > 0 ? `${sintomasList[0]}${sintomasList.length > 1 ? ` ${t('animals.andMore', { count: sintomasList.length - 1 })}` : ''}` : t_field(animal, 'descricao');
+
+        return (
+            <TouchableOpacity key={animal.id} onPress={() => navigation.navigate('ConceitoDetail', { conceito: animal })} activeOpacity={0.8} style={{ marginBottom: 16 }}>
+                <View style={styles.guideCardOuter}>
+                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
+                        <View style={styles.guideImageContainer}>
+                            {animal.imagem ? <Image source={animal.imagem} style={styles.guideImage} /> : <NeoIcon name="Warning2" size={48} color={THEME_COLOR} variant="Bold" />}
+                        </View>
+                        <View style={styles.guideContent}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                <View style={{ flex: 1, paddingRight: 8 }}>
+                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(animal, 'nomePopular')}</Text>
+                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{animal.nomeCientifico}</Text>
+                                </View>
+                                <View style={[styles.toxicBadge, { backgroundColor: getPerigoColor(nivel) + '15' }]}>
+                                    <Text style={[styles.toxicText, { color: getPerigoColor(nivel) }]}>{nivel}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flex: 1 }} />
+                            <View style={styles.sptContainer}>
+                                <NeoIcon name="Warning2" size={12} color={Neo.colors.neutral[500]} />
+                                <Text style={styles.sptText} numberOfLines={2}>{sintomasText}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        );
     };
 
     return (
@@ -97,47 +153,28 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
                             </View>
                             <View style={{ flex: 1 }}>
                                 <H3 style={styles.alertTitle}>{t('animals.emergencyTitle')}</H3>
-                                <Small style={styles.alertDesc}>{t('animals.emergencyDesc')}</Small>
+                                <Small style={styles.alertDesc}>{t('animals.emergencyDesc', { poisonControl: poisonControlLabel })}</Small>
                             </View>
                         </View>
                     </TouchableOpacity>
 
                     <View style={{ height: 16 }} />
 
-                    {animaisFiltrados.map((animal) => {
-                        const nivel = t_field(animal, 'nivelPerigo') || 'Médio';
-                        const sintomas = t_object(animal, 'sintomas') || {};
-                        const sintomasList = sintomas.imediatos || sintomas.humanos || [];
-                        const sintomasText = sintomasList.length > 0 ? `${sintomasList[0]}${sintomasList.length > 1 ? ` ${t('animals.andMore', { count: sintomasList.length - 1 })}` : ''}` : t_field(animal, 'descricao');
-                        
-                        return (
-                            <TouchableOpacity key={animal.id} onPress={() => navigation.navigate('ConceitoDetail', { conceito: animal })} activeOpacity={0.8} style={{ marginBottom: 16 }}>
-                                <View style={styles.guideCardOuter}>
-                                    <View style={[styles.guideCardInner, { backgroundColor: cardBg, borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)' }]}>
-                                        <View style={styles.guideImageContainer}>
-                                            {animal.imagem ? <Image source={animal.imagem} style={styles.guideImage} /> : <NeoIcon name="Warning2" size={48} color={THEME_COLOR} variant="Bold" />}
-                                        </View>
-                                        <View style={styles.guideContent}>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                                <View style={{ flex: 1, paddingRight: 8 }}>
-                                                    <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(animal, 'nomePopular')}</Text>
-                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{animal.nomeCientifico}</Text>
-                                                </View>
-                                                <View style={[styles.toxicBadge, { backgroundColor: getPerigoColor(nivel) + '15' }]}>
-                                                    <Text style={[styles.toxicText, { color: getPerigoColor(nivel) }]}>{nivel}</Text>
-                                                </View>
-                                            </View>
-                                            <View style={{ flex: 1 }} />
-                                            <View style={styles.sptContainer}>
-                                                <NeoIcon name="Warning2" size={12} color={Neo.colors.neutral[500]} />
-                                                <Text style={styles.sptText} numberOfLines={2}>{sintomasText}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    })}
+                    {locais.length > 0 && outrasRegioes.length > 0 && (
+                        <H3 style={{ color: textPrimary, marginBottom: 12 }}>{t('animals.localSection')}</H3>
+                    )}
+
+                    {locais.map(renderAnimalCard)}
+
+                    {outrasRegioes.length > 0 && (
+                        <>
+                            <View style={{ marginTop: 8, marginBottom: 12 }}>
+                                <H3 style={{ color: textPrimary }}>{t('animals.otherRegionsSection')}</H3>
+                                <Small style={{ color: textMuted, marginTop: 2 }}>{t('animals.otherRegionsHint')}</Small>
+                            </View>
+                            {outrasRegioes.map(renderAnimalCard)}
+                        </>
+                    )}
 
                     {animaisFiltrados.length === 0 && (
                         <View style={{ alignItems: 'center', marginTop: 40 }}>

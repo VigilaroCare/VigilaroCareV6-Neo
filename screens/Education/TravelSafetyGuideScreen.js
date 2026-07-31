@@ -100,7 +100,7 @@ export const GUIDE_SECTIONS = [
         content: 'No campo o socorro fica longe — a prevenção vale em dobro onde a ambulância demora.',
         content_en: 'In the countryside help is far away — prevention counts double where the ambulance takes long.',
         content_es: 'En el campo el socorro queda lejos — la prevención vale doble donde la ambulancia tarda.',
-        bullets: ['Sacuda roupas, calçados e roupa de cama (escorpiões e aranhas se abrigam neles).', 'Salve o CIATOX no celular: 0800 722 6001 — orientação toxicológica gratuita, 24h.', 'Use calçado fechado em trilhas e gramados, principalmente à noite.'],
+        bullets: ['Sacuda roupas, calçados e roupa de cama (escorpiões e aranhas se abrigam neles).', 'Salve o número do centro de intoxicação no telemóvel: {{POISON_CONTROL}} — orientação toxicológica gratuita, 24h.', 'Use calçado fechado em trilhas e gramados, principalmente à noite.'],
         bullets_en: ['Shake out clothes, shoes and bedding (scorpions and spiders shelter in them).', 'Save the local poison control number — free toxicology guidance, 24h.', 'Wear closed shoes on trails and lawns, especially at night.'],
         bullets_es: ['Sacuda ropa, calzado y ropa de cama (escorpiones y arañas se refugian allí).', 'Guarde el número del centro de toxicología local — orientación gratuita, 24h.', 'Use calzado cerrado en senderos y césped, sobre todo de noche.'],
     },

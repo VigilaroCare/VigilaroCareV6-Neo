@@ -450,7 +450,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Comunicação',
                 content: [
                     'Mantenha um celular carregado sempre à mão, principalmente em jardinagem ou áreas isoladas.',
-                    '**Contatos Salvos:** SAMU (192), Bombeiros (193), Centro de Intoxicação (CIATOX) e familiares.'
+                    '**Contatos Salvos:** {{EMERGENCY_MEDICAL}}, Bombeiros (193), Centro de Intoxicação (CIATOX) e familiares.'
                 ]
             },
             {
@@ -476,7 +476,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Communication',
                 content: [
                     'Keep a charged cell phone always at hand, especially in gardening or isolated areas.',
-                    '**Saved Contacts:** SAMU (192), Fire Department (193), Poison Control Center (CIATOX), and family members.'
+                    '**Saved Contacts:** {{EMERGENCY_MEDICAL}}, Fire Department (193), Poison Control Center (CIATOX), and family members.'
                 ]
             },
             {
@@ -502,7 +502,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Comunicación',
                 content: [
                     'Mantenga un teléfono celular cargado siempre a mano, especialmente en jardinería o áreas aisladas.',
-                    '**Contactos Guardados:** SAMU (192), Bomberos (193), Centro de Intoxicaciones (CIATOX) y familiares.'
+                    '**Contactos Guardados:** {{EMERGENCY_MEDICAL}}, Bomberos (193), Centro de Intoxicaciones (CIATOX) y familiares.'
                 ]
             },
             {

@@ -96,15 +96,15 @@ export const plantasCiatox = [
         prevencao_en: ["Do not plant in accessible places", "Never use branches for skewers"],
         prevencao_es: ["No plante en lugares accesibles", "Nunca use ramas para brochetas"],
         primeirosSocorros: {
-            fazer: ["Ligue 192 IMEDIATAMENTE", "Leve a planta", "Repouso absoluto"],
+            fazer: ["Ligue {{EMERGENCY_NUMBER}} IMEDIATAMENTE", "Leve a planta", "Repouso absoluto"],
             naoFazer: ["NÃO provoque vômito", "NÃO espere piorar"]
         },
         primeirosSocorros_en: {
-            fazer: ["Call emergency IMMEDIATELY", "Take the plant", "Absolute rest"],
+            fazer: ["Call {{EMERGENCY_MEDICAL}} IMMEDIATELY", "Take the plant", "Absolute rest"],
             naoFazer: ["DO NOT induce vomiting", "DO NOT wait for it to get worse"]
         },
         primeirosSocorros_es: {
-            fazer: ["Llame a emergencias INMEDIATAMENTE", "Lleve la planta", "Reposo absoluto"],
+            fazer: ["Llame a {{EMERGENCY_MEDICAL}} INMEDIATAMENTE", "Lleve la planta", "Reposo absoluto"],
             naoFazer: ["NO provoque vómito", "NO espere a que empeore"]
         },
         caracteristicas: ["Folhas longas (lanceoladas)", "Flores em buquê"],

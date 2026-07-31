@@ -83,7 +83,7 @@ A eletricidade não tem cheiro nem cor, mas pode matar.
 1.  **NÃO toque na pessoa** enquanto ela estiver em contato com a fonte de energia. Você também levará o choque.
 2.  **Desligue a energia:** Corra para o quadro de força e desligue o disjuntor geral.
 3.  **Afaste a fonte:** Se não der para desligar, use um objeto **não condutor** (cabo de vassoura de madeira seco, plástico grosso) para empurrar o fio longe da pessoa.
-4.  **Chame o SAMU (192).**
+4.  **Chame o {{EMERGENCY_MEDICAL}}.**
         `,
         tags: ['eletricidade', 'primeiros_socorros', 'manutencao']
     },
@@ -101,7 +101,7 @@ A eletricidade não tem cheiro nem cor, mas pode matar.
 
 **Ação Tática Imediata:** Mova produtos debaixo da pia para armários acima de 1,5m com travas. Mantenha os produtos estritamente nas embalagens originais.
 
-**Protocolo de Emergência:** NÃO provoque vômito. Ligue imediatamente para o CIATOX (0800 722 6001) ou SAMU (192) com a embalagem na mão.
+**Protocolo de Emergência:** NÃO provoque vômito. Ligue imediatamente para o {{POISON_CONTROL}} ou {{EMERGENCY_MEDICAL}} com a embalagem na mão.
 
 [Conheça protocolos completos em preveniremcasa.com.br](https://www.preveniremcasa.com.br)
         `,

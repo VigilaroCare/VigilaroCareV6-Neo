@@ -76,7 +76,7 @@ export const utensiliosDomesticos = [
             'Nunca abrir antes de sair toda a pressão.',
             'Não encher mais que 2/3 da capacidade.',
         ],
-        primeirosSocorros: 'Em caso de explosão/queimadura extensa: SAMU 192. Resfriar área com água.'
+        primeirosSocorros: 'Em caso de explosão/queimadura extensa: {{EMERGENCY_MEDICAL}}. Resfriar área com água.'
     },
     {
         id: 'ut_6',

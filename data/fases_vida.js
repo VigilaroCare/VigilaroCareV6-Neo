@@ -284,7 +284,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
             'Pisos limpios de objetos pequeños (monedas, botones).',
             'NUNCA usar andador.'
         ],
-        primeirosSocorros: 'Tenha o número do CIATOX (0800 722 6001) sempre à mão.',
+        primeirosSocorros: 'Tenha o número do {{POISON_CONTROL}} sempre à mão.',
         primeirosSocorros_en: 'Always have the Poison Control number at hand.',
         primeirosSocorros_es: 'Tenga siempre a mano el número de CIATOX.',
         oQueNaoFazer: [

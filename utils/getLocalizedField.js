@@ -10,8 +10,16 @@
  *   tradução EN:         obj.nomePopular_en
  *   tradução ES:         obj.nomePopular_es
  *   tradução PT-PT:      obj.nomePopular_ptpt (ou cai para PT-BR)
+ *
+ * TOKENS DE EMERGÊNCIA (2026-07-31): toda saída passa por
+ * resolveEmergencyTokensDeep, que troca {{EMERGENCY_MEDICAL}},
+ * {{EMERGENCY_NUMBER}} e {{POISON_CONTROL}} pelo número do país onde o
+ * usuário está. Isto fica aqui, e não em cada tela, porque esta é a camada
+ * pela qual todo conteúdo das bases de /data já passa — qualquer base nova
+ * ganha o comportamento sem alteração. Ver utils/emergencyTokens.js.
  */
 import i18n from '../i18n';
+import { resolveEmergencyTokensDeep } from './emergencyTokens';
 
 /**
  * Retorna o valor localizado de um campo em um objeto de dados.
@@ -23,13 +31,13 @@ export const t_field = (obj, field) => {
 
   if (langLower.startsWith('pt-pt')) {
     const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
-    if (ptptValue) return ptptValue;
+    if (ptptValue) return resolveEmergencyTokensDeep(ptptValue);
   }
 
-  if (langLower.startsWith('pt')) return obj[field] ?? '';
+  if (langLower.startsWith('pt')) return resolveEmergencyTokensDeep(obj[field] ?? '');
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
-  return localizedValue ?? obj[field] ?? '';
+  return resolveEmergencyTokensDeep(localizedValue ?? obj[field] ?? '');
 };
 
 /**
@@ -42,13 +50,13 @@ export const t_array = (obj, field) => {
 
   if (langLower.startsWith('pt-pt')) {
     const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
-    if (ptptValue) return ptptValue;
+    if (ptptValue) return resolveEmergencyTokensDeep(ptptValue);
   }
 
-  if (langLower.startsWith('pt')) return obj[field] ?? [];
+  if (langLower.startsWith('pt')) return resolveEmergencyTokensDeep(obj[field] ?? []);
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
-  return localizedValue ?? obj[field] ?? [];
+  return resolveEmergencyTokensDeep(localizedValue ?? obj[field] ?? []);
 };
 
 /**
@@ -72,13 +80,13 @@ export const t_object = (obj, field) => {
 
   if (langLower.startsWith('pt-pt')) {
     const ptptValue = obj[`${field}_ptpt`] || obj[`${field}_pt-PT`] || obj[`${field}_pt_pt`];
-    if (ptptValue) return ptptValue;
+    if (ptptValue) return resolveEmergencyTokensDeep(ptptValue);
   }
 
-  if (langLower.startsWith('pt')) return obj[field] ?? {};
+  if (langLower.startsWith('pt')) return resolveEmergencyTokensDeep(obj[field] ?? {});
   const langKey = lang.split('-')[0];
   const localizedValue = obj[`${field}_${langKey}`];
-  return localizedValue ?? obj[field] ?? {};
+  return resolveEmergencyTokensDeep(localizedValue ?? obj[field] ?? {});
 };
 
 export default t_field;

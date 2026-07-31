@@ -109,7 +109,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Não posicione mesas, cadeiras ou brinquedos que facilitem a escalada até a TV',
             'Mantenha fora do alcance de crianças comandos e entradas com aberturas pequenas',
         ],
-        oQueFazer: 'Se a TV cair sobre uma criança: retire o aparelho com cuidado, verifique sinais de lesão na cabeça e pescoço. Se houver sangramento, perda de consciência ou deformidade, ligue 192 (SAMU) imediatamente.',
+        oQueFazer: 'Se a TV cair sobre uma criança: retire o aparelho com cuidado, verifique sinais de lesão na cabeça e pescoço. Se houver sangramento, perda de consciência ou deformidade, ligue {{EMERGENCY_NUMBER}} (SAMU) imediatamente.',
         estatistica: 'Uma TV cai sobre uma criança a cada 30 minutos nos EUA. No Brasil, o dado é subnotificado, mas o risco é idêntico em lares sem fixação.',
     },
     {
@@ -134,7 +134,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Verifique periodicamente se os fios estão intactos e fora do alcance',
             'Prefira modelos Wi-Fi com senha forte — proteja a privacidade da transmissão',
         ],
-        oQueFazer: 'Se o fio se enrolar no bebê: retire imediatamente com cuidado. Verifique marcas no pescoço e dificuldade respiratória. Em caso de qualquer comprometimento da respiração, ligue 192.',
+        oQueFazer: 'Se o fio se enrolar no bebê: retire imediatamente com cuidado. Verifique marcas no pescoço e dificuldade respiratória. Em caso de qualquer comprometimento da respiração, ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'Entre 2000 e 2020, pelo menos 72 mortes de bebês por estrangulamento com fios de monitores e persianas foram registradas nos EUA.',
     },
     {
@@ -159,7 +159,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Desligue o console quando não estiver em uso — modo stand-by ainda gera calor',
             'Mantenha pilhas-botão sobressalentes em local seguro e fechado',
         ],
-        oQueFazer: 'Se uma criança engolir uma pilha-botão: corra para o pronto-socorro IMEDIATAMENTE. Não espere sintomas. A pilha provoca queimaduras internas graves por reação química no esôfago em menos de 2 horas. Ligue 192.',
+        oQueFazer: 'Se uma criança engolir uma pilha-botão: corra para o pronto-socorro IMEDIATAMENTE. Não espere sintomas. A pilha provoca queimaduras internas graves por reação química no esôfago em menos de 2 horas. Ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'A ingestão de pilhas-botão causa lesões esofágicas graves em crianças, com taxa de mortalidade de 13% quando não tratada nas primeiras horas.',
     },
     {
@@ -187,7 +187,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Consulte o "Guia de Segurança com Brinquedos" para informações completas sobre brinquedos eletrônicos e engasgo.',
             'Ensine crianças maiores: "Pilha NÃO é brinquedo e NUNCA vai na boca"',
         ],
-        oQueFazer: 'Se uma criança engolir uma pilha-botão: NÃO espere sintomas, NÃO provoque vômito. Vá ao pronto-socorro IMEDIATAMENTE. Informe o tipo de pilha (tamanho). Se possível, dê mel (para crianças acima de 1 ano) a caminho do hospital — pesquisas indicam que reduz a queimadura do esôfago. Ligue 192.',
+        oQueFazer: 'Se uma criança engolir uma pilha-botão: NÃO espere sintomas, NÃO provoque vômito. Vá ao pronto-socorro IMEDIATAMENTE. Informe o tipo de pilha (tamanho). Se possível, dê mel (para crianças acima de 1 ano) a caminho do hospital — pesquisas indicam que reduz a queimadura do esôfago. Ligue {{EMERGENCY_NUMBER}}.',
         estatistica: 'Pilhas-botão causam lesões esofágicas em crianças com taxas de complicação de até 60%. O tempo entre a ingestão e a queimadura grave pode ser de apenas 2 horas.',
     },
 ];

@@ -52,7 +52,33 @@ const TONE_BY_BAND = {
     inicio: 'muted',
 };
 
-export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, heroHeadline, isExpanded = false }) {
+/**
+ * Altura (px) que o modo compacto poupa. Exportada para que a Home possa
+ * contabilizar essa poupanca ao decidir quanto o grid de pictogramas ainda
+ * precisa encolher — se este numero mudar aqui, o calculo la acompanha.
+ * 94 - 78 (minHeight) + 7 - 4 (paddingTop) = 19.
+ */
+// A altura do hero é ditada pela scoreColumn, não pelo minHeight:
+//   scoreValue lineHeight 42 + headline (marginTop 4 + 2 linhas × 14 = 32)
+//   + globalBarWrap marginTop 11 + barra 8  ≈  93px
+// e o verticalDivider tem height: 92 rígido acompanhando isso.
+//
+// A primeira versão do modo compacto mexia só no minHeight (94 → 78) e por
+// isso poupava 2px, não 19 — o divider de 92 segurava a altura. O grid de
+// pictogramas acabou absorvendo a diferença toda e encolheu à vista.
+// Agora o corte é onde a altura realmente mora:
+//   scoreValue  42 → 36   (-6)
+//   headline    marginTop 4 → 2, lineHeight 14 → 13 em 2 linhas   (-4)
+//   barra       marginTop 11 → 7, altura 8 → 6   (-6)
+//   paddingTop  7 → 4   (-3)
+export const HERO_COMPACT_SAVING = 19;
+
+/**
+ * @param {boolean} compact - trima a altura do hero em aparelhos onde a barra
+ *   de gestos consome espaco extra no fundo. Sem isso, a ultima fileira de
+ *   pictogramas da Home fica escondida atras do footer flutuante.
+ */
+export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, heroHeadline, isExpanded = false, compact = false }) {
     const { t, i18n } = useTranslation();
     const colors = useThemeColors();
     const [mapping, setMapping] = useState([]);
@@ -254,21 +280,21 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, hero
                     </View>
                 )}
 
-                <View style={styles.compactPanel}>
-                    <View style={styles.compactMain}>
+                <View style={[styles.compactPanel, compact && styles.compactPanelTight]}>
+                    <View style={[styles.compactMain, compact && styles.compactMainTight]}>
                         <View style={styles.scoreColumn}>
-                            <Text style={[styles.scoreValue, { color: scoreColor }]} numberOfLines={1}>
+                            <Text style={[styles.scoreValue, compact && styles.scoreValueTight, { color: scoreColor }]} numberOfLines={1}>
                                 {score}%
                             </Text>
-                            <Text style={[styles.scoreHeadline, { color: inkText }]} numberOfLines={2}>
+                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: inkText }]} numberOfLines={2}>
                                 {headline}
                             </Text>
-                            <View style={styles.globalBarWrap}>
-                                {renderSegmentBar(statsGeral, 8, score)}
+                            <View style={[styles.globalBarWrap, compact && styles.globalBarWrapTight]}>
+                                {renderSegmentBar(statsGeral, compact ? 6 : 8, score)}
                             </View>
                         </View>
 
-                        <View style={[styles.verticalDivider, { backgroundColor: track }]} />
+                        <View style={[styles.verticalDivider, compact && styles.verticalDividerTight, { backgroundColor: track }]} />
 
                         <View style={styles.ambientesColumn}>
                             {ambientesSorted.length > 0 ? (
@@ -394,6 +420,30 @@ const styles = StyleSheet.create({
         minHeight: 94,
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    // ── MODO COMPACTO ───────────────────────────────────────────────────────
+    // Ver HERO_COMPACT_SAVING no topo do ficheiro: a soma destes cortes tem de
+    // bater com aquela constante, senao a Home calcula errado quanto o grid
+    // de pictogramas ainda precisa ceder.
+    compactPanelTight: {
+        paddingTop: 4,          // era 7   (-3)
+    },
+    compactMainTight: {
+        minHeight: 78,          // deixa de ser o limitante
+    },
+    scoreValueTight: {
+        fontSize: 34,           // era 40
+        lineHeight: 36,         // era 42  (-6)
+    },
+    scoreHeadlineTight: {
+        marginTop: 2,           // era 4   (-2)
+        lineHeight: 13,         // era 14  (-2 em 2 linhas)
+    },
+    globalBarWrapTight: {
+        marginTop: 7,           // era 11  (-4)
+    },                          // + barra 8 → 6 (-2), passada em renderSegmentBar
+    verticalDividerTight: {
+        height: 73,             // era 92; acompanha a coluna encolhida
     },
     scoreColumn: {
         flex: 0.88,

@@ -102,7 +102,7 @@ Produtos coloridos e perfumados parecem suco ou refrigerante para as crianças. 
 *   **Sem Misturas:** Não misture produtos de limpeza (como água sanitária e vinagre). Essas misturas soltam vapores tóxicos que podem queimar as vias respiratórias.
 
 ### Se acontecer um acidente:
-Não provoque vômito de jeito nenhum, pois o produto químico pode queimar a garganta na ida e na volta. Ligue imediatamente para o CIATOX (0800 722 6001) ou chame o SAMU (192) segurando a embalagem do produto para ler os componentes para o médico.
+Não provoque vômito de jeito nenhum, pois o produto químico pode queimar a garganta na ida e na volta. Ligue imediatamente para o {{POISON_CONTROL}} ou chame o {{EMERGENCY_MEDICAL}} segurando a embalagem do produto para ler os componentes para o médico.
         `,
         tags: ['veneno', 'quimica', 'crianca']
     },
@@ -368,4 +368,4 @@ A durabilidade média da rede é de 3 a 5 anos. O sol e a chuva ressecam o mater
     }
 ];
 
-export const DISCLAIMER_FOOTER_PT_BR = "As informações aqui contidas servem como orientação básica de prevenção e não substituem o atendimento médico de urgência. Em caso de emergência, ligue imediatamente para os Bombeiros (193) ou SAMU (192).";
+export const DISCLAIMER_FOOTER_PT_BR = "As informações aqui contidas servem como orientação básica de prevenção e não substituem o atendimento médico de urgência. Em caso de emergência, ligue imediatamente para os Bombeiros (193) ou {{EMERGENCY_MEDICAL}}.";
