@@ -279,7 +279,11 @@
         "leftHanded": "Esquerdino",
         "skip": "Saltar",
         "startNow": "Começar Agora",
-        "next": "Próximo"
+        "next": "Próximo",
+        "locationTitle": "Localização no socorro",
+        "locationBody": "Quando acionar o SOS, o Vigilaro envia a sua localização junto com o pedido de ajuda — para que quem o for socorrer saiba onde está. Fora do SOS, a localização não é usada.",
+        "locationAllow": "Autorizar",
+        "locationLater": "Agora não"
     },
     "health": {
         "title": "A Minha Saúde",
@@ -452,7 +456,16 @@
         "firePhone": "112",
         "policeTitle": "PSP / GNR",
         "policeSub": "Polícia",
-        "policePhone": "112"
+        "policePhone": "112",
+        "locationSearching": "A obter localização…",
+        "locationReady": "Localização pronta",
+        "locationReadyA11y": "Localização pronta. O alerta incluirá a sua localização.",
+        "locationDenied": "Sem localização — toque para autorizar",
+        "locationBlocked": "Sem localização — toque para abrir Definições",
+        "locationUnavailable": "Sem sinal de GPS — toque para tentar de novo",
+        "locationHintA11y": "O alerta será enviado sem a sua localização.",
+        "locationBlockedTitle": "Localização bloqueada",
+        "locationBlockedBody": "Autorize o acesso à localização nas definições do aparelho para que o alerta inclua onde está."
     },
     "travel": {
         "checklistTailored": "Checklist ajustado ao briefing da sua viagem.",
@@ -685,8 +698,8 @@
         "whereAreWe": "Onde estamos?",
         "tapToChangeLocation": "Toque para trocar de local",
         "noResidence": "Nenhuma Residência",
-        "eventualVisitor": "Visitante Eventual",
-        "fixedResident": "Morador Fixo",
+        "eventualVisitor": "Eventual",
+        "fixedResident": "Fixo",
         "registeredLocations": "Locais Cadastrados",
         "addNewResidence": "Adicionar nova residência",
         "addMemberTo": "Adicionar integrante à {{local}}",
@@ -752,7 +765,40 @@
         "residenceChangedTitle": "Espaço Alterado",
         "residenceChangedMsg": "Agora a monitorizar: {{name}}",
         "linkSuccessTitle": "Sucesso",
-        "linkSuccessMsg": "{{name}} foi vinculado(a) a este espaço."
+        "linkSuccessMsg": "{{name}} foi vinculado(a) a este espaço.",
+        "whoAndWhere": "Quem e onde proteger",
+        "myResidences": "As minhas residências",
+        "myResidencesHelp": "Toque para escolher qual a app está a monitorizar.",
+        "monitoringNow": "A monitorizar agora",
+        "tapToMonitor": "Tocar para monitorizar",
+        "residenceHintA11y": "Toque para monitorizar este local. Toque longo para editar.",
+        "residenceActionsA11y": "Opções de {{nome}}",
+        "residenceActionsMsg": "O que deseja fazer com este local?",
+        "mapEnvironments": "Mapear divisões",
+        "deleteResidenceTitle": "Eliminar este local?",
+        "deleteResidenceMsg": "As divisões e vistorias de \"{{nome}}\" serão perdidas. Os perfis continuam registados.",
+        "locationNamePlaceholder": "Ex.: Casa da praia, Casa da minha mãe",
+        "peopleInThisHouse": "Quem está nesta casa",
+        "fixedSection": "Fixos",
+        "fixedHelp": "Moram aqui.",
+        "noFixed": "Ninguém marcado como fixo ainda.",
+        "eventualSection": "Eventuais",
+        "eventualHelp": "Frequentam sem morar — visitas, familiares, cuidadores.",
+        "noEventual": "Ninguém marcado como eventual ainda.",
+        "notInThisHouse": "Registados, mas não nesta casa",
+        "notInThisHouseHelp": "Toque para definir o vínculo com este local.",
+        "addPerson": "Registar pessoa ou animal",
+        "openPersonA11y": "Abrir {{nome}}",
+        "presentIn": "Está em",
+        "presentInHelp": "A mesma pessoa pode ser fixa numa casa e eventual noutra.",
+        "noLink": "Não está",
+        "activeTag": "ATIVA",
+        "mainProfileTag": "PRINCIPAL",
+        "setAsMain": "Definir como perfil principal",
+        "deleteProfileEverywhere": "Eliminar perfil de todas as casas",
+        "yearsOld": "{{n}} anos",
+        "pet": "Animal",
+        "deleteMsg": "Tem a certeza que deseja remover \"{{nome}}\"? O perfil sai de todas as casas. Esta ação não pode ser anulada."
     },
     "disclaimer": {
         "monitor": "Recurso auxiliar: não substitui a supervisão de um adulto responsável.",
@@ -1027,7 +1073,9 @@
         "aboutApp": "Sobre o Vigilaro Care"
     },
     "common": {
-        "locale": "pt-PT"
+        "locale": "pt-PT",
+        "save": "Guardar",
+        "back": "Voltar"
     },
     "welcome": {
         "title": "Bem-vindo ao Vigilaro Care",

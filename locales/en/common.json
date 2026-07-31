@@ -279,7 +279,11 @@
         "leftHanded": "Left-handed",
         "skip": "Skip",
         "startNow": "Start Now",
-        "next": "Next"
+        "next": "Next",
+        "locationTitle": "Location in an emergency",
+        "locationBody": "When you trigger SOS, Vigilaro sends your location along with the call for help — so whoever comes for you knows where you are. Outside SOS, your location is not used.",
+        "locationAllow": "Allow",
+        "locationLater": "Not now"
     },
     "health": {
         "title": "My Health",
@@ -452,7 +456,16 @@
         "firePhone": "911",
         "policeTitle": "Police",
         "policeSub": "Law Enforcement",
-        "policePhone": "911"
+        "policePhone": "911",
+        "locationSearching": "Getting location…",
+        "locationReady": "Location ready",
+        "locationReadyA11y": "Location ready. Your alert will include your location.",
+        "locationDenied": "No location — tap to allow",
+        "locationBlocked": "No location — tap to open Settings",
+        "locationUnavailable": "No GPS signal — tap to retry",
+        "locationHintA11y": "Your alert will be sent without your location.",
+        "locationBlockedTitle": "Location blocked",
+        "locationBlockedBody": "Allow location access in your device settings so your alert can include where you are."
     },
     "medications": {
         "title": "Medication Time",
@@ -685,8 +698,8 @@
         "whereAreWe": "Where are we?",
         "tapToChangeLocation": "Tap to change location",
         "noResidence": "No Residence",
-        "eventualVisitor": "Eventual Visitor",
-        "fixedResident": "Fixed Resident",
+        "eventualVisitor": "Occasional",
+        "fixedResident": "Permanent",
         "registeredLocations": "Registered Locations",
         "addNewResidence": "Add new residence",
         "addMemberTo": "Add member to {{local}}",
@@ -752,7 +765,40 @@
         "residenceChangedTitle": "Location Changed",
         "residenceChangedMsg": "Now monitoring: {{name}}",
         "linkSuccessTitle": "Success",
-        "linkSuccessMsg": "{{name}} has been linked to this location."
+        "linkSuccessMsg": "{{name}} has been linked to this location.",
+        "whoAndWhere": "Who and where to protect",
+        "myResidences": "My homes",
+        "myResidencesHelp": "Tap to choose which one the app is monitoring.",
+        "monitoringNow": "Monitoring now",
+        "tapToMonitor": "Tap to monitor",
+        "residenceHintA11y": "Tap to monitor this place. Long press to edit.",
+        "residenceActionsA11y": "Options for {{nome}}",
+        "residenceActionsMsg": "What would you like to do with this place?",
+        "mapEnvironments": "Map rooms",
+        "deleteResidenceTitle": "Delete this place?",
+        "deleteResidenceMsg": "Rooms and inspections for \"{{nome}}\" will be lost. Profiles stay registered.",
+        "locationNamePlaceholder": "e.g. Beach house, Mum’s place",
+        "peopleInThisHouse": "Who is in this home",
+        "fixedSection": "Permanent",
+        "fixedHelp": "They live here.",
+        "noFixed": "No one marked as permanent yet.",
+        "eventualSection": "Occasional",
+        "eventualHelp": "They come by without living here — visitors, family, carers.",
+        "noEventual": "No one marked as occasional yet.",
+        "notInThisHouse": "Registered, but not in this home",
+        "notInThisHouseHelp": "Tap to set their link to this place.",
+        "addPerson": "Add a person or pet",
+        "openPersonA11y": "Open {{nome}}",
+        "presentIn": "Present in",
+        "presentInHelp": "The same person can be permanent in one home and occasional in another.",
+        "noLink": "Not here",
+        "activeTag": "ACTIVE",
+        "mainProfileTag": "MAIN",
+        "setAsMain": "Set as main profile",
+        "deleteProfileEverywhere": "Delete profile from all homes",
+        "yearsOld": "{{n}} years old",
+        "pet": "Pet",
+        "deleteMsg": "Are you sure you want to remove \"{{nome}}\"? The profile leaves every home. This cannot be undone."
     },
     "disclaimer": {
         "monitor": "Helper feature: it does not replace supervision by a responsible adult.",
@@ -1027,7 +1073,9 @@
         "aboutApp": "About Vigilaro Care"
     },
     "common": {
-        "locale": "en-US"
+        "locale": "en-US",
+        "save": "Save",
+        "back": "Back"
     },
     "welcome": {
         "title": "Welcome to Vigilaro Care",

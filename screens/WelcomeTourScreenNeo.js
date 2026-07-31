@@ -9,6 +9,8 @@ import NeoIcon from '../components/NeoIcon';
 import { useAccessibility } from '../context/AccessibilityContext';
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../components/AppBackground';
+import NeoAlert from '../utils/NeoAlert';
+import * as ExpoLocation from 'expo-location';
 
 const { width, height } = Dimensions.get('window');
 
@@ -62,12 +64,55 @@ export default function WelcomeTourScreenNeo({ navigation, route }) {
         setCurrentIndex(index);
     };
 
+    /**
+     * PEDIDO DE LOCALIZAÇÃO NO FIM DO TOUR (2026-07-31)
+     *
+     * Antes, o primeiro pedido de permissão acontecia dentro do SOS — ou seja,
+     * no meio de uma emergência real, com a pessoa em pânico a receber um
+     * diálogo do sistema. Quem negasse ou demorasse enviava o alerta sem
+     * coordenadas, exatamente quando elas mais importam.
+     *
+     * Aqui o momento é calmo. E mostramos a NOSSA explicação antes do diálogo
+     * nativo de propósito: o prompt do sistema só pode ser mostrado uma vez;
+     * se for negado, só as Definições resolvem. Explicar primeiro aumenta a
+     * taxa de concessão e, se a pessoa disser "agora não", o prompt nativo
+     * fica intacto para o SOS pedir mais tarde.
+     *
+     * NUNCA bloqueia o onboarding: qualquer resposta — ou erro — segue em
+     * frente. Permissão é desejável, não obrigatória.
+     */
+    const pedirLocalizacaoESeguir = () => {
+        NeoAlert.alert(
+            t('onboarding.locationTitle', 'Localização no socorro'),
+            t('onboarding.locationBody', 'Quando você acionar o SOS, o Vigilaro envia sua localização junto com o pedido de ajuda — para que quem for te socorrer saiba onde você está. Fora do SOS, a localização não é usada.'),
+            [
+                {
+                    text: t('onboarding.locationLater', 'Agora não'),
+                    style: 'cancel',
+                    onPress: goNext,
+                },
+                {
+                    text: t('onboarding.locationAllow', 'Autorizar'),
+                    onPress: async () => {
+                        try {
+                            await ExpoLocation.requestForegroundPermissionsAsync();
+                        } catch (_) {
+                            // Permissão é desejável, não obrigatória: seja qual
+                            // for o resultado, o onboarding continua.
+                        }
+                        goNext();
+                    },
+                },
+            ]
+        );
+    };
+
     const nextSlide = () => {
         if (currentIndex < SLIDES.length - 1) {
             scrollViewRef.current?.scrollTo({ x: (currentIndex + 1) * width, animated: true });
         } else {
-            // Fim do tour -> próximo passo configurável (default: NewHomeWizard)
-            goNext();
+            // Fim do tour -> pedido de localização -> próximo passo configurável
+            pedirLocalizacaoESeguir();
         }
     };
 

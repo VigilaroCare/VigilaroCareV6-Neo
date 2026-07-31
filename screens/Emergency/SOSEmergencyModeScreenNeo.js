@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NetInfo from '@react-native-community/netinfo';
-import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration, AppState } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
-import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
+import { getEmergencyLocationDetailed, LOCATION_STATUS } from '../../utils/getEmergencyLocation';
+import LocationStatusPill from '../../components/LocationStatusPill';
 import { detectEmergencyCountry } from '../../utils/getEmergencyCountry';
 import { getEmergencyNumbersForCountry } from '../../data/emergencyNumbersByCountry';
 import { getPoisonControlDial, getPoisonControlLabel } from '../../utils/emergencyTokens';
@@ -119,6 +120,10 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     // Portugal, servico de emergencia geral onde nao ha centro mapeado.
     const [emergencyCountry, setEmergencyCountry] = useState('BR');
 
+    // Estado visivel da localizacao — ver components/LocationStatusPill.js.
+    // Comeca em BUSCANDO porque captureLocation() dispara no mount.
+    const [locationStatus, setLocationStatus] = useState(LOCATION_STATUS.BUSCANDO);
+
     useEffect(() => {
         if (route?.params?.initialTab === 'pets') setActiveTab('PET');
         loadContacts();
@@ -128,14 +133,29 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         const unsubscribe = NetInfo.addEventListener(state => {
             setIsOffline(!state.isConnected);
         });
-        return () => unsubscribe();
+
+        // Quem toca no indicador bloqueado vai as Definicoes do sistema e
+        // volta. Sem isto, o indicador continuaria a dizer "sem localizacao"
+        // depois de a permissao ja ter sido concedida la fora — e o utilizador
+        // concluiria que o app esta avariado. Consulta sem pedir de novo
+        // (pedirPermissao = false): so le o estado atual, nao abre dialogo.
+        const appStateSub = AppState.addEventListener('change', (estado) => {
+            if (estado === 'active') captureLocation(false);
+        });
+
+        return () => {
+            unsubscribe();
+            appStateSub.remove();
+        };
     }, [route?.params]);
 
     // Capturar localização proativamente ao abrir SOS — com timeout + fallback
     // de última posição conhecida (o socorro nunca espera o GPS; item G33).
-    const captureLocation = async () => {
-        const coords = await getEmergencyLocation();
+    const captureLocation = async (pedirPermissao = true) => {
+        setLocationStatus(LOCATION_STATUS.BUSCANDO);
+        const { coords, status } = await getEmergencyLocationDetailed(undefined, pedirPermissao);
         if (coords) setLastLocation(coords);
+        setLocationStatus(status);
 
         // Mesma filosofia "nunca trava o SOS": deteccao 100% offline (GPS
         // contra poligono local + regionCode do aparelho), sem chamada de
@@ -144,6 +164,32 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         const country = detectEmergencyCountry(coords);
         setEmergencyNumbers(getEmergencyNumbersForCountry(country));
         setEmergencyCountry(country);
+    };
+
+    /**
+     * Toque no indicador de localizacao. A acao muda com o motivo da falta:
+     *  - BLOQUEADA     → so as Definicoes do sistema resolvem; pedir de novo
+     *                    nao mostraria dialogo nenhum e pareceria que o toque
+     *                    nao fez nada.
+     *  - SEM_PERMISSAO → ainda da para perguntar; dispara o dialogo.
+     *  - INDISPONIVEL  → permissao ok, o GPS e que nao pegou; so tentar outra vez.
+     *
+     * Nunca bloqueia: e uma acao paralela, o SOS continua disponivel enquanto
+     * isto corre (regra de ouro do item G33 — o socorro nao espera o GPS).
+     */
+    const resolverLocalizacao = async () => {
+        if (locationStatus === LOCATION_STATUS.BLOQUEADA) {
+            try {
+                await Linking.openSettings();
+            } catch (_) {
+                NeoAlert.alert(
+                    t('sos.locationBlockedTitle', 'Localização bloqueada'),
+                    t('sos.locationBlockedBody', 'Autorize o acesso à localização nos ajustes do aparelho para que o alerta inclua onde você está.')
+                );
+            }
+            return;
+        }
+        await captureLocation(true);
     };
 
     const checkPetsProfile = async () => {
@@ -401,6 +447,15 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 : 'Ligar Veterinário'}
                         </H2>
                     </TouchableOpacity>
+
+                    {/* Estado da localizacao — fica imediatamente acima de
+                        "Enviar local" de proposito: e a informacao que diz se
+                        aquele botao vai levar coordenadas ou so texto. */}
+                    <LocationStatusPill
+                        status={locationStatus}
+                        onPress={resolverLocalizacao}
+                        t={t}
+                    />
 
                     {/* Secondary Actions Row */}
                     <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginBottom: 10 }}>

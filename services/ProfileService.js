@@ -676,6 +676,99 @@ class ProfileService {
         return 'nenhum';
     }
 
+    /**
+     * Caminho INVERSO: dado um perfil, em que residências ele está e com que
+     * vínculo em cada uma.
+     *
+     * O modelo sempre suportou isto — cada residência guarda `habitantes[]` e
+     * `frequentadores[]`, e nada impede o mesmo perfil de aparecer em várias
+     * com papéis diferentes (o sogro é eventual na minha casa, eu sou eventual
+     * na dele). Faltava só a leitura nesse sentido: até aqui só se conseguia
+     * perguntar "quem está nesta casa?", nunca "em que casas esta pessoa está?".
+     *
+     * @param {string} perfilId
+     * @returns {Promise<Array<{id, nome, foto, vinculo: 'habitante'|'frequentador', isAtiva: boolean}>>}
+     *          Apenas as residências onde o perfil TEM vínculo.
+     */
+    static async getResidenciasDoPerfil(perfilId) {
+        const data = await this.getData();
+        const activeId = data.activeResidenceId || null;
+
+        return (data.residences || [])
+            .map((res) => {
+                const moradia = res.moradia || {};
+                const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
+                const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
+
+                let vinculo = null;
+                if (habitantes.includes(perfilId)) vinculo = 'habitante';
+                else if (frequentadores.includes(perfilId)) vinculo = 'frequentador';
+                if (!vinculo) return null;
+
+                return {
+                    id: res.id,
+                    nome: res.nome,
+                    foto: this.resolveImageUri(res.foto),
+                    vinculo,
+                    isAtiva: res.id === activeId,
+                };
+            })
+            .filter(Boolean);
+    }
+
+    /**
+     * Todas as residências com o vínculo do perfil em cada uma, incluindo
+     * aquelas onde ele NÃO está ('nenhum'). É o que o painel do perfil precisa
+     * para deixar adicionar/remover sem sair da tela.
+     */
+    static async getVinculosDoPerfilEmTodasResidencias(perfilId) {
+        const data = await this.getData();
+        const activeId = data.activeResidenceId || null;
+
+        return (data.residences || []).map((res) => {
+            const moradia = res.moradia || {};
+            const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
+            const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
+
+            let vinculo = 'nenhum';
+            if (habitantes.includes(perfilId)) vinculo = 'habitante';
+            else if (frequentadores.includes(perfilId)) vinculo = 'frequentador';
+
+            return {
+                id: res.id,
+                nome: res.nome,
+                foto: this.resolveImageUri(res.foto),
+                vinculo,
+                isAtiva: res.id === activeId,
+            };
+        });
+    }
+
+    /**
+     * Perfis de uma residência específica, separados por vínculo.
+     * `getPerfis()` só responde pela residência ATIVA; esta responde por
+     * qualquer uma, que é o que a lista de moradores precisa.
+     */
+    static async getPerfisDaResidencia(residenceId) {
+        const todos = await this.getAllPerfis();
+        const data = await this.getData();
+        const res = (data.residences || []).find(r => r.id === residenceId);
+
+        const moradia = res?.moradia || {};
+        const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
+        const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
+
+        const marcar = (ids, vinculo) => todos
+            .filter(p => ids.includes(p.id))
+            .map(p => ({ ...p, vinculoResidencia: vinculo }));
+
+        return {
+            fixos: marcar(habitantes, 'habitante'),
+            eventuais: marcar(frequentadores, 'frequentador'),
+            semVinculo: todos.filter(p => !habitantes.includes(p.id) && !frequentadores.includes(p.id)),
+        };
+    }
+
     static async setProfileResidenceRelationship(perfilId, relationship, residenceId = null) {
         const data = await this.getData();
         if (!Array.isArray(data.residences) || data.residences.length === 0) {
