@@ -111,7 +111,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
     titulo: 'Produtos Químicos',
     subtitulo: 'Armazenamento Seguro',
     cor: '#8B5CF6',
-    resumo: 'Desinfetantes e águas sanitárias coloridas chamam a atenção das crianças. A curiosidade infantil faz dos produtos de limpeza a segunda maior causa de intoxicação em lares brasileiros.',
+    resumo: 'Desinfetantes e águas sanitárias coloridas chamam a atenção das crianças, e produtos de limpeza são a segunda maior causa de intoxicação em lares brasileiros.',
     secoes: [
       {
         emoji: '❌',
