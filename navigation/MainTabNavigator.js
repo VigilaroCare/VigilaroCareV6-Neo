@@ -99,7 +99,7 @@ export default function MainTabNavigator() {
                 options={{
                     tabBarLabel: 'Viagem',
                     tabBarIcon: ({ color, focused }) => (
-                        <NeoIcon name="Airplane" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
+                        <NeoIcon name="TravelTile" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />

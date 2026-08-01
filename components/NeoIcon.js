@@ -6,6 +6,7 @@ import HomeTileIcon from './icons/HomeTileIcon';
 import EducationTileIcon from './icons/EducationTileIcon';
 import ReportTileIcon from './icons/ReportTileIcon';
 import MenuTileIcon from './icons/MenuTileIcon';
+import TravelTileIcon from './icons/TravelTileIcon';
 
 // Glifos desenhados em casa, na gramática do Phosphor (viewBox 256,
 // traço 16 arredondado, duotone = massa 0.2 + traço). Para conceitos
@@ -19,6 +20,7 @@ const CUSTOM_ICONS = {
     EducationTile: EducationTileIcon,
     ReportTile: ReportTileIcon,
     MenuTile: MenuTileIcon,
+    TravelTile: TravelTileIcon,
 };
 
 /**

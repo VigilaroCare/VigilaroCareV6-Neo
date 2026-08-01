@@ -139,7 +139,7 @@ const TAB_BUTTONS = [
   // Modo Viagem, que já teve esta aba antes: o desenho do avião, a animação
   // de ascensão e os ícones por modal de transporte nunca foram removidos,
   // só ficaram órfãos quando o tab saiu desta lista.
-  { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'Airplane' },
+  { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'TravelTile' },
   { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'MenuTile' },
 ];
 
@@ -377,8 +377,13 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                         );
                     })()
                   ) : (
-                    // Inativo (avião no chão)
-                    <NeoIcon name={tab.icon} variant="Linear" size={26} color={color} />
+                    // Inativo (avião pousado dentro do tile).
+                    // size 32 e variant conforme o estado, como as outras abas:
+                    // o 26 fixo e o 'Linear' cravado vinham de quando o ícone
+                    // era um avião solto, sem moldura — aí ele precisava ser
+                    // menor para não brigar com os vizinhos e nunca acendia.
+                    // Com o TravelTile, tem de seguir a mesma régua dos irmãos.
+                    <NeoIcon name={tab.icon} variant={isIconActive ? 'Bold' : 'Linear'} size={32} color={color} />
                   )}
                 </Animated.View>
               ) : (
