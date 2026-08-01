@@ -176,7 +176,7 @@ export default function VigilaroScanHubScreen() {
                                             onPress={() => handleProductSelect(item)}
                                             activeOpacity={0.7}
                                         >
-                                            <Text style={s.searchResultIcon}>{item.icone || '🧪'}</Text>
+                                            <NeoIcon name={item.icone || 'TestTube'} size={20} color={Neo.colors.neutral[600]} variant="Bold" />
                                             <View style={{ flex: 1 }}>
                                                 <Body style={s.searchResultName}>{item.nome}</Body>
                                                 <Small style={s.searchResultCat}>{item.categoria}</Small>
@@ -261,7 +261,7 @@ export default function VigilaroScanHubScreen() {
                                     onPress={() => handleHistorySelect(item)}
                                 >
                                     <NeoCard variant="elevated" style={s.historyItemCard}>
-                                        <Text style={s.historyIcon}>{item.icone || '📝'}</Text>
+                                        <NeoIcon name={item.icone || 'Note'} size={18} color={Neo.colors.neutral[600]} variant="Bold" />
                                         <View style={{ flex: 1 }}>
                                             <Body style={s.historyName}>{item.nome}</Body>
                                             <Small style={s.historyCat}>{item.categoria}</Small>

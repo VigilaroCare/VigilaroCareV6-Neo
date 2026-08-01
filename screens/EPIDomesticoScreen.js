@@ -101,7 +101,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft" size={22} color={THEME_COLOR} />
                     </TouchableOpacity>
                     <View style={styles.headerContent}>
-                        <Text style={styles.headerEmoji}>🦺</Text>
+                        <NeoIcon name="ShieldTick" size={64} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 15 }} />
                         <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">
                             {t('headersFirst.episParaAtividadesDomesticas', 'EPIs para Atividades Domésticas')}
                         </Text>
@@ -130,8 +130,9 @@ export default function EPIDomesticoScreen({ navigation }) {
                     {/* Info bar */}
                     <FadeInView delay={120}>
                         <View style={styles.infoBar}>
+                            <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                📋 {categories.length} {categories.length === 1 ? 'EPI' : 'EPIs'} • Toque para ver detalhes
+                                {categories.length} {categories.length === 1 ? 'EPI' : 'EPIs'} • Toque para ver detalhes
                             </Text>
                         </View>
                     </FadeInView>
@@ -155,7 +156,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                                                         accessibilityLabel={cat.titulo}
                                                     />
                                                 ) : (
-                                                    <Text style={{ fontSize: 48 }}>{cat.emoji}</Text>
+                                                    <NeoIcon name={cat.icone || 'ShieldTick'} size={48} color={Neo.colors.primary[600]} variant="Bold" />
                                                 )}
                                             </View>
                                             <View style={styles.guideContent}>
@@ -197,10 +198,6 @@ const styles = StyleSheet.create({
     headerContent: {
         alignItems: 'center',
     },
-    headerEmoji: {
-        fontSize: 40,
-        marginBottom: 6,
-    },
     headerTitle: {
         fontSize: 20,
         fontWeight: '800',
@@ -233,6 +230,8 @@ const styles = StyleSheet.create({
         lineHeight: 17,
     },
     infoBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.04)',
         borderRadius: 12,
         paddingVertical: 8,

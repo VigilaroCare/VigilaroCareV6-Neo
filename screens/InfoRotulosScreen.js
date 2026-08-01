@@ -262,7 +262,7 @@ export default function InfoRotulosScreen() {
                                             onPress={() => handleProductSelect(item)}
                                             activeOpacity={0.7}
                                         >
-                                            <Text style={s.searchResultIcon}>{item.icone || '🧪'}</Text>
+                                            <NeoIcon name={item.icone || 'TestTube'} size={20} color={Neo.colors.neutral[600]} variant="Bold" />
                                             <View style={{ flex: 1 }}>
                                                 <Body style={[s.searchResultName, { color: textPrimary }]}>{item.nome}</Body>
                                                 <Small style={[s.searchResultCat, { color: textMuted }]}>{item.categoria}</Small>
@@ -360,7 +360,7 @@ export default function InfoRotulosScreen() {
                                         onPress={() => handleHistorySelect(item)}
                                         activeOpacity={0.7}
                                     >
-                                        <Small style={{ fontSize: 18, marginRight: 12 }}>{item.icone || '🧪'}</Small>
+                                        <NeoIcon name={item.icone || 'TestTube'} size={18} color={Neo.colors.neutral[600]} variant="Bold" style={{ marginRight: 12 }} />
                                         <View style={{ flex: 1 }}>
                                             <Body style={[s.historyName, { color: textPrimary }]}>{item.nome}</Body>
                                             <Caption style={[s.historyDate, { color: textMuted }]}>

@@ -160,8 +160,9 @@ export default function UtensiliosReviewsScreen({ navigation }) {
 {/* Info bar */}
                 <FadeInView delay={100}>
                     <View style={styles.infoBar}>
+                        <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                         <Text style={[styles.infoText, { color: textMuted }]}>
-                            📋 {ITEMS.length} itens • Toque para ver o review completo
+                            {ITEMS.length} itens • Toque para ver o review completo
                         </Text>
                     </View>
                 </FadeInView>
@@ -259,6 +260,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
     },
     infoBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.04)',
         borderRadius: 12,
         paddingVertical: 8,

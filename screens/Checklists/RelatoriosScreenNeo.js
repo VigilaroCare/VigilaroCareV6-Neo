@@ -292,27 +292,62 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                 {t('reports.environmentInspection', 'Ambientes Vistoriados')}
                             </Text>
 
-                            {/* Mapa de Calor */}
-                            <TouchableOpacity
-                                activeOpacity={0.85}
-                                onPress={() => navigation.navigate('MapaDeCalor')}
-                                style={{ marginBottom: 16 }}
-                            >
-                                <NeoCard variant="elevated" style={s.heatmapCard}>
-                                    <View style={[s.heatmapIconWrap, { backgroundColor: 'rgba(220,38,38,0.18)' }]}>
-                                        <NeoIcon name="Map1" size={24} color={Neo.colors.feedback.error} variant="Bold" />
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Body style={[s.heatmapTitle, { color: themeColors.neutral[900] }]}>
+                            {/* Duas leituras dos mesmos dados, lado a lado: o
+                                Mapa de Calor mostra o risco por AMBIENTE, o
+                                Relatório mostra por PESSOA.
+
+                                O Relatório vinha de uma aba própria no rodapé,
+                                que dividia o nome com esta tela e confundia —
+                                eram dois "relatórios" em dois lugares. A aba
+                                virou Modo Viagem (2026-07-31); a entrada é
+                                aqui, ao lado do irmão dela. */}
+                            <View style={{ flexDirection: 'row', gap: 12, marginBottom: 16 }}>
+                                <TouchableOpacity
+                                    activeOpacity={0.85}
+                                    onPress={() => navigation.navigate('MapaDeCalor')}
+                                    style={{ flex: 1 }}
+                                >
+                                    <NeoCard variant="elevated" style={s.duploCard}>
+                                        {/* GridFour e não Map1: a tela desenha uma grade de
+                                            cômodos coloridos por score, não um mapa geográfico.
+                                            O mapa dobrável de estradas prometia rota e entregava
+                                            intensidade. */}
+                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
+                                            <NeoIcon name="GridFour" size={22} color={themeColors.neutral[700]} variant="Bold" />
+                                        </View>
+                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
                                             {t('reports.heatmap', 'Mapa de Calor')}
                                         </Body>
-                                        <Small style={[s.heatmapSub, { color: themeColors.neutral[700] }]}>
-                                            {t('reports.heatmapDesc', 'Veja visualmente os riscos de cada ambiente em gradiente.')}
+                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
+                                            {t('reports.heatmapShort', 'Risco por ambiente')}
                                         </Small>
-                                    </View>
-                                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
-                                </NeoCard>
-                            </TouchableOpacity>
+                                    </NeoCard>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    activeOpacity={0.85}
+                                    onPress={() => navigation.navigate('ProfileRiskSummary')}
+                                    style={{ flex: 1 }}
+                                >
+                                    <NeoCard variant="elevated" style={s.duploCard}>
+                                        {/* UserList: a tela é uma lista de riscos POR PESSOA,
+                                            com reconhecimento e exportação — mais lista do que
+                                            gráfico, e a pessoa é o que a distingue do card ao
+                                            lado. Cor neutra igual à do irmão: um vermelho aqui
+                                            e um verde ali leriam como "ruim × bom", quando são
+                                            só duas leituras do mesmo dado. */}
+                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
+                                            <NeoIcon name="UserList" size={22} color={themeColors.neutral[700]} variant="Bold" />
+                                        </View>
+                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
+                                            {t('reports.riskReport', 'Relatório')}
+                                        </Body>
+                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
+                                            {t('reports.riskReportShort', 'Risco por pessoa')}
+                                        </Small>
+                                    </NeoCard>
+                                </TouchableOpacity>
+                            </View>
 
                             {/* Grid de ambientes com status por cômodo usando NeoHorizontalCard */}
                             {chartData.length > 0 && (
@@ -368,8 +403,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                 key={area.key}
                                                 title={area.fullName}
                                                 description={`${progressText}`}
-                                                emoji={area.emoji}
-                                                iconName={area.iconName}
+                                                iconName={area.iconName || area.icone}
                                                 imageUrl={getRoomImage(area.key)}
                                                 color={area.color}
                                                 onPress={() => navigation.navigate('ChecklistDetail', {
@@ -632,6 +666,22 @@ const s = {
         alignItems: 'center',
         padding: 16,
         borderRadius: 18,
+    },
+    // Meia largura: o card do Mapa de Calor era horizontal e ocupava a linha
+    // toda. Virou vertical para caber ao lado do Relatório.
+    duploCard: {
+        padding: 14,
+        borderRadius: 18,
+        minHeight: 132,
+    },
+    duploTitulo: {
+        fontWeight: '700',
+        fontSize: 15,
+        marginTop: 10,
+    },
+    duploSub: {
+        fontSize: 12,
+        marginTop: 2,
     },
     heatmapIconWrap: {
         width: 44,

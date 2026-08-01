@@ -166,8 +166,9 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
+                            <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                📋 {ITEMS.length} itens • Toque para ver o review completo
+                                {ITEMS.length} itens • Toque para ver o review completo
                             </Text>
                         </View>
                     </FadeInView>
@@ -250,6 +251,8 @@ const styles = StyleSheet.create({
         marginTop: 6,
     },
     infoBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'rgba(150,150,150,0.1)',
         paddingHorizontal: 16,
         paddingVertical: 12,

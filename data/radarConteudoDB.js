@@ -21,7 +21,7 @@ export const FATOS_IMPACTO = [
       'Tapetes, escadas sem corrimão e mobiliário instável são os três fatores mais presentes nos casos.',
       'Faça uma vistoria do ambiente mensalmente com o olhar focado em pontos de queda potencial.'
     ],
-    icone: 'ChartSquare',
+    icone: 'ChartBar',
     cor: '#F44336',
   },
   {
@@ -174,7 +174,7 @@ export const FATOS_IMPACTO = [
       'Combinado de férias: explique às crianças as regras sobre piscina, sacada e cozinha.',
       'Mantenha o número do {{EMERGENCY_MEDICAL}} e Bombeiros (193) visível em casa.'
     ],
-    icone: 'ChartSquare',
+    icone: 'ChartBar',
     cor: '#F44336',
   },
   {
@@ -208,7 +208,7 @@ export const FATOS_IMPACTO = [
       'Corrimão em escadas, piso antiderrapante e ausência de móveis próximos a janelas são os ajustes mais importantes.',
       'Revisite as medidas de segurança a cada aniversário — o risco muda conforme a criança cresce.'
     ],
-    icone: 'ChartSquare',
+    icone: 'ChartBar',
     cor: '#FF9800',
   },
   {

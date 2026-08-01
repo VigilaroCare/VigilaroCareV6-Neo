@@ -79,7 +79,10 @@ export default function MicroBlogScreen({ navigation }) {
                                 {getCategoryLabel(article.category)}
                             </Text>
                         </View>
-                        <Text style={styles.readTime}>⏱️ {article.readTime} min</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                            <NeoIcon name="Clock" size={12} color={Neo.colors.neutral[500]} />
+                            <Text style={styles.readTime}>{article.readTime} min</Text>
+                        </View>
                     </View>
                     <Text style={[styles.articleTitle, { color: textBody }]} numberOfLines={2}>{t_field(article, 'title')}</Text>
                     <Text style={styles.articlePreview} numberOfLines={2}>
@@ -101,7 +104,10 @@ export default function MicroBlogScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">📰 Micro Blog</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                        <NeoIcon name="Newspaper" size={22} color={textPrimary} variant="Bold" />
+                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">Micro Blog</Text>
+                    </View>
                         <Text style={styles.headerSubtitle}>Prevenir em Casa</Text>
                     </View>
                     <View style={{ width: 40 }} />

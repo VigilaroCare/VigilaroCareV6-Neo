@@ -7,14 +7,14 @@
 export const ACESSORIOS_SEGURANCA = {
     id: 'acess_seg',
     titulo: 'Dispositivos de Proteção Doméstica',
-    emoji: '🔐',
+    emoji: '🔐', icone: 'LockKey',
     descricao: 'Dispositivos essenciais para proteção de crianças, idosos e pessoas com necessidades especiais.',
 
     categorias: [
         {
             id: 'protecao_quinas',
             titulo: 'Proteção para Quinas',
-            icone: 'square-outline',
+            icone: 'Square',
             imagem: null,
             paraMoradores: ['bebe', 'crianca', 'idoso', 'pcd'],
             descricao: 'Evita batidas e cortes em cantos de móveis.',
@@ -29,7 +29,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'travas_armarios',
             titulo: 'Travas para Armários e Gavetas',
-            icone: 'lock-closed-outline',
+            icone: 'Lock',
             imagem: null,
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Impede acesso a objetos perigosos, medicamentos e produtos químicos.',
@@ -43,7 +43,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'protecao_portas',
             titulo: 'Proteção para Portas',
-            icone: 'enter-outline',
+            icone: 'SignIn',
             imagemUrl: null,
             paraMoradores: ['bebe', 'crianca', 'idoso'],
             descricao: 'Evita esmagamento de dedinhos, batidas e fechamento brusco da porta.',
@@ -73,7 +73,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'protecao_tomadas',
             titulo: 'Proteção para Tomadas',
-            icone: 'flash-off-outline',
+            icone: 'LightningSlash',
             imagem: null,
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'ESSENCIAL. Previne choque elétrico por introdução de objetos.',
@@ -87,7 +87,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'trava_vaso',
             titulo: 'Trava para Tampa do Vaso Sanitário',
-            icone: 'water-outline',
+            icone: 'Drop',
             imagem: null,
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Previne afogamento. Crianças podem cair de cabeça no vaso.',
@@ -100,7 +100,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'travas_eletrodomesticos',
             titulo: 'Travas para Eletrodomésticos',
-            icone: 'cube-outline',
+            icone: 'Cube',
             imagem: null,
             paraMoradores: ['bebe', 'crianca'],
             onde: ['Geladeira', 'Freezer', 'Forno elétrico', 'Micro-ondas', 'Máquina de lavar'],
@@ -119,7 +119,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'grades_babygate',
             titulo: 'Grades (Babygate) para Portas e Escadas',
-            icone: 'stop-outline',
+            icone: 'HandPalm',
             imagem: null,
             paraMoradores: ['bebe', 'crianca'],
             descricao: 'Bloqueia acesso a áreas perigosas.',
@@ -147,7 +147,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'telas_protecao',
             titulo: 'Telas de Proteção para Janelas e Sacadas',
-            icone: 'grid-outline',
+            icone: 'GridFour',
             imagem: null,
             paraMoradores: ['bebe', 'crianca', 'pet'],
             descricao: 'Previne quedas de altura. Obrigatória em casas com crianças ou pets.',
@@ -167,7 +167,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'barras_apoio',
             titulo: 'Barras de Apoio',
-            icone: 'hand-right-outline',
+            icone: 'HandPointing',
             imagemUrl: null,
             paraMoradores: ['idoso', 'pcd', 'gestante'],
             descricao: 'Auxiliam na mobilidade e previnem quedas.',
@@ -188,7 +188,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'protecao_cama',
             titulo: 'Grades de Proteção para Cama',
-            icone: 'bed-outline',
+            icone: 'Bed',
             imagem: null,
             paraMoradores: ['bebe', 'crianca', 'idoso'],
             descricao: 'Previne quedas durante o sono.',
@@ -202,7 +202,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'seguranca_eletrica_fogo',
             titulo: 'Segurança Elétrica e Incêndio',
-            icone: 'flame-outline',
+            icone: 'Flame',
             imagem: null,
             paraMoradores: ['todos'],
             descricao: 'Proteção contra surtos, incêndios e intoxicação.',
@@ -217,7 +217,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'seguranca_agua',
             titulo: 'Segurança Áreas Molhadas',
-            icone: 'water-outline',
+            icone: 'Drop',
             imagemUrl: null,
             paraMoradores: ['todos'],
             descricao: 'Prevenção de afogamentos e vazamentos.',
@@ -231,7 +231,7 @@ export const ACESSORIOS_SEGURANCA = {
         {
             id: 'monitoramento',
             titulo: 'Monitoramento e Assistência',
-            icone: 'videocam-outline',
+            icone: 'VideoCamera',
             imagem: null,
             paraMoradores: ['todos'],
             descricao: 'Tecnologia para vigilância e cuidado.',

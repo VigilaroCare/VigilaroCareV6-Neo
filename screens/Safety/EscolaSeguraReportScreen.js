@@ -100,7 +100,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                 <NeoCard variant="elevated" style={[styles.nivelCard, { borderLeftWidth: 6, borderLeftColor: nivelSeguranca.cor }]}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
                         <View style={[styles.nivelIcon, { backgroundColor: nivelSeguranca.cor + '20' }]}>
-                            <Small style={{ fontSize: 32 }}>{nivelSeguranca.icone}</Small>
+                            <NeoIcon name={nivelSeguranca.icone} size={32} color={nivelSeguranca.cor || Neo.colors.neutral[700]} variant="Bold" />
                         </View>
                         <View style={{ flex: 1, marginLeft: 16 }}>
                             <Small style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.nVELDESEGURANA', 'NÍVEL DE SEGURANÇA')}</Small>
@@ -139,7 +139,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                             <NeoCard variant="elevated" key={index} style={[styles.pontoCard, { borderLeftWidth: 4, borderLeftColor: Neo.colors.feedback.error }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
                                     <View style={[styles.pontoIcon, { backgroundColor: 'rgba(239,68,68,0.10)' }]}>
-                                        <Small style={{ fontSize: 20 }}>{ponto.icone}</Small>
+                                        <NeoIcon name={ponto.icone} size={20} color={Neo.colors.neutral[700]} variant="Bold" />
                                     </View>
                                     <Body style={{ flex: 1, marginLeft: 12, fontWeight: '600' }}>
                                         {ponto.categoria}

@@ -465,7 +465,9 @@
         "locationUnavailable": "Sin señal de GPS — toque para reintentar",
         "locationHintA11y": "La alerta se enviará sin su ubicación.",
         "locationBlockedTitle": "Ubicación bloqueada",
-        "locationBlockedBody": "Autorice el acceso a la ubicación en los ajustes del dispositivo para que la alerta incluya dónde se encuentra."
+        "locationBlockedBody": "Autorice el acceso a la ubicación en los ajustes del dispositivo para que la alerta incluya dónde se encuentra.",
+        "tabHuman": "Humano",
+        "tabPet": "Mascota"
     },
     "travel": {
         "checklistTailored": "Checklist ajustado al briefing de su viaje.",
@@ -622,7 +624,8 @@
         "blogTitle": "Micro Blog",
         "blogSub": "Prevenir en Casa",
         "articles": "Artículos",
-        "realCases": "Casos Reales"
+        "realCases": "Casos Reales",
+        "peopleAndContext": "Personas y contexto"
     },
     "reports": {
         "title": "Inspeccione sus Ambientes",
@@ -654,7 +657,10 @@
         "verifyNow": "Verificar Ahora",
         "allSafe": "Todo Seguro!",
         "allSafeMsg": "Has completado todas las verificaciones.",
-        "savePDF": "Guardar Informe en PDF"
+        "savePDF": "Guardar Informe en PDF",
+        "heatmapShort": "Riesgo por ambiente",
+        "riskReport": "Informe",
+        "riskReportShort": "Riesgo por persona"
     },
     "sosCountdown": {
         "fallDetected": "CAIDA DETECTADA!",

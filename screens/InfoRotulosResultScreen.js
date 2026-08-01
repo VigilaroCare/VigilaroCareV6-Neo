@@ -194,7 +194,7 @@ export default function InfoRotulosResultScreen() {
                         </SafeAreaView>
 
                         <View style={s.heroContent}>
-                            <Text style={s.heroIcon}>{productData.icone || '🧪'}</Text>
+                            <NeoIcon name={productData.icone || 'TestTube'} size={34} color={severityColor.text} variant="Bold" />
                             <Text style={[s.heroTitle, { color: severityColor.text }]}>{nome}</Text>
                             {brandName ? (
                                 <Text style={[s.heroSubtitle, { color: severityColor.text + 'DD', fontWeight: '600' }]}>
@@ -204,9 +204,19 @@ export default function InfoRotulosResultScreen() {
                             <Text style={[s.heroSubtitle, { color: severityColor.text + 'BB' }]}>{categoria}</Text>
 
                             <View style={s.heroBadges}>
-                                <View style={[s.severityBadge, { backgroundColor: severityColor.accent + '30' }]}>
+                                <View style={[s.severityBadge, { backgroundColor: severityColor.accent + '30', flexDirection: 'row', alignItems: 'center' }]}>
+                                    {/* O nível de perigo vinha como bolinha colorida em emoji
+                                        (🔴🟠🟡🟢) concatenada ao texto. O ícone traz a cor do
+                                        DS via `severityColor`, em vez da cor fixa do emoji. */}
+                                    <NeoIcon
+                                        name={NIVEIS_PERIGO[perigo]?.icone || 'Warning2'}
+                                        size={12}
+                                        color={severityColor.text}
+                                        variant="Bold"
+                                        style={{ marginRight: 5 }}
+                                    />
                                     <Text style={[s.severityText, { color: severityColor.text }]}>
-                                        {(NIVEIS_PERIGO[perigo]?.icone || '⚠️') + ' ' + perigo.toUpperCase()}
+                                        {perigo.toUpperCase()}
                                     </Text>
                                 </View>
 

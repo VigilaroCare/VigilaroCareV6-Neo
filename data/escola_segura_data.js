@@ -16,7 +16,7 @@ export const CHECKLIST_ESCOLA_SEGURA = {
   nome: 'Escola Segura',
   nome_en: 'Safe School',
   nome_es: 'Escuela Segura',
-  icone: '🏫',
+  icone: 'Student',
   cor: '#4169E1',
   descricao: 'Checklist completo para avaliar segurança da instituição de ensino',
   descricao_en: 'Complete checklist to evaluate the safety of educational institutions',
@@ -38,7 +38,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Estrutura Física',
       nome_en: 'Physical Structure',
       nome_es: 'Estructura Física',
-      icone: '🏗️',
+      icone: 'Crane',
       cor: '#FF8C00',
 
       itens: [
@@ -170,7 +170,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Mobiliário e Equipamentos',
       nome_en: 'Furniture & Equipment',
       nome_es: 'Mobiliario y Equipos',
-      icone: '🪑',
+      icone: 'Chair',
       cor: '#8B4513',
 
       itens: [
@@ -252,7 +252,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Banheiros',
       nome_en: 'Bathrooms',
       nome_es: 'Baños',
-      icone: '🚽',
+      icone: 'Toilet',
       cor: '#4682B4',
 
       itens: [
@@ -334,7 +334,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Parquinho e Área de Lazer',
       nome_en: 'Playground & Recreation Area',
       nome_es: 'Parque Infantil y Área de Recreación',
-      icone: '🎠',
+      icone: 'Confetti',
       cor: '#32CD32',
 
       itens: [
@@ -436,7 +436,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Quadras e Equipamentos Esportivos',
       nome_en: 'Courts & Sports Equipment',
       nome_es: 'Canchas y Equipos Deportivos',
-      icone: '⚽',
+      icone: 'SoccerBall',
       cor: '#FFD700',
 
       itens: [
@@ -518,7 +518,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Piscina (se houver)',
       nome_en: 'Swimming Pool (if applicable)',
       nome_es: 'Piscina (si aplica)',
-      icone: '🏊',
+      icone: 'SwimmingPool',
       cor: '#00CED1',
 
       itens: [
@@ -630,7 +630,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Refeitório/Cantina',
       nome_en: 'Cafeteria/Dining Hall',
       nome_es: 'Comedor/Cafetería',
-      icone: '🍽️',
+      icone: 'ForkKnife',
       cor: '#FF6347',
 
       itens: [
@@ -702,7 +702,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Segurança Geral',
       nome_en: 'General Safety',
       nome_es: 'Seguridad General',
-      icone: '🔒',
+      icone: 'Lock',
       cor: '#DC143C',
 
       itens: [
@@ -814,7 +814,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Equipe e Capacitação',
       nome_en: 'Staff & Training',
       nome_es: 'Equipo y Capacitación',
-      icone: '👨‍🏫',
+      icone: 'ChalkboardTeacher',
       cor: '#9370DB',
 
       itens: [
@@ -875,7 +875,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
       nome: 'Transporte Escolar / Logística',
       nome_en: 'School Transport / Logistics',
       nome_es: 'Transporte Escolar / Logística',
-      icone: '🚌',
+      icone: 'Bus',
       cor: '#FF8C00',
 
       itens: [
@@ -1006,7 +1006,7 @@ export const getNivelSeguranca = (pontuacao) => {
       nivel_en: 'EXCELLENT',
       nivel_es: 'EXCELENTE',
       cor: '#4CAF50',
-      icone: '✅',
+      icone: 'CheckCircle',
       mensagem: 'A escola atende à maioria dos critérios críticos de segurança!',
       mensagem_en: 'The school meets most critical safety criteria!',
       mensagem_es: '¡La escuela cumple con la mayoría de los criterios críticos de seguridad!'
@@ -1017,7 +1017,7 @@ export const getNivelSeguranca = (pontuacao) => {
       nivel_en: 'GOOD',
       nivel_es: 'BUENO',
       cor: '#FFD700',
-      icone: '👍',
+      icone: 'ThumbsUp',
       mensagem: 'A escola atende a maioria dos critérios, mas há pontos a melhorar.',
       mensagem_en: 'The school meets most criteria, but there are areas for improvement.',
       mensagem_es: 'La escuela cumple con la mayoría de los criterios, pero hay puntos a mejorar.'
@@ -1028,7 +1028,7 @@ export const getNivelSeguranca = (pontuacao) => {
       nivel_en: 'FAIR',
       nivel_es: 'REGULAR',
       cor: '#FF9800',
-      icone: '⚠️',
+      icone: 'Warning',
       mensagem: 'Atenção! Vários critérios críticos não são atendidos.',
       mensagem_en: 'Warning! Several critical criteria are not met.',
       mensagem_es: '¡Atención! Varios criterios críticos no se cumplen.'
@@ -1039,7 +1039,7 @@ export const getNivelSeguranca = (pontuacao) => {
       nivel_en: 'INSUFFICIENT',
       nivel_es: 'INSUFICIENTE',
       cor: '#F44336',
-      icone: '❌',
+      icone: 'XCircle',
       mensagem: 'ALERTA! A escola não atende critérios básicos de segurança.',
       mensagem_en: 'ALERT! The school does not meet basic safety criteria.',
       mensagem_es: '¡ALERTA! La escuela no cumple con los criterios básicos de seguridad.'

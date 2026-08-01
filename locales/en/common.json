@@ -465,7 +465,9 @@
         "locationUnavailable": "No GPS signal — tap to retry",
         "locationHintA11y": "Your alert will be sent without your location.",
         "locationBlockedTitle": "Location blocked",
-        "locationBlockedBody": "Allow location access in your device settings so your alert can include where you are."
+        "locationBlockedBody": "Allow location access in your device settings so your alert can include where you are.",
+        "tabHuman": "Person",
+        "tabPet": "Pet"
     },
     "medications": {
         "title": "Medication Time",
@@ -622,7 +624,8 @@
         "blogTitle": "Micro Blog",
         "blogSub": "Preventing at Home",
         "articles": "Articles",
-        "realCases": "Real Cases"
+        "realCases": "Real Cases",
+        "peopleAndContext": "People and context"
     },
     "reports": {
         "title": "Inspect Your Spaces",
@@ -654,7 +657,10 @@
         "verifyNow": "Verify Now",
         "allSafe": "All Safe!",
         "allSafeMsg": "You have completed all verifications.",
-        "savePDF": "Save Report as PDF"
+        "savePDF": "Save Report as PDF",
+        "heatmapShort": "Risk by room",
+        "riskReport": "Report",
+        "riskReportShort": "Risk by person"
     },
     "sosCountdown": {
         "fallDetected": "FALL DETECTED!",

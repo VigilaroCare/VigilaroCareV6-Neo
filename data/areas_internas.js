@@ -5,7 +5,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Sala de Estar',
         situacao: 'Convívio',
-        emoji: '🛋️',
+        emoji: '🛋️', icone: 'Armchair',
         cor: '#FF7043',
         riscos: 'Quedas, tombamento, choques, vidros.',
         oQueFazer: [
@@ -28,7 +28,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Sala de Jantar',
         situacao: 'Refeições',
-        emoji: '🍽️',
+        emoji: '🍽️', icone: 'ForkKnife',
         cor: '#FFCA28',
         riscos: 'Queimaduras, cortes.',
         oQueFazer: [
@@ -49,7 +49,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Cozinha e Copa',
         situacao: 'Alto Risco',
-        emoji: '🍳',
+        emoji: '🍳', icone: 'CookingPot',
         cor: '#EF5350',
         riscos: 'Queimaduras, cortes, gás, intoxicação.',
         oQueFazer: [
@@ -71,7 +71,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Despensa',
         situacao: 'Armazenamento',
-        emoji: '🥫',
+        emoji: '🥫', icone: 'Package',
         cor: '#795548',
         riscos: 'Intoxicação, asfixia, pragas.',
         oQueFazer: [
@@ -91,7 +91,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Área de Serviço',
         situacao: 'Limpeza',
-        emoji: '🧺',
+        emoji: '🧺', icone: 'Basket',
         cor: '#42A5F5',
         riscos: 'Afogamento, intoxicação, quedas.',
         oQueFazer: [
@@ -113,7 +113,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Quarto do Bebê',
         situacao: 'Bebê (0-3 anos)',
-        emoji: '👶',
+        emoji: '👶', icone: 'Baby',
         cor: '#F48FB1',
         riscos: 'Sufocamento, quedas.',
         oQueFazer: [
@@ -133,7 +133,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Quarto de Criança',
         situacao: 'Infantil',
-        emoji: '🧸',
+        emoji: '🧸', icone: 'Balloon',
         cor: '#CE93D8',
         riscos: 'Quedas, tombamento.',
         oQueFazer: [
@@ -152,7 +152,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Quarto Adolescente',
         situacao: 'Jovem',
-        emoji: '🎧',
+        emoji: '🎧', icone: 'Headphones',
         cor: '#5C6BC0',
         riscos: 'Elétricos, bagunça.',
         oQueFazer: [
@@ -169,7 +169,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Quarto Adulto',
         situacao: 'Casal/Solteiro',
-        emoji: '🛏️',
+        emoji: '🛏️', icone: 'Bed',
         cor: '#AB47BC',
         riscos: 'Medicamentos, armas, curiosidade infantil.',
         oQueFazer: [
@@ -186,7 +186,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Quarto de Idoso',
         situacao: 'Terceira Idade',
-        emoji: '👴',
+        emoji: '👴', icone: 'Elderly',
         cor: '#9575CD',
         riscos: 'Quedas graves.',
         oQueFazer: [
@@ -208,7 +208,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Banheiros',
         situacao: 'Área Molhada',
-        emoji: '🚿',
+        emoji: '🚿', icone: 'Shower',
         cor: '#29B6F6',
         riscos: 'Quedas, afogamento, choque.',
         oQueFazer: [
@@ -231,7 +231,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Escadas',
         situacao: 'Desnível',
-        emoji: '🪜',
+        emoji: '🪜', icone: 'Ladder',
         cor: '#FFA726',
         riscos: 'Quedas fatais.',
         oQueFazer: [
@@ -250,7 +250,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Garagem',
         situacao: 'Veículos',
-        emoji: '🚗',
+        emoji: '🚗', icone: 'Car',
         cor: '#607D8B',
         riscos: 'Atropelamento, CO, Inflamáveis.',
         oQueFazer: [
@@ -269,7 +269,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Central de Gás',
         situacao: 'Técnico',
-        emoji: '🔥',
+        emoji: '🔥', icone: 'Fire',
         cor: '#D84315',
         riscos: 'Explosão, vazamento.',
         oQueFazer: [
@@ -289,7 +289,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Armários Gerais',
         situacao: 'Organização',
-        emoji: '🗄️',
+        emoji: '🗄️', icone: 'Archive',
         cor: '#795548',
         riscos: 'Queda de objetos, acesso indevido.',
         oQueFazer: [
@@ -306,7 +306,7 @@ export const areasInternas = [
         grupo: 'comodos',
         titulo: 'Varanda / Sacada',
         situacao: 'Extensão',
-        emoji: '🌅',
+        emoji: '🌅', icone: 'SunHorizon',
         cor: '#FFB74D',
         riscos: 'Queda de altura.',
         oQueFazer: [
@@ -325,7 +325,7 @@ export const areasInternas = [
         grupo: 'especial',
         titulo: 'Acessibilidade (PCD)',
         situacao: 'Adaptação',
-        emoji: '♿',
+        emoji: '♿', icone: 'Wheelchair',
         cor: '#00897B', // Teal
         riscos: 'Barreiras, quedas, falta de autonomia.',
         oQueFazer: [

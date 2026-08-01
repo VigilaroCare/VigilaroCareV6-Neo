@@ -9,7 +9,7 @@ export const PET_WELLNESS_DATA = {
         {
             id: 'vacinacao',
             titulo: 'Vacinação', titulo_en: 'Vaccination', titulo_es: 'Vacunación',
-            icone: 'medical-outline',
+            icone: 'FirstAid',
             cor: '#03A9F4',
             dicas: [
                 {
@@ -35,7 +35,7 @@ export const PET_WELLNESS_DATA = {
         {
             id: 'vermifugacao',
             titulo: 'Vermifugação', titulo_en: 'Deworming', titulo_es: 'Desparasitación',
-            icone: 'bug-outline',
+            icone: 'Bug',
             cor: '#4CAF50',
             dicas: [
                 {
@@ -55,7 +55,7 @@ export const PET_WELLNESS_DATA = {
         {
             id: 'cuidados_gerais',
             titulo: 'Cuidados Gerais', titulo_en: 'General Care', titulo_es: 'Cuidados Generales',
-            icone: 'heart-outline',
+            icone: 'Heart',
             cor: '#FF9800',
             dicas: [
                 {
@@ -81,7 +81,7 @@ export const PET_WELLNESS_DATA = {
         {
             id: 'sinais_alerta',
             titulo: 'Sinais de Alerta', titulo_en: 'Warning Signs', titulo_es: 'Signos de Alerta',
-            icone: 'alert-circle-outline',
+            icone: 'WarningCircle',
             cor: '#E91E63',
             dicas: [
                 {

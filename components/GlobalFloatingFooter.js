@@ -78,26 +78,29 @@ export const SOS_OCCLUSION_WIDTH = SOS_BUTTON_SIZE;
 // ---------------------------------------------------------------------------
 // ROTAS ONDE O FOOTER NÃO DEVE APARECER
 // ---------------------------------------------------------------------------
+// REGRA (decisão de produto 2026-07-31): o rodapé é permanente no app em uso
+// normal. Esconder é a exceção, e só se justifica em três situações — antes de
+// o app existir para o utilizador, durante uma emergência, e com a câmera
+// aberta. Fora disso, some da lista.
+//
+// Saíram nesta revisão, por serem telas de uso normal onde esconder era ruído:
+// QuemProteger, QuemProtegerScreenNeo, FamilyComposition,
+// FamilyCompositionScreen, SafetyPermit, UpgradePremium, Login, Intro.
 const HIDDEN_ROUTES = new Set([
-  // Onboarding
-  // 'WelcomeTour' faltava aqui: o footer flutuante renderizava por cima do
-  // tour de boas-vindas e o botao SOS cobria metade do botao "Proximo".
-  // Durante o onboarding o utilizador ainda nem configurou o app — nao ha
-  // nada para o footer navegar.
-  'BoasVindas', 'WelcomeTour', 'PerfilWizard', 'Briefing', 'NewHomeWizard',
-  'SecretBriefing', 'SafetyPermit', 'FamilyComposition',
-  'FamilyCompositionScreen', 'QuemProtegerScreenNeo', 'QuemProteger',
-  // Splash
+  // 1. Antes de o app existir — sem casa, perfil ou vistoria, as abas levariam
+  //    a telas vazias. E o botão SOS chegou a cobrir metade do "Próximo" do
+  //    tour (corrigido em 2026-07-31 ao acrescentar 'WelcomeTour' aqui).
   'Splash', 'CustomSplashScreen',
-  // Câmera / Scanner
-  'ScannerScreen', 'Camera',
-  // Auth legacy
-  'Login', 'Intro',
-  // Emergência — não exibe footer sobre telas de SOS
+  'BoasVindas', 'WelcomeTour', 'PerfilWizard', 'Briefing', 'NewHomeWizard',
+  'SecretBriefing',
+
+  // 2. Emergência em tela cheia — o rodapé poria um botão SOS por cima da
+  //    própria tela de SOS.
   'SOSEmergencyMode', 'SOSCountdown',
   'ModoSituacaoAtiva', 'EncerrarSituacao', 'EmergenciaRapida',
-  // Premium
-  'UpgradePremium',
+
+  // 3. Câmera — a barra tapa o enquadramento.
+  'ScannerScreen', 'Camera',
 ]);
 
 // ---------------------------------------------------------------------------
@@ -106,7 +109,7 @@ const HIDDEN_ROUTES = new Set([
 const TAB_ROUTES = {
   HomeTab: new Set(['Dashboard', 'HomeScreen', 'Relatorios', 'MainTabNavigator', 'MainTabs']),
   KnowledgeTab: new Set(['KnowledgeHubScreen', 'KnowledgeTab', 'TravelSafetyGuide', 'TeoriaFogo']),
-  RelatorioTab: new Set(['ProfileRiskSummaryScreen', 'ProfileRiskSummary', 'RelatorioTab']),
+  TravelModeTab: new Set(['TravelModeScreen', 'TravelModeTab', 'TravelSafetyGuide']),
   MenuTab: new Set(['MenuScreen', 'MenuTab', 'Settings']),
   AcessibilidadeTab: new Set(['AccessibilitySettingsScreen', 'AcessibilidadeTab']),
 };
@@ -130,7 +133,13 @@ const TAB_BUTTONS = [
   { labelKey: 'navigation.home',      route: 'HomeTab',       icon: 'HomeTile' },
   { labelKey: 'navigation.education', route: 'KnowledgeTab',  icon: 'EducationTile' },
   null, // espaçador central para o SOS
-  { labelKey: 'navigation.report',    route: 'RelatorioTab',  icon: 'ReportTile' },
+  // 2026-07-31: 'Relatório' saiu daqui e virou um card ao lado do Mapa de
+  // Calor, dentro de Vistorias — onde já vivia o outro relatório e onde os
+  // dois finalmente deixam de competir pelo mesmo nome. A vaga ficou para o
+  // Modo Viagem, que já teve esta aba antes: o desenho do avião, a animação
+  // de ascensão e os ícones por modal de transporte nunca foram removidos,
+  // só ficaram órfãos quando o tab saiu desta lista.
+  { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'Airplane' },
   { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'MenuTile' },
 ];
 

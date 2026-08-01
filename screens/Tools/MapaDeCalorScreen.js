@@ -271,7 +271,7 @@ function RoomHeatCard({ room, textPrimary, textBody, onPress }) {
 
                 <View style={s.roomBody}>
                     <View style={s.roomHeader}>
-                        <Text style={s.roomEmoji}>{room.emoji}</Text>
+                        <NeoIcon name={room.icone || 'House'} size={22} color={Neo.colors.neutral[700]} variant="Bold" />
                         <View style={[s.heatBadge, { backgroundColor: room.heat.tint }]}>
                             <Text style={[s.heatBadgeText, { color: room.heat.bg }]}>
                                 {room.heat.label}

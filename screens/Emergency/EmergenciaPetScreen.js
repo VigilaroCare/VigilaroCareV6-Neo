@@ -74,7 +74,7 @@ export default function EmergenciaPetScreen({ navigation }) {
           >
             <NeoCard variant="elevated" style={s.heroAction}>
               <View style={[s.heroIconBox, { backgroundColor: Neo.colors.primary[500] }]}>
-                <NeoIcon name="Heart" size={26} color={colors.neutral.white} variant="Bold" />
+                <NeoIcon name="Pet" size={26} color={colors.neutral.white} variant="Bold" />
               </View>
               <View style={{ flex: 1 }}>
                 <H3 style={s.heroActionTitle}>

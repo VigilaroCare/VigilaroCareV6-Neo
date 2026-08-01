@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Share } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
+import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoAlert from '../../utils/NeoAlert';
@@ -147,7 +148,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
           <View style={s.statRow}>
             <View style={s.statItem}>
               <View style={[s.statIcone, { backgroundColor: Neo.colors.feedback.success + '15' }]}>
-                <Text style={s.statIconeTexto}>✅</Text>
+                <NeoIcon name="TickCircle" size={24} color={Neo.colors.feedback.success} variant="Bold" />
               </View>
               <Text style={s.statValor}>{conformes}</Text>
               <Text style={s.statLabel}>{t('checklistReport.compliant')}</Text>
@@ -155,7 +156,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
 
             <View style={s.statItem}>
               <View style={[s.statIcone, { backgroundColor: Neo.colors.feedback.error + '15' }]}>
-                <Text style={s.statIconeTexto}>⚠️</Text>
+                <NeoIcon name="Warning2" size={24} color={Neo.colors.feedback.error} variant="Bold" />
               </View>
               <Text style={s.statValor}>{naoConformes}</Text>
               <Text style={s.statLabel}>{t('checklistReport.nonCompliant')}</Text>
@@ -163,7 +164,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
 
             <View style={s.statItem}>
               <View style={[s.statIcone, { backgroundColor: 'transparent' }]}>
-                <Text style={s.statIconeTexto}>➖</Text>
+                <NeoIcon name="Minus" size={24} color={Neo.colors.neutral[400]} variant="Bold" />
               </View>
               <Text style={s.statValor}>{naoAplicaveis}</Text>
               <Text style={s.statLabel}>{t('headersFirst.nA', 'N/A')}</Text>
@@ -178,7 +179,10 @@ export default function ChecklistReportScreen({ route, navigation }) {
 
         {naoConformes > 0 && (
           <View style={s.alertCard}>
-            <Text style={s.alertTitle}>⚠️ {t('checklistReport.improvementTitle')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="Warning2" size={18} color={Neo.colors.feedback.warning} variant="Bold" />
+            <Text style={s.alertTitle}>{t('checklistReport.improvementTitle')}</Text>
+          </View>
             <Text style={s.alertText}>
               {t('checklistReport.improvementFound', { count: naoConformes })}
             </Text>
@@ -206,7 +210,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
                   
                   return (
                     <View key={index} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.9)', padding: 12, borderRadius: 8, marginBottom: 8 }}>
-                      <Text style={{ fontSize: 18, marginRight: 10 }}>🔴</Text>
+                      <NeoIcon name="Warning2" size={18} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 10 }} />
                       <View style={{ flex: 1 }}>
                         {area ? <Text style={{ fontSize: 11, fontWeight: 'bold', color: Neo.colors.feedback.warning, marginBottom: 2 }}>{area}</Text> : null}
                         <Text style={{ fontSize: 14, color: Neo.colors.neutral[800], fontWeight: '500' }}>{t('checklistReport.itemNeedsAttention', { title })}</Text>
@@ -223,7 +227,10 @@ export default function ChecklistReportScreen({ route, navigation }) {
         )}
 
         <View style={s.historicoCard}>
-          <Text style={s.historicoTitulo}>📊 {t('checklistReport.savedHistory')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="Chart" size={18} color={Neo.colors.neutral[700]} variant="Bold" />
+            <Text style={s.historicoTitulo}>{t('checklistReport.savedHistory')}</Text>
+          </View>
           <Text style={s.historicoTexto}>
             {t('checklistReport.savedHistoryMsg')}
           </Text>
@@ -233,7 +240,7 @@ export default function ChecklistReportScreen({ route, navigation }) {
             style={[s.historicoBtn, { backgroundColor: Neo.colors.secondary[500], flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 10 }]}
             onPress={handleShare}
           >
-            <Text style={{ fontSize: 18, color: Neo.colors.neutral.white }}>📤</Text>
+            <NeoIcon name="ExportSquare" size={18} color={Neo.colors.neutral.white} variant="Bold" />
             <Text style={s.historicoBtnText}>{t('checklistReport.shareReport')}</Text>
           </TouchableOpacity>
           <Text style={{ textAlign: 'center', color: '#7E57C2', fontSize: 10, marginTop: 8, opacity: 0.8 }}>
@@ -243,21 +250,24 @@ export default function ChecklistReportScreen({ route, navigation }) {
         </View>
 
         <View style={s.metodologiaCard}>
-          <Text style={s.metodologiaTitulo}>🎯 {t('checklistReport.methodology3D')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="Metodologia3D" size={20} color={Neo.colors.neutral[800]} variant="Bold" />
+            <Text style={s.metodologiaTitulo}>{t('checklistReport.methodology3D')}</Text>
+          </View>
           <View style={s.metodologiaItem}>
-            <Text style={s.metodologiaIcone}>📅</Text>
+            <NeoIcon name="Calendar" size={24} color={Neo.colors.neutral[700]} variant="Bold" style={{ marginRight: 12 }} />
             <Text style={s.metodologiaTexto}>
               <Text style={s.metodologiaBold}>{t('checklistReport.daily')}:</Text> {t('checklistReport.dailyDesc')}
             </Text>
           </View>
           <View style={s.metodologiaItem}>
-            <Text style={s.metodologiaIcone}>🔄</Text>
+            <NeoIcon name="Activity" size={24} color={Neo.colors.neutral[700]} variant="Bold" style={{ marginRight: 12 }} />
             <Text style={s.metodologiaTexto}>
               <Text style={s.metodologiaBold}>{t('checklistReport.dynamic')}:</Text> {t('checklistReport.dynamicDesc')}
             </Text>
           </View>
           <View style={s.metodologiaItem}>
-            <Text style={s.metodologiaIcone}>⏳</Text>
+            <NeoIcon name="Clock" size={24} color={Neo.colors.neutral[700]} variant="Bold" style={{ marginRight: 12 }} />
             <Text style={s.metodologiaTexto}>
               <Text style={s.metodologiaBold}>{t('checklistReport.durable')}:</Text> {t('checklistReport.durableDesc')}
             </Text>
@@ -268,10 +278,16 @@ export default function ChecklistReportScreen({ route, navigation }) {
 
       <View style={s.footer}>
         <TouchableOpacity style={s.btnSecondary} onPress={() => navigation.navigate('Checklist')}>
-          <Text style={s.btnSecondaryText}>📋 {t('checklistReport.newChecklist')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="ClipboardText" size={18} color={Neo.colors.primary[600]} variant="Bold" />
+            <Text style={s.btnSecondaryText}>{t('checklistReport.newChecklist')}</Text>
+          </View>
         </TouchableOpacity>
         <TouchableOpacity style={s.btnPrimary} onPress={() => navigation.navigate('MainTabs')}>
-          <Text style={s.btnPrimaryText}>🏠 {t('checklistReport.home')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="Home2" size={18} color={Neo.colors.neutral.white} variant="Bold" />
+            <Text style={s.btnPrimaryText}>{t('checklistReport.home')}</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
@@ -294,7 +310,6 @@ const s = StyleSheet.create({
   statRow: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 20 },
   statItem: { alignItems: 'center' },
   statIcone: { width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center', marginBottom: 10 },
-  statIconeTexto: { fontSize: 24 },
   statValor: { fontSize: 28, fontWeight: 'bold', color: Neo.colors.neutral[900], marginBottom: 5 },
   statLabel: { fontSize: 12, color: Neo.colors.neutral[400] },
   totalRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 20, borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200] },
@@ -313,7 +328,6 @@ const s = StyleSheet.create({
   metodologiaCard: { backgroundColor: Neo.colors.secondary[100], padding: 20, borderRadius: 12, marginBottom: 20, borderLeftWidth: 4, borderLeftColor: Neo.colors.secondary[500] },
   metodologiaTitulo: { fontSize: 16, fontWeight: 'bold', color: Neo.colors.secondary[500], marginBottom: 15, textAlign: 'center' },
   metodologiaItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
-  metodologiaIcone: { fontSize: 24, marginRight: 12 },
   metodologiaTexto: { flex: 1, fontSize: 14, color: Neo.colors.neutral[500], lineHeight: 20 },
   metodologiaBold: { fontWeight: 'bold', color: Neo.colors.secondary[500] },
   footer: { flexDirection: 'row', padding: 20, paddingBottom: 40, backgroundColor: Neo.colors.neutral.white, borderTopWidth: 1, borderTopColor: Neo.colors.neutral[300], gap: 10 },

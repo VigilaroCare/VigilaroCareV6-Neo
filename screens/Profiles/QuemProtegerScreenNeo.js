@@ -235,7 +235,7 @@ export default function QuemProtegerScreenNeo() {
                 backgroundColor: ehPet ? '#FDE68A' : Neo.colors.primary?.[100] || '#D1FAE5',
                 alignItems: 'center', justifyContent: 'center',
             }}>
-                <NeoIcon name={ehPet ? 'Heart' : 'Profile'} size={tamanho * 0.45} color={ehPet ? AMBAR : VERDE} variant="Bold" />
+                <NeoIcon name={ehPet ? 'Pet' : 'Profile'} size={tamanho * 0.45} color={ehPet ? AMBAR : VERDE} variant="Bold" />
             </View>
         );
     };

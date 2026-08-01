@@ -196,7 +196,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                                 style={styles.gridCard}
                                             >
                                                 <View style={[styles.iconCircle, { backgroundColor: categoria.cor + '15' }]}>
-                                                    <NeoText style={{ fontSize: 26 }}>{categoria.icone}</NeoText>
+                                                    <NeoIcon name={categoria.icone} size={26} color={Neo.colors.primary[600]} variant="Bold" />
                                                 </View>
                                                 <NeoText style={styles.gridCardTitle} numberOfLines={2}>
                                                     {t_field(categoria, 'nome')}
@@ -244,7 +244,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                                         backgroundColor: categoria.cor + '20',
                                                         alignItems: 'center', justifyContent: 'center',
                                                     }}>
-                                                        <NeoText style={{ fontSize: 24 }}>{categoria.icone}</NeoText>
+                                                        <NeoIcon name={categoria.icone} size={24} color={Neo.colors.primary[600]} variant="Bold" />
                                                     </View>
                                                     <View style={{ flex: 1, marginLeft: 12 }}>
                                                         <H3>{t_field(categoria, 'nome')}</H3>

@@ -132,8 +132,9 @@ export default function CuidarProtegerHubScreen({ navigation }) {
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
+                            <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                📋 {contextItems.length} categorias • Explore as adaptações
+                                {contextItems.length} categorias • Explore as adaptações
                             </Text>
                         </View>
                     </FadeInView>
@@ -159,6 +160,8 @@ export default function CuidarProtegerHubScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     infoBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'rgba(150,150,150,0.1)',
         paddingHorizontal: 16,
         paddingVertical: 12,

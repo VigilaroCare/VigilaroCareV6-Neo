@@ -2,7 +2,7 @@ export const areasExternas = [
     {
         id: 'backyard',
         titulo: 'Quintal',
-        emoji: '🌳',
+        emoji: '🌳', icone: 'Tree',
         situacao: 'Área externa',
         oQueFazer: [
             'O local está limpo e sem entulhos/mato alto (evita escorpiões/ratos)?',
@@ -20,7 +20,7 @@ export const areasExternas = [
     {
         id: 'garden_farming',
         titulo: 'Jardinagem e Hortas',
-        emoji: '👩‍🌾',
+        emoji: '👩‍🌾', icone: 'Plant',
         situacao: 'Manutenção',
         oQueFazer: [
             'Usa EPIs (luvas, calçado fechado, manga longa) ao jardinar?',
@@ -37,7 +37,7 @@ export const areasExternas = [
     {
         id: 'collective_areas',
         titulo: 'Áreas Coletivas (Playground)',
-        emoji: '🛝',
+        emoji: '🛝', icone: 'Confetti',
         situacao: 'Condomínio/Praça',
         oQueFazer: [
             'Brinquedos estão sem ferrugem, rebarbas ou partes soltas?',
@@ -54,7 +54,7 @@ export const areasExternas = [
     {
         id: 'pool_safe',
         titulo: 'Piscina',
-        emoji: '🏊',
+        emoji: '🏊', icone: 'SwimmingPool',
         situacao: 'Risco Máximo',
         oQueFazer: [
             'Há supervisão visual CONSTANTE (adulto a um braço de distância)?',
@@ -74,7 +74,7 @@ export const areasExternas = [
     {
         id: 'beach_rivers',
         titulo: 'Praia, Rios e Lagos',
-        emoji: '🏖️',
+        emoji: '🏖️', icone: 'Umbrella',
         situacao: 'Natureza',
         oQueFazer: [
             'A supervisão é rigorosa (adulto na água junto)?',
@@ -90,7 +90,7 @@ export const areasExternas = [
     {
         id: 'workshop_tool',
         titulo: 'Oficina Doméstica',
-        emoji: '🛠️',
+        emoji: '🛠️', icone: 'Toolbox',
         situacao: 'Ferramentas',
         oQueFazer: [
             'Ferramentas estão organizadas em caixas/painéis (evita corte)?',
@@ -107,7 +107,7 @@ export const areasExternas = [
     {
         id: 'storage_depot',
         titulo: 'Depósito "Guarda-Tudo"',
-        emoji: '📦',
+        emoji: '📦', icone: 'Package',
         situacao: 'Armazenamento',
         oQueFazer: [
             'O local é limpo e ventilado (evita aranhas/mofo)?',

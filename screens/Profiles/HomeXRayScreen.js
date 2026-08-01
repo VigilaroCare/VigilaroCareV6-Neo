@@ -187,7 +187,7 @@ export default function HomeXRayScreen() {
                         <View style={s.roomsRow}>
                             {rooms.length > 0 ? rooms.map(r => (
                                 <View key={r.id} style={s.roomBadge}>
-                                    <Text style={{ fontSize: 13 }}>{r.emoji}</Text>
+                                    <NeoIcon name={r.icone || 'House'} size={13} color={Neo.colors.neutral[700]} variant="Bold" />
                                     <Caption style={s.roomBadgeText}>{r.nome}</Caption>
                                 </View>
                             )) : (

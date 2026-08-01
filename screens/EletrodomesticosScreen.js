@@ -260,7 +260,7 @@ export default function EletrodomesticosScreen({ navigation }) {
                 {eletrodomesticosSeguranca.map((categoria) => (
                     <View key={categoria.id} style={styles.categorySection}>
                         <View style={styles.categoryHeader}>
-                            <Text style={styles.categoryEmoji}>{categoria.emoji}</Text>
+                            <NeoIcon name={categoria.icone || 'Electricity'} size={32} color={Neo.colors.primary[600]} variant="Bold" />
                             <Text style={styles.categoryTitle}>{categoria.categoria}</Text>
                         </View>
                         {categoria.dispositivos.map(renderDeviceCard)}

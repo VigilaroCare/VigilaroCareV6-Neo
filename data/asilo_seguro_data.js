@@ -11,7 +11,7 @@ export const CHECKLIST_ASILO_SEGURA = {
   nome: 'Asilo Seguro',
   nome_en: 'Safe Nursing Home',
   nome_es: 'Asilo Seguro',
-  icone: '🦽',
+  icone: 'Wheelchair',
   cor: '#1565C0',
   descricao: 'Vistoria técnica para Instituições de Longa Permanência para Idosos (ILPI)',
   descricao_en: 'Technical inspection for Long-Term Care Institutions for the Elderly',
@@ -33,7 +33,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       nome: 'Acessibilidade (Estatuto/ABNT)',
       nome_en: 'Accessibility (Standards)',
       nome_es: 'Accesibilidad (Normativa)',
-      icone: '🦽',
+      icone: 'Wheelchair',
       cor: '#1976D2',
       itens: [
         {
@@ -93,7 +93,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       nome: 'Banheiros e Higiene (RDC Anvisa)',
       nome_en: 'Bathrooms & Hygiene (Standards)',
       nome_es: 'Baños e Higiene (Normativa)',
-      icone: '🚿',
+      icone: 'Shower',
       cor: '#0288D1',
       itens: [
         {
@@ -143,7 +143,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       nome: 'Emergência e Cuidados Médicos',
       nome_en: 'Emergency & Medical Care',
       nome_es: 'Emergencia y Cuidados Médicos',
-      icone: '🚨',
+      icone: 'Siren',
       cor: '#D32F2F',
       itens: [
         {
@@ -183,7 +183,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       nome: 'Incêndio e Evacuação Adaptada',
       nome_en: 'Fire & Adapted Evacuation',
       nome_es: 'Incendio y Evacuación Adaptada',
-      icone: '🔥',
+      icone: 'Fire',
       cor: '#F4511E',
       itens: [
         {
@@ -223,7 +223,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       nome: 'Equipe e Ética do Cuidado',
       nome_en: 'Staff & Care Ethics',
       nome_es: 'Equipo y Ética del Cuidado',
-      icone: '🤝',
+      icone: 'Handshake',
       cor: '#388E3C',
       itens: [
         {
@@ -312,7 +312,7 @@ export const getNivelSeguranca = (pontuacao) => {
     return {
       nivel: 'EXCELENTE',
       cor: '#4CAF50',
-      icone: '✅',
+      icone: 'CheckCircle',
       mensagem: 'A instituição atende aos mais rigorosos critérios de segurança sênior.',
       mensagem_en: 'The institution meets the most rigorous senior safety criteria.',
       mensagem_es: 'La institución cumple con los criterios más rigurosos de seguridad para ancianos.'
@@ -321,7 +321,7 @@ export const getNivelSeguranca = (pontuacao) => {
     return {
       nivel: 'BOM',
       cor: '#FFD700',
-      icone: '👍',
+      icone: 'ThumbsUp',
       mensagem: 'A instituição é segura, mas alguns pontos de acessibilidade podem melhorar.',
       mensagem_en: 'The institution is safe, but some accessibility points can improve.',
       mensagem_es: 'La institución es segura, pero algunos puntos de accesibilidad pueden mejorar.'
@@ -330,7 +330,7 @@ export const getNivelSeguranca = (pontuacao) => {
     return {
       nivel: 'REGULAR',
       cor: '#FF9800',
-      icone: '⚠️',
+      icone: 'Warning',
       mensagem: 'Atenção: Foram encontradas falhas críticas na infraestrutura de cuidado.',
       mensagem_en: 'Warning: Critical failures were found in the care infrastructure.',
       mensagem_es: 'Atención: Se encontraron fallas críticas en la infraestructura de cuidado.'
@@ -339,7 +339,7 @@ export const getNivelSeguranca = (pontuacao) => {
     return {
       nivel: 'INSUFICIENTE',
       cor: '#F44336',
-      icone: '❌',
+      icone: 'XCircle',
       mensagem: 'ALERTA: A instituição apresenta riscos imediatos à integridade dos idosos.',
       mensagem_en: 'ALERT: The institution presents immediate risks to the integrity of the elderly.',
       mensagem_es: '¡ALERTA! La institución presenta riesgos inmediatos para la integridad de los ancianos.'

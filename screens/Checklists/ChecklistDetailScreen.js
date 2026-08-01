@@ -405,7 +405,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
         {/* Modern Neo Header */}
         <NeoScreenHeader 
-            title={`${roomIcon || '🏠'} ${displayRoomName || t('checklists.room')}`}
+            title={displayRoomName || t('checklists.room')}
             subtitle={categoryFilter ? `${t('checklists.category')} ${categoryFilter}` : undefined}
             onBack={() => navigation.goBack()}
             rightAction={

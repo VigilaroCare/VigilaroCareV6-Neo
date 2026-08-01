@@ -77,7 +77,7 @@ const getIcon = (iconName, size = 28) => {
         case 'alert-circle': name = 'Warning2'; break;
         case 'heart': name = 'Heart'; break;
         case 'eye-off': name = 'EyeSlash'; break;
-        case 'paw': name = 'Heart'; break; // Pet não existe
+        case 'paw': name = 'Pet'; break; // resolve para PawPrint no NeoIcon
         case 'bandage': name = 'Health'; break;
         case 'heart-dislike': name = 'Heart'; break; // HeartSlash não existe
         case 'sunny': name = 'Sun1'; break;
@@ -295,7 +295,7 @@ export default function PrimeirosSocorrosEmergenciaScreen({ navigation, route })
                             }}
                             style={{ paddingHorizontal: 24, paddingVertical: 8, alignItems: 'center', backgroundColor: isPet ? colors.neutral.white : 'transparent', borderRadius: 20, flexDirection: 'row', ...(isPet && Neo.shadows?.sm) }}
                         >
-                            <NeoIcon name="Heart" size={16} color={isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
+                            <NeoIcon name="Pet" size={16} color={isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500]} style={{marginRight: 6}} variant="Bold" />
                             <Small style={{ color: isPet ? Neo.colors.primary[600] : Neo.colors.neutral[500], fontWeight: 'bold' }}>{t('firstAid.pets')}</Small>
                         </TouchableOpacity>
                     </View>

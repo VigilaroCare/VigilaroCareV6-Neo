@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import NeoIcon from '../components/NeoIcon';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { buscarProduto, NIVEIS_PERIGO } from '../data/produtos_scanner';
@@ -48,11 +49,11 @@ export default function ProdutoScannerScreen({ route, navigation }) {
       <ScrollView>
         {/* Produto Info */}
         <View style={[styles.produtoHeader, { backgroundColor: nivelInfo.cor }]}>
-          <Text style={styles.produtoIcon}>{produto.icone}</Text>
+          <NeoIcon name={produto.icone || 'TestTube'} size={44} color={Neo.colors.neutral.white} variant="Bold" />
           <Text style={styles.produtoNome}>{produto.nome}</Text>
           <Text style={styles.produtoCategoria}>{produto.categoria}</Text>
           <View style={styles.nivelBadge}>
-            <Text style={styles.nivelIcon}>{nivelInfo.icone}</Text>
+            <NeoIcon name={nivelInfo.icone || 'Circle'} size={14} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 6 }} />
             <Text style={styles.nivelTexto}>PERIGO: {produto.perigo.toUpperCase()}</Text>
           </View>
         </View>
@@ -81,7 +82,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
           <Text style={styles.sectionTitle}>{t('headersFirst.RiscosEPerigos', '⚠️ Riscos e Perigos')}</Text>
           {produto.riscos.map((risco, index) => (
             <View key={index} style={styles.item}>
-              <Text style={styles.riscoBullet}>⚠</Text>
+              <NeoIcon name="Warning2" size={16} color={Neo.colors.feedback.warning} variant="Bold" />
               <Text style={styles.riscoText}>{risco}</Text>
             </View>
           ))}
@@ -119,7 +120,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
           <Text style={styles.sectionTitle}>{t('headersFirst.ComoPrevenirAcidentes', '🛡️ Como Prevenir Acidentes')}</Text>
           {produto.prevencao.map((prev, index) => (
             <View key={index} style={styles.item}>
-              <Text style={styles.prevBullet}>✓</Text>
+              <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[600]} variant="Bold" />
               <Text style={styles.prevText}>{prev}</Text>
             </View>
           ))}
@@ -127,7 +128,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
         {/* Alerta Importante */}
         <View style={styles.alertaCard}>
-          <Text style={styles.alertaIcon}>🚨</Text>
+          <NeoIcon name="Danger" size={24} color={Neo.colors.feedback.error} variant="Bold" />
           <Text style={styles.alertaTitulo}>{t('headersFirst.iMPORTANTE', 'IMPORTANTE')}</Text>
           <Text style={styles.alertaTexto}>
             {t('headersFirst.emCasoDeAcidenteLigueIMEDIATAMENTEParaOC', `Em caso de acidente, ligue IMEDIATAMENTE para o CIATOX.
@@ -137,7 +138,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
         {/* Botão CIATOX */}
         <TouchableOpacity style={styles.botaoCiatox} onPress={callCIATOX}>
-          <Text style={styles.botaoIcon}>📞</Text>
+          <NeoIcon name="Call" size={18} color={Neo.colors.neutral.white} variant="Bold" />
           <View style={styles.botaoTextos}>
             <Text style={styles.botaoTitulo}>{t('headersFirst.lIGARPARACIATOX', 'LIGAR PARA CIATOX')}</Text>
             <Text style={styles.botaoSubtitulo}>{telefoneCiatox}</Text>
@@ -256,12 +257,6 @@ const getStyles = (colors) => StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.feedback.error,
   },
-  riscoBullet: {
-    fontSize: 16,
-    marginRight: 8,
-    color: colors.feedback.error,
-    marginTop: 2,
-  },
   riscoText: {
     flex: 1,
     fontSize: 15,
@@ -293,12 +288,6 @@ const getStyles = (colors) => StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.feedback.success,
   },
-  prevBullet: {
-    fontSize: 18,
-    marginRight: 8,
-    color: colors.feedback.success,
-    marginTop: 2,
-  },
   prevText: {
     flex: 1,
     fontSize: 15,
@@ -314,10 +303,6 @@ const getStyles = (colors) => StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.feedback.warning,
     alignItems: 'center',
-  },
-  alertaIcon: {
-    fontSize: 48,
-    marginBottom: 8,
   },
   alertaTitulo: {
     fontSize: 18,
@@ -339,10 +324,6 @@ const getStyles = (colors) => StyleSheet.create({
     marginTop: 0,
     padding: 20,
     borderRadius: 12,
-  },
-  botaoIcon: {
-    fontSize: 40,
-    marginRight: 16,
   },
   botaoTextos: {
     flex: 1,

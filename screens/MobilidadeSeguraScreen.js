@@ -77,7 +77,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
                 style={[styles.tab, tabAtiva === tab.id && styles.tabAtiva]}
                 onPress={() => setTabAtiva(tab.id)}
               >
-                <Text style={{ fontSize: 18, marginBottom: 4 }}>{tab.emoji}</Text>
+                <NeoIcon name={tab.icone || 'Car'} size={18} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 4 }} />
                 <Text style={[styles.tabText, tabAtiva === tab.id && styles.tabTextAtiva]}>
                   {tab.label}
                 </Text>
@@ -119,7 +119,7 @@ function ConteudoDRV() {
 
       {/* Alerta importante */}
       <View style={styles.alertaImportante}>
-        <Text style={styles.alertaIcon}>⚠️</Text>
+        <NeoIcon name="Warning2" size={24} color={Neo.colors.feedback.warning} variant="Bold" />
         <View style={styles.alertaTexto}>
           <Text style={styles.alertaTitulo}>{t('headersFirst.oBRIGATRIOPORLEI', 'OBRIGATÓRIO POR LEI')}</Text>
           <Text style={styles.alertaDescricao}>
@@ -172,7 +172,7 @@ function ConteudoDRV() {
 
       {/* Dica final */}
       <View style={[styles.card, styles.cardDica]}>
-        <Text style={styles.dicaIcon}>💡</Text>
+        <NeoIcon name="Lightbulb" size={32} color={Neo.colors.feedback.warning} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.dicaTitulo}>{t('headersFirst.dicaImportante', 'Dica Importante')}</Text>
         <Text style={styles.dicaTexto}>
           • Sempre verificar selo do Inmetro{'\n'}
@@ -207,7 +207,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
                   accessibilityLabel={dispositivo.nome}
                 />
               ) : (
-                <Text style={{ fontSize: 48 }}>{dispositivo.icone}</Text>
+                <NeoIcon name={dispositivo.icone} size={48} color={Neo.colors.primary[600]} variant="Bold" />
               )}
             </View>
             <View style={styles.guideContent}>
@@ -298,15 +298,16 @@ function ConteudoAtiva() {
         
         <Text style={styles.subtitulo}>{t('headersFirst.benefCios', 'Benefícios:')}</Text>
         {MOBILIDADE_ATIVA.beneficios.map((beneficio, index) => (
-          <Text key={index} style={styles.beneficioItem}>
-            ✓ {beneficio}
-          </Text>
+          <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+            <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
+            <Text style={[styles.beneficioItem, { flex: 1 }]}>{beneficio}</Text>
+          </View>
         ))}
       </View>
 
       {/* Idade de autonomia */}
       <View style={[styles.card, styles.cardDestaque]}>
-        <Text style={styles.destaqueIcon}>⚠️</Text>
+        <NeoIcon name="Warning2" size={32} color={Neo.colors.feedback.warning} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.idadeDeAutonomia', 'Idade de Autonomia')}</Text>
         <Text style={styles.destaqueTexto}>
           Crianças só devem transitar desacompanhadas a partir dos{' '}
@@ -343,7 +344,7 @@ function TipoMobilidadeCard({ tipo }) {
         <View style={styles.guideCardOuter}>
           <View style={styles.guideCardInner}>
             <View style={[styles.guideImageContainer, { backgroundColor: '#F8F9FA' }]}>
-              <Text style={{ fontSize: 48 }}>{tipo.icone}</Text>
+              <NeoIcon name={tipo.icone} size={48} color={Neo.colors.primary[600]} variant="Bold" />
             </View>
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
@@ -379,20 +380,22 @@ function TipoMobilidadeCard({ tipo }) {
           <View style={styles.secao}>
             <Text style={styles.secaoTitulo}>{t('headersFirst.LocaisApropriados', '✅ Locais Apropriados')}</Text>
             {tipo.locaisApropriados.map((item, index) => (
-              <Text key={index} style={[styles.listaItem, styles.listaItemSucesso]}>
-                ✓ {item}
-              </Text>
+              <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
+                <Text style={[styles.listaItem, styles.listaItemSucesso, { flex: 1 }]}>{item}</Text>
+              </View>
             ))}
           </View>
 
           {/* Locais a evitar */}
           {tipo.locaisEvitar && (
             <View style={styles.secao}>
-              <Text style={styles.secaoTitulo}>{t('headersFirst.LocaisAEvitar', '❌ Locais a Evitar')}</Text>
+              <Text style={styles.secaoTitulo}>{t('headersFirst.LocaisAEvitar', 'Locais a Evitar')}</Text>
               {tipo.locaisEvitar.map((item, index) => (
-                <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
-                  ✗ {item}
-                </Text>
+                <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                  <NeoIcon name="CloseCircle" size={14} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
+                  <Text style={[styles.listaItem, styles.listaItemAviso, { flex: 1 }]}>{item}</Text>
+                </View>
               ))}
             </View>
           )}
@@ -433,7 +436,7 @@ function ConteudoPedestre() {
     <View style={styles.conteudo}>
       {/* Idade de autonomia */}
       <View style={[styles.card, styles.cardDestaque]}>
-        <Text style={styles.destaqueIcon}>🚸</Text>
+        <NeoIcon name="Pedestrian" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.autonomiaDeMobilidade', 'Autonomia de Mobilidade')}</Text>
         <Text style={styles.destaqueTexto}>
           Crianças podem andar sozinhas na rua a partir dos{' '}
@@ -505,7 +508,7 @@ function ConteudoMoto() {
     <View style={styles.conteudo}>
       {/* Idade mínima */}
       <View style={[styles.card, styles.cardDestaque]}>
-        <Text style={styles.destaqueIcon}>🏍️</Text>
+        <NeoIcon name="Motorcycle" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.idadeMNima', 'Idade Mínima')}</Text>
         <Text style={styles.destaqueTexto}>
           Crianças podem ser passageiras em motos a partir dos{' '}
@@ -516,7 +519,10 @@ function ConteudoMoto() {
       {/* Equipamentos obrigatórios */}
       {SEGURANCA_MOTO.equipamentos_obrigatorios.map((equip, index) => (
         <View key={index} style={styles.card}>
-          <Text style={styles.cardTitulo}>🛡️ {equip.item}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <NeoIcon name="ShieldTick" size={18} color={Neo.colors.primary[600]} variant="Bold" />
+            <Text style={styles.cardTitulo}>{equip.item}</Text>
+          </View>
           {equip.requisitos && equip.requisitos.map((req, idx) => (
             <Text key={idx} style={styles.listaItem}>
               • {req}
@@ -590,7 +596,7 @@ function ConteudoEletrica() {
       {MICROMOBILIDADE_ELETRICA.categorias_ctb.map((cat, index) => (
         <View key={index} style={styles.card}>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-            <Text style={{ fontSize: 24, marginRight: 8 }}>{cat.icone}</Text>
+            <NeoIcon name={cat.icone} size={24} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 8 }} />
             <Text style={styles.cardTitulo}>{cat.nome}</Text>
           </View>
           <Text style={[styles.textoDestaque, { marginBottom: 8 }]}>Limite: {cat.velocidadeMax}</Text>
@@ -609,7 +615,7 @@ function ConteudoEletrica() {
 
       {/* Regras de Calçadas */}
       <View style={[styles.card, styles.cardDestaque]}>
-        <Text style={styles.destaqueIcon}>🚸</Text>
+        <NeoIcon name="Pedestrian" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.eNasCalAdas', 'E nas calçadas?')}</Text>
         <Text style={styles.destaqueTexto}>{MICROMOBILIDADE_ELETRICA.regras_calcadas.regraGeral}</Text>
         {MICROMOBILIDADE_ELETRICA.regras_calcadas.detalhes.map((detalhe, idx) => (
@@ -629,7 +635,10 @@ function ConteudoEletrica() {
       <View style={styles.card}>
         <Text style={styles.cardTitulo}>{t('headersFirst.PrevenO', '🛡️ Prevenção')}</Text>
         {MICROMOBILIDADE_ELETRICA.prevencao.map((prev, index) => (
-          <Text key={index} style={styles.listaItem}>✓ {prev}</Text>
+          <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}>
+              <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginTop: 2 }} />
+              <Text style={[styles.listaItem, { flex: 1 }]}>{prev}</Text>
+            </View>
         ))}
       </View>
     </View>
@@ -773,10 +782,6 @@ const getStyles = (colors, isDark) => StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.feedback.error,
   },
-  alertaIcon: {
-    fontSize: 32,
-    marginRight: 16,
-  },
   alertaTexto: {
     flex: 1,
   },
@@ -875,10 +880,8 @@ const getStyles = (colors, isDark) => StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.accent?.champagne || '#FBC02D',
   },
-  dicaIcon: { fontSize: 32, marginBottom: 8 },
   dicaTitulo: { fontSize: 16, fontWeight: 'bold', color: colors.accent?.champagne || '#FBC02D', marginBottom: 4 },
   dicaTexto: { fontSize: 13, color: colors.accent?.champagne || '#FBC02D', lineHeight: 18 },
-  destaqueIcon: { fontSize: 32, marginBottom: 8 },
   destaqueTitulo: { fontSize: 16, fontWeight: 'bold', color: colors.feedback.info, marginBottom: 4 },
   destaqueTexto: { fontSize: 14, color: colors.feedback.info, lineHeight: 20 },
   destaqueSubtitulo: { fontSize: 13, fontWeight: 'bold', color: colors.feedback.info, marginTop: 8, marginBottom: 4 },

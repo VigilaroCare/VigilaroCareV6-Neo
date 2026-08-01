@@ -10,7 +10,6 @@ import { useFocusEffect } from '@react-navigation/native';
 // Screens
 import HomeScreen from '../screens/HomeScreenNeo';
 import KnowledgeHubScreen from '../screens/Education/KnowledgeHubScreen';
-import ProfileRiskSummaryScreen from '../screens/Profiles/ProfileRiskSummaryScreen';
 import MenuScreen from '../screens/MenuScreenNeo';
 import AccessibilitySettingsScreen from '../screens/AccessibilitySettingsScreen';
 import TravelModeScreen from '../screens/Travel/TravelModeScreen';
@@ -90,13 +89,17 @@ export default function MainTabNavigator() {
                 }}
             />
 
+            {/* 2026-07-31: era RelatorioTab -> ProfileRiskSummaryScreen. O
+                relatório passou a ser um card ao lado do Mapa de Calor, em
+                Vistorias; ProfileRiskSummary continua no stack e é alcançado
+                por lá e pelo painel de perfil em Quem e Onde Proteger. */}
             <Tab.Screen
-                name="RelatorioTab"
-                component={ProfileRiskSummaryScreen}
+                name="TravelModeTab"
+                component={TravelModeScreen}
                 options={{
-                    tabBarLabel: 'Relatório',
+                    tabBarLabel: 'Viagem',
                     tabBarIcon: ({ color, focused }) => (
-                        <NeoIcon name="ChartBar" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
+                        <NeoIcon name="Airplane" variant={focused ? "Bold" : "Linear"} size={28} color={color} />
                     ),
                 }}
             />

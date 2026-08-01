@@ -465,7 +465,9 @@
         "locationUnavailable": "Sem sinal de GPS — toque para tentar de novo",
         "locationHintA11y": "O alerta será enviado sem a sua localização.",
         "locationBlockedTitle": "Localização bloqueada",
-        "locationBlockedBody": "Autorize o acesso à localização nas definições do aparelho para que o alerta inclua onde está."
+        "locationBlockedBody": "Autorize o acesso à localização nas definições do aparelho para que o alerta inclua onde está.",
+        "tabHuman": "Humano",
+        "tabPet": "Animal"
     },
     "travel": {
         "checklistTailored": "Checklist ajustado ao briefing da sua viagem.",
@@ -622,7 +624,8 @@
         "blogTitle": "Micro Blog",
         "blogSub": "Prevenir em Casa",
         "articles": "Artigos",
-        "realCases": "Casos Reais"
+        "realCases": "Casos Reais",
+        "peopleAndContext": "Pessoas & Contexto"
     },
     "reports": {
         "title": "Vistorie os seus Ambientes",
@@ -654,7 +657,10 @@
         "statusRisk": "Risco",
         "pendenciesPercent": "Pendências ({{pct}}%)",
         "missingPeople": "Faltam {{count}} pessoas.",
-        "pendenciesCount": "{{count}} pendências"
+        "pendenciesCount": "{{count}} pendências",
+        "heatmapShort": "Risco por divisão",
+        "riskReport": "Relatório",
+        "riskReportShort": "Risco por pessoa"
     },
     "sosCountdown": {
         "fallDetected": "QUEDA DETETADA!",

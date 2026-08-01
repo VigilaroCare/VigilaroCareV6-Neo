@@ -627,7 +627,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                         onPress={() => setTipo(profileType)}
                                     >
                                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                                            <NeoIcon name={profileType === 'humano' ? 'User' : 'Heart'} size={18} color={isActive ? Neo.colors.neutral.white : Neo.colors.neutral[500]} />
+                                            <NeoIcon name={profileType === 'humano' ? 'User' : 'Pet'} size={18} color={isActive ? Neo.colors.neutral.white : Neo.colors.neutral[500]} />
                                             <Body style={{ fontWeight: 'bold', color: isActive ? Neo.colors.neutral.white : Neo.colors.neutral[500] }}>
                                                 {profileType === 'humano' ? t('addProfile.person') : t('addProfile.pet')}
                                             </Body>
@@ -641,7 +641,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         <AccordionSection
                             sectionKey="personal"
                             title={tipo === 'pet' ? 'Ficha do Pet' : 'Informações Pessoais'}
-                            icon={tipo === 'pet' ? 'Heart' : 'User'}
+                            icon={tipo === 'pet' ? 'Pet' : 'User'}
                             isExpanded={expanded.personal}
                             onToggle={toggleAccordion}
                         >
@@ -652,7 +652,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                         {foto ? (
                                             <Image source={typeof foto === 'number' ? foto : { uri: foto }} style={{ width: 92, height: 92, borderRadius: 46 }} />
                                         ) : (
-                                            <NeoIcon name={tipo === 'pet' ? 'Heart' : 'User'} size={40} color={Neo.colors.neutral[400]} />
+                                            <NeoIcon name={tipo === 'pet' ? 'Pet' : 'User'} size={40} color={Neo.colors.neutral[400]} />
                                         )}
                                     </View>
                                     <View style={styles.cameraBadge}>
@@ -669,9 +669,16 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                     const isMultiple = residencesList.length > 1;
                                     return (
                                         <View key={res.id} style={styles.residenceRelationRow}>
-                                            <Body style={styles.residenceRelationName} numberOfLines={1}>
-                                                🏠 {res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : res.nome}
-                                            </Body>
+                                            {/* Mesmo par ícone+nome do painel de perfil em
+                                                QuemProtegerScreenNeo — as duas telas mostram o
+                                                mesmo vínculo e devem parecer a mesma coisa.
+                                                Antes: emoji 🏠 solto dentro do texto. */}
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+                                                <NeoIcon name="Home2" size={15} color={Neo.colors.neutral[500]} variant="Bold" style={{ marginRight: 6 }} />
+                                                <Body style={[styles.residenceRelationName, { marginBottom: 0, flex: 1 }]} numberOfLines={1}>
+                                                    {res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : res.nome}
+                                                </Body>
+                                            </View>
                                             <View style={styles.relationButtonGroup}>
                                                 {[
                                                     { key: 'morador', label: 'Morador Fixo' },
@@ -877,8 +884,12 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                         }
                                                     ]}
                                                 >
+                                                    {/* Sem ícone de propósito: numa pílula de seleção o que
+                                                        comunica é o rótulo e o estado (cor/borda). Ícone
+                                                        aqui só competiria por atenção. Antes vinha o emoji
+                                                        do dado embutido no texto. */}
                                                     <Small style={[styles.itemChipText, isSelected && { color: Neo.colors.primary[700], fontWeight: 'bold' }]}>
-                                                        {room.emoji} {room.nome}
+                                                        {room.nome}
                                                     </Small>
                                                 </TouchableOpacity>
                                             );
@@ -986,7 +997,8 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                     onPress={() => toggleArrayItem(condicoes, setCondicoes, c)}
                                                     style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[400] }]}
                                                 >
-                                                    <Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{c} ✕</Small>
+                                                    <><Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{c}</Small>
+                                                    <NeoIcon name="CloseCircle" size={13} color={Neo.colors.primary[700]} variant="Bold" style={{ marginLeft: 5 }} /></>
                                                 </TouchableOpacity>
                                             ))}
                                         </View>
@@ -1074,7 +1086,8 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                     onPress={() => toggleArrayItem(alergias, setAlergias, a)}
                                                     style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[400] }]}
                                                 >
-                                                    <Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{a} ✕</Small>
+                                                    <><Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{a}</Small>
+                                                    <NeoIcon name="CloseCircle" size={13} color={Neo.colors.primary[700]} variant="Bold" style={{ marginLeft: 5 }} /></>
                                                 </TouchableOpacity>
                                             ))}
                                         </View>
@@ -1403,6 +1416,11 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     itemChip: {
+        // row: os chips de condição/alergia já selecionados trazem um ícone de
+        // remover ao lado do rótulo (antes era um ✕ colado no texto). Nas
+        // pílulas de cômodo, que só têm rótulo, não muda nada.
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 12,
         paddingVertical: 8,
         borderRadius: 16,

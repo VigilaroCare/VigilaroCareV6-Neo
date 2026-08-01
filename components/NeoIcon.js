@@ -81,8 +81,13 @@ const mapName = (name) => {
 
     // Custom explicit overrides for legacy names or custom semantic maps
     const overrides = {
-        'pet': 'Heart',
-        'Pet': 'Heart',
+        // 2026-07-31: 'pet' apontava para 'Heart'. Coração é afeto, não
+        // espécie — e o alias rodava ANTES do PHOSPHOR_MAP, então a entrada
+        // `Pet: 'PawPrint'` de lá nunca chegava a ser consultada. Passa a
+        // resolver direto para a pata; ProtejaPet já usava PawPrint e agora
+        // os dois são coerentes.
+        'pet': 'PawPrint',
+        'Pet': 'PawPrint',
         'profile-circle': 'User',
         'ProfileCircle': 'User',
         'profile-add': 'UserAdd',
@@ -211,6 +216,66 @@ const PHOSPHOR_MAP = {
 
     // ── Pet ────────────────────────────────────────────────────────
     Pet: 'PawPrint',
+
+    // Entradas acrescentadas em 2026-07-31 ao substituir emojis crus por
+    // ícones. Emoji renderiza com a fonte do sistema — muda de desenho, cor e
+    // tamanho conforme o fabricante do Android, ignora a paleta do DS e não
+    // responde a `color`. Cada um destes tinha um emoji no lugar.
+    // ── Restos da migração Iconsax → Phosphor (mapeados em 2026-07-31) ──────
+    // Estes 26 nomes eram passados ao NeoIcon por telas espalhadas pelo app e
+    // não existiam nem aqui nem no namespace do Phosphor, então caíam no
+    // fallback: um TRIÂNGULO DE ALERTA no lugar do ícone pedido. Em dev sai um
+    // console.warn, mas em release falha em silêncio — daí terem passado.
+    // Auditoria: node -e "…" comparando todo name= do projeto contra este mapa.
+    // Ambientes da casa (data/mapeamento_dados.js, campo `icone`).
+    Armchair: 'Armchair',
+    ForkKnife: 'ForkKnife',
+    CookingPot: 'CookingPot',
+    Baby: 'Baby',
+    Bed: 'Bed',
+    Shower: 'Shower',
+    Package: 'Package',
+    PottedPlant: 'PottedPlant',
+
+    // Cards gêmeos de Vistorias: grade de calor por ambiente e lista por pessoa.
+    GridFour: 'GridFour',
+    UserList: 'UserList',
+
+    Accessibility: 'Wheelchair',
+    call: 'Phone',                     // components/OfflineModeModal.js
+    Crown1: 'Crown',                   // components/PremiumBadge.js
+    accessibility: 'Wheelchair',
+    AddCircle: 'PlusCircle',
+    Box: 'Package',
+    Calendar1: 'CalendarBlank',
+    Card: 'IdentificationCard',
+    CloudCross: 'CloudSlash',          // offline / sem ligação
+    Diamonds: 'Diamond',               // premium
+    LampCharge: 'LightbulbFilament',
+    MedicalSquare: 'FirstAidKit',
+    medical: 'FirstAidKit',
+    medkit: 'FirstAidKit',
+    MessageText1: 'ChatText',
+    Sms: 'ChatCircleText',
+    Radar: 'Broadcast',
+    Send2: 'PaperPlaneTilt',
+    Task: 'ListChecks',
+    TextalignJustifycenter: 'TextAlignCenter',
+    Tick: 'Check',
+    Weight: 'Scales',
+    Whatsapp: 'WhatsappLogo',
+    Wifi: 'WifiHigh',
+    body: 'Person',
+    happy: 'Smiley',
+    paw: 'PawPrint',
+    school: 'Student',
+
+    Minus: 'Minus',                     // "não aplicável" (era ➖)
+    Motorcycle: 'Motorcycle',           // segurança em motos (era 🏍️)
+    Pedestrian: 'PersonSimpleWalk',     // travessia e autonomia a pé (era 🚸)
+    Newspaper: 'Newspaper',             // micro blog (era 📰)
+    ClipboardText: 'ClipboardText',     // novo checklist (era 📋)
+    Lightbulb: 'Lightbulb',             // dica (era 💡)
     Heart: 'Heart',
     HeartAdd: 'HeartStraight',
 

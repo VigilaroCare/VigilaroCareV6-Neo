@@ -15,7 +15,7 @@ export const DISPOSITIVOS_RETENCAO = [
   {
     id: 'bebe-conforto',
     nome: 'Bebê Conforto',
-    icone: '👶',
+    icone: 'Baby',
     cor: '#FFB6C1',
     imagemUrl: null,
     
@@ -73,7 +73,7 @@ export const DISPOSITIVOS_RETENCAO = [
   {
     id: 'cadeirinha',
     nome: 'Cadeirinha',
-    icone: '🧒',
+    icone: 'Person',
     cor: '#87CEEB',
     imagemUrl: null,
     
@@ -130,7 +130,7 @@ export const DISPOSITIVOS_RETENCAO = [
   {
     id: 'assento-elevacao',
     nome: 'Assento de Elevação (Booster)',
-    icone: '👦',
+    icone: 'Person',
     cor: '#9370DB',
     imagemUrl: null,
     
@@ -218,7 +218,7 @@ export const MOBILIDADE_ATIVA = {
   tipos: [
     {
       tipo: 'Bicicleta',
-      icone: '🚴',
+      icone: 'PersonSimpleBike',
       idadeMinima: 4,
       
       equipamentos: [
@@ -268,7 +268,7 @@ export const MOBILIDADE_ATIVA = {
     },
     {
       tipo: 'Skate',
-      icone: '🛹',
+      icone: 'PersonSimpleRun',
       idadeMinima: 6,
       
       equipamentos: [
@@ -299,7 +299,7 @@ export const MOBILIDADE_ATIVA = {
     },
     {
       tipo: 'Patinete',
-      icone: '🛴',
+      icone: 'Scooter',
       idadeMinima: 5,
       
       equipamentos: [
@@ -326,7 +326,7 @@ export const MOBILIDADE_ATIVA = {
     },
     {
       tipo: 'Patins',
-      icone: '⛸️',
+      icone: 'PersonSimpleRun',
       idadeMinima: 5,
       
       equipamentos: [
@@ -491,7 +491,7 @@ export const MICROMOBILIDADE_ELETRICA = {
   categorias_ctb: [
     {
       nome: 'Bicicleta Elétrica',
-      icone: '🚲⚡',
+      icone: 'PersonSimpleBike',
       velocidadeMax: 'Até 32 km/h',
       caracteristicas: [
         'Tem motor e pedal',
@@ -503,7 +503,7 @@ export const MICROMOBILIDADE_ELETRICA = {
     },
     {
       nome: 'Autopropelidos',
-      icone: '🛴⚡',
+      icone: 'Scooter',
       velocidadeMax: 'Até 32 km/h',
       caracteristicas: [
         'Patinetes elétricos, monociclos e hoverboards',
@@ -514,7 +514,7 @@ export const MICROMOBILIDADE_ELETRICA = {
     },
     {
       nome: 'Ciclomotor',
-      icone: '🛵',
+      icone: 'Moped',
       velocidadeMax: 'De 32 km/h a 50 km/h',
       caracteristicas: [
         'Modelos mais potentes',

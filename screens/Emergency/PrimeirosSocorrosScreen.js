@@ -91,7 +91,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
         let conceito = {
             titulo: item.titulo,
             subtitulo: item.situacao,
-            icon: isPet ? 'Heart' : 'Health',
+            icon: isPet ? 'Pet' : 'Health',
             emoji: item.emoji,
             color: THEME_COLOR,
             tags: [isPet ? 'Pets' : 'Pessoas'],
@@ -332,7 +332,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                             title={item.titulo}
                             description={item.situacao}
                             emoji={item.emoji}
-                            iconName={item.isPet ? 'Heart' : 'Health'}
+                            iconName={item.isPet ? 'Pet' : 'Health'}
                             color={accent}
                             imageUrl={item.imagem || item.imagemUrl}
                             onPress={() => handlePress(item)}

@@ -74,11 +74,12 @@ const HOME_PICTOGRAMS = {
     atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
     scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
     inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
-    cuidar:      require('../assets/illustrations/home-pictograms/cuidar-e-proteger.png'),
     minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
     saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
-    viagem:      require('../assets/illustrations/home-pictograms/modo-viagem.png'),
 };
+// Os PNGs de 'cuidar-e-proteger' e 'modo-viagem' continuam em assets: os dois
+// tiles saíram da Home em 2026-07-31 (ver GRID_ITEMS), mas o Cuidar & Proteger
+// segue como entrada no hub de Educação e pode voltar a precisar da arte.
 
 export default function HomeScreenNeo() {
     const navigation = useNavigation();
@@ -150,6 +151,29 @@ export default function HomeScreenNeo() {
     const birthDate = currentProfile?.dataNascimento;
     const idade = birthDate ? ProfileService.calcularIdade(birthDate) : null;
 
+    // Pictogramas proprietários: a imagem carrega a linguagem visual;
+    // rótulos continuam nativos para i18n e acessibilidade.
+    // Grid único de acesso rápido (8 tiles). Saúde voltou como REGISTRO por
+    // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
+    // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
+        const GRID_ITEMS = [
+        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,   route: 'Relatorios'      },
+        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades,  route: 'ModoPreventivo'  },
+        { key: 'minhasaude',  label: t('home.myHealth', 'Minha Saúde'),                    image: HOME_PICTOGRAMS.minhasaude,  route: 'MinhaSaude'      },
+        { key: 'saudepet',    label: t('home.petHealth', 'Saúde Pet'),                     image: HOME_PICTOGRAMS.saudepet,    route: 'SaudePet'        },
+        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),              image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
+        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                  image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
+        // 2026-07-31 — de 8 para 6 tiles, o que tira uma fileira inteira do
+        // grid (143px) e deixa os pictogramas irem até o teto de largura da
+        // coluna. Os dois que saíram não foram rebaixados, foram realocados
+        // para onde pertencem:
+        //   'cuidar' -> Educação. É conteúdo puramente educativo; as chaves de
+        //               tradução dele já eram do namespace knowledgeHub.*.
+        //   'viagem' -> aba do rodapé. É um ESTADO, não um destino, e um tile
+        //               estático não consegue dizer se está ativo. A aba
+        //               consegue: o avião decola quando o modo liga.
+    ];
+
     let columns = 2;
     if (isCompactPhone) {
         columns = 1;
@@ -167,35 +191,40 @@ export default function HomeScreenNeo() {
         GRID_IMG_W = CONTENT_W * 0.32;
         cellWidth = '32%';
     } else if (columns === 2) {
-        // 0.42 (era 0.49 originalmente): comprime a altura do grid p/ as 4
-        // fileiras (8 tiles) caberem acima do footer. Regra do produto:
-        // "Home sem scroll, compensar altura nos pictogramas".
-        // Tentativa de bump p/ 0.43 em 2026-07-30 foi revertida: mesmo com
-        // trims compensando a altura total, cada tile ficava mais alto, o
-        // que empurrava o rotulo da ULTIMA fileira (Cuidar&Proteger/Modo
-        // Viagem) pra tras do footer flutuante no device real.
+        // HISTÓRICO: o ratio foi 0.49 originalmente, caiu para 0.42 para as 4
+        // fileiras (8 tiles) caberem acima do footer, e uma tentativa de voltar
+        // a 0.43 em 2026-07-30 foi revertida — os rótulos da última fileira
+        // acabavam atrás do footer no aparelho real.
         //
-        // ADAPTATIVO (2026-07-31): em vez de tentar de novo um numero fixo
-        // — 0.42 vs 0.43 ja foi e voltou — o grid agora absorve o clearance
-        // EXTRA que este aparelho exige. Aparelho sem barra de gestos fica
-        // exatamente como estava (clearanceExtra = 0, ratio = 0.42); aparelho
-        // com barra encolhe so o necessario.
+        // Com 6 tiles (2026-07-31) são 3 fileiras, o que devolve ~143px e
+        // permite voltar ao teto de 0.49.
         //
-        // Geometria: PICTOGRAM_ASPECT_RATIO e 577/433 (largura:altura), logo
-        // altura = largura * 0.75. Sao 4 fileiras, entao a altura total do
-        // grid = 4 * GRID_IMG_W * 0.75 = 3 * GRID_IMG_W. Para poupar S px de
-        // altura: delta_ratio = S / (3 * CONTENT_W).
+        // ADAPTATIVO: em vez de mais um número fixo, o grid absorve o clearance
+        // EXTRA que cada aparelho exige. Sem barra de gestos fica no teto; com
+        // barra encolhe só o necessário, e o laço de medição corrige o resto.
+        //
+        // Geometria: PICTOGRAM_ASPECT_RATIO é 577/433 (largura:altura), logo
+        // altura = largura × 0.75. Com N fileiras, altura do grid =
+        // N × GRID_IMG_W × 0.75. Para poupar S px: delta_ratio =
+        // S / (N × 0.75 × CONTENT_W).
         const poupancaDoHero = heroCompact ? HERO_COMPACT_SAVING : 0;
         // Estimativa inicial (primeiro frame) + correcao medida (frames
         // seguintes). A medida manda: se a estimativa errou, `excedenteMedido`
         // corrige exatamente a diferenca.
         const faltaAbsorver = Math.max(0, clearanceExtra - poupancaDoHero) + excedenteMedido;
-        const deltaRatio = faltaAbsorver / (3 * CONTENT_W);
+        // Derivado do número real de fileiras — antes estava fixo em 3, que era
+        // 4 fileiras × 0.75. Com 6 tiles são 3 fileiras, e o divisor muda.
+        const fileiras = Math.ceil(GRID_ITEMS.length / 2);
+        const deltaRatio = faltaAbsorver / (fileiras * 0.75 * CONTENT_W);
         // Piso de 0.32: abaixo disso o pictograma fica pequeno demais para o
         // rotulo de 2 linhas respirar. Se nem assim couber (fonte de
         // acessibilidade no maximo, por exemplo), a Home rola — melhor rolar
         // do que esconder.
-        const ratioGrid = Math.max(0.32, 0.42 - deltaRatio);
+        // Teto de 0.49: a célula ocupa 49% da largura do conteúdo, então a
+        // imagem não pode passar disso sem transbordar. Com 6 tiles em 3
+        // fileiras sobra altura, e o ratio sobe até encostar nesse teto — era
+        // 0.42 quando eram 4 fileiras.
+        const ratioGrid = Math.min(0.49, Math.max(0.32, 0.49 - deltaRatio));
         GRID_IMG_W = CONTENT_W * ratioGrid;
         cellWidth = '49%';
     } else {
@@ -310,21 +339,6 @@ export default function HomeScreenNeo() {
         return null;
     })();
 
-    // Pictogramas proprietários: a imagem carrega a linguagem visual;
-    // rótulos continuam nativos para i18n e acessibilidade.
-    // Grid único de acesso rápido (8 tiles). Saúde voltou como REGISTRO por
-    // perfil (Sua Saúde / Saúde do Pet): informativo, sem scheduler — o dado de
-    // risco vive no perfil e também alimenta o Relatório. PHR/scheduler segue fora.
-        const GRID_ITEMS = [
-        { key: 'vistorias',   label: t('home.inspections', 'Vistorias'),                  image: HOME_PICTOGRAMS.vistorias,   route: 'Relatorios'      },
-        { key: 'atividades',  label: t('home.eventualActivities', 'Atividades Eventuais'), image: HOME_PICTOGRAMS.atividades,  route: 'ModoPreventivo'  },
-        { key: 'minhasaude',  label: t('home.myHealth', 'Minha Saúde'),                    image: HOME_PICTOGRAMS.minhasaude,  route: 'MinhaSaude'      },
-        { key: 'saudepet',    label: t('home.petHealth', 'Saúde Pet'),                     image: HOME_PICTOGRAMS.saudepet,    route: 'SaudePet'        },
-        { key: 'scanner',     label: t('home.envScanner', 'Scanner Ambiente'),              image: HOME_PICTOGRAMS.scanner,     route: 'Scanner',     topClip: 0.03, bottomClip: 0.03 },
-        { key: 'inforotulos', label: t('home.infoLabels', 'Info Rótulos'),                  image: HOME_PICTOGRAMS.inforotulos, route: 'InfoRotulos', topClip: 0.03, bottomClip: 0.03 },
-        { key: 'cuidar',      label: t('home.cuidarProteger', 'Cuidar & Proteger'),         image: HOME_PICTOGRAMS.cuidar,      route: 'CuidarProtegerHub' },
-        { key: 'viagem',      label: t('home.travelMode', 'Modo Viagem'),                   image: HOME_PICTOGRAMS.viagem,      route: 'TravelModeScreen' },
-    ];
     const houseName = activeResidence?.nome === 'Minha Casa Principal'
         ? t('home.mainHouse', 'Minha Casa Principal')
         : (activeResidence?.nome || t('home.mainHouse', 'Minha Casa Principal'));

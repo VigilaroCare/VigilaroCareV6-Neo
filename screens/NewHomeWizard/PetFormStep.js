@@ -46,7 +46,7 @@ export default function PetFormStep({
                         {formPhoto ? (
                             <Image source={typeof formPhoto === 'number' ? formPhoto : { uri: formPhoto }} style={{ width: 100, height: 100, borderRadius: 50 }} />
                         ) : (
-                            <NeoIcon name="Heart" size={48} color={C.neutral[400]} variant="Bold" />
+                            <NeoIcon name="Pet" size={48} color={C.neutral[400]} variant="Bold" />
                         )}
                         <View style={[ss.cameraBadge, { backgroundColor: C.primary[600] }]}>
                             <NeoIcon name="Camera" size={16} color="#FFF" />

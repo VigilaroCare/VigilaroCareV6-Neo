@@ -88,7 +88,10 @@ export default function MicroArticleScreen({ navigation, route }) {
 
                     {/* Meta */}
                     <View style={styles.metaRow}>
-                        <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>⏱️ {article.readTime} min de leitura</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                            <NeoIcon name="Clock" size={13} color={themeColors.neutral[500]} />
+                            <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{article.readTime} min de leitura</Text>
+                        </View>
                         <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{t('headersFirst.PrevenirEmCasa', '📰 Prevenir em Casa')}</Text>
                     </View>
 

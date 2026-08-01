@@ -44,6 +44,9 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 // estilo 3D cerâmico da Home, símbolo solto em fundo transparente.
 // ─────────────────────────────────────────────────────────────────────────
 const PICTOGRAMS = {
+    // Reaproveita a arte que era do tile da Home — o pictograma não ficou órfão
+    // quando o Cuidar & Proteger mudou de casa (2026-07-31).
+    cuidar_proteger: require('../../assets/illustrations/home-pictograms/cuidar-e-proteger.png'),
     // Seção 1 — Pessoas & Contexto: pets/ambientes/seguranca_idade/mentes_atipicas
     // DESCONTINUADOS (migraram p/ Cuidar & Proteger com FOTO — reestruturação de fluxos).
     brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
@@ -76,6 +79,7 @@ const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictogr
 // o card (evita moldura dupla). Os legados (traço P&B) seguem no card glass
 // até serem regenerados no lote 2.
 const CERAMIC_STYLE_IDS = new Set([
+    'cuidar_proteger',
     'utensilios_rev', 'eletro_rev', 'disp_eletronicos',
     'fire_prev', 'emergencias', 'primeiros_socorros_hub', 'kits_emergencia',
     'plantas', 'animais', 'produtos', 'riscos_fisicos', 'riscos_eletricos', 'jardinagem', 'condo_safety',
@@ -106,6 +110,20 @@ export default function KnowledgeHubScreen({ navigation }) {
 
     // 5 seções com grid 3-col
     const SECTIONS = [
+        {
+            // 2026-07-31: Cuidar & Proteger deixou de ser tile da Home e veio
+            // para cá, que é onde sempre pertenceu — os seis destinos dele
+            // (ambientes, lar neurodiverso, pets, 60+, gestante, brinquedos)
+            // são todos educativos, e as chaves de tradução já eram do
+            // namespace knowledgeHub.*. A porta de entrada é que estava fora
+            // do lugar. Fica em primeiro por ser sobre pessoas, que é o eixo
+            // do app. A arte é o mesmo PNG que estava na Home.
+            key: 'pessoas',
+            title: t('knowledgeHub.peopleAndContext', 'Pessoas & Contexto'),
+            items: [
+                { id: 'cuidar_proteger', titulo: t('home.cuidarProteger', 'Cuidar & Proteger'), iconName: 'People', cor: themeColors.primary[600], route: 'CuidarProtegerHub' },
+            ],
+        },
         {
             key: 'analises',
             title: t('knowledgeHub.safetyReviews', 'Análises de Segurança'),

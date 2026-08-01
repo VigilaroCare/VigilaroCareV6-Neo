@@ -7,7 +7,7 @@
 export const EPI_DOMESTICO = {
     id: 'epi_dom',
     titulo: 'EPIs para Atividades Domésticas',
-    emoji: '🦺',
+    emoji: '🦺', icone: 'TShirt',
     descricao: 'Equipamentos de Proteção Individual não são apenas para obras. Muitas atividades domésticas exigem proteção adequada.',
 
     advertencia: 'Acidentes domésticos podem parecer pequenos, mas causam milhares de lesões graves por ano. Use EPIs!',
@@ -16,8 +16,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_cabeca',
             titulo: 'Proteção para a Cabeça',
-            icone: 'helmet-outline',
-            emoji: '⛑️',
+            icone: 'HardHat',
+            emoji: '⛑️', icone: 'HardHat',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_capaceteproteu00e7u00e3o_008.jpg'),
             quando: [
                 'Reparos sob o telhado ou forros',
@@ -31,8 +31,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_olhos',
             titulo: 'Proteção para os Olhos',
-            icone: 'glasses-outline',
-            emoji: '🥽',
+            icone: 'Eyeglasses',
+            emoji: '🥽', icone: 'Eyeglasses',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_oculos-de-seguranca_009.jpg'),
             quando: [
                 'Usar furadeira, esmerilhadeira ou lixadeira',
@@ -47,8 +47,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_maos',
             titulo: 'Proteção para as Mãos',
-            icone: 'hand-left-outline',
-            emoji: '🧤',
+            icone: 'Hand',
+            emoji: '🧤', icone: 'Hand',
             imagemUrl: require('../assets/illustrations/pad/generated_epi_maos_luvas.png'),
             tipos: [
                 {
@@ -77,8 +77,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_ouvidos',
             titulo: 'Proteção para os Ouvidos',
-            icone: 'ear-outline',
-            emoji: '👂',
+            icone: 'Ear',
+            emoji: '👂', icone: 'Ear',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_boot-4485515_004.jpg'),
             quando: [
                 'Usar furadeira por mais de 5 minutos',
@@ -94,8 +94,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_pes',
             titulo: 'Proteção para os Pés',
-            icone: 'footsteps-outline',
-            emoji: '👟',
+            icone: 'Footprints',
+            emoji: '👟', icone: 'Sneaker',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_bota-de-seguranca_007.jpg'),
             quando: [
                 'Jardinagem (risco de animais peçonhentos)',
@@ -111,8 +111,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_respiratorio',
             titulo: 'Proteção Respiratória',
-            icone: 'thermometer-outline',
-            emoji: '😷',
+            icone: 'Thermometer',
+            emoji: '😷', icone: 'FirstAid',
             imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_mulher-mascara-alcool-gel_029.jpg'),
             quando: [
                 'Usar tintas, vernizes ou solventes',
@@ -140,8 +140,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_corpo',
             titulo: 'Proteção para o Corpo',
-            icone: 'shirt-outline',
-            emoji: '👷',
+            icone: 'TShirt',
+            emoji: '👷', icone: 'HardHat',
             imagemUrl: require('../assets/illustrations/pad/protetores-seguranca_avental-de-protecao_004.jpg'),
             quando: [
                 'Podar plantas (espinhos, alergia)',
@@ -165,8 +165,8 @@ export const EPI_DOMESTICO = {
         {
             id: 'epi_jardim',
             titulo: 'Armadura do Jardineiro',
-            icone: 'leaf-outline',
-            emoji: '🧑‍🌾',
+            icone: 'Leaf',
+            emoji: '🧑‍🌾', icone: 'Plant',
             imagemUrl: require('../assets/illustrations/pad/generated_jardim.png'),
             quando: [
                 'Mexer na terra ou podar arbustos espessos',

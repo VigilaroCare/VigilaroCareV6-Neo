@@ -405,10 +405,22 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         flexDirection: 'row', alignItems: 'center'
                                     }}
                                 >
-                                    {tab === 'HUMAN' && <Text style={{ fontSize: 16, marginRight: 6 }}>🚑</Text>}
-                                    {tab === 'PET' && <NeoIcon name="Heart" size={16} color={isActive ? '#991B1B' : 'rgba(255,255,255,0.6)'} variant="Bold" style={{ marginRight: 6 }} />}
+                                    {/* O seletor diz QUEM e a vitima, nao o meio
+                                        de socorro nem um sentimento. Antes:
+                                        emoji 🚑 no humano (ambulancia — o
+                                        veiculo, nao a pessoa; e emoji cru, que
+                                        fura o contrato "todo icone passa pelo
+                                        NeoIcon") e coracao no pet. Agora: uma
+                                        pessoa e uma pata. */}
+                                    <NeoIcon
+                                        name={tab === 'HUMAN' ? 'Profile' : 'Pet'}
+                                        size={16}
+                                        color={isActive ? '#991B1B' : 'rgba(255,255,255,0.6)'}
+                                        variant="Bold"
+                                        style={{ marginRight: 6 }}
+                                    />
                                     <Small style={{ color: isActive ? '#991B1B' : 'rgba(255,255,255,0.6)', fontWeight: 'bold' }}>
-                                        {tab === 'HUMAN' ? 'Humano' : 'Pet'}
+                                        {tab === 'HUMAN' ? t('sos.tabHuman', 'Humano') : t('sos.tabPet', 'Pet')}
                                     </Small>
                                 </TouchableOpacity>
                             )

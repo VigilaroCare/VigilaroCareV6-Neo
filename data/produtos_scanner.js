@@ -24,7 +24,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavar por 20 min.'
     },
     prevencao: ['Nunca misturar com outros produtos', 'Guardar no alto'],
-    icone: '🧴',
+    icone: 'Drop',
     cor: '#F44336',
     ghs_categories: ['corrosivo', 'irritante_ocular', 'irritante_respiratorio', 'toxico_ambiental'],
     toxic_for_species: ['gato', 'ave', 'peixe'],
@@ -40,7 +40,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavagem abundante.'
     },
     prevencao: ['Secar o chão antes de permitir pets', 'Ventilar'],
-    icone: '🌲',
+    icone: 'Tree',
     cor: '#E91E63',
     ghs_categories: ['irritante_pele', 'irritante_ocular', 'nocivo_ingestao'],
     toxic_for_species: ['gato'],
@@ -56,7 +56,7 @@ export const PRODUTOS_PERIGOSOS = {
       inalacao: 'Ar fresco urgente.'
     },
     prevencao: ['NÃO MISTURAR COM ÁGUA SANITÁRIA (Gás Mortal)', 'Usar luvas'],
-    icone: '☠️',
+    icone: 'Skull',
     cor: '#7B1FA2',
     ghs_categories: ['corrosivo', 'irritante_respiratorio', 'toxico_agudo_inalacao'],
     toxic_for_species: ['gato', 'ave'],
@@ -72,7 +72,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavar sem parar a caminho do hospital.'
     },
     prevencao: ['Trancar com chave', 'Usar óculos de proteção'],
-    icone: '🧪',
+    icone: 'TestTube',
     cor: '#B71C1C',
     ghs_categories: ['corrosivo', 'toxico_agudo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
@@ -89,7 +89,7 @@ export const PRODUTOS_PERIGOSOS = {
       pele: 'Lavar com água e sabão.'
     },
     prevencao: ['Usar luvas', 'Manter fora do alcance de crianças'],
-    icone: '🧹',
+    icone: 'Broom',
     cor: '#FF9800',
     ghs_categories: ['irritante_pele', 'irritante_ocular'],
     toxic_for_species: [],
@@ -105,7 +105,7 @@ export const PRODUTOS_PERIGOSOS = {
       inalacao: 'Levar ao ar fresco.'
     },
     prevencao: ['Ventilar durante uso', 'Longe de crianças'],
-    icone: '🪟',
+    icone: 'Square',
     cor: '#2196F3',
     ghs_categories: ['irritante_respiratorio', 'nocivo_ingestao'],
     toxic_for_species: ['ave'],
@@ -122,7 +122,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavar CONTINUAMENTE a caminho do hospital.'
     },
     prevencao: ['Usar luvas e óculos', 'Trancar com chave'],
-    icone: '🚽',
+    icone: 'Toilet',
     cor: '#B71C1C',
     ghs_categories: ['corrosivo', 'toxico_agudo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
@@ -138,7 +138,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavar por 15 min.'
     },
     prevencao: ['Nunca reutilizar embalagem para bebidas', 'Fora do alcance de crianças'],
-    icone: '🧴',
+    icone: 'Drop',
     cor: '#9C27B0',
     ghs_categories: ['nocivo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
@@ -158,7 +158,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao: 'Hospital.'
     },
     prevencao: ['Longe do fogo', 'Preferir álcool em gel'],
-    icone: '🔥',
+    icone: 'Fire',
     cor: '#D32F2F',
     ghs_categories: ['nocivo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
@@ -174,7 +174,7 @@ export const PRODUTOS_PERIGOSOS = {
       olhos: 'Lavar muito.'
     },
     prevencao: ['Manter frasco fechado', 'Longe de crianças'],
-    icone: '💅',
+    icone: 'Sparkle',
     cor: '#FF9800',
     ghs_categories: ['irritante_ocular', 'neurotoxico'],
     toxic_for_species: [],
@@ -191,7 +191,7 @@ export const PRODUTOS_PERIGOSOS = {
       pele: 'Lavar com água e sabão.'
     },
     prevencao: ['Armazenar em armário alto e ventilado', 'Usar máscara ao manusear'],
-    icone: '🎨',
+    icone: 'PaintBrush',
     cor: '#D32F2F',
     ghs_categories: ['toxico_agudo_inalacao', 'neurotoxico', 'teratogeno'],
     toxic_for_species: ['gato', 'cachorro', 'ave'],
@@ -211,7 +211,7 @@ export const PRODUTOS_PERIGOSOS = {
       pele: 'Lavar com água e sabão.'
     },
     prevencao: ['Não aplicar com pessoas/pets no quarto', 'Guardar trancado'],
-    icone: '🦟',
+    icone: 'Bug',
     cor: '#F44336',
     ghs_categories: ['neurotoxico', 'toxico_agudo_inalacao', 'toxico_ambiental'],
     toxic_for_species: ['gato', 'peixe', 'ave'],
@@ -226,7 +226,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao: 'HOSPITAL VETERINÁRIO/HUMANO URGENTE. Levar caixa.'
     },
     prevencao: ['Usar caixas porta-isca trancadas', 'Nunca deixar solto'],
-    icone: '🐀',
+    icone: 'Bug',
     cor: '#000000',
     ghs_categories: ['toxico_agudo_ingestao'],
     toxic_for_species: ['cachorro', 'gato'],
@@ -241,7 +241,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao: 'NÃO provocar vômito. {{POISON_CONTROL}}.'
     },
     prevencao: ['Evitar uso — preferir sachês de cedro/lavanda', 'Nunca deixar ao alcance de crianças'],
-    icone: '⚪',
+    icone: 'Circle',
     cor: '#E91E63',
     ghs_categories: ['toxico_agudo_ingestao', 'carcinogenico', 'dano_orgaos'],
     toxic_for_species: ['cachorro', 'gato'],
@@ -257,7 +257,7 @@ export const PRODUTOS_PERIGOSOS = {
       pele: 'Banho imediato com água e sabão.'
     },
     prevencao: ['Não aplicar com vento', 'Manter crianças/pets afastados por 24-48h'],
-    icone: '🌱',
+    icone: 'Plant',
     cor: '#D32F2F',
     ghs_categories: ['toxico_agudo_ingestao', 'irritante_pele', 'irritante_ocular', 'toxico_ambiental'],
     toxic_for_species: ['cachorro', 'gato'],
@@ -277,7 +277,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao_humana: 'Hospital se dose alta.'
     },
     prevencao: ['Nunca dar remédio humano para pets', 'Caixa de remédios alta'],
-    icone: '💊',
+    icone: 'Pill',
     cor: '#E91E63',
     ghs_categories: ['dano_orgaos'],
     toxic_for_species: ['gato'],
@@ -292,7 +292,7 @@ export const PRODUTOS_PERIGOSOS = {
       reacao: 'Hospital se inchaço/falta de ar.'
     },
     prevencao: ['Verificar alergias na família'],
-    icone: '🌡️',
+    icone: 'Thermometer',
     cor: '#FFC107',
     ghs_categories: ['alergeno'],
     toxic_for_species: [],
@@ -308,7 +308,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao_humana: 'Hospital se sobredosagem.'
     },
     prevencao: ['Nunca dar remédio humano a pets', 'Caixa de remédios trancada'],
-    icone: '💊',
+    icone: 'Pill',
     cor: '#E91E63',
     ghs_categories: ['dano_orgaos'],
     toxic_for_species: ['gato', 'cachorro'],
@@ -325,7 +325,7 @@ export const PRODUTOS_PERIGOSOS = {
     riscos: ['Irritação leve', 'Diarreia se ingerido'],
     primeiros_socorros: { ingestao: 'Beber água.' },
     prevencao: ['Fora do alcance de bebês'],
-    icone: '🧼',
+    icone: 'Drop',
     cor: '#FF9800',
     ghs_categories: ['irritante_ocular'],
     toxic_for_species: [],
@@ -340,7 +340,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao: 'Não provocar vômito. CIATOX se grande quantidade.',
     },
     prevencao: ['Supervisionar uso por crianças', 'Longe do fogo'],
-    icone: '🧴',
+    icone: 'Drop',
     cor: '#FFC107',
     ghs_categories: ['nocivo_ingestao'],
     toxic_for_species: [],
@@ -356,7 +356,7 @@ export const PRODUTOS_PERIGOSOS = {
       pele: 'Lavar com água em caso de vazamento.'
     },
     prevencao: ['Parafusar compartimentos', 'Descartar pilhas corretamente'],
-    icone: '🔋',
+    icone: 'BatteryWarning',
     cor: '#FF9800',
     ghs_categories: ['corrosivo', 'nocivo_ingestao'],
     toxic_for_species: [],
@@ -372,7 +372,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao_pet: 'VETERINÁRIO EMERGÊNCIA.'
     },
     prevencao: ['Não usar difusores em ambientes com gatos', 'Manter frascos fechados'],
-    icone: '🌿',
+    icone: 'Leaf',
     cor: '#E91E63',
     ghs_categories: ['toxico_agudo_ingestao', 'neurotoxico'],
     toxic_for_species: ['gato', 'cachorro'],
@@ -386,7 +386,7 @@ export const PRODUTOS_PERIGOSOS = {
     riscos: ['Não consta na base, tratar como perigoso'],
     primeiros_socorros: { ingestao: 'Ligar {{POISON_CONTROL}}' },
     prevencao: ['Ler rótulo', 'Afastar crianças'],
-    icone: '❓',
+    icone: 'Question',
     cor: '#9E9E9E',
     ghs_categories: [],
     toxic_for_species: [],
@@ -421,16 +421,16 @@ export const buscarProdutoPorNome = (termo) => {
 };
 
 export const NIVEIS_PERIGO = {
-  'Muito Alto': { cor: '#D32F2F', icone: '🔴', descricao: 'EXTREMAMENTE PERIGOSO' },
-  'Alto': { cor: '#F44336', icone: '🟠', descricao: 'MUITO PERIGOSO' },
-  'Médio': { cor: '#FF9800', icone: '🟡', descricao: 'CUIDADO' },
-  'Médio (Humanos) / Mortal (Gatos)': { cor: '#E91E63', icone: '🔴', descricao: 'MORTAL PARA GATOS' },
-  'Médio (Humanos) / Alto (Pets)': { cor: '#E91E63', icone: '🟠', descricao: 'TÓXICO PARA PETS' },
-  'Alto (Pets)': { cor: '#E91E63', icone: '🟠', descricao: 'TÓXICO PARA PETS' },
-  'Baixo': { cor: '#FFC107', icone: '🟢', descricao: 'RISCO LEVE' },
-  'Baixo/Médio': { cor: '#FFC107', icone: '🟡', descricao: 'RISCO LEVE' },
-  'Extremo': { cor: '#000000', icone: '☠️', descricao: 'RISCO DE MORTE' },
-  'Indeterminado': { cor: '#9E9E9E', icone: '❓', descricao: 'DESCONHECIDO' }
+  'Muito Alto': { cor: '#D32F2F', icone: 'Circle', descricao: 'EXTREMAMENTE PERIGOSO' },
+  'Alto': { cor: '#F44336', icone: 'Circle', descricao: 'MUITO PERIGOSO' },
+  'Médio': { cor: '#FF9800', icone: 'Circle', descricao: 'CUIDADO' },
+  'Médio (Humanos) / Mortal (Gatos)': { cor: '#E91E63', icone: 'Circle', descricao: 'MORTAL PARA GATOS' },
+  'Médio (Humanos) / Alto (Pets)': { cor: '#E91E63', icone: 'Circle', descricao: 'TÓXICO PARA PETS' },
+  'Alto (Pets)': { cor: '#E91E63', icone: 'Circle', descricao: 'TÓXICO PARA PETS' },
+  'Baixo': { cor: '#FFC107', icone: 'Circle', descricao: 'RISCO LEVE' },
+  'Baixo/Médio': { cor: '#FFC107', icone: 'Circle', descricao: 'RISCO LEVE' },
+  'Extremo': { cor: '#000000', icone: 'Skull', descricao: 'RISCO DE MORTE' },
+  'Indeterminado': { cor: '#9E9E9E', icone: 'Question', descricao: 'DESCONHECIDO' }
 };
 
 export default PRODUTOS_PERIGOSOS;

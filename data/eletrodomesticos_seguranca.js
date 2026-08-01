@@ -8,7 +8,7 @@ export const eletrodomesticosSeguranca = [
     {
         id: 'preparo',
         categoria: 'Preparo de Alimentos',
-        emoji: '🍳',
+        emoji: '🍳', icone: 'CookingPot',
         dispositivos: [
             {
                 id: 'microondas',
@@ -57,7 +57,7 @@ export const eletrodomesticosSeguranca = [
     {
         id: 'aquecimento',
         categoria: 'Aquecimento e Climatização',
-        emoji: '🌡️',
+        emoji: '🌡️', icone: 'Thermometer',
         dispositivos: [
             {
                 id: 'aquecedor',
@@ -91,7 +91,7 @@ export const eletrodomesticosSeguranca = [
     {
         id: 'cuidados_pessoais',
         categoria: 'Cuidados Pessoais',
-        emoji: '💅',
+        emoji: '💅', icone: 'Sparkle',
         dispositivos: [
             {
                 id: 'ferro',
@@ -124,7 +124,7 @@ export const eletrodomesticosSeguranca = [
     {
         id: 'refrigeracao',
         categoria: 'Refrigeração',
-        emoji: '❄️',
+        emoji: '❄️', icone: 'Snowflake',
         dispositivos: [
             {
                 id: 'geladeira',

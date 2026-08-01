@@ -219,7 +219,7 @@ export default function AreasInternasScreen({ navigation, route }) {
               },
             ]}
           >
-            <Text style={{ fontSize: 28 }}>{item.emoji}</Text>
+            <NeoIcon name={item.icone || 'House'} size={28} color={Neo.colors.primary[600]} variant="Bold" />
           </View>
 
           <View style={s.cardContent}>
