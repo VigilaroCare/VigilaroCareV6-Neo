@@ -118,6 +118,30 @@ const LightColors = {
         track: 'rgba(6, 95, 70, 0.14)', // trilho de barra de progresso
     },
 
+    // ── CATEGORIA — paleta autoral, aprovada em 2026-08-01 ──────────────────
+    // Nasceu de uma auditoria de "cara de IA": as telas usavam violet-500,
+    // amber-500, pink-500 e red-600 do Tailwind como cor de categoria, porque
+    // o DS não tinha resposta para essa necessidade. Saturação alta de default
+    // é justamente o tique que denuncia origem genérica — estes tons são
+    // dessaturados e terrosos, para conviverem com o verde-floresta e com o
+    // creme dos tiles em vez de competirem com eles.
+    //
+    // Três funções por tom, como no resto do DS:
+    //   texto — o único que passa AA sobre superfície clara. Use em label.
+    //   fill  — preenchimento de ícone, badge, barra. NÃO use como texto.
+    //   tint  — fundo de chip e de círculo de ícone.
+    //
+    // Contraste aferido contra mist #E5EDE7 e creme #F4EBDC (as duas
+    // superfícies claras mais exigentes do app): 5.37 a 7.57 — mesma faixa do
+    // textOn.brand, que é 6.44.
+    categoria: {
+        terracota: { texto: '#8F4327', fill: '#B5613C', tint: '#F6EAE4' },
+        ocre:      { texto: '#7D5812', fill: '#A87E29', tint: '#F7F0E0' },
+        ardosia:   { texto: '#33566F', fill: '#4C7593', tint: '#E7EEF3' },
+        ameixa:    { texto: '#5C3F63', fill: '#7C5B85', tint: '#F0EAF2' },
+        rose:      { texto: '#8A3F55', fill: '#A85E74', tint: '#F7E9EC' },
+    },
+
     surface: '#FFFFFF',
     neutral: {
         900: '#16241D', // ink (Forest charcoal)
@@ -222,6 +246,15 @@ const DarkColors = {
         borderWidth: 1,
         track: 'rgba(255, 255, 255, 0.14)',
     },
+    // Escuro: o `texto` clareia para ler sobre #1C1C1E (8.20 a 9.52); o `fill`
+    // é o mesmo dos dois modos, porque preenchimento não precisa inverter.
+    categoria: {
+        terracota: { texto: '#E9A487', fill: '#B5613C', tint: 'rgba(181, 97, 60, 0.18)' },
+        ocre:      { texto: '#DFBE72', fill: '#A87E29', tint: 'rgba(168, 126, 41, 0.18)' },
+        ardosia:   { texto: '#9DBED4', fill: '#4C7593', tint: 'rgba(76, 117, 147, 0.20)' },
+        ameixa:    { texto: '#C4A6CC', fill: '#7C5B85', tint: 'rgba(124, 91, 133, 0.20)' },
+        rose:      { texto: '#E3A3B4', fill: '#A85E74', tint: 'rgba(168, 94, 116, 0.20)' },
+    },
 
     surface: '#1C1C1E',   // dark surface base
     neutral: {
@@ -318,6 +351,14 @@ const HighContrastLightColors = {
         borderWidth: 2,
         track: 'rgba(0, 0, 0, 0.22)',
     },
+    // Alto contraste claro: 9.98 a 13.01 sobre branco.
+    categoria: {
+        terracota: { texto: '#6B2F17', fill: '#6B2F17', tint: '#F6EAE4' },
+        ocre:      { texto: '#5A3D06', fill: '#5A3D06', tint: '#F7F0E0' },
+        ardosia:   { texto: '#1F3A4D', fill: '#1F3A4D', tint: '#E7EEF3' },
+        ameixa:    { texto: '#3F2945', fill: '#3F2945', tint: '#F0EAF2' },
+        rose:      { texto: '#66253A', fill: '#66253A', tint: '#F7E9EC' },
+    },
 
     surface: '#FFFFFF',
     neutral: {
@@ -406,6 +447,14 @@ const HighContrastDarkColors = {
         border: '#FFFFFF',
         borderWidth: 2,
         track: 'rgba(255, 255, 255, 0.28)',
+    },
+    // Alto contraste escuro: 13.22 a 15.00 sobre preto.
+    categoria: {
+        terracota: { texto: '#F5C4AE', fill: '#F5C4AE', tint: 'rgba(245, 196, 174, 0.20)' },
+        ocre:      { texto: '#F0D89B', fill: '#F0D89B', tint: 'rgba(240, 216, 155, 0.20)' },
+        ardosia:   { texto: '#BFD8E8', fill: '#BFD8E8', tint: 'rgba(191, 216, 232, 0.20)' },
+        ameixa:    { texto: '#DCC6E2', fill: '#DCC6E2', tint: 'rgba(220, 198, 226, 0.20)' },
+        rose:      { texto: '#F2C3CE', fill: '#F2C3CE', tint: 'rgba(242, 195, 206, 0.20)' },
     },
 
     surface: '#000000',

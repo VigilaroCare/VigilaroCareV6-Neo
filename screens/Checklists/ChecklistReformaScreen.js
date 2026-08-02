@@ -106,7 +106,7 @@ export default function ChecklistReformaScreen({ route, navigation }) {
 
         {/* Progress Bar Compacta */}
         <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
-          <NeoCard variant="glass" padding={12} style={{ backgroundColor: Neo.colors.neutral.white }}>
+          <NeoCard variant="elevated" padding={12} style={{ backgroundColor: Neo.colors.neutral.white }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
               <View>
                 <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount} verificados</Small>
@@ -132,7 +132,7 @@ export default function ChecklistReformaScreen({ route, navigation }) {
             const isChecked = !!state[it.key];
             return (
               <TouchableOpacity key={it.key} activeOpacity={0.7} onPress={() => toggle(it.key)}>
-                <NeoCard variant="glass" style={{
+                <NeoCard variant="elevated" style={{
                   flexDirection: 'row',
                   alignItems: 'center',
                   paddingVertical: 12,
@@ -172,7 +172,7 @@ export default function ChecklistReformaScreen({ route, navigation }) {
 
           {/* Botão Ativar Modo */}
           <ScaleButton onPress={ativarModo} style={{ marginTop: 16 }}>
-            <NeoCard variant="glass" style={{
+            <NeoCard variant="elevated" style={{
               backgroundColor: THEME_COLOR,
               padding: 16,
               flexDirection: 'row',

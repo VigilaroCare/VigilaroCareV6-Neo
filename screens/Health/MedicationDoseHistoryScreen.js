@@ -28,7 +28,7 @@ import { useSubscription } from '../../hooks/useSubscription';
 import MedicationReminderService from '../../services/MedicationReminderService';
 
 const CLR = {
-    pill:    '#0369A1',
+    pill:    Neo.colors.categoria.ardosia.fill,
     success: '#16A34A',
     warning: '#D97706',
     danger:  '#DC2626',
@@ -187,7 +187,7 @@ export default function MedicationDoseHistoryScreen() {
                             <>
                                 <Eyebrow style={hStyles.eyebrow}>Aderência</Eyebrow>
                                 <PremiumGate feature="aderenciaStats" inline>
-                                    <NeoCard variant="glass" style={hStyles.card}>
+                                    <NeoCard variant="elevated" style={hStyles.card}>
                                         {stats7 && (
                                             <AderenciaBar
                                                 percentual={stats7.percentual}
@@ -223,7 +223,7 @@ export default function MedicationDoseHistoryScreen() {
                                 description="Toque em 'Tomei agora' sempre que tomar o medicamento."
                             />
                         ) : (
-                            <NeoCard variant="glass" padding={0} style={hStyles.card}>
+                            <NeoCard variant="elevated" padding={0} style={hStyles.card}>
                                 {historico.map((entrada, i) => (
                                     <View
                                         key={entrada.id}

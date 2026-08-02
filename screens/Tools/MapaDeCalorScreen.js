@@ -42,7 +42,7 @@ import { t_field } from '../../utils/getLocalizedField';
 const getHeatColor = (stats) => {
     if (stats.critical > 0) return { bg: '#DC2626', tint: '#FEE2E2', label: 'Crítico' }; // DS: data-level color
     const pct = stats.total > 0 ? (stats.checked / stats.total) * 100 : 0;
-    if (pct < 40) return { bg: '#F97316', tint: '#FFEDD5', label: 'Alto risco' }; // DS: data-level color
+    if (pct < 40) return { bg: themeColors.categoria.ocre.fill, tint: themeColors.categoria.ocre.tint, label: 'Alto risco' }; // DS: data-level color
     if (pct < 70) return { bg: '#EAB308', tint: '#FEF9C3', label: 'Atenção' }; // DS: data-level color
     return { bg: '#16A34A', tint: '#DCFCE7', label: 'Seguro' }; // DS: data-level color
 };

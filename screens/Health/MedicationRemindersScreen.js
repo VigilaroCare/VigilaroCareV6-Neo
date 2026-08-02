@@ -30,7 +30,7 @@ import ProfileService from '../../services/ProfileService';
 
 // Paleta semântica
 const CLR = {
-    pill:    '#0369A1',   // sky — informativo/medicamento
+    pill:    Neo.colors.categoria.ardosia.fill,   // sky — informativo/medicamento
     success: '#16A34A',
     warning: '#D97706',
     danger:  '#DC2626',
@@ -372,7 +372,7 @@ export default function MedicationRemindersScreen() {
                         />
 
                         {/* Nota de rodapé sobre limitações técnicas */}
-                        <NeoCard variant="glass" style={rStyles.footNote}>
+                        <NeoCard variant="elevated" style={rStyles.footNote}>
                             <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start' }}>
                                 <NeoIcon name="Warning2" variant="Bold" size={14} color={Neo.colors.neutral[500]} />
                                 <Small style={rStyles.footNoteText}>

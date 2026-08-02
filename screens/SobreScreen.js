@@ -52,7 +52,7 @@ export default function SobreScreen({ navigation }) {
           </View>
 
           {/* Mission Card */}
-          <NeoCard variant="glass" style={styles.card}>
+          <NeoCard variant="elevated" style={styles.card}>
             <View style={styles.cardHeader}>
               <NeoIcon name="Heart" size={24} color={Neo.colors.feedback.error} variant="Bold" />
               <H3 style={styles.cardTitle}>{t('about.mission')}</H3>
@@ -64,7 +64,7 @@ export default function SobreScreen({ navigation }) {
 
           {/* Links Section */}
           <Small style={styles.sectionTitle}>{t('about.legalInfo')}</Small>
-          <NeoCard variant="glass" style={styles.menuGroup}>
+          <NeoCard variant="elevated" style={styles.menuGroup}>
             <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('TermsOfUse')}>
               <Body style={styles.menuText}>{t('about.termsOfUse')}</Body>
               <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
@@ -78,7 +78,7 @@ export default function SobreScreen({ navigation }) {
 
           {/* Credits / Contact */}
           <Small style={styles.sectionTitle}>{t('about.contactSupport')}</Small>
-          <NeoCard variant="glass" style={styles.menuGroup}>
+          <NeoCard variant="elevated" style={styles.menuGroup}>
             <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('mailto:contato@vigilarocare.ia.br')}>
               <View style={styles.menuIconRow}>
                 <NeoIcon name="Sms" size={20} color={Neo.colors.primary[500]} variant="Bold" />
@@ -98,7 +98,7 @@ export default function SobreScreen({ navigation }) {
 
           {/* Danger Zone */}
           <Small style={[styles.sectionTitle, { color: Neo.colors.feedback.error }]}>{t('about.advancedSettings')}</Small>
-          <NeoCard variant="glass" style={[styles.menuGroup, { borderColor: 'rgba(220,53,69,0.2)' }]}>
+          <NeoCard variant="elevated" style={[styles.menuGroup, { borderColor: 'rgba(220,53,69,0.2)' }]}>
             <TouchableOpacity
               style={styles.menuItem}
               onPress={() => {

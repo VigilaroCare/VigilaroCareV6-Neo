@@ -28,8 +28,8 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
     critico: Neo.colors.severity?.high?.bg || '#D32F2F', // DS: data-level color
-    alto: Neo.colors.accent?.copper || '#E65100', // DS: data-level color
-    medio: '#F57F17', // DS: data-level color (no exact mapping)
+    alto: Neo.colors.accent?.copper || Neo.colors.categoria.ocre.fill, // DS: data-level color
+    medio: Neo.colors.categoria.ocre.fill, // DS: data-level color (no exact mapping)
     baixo: '#388E3C', // DS: data-level color (no exact mapping)
 };
 
@@ -110,7 +110,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
             >
                 {/* Resumo */}
                 <FadeInView delay={100}>
-                    <NeoCard variant="glass" style={styles.sectionCard}>
+                    <NeoCard variant="elevated" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
                             <NeoIcon name="InfoCircle" size={20} color={Neo.colors.primary[600]} variant="Bold" />
                             <Text style={styles.sectionTitle}>{t('headersFirst.sobre', 'Sobre')}</Text>
@@ -135,7 +135,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
 
                 {/* Riscos */}
                 <FadeInView delay={200}>
-                    <NeoCard variant="glass" style={styles.sectionCard}>
+                    <NeoCard variant="elevated" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
                             <NeoIcon name="Danger" size={20} color={Neo.colors.severity?.high?.bg || Neo.colors.feedback.error} variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: Neo.colors.severity?.high?.bg || Neo.colors.feedback.error }]}>
@@ -164,7 +164,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
 
                 {/* Prevenção */}
                 <FadeInView delay={300}>
-                    <NeoCard variant="glass" style={styles.sectionCard}>
+                    <NeoCard variant="elevated" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
                             <NeoIcon name="ShieldTick" size={20} color={Neo.colors.primary[700]} variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: Neo.colors.primary[700] }]}>
@@ -182,7 +182,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
 
                 {/* O que fazer (Primeiros Socorros) */}
                 <FadeInView delay={400}>
-                    <NeoCard variant="glass" style={[styles.sectionCard, styles.emergencyCard]}>
+                    <NeoCard variant="elevated" style={[styles.sectionCard, styles.emergencyCard]}>
                         <View style={styles.sectionHeader}>
                             <NeoIcon name="Heart" size={20} color={Neo.colors.feedback.error} variant="Bold" />
                             <Text style={[styles.sectionTitle, { color: Neo.colors.feedback.error }]}>
@@ -196,7 +196,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 {/* Estatística */}
                 {item.estatistica ? (
                     <FadeInView delay={500}>
-                        <NeoCard variant="glass" style={[styles.sectionCard, styles.statCard]}>
+                        <NeoCard variant="elevated" style={[styles.sectionCard, styles.statCard]}>
                             <View style={styles.sectionHeader}>
                                 <NeoIcon name="People" size={20} color={Neo.colors.primary[600]} variant="Bold" />
                                 <Text style={[styles.sectionTitle, { color: Neo.colors.primary[600] }]}>

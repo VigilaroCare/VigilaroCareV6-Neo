@@ -45,7 +45,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
 
     const title = t('petPregnancy.title', 'Prenhez e ninhadas');
     const subtitle = t('petPregnancy.subtitle', 'Guia para mamãe e filhotes');
-    const cor = petHero?.cor || '#E91E63';
+    const cor = petHero?.cor || themeColors.categoria.rose.fill;
 
     const heroTransform = [
         {
@@ -175,7 +175,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
                     {/* Dica Final */}
                     <NeoCard variant="elevated" style={s.tipCard}>
                         <View style={s.tipHeader}>
-                            <NeoIcon name="Lamp" size={18} color="#FF9800" variant="Bold" />
+                            <NeoIcon name="Lamp" size={18} color={themeColors.categoria.ocre.fill} variant="Bold" />
                             <Text style={s.tipTitle}>
                                 {t('petPregnancy.tipTitle', 'Dica importante')}
                             </Text>
@@ -215,7 +215,7 @@ const s = StyleSheet.create({
     alertCard: {
         padding: 14,
         marginBottom: 14,
-        backgroundColor: '#E3F2FD',
+        backgroundColor: Neo.colors.categoria.ardosia.tint,
         borderLeftWidth: 3,
         borderLeftColor: Neo.colors.secondary[500], // was #2196F3
         borderRadius: 14,
@@ -285,7 +285,7 @@ const s = StyleSheet.create({
         padding: 14,
         backgroundColor: '#FFF8E1',
         borderLeftWidth: 3,
-        borderLeftColor: '#FF9800',
+        borderLeftColor: Neo.colors.categoria.ocre.fill,
         borderRadius: 14,
         marginTop: 4,
     },

@@ -130,7 +130,7 @@ export default function EscolaSeguraScreen({ navigation }) {
 
                     {/* ── Introdução ── */}
                     <FadeInView delay={100}>
-                        <NeoCard variant="glass" style={styles.introCard}>
+                        <NeoCard variant="elevated" style={styles.introCard}>
                             <View style={styles.introIcon}>
                                 <NeoIcon name="Teacher" size={32} color={THEME_COLOR} />
                             </View>
@@ -142,7 +142,7 @@ export default function EscolaSeguraScreen({ navigation }) {
 
                     {/* ── Progresso Geral ── */}
                     <FadeInView delay={150}>
-                        <NeoCard variant="glass" style={styles.progressCard}>
+                        <NeoCard variant="elevated" style={styles.progressCard}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 }}>
                                 <View>
                                     <Small style={{ color: Neo.colors.neutral[600] }}>
@@ -185,7 +185,7 @@ export default function EscolaSeguraScreen({ navigation }) {
                                             onPress={() => setActiveCategory(categoria.id)}
                                         >
                                             <NeoCard
-                                                variant="glass"
+                                                variant="elevated"
                                                 style={styles.gridCard}
                                             >
                                                 <View style={[styles.iconCircle, { backgroundColor: categoria.cor + '15' }]}>
@@ -230,7 +230,7 @@ export default function EscolaSeguraScreen({ navigation }) {
                                             </TouchableOpacity>
 
                                             {/* Card resumo da categoria */}
-                                            <NeoCard variant="glass" style={{ padding: 16, marginBottom: 16 }}>
+                                            <NeoCard variant="elevated" style={{ padding: 16, marginBottom: 16 }}>
                                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                                     <View style={{
                                                         width: 48, height: 48, borderRadius: 24,
@@ -374,7 +374,7 @@ export default function EscolaSeguraScreen({ navigation }) {
                         <ScaleButton
                             onPress={() => navigation.navigate('EscolaSeguraReport', { responses, pontuacao, nivelSeguranca })}
                         >
-                            <NeoCard variant="glass" style={[styles.reportButton, { backgroundColor: THEME_COLOR }]}>
+                            <NeoCard variant="elevated" style={[styles.reportButton, { backgroundColor: THEME_COLOR }]}>
                                 <NeoIcon name="DocumentText" size={24} color={colors.neutral.white} />
                                 <H3 style={{ color: colors.neutral.white, marginLeft: 12 }}>
                                     {t('headersFirst.verRelatRioCompleto', 'Ver Relatório Completo')}

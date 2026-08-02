@@ -7,10 +7,24 @@ import { useIsDark, useThemeColors } from '../utils/ThemeContext';
 /**
  * NeoCard - Cartão Padrão do Sistema DS2026 (Tactical Calm) — theme-aware.
  *
- * GLASSMORPHISM UNIFICADO:
- * 'elevated' e 'glass' renderizam idênticos como vidro jateado (BlurView +
- * fundo translúcido). Em dark mode, tint vira "dark" e bordas tornam-se
- * sutis baseadas em white-alpha.
+ * ── FIM DO GLASSMORPHISM UNIFICADO (2026-08-01) ───────────────────────────
+ * Até aqui, 'elevated' era alias de 'glass': os dois renderizavam vidro
+ * jateado idêntico. Eram 181 cards no app inteiro sobre uma única superfície,
+ * e a prop dava a impressão de escolher hierarquia sem escolher nada.
+ *
+ * A medição que motivou a mudança: 167 desses 181 estavam em listas, apoiados
+ * no AppBackground — uma névoa quase plana (#EFF5F0 com accents a 6%).
+ * Desfocar um fundo liso não produz efeito visual; produz custo de BlurView
+ * no Android e impede que qualquer coisa recue. Se tudo flutua, nada se
+ * destaca.
+ *
+ * Agora há três degraus reais:
+ *   'elevated' → SÓLIDO. O padrão. Card de lista, de conteúdo, de formulário.
+ *   'glass'    → VIDRO. Só quando há mesmo algo atrás que valha desfocar:
+ *                sobre foto, sobre hero colorido, sobre mapa.
+ *   'premium'  → VIDRO + specular + sombra da marca. Momentos raros.
+ *
+ * Regra prática: se o card está numa lista, é 'elevated'. Vidro é exceção.
  *
  * VARIANT 'premium' (DS2026 Premium Upgrade):
  * Mesmo glass + (a) specular highlight gradient interno top→bottom
@@ -37,9 +51,9 @@ export default function NeoCard({
     const colors = useThemeColors();
     const spacing = padding !== undefined ? padding : Neo.spacing.md;
 
-    // DS2026: 'elevated' agora é alias de 'glass' — vidro jateado unificado.
-    // 'premium' é uma extensão do glass (BlurView + specular + brand shadow).
-    const isGlass = variant === 'elevated' || variant === 'glass' || variant === 'premium';
+    // 'elevated' saiu daqui em 2026-08-01: passou a ser superfície sólida.
+    // Vidro agora é escolha explícita, não o default silencioso.
+    const isGlass = variant === 'glass' || variant === 'premium';
     const isPremium = variant === 'premium';
 
     const baseStyle = {
@@ -53,6 +67,33 @@ export default function NeoCard({
 
     switch (variant) {
         case 'elevated':
+            // SÓLIDO — o degrau de baixo, e o mais usado. Superfície opaca com
+            // hairline e sombra discreta; é o que permite ao vidro e ao premium
+            // significarem alguma coisa acima dele.
+            //
+            // A sombra é a mesma "Apple-style" que o glass já usava: espalhada,
+            // neutra, opacidade baixa. Sobre a névoa do AppBackground ela dá
+            // separação sem virar caixa pesada.
+            variantStyle = isDark ? {
+                backgroundColor: colors.neutral[200],
+                borderWidth: 1,
+                borderColor: 'rgba(255, 255, 255, 0.10)',
+                shadowColor: '#000000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.22,
+                shadowRadius: 10,
+                elevation: 2,
+            } : {
+                backgroundColor: colors.neutral.white,
+                borderWidth: 1,
+                borderColor: 'rgba(120, 113, 108, 0.16)',
+                shadowColor: '#1C1C1E',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.05,
+                shadowRadius: 10,
+                elevation: 1,
+            };
+            break;
         case 'glass':
             // Moldura vitrificada — borda warm-gray SÓLIDA + highlight branco
             // top/left + sombra warm bottom + sombra Apple-style externa.

@@ -31,8 +31,8 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 // DS: data-level color
 const RISK_COLORS = {
     critico: '#D32F2F', // TODO: map to DS token
-    alto: '#E65100', // TODO: map to DS token
-    medio: '#F57F17', // TODO: map to DS token
+    alto: Neo.colors.categoria.ocre.fill, // TODO: map to DS token
+    medio: Neo.colors.categoria.ocre.fill, // TODO: map to DS token
     baixo: '#388E3C', // TODO: map to DS token
 };
 
@@ -46,7 +46,7 @@ const RISK_LABELS = {
 // DS: data-level color
 const RISK_BG = {
     critico: '#FFEBEE', // TODO: map to DS token
-    alto: '#FFF3E0', // TODO: map to DS token
+    alto: Neo.colors.categoria.ocre.tint, // TODO: map to DS token
     medio: '#FFFDE7', // TODO: map to DS token
     baixo: '#E8F5E9', // TODO: map to DS token
 };
@@ -60,7 +60,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
     const textMuted = themeColors.neutral[500];
     const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
 
-    const THEME_COLOR = '#E65100'; // TODO: map to DS token
+    const THEME_COLOR = themeColors.categoria.ocre.fill; // TODO: map to DS token
     const ITEMS = UTENSILIOS_REVIEWS;
 
     const handlePress = (item) => {

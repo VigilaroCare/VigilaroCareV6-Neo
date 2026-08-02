@@ -25,7 +25,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
   const textBody = themeColors.neutral[700];
   const textMuted = themeColors.neutral[500];
   const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
-  const THEME_COLOR = '#8B5CF6'; // Violet/Purple (Consistent with 'Produtos' card in Menu)
+  const THEME_COLOR = themeColors.categoria.ameixa.fill;
 
   // Convert object to array
   const items = Object.keys(PRODUTOS_CATEGORIAS_DATA).map(key => ({

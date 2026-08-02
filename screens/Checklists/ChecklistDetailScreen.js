@@ -434,7 +434,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           <Small style={{ color: textMuted, fontWeight: '600' }}>
             {completedCount}/{totalCount} {t('checklists.verified')}
           </Small>
-          <Small style={{ fontWeight: 'bold', color: percentage === 100 ? '#10B981' : roomColor || '#8B5CF6' }}>{percentage}%</Small>
+          <Small style={{ fontWeight: 'bold', color: percentage === 100 ? '#10B981' : roomColor || themeColors.categoria.ameixa.fill }}>{percentage}%</Small>
         </View>
         {(() => {
           let baixo = 0, atencao = 0, critico = 0;
@@ -465,9 +465,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
             }
           })}
         >
-          <NeoCard variant="glass" padding={10} style={{
+          <NeoCard variant="elevated" padding={10} style={{
             backgroundColor: '#EFF8FF',
-            borderColor: '#DBEAFE',
+            borderColor: themeColors.categoria.ardosia.tint,
             borderWidth: 1,
             flexDirection: 'row',
             alignItems: 'center',
@@ -597,7 +597,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           ))
         )}
         <TouchableOpacity
-          style={[styles.nextButton, { backgroundColor: roomColor || '#8B5CF6', ...Neo.shadows.md, shadowColor: roomColor || '#8B5CF6' }]}
+          style={[styles.nextButton, { backgroundColor: roomColor || themeColors.categoria.ameixa.fill, ...Neo.shadows.md, shadowColor: roomColor || themeColors.categoria.ameixa.fill }]}
           onPress={() => {
             if (nextRoomData) {
               navigation.replace('ChecklistDetail', {

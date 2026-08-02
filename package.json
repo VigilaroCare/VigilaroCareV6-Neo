@@ -13,9 +13,11 @@
     "validate:emergency": "node scripts/verify_emergency_tokens.js",
     "validate:ocorrencia": "node scripts/verify_ocorrencia_regional.js",
     "validate:icons": "node scripts/verify_icons.js",
+    "validate:paleta": "node scripts/verify_paleta.js",
+    "validate:imagens": "node scripts/verify_imagens.js",
     "validate:types": "tsc --noEmit",
     "validate:android-export": "expo export --platform android",
-    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:ocorrencia && npm run validate:icons && npm run validate:types && npm run validate:android-export",
+    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:ocorrencia && npm run validate:icons && npm run validate:paleta && npm run validate:imagens && npm run validate:types && npm run validate:android-export",
     "check:contrast": "node scripts/checkContrast.mjs"
   },
   "dependencies": {

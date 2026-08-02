@@ -15,7 +15,7 @@ import { EMERGENCY_ITEMS } from '../../data/kits/emergency';
 import KitService from '../../services/KitService';
 import ProfileService from '../../services/ProfileService';
 
-const ACCENT = '#9C27B0'; // purple — emergência
+const ACCENT = Neo.colors.categoria.ameixa.fill; // purple — emergência
 
 export default function KitEmergenciaScreen({ navigation }) {
   const { t } = useTranslation('common');

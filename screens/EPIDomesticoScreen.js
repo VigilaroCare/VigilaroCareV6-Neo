@@ -32,12 +32,12 @@ const THEME_COLOR = '#F59E0B'; // amber
 // Cor por categoria (mantem identidade no tint da foto)
 const CAT_COLORS = {
     epi_cabeca:      '#EF4444', // red - alerta
-    epi_olhos:       '#8B5CF6', // violet
-    epi_maos:        '#3B82F6', // blue
+    epi_olhos:       Neo.colors.categoria.ameixa.fill,
+    epi_maos:        Neo.colors.categoria.ardosia.fill, // blue
     epi_ouvidos:     '#F59E0B', // amber
     epi_pes:         '#6366F1', // indigo
     epi_respiratorio:'#10B981', // green
-    epi_corpo:       '#EC4899', // pink
+    epi_corpo:       Neo.colors.categoria.rose.fill, // pink
 };
 
 export default function EPIDomesticoScreen({ navigation }) {

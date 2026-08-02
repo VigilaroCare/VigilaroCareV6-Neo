@@ -59,7 +59,7 @@ export default function HomeXRayScreen() {
         const cs = construction?.toLowerCase() || '';
 
         if (ty.includes('apartamento') || ty.includes('edificio')) {
-            risks.push({ label: t('homeXRay.riskHeight', 'Altura e janelas'), color: '#2196F3' }); // DS: data-level color
+            risks.push({ label: t('homeXRay.riskHeight', 'Altura e janelas'), color: themeColors.categoria.ardosia.fill }); // DS: data-level color
             risks.push({ label: t('homeXRay.riskCollectiveGas', 'Gás coletivo'), color: '#F59E0B' }); // DS: data-level color
             risks.push({ label: t('homeXRay.riskStairs', 'Evacuação em escadas'), color: '#DC2626' }); // DS: data-level color
         } else if (ty.includes('sobrado') || cs === 'sobrado') {

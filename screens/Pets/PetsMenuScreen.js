@@ -53,7 +53,7 @@ export default function PetsMenuScreen({ navigation, route }) {
     const sectionTipos = [
         {
             id: 'prenhez',
-            cor: '#E91E63',
+            cor: themeColors.categoria.rose.fill,
             imagem: null,
             imagemUrl: PEXELS('34793866'),   // mamãe cachorra com filhotes (landscape)
             titulo: t('petsMenu.prenhez.titulo'),
@@ -62,7 +62,7 @@ export default function PetsMenuScreen({ navigation, route }) {
         },
         {
             id: 'filhotes',
-            cor: '#2196F3',
+            cor: themeColors.categoria.ardosia.fill,
             imagem: null,
             imagemUrl: PEXELS('4588435'), // Pexels puppy
             titulo: t('petsMenu.filhotes.titulo'),

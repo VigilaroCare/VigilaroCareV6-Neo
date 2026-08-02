@@ -25,8 +25,8 @@ import NeoAlert from '../../utils/NeoAlert';
 
 // DS: data-level color — profile-type accent palette, kept as hex for data lookup
 const TYPE_COLOR = {
-    baby: '#EC4899', toddler: '#F59E0B', child: '#3B82F6',
-    teen: '#8B5CF6', adult: Neo.colors.primary[500], senior: '#10B981', pet: '#F97316',
+    baby: Neo.colors.categoria.rose.fill, toddler: '#F59E0B', child: Neo.colors.categoria.ardosia.fill,
+    teen: Neo.colors.categoria.ameixa.fill, adult: Neo.colors.primary[500], senior: '#10B981', pet: Neo.colors.categoria.ocre.fill,
 };
 
 function formatAckDate(isoString) {
@@ -90,7 +90,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                         {item.medidaMitigacao ? (
                             <View style={s.measureBlockMitigacao}>
                                 <View style={s.measureHeader}>
-                                    <NeoIcon name="Heart" size={13} color="#F97316" variant="Bold" />
+                                    <NeoIcon name="Heart" size={13} color={themeColors.categoria.ocre.fill} variant="Bold" />
                                     <Text style={s.measureTitleMitigacao}>Medida de Mitigação (Redução de Dano)</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaMitigacao}</Text>
@@ -927,7 +927,7 @@ const s = StyleSheet.create({
         borderRadius: 12,
         padding: 10,
         borderLeftWidth: 3,
-        borderLeftColor: '#F97316',
+        borderLeftColor: Neo.colors.categoria.ocre.fill,
     },
     measureHeader: {
         flexDirection: 'row',

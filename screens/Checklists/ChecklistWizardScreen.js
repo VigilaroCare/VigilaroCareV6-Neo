@@ -106,10 +106,10 @@ export default function ChecklistWizardScreen({ navigation }) {
                 </Body>
             </View>
 
-            <NeoCard variant="glass" style={{ backgroundColor: '#FEF2F2', borderColor: '#FEE2E2', borderWidth: 1, marginBottom: 32, padding: 16 }}>
+            <NeoCard variant="elevated" style={{ backgroundColor: '#FEF2F2', borderColor: '#FEE2E2', borderWidth: 1, marginBottom: 32, padding: 16 }}>
                 <View style={styles.featureRow}>
                     <View style={[styles.iconCircle, { backgroundColor: 'rgba(255,152,0,0.1)', width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }]}>
-                        <NeoIcon name="ShieldTick" size={20} color="#FF9800" variant="Bold"/>
+                        <NeoIcon name="ShieldTick" size={20} color={themeColors.categoria.ocre.fill} variant="Bold"/>
                     </View>
                     <View style={{ flex: 1, marginLeft: 12 }}>
                         <Body style={{ fontWeight: 'bold', color: '#B91C1C' }}>{t('checklistWizard.continuousAttention')}</Body>
@@ -164,7 +164,7 @@ export default function ChecklistWizardScreen({ navigation }) {
 
           {ambientesAtivos.map((ambiente) => (
             <ScaleButton key={ambiente.id} onPress={() => handleAmbientePress(ambiente)} style={{ marginBottom: 12 }}>
-                <NeoCard variant="glass" style={{ padding: 16, flexDirection: 'row', alignItems: 'center' }}>
+                <NeoCard variant="elevated" style={{ padding: 16, flexDirection: 'row', alignItems: 'center' }}>
                     <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: ambiente.cor + '15', alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
                         <NeoIcon name="Home2" size={24} color={ambiente.cor} variant="Bold" />
                     </View>

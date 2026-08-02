@@ -42,7 +42,7 @@ export default function KitsHubScreen() {
             title: t('kitsHub.emergency', 'Kit de Emergência'),
             sub: t('kitsHub.emergencySub', 'Sobrevivência por 72h'),
             iconName: 'Briefcase',
-            color: '#7C3AED', // violet
+            color: Neo.colors.categoria.ameixa.fill,
             route: 'KitEmergencia',
         },
         {

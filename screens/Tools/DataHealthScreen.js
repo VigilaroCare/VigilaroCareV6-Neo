@@ -123,7 +123,7 @@ export default function DataHealthScreen({ navigation }) {
                     {report && (
                         <>
                             {/* Health Status Banner */}
-                            <NeoCard variant="glass" style={{ padding: 20, marginBottom: 24, alignItems: 'center' }}>
+                            <NeoCard variant="elevated" style={{ padding: 20, marginBottom: 24, alignItems: 'center' }}>
                                 <View style={{
                                     width: 64, height: 64, borderRadius: 32,
                                     backgroundColor: getStatusColor() + '20',
@@ -170,7 +170,7 @@ export default function DataHealthScreen({ navigation }) {
                                         {report.issues.length} Problema{report.issues.length > 1 ? 's' : ''} Encontrado{report.issues.length > 1 ? 's' : ''}
                                     </H3>
                                     {report.issues.map((issue, idx) => (
-                                        <NeoCard key={idx} variant="glass" style={{ padding: 14, marginBottom: 10 }}>
+                                        <NeoCard key={idx} variant="elevated" style={{ padding: 14, marginBottom: 10 }}>
                                             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                                                 <View style={{ marginRight: 10, marginTop: 2 }}>
                                                     {SEVERITY_ICONS[issue.severity]?.(18) || <NeoIcon name="InfoCircle" size={18} color="#999" />}
@@ -190,7 +190,7 @@ export default function DataHealthScreen({ navigation }) {
                             )}
 
                             {report.issues.length === 0 && (
-                                <NeoCard variant="glass" style={{ padding: 24, alignItems: 'center' }}>
+                                <NeoCard variant="elevated" style={{ padding: 24, alignItems: 'center' }}>
                                     <NeoIcon name="TickCircle" size={48} color={Neo.colors.feedback.success} variant="Bold" />
                                     <H3 style={{ marginTop: 12, color: Neo.colors.feedback.success }}>Tudo Íntegro!</H3>
                                     <Caption style={{ textAlign: 'center', marginTop: 4 }}>

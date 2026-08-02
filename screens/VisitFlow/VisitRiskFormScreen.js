@@ -30,7 +30,7 @@ export default function VisitRiskFormScreen({ route, navigation }) {
                 </TouchableOpacity>
 
                 <Text style={styles.title}>{t('headersFirst.fatoresDeRisco', 'Fatores de Risco')}</Text>
-                <Text style={styles.subtitle}>{t('headersFirst.selecioneQuemEstarPresenteNestaVisita', 'Selecione quem estará presente nesta visita:')}</Text>
+                <Text style={styles.subtitle}>{t('headersFirst.selecioneQuemEstarPresenteNestaVisita', 'Quem vai estar nesta visita?')}</Text>
 
                 <View style={styles.list}>
                     {RISK_GROUPS.map(risk => (

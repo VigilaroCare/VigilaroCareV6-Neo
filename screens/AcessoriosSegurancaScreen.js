@@ -29,7 +29,7 @@ import ReviewImage from '../components/ReviewImage';
 import FadeInView from '../components/FadeInView';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
-const THEME_COLOR = '#7C3AED'; // violet
+const THEME_COLOR = Neo.colors.categoria.ameixa.fill;
 
 export default function AcessoriosSegurancaScreen({ navigation }) {
     const insets = useSafeAreaInsets();

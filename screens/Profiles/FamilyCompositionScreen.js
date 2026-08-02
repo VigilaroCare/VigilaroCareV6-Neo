@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
-        backgroundColor: '#E3F2FD',
+        backgroundColor: Neo.colors.categoria.ardosia.tint,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,

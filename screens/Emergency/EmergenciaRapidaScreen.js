@@ -44,7 +44,7 @@ const EMERGENCIA_TIPOS = [
     ],
   },
   {
-    id: 'intoxicacao', titulo: 'INTOXICAÇÃO', icon: 'Drop', cor: '#7C3AED',
+    id: 'intoxicacao', titulo: 'INTOXICAÇÃO', icon: 'Drop', cor: Neo.colors.categoria.ameixa.fill,
     passos: [
       '1. NÃO provoque vômito!',
       '2. Identifique o produto ou medicamento.',

@@ -145,7 +145,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                     <NeoIcon name="Health" size={22} color={Neo.colors.secondary[500]} variant="Bold" />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <H3 style={{ color: Neo.colors.gridAccents?.vistorias?.color || '#0369A1', fontSize: 15 }}>
+                    <H3 style={{ color: Neo.colors.gridAccents?.vistorias?.color || Neo.colors.categoria.ardosia.fill, fontSize: 15 }}>
                       {t('headersFirst.atenOAveNaCasa', 'Atenção: ave na casa')}
                     </H3>
                     <Body style={{ color: Neo.colors.secondary[500], fontSize: 12, marginTop: 2 }}>

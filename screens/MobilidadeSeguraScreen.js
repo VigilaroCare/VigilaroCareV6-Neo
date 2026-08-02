@@ -133,7 +133,7 @@ function ConteudoDRV() {
       <View style={styles.card}>
         <Text style={styles.cardTitulo}>{t('headersFirst.QualDispositivoMeuFilhoPrecisa', '📊 Qual dispositivo meu filho precisa?')}</Text>
         <Text style={styles.cardSubtitulo}>
-          {t('headersFirst.selecioneAIdadeParaVerODispositivoRecome', 'Selecione a idade para ver o dispositivo recomendado:')}
+          {t('headersFirst.selecioneAIdadeParaVerODispositivoRecome', 'Que idade tem a criança?')}
         </Text>
         
         <View style={styles.idadeBotoesContainer}>

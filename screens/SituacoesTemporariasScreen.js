@@ -48,7 +48,7 @@ export default function SituacoesTemporariasScreen({ navigation }) {
       </LinearGradient>
 
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionTitle}>{t('headersFirst.selecioneOEvento', 'Selecione o Evento')}</Text>
+        <Text style={styles.sectionTitle}>{t('headersFirst.selecioneOEvento', 'Qual evento?')}</Text>
         <Text style={styles.sectionSubtitle}>
           {t('headersFirst.ajustaremosAsRecomendaEsDeSeguranAComBas', 'Ajustaremos as recomendações de segurança com base no cenário escolhido.')}
         </Text>

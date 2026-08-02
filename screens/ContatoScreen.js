@@ -53,7 +53,7 @@ export default function ContatoScreen({ navigation }) {
                     </Body>
 
                     {/* E-MAIL — ação principal é COPIAR (in-app, sem seletor "Abrir com") */}
-                    <NeoCard variant="glass" style={styles.channelCard}>
+                    <NeoCard variant="elevated" style={styles.channelCard}>
                         <View style={styles.channelHeader}>
                             <View style={[styles.iconCircle, { backgroundColor: 'rgba(16,185,129,0.14)' }]}>
                                 <NeoIcon name="Sms" size={22} color={Neo.colors.primary[600]} variant="Bold" />
@@ -95,7 +95,7 @@ export default function ContatoScreen({ navigation }) {
 
                     {/* SITE — https abre o navegador direto, sem seletor */}
                     <TouchableOpacity activeOpacity={0.85} onPress={openSite}>
-                        <NeoCard variant="glass" style={styles.channelCard}>
+                        <NeoCard variant="elevated" style={styles.channelCard}>
                             <View style={styles.channelHeader}>
                                 <View style={[styles.iconCircle, { backgroundColor: 'rgba(14,165,233,0.14)' }]}>
                                     <NeoIcon name="Global" size={22} color={Neo.colors.secondary[500]} variant="Bold" />

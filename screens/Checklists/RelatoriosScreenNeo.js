@@ -462,7 +462,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                     <NeoCard variant="elevated" style={[s.specialCard, { padding: 0, overflow: 'hidden' }]}>
                                         <ReviewImage 
                                             source={require('../../assets/illustrations/pad/idosos_acessibilidade-direito-de-todos-hd-2_001.jpg')} 
-                                            style={{ width: '100%', height: 76, backgroundColor: '#E3F2FD' }}
+                                            style={{ width: '100%', height: 76, backgroundColor: themeColors.categoria.ardosia.tint }}
                                             resizeMode="cover"
                                         />
                                         <View style={{ padding: 12, alignItems: 'center', marginTop: -28 }}>

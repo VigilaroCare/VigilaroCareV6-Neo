@@ -69,7 +69,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
             id: 'water',
             title: t('travel.waterRisk', 'Riscos de Água e Afogamento'),
             icon: 'SwimmingPool',
-            color: '#2196F3',
+            color: Neo.colors.categoria.ardosia.fill,
             items: [
                 { id: 'pool_access', label: t('travel.poolAccess', 'Acesso à piscina tem portão fechado') },
                 { id: 'bathroom_floor', label: t('travel.bathroomFloor', 'Piso do banheiro sem poças/escorregadio') },

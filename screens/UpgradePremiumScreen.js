@@ -285,7 +285,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.subscribedContainer}>
-          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || '#8B5CF6']} style={styles.subscribedBadge}>
+          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill]} style={styles.subscribedBadge}>
             <NeoIcon name="Diamonds" size={48} color={colors.neutral.white} />
           </LinearGradient>
           <Text style={styles.subscribedTitle}>{t('upgrade.alreadyProtected')}</Text>
@@ -330,7 +330,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
         {featureContext && (
           <View style={styles.contextCard}>
             <View style={styles.contextIconWrap}>
-              <NeoIcon name={contextIcon || 'Crown1'} size={24} color={colors.secondary[600] || '#8B5CF6'} />
+              <NeoIcon name={contextIcon || 'Crown1'} size={24} color={colors.secondary[600] || Neo.colors.categoria.ameixa.fill} />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.contextTitle}>{contextTitle}</Text>
@@ -341,7 +341,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
 
         {/* Hero */}
         <View style={styles.hero}>
-          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || '#8B5CF6']} style={styles.heroIcon}>
+          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill]} style={styles.heroIcon}>
             <NeoIcon name="Diamonds" size={40} color={colors.neutral.white} />
           </LinearGradient>
           <Text style={styles.heroTitle}>{t('upgrade.heroTitle')}</Text>
@@ -411,7 +411,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
           disabled={!isPriceLoaded || purchasing}
         >
           <LinearGradient
-            colors={isPriceLoaded ? [colors.secondary[500], colors.secondary[600] || '#8B5CF6'] : [colors.neutral[400], colors.neutral[500]]}
+            colors={isPriceLoaded ? [colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill] : [colors.neutral[400], colors.neutral[500]]}
             style={styles.purchaseGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}

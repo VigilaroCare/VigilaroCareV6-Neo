@@ -45,7 +45,7 @@ export default function PlantasToxicasScreen({ navigation }) {
         // Data uses 'nivelPerigo'
         switch (nivel) {
             case 'Muito Alto': case 'Very High': case 'Muy Alto': return Neo.colors.feedback.error; // DS: data-level color
-            case 'Alto': case 'High': return '#F97316'; // DS: data-level color (orange-500, no exact mapping)
+            case 'Alto': case 'High': return themeColors.categoria.ocre.fill;
             case 'Médio': case 'Medium': case 'Medio': return Neo.colors.feedback.warning; // DS: data-level color
             case 'Baixo': case 'Low': case 'Bajo': return Neo.colors.primary[500]; // DS: data-level color
             default: return Neo.colors.neutral[500];
@@ -115,7 +115,7 @@ export default function PlantasToxicasScreen({ navigation }) {
                 </View>
 
                 <View style={{ paddingHorizontal: 20, paddingVertical: 12 }}>
-                    <NeoCard variant="glass" style={styles.searchContainer}>
+                    <NeoCard variant="elevated" style={styles.searchContainer}>
                         <NeoIcon name="SearchNormal1" size={20} color={Neo.colors.neutral[400]} />
                         <TextInput
                             style={styles.searchInput}

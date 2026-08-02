@@ -32,10 +32,10 @@ const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário
 
 // DS: data-level colors — each tipo has its own brand color
 const TIPO_COLORS = {
-  Familiar: '#2196F3',  // DS: data-level color
+  Familiar: Neo.colors.categoria.ardosia.fill,  // DS: data-level color
   Médico: '#4CAF50',    // DS: data-level color
-  Vizinho: '#FF9800',   // DS: data-level color
-  Amigo: '#9C27B0',     // DS: data-level color
+  Vizinho: Neo.colors.categoria.ocre.fill,   // DS: data-level color
+  Amigo: Neo.colors.categoria.ameixa.fill,     // DS: data-level color
   Veterinário: '#009688', // DS: data-level color
   Outro: '#757575',     // DS: data-level color
 };

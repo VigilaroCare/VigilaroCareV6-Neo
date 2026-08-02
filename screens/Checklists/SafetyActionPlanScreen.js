@@ -296,7 +296,7 @@ export default function SafetyActionPlanScreen() {
                     const priorityColor = isHighPriority ? '#EF4444' : '#F59E0B';
 
                     return (
-                        <NeoCard variant="glass"
+                        <NeoCard variant="elevated"
                             key={item.id}
                             style={{
                                 flexDirection: 'row',

@@ -26,7 +26,7 @@ export default function KitsMenuScreen({ navigation, route }) {
         const sequentialRooms = kitsData.map(k => ({
             roomId: 'kits_prontidao', // Mesmo ID pai
             roomName: k.nome,
-            roomColor: '#F97316',
+            roomColor: Neo.colors.categoria.ocre.fill,
             roomIcon: k.emoji,
             categoryFilter: k.nome // CRUCIAL: O filtro de categoria define o conteúdo
         }));
@@ -34,7 +34,7 @@ export default function KitsMenuScreen({ navigation, route }) {
         navigation.navigate('ChecklistDetail', {
             roomId: 'kits_prontidao', // ID pai
             roomName: categoria.nome, // Nome do Kit específico
-            roomColor: '#F97316', // Laranja do Kit
+            roomColor: Neo.colors.categoria.ocre.fill, // Laranja do Kit
             roomIcon: categoria.emoji,
             categoryFilter: categoria.nome, // Parâmetro para filtrar itens na próxima tela
             sequentialRooms,
@@ -51,7 +51,7 @@ export default function KitsMenuScreen({ navigation, route }) {
 
                 {/* Header Premium Neo (Glass) */}
                 <View style={[styles.headerContainer, { paddingTop: insets.top + 10 }]}>
-                    <NeoCard variant="glass" style={styles.headerCard}>
+                    <NeoCard variant="elevated" style={styles.headerCard}>
                         <View style={styles.headerTopRow}>
                             <TouchableOpacity
                                 style={styles.backButton}
@@ -62,7 +62,7 @@ export default function KitsMenuScreen({ navigation, route }) {
 
                             <View style={styles.headerTitleContainer}>
                                 <H2 style={{ color: Neo.colors.primary[600] }}>{t('headersFirst.kitsDeProntidO', 'Kits de Prontidão')}</H2>
-                                <Body style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.selecioneUmaCategoria', 'Selecione uma categoria')}</Body>
+                                <Body style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.selecioneUmaCategoria', 'Categorias')}</Body>
                             </View>
                         </View>
                     </NeoCard>
@@ -85,7 +85,7 @@ export default function KitsMenuScreen({ navigation, route }) {
                                 onPress={() => handleOpenKit(kit, index)}
                                 activeOpacity={0.7}
                             >
-                                <NeoCard variant="glass" style={styles.kitCard}>
+                                <NeoCard variant="elevated" style={styles.kitCard}>
                                     <View style={[styles.iconCircle, { backgroundColor: Neo.colors.primary[50] }]}>
                                         <Text style={{ fontSize: 32 }}>{kit.emoji || '🎒'}</Text>
                                     </View>

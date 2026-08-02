@@ -15,7 +15,7 @@ import { MEDICINE_ITEMS } from '../../data/kits/medicines';
 import KitService from '../../services/KitService';
 import ProfileService from '../../services/ProfileService';
 
-const ACCENT = '#E91E63'; // pink — remédios
+const ACCENT = Neo.colors.categoria.rose.fill; // pink — remédios
 
 // Mapeamento defensivo de ícones de item (caso venham nomes legados do data layer)
 const ICON_FALLBACK = {

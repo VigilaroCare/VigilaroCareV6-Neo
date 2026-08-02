@@ -322,11 +322,11 @@ export default function ConceitoDetailScreen({ route, navigation }) {
           ) : (
             <>
               {(t_field(conceito, 'definicao') || t_field(conceito, 'descricao')) && (<NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={styles.cardTitle}>{t_field(conceito, 'definicao') ? t('detail.definition', 'Definição') : t('detail.description', 'Descrição')}</H3></View><Text style={[styles.text, { color: textBody }]}>{t_field(conceito, 'definicao') || t_field(conceito, 'descricao')}</Text></NeoCard>)}
-              {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), 'SearchNormal1', '#8B5CF6')}
+              {renderSection(t('detail.identification', 'Identificação'), t_array(conceito, 'comoIdentificar') || t_array(conceito, 'caracteristicas'), 'SearchNormal1', themeColors.categoria.ameixa.fill)}
               {t_field(conceito, 'conteudo') && renderMarkdown(t_field(conceito, 'conteudo'), t_field(conceito, 'conteudoTitulo'))}
               {renderSection(t('detail.toxicParts', 'Partes Tóxicas'), t_array(conceito, 'partesToxicas'), 'Warning2', '#F59E0B')}
               {renderSection(t('detail.humanSymptoms', 'Sintomas em Humanos'), t_array(conceito, 'sintomasHumanos'), 'User', Neo.colors.feedback.error)}
-              {renderSection(t('detail.petSymptoms', 'Sintomas em Pets'), t_array(conceito, 'sintomasPets'), 'Pet', '#F97316')}
+              {renderSection(t('detail.petSymptoms', 'Sintomas em Pets'), t_array(conceito, 'sintomasPets'), 'Pet', themeColors.categoria.ocre.fill)}
               {renderSection(t('detail.generalSymptoms', 'Sintomas Gerais'), t_object(conceito, 'sintomas'), 'Health', Neo.colors.feedback.error)}
               {renderSection(t('detail.whereFound', '📍 Onde é Encontrado'), t_field(conceito, 'ondeEncontrada'), 'InfoCircle', '#6366F1')}
               {renderSection(t('detail.safeAlternatives', '🌱 Alternativas Seguras'), t_array(conceito, 'alternativasSeguras'), 'ShieldTick', Neo.colors.primary[500])}

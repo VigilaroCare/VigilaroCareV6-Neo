@@ -201,7 +201,7 @@ export default function VigilaroScanHubScreen() {
                             >
                                 <NeoCard variant="elevated" style={s.actionCard}>
                                     <View style={[s.actionIconWrap, { backgroundColor: 'rgba(33, 150, 243, 0.12)' }]}>
-                                        <NeoIcon name="Home2" size={24} color="#2196F3" variant="Bold" />
+                                        <NeoIcon name="Home2" size={24} color={Neo.colors.categoria.ardosia.fill} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1, marginLeft: 14 }}>
                                         <Body style={s.actionTitle}>{t('ferramentasIA.scannerAmbienteTitle', 'Escanear Ambiente')}</Body>
@@ -219,7 +219,7 @@ export default function VigilaroScanHubScreen() {
                             >
                                 <NeoCard variant="elevated" style={s.actionCard}>
                                     <View style={[s.actionIconWrap, { backgroundColor: 'rgba(156, 39, 176, 0.12)' }]}>
-                                        <NeoIcon name="DocumentText" size={24} color="#9C27B0" variant="Bold" />
+                                        <NeoIcon name="DocumentText" size={24} color={Neo.colors.categoria.ameixa.fill} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1, marginLeft: 14 }}>
                                         <Body style={s.actionTitle}>{t('ferramentasIA.labelScanTitle', 'Analisar Rótulo com IA')}</Body>

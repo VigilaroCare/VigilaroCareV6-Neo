@@ -128,7 +128,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'aspiracao', titulo: 'Vômito/Aspiração', descricao: 'Pessoa vomitando ou engasgou com vômito',
-        icon: 'water', cor: '#C2410C', corFundo: '#FFEDD5', frequencia: '4º mais comum',
+        icon: 'water', cor: '#C2410C', corFundo: Neo.colors.categoria.ocre.tint, frequencia: '4º mais comum',
         passos: [
             { titulo: 'Vire a pessoa de lado', descricao: 'Posição lateral de segurança para evitar aspiração', critico: true },
             { titulo: 'Incline a cabeça para baixo', descricao: 'Permite que o vômito escorra para fora' },
@@ -152,7 +152,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'afogamento', titulo: 'Afogamento', descricao: 'Piscina, banheira, balde',
-        icon: 'water', cor: '#0369A1', corFundo: '#E0F2FE', frequencia: '6º mais comum',
+        icon: 'water', cor: Neo.colors.categoria.ardosia.fill, corFundo: '#E0F2FE', frequencia: '6º mais comum',
         passos: [
             { titulo: 'Retire da água com segurança', descricao: 'Use objeto flutuante, não entre sozinho', critico: true },
             { titulo: 'Ligue {{EMERGENCY_NUMBER}} (SAMU)', descricao: 'Mesmo se parecer bem, pode piorar depois', critico: true },
@@ -164,7 +164,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'queimadura', titulo: 'Queimadura', descricao: 'Água quente, fogo, óleo, químicos',
-        icon: 'flame', cor: '#EA580C', corFundo: '#FFEDD5', frequencia: '7º mais comum',
+        icon: 'flame', cor: '#EA580C', corFundo: Neo.colors.categoria.ocre.tint, frequencia: '7º mais comum',
         passos: [
             { titulo: 'ÁGUA CORRENTE FRIA', descricao: 'Por pelo menos 20 minutos - é o mais importante!', critico: true },
             { titulo: 'Remova anéis e roupas', descricao: 'Antes que inche - corte se necessário' },
@@ -176,7 +176,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'incendio', titulo: 'Incêndio / Fumaça', descricao: 'Fogo em casa, inalação de fumaça',
-        icon: 'flame', cor: '#C2410C', corFundo: '#FFEDD5', frequencia: '8º mais comum',
+        icon: 'flame', cor: '#C2410C', corFundo: Neo.colors.categoria.ocre.tint, frequencia: '8º mais comum',
         passos: [
             { titulo: 'SAIA IMEDIATAMENTE', descricao: 'Vidas primeiro, objetos depois!', critico: true },
             { titulo: 'Abaixe-se', descricao: 'Fumaça sobe - rasteje se necessário' },
@@ -188,7 +188,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'desmaio', titulo: 'Desmaio', descricao: 'Pessoa caiu inconsciente',
-        icon: 'body', cor: '#7E22CE', corFundo: '#F3E8FF',
+        icon: 'body', cor: '#7E22CE', corFundo: Neo.colors.categoria.ameixa.tint,
         passos: [
             { titulo: 'Deite a pessoa de costas', descricao: 'Em superfície plana e segura' },
             { titulo: 'Eleve as pernas', descricao: 'Cerca de 30cm para aumentar fluxo ao cérebro' },
@@ -200,7 +200,7 @@ const EMERGENCIAS_HUMANOS = [
     },
     {
         id: 'convulsao', titulo: 'Convulsão', descricao: 'Tremores, movimentos involuntários',
-        icon: 'pulse', cor: '#6D28D9', corFundo: '#EDE9FE',
+        icon: 'pulse', cor: Neo.colors.categoria.ameixa.fill, corFundo: Neo.colors.categoria.ameixa.tint,
         passos: [
             { titulo: 'Proteja a cabeça', descricao: 'Coloque algo macio embaixo (almofada, casaco)' },
             { titulo: 'Afaste objetos perigosos', descricao: 'Móveis, objetos cortantes' },

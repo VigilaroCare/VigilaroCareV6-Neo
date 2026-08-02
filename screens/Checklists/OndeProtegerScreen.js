@@ -40,17 +40,17 @@ const CHECKLIST_KEY = '@checklist_progress_v2';
 // DS: data-level color
 const AMBIENTES_DISPONIVEIS = [
     // Convivência
-    { id: 'cozinha', label: 'Cozinha', icon: 'Kitchen', color: '#FF9800', riscos: ['Incêndio', 'Cortes', 'Queimaduras', 'Gás'] },
-    { id: 'sala', label: 'Sala de Estar', icon: 'Monitor', color: '#9C27B0', riscos: ['Quedas', 'Sufocamento', 'Choque'] },
+    { id: 'cozinha', label: 'Cozinha', icon: 'Kitchen', color: Neo.colors.categoria.ocre.fill, riscos: ['Incêndio', 'Cortes', 'Queimaduras', 'Gás'] },
+    { id: 'sala', label: 'Sala de Estar', icon: 'Monitor', color: Neo.colors.categoria.ameixa.fill, riscos: ['Quedas', 'Sufocamento', 'Choque'] },
     { id: 'copa', label: 'Copa', icon: 'Reserve', color: '#8D6E63', riscos: ['Queimaduras', 'Cortes'] },
     { id: 'oficina', label: 'Oficina / Ateliê', icon: 'Setting2', color: '#607D8B', riscos: ['Cortes', 'Ferramentas'] },
 
     // Íntima
     { id: 'quarto_adulto', label: 'Quarto de Adulto', icon: 'Bed', color: '#673AB7', riscos: ['Quedas', 'Sufocamento'] },
-    { id: 'quarto_crianca', label: 'Quarto Infantil', icon: 'Happyemoji', color: '#E91E63', riscos: ['Quedas', 'Sufocamento', 'Mobília'], condicional: 'crianca' },
+    { id: 'quarto_crianca', label: 'Quarto Infantil', icon: 'Happyemoji', color: Neo.colors.categoria.rose.fill, riscos: ['Quedas', 'Sufocamento', 'Mobília'], condicional: 'crianca' },
     { id: 'quarto_bebe', label: 'Quarto de Bebê', icon: 'BabyCrib', color: '#FF4081', riscos: ['CONTEÚDO ESPECIAL DE SEGURANÇA'], condicional: 'bebe' },
     { id: 'quarto_idoso', label: 'Quarto do Idoso', icon: 'Elder', color: '#8D6E63', riscos: ['Quedas', 'Iluminação'], condicional: 'idoso' },
-    { id: 'banheiro', label: 'Banheiro', icon: 'Bathroom', color: '#2196F3', riscos: ['Quedas', 'Afogamento', 'Choques'] },
+    { id: 'banheiro', label: 'Banheiro', icon: 'Bathroom', color: Neo.colors.categoria.ardosia.fill, riscos: ['Quedas', 'Afogamento', 'Choques'] },
 
     // Serviços
     { id: 'area_servico', label: 'Área de Serviço', icon: 'WashingMachine', color: '#00BCD4', riscos: ['Intoxicação', 'Quedas', 'Máquinas'] },

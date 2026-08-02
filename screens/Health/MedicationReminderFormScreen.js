@@ -28,7 +28,7 @@ import PremiumBadge from '../../components/PremiumBadge';
 import MedicationReminderService, { DIAS_SEMANA } from '../../services/MedicationReminderService';
 
 const CLR = {
-    pill:    '#0369A1',
+    pill:    Neo.colors.categoria.ardosia.fill,
     success: '#16A34A',
     warning: '#D97706',
     danger:  '#DC2626',
@@ -370,7 +370,7 @@ export default function MedicationReminderFormScreen() {
                     >
                         {/* ── Seção: Medicamento ── */}
                         <Eyebrow style={fStyles.eyebrow}>Medicamento</Eyebrow>
-                        <NeoCard variant="glass" style={fStyles.card}>
+                        <NeoCard variant="elevated" style={fStyles.card}>
                             <View style={fStyles.fieldWrap}>
                                 <Small style={fStyles.label}>Nome do medicamento *</Small>
                                 <TextInput
@@ -403,20 +403,20 @@ export default function MedicationReminderFormScreen() {
 
                         {/* ── Seção: Horários ── */}
                         <Eyebrow style={fStyles.eyebrow}>Horários *</Eyebrow>
-                        <NeoCard variant="glass" style={fStyles.card}>
+                        <NeoCard variant="elevated" style={fStyles.card}>
                             <HorarioList horarios={horarios} onChange={setHorarios} />
                             {!!erroHorario && <Small style={[fStyles.errText, { marginTop: 4 }]}>{erroHorario}</Small>}
                         </NeoCard>
 
                         {/* ── Seção: Dias da semana ── */}
                         <Eyebrow style={fStyles.eyebrow}>Dias da semana</Eyebrow>
-                        <NeoCard variant="glass" style={fStyles.card}>
+                        <NeoCard variant="elevated" style={fStyles.card}>
                             <DayPicker selected={diasSemana} onChange={setDiasSemana} />
                         </NeoCard>
 
                         {/* ── Seção: Cuidador Remoto ── */}
                         <Eyebrow style={fStyles.eyebrow}>Cuidador Remoto</Eyebrow>
-                        <NeoCard variant="glass" style={fStyles.card}>
+                        <NeoCard variant="elevated" style={fStyles.card}>
                             {/* Toggle de ativação */}
                             <TappablePressable
                                 style={fStyles.remotoToggleRow}

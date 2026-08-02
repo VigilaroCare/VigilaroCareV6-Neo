@@ -122,8 +122,8 @@ export default function AccessibilitySettingsScreen() {
                     </Eyebrow>
                     <NeoCard variant="elevated" style={s.settingCard}>
                         <View style={s.settingRow}>
-                            <View style={[s.settingIcon, { backgroundColor: '#8B5CF6' + '33' }]}>
-                                <NeoIcon name="Moon" size={22} color="#8B5CF6" variant="Bold" />
+                            <View style={[s.settingIcon, { backgroundColor: Neo.colors.categoria.ameixa.fill + '33' }]}>
+                                <NeoIcon name="Moon" size={22} color={Neo.colors.categoria.ameixa.fill} variant="Bold" />
                             </View>
                             <View style={s.settingTextCol}>
                                 <Body style={[s.settingLabel, { color: colors.neutral[900] }]}>
@@ -148,7 +148,7 @@ export default function AccessibilitySettingsScreen() {
                                         style={[
                                             s.themeChip,
                                             { borderColor: dividerColor, backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)' },
-                                            active && { backgroundColor: '#8B5CF6', borderColor: '#8B5CF6' },
+                                            active && { backgroundColor: Neo.colors.categoria.ameixa.fill, borderColor: Neo.colors.categoria.ameixa.fill },
                                         ]}
                                     >
                                         <NeoIcon
@@ -263,7 +263,7 @@ export default function AccessibilitySettingsScreen() {
                             label: t('settings.leftHanded'),
                             desc: t('settings.leftHandedDesc'),
                             iconName: 'Hand',
-                            color: '#7C3AED', // violet — neutro e distinto
+                            color: Neo.colors.categoria.ameixa.fill,
                             value: leftHandedMode,
                             onToggle: toggleLeftHanded,
                             isLast: true,

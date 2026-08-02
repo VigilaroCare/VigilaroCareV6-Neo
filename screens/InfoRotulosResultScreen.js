@@ -68,10 +68,10 @@ const FIRST_AID_ICONS = {
 // Labels limpas para fonte (sem emoji prefix — cor faz o trabalho)
 const SOURCE_LABELS = {
     local:               { label: 'Base local', color: '#4CAF50' },
-    open_food_facts:     { label: 'Open Food Facts', color: '#2196F3' },
-    open_beauty_facts:   { label: 'Open Beauty Facts', color: '#E91E63' },
-    open_products_facts: { label: 'Open Products Facts', color: '#FF9800' },
-    upcitemdb:           { label: 'UPCitemdb', color: '#9C27B0' },
+    open_food_facts:     { label: 'Open Food Facts', color: Neo.colors.categoria.ardosia.fill },
+    open_beauty_facts:   { label: 'Open Beauty Facts', color: Neo.colors.categoria.rose.fill },
+    open_products_facts: { label: 'Open Products Facts', color: Neo.colors.categoria.ocre.fill },
+    upcitemdb:           { label: 'UPCitemdb', color: Neo.colors.categoria.ameixa.fill },
     not_found:           { label: 'Não encontrado', color: '#9E9E9E' },
 };
 
@@ -300,7 +300,7 @@ export default function InfoRotulosResultScreen() {
                                 <NeoCard variant="elevated" style={s.sectionCard}>
                                     {riscos.map((risco, idx) => (
                                         <View key={idx} style={s.riskItem}>
-                                            <NeoIcon name="Warning2" size={16} color="#E65100" variant="Bold" />
+                                            <NeoIcon name="Warning2" size={16} color={Neo.colors.categoria.ocre.fill} variant="Bold" />
                                             <Text style={s.riskText}>{risco}</Text>
                                         </View>
                                     ))}
@@ -373,7 +373,7 @@ export default function InfoRotulosResultScreen() {
                                 <NeoCard variant="elevated" style={s.sectionCard}>
                                     {precautionary.map((stmt, idx) => (
                                         <View key={idx} style={s.ghsItem}>
-                                            <View style={[s.ghsCodeBadge, { backgroundColor: '#E3F2FD' }]}>
+                                            <View style={[s.ghsCodeBadge, { backgroundColor: Neo.colors.categoria.ardosia.tint }]}>
                                                 <Text style={[s.ghsCode, { color: '#1565C0' }]}>{stmt.code}</Text>
                                             </View>
                                             <Text style={s.ghsText}>{stmt.text}</Text>

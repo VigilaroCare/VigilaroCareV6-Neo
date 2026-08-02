@@ -31,8 +31,8 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
     critico: '#D32F2F', // DS: data-level color (severity)
-    alto: '#E65100',    // DS: data-level color (severity)
-    medio: '#F57F17',   // DS: data-level color (severity)
+    alto: Neo.colors.categoria.ocre.fill,    // DS: data-level color (severity)
+    medio: Neo.colors.categoria.ocre.fill,   // DS: data-level color (severity)
     baixo: '#388E3C',   // DS: data-level color (severity)
 };
 
@@ -45,7 +45,7 @@ const RISK_LABELS = {
 
 const RISK_BG = {
     critico: '#FFEBEE', // DS: data-level color
-    alto: '#FFF3E0',    // DS: data-level color
+    alto: Neo.colors.categoria.ocre.tint,    // DS: data-level color
     medio: '#FFFDE7',   // DS: data-level color
     baixo: '#E8F5E9',   // DS: data-level color
 };

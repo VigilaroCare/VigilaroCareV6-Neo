@@ -48,12 +48,12 @@ export default function GenericCategoryScreen({ route, navigation }) {
         title: categoryId === 'pets' ? t('knowledgeHub.protectPet', 'Proteja seu Pet') : 
                categoryId === 'faixa_etaria' ? t('knowledgeHub.ageGroup', 'Cuidado por Faixa Etária') : 'Categoria Desconhecida',
         subtitle: t('common.explore', 'Explore os conteúdos'),
-        color: categoryId === 'pets' ? '#EAB308' : categoryId === 'faixa_etaria' ? '#EC4899' : '#9CA3AF',
+        color: categoryId === 'pets' ? '#EAB308' : categoryId === 'faixa_etaria' ? themeColors.categoria.rose.fill : '#9CA3AF',
         sections: []
     };
 
     const safetyArticles = getArticlesByCategory(categoryId);
-    const THEME_COLOR = content.color || '#3B82F6';
+    const THEME_COLOR = content.color || themeColors.categoria.ardosia.fill;
 
     const renderSectionCard = (section, index) => {
         return (

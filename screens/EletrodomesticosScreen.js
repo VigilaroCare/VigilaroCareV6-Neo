@@ -29,14 +29,14 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 
 // DS: data-level color (used as tint)
 const DEVICE_COLORS = {
-    microondas:    '#E65100', // TODO: map to DS token
-    processadores: '#7C3AED', // TODO: map to DS token
+    microondas:    Neo.colors.categoria.ocre.fill, // TODO: map to DS token
+    processadores: Neo.colors.categoria.ameixa.fill, // TODO: map to DS token
     fogao:         '#D32F2F', // TODO: map to DS token
-    aquecedor:     '#F57F17', // TODO: map to DS token
+    aquecedor:     Neo.colors.categoria.ocre.fill, // TODO: map to DS token
     ventilador:    '#0EA5E9', // DS: mapped to colors.secondary[500]
-    ferro:         '#EC4899', // TODO: map to DS token
-    secador:       '#EC4899', // TODO: map to DS token
-    geladeira:     '#3B82F6', // DS: mapped to colors.secondary[500]
+    ferro:         Neo.colors.categoria.rose.fill, // TODO: map to DS token
+    secador:       Neo.colors.categoria.rose.fill, // TODO: map to DS token
+    geladeira:     Neo.colors.categoria.ardosia.fill, // DS: mapped to colors.secondary[500]
 };
 
 export default function EletrodomesticosScreen({ navigation }) {

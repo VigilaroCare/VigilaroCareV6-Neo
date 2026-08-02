@@ -178,7 +178,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                     {renderHeader()}
                     <ScrollView contentContainerStyle={styles.content}>
                         <Text style={styles.cardTitle}>{t('petPregnancyTracker.selectPet')}</Text>
-                        {loading ? <ActivityIndicator size="large" color="#E91E63" /> : (
+                        {loading ? <ActivityIndicator size="large" color={themeColors.categoria.rose.fill} /> : (
                             petsList.length === 0 ? (
                                 <View style={styles.noDataCard}>
                                     <Text style={styles.noDataText}>{t('petPregnancyTracker.noPets')}</Text>
@@ -195,7 +195,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                                         activeOpacity={0.8}
                                     >
                                         <View style={styles.avatarContainer}>
-                                            <NeoIcon name="Lovely" size={24} color="#E91E63" />
+                                            <NeoIcon name="Lovely" size={24} color={themeColors.categoria.rose.fill} />
                                         </View>
                                         <View>
                                             <Text style={styles.petName}>{p.nome}</Text>
@@ -223,7 +223,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                 {/* Pet Info */}
                 <View style={styles.petCard}>
                     <View style={styles.avatarContainer}>
-                        <NeoIcon name="Lovely" size={32} color="#E91E63" />
+                        <NeoIcon name="Lovely" size={32} color={themeColors.categoria.rose.fill} />
                     </View>
                     <View>
                         <Text style={styles.petName}>{pet.nome}</Text>
@@ -332,7 +332,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
     );
 }
 
-const ACCENT = '#E91E63';
+const ACCENT = Neo.colors.categoria.rose.fill;
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: 'transparent' },
@@ -410,7 +410,7 @@ const styles = StyleSheet.create({
         color: Neo.colors.neutral[900],
     },
     predictionBox: {
-        backgroundColor: '#E3F2FD',
+        backgroundColor: Neo.colors.categoria.ardosia.tint,
         padding: 14,
         borderRadius: 12,
         alignItems: 'center',

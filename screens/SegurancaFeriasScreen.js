@@ -104,8 +104,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             local_es: 'Hotel y Airbnb',
             icon: 'Building',
             // DS: data-level color
-            iconColor: '#8B5CF6',
-            bg: '#F3E8FF',
+            iconColor: themeColors.categoria.ameixa.fill,
+            bg: themeColors.categoria.ameixa.tint,
             riscosPrincipais: [
                 'Sacadas e janelas sem rede',
                 'Móveis instáveis',

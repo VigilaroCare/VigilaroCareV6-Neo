@@ -19,8 +19,8 @@ import NeoScreenHeader from '../../components/NeoScreenHeader';
 const getRiscoColor = (risco) => {
     const r = (risco || '').toLowerCase();
     if (r.includes('explos') || r.includes('grave') || r.includes('choque')) return '#D32F2F';
-    if (r.includes('queimadu') || r.includes('contamin')) return '#E65100';
-    if (r.includes('corte') || r.includes('perfur')) return '#F57F17';
+    if (r.includes('queimadu') || r.includes('contamin')) return themeColors.categoria.ocre.fill;
+    if (r.includes('corte') || r.includes('perfur')) return themeColors.categoria.ocre.fill;
     return '#388E3C';
 };
 
@@ -36,7 +36,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
     const cardBg = isDark ? themeColors.neutral[200] : '#FFFFFF';
     const [search, setSearch] = useState('');
 
-    const THEME_COLOR = '#E65100'; // consistente com UtensiliosReviewsScreen
+    const THEME_COLOR = themeColors.categoria.ocre.fill; // consistente com UtensiliosReviewsScreen
 
     const filteredData = utensiliosDomesticos.filter(item =>
         item.nome.toLowerCase().includes(search.toLowerCase()) ||

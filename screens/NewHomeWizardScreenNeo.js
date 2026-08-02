@@ -248,7 +248,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // === PROFILE CRUD ===
     const saveHumanProfile = async () => {
-        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Informe o nome.');
+        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Falta o nome.');
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'profile');
         const perfil = await ProfileService.addPerfil({

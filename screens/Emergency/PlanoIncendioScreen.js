@@ -171,8 +171,8 @@ export default function PlanoIncendioScreen({ navigation }) {
 
         <View style={[s.content, { marginTop: 20 }]}>
           {/* ALERT */}
-          <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: '#FFEDD5' }]}>{/* TODO: map #FFF7ED/#FFEDD5 to DS token (amber-50/100 tints) */}
-            <NeoIcon name="Warning2" size={22} color="#F97316" variant="Bold" />
+          <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: themeColors.categoria.ocre.tint }]}>{/* TODO: map #FFF7ED/#FFEDD5 to DS token (amber-50/100 tints) */}
+            <NeoIcon name="Warning2" size={22} color={themeColors.categoria.ocre.fill} variant="Bold" />
             <Text style={s.alertText}>
               <Text style={{ fontWeight: '800' }}>{t('headersFirst.critical', 'CRÍTICO:')} </Text>
               Você tem menos de 3 minutos para sair em um incêndio. Ter um plano pode salvar sua família.

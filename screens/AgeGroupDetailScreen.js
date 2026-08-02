@@ -33,7 +33,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
     if (!group) return null;
 
     const title = t_field(group, 'title');
-    const cor = group.color || '#3B82F6';
+    const cor = group.color || themeColors.categoria.ardosia.fill;
 
     const heroTransform = [
         {

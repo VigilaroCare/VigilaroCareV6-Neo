@@ -33,7 +33,7 @@ export default function RiscosFisicosScreen({ route, navigation }) {
     if (item.emoji === '🔥') return { icon: "Danger", color: Neo.colors.feedback.error, bg: '#FEE2E2' }; // TODO: map to DS token (red-100 tint)
     if (item.emoji === '🔫') return { icon: "CloseCircle", color: Neo.colors.secondary[500], bg: '#E0E7FF' }; // TODO: map to DS token (indigo-100 tint)
     if (item.emoji === '🤕') return { icon: "Health", color: Neo.colors.primary[500], bg: '#D1FAE5' }; // TODO: map to DS token (green-100 tint)
-    if (item.emoji === '💧') return { icon: "Information", color: Neo.colors.secondary[500], bg: '#DBEAFE' }; // TODO: map to DS token (blue-100 tint)
+    if (item.emoji === '💧') return { icon: "Information", color: Neo.colors.secondary[500], bg: Neo.colors.categoria.ardosia.tint }; // TODO: map to DS token (blue-100 tint)
     return { icon: "Warning2", color: colors.neutral[400], bg: colors.neutral[200] }; // Gray Fallback
   };
 

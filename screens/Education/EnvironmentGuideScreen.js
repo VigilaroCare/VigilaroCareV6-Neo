@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 
     tipBox: {
         flexDirection: 'row', gap: 10,
-        backgroundColor: '#FFF3E0', padding: 16, borderRadius: 12, width: '100%' // TODO: map #FFF3E0 to DS token (amber-50 tint)
+        backgroundColor: Neo.colors.categoria.ocre.tint, padding: 16, borderRadius: 12, width: '100%' // TODO: map #FFF3E0 to DS token (amber-50 tint)
     },
-    tipText: { fontSize: 13, color: Neo.colors.accent?.copper || '#E65100', flex: 1 }
+    tipText: { fontSize: 13, color: Neo.colors.accent?.copper || Neo.colors.categoria.ocre.fill, flex: 1 }
 });

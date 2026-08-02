@@ -58,7 +58,7 @@ function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
 
     const currentUrl = capaList[imgIndex];
     const showImage = !allFailed && !!currentUrl;
-    const color = item.color || '#FF9800';
+    const color = item.color || themeColors.categoria.ocre.fill;
 
     return (
         <TouchableOpacity
@@ -217,7 +217,7 @@ export default function EducationEnvironmentsScreen({ navigation, route }) {
                         </Animated.View>
                     )}
 
-                    {renderSection(t('envScreens.living', 'Convivência e Estar'), 'People', '#FF9800', LISTA_CONVIVENCIA)}
+                    {renderSection(t('envScreens.living', 'Convivência e Estar'), 'People', themeColors.categoria.ocre.fill, LISTA_CONVIVENCIA)}
                     {renderSection(t('envScreens.rest', 'Área de Descanso'), 'MagicStar', '#673AB7', LISTA_INTIMA)}
                     {renderSection(t('envScreens.services', 'Serviços e Utilidades'), 'Briefcase', '#607D8B', LISTA_SERVICOS)}
                     {renderSection(t('envScreens.leisure', 'Lazer e Exterior'), 'Sun1', '#4CAF50', LISTA_LAZER)}
