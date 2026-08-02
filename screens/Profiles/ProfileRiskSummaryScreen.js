@@ -90,7 +90,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                         {item.medidaMitigacao ? (
                             <View style={s.measureBlockMitigacao}>
                                 <View style={s.measureHeader}>
-                                    <NeoIcon name="Heart" size={13} color={themeColors.categoria.ocre.fill} variant="Bold" />
+                                    <NeoIcon name="Heart" size={13} color={Neo.colors.categoria.ocre.fill} variant="Bold" />
                                     <Text style={s.measureTitleMitigacao}>Medida de Mitigação (Redução de Dano)</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaMitigacao}</Text>

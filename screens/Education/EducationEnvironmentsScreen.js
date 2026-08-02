@@ -58,7 +58,7 @@ function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
 
     const currentUrl = capaList[imgIndex];
     const showImage = !allFailed && !!currentUrl;
-    const color = item.color || themeColors.categoria.ocre.fill;
+    const color = item.color || Neo.colors.categoria.ocre.fill;
 
     return (
         <TouchableOpacity
