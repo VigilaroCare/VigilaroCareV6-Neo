@@ -360,6 +360,20 @@ const PHOSPHOR_MAP = {
     Metodologia3D: 'ThreeD',
     ProtejaPet: 'PawPrint',
     PrevencaoIncendio: 'FireExtinguisher',
+
+    // ── Restos da migração Iconsax → Phosphor (mapeados em 2026-08-03) ──────
+    // Seis nomes que ainda caíam no fallback (triângulo de alerta) e enchiam
+    // o console em toda montagem da Home e do menu inferior. Note que
+    // 'gas-station' e 'happyemoji' já tinham entrada em `overrides`, mas
+    // apontavam para si mesmos ('GasStation' → 'GasStation') — como esses
+    // nomes não existem no namespace do Phosphor, o override não resolvia
+    // nada. A tradução real precisa estar aqui.
+    Home: 'House',            // callsites usam name="home" (minúsculo)
+    House2: 'House',          // name="house-2" → House2
+    Box1: 'Package',          // name="box-1" → Box1 (coerente com Box: 'Package')
+    Buildings2: 'Buildings',  // name="buildings-2" → Buildings2
+    Happyemoji: 'Smiley',     // coerente com EmojiHappy: 'Smiley'
+    GasStation: 'GasPump',    // Phosphor chama de GasPump
 };
 
 // variant → Phosphor weight. Bold ancora (fill),
