@@ -154,6 +154,7 @@ class ProfileService {
             const initialResidence = {
                 id: 'default_home',
                 nome: 'Minha Casa Principal',
+                pessoaEmFoco: null,
                 moradia: data.moradia || {},
                 mapping: [],
                 checklists: {},
@@ -212,6 +213,17 @@ class ProfileService {
         return false;
     }
 
+    static async setFocoNaResidencia(residenceId, perfilId) {
+        const data = await this.getData();
+        const residence = data.residences?.find(r => r.id === residenceId);
+        if (residence) {
+            residence.pessoaEmFoco = perfilId;
+            await this.saveData(data);
+            return true;
+        }
+        return false;
+    }
+
     static async addResidence(nome) {
         const data = await this.getData();
         if (!data.residences) {
@@ -222,6 +234,7 @@ class ProfileService {
         const newResidence = {
             id: newId,
             nome,
+            pessoaEmFoco: null,
             moradia: {},
             mapping: [],
             checklists: {},

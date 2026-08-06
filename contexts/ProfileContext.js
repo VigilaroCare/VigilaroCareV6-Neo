@@ -17,6 +17,8 @@ export const ProfileProvider = ({ children }) => {
   const [profiles, setProfiles] = useState([]);
   const [activeProfiles, setActiveProfiles] = useState([]);
   const [primaryProfile, setPrimaryProfileState] = useState(null);
+  const [focusProfile, setFocusProfileState] = useState(null);
+  const [activeResidence, setActiveResidenceState] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const loadProfiles = useCallback(async () => {
@@ -30,13 +32,24 @@ export const ProfileProvider = ({ children }) => {
         const ativos = perfisDoService.filter(p => p.ativo).map(p => p.id);
 
         // BUG-03 FIX: Usar perfisHidratados para que primaryProfile.idade nunca seja undefined
+        let primary = null;
         if (ativos.length === 0 && perfisHidratados.length > 0) {
           setActiveProfiles(perfisHidratados.map(p => p.id));
-          setPrimaryProfileState(perfisHidratados.find(p => p.tipo !== 'pet') || null);
+          primary = perfisHidratados.find(p => p.tipo !== 'pet') || null;
         } else {
           setActiveProfiles(ativos);
-          setPrimaryProfileState(perfisHidratados.find(p => p.ativo && p.tipo !== 'pet') || perfisHidratados.find(p => p.tipo !== 'pet') || null);
+          primary = perfisHidratados.find(p => p.ativo && p.tipo !== 'pet') || perfisHidratados.find(p => p.tipo !== 'pet') || null;
         }
+        setPrimaryProfileState(primary);
+
+        const activeRes = await ProfileService.getActiveResidence();
+        setActiveResidenceState(activeRes);
+
+        let focus = primary;
+        if (activeRes && activeRes.pessoaEmFoco) {
+            focus = perfisHidratados.find(p => p.id === activeRes.pessoaEmFoco) || primary;
+        }
+        setFocusProfileState(focus);
       }
     } catch (error) {
         if (__DEV__) {
@@ -50,6 +63,13 @@ export const ProfileProvider = ({ children }) => {
 
   const setPrimaryProfile = useCallback(async (profile) => {
     if (profile?.id) { await ProfileService.setPerfilAtivo(profile.id); setPrimaryProfileState(profile); await loadProfiles(); }
+  }, [loadProfiles]);
+
+  const setFocusProfile = useCallback(async (profile, residenceId) => {
+    if (profile?.id && residenceId) {
+      await ProfileService.setFocoNaResidencia(residenceId, profile.id);
+      await loadProfiles();
+    }
   }, [loadProfiles]);
 
   const addProfile = useCallback(async (profileData) => {
@@ -134,9 +154,10 @@ export const ProfileProvider = ({ children }) => {
   }, [t, getAgeGroupHelper]);
 
   const contextValue = useMemo(() => ({
-    profiles, activeProfiles, primaryProfile, loading, addProfile, updateProfile, deleteProfile, toggleActiveProfile,
-    setPrimaryProfile, getActiveProfiles, hasAgeGroup, hasPcD, getRelevantContent, getAlertsForProfile, loadProfiles
-  }), [ profiles, activeProfiles, primaryProfile, loading, addProfile, updateProfile, deleteProfile, toggleActiveProfile, setPrimaryProfile, getActiveProfiles, hasAgeGroup, hasPcD, getRelevantContent, getAlertsForProfile, loadProfiles ]);
+    profiles, activeProfiles, primaryProfile, focusProfile, activeResidence, loading,
+    addProfile, updateProfile, deleteProfile, toggleActiveProfile,
+    setPrimaryProfile, setFocusProfile, getActiveProfiles, hasAgeGroup, hasPcD, getRelevantContent, getAlertsForProfile, loadProfiles
+  }), [ profiles, activeProfiles, primaryProfile, focusProfile, activeResidence, loading, addProfile, updateProfile, deleteProfile, toggleActiveProfile, setPrimaryProfile, setFocusProfile, getActiveProfiles, hasAgeGroup, hasPcD, getRelevantContent, getAlertsForProfile, loadProfiles ]);
 
   return <ProfileContext.Provider value={contextValue}>{children}</ProfileContext.Provider>;
 };

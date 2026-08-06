@@ -101,8 +101,8 @@ export default function HomeScreenNeo() {
     const lastNotifUpdate = useRef(0);
     const lastProfileId = useRef(null);
 
-    const { primaryProfile, profiles: contextProfiles } = useProfiles();
-    const currentProfile = primaryProfile;
+    const { focusProfile, profiles: contextProfiles } = useProfiles();
+    const currentProfile = focusProfile;
 
     const { width: SCREEN_W } = useWindowDimensions();
     const insets = useSafeAreaInsets();

@@ -60,6 +60,7 @@ export const getDefaultData = () => ({
     residences: [{
         id: 'default_home',
         nome: 'Minha Casa Principal',
+        pessoaEmFoco: null,
         moradia: { habitantes: [], frequentadores: [] },
         mapping: [],
         checklists: {},

@@ -95,10 +95,11 @@ export default function QuemProtegerScreenNeo() {
     const [nivelPorResidencia, setNivelPorResidencia] = useState({});
     const [scoreResidenciaAtiva, setScoreResidenciaAtiva] = useState(null);
 
-    // Modal de nome de residência (criar / renomear)
+    // Modal de nome de residência
     const [modalNomeVisivel, setModalNomeVisivel] = useState(false);
-    const [editandoResidenciaId, setEditandoResidenciaId] = useState(null);
-    const [nomeDigitado, setNomeDigitado] = useState('');
+    const [novaResidenciaNome, setNovaResidenciaNome] = useState('');
+    const [residenciaContextoMenu, setResidenciaContextoMenu] = useState(null); // qual casa teve "toque longo"
+    const [residenciaParaFoco, setResidenciaParaFoco] = useState(null); // qual casa abrirá o menu de foco
 
     // ── Toast de feedback (não-intrusivo) ───────────────────────────────────
     // Substituição das confirmações modais para ações reversíveis: a ação
@@ -183,12 +184,19 @@ export default function QuemProtegerScreenNeo() {
     // Tocar ATIVA na hora. Sem alerta de confirmação: o próprio cartão muda de
     // estado e o cabeçalho das listas abaixo troca de nome — o feedback está
     // na tela, não num diálogo que precisa ser dispensado.
+    // Tocar ATIVA na hora. Se já estiver ativa, abre o seletor de quem proteger.
     const ativarResidencia = async (res) => {
-        if (res.id === residenciaAtiva?.id) return;
+        if (res.id === residenciaAtiva?.id) {
+            setResidenciaParaFoco(res);
+            return;
+        }
         try {
             await ProfileService.setActiveResidence(res.id);
             await carregar();
             mostrarToast('Home2', t('profiles.residenceActivated', '{{nome}} ativada', { nome: nomeResidencia(res) }));
+            if (!res.pessoaEmFoco) {
+                setTimeout(() => setResidenciaParaFoco(res), 500);
+            }
         } catch (erro) {
             if (__DEV__) console.error('[QuemProteger] ativarResidencia:', erro);
         }
@@ -444,6 +452,7 @@ export default function QuemProtegerScreenNeo() {
                             {residencias.map((res) => {
                                 const ativa = res.id === residenciaAtiva?.id;
                                 const nivelRes = nivelPorResidencia[res.id];
+                                const pessoaFoco = res.pessoaEmFoco ? profiles.find(p => p.id === res.pessoaEmFoco) : null;
                                 return (
                                     // Moldura = estado de proteção da casa (mesma
                                     // gramática do anel do avatar na Home).
@@ -473,8 +482,9 @@ export default function QuemProtegerScreenNeo() {
                                         accessibilityLabel={
                                             nomeResidencia(res)
                                             + (nivelRes ? '. ' + t(nivelRes.labelKey, nivelRes.label) : '')
+                                            + (pessoaFoco ? '. Foco: ' + pessoaFoco.nome : '')
                                         }
-                                        accessibilityHint={t('profiles.residenceHintA11y', 'Toque para monitorar este local. Toque longo para editar.')}
+                                        accessibilityHint={t('profiles.residenceHintA11y', 'Toque para monitorar este local ou mudar o foco de proteção. Toque longo para editar.')}
                                     >
                                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                             <NeoIcon name="Home2" size={20} color={ativa ? '#FFF' : VERDE} variant="Bold" />
@@ -494,11 +504,12 @@ export default function QuemProtegerScreenNeo() {
                                         <Body style={{ marginTop: 10, fontWeight: '800', color: ativa ? '#FFF' : Neo.colors.neutral[900] }} numberOfLines={1}>
                                             {nomeResidencia(res)}
                                         </Body>
-                                        <Caption style={{ marginTop: 4, color: ativa ? 'rgba(255,255,255,0.85)' : Neo.colors.neutral[500] }}>
-                                            {ativa
-                                                ? t('profiles.monitoringNow', 'Monitorando agora')
-                                                : t('profiles.tapToMonitor', 'Tocar para monitorar')}
-                                        </Caption>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                                            {pessoaFoco && <View style={{ width: 22, height: 22, borderRadius: 11, overflow: 'hidden', marginRight: 6, backgroundColor: 'rgba(255,255,255,0.3)' }}><Avatar p={pessoaFoco} tamanho={22} /></View>}
+                                            <Caption style={{ color: ativa ? 'rgba(255,255,255,0.85)' : Neo.colors.neutral[500] }} numberOfLines={1}>
+                                                {pessoaFoco ? pessoaFoco.nome : (ativa ? t('profiles.chooseFocus', 'Escolher foco') : t('profiles.tapToMonitor', 'Tocar para monitorar'))}
+                                            </Caption>
+                                        </View>
                                     </TouchableOpacity>
                                     </LinearGradient>
                                 );
@@ -685,6 +696,50 @@ export default function QuemProtegerScreenNeo() {
                                         </Body>
                                     </TouchableOpacity>
                                 </ScrollView>
+                            )}
+                        </View>
+                    </View>
+                </Modal>
+
+                {/* ── PAINEL DE FOCO: Escolher quem proteger na casa ──────────────────── */}
+                <Modal visible={!!residenciaParaFoco} transparent animationType="slide" onRequestClose={() => setResidenciaParaFoco(null)}>
+                    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'flex-end' }}>
+                        <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPress={() => setResidenciaParaFoco(null)} />
+                        <View style={{
+                            backgroundColor: Neo.colors.neutral.white,
+                            borderTopLeftRadius: 26, borderTopRightRadius: 26,
+                            paddingHorizontal: 24, paddingTop: 12,
+                            paddingBottom: insets.bottom + 20, maxHeight: '85%',
+                        }}>
+                            <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: Neo.colors.neutral[300], alignSelf: 'center', marginBottom: 16 }} />
+                            {residenciaParaFoco && (
+                                <>
+                                    <H3 style={{ marginBottom: 4 }}>{t('profiles.whoToProtectHere', 'Quem proteger aqui?')}</H3>
+                                    <Caption style={{ marginBottom: 20 }}>
+                                        {t('profiles.whoToProtectHelp', 'As notificações e o nível de risco desta casa focarão nesta pessoa.')}
+                                    </Caption>
+                                    <ScrollView showsVerticalScrollIndicator={false}>
+                                        {profiles.map(p => {
+                                            const isFoco = p.id === residenciaParaFoco.pessoaEmFoco;
+                                            return (
+                                                <TouchableOpacity
+                                                    key={p.id}
+                                                    onPress={async () => {
+                                                        await setFocusProfile(p, residenciaParaFoco.id);
+                                                        setResidenciaParaFoco(null);
+                                                        await carregar();
+                                                        mostrarToast('Star1', t('profiles.focusSet', 'Foco em {{nome}}', { nome: p.nome }));
+                                                    }}
+                                                    style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12 }}
+                                                >
+                                                    <Avatar p={p} tamanho={40} />
+                                                    <Body style={{ marginLeft: 12, flex: 1, fontWeight: isFoco ? '800' : '500' }}>{p.nome}</Body>
+                                                    {isFoco && <NeoIcon name="TickCircle" size={20} color={VERDE} variant="Bold" />}
+                                                </TouchableOpacity>
+                                            );
+                                        })}
+                                    </ScrollView>
+                                </>
                             )}
                         </View>
                     </View>
