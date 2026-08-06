@@ -26,8 +26,8 @@
  * O modelo de dados já suportava isto desde sempre (moradia.habitantes[] e
  * moradia.frequentadores[] por residência). Só faltava mostrar.
  */
-import React, { useState, useCallback } from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useCallback, useRef } from 'react';
+import { View, Image, ScrollView, TouchableOpacity, Modal, TextInput, KeyboardAvoidingView, Platform, Animated } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -100,6 +100,51 @@ export default function QuemProtegerScreenNeo() {
     const [editandoResidenciaId, setEditandoResidenciaId] = useState(null);
     const [nomeDigitado, setNomeDigitado] = useState('');
 
+    // ── Toast de feedback (não-intrusivo) ───────────────────────────────────
+    // Substituição das confirmações modais para ações reversíveis: a ação
+    // acontece, o toast confirma o que mudou e some em 2.5s.
+    const [toastMsg, setToastMsg]   = useState('');
+    const [toastIcon, setToastIcon] = useState('TickCircle');
+    const toastAnim = useRef(new Animated.Value(80)).current; // começa abaixo da tela
+    const toastTimer = useRef(null);
+
+    const mostrarToast = (icon, msg) => {
+        if (toastTimer.current) clearTimeout(toastTimer.current);
+        setToastIcon(icon);
+        setToastMsg(msg);
+        Animated.spring(toastAnim, {
+            toValue: 0, friction: 7, tension: 60, useNativeDriver: true,
+        }).start();
+        toastTimer.current = setTimeout(() => {
+            Animated.timing(toastAnim, {
+                toValue: 80, duration: 250, useNativeDriver: true,
+            }).start();
+        }, 2500);
+    };
+
+    // Pill de feedback — renderizado dentro do SafeAreaView para ficar sobre o scroll.
+    const ToastFeedback = () => (
+        <Animated.View
+            pointerEvents="none"
+            style={{
+                position: 'absolute', bottom: insets.bottom + 100, left: 24, right: 24,
+                transform: [{ translateY: toastAnim }],
+                backgroundColor: Neo.colors.neutral[900],
+                borderRadius: 32, paddingVertical: 12, paddingHorizontal: 18,
+                flexDirection: 'row', alignItems: 'center', gap: 10,
+                shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 12,
+                shadowOffset: { width: 0, height: 4 }, elevation: 8,
+            }}
+            accessibilityLiveRegion="polite"
+            accessibilityLabel={toastMsg}
+        >
+            <NeoIcon name={toastIcon} size={18} color={Neo.colors.neutral.white || '#FFF'} variant="Bold" />
+            <Caption style={{ color: Neo.colors.neutral.white || '#FFF', fontWeight: '700', flex: 1 }}>
+                {toastMsg}
+            </Caption>
+        </Animated.View>
+    );
+
     const carregar = async () => {
         try {
             const ativa = await ProfileService.getActiveResidence();
@@ -143,6 +188,7 @@ export default function QuemProtegerScreenNeo() {
         try {
             await ProfileService.setActiveResidence(res.id);
             await carregar();
+            mostrarToast('Home2', t('profiles.residenceActivated', '{{nome}} ativada', { nome: nomeResidencia(res) }));
         } catch (erro) {
             if (__DEV__) console.error('[QuemProteger] ativarResidencia:', erro);
         }
@@ -226,6 +272,8 @@ export default function QuemProtegerScreenNeo() {
         setVinculosDoPerfil(vinculos);
         await loadProfiles();
         await carregar();
+        const rotuloVinc = { habitante: t('profiles.resident', 'Fixo'), frequentador: t('profiles.occasional', 'Eventual'), nenhum: t('profiles.noLink', 'Sem vínculo') };
+        mostrarToast('TickCircle', `${perfilAberto.nome} · ${rotuloVinc[novoVinculo] || novoVinculo}`);
     };
 
     const definirComoPrincipal = async () => {
@@ -233,6 +281,7 @@ export default function QuemProtegerScreenNeo() {
         await setPrimaryProfile(perfilAberto);
         setPerfilPrincipal(perfilAberto);
         await carregar();
+        mostrarToast('Star1', t('profiles.primaryProfileSet', '{{nome}} é o perfil principal', { nome: perfilAberto.nome }));
     };
 
     const excluirPerfil = () => {
@@ -326,7 +375,12 @@ export default function QuemProtegerScreenNeo() {
                     )}
                 </View>
                 <Body style={{ fontWeight: '700', fontSize: 13, marginTop: 6, textAlign: 'center' }} numberOfLines={1}>{p.nome}</Body>
-                {!!detalhe && <Caption style={{ fontSize: 11, textAlign: 'center' }} numberOfLines={1}>{detalhe}</Caption>}
+                {!!detalhe
+                    ? <Caption style={{ fontSize: 11, textAlign: 'center' }} numberOfLines={1}>{detalhe}</Caption>
+                    : <Caption style={{ fontSize: 10, textAlign: 'center', color: Neo.colors.neutral[400] }} numberOfLines={1}>
+                        {t('profiles.tapForLinks', 'Ver vínculos')}
+                      </Caption>
+                }
             </TouchableOpacity>
         );
     };
@@ -674,6 +728,8 @@ export default function QuemProtegerScreenNeo() {
                         </View>
                     </KeyboardAvoidingView>
                 </Modal>
+                {/* Toast de feedback — flutua sobre o conteúdo, sem bloquear interação */}
+                <ToastFeedback />
             </SafeAreaView>
         </AppBackground>
     );
