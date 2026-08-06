@@ -41,11 +41,11 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
 
   const TABS = [
-    { id: 'drv', label: 'Carros', emoji: '🚗' },
-    { id: 'ativa', label: 'Bikes', emoji: '🚴' },
-    { id: 'pedestre', label: 'Pedestre', emoji: '🚸' },
-    { id: 'moto', label: 'Moto', emoji: '🏍️' },
-    { id: 'eletrica', label: 'E-Bikes', emoji: '⚡' },
+    { id: 'drv', label: 'Carros', iconName: 'Car' },
+    { id: 'ativa', label: 'Bikes', iconName: 'Bicycle' },
+    { id: 'pedestre', label: 'Pedestre', iconName: 'Pedestrian' },
+    { id: 'moto', label: 'Moto', iconName: 'Motorcycle' },
+    { id: 'eletrica', label: 'E-Bikes', iconName: 'Lightning' },
   ];
 
   return (
@@ -77,7 +77,7 @@ export default function MobilidadeSeguraScreen({ navigation }) {
                 style={[styles.tab, tabAtiva === tab.id && styles.tabAtiva]}
                 onPress={() => setTabAtiva(tab.id)}
               >
-                <NeoIcon name={tab.icone || 'Car'} size={18} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 4 }} />
+                <NeoIcon name={tab.iconName || 'Car'} size={18} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 4 }} />
                 <Text style={[styles.tabText, tabAtiva === tab.id && styles.tabTextAtiva]}>
                   {tab.label}
                 </Text>
@@ -110,7 +110,10 @@ function ConteudoDRV() {
     <View style={styles.conteudo}>
       {/* O que é DRV? */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.OQueDRV', '🚗 O que é DRV?')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Car" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.OQueDRV', 'O que é DRV?')}</Text>
+        </View>
         <Text style={styles.cardTexto}>
           <Text style={{fontWeight: 'bold'}}>D</Text>ispositivo de <Text style={{fontWeight: 'bold'}}>R</Text>etenção <Text style={{fontWeight: 'bold'}}>V</Text>eicular. 
           É o termo técnico e legal para bebê conforto, cadeirinha e assento de elevação.
@@ -131,7 +134,10 @@ function ConteudoDRV() {
 
       {/* Calculadora rápida */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.QualDispositivoMeuFilhoPrecisa', '📊 Qual dispositivo meu filho precisa?')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="ChartBar" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.QualDispositivoMeuFilhoPrecisa', 'Qual dispositivo meu filho precisa?')}</Text>
+        </View>
         <Text style={styles.cardSubtitulo}>
           {t('headersFirst.selecioneAIdadeParaVerODispositivoRecome', 'Que idade tem a criança?')}
         </Text>
@@ -235,7 +241,10 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
           {/* Posição */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.PosiONoVeCulo', '📍 Posição no Veículo')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="MapPin" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.PosiONoVeCulo', 'Posição no Veículo')}</Text>
+            </View>
             <Text style={styles.secaoTexto}>
               <Text style={styles.textoDestaque}>{dispositivo.posicao}</Text>{'\n'}
               Local: {dispositivo.localizacao}
@@ -244,7 +253,10 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
           {/* Como instalar */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.ComoInstalar', '🔧 Como Instalar')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="Setting2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ComoInstalar', 'Como Instalar')}</Text>
+            </View>
             {dispositivo.comoInstalar.map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
@@ -254,7 +266,10 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
           {/* Como usar */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.ComoUsar', '👶 Como Usar')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="Profile" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ComoUsar', 'Como Usar')}</Text>
+            </View>
             {dispositivo.comoUsar.map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
@@ -264,7 +279,10 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
           {/* Erros comuns */}
           <View style={[styles.secao, styles.secaoAviso]}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.ErrosComunsEVITE', '❌ Erros Comuns (EVITE!)')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="CloseCircle" size={16} color={colors.feedback.error} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ErrosComunsEVITE', 'Erros Comuns (EVITE!)')}</Text>
+            </View>
             {dispositivo.errosComuns.map((item, index) => (
               <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
                 • {item}
@@ -274,7 +292,10 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
 
           {/* Legislação */}
           <View style={[styles.secao, styles.secaoLegislacao]}>
-            <Text style={styles.legislacaoTitulo}>{t('headersFirst.LegislaO', '⚖️ Legislação')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="ShieldTick" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.legislacaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.LegislaO', 'Legislação')}</Text>
+            </View>
             <Text style={styles.legislacaoTexto}>{dispositivo.legislacao}</Text>
             <Text style={styles.multaTexto}>Multa: {dispositivo.multa}</Text>
           </View>
@@ -293,7 +314,10 @@ function ConteudoAtiva() {
     <View style={styles.conteudo}>
       {/* Introdução */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.OQueMobilidadeAtiva', '🚴 O que é Mobilidade Ativa?')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Bicycle" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.OQueMobilidadeAtiva', 'O que é Mobilidade Ativa?')}</Text>
+        </View>
         <Text style={styles.cardTexto}>{MOBILIDADE_ATIVA.definicao}</Text>
         
         <Text style={styles.subtitulo}>{t('headersFirst.benefCios', 'Benefícios:')}</Text>
@@ -368,7 +392,10 @@ function TipoMobilidadeCard({ tipo }) {
         <View style={styles.tipoConteudo}>
           {/* Equipamentos */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.EquipamentosNecessRios', '🛡️ Equipamentos Necessários')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="ShieldTick" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.EquipamentosNecessRios', 'Equipamentos Necessários')}</Text>
+            </View>
             {tipo.equipamentos.map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
@@ -378,7 +405,10 @@ function TipoMobilidadeCard({ tipo }) {
 
           {/* Locais apropriados */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.LocaisApropriados', '✅ Locais Apropriados')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="TickCircle" size={16} color={colors.feedback.success} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.LocaisApropriados', 'Locais Apropriados')}</Text>
+            </View>
             {tipo.locaisApropriados.map((item, index) => (
               <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                 <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
@@ -402,7 +432,10 @@ function TipoMobilidadeCard({ tipo }) {
 
           {/* Regras de segurança */}
           <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>{t('headersFirst.RegrasDeSeguranA', '⚠️ Regras de Segurança')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="Warning2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+              <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasDeSeguranA', 'Regras de Segurança')}</Text>
+            </View>
             {tipo.regrasSeguranca.map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
@@ -413,7 +446,10 @@ function TipoMobilidadeCard({ tipo }) {
           {/* Manutenção */}
           {tipo.manutencao && (
             <View style={styles.secao}>
-              <Text style={styles.secaoTitulo}>{t('headersFirst.ManutenO', '🔧 Manutenção')}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+                <NeoIcon name="Setting2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+                <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ManutenO', 'Manutenção')}</Text>
+              </View>
               {tipo.manutencao.map((item, index) => (
                 <Text key={index} style={styles.listaItem}>
                   • {item}
@@ -446,7 +482,10 @@ function ConteudoPedestre() {
 
       {/* Regras gerais */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.RegrasGeraisDeSeguranA', '📋 Regras Gerais de Segurança')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="ClipboardText" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasGeraisDeSeguranA', 'Regras Gerais de Segurança')}</Text>
+        </View>
         {SEGURANCA_PEDESTRE.regrasGerais.map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
@@ -456,7 +495,10 @@ function ConteudoPedestre() {
 
       {/* Sinalização */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.EntendendoASinalizaO', '🚦 Entendendo a Sinalização')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Warning2" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.EntendendoASinalizaO', 'Entendendo a Sinalização')}</Text>
+        </View>
         {SEGURANCA_PEDESTRE.sinalizacaoVial.map((sinal, index) => (
           <View key={index} style={styles.sinalizacaoItem}>
             <Text style={styles.sinalizacaoSinal}>{sinal.sinal}</Text>
@@ -467,7 +509,10 @@ function ConteudoPedestre() {
 
       {/* Fatores de risco */}
       <View style={[styles.card, styles.cardAviso]}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.FatoresDeRisco', '⚠️ Fatores de Risco')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Warning2" size={20} color={colors.feedback.error} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.FatoresDeRisco', 'Fatores de Risco')}</Text>
+        </View>
         <Text style={styles.cardSubtitulo}>{t('headersFirst.eviteViasCom', 'Evite vias com:')}</Text>
         {SEGURANCA_PEDESTRE.fatoresRisco.map((fator, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
@@ -478,7 +523,10 @@ function ConteudoPedestre() {
 
       {/* Dicas para noite */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.SeguranANoite', '🌙 Segurança à Noite')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Moon" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.SeguranANoite', 'Segurança à Noite')}</Text>
+        </View>
         {SEGURANCA_PEDESTRE.dicas_seguranca_noite.map((dica, index) => (
           <Text key={index} style={styles.listaItem}>
             • {dica}
@@ -488,7 +536,10 @@ function ConteudoPedestre() {
 
       {/* Crianças específicas */}
       <View style={[styles.card, styles.cardDestaque]}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.CuidadosComCrianAs', '👶 Cuidados com Crianças')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Profile" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.CuidadosComCrianAs', 'Cuidados com Crianças')}</Text>
+        </View>
         {SEGURANCA_PEDESTRE.criancas_especificas.map((cuidado, index) => (
           <Text key={index} style={styles.listaItem}>
             • {cuidado}
@@ -538,7 +589,10 @@ function ConteudoMoto() {
 
       {/* Regras para passageiro */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.RegrasParaPassageiro', '👤 Regras para Passageiro')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Profile" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasParaPassageiro', 'Regras para Passageiro')}</Text>
+        </View>
         {SEGURANCA_MOTO.regras_passageiro.map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
@@ -548,7 +602,10 @@ function ConteudoMoto() {
 
       {/* Regras para piloto */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.RegrasParaPiloto', '🏍️ Regras para Piloto')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Motorcycle" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasParaPiloto', 'Regras para Piloto')}</Text>
+        </View>
         {SEGURANCA_MOTO.regras_piloto.map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
@@ -558,7 +615,10 @@ function ConteudoMoto() {
 
       {/* Riscos específicos */}
       <View style={[styles.card, styles.cardAviso]}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.RiscosEspecFicosDasMotos', '⚠️ Riscos Específicos das Motos')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Warning2" size={20} color={colors.feedback.error} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.RiscosEspecFicosDasMotos', 'Riscos Específicos das Motos')}</Text>
+        </View>
         {SEGURANCA_MOTO.riscos_especificos.map((risco, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
             • {risco}
@@ -568,7 +628,10 @@ function ConteudoMoto() {
 
       {/* Emergência */}
       <View style={[styles.card, styles.cardEmergencia]}>
-        <Text style={styles.emergenciaTitulo}>{t('headersFirst.EmCasoDeAcidente', '🚨 Em caso de acidente')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Danger" size={20} color={Neo.colors.primary[600]} style={{ marginRight: 8 }} />
+          <Text style={[styles.emergenciaTitulo, { marginBottom: 0 }]}>{t('headersFirst.EmCasoDeAcidente', 'Em caso de acidente')}</Text>
+        </View>
         <Text style={styles.emergenciaNumero}>{t('headersFirst.sAMU192', 'SAMU: 192')}</Text>
         <Text style={styles.emergenciaNumero}>{t('headersFirst.bombeiros193', 'Bombeiros: 193')}</Text>
         <Text style={styles.emergenciaNumero}>{t('headersFirst.pRF191', 'PRF: 191')}</Text>
@@ -586,7 +649,10 @@ function ConteudoEletrica() {
     <View style={styles.conteudo}>
       {/* Introdução */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.MicromobilidadeElTrica', '⚡ Micromobilidade Elétrica')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Lightning" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.MicromobilidadeElTrica', 'Micromobilidade Elétrica')}</Text>
+        </View>
         <Text style={styles.cardTexto}>{MICROMOBILIDADE_ELETRICA.definicao}</Text>
         <Text style={[styles.cardTexto, { marginTop: 8 }]}>{MICROMOBILIDADE_ELETRICA.contexto}</Text>
       </View>
@@ -625,7 +691,10 @@ function ConteudoEletrica() {
 
       {/* Riscos */}
       <View style={[styles.card, styles.cardAviso]}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.RiscosDeAcidentes', '⚠️ Riscos de Acidentes')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="Warning2" size={20} color={colors.feedback.error} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.RiscosDeAcidentes', 'Riscos de Acidentes')}</Text>
+        </View>
         {MICROMOBILIDADE_ELETRICA.riscos.map((risco, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>• {risco}</Text>
         ))}
@@ -633,7 +702,10 @@ function ConteudoEletrica() {
 
       {/* Prevenção */}
       <View style={styles.card}>
-        <Text style={styles.cardTitulo}>{t('headersFirst.PrevenO', '🛡️ Prevenção')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+          <NeoIcon name="ShieldTick" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.PrevenO', 'Prevenção')}</Text>
+        </View>
         {MICROMOBILIDADE_ELETRICA.prevencao.map((prev, index) => (
           <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}>
               <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginTop: 2 }} />

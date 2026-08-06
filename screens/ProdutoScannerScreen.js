@@ -21,7 +21,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
   const callCIATOX = () => {
     NeoAlert.alert(
-      '📞 Ligar para CIATOX',
+      'Ligar para CIATOX',
       `${telefoneCiatox}\n\nDeseja ligar para o Centro de Intoxicação?`,
       [
         { text: 'Cancelar', style: 'cancel' },
@@ -67,7 +67,10 @@ export default function ProdutoScannerScreen({ route, navigation }) {
         {/* Componentes */}
         {produto.componentes && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{t('headersFirst.Componentes', '🧪 Componentes')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+              <NeoIcon name="TestTube" size={20} color={colors.neutral[900]} style={{ marginRight: 8 }} />
+              <Text style={[styles.sectionTitle, { marginBottom: 0 }]}>{t('headersFirst.Componentes', 'Componentes')}</Text>
+            </View>
             {produto.componentes.map((comp, index) => (
               <View key={index} style={styles.item}>
                 <Text style={styles.bullet}>•</Text>
@@ -79,7 +82,10 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
         {/* Riscos */}
         <View style={[styles.section, styles.riscosSection]}>
-          <Text style={styles.sectionTitle}>{t('headersFirst.RiscosEPerigos', '⚠️ Riscos e Perigos')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+            <NeoIcon name="Warning2" size={20} color={colors.neutral[900]} style={{ marginRight: 8 }} />
+            <Text style={[styles.sectionTitle, { marginBottom: 0 }]}>{t('headersFirst.RiscosEPerigos', 'Riscos e Perigos')}</Text>
+          </View>
           {produto.riscos.map((risco, index) => (
             <View key={index} style={styles.item}>
               <NeoIcon name="Warning2" size={16} color={Neo.colors.feedback.warning} variant="Bold" />
@@ -90,26 +96,41 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
         {/* Primeiros Socorros */}
         <View style={[styles.section, styles.socorrosSection]}>
-          <Text style={styles.sectionTitle}>{t('headersFirst.PrimeirosSocorros', '🩹 Primeiros Socorros')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+            <NeoIcon name="Health" size={20} color={colors.neutral[900]} style={{ marginRight: 8 }} />
+            <Text style={[styles.sectionTitle, { marginBottom: 0 }]}>{t('headersFirst.PrimeirosSocorros', 'Primeiros Socorros')}</Text>
+          </View>
           
           <View style={styles.socorroItem}>
-            <Text style={styles.socorroTitulo}>{t('headersFirst.SeINGERIU', '💧 Se INGERIU:')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+              <NeoIcon name="Drop" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
+              <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.SeINGERIU', 'Se INGERIU:')}</Text>
+            </View>
             <Text style={styles.socorroTexto}>{produto.primeiros_socorros.ingestao}</Text>
           </View>
 
           <View style={styles.socorroItem}>
-            <Text style={styles.socorroTitulo}>{t('headersFirst.ContatoComOLHOS', '👁️ Contato com OLHOS:')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+              <NeoIcon name="Eye" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
+              <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.ContatoComOLHOS', 'Contato com OLHOS:')}</Text>
+            </View>
             <Text style={styles.socorroTexto}>{produto.primeiros_socorros.olhos}</Text>
           </View>
 
           <View style={styles.socorroItem}>
-            <Text style={styles.socorroTitulo}>{t('headersFirst.ContatoComPELE', '✋ Contato com PELE:')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+              <NeoIcon name="Hand" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
+              <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.ContatoComPELE', 'Contato com PELE:')}</Text>
+            </View>
             <Text style={styles.socorroTexto}>{produto.primeiros_socorros.pele}</Text>
           </View>
 
           {produto.primeiros_socorros.inalacao && (
             <View style={styles.socorroItem}>
-              <Text style={styles.socorroTitulo}>{t('headersFirst.INALAO', '💨 INALAÇÃO:')}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
+                <NeoIcon name="Wind" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
+                <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.INALAO', 'INALAÇÃO:')}</Text>
+              </View>
               <Text style={styles.socorroTexto}>{produto.primeiros_socorros.inalacao}</Text>
             </View>
           )}
@@ -117,7 +138,10 @@ export default function ProdutoScannerScreen({ route, navigation }) {
 
         {/* Prevenção */}
         <View style={[styles.section, styles.prevencaoSection]}>
-          <Text style={styles.sectionTitle}>{t('headersFirst.ComoPrevenirAcidentes', '🛡️ Como Prevenir Acidentes')}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+            <NeoIcon name="ShieldTick" size={20} color={colors.neutral[900]} style={{ marginRight: 8 }} />
+            <Text style={[styles.sectionTitle, { marginBottom: 0 }]}>{t('headersFirst.ComoPrevenirAcidentes', 'Como Prevenir Acidentes')}</Text>
+          </View>
           {produto.prevencao.map((prev, index) => (
             <View key={index} style={styles.item}>
               <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[600]} variant="Bold" />

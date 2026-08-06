@@ -234,7 +234,7 @@ export default function HomeMappingScreen({ navigation, route }) {
           </TouchableOpacity>
         )}
         <Text style={styles.headerTitle}>
-          {isOnboarding ? 'Raio-X do Lar 🏠' : (activeHouseName ? `Mapeamento: ${activeHouseName}` : 'Mapeamento da Casa')}
+          {isOnboarding ? 'Raio-X do Lar' : (activeHouseName ? `Mapeamento: ${activeHouseName}` : 'Mapeamento da Casa')}
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate('MainTabs')}>
           <NeoIcon name="Home2" size={24} color={Colors.primary} />
@@ -325,7 +325,10 @@ export default function HomeMappingScreen({ navigation, route }) {
         </View>
 
         {/* 6. PRIORIDADES (Adicionado) */}
-        <Text style={styles.sectionTitle}>{t('headersFirst.prioridadesDeSeguranA', 'Prioridades de Segurança 🚨')}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: Spacing.lg, marginBottom: Spacing.xs }}>
+          <NeoIcon name="Danger" size={20} color={Colors.textPrimary} style={{ marginRight: 8 }} />
+          <Text style={[styles.sectionTitle, { marginTop: 0, marginBottom: 0 }]}>{t('headersFirst.prioridadesDeSeguranA', 'Prioridades de Segurança')}</Text>
+        </View>
         <Text style={styles.sectionSubtitle}>{t('headersFirst.oQueMaisTePreocupaHoje', 'O que mais te preocupa hoje?')}</Text>
         <View style={styles.grid}>
           {[

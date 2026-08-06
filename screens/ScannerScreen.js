@@ -253,7 +253,7 @@ export default function ScannerScreen({ navigation, route }) {
       } catch (proxyErr) {
         if (__DEV__) console.error('[Scanner] ❌ Proxy offline:', proxyErr.message);
         NeoAlert.alert(
-          '⚠️ Servidor indisponível',
+          'Servidor indisponível',
           'O servidor de análise (proxy) não está acessível.\n\n' +
           'Verifique se o backend proxy está rodando:\n' +
           `📍 ${Config.VIGILARO_PROXY_URL}\n\n` +
@@ -299,11 +299,11 @@ export default function ScannerScreen({ navigation, route }) {
       // Mensagem específica por tipo de erro
       if (error.name === 'AbortError') {
         NeoAlert.alert(
-          '⏱️ Tempo esgotado',
+          'Tempo esgotado',
           'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes',
         );
       } else if (error.message?.includes('Network') || error.message?.includes('fetch')) {
-        NeoAlert.alert('📡 Sem conexão', 'Verifique sua conexão com a internet e tente novamente.');
+        NeoAlert.alert('Sem conexão', 'Verifique sua conexão com a internet e tente novamente.');
       } else {
         NeoAlert.alert('Erro', 'Falha na análise. Tente novamente.');
       }
@@ -342,7 +342,7 @@ export default function ScannerScreen({ navigation, route }) {
       if (__DEV__) console.log('[Scanner] ⏭️ URL detectada, mudando para foto do rótulo');
       setCurrentMode('label_scan');
       AccessibilityInfo.announceForAccessibility(t('scanner.barcodeUrlDetected', 'Código lido é um link. Câmera alternada para foto do rótulo.'));
-      NeoAlert.alert('📷 Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
+      NeoAlert.alert('Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
       setTimeout(() => setIsAnalyzing(false), 500);
       return;
     }
@@ -375,7 +375,7 @@ export default function ScannerScreen({ navigation, route }) {
 
           // Alerta breve informativo — atribui causa ao fabricante, não ao app
           NeoAlert.alert(
-            '📷 Fotografe o rótulo',
+            'Fotografe o rótulo',
             `O fabricante deste produto ainda não o cadastrou nas bases de dados públicas mundiais (código ${data}).\n\nMas não se preocupe — fotografe o rótulo e nossa IA analisará os ingredientes e riscos em segundos.`,
             [{ text: 'Entendi' }],
           );
