@@ -21,7 +21,6 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
@@ -98,10 +97,6 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                     <ReviewImage
                         source={require('../../assets/illustrations/pad/hero_dispositivos_protecao.png')}
                         style={styles.heroImage}
-                    />
-                    <LinearGradient
-                        colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        style={StyleSheet.absoluteFill}
                     />
                 </Animated.View>
             </View>

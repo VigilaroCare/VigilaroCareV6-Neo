@@ -19,7 +19,6 @@ import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
@@ -388,14 +387,9 @@ export default function TravelSafetyGuideScreen({ navigation }) {
                         style={{ width: '100%', height: '100%' }}
                         resizeMode="cover"
                     />
-                    <LinearGradient
-                        colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        locations={[0.3, 1]}
-                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}
-                    >
+                    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}>
                         <H2 style={{ color: Neo.colors.neutral.white, marginBottom: 4 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</H2>
-                        <Small style={{ color: 'rgba(255,255,255,0.8)' }}>Recomendações e cautela</Small>
-                    </LinearGradient>
+                    </View>
                 </Animated.View>
 
                 {trip ? (

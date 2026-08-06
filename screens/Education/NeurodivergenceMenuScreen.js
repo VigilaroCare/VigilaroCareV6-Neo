@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, ScrollView, TouchableOpacity, StyleSheet, Animated, Image, Text } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AppBackground from '../../components/AppBackground';
@@ -9,14 +8,13 @@ import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import NeoIcon from '../../components/NeoIcon';
 import { H1, Caption } from '../../components/NeoTypography';
 import { useTranslation } from 'react-i18next';
-import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors } from '../../utils/ThemeContext';
 import { NEURODIVERGENCE_DATA } from '../../data/neurodivergence_data';
 
 export default function NeurodivergenceMenuScreen({ navigation, route }) {
     const insets = useSafeAreaInsets();
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
-    const isDark = useIsDark();
     const textBody = themeColors.neutral[700];
 
     const data = NEURODIVERGENCE_DATA;
@@ -94,11 +92,6 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                         accessibilityLabel={data.title}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
                     />
                     <View style={{
                         position: 'absolute',

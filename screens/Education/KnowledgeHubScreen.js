@@ -292,11 +292,6 @@ export default function KnowledgeHubScreen({ navigation }) {
                         resizeMode="cover"
                         accessibilityLabel={title}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,

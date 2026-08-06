@@ -59,7 +59,8 @@ import PictogramTile from '../components/PictogramTile';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
-import GlassProfileRing from '../components/GlassProfileRing';
+import GlassProfileRing, { getNivelRingColors } from '../components/GlassProfileRing';
+import { LinearGradient } from 'expo-linear-gradient';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -91,6 +92,7 @@ export default function HomeScreenNeo() {
     const [scoreData, setScoreData] = useState({ geral: 0, ambientes: {}, pendencias: 0 });
     const [familyMeta, setFamilyMeta] = useState({ totalMoradoresEsperados: 0 });
     const [activeResidence, setActiveResidence] = useState(null);
+    const [nivelProtecao, setNivelProtecao] = useState(null);
     const [imageError, setImageError] = useState(false);
 
     const [monitorExpanded, setMonitorExpanded] = useState(false);
@@ -252,6 +254,9 @@ export default function HomeScreenNeo() {
             const sData = await ScoreService.getScoreCompleto();
             setScoreData(sData);
 
+            const nivel = await ScoreService.getNivelProtecao(sData);
+            setNivelProtecao(nivel);
+
         } catch (e) {
             if (__DEV__) {
                 console.log('HomeScreenNeo loadData error:', e);
@@ -357,14 +362,17 @@ export default function HomeScreenNeo() {
     const chipBg = isDark
         ? withAlpha(themeColors.primary[700], 0.14)
         : themeColors.primary[100];
-    const chipBorder = isDark
-        ? withAlpha(themeColors.primary[700], 0.32)
-        : themeColors.primary[200];
     // textOn.brand já resolve por tema (#065F46 no light, #34D399 no dark) e é
     // aferido em AA. O código anterior lia Neo.colors (paleta LIGHT sempre):
     // trocar por themeColors.primary[200] teria escurecido o texto no dark.
     const chipText = themeColors.textOn.brand;
     const chipIconColor = themeColors.textOn.brand;
+    // Ícone da casinha ecoa o TOM do nível (textOn.* é AA nas superfícies
+    // claras dos dois temas). O texto do chip permanece brand — o eco de
+    // estado é a moldura + ícone, não o nome da casa inteiro colorido.
+    const chipLevelIconColor = (nivelProtecao && nivelProtecao.tone !== 'muted' && themeColors.textOn[nivelProtecao.tone])
+        ? themeColors.textOn[nivelProtecao.tone]
+        : chipIconColor;
 
     return (
         <AppBackground>
@@ -383,30 +391,50 @@ export default function HomeScreenNeo() {
                         <H2 style={[s.greetingText, { color: textPrimary }]} numberOfLines={1} accessibilityRole="header">
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
-                        <View
-                            style={[s.residenceChip, { backgroundColor: chipBg, borderColor: chipBorder }]}
-                            accessible
-                            accessibilityRole="summary"
-                            accessibilityLabel={t('home.activeResidence', 'Moradia ativa') + ': ' + houseName}
+                        {/* Moldura do chip = mesma gramática do anel do avatar
+                            (nível de proteção da residência ativa). ECO, não
+                            duplicata: o selo com ícone de estado fica só no
+                            avatar — dois alarmes idênticos lado a lado seria
+                            ruído. Sem nível ainda (load), gradiente neutro. */}
+                        <LinearGradient
+                            colors={getNivelRingColors(nivelProtecao?.key)}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                            style={s.residenceChipRing}
                         >
-                            <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
-                            <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
-                        </View>
+                            <View
+                                style={[s.residenceChip, { backgroundColor: chipBg }]}
+                                accessible
+                                accessibilityRole="summary"
+                                accessibilityLabel={
+                                    t('home.activeResidence', 'Moradia ativa') + ': ' + houseName
+                                    + (nivelProtecao ? '. ' + t(nivelProtecao.labelKey, nivelProtecao.label) + '.' : '')
+                                }
+                            >
+                                <NeoIcon name="Home2" size={14} color={chipLevelIconColor} variant="Bold" />
+                                <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
+                            </View>
+                        </LinearGradient>
                     </View>
 
                     <TappablePressable
                         onPress={() => navigateWithHaptic('QuemProteger')}
                         style={s.profileRingPress}
-                        accessibilityLabel={t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })}
+                        accessibilityLabel={
+                            t('home.openProfileSelector', 'Perfil ativo: {{name}}. Toque para trocar.', { name: currentProfile?.nome || t('home.myProfile') })
+                            + (nivelProtecao ? ' ' + t(nivelProtecao.labelKey, nivelProtecao.label) + '.' : '')
+                        }
                     >
                         <GlassProfileRing
                             profile={currentProfile}
                             score={scoreData.geral}
+                            nivel={nivelProtecao}
+                            showBadge
                             imageError={imageError}
                             onImageError={() => setImageError(true)}
                             resolveUri={ProfileService.resolveImageUri}
-                            size={48}
-                            ringWidth={3}
+                            size={56}
+                            ringWidth={3.5}
                         />
                     </TappablePressable>
                 </View>
@@ -421,8 +449,8 @@ export default function HomeScreenNeo() {
                         // Respiro redistribuido (soma zero, preserva "Home sem
                         // scroll"): +6 no topo (era 0) tirado do clearance de
                         // baixo (era 96/128). O header voltou a ser uma unica
-                        // linha (saudacao+chip numa coluna, avatar full-size
-                        // 48px centralizado contra ESSE bloco de 2 linhas — ver
+                        // linha (saudacao+chip numa coluna, avatar 56px
+                        // centralizado contra ESSE bloco de 2 linhas — ver
                         // greetingGroup) em vez de duas fileiras empilhadas;
                         // isso mantem a altura do header igual a original, sem
                         // precisar encolher o avatar pra sobrar espaco.
@@ -594,17 +622,23 @@ const s = StyleSheet.create({
         lineHeight: 29,
         letterSpacing: -0.4,
     },
+    // Moldura gradiente do chip — mesmo peso do anel do avatar (3 vs 3.5;
+    // o padding faz o papel de borda, a borda sólida antiga saiu para não
+    // somar duas molduras).
+    residenceChipRing: {
+        alignSelf: 'flex-start',
+        marginTop: 6,
+        padding: 3,
+        borderRadius: Neo.radius.pill,
+    },
     residenceChip: {
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'flex-start',
         gap: 6,
-        marginTop: 6,
         paddingHorizontal: 11,
         paddingVertical: 5,
         borderRadius: Neo.radius.pill,
-        // bg/border vêm inline (chipBg/chipBorder) p/ adaptar ao tema
-        borderWidth: 1,
+        // bg vem inline (chipBg) p/ adaptar ao tema
     },
     residenceChipText: {
         fontSize: 12.5,

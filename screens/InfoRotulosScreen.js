@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 /**
  * InfoRotulosScreen.js
  * Hub do módulo InfoRótulos
@@ -213,11 +212,6 @@ export default function InfoRotulosScreen() {
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                         accessibilityLabel={titleStr}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
                     />
                     <View style={{ position: 'absolute', bottom: 24, paddingHorizontal: 22, width: '100%' }}>
                         <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38 }}>

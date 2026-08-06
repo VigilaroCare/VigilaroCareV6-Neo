@@ -120,7 +120,6 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
 
 
     const titleStr = t('headersFirst.atividadesEventuais', 'Atividades Eventuais');
-    const subtitleStr = t('monitoramentoPreventivoProtocolosParaOSe', 'Monitoramento Preventivo: Protocolos para o seu lar');
     const capaSource = require('../assets/illustrations/pad/hero_preventivo.png');
     const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -157,7 +156,6 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     scrollY={scrollY}
                     source={capaSource}
                     title={titleStr}
-                    subtitle={subtitleStr}
                     height={260}
                 />
 

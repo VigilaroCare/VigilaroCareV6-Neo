@@ -8,7 +8,6 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';
-import { LinearGradient } from 'expo-linear-gradient';
 import { H1, H2, Small, Caption } from '../../components/NeoTypography';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +62,6 @@ export default function ProdutosPerigososScreen({ navigation }) {
   const capaUrl = require('../../assets/illustrations/pad/Novo-Acidente-1.jpg'); // Cleaning supplies
 
   const title = t('headersFirst.chemicals', 'Produtos Químicos');
-  const subtitle = t('headersFirst.riscosInvisVeisEmCasa', 'Riscos invisíveis em casa');
 
   return (
     <View style={{ flex: 1, backgroundColor: surface }}>
@@ -101,13 +99,6 @@ export default function ProdutosPerigososScreen({ navigation }) {
                 resizeMode="cover"
             />
             
-            {/* Gradient para legibilidade do título e fusão com o fundo */}
-            <LinearGradient
-                colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                locations={[0, 0.35, 0.85, 1]}
-                style={StyleSheet.absoluteFill}
-            />
-
             {/* Hero title — viaja junto com a parallax */}
             <View style={{
                 position: 'absolute',

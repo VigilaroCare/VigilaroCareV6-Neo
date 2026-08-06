@@ -10,6 +10,7 @@ import { DS } from '../../utils/DesignSystem2026';
 import { PET_SPECIES, PET_SIZES } from '../../data/onboarding_data';
 import { Chip, NeoInput } from './components';
 import { ss } from './styles';
+import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
 
 const C = DS.colors;
 const S = DS.spacing;
@@ -33,6 +34,9 @@ export default function PetFormStep({
     onPickPhoto,
     onSave,
     onToggleArray,
+    residencesList,
+    residenceRelationships,
+    onChangeResidenceRelationship,
 }) {
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -88,6 +92,12 @@ export default function PetFormStep({
                         <Chip key={c.id} label={c.label} selected={formPetConditions.includes(c.id)} onPress={() => onToggleArray(formPetConditions, setFormPetConditions, c.id)} />
                     ))}
                 </View>
+
+                <ResidenceLinksPicker
+                    residencesList={residencesList}
+                    relationships={residenceRelationships}
+                    onChange={onChangeResidenceRelationship}
+                />
 
                 {/* ── Vínculo Pet↔Cômodo ──
                     Permite o app entender que o gatinho passa o dia na sala

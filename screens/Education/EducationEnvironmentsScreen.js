@@ -12,7 +12,6 @@ import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
     Animated, Image
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -208,11 +207,6 @@ export default function EducationEnvironmentsScreen({ navigation, route }) {
                                 source={typeof heroImage === 'string' ? { uri: heroImage } : heroImage}
                                 style={{ width: '100%', height: '100%' }}
                                 resizeMode="cover"
-                            />
-                            <LinearGradient
-                                colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.2)', isDark ? '#1A1A1A' : '#FCFBF8']}
-                                locations={[0, 0.4, 1]}
-                                style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
                             />
                         </Animated.View>
                     )}

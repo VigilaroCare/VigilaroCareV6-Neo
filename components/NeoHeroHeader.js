@@ -1,31 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from './ReviewImage';
-import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import { useThemeColors } from '../utils/ThemeContext';
 
 /**
  * NeoHeroHeader
- * 
+ *
  * Componente padronizado para "Headers com Imagem de Contexto" (Parallax).
- * Resolve inconsistências de altura, sombreamento e animação que afligiam 
- * telas com implementações manuais espalhadas.
- * 
+ * Resolve inconsistências de altura e animação que afligiam telas com
+ * implementações manuais espalhadas. Imagem sem gradiente/sombreamento —
+ * mostra o contexto por si só; só o título fica sobreposto.
+ *
  * @param {Animated.Value} scrollY - Obrigatório. O Animated.Value do ScrollView pai.
  * @param {any} source - Imagem (require) ou URI ({ uri: '...' }).
  * @param {string} title - Título principal exibido sobre a imagem.
- * @param {string} [subtitle] - Subtítulo opcional abaixo do título.
  * @param {number} [height=260] - Altura base do Hero. Padrão unificado: 260px.
  */
 export default function NeoHeroHeader({
     scrollY,
     source,
     title,
-    subtitle,
     height = 260,
 }) {
     const themeColors = useThemeColors();
-    const isDark = useIsDark();
 
     // Calcula os transform factors baseados na altura informada
     const heroTransform = scrollY ? [
@@ -46,19 +43,6 @@ export default function NeoHeroHeader({
         }
     ] : [];
 
-    // O Gradiente Padrão-Ouro (Gold Standard) - Ajustado para ser mais suave
-    // No topo: rgba(0,0,0,0.10) -> apenas o suficiente para a back-arrow ser visível se encostar lá.
-    // Transição suave no meio, escurecendo até 0.50 na base onde o texto branco descansa.
-    const gradientColors = [
-        'rgba(0,0,0,0.10)', 
-        'transparent', 
-        'rgba(0,0,0,0.15)', 
-        'rgba(0,0,0,0.50)',
-        isDark ? themeColors.neutral[100] : themeColors.neutral.white
-    ];
-
-    const gradientLocations = [0, 0.35, 0.65, 0.95, 1];
-
     return (
         <Animated.View style={[
             styles.container,
@@ -73,22 +57,11 @@ export default function NeoHeroHeader({
                 style={StyleSheet.absoluteFill}
                 resizeMode="cover"
             />
-            
-            <LinearGradient
-                colors={gradientColors}
-                locations={gradientLocations}
-                style={StyleSheet.absoluteFill}
-            />
 
             <View style={styles.textContainer}>
                 {!!title && (
                     <Text style={styles.title}>
                         {title}
-                    </Text>
-                )}
-                {!!subtitle && (
-                    <Text style={styles.subtitle}>
-                        {subtitle}
                     </Text>
                 )}
             </View>
@@ -116,9 +89,4 @@ const styles = StyleSheet.create({
         lineHeight: 38,
         marginBottom: 8,
     },
-    subtitle: {
-        fontSize: 17,
-        color: 'rgba(255,255,255,0.9)',
-        lineHeight: 24,
-    }
 });

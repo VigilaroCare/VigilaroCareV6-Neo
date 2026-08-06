@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 /**
  * UtensiliosReviewsScreen.js
  * Lista de Reviews Educativos — Utensílios Domésticos
@@ -131,11 +130,6 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                         resizeMode="cover"
                         accessibilityLabel={title}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -148,7 +142,6 @@ export default function UtensiliosReviewsScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
                         </Text>

@@ -55,6 +55,7 @@ const SENSITIVE_KEYS = new Set([
     '@medications_timeline',    // MedicationsScreen
     '@medications_history',     // MedicationsScreen
     '@vigilaro_medications_v1', // HealthService, MedicationService
+    '@vigilaro_medication_reminders', // MedicationReminderService (medicamentos + horários por perfil)
     '@medical_history',         // HealthService
     '@treatments',              // HealthService
     '@appointments',            // HealthService

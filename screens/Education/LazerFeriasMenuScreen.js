@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef } from 'react';
 import { View, TouchableOpacity, StyleSheet, ScrollView, Animated, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -105,11 +104,6 @@ export default function LazerFeriasMenuScreen({ navigation }) {
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                         accessibilityLabel={title}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
                     />
                     <View style={{
                         position: 'absolute',

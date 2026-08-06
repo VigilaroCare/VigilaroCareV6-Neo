@@ -10,6 +10,7 @@ import { DS } from '../../utils/DesignSystem2026';
 import { GENDERS, BOND_TYPES, SPECIAL_CONDITIONS, formatDOB } from '../../data/onboarding_data';
 import { Chip, NeoInput } from './components';
 import { ss } from './styles';
+import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
 
 const C = DS.colors;
 const S = DS.spacing;
@@ -26,6 +27,9 @@ export default function HumanFormStep({
     onPickPhoto,
     onSave,
     onToggleArray,
+    residencesList,
+    residenceRelationships,
+    onChangeResidenceRelationship,
 }) {
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -71,6 +75,12 @@ export default function HumanFormStep({
                         <Chip key={b.id} label={b.label} selected={formBond === b.id} onPress={() => setFormBond(b.id)} />
                     ))}
                 </View>
+
+                <ResidenceLinksPicker
+                    residencesList={residencesList}
+                    relationships={residenceRelationships}
+                    onChange={onChangeResidenceRelationship}
+                />
 
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>Condições Especiais (opcional)</Caption>
                 <View style={ss.chipRow}>

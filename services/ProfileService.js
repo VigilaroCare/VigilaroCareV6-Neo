@@ -125,15 +125,20 @@ class ProfileService {
             return uri;
         }
 
+        // Segmentos relativos ('.'/'..') nunca são nomes de arquivo válidos —
+        // sem este guard, um valor legado corrompido resolveria para FORA do
+        // sandbox de documentos (path traversal).
+        const isSafeName = (name) => !!name && name !== '.' && name !== '..';
+
         // Caminho absoluto legado contendo DocumentPicker ou /Documents/
         if (uri.includes('DocumentPicker') || uri.includes('/Documents/')) {
             const fileName = uri.split('/').pop();
-            return FileSystem.documentDirectory + fileName;
+            return isSafeName(fileName) ? FileSystem.documentDirectory + fileName : null;
         }
 
         // Nome de arquivo relativo sem barras nem protocolo
         if (!uri.includes('/') && !uri.includes('://')) {
-            return FileSystem.documentDirectory + uri;
+            return isSafeName(uri) ? FileSystem.documentDirectory + uri : null;
         }
 
         return uri;
@@ -889,7 +894,7 @@ class ProfileService {
      * Aceita formato ISO (YYYY-MM-DD) e legado BR (DD/MM/YYYY).
      */
     static calcularIdade(dataNascimento) {
-        if (!dataNascimento) return null;
+        if (!dataNascimento || typeof dataNascimento !== 'string') return null;
 
         let birthDate;
         if (dataNascimento.includes('-')) {
@@ -911,6 +916,10 @@ class ProfileService {
         if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
+
+        // Data futura ou idade impossível: inválida. Sem este guard, uma data
+        // futura vira idade negativa e getFaixaEtaria() classifica como 'baby'.
+        if (age < 0 || age > 130) return null;
 
         return age;
     }

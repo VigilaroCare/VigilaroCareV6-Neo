@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoHorizontalCard from '../components/NeoHorizontalCard';
@@ -103,11 +102,6 @@ export default function CuidarProtegerHubScreen({ navigation }) {
                         source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
                     />
                     <View style={{
                         position: 'absolute',

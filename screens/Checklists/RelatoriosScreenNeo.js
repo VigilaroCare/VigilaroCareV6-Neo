@@ -221,7 +221,6 @@ export default function RelatoriosScreenNeo({ navigation }) {
                     scrollY={scrollY}
                     source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                     title={t('reports.title', 'Vistorias da Casa')}
-                    subtitle={t('reports.subtitle', 'Acompanhe as rondas de segurança')}
                     height={260}
                 />
                     {loading ? (

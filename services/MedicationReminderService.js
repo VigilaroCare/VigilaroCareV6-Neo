@@ -10,7 +10,7 @@
  * método separado (sendRemoteNotification).
  */
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Storage } from '../utils/SecureStorage';
 import * as Notifications from 'expo-notifications';
 import NotificationService from './NotificationService';
 import SubscriptionService from './SubscriptionService';
@@ -76,7 +76,7 @@ class MedicationReminderService {
     /** Verifica se o usuário já aceitou o disclaimer desta sessão. */
     async isDisclaimerAccepted() {
         try {
-            const val = await AsyncStorage.getItem(DISCLAIMER_KEY);
+            const val = await Storage.getItem(DISCLAIMER_KEY);
             return !!val;
         } catch {
             return false;
@@ -86,7 +86,7 @@ class MedicationReminderService {
     /** Persiste o aceite do disclaimer com timestamp. */
     async acceptDisclaimer() {
         try {
-            await AsyncStorage.setItem(DISCLAIMER_KEY, new Date().toISOString());
+            await Storage.setItem(DISCLAIMER_KEY, new Date().toISOString());
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] acceptDisclaimer:', e);
         }
@@ -99,7 +99,7 @@ class MedicationReminderService {
     /** Carrega todos os lembretes salvos. */
     async getAll() {
         try {
-            const raw = await AsyncStorage.getItem(STORAGE_KEY);
+            const raw = await Storage.getItem(STORAGE_KEY);
             return raw ? JSON.parse(raw) : [];
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] getAll:', e);
@@ -166,7 +166,7 @@ class MedicationReminderService {
                 all.push(reminder);
             }
 
-            await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+            await Storage.setItem(STORAGE_KEY, JSON.stringify(all));
             return reminder;
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] save:', e);
@@ -183,7 +183,7 @@ class MedicationReminderService {
                 await this._cancelNotifications(target.notificationIds);
             }
             const updated = all.filter(r => r.id !== id);
-            await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+            await Storage.setItem(STORAGE_KEY, JSON.stringify(updated));
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] remove:', e);
             throw e;
@@ -335,7 +335,7 @@ class MedicationReminderService {
                     all[idx].cuidadorRemoto.optinConfirmadoEm = timestamp;
                 }
                 all[idx].atualizadoEm = new Date().toISOString();
-                await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+                await Storage.setItem(STORAGE_KEY, JSON.stringify(all));
             }
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] updateOptinStatus:', e);
@@ -376,7 +376,7 @@ class MedicationReminderService {
             }
 
             all[idx].atualizadoEm = new Date().toISOString();
-            await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+            await Storage.setItem(STORAGE_KEY, JSON.stringify(all));
             return all[idx].historicoDoses;
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] registrarDoseTomada:', e);

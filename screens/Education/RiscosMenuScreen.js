@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,13 +13,13 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
 import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function RiscosMenuScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
     const ambientes = Object.values(MAPA_PREVENCAO);
-    const isDark = useIsDark();
+    const themeColors = useThemeColors();
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
@@ -43,7 +42,6 @@ export default function RiscosMenuScreen() {
     ];
 
     const title = t('riscosMenu.title', 'Prevenção em casa');
-    const subtitle = t('riscosMenu.subtitle', 'Guia de riscos por cômodo');
     const capaSource = require('../../assets/illustrations/pad/hero_riscos.png');
 
     return (
@@ -84,11 +82,6 @@ export default function RiscosMenuScreen() {
                         resizeMode="cover"
                         accessibilityLabel={title}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -101,16 +94,8 @@ export default function RiscosMenuScreen() {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

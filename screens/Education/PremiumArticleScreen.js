@@ -140,13 +140,6 @@ export default function PremiumArticleScreen({ route, navigation }) {
                         <StyledHero cor={cor} emoji={conceito.emoji} icon={conceito.icon} />
                     )}
 
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',

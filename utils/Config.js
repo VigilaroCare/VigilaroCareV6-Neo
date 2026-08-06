@@ -15,10 +15,11 @@
 export const Config = {
     // ---------------------------------------------------------------------------
     // VISÃO COMPUTACIONAL
-    // Falso por padrão; verdadeiro apenas quando a variável de ambiente
-    // explicitamente indicar "true" (string).
+    // Falso por padrão; verdadeiro apenas em DEV e quando a variável de
+    // ambiente explicitamente indicar "true". O gate __DEV__ garante que um
+    // .env errado nunca ativa o mock num build de loja.
     // ---------------------------------------------------------------------------
-    USE_MOCK_VISION: process.env.EXPO_PUBLIC_USE_MOCK_VISION === 'true',
+    USE_MOCK_VISION: __DEV__ && process.env.EXPO_PUBLIC_USE_MOCK_VISION === 'true',
 
     // ---------------------------------------------------------------------------
     // BACKEND PROXY — Vigilaro

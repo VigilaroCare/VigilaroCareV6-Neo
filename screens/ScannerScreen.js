@@ -12,7 +12,6 @@ import {
   Vibration,
   AccessibilityInfo,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
@@ -112,17 +111,9 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
             resizeMode="cover"
             accessibilityLabel={t('scanner.introTitle')}
           />
-          <LinearGradient
-            colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? colors.neutral[100] : colors.neutral.white]}
-            locations={[0, 0.35, 0.85, 1]}
-            style={StyleSheet.absoluteFill}
-          />
           <View style={{ position: 'absolute', bottom: 24, paddingHorizontal: 22, width: '100%' }}>
             <Text style={{ fontSize: 30, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 34 }}>
               {t('scanner.introTitle')}
-            </Text>
-            <Text style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', marginTop: 6, lineHeight: 20 }}>
-              {t('scanner.introSub')}
             </Text>
           </View>
         </Animated.View>

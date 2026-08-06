@@ -70,12 +70,10 @@ import WelcomeTourScreen          from "./screens/WelcomeTourScreenNeo";
 import PerfilWizardScreen         from "./screens/Profiles/PerfilWizardScreen";
 import NewHomeWizardScreen        from "./screens/NewHomeWizardScreenNeo";
 import SafetyPermitScreen         from './screens/SafetyPermitScreen';
-import FamilyCompositionScreen    from './screens/Profiles/FamilyCompositionScreen';
 import MapeamentoRiscosScreen     from './screens/Checklists/MapeamentoRiscosScreen';
 import ChecklistWizardScreen     from './screens/Checklists/ChecklistWizardScreen';
 import AddPerfilScreen            from './screens/Profiles/AddPerfilScreenNeo';
 import QuemProtegerScreenNeo      from "./screens/Profiles/QuemProtegerScreenNeo";
-import GerenciarLocaisPerfisScreen from "./screens/Profiles/GerenciarLocaisPerfisScreen";
 import SecretBriefingScreen       from "./screens/SecretBriefingScreen";
 import RadarVigilaroScreen        from './screens/Engajamento/RadarVigilaroScreen';
 import RadarArticleScreen         from './screens/Engajamento/RadarArticleScreen';
@@ -538,11 +536,6 @@ export default function App() {
                       <Stack.Screen name="BoasVindas" component={BoasVindasScreen} />
                       <Stack.Screen name="WelcomeTour" component={WelcomeTourScreen} />
                       <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
-                      <Stack.Screen
-                        name="FamilyComposition"
-                        component={FamilyCompositionScreen}
-                        options={{ animationEnabled: false }}
-                      />
                       <Stack.Screen name="MapeamentoRiscos" component={MapeamentoRiscosScreen} />
                       <Stack.Screen name="PerfilWizard" component={PerfilWizardScreen} />
                       <Stack.Screen name="Briefing" component={SecretBriefingScreen} />
@@ -559,7 +552,6 @@ export default function App() {
                       <Stack.Screen name="SafetyPermit" component={SafetyPermitScreen} options={{ presentation: 'modal', headerShown: false }} />
                       <Stack.Screen name="AddPerfil" component={AddPerfilScreen} />
                       <Stack.Screen name="QuemProteger" component={QuemProtegerScreenNeo} />
-                      <Stack.Screen name="GerenciarLocaisPerfis" component={GerenciarLocaisPerfisScreen} />
                       <Stack.Screen name="SecretBriefing" component={SecretBriefingScreen} />
                       <Stack.Screen name="UpgradePremium" component={UpgradePremiumScreen} options={{ presentation: 'modal' }} />
 

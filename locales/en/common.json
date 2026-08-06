@@ -1,4 +1,11 @@
 {
+    "protection": {
+        "inicio": "Getting started",
+        "protegido": "Protected",
+        "controle": "Under control",
+        "atencao": "Attention needed",
+        "critico": "Critical risk"
+    },
     "navigation": {
         "home": "Home",
         "education": "Learn",
@@ -1379,7 +1386,7 @@
         "saDeDoPet": "Saúde do Pet",
         "nenhumPetCadastrado": "Nenhum Pet Cadastrado",
         "compartilhar": "Compartilhar",
-        "infoRTulos": "InfoRótulos",
+        "infoRTulos": "Scan Labels",
         "atividadesEventuais": "Eventual Activities",
         "guiaDeSeguranA": "Safety Guide",
         "dicasDeOuro": "Golden Tips:",

@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const { smsLimiter, validateSmsPayload } = require('./middleware/security');
+const { issueNonce, requireAttestation } = require('./middleware/attestation');
 
 const app = express();
 
@@ -20,6 +22,9 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const ELEVEN_API_KEY = process.env.ELEVEN_API_KEY;
 const EPA_CTX_API_KEY = process.env.EPA_CTX_API_KEY;
 const APP_SECRET = process.env.VIGILARO_APP_SECRET;
+// Token anterior, aceito durante a janela de rotação (apps ainda não
+// atualizados). Remover a env quando a base migrar para o token novo.
+const APP_SECRET_PREV = process.env.VIGILARO_APP_SECRET_PREV;
 
 if (!APP_SECRET) {
   console.error('❌ FATAL: VIGILARO_APP_SECRET não configurado. Servidor não pode iniciar sem segredo de autenticação.');
@@ -84,7 +89,9 @@ const safeEqual = (a, b) => {
 // Security guard: rejects requests without the app secret
 const requireAppSecret = (req, res, next) => {
   const token = req.headers['x-vigilaro-token'];
-  if (!token || !safeEqual(token, APP_SECRET)) {
+  const valid = token && (safeEqual(token, APP_SECRET)
+    || (APP_SECRET_PREV && safeEqual(token, APP_SECRET_PREV)));
+  if (!valid) {
     return res.status(401).json({ error: 'Unauthorized: Invalid or missing X-Vigilaro-Token' });
   }
   // Delete the custom token so it doesn't leak upstream
@@ -171,8 +178,14 @@ const epaProxy = createProxyMiddleware({
   },
 });
 
-// Apply Middlewares (guard -> allow-list -> proxy)
-app.use('/api/openai', requireAppSecret, allowPaths(OPENAI_ALLOWED), openaiProxy);
+// Nonce para atestação de app (Play Integrity / DeviceCheck) — ver ATTESTATION.md.
+// Fica atrás do requireAppSecret: só quem tem o token estático pede nonce.
+app.get('/api/attest/nonce', requireAppSecret, (req, res) => {
+  res.status(200).json({ nonce: issueNonce(), ttlMs: 5 * 60 * 1000 });
+});
+
+// Apply Middlewares (guard -> attestation -> allow-list -> proxy)
+app.use('/api/openai', requireAppSecret, requireAttestation, allowPaths(OPENAI_ALLOWED), openaiProxy);
 app.use('/api/elevenlabs', requireAppSecret, allowPaths(ELEVEN_ALLOWED), elevenLabsProxy);
 app.use('/api/epa', requireAppSecret, allowPaths(EPA_ALLOWED), epaProxy);
 
@@ -190,7 +203,7 @@ app.use('/api/epa', requireAppSecret, allowPaths(EPA_ALLOWED), epaProxy);
 
 app.use(express.json()); // body parser apenas para esta rota, pós-proxy
 
-app.post('/api/notify/medication-reminder', requireAppSecret, async (req, res) => {
+app.post('/api/notify/medication-reminder', requireAppSecret, requireAttestation, smsLimiter, validateSmsPayload, async (req, res) => {
   const {
     recipientPhone,
     caregiverName,
@@ -198,18 +211,7 @@ app.post('/api/notify/medication-reminder', requireAppSecret, async (req, res) =
     medicationName,
     channel = 'whatsapp',
     type = 'reminder',
-  } = req.body || {};
-
-  // Validação mínima
-  if (!recipientPhone || !caregiverName || !recipientName || !medicationName) {
-    return res.status(400).json({ error: 'Campos obrigatórios: recipientPhone, caregiverName, recipientName, medicationName' });
-  }
-
-  // Sanitiza número — aceita apenas E.164 básico
-  const phoneRe = /^\+\d{10,15}$/;
-  if (!phoneRe.test(recipientPhone)) {
-    return res.status(400).json({ error: 'recipientPhone deve estar no formato E.164 (ex: +5511999999999)' });
-  }
+  } = req.body;
 
   // Monta texto da mensagem
   const msgText = type === 'optin'

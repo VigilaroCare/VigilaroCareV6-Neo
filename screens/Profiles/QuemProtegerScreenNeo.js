@@ -11,8 +11,10 @@
  *
  * A estrutura agora é uma pergunta só, respondida de cima para baixo:
  *
- *   1. RESIDÊNCIAS  — cartões horizontais. Tocar num ATIVA na hora; sem
- *      botão "usar este contexto", sem passo extra, sem alerta a interromper.
+ *   1. RESIDÊNCIAS  — grade 2 a 2 com moldura de nível de proteção (decisão
+ *      2026-08-06; era carrossel horizontal, que escondia casas além da 2ª).
+ *      Tocar num ATIVA na hora; sem botão "usar este contexto", sem passo
+ *      extra, sem alerta a interromper.
  *   2. FIXOS        — quem mora ali.
  *   3. EVENTUAIS    — quem frequenta sem morar.
  *
@@ -41,9 +43,29 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import NeoAlert from '../../utils/NeoAlert';
 import NeoIcon from '../../components/NeoIcon';
+import ScoreService from '../../services/ScoreService';
+import { getNivelRingColors } from '../../components/GlassProfileRing';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const VERDE = Neo.colors.primary?.[600] || '#0E9F6E';
-const AMBAR = '#D97706';
+const AMBAR = '#D97706'; // ícone de pet (âmbar) — não relacionado ao nível de proteção
+
+/**
+ * Cor sólida de fundo do card de residência ATIVA.
+ * O card ativo recebe fundo sólido na cor do seu nível de proteção,
+ * sinalizando de uma vez só: "esta é a casa ativa" + "este é o estado dela".
+ * Cards inativos: branco semi-transparente (a moldura do LinearGradient já
+ * carrega a semântica do nível).
+ */
+function corFundoAtivo(nivelKey) {
+    switch (nivelKey) {
+        case 'protegido':
+        case 'controle':  return Neo.colors.primary?.[600] || '#0E9F6E';
+        case 'atencao':   return Neo.colors.feedback?.warning || '#D97706';
+        case 'critico':   return Neo.colors.feedback?.error   || '#DC2626';
+        default:          return Neo.colors.neutral?.[500]    || '#6B7280'; // início/sem dados
+    }
+}
 
 export default function QuemProtegerScreenNeo() {
     const navigation = useNavigation();
@@ -67,6 +89,11 @@ export default function QuemProtegerScreenNeo() {
     // Painel do perfil (o caminho inverso: pessoa → casas)
     const [perfilAberto, setPerfilAberto] = useState(null);
     const [vinculosDoPerfil, setVinculosDoPerfil] = useState([]);
+
+    // Estado de proteção: moldura por residência e por pessoa (mesma
+    // gramática visual do anel do avatar na Home).
+    const [nivelPorResidencia, setNivelPorResidencia] = useState({});
+    const [scoreResidenciaAtiva, setScoreResidenciaAtiva] = useState(null);
 
     // Modal de nome de residência (criar / renomear)
     const [modalNomeVisivel, setModalNomeVisivel] = useState(false);
@@ -92,6 +119,14 @@ export default function QuemProtegerScreenNeo() {
             } else {
                 setFixos([]); setEventuais([]); setSemVinculo([]);
             }
+
+            // Estado de proteção de cada casa (moldura dos cartões) e o score
+            // da ativa (recorte por pessoa via comodosUsados).
+            setScoreResidenciaAtiva(await ScoreService.getScoreCompleto());
+            const pares = await Promise.all(
+                (lista || []).map(async (r) => [r.id, await ScoreService.getNivelResidencia(r)])
+            );
+            setNivelPorResidencia(Object.fromEntries(pares));
         } catch (erro) {
             if (__DEV__) console.error('[QuemProteger] carregar:', erro);
         }
@@ -240,6 +275,11 @@ export default function QuemProtegerScreenNeo() {
         );
     };
 
+    // Grid de 4 colunas: cada pessoa/pet é uma célula (avatar + nome + detalhe
+    // pequeno), em vez de uma linha de largura cheia. Com famílias de poucos
+    // membros isso evita rolagem à toa; o toque na célula inteira abre o
+    // mesmo painel de perfil que a seta indicava antes — sem precisar de um
+    // ícone de affordance extra numa célula estreita.
     const LinhaPessoa = ({ p }) => {
         const ehPrincipal = perfilPrincipal?.id === p.id;
         const idade = p.dataNascimento ? ProfileService.calcularIdade(p.dataNascimento) : null;
@@ -248,27 +288,45 @@ export default function QuemProtegerScreenNeo() {
             idade != null ? t('profiles.yearsOld', '{{n}} anos', { n: idade }) : null,
         ].filter(Boolean).join(' · ');
 
+        // Estado de proteção DA PESSOA: recorte do score pelos cômodos que ela
+        // usa; quem não declarou cômodos herda o estado da casa (se vinculada).
+        // "Sem vínculo" fica com moldura neutra — o estado da casa não é dela.
+        const nivelPessoa = ScoreService.getNivelProtecaoPerfil(scoreResidenciaAtiva, p)
+            || (p.vinculoResidencia ? nivelPorResidencia[residenciaAtiva?.id] : null);
+
         return (
             <TouchableOpacity
                 onPress={() => abrirPerfil(p)}
                 activeOpacity={0.7}
-                style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 10 }}
+                style={{ width: '25%', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 4 }}
                 accessibilityRole="button"
-                accessibilityLabel={t('profiles.openPersonA11y', 'Abrir {{nome}}', { nome: p.nome })}
+                accessibilityLabel={
+                    t('profiles.openPersonA11y', 'Abrir {{nome}}', { nome: p.nome })
+                    + (nivelPessoa ? '. ' + t(nivelPessoa.labelKey, nivelPessoa.label) : '')
+                }
             >
-                <Avatar p={p} />
-                <View style={{ flex: 1, marginLeft: 12, minWidth: 0 }}>
-                    <Body style={{ fontWeight: '700' }} numberOfLines={1}>{p.nome}</Body>
-                    {!!detalhe && <Caption numberOfLines={1}>{detalhe}</Caption>}
+                <View>
+                    <LinearGradient
+                        colors={getNivelRingColors(nivelPessoa?.key)}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={{ borderRadius: 25.5, padding: 2.5 }}
+                    >
+                        <Avatar p={p} />
+                    </LinearGradient>
+                    {ehPrincipal && (
+                        <View style={{
+                            position: 'absolute', top: -2, right: -2,
+                            width: 16, height: 16, borderRadius: 8,
+                            backgroundColor: '#FFF', alignItems: 'center', justifyContent: 'center',
+                            borderWidth: 1, borderColor: Neo.colors.primary?.[100] || '#D1FAE5',
+                        }}>
+                            <NeoIcon name="Star1" size={10} color={VERDE} variant="Bold" />
+                        </View>
+                    )}
                 </View>
-                {ehPrincipal && (
-                    <View style={{ backgroundColor: Neo.colors.primary?.[100] || '#D1FAE5', paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, marginRight: 8 }}>
-                        <Caption style={{ color: VERDE, fontWeight: '800', fontSize: 10 }}>
-                            {t('profiles.mainProfileTag', 'PRINCIPAL')}
-                        </Caption>
-                    </View>
-                )}
-                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
+                <Body style={{ fontWeight: '700', fontSize: 13, marginTop: 6, textAlign: 'center' }} numberOfLines={1}>{p.nome}</Body>
+                {!!detalhe && <Caption style={{ fontSize: 11, textAlign: 'center' }} numberOfLines={1}>{detalhe}</Caption>}
             </TouchableOpacity>
         );
     };
@@ -277,10 +335,14 @@ export default function QuemProtegerScreenNeo() {
         <View style={{ marginBottom: 18 }}>
             <Eyebrow>{titulo}{pessoas.length > 0 ? `  (${pessoas.length})` : ''}</Eyebrow>
             {!!ajuda && <Caption style={{ marginTop: 2, marginBottom: 2 }}>{ajuda}</Caption>}
-            <NeoCard variant="glass" style={{ paddingHorizontal: 14, paddingVertical: 4, marginTop: 8 }}>
+            <NeoCard variant="glass" style={{ paddingHorizontal: 10, paddingVertical: 4, marginTop: 8 }}>
                 {pessoas.length === 0
                     ? <Caption style={{ paddingVertical: 14 }}>{vazio}</Caption>
-                    : pessoas.map((p) => <LinhaPessoa key={p.id} p={p} />)}
+                    : (
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                            {pessoas.map((p) => <LinhaPessoa key={p.id} p={p} />)}
+                        </View>
+                    )}
             </NeoCard>
         </View>
     );
@@ -319,29 +381,45 @@ export default function QuemProtegerScreenNeo() {
                             {t('profiles.myResidencesHelp', 'Toque para escolher qual o app está monitorando.')}
                         </Caption>
 
-                        <ScrollView
-                            horizontal
-                            showsHorizontalScrollIndicator={false}
-                            style={{ marginTop: 10, marginHorizontal: -24 }}
-                            contentContainerStyle={{ paddingHorizontal: 24, gap: 10 }}
-                        >
+                        {/* Grade 2 a 2 (decisão 2026-08-06): o portfólio inteiro
+                            visível de uma vez — com a moldura de nível, a seção
+                            é um painel de risco das casas. O carrossel horizontal
+                            anterior escondia casas além da 2ª e rolagem lateral
+                            é pouco descobrível para o público sênior. */}
+                        <View style={{ marginTop: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
                             {residencias.map((res) => {
                                 const ativa = res.id === residenciaAtiva?.id;
+                                const nivelRes = nivelPorResidencia[res.id];
                                 return (
-                                    <TouchableOpacity
+                                    // Moldura = estado de proteção da casa (mesma
+                                    // gramática do anel do avatar na Home).
+                                    <LinearGradient
                                         key={res.id}
+                                        colors={getNivelRingColors(nivelRes?.key)}
+                                        start={{ x: 0, y: 0 }}
+                                        end={{ x: 1, y: 1 }}
+                                        style={{ width: '48%', minHeight: 104, borderRadius: 21, padding: 3 }}
+                                    >
+                                    <TouchableOpacity
                                         onPress={() => ativarResidencia(res)}
                                         onLongPress={() => acoesDaResidencia(res)}
                                         activeOpacity={0.85}
                                         style={{
-                                            width: 168, borderRadius: 18, padding: 14,
-                                            backgroundColor: ativa ? VERDE : 'rgba(255,255,255,0.6)',
-                                            borderWidth: 1,
-                                            borderColor: ativa ? VERDE : 'rgba(0,0,0,0.06)',
+                                            flex: 1, borderRadius: 18, padding: 14,
+                                            // Ativo: fundo sólido na cor do nível — sinaliza
+                                            // "casa monitorada agora" + "estado dela" de uma vez.
+                                            // Inativo: branco translúcido; a moldura (LinearGradient)
+                                            // já carrega a semântica do nível.
+                                            backgroundColor: ativa
+                                                ? corFundoAtivo(nivelRes?.key)
+                                                : 'rgba(255,255,255,0.88)',
                                         }}
                                         accessibilityRole="button"
                                         accessibilityState={{ selected: ativa }}
-                                        accessibilityLabel={nomeResidencia(res)}
+                                        accessibilityLabel={
+                                            nomeResidencia(res)
+                                            + (nivelRes ? '. ' + t(nivelRes.labelKey, nivelRes.label) : '')
+                                        }
                                         accessibilityHint={t('profiles.residenceHintA11y', 'Toque para monitorar este local. Toque longo para editar.')}
                                     >
                                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -355,7 +433,11 @@ export default function QuemProtegerScreenNeo() {
                                                 <NeoIcon name="Setting2" size={18} color={ativa ? 'rgba(255,255,255,0.85)' : Neo.colors.neutral[400]} />
                                             </TouchableOpacity>
                                         </View>
-                                        <Body style={{ marginTop: 10, fontWeight: '800', color: ativa ? '#FFF' : Neo.colors.neutral[900] }} numberOfLines={2}>
+                                        {/* 1 linha SEMPRE: com 2 linhas a fileira inteira
+                                            esticava e a grade ficava com alturas mistas.
+                                            Nome longo ganha reticências; o nome completo
+                                            sai no accessibilityLabel e no toque longo. */}
+                                        <Body style={{ marginTop: 10, fontWeight: '800', color: ativa ? '#FFF' : Neo.colors.neutral[900] }} numberOfLines={1}>
                                             {nomeResidencia(res)}
                                         </Body>
                                         <Caption style={{ marginTop: 4, color: ativa ? 'rgba(255,255,255,0.85)' : Neo.colors.neutral[500] }}>
@@ -364,14 +446,17 @@ export default function QuemProtegerScreenNeo() {
                                                 : t('profiles.tapToMonitor', 'Tocar para monitorar')}
                                         </Caption>
                                     </TouchableOpacity>
+                                    </LinearGradient>
                                 );
                             })}
 
+                            {/* Célula da grade como as demais; o tracejado no
+                                lugar da moldura de nível diz "ainda sem estado". */}
                             <TouchableOpacity
                                 onPress={abrirNovaResidencia}
                                 activeOpacity={0.85}
                                 style={{
-                                    width: 120, borderRadius: 18, padding: 14,
+                                    width: '48%', minHeight: 104, borderRadius: 21, padding: 14,
                                     borderWidth: 1, borderStyle: 'dashed', borderColor: VERDE,
                                     alignItems: 'center', justifyContent: 'center',
                                 }}
@@ -383,7 +468,7 @@ export default function QuemProtegerScreenNeo() {
                                     {t('profiles.newLocation', 'Novo local')}
                                 </Caption>
                             </TouchableOpacity>
-                        </ScrollView>
+                        </View>
 
                         {/* ── 2 e 3. PESSOAS DA RESIDÊNCIA ATIVA ─────────── */}
                         <View style={{ marginTop: 24 }}>
@@ -429,8 +514,10 @@ export default function QuemProtegerScreenNeo() {
                                 <Caption style={{ marginTop: 2 }}>
                                     {t('profiles.notInThisHouseHelp', 'Toque para definir o vínculo com este local.')}
                                 </Caption>
-                                <NeoCard variant="glass" style={{ paddingHorizontal: 14, paddingVertical: 4, marginTop: 8 }}>
-                                    {semVinculo.map((p) => <LinhaPessoa key={p.id} p={p} />)}
+                                <NeoCard variant="glass" style={{ paddingHorizontal: 10, paddingVertical: 4, marginTop: 8 }}>
+                                    <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                                        {semVinculo.map((p) => <LinhaPessoa key={p.id} p={p} />)}
+                                    </View>
                                 </NeoCard>
                             </View>
                         )}

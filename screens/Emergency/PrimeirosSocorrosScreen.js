@@ -14,7 +14,6 @@ import { getPrimeirosSocorros } from '../../data/primeiros_socorros';
 import { getEmergenciasPets } from '../../data/primeiros_socorros_pets';
 import DisclaimerModal from '../../components/DisclaimerModal';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from '../../components/ReviewImage';
 
 const HUMAN_ACCENT = '#EF4444'; // red — pessoas (urgência)
@@ -149,7 +148,6 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
         : require('../../assets/illustrations/pad/fotos-stock-genericas_kit-primeiros-socorros_044.jpg');
 
     const title = t('headersFirst.firstAid', 'Primeiros socorros');
-    const subtitle = t('headersFirst.respostaRPidaEmEmergNcias', 'Resposta rápida em emergências');
 
     return (
         <View style={{ flex: 1, backgroundColor: surface }}>
@@ -188,13 +186,6 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                         resizeMode="cover"
                     />
 
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',
@@ -210,14 +201,6 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
                             lineHeight: 38,
                         }} accessibilityRole="header">
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: 'rgba(255,255,255,0.9)',
-                            marginTop: 6,
-                            fontWeight: '600'
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

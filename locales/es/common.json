@@ -1,4 +1,11 @@
 {
+    "protection": {
+        "inicio": "Protección inicial",
+        "protegido": "Protegido",
+        "controle": "Bajo control",
+        "atencao": "Atención necesaria",
+        "critico": "Riesgo crítico"
+    },
     "navigation": {
         "home": "Inicio",
         "education": "Aprender",
@@ -1379,7 +1386,7 @@
         "saDeDoPet": "Salud de la Mascota",
         "nenhumPetCadastrado": "Ninguna Mascota Registrada",
         "compartilhar": "Compartir",
-        "infoRTulos": "InfoEtiquetas",
+        "infoRTulos": "Info Etiquetas",
         "atividadesEventuais": "Actividades Eventuales",
         "guiaDeSeguranA": "Guía de Seguridad",
         "dicasDeOuro": "Consejos de Oro:",

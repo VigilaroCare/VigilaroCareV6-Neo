@@ -181,13 +181,6 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                         <StyledHero cor={guideData.cor} emoji={guideData.emoji} />
                     )}
 
-                    {/* Gradient para legibilidade do título */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', colors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={{ position: 'absolute', width: '100%', height: '100%' }}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',

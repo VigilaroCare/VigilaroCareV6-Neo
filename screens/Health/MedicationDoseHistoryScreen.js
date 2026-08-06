@@ -120,8 +120,8 @@ export default function MedicationDoseHistoryScreen() {
                             const idx = all.findIndex(r => r.id === reminder.id);
                             if (idx >= 0) {
                                 all[idx].historicoDoses = [...novoHistorico].reverse();
-                                const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-                                await AsyncStorage.setItem('@vigilaro_medication_reminders', JSON.stringify(all));
+                                const { Storage } = require('../../utils/SecureStorage');
+                                await Storage.setItem('@vigilaro_medication_reminders', JSON.stringify(all));
                             }
                         } catch (e) {
                             if (__DEV__) console.error('[MedicationDoseHistory] remove:', e);

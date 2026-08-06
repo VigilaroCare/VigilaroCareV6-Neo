@@ -1,5 +1,4 @@
 
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef, useState, useCallback } from 'react';
 import { View, Text, Image, Animated, ScrollView, StyleSheet, Share, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -23,15 +22,6 @@ import { SkeletonCard } from '../../components/SkeletonLoader';
 const asList = (arr) => (Array.isArray(arr) ? arr : [])
     .map(it => (typeof it === 'string' ? it : (it?.nome || it?.label || it?.descricao || '')))
     .filter(Boolean);
-
-// genero pode chegar cru (migração V5 traz gender:"male"; legado "M"/"macho").
-// Normaliza só p/ exibição — vazio fica omitido (não inventa sexo como o form faz).
-const fmtGenero = (g) => {
-    const k = String(g || '').toLowerCase();
-    if (['masculino', 'macho', 'm', 'male'].includes(k)) return 'Masculino';
-    if (['feminino', 'femea', 'fêmea', 'f', 'female'].includes(k)) return 'Feminino';
-    return g || '';
-};
 
 // Hues a partir da paleta de grid do DS (hex → permite alpha +'18').
 // accent só expõe champagne/copper; rose/amber vivem em gridAccents.
@@ -93,10 +83,8 @@ export default function MinhaSaudeScreen() {
     ];
 
     const titleStr = perfilId ? (profile?.nome || 'Perfil') : t('health.myHealth', 'Sua Saúde');
-    const subtitleStr = perfilId ? 'Ficha de saúde' : (profile?.nome || null);
     const capaSource = require('../../assets/images/headers/header-saude.jpeg');
     const themeColors = Neo.colors;
-    const isDark = false;
 
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
     const condicoes = asList(profile?.condicoesMedicas);
@@ -104,8 +92,6 @@ export default function MinhaSaudeScreen() {
     const medicamentos = asList(profile?.medicamentosEmUso);
     const necessidades = asList(profile?.necessidadesEspeciais);
     const tipoSanguineo = profile?.tipoSanguineo || '';
-    // Banner enxuto: idade · sexo. Faixa etária formal (rótulo entre parênteses) é ruído aqui.
-    const metaLine = [idade != null ? `${idade} anos` : null, fmtGenero(profile?.genero)].filter(Boolean).join(' · ');
 
     const handleShare = async () => {
         if (!profile) return;
@@ -180,19 +166,6 @@ export default function MinhaSaudeScreen() {
                     overflow: 'hidden',
                     transform: heroTransform,
                 }}>
-                    <Image
-                        source={profile?.foto ? { uri: ProfileService.resolveImageUri(profile.foto) } : capaSource}
-                        style={[StyleSheet.absoluteFill, { opacity: 0.7 }]}
-                        resizeMode="cover"
-                        blurRadius={40}
-                        accessibilityLabel={titleStr}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.6)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.6, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-                    
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -240,9 +213,6 @@ export default function MinhaSaudeScreen() {
                                     }} numberOfLines={2}>
                                         {profile.nome || 'Perfil'}
                                     </Text>
-                                    {!!metaLine && (
-                                        <Text style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', marginBottom: 2 }}>{metaLine}</Text>
-                                    )}
                                     {!!tipoSanguineo && (
                                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                                             <NeoIcon name="Drop" variant="Bold" color={HUE.rose} size={14} />
@@ -253,11 +223,8 @@ export default function MinhaSaudeScreen() {
                             </>
                         ) : (
                             <View style={{ paddingBottom: 4 }}>
-                                <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38, marginBottom: 8 }}>
+                                <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38 }}>
                                     {titleStr}
-                                </Text>
-                                <Text style={{ fontSize: 17, color: 'rgba(255,255,255,0.9)', lineHeight: 24 }}>
-                                    {subtitleStr}
                                 </Text>
                             </View>
                         )}

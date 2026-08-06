@@ -12,7 +12,6 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import ReviewImage from '../components/ReviewImage';
 import NeoIcon from '../components/NeoIcon';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function EduContentDetailScreen({ navigation, route }) {
@@ -20,8 +19,8 @@ export default function EduContentDetailScreen({ navigation, route }) {
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     
-    // Recebe dados padronizados do params (title, subtitle, image, sections)
-    const { title, subtitle, image, sections = [] } = route.params || {};
+    // Recebe dados padronizados do params (title, image, sections)
+    const { title, image, sections = [] } = route.params || {};
 
     const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
@@ -83,11 +82,6 @@ export default function EduContentDetailScreen({ navigation, route }) {
                         resizeMode="cover"
                         accessibilityLabel={title}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -100,19 +94,9 @@ export default function EduContentDetailScreen({ navigation, route }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: subtitle ? 8 : 0,
                         }}>
                             {title}
                         </Text>
-                        {subtitle && (
-                            <Text style={{
-                                fontSize: 17,
-                                color: 'rgba(255,255,255,0.9)',
-                                lineHeight: 24,
-                            }}>
-                                {subtitle}
-                            </Text>
-                        )}
                     </View>
                 </Animated.View>
 

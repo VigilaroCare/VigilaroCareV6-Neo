@@ -187,7 +187,7 @@ class PanicButtonService {
         const contacts = await this.getEmergencyContacts();
 
         if (contacts.length === 0) {
-            console.log('Nenhum contato de emergência configurado');
+            if (__DEV__) { console.log('Nenhum contato de emergência configurado'); }
             return false;
         }
 
@@ -206,7 +206,8 @@ class PanicButtonService {
                 const smsUrl = `sms:${contact.phone}?body=${encodeURIComponent(message)}`;
                 const canOpen = await Linking.canOpenURL(smsUrl);
 
-                if (canOpen) {
+                if (canOpen && __DEV__) {
+                    // Nunca logar nome/telefone fora de DEV — PII em logcat de produção.
                     console.log(`SMS preparado para ${contact.name}: ${contact.phone}`);
                 }
             } catch (error) {

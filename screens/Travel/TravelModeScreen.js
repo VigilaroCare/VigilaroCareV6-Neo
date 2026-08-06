@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../../components/NeoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -306,11 +305,6 @@ export default function TravelModeScreen({ navigation }) {
                                 style={{ width: '100%', height: '100%' }}
                                 resizeMode="cover"
                             />
-                            <LinearGradient
-                                colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.2)', isDark ? Neo.colors.neutral[900] : '#FCFBF8']}
-                                locations={[0, 0.4, 1]}
-                                style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-                            />
                         </Animated.View>
 
                         <Small style={{ color: Neo.colors.neutral[500], textAlign: 'center', marginBottom: 12 }}>
@@ -489,11 +483,6 @@ export default function TravelModeScreen({ navigation }) {
                             source={capaSource}
                             style={{ width: '100%', height: '100%' }}
                             resizeMode="cover"
-                        />
-                        <LinearGradient
-                            colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0.2)', isDark ? Neo.colors.neutral[900] : '#FCFBF8']}
-                            locations={[0, 0.4, 1]}
-                            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
                         />
                     </Animated.View>
 

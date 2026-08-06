@@ -9,7 +9,6 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import PetHeroBanner from '../../components/PetHeroBanner';
 import ReviewImage from '../../components/ReviewImage';
-import { LinearGradient } from 'expo-linear-gradient';
 import { H1, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -92,7 +91,6 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
     const capaUrl = require('../../assets/illustrations/pad/acidentes-estatisticas_como-se-proteger-de-acidentes-domesticos_006.png'); // First Aid
 
     const title = t('headersFirst.guiaDeKits', 'Guia de Kits');
-    const subtitle = t('estejaPreparadoQuandoPrecisar', 'Esteja preparado quando precisar.');
 
     return (
         <View style={{ flex: 1, backgroundColor: surface }}>
@@ -130,13 +128,6 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                         resizeMode="cover"
                     />
 
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',
@@ -152,14 +143,6 @@ export default function GuiaKitsEmergenciaScreen({ navigation, route }) {
                             lineHeight: 38,
                         }} accessibilityRole="header">
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: 'rgba(255,255,255,0.9)',
-                            marginTop: 6,
-                            fontWeight: '600'
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

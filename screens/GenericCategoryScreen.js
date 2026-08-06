@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import NeoHorizontalCard from '../components/NeoHorizontalCard';
 import ReviewImage from '../components/ReviewImage';
-import { H1, Caption } from '../components/NeoTypography';
+import { H1 } from '../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { t_field } from '../utils/getLocalizedField';
 
@@ -181,11 +180,6 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             resizeMode="cover"
                             accessibilityLabel={t_field(content, 'title')}
                         />
-                        <LinearGradient
-                            colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? '#000' : '#F6F6F6']}
-                            locations={[0, 0.35, 0.85, 1]}
-                            style={StyleSheet.absoluteFill}
-                        />
                         <View style={{
                             position: 'absolute',
                             bottom: 24,
@@ -195,9 +189,6 @@ export default function GenericCategoryScreen({ route, navigation }) {
                             <H1 style={{ color: '#FFF', marginBottom: 4 }}>
                                 {t_field(content, 'title')}
                             </H1>
-                            <Caption style={{ color: 'rgba(255,255,255,0.9)' }}>
-                                {t_field(content, 'subtitle')}
-                            </Caption>
                         </View>
                     </Animated.View>
                 ) : (
@@ -205,9 +196,6 @@ export default function GenericCategoryScreen({ route, navigation }) {
                         <H1 style={{ color: textPrimary, marginBottom: 4 }}>
                             {t_field(content, 'title')}
                         </H1>
-                        <Caption style={{ color: textBody }}>
-                            {t_field(content, 'subtitle')}
-                        </Caption>
                     </View>
                 )}
 

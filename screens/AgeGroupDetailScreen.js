@@ -2,13 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Vibration, Animated, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import NeoIcon from '../components/NeoIcon';
 import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { ChecklistService } from '../services/ChecklistService';
 import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
-import PetHeroBanner from '../components/PetHeroBanner';
 import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
@@ -100,13 +98,6 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                         contentFit={group.resizeMode || 'cover'}
                     />
 
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',
@@ -123,16 +114,6 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
                         }} accessibilityRole="header">
                             {title}
                         </Text>
-                        {t_field(group, 'subtitle') ? (
-                            <Text style={{
-                                fontSize: 16,
-                                color: 'rgba(255,255,255,0.9)',
-                                marginTop: 6,
-                                fontWeight: '600'
-                            }}>
-                                {t_field(group, 'subtitle')}
-                            </Text>
-                        ) : null}
                     </View>
                 </Animated.View>
 

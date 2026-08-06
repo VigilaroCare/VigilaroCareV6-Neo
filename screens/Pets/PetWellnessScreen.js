@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Dimensions
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -11,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
-import PetHeroBanner from '../../components/PetHeroBanner';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_WELLNESS_DATA } from '../../data/pet_wellness_data';
@@ -59,7 +57,6 @@ export default function PetWellnessScreen({ navigation, route }) {
   const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
 
   const title = t('petWellness.title', 'Bem-estar pet');
-  const subtitle = t('petWellness.subtitle', 'Cuidados diários para vida longa e feliz');
   const cor = petHero?.cor || '#16A34A';
 
   const heroTransform = [
@@ -117,13 +114,6 @@ export default function PetWellnessScreen({ navigation, route }) {
                   />
               )}
 
-              {/* Gradient para legibilidade do título e fusão com o fundo */}
-              <LinearGradient
-                  colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                  locations={[0, 0.35, 0.85, 1]}
-                  style={StyleSheet.absoluteFill}
-              />
-
               {/* Hero title — viaja junto com a parallax */}
               <View style={{
                   position: 'absolute',
@@ -139,14 +129,6 @@ export default function PetWellnessScreen({ navigation, route }) {
                       lineHeight: 38,
                   }} accessibilityRole="header">
                       {title}
-                  </Text>
-                  <Text style={{
-                      fontSize: 16,
-                      color: 'rgba(255,255,255,0.9)',
-                      marginTop: 6,
-                      fontWeight: '600'
-                  }}>
-                      {subtitle}
                   </Text>
               </View>
           </Animated.View>

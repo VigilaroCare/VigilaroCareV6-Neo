@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
@@ -134,7 +133,6 @@ export default function JardinagemSeguraScreen({ navigation }) {
     const capaUrl = require('../../assets/illustrations/pad/ambientes-casa_jardim_019.jpg'); // Jardinagem // Gardening
 
     const title = t('headersFirst.gardening', 'Jardinagem Segura');
-    const subtitle = t('headersFirst.cultivoSeguro', 'Práticas seguras de cultivo');
 
     return (
         <View style={{ flex: 1, backgroundColor: surface }}>
@@ -172,13 +170,6 @@ export default function JardinagemSeguraScreen({ navigation }) {
                         resizeMode="cover"
                     />
                     
-                    {/* Gradient para legibilidade do título e fusão com o fundo */}
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
-
                     {/* Hero title — viaja junto com a parallax */}
                     <View style={{
                         position: 'absolute',
@@ -194,14 +185,6 @@ export default function JardinagemSeguraScreen({ navigation }) {
                             lineHeight: 38,
                         }} accessibilityRole="header">
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: 'rgba(255,255,255,0.9)',
-                            marginTop: 6,
-                            fontWeight: '600'
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

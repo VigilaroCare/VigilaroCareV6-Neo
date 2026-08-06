@@ -1,5 +1,4 @@
 
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef, useState, useCallback } from 'react';
 import { View, Text, Image, Animated, ScrollView, StyleSheet, Share, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -79,10 +78,8 @@ export default function SaudePetScreen() {
     ];
 
     const titleStr = petId ? (pet?.nome || 'Pet') : t('health.petHealth', 'Saúde do Pet');
-    const subtitleStr = petId ? 'Ficha de saúde' : null;
     const capaSource = require('../../assets/images/headers/header-pet.jpeg');
     const themeColors = Neo.colors;
-    const isDark = false;
 
     const renderChips = (arr, color) => {
         if (!arr.length) return <Body style={s.emptyText}>Nada registrado</Body>;
@@ -254,18 +251,6 @@ export default function SaudePetScreen() {
                     overflow: 'hidden',
                     transform: heroTransform,
                 }}>
-                    <Image
-                        source={pet?.foto ? (typeof pet.foto === 'number' ? pet.foto : { uri: ProfileService.resolveImageUri(pet.foto) }) : capaSource}
-                        style={[StyleSheet.absoluteFill, { opacity: 0.7 }]}
-                        resizeMode="cover"
-                        blurRadius={40}
-                        accessibilityLabel={titleStr}
-                    />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.6)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.6, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -313,18 +298,12 @@ export default function SaudePetScreen() {
                                     }} numberOfLines={2}>
                                         {pet.nome || 'Pet'}
                                     </Text>
-                                    {!!petMeta(pet) && (
-                                        <Text style={{ fontSize: 15, color: 'rgba(255,255,255,0.9)', marginBottom: 2 }}>{petMeta(pet)}</Text>
-                                    )}
                                 </View>
                             </>
                         ) : (
                             <View style={{ paddingBottom: 4 }}>
                                 <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38, marginBottom: 8 }}>
                                     {titleStr}
-                                </Text>
-                                <Text style={{ fontSize: 17, color: 'rgba(255,255,255,0.9)', lineHeight: 24 }}>
-                                    {subtitleStr}
                                 </Text>
                             </View>
                         )}

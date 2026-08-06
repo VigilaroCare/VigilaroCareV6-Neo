@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 /**
  * DispositivosEletronicosReviewsScreen.js
  * Lista de Reviews Educativos — Dispositivos Eletrônicos
@@ -70,7 +69,6 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
     const capaUrl = 'https://images.pexels.com/photos/163143/sackcloth-sackcloth-textured-laptop-ipad-163143.jpeg?auto=compress&cs=tinysrgb&w=1200'; // Electronics
 
     const title = t('headersFirst.electronicDevices', 'Eletrônicos');
-    const subtitle = t('headersFirst.oPerigoInvisVelNasSuasM', 'O perigo invisível nas suas mãos');
 
         const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
@@ -130,11 +128,6 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -147,16 +140,8 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

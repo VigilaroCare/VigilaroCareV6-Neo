@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform, Animated, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H2, Body, Small } from '../../components/NeoTypography';
@@ -199,14 +198,9 @@ export default function InspecaoChegadaScreen({ navigation }) {
                         style={{ width: '100%', height: '100%' }}
                         resizeMode="cover"
                     />
-                    <LinearGradient
-                        colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        locations={[0.3, 1]}
-                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}
-                    >
+                    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', padding: 24 }}>
                         <H2 style={{ color: Neo.colors.neutral.white, marginBottom: 4 }}>{t('travel.arrivalInspection', 'Verificações no Destino')}</H2>
-                        <Small style={{ color: 'rgba(255,255,255,0.8)' }}>{t('travel.arrivalSubtitle', 'Segurança no seu destino')}</Small>
-                    </LinearGradient>
+                    </View>
                 </Animated.View>
 
                 <View style={{ alignItems: 'center', marginBottom: 24, paddingHorizontal: 8 }}>

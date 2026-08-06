@@ -80,7 +80,6 @@ export default function EletrodomesticosScreen({ navigation }) {
     ];
 
     const titleStr = t('headersFirst.eletrodomesticos', 'Eletrodomésticos');
-    const subtitleStr = t('headersFirst.guiaDeSeguranAParaEquipamentosDomSticos', 'Guia de segurança para equipamentos domésticos.');
     const capaSource = require('../assets/illustrations/pad/hero_eletro.png');
 
     return (
@@ -221,11 +220,6 @@ export default function EletrodomesticosScreen({ navigation }) {
                         resizeMode="cover"
                         accessibilityLabel={titleStr}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -238,16 +232,8 @@ export default function EletrodomesticosScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {titleStr}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitleStr}
                         </Text>
                     </View>
                 </Animated.View>

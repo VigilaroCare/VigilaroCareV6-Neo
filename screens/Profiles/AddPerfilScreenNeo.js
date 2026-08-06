@@ -15,6 +15,7 @@ import ProfileService from '../../services/ProfileService';
 import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 import NeoIcon from '../../components/NeoIcon';
+import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
 
 // Neo Design
 import Theme, { Neo } from '../../utils/Theme';
@@ -26,7 +27,7 @@ import NeoAlert from '../../utils/NeoAlert';
 
 // Importações de dados e filtros para comodosUsados
 import { AMBIENTES } from '../../data/mapeamento_dados';
-import { MAPPING_TRIGGERS } from '../../utils/ProfileFilterEngine';
+import { MAPPING_TRIGGERS, getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 
 // Componente Accordion externo para evitar reconstrução e perda de foco/inputs instáveis
 const AccordionSection = ({ sectionKey, title, icon, children, isExpanded, onToggle }) => {
@@ -306,8 +307,15 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 const mappedRooms = AMBIENTES.filter(room => {
                     const triggers = MAPPING_TRIGGERS[room.id] || [];
                     return safeMapping.includes(room.id) || triggers.some(t => safeMapping.includes(t));
-                });
-                
+                }).map(room => ({
+                    // Ex: 'central_gas' vira "Botijão de Gás" ou "Gás Encanado"
+                    // conforme o que a residência tem — mesma função que
+                    // MapeamentoRiscosScreen/ChecklistDetailScreen/OndeProtegerScreen
+                    // já usam, aqui aplicada uma vez na origem em vez de no render.
+                    ...room,
+                    nome: getDynamicAreaName(room.id, room.nome, safeMapping, t),
+                }));
+
                 setAvailableRooms(mappedRooms);
                 
                 // Se for um novo perfil (não editando), pré-seleciona todos por padrão (estratégia conservadora)
@@ -376,7 +384,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
             const y = parseInt(ano, 10);
             if (d >= 1 && d <= 31 && m >= 0 && m <= 11 && y > 1900 && y <= new Date().getFullYear()) {
                 const parsed = new Date(y, m, d);
-                if (parsed.getDate() === d && parsed.getMonth() === m) {
+                if (parsed.getDate() === d && parsed.getMonth() === m && parsed.getTime() <= Date.now()) {
                     setDataNascimento(parsed);
                 }
             }
@@ -525,34 +533,11 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 await ProfileService.addPerfil(profileData, tipo);
             }
 
-            // Atualizar vínculo em todas as residências com base em residenceRelationships
-            const freshData = await ProfileService.getData();
-            if (freshData.residences) {
-                freshData.residences.forEach((res, index) => {
-                    const moradia = res.moradia || {};
-                    const habitantes = Array.isArray(moradia.habitantes) ? moradia.habitantes : [];
-                    const frequentadores = Array.isArray(moradia.frequentadores) ? moradia.frequentadores : [];
-
-                    // Remove o ID do perfil para reinserir no local correto
-                    const cleanHab = habitantes.filter(id => id !== profileData.id);
-                    const cleanFreq = frequentadores.filter(id => id !== profileData.id);
-
-                    const rel = residenceRelationships[res.id] || 'nenhum';
-
-                    if (rel === 'morador') {
-                        cleanHab.push(profileData.id);
-                    } else if (rel === 'frequentador') {
-                        cleanFreq.push(profileData.id);
-                    }
-
-                    freshData.residences[index].moradia = {
-                        ...moradia,
-                        habitantes: cleanHab,
-                        frequentadores: cleanFreq,
-                    };
-                });
-
-                await ProfileService.saveData(freshData);
+            // Aplica o vínculo por residência escolhido no seletor — reaproveita
+            // o mesmo helper que QuemProtegerScreenNeo usa pra editar vínculos,
+            // em vez de reescrever habitantes/frequentadores na mão.
+            for (const [resId, rel] of Object.entries(residenceRelationships)) {
+                await ProfileService.setProfileResidenceRelationship(profileData.id, rel, resId);
             }
 
             NeoAlert.alert(
@@ -662,65 +647,18 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                             </View>
 
                             {/* Vínculo com os Locais (Morador / Frequentador) */}
-                            <View style={{ marginBottom: 16 }}>
-                                <Small style={styles.fieldLabel}>VÍNCULO COM OS LOCAIS (ONDE MORA / FREQUENTA)</Small>
-                                {residencesList.map(res => {
-                                    const currentRel = residenceRelationships[res.id] || 'nenhum';
-                                    const isMultiple = residencesList.length > 1;
-                                    return (
-                                        <View key={res.id} style={styles.residenceRelationRow}>
-                                            {/* Mesmo par ícone+nome do painel de perfil em
-                                                QuemProtegerScreenNeo — as duas telas mostram o
-                                                mesmo vínculo e devem parecer a mesma coisa.
-                                                Antes: emoji 🏠 solto dentro do texto. */}
-                                            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-                                                <NeoIcon name="Home2" size={15} color={Neo.colors.neutral[500]} variant="Bold" style={{ marginRight: 6 }} />
-                                                <Body style={[styles.residenceRelationName, { marginBottom: 0, flex: 1 }]} numberOfLines={1}>
-                                                    {res.nome === 'Minha Casa Principal' ? t('home.mainHouse', 'Minha Casa Principal') : res.nome}
-                                                </Body>
-                                            </View>
-                                            <View style={styles.relationButtonGroup}>
-                                                {[
-                                                    { key: 'morador', label: 'Morador Fixo' },
-                                                    { key: 'frequentador', label: 'Visitante' },
-                                                    ...(isMultiple ? [{ key: 'nenhum', label: 'Não Frequenta' }] : [])
-                                                ].map(opt => {
-                                                    const isActive = currentRel === opt.key;
-                                                    return (
-                                                        <TouchableOpacity
-                                                            key={opt.key}
-                                                            style={[
-                                                                styles.relationBtn,
-                                                                isActive && {
-                                                                    borderColor: Neo.colors.primary[500],
-                                                                    backgroundColor: Neo.colors.primary[50]
-                                                                }
-                                                            ]}
-                                                            onPress={() => {
-                                                                if (!isMultiple && opt.key === 'nenhum') return;
-                                                                setResidenceRelationships(prev => {
-                                                                    const updated = { ...prev, [res.id]: opt.key };
-                                                                    const hasActive = Object.keys(updated).some(k => updated[k] !== 'nenhum');
-                                                                    if (!hasActive) return prev;
-                                                                    return updated;
-                                                                });
-                                                            }}
-                                                        >
-                                                            <Small style={{
-                                                                fontWeight: isActive ? 'bold' : '600',
-                                                                color: isActive ? Neo.colors.primary[700] : Neo.colors.neutral[600],
-                                                                fontSize: 11
-                                                            }}>
-                                                                {opt.label}
-                                                            </Small>
-                                                        </TouchableOpacity>
-                                                    );
-                                                })}
-                                            </View>
-                                        </View>
-                                    );
-                                })}
-                            </View>
+                            <ResidenceLinksPicker
+                                residencesList={residencesList}
+                                relationships={residenceRelationships}
+                                onChange={(resId, key) => {
+                                    setResidenceRelationships(prev => {
+                                        const updated = { ...prev, [resId]: key };
+                                        const hasActive = Object.keys(updated).some(k => updated[k] !== 'nenhum');
+                                        if (!hasActive) return prev;
+                                        return updated;
+                                    });
+                                }}
+                            />
 
                             {/* Nome */}
                             <View style={{ marginBottom: 16 }}>
@@ -1352,33 +1290,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         borderColor: Neo.colors.neutral.white,
-    },
-    residenceRelationRow: {
-        backgroundColor: 'rgba(16,24,40,0.02)',
-        borderRadius: 12,
-        padding: 12,
-        marginBottom: 10,
-        borderWidth: 1,
-        borderColor: 'rgba(16,24,40,0.06)',
-    },
-    residenceRelationName: {
-        fontWeight: 'bold',
-        color: Neo.colors.neutral[800],
-        marginBottom: 8,
-        fontSize: 14,
-    },
-    relationButtonGroup: {
-        flexDirection: 'row',
-        gap: 6,
-    },
-    relationBtn: {
-        flex: 1,
-        paddingVertical: 8,
-        alignItems: 'center',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: Neo.colors.neutral[200],
-        backgroundColor: 'transparent',
     },
     fieldLabel: {
         marginBottom: 8,

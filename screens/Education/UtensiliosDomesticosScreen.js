@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef,  useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Animated } from 'react-native';
@@ -58,7 +57,6 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
     const capaUrl = require('../../assets/illustrations/pad/cozinha-utensilios_cozinha-fogao-panelas_006.jpg');
 
     const title = t('headersFirst.utensLiosDomSticos', 'Utensílios Domésticos');
-    const subtitle = t('headersFirst.seguranANaCozinhaEReasDeServiO', 'Segurança na cozinha e áreas de serviço');
 
         const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
@@ -118,11 +116,6 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? themeColors.neutral[100] : themeColors.neutral.white]}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -135,16 +128,8 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>

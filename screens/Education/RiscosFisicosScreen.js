@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef } from 'react';
 import { View, Animated, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -83,8 +82,7 @@ export default function RiscosFisicosScreen({ route, navigation }) {
   ];
 
   const titleStr = isEletricos ? t('headersFirst.electrical', 'Riscos Elétricos e Incêndio') : t('headersFirst.physical', 'Riscos Físicos e Quedas');
-  const subtitleStr = isEletricos ? t('knowledgeHub.electricalRisks', 'Eletricidade e Prevenção') : t('knowledgeHub.physicalRisks', 'Prevenção de Acidentes');
-  
+
   const capaSource = isEletricos
     ? require('../../assets/illustrations/pad/Choque-eletrico-1.jpg')
     : require('../../assets/illustrations/pad/quedas-escadas_escada-madeira_022.jpg');
@@ -125,11 +123,6 @@ export default function RiscosFisicosScreen({ route, navigation }) {
                   resizeMode="cover"
                   accessibilityLabel={titleStr}
               />
-              <LinearGradient
-                  colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? colors.neutral[100] : '#F6F6F6']}
-                  locations={[0, 0.35, 0.85, 1]}
-                  style={StyleSheet.absoluteFill}
-              />
               <View style={{
                   position: 'absolute',
                   bottom: 24,
@@ -142,16 +135,8 @@ export default function RiscosFisicosScreen({ route, navigation }) {
                       color: '#FFF',
                       letterSpacing: -0.8,
                       lineHeight: 38,
-                      marginBottom: 8,
                   }}>
                       {titleStr}
-                  </Text>
-                  <Text style={{
-                      fontSize: 17,
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: 24,
-                  }}>
-                      {subtitleStr}
                   </Text>
               </View>
           </Animated.View>

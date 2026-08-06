@@ -70,6 +70,22 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     // Vínculo Morador/Pet ↔ Cômodo (compartilhado entre human e pet form)
     const [formComodos, setFormComodos] = useState([]);
 
+    // Vínculo do NOVO perfil com cada residência já existente (Morador Fixo /
+    // Visitante / Não Frequenta por residência) — permite cadastrar alguém
+    // sem precisar trocar a residência ativa antes. Só aparece na UI (via
+    // ResidenceLinksPicker) quando há mais de uma residência.
+    const [residencesList, setResidencesList] = useState([]);
+    const [residenceRelationships, setResidenceRelationships] = useState({});
+    const activeResidenceIdRef = useRef(null);
+
+    const buildDefaultResidenceRelationships = (list) => {
+        const rel = {};
+        (list || []).forEach(r => {
+            rel[r.id] = r.id === activeResidenceIdRef.current ? 'morador' : 'nenhum';
+        });
+        return rel;
+    };
+
     // ONDE state
     const [residenceName, setResidenceName] = useState('');
     const [houseType, setHouseType] = useState('casa');
@@ -139,6 +155,13 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         const activeRes = await ProfileService.getActiveResidence();
         if (activeRes) setResidenceName(activeRes.nome || '');
 
+        // Mesma regra de default de AddPerfilScreenNeo: novo perfil nasce
+        // "Morador Fixo" só na residência ativa, "Não Frequenta" nas demais.
+        const residences = await ProfileService.getResidences();
+        setResidencesList(residences || []);
+        activeResidenceIdRef.current = activeRes?.id || null;
+        setResidenceRelationships(buildDefaultResidenceRelationships(residences));
+
         // Restaura draft do wizard, se existir, e abre na phase salva.
         // Só roda uma vez por sessão pra não atropelar mudanças do usuário.
         if (!draftRestored) {
@@ -186,6 +209,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         setFormSpecies(''); setFormSize(''); setFormPhoto(null);
         setFormPetAge('1'); setFormPetConditions([]);
         setFormComodos([]);
+        setResidenceRelationships(buildDefaultResidenceRelationships(residencesList));
     };
 
     // Lista de cômodos disponíveis pra vincular ao perfil — derivada dos
@@ -249,6 +273,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     // === PROFILE CRUD ===
     const saveHumanProfile = async () => {
         if (!formName.trim()) return NeoAlert.alert('Atenção', 'Falta o nome.');
+        if (formDOB && ProfileService.calcularIdade(formDOB) === null) {
+            return NeoAlert.alert('Atenção', 'Data de nascimento inválida.');
+        }
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'profile');
         const perfil = await ProfileService.addPerfil({
@@ -262,9 +289,14 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             comodosUsados: Array.isArray(formComodos) ? formComodos : [],
         }, 'humano');
         if (perfil) {
+            // Aplica o vínculo escolhido por residência (default: só a ativa) —
+            // mesmo caminho que AddPerfilScreenNeo usa, via ResidenceLinksPicker.
+            for (const [resId, rel] of Object.entries(residenceRelationships)) {
+                await ProfileService.setProfileResidenceRelationship(perfil.id, rel, resId);
+            }
             const all = await ProfileService.getAllPerfis();
             setProfiles(all || []);
-            await reloadLinkedIds(); // novo perfil já vem vinculado à ativa via addPerfil
+            await reloadLinkedIds();
             resetForm();
             setSubView('list');
         }
@@ -292,9 +324,12 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
         const perfil = await ProfileService.addPerfil(p, 'pet');
         if (perfil) {
+            for (const [resId, rel] of Object.entries(residenceRelationships)) {
+                await ProfileService.setProfileResidenceRelationship(perfil.id, rel, resId);
+            }
             const all = await ProfileService.getAllPerfis();
             setProfiles(all || []);
-            await reloadLinkedIds(); // novo pet já vem vinculado à ativa
+            await reloadLinkedIds();
             resetForm();
             setSubView('list');
         }
@@ -425,6 +460,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                 onPickPhoto={pickPhoto}
                 onSave={saveHumanProfile}
                 onToggleArray={toggleArray}
+                residencesList={residencesList}
+                residenceRelationships={residenceRelationships}
+                onChangeResidenceRelationship={(resId, key) => setResidenceRelationships(prev => ({ ...prev, [resId]: key }))}
             />
         );
         if (subView === 'form_pet') return (
@@ -440,6 +478,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                 onPickPhoto={pickPhoto}
                 onSave={savePetProfile}
                 onToggleArray={toggleArray}
+                residencesList={residencesList}
+                residenceRelationships={residenceRelationships}
+                onChangeResidenceRelationship={(resId, key) => setResidenceRelationships(prev => ({ ...prev, [resId]: key }))}
             />
         );
         return (

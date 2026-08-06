@@ -46,7 +46,7 @@ export default function PrivacyPolicyScreen({ navigation }) {
                     </Section>
 
                     <Section title="5. Inteligência artificial e terceiros">
-                        Recursos opcionais de IA podem enviar mensagens, fotos submetidas ao scanner e um contexto minimizado do lar para processamento por provedores de IA por meio do servidor intermediário do Vigilaro. O app evita enviar nomes e contatos nesses contextos, mas pode enviar categorias sensíveis como idade aproximada, condições relevantes e nomes de medicamentos quando necessários para a resposta solicitada. Se você não usar recursos de IA, esses dados não são enviados para IA.
+                        Recursos opcionais de IA podem enviar mensagens, fotos submetidas ao scanner e um contexto minimizado do lar para processamento por provedores de IA por meio do servidor intermediário do Vigilaro. Os provedores utilizados são: OpenAI (análise de texto, imagem e voz), ElevenLabs (síntese de voz), EPA CompTox (consulta pública de substâncias químicas) e Zenvia ou Twilio (envio de SMS/WhatsApp do módulo cuidador remoto, que recebe o número de telefone e o conteúdo da mensagem que você configurar). O app evita enviar nomes e contatos nesses contextos, mas pode enviar categorias sensíveis como idade aproximada, condições relevantes e nomes de medicamentos quando necessários para a resposta solicitada. Se você não usar recursos de IA nem o cuidador remoto, esses dados não são enviados a terceiros.
                     </Section>
 
                     <Section title="6. Retenção e exclusão">

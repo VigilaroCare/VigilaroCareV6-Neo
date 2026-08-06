@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from '../../components/ReviewImage';
 
 import NeoIcon from '../../components/NeoIcon';
@@ -104,7 +103,6 @@ export default function PlanoIncendioScreen({ navigation }) {
   const capaUrl = require('../../assets/illustrations/pad/fotos-stock-genericas_incendio-casa-fumaca_041.jpg'); // Fire prevention
 
   const title = t('headersFirst.firePlan', 'Plano de incêndio');
-  const subtitle = t('headersFirst.eviteTragediasFamiliares', 'Evite tragédias familiares');
 
   return (
     <View style={{ flex: 1, backgroundColor: surface }}>
@@ -143,13 +141,6 @@ export default function PlanoIncendioScreen({ navigation }) {
                 accessibilityLabel={title}
             />
             
-            {/* Gradient para legibilidade do título e fusão com o fundo */}
-            <LinearGradient
-                colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', surface]}
-                locations={[0, 0.35, 0.85, 1]}
-                style={StyleSheet.absoluteFill}
-            />
-
             {/* Hero title — viaja junto com a parallax */}
             <View style={{
                 position: 'absolute',

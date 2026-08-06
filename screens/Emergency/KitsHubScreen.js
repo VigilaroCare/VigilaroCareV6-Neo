@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import React, { useRef } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Text, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,12 +12,12 @@ import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H1, Body, Small, Caption } from '../../components/NeoTypography';
-import { useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function KitsHubScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
-    const isDark = useIsDark();
+    const themeColors = useThemeColors();
 
     const kits = [
         {
@@ -84,7 +83,6 @@ export default function KitsHubScreen() {
     ];
 
     const title = t('kitsHub.headerTitle', 'Kits');
-    const subtitle = t('kitsHub.headerSubtitle', 'Preparação para emergências');
     const capaSource = require('../../assets/illustrations/pad/hero_kits.png');
 
     return (
@@ -126,11 +124,6 @@ export default function KitsHubScreen() {
                         resizeMode="cover"
                         accessibilityLabel={title}
                     />
-                    <LinearGradient
-                        colors={['rgba(0,0,0,0.45)', 'transparent', 'rgba(0,0,0,0.55)', isDark ? (themeColors?.neutral?.[100] || '#000') : '#F6F6F6']}
-                        locations={[0, 0.35, 0.85, 1]}
-                        style={StyleSheet.absoluteFill}
-                    />
                     <View style={{
                         position: 'absolute',
                         bottom: 24,
@@ -143,16 +136,8 @@ export default function KitsHubScreen() {
                             color: '#FFF',
                             letterSpacing: -0.8,
                             lineHeight: 38,
-                            marginBottom: 8,
                         }}>
                             {title}
-                        </Text>
-                        <Text style={{
-                            fontSize: 17,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 24,
-                        }}>
-                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>
