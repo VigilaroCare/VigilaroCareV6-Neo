@@ -246,7 +246,7 @@ class ScoreService {
       }
     }
 
-    return this._decidirNivel(scoreData?.geral || 0, criticos, criticoVulneravel);
+    return this._decidirNivel(scoreData?.geral || 0, criticos, criticoVulneravel, stats.checked || 0);
   }
 
   /**
@@ -273,7 +273,7 @@ class ScoreService {
 
     const score = Math.round((agg.checked / agg.total) * 100);
     const criticoVulneravel = agg.critical > 0 && this._ehVulneravel(perfil);
-    return this._decidirNivel(score, agg.critical, criticoVulneravel);
+    return this._decidirNivel(score, agg.critical, criticoVulneravel, agg.checked);
   }
 
   _ehVulneravel(perfil) {
@@ -282,10 +282,15 @@ class ScoreService {
   }
 
   // Tabela de decisão única (chamada com total > 0 já garantido).
-  _decidirNivel(score, criticos, criticoVulneravel) {
+  // `totalChecked` distingue dois cenários que resultam em score=0:
+  //   • checked=0  → nenhuma resposta ainda → 'inicio' (ausência de vistoria, não risco)
+  //   • checked>0  → respostas registradas mas score baixo → 'critico' (tudo reprovado)
+  // Sem essa distinção, casa com mapping mas zero respostas aparecia vermelha.
+  _decidirNivel(score, criticos, criticoVulneravel, totalChecked = 1) {
     const banda = this.getBanda(score).key;
-    // banda 'inicio' aqui significa score 0 COM itens avaliados (tudo
-    // reprovado) — o pior caso, não um começo.
+    // score 0 sem nenhuma resposta = vistoria não iniciada, não o pior caso
+    if (banda === 'inicio' && totalChecked === 0) return NIVEIS_PROTECAO.inicio;
+    // banda 'inicio' aqui significa score 0 COM respostas (tudo reprovado) — pior caso.
     if (criticoVulneravel || banda === 'critico' || banda === 'inicio') return NIVEIS_PROTECAO.critico;
     if (criticos > 0 || banda === 'atencao') return NIVEIS_PROTECAO.atencao;
     if (banda === 'controle') return NIVEIS_PROTECAO.controle;
