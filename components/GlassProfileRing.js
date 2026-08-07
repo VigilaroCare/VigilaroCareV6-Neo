@@ -34,7 +34,7 @@ const BAND_TO_NIVEL = {
  */
 export function getNivelRingColors(nivelKey) {
     switch (nivelKey) {
-        case 'protegido': return [Neo.colors.primary[700], Neo.colors.primary[500], Neo.colors.primary[400]];
+        case 'protegido': return [Neo.colors.primary[700], Neo.colors.primary[500], Neo.colors.primary[300]];
         case 'controle':  return [Neo.colors.primary[500], Neo.colors.primary[300], Neo.colors.feedback.info];
         case 'atencao':   return [Neo.colors.feedback.warning, Neo.colors.accent.copper || Neo.colors.feedback.warning, Neo.colors.feedback.warning];
         case 'critico':   return [Neo.colors.feedback.error, Neo.colors.feedback.error, Neo.colors.accent.copper || Neo.colors.feedback.warning];

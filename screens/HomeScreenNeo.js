@@ -128,8 +128,14 @@ export default function HomeScreenNeo() {
     const [excedenteMedido, setExcedenteMedido] = useState(0);
     const alturaVisivel = useRef(0);
 
-    // Qualquer mudanca de geometria invalida a medicao anterior.
-    React.useEffect(() => { setExcedenteMedido(0); }, [SCREEN_W, insets.bottom]);
+    // Qualquer mudanca de geometria invalida a medicao anterior. O accordion
+    // de pendencias do HeroScoreCard (monitorExpanded) tambem conta: abri-lo
+    // cresce o conteudo de verdade (excedente mede certo, grid encolhe), mas
+    // ao fechar o excedente medido durante a expansao ficava "grudado" — o
+    // laco so encolhe, nunca volta a crescer sozinho — e os tiles continuavam
+    // pequenos com o accordion ja fechado. Reset aqui forca remedicao limpa
+    // toda vez que o accordion abre OU fecha.
+    React.useEffect(() => { setExcedenteMedido(0); }, [SCREEN_W, insets.bottom, monitorExpanded]);
 
     const medirAreaVisivel = useCallback((e) => {
         alturaVisivel.current = e.nativeEvent.layout.height;
@@ -464,9 +470,10 @@ export default function HomeScreenNeo() {
                         paddingTop: 6,
                     }}
                 >
-                    <HeroScoreCard 
+                    <HeroScoreCard
                         scoreData={scoreData}
                         heroHeadline={heroHeadline}
+                        onDataChanged={loadData}
                         onPress={toggleMonitor}
                         onOpenHomeXRay={() => navigateWithHaptic('HomeXRay')}
                         isExpanded={monitorExpanded}

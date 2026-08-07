@@ -279,7 +279,7 @@ export const ChecklistService = {
             } else { 
                 const isCrit = schemaItem.tipo === 'perigo';
                 isCrit ? stats.critical++ : stats.warning++; 
-                stats.failedItems.push({ titulo: schemaItem.titulo || schemaItem.text, isCritical: isCrit, dica: schemaItem.dica_seguranca || '' });
+                stats.failedItems.push({ titulo: schemaItem.titulo || schemaItem.text, isCritical: isCrit, dica: schemaItem.dica_seguranca || '', tags: schemaItem.tags || [] });
             }
         });
 
