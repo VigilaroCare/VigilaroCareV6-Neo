@@ -71,7 +71,7 @@ export default function QuemProtegerScreenNeo() {
     const navigation = useNavigation();
     const { t } = useTranslation();
     const insets = useSafeAreaInsets();
-    const { setPrimaryProfile, loadProfiles } = useProfiles();
+    const { profiles, setPrimaryProfile, loadProfiles, setFocusProfile } = useProfiles();
 
     const nomeResidencia = (res) => {
         if (!res) return '';
@@ -97,7 +97,8 @@ export default function QuemProtegerScreenNeo() {
 
     // Modal de nome de residência
     const [modalNomeVisivel, setModalNomeVisivel] = useState(false);
-    const [novaResidenciaNome, setNovaResidenciaNome] = useState('');
+    const [nomeDigitado, setNomeDigitado] = useState('');
+    const [editandoResidenciaId, setEditandoResidenciaId] = useState(null);
     const [residenciaContextoMenu, setResidenciaContextoMenu] = useState(null); // qual casa teve "toque longo"
     const [residenciaParaFoco, setResidenciaParaFoco] = useState(null); // qual casa abrirá o menu de foco
 
@@ -231,6 +232,10 @@ export default function QuemProtegerScreenNeo() {
     const acoesDaResidencia = (res) => {
         const podeExcluir = residencias.length > 1;
         const botoes = [
+            {
+                text: t('profiles.editResidence', 'Editar características'),
+                onPress: () => navigation.navigate('NewHomeWizard', { residenceId: res.id, initialPhase: 0 }),
+            },
             {
                 text: t('profiles.mapEnvironments', 'Mapear ambientes'),
                 onPress: () => navigation.navigate('NewHomeWizard', { residenceId: res.id, initialPhase: 1 }),

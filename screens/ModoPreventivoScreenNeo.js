@@ -164,7 +164,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                     {/* Info bar */}
                     <FadeInView delay={100}>
                         <View style={styles.infoBar}>
-                            <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
+                            <NeoIcon name="ClipboardText" size={13} color={themeColors.neutral[500]} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: themeColors.neutral[500] }]}>
                                 {RISK_CATEGORIES.length} categorias • Toque para iniciar a verificação
                             </Text>

@@ -94,7 +94,7 @@ export default function QuemListStep({
                                     )}
                                 </TouchableOpacity>
 
-                                <View style={[ss.avatar, { backgroundColor: p.tipo === 'pet' ? Neo.colors.categoria.ocre.tint : C.primary[100], marginRight: 12 }]}>
+                                <View style={[ss.avatar, { backgroundColor: p.tipo === 'pet' ? C.categoria.ocre.tint : C.primary[100], marginRight: 12 }]}>
                                     <NeoIcon
                                         name={p.tipo === 'pet' ? 'pet' : 'profile-circle'}
                                         size={24}
@@ -173,7 +173,7 @@ export default function QuemListStep({
                 </TouchableOpacity>
                 <TouchableOpacity style={[ss.addBtn, { backgroundColor: '#FFF8E1' }]} onPress={onAddPet} activeOpacity={0.8}>
                     <NeoIcon name="pet" size={24} color="#EF6C00" />
-                    <Body style={{ color: Neo.colors.categoria.ocre.fill, fontWeight: '600', marginLeft: 12 }}>Adicionar Pet</Body>
+                    <Body style={{ color: C.categoria.ocre.fill, fontWeight: '600', marginLeft: 12 }}>Adicionar Pet</Body>
                 </TouchableOpacity>
             </View>
         </ScrollView>

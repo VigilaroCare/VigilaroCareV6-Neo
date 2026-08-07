@@ -369,7 +369,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
               // AUTO-ADVANCE logic
               if (nextRoomData) {
-                navigation.replace('ChecklistDetail', {
+                navigation.push('ChecklistDetail', {
                   ...nextRoomData,
                   sequentialRooms: roomList,
                   currentRoomIndex: nextTargetIndex
@@ -600,7 +600,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           style={[styles.nextButton, { backgroundColor: roomColor || themeColors.categoria.ameixa.fill, ...Neo.shadows.md, shadowColor: roomColor || themeColors.categoria.ameixa.fill }]}
           onPress={() => {
             if (nextRoomData) {
-              navigation.replace('ChecklistDetail', {
+              navigation.push('ChecklistDetail', {
                 ...nextRoomData,
                 sequentialRooms: roomList,
                 currentRoomIndex: nextTargetIndex
@@ -625,7 +625,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
   function _navigateAfterSchedule() {
     if (pendingNavigation?.type === 'next') {
-      navigation.replace('ChecklistDetail', {
+      navigation.push('ChecklistDetail', {
         ...pendingNavigation.data,
         sequentialRooms: roomList,
         currentRoomIndex: pendingNavigation.index,
