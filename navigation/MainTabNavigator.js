@@ -90,7 +90,7 @@ export default function MainTabNavigator() {
             />
 
             {/* 2026-07-31: era RelatorioTab -> ProfileRiskSummaryScreen. O
-                relatório passou a ser um card ao lado do Mapa de Calor, em
+                relatório passou a ser um card ao lado do Mapa de Riscos, em
                 Vistorias; ProfileRiskSummary continua no stack e é alcançado
                 por lá e pelo painel de perfil em Quem e Onde Proteger. */}
             <Tab.Screen

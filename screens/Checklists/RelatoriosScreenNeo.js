@@ -286,13 +286,13 @@ export default function RelatoriosScreenNeo({ navigation }) {
 
                             {/* AMBIENTES VISTORIADOS — seção inline.
                                 Antes era card de nav que abria AmbientesVistoriadosScreen.
-                                Conteúdo (Mapa de Calor + grid de ambientes) elevado pra cá. */}
+                                Conteúdo (Mapa de Riscos + grid de ambientes) elevado pra cá. */}
                             <Text style={[s.sectionLabel, { marginTop: pendingActions.length > 0 ? 4 : 0 }]}>
                                 {t('reports.environmentInspection', 'Ambientes Vistoriados')}
                             </Text>
 
                             {/* Duas leituras dos mesmos dados, lado a lado: o
-                                Mapa de Calor mostra o risco por AMBIENTE, o
+                                Mapa de Riscos mostra o risco por AMBIENTE, o
                                 Relatório mostra por PESSOA.
 
                                 O Relatório vinha de uma aba própria no rodapé,
@@ -303,22 +303,22 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             <View style={{ flexDirection: 'row', gap: 12, marginBottom: 16 }}>
                                 <TouchableOpacity
                                     activeOpacity={0.85}
-                                    onPress={() => navigation.navigate('MapaDeCalor')}
+                                    onPress={() => navigation.navigate('MapaDeRiscos')}
                                     style={{ flex: 1 }}
                                 >
                                     <NeoCard variant="elevated" style={s.duploCard}>
-                                        {/* GridFour e não Map1: a tela desenha uma grade de
-                                            cômodos coloridos por score, não um mapa geográfico.
-                                            O mapa dobrável de estradas prometia rota e entregava
-                                            intensidade. */}
+                                        {/* Barricade: o mesmo glifo que marca o grupo
+                                            "acidente e mecânico" dentro do mapa. A entrada
+                                            cita o conteúdo — GridFour descrevia a grade de
+                                            cômodos que a tela deixou de ser. */}
                                         <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
-                                            <NeoIcon name="GridFour" size={22} color={themeColors.neutral[700]} variant="Bold" />
+                                            <NeoIcon name="Barricade" size={22} color={themeColors.neutral[700]} variant="Bold" />
                                         </View>
                                         <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
-                                            {t('reports.heatmap', 'Mapa de Calor')}
+                                            {t('reports.riskmap', 'Mapa de Riscos')}
                                         </Body>
                                         <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
-                                            {t('reports.heatmapShort', 'Risco por ambiente')}
+                                            {t('reports.riskmapShort', 'Agentes por ambiente')}
                                         </Small>
                                     </NeoCard>
                                 </TouchableOpacity>
@@ -659,14 +659,14 @@ const s = {
         lineHeight: 16,
     },
 
-    // Heatmap card (entrada inline pro MapaDeCalor)
+    // Card de entrada inline pro MapaDeRiscos
     heatmapCard: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
         borderRadius: 18,
     },
-    // Meia largura: o card do Mapa de Calor era horizontal e ocupava a linha
+    // Meia largura: o card do mapa era horizontal e ocupava a linha
     // toda. Virou vertical para caber ao lado do Relatório.
     duploCard: {
         padding: 14,

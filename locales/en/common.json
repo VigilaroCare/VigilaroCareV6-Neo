@@ -665,7 +665,8 @@
     "allSafe": "All Safe!",
     "allSafeMsg": "You have completed all verifications.",
     "savePDF": "Save Report as PDF",
-    "heatmapShort": "Risk by room",
+    "riskmap": "Risk Map",
+    "riskmapShort": "Agents by area",
     "riskReport": "Report",
     "riskReportShort": "Risk by person"
   },
@@ -1992,17 +1993,83 @@
     "barcodeTitle": "Barcode Scan",
     "barcodeDesc": "Quick identification in the database"
   },
-  "mapaCalor": {
-    "title": "Heat Map",
-    "subtitle": "Risks per room",
-    "intro": "Each room is colored by the risk level identified in the inspections. Tap to open the checklist.",
-    "emptyTitle": "No heat map to display yet",
-    "emptyDesc": "Map the rooms in your residence and complete at least one inspection to view the heat map.",
+
+  "mapaRiscos": {
+    "title": "Risk map",
+    "subtitle": "What we found in your home",
+    "lead": "Based on what you told us about the home and who lives there, we found these points of attention.",
+    "panoramaLabel": "Household overview",
+    "statAmbientes": "Areas",
+    "statPontos": "Points of attention",
+    "statAlta": "High severity",
+    "focoLabel": "In focus: {{nome}}",
+    "focoResumo_one": "{{count}} point of attention exists because of {{nome}}.",
+    "focoResumo_other": "{{count}} points of attention exist because of {{nome}}.",
+    "focoNenhum": "No point of attention stems specifically from {{nome}}'s profile.",
+    "categoriasLabel": "Risk categories",
+    "categoriasNota": "Tap a category to see where it concentrates.",
+    "categoriaResumo": "{{pontos}} point(s) across {{ambientes}} area(s)",
+    "ambientesLabel": "Areas analyzed",
+    "ambientesFiltrados": "Where this category appears",
+    "ambientesNota": "Ordered by {{nome}}'s areas and by the severity of the points.",
+    "ambientesNotaSemFoco": "Ordered by the severity of the points found.",
+    "ambienteResumo": "{{count}} point(s) of attention",
+    "ambienteAlta": "{{count}} high severity",
+    "usaEsteAmbiente": "{{nome}} uses this",
+    "porCausaDe": "{{count}} because of {{nome}}",
+    "limparFiltro": "See all categories",
+    "emptyTitle": "Not enough to analyze yet",
+    "emptyDesc": "Register the areas of your home and who lives there. That is what the map is built from — no inspection needed first.",
     "emptyCta": "Go to Where to Protect",
-    "critical": "Critical",
-    "attention": "Attention",
-    "safe": "Safe",
-    "roomsLabel": "Mapped rooms"
+    "a11yAmbiente": "{{nome}}. {{pontos}} points of attention, {{alta}} of high severity",
+    "a11yCategoria": "{{nome}}. {{pontos}} points across {{ambientes}} areas"
+  },
+  "ambienteRisco": {
+    "lead_one": "Based on your home and resident information, we found {{count}} point of attention in this area.",
+    "lead_other": "Based on your home and resident information, we found {{count}} points of attention in this area.",
+    "motivoMorador": "This area is on the map because of {{nomes}}.",
+    "ocupantesLabel": "Who uses this area",
+    "semOcupantes": "Nobody has declared using this area. If that changed, update it in Who to Protect.",
+    "porCausaDe": "Because of {{nomes}}",
+    "porCausaDaMoradia": "Home condition",
+    "severidadeChip": "{{nivel}} severity",
+    "ctaVistoria": "Inspect this area",
+    "ctaVistoriaNota": "The inspection checks, item by item, what is listed here.",
+    "erroTitle": "Area unavailable",
+    "erroDesc": "This area could not be analyzed with the current data."
+  },
+  "risco": {
+    "categoria": {
+      "acidente": {
+        "nome": "Accidents and injuries",
+        "desc": "Falls, cuts, impact, electric shock, fire, explosion, drowning and venomous animals."
+      },
+      "quimico": {
+        "nome": "Chemical products",
+        "desc": "Cleaning products, medicines, gases and vapors — by ingestion, contact or inhalation."
+      },
+      "ambiente": {
+        "nome": "Ambient conditions",
+        "desc": "Extreme temperature, poor lighting, noise and inadequate ventilation."
+      },
+      "contaminacao": {
+        "nome": "Contamination and hygiene",
+        "desc": "Mold, damp, pests, disease vectors and hygiene failures that favor contamination."
+      },
+      "ergonomia": {
+        "nome": "Ergonomics and accessibility",
+        "desc": "Furniture and circulation unsuited to whoever uses the area — reach, support, accessibility."
+      },
+      "preparacao": {
+        "nome": "Preparedness and response",
+        "desc": "Barriers and emergency resources: first-aid kit, fire extinguisher, escape route, emergency lighting."
+      }
+    },
+    "sev": {
+      "alta": "High",
+      "media": "Medium",
+      "baixa": "Low"
+    }
   },
   "activityLog": {
     "fallSosTitle": "Fall SOS sent",

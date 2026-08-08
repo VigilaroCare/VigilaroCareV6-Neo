@@ -665,7 +665,8 @@
     "allSafe": "Todo Seguro!",
     "allSafeMsg": "Has completado todas las verificaciones.",
     "savePDF": "Guardar Informe en PDF",
-    "heatmapShort": "Riesgo por ambiente",
+    "riskmap": "Mapa de Riesgos",
+    "riskmapShort": "Agentes por ambiente",
     "riskReport": "Informe",
     "riskReportShort": "Riesgo por persona"
   },
@@ -1992,17 +1993,83 @@
     "barcodeTitle": "Código de Barras",
     "barcodeDesc": "Identificación rápida en la base de datos"
   },
-  "mapaCalor": {
-    "title": "Mapa de calor",
-    "subtitle": "Riesgos por habitación",
-    "intro": "Cada habitación aparece coloreada por el nivel de riesgo identificado en las inspecciones. Toque para abrir la lista de verificación.",
-    "emptyTitle": "Sin mapa para mostrar todavía",
-    "emptyDesc": "Mapee las habitaciones de su residencia y realice al menos una inspección para ver el mapa de calor.",
+
+  "mapaRiscos": {
+    "title": "Mapa de riesgos",
+    "subtitle": "Lo que analizamos en su hogar",
+    "lead": "Según lo que nos informó sobre la vivienda y sus habitantes, encontramos estos puntos de atención.",
+    "panoramaLabel": "Panorama del hogar",
+    "statAmbientes": "Ambientes",
+    "statPontos": "Puntos de atención",
+    "statAlta": "Severidad alta",
+    "focoLabel": "En foco: {{nome}}",
+    "focoResumo_one": "{{count}} punto de atención existe por causa de {{nome}}.",
+    "focoResumo_other": "{{count}} puntos de atención existen por causa de {{nome}}.",
+    "focoNenhum": "Ningún punto de atención se deriva específicamente del perfil de {{nome}}.",
+    "categoriasLabel": "Categorías de riesgo",
+    "categoriasNota": "Toque una categoría para ver dónde se concentra.",
+    "categoriaResumo": "{{pontos}} punto(s) en {{ambientes}} ambiente(s)",
+    "ambientesLabel": "Ambientes analizados",
+    "ambientesFiltrados": "Dónde aparece esta categoría",
+    "ambientesNota": "Ordenados por los ambientes de {{nome}} y por la severidad de los puntos.",
+    "ambientesNotaSemFoco": "Ordenados por la severidad de los puntos encontrados.",
+    "ambienteResumo": "{{count}} punto(s) de atención",
+    "ambienteAlta": "{{count}} de severidad alta",
+    "usaEsteAmbiente": "{{nome}} lo usa",
+    "porCausaDe": "{{count}} por causa de {{nome}}",
+    "limparFiltro": "Ver todas las categorías",
+    "emptyTitle": "Todavía no se puede analizar",
+    "emptyDesc": "Registre los ambientes de su hogar y quién vive allí. A partir de esa información armamos el mapa — no hace falta hacer una inspección antes.",
     "emptyCta": "Ir a Dónde Proteger",
-    "critical": "Críticos",
-    "attention": "Atención",
-    "safe": "Seguros",
-    "roomsLabel": "Habitaciones mapeadas"
+    "a11yAmbiente": "{{nome}}. {{pontos}} puntos de atención, {{alta}} de severidad alta",
+    "a11yCategoria": "{{nome}}. {{pontos}} puntos en {{ambientes}} ambientes"
+  },
+  "ambienteRisco": {
+    "lead_one": "Según la información de su vivienda y sus habitantes, encontramos {{count}} punto de atención en este ambiente.",
+    "lead_other": "Según la información de su vivienda y sus habitantes, encontramos {{count}} puntos de atención en este ambiente.",
+    "motivoMorador": "Este ambiente entra en el mapa por causa de {{nomes}}.",
+    "ocupantesLabel": "Quién usa este ambiente",
+    "semOcupantes": "Nadie declaró usar este ambiente. Si eso cambió, actualícelo en A Quién Proteger.",
+    "porCausaDe": "Por causa de {{nomes}}",
+    "porCausaDaMoradia": "Condición de la vivienda",
+    "severidadeChip": "Severidad {{nivel}}",
+    "ctaVistoria": "Inspeccionar este ambiente",
+    "ctaVistoriaNota": "La inspección verifica, punto por punto, lo que está listado aquí.",
+    "erroTitle": "Ambiente no disponible",
+    "erroDesc": "No fue posible analizar este ambiente con los datos actuales."
+  },
+  "risco": {
+    "categoria": {
+      "acidente": {
+        "nome": "Accidentes y lesiones",
+        "desc": "Caídas, cortes, impacto, choque eléctrico, incendio, explosión, ahogamiento y animales ponzoñosos."
+      },
+      "quimico": {
+        "nome": "Productos químicos",
+        "desc": "Productos de limpieza, medicamentos, gases y vapores — por ingestión, contacto o inhalación."
+      },
+      "ambiente": {
+        "nome": "Condiciones del ambiente",
+        "desc": "Temperatura extrema, iluminación deficiente, ruido y ventilación inadecuada."
+      },
+      "contaminacao": {
+        "nome": "Contaminación e higiene",
+        "desc": "Moho, humedad, plagas, vectores y fallas de higiene que favorecen la contaminación."
+      },
+      "ergonomia": {
+        "nome": "Ergonomía y accesibilidad",
+        "desc": "Mobiliario y circulación inadecuados para quien usa el ambiente — alcance, apoyo, accesibilidad."
+      },
+      "preparacao": {
+        "nome": "Preparación y respuesta",
+        "desc": "Barreras y recursos de emergencia: botiquín de primeros auxilios, extintor, ruta de escape, iluminación de emergencia."
+      }
+    },
+    "sev": {
+      "alta": "Alta",
+      "media": "Media",
+      "baixa": "Baja"
+    }
   },
   "activityLog": {
     "fallSosTitle": "SOS por caída enviado",

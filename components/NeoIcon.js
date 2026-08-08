@@ -297,6 +297,22 @@ const PHOSPHOR_MAP = {
     Car: 'Car',
     TruckFast: 'Truck',
 
+    // ── Categorias de risco (data/categoriasRisco.js) ──────────────
+    // Uma por categoria: o mapa de riscos nunca sinaliza uma categoria
+    // só por cor (WCAG 1.4.1), então estes nomes são contrato, não enfeite.
+    Barricade: 'Barricade',              // acidentes e lesões
+    Flask: 'Flask',                      // produtos químicos
+    Thermometer: 'Thermometer',          // condições do ambiente
+    Virus: 'Virus',                      // contaminação e higiene
+    PersonSimpleWalk: 'PersonSimpleWalk',// ergonomia e acessibilidade
+    FirstAidKit: 'FirstAidKit',          // preparação e resposta
+    ShieldWarning: 'ShieldWarning',
+    MapTrifold: 'MapTrifold',
+    UserFocus: 'UserFocus',              // vínculo com o morador em foco
+    // Usado pelo NIVEIS_PROTECAO do ScoreService desde antes deste mapa;
+    // caía no fallback direto do namespace, com aviso em DEV a cada render.
+    WarningOctagon: 'WarningOctagon',
+
     // ── Específicos do domínio Vigilaro ────────────────────────────
     BoxTick: 'Package',
     Briefcase: 'Briefcase',

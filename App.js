@@ -215,7 +215,8 @@ import ScannerScreen               from "./screens/ScannerScreen";
 import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
-import MapaDeCalorScreen            from "./screens/Tools/MapaDeCalorScreen";
+import MapaDeRiscosScreen           from "./screens/Tools/MapaDeRiscosScreen";
+import AmbienteRiscoScreen          from "./screens/Tools/AmbienteRiscoScreen";
 import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
 import InfoRotulosScreen           from "./screens/InfoRotulosScreen";
 import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
@@ -634,7 +635,13 @@ export default function App() {
                       <Stack.Screen name="InfoRotulosResult" component={InfoRotulosResultScreen} />
                       <Stack.Screen name="HistoricoAuditoria" component={HistoricoAuditoriaScreen} />
                       <Stack.Screen name="DataHealth" component={DataHealthScreen} />
-                      <Stack.Screen name="MapaDeCalor" component={MapaDeCalorScreen} />
+                      {/* "MapaDeCalor" até 2026-08-07. A tela deixou de derivar
+                          risco de respostas de checklist e passou a analisar os
+                          dados declarados — moradia e moradores (RiscoService).
+                          AmbienteRisco é o detalhe de um ambiente; é ele o
+                          destino do toque no mapa, não a vistoria. */}
+                      <Stack.Screen name="MapaDeRiscos" component={MapaDeRiscosScreen} />
+                      <Stack.Screen name="AmbienteRisco" component={AmbienteRiscoScreen} />
 
                       {/* ---- Hubs ---- */}
                       <Stack.Screen name="RiscosMenu" component={RiscosMenuScreen} />
