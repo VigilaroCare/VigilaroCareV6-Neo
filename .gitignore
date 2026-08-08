@@ -58,6 +58,20 @@ backend-proxy/.env
 !unique_icons.json
 !files_to_modify.json
 !locales/**/common.json
+# Config de build: sem ela, clone limpo não compila no EAS. Verificada:
+# não contém credencial (as chaves vivem no dashboard do Expo).
+!eas.json
+
+# Templates de ambiente (só placeholders — os .env reais seguem ignorados
+# pelas regras acima). Sem eles não há como saber quais variáveis configurar.
+!.env.example
+!backend-proxy/.env.example
+
+# Documentos de engenharia que outras sessões/ferramentas de IA precisam ler.
+# O CLAUDE.md manda consultar a Anatomia antes de criar tela — de nada adianta
+# se a regra não viaja com o repositório.
+!CLAUDE.md
+!ANATOMIA_EDITORIAL_VIGILARO.md
 _ARQUIVO_GERAL/
 VersaoDrive/
 Plantas/
@@ -70,6 +84,13 @@ Telas_sem_padrao/
 # (caso contrário, EAS Build na nuvem Linux não acha os PNGs e quebra).
 !assets/plantas/
 !assets/plantas/**
+# Mesma armadilha, segundo caso, encontrado em 2026-08-08: assets/sinitox/
+# tinha animais/ versionado e plantas/ silenciosamente fora. As 17 imagens
+# são alvo de require() estático em data/plantas_ciatox.js — build limpo
+# quebrava no bundler. Ao criar pasta nova de assets, confira `git status
+# --ignored` antes de confiar que ela entrou.
+!assets/sinitox/plantas/
+!assets/sinitox/plantas/**
 com.facebook.react.devsupport.BundleDownloader
 error.txt
 analyze_icons.js
