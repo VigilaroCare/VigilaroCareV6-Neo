@@ -72,6 +72,12 @@ backend-proxy/.env
 # se a regra não viaja com o repositório.
 !CLAUDE.md
 !ANATOMIA_EDITORIAL_VIGILARO.md
+
+# Skills de projeto do Claude Code. Ficam sob .claude/skills/<nome>/SKILL.md —
+# é o único caminho que a ferramenta carrega. Sem esta whitelist o *.md acima
+# come a definição da skill e o clone limpo vem com a pasta vazia.
+!.claude/skills/
+!.claude/skills/**
 _ARQUIVO_GERAL/
 VersaoDrive/
 Plantas/
