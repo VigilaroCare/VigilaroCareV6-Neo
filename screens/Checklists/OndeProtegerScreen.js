@@ -8,7 +8,8 @@
  * #2 — Filtro usa estritamente activeRes.mapping, sem fallbacks que vazam dados
  * #3 — useFocusEffect recarrega ao mudar residência ativa
  * #4 — familyStats filtra apenas perfis da residência ativa (habitantes + frequentadores)
- * #5 — ID_TRANSLATION corrigido: copa não mapeia mais para cozinha
+ * #5 — tradução de IDs delegada a MAPPING_TRIGGERS (ProfileFilterEngine);
+ *      a ID_TRANSLATION local era identidade e não traduzia nada
  * #6 — import() dinâmico removido; Alert importado estaticamente
  */
 
@@ -33,7 +34,7 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
-import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
+import { getDynamicAreaName, MAPPING_TRIGGERS } from '../../utils/ProfileFilterEngine';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
@@ -70,32 +71,6 @@ const AMBIENTES_DISPONIVEIS = [
     { id: 'varanda', label: 'Varanda / Sacada', icon: 'Sun1', color: '#FFB300', riscos: ['Quedas', 'Escorregões'], condicional: 'opcional' },
     { id: 'hall_corredor', label: 'Corredores', icon: 'ArrowRight2', color: '#9E9E9E', riscos: ['Iluminação', 'Tropeços'] },
 ];
-
-// FIX #5: ID_TRANSLATION corrigido — cada ambiente mapeia para seu próprio ID.
-// 'copa' não deve mais apontar para 'cozinha', pois são ambientes distintos.
-const ID_TRANSLATION = {
-    'cozinha': 'cozinha',
-    'sala': 'sala',
-    'copa': 'copa',           // CORRIGIDO: era 'cozinha'
-    'oficina': 'oficina',
-    'quarto_adulto': 'quarto_adulto',
-    'quarto_crianca': 'quarto_crianca',
-    'quarto_bebe': 'quarto_bebe',
-    'quarto_idoso': 'quarto_idoso',
-    'banheiro': 'banheiro',
-    'area_servico': 'area_servico',
-    'garagem': 'garagem',
-    'deposito': 'deposito',
-    'central_gas': 'central_gas',
-    'jardim_horta': 'jardim_horta',
-    'quintal': 'quintal',
-    'piscina': 'piscina',
-    'parquinho': 'parquinho',
-    'canil': 'canil',
-    'escadas': 'escadas',
-    'varanda': 'varanda',
-    'hall_corredor': 'hall_corredor',
-};
 
 export default function OndeProtegerScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -174,9 +149,19 @@ export default function OndeProtegerScreen({ navigation }) {
         // Match direto: o ID do ambiente está no mapping desta residência
         if (ambientesMapeados.includes(a.id)) return true;
 
-        // Match traduzido: para compatibilidade com mappings que usam IDs alternativos
-        const translatedId = ID_TRANSLATION[a.id];
-        if (translatedId && translatedId !== a.id && ambientesMapeados.includes(translatedId)) return true;
+        // Match traduzido via MAPPING_TRIGGERS — a tabela canônica de
+        // ProfileFilterEngine, a mesma que Mapa de Riscos, vistoria e ScoreService
+        // usam. O briefing grava o vocabulário de data/onboarding_data.js
+        // (sala_estar, cozinha_tradicional, corredores, jardim) e os ambientes
+        // daqui usam o de data/mapeamento_dados.js (sala, cozinha, hall_corredor,
+        // jardim_horta). Sem esta tradução a cozinha e a sala de uma casa mapeada
+        // pelo briefing simplesmente não apareciam.
+        //
+        // Substitui a ID_TRANSLATION local, que era identidade e portanto não
+        // traduzia nada. Manter uma segunda tabela aqui é o que o CLAUDE.md
+        // proíbe: sairia de sincronia com a canônica.
+        const triggers = MAPPING_TRIGGERS[a.id] || [];
+        if (triggers.some(t => ambientesMapeados.includes(t))) return true;
 
         return false;
     });
