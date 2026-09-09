@@ -70,7 +70,6 @@ import WelcomeTourScreen          from "./screens/WelcomeTourScreenNeo";
 import PerfilWizardScreen         from "./screens/Profiles/PerfilWizardScreen";
 import NewHomeWizardScreen        from "./screens/NewHomeWizardScreenNeo";
 import SafetyPermitScreen         from './screens/SafetyPermitScreen';
-import MapeamentoRiscosScreen     from './screens/Checklists/MapeamentoRiscosScreen';
 import ChecklistWizardScreen     from './screens/Checklists/ChecklistWizardScreen';
 import AddPerfilScreen            from './screens/Profiles/AddPerfilScreenNeo';
 import QuemProtegerScreenNeo      from "./screens/Profiles/QuemProtegerScreenNeo";
@@ -537,7 +536,6 @@ export default function App() {
                       <Stack.Screen name="BoasVindas" component={BoasVindasScreen} />
                       <Stack.Screen name="WelcomeTour" component={WelcomeTourScreen} />
                       <Stack.Screen name="AccessibilitySettings" component={AccessibilitySettingsScreen} />
-                      <Stack.Screen name="MapeamentoRiscos" component={MapeamentoRiscosScreen} />
                       <Stack.Screen name="PerfilWizard" component={PerfilWizardScreen} />
                       <Stack.Screen name="Briefing" component={SecretBriefingScreen} />
                       <Stack.Screen name="NewHomeWizard" component={NewHomeWizardScreen} options={{ headerShown: false }} />

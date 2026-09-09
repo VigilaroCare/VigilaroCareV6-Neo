@@ -88,6 +88,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // ONDE state
     const [residenceName, setResidenceName] = useState('');
+    // IDs de mapping fora da taxonomia canônica — preservados, não editáveis aqui.
+    const [legacyMapping, setLegacyMapping] = useState([]);
     const [houseType, setHouseType] = useState('casa');
     const [floors, setFloors] = useState(1);
     const [externalAreas, setExternalAreas] = useState([]);
@@ -149,8 +151,33 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         await reloadLinkedIds();
         const moradia = await ProfileService.getMoradia();
         if (moradia?.tipoImovel) setHouseType(moradia.tipoImovel);
+        if (Number.isInteger(moradia?.andares)) setFloors(moradia.andares);
+
+        // `mapping` é um array plano de IDs. Ele precisa voltar separado nas
+        // duas listas que o briefing edita, senão a próxima gravação embaralha
+        // as categorias: finishWizard salva [...externalAreas, ...internalRooms]
+        // e, antes disto, externalAreas nunca era restaurado — toda edição
+        // perdia as áreas externas já declaradas.
+        //
+        // IDs que não pertencem a nenhuma das duas listas canônicas de
+        // data/onboarding_data.js vêm da tela de mapeamento antiga (proteções,
+        // riscos pontuais) ou de vocabulários divergentes ainda não migrados.
+        // Guardamos em legacyMapping e devolvemos intactos na gravação: corrigir
+        // o embaralhamento não pode destruir dado que ainda não foi migrado.
         const mapping = await ProfileService.getMapping();
-        if (mapping?.length > 0) setInternalRooms(mapping);
+        if (Array.isArray(mapping) && mapping.length > 0) {
+            const externalIds = new Set(EXTERNAL_AREAS.map(a => a.id));
+            const internalIds = new Set(INTERNAL_ROOMS.flatMap(cat => cat.items.map(i => i.id)));
+
+            setExternalAreas(mapping.filter(id => externalIds.has(id)));
+            setInternalRooms(mapping.filter(id => internalIds.has(id)));
+
+            const desconhecidos = mapping.filter(id => !externalIds.has(id) && !internalIds.has(id));
+            setLegacyMapping(desconhecidos);
+            if (__DEV__ && desconhecidos.length > 0) {
+                console.warn('[NewHomeWizard] IDs fora da taxonomia canônica, preservados sem edição:', desconhecidos.join(', '));
+            }
+        }
 
         const activeRes = await ProfileService.getActiveResidence();
         if (activeRes) setResidenceName(activeRes.nome || '');
@@ -391,7 +418,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     const finishWizard = async () => {
         try {
-            const allMapping = [...externalAreas, ...internalRooms];
+            const allMapping = [...externalAreas, ...internalRooms, ...legacyMapping];
             const activeRes = await ProfileService.getActiveResidence();
             if (activeRes && residenceName.trim()) {
                 await ProfileService.updateResidenceName(activeRes.id, residenceName.trim());

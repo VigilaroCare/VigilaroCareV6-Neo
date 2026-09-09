@@ -196,7 +196,10 @@ export default function OndeProtegerScreen({ navigation }) {
                             const newRes = await ProfileService.addResidence(novoNome);
                             if (newRes) {
                                 await ProfileService.setActiveResidence(newRes.id);
-                                navigation.navigate('MapeamentoRiscos');
+                                navigation.navigate('NewHomeWizard', {
+                                    residenceId: newRes.id,
+                                    initialPhase: 0,
+                                });
                             }
                         } catch (e) {
                             console.error('Erro ao criar residência:', e);
@@ -239,7 +242,10 @@ export default function OndeProtegerScreen({ navigation }) {
                         </Text>
                         <TouchableOpacity
                             style={styles.startButton}
-                            onPress={() => navigation.navigate('MapeamentoRiscos')}
+                            onPress={() => navigation.navigate('NewHomeWizard', {
+                                residenceId: activeResidenceId,
+                                initialPhase: 0,
+                            })}
                         >
                             <Text style={styles.startButtonText}>{t('headersFirst.iniciarMapeamentoDaCasa', 'Iniciar Mapeamento da Casa')}</Text>
                             <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral.white} />
@@ -302,7 +308,10 @@ export default function OndeProtegerScreen({ navigation }) {
 
                         <TouchableOpacity
                             style={styles.adjustButton}
-                            onPress={() => navigation.navigate('MapeamentoRiscos')}
+                            onPress={() => navigation.navigate('NewHomeWizard', {
+                                residenceId: activeResidenceId,
+                                initialPhase: 1,
+                            })}
                         >
                             <NeoIcon name="Setting4" size={20} color={Neo.colors.neutral[500]} />
                             <Text style={styles.adjustButtonText}>{t('headersFirst.ajustarAmbientesMapeados', 'Ajustar Ambientes Mapeados')}</Text>

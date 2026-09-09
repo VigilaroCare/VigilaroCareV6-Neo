@@ -55,7 +55,12 @@ export default function BoasVindasScreen({ navigation }) {
 
     } catch (error) {
       console.log("Erro ao validar perfis:", error);
-      navigation.replace("MapeamentoRiscos", { isOnboarding: true });
+      // Fallback: mesmo caminho do fluxo normal. Antes caía numa tela de
+      // mapeamento paralela que refazia todo o briefing por conta própria.
+      navigation.replace("WelcomeTour", {
+        nextRoute: 'NewHomeWizard',
+        nextParams: { fromOnboarding: true },
+      });
     }
   };
 

@@ -222,7 +222,7 @@ export default function HomeXRayScreen() {
                         activeOpacity={0.85}
                         onPress={() => {
                             ProfileService.setActiveResidence(res.id);
-                            navigation.navigate('MapeamentoRiscos', { residenceId: res.id, residenceName: res.nome });
+                            navigation.navigate('NewHomeWizard', { residenceId: res.id, initialPhase: 1 });
                         }}
                     >
                         <NeoIcon name="Ruler" size={16} color={Neo.colors.neutral.white} variant="Bold" />

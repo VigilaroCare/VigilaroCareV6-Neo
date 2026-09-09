@@ -310,7 +310,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 }).map(room => ({
                     // Ex: 'central_gas' vira "Botijão de Gás" ou "Gás Encanado"
                     // conforme o que a residência tem — mesma função que
-                    // MapeamentoRiscosScreen/ChecklistDetailScreen/OndeProtegerScreen
+                    // NewHomeWizardScreenNeo/ChecklistDetailScreen/OndeProtegerScreen
                     // já usam, aqui aplicada uma vez na origem em vez de no render.
                     ...room,
                     nome: getDynamicAreaName(room.id, room.nome, safeMapping, t),
