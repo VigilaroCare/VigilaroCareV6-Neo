@@ -7,10 +7,49 @@
  * Aqui detectamos o IPv4 privado real (exclui APIPA) e o fixamos via
  * REACT_NATIVE_PACKAGER_HOSTNAME antes de subir o `expo start --lan`.
  *
+ * Também recusa subir com a porta 8081 ocupada: um Metro esquecido de outra
+ * sessão (terminal fechado, processo vivo) faz o celular receber código velho
+ * e empurra o Metro novo para a 8082, onde o dev build não conecta. Isso já
+ * travou o app duas vezes. O script aponta o processo e o comando para encerrá-lo.
+ *
  * Uso: npm start  (aceita args extras: npm start -- --clear)
  */
 const os = require('os');
-const { spawn } = require('child_process');
+const net = require('net');
+const { spawn, execSync } = require('child_process');
+
+const METRO_PORT = 8081;
+
+function portaLivre(porta) {
+    return new Promise((resolve) => {
+        const srv = net.createServer();
+        srv.once('error', () => resolve(false));
+        srv.once('listening', () => srv.close(() => resolve(true)));
+        srv.listen(porta, '0.0.0.0');
+    });
+}
+
+// Só identifica o dono da porta no Windows (ambiente do projeto); nos demais
+// sistemas a mensagem sai sem PID.
+function donoDaPorta(porta) {
+    if (process.platform !== 'win32') return null;
+    try {
+        const linhas = execSync('netstat -ano -p tcp', { encoding: 'utf8' }).split(/\r?\n/);
+        const linha = linhas.find((l) => new RegExp(`:${porta}\\s.*LISTENING`).test(l));
+        const pid = linha && linha.trim().split(/\s+/).pop();
+        if (!pid) return null;
+        let inicio = '';
+        try {
+            inicio = execSync(
+                `powershell -NoProfile -Command "(Get-Process -Id ${pid}).StartTime.ToString('dd/MM HH:mm')"`,
+                { encoding: 'utf8' }
+            ).trim();
+        } catch (_) { /* sem permissão para ler o horário — segue só com o PID */ }
+        return { pid, inicio };
+    } catch (_) {
+        return null;
+    }
+}
 
 function detectLanIp() {
     const candidates = [];
@@ -56,10 +95,25 @@ if (ip) {
     console.warn('[start-lan] Nenhum IP LAN detectado (sem rede?). Seguindo com o padrão do Expo.');
 }
 
-const args = ['expo', 'start', '--lan', ...process.argv.slice(2)];
-const child = spawn('npx', args, {
-    stdio: 'inherit',
-    env,
-    shell: process.platform === 'win32',
-});
-child.on('exit', (code) => process.exit(code == null ? 0 : code));
+(async () => {
+    if (!(await portaLivre(METRO_PORT))) {
+        const dono = donoDaPorta(METRO_PORT);
+        console.error(`\n[start-lan] A porta ${METRO_PORT} já está em uso — provavelmente um Metro de outra sessão.`);
+        if (dono) {
+            console.error(`[start-lan] Processo: PID ${dono.pid}${dono.inicio ? `, iniciado em ${dono.inicio}` : ''}.`);
+            console.error(`[start-lan] Se o app já está conectado e funcionando, é esse Metro: não precisa subir outro.`);
+            console.error(`[start-lan] Se não for, encerre e rode de novo:\n\n    Stop-Process -Id ${dono.pid} -Force\n    npm start -- --dev-client\n`);
+        } else {
+            console.error('[start-lan] Encerre o processo que ocupa a porta e rode de novo.\n');
+        }
+        process.exit(1);
+    }
+
+    const args = ['expo', 'start', '--lan', ...process.argv.slice(2)];
+    const child = spawn('npx', args, {
+        stdio: 'inherit',
+        env,
+        shell: process.platform === 'win32',
+    });
+    child.on('exit', (code) => process.exit(code == null ? 0 : code));
+})();
