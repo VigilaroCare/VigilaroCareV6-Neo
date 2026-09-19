@@ -243,6 +243,12 @@ import AchievementService     from "./services/AchievementService";
 import SubscriptionService    from "./services/SubscriptionService";
 import HandednessDetector     from "./services/HandednessDetector";
 import LeftHandedSuggestionModal from "./components/LeftHandedSuggestionModal";
+import { initSentry }          from "./services/SentryService";
+
+// Telemetria de crash ligada o mais cedo possível — antes de qualquer render,
+// para capturar falhas de inicialização. Sem DSN configurado, é no-op.
+// Todo evento passa por scrubbing de PII (ver services/SentryService.js).
+initSentry();
 
 // ---------------------------------------------------------------------------
 // CONSTANTES

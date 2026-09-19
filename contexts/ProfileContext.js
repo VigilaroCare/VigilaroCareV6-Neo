@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next'; // BUG-11 FIX: i18n
 import ProfileService from '../services/ProfileService';
+import { registrarTermosSensiveis } from '../services/SentryService';
 
 const ProfileContext = createContext();
 
@@ -29,6 +30,11 @@ export const ProfileProvider = ({ children }) => {
       if (perfisDoService) {
         const perfisHidratados = perfisDoService.map(p => ({ ...p, idade: ProfileService.calcularIdade(p.dataNascimento) }));
         setProfiles(perfisHidratados);
+
+        // Nomes da família viram termos redigidos no Sentry: nenhum regex
+        // distingue nome próprio de texto comum, então quem sabe os nomes é o
+        // app. Fica só em memória, nunca é enviado.
+        registrarTermosSensiveis(perfisHidratados.map(p => p.nome));
         const ativos = perfisDoService.filter(p => p.ativo).map(p => p.id);
 
         // BUG-03 FIX: Usar perfisHidratados para que primaryProfile.idade nunca seja undefined

@@ -77,7 +77,8 @@
       "@react-native-community/datetimepicker",
       "expo-audio",
       "expo-video",
-      "expo-localization"
+      "expo-localization",
+      "@sentry/react-native"
     ],
     "extra": {
       "eas": {

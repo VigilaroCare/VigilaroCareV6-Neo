@@ -24,9 +24,9 @@ try {
   Updates = require('expo-updates');
 } catch (_) {}
 
-// @sentry/react-native — instale com: npx expo install @sentry/react-native
-// TODO: Configure o Sentry antes de publicar nas lojas.
-// Documentação: https://docs.sentry.io/platforms/react-native/
+// @sentry/react-native — instalado e inicializado em services/SentryService.js
+// (com scrubbing de PII). O require fica em try/catch porque o módulo nativo
+// não existe no Expo Go sem dev build.
 let Sentry = null;
 try {
   Sentry = require('@sentry/react-native');
@@ -102,8 +102,8 @@ class ErrorBoundary extends React.Component {
           },
         });
       }
-      // TODO: Adicione Sentry antes de publicar — sem ele, crashes em produção
-      // são invisíveis. https://docs.sentry.io/platforms/react-native/
+      // O beforeSend do SentryService redige o componentStack e a mensagem
+      // antes de sair do aparelho.
     } else {
       console.error('[ErrorBoundary] Erro capturado:', error, errorInfo);
     }
