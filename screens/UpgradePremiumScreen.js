@@ -20,7 +20,6 @@ import {
 import NetInfo from '@react-native-community/netinfo';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -29,6 +28,7 @@ import { useThemeColors } from '../utils/ThemeContext';
 import SubscriptionService from '../services/SubscriptionService';
 import { useTranslation } from 'react-i18next';
 import NeoAlert from '../utils/NeoAlert';
+import SafeGradient from '../components/SafeGradient';
 
 const { width } = Dimensions.get('window');
 
@@ -285,9 +285,9 @@ export default function UpgradePremiumScreen({ route, navigation }) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.subscribedContainer}>
-          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill]} style={styles.subscribedBadge}>
+          <SafeGradient colors={[colors.secondary[500], colors.secondary[600]]} style={styles.subscribedBadge}>
             <NeoIcon name="Diamonds" size={48} color={colors.neutral.white} />
-          </LinearGradient>
+          </SafeGradient>
           <Text style={styles.subscribedTitle}>{t('upgrade.alreadyProtected')}</Text>
           <Text style={styles.subscribedText}>
             {t('upgrade.allFeatures')}
@@ -330,7 +330,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
         {featureContext && (
           <View style={styles.contextCard}>
             <View style={styles.contextIconWrap}>
-              <NeoIcon name={contextIcon || 'Crown1'} size={24} color={colors.secondary[600] || Neo.colors.categoria.ameixa.fill} />
+              <NeoIcon name={contextIcon || 'Crown1'} size={24} color={colors.secondary[600]} />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.contextTitle}>{contextTitle}</Text>
@@ -341,9 +341,9 @@ export default function UpgradePremiumScreen({ route, navigation }) {
 
         {/* Hero */}
         <View style={styles.hero}>
-          <LinearGradient colors={[colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill]} style={styles.heroIcon}>
+          <SafeGradient colors={[colors.secondary[500], colors.secondary[600]]} style={styles.heroIcon}>
             <NeoIcon name="Diamonds" size={40} color={colors.neutral.white} />
-          </LinearGradient>
+          </SafeGradient>
           <Text style={styles.heroTitle}>{t('upgrade.heroTitle')}</Text>
           <Text style={styles.heroSubtitle}>
             {t('upgrade.heroSub')}
@@ -410,8 +410,8 @@ export default function UpgradePremiumScreen({ route, navigation }) {
           onPress={handlePurchase}
           disabled={!isPriceLoaded || purchasing}
         >
-          <LinearGradient
-            colors={isPriceLoaded ? [colors.secondary[500], colors.secondary[600] || Neo.colors.categoria.ameixa.fill] : [colors.neutral[400], colors.neutral[500]]}
+          <SafeGradient
+            colors={isPriceLoaded ? [colors.secondary[500], colors.secondary[600]] : [colors.neutral[400], colors.neutral[500]]}
             style={styles.purchaseGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
@@ -428,7 +428,7 @@ export default function UpgradePremiumScreen({ route, navigation }) {
                 {isPriceLoaded && <NeoIcon name="ArrowRight2" size={20} color={colors.neutral.white} />}
               </>
             )}
-          </LinearGradient>
+          </SafeGradient>
         </TouchableOpacity>
 
         {/* Footer */}

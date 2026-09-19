@@ -123,7 +123,7 @@ const MODULE_IDOSO_PCD = {
     id: 'kit_idoso_pcd',
     title: 'Módulo Acessibilidade e Apoio',
     icon: 'Heart',
-    color: Neo.colors.primary[400],
+    color: Neo.colors.primary[300],
     intro: 'Facilitadores de locomoção e conforto.',
     items: [
         'Bengala, andador ou cadeira de rodas bem revisados',

@@ -11,6 +11,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors } from '../../utils/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../../context/AccessibilityContext';
+import SafeGradient from '../../components/SafeGradient';
 
 const { width } = Dimensions.get('window');
 const HERO_HEIGHT = Math.round(width * 0.78);
@@ -31,7 +32,7 @@ function StyledHero({ cor, emoji }) {
             overflow: 'hidden',
         }}>
             {/* Gradient duotone */}
-            <LinearGradient
+            <SafeGradient
                 colors={[cor, adjustColor(cor, -25)]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}

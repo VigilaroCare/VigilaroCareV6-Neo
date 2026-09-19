@@ -785,7 +785,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                     styles.itemChip,
                                                     isSelected && {
                                                         backgroundColor: Neo.colors.primary[50],
-                                                        borderColor: Neo.colors.primary[400],
+                                                        borderColor: Neo.colors.primary[300],
                                                     }
                                                 ]}
                                             >
@@ -818,7 +818,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                         styles.itemChip,
                                                         isSelected && {
                                                             backgroundColor: Neo.colors.primary[50],
-                                                            borderColor: Neo.colors.primary[400],
+                                                            borderColor: Neo.colors.primary[300],
                                                         }
                                                     ]}
                                                 >
@@ -933,7 +933,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 <TouchableOpacity
                                                     key={c}
                                                     onPress={() => toggleArrayItem(condicoes, setCondicoes, c)}
-                                                    style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[400] }]}
+                                                    style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[300] }]}
                                                 >
                                                     <><Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{c}</Small>
                                                     <NeoIcon name="CloseCircle" size={13} color={Neo.colors.primary[700]} variant="Bold" style={{ marginLeft: 5 }} /></>
@@ -983,7 +983,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                             styles.itemChip,
                                                             isSelected && {
                                                                 backgroundColor: Neo.colors.primary[50],
-                                                                borderColor: Neo.colors.primary[400],
+                                                                borderColor: Neo.colors.primary[300],
                                                             }
                                                         ]}
                                                     >
@@ -1022,7 +1022,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 <TouchableOpacity
                                                     key={a}
                                                     onPress={() => toggleArrayItem(alergias, setAlergias, a)}
-                                                    style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[400] }]}
+                                                    style={[styles.itemChip, { backgroundColor: Neo.colors.primary[50], borderColor: Neo.colors.primary[300] }]}
                                                 >
                                                     <><Small style={{ color: Neo.colors.primary[700], fontWeight: 'bold' }}>{a}</Small>
                                                     <NeoIcon name="CloseCircle" size={13} color={Neo.colors.primary[700]} variant="Bold" style={{ marginLeft: 5 }} /></>

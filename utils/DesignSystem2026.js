@@ -75,6 +75,7 @@ const LightColors = {
         main: '#10B981',
     },
     secondary: {
+        600: '#0284C7', // Sky escuro — parada final dos gradientes de CTA premium
         500: '#0EA5E9', // Sky Blue (Calmante)
         100: '#E0F2FE',
         main: '#0EA5E9',
@@ -211,6 +212,7 @@ const DarkColors = {
         main: '#10B981',
     },
     secondary: {
+        600: '#0EA5E9',   // um passo mais escuro, ainda legível sobre fundo dark
         500: '#38BDF8',   // sky lighter para dark
         100: '#082F49',   // tint dark
         main: '#38BDF8',
@@ -317,6 +319,7 @@ const HighContrastLightColors = {
         main: '#044E35',
     },
     secondary: {
+        600: '#013D5C', // ainda mais escuro — preserva o contraste alto
         500: '#025D8C', // High contrast blue (contrast > 7:1)
         100: '#E0F2FE',
         main: '#025D8C',
@@ -415,6 +418,7 @@ const HighContrastDarkColors = {
         main: '#34D399',
     },
     secondary: {
+        600: '#0EA5E9', // parada escura do gradiente, mantendo brilho em HC dark
         500: '#38BDF8', // Bright sky blue
         100: '#082F49',
         main: '#38BDF8',

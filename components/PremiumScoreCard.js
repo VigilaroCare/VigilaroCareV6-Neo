@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
-import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useIsDark } from '../utils/ThemeContext';
 import NeoIcon from './NeoIcon';
+import SafeGradient from './SafeGradient';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -58,7 +58,7 @@ export default function PremiumScoreCard({ scoreData, onPress }) {
 
     return (
         <TouchableOpacity activeOpacity={0.9} onPress={onPress} style={styles.container}>
-            <ExpoLinearGradient
+            <SafeGradient
                 colors={bgColors}
                 style={[styles.card, { borderColor, borderWidth: 1 }]}
                 start={{ x: 0, y: 0 }}
@@ -120,7 +120,7 @@ export default function PremiumScoreCard({ scoreData, onPress }) {
                         </View>
                     </View>
                 </View>
-            </ExpoLinearGradient>
+            </SafeGradient>
         </TouchableOpacity>
     );
 }

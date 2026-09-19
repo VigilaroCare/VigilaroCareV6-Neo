@@ -11,6 +11,7 @@ import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { Shadows } from '../../utils/Theme';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import SafeGradient from '../../components/SafeGradient';
 
 const { width } = Dimensions.get('window');
 const HERO_HEIGHT = Math.round(width * 0.78);
@@ -23,7 +24,7 @@ function StyledHero({ cor, emoji, icon }) {
         <View style={{
             width: '100%', height: '100%', backgroundColor: cor, overflow: 'hidden',
         }}>
-            <LinearGradient
+            <SafeGradient
                 colors={[cor, adjustColor(cor, -25)]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}

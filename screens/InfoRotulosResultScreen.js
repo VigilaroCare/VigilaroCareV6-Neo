@@ -20,7 +20,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
@@ -35,6 +34,7 @@ import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
 import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
+import SafeGradient from '../components/SafeGradient';
 
 // Cores por severidade — agora centralizadas no Design System (DS.severity)
 // Mapeador: nome em português (vindo dos dados) → chave canônica no DS
@@ -48,7 +48,7 @@ const SEVERITY_KEY_MAP = {
 };
 const getSeverityColor = (label) => {
     const key = SEVERITY_KEY_MAP[label] || SEVERITY_KEY_MAP[findClosestSeverity(label)] || 'indeterminate';
-    return Neo.colors.severity[key];
+    return Neo.severity[key];
 };
 
 // Pictogramas funcionais (não "cara de IA" — iconografia universal de primeiros socorros)
@@ -170,7 +170,7 @@ export default function InfoRotulosResultScreen() {
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={{ paddingBottom: 220 }}>
 
                     {/* HERO colorido por severidade — sinal de risco instantâneo */}
-                    <LinearGradient
+                    <SafeGradient
                         colors={[severityColor.bg, severityColor.bg + 'CC']}
                         style={s.heroHeader}
                         start={{ x: 0, y: 0 }}
@@ -228,7 +228,7 @@ export default function InfoRotulosResultScreen() {
                                 </View>
                             </View>
                         </View>
-                    </LinearGradient>
+                    </SafeGradient>
 
                     <View style={s.contentArea}>
 

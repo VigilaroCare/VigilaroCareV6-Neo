@@ -27,7 +27,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 const RISK_COLORS = {
-    critico: Neo.colors.severity?.high?.bg || '#D32F2F', // DS: data-level color
+    critico: Neo.severity?.high?.bg || '#D32F2F', // DS: data-level color
     alto: Neo.colors.accent?.copper || Neo.colors.categoria.ocre.fill, // DS: data-level color
     medio: Neo.colors.categoria.ocre.fill, // DS: data-level color (no exact mapping)
     baixo: '#388E3C', // DS: data-level color (no exact mapping)
@@ -137,8 +137,8 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <FadeInView delay={200}>
                     <NeoCard variant="elevated" style={styles.sectionCard}>
                         <View style={styles.sectionHeader}>
-                            <NeoIcon name="Danger" size={20} color={Neo.colors.severity?.high?.bg || Neo.colors.feedback.error} variant="Bold" />
-                            <Text style={[styles.sectionTitle, { color: Neo.colors.severity?.high?.bg || Neo.colors.feedback.error }]}>
+                            <NeoIcon name="Danger" size={20} color={Neo.severity?.high?.bg || Neo.colors.feedback.error} variant="Bold" />
+                            <Text style={[styles.sectionTitle, { color: Neo.severity?.high?.bg || Neo.colors.feedback.error }]}>
                                 {t('headersFirst.riscosIdentificados', 'Riscos Identificados')}
                             </Text>
                         </View>

@@ -8,10 +8,10 @@
 
 import React, { useRef, useEffect } from 'react';
 import { View, Image, Text, StyleSheet, Animated, Easing } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
 import ScoreService from '../services/ScoreService';
+import SafeGradient from './SafeGradient';
 
 // Fallback para callers que só passam `score` (MinhaSaude, SaudePet):
 // deriva o nível da banda CANÔNICA (getBanda 90/70/40) — sem os limiares
@@ -135,7 +135,7 @@ export default function GlassProfileRing({
             shadowRadius: 8,
             elevation: score > 0 ? 4 : 0,
         }}>
-            <LinearGradient
+            <SafeGradient
                 colors={getGradientColors()}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
@@ -183,7 +183,7 @@ export default function GlassProfileRing({
                         )}
                     </View>
                 </View>
-            </LinearGradient>
+            </SafeGradient>
 
             {showBadge && badge && (
                 <View

@@ -122,7 +122,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
             id: 'elderly_safety',
             title: t('travel.elderlySafety', 'Apoio ao Idoso'),
             icon: 'Elderly',
-            color: Neo.colors.primary[400],
+            color: Neo.colors.primary[300],
             items: [
                 { id: 'rugs', label: t('travel.removeRugs', 'Tapetes soltos removidos do caminho') },
                 { id: 'night_light', label: t('travel.nightLight', 'Luz noturna ligada no caminho do banheiro') },

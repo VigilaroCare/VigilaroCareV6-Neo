@@ -26,7 +26,6 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import ProfileService from '../../services/ProfileService';
@@ -35,6 +34,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 import { getDynamicAreaName, MAPPING_TRIGGERS } from '../../utils/ProfileFilterEngine';
+import SafeGradient from '../../components/SafeGradient';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
 
@@ -200,7 +200,7 @@ export default function OndeProtegerScreen({ navigation }) {
             <StatusBar style="light" translucent backgroundColor="transparent" />
 
             {/* Gradient Header */}
-            <LinearGradient
+            <SafeGradient
                 colors={[themeColors.feedback.warning, themeColors.accent.copper]}
                 style={[styles.header, { paddingTop: insets.top + 10 }]}
             >
@@ -213,7 +213,7 @@ export default function OndeProtegerScreen({ navigation }) {
                 <TouchableOpacity onPress={() => navigation.navigate('MainTabs')} style={styles.backButton}>
                     <NeoIcon name="Home2" size={24} color={Neo.colors.neutral.white} />
                 </TouchableOpacity>
-            </LinearGradient>
+            </SafeGradient>
 
             <ScrollView contentContainerStyle={styles.content}>
                 <Text style={[styles.sectionTitle, { color: textPrimary }]} accessibilityRole="header">{t('headersFirst.checklistsDeSeguranA', 'Checklists de Segurança')}</Text>
@@ -272,7 +272,7 @@ export default function OndeProtegerScreen({ navigation }) {
                             style={styles.inventoryCard}
                             onPress={() => navigation.navigate('HazardMapping')}
                         >
-                            <LinearGradient
+                            <SafeGradient
                                 colors={[themeColors.accent.copper, themeColors.feedback.warning]}
                                 style={styles.inventoryGradient}
                             >
@@ -288,7 +288,7 @@ export default function OndeProtegerScreen({ navigation }) {
                                 <View style={styles.inventoryBtn}>
                                     <Text style={styles.inventoryBtnText}>{t('headersFirst.mapear', 'Mapear')}</Text>
                                 </View>
-                            </LinearGradient>
+                            </SafeGradient>
                         </TouchableOpacity>
 
                         <TouchableOpacity

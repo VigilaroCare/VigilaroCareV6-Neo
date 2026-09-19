@@ -19,6 +19,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import SafeGradient from './SafeGradient';
 
 // Variante 'subtle' — 2-stop limpo para telas de conteúdo (light)
 const SUBTLE_LIGHT = {
@@ -84,7 +85,7 @@ export default function AppBackground({
         <View style={[styles.container, { backgroundColor: mist.fallback }, style]}>
             <StatusBar barStyle={effectiveStatusBarStyle} backgroundColor="transparent" translucent />
 
-            <LinearGradient
+            <SafeGradient
                 colors={gradientColors}
                 locations={gradientStops}
                 style={StyleSheet.absoluteFillObject}

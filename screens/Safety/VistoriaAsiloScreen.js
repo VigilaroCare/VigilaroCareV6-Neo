@@ -419,7 +419,7 @@ export default function VistoriaAsiloScreen({ navigation }) {
                                     </Body>
                                     {selectedItem.critico && (
                                         <View style={[styles.criticalBadge, { marginTop: 16, alignSelf: 'flex-start' }]}>
-                                            <Caption style={{ color: Neo.colors.severity.high.bg, fontWeight: '600' }}>
+                                            <Caption style={{ color: Neo.severity.high.bg, fontWeight: '600' }}>
                                                 {t('headersFirst.ITEMCRTICO', '⚠️ ITEM CRÍTICO')}
                                             </Caption>
                                         </View>

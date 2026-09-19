@@ -60,7 +60,7 @@ import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 import GlassProfileRing, { getNivelRingColors } from '../components/GlassProfileRing';
-import { LinearGradient } from 'expo-linear-gradient';
+import SafeGradient from '../components/SafeGradient';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -402,7 +402,7 @@ export default function HomeScreenNeo() {
                             duplicata: o selo com ícone de estado fica só no
                             avatar — dois alarmes idênticos lado a lado seria
                             ruído. Sem nível ainda (load), gradiente neutro. */}
-                        <LinearGradient
+                        <SafeGradient
                             colors={getNivelRingColors(nivelProtecao?.key)}
                             start={{ x: 0, y: 0 }}
                             end={{ x: 1, y: 1 }}
@@ -420,7 +420,7 @@ export default function HomeScreenNeo() {
                                 <NeoIcon name="Home2" size={14} color={chipLevelIconColor} variant="Bold" />
                                 <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
                             </View>
-                        </LinearGradient>
+                        </SafeGradient>
                     </View>
 
                     <TappablePressable

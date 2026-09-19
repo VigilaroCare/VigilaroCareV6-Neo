@@ -45,7 +45,7 @@ import NeoAlert from '../../utils/NeoAlert';
 import NeoIcon from '../../components/NeoIcon';
 import ScoreService from '../../services/ScoreService';
 import { getNivelRingColors } from '../../components/GlassProfileRing';
-import { LinearGradient } from 'expo-linear-gradient';
+import SafeGradient from '../../components/SafeGradient';
 
 const VERDE = Neo.colors.primary?.[600] || '#0E9F6E';
 const AMBAR = '#D97706'; // ícone de pet (âmbar) — não relacionado ao nível de proteção
@@ -368,14 +368,14 @@ export default function QuemProtegerScreenNeo() {
                 }
             >
                 <View>
-                    <LinearGradient
+                    <SafeGradient
                         colors={getNivelRingColors(nivelPessoa?.key)}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 1 }}
                         style={{ borderRadius: 25.5, padding: 2.5 }}
                     >
                         <Avatar p={p} />
-                    </LinearGradient>
+                    </SafeGradient>
                     {ehPrincipal && (
                         <View style={{
                             position: 'absolute', top: -2, right: -2,
@@ -461,7 +461,7 @@ export default function QuemProtegerScreenNeo() {
                                 return (
                                     // Moldura = estado de proteção da casa (mesma
                                     // gramática do anel do avatar na Home).
-                                    <LinearGradient
+                                    <SafeGradient
                                         key={res.id}
                                         colors={getNivelRingColors(nivelRes?.key)}
                                         start={{ x: 0, y: 0 }}
@@ -516,7 +516,7 @@ export default function QuemProtegerScreenNeo() {
                                             </Caption>
                                         </View>
                                     </TouchableOpacity>
-                                    </LinearGradient>
+                                    </SafeGradient>
                                 );
                             })}
 
