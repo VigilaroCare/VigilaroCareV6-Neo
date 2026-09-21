@@ -75,6 +75,12 @@ backend-proxy/.env
 # O mapa de funcionalidades e a fonte que impede landing page, lojas e
 # politica de privacidade de prometerem o que o app nao faz.
 !docs/MAPA_FUNCIONALIDADES_VigilaroCare_V6Neo.md
+!docs/PENDENCIAS.md
+
+# Textos do app extraidos para revisao editorial. Versionados de proposito:
+# e por diff que as edicoes do Agnaldo voltam para o codigo.
+!docs/conteudo-editavel/
+!docs/conteudo-editavel/**
 
 # Skills de projeto do Claude Code. Ficam sob .claude/skills/<nome>/SKILL.md —
 # é o único caminho que a ferramenta carrega. Sem esta whitelist o *.md acima
