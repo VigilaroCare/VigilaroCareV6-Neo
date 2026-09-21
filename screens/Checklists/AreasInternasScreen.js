@@ -454,6 +454,19 @@ export default function AreasInternasScreen({ navigation, route }) {
           initialNumToRender={5}
           maxToRenderPerBatch={10}
           showsVerticalScrollIndicator={false}
+          // As linhas mudam de altura ao expandir o accordion, então o item
+          // alvo pode ainda não ter sido medido quando o scrollToIndex roda —
+          // sem este handler, a FlatList lança e derruba a tela. Aproxima,
+          // espera o layout e tenta de novo uma única vez.
+          onScrollToIndexFailed={({ index, averageItemLength }) => {
+            flatListRef.current?.scrollToOffset({
+              offset: index * (averageItemLength || 120),
+              animated: true,
+            });
+            setTimeout(() => {
+              flatListRef.current?.scrollToIndex({ index, animated: true, viewPosition: 0 });
+            }, 300);
+          }}
         />
       </SafeAreaView>
     </AppBackground>
