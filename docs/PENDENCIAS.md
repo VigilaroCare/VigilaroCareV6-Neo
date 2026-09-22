@@ -69,9 +69,9 @@ Parecer completo em [CONFORMIDADE_IA_E_DIREITOS.md](CONFORMIDADE_IA_E_DIREITOS.m
 
 | # | Pendência | Situação |
 |---|---|---|
-| G1 | **Procedência das 118 ilustrações** | Não registrada. Se foram geradas por IA, depende do plano contratado para uso comercial e a identidade visual pode não ser protegível. Só o Agnaldo sabe responder. |
-| G2 | **Planos de uso comercial** | Confirmar na ElevenLabs (distribuição do áudio) e na ferramenta de imagem, se houver. |
-| G3 | **Crédito ao Open Food Facts** | Licença ODbL exige atribuição. Hoje há rótulo de origem no resultado, mas falta crédito explícito na tela Sobre. |
+| G1 | **Identidade visual gerada por IA** | Respondido: ChatGPT e outras ferramentas não lembradas; metadados de origem ausentes. Imagens do ChatGPT podem ser usadas comercialmente. Risco residual nas "outras" (há ferramentas cujo plano gratuito é não comercial). Decisão pendente: regerar os ~20 pictogramas de identidade com ferramenta documentada, ou aceitar o risco. A identidade não é protegível por direito autoral de qualquer forma. |
+| G2 | **ElevenLabs** | Resolvido: não é usada — a voz vem do TTS nativo. O plano é Free (licença não comercial), então **não ligar** sem assinatura paga. Aviso gravado no `Config.js`. |
+| G3 | **Crédito ao Open Food Facts** | Feito: bloco "Créditos e fontes" na tela Sobre, nos 4 idiomas. |
 | G4 | **Revisão jurídica antes de publicar** | Opcional, mas recomendada. O parecer serve de insumo. |
 | G5 | **Repor volume do Radar** | O feed caiu de ~195 para 35 itens com a remoção do material de terceiros. Repor com conteúdo autoral entra na revisão do guia master. |
 

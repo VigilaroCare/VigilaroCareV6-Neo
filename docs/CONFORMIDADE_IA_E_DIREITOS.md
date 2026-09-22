@@ -13,9 +13,9 @@ Não é parecer jurídico. É um levantamento técnico do que já cumprimos, do 
 | Scanner de ambiente e de rótulo | `VisionService`, `ScannerScreen` | Sim: a foto e um perfil do lar anonimizado |
 | Análise estratégica do relatório de vistoria | `SafetyReportService:746` → `OpenAIService.generateConsultativeReport` | Sim: respostas de vistoria |
 | Resumo do dossiê de viagem | `TravelReportService:98` | Sim: dados da viagem |
-| Voz sintética (leitura em voz alta) | `Config.ELEVENLABS_VOICE_ID`, voz licenciada do catálogo ElevenLabs | Sim: o texto a ser lido |
+| Voz (leitura em voz alta) | `VoiceAlertService` com `expo-speech` — TTS **nativo do aparelho** | Não: a síntese acontece no próprio aparelho |
 
-O app **não** treina modelo, não clona voz de pessoa real e não gera imagem de pessoa real. O risco de deepfake, tratado no material, não se aplica: a voz usada é de catálogo licenciado, não imitação de alguém.
+O app **não** treina modelo, não clona voz de pessoa real e não gera imagem de pessoa real. O risco de deepfake, tratado no material, não se aplica: a leitura em voz alta usa o sintetizador do próprio sistema operacional.
 
 ---
 
@@ -49,17 +49,19 @@ Optei por estender o `SafetyDisclaimer`, que já era o padrão do app para ressa
 
 ---
 
-## 4. Procedência das imagens
+## 4. Procedência das imagens — respondido em 22/09
 
-`docs/IMAGES_INVENTORY.md` registra acervo do autor e fotos de Pexels e Unsplash, com a orientação verificada em 2026-05-21. As licenças de Pexels e Unsplash permitem uso comercial sem atribuição obrigatória.
+`docs/IMAGES_INVENTORY.md` registra acervo do autor e fotos de Pexels e Unsplash, com orientação verificada em 2026-05-21. As duas licenças permitem uso comercial sem atribuição obrigatória — e ainda assim creditamos na tela Sobre.
 
-**[Pendente de confirmação sua]** Os pictogramas cerâmicos e as ilustrações da pasta `assets/illustrations/` — 118 arquivos — não têm procedência registrada. Se foram gerados por IA, três pontos do material se aplicam:
+**As 118 ilustrações e pictogramas foram geradas com ChatGPT (OpenAI) e outras ferramentas que o autor não recupera de memória.** Os arquivos não têm metadado de origem: verifiquei, e as marcas C2PA foram removidas no processamento das imagens. Isso significa que a procedência não é auditável pelos arquivos.
 
-- **Uso comercial:** depende do plano contratado na ferramenta. Midjourney, por exemplo, exige plano pago para uso comercial.
-- **Registro autoral:** obra inteiramente gerada por IA não é registrável nos EUA. Na prática significa que a identidade visual do app pode não ser protegível contra cópia.
-- **Divulgação:** declarar a ferramenta usada é boa prática e algumas plataformas exigem.
+O que decorre disso:
 
-Me diga como foram produzidas e eu registro a procedência em `IMAGES_INVENTORY.md`, incluindo a ferramenta e o plano.
+- **Uso comercial das imagens do ChatGPT: permitido.** Os termos da OpenAI cedem ao usuário os direitos sobre a saída gerada, inclusive no plano gratuito. Para essa parte do acervo não há impedimento.
+- **Risco residual nas "outras ferramentas".** É o ponto que fica aberto. Algumas ferramentas populares licenciam o resultado do plano gratuito **apenas para uso não comercial** — Midjourney sem assinatura entrega em CC BY-NC, e o Bing Image Creator restringe a uso pessoal. Se alguma peça veio de uma dessas, ela está hoje num app comercial sob licença que não permite.
+- **A identidade visual não é protegível.** Obra inteiramente gerada por IA não é registrável nos Estados Unidos, e a lei brasileira também exige autoria humana. Na prática: se um concorrente copiar os pictogramas, não há direito autoral a invocar. Isso é fato de negócio, não defeito a corrigir.
+
+**Recomendação prática.** Não vale auditar 118 arquivos de memória. Sugiro concentrar no que é identidade visual — os pictogramas cerâmicos da Home, do Menu e das abas, algo em torno de 20 peças — e regerar esse subconjunto com uma ferramenta de termos claros, registrando a origem no inventário. O resto do acervo é ilustração de apoio, de risco baixo e substituível a qualquer momento.
 
 ---
 
@@ -68,11 +70,11 @@ Me diga como foram produzidas e eu registro a procedência em `IMAGES_INVENTORY.
 | Provedor | Uso no app | A verificar |
 |---|---|---|
 | OpenAI | Análise de imagem e texto via proxy | Uso comercial permitido na API. Confirmar que o app não se enquadra como aconselhamento médico nas políticas de uso |
-| ElevenLabs | Voz sintética de catálogo | Confirmar se o plano contratado cobre distribuição comercial do áudio |
+| ElevenLabs | **Não usado hoje.** A voz do app vem do TTS nativo do aparelho (`expo-speech` em `VoiceAlertService`). Restam só o `voice_id` em `Config.js` e a rota no proxy, sem chamador | ⚠️ A conta é do **plano Free**, que licencia o áudio para uso **não comercial** e com atribuição. Ligar a voz da ElevenLabs num app pago exige assinatura paga antes. Registrado como aviso no `Config.js` |
 | EPA CompTox | Consulta de substâncias | API pública; confirmar exigência de atribuição |
 | Open Food Facts | Código de barras | Licença ODbL: **exige atribuição** e compartilhamento nos mesmos termos de bases derivadas |
 
-**Open Food Facts é o ponto mais concreto aqui.** A licença ODbL obriga a creditar a fonte. O app já mostra rótulo de origem em `SOURCE_LABELS`, o que ajuda, mas vale um crédito explícito na tela Sobre.
+**Open Food Facts — resolvido em 22/09.** A licença ODbL obriga a creditar a fonte. Além do rótulo de origem no resultado, a tela Sobre passou a ter um bloco "Créditos e fontes" que credita Open Food Facts (com a licença nomeada), UPCitemdb, EPA CompTox, os CIATox, Pexels e Unsplash — e declara o uso de IA nas ilustrações, atendendo à prática de transparência do material de referência. Nos quatro idiomas.
 
 ---
 
@@ -86,7 +88,7 @@ Falta o que já está em `PENDENCIAS.md`: declarar o compartilhamento com tercei
 
 ## 7. O que ainda depende de você
 
-1. **Confirmar a procedência das ilustrações** (item 4). É o maior ponto aberto.
-2. **Conferir os planos contratados** na ElevenLabs e, se houver, na ferramenta de imagem, quanto a uso comercial.
-3. **Creditar Open Food Facts** na tela Sobre — posso escrever, mas a decisão de como creditar é sua.
-4. **Revisão jurídica** antes da publicação, se quiser segurança formal. Este documento serve de insumo.
+1. **Decidir sobre o subconjunto de identidade visual** (item 4): regerar os ~20 pictogramas centrais com ferramenta de termos claros, ou aceitar o risco residual das "outras ferramentas".
+2. **Revisão jurídica antes da publicação**, se quiser segurança formal. Este documento serve de insumo.
+
+Respondidos em 22/09: procedência das imagens (ChatGPT e outras), plano da ElevenLabs (Free, e por isso a voz segue desligada) e o crédito ao Open Food Facts (escrito na tela Sobre).

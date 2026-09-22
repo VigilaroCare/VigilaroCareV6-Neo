@@ -62,6 +62,24 @@ export default function SobreScreen({ navigation }) {
             </Body>
           </NeoCard>
 
+          {/* Créditos e fontes — obrigação, não cortesia: a base de produtos
+              Open Food Facts é licenciada em ODbL, que EXIGE atribuição. A
+              última linha declara o uso de IA nas ilustrações, seguindo a
+              prática de transparência que as lojas e o EU AI Act cobram. */}
+          <Small style={styles.sectionTitle}>{t('about.creditsTitle')}</Small>
+          <NeoCard variant="elevated" style={styles.card}>
+            <View style={styles.cardHeader}>
+              <NeoIcon name="DocumentText" size={22} color={Neo.colors.primary[600]} variant="Bold" />
+              <H3 style={styles.cardTitle}>{t('about.creditsTitle')}</H3>
+            </View>
+            <Body style={styles.cardText}>{t('about.creditsIntro')}</Body>
+            {['creditsOFF', 'creditsUPC', 'creditsEPA', 'creditsCiatox', 'creditsPhotos', 'creditsIllustrations'].map((chave) => (
+              <Body key={chave} style={[styles.cardText, { marginTop: 10 }]}>
+                {`• ${t(`about.${chave}`)}`}
+              </Body>
+            ))}
+          </NeoCard>
+
           {/* Links Section */}
           <Small style={styles.sectionTitle}>{t('about.legalInfo')}</Small>
           <NeoCard variant="elevated" style={styles.menuGroup}>

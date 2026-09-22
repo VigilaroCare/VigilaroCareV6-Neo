@@ -42,6 +42,12 @@ export const Config = {
     // ---------------------------------------------------------------------------
     // ELEVENLABS — Voz Ultra Realista
     // O voice_id não é segredo; a API key fica exclusivamente no backend proxy.
+    //
+    // ⚠️ NÃO LIGAR SEM PLANO PAGO. A conta hoje é do plano Free, que licencia o
+    // áudio apenas para uso não comercial e com atribuição — o Vigilaro Care é
+    // app pago, então distribuir esse áudio violaria os termos. Nenhum caller
+    // ativo hoje: a voz do app vem do TTS nativo do aparelho, via expo-speech
+    // em services/VoiceAlertService.js. Ver docs/CONFORMIDADE_IA_E_DIREITOS.md.
     // ---------------------------------------------------------------------------
     ELEVENLABS_VOICE_ID: 'cgSgspJ2msm6clMCkdW9', // Jessica (pt-br)
 };

@@ -1025,7 +1025,15 @@
         "cancel": "Cancelar",
         "yesDeleteAll": "Si, Borrar Todo",
         "madeWith": "Hecho con amor por el equipo Vigilaro",
-        "copyright": "2026 Vigilaro Inc. Todos los derechos reservados."
+        "copyright": "2026 Vigilaro Inc. Todos los derechos reservados.",
+        "creditsTitle": "Créditos y fuentes",
+        "creditsIntro": "El contenido de Vigilaro Care se apoya en bases públicas y colaborativas. Créditos y licencias:",
+        "creditsOFF": "Datos de productos: Open Food Facts, base colaborativa abierta, con licencia ODbL.",
+        "creditsUPC": "Códigos de barras: UPCitemdb.",
+        "creditsEPA": "Datos toxicológicos: EPA CompTox, de la agencia ambiental de Estados Unidos.",
+        "creditsCiatox": "Animales venenosos, plantas tóxicas y teléfonos de emergencia: Centros de Información y Asistencia Toxicológica (CIATox) y fuentes oficiales de salud.",
+        "creditsPhotos": "Fotografías: archivo del autor, Pexels y Unsplash.",
+        "creditsIllustrations": "Ilustraciones y pictogramas: creados con ayuda de inteligencia artificial y revisados por el equipo."
     },
     "upgrade": {
         "heroTitle": "Tu familia merece proteccion sin limites",
