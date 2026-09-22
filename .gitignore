@@ -76,6 +76,7 @@ backend-proxy/.env
 # politica de privacidade de prometerem o que o app nao faz.
 !docs/MAPA_FUNCIONALIDADES_VigilaroCare_V6Neo.md
 !docs/PENDENCIAS.md
+!docs/CONFORMIDADE_IA_E_DIREITOS.md
 
 # Textos do app extraidos para revisao editorial. Versionados de proposito:
 # e por diff que as edicoes do Agnaldo voltam para o codigo.

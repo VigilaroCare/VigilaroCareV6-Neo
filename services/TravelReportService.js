@@ -122,10 +122,14 @@ class TravelReportService {
         // Mapa consultivo: IA quando há; senão, resumo curado (offline).
         let mapaHtml;
         if (ai && (ai.resumo || (Array.isArray(ai.prioridades) && ai.prioridades.length))) {
+            // O dossiê é exportado e compartilhado. Trecho gerado por IA sai
+            // identificado como tal — exigência de transparência e proteção de
+            // quem recebe o PDF sem saber como ele foi montado.
             mapaHtml = `
                 ${ai.resumo ? `<div class="lead">${esc(ai.resumo)}</div>` : ''}
                 ${(Array.isArray(ai.prioridades) && ai.prioridades.length)
-                    ? `<ul class="bullets">${ai.prioridades.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}`;
+                    ? `<ul class="bullets">${ai.prioridades.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
+                <p class="source">Resumo gerado por inteligência artificial a partir dos dados da sua viagem. Confira as fontes oficiais antes de decidir.</p>`;
         } else {
             const topicos = sections.slice(0, 4).map(s => esc(t_field(s, 'title'))).filter(Boolean);
             mapaHtml = `<div class="lead">Este dossiê reúne o que importa para a sua viagem de ${esc(tripLabel.toLowerCase())} (${esc(purpose.toLowerCase())}${isInternational ? ', internacional' : ''}).${topicos.length ? ' Pontos de atenção: ' + topicos.join(' · ') + '.' : ''}</div>`;

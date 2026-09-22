@@ -820,6 +820,8 @@ class SafetyReportService {
                    <ul class="bullets">${Array.from(new Set(reportData.pendingItems.map((p) => p.roomLabel))).map((room) => `<li>${esc(room)}</li>`).join('')}</ul>`
                 : '';
 
+            // O relatório é exportado e compartilhado (com familiares, às vezes
+            // com terceiros). A seção montada por IA sai identificada como tal.
             const aiHtml = aiReport
                 ? `<h2>Análise estratégica</h2>
                    <div class="card">
@@ -827,6 +829,7 @@ class SafetyReportService {
                        <p>${esc(aiReport.onde)}</p>
                        <h3 style="margin-top:12px;">O que fazer</h3>
                        <p>${esc(aiReport.o_que)}</p>
+                       <p class="source">Seção gerada por inteligência artificial a partir das suas respostas de vistoria. Confira antes de agir.</p>
                    </div>`
                 : '';
 

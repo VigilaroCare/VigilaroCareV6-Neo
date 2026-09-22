@@ -31,6 +31,7 @@ import { Config } from '../utils/Config';
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
 
 
 const { width, height } = Dimensions.get('window');
@@ -534,6 +535,10 @@ export default function ScannerScreen({ navigation, route }) {
           <Text style={{ fontSize: 22, fontWeight: 'bold', color: colors.neutral[900], marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
             {analysisResult.analises.length} risco(s) detectado(s)
           </Text>
+
+          {/* Identifica a origem do resultado antes da lista: o usuário precisa
+              saber que é análise de IA ANTES de agir sobre os riscos. */}
+          <SafetyDisclaimer variant="ia" style={{ marginBottom: 16 }} />
 
           {analysisResult.analises.map((item, index) => (
             <View key={index} style={{ marginBottom: 24, backgroundColor: colors.neutral[100], borderRadius: 16, padding: 16, borderWidth: 1, borderColor: colors.neutral[300] }}>

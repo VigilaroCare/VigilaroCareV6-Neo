@@ -63,6 +63,20 @@ Situação em 21/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 ---
 
+## G. Conformidade de IA e direitos (avaliação de 22/09)
+
+Parecer completo em [CONFORMIDADE_IA_E_DIREITOS.md](CONFORMIDADE_IA_E_DIREITOS.md).
+
+| # | Pendência | Situação |
+|---|---|---|
+| G1 | **Procedência das 118 ilustrações** | Não registrada. Se foram geradas por IA, depende do plano contratado para uso comercial e a identidade visual pode não ser protegível. Só o Agnaldo sabe responder. |
+| G2 | **Planos de uso comercial** | Confirmar na ElevenLabs (distribuição do áudio) e na ferramenta de imagem, se houver. |
+| G3 | **Crédito ao Open Food Facts** | Licença ODbL exige atribuição. Hoje há rótulo de origem no resultado, mas falta crédito explícito na tela Sobre. |
+| G4 | **Revisão jurídica antes de publicar** | Opcional, mas recomendada. O parecer serve de insumo. |
+| G5 | **Repor volume do Radar** | O feed caiu de ~195 para 35 itens com a remoção do material de terceiros. Repor com conteúdo autoral entra na revisão do guia master. |
+
+---
+
 ## F. Já resolvido (não refazer)
 
-Proxy com rate limit, limitador dedicado de SMS, validação de payload, allow-list de rotas e token com comparação constant-time · atestação etapa 1 · Sentry com remoção de dados pessoais · tokens de cor inexistentes no Design System · `SafeGradient` contra crash de gradiente · três telas que quebravam por caminho errado de `severity` · `getFaixaEtaria` e `resolveImageUri` · crash do `scrollToIndex` em Áreas Internas · `npm start` com checagem da porta 8081 · Mapa de Funcionalidades refeito a partir do código.
+Proxy com rate limit, limitador dedicado de SMS, validação de payload, allow-list de rotas e token com comparação constant-time · atestação etapa 1 · Sentry com remoção de dados pessoais · tokens de cor inexistentes no Design System · `SafeGradient` contra crash de gradiente · três telas que quebravam por caminho errado de `severity` · `getFaixaEtaria` e `resolveImageUri` · crash do `scrollToIndex` em Áreas Internas · `npm start` com checagem da porta 8081 · Mapa de Funcionalidades refeito a partir do código · identificação de conteúdo gerado por IA no scanner e nos dois PDFs · remoção do despejo de notícias de terceiros do feed do Radar.

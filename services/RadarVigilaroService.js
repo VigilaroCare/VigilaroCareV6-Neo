@@ -11,8 +11,16 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CASOS_REAIS } from '../data/casosReais';
 import { FATOS_IMPACTO, PROTOCOLOS_DESTAQUE, ALERTAS_SAZONAIS } from '../data/radarConteudoDB';
+
+// O feed saía 70% de `data/casosReais.js`, que era o despejo bruto de e-mails
+// do Google Alerts: trechos literais de matérias de veículos identificados,
+// nomes de pessoas reais e links de rastreio — conteúdo de terceiros que não
+// temos licença para redistribuir, e dado pessoal alheio sem base legal.
+// Nenhum daqueles registros tinha `categoria`, então a priorização por perfil
+// nunca funcionou e o destaque caía sempre no primeiro item (uma notícia de
+// acidente rodoviário). O Radar agora consome apenas conteúdo autoral.
+const ACERVO_CURADO = [...FATOS_IMPACTO, ...PROTOCOLOS_DESTAQUE];
 
 const CACHE_KEY = '@vigilaro_radar_highlight';
 const CACHE_TTL = 4 * 60 * 60 * 1000; // 4 horas
@@ -33,22 +41,12 @@ class RadarVigilaroService {
     // 1. Alerta sazonal do mês (sempre no topo se existir)
     const sazonalDoMes = ALERTAS_SAZONAIS.find(a => a.mes === mesAtual);
 
-    // 2. Casos relevantes para o perfil familiar (70% do feed)
-    const casosRelevantes = this._sortearCasos(familyCategories, Math.ceil(limit * 0.70));
+    // 2. Acervo autoral, priorizando o que importa para esta família.
+    //    O sazonal do mês já entra no topo, então sai do pool para não repetir.
+    const relevantes = this._sortearConteudo(familyCategories, limit)
+      .filter(item => !sazonalDoMes || item.id !== sazonalDoMes.id);
 
-    // 3. Fatos de impacto (20% do feed)
-    const fatosAleatorios = this._shuffle([...FATOS_IMPACTO]).slice(0, Math.floor(limit * 0.20));
-
-    // 4. Protocolos (10% do feed)
-    const protocolosAleatorios = this._shuffle([...PROTOCOLOS_DESTAQUE]).slice(0, Math.floor(limit * 0.10));
-
-    // Montagem do feed
-    const feedBase = [
-      ...casosRelevantes,
-      ...fatosAleatorios,
-      ...protocolosAleatorios,
-    ];
-    const feedEmbaralhado = this._shuffle(feedBase).slice(0, limit - (sazonalDoMes ? 1 : 0));
+    const feedEmbaralhado = relevantes.slice(0, limit - (sazonalDoMes ? 1 : 0));
 
     return sazonalDoMes
       ? [sazonalDoMes, ...feedEmbaralhado]
@@ -76,9 +74,9 @@ class RadarVigilaroService {
       }
 
       const familyCategories = this._getFamilyCategories(allProfiles);
-      const candidatos = this._sortearCasos(familyCategories, 20);
+      const candidatos = this._sortearConteudo(familyCategories, 20);
       const filtrado = candidatos.filter(c => c.id !== forceExcludeId);
-      const escolhido = filtrado[0] || CASOS_REAIS[0];
+      const escolhido = filtrado[0] || ACERVO_CURADO[0];
 
       await AsyncStorage.setItem(CACHE_KEY, JSON.stringify({
         data: escolhido,
@@ -87,7 +85,7 @@ class RadarVigilaroService {
 
       return escolhido;
     } catch {
-      return CASOS_REAIS[0];
+      return ACERVO_CURADO[0];
     }
   }
 
@@ -131,11 +129,12 @@ class RadarVigilaroService {
   }
 
   /**
-   * Sorteia casos priorizando as categorias relevantes para a família.
+   * Sorteia conteúdo do acervo autoral priorizando as categorias relevantes
+   * para a família.
    */
-  _sortearCasos(familyCategories, limit) {
-    const prioritarios = CASOS_REAIS.filter(c => familyCategories.includes(c.categoria));
-    const demais = CASOS_REAIS.filter(c => !familyCategories.includes(c.categoria));
+  _sortearConteudo(familyCategories, limit) {
+    const prioritarios = ACERVO_CURADO.filter(c => familyCategories.includes(c.categoria));
+    const demais = ACERVO_CURADO.filter(c => !familyCategories.includes(c.categoria));
 
     const pool = [
       ...this._shuffle(prioritarios),
