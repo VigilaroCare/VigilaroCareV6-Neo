@@ -120,3 +120,7 @@ update_menu.js
 
 # QA local (dumps de storage podem conter dados sensiveis)
 qa-artifacts/
+
+# Rascunhos do laboratorio de pictogramas (render procedural). Os scripts
+# sao versionados; as imagens de teste, nao — elas se regeram em um comando.
+assets/illustrations/_gerados/
