@@ -208,6 +208,63 @@ function gravadoSaudePet(x, y, S) {
     return sdfPolilinha(x, y, P.map(([a, b]) => [a * S, b * S]), 0.024 * S);
 }
 
+/** Gira um ponto em torno de um centro — necessário para peças inclinadas. */
+function girar(x, y, cx, cy, rad) {
+    const c = Math.cos(rad), s = Math.sin(rad);
+    const dx = x - cx, dy = y - cy;
+    return [cx + dx * c - dy * s, cy + dx * s + dy * c];
+}
+
+/**
+ * "Atividades Eventuais": contorno de casa com martelo e chave de fenda
+ * cruzados. As ferramentas são a parte esquemática — martelo tem forma
+ * orgânica, e aqui ele é reconstruído com caixa girada mais garra em dois
+ * segmentos. Fica legível, mas não é cópia do desenho original.
+ */
+function sdfAtividadesEventuais(x, y, S) {
+    const t = 0.034 * S;
+    const lin = (pts, esp = t) => sdfPolilinha(x, y, pts.map(([a, b]) => [a * S, b * S]), esp);
+
+    // Casa: telhado de uma água com cumeeira deslocada para a direita
+    const casa = Math.min(
+        lin([[0.225, 0.400], [0.640, 0.235], [0.775, 0.430]]),   // telhado
+        lin([[0.265, 0.383], [0.265, 0.740]]),                   // parede esquerda
+        lin([[0.265, 0.740], [0.735, 0.740]]),                   // base
+        lin([[0.735, 0.740], [0.735, 0.410]])                    // parede direita
+    );
+
+    // Janela dividida à esquerda e porta à direita (a porta abre na base)
+    const esq = 0.030 * S;
+    const janela = Math.min(
+        lin([[0.305, 0.455], [0.380, 0.455], [0.380, 0.545], [0.305, 0.545], [0.305, 0.455]], esq),
+        lin([[0.305, 0.575], [0.380, 0.575], [0.380, 0.705], [0.305, 0.705], [0.305, 0.575]], esq)
+    );
+    const porta = lin([[0.640, 0.740], [0.640, 0.560], [0.712, 0.560], [0.712, 0.740]], esq);
+
+    // Ferramentas menores e mais baixas: na primeira tentativa invadiam o
+    // telhado e a cabeça do martelo colidia com a cumeeira.
+    const chave = Math.min(
+        lin([[0.430, 0.678], [0.528, 0.520]], 0.024 * S),        // haste
+        lin([[0.534, 0.510], [0.578, 0.440]], 0.052 * S)         // cabo
+    );
+
+    // Martelo: cabo descendo para a direita, cabeça girada e garra em V
+    const cabo = lin([[0.472, 0.470], [0.566, 0.672]], 0.040 * S);
+    const ang = -0.38;
+    const cxh = 0.452 * S, cyh = 0.442 * S;
+    const [hx, hy] = girar(x, y, cxh, cyh, ang);
+    const cabeca = sdfCaixa(hx, hy, cxh, cyh, 0.068 * S, 0.030 * S, 0.012 * S);
+    // garra: dois segmentos que saem da cabeça e curvam para baixo
+    const garra = uniaoSuave(
+        lin([[0.400, 0.428], [0.378, 0.470]], 0.026 * S),
+        lin([[0.378, 0.470], [0.412, 0.487]], 0.026 * S),
+        0.02 * S
+    );
+    const martelo = uniaoSuave(Math.min(cabo, cabeca), garra, 0.018 * S);
+
+    return Math.min(Math.min(casa, Math.min(janela, porta)), Math.min(chave, martelo));
+}
+
 /** "Modo Viagem": mala rígida com alça, dois sulcos e dois pés. */
 function sdfModoViagem(x, y, S) {
     const corpo = sdfCaixa(x, y, 0.50 * S, 0.555 * S, 0.205 * S, 0.215 * S, 0.048 * S);
@@ -238,6 +295,7 @@ const GLIFOS = {
     'modo-viagem': { forma: sdfModoViagem, gravado: gravadoModoViagem },
     'scanner-ambiente': { forma: sdfScannerAmbiente },
     'saude-pet': { forma: sdfSaudePet, gravado: gravadoSaudePet },
+    'atividades-eventuais': { forma: sdfAtividadesEventuais },
 };
 let sdfGlifo = GLIFOS.vistorias.forma;
 let sdfGravado = null;
@@ -371,7 +429,15 @@ const peca = (() => { const a = process.argv.slice(2); const i = a.indexOf('--pe
 const registro = GLIFOS[peca] || GLIFOS.vistorias;
 sdfGlifo = registro.forma;
 sdfGravado = registro.gravado || null;
-for (const lado of [arg('lado', 1024), 510]) {          // 510 = 170pt em tela 3x
+// Tamanhos de saída. O padrão cobre os dois usos: 1024 é mestre de
+// inspeção; 510 é o tile real num aparelho 3x. Para exportar o conjunto que o
+// React Native consome, passe --tamanhos 170,340,510 (1x, 2x e 3x).
+const tamanhos = (() => {
+    const a = process.argv.slice(2), i = a.indexOf('--tamanhos');
+    if (i >= 0 && a[i + 1]) return a[i + 1].split(',').map(Number).filter(Boolean);
+    return [arg('lado', 1024), 510];
+})();
+for (const lado of tamanhos) {          // 510 = 170pt em tela 3x
     const arquivo = path.join(SAIDA, `${peca}-${lado}.png`);
     fs.writeFileSync(arquivo, PNG.sync.write(renderSS(lado, 3)));
     console.log('gerado', path.relative(RAIZ, arquivo));
