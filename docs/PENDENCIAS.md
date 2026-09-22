@@ -69,7 +69,7 @@ Parecer completo em [CONFORMIDADE_IA_E_DIREITOS.md](CONFORMIDADE_IA_E_DIREITOS.m
 
 | # | Pendência | Situação |
 |---|---|---|
-| G1 | **Identidade visual gerada por IA** | Respondido: ChatGPT e outras ferramentas não lembradas; metadados de origem ausentes. Imagens do ChatGPT podem ser usadas comercialmente. Risco residual nas "outras" (há ferramentas cujo plano gratuito é não comercial). Decisão pendente: regerar os ~20 pictogramas de identidade com ferramenta documentada, ou aceitar o risco. A identidade não é protegível por direito autoral de qualquer forma. |
+| G1 | **Procedência das ilustrações** | Encerrado: declaradas como geradas no ChatGPT (OpenAI). Uso comercial permitido pelos termos, sem atribuição obrigatória. A identidade visual, por ser gerada por IA, não é protegível por direito autoral — fato de negócio, sem ação. |
 | G2 | **ElevenLabs** | Resolvido: não é usada — a voz vem do TTS nativo. O plano é Free (licença não comercial), então **não ligar** sem assinatura paga. Aviso gravado no `Config.js`. |
 | G3 | **Crédito ao Open Food Facts** | Feito: bloco "Créditos e fontes" na tela Sobre, nos 4 idiomas. |
 | G4 | **Revisão jurídica antes de publicar** | Opcional, mas recomendada. O parecer serve de insumo. |

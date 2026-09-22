@@ -49,19 +49,19 @@ Optei por estender o `SafetyDisclaimer`, que já era o padrão do app para ressa
 
 ---
 
-## 4. Procedência das imagens — respondido em 22/09
+## 4. Procedência das imagens — encerrado em 22/09
 
 `docs/IMAGES_INVENTORY.md` registra acervo do autor e fotos de Pexels e Unsplash, com orientação verificada em 2026-05-21. As duas licenças permitem uso comercial sem atribuição obrigatória — e ainda assim creditamos na tela Sobre.
 
-**As 118 ilustrações e pictogramas foram geradas com ChatGPT (OpenAI) e outras ferramentas que o autor não recupera de memória.** Os arquivos não têm metadado de origem: verifiquei, e as marcas C2PA foram removidas no processamento das imagens. Isso significa que a procedência não é auditável pelos arquivos.
+**As 118 ilustrações e pictogramas foram geradas no ChatGPT (OpenAI), conforme declaração do autor em 22/09/2026.** Os arquivos do repositório não têm metadado de origem: as marcas C2PA foram removidas no processamento das imagens, então a procedência não é auditável pelos arquivos — o registro se apoia na declaração, não em evidência técnica.
 
 O que decorre disso:
 
-- **Uso comercial das imagens do ChatGPT: permitido.** Os termos da OpenAI cedem ao usuário os direitos sobre a saída gerada, inclusive no plano gratuito. Para essa parte do acervo não há impedimento.
-- **Risco residual nas "outras ferramentas".** É o ponto que fica aberto. Algumas ferramentas populares licenciam o resultado do plano gratuito **apenas para uso não comercial** — Midjourney sem assinatura entrega em CC BY-NC, e o Bing Image Creator restringe a uso pessoal. Se alguma peça veio de uma dessas, ela está hoje num app comercial sob licença que não permite.
-- **A identidade visual não é protegível.** Obra inteiramente gerada por IA não é registrável nos Estados Unidos, e a lei brasileira também exige autoria humana. Na prática: se um concorrente copiar os pictogramas, não há direito autoral a invocar. Isso é fato de negócio, não defeito a corrigir.
+- **Uso comercial: permitido.** Os termos da OpenAI cedem ao usuário os direitos sobre a saída gerada, inclusive no plano gratuito, sem exigir atribuição. Vale para DALL·E 3, para a geração nativa do GPT-4o e para o ChatGPT Images 2.x — todas as gerações acessadas pelo ChatGPT.
+- **A ressalva que fecha o assunto:** o que define a licença é o **serviço** onde o prompt foi digitado, não o modelo. Imagem feita no Bing Image Creator ou no Copilot Designer roda em DALL·E por baixo, mas os termos da Microsoft a restringem a uso pessoal e não comercial. A declaração do autor é de que usou o ChatGPT, o que afasta esse caso.
+- **A identidade visual não é protegível.** Obra inteiramente gerada por IA não é registrável nos Estados Unidos, e a lei brasileira também exige autoria humana. Se um concorrente copiar os pictogramas, não há direito autoral a invocar. É fato de negócio, não defeito a corrigir.
 
-**Recomendação prática.** Não vale auditar 118 arquivos de memória. Sugiro concentrar no que é identidade visual — os pictogramas cerâmicos da Home, do Menu e das abas, algo em torno de 20 peças — e regerar esse subconjunto com uma ferramenta de termos claros, registrando a origem no inventário. O resto do acervo é ilustração de apoio, de risco baixo e substituível a qualquer momento.
+**Recomendação de higiene, não de conformidade:** se os arquivos originais de download ainda existirem no Drive, guarde-os. O nome que o ChatGPT dá ao arquivo (`ChatGPT Image <data>.png`, ou `DALL·E <data> - <prompt>.png` nas gerações antigas) e o metadado C2PA que eles carregam são a evidência da origem, caso algum dia seja preciso demonstrar.
 
 ---
 
@@ -88,7 +88,6 @@ Falta o que já está em `PENDENCIAS.md`: declarar o compartilhamento com tercei
 
 ## 7. O que ainda depende de você
 
-1. **Decidir sobre o subconjunto de identidade visual** (item 4): regerar os ~20 pictogramas centrais com ferramenta de termos claros, ou aceitar o risco residual das "outras ferramentas".
-2. **Revisão jurídica antes da publicação**, se quiser segurança formal. Este documento serve de insumo.
+1. **Revisão jurídica antes da publicação**, se quiser segurança formal. Este documento serve de insumo.
 
-Respondidos em 22/09: procedência das imagens (ChatGPT e outras), plano da ElevenLabs (Free, e por isso a voz segue desligada) e o crédito ao Open Food Facts (escrito na tela Sobre).
+Encerrados em 22/09: procedência das imagens (ChatGPT/OpenAI, por declaração do autor — uso comercial permitido), plano da ElevenLabs (Free, e por isso a voz segue desligada, com aviso no `Config.js`) e o crédito ao Open Food Facts (escrito na tela Sobre, nos 4 idiomas).

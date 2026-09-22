@@ -206,3 +206,17 @@ Fonte do acervo: `C:\Users\User\Pictures\Imagens PAD\mordidas-animais\`
 - ❌ Não recomendado
 
 **Recomendação:** Opção A. Aguardando aprovação do user para baixar e bundlar.
+
+
+---
+
+## Procedência dos ativos (registrado em 22/09/2026)
+
+| Conjunto | Origem | Licença / uso comercial |
+|---|---|---|
+| Fotografias | Acervo do autor; Pexels; Unsplash | Livre para uso comercial; creditadas na tela Sobre por opção |
+| 118 ilustrações e pictogramas de `assets/illustrations/` | **Geradas no ChatGPT (OpenAI)**, por declaração do autor | Permitido: os termos da OpenAI cedem os direitos da saída ao usuário, inclusive no plano gratuito |
+
+Os arquivos versionados perderam o metadado C2PA no processamento, então a origem não é verificável pelos arquivos. Ao gerar arte nova, **guarde o download original** — o nome do arquivo e o metadado são a evidência da origem.
+
+O que define a licença é o serviço onde o prompt foi digitado, não o modelo: Bing Image Creator e Copilot Designer usam DALL·E, mas restringem o resultado a uso pessoal. Gerar sempre pelo ChatGPT mantém o acervo limpo.
