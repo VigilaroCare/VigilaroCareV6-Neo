@@ -131,11 +131,81 @@ function sdfInfoRotulos(x, y, S) {
     return d;
 }
 
+/**
+ * "Scanner de Ambiente": planta baixa esquemática dentro dos cantos de mira.
+ * As paredes são segmentos soltos, não um retângulo fechado — os intervalos
+ * entre elas SÃO as portas, que é como o original representa a circulação.
+ */
+function sdfScannerAmbiente(x, y, S) {
+    const t = 0.030 * S;
+    const seg = (ax, ay, bx, by) => sdfPolilinha(x, y, [[ax * S, ay * S], [bx * S, by * S]], t);
+    const paredes = [
+        // contorno externo, com vãos onde o original abre passagem
+        seg(0.365, 0.305, 0.635, 0.305),   // topo
+        seg(0.635, 0.305, 0.635, 0.675),   // direita
+        seg(0.365, 0.675, 0.635, 0.675),   // base
+        seg(0.365, 0.305, 0.365, 0.495),   // esquerda, metade de cima
+        seg(0.365, 0.560, 0.365, 0.675),   // esquerda, metade de baixo (vão no meio)
+        // eixo horizontal que atravessa e ultrapassa a planta dos dois lados
+        seg(0.300, 0.495, 0.700, 0.495),
+        // divisórias internas
+        // duas paredes descem do topo com um vão entre elas — a porta do
+        // cômodo superior. Ambas nascem na parede de cima: soltas no meio do
+        // ar, viravam um traço órfão que o original não tem.
+        seg(0.500, 0.305, 0.500, 0.400),
+        seg(0.445, 0.305, 0.445, 0.375),
+        seg(0.365, 0.415, 0.455, 0.415),   // parede do cômodo à esquerda
+        seg(0.545, 0.495, 0.545, 0.600),   // divisória inferior
+        seg(0.455, 0.600, 0.545, 0.600),   // parede do cômodo inferior
+        seg(0.455, 0.600, 0.455, 0.675),   // fecha o cômodo até a base
+    ];
+    return Math.min(sdfCantosMira(x, y, S), Math.min(...paredes));
+}
+
 /** Caixa de cantos arredondados — corpo de mala, painel, pé. */
 function sdfCaixa(x, y, cx, cy, hw, hh, r) {
     const qx = Math.abs(x - cx) - (hw - r);
     const qy = Math.abs(y - cy) - (hh - r);
     return Math.min(Math.max(qx, qy), 0) + Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) - r;
+}
+
+/**
+ * União SUAVE de duas formas. O `min` comum cola as peças deixando um vinco
+ * na junção; isto funde as duas com uma concordância de raio `k`, que é o que
+ * dá a silhueta orgânica de um coxim modelado à mão.
+ */
+function uniaoSuave(a, b, k) {
+    const h = clamp(0.5 + 0.5 * (b - a) / k, 0, 1);
+    return mix(b, a, h) - k * h * (1 - h);
+}
+
+/** Elipse — coxins da pata. Aproximação de distância, suficiente para o relevo. */
+function sdfElipse(x, y, cx, cy, rx, ry) {
+    const k = Math.hypot((x - cx) / rx, (y - cy) / ry);
+    return (k - 1) * Math.min(rx, ry);
+}
+
+/** "Saúde Pet": quatro coxins e o coxim principal, com o pulso gravado nele. */
+function sdfSaudePet(x, y, S) {
+    const dedos = [
+        sdfElipse(x, y, 0.285 * S, 0.470 * S, 0.062 * S, 0.082 * S),
+        sdfElipse(x, y, 0.408 * S, 0.362 * S, 0.064 * S, 0.090 * S),
+        sdfElipse(x, y, 0.592 * S, 0.362 * S, 0.064 * S, 0.090 * S),
+        sdfElipse(x, y, 0.715 * S, 0.470 * S, 0.062 * S, 0.082 * S),
+    ];
+    // Coxim principal: caixa muito arredondada somada a um domo no topo —
+    // dá a forma de gota larga do original sem recorrer a curva desenhada.
+    const base = sdfCaixa(x, y, 0.50 * S, 0.640 * S, 0.185 * S, 0.120 * S, 0.112 * S);
+    const topo = sdfElipse(x, y, 0.50 * S, 0.560 * S, 0.115 * S, 0.085 * S);
+    const coxim = uniaoSuave(base, topo, 0.055 * S);   // sem vinco na junção
+    return Math.min(Math.min(...dedos), coxim);
+}
+
+/** A linha de pulso gravada no coxim principal. */
+function gravadoSaudePet(x, y, S) {
+    const P = [[0.355, 0.660], [0.420, 0.660], [0.452, 0.612], [0.492, 0.712],
+               [0.538, 0.575], [0.578, 0.660], [0.645, 0.660]];
+    return sdfPolilinha(x, y, P.map(([a, b]) => [a * S, b * S]), 0.024 * S);
 }
 
 /** "Modo Viagem": mala rígida com alça, dois sulcos e dois pés. */
@@ -166,6 +236,8 @@ const GLIFOS = {
     'minha-saude': { forma: sdfMinhaSaude },
     'info-rotulos': { forma: sdfInfoRotulos },
     'modo-viagem': { forma: sdfModoViagem, gravado: gravadoModoViagem },
+    'scanner-ambiente': { forma: sdfScannerAmbiente },
+    'saude-pet': { forma: sdfSaudePet, gravado: gravadoSaudePet },
 };
 let sdfGlifo = GLIFOS.vistorias.forma;
 let sdfGravado = null;
