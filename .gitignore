@@ -76,7 +76,6 @@ backend-proxy/.env
 # politica de privacidade de prometerem o que o app nao faz.
 !docs/MAPA_FUNCIONALIDADES_VigilaroCare_V6Neo.md
 !docs/PENDENCIAS.md
-!docs/PROMPTS_PICTOGRAMAS.md
 !docs/CONFORMIDADE_IA_E_DIREITOS.md
 
 # Textos do app extraidos para revisao editorial. Versionados de proposito:
@@ -122,6 +121,3 @@ update_menu.js
 # QA local (dumps de storage podem conter dados sensiveis)
 qa-artifacts/
 
-# Rascunhos do laboratorio de pictogramas (render procedural). Os scripts
-# sao versionados; as imagens de teste, nao — elas se regeram em um comando.
-assets/illustrations/_gerados/
