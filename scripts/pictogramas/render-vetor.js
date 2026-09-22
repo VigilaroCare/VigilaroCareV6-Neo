@@ -208,6 +208,51 @@ function gravadoSaudePet(x, y, S) {
     return sdfPolilinha(x, y, P.map(([a, b]) => [a * S, b * S]), 0.024 * S);
 }
 
+/**
+ * "Cuidar e Proteger": telhado, família de três e duas mãos em concha.
+ *
+ * Peça no limite do método. Telhado e figuras são geometria pura e saem
+ * fiéis. As MÃOS são aproximação: palma e polegar fundidos por união suave,
+ * o que dá a massa e o gesto, mas não os vincos e a anatomia do original.
+ */
+function sdfCuidarProteger(x, y, S) {
+    const lin = (pts, esp) => sdfPolilinha(x, y, pts.map(([a, b]) => [a * S, b * S]), esp);
+
+    // Telhado: duas águas com beirais curtos descendo nas pontas
+    const telhado = Math.min(
+        lin([[0.295, 0.370], [0.500, 0.232], [0.705, 0.370]], 0.034 * S),
+        lin([[0.305, 0.360], [0.305, 0.410]], 0.034 * S),
+        lin([[0.695, 0.360], [0.695, 0.410]], 0.034 * S)
+    );
+
+    // Família: cabeça redonda e corpo em cápsula — o pictograma clássico
+    const pessoa = (cx, cyCabeca, rCabeca, cyCorpo, hw, hh) => uniaoSuave(
+        sdfElipse(x, y, cx * S, cyCabeca * S, rCabeca * S, rCabeca * S),
+        sdfCaixa(x, y, cx * S, cyCorpo * S, hw * S, hh * S, hw * 0.75 * S),
+        0.012 * S
+    );
+    // Afastei os adultos e desci a criança: na primeira tentativa os três
+    // corpos se encostavam e viravam uma massa só no tamanho do tile.
+    const familia = Math.min(
+        pessoa(0.415, 0.428, 0.039, 0.527, 0.049, 0.068),   // adulto esquerdo
+        pessoa(0.585, 0.428, 0.039, 0.527, 0.049, 0.068),   // adulto direito
+        pessoa(0.500, 0.512, 0.031, 0.596, 0.038, 0.050)    // criança ao centro
+    );
+
+    // Mãos em concha: palma subindo pelo lado de fora e polegar curvando para
+    // dentro. A união suave é o que transforma dois traços em uma peça só.
+    const mao = (espelho) => {
+        const m = (px) => espelho ? 1 - px : px;
+        const palma = lin([
+            [m(0.252), 0.452], [m(0.268), 0.640], [m(0.350), 0.742], [m(0.452), 0.760],
+        ], 0.082 * S);
+        const polegar = lin([[m(0.318), 0.520], [m(0.360), 0.628]], 0.050 * S);
+        return uniaoSuave(palma, polegar, 0.040 * S);
+    };
+
+    return Math.min(Math.min(telhado, familia), Math.min(mao(false), mao(true)));
+}
+
 /** Gira um ponto em torno de um centro — necessário para peças inclinadas. */
 function girar(x, y, cx, cy, rad) {
     const c = Math.cos(rad), s = Math.sin(rad);
@@ -296,6 +341,7 @@ const GLIFOS = {
     'scanner-ambiente': { forma: sdfScannerAmbiente },
     'saude-pet': { forma: sdfSaudePet, gravado: gravadoSaudePet },
     'atividades-eventuais': { forma: sdfAtividadesEventuais },
+    'cuidar-e-proteger': { forma: sdfCuidarProteger },
 };
 let sdfGlifo = GLIFOS.vistorias.forma;
 let sdfGravado = null;
