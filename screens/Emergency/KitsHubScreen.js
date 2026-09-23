@@ -235,11 +235,9 @@ const s = StyleSheet.create({
     kitTitle: {
         fontWeight: '800',
         fontSize: 15,
-        color: Neo.colors.neutral[900],
         marginBottom: 2,
     },
     kitSub: {
-        color: Neo.colors.neutral[600],
         lineHeight: 16,
     },
 
@@ -262,7 +260,7 @@ const s = StyleSheet.create({
     },
     tipText: {
         flex: 1,
-        color: Neo.colors.neutral[700],
+
         fontSize: 13,
         lineHeight: 18,
     },

@@ -736,10 +736,10 @@ const s = StyleSheet.create({
         flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32,
     },
     loadingTitle: {
-        marginTop: 16, color: Neo.colors.neutral[900], textAlign: 'center',
+        marginTop: 16, textAlign: 'center',
     },
     loadingSubtitle: {
-        marginTop: 6, textAlign: 'center', color: Neo.colors.neutral[600], lineHeight: 18,
+        marginTop: 6, textAlign: 'center', lineHeight: 18,
     },
 
     // Header
@@ -798,7 +798,7 @@ const s = StyleSheet.create({
     aiLoadingCard: {
         flexDirection: 'row', alignItems: 'center', padding: 16, borderRadius: 16, gap: 12,
     },
-    aiLoadingText: { flex: 1, color: Neo.colors.neutral[700], fontSize: 13 },
+    aiLoadingText: { flex: 1, fontSize: 13 },
     aiCard: {
         flexDirection: 'row', alignItems: 'flex-start', padding: 14, borderRadius: 16, gap: 12,
     },
@@ -807,9 +807,9 @@ const s = StyleSheet.create({
         alignItems: 'center', justifyContent: 'center',
     },
     aiCardTitle: { fontWeight: '800', fontSize: 13.5, marginBottom: 4 },
-    aiCardText: { color: Neo.colors.neutral[700], lineHeight: 19, fontSize: 12.5 },
+    aiCardText: { lineHeight: 19, fontSize: 12.5 },
     aiTimestamp: {
-        color: Neo.colors.neutral[500], textAlign: 'center', marginTop: 6, fontStyle: 'italic',
+        textAlign: 'center', marginTop: 6, fontStyle: 'italic',
     },
 
     // Risk card

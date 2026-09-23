@@ -198,11 +198,9 @@ const s = StyleSheet.create({
     itemTitle: {
         fontWeight: '800',
         fontSize: 14.5,
-        color: Neo.colors.neutral[900],
         marginBottom: 2,
     },
     itemSub: {
-        color: Neo.colors.neutral[600],
         fontSize: 11,
     },
 });

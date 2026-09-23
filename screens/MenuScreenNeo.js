@@ -344,10 +344,8 @@ const s = StyleSheet.create({
     premiumTitle: {
         fontWeight: '800',
         fontSize: 15,
-        color: Neo.colors.neutral[900],
     },
     premiumSub: {
-        color: Neo.colors.neutral[600],
         marginTop: 2,
         lineHeight: 16,
     },
@@ -381,7 +379,6 @@ const s = StyleSheet.create({
         textAlign: 'center',
         fontSize: 13,
         fontWeight: '700',
-        color: Neo.colors.neutral[900],
         lineHeight: 16,
         marginTop: -10, // pulls text closer to the image
         paddingHorizontal: 4,

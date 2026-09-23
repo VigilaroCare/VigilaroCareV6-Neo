@@ -264,12 +264,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'PlusJakartaSans_700Bold',
         fontWeight: '700',
-        color: Neo.colors.neutral[800],
         marginBottom: 2
     },
     guideSubtitle: {
         fontSize: 13,
-        color: Neo.colors.neutral[500],
         fontFamily: 'PlusJakartaSans_500Medium',
         fontStyle: 'italic',
     },
@@ -299,7 +297,6 @@ const styles = StyleSheet.create({
     toolName: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: Neo.colors.neutral[900],
         flex: 1,
     },
     toolDetail: {
@@ -310,12 +307,10 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 12,
-        color: Neo.colors.neutral[500],
         fontWeight: 'bold',
     },
     value: {
         fontSize: 14,
-        color: Neo.colors.neutral[700],
         lineHeight: 20,
     },
 });

@@ -120,7 +120,7 @@ export default function HomeXRayScreen() {
                                 Pessoas e Pets Vinculados
                             </Text>
                         </View>
-                        
+
                         {/* Moradores Fixos */}
                         <View style={{ marginBottom: 10 }}>
                             <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>Moradores Fixos:</Caption>
@@ -305,7 +305,6 @@ const s = StyleSheet.create({
         marginBottom: 2,
     },
     subtitle: {
-        color: Neo.colors.neutral[600],
     },
 
     scrollContent: {
@@ -329,7 +328,7 @@ const s = StyleSheet.create({
     },
     resName: {
         fontSize: 17,
-        color: Neo.colors.neutral[900],
+
         marginBottom: 6,
     },
     typeBadge: {
@@ -342,7 +341,7 @@ const s = StyleSheet.create({
     typeBadgeText: {
         fontSize: 10,
         fontWeight: '800',
-        color: Neo.colors.primary[700],
+
         letterSpacing: 0.4,
     },
     resIconBox: {
@@ -377,7 +376,6 @@ const s = StyleSheet.create({
         textTransform: 'uppercase',
     },
     emptyInline: {
-        color: Neo.colors.neutral[500],
     },
 
     // Moradores
@@ -406,7 +404,6 @@ const s = StyleSheet.create({
     avatarName: {
         fontSize: 10,
         textAlign: 'center',
-        color: Neo.colors.neutral[700],
     },
 
     // Ambientes (chips)
@@ -428,7 +425,6 @@ const s = StyleSheet.create({
     },
     roomBadgeText: {
         fontSize: 10.5,
-        color: Neo.colors.neutral[700],
         fontWeight: '600',
     },
 
@@ -451,7 +447,6 @@ const s = StyleSheet.create({
     riskLabel: {
         fontSize: 11.5,
         fontWeight: '600',
-        color: Neo.colors.neutral[800],
     },
 
     // Botão de ação
@@ -488,7 +483,6 @@ const s = StyleSheet.create({
         marginBottom: 18,
     },
     emptyTitle: {
-        color: Neo.colors.neutral[800],
         textAlign: 'center',
     },
 });

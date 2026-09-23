@@ -616,7 +616,6 @@ const s = StyleSheet.create({
     ceramicCardLabel: {
         fontWeight: 'bold',
         textAlign: 'center',
-        color: Neo.colors.neutral[800],
         fontSize: 12,
         lineHeight: 15,
     },

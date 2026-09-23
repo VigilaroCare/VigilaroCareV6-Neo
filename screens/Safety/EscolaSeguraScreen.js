@@ -515,7 +515,6 @@ const styles = StyleSheet.create({
     gridCardTitle: {
         fontSize: 11,
         fontWeight: '700',
-        color: Neo.colors.neutral[800],
         textAlign: 'center',
         lineHeight: 14,
         paddingHorizontal: 2,
@@ -580,7 +579,6 @@ const styles = StyleSheet.create({
         marginBottom: 3,
     },
     itemText: {
-        color: Neo.colors.neutral[900],
         lineHeight: 20,
         fontWeight: '600',
         fontSize: 15,
