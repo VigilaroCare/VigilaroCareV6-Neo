@@ -556,6 +556,10 @@ function BarePictogramShortcut({
     cardBorderWidth,
     accentColor,
 }) {
+    // Este componente vive FORA do escopo do HomeScreenNeo, então lê o tema
+    // por conta própria — o `isDark` da tela não alcança aqui.
+    const isDark = useIsDark();
+
     if (isRowLayout) {
         return (
             <TappablePressable
