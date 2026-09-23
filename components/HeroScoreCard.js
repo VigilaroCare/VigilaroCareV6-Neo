@@ -649,9 +649,9 @@ const styles = StyleSheet.create({
         paddingBottom: 6,
         marginTop: 6,
         marginBottom: 2,
-        // Sombra discreta: os tiles de pictograma são planos com moldura, e o
-        // card do score agora pertence à mesma família.
-        ...Neo.shadows.sm,
+        // Mesma sombra do tile de pictograma — o card do score pertence à
+        // família cerâmica e precisa pousar no fundo na mesma altura que eles.
+        ...Neo.shadows.ceramic,
     },
     heroTitle: {
         textAlign: 'center',

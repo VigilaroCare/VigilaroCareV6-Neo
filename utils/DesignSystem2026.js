@@ -22,7 +22,7 @@
  * Rode `node scripts/checkContrast.mjs` antes de alterar qualquer hex.
  */
 
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 // Nomes das fontes carregadas via expo-font (ver App.js)
 export const FONTS = {
@@ -111,11 +111,16 @@ const LightColors = {
     // pictogramas da Home já carregam impresso na imagem.
     // O card do score usa ESTE token: uma terceira superfície tingida
     // (o menta #D9F1E4) é o que hoje desarmoniza a tela.
+    // A borda é INSINUAÇÃO, não contorno. O #065F46 sólido a 1,5px que havia
+    // aqui desenhava um traço verde-escuro em volta do card do score enquanto
+    // os tiles de pictograma ao lado usavam um fio a 16% — o hero parecia de
+    // outra família, mais duro. Contorno forte fica para os temas de alto
+    // contraste, onde ele é requisito.
     tile: {
         cream: '#F4EBDC',
         creamRaised: '#FAF5EC',
-        border: '#065F46',
-        borderWidth: 1.5,
+        border: 'rgba(6, 95, 70, 0.16)',
+        borderWidth: StyleSheet.hairlineWidth,
         track: 'rgba(6, 95, 70, 0.14)', // trilho de barra de progresso
     },
 
@@ -563,6 +568,21 @@ export const DS = {
 
     // 5. Sombras Híbridas (Apple Diffusion + Android Elevation)
     shadows: {
+        // Sombra da família cerâmica: tile de pictograma e card do score usam
+        // ESTA, para que os dois pousem no fundo da mesma altura. É verde, não
+        // preta — cinza sobre creme suja; a sombra do próprio verde do desenho
+        // some no papel.
+        //
+        // Fonte única de propósito: quando PictogramTile carregava a sua cópia
+        // destes números, o hero ficou com metade da opacidade e dois terços
+        // da elevação, e a diferença aparecia na Home.
+        ceramic: {
+            shadowColor: '#064E3B',
+            shadowOffset: { width: 0, height: 3 },
+            shadowOpacity: 0.10,
+            shadowRadius: 8,
+            elevation: Platform.OS === 'android' ? 3 : 0,
+        },
         sm: {
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 2 },

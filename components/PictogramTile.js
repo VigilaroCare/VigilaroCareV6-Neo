@@ -23,6 +23,8 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors } from '../utils/ThemeContext';
+import { useAccessibility } from '../context/AccessibilityContext';
 
 export const PICTOGRAM_ASPECT_RATIO = 577 / 433;
 
@@ -67,6 +69,16 @@ export default function PictogramTile({
     // criar camada de composição em cima da sombra.
     const estiloGlifo = recuado ? [{ opacity: OPACIDADE_RECUADO }, imageStyle] : imageStyle;
 
+    // A superfície é sempre creme, então a borda padrão é a da paleta clara —
+    // é a superfície que o tile desenha, não a do tema. Em alto contraste,
+    // porém, o contorno forte é requisito, e aí vale o do tema: o fio a 16%
+    // deixaria o tile sem aresta para quem precisa dela.
+    const colors = useThemeColors();
+    const { highContrast } = useAccessibility() || {};
+    const borda = highContrast
+        ? { borderColor: colors.tile.border, borderWidth: colors.tile.borderWidth }
+        : null;
+
     const sizeStyle =
         width != null ? { width, aspectRatio: PICTOGRAM_ASPECT_RATIO } :
         height != null ? { height, aspectRatio: PICTOGRAM_ASPECT_RATIO } :
@@ -99,8 +111,8 @@ export default function PictogramTile({
                     {
                         backgroundColor: atenuado ? CREME_NOTURNO : CREME,
                         borderRadius: raio,
-                        shadowColor: Neo.colors.primary[900],
                     },
+                    borda,
                 ]}
                 onLayout={(e) => setLado(e.nativeEvent.layout.height)}
             >
@@ -134,15 +146,12 @@ const styles = StyleSheet.create({
         width: '75.4%',
         aspectRatio: 435 / 341,
         overflow: 'hidden',
-        // Borda como insinuação, não como contorno: o traço escuro de antes
-        // era o que mais endurecia a peça.
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: 'rgba(6, 95, 70, 0.16)',
-        // Elevação discreta — o que separa o tile do fundo sem chapar.
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.10,
-        shadowRadius: 8,
-        elevation: 3,
+        // Borda e sombra vêm do DS, não daqui: são as MESMAS do card do score.
+        // O tile é sempre creme, então lê a paleta clara de propósito — é a
+        // superfície que ele desenha, não a do tema.
+        borderWidth: Neo.colors.tile.borderWidth,
+        borderColor: Neo.colors.tile.border,
+        ...Neo.shadows.ceramic,
     },
     centro: {
         flex: 1,

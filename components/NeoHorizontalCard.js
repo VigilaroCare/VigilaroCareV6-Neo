@@ -27,14 +27,17 @@ export default function NeoHorizontalCard({
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     
-    const textPrimary = themeColors.neutral[900];
-    const textBody = themeColors.neutral[700];
     // Quando exibe pictograma cerâmico (plainImage), o fundo usa o mesmo
     // creme da moldura do tile (#F4EBDC) para fundir card e pictograma.
     // Para fotos e ícones, mantém o fundo glass/branco padrão.
     const cardBg = plainImage
         ? Neo.colors.tile.cream
         : isDark ? themeColors.neutral[200] : '#FFFFFF';
+
+    // Superfície creme não acompanha o tema, então a tinta dela também não
+    // pode acompanhar: o ink do modo escuro mede 1,06:1 sobre o creme.
+    const textPrimary = plainImage ? Neo.colors.textOn.ink : themeColors.neutral[900];
+    const textBody = plainImage ? Neo.colors.textOn.muted : themeColors.neutral[700];
     const borderColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.5)';
 
     const [imgFailed, setImgFailed] = useState(false);
@@ -107,7 +110,7 @@ export default function NeoHorizontalCard({
 
                     {/* Chevron Direita */}
                     <View style={styles.chevron}>
-                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
+                        <NeoIcon name="ArrowRight2" size={16} color={plainImage ? Neo.colors.textOn.muted : themeColors.neutral[400]} />
                     </View>
                 </View>
             </View>

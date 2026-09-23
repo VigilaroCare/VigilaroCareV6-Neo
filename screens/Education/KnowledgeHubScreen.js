@@ -396,7 +396,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                 </Body>
                             </View>
                             <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.neutral[600]} />
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.textOn.muted} />
                             </View>
                         </NeoCard>
                     </TouchableOpacity>
@@ -414,12 +414,16 @@ export default function KnowledgeHubScreen({ navigation }) {
                         <NeoCard variant="elevated" style={s.conceitoCard}>
                             <PictogramTile source={CONCEPTS_PICTOGRAM} width={110} style={s.conceptPictogramWrap} moldura atenuado={isDark} />
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
-                                <Body style={{ fontWeight: '800', color: textPrimary, fontSize: 14 }}>
+                                {/* Superfície creme FIXA: a tinta vem da paleta
+                                    clara, não do tema. Com o ink do tema o
+                                    título media 1,06:1 sobre o creme no modo
+                                    escuro — sumia. */}
+                                <Body style={s.conceitoTitle}>
                                     {conceitoItem.titulo}
                                 </Body>
                             </View>
                             <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color={themeColors.neutral[500]} />
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.textOn.muted} />
                             </View>
                         </NeoCard>
                     </TouchableOpacity>
@@ -537,10 +541,18 @@ const s = StyleSheet.create({
         borderRadius: 18,
         backgroundColor: Neo.colors.tile.cream,
     },
+    // Os dois cards abaixo são creme nos dois temas, para fundir com o tile
+    // cerâmico que carregam. Por isso a tinta deles é a da paleta CLARA —
+    // 13,62:1 sobre o creme — e não a do tema.
     radarTitle: {
         fontWeight: '800',
         fontSize: 15,
-        color: Neo.colors.neutral[900],
+        color: Neo.colors.textOn.ink,
+    },
+    conceitoTitle: {
+        fontWeight: '800',
+        fontSize: 14,
+        color: Neo.colors.textOn.ink,
     },
     // ── Conceitos (card único horizontal) ──
     conceitoCard: {
