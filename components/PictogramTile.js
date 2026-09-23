@@ -84,13 +84,18 @@ export default function PictogramTile({
             {...rest}
         >
             {/* O glifo é quadrado e se mede pela ALTURA do tile: é isso que faz
-                todas as peças terem o mesmo peso óptico na grade. */}
+                todas as peças terem o mesmo peso óptico na grade.
+                O tamanho vem do valor MEDIDO, não de porcentagem: dentro de um
+                contêiner que só tem `flex`, `height: '100%'` resolve como zero
+                no React Native e a imagem simplesmente não aparece. */}
             <View style={styles.centro}>
-                <Image
-                    source={source}
-                    style={[styles.glifo, imageStyle]}
-                    resizeMode={resizeMode}
-                />
+                {lado > 0 && (
+                    <Image
+                        source={source}
+                        style={[{ width: lado, height: lado }, imageStyle]}
+                        resizeMode={resizeMode}
+                    />
+                )}
             </View>
         </View>
     );
@@ -113,10 +118,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    glifo: {
-        height: '100%',
-        aspectRatio: 1,
     },
     image: { width: '100%', height: '100%' },
 });
