@@ -2,6 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import * as Phosphor from 'phosphor-react-native';
 import ElderlyIcon from './icons/ElderlyIcon';
+import ProfileIcon from './icons/ProfileIcon';
+import PeopleIcon from './icons/PeopleIcon';
+import HealthIcon from './icons/HealthIcon';
+import ShieldTickIcon from './icons/ShieldTickIcon';
 import HomeTileIcon from './icons/HomeTileIcon';
 import EducationTileIcon from './icons/EducationTileIcon';
 import ReportTileIcon from './icons/ReportTileIcon';
@@ -14,8 +18,16 @@ import TravelTileIcon from './icons/TravelTileIcon';
 // Família "eco do tile" (abas do menu inferior): glifo contemporâneo dentro de
 // um quadrado de cantos arredondados que cita os tiles cerâmicos; "acende"
 // preenchido no ativo (variant='Bold' → weight='fill').
+// Conceitos do DOMÍNIO Vigilaro. Registrados sob o nome que já era o mais
+// usado de cada grupo, porque CUSTOM_ICONS tem precedência sobre o Phosphor:
+// assim todo callsite existente adota o glifo sem precisar ser tocado, e só
+// os nomes minoritários viram alias (ver `overrides`).
 const CUSTOM_ICONS = {
     Elderly: ElderlyIcon,
+    Profile: ProfileIcon,       // pessoa
+    People: PeopleIcon,         // pessoas
+    Health: HealthIcon,         // saúde
+    ShieldTick: ShieldTickIcon, // proteção verificada
     HomeTile: HomeTileIcon,
     EducationTile: EducationTileIcon,
     ReportTile: ReportTileIcon,
@@ -90,6 +102,26 @@ const mapName = (name) => {
         // os dois são coerentes.
         'pet': 'PawPrint',
         'Pet': 'PawPrint',
+
+        // ── VOCABULÁRIO DE CONCEITO (23/09) ──────────────────────────────
+        // Medição do acervo: 143 nomes distintos em 693 usos, e o mesmo
+        // conceito do domínio desenhado de formas diferentes conforme a
+        // tela. "Pessoa" tinha NOVE símbolos; `UserList` e `Profile2User`
+        // apareciam lado a lado na mesma tela de Relatórios significando a
+        // mesma coisa. Aqui os minoritários passam a apontar para o glifo
+        // próprio do conceito.
+        //
+        // Continuam distintos de propósito, e não entram nesta lista:
+        // `Woman` (Gestante Segura), `PersonSimpleCircle` (acessibilidade),
+        // `Personalcard` (ficha médica) e `Teacher` (escola, não educação).
+        'User': 'Profile',
+        'UserFocus': 'Profile',
+        'UserList': 'People',
+        'Profile2User': 'People',
+        'Heart': 'Health',
+        'HeartAdd': 'Health',
+        'Shield': 'ShieldTick',
+        'Lock1': 'Lock',
         'profile-circle': 'User',
         'ProfileCircle': 'User',
         'profile-add': 'UserAdd',
