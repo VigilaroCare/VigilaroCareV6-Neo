@@ -33,7 +33,7 @@ Situação em 21/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Tamanho |
 |---|---|---|
-| C1 | **90 arquivos com cor do Design System dentro de `StyleSheet.create` no módulo** | Não derruba o app — prende a tela na paleta clara, então o **modo escuro sai errado**. Migração em lotes, com conferência no aparelho. |
+| C1 | **Cor do Design System dentro de `StyleSheet.create` no módulo** | Não derruba o app — prende a tela na paleta clara, então o **modo escuro sai errado**. Rode `node scripts/auditar_tinta_congelada.js` para a lista atual, medida contra a paleta escura. **Feito em 22/09:** as 31 ocorrências renderizadas pela NeoTypography, em 9 telas (o rótulo do Menu media 1,14:1). **Falta:** as 37 em `<Text>` cru, `TextInput` e tags mistas — sem o automatismo da NeoTypography, cada uma pede decisão. Regra: onde a superfície é fixa (creme), a tinta também tem de ser fixa; onde a superfície segue o tema, apague a cor e deixe a NeoTypography resolver — override inline desliga o alto contraste. |
 | C2 | **24 telas com `useEffect([])` carregando dados** | Mostram dado velho ao voltar para a tela. Deveriam usar `useFocusEffect`. |
 | C3 | **531 cores em hexadecimal fora dos tokens** | Regra global do projeto pede token sempre. |
 | C4 | **Ambientes fantasma no mapping** | Diagnosticado antes, não corrigido: gás vira ambiente, `quarto_adulto` sem condicional, navegação guiada da vistoria. |
