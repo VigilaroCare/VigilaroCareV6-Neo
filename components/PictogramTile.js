@@ -69,20 +69,22 @@ export default function PictogramTile({
     const raio = lado ? Math.round(lado * 0.18) : 0;
 
     return (
-        <View
-            style={[
-                sizeStyle,
-                styles.tile,
-                {
-                    backgroundColor: atenuado ? CREME_NOTURNO : CREME,
-                    borderRadius: raio,
-                    shadowColor: Neo.colors.primary[900],
-                },
-                style,
-            ]}
-            onLayout={(e) => setLado(e.nativeEvent.layout.height)}
-            {...rest}
-        >
+        <View style={[sizeStyle, styles.moldura, style]} {...rest}>
+            {/* O card NÃO preenche a caixa toda. No PNG antigo ele ocupava 75%
+                da largura e 79% da altura da imagem, e era essa margem que dava
+                o respiro entre o tile e o rótulo. Preenchendo tudo, o texto
+                encostava na borda de baixo. */}
+            <View
+                style={[
+                    styles.tile,
+                    {
+                        backgroundColor: atenuado ? CREME_NOTURNO : CREME,
+                        borderRadius: raio,
+                        shadowColor: Neo.colors.primary[900],
+                    },
+                ]}
+                onLayout={(e) => setLado(e.nativeEvent.layout.height)}
+            >
             {/* O glifo é quadrado e se mede pela ALTURA do tile: é isso que faz
                 todas as peças terem o mesmo peso óptico na grade.
                 O tamanho vem do valor MEDIDO, não de porcentagem: dentro de um
@@ -96,13 +98,22 @@ export default function PictogramTile({
                         resizeMode={resizeMode}
                     />
                 )}
+                </View>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    moldura: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     tile: {
+        // proporção e tamanho do card dentro da caixa — os mesmos que o PNG
+        // legado tinha (435x341 numa imagem de 577x433)
+        width: '75.4%',
+        aspectRatio: 435 / 341,
         overflow: 'hidden',
         // Borda como insinuação, não como contorno: o traço escuro de antes
         // era o que mais endurecia a peça.

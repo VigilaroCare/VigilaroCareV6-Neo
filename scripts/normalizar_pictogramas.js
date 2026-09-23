@@ -32,9 +32,19 @@ const DESTINO = path.join(ORIGEM, 'glifos');
 const VERDE_ALVO = [6, 78, 59];
 const CREME = [244, 235, 220];
 
-// Fração do quadro que o desenho ocupa. 0.52 é a mediana medida do acervo:
-// escolher a mediana faz a maioria das peças mudar pouco.
-const OCUPACAO = 0.52;
+// ── TAMANHO ÓPTICO ──────────────────────────────────────────────────────────
+// Igualar a CAIXA de cada desenho não funciona: com todas em 52% de caixa, a
+// área de tinta variou 3,4x entre as peças (de 3,9% a 13,4%), e a grade ficou
+// visivelmente desproporcional — a pata parecia pesada, a linha de pulso
+// parecia perdida. O olho pesa a tinta, não a caixa.
+//
+// Também não serve igualar só a tinta: a linha de pulso precisaria crescer
+// 58% e estouraria o tile. O equilíbrio é a média geométrica entre as duas
+// normalizações, com a caixa presa numa faixa.
+const TINTA_ALVO = 0.097;     // mediana medida do conjunto
+const CAIXA_ALVO = 0.52;
+const CAIXA_MIN = 0.46;
+const CAIXA_MAX = 0.66;
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
@@ -117,10 +127,11 @@ function processar(arquivo, base) {
     const { width: w, height: h } = src;
     const { alfa, cor } = extrair(src);
 
-    // caixa, centro de massa e luminância média do glifo
-    let x0 = w, y0 = h, x1 = -1, y1 = -1, peso = 0, sx = 0, sy = 0, sL = 0;
+    // caixa, centro de massa, luminância média e ÁREA DE TINTA do glifo
+    let x0 = w, y0 = h, x1 = -1, y1 = -1, peso = 0, sx = 0, sy = 0, sL = 0, tinta = 0;
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
         const p = y * w + x, a = alfa[p];
+        if (a > 0.03) tinta += a;                      // cobertura real, com a borda suave
         if (a < 0.5) continue;
         if (x < x0) x0 = x; if (y < y0) y0 = y; if (x > x1) x1 = x; if (y > y1) y1 = y;
         peso += a; sx += x * a; sy += y * a;
@@ -132,9 +143,20 @@ function processar(arquivo, base) {
     const lado = Math.max(x1 - x0 + 1, y1 - y0 + 1);
 
     const saidas = [];
+    let caixaFinal = 0;
     for (const [suf, mult] of [['', 1], ['@2x', 2], ['@3x', 3]]) {
         const S = Math.round(base * mult);
-        const escala = (S * OCUPACAO) / lado;
+
+        // Duas escalas concorrentes: uma iguala a caixa, a outra iguala a
+        // tinta. A média geométrica fica entre as duas — desenho fino cresce,
+        // desenho cheio encolhe — e a faixa impede qualquer extremo.
+        const porCaixa = (S * CAIXA_ALVO) / lado;
+        const porTinta = Math.sqrt((TINTA_ALVO * S * S) / tinta);
+        let escala = Math.sqrt(porCaixa * porTinta);
+        const caixa = (lado * escala) / S;
+        if (caixa > CAIXA_MAX) escala = (S * CAIXA_MAX) / lado;
+        if (caixa < CAIXA_MIN) escala = (S * CAIXA_MIN) / lado;
+        caixaFinal = (lado * escala) / S;
         const out = new PNG({ width: S, height: S });
         out.data.fill(0);
         // amostragem com supersampling 2x2 — a redução do original pede filtro
@@ -172,7 +194,7 @@ function processar(arquivo, base) {
         fs.writeFileSync(path.join(DESTINO, nome), PNG.sync.write(out));
         saidas.push(nome);
     }
-    return { ocupacaoOriginal: lado / w, saidas };
+    return { ocupacaoOriginal: lado / w, caixaFinal, tinta: tinta / (w * h), saidas };
 }
 
 const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n); return i >= 0 && a[i + 1] ? a[i + 1] : p; };
@@ -181,9 +203,9 @@ const base = Number(arg('base', 180));
 const dir = path.join(ORIGEM, pasta);
 const arquivos = fs.readdirSync(dir).filter((f) => f.endsWith('.png'));
 
-console.log(`Normalizando ${arquivos.length} peça(s) de ${pasta} — verde único, ocupação ${OCUPACAO}, base ${base}px.`);
+console.log(`Normalizando ${arquivos.length} peça(s) de ${pasta} — verde único, tamanho óptico, base ${base}px.`);
 for (const f of arquivos) {
     const r = processar(path.join(dir, f), base);
-    console.log('  ' + f.padEnd(34), r ? `ocupava ${(r.ocupacaoOriginal * 100).toFixed(0)}% → ${(OCUPACAO * 100).toFixed(0)}%` : 'FALHOU: glifo não encontrado');
+    console.log('  ' + f.padEnd(34), r ? 'caixa ' + (r.caixaFinal * 100).toFixed(0) + '% (tinta equilibrada)' : 'FALHOU: glifo nao encontrado');
 }
 console.log(`\nGlifos em assets/illustrations/glifos/ (1x, @2x, @3x). Originais intactos.`);
