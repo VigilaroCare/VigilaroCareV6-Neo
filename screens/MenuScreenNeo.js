@@ -107,7 +107,7 @@ export default function MenuScreenNeo() {
         {
             key: 'acessibilidade',
             iconName: 'PersonSimpleCircle',
-            image: require('../assets/illustrations/travel-pictograms/pictogram-companhia-pcd-v3.png'),
+            image: require('../assets/illustrations/glifos/pictogram-companhia-pcd-v3.png'),
             accent: GA.saude, // teal
             label: t('menu.accessibility'),
             description: t('menu.accessibilityDesc', 'Tamanho de fonte, tema e ajustes de leitura.'),
@@ -116,7 +116,7 @@ export default function MenuScreenNeo() {
         {
             key: 'idioma',
             iconName: 'LanguageSquare',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-idioma.png'),
+            image: require('../assets/illustrations/glifos/pictogram-menu-idioma.png'),
             accent: GA.pets, // rose
             label: t('settings.language', 'Idioma'),
             description: t('menu.languageDesc', 'Escolha o idioma do aplicativo.'),
@@ -128,7 +128,7 @@ export default function MenuScreenNeo() {
         {
             key: 'contato',
             iconName: 'Sms',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-contato.png'),
+            image: require('../assets/illustrations/glifos/pictogram-menu-contato.png'),
             accent: GA.eventuais, // amber
             label: t('menu.contact', 'Contato'),
             description: t('menu.contactDesc', 'Fale com a equipe Vigilaro Care.'),
@@ -137,7 +137,7 @@ export default function MenuScreenNeo() {
         {
             key: 'sobre',
             iconName: 'InfoCircle',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-sobre.png'),
+            image: require('../assets/illustrations/glifos/pictogram-menu-sobre.png'),
             accent: GA.vistorias, // sky
             label: t('menu.about'),
             description: t('menu.aboutDesc', 'Versão, créditos e informações do app.'),
@@ -146,7 +146,7 @@ export default function MenuScreenNeo() {
         {
             key: 'termos',
             iconName: 'DocumentText',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-termos.png'),
+            image: require('../assets/illustrations/glifos/pictogram-menu-termos.png'),
             accent: GA.saude, // teal
             label: t('menu.terms'),
             description: t('menu.termsDesc', 'Termos de uso da plataforma.'),
@@ -155,7 +155,7 @@ export default function MenuScreenNeo() {
         {
             key: 'privacidade',
             iconName: 'Shield',
-            image: require('../assets/illustrations/menu-pictograms/pictogram-menu-privacidade.png'),
+            image: require('../assets/illustrations/glifos/pictogram-menu-privacidade.png'),
             accent: GA.pets, // rose
             label: t('menu.privacy'),
             description: t('menu.privacyDesc', 'Como cuidamos e protegemos seus dados.'),
@@ -176,9 +176,11 @@ export default function MenuScreenNeo() {
                         onPress={item.action}
                         style={s.gridItem}
                     >
-                        <PictogramTile 
-                            source={item.image} 
+                        <PictogramTile
+                            source={item.image}
                             width="100%"
+                            moldura
+                            atenuado={isDark}
                         />
                         <Small style={s.gridItemText} numberOfLines={2}>
                             {item.label}
