@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -180,9 +181,20 @@ export default function TravelModeScreen({ navigation }) {
 
     const capaSource = require('../../assets/images/headers/header-travel-mode.jpeg');
 
-    useEffect(() => {
-        loadTrip();
-    }, []);
+    // No FOCO, não no mount. Esta tela é uma aba: fica montada enquanto o
+    // usuário circula pelo app, então um `useEffect([])` a deixaria presa na
+    // viagem que existia quando ela apareceu pela primeira vez.
+    //
+    // O caso concreto: `InspecaoRetornoScreen` grava `retornoConcluido` no
+    // `@active_trip` e emite `travel_return_changed`. O rodapé global escuta
+    // esse evento; esta tela só emitia, nunca escutava — ao voltar da inspeção
+    // ela continuava mostrando a viagem sem o retorno concluído até o app ser
+    // reaberto. Recarregar no foco cobre esse caso e qualquer outro que venha.
+    useFocusEffect(
+        useCallback(() => {
+            loadTrip();
+        }, [])
+    );
 
     const loadTrip = async () => {
         try {
