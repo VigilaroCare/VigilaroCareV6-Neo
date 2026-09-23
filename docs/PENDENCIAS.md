@@ -8,7 +8,7 @@ Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Por quê |
 |---|---|---|
-| **0.1** | **Fazer push do branch** para `origin` **e** para o remoto `drive` | `origin/main` parou em **03/08/2026**. O branch local está **48 commits à frente**, e o backup no Drive está ainda mais atrás. Sete semanas de trabalho — incluindo todas as correções de segurança de 23/09 — existem **só neste disco**. É o único risco irreversível da lista: qualquer outro item se conserta, este não. |
+| ~~0.1~~ | ~~Fazer push do branch~~ | **Resolvido em 23/09.** `feat/mapa-de-riscos-domesticos` está em `origin` e no `drive`, os dois idênticos ao local. O que subiu foi conferido: nenhum arquivo de credencial, nenhum padrão de chave nas linhas adicionadas. |
 
 ---
 
@@ -16,7 +16,7 @@ Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Por quê | Urgência |
 |---|---|---|---|
-| A1 | **Rotacionar o `VIGILARO_APP_SECRET`** | O token em uso é o mesmo exposto no histórico público do git (commit `c5f2a71`). Privar o repositório não resolve o que já foi clonado. O suporte a rotação sem derrubar apps antigos já está no `server.js`: novo em `VIGILARO_APP_SECRET`, antigo em `VIGILARO_APP_SECRET_PREV`, e remove o `_PREV` depois do build novo. | Alta |
+| A1 | **Rotacionar o `VIGILARO_APP_SECRET`** | **Verificado por hash em 23/09: o valor no `.env` de hoje é IDÊNTICO ao commitado em `c5f2a71`** — o segredo continua vivo e continua no histórico público. Não é mais "provável", é confirmado. Privar o repositório não resolve o que já foi clonado. O suporte a rotação sem derrubar apps antigos já está no `server.js`: novo em `VIGILARO_APP_SECRET`, antigo em `VIGILARO_APP_SECRET_PREV`, e remove o `_PREV` depois do build novo. Conferir também o valor de 32 caracteres que estava no `.env.example` daquele commit (hash `47ab221c`, repetido em `PROXY_TOKEN` e `APP_SECRET`): se um dia foi real, também está queimado. | **Alta — a maior da lista** |
 | A2 | **Tornar o repositório privado** no GitHub | Está público. A integração com a Vercel continua funcionando. | Alta |
 | A3 | **Spend cap e alerta de gasto** na Twilio e na OpenAI | É a única rede real contra fraude de SMS e queima de crédito. | Alta |
 | A4 | **DSN do Sentry nos EAS Secrets** | Já está no `.env` local, mas os builds não leem o `.env`. Sem isso, release sai sem telemetria. | Média |
