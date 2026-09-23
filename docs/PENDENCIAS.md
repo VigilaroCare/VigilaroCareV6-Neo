@@ -1,6 +1,14 @@
 # Pendências — Vigilaro Care V6 Neo
 
-Situação em 21/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que está aqui foi verificado no código ou nos painéis; o que já foi resolvido não aparece.
+Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que está aqui foi verificado no código ou nos painéis; o que já foi resolvido não aparece.
+
+---
+
+## 0. URGENTE — nada disto está em nenhum servidor
+
+| # | Pendência | Por quê |
+|---|---|---|
+| **0.1** | **Fazer push do branch** para `origin` **e** para o remoto `drive` | `origin/main` parou em **03/08/2026**. O branch local está **48 commits à frente**, e o backup no Drive está ainda mais atrás. Sete semanas de trabalho — incluindo todas as correções de segurança de 23/09 — existem **só neste disco**. É o único risco irreversível da lista: qualquer outro item se conserta, este não. |
 
 ---
 
@@ -22,7 +30,9 @@ Situação em 21/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Situação |
 |---|---|---|
-| B1 | **Atestação de app, etapa 2** | Etapa 1 pronta no servidor (Play Integrity, nonce, modos off/log/enforce, hoje em `off`). Falta o SDK no cliente, o JWT do DeviceCheck para iOS e rodar em `log` por uma semana antes de ligar o `enforce`. Depende de A6. |
+| B1 | **Atestação de app, etapa 2** | Etapa 1 pronta no servidor (Play Integrity, nonce, modos off/log/enforce, hoje em `off`). Falta o SDK no cliente, o JWT do DeviceCheck para iOS e rodar em `log` por uma semana antes de ligar o `enforce`. Depende de A6. **Corrigido em 23/09:** o ramo iOS devolvia `ok: true` sem chave Apple — como a plataforma vem num cabeçalho escolhido pelo cliente, bastava declarar-se iOS para atravessar o `enforce`. Agora, em `enforce`, plataforma não verificável é recusa. **Atenção:** o app ainda não envia cabeçalho de atestação nenhum; ligar `enforce` hoje bloquearia todos os clientes. |
+| B5 | **`validate:types` passa vazio** | Com `checkJs: false` e `strict: false`, `tsc --noEmit` não analisa JavaScript — o validador aprova sem verificar nada. Medido em 23/09: ligar `checkJs` produz **1967 erros**. Não dá para ligar de uma vez sem quebrar a suíte; o caminho é por pasta (`services/` primeiro, que é onde moram os defeitos de fluxo) ou via JSDoc nos serviços críticos. Até lá, **não conte este validador como cobertura**. |
+| B6 | **Escalada do check-in não sobrevive ao app fechado** | `VitalCheckService._armEscalation()` usa `setTimeout`, que só corre com o processo vivo. Se o aparelho estiver com o app encerrado quando a notificação chegar, a ausência de resposta não escala. Fechar isso exige tarefa em segundo plano (`expo-task-manager` + `expo-background-task`) ou escalada no servidor. O agendamento diário e a escalada com o app aberto foram corrigidos em 23/09. |
 | B2 | **Upgrade do Expo SDK** | 13 vulnerabilidades na raiz, uma de severidade alta (`postcss`, ferramenta de build). Só fecham com upgrade maior de SDK. Agora há a skill oficial `expo-upgrade` para conduzir. |
 | B3 | **Novo dev build e teste do Sentry** | O Sentry tem código nativo; o build instalado não o tem. O app funciona, mas o envio de erro só será testável no próximo build. |
 | B4 | **Decisão sobre reescrever o histórico do git** | Remover o commit com o token, ou aceitar o risco depois de A1 e A2. Com o token rotacionado, vira baixa urgência. |
@@ -80,3 +90,5 @@ Parecer completo em [CONFORMIDADE_IA_E_DIREITOS.md](CONFORMIDADE_IA_E_DIREITOS.m
 ## F. Já resolvido (não refazer)
 
 Proxy com rate limit, limitador dedicado de SMS, validação de payload, allow-list de rotas e token com comparação constant-time · atestação etapa 1 · Sentry com remoção de dados pessoais · tokens de cor inexistentes no Design System · `SafeGradient` contra crash de gradiente · três telas que quebravam por caminho errado de `severity` · `getFaixaEtaria` e `resolveImageUri` · crash do `scrollToIndex` em Áreas Internas · `npm start` com checagem da porta 8081 · Mapa de Funcionalidades refeito a partir do código · identificação de conteúdo gerado por IA no scanner e nos dois PDFs · remoção do despejo de notícias de terceiros do feed do Radar.
+
+**Varredura de 23/09 — fluxos que prometiam mais do que executavam:** check-in de bem-estar não agendava (trigger sem `type`, virava notificação imediata) nem escalava (`triggerCheck` sem chamador) · fallback do lembrete de medicação trocava "seg/qua/sex" por "todos os dias" e podia salvar lembrete ativo com zero notificações, agora avisa na tela · score classificava vistoria toda reprovada como "proteção em início" (`checked` só contava item conforme; entrou `respondidos`) · "casa blindada" aparecia com pendência aberta · histórico do SOS dizia "enviado" após só abrir o compositor, reescrito nos 4 idiomas · log de atividade com nome ligado a queda saiu do AsyncStorage para a camada cifrada · reset agora varre por prefixo e cancela notificações agendadas, em vez de lista manual que deixava lembretes e check-in para trás · `PanicButtonService` (SOS morto, com falha silenciosa e método duplicado) e 11 componentes sem referência removidos, 1977 linhas · limiar de score unificado em `ScoreService.getTom()` · seção "Cuidador Remoto" desligada por constante até o envio existir de ponta a ponta · brecha do `enforce` na atestação iOS.

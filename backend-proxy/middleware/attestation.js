@@ -112,9 +112,21 @@ const requireAttestation = async (req, res, next) => {
     } else if (platform === 'android') {
       result = await verifyPlayIntegrity(attestToken, nonce);
     } else if (platform === 'ios') {
-      result = process.env.APPLE_DEVICECHECK_P8_B64
-        ? await verifyDeviceCheck(attestToken)
-        : { ok: true, gap: 'ios-sem-devicecheck-configurado' };
+      // Sem chave Apple não há como verificar nada. Antes isto devolvia
+      // ok:true, o que transformava o `enforce` em teatro: bastava declarar
+      // `x-vigilaro-attest-platform: ios` — cabeçalho que o próprio cliente
+      // escolhe — para atravessar a checagem com um token qualquer, já que o
+      // nonce é emitido por rota pública.
+      //
+      // Em `log` a lacuna continua registrada e passando, que é o objetivo do
+      // modo. Em `enforce`, plataforma não verificável é recusa.
+      if (process.env.APPLE_DEVICECHECK_P8_B64) {
+        result = await verifyDeviceCheck(attestToken);
+      } else {
+        result = mode === 'enforce'
+          ? { ok: false, reason: 'ios-sem-devicecheck-configurado' }
+          : { ok: true, gap: 'ios-sem-devicecheck-configurado' };
+      }
     } else {
       result = { ok: false, reason: 'plataforma-invalida' };
     }
