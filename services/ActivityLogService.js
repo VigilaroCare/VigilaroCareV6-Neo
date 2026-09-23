@@ -1,5 +1,8 @@
 // services/ActivityLogService.js
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Storage, nao AsyncStorage: o log guarda nome de pessoa ligado a queda,
+// check-in sem resposta e acionamento de SOS. E dado de saude com identidade,
+// entao vai para a camada cifrada como o resto do cadastro.
+import { Storage } from '../utils/SecureStorage';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -45,7 +48,7 @@ class ActivityLogService {
                 timestamp: new Date().toISOString(),
             };
 
-            const existingLogJson = await AsyncStorage.getItem(ACTIVITY_LOG_KEY);
+            const existingLogJson = await Storage.getItem(ACTIVITY_LOG_KEY);
             let activityLog = existingLogJson ? JSON.parse(existingLogJson) : [];
 
             activityLog.unshift(newActivity); // Adiciona a atividade mais recente no início
@@ -55,7 +58,7 @@ class ActivityLogService {
                 activityLog = activityLog.slice(0, MAX_ACTIVITIES);
             }
 
-            await AsyncStorage.setItem(ACTIVITY_LOG_KEY, JSON.stringify(activityLog));
+            await Storage.setItem(ACTIVITY_LOG_KEY, JSON.stringify(activityLog));
             this._notifyListeners(); // Notifica que uma nova atividade foi logada
         } catch (error) {
             if (__DEV__) { console.error('Erro ao registrar atividade:', error); }
@@ -68,7 +71,7 @@ class ActivityLogService {
      */
     async getActivities() {
         try {
-            const existingLogJson = await AsyncStorage.getItem(ACTIVITY_LOG_KEY);
+            const existingLogJson = await Storage.getItem(ACTIVITY_LOG_KEY);
             return existingLogJson ? JSON.parse(existingLogJson) : [];
         } catch (error) {
             if (__DEV__) { console.error('Erro ao obter atividades:', error); }
@@ -81,7 +84,7 @@ class ActivityLogService {
      */
     async clearActivities() {
         try {
-            await AsyncStorage.removeItem(ACTIVITY_LOG_KEY);
+            await Storage.removeItem(ACTIVITY_LOG_KEY);
             this._notifyListeners();
         } catch (error) {
             if (__DEV__) { console.error('Erro ao limpar atividades:', error); }

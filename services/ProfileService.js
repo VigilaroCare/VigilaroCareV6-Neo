@@ -1470,6 +1470,30 @@ class ProfileService {
 
             // Limpeza de chaves de checklist
             const allKeys = await AsyncStorage.getAllKeys();
+
+            // ── VARREDURA POR PREFIXO ────────────────────────────────────────
+            // A lista manual acima já deixou dados para trás mais de uma vez:
+            // lembretes de medicação, configuração de check-in, log de
+            // atividade e rascunho de briefing sobreviviam a um "apagar tudo"
+            // que a Política de Privacidade descreve como completo.
+            //
+            // Toda chave do app é prefixada com '@'. Apagar por prefixo cobre o
+            // que existe hoje e o que for criado amanhã, sem depender de alguém
+            // lembrar de vir aqui. As exceções abaixo são preferências do
+            // aparelho, não dados do usuário — sobrevivem de propósito.
+            const PRESERVAR = new Set([
+                '@acc_left_handed',       // ajuste de acessibilidade do aparelho
+                '@left_handed_suggested', // já sugerimos uma vez, não repetir
+            ]);
+            const chavesDoApp = allKeys.filter(k => k.startsWith('@') && !PRESERVAR.has(k));
+            if (chavesDoApp.length > 0) {
+                await AsyncStorage.multiRemove(chavesDoApp);
+                // Storage.removeItem também limpa a cópia cifrada das chaves
+                // sensíveis, que não vive no AsyncStorage.
+                await Promise.all(chavesDoApp.map(key => Storage.removeItem(key).catch(() => {})));
+                if (__DEV__) { console.log(`Reset: ${chavesDoApp.length} chaves removidas por varredura.`); }
+            }
+
             const checklistKeys = allKeys.filter(key => key.startsWith('@checklist_state'));
             const contactKeys = Array.from(new Set([
                 ...profileContactKeys,
@@ -1480,6 +1504,16 @@ class ProfileService {
                 if (__DEV__) { console.log('Chaves de checklist removidas:', checklistKeys); }
             }
             await Promise.all(contactKeys.map(key => Storage.removeItem(key)));
+            // Notificações já agendadas sobrevivem ao apagamento dos dados: sem
+            // isto, o aparelho continua lembrando o remédio de uma pessoa que
+            // não existe mais no app e disparando check-ins órfãos.
+            try {
+                const Notifications = require('expo-notifications');
+                await Notifications.cancelAllScheduledNotificationsAsync();
+            } catch (e) {
+                if (__DEV__) { console.warn('Reset: falha ao cancelar notificações agendadas:', e?.message); }
+            }
+
             await this.cleanupUserFiles();
 
             // Limpa cache em memória do ChecklistService

@@ -242,7 +242,12 @@ export const ChecklistService = {
 
     getAreaStats: (areaId, areaData = {}, structure = null, profiles = [], moradia = null, mapping = []) => {
         if (!_FilterEngine) _FilterEngine = require('../utils/ProfileFilterEngine');
-        let stats = { checked: 0, na: 0, total: 0, warning: 0, critical: 0, failedItems: [] };
+        // `respondidos` conta item com resposta REGISTRADA, qualquer que seja
+        // ela. É diferente de `checked`, que só conta o que está conforme.
+        // Sem essa distinção, uma vistoria inteiramente respondida e
+        // inteiramente reprovada dava checked=0 e era lida como "vistoria não
+        // iniciada" — o pior caso recebia o sinal mais brando de todos.
+        let stats = { checked: 0, na: 0, total: 0, warning: 0, critical: 0, respondidos: 0, failedItems: [] };
         let items = [];
 
         const dynamicStructure = _FilterEngine.getRoomChecklistStructure(areaId, profiles, moradia, mapping);
@@ -271,6 +276,8 @@ export const ChecklistService = {
 
             let isChecked = found && (found.status === 'conforme' || found.checked);
             let isNA = found && found.status === 'na';
+
+            if (found) stats.respondidos++;
 
             if (isNA) { stats.na++; return; }
             stats.total++;

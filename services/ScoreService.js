@@ -95,6 +95,7 @@ class ScoreService {
 
       let totalItems = 0;
       let totalChecked = 0;
+      let totalRespondidos = 0;
       let totalCritical = 0;
       let totalWarning = 0;
       let scoresPorAmbiente = {};
@@ -128,6 +129,7 @@ class ScoreService {
         if (stats.total > 0) {
           totalItems += stats.total;
           totalChecked += stats.checked;
+          totalRespondidos += stats.respondidos || 0;
           totalCritical += stats.critical;
           totalWarning += stats.warning;
 
@@ -159,7 +161,7 @@ class ScoreService {
       return {
         geral: scoreGeral,
         ambientes: scoresPorAmbiente,
-        statsGeral: { total: totalItems, checked: totalChecked, critical: totalCritical, warning: totalWarning },
+        statsGeral: { total: totalItems, checked: totalChecked, respondidos: totalRespondidos, critical: totalCritical, warning: totalWarning },
         statsAmbientes: statsPorAmbiente,
         pendencias: totalCritical + totalWarning,
       };
@@ -194,11 +196,16 @@ class ScoreService {
    * Agora delega o limiar ao getBanda — os textos de alerta seguem idênticos
    * aos anteriores, garantindo zero regressão de conteúdo.
    */
+  // `pendencias` manda na mensagem de topo: a faixa é percentual, e um único
+  // `perigo` aberto convive com 95%. Dizer "blindada" com risco crítico em
+  // aberto contradiz o próprio nível de proteção, que rebaixa nesse caso.
   getMensagemImpacto(score, pendencias) {
     const b = this.getBanda(score);
     const alertas = {
       inicio:   'Inicie o mapeamento para proteger sua família.',
-      maxima:   'Sua casa está blindada contra acidentes.',
+      maxima:   pendencias > 0
+        ? `Quase lá: ainda há ${pendencias} ponto(s) a resolver.`
+        : 'Sua casa está blindada contra acidentes.',
       controle: pendencias > 0 ? `Existem ${pendencias} pontos de melhoria.` : 'Proteção em dia.',
       atencao:  `Sua casa tem ${pendencias} riscos ativos.`,
       critico:  `Muitos riscos pendentes (${pendencias}). Priorize a correção.`,
@@ -246,7 +253,9 @@ class ScoreService {
       }
     }
 
-    return this._decidirNivel(scoreData?.geral || 0, criticos, criticoVulneravel, stats.checked || 0);
+    // `respondidos`, nao `checked`: o que distingue "vistoria nao iniciada"
+    // de "vistoria feita e toda reprovada" e haver RESPOSTA, nao haver acerto.
+    return this._decidirNivel(scoreData?.geral || 0, criticos, criticoVulneravel, stats.respondidos ?? stats.checked ?? 0);
   }
 
   /**
@@ -267,13 +276,14 @@ class ScoreService {
     const agg = recorte.reduce((a, [, s]) => ({
       total: a.total + (s.total || 0),
       checked: a.checked + (s.checked || 0),
+      respondidos: a.respondidos + (s.respondidos || 0),
       critical: a.critical + (s.critical || 0),
-    }), { total: 0, checked: 0, critical: 0 });
+    }), { total: 0, checked: 0, respondidos: 0, critical: 0 });
     if (!agg.total) return NIVEIS_PROTECAO.inicio;
 
     const score = Math.round((agg.checked / agg.total) * 100);
     const criticoVulneravel = agg.critical > 0 && this._ehVulneravel(perfil);
-    return this._decidirNivel(score, agg.critical, criticoVulneravel, agg.checked);
+    return this._decidirNivel(score, agg.critical, criticoVulneravel, agg.respondidos);
   }
 
   _ehVulneravel(perfil) {
@@ -282,14 +292,18 @@ class ScoreService {
   }
 
   // Tabela de decisão única (chamada com total > 0 já garantido).
-  // `totalChecked` distingue dois cenários que resultam em score=0:
-  //   • checked=0  → nenhuma resposta ainda → 'inicio' (ausência de vistoria, não risco)
-  //   • checked>0  → respostas registradas mas score baixo → 'critico' (tudo reprovado)
+  // `totalRespondidos` distingue dois cenários que resultam em score=0:
+  //   • respondidos=0 → nenhuma resposta ainda → 'inicio' (ausência de vistoria)
+  //   • respondidos>0 → respostas registradas mas score baixo → 'critico'
   // Sem essa distinção, casa com mapping mas zero respostas aparecia vermelha.
-  _decidirNivel(score, criticos, criticoVulneravel, totalChecked = 1) {
+  //
+  // O parâmetro já recebeu `stats.checked`, que só conta item CONFORME. Uma
+  // vistoria inteiramente respondida e inteiramente reprovada dava checked=0 e
+  // caía em 'inicio': a casa de maior risco exibia o sinal mais brando.
+  _decidirNivel(score, criticos, criticoVulneravel, totalRespondidos = 1) {
     const banda = this.getBanda(score).key;
     // score 0 sem nenhuma resposta = vistoria não iniciada, não o pior caso
-    if (banda === 'inicio' && totalChecked === 0) return NIVEIS_PROTECAO.inicio;
+    if (banda === 'inicio' && totalRespondidos === 0) return NIVEIS_PROTECAO.inicio;
     // banda 'inicio' aqui significa score 0 COM respostas (tudo reprovado) — pior caso.
     if (criticoVulneravel || banda === 'critico' || banda === 'inicio') return NIVEIS_PROTECAO.critico;
     if (criticos > 0 || banda === 'atencao') return NIVEIS_PROTECAO.atencao;

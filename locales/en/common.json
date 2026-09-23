@@ -2080,12 +2080,12 @@
         }
     },
     "activityLog": {
-        "fallSosTitle": "Fall SOS sent",
-        "fallSosDesc": "Fall detected for {{nome}}. SOS alert sent to contacts.",
-        "manualSosTitle": "Manual SOS sent",
-        "manualSosDesc": "SOS alert manually triggered by {{nome}}.",
+        "fallSosTitle": "Fall SOS started",
+        "fallSosDesc": "Fall detected for {{nome}}. SOS message prepared for your contacts — confirm sending in your messaging app.",
+        "manualSosTitle": "Manual SOS started",
+        "manualSosDesc": "SOS message prepared manually by {{nome}} — confirm sending in your messaging app.",
         "vitalSosTitle": "Check-in missed",
-        "vitalSosDesc": "{{nome}} didn't respond to the check-in. SOS alert sent to contacts."
+        "vitalSosDesc": "{{nome}} did not answer the check-in. SOS message prepared for your contacts — confirm sending in your messaging app."
     },
     "fallSensitivity": {
         "title": "Fall sensitivity",

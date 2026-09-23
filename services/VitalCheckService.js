@@ -33,6 +33,7 @@ class VitalCheckService {
     this.scheduledIds = [];
     this.initialized = false;
     this._notificationListener = null;
+    this._receivedListener = null;
   }
 
   // ---------------------------------------------------------------------------
@@ -63,10 +64,21 @@ class VitalCheckService {
       return;
     }
 
+    // Tocar na notificação = "estou bem".
     this._notificationListener = Notifications.addNotificationResponseReceivedListener(response => {
       const type = response.notification.request.content.data?.type;
       if (type === NOTIFICATION_TYPE) {
         this.confirmWellBeing();
+      }
+    });
+
+    // Notificação CHEGOU (sem toque ainda) = começa a contar a janela de
+    // resposta. Sem este listener o check-in agendado não escalava nunca:
+    // a escalada só era armada pelo disparo manual, que ninguém chamava.
+    this._receivedListener = Notifications.addNotificationReceivedListener(notification => {
+      const type = notification.request.content.data?.type;
+      if (type === NOTIFICATION_TYPE) {
+        this._armEscalation();
       }
     });
 
@@ -179,11 +191,15 @@ class VitalCheckService {
             sound: true,
             priority: Notifications.AndroidNotificationPriority.HIGH,
           },
+          // `type` é OBRIGATÓRIO no expo-notifications 54 (0.32.x). Sem ele,
+          // o objeto atravessa todos os parsers de agendamento e cai no
+          // ramo de canal — no Android vira notificação IMEDIATA, uma vez só.
+          // O check-in parecia agendado e nunca chegava no horário.
           trigger: {
+            type: Notifications.SchedulableTriggerInputTypes.DAILY,
             hour,
             minute,
-            repeats: true,
-            channelId: 'default'
+            channelId: 'default',
           },
         });
 
@@ -262,6 +278,21 @@ class VitalCheckService {
       }
     }
 
+    this._armEscalation();
+  }
+
+  /**
+   * Arma a janela de resposta. Extraído de `triggerCheck` porque o check-in
+   * AGENDADO também precisa dele: antes, só o disparo manual armava a
+   * escalada, e `triggerCheck` não tinha nenhum chamador no app — ou seja,
+   * a ausência de resposta nunca escalava.
+   *
+   * LIMITE CONHECIDO: `setTimeout` só corre com o processo vivo. Se o app
+   * estiver encerrado quando a notificação chegar, a escalada não acontece.
+   * Fechar isso exige tarefa em segundo plano — está registrado em
+   * docs/PENDENCIAS.md, e não é simulado aqui.
+   */
+  _armEscalation() {
     // Limpa timeout anterior antes de criar novo — evita escalates duplicados
     if (this.escalateTimeout) {
       clearTimeout(this.escalateTimeout);
@@ -309,6 +340,11 @@ class VitalCheckService {
     if (this._notificationListener) {
       this._notificationListener.remove();
       this._notificationListener = null;
+    }
+
+    if (this._receivedListener) {
+      this._receivedListener.remove();
+      this._receivedListener = null;
     }
 
     await this._cancelOwn();

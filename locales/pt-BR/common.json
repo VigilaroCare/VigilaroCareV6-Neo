@@ -437,12 +437,12 @@
         "mapaSensivel": "Seu mapa sensível"
     },
     "activityLog": {
-        "fallSosTitle": "SOS por queda enviado",
-        "fallSosDesc": "Queda detectada para {{nome}}. Alerta de SOS disparado para os contatos.",
+        "fallSosTitle": "SOS por queda iniciado",
+        "fallSosDesc": "Queda detectada para {{nome}}. Mensagem de SOS preparada para os contatos — confirme o envio no app de mensagens.",
         "vitalSosTitle": "Check-in não respondido",
-        "vitalSosDesc": "{{nome}} não respondeu ao check-in. Alerta de SOS disparado para os contatos.",
-        "manualSosTitle": "SOS manual enviado",
-        "manualSosDesc": "Alerta de SOS disparado manualmente por {{nome}}."
+        "vitalSosDesc": "{{nome}} não respondeu ao check-in. Mensagem de SOS preparada para os contatos — confirme o envio no app de mensagens.",
+        "manualSosTitle": "SOS manual iniciado",
+        "manualSosDesc": "Mensagem de SOS preparada manualmente por {{nome}} — confirme o envio no app de mensagens."
     },
     "recentActivity": {
         "subtitle": "Histórico de eventos do app",

@@ -2080,12 +2080,12 @@
         }
     },
     "activityLog": {
-        "fallSosTitle": "SOS por queda enviado",
-        "fallSosDesc": "Queda detetada para {{nome}}. Alerta de SOS enviado aos contactos.",
-        "manualSosTitle": "SOS manual enviado",
-        "manualSosDesc": "Alerta de SOS acionado manualmente por {{nome}}.",
-        "vitalSosTitle": "Check-in sem resposta",
-        "vitalSosDesc": "{{nome}} não respondeu ao check-in. Alerta de SOS enviado aos contactos."
+        "fallSosTitle": "SOS por queda iniciado",
+        "fallSosDesc": "Queda detetada para {{nome}}. Mensagem de SOS preparada para os contactos — confirme o envio na aplicação de mensagens.",
+        "manualSosTitle": "SOS manual iniciado",
+        "manualSosDesc": "Mensagem de SOS preparada manualmente por {{nome}} — confirme o envio na aplicação de mensagens.",
+        "vitalSosTitle": "Check-in não respondido",
+        "vitalSosDesc": "{{nome}} não respondeu ao check-in. Mensagem de SOS preparada para os contactos — confirme o envio na aplicação de mensagens."
     },
     "fallSensitivity": {
         "title": "Sensibilidade de queda",

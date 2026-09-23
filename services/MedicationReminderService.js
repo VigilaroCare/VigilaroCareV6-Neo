@@ -155,6 +155,7 @@ class MedicationReminderService {
 
             // Agenda novas notificações se ativo
             reminder.notificationIds = [];
+            this._ultimoAgendamento = null;
             if (reminder.ativo) {
                 reminder.notificationIds = await this._scheduleNotifications(reminder);
             }
@@ -167,7 +168,15 @@ class MedicationReminderService {
             }
 
             await Storage.setItem(STORAGE_KEY, JSON.stringify(all));
-            return reminder;
+
+            // O aviso vai FORA do que é persistido: é resultado desta gravação,
+            // não estado do lembrete.
+            const resumo = this._ultimoAgendamento;
+            return {
+                ...reminder,
+                agendamentoIncompleto: !!(reminder.ativo && resumo && resumo.falhas > 0),
+                agendamentoVazio: !!(reminder.ativo && resumo && resumo.agendadas === 0),
+            };
         } catch (e) {
             if (__DEV__) console.error('[MedicationReminderService] save:', e);
             throw e;
@@ -214,6 +223,7 @@ class MedicationReminderService {
     async _scheduleNotifications(reminder) {
         await NotificationService.init();
         const ids = [];
+        const falhas = [];
 
         const dias = (reminder.diasSemana?.length > 0)
             ? reminder.diasSemana
@@ -244,32 +254,31 @@ class MedicationReminderService {
                     });
                     ids.push(id);
                 } catch (e) {
-                    // Tenta trigger diário como fallback se semanal falhar
-                    try {
-                        const id = await Notifications.scheduleNotificationAsync({
-                            content: {
-                                title: `💊 ${reminder.medicamentoNome}`,
-                                body: reminder.perfilNome
-                                    ? `Lembrete para ${reminder.perfilNome}`
-                                    : 'Lembrete de medicamento configurado por você.',
-                                data: { type: 'medication_reminder', reminderId: reminder.id },
-                                sound: true,
-                            },
-                            trigger: {
-                                type: 'daily',
-                                hour: hora,
-                                minute: minuto,
-                                repeats: true,
-                            },
-                        });
-                        ids.push(id);
-                        break; // Um por horário no fallback diário
-                    } catch (e2) {
-                        if (__DEV__) console.warn('[MedicationReminderService] schedule fallback:', e2);
-                    }
+                    // NÃO há fallback para trigger diário aqui, de propósito.
+                    //
+                    // O fallback anterior trocava "segunda, quarta e sexta" por
+                    // "todos os dias" — e, se alguns dias já tivessem sido
+                    // agendados antes da falha, eles permaneciam junto do
+                    // diário, duplicando o aviso. Num lembrete de medicamento,
+                    // avisar em dia errado é pior do que não avisar: induz dose
+                    // fora da prescrição.
+                    //
+                    // Falhou o dia, o dia fica sem agendamento e o chamador é
+                    // informado pela contagem de ids.
+                    falhas.push({ horario, dia, erro: e?.message || String(e) });
+                    if (__DEV__) console.warn(`[MedicationReminderService] falha ao agendar ${horario} dia ${dia}:`, e?.message);
                 }
             }
         }
+
+        // Guarda o resultado para o `save` poder avisar a tela. Um lembrete
+        // salvo como ativo com zero notificações é o pior caso: a interface
+        // mostra "ligado" e o remédio nunca é lembrado.
+        this._ultimoAgendamento = {
+            pedidas: (reminder.horarios || []).length * dias.length,
+            agendadas: ids.length,
+            falhas: falhas.length,
+        };
 
         if (__DEV__) console.log(`[MedicationReminderService] Agendadas ${ids.length} notificações para "${reminder.medicamentoNome}"`);
         return ids;

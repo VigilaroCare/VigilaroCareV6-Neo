@@ -317,7 +317,23 @@ export default function MedicationReminderFormScreen() {
                 } : null,
             };
 
-            await MedicationReminderService.save(payload);
+            const salvo = await MedicationReminderService.save(payload);
+
+            // O lembrete foi gravado, mas o sistema pode ter recusado os
+            // agendamentos. Antes isso passava calado e o usuário ficava com um
+            // lembrete "ligado" que nunca avisaria.
+            if (salvo?.agendamentoVazio) {
+                Alert.alert(
+                    'Lembrete salvo, mas sem aviso',
+                    'Não foi possível agendar as notificações deste lembrete. Verifique a permissão de notificações do Vigilaro Care nos ajustes do aparelho e edite o lembrete para tentar de novo.'
+                );
+            } else if (salvo?.agendamentoIncompleto) {
+                Alert.alert(
+                    'Alguns horários não foram agendados',
+                    'Parte dos avisos deste lembrete não pôde ser agendada. Abra o lembrete e salve novamente para tentar os horários que faltaram.'
+                );
+            }
+
             navigation.goBack();
         } catch (e) {
             Alert.alert('Erro', 'Não foi possível salvar o lembrete. Tente novamente.');

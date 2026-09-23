@@ -60,6 +60,11 @@ const SENSITIVE_KEYS = new Set([
     '@treatments',              // HealthService
     '@appointments',            // HealthService
     '@procedures',              // HealthService
+    // Reavaliado em 23/09: o log grava "Queda detectada para {nome}",
+    // "{nome} não respondeu ao check-in" e acionamento de SOS. É identidade
+    // ligada a evento de saúde — exatamente o gatilho de reavaliação previsto
+    // na nota acima. Limitado a 100 entradas, cabe no chunking.
+    '@vigilaro_activity_log',   // ActivityLogService
 ]);
 
 const SENSITIVE_KEY_PREFIXES = [
