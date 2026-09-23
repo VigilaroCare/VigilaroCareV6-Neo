@@ -31,60 +31,60 @@ const TILE_W = Math.round(CELL_W * 0.88);
 // mesma linguagem da Home e do Hub). O asset É o card — render sem NeoCard.
 const TRAVEL_PICTOGRAMS = {
     // destinos (wizard)
-    rural:    require('../../assets/illustrations/travel-pictograms/pictogram-destino-rural.png'),
-    praia:    require('../../assets/illustrations/travel-pictograms/pictogram-destino-litoral.png'),
-    urbano:   require('../../assets/illustrations/travel-pictograms/pictogram-destino-urbano.png'),
-    resort:   require('../../assets/illustrations/travel-pictograms/pictogram-destino-resort.png'),
+    rural:    require('../../assets/illustrations/glifos/pictogram-destino-rural.png'),
+    praia:    require('../../assets/illustrations/glifos/pictogram-destino-litoral.png'),
+    urbano:   require('../../assets/illustrations/glifos/pictogram-destino-urbano.png'),
+    resort:   require('../../assets/illustrations/glifos/pictogram-destino-resort.png'),
     // assistente de viagem (dashboard)
-    partida:  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-partida.png'),
-    malas:    require('../../assets/illustrations/travel-pictograms/pictogram-viagem-malas.png'),
-    chegada:  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-chegada.png'),
-    checkout: require('../../assets/illustrations/travel-pictograms/pictogram-viagem-checkout.png'),
-    guia:     require('../../assets/illustrations/travel-pictograms/pictogram-viagem-guia.png'),
+    partida:  require('../../assets/illustrations/glifos/pictogram-viagem-partida.png'),
+    malas:    require('../../assets/illustrations/glifos/pictogram-viagem-malas.png'),
+    chegada:  require('../../assets/illustrations/glifos/pictogram-viagem-chegada.png'),
+    checkout: require('../../assets/illustrations/glifos/pictogram-viagem-checkout.png'),
+    guia:     require('../../assets/illustrations/glifos/pictogram-viagem-guia.png'),
     // propósito da viagem (wizard)
-    lazer:    require('../../assets/illustrations/travel-pictograms/pictogram-proposito-lazer.png'),
-    trabalho: require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
+    lazer:    require('../../assets/illustrations/glifos/pictogram-proposito-lazer.png'),
+    trabalho: require('../../assets/illustrations/glifos/pictogram-proposito-trabalho.png'),
     // destino internacional? (wizard)
-    internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
-    nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
+    internacional: require('../../assets/illustrations/glifos/pictogram-destino-internacional.png'),
+    nacional:      require('../../assets/illustrations/glifos/pictogram-destino-nacional.png'),
     // destinos
-    destino_internacional: require('../../assets/illustrations/travel-pictograms/pictogram-destino-internacional.png'),
-    destino_nacional:      require('../../assets/illustrations/travel-pictograms/pictogram-destino-nacional.png'),
-    destino_litoral:       require('../../assets/illustrations/travel-pictograms/pictogram-destino-litoral.png'),
-    destino_urbano:        require('../../assets/illustrations/travel-pictograms/pictogram-destino-urbano.png'),
-    destino_rural:         require('../../assets/illustrations/travel-pictograms/pictogram-destino-rural.png'),
-    destino_resort:        require('../../assets/illustrations/travel-pictograms/pictogram-destino-resort.png'),
+    destino_internacional: require('../../assets/illustrations/glifos/pictogram-destino-internacional.png'),
+    destino_nacional:      require('../../assets/illustrations/glifos/pictogram-destino-nacional.png'),
+    destino_litoral:       require('../../assets/illustrations/glifos/pictogram-destino-litoral.png'),
+    destino_urbano:        require('../../assets/illustrations/glifos/pictogram-destino-urbano.png'),
+    destino_rural:         require('../../assets/illustrations/glifos/pictogram-destino-rural.png'),
+    destino_resort:        require('../../assets/illustrations/glifos/pictogram-destino-resort.png'),
 
     // propósito
-    proposito_lazer:       require('../../assets/illustrations/travel-pictograms/pictogram-proposito-lazer.png'),
-    proposito_trabalho:    require('../../assets/illustrations/travel-pictograms/pictogram-proposito-trabalho.png'),
+    proposito_lazer:       require('../../assets/illustrations/glifos/pictogram-proposito-lazer.png'),
+    proposito_trabalho:    require('../../assets/illustrations/glifos/pictogram-proposito-trabalho.png'),
 
     // transporte
-    transporte_carro:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-carro.png'),
-    transporte_aviao:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-aviao.png'),
-    transporte_onibus:     require('../../assets/illustrations/travel-pictograms/pictogram-transporte-onibus.png'),
-    transporte_trem:       require('../../assets/illustrations/travel-pictograms/pictogram-transporte-trem.png'),
-    transporte_navio:      require('../../assets/illustrations/travel-pictograms/pictogram-transporte-navio.png'),
+    transporte_carro:      require('../../assets/illustrations/glifos/pictogram-transporte-carro.png'),
+    transporte_aviao:      require('../../assets/illustrations/glifos/pictogram-transporte-aviao.png'),
+    transporte_onibus:     require('../../assets/illustrations/glifos/pictogram-transporte-onibus.png'),
+    transporte_trem:       require('../../assets/illustrations/glifos/pictogram-transporte-trem.png'),
+    transporte_navio:      require('../../assets/illustrations/glifos/pictogram-transporte-navio.png'),
 
     // companhia
-    companhia_criancas:    require('../../assets/illustrations/travel-pictograms/pictogram-companhia-criancas.png'),
-    companhia_idosos:      require('../../assets/illustrations/travel-pictograms/pictogram-companhia-idosos.png'),
-    companhia_pcd:         require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pcd-v3.png'),
-    companhia_pets:        require('../../assets/illustrations/travel-pictograms/pictogram-companhia-pets.png'),
+    companhia_criancas:    require('../../assets/illustrations/glifos/pictogram-companhia-criancas.png'),
+    companhia_idosos:      require('../../assets/illustrations/glifos/pictogram-companhia-idosos.png'),
+    companhia_pcd:         require('../../assets/illustrations/glifos/pictogram-companhia-pcd-v3.png'),
+    companhia_pets:        require('../../assets/illustrations/glifos/pictogram-companhia-pets.png'),
 
     // duração
-    duracao_curta:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-curta.png'),
-    duracao_media:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-media.png'),
-    duracao_longa:         require('../../assets/illustrations/travel-pictograms/pictogram-duracao-longa.png'),
+    duracao_curta:         require('../../assets/illustrations/glifos/pictogram-duracao-curta.png'),
+    duracao_media:         require('../../assets/illustrations/glifos/pictogram-duracao-media.png'),
+    duracao_longa:         require('../../assets/illustrations/glifos/pictogram-duracao-longa.png'),
 
     // etapas
-    etapa_malas:           require('../../assets/illustrations/travel-pictograms/pictogram-viagem-malas.png'),
-    etapa_partida:         require('../../assets/illustrations/travel-pictograms/pictogram-viagem-partida.png'),
-    etapa_chegada:         require('../../assets/illustrations/travel-pictograms/pictogram-viagem-chegada.png'),
-    etapa_checkout:        require('../../assets/illustrations/travel-pictograms/pictogram-viagem-checkout.png'),
+    etapa_malas:           require('../../assets/illustrations/glifos/pictogram-viagem-malas.png'),
+    etapa_partida:         require('../../assets/illustrations/glifos/pictogram-viagem-partida.png'),
+    etapa_chegada:         require('../../assets/illustrations/glifos/pictogram-viagem-chegada.png'),
+    etapa_checkout:        require('../../assets/illustrations/glifos/pictogram-viagem-checkout.png'),
 
     // extras
-    guia:                  require('../../assets/illustrations/travel-pictograms/pictogram-viagem-guia.png'),
+    guia:                  require('../../assets/illustrations/glifos/pictogram-viagem-guia.png'),
 };
 
 const TRIP_TYPES = [
@@ -97,6 +97,9 @@ const TRIP_TYPES = [
 // Tile cerâmico selecionável — padrão único dos seletores do wizard.
 // selected: badge de check + label forest; dimmed: recua a 55% de opacidade.
 function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
+    // Componente fora do escopo da tela: lê o tema por conta própria. O
+    // `isDark` de TravelModeScreen não alcança aqui.
+    const isDark = useIsDark();
     return (
         <ScaleButton
             style={s.gridCell}
@@ -508,7 +511,7 @@ export default function TravelModeScreen({ navigation }) {
                                 accessibilityLabel={card.label}
                             >
                                 <View style={s.ceramicCell}>
-                                    <PictogramTile source={TRAVEL_PICTOGRAMS[card.key]} width={TILE_W} />
+                                    <PictogramTile source={TRAVEL_PICTOGRAMS[card.key]} width={TILE_W} moldura atenuado={isDark} />
                                     <Body style={s.ceramicCardLabel} numberOfLines={2}>{card.label}</Body>
                                 </View>
                             </ScaleButton>
@@ -517,7 +520,7 @@ export default function TravelModeScreen({ navigation }) {
                         {/* Card 5: Guia de Segurança — horizontal com thumbnail cerâmico */}
                         <ScaleButton onPress={() => navigation.navigate('TravelSafetyGuide')} style={{ width: '100%' }} accessibilityRole="button">
                             <NeoCard variant="elevated" style={{ height: 80, padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', paddingHorizontal: 16 }}>
-                                <PictogramTile source={TRAVEL_PICTOGRAMS.guia} width={54} style={s.guiaThumb} />
+                                <PictogramTile source={TRAVEL_PICTOGRAMS.guia} width={54} style={s.guiaThumb} moldura atenuado={isDark} />
                                 <View style={{ flex: 1 }}>
                                     <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[700], fontSize: 14 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</Body>
                                     <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.safetyGuideDesc', 'Dicas, telefones úteis e mais.')}</Small>

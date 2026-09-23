@@ -46,33 +46,33 @@ const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random(
 const PICTOGRAMS = {
     // Reaproveita a arte que era do tile da Home — o pictograma não ficou órfão
     // quando o Cuidar & Proteger mudou de casa (2026-07-31).
-    cuidar_proteger: require('../../assets/illustrations/home-pictograms/cuidar-e-proteger.png'),
+    cuidar_proteger: require('../../assets/illustrations/glifos/cuidar-e-proteger.png'),
     // Seção 1 — Pessoas & Contexto: pets/ambientes/seguranca_idade/mentes_atipicas
     // DESCONTINUADOS (migraram p/ Cuidar & Proteger com FOTO — reestruturação de fluxos).
-    brinquedos_hub:  require('../../assets/illustrations/education-pictograms/pictogram-brinquedos.png'),
+    brinquedos_hub:  require('../../assets/illustrations/glifos/pictogram-brinquedos.png'),
     // Seções 2-5 — lote 1 do plano (15 assets). Descomentar conforme gerados:
-    utensilios_rev:   require('../../assets/illustrations/education-pictograms/pictogram-utensilios-rev.png'),
-    eletro_rev:       require('../../assets/illustrations/education-pictograms/pictogram-eletro-rev.png'),
-    disp_eletronicos: require('../../assets/illustrations/education-pictograms/pictogram-disp-eletronicos.png'),
-    fire_prev:        require('../../assets/illustrations/education-pictograms/pictogram-fire-prev.png'),
-    emergencias:      require('../../assets/illustrations/education-pictograms/pictogram-emergencias.png'),
-    primeiros_socorros_hub: require('../../assets/illustrations/education-pictograms/pictogram-primeiros-socorros.png'),
-    kits_emergencia:  require('../../assets/illustrations/education-pictograms/pictogram-kits-emergencia.png'),
-    plantas:          require('../../assets/illustrations/education-pictograms/pictogram-plantas.png'),
-    animais:          require('../../assets/illustrations/education-pictograms/pictogram-animais.png'),
-    produtos:         require('../../assets/illustrations/education-pictograms/pictogram-produtos.png'),
-    riscos_fisicos:   require('../../assets/illustrations/education-pictograms/pictogram-riscos-fisicos.png'),
-    jardinagem:       require('../../assets/illustrations/education-pictograms/pictogram-jardinagem.png'),
-    condo_safety:     require('../../assets/illustrations/education-pictograms/pictogram-condo-safety.png'),
-    lazer_mobilidade: require('../../assets/illustrations/education-pictograms/pictogram-lazer-mobilidade.png'),
-    guias_equipamentos: require('../../assets/illustrations/education-pictograms/pictogram-guias-equipamentos.png'),
-    teoria_fogo:        require('../../assets/illustrations/education-pictograms/pictogram-teoria-do-fogo.png'),
-    riscos_eletricos:   require('../../assets/illustrations/education-pictograms/pictogram-riscos-eletricos.png'),
-    dispositivos_protecao: require('../../assets/illustrations/education-pictograms/pictogram-dispositivos-protecao.png'),
-    vazamento_gas: require('../../assets/illustrations/education-pictograms/pictogram-vazamento-gas.png'),
+    utensilios_rev:   require('../../assets/illustrations/glifos/pictogram-utensilios-rev.png'),
+    eletro_rev:       require('../../assets/illustrations/glifos/pictogram-eletro-rev.png'),
+    disp_eletronicos: require('../../assets/illustrations/glifos/pictogram-disp-eletronicos.png'),
+    fire_prev:        require('../../assets/illustrations/glifos/pictogram-fire-prev.png'),
+    emergencias:      require('../../assets/illustrations/glifos/pictogram-emergencias.png'),
+    primeiros_socorros_hub: require('../../assets/illustrations/glifos/pictogram-primeiros-socorros.png'),
+    kits_emergencia:  require('../../assets/illustrations/glifos/pictogram-kits-emergencia.png'),
+    plantas:          require('../../assets/illustrations/glifos/pictogram-plantas.png'),
+    animais:          require('../../assets/illustrations/glifos/pictogram-animais.png'),
+    produtos:         require('../../assets/illustrations/glifos/pictogram-produtos.png'),
+    riscos_fisicos:   require('../../assets/illustrations/glifos/pictogram-riscos-fisicos.png'),
+    jardinagem:       require('../../assets/illustrations/glifos/pictogram-jardinagem.png'),
+    condo_safety:     require('../../assets/illustrations/glifos/pictogram-condo-safety.png'),
+    lazer_mobilidade: require('../../assets/illustrations/glifos/pictogram-lazer-mobilidade.png'),
+    guias_equipamentos: require('../../assets/illustrations/glifos/pictogram-guias-equipamentos.png'),
+    teoria_fogo:        require('../../assets/illustrations/glifos/pictogram-teoria-do-fogo.png'),
+    riscos_eletricos:   require('../../assets/illustrations/glifos/pictogram-riscos-eletricos.png'),
+    dispositivos_protecao: require('../../assets/illustrations/glifos/pictogram-dispositivos-protecao.png'),
+    vazamento_gas: require('../../assets/illustrations/glifos/pictogram-vazamento-gas.png'),
 };
-const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-casos-reais.png');
-const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/education-pictograms/pictogram-conceitos.png');
+const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/glifos/pictogram-casos-reais.png');
+const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/glifos/pictogram-conceitos.png');
 
 // Ids cujos assets são do formato CERÂMICO 3D (tile creme + moldura verde
 // embutidos no PNG, como na Home). Esses renderizam SEM NeoCard — o asset É
@@ -184,7 +184,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityRole="button"
                         accessibilityLabel={item.titulo}
                     >
-                        <PictogramTile source={pictogramSource} style={s.ceramicImage} />
+                        <PictogramTile source={pictogramSource} style={s.ceramicImage} moldura atenuado={isDark} />
                         <Text style={[s.gridLabel, { color: textPrimary, marginTop: -10 }]} numberOfLines={2}>
                             {item.titulo}
                         </Text>
@@ -389,7 +389,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         style={{ marginTop: 18, marginBottom: 8 }}
                     >
                         <NeoCard variant="elevated" style={s.radarCard}>
-                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={110} />
+                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={110} moldura atenuado={isDark} />
                             <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
                                 <Body style={s.radarTitle}>
                                     {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
@@ -412,7 +412,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         accessibilityLabel={conceitoItem.titulo}
                     >
                         <NeoCard variant="elevated" style={s.conceitoCard}>
-                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={110} style={s.conceptPictogramWrap} />
+                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={110} style={s.conceptPictogramWrap} moldura atenuado={isDark} />
                             <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
                                 <Body style={{ fontWeight: '800', color: textPrimary, fontSize: 14 }}>
                                     {conceitoItem.titulo}
