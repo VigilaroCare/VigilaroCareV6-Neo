@@ -9,6 +9,7 @@ import { AMBIENTES, hydrateChecklistItem } from '../data/mapeamento_dados';
 import { t_field } from '../utils/getLocalizedField';
 import { getDynamicAreaName } from '../utils/ProfileFilterEngine';
 import ProfileService from '../services/ProfileService';
+import ScoreService from '../services/ScoreService';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import i18n from '../i18n';
@@ -24,16 +25,31 @@ export default function AmbientesVistoriadosScreen({ navigation, route }) {
         ProfileService.getMapping().then(m => setMapping(m || [])).catch(() => {});
     }, []);
 
-    const getScoreColor = (s) => {
-        if (s >= 80) return Neo.colors.feedback.success;
-        if (s >= 50) return Neo.colors.feedback.warning;
-        return Neo.colors.feedback.error;
+    // Limiar do ScoreService, nunca local: com 80/50 aqui, um score 75 saia
+    // verde no hero da Home e ambar nesta tela, para o mesmo ambiente.
+    const TOM_FEEDBACK = {
+        success: Neo.colors.feedback.success,
+        warning: Neo.colors.feedback.warning,
+        error: Neo.colors.feedback.error,
+        muted: Neo.colors.neutral[500],
+    };
+
+    const getScoreColor = (s) => TOM_FEEDBACK[ScoreService.getTom(s)];
+
+    // A frase também vinha de limiar próprio, repetindo o que o ScoreService
+    // já decide. Aqui só mora o de-para banda → chave de tradução.
+    const FRASE_POR_BANDA = {
+        maxima:   'home.homeSafe',
+        controle: 'home.homeSafe',
+        atencao:  'home.homeNeedsAttention',
+        critico:  'home.actImmediately',
+        inicio:   'home.actImmediately',
     };
 
     const getScoreTextColor = (s) => {
-        if (s >= 80) return Neo.colors.feedback.success;
-        if (s >= 50) return '#B7791F';
-        return Neo.colors.feedback.error;
+        const tom = ScoreService.getTom(s);
+        // ambar de TEXTO e mais escuro que o de preenchimento, por contraste
+        return tom === 'warning' ? '#B7791F' : TOM_FEEDBACK[tom];
     };
 
     const getAmbienteName = (id) => {
@@ -140,7 +156,7 @@ export default function AmbientesVistoriadosScreen({ navigation, route }) {
                                 <View style={styles.globalSubRow}>
                                     <NeoIcon name="ShieldTick" variant="Bold" size={14} color={getScoreTextColor(score)} />
                                     <Text style={[styles.globalSubtitle, { color: isDark ? '#A1A1AA' : 'rgba(120, 80, 40, 0.80)' }]}>
-                                        {score >= 80 ? t('home.homeSafe', 'Sua casa está\nsegura') : (score >= 50 ? t('home.homeNeedsAttention', 'Sua casa precisa\nde atenção') : t('home.actImmediately', 'Aja\nimediatamente'))}
+                                        {t(FRASE_POR_BANDA[ScoreService.getBanda(score).key] || 'home.actImmediately')}
                                     </Text>
                                 </View>
                             </View>

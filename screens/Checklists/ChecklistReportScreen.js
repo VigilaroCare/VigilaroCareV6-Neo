@@ -6,6 +6,7 @@ import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoAlert from '../../utils/NeoAlert';
+import ScoreService from '../../services/ScoreService';
 
 export default function ChecklistReportScreen({ route, navigation }) {
   const { t } = useTranslation();
@@ -58,15 +59,21 @@ export default function ChecklistReportScreen({ route, navigation }) {
   const totalValido = total - naoAplicaveis;
   const score = totalValido > 0 ? Math.round((conformes / totalValido) * 100) : 0;
 
-  const getCorScore = () => {
-    if (score >= 80) return Neo.colors.feedback.success;
-    if (score >= 60) return Neo.colors.feedback.warning;
-    return Neo.colors.feedback.error;
-  };
+  // Limiar unico do ScoreService — o 80/60 daqui contradizia o 90/70/40 que
+  // decide a cor no resto do app, para o mesmo numero.
+  const getCorScore = () => ({
+    success: Neo.colors.feedback.success,
+    warning: Neo.colors.feedback.warning,
+    error: Neo.colors.feedback.error,
+    muted: Neo.colors.neutral[500],
+  }[ScoreService.getTom(score)]);
 
+  // Mesma faixa da cor — não um segundo limiar. Antes, um score 75 pintava de
+  // âmbar e escrevia "bom progresso" com critérios diferentes.
   const getMensagem = () => {
-    if (score >= 80) return { titulo: t('checklistReport.excellent'), texto: t('checklistReport.excellentMsg'), emoji: '🎉' };
-    if (score >= 60) return { titulo: t('checklistReport.goodProgress'), texto: t('checklistReport.goodProgressMsg'), emoji: '👍' };
+    const tom = ScoreService.getTom(score);
+    if (tom === 'success') return { titulo: t('checklistReport.excellent'), texto: t('checklistReport.excellentMsg'), emoji: '🎉' };
+    if (tom === 'warning') return { titulo: t('checklistReport.goodProgress'), texto: t('checklistReport.goodProgressMsg'), emoji: '👍' };
     return { titulo: t('checklistReport.attentionNeeded'), texto: t('checklistReport.attentionNeededMsg'), emoji: '⚠️' };
   };
 

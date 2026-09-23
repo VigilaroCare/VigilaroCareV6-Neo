@@ -22,6 +22,7 @@ import FadeInView from '../components/FadeInView';
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
 import NeoHeroHeader from '../components/NeoHeroHeader';
+import ScoreService from '../services/ScoreService';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation();
@@ -111,11 +112,13 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
     const percentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
     const safetyScore = effectiveTotal > 0 ? Math.round((safeAnswers / effectiveTotal) * 100) : 0;
 
-    const getStatusColor = () => {
-        if (safetyScore === 100) return Neo.colors.feedback.success;
-        if (safetyScore >= 70) return Neo.colors.feedback.warning;
-        return Neo.colors.feedback.error;
-    };
+    // Limiar unico do ScoreService em vez do 70 local.
+    const getStatusColor = () => ({
+        success: Neo.colors.feedback.success,
+        warning: Neo.colors.feedback.warning,
+        error: Neo.colors.feedback.error,
+        muted: Neo.colors.neutral[500],
+    }[ScoreService.getTom(safetyScore)]);
 
 
 

@@ -34,6 +34,26 @@ const CLR = {
     danger:  '#DC2626',
 };
 
+/**
+ * CUIDADOR REMOTO — desligado até o envio existir de ponta a ponta.
+ *
+ * A seção oferecia "Notificar por SMS / WhatsApp" com selo Premium e a
+ * promessa de "avisa a pessoa assistida no horário do lembrete". O envio não
+ * acontece: `MedicationReminderService.sendRemoteNotification()` existe e não
+ * tem nenhum chamador, e não há agendador no backend que receba e execute
+ * esses lembretes. O que o toggle fazia era persistir os campos e agendar
+ * notificações LOCAIS, que só tocam neste aparelho.
+ *
+ * Dois problemas, não um: é recurso pago que não entrega, e coleta o telefone
+ * de um terceiro (a pessoa assistida) pedindo consentimento para uma mensagem
+ * que nunca chega.
+ *
+ * O código da seção e o do serviço ficam onde estão. Para religar: implementar
+ * o agendador no backend, chamar `sendRemoteNotification` no salvamento e
+ * trocar esta constante para `true`.
+ */
+const CUIDADOR_REMOTO_DISPONIVEL = false;
+
 // ─── Componente: Modal de Disclaimer ──────────────────────────────────────────
 
 function DisclaimerModal({ visible, onAccept, onCancel }) {
@@ -431,6 +451,7 @@ export default function MedicationReminderFormScreen() {
                         </NeoCard>
 
                         {/* ── Seção: Cuidador Remoto ── */}
+                        {CUIDADOR_REMOTO_DISPONIVEL && <>
                         <Eyebrow style={fStyles.eyebrow}>Cuidador Remoto</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             {/* Toggle de ativação */}
@@ -540,6 +561,7 @@ export default function MedicationReminderFormScreen() {
                                 </View>
                             )}
                         </NeoCard>
+                        </>}
 
                         {/* ── Botão Salvar ── */}
                         <ButtonNeo

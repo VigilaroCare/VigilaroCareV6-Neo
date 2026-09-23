@@ -18,6 +18,15 @@ import ProfileService from './ProfileService';
 
 // Semântica dos níveis de proteção (só strings — seguro no escopo do módulo;
 // cores concretas ficam nas superfícies, mapeando por `tone`).
+// Faixa de score → tom semântico. Fonte única do significado da cor.
+const TOM_POR_BANDA = {
+  maxima: 'success',
+  controle: 'success',
+  atencao: 'warning',
+  critico: 'error',
+  inicio: 'muted',
+};
+
 const NIVEIS_PROTECAO = {
   inicio:    { key: 'inicio',    tone: 'muted',   icon: 'InfoCircle', labelKey: 'protection.inicio',    label: 'Proteção em início' },
   protegido: { key: 'protegido', tone: 'success', icon: 'ShieldTick', labelKey: 'protection.protegido', label: 'Protegido' },
@@ -189,6 +198,21 @@ class ScoreService {
     if (s >= 70) return { key: 'controle', headline: 'Casa sob controle',   titulo: 'Ambiente Seguro' };
     if (s >= 40) return { key: 'atencao',  headline: 'Atenção necessária',  titulo: 'Atenção Necessária' };
     return         { key: 'critico',  headline: 'Aja imediatamente',   titulo: 'Alerta de Risco' };
+  }
+
+  /**
+   * Tom semântico da faixa — 'success' | 'warning' | 'error' | 'muted'.
+   *
+   * Existe para que nenhuma tela precise repetir o limiar só para escolher a
+   * cor. Era por aí que a duplicação voltava: o docblock deste serviço conta
+   * que o 80/50 foi eliminado em três lugares, mas ele sobreviveu em outros
+   * quatro, e um score 75 saía verde no hero e âmbar no relatório.
+   *
+   * A cor CONCRETA continua com a superfície (o creme usa tints claros, o
+   * relatório usa feedback forte) — aqui só mora o limiar.
+   */
+  getTom(score) {
+    return TOM_POR_BANDA[this.getBanda(score).key] || 'muted';
   }
 
   /**
