@@ -114,6 +114,8 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
                         source={source}
                         width={TILE_W}
                         style={dimmed && s.ceramicTileDimmed}
+                        moldura
+                        atenuado={isDark}
                     />
                     {selected && (
                         <View style={s.ceramicCheckBadge}>
