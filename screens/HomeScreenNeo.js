@@ -8,8 +8,10 @@
  * Decisões estruturais (não reverter sem ler o design review):
  *  - Saudação usuário-primeiro no lugar do logo (logo vive em Splash/Sobre)
  *  - HERO verde-floresta com o score em type.display — Forest volta a dominar
- *  - Pictogramas NUS: o PNG já contém tile creme + moldura verde (é o card);
- *    o wrapper creme/âmbar criava dupla moldura e invertia a paleta da marca
+ *  - Pictogramas: desde 22/09 o PNG traz SÓ o desenho, em fundo transparente
+ *    (assets/illustrations/glifos/), e o PictogramTile desenha o tile creme,
+ *    o canto e a sombra. Antes o tile vinha pintado no arquivo, o que
+ *    serrilhava a moldura e impedia o tile de responder ao tema
  *  - Seções em Eyebrow à esquerda (token DS) — sem títulos centralizados
  *  - Ritmo vertical na escala 8pt (spacing tokens), scroll com respiro
  *
@@ -71,12 +73,12 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 // (PICTOGRAM_ASPECT_RATIO) — fonte única, não duplicar aqui.
 
 const HOME_PICTOGRAMS = {
-    vistorias:   require('../assets/illustrations/home-pictograms/vistorias.png'),
-    atividades:  require('../assets/illustrations/home-pictograms/atividades-eventuais.png'),
-    scanner:     require('../assets/illustrations/home-pictograms/scanner-ambiente.png'),
-    inforotulos: require('../assets/illustrations/home-pictograms/info-rotulos.png'),
-    minhasaude:  require('../assets/illustrations/home-pictograms/minha-saude.png'),
-    saudepet:    require('../assets/illustrations/home-pictograms/saude-pet.png'),
+    vistorias:   require('../assets/illustrations/glifos/vistorias.png'),
+    atividades:  require('../assets/illustrations/glifos/atividades-eventuais.png'),
+    scanner:     require('../assets/illustrations/glifos/scanner-ambiente.png'),
+    inforotulos: require('../assets/illustrations/glifos/info-rotulos.png'),
+    minhasaude:  require('../assets/illustrations/glifos/minha-saude.png'),
+    saudepet:    require('../assets/illustrations/glifos/saude-pet.png'),
 };
 // Os PNGs de 'cuidar-e-proteger' e 'modo-viagem' continuam em assets: os dois
 // tiles saíram da Home em 2026-07-31 (ver GRID_ITEMS), mas o Cuidar & Proteger
@@ -571,7 +573,7 @@ function BarePictogramShortcut({
                 accessibilityRole="button"
                 accessibilityLabel={item.accessibilityLabel || item.label}
             >
-                <PictogramTile source={item.image} width={64} />
+                <PictogramTile source={item.image} width={64} moldura atenuado={isDark} />
                 <Text
                     style={[
                         s.barePictogramLabelRow,
@@ -599,7 +601,7 @@ function BarePictogramShortcut({
             accessibilityRole="button"
             accessibilityLabel={item.accessibilityLabel || item.label}
         >
-            <PictogramTile source={item.image} width={imageWidth} />
+            <PictogramTile source={item.image} width={imageWidth} moldura atenuado={isDark} />
             <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
                 {item.label}
             </Text>
