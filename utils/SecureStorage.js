@@ -47,8 +47,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SENSITIVE_KEYS = new Set([
     '@vigilaro_data',           // perfis, moradia, saúde, contatos, onboarding
     '@vigilaro/briefing_draft', // rascunho de briefing/onboarding familiar
-    '@emergency_contacts',      // SOS*, PanicButtonService, OpenAIService
+    '@emergency_contacts',      // telas de SOS, OpenAIService
     'contatos_emergencia',      // contatos legados globais
+    // Legado: quem escrevia era o PanicButtonService, removido em 23/09. A
+    // chave FICA na lista porque aparelhos com versões anteriores ainda têm o
+    // valor gravado — é assim que ele continua protegido e é apagado no reset.
     '@panic_button_state',      // estado de pânico, horário e localização
     '@vital_check_config',      // monitoramento de bem-estar e janelas de resposta
     '@medications',             // OpenAIService (chave legada, só leitura)
