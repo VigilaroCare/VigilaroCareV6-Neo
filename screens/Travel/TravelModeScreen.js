@@ -95,7 +95,9 @@ const TRIP_TYPES = [
 ];
 
 // Tile cerâmico selecionável — padrão único dos seletores do wizard.
-// selected: badge de check + label forest; dimmed: recua a 55% de opacidade.
+// selected: badge de check + label forest; dimmed: recua o desenho (`recuado`
+// do PictogramTile), mantendo o tile creme cheio — esmaecer o card inteiro
+// deixava uma moldura fantasma em volta dele no Android.
 function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
     // Componente fora do escopo da tela: lê o tema por conta própria. O
     // `isDark` de TravelModeScreen não alcança aqui.
@@ -113,7 +115,7 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
                     <PictogramTile
                         source={source}
                         width={TILE_W}
-                        style={dimmed && s.ceramicTileDimmed}
+                        recuado={dimmed}
                         moldura
                         atenuado={isDark}
                     />
@@ -602,9 +604,6 @@ const s = StyleSheet.create({
     ceramicTileWrap: {
         width: TILE_W,
         position: 'relative',
-    },
-    ceramicTileDimmed: {
-        opacity: 0.55,
     },
     ceramicCheckBadge: {
         position: 'absolute',

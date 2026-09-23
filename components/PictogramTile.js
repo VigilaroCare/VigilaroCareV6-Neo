@@ -34,6 +34,18 @@ export const PICTOGRAM_ASPECT_RATIO = 577 / 433;
 const CREME = '#F4EBDC';
 const CREME_NOTURNO = '#E7DDCC';
 
+// Opção não escolhida de um seletor: recua o DESENHO, nunca o tile.
+//
+// Antes cada tela resolvia isso com `opacity` no wrapper do tile. Em Android
+// isso produz a "moldura fantasma": o wrapper vira uma camada de composição e
+// a sombra de elevação do card é redesenhada como um retângulo chapado, maior
+// que o card — o contorno duro que já nos incomodou em outras versões.
+//
+// Além do artefato, apagar o card inteiro custa contraste: o verde a 55% mede
+// 2,81:1 sobre o creme, abaixo do mínimo de 3:1 que a norma pede para
+// elemento gráfico — e a opção continua tocável. A 0,70 mede 3,98:1.
+const OPACIDADE_RECUADO = 0.7;
+
 export default function PictogramTile({
     source,
     width,
@@ -42,6 +54,7 @@ export default function PictogramTile({
     imageStyle,
     resizeMode = 'contain',
     atenuado = false,          // true no modo escuro: creme levemente rebaixado
+    recuado = false,           // opção não escolhida: esmaece só o desenho
     // `moldura` é OPT-IN de propósito. A maioria das telas ainda passa o PNG
     // legado, que já traz o tile pintado dentro — ligar por padrão daria
     // moldura dupla em todas elas. Migra-se uma tela por vez.
@@ -49,6 +62,10 @@ export default function PictogramTile({
     ...rest
 }) {
     const [lado, setLado] = useState(0);
+
+    // O recuo vai no glifo, e só nele: o tile mantém opacidade cheia para não
+    // criar camada de composição em cima da sombra.
+    const estiloGlifo = recuado ? [{ opacity: OPACIDADE_RECUADO }, imageStyle] : imageStyle;
 
     const sizeStyle =
         width != null ? { width, aspectRatio: PICTOGRAM_ASPECT_RATIO } :
@@ -59,7 +76,9 @@ export default function PictogramTile({
         // caminho legado: o PNG é o card inteiro
         return (
             <View style={[sizeStyle, style]} {...rest}>
-                <Image source={source} style={[styles.image, imageStyle]} resizeMode={resizeMode} />
+                {/* aqui o PNG é o card inteiro, então o recuo apaga o card
+                    junto — é o preço do caminho legado, não do recuo */}
+                <Image source={source} style={[styles.image, estiloGlifo]} resizeMode={resizeMode} />
             </View>
         );
     }
@@ -94,7 +113,7 @@ export default function PictogramTile({
                 {lado > 0 && (
                     <Image
                         source={source}
-                        style={[{ width: lado, height: lado }, imageStyle]}
+                        style={[{ width: lado, height: lado }, estiloGlifo]}
                         resizeMode={resizeMode}
                     />
                 )}
