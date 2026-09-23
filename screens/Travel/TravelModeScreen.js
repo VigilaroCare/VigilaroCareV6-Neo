@@ -102,6 +102,7 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
     // Componente fora do escopo da tela: lê o tema por conta própria. O
     // `isDark` de TravelModeScreen não alcança aqui.
     const isDark = useIsDark();
+    const colors = useThemeColors();
     return (
         <ScaleButton
             style={s.gridCell}
@@ -125,9 +126,13 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
                         </View>
                     )}
                 </View>
-                <Text style={[s.gridLabel, selected && { color: Neo.colors.primary[700] }, { marginTop: -10 }]}>
+                {/* Body, não Text cru: a NeoTypography é quem aplica a cor do
+                    tema e, em alto contraste, o preto ou branco puro. O rótulo
+                    era #1a1a2e cravado — 1,07:1 sobre o fundo noturno, e por
+                    isso só o selecionado aparecia no escuro. */}
+                <Body style={[s.gridLabel, { marginTop: -10 }, selected && { color: colors.textOn.brand }]}>
                     {label}
-                </Text>
+                </Body>
             </View>
         </ScaleButton>
     );
@@ -593,7 +598,6 @@ const s = StyleSheet.create({
     gridLabel: {
         fontSize: 13,
         fontWeight: '800',
-        color: '#1a1a2e',
         textAlign: 'center',
         lineHeight: 17,
     },
