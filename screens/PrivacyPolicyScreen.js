@@ -49,11 +49,21 @@ export default function PrivacyPolicyScreen({ navigation }) {
                         Recursos opcionais de IA podem enviar mensagens, fotos submetidas ao scanner e um contexto minimizado do lar para processamento por provedores de IA por meio do servidor intermediário do Vigilaro. Os provedores utilizados são: OpenAI (análise de texto, imagem e voz), ElevenLabs (síntese de voz), EPA CompTox (consulta pública de substâncias químicas) e Zenvia ou Twilio (envio de SMS/WhatsApp do módulo cuidador remoto, que recebe o número de telefone e o conteúdo da mensagem que você configurar). O app evita enviar nomes e contatos nesses contextos, mas pode enviar categorias sensíveis como idade aproximada, condições relevantes e nomes de medicamentos quando necessários para a resposta solicitada. Se você não usar recursos de IA nem o cuidador remoto, esses dados não são enviados a terceiros.
                     </Section>
 
-                    <Section title="6. Retenção e exclusão">
+                    <Section title="6. Consultas públicas de produtos e substâncias">
+                        O scanner de código de barras e o módulo Info Rótulos consultam bases públicas para descrever o produto lido: Open Food Facts, Open Beauty Facts e Open Products Facts (dados abertos sob licença ODbL, creditados na tela Sobre), UPCitemdb e PubChem, do NCBI. Nessas consultas é enviado apenas o código de barras ou o nome da substância pesquisada — nenhum dado seu, do seu lar ou dos seus perfis acompanha a requisição.
+                    </Section>
+
+                    <Section title="7. Relatórios de erro e assinatura">
+                        Para descobrir falhas do app, relatórios de erro são enviados ao Sentry (Functional Software, Inc.). Antes do envio, cada evento passa por remoção de dados pessoais: nomes cadastrados no app, telefones, endereços, dados de saúde e identificadores de usuário são removidos ou substituídos; capturas de tela e hierarquia de telas estão desligadas. O que segue é técnico — modelo do aparelho, versão do sistema, versão do app e o ponto do código onde o erro ocorreu.
+                        {'\n\n'}
+                        As assinaturas Premium são processadas pela RevenueCat em conjunto com a App Store ou o Google Play. O pagamento é feito pela loja; o Vigilaro Care não recebe nem armazena dados de cartão. A RevenueCat recebe um identificador anônimo de instalação e o histórico de compra necessário para validar o acesso.
+                    </Section>
+
+                    <Section title="8. Retenção e exclusão">
                         Os dados locais permanecem no aparelho até você removê-los. A opção Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, logs locais, checklists e arquivos gerados pelo app, incluindo fotos persistidas e gravações de pânico. A desinstalação do app também remove os dados locais mantidos no sandbox do aplicativo.
                     </Section>
 
-                    <Section title="7. Limitações de emergência">
+                    <Section title="9. Limitações de emergência">
                         Funções de SOS, SMS, WhatsApp, ligação, localização e check-in dependem do sistema operacional, sinal, bateria, permissões e aplicativos externos. O Vigilaro Care auxilia a preparar e abrir canais de contato, mas não substitui serviços oficiais de emergência.
                     </Section>
 
