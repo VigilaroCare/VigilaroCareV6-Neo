@@ -77,6 +77,7 @@ backend-proxy/.env
 !docs/MAPA_FUNCIONALIDADES_VigilaroCare_V6Neo.md
 !docs/PENDENCIAS.md
 !docs/CONFORMIDADE_IA_E_DIREITOS.md
+!docs/CONFORMIDADE_LEGAL.md
 
 # Textos do app extraidos para revisao editorial. Versionados de proposito:
 # e por diff que as edicoes do Agnaldo voltam para o codigo.
