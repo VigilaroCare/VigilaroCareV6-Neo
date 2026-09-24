@@ -64,12 +64,43 @@ Essa combinação é incomum em apps de saúde e deve ser dita na política, por
 | # | Pendência | Por quê |
 |---|---|---|
 | ~~L1~~ | ~~Razão social e CNPJ~~ | **Resolvido em 24/09: Vigilaro Care LTDA, CNPJ 65.297.217/0001-50.** Preenchido em `CONTROLADOR.razaoSocial` e propagado às quatro políticas, aos Termos de Uso (que não identificavam o fornecedor) e ao aviso de copyright — que dizia **"Vigilaro Inc."**, entidade diferente da real, nos quatro idiomas. |
-| **L2** | **Representante na União Europeia** (RGPD art. 27) | Controlador fora da UE que oferece serviço a residentes da UE precisa designar um por escrito e publicar o contato. Sem isso, **não publique nas lojas europeias**. |
+| **L2** | **Representante na União Europeia** (RGPD art. 27) | Ver a seção "Como se resolve o representante na UE", abaixo. Sem isso, **não publique nas lojas europeias** — mas Brasil e EUA não dependem deste item. |
 | **L3** | **Contratos com os operadores** (RGPD art. 28) e mecanismo de transferência (cap. V) | A política afirma que as transferências para OpenAI, Sentry e RevenueCat se apoiam em cláusulas-padrão ou no EU-US Data Privacy Framework. É preciso **confirmar e arquivar** o instrumento de cada um. A afirmação precisa ser verdadeira. |
 | **L4** | **Encarregado / DPO** | Avaliar se o tratamento em larga escala de dados de saúde exige encarregado (LGPD art. 41; RGPD art. 37(1)(c)). Dado o volume potencial, é provável que sim. |
 | **L5** | **Termos de Uso por regime** | Feito para a política, **falta para os Termos**, que continuam só em português com tradução parcial da moldura. |
 | **L6** | **Revisão por advogado** | Nada aqui substitui isso, em especial COPPA e My Health My Data, que têm enforcement ativo. |
 | **L7** | **Data Safety (Play) e App Privacy (Apple)** | As fichas das lojas precisam declarar exatamente o que a política diz. Ver A7 em `PENDENCIAS.md`. |
+
+---
+
+## Como se resolve o representante na UE (L2)
+
+**O que a lei pede.** O artigo 27.º do RGPD obriga controlador estabelecido fora da União, que ofereça bens ou serviços a pessoas na União, a designar **por escrito** um representante. Ele tem de estar estabelecido **num dos Estados-Membros onde estão os titulares** — no nosso caso, Portugal ou Espanha, que são os idiomas que publicamos. O representante passa a ser o endereço que autoridades de controlo e titulares podem procurar, em acréscimo ou em vez da empresa.
+
+**Existe isenção?** O art. 27(2) dispensa quando o tratamento é *ocasional*, **não** envolve em larga escala categorias especiais de dados, e é improvável que resulte em risco. As três condições são cumulativas. O Vigilaro Care trata **dados de saúde**, que são categoria especial — então a isenção provavelmente não se aplica. Há um argumento a favor, pela arquitetura local-first (quase nada é tratado nos nossos servidores), mas é precisamente o tipo de argumento que um advogado deve avaliar e **deixar documentado**, não que se presume.
+
+**Como se faz na prática.** Duas vias:
+1. **Alguém do próprio grupo** estabelecido num Estado-Membro — sócio, filial ou pessoa de confiança residente. Basta o mandato escrito.
+2. **Serviço de representação**, um mercado que existe justamente para isto: a empresa figura como representante, recebe contactos e os encaminha. É contrato recorrente; peça cotação a mais de um.
+
+Depois de designado, o contacto dele **tem de constar da política de privacidade** (art. 13(1)(a) e orientação do EDPB). O código já está preparado: preencher `CONTROLADOR.representanteUE` propaga a informação para as versões pt-PT e es, e `npm run validate:legal` para de reprovar.
+
+**Não protege de responsabilidade.** O art. 27(5) é explícito: designar representante não impede ações legais contra a própria empresa.
+
+**A via mais simples continua sendo a terceira:** não publicar nas lojas europeias por enquanto. A obrigação nasce de oferecer o serviço a residentes na União; sem oferta, não há obrigação. Lançar Brasil primeiro é decisão de negócio perfeitamente defensável.
+
+---
+
+## Novidade relevante: adequação UE–Brasil
+
+A Comissão Europeia e o Brasil **adotaram decisões de adequação mútuas** (documento C(2026) 373 final, de 26/01/2026), depois do parecer favorável do EDPB (Opinião 28/2025, de 05/11/2025), que reconheceu o alinhamento próximo entre a LGPD e o RGPD.
+
+O que isso muda para nós: dados pessoais podem fluir da União para o Brasil **sem salvaguarda adicional** — a transferência passa a ser tratada como se fosse interna à UE. Isso simplifica parte do item L3, porque a perna "utilizador europeu → Vigilaro Care no Brasil" deixa de precisar de cláusulas contratuais-tipo.
+
+**O que isso NÃO muda**, e é o engano fácil de cometer:
+- **não dispensa o representante do art. 27.** Adequação é capítulo V (transferências); representante é âmbito territorial (art. 3(2)). São coisas diferentes;
+- **não cobre as transferências seguintes** — Vigilaro → OpenAI, Sentry e RevenueCat, nos EUA. Essas continuam a exigir mecanismo próprio (L3);
+- não dispensa nenhuma das outras obrigações do RGPD, que continuam a aplicar-se por oferecermos o serviço na União.
 
 ---
 
