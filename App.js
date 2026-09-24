@@ -20,7 +20,9 @@
 //  [FIX-16]  DISCLAIMER_VERSION declarada
 //  [FIX-A03] setInterval usa ref — sem stale closure, com cleanup
 //  [FIX-A04] Disclaimer boot valida versão além do accepted
-//  [FIX-C17] HomeCompletaScreen aponta para HomeScreenNeo
+//  [FIX-C17] HomeCompletaScreen apontava para HomeScreenNeo — rota removida em
+//            24/09: era registro duplicado da aba Início, sem nenhum caminho
+//            de navegação. Mesmo caso de KnowledgeHub, duplicata da aba Educação.
 //  [FIX-C18] Copyright atualizado para 2026 (SobreScreen)
 //  [FIX-C19] BriefingScreen (stub) removido — rota Briefing → SecretBriefingScreen
 //  [FIX-C20] Arquivos legados movidos para _legacy/screens (ou já removidos)
@@ -93,10 +95,8 @@ import SobreScreen                       from './screens/SobreScreen';
 import ContatoScreen                     from './screens/ContatoScreen';
 import TermsOfUseScreen                  from './screens/TermsOfUseScreen';
 import PrivacyPolicyScreen               from './screens/PrivacyPolicyScreen';
-import HomeCompletaScreen                from './screens/HomeScreenNeo';
 import EmergenciaPetScreen               from './screens/Emergency/EmergenciaPetScreen';
 import CustomSplashScreen                from './screens/CustomSplashScreen';
-import KnowledgeHubScreen                from './screens/Education/KnowledgeHubScreen';
 import EletrodomesticosScreen            from "./screens/EletrodomesticosScreen";
 import PrimeirosSocorrosEmergenciaScreen from './screens/Emergency/PrimeirosSocorrosEmergenciaScreen';
 import SOSEmergencyModeScreen            from './screens/Emergency/SOSEmergencyModeScreenNeo';
@@ -568,9 +568,7 @@ export default function App() {
                       <Stack.Screen name="Contato" component={ContatoScreen} />
                       <Stack.Screen name="TermsOfUse" component={TermsOfUseScreen} />
                       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
-                      <Stack.Screen name="HomeCompleta" component={HomeCompletaScreen} />
                       <Stack.Screen name="EmergenciaPet" component={EmergenciaPetScreen} />
-                      <Stack.Screen name="KnowledgeHub" component={KnowledgeHubScreen} />
                       <Stack.Screen name="Eletrodomesticos" component={EletrodomesticosScreen} />
                       <Stack.Screen name="RenovationType" component={RenovationTypeScreen} />
                       <Stack.Screen name="ChecklistReforma" component={ChecklistReformaScreen} />
