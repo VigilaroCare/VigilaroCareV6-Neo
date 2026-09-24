@@ -1,4 +1,19 @@
-// Verificacao independente: identificador referenciado e NAO declarado.
+/**
+ * auditar_escopo.js — identificador referenciado e NUNCA declarado.
+ *
+ * Existe porque nenhuma outra verificacao do projeto pega esta classe de erro:
+ *   - o bundle do Metro empacota com HTTP 200 e so quebra em runtime;
+ *   - `validate:types` passa vazio (checkJs: false, ver B5 em PENDENCIAS);
+ *   - o olho nao pega, porque a variavel costuma estar declarada — so que em
+ *     OUTRO escopo.
+ *
+ * Foi assim que o `isDark` derrubou a Home, e foi assim que se descobriu que o
+ * bloco do hero de EletrodomesticosScreen estava colado dentro de
+ * `renderDeviceCard`, com o JSX referenciando tudo de fora.
+ *
+ * Uso: node scripts/auditar_escopo.js
+ * Saida: uma linha por identificador solto. Zero problemas = saida limpa.
+ */
 // E o unico jeito de provar que a remocao de imports nao quebrou nada —
 // o bundle do Metro nao acusa variavel indefinida.
 const fs=require('fs'),path=require('path');

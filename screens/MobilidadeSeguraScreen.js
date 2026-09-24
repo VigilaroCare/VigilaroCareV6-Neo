@@ -355,6 +355,10 @@ function ConteudoAtiva() {
 
 function TipoMobilidadeCard({ tipo }) {
   const [expandido, setExpandido] = useState(false);
+  // Componente de topo do arquivo: precisa do proprio `t`. Usava a funcao em 5
+  // pontos sem nunca declara-la — o `t` da tela nao alcanca aqui, e cada um
+  // desses rotulos quebrava ao renderizar.
+  const { t } = useTranslation('common');
   const colors = useThemeColors();
   const isDark = useIsDark();
   const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);

@@ -49,17 +49,12 @@ export default function EletrodomesticosScreen({ navigation }) {
     const textBody = themeColors.neutral[700];
     const textMuted = themeColors.neutral[500];
 
-    const toggleExpand = (id) => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setExpandedId(expandedId === id ? null : id);
-    };
-
-    const renderDeviceCard = (device) => {
-        const isExpanded = expandedId === device.id;
-        const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
-        const deviceColor = DEVICE_COLORS[device.id] || themeColors.primary[500];
-
-        const scrollY = useRef(new Animated.Value(0)).current;
+    // Hero com parallax. Este bloco estava colado DENTRO de `renderDeviceCard`,
+    // enquanto o JSX do componente o referenciava de fora — todas estas
+    // constantes ficavam indefinidas na hora de renderizar. Dois defeitos num:
+    // a tela quebrava, e `useRef` rodava dentro de uma funcao que nao e
+    // componente, violando as regras de hooks (uma chamada por card renderizado).
+    const scrollY = useRef(new Animated.Value(0)).current;
     const HERO_HEIGHT = 280;
     const heroTransform = [
         {
@@ -81,6 +76,16 @@ export default function EletrodomesticosScreen({ navigation }) {
 
     const titleStr = t('headersFirst.eletrodomesticos', 'Eletrodomésticos');
     const capaSource = require('../assets/illustrations/pad/hero_eletro.png');
+
+    const toggleExpand = (id) => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setExpandedId(expandedId === id ? null : id);
+    };
+
+    const renderDeviceCard = (device) => {
+        const isExpanded = expandedId === device.id;
+        const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
+        const deviceColor = DEVICE_COLORS[device.id] || themeColors.primary[500];
 
     return (
             <TouchableOpacity

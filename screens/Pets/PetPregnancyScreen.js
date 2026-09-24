@@ -178,7 +178,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                     {renderHeader()}
                     <ScrollView contentContainerStyle={styles.content}>
                         <Text style={styles.cardTitle}>{t('petPregnancyTracker.selectPet')}</Text>
-                        {loading ? <ActivityIndicator size="large" color={themeColors.categoria.rose.fill} /> : (
+                        {loading ? <ActivityIndicator size="large" color={colors.categoria.rose.fill} /> : (
                             petsList.length === 0 ? (
                                 <View style={styles.noDataCard}>
                                     <Text style={styles.noDataText}>{t('petPregnancyTracker.noPets')}</Text>
@@ -195,7 +195,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                                         activeOpacity={0.8}
                                     >
                                         <View style={styles.avatarContainer}>
-                                            <NeoIcon name="Lovely" size={24} color={themeColors.categoria.rose.fill} />
+                                            <NeoIcon name="Lovely" size={24} color={colors.categoria.rose.fill} />
                                         </View>
                                         <View>
                                             <Text style={styles.petName}>{p.nome}</Text>
@@ -223,7 +223,7 @@ export default function PetPregnancyScreen({ navigation, route }) {
                 {/* Pet Info */}
                 <View style={styles.petCard}>
                     <View style={styles.avatarContainer}>
-                        <NeoIcon name="Lovely" size={32} color={themeColors.categoria.rose.fill} />
+                        <NeoIcon name="Lovely" size={32} color={colors.categoria.rose.fill} />
                     </View>
                     <View>
                         <Text style={styles.petName}>{pet.nome}</Text>

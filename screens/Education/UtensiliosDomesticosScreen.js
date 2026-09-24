@@ -14,12 +14,15 @@ import { Shadows } from '../../utils/Theme';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoScreenHeader from '../../components/NeoScreenHeader';
 
-// Cor de risco por nivel (heuristica baseada no texto do campo)
+// Cor de risco por nivel (heuristica baseada no texto do campo).
+// Roda no ESCOPO DO MODULO: `themeColors` e valor de hook e nao existe aqui —
+// as duas linhas do meio estouravam ReferenceError sempre que o texto do risco
+// caisse nelas. Usa o DS estatico, como as outras cores desta mesma funcao.
 const getRiscoColor = (risco) => {
     const r = (risco || '').toLowerCase();
     if (r.includes('explos') || r.includes('grave') || r.includes('choque')) return '#D32F2F';
-    if (r.includes('queimadu') || r.includes('contamin')) return themeColors.categoria.ocre.fill;
-    if (r.includes('corte') || r.includes('perfur')) return themeColors.categoria.ocre.fill;
+    if (r.includes('queimadu') || r.includes('contamin')) return Neo.colors.categoria.ocre.fill;
+    if (r.includes('corte') || r.includes('perfur')) return Neo.colors.categoria.ocre.fill;
     return '#388E3C';
 };
 

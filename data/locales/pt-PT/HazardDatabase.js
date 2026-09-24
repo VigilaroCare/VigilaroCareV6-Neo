@@ -337,8 +337,8 @@ export const HAZARD_DATABASE_PT_PT = {
  */
 export function getAllHazardItems() {
     let items = [];
-    Object.keys(HAZARD_DATABASE).forEach(key => {
-        const area = HAZARD_DATABASE[key];
+    Object.keys(HAZARD_DATABASE_PT_PT).forEach(key => {
+        const area = HAZARD_DATABASE_PT_PT[key];
         const labeledItems = area.items.map(i => ({ ...i, areaId: key, areaLabel: area.label }));
         items = [...items, ...labeledItems];
     });
@@ -361,8 +361,8 @@ export function getRisksForProfile(inventoryIds, userProfiles) {
     inventoryIds.forEach(itemId => {
         // Achar item no DB
         let foundItem = null;
-        Object.keys(HAZARD_DATABASE).forEach(key => {
-            const item = HAZARD_DATABASE[key].items.find(i => i.id === itemId);
+        Object.keys(HAZARD_DATABASE_PT_PT).forEach(key => {
+            const item = HAZARD_DATABASE_PT_PT[key].items.find(i => i.id === itemId);
             if (item) foundItem = item;
         });
 
