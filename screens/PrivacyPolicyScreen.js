@@ -4,6 +4,8 @@ import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing } from '../utils/Theme';
+import { useTranslation } from 'react-i18next';
+import { getPoliticaPrivacidade } from '../data/legal/politica_privacidade';
 
 const Section = ({ title, children }) => (
     <>
@@ -13,6 +15,11 @@ const Section = ({ title, children }) => (
 );
 
 export default function PrivacyPolicyScreen({ navigation }) {
+    // A política NÃO é traduzida: cada idioma tem a sua, escrita para o regime
+    // jurídico correspondente (LGPD, RGPD, EUA). Ver data/legal/.
+    const { i18n } = useTranslation();
+    const politica = getPoliticaPrivacidade(i18n.language);
+
     return (
         <AppBackground>
             <SafeAreaView style={styles.container}>
@@ -20,7 +27,7 @@ export default function PrivacyPolicyScreen({ navigation }) {
                     <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
                         <NeoIcon name="ArrowLeft2" size={24} color={Colors.textPrimary} />
                     </TouchableOpacity>
-                    <Text style={styles.headerTitle}>Política de Privacidade</Text>
+                    <Text style={styles.headerTitle}>{politica.titulo}</Text>
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content}>
@@ -28,43 +35,13 @@ export default function PrivacyPolicyScreen({ navigation }) {
                         <NeoIcon name="Lock" size={48} color={Colors.primary} />
                     </View>
 
-                    <Section title="1. Compromisso com sua privacidade">
-                        O Vigilaro Care trata dados pessoais e dados de saúde como informações sensíveis. Esta política resume como o app acessa, armazena, usa, compartilha e exclui esses dados em conformidade com a LGPD.
-                    </Section>
+                    {politica.subtitulo ? (
+                        <Text style={[styles.text, styles.subtitulo]}>{politica.subtitulo}</Text>
+                    ) : null}
 
-                    <Section title="2. Armazenamento local">
-                        Perfis, contatos de emergência, medicamentos, histórico médico e estado de pânico são armazenados no dispositivo. Dados sensíveis são roteados para armazenamento seguro do sistema operacional sempre que suportado. Alguns dados operacionais não sensíveis, como preferências visuais e progresso de checklist, podem ficar no armazenamento local comum do app.
-                    </Section>
-
-                    <Section title="3. Dados que você informa">
-                        O app pode armazenar nome, idade, foto de perfil, tipo sanguíneo, alergias, condições de saúde, medicamentos, contatos de emergência, características da residência, fotos escolhidas por você e anotações de prevenção. O app não exige CPF, RG ou criação de conta.
-                    </Section>
-
-                    <Section title="4. Permissões do dispositivo">
-                        Câmera e fotos são usadas para perfil e scanner de riscos. Microfone pode ser usado por recursos de voz ou gravação acionada por função de emergência. Localização é usada em SOS e recursos de segurança. Notificações são usadas para lembretes e check-ins. Você pode negar ou revogar permissões nas configurações do sistema; algumas funções podem ficar limitadas.
-                    </Section>
-
-                    <Section title="5. Inteligência artificial e terceiros">
-                        Recursos opcionais de IA podem enviar mensagens, fotos submetidas ao scanner e um contexto minimizado do lar para processamento por provedores de IA por meio do servidor intermediário do Vigilaro. Os provedores utilizados são: OpenAI (análise de texto, imagem e voz), ElevenLabs (síntese de voz), EPA CompTox (consulta pública de substâncias químicas) e Zenvia ou Twilio (envio de SMS/WhatsApp do módulo cuidador remoto, que recebe o número de telefone e o conteúdo da mensagem que você configurar). O app evita enviar nomes e contatos nesses contextos, mas pode enviar categorias sensíveis como idade aproximada, condições relevantes e nomes de medicamentos quando necessários para a resposta solicitada. Se você não usar recursos de IA nem o cuidador remoto, esses dados não são enviados a terceiros.
-                    </Section>
-
-                    <Section title="6. Consultas públicas de produtos e substâncias">
-                        O scanner de código de barras e o módulo Info Rótulos consultam bases públicas para descrever o produto lido: Open Food Facts, Open Beauty Facts e Open Products Facts (dados abertos sob licença ODbL, creditados na tela Sobre), UPCitemdb e PubChem, do NCBI. Nessas consultas é enviado apenas o código de barras ou o nome da substância pesquisada — nenhum dado seu, do seu lar ou dos seus perfis acompanha a requisição.
-                    </Section>
-
-                    <Section title="7. Relatórios de erro e assinatura">
-                        Para descobrir falhas do app, relatórios de erro são enviados ao Sentry (Functional Software, Inc.). Antes do envio, cada evento passa por remoção de dados pessoais: nomes cadastrados no app, telefones, endereços, dados de saúde e identificadores de usuário são removidos ou substituídos; capturas de tela e hierarquia de telas estão desligadas. O que segue é técnico — modelo do aparelho, versão do sistema, versão do app e o ponto do código onde o erro ocorreu.
-                        {'\n\n'}
-                        As assinaturas Premium são processadas pela RevenueCat em conjunto com a App Store ou o Google Play. O pagamento é feito pela loja; o Vigilaro Care não recebe nem armazena dados de cartão. A RevenueCat recebe um identificador anônimo de instalação e o histórico de compra necessário para validar o acesso.
-                    </Section>
-
-                    <Section title="8. Retenção e exclusão">
-                        Os dados locais permanecem no aparelho até você removê-los. A opção Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, logs locais, checklists e arquivos gerados pelo app, incluindo fotos persistidas e gravações de pânico. A desinstalação do app também remove os dados locais mantidos no sandbox do aplicativo.
-                    </Section>
-
-                    <Section title="9. Limitações de emergência">
-                        Funções de SOS, SMS, WhatsApp, ligação, localização e check-in dependem do sistema operacional, sinal, bateria, permissões e aplicativos externos. O Vigilaro Care auxilia a preparar e abrir canais de contato, mas não substitui serviços oficiais de emergência.
-                    </Section>
+                    {politica.secoes.map((sec) => (
+                        <Section key={sec.titulo} title={sec.titulo}>{sec.texto}</Section>
+                    ))}
 
                     <View style={{ height: 40 }} />
                 </ScrollView>
@@ -111,6 +88,11 @@ const styles = StyleSheet.create({
         color: Colors.textPrimary,
         marginTop: 16,
         marginBottom: 8,
+    },
+    subtitulo: {
+        fontSize: 13,
+        fontStyle: 'italic',
+        marginBottom: 4,
     },
     text: {
         fontSize: 15,
