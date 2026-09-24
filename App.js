@@ -200,7 +200,6 @@ import AvesSegurasScreen     from "./screens/Pets/AvesSegurasScreen";
 // ---------------------------------------------------------------------------
 // VIAGEM
 // ---------------------------------------------------------------------------
-import KitViagemScreen       from "./screens/Travel/KitViagemScreen";
 import InspecaoChegadaScreen from "./screens/Travel/InspecaoChegadaScreen";
 import InspecaoPartidaScreen from "./screens/Travel/InspecaoPartidaScreen";
 import InspecaoRetornoScreen from "./screens/Travel/InspecaoRetornoScreen";
@@ -665,7 +664,6 @@ export default function App() {
                       <Stack.Screen name="AvesSeguras" component={AvesSegurasScreen} />
                       <Stack.Screen name="TravelSafetyGuide" component={TravelSafetyGuideScreen} />
                       <Stack.Screen name="TravelModeScreen" component={TravelModeScreen} />
-                      <Stack.Screen name="KitViagem" component={KitViagemScreen} />
                       <Stack.Screen name="InspecaoChegada" component={InspecaoChegadaScreen} />
                       <Stack.Screen name="InspecaoPartida" component={InspecaoPartidaScreen} />
                       <Stack.Screen name="InspecaoRetorno" component={InspecaoRetornoScreen} />

@@ -587,7 +587,8 @@
         "chargerPowerbank": "Phone charger and power bank",
         "cardsMoneyKeys": "Cards, cash, and house/car keys",
         "completedOf": "of",
-        "completed": "completed"
+        "completed": "completed",
+        "kitItemCount": "{{count}} items"
     },
     "knowledgeHub": {
         "title": "Learning Center",

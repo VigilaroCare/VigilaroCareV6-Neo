@@ -569,7 +569,8 @@
         "chargerPowerbank": "Carregador de celular e powerbank",
         "cardsMoneyKeys": "Cartões, dinheiro e chaves de casa/carro",
         "completedOf": "de",
-        "completed": "concluídos"
+        "completed": "concluídos",
+        "kitItemCount": "{{count}} itens"
     },
     "medications": {
         "title": "Hora do Remédio",

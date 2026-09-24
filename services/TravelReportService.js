@@ -41,7 +41,11 @@ class TravelReportService {
 
             // Conteúdo compartilhado (exportado das telas — fonte única).
             const { GUIDE_SECTIONS, matchesTrip } = require('../screens/Education/TravelSafetyGuideScreen');
-            const { buildDynamicKits, TRANSPORTE_AEREO } = require('../screens/Travel/FazendoAsMalasScreen');
+            // Os kits saíram da tela para data/: conteúdo é dado, não tela.
+            // TRANSPORTE_AEREO segue na tela porque é regra de embarque ligada
+            // à apresentação dela, e já estava validada ali (ANAC/IATA).
+            const { buildDynamicKits } = require('../data/kits/bagagem_viagem');
+            const { TRANSPORTE_AEREO } = require('../screens/Travel/FazendoAsMalasScreen');
 
             const sections = GUIDE_SECTIONS
                 .filter(s => matchesTrip(s, trip))
@@ -143,10 +147,17 @@ class TravelReportService {
                 ${t_field(s, 'source') ? `<div class="source">${esc(t_field(s, 'source'))}</div>` : ''}
             </div>`).join('') : '<p class="muted">Sem orientações específicas para este briefing.</p>';
 
+        // Kit pode vir plano (`items`) ou dividido em subseções (`sections`) —
+        // medicamentos, primeiros socorros e higiene usam a segunda forma. Ler
+        // só `k.items` imprimia esses três com a lista VAZIA no dossiê.
+        const itensDoKit = (k) => (k.sections
+            ? k.sections.flatMap(s => t_array(s, 'items'))
+            : t_array(k, 'items'));
+
         const kitsHtml = kits.map(k => `
             <div class="card">
-                <h3>${esc(k.title)}</h3>
-                <ul class="bullets">${(k.items || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+                <h3>${esc(t_field(k, 'title'))}</h3>
+                <ul class="bullets">${itensDoKit(k).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
             </div>`).join('');
 
         const aereoHtml = transporteAereo ? `

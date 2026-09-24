@@ -1,5 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+// Conteúdo e regra de cruzamento moram em data/, não aqui: são reusados pelo
+// TravelReportService no dossiê em PDF. Ver o docblock de lá para a história
+// da consolidação com a antiga tela KitViagem.
+import { buildDynamicKits, contarItens } from '../../data/kits/bagagem_viagem';
+import { t_field, t_array } from '../../utils/getLocalizedField';
 import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager, Animated, Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -16,163 +21,6 @@ if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental
 }
 
 const SCREEN_W = Dimensions.get('window').width;
-
-// ═══════════════════════════════════════════════════
-// SEÇÃO 1: SAINDO DE VIAGEM (BASE)
-// ═══════════════════════════════════════════════════
-const SAINDO_DATA = [
-    {
-        id: 'medicamentos_ida',
-        title: 'Medicamentos Essenciais',
-        icon: 'Lovely',
-        color: Neo.colors.feedback.error,
-        intro: 'A gestão cuidadosa dos medicamentos é crítica.',
-        items: [
-            'Uso contínuo + margem de 3 a 5 dias extras',
-            'Manter na embalagem original',
-            'Analgésicos, antitérmicos e antialérgicos',
-            'Receitas médicas atualizadas (físicas ou digitais)',
-        ],
-    },
-    {
-        id: 'docs_ida',
-        title: 'Documentos Vitais',
-        icon: 'DocumentText',
-        color: Neo.colors.primary[500],
-        intro: 'Imprevistos acontecem; tenha cópias e acesso offline.',
-        items: [
-            'Passaporte/RG válidos e em bom estado',
-            'Cartão de vacinas (físico e digital)',
-            'Certidão de nascimento (menores de idade)',
-            'Cartão do plano de saúde e SUS',
-        ],
-    },
-    {
-        id: 'conforto_ida',
-        title: 'Kit Conforto',
-        icon: 'Coffee',
-        color: Neo.colors.feedback.warning,
-        intro: 'Prevenção de pequenos estresses durante o trajeto.',
-        items: [
-            'Garrafa de água (vazia para encher após raio-x no aeroporto)',
-            'Lanche não perecível',
-            'Muda de roupa leve na bagagem de mão (caso a despachada atrase)',
-            'Itens de higiene básica (escova, pasta de até 100ml)',
-        ],
-    },
-];
-
-// --- MÓDULOS DE KITS DINÂMICOS ---
-const MODULE_LAZER = {
-    id: 'kit_lazer',
-    title: 'Módulo de Lazer',
-    icon: 'Sun1',
-    color: Neo.colors.feedback.warning,
-    intro: 'Itens para diversão e atividades ao ar livre.',
-    items: [
-        'Protetor solar e pós-sol',
-        'Óculos de sol e chapéu',
-        'Roupas de banho',
-        'Brinquedos ou livros de lazer',
-    ],
-};
-
-const MODULE_TRABALHO = {
-    id: 'kit_trabalho',
-    title: 'Módulo de Trabalho',
-    icon: 'Briefcase',
-    color: Neo.colors.primary[500],
-    intro: 'Segurança para equipamentos e produtividade.',
-    items: [
-        'Notebook, tablet e carregadores',
-        'Powerbank e adaptador universal',
-        'Fones com cancelamento de ruído',
-        'Cadeado de cabo para notebook',
-    ],
-};
-
-const MODULE_PETS = {
-    id: 'kit_pets',
-    title: 'Módulo Pet',
-    icon: 'Pet',
-    color: Neo.colors.feedback.error,
-    intro: 'Segurança e bem-estar do seu animal.',
-    items: [
-        'Carteira de vacinação atualizada do pet',
-        'Caixa de transporte adequada ao modal',
-        'Coleira extra com plaquinha de identificação',
-        'Alimento e água para o trajeto',
-    ],
-};
-
-const MODULE_CRIANCAS = {
-    id: 'kit_criancas',
-    title: 'Módulo Infantil',
-    icon: 'Baby',
-    color: Neo.colors.secondary[500],
-    intro: 'Entretenimento e cuidados extras para os pequenos.',
-    items: [
-        'Medicamentos pediátricos específicos (enjoo, febre)',
-        'Pulseiras de identificação (nome + tel)',
-        'Lanches fáceis e sem farelo',
-        'Brinquedo de apego e itens de distração (jogos/tablet)',
-    ],
-};
-
-const MODULE_IDOSO_PCD = {
-    id: 'kit_idoso_pcd',
-    title: 'Módulo Acessibilidade e Apoio',
-    icon: 'Heart',
-    color: Neo.colors.primary[300],
-    intro: 'Facilitadores de locomoção e conforto.',
-    items: [
-        'Bengala, andador ou cadeira de rodas bem revisados',
-        'Laudos médicos (especialmente para voos e cruzeiros)',
-        'Calçados muito confortáveis e antiderrapantes',
-        'Travesseiro de pescoço ergonômico',
-    ],
-};
-
-const MODULE_PRAIA = {
-    id: 'kit_praia',
-    title: 'Módulo Praia & Resort',
-    icon: 'SwimmingPool',
-    color: Neo.colors.feedback.success,
-    intro: 'Cuidados essenciais sob o sol.',
-    items: [
-        'Repelente resistente à água',
-        'Boia de corpo ou colete salva-vidas infantil',
-        'Saco estanque para proteger celular da areia e água',
-    ],
-};
-
-const MODULE_RURAL = {
-    id: 'kit_rural',
-    title: 'Módulo Campo & Natureza',
-    icon: 'Plant',
-    color: Neo.colors.feedback.success,
-    intro: 'Prevenção contra insetos e clima imprevisível.',
-    items: [
-        'Repelente forte (icaridina) para carrapatos e mosquitos',
-        'Botas ou calçados fechados (prevenção de animais peçonhentos)',
-        'Capa de chuva leve ou anorak',
-        'Lanterna de cabeça com pilhas extras',
-    ],
-};
-
-const MODULE_INTERNACIONAL = {
-    id: 'kit_internacional',
-    title: 'Módulo Internacional',
-    icon: 'Global',
-    color: Neo.colors.secondary[600] || Neo.colors.secondary[500],
-    intro: 'Documentação e energia para outro país.',
-    items: [
-        'Adaptador universal de tomadas',
-        'Cópias do passaporte (física + nuvem)',
-        'Apólice do seguro viagem acessível offline',
-        'Contato do consulado brasileiro no destino',
-    ],
-};
 
 // Regras de transporte aéreo — conteúdo SENSÍVEL (regra errada = barrado no
 // raio-x / multa). Validado jun/2026 (ANAC/IATA); power bank mudou em 2026.
@@ -191,32 +39,19 @@ export const TRANSPORTE_AEREO = {
     revisao: 'jun/2026',
 };
 
-// Monta os kits cruzando o briefing da viagem. Pura e exportada para o
-// TravelReportService reusar a MESMA lógica (fonte única dos kits).
-export function buildDynamicKits(activeTrip) {
-    const kits = [...SAINDO_DATA];
-    if (!activeTrip) return kits;
-
-    if (activeTrip.purpose === 'trabalho') {
-        kits.push(MODULE_TRABALHO);
-    } else {
-        kits.push(MODULE_LAZER);
-    }
-
-    if (activeTrip.config?.hasKids) kits.push(MODULE_CRIANCAS);
-    if (activeTrip.config?.hasPets) kits.push(MODULE_PETS);
-    if (activeTrip.config?.hasElderly || activeTrip.config?.hasPcd) kits.push(MODULE_IDOSO_PCD);
-
-    // Tipo de destino e internacional — completam o cruzamento do briefing
-    if (activeTrip.type === 'praia' || activeTrip.type === 'resort') kits.push(MODULE_PRAIA);
-    if (activeTrip.type === 'rural') kits.push(MODULE_RURAL);
-    if (activeTrip.config?.isInternational) kits.push(MODULE_INTERNACIONAL);
-
-    return kits;
+// --- COMPONENTE ACCORDION CARD (padrão estático, pois as malas são checklists físicos) ---
+/** Uma linha de item, com o marcador na cor do kit. */
+function ItemLinha({ texto, cor }) {
+    return (
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 }}>
+            <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: cor, marginRight: 10, marginTop: 6 }} />
+            <Body style={{ color: Neo.colors.neutral[700], fontSize: 13, flex: 1, lineHeight: 18 }}>{texto}</Body>
+        </View>
+    );
 }
 
-// --- COMPONENTE ACCORDION CARD (padrão estático, pois as malas são checklists físicos) ---
 function CategoryCard({ category, expanded, onToggle }) {
+    const { t } = useTranslation('common');
     const toggle = () => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         onToggle(category.id);
@@ -233,21 +68,34 @@ function CategoryCard({ category, expanded, onToggle }) {
                     <NeoIcon name={category.icon} size={24} color={category.color} />
                 </View>
                 <View style={{ flex: 1 }}>
-                    <H3 style={{ color: Neo.colors.neutral[900], fontSize: 15 }}>{category.title}</H3>
-                    <Small style={{ color: Neo.colors.neutral[500], fontSize: 11, marginTop: 2 }}>{category.items.length} itens</Small>
+                    <H3 style={{ color: Neo.colors.neutral[900], fontSize: 15 }}>{t_field(category, 'title')}</H3>
+                    <Small style={{ color: Neo.colors.neutral[500], fontSize: 11, marginTop: 2 }}>
+                        {t('travel.kitItemCount', '{{count}} itens', { count: contarItens(category) })}
+                    </Small>
                 </View>
                 {expanded ? <NeoIcon name="ArrowUp2" size={20} color={category.color} /> : <NeoIcon name="ArrowDown2" size={20} color={category.color} />}
             </TouchableOpacity>
 
             {expanded && (
                 <View style={{ paddingHorizontal: 16, paddingBottom: 16 }}>
-                    <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, marginBottom: 14, fontStyle: 'italic', lineHeight: 18 }}>{category.intro}</Body>
-                    {category.items.map((item, ii) => (
-                        <View key={ii} style={{ flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 }}>
-                            <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: category.color, marginRight: 10, marginTop: 6 }} />
-                            <Body style={{ color: Neo.colors.neutral[700], fontSize: 13, flex: 1, lineHeight: 18 }}>{item}</Body>
-                        </View>
-                    ))}
+                    <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, marginBottom: 14, fontStyle: 'italic', lineHeight: 18 }}>{t_field(category, 'intro')}</Body>
+
+                    {/* Kits com subseção (medicamentos, primeiros socorros, higiene)
+                        mantêm a divisão: uma lista corrida de 15 itens vira parede. */}
+                    {category.sections
+                        ? category.sections.map((sec, si) => (
+                            <View key={si} style={{ marginBottom: si < category.sections.length - 1 ? 14 : 0 }}>
+                                <Caption style={{ color: category.color, fontWeight: '800', marginBottom: 6, letterSpacing: 0.3 }}>
+                                    {t_field(sec, 'subtitle')}
+                                </Caption>
+                                {t_array(sec, 'items').map((item, ii) => (
+                                    <ItemLinha key={ii} texto={item} cor={category.color} />
+                                ))}
+                            </View>
+                        ))
+                        : t_array(category, 'items').map((item, ii) => (
+                            <ItemLinha key={ii} texto={item} cor={category.color} />
+                        ))}
                 </View>
             )}
         </NeoCard>

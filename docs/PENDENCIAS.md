@@ -67,7 +67,6 @@ Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Situação |
 |---|---|---|
-| E2 | **Decisão sobre o Figma** | Recomendação: não adotar como pré-requisito. Vale se você for editar design à mão com frequência ou contratar designer. |
 | E3 | **Mapa real dos fluxos de navegação** | Extrair do código as 119 rotas e desenhar o grafo, para revisar atritos em cima do que existe de fato. |
 
 ---
@@ -89,6 +88,8 @@ Parecer completo em [CONFORMIDADE_IA_E_DIREITOS.md](CONFORMIDADE_IA_E_DIREITOS.m
 ## F. Já resolvido (não refazer)
 
 Proxy com rate limit, limitador dedicado de SMS, validação de payload, allow-list de rotas e token com comparação constant-time · atestação etapa 1 · Sentry com remoção de dados pessoais · tokens de cor inexistentes no Design System · `SafeGradient` contra crash de gradiente · três telas que quebravam por caminho errado de `severity` · `getFaixaEtaria` e `resolveImageUri` · crash do `scrollToIndex` em Áreas Internas · `npm start` com checagem da porta 8081 · Mapa de Funcionalidades refeito a partir do código · identificação de conteúdo gerado por IA no scanner e nos dois PDFs · remoção do despejo de notícias de terceiros do feed do Radar.
+
+**Figma (E2, decidido em 23/09): NÃO adotar.** Não é pré-requisito de nada no projeto. O fluxo de design desta fase funcionou inteiramente a partir do código — glifos medidos por rasterizador, geometria ajustada por número, conferência no tamanho real de uso. Reabrir só se entrar um designer que precise de um lugar para entregar.
 
 **Iconografia (E1, concluída em 23/09):** o problema era de vocabulário, não de estilo — 143 nomes distintos em 693 usos, com o mesmo conceito desenhado de formas diferentes conforme a tela ("pessoa" tinha nove símbolos; `UserList` e `Profile2User` conviviam na mesma tela de Relatórios). Quatro glifos próprios na gramática do Phosphor (`Profile`, `People`, `Health`, `ShieldTick`), registrados sob o nome que já era dominante — como `CUSTOM_ICONS` tem precedência, os callsites adotaram sem serem tocados, e só os minoritários viraram alias. Ícone de conceito passou a ter registro de peso próprio (duotone acima de 20px, limiar medido: a massa mede 9,9px² a 12px contra 27,9px² a 20px), com a regra dentro do `NeoIcon` porque metade das 766 chamadas omitia `variant`. Os glifos foram aferidos num rasterizador antes de virar JSX — três dos quatro reprovaram na primeira tentativa por corredor fechado entre traços. Etapa 3 (mini-cerâmicas) considerada desnecessária: o duotone entregou a riqueza que ela buscava.
 
