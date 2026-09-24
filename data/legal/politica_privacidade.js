@@ -30,20 +30,45 @@
  *   • os terceiros contatados são exatamente os listados.
  *
  * ── O QUE SÓ O TITULAR DO NEGÓCIO PODE PREENCHER ─────────────────────────
- * Os campos marcados com PREENCHER são obrigatórios e NÃO podem ir para a
- * loja como estão. Estão visíveis de propósito, para não passarem batido.
+ * `razaoSocial` e `representanteUE` são obrigatórios e ainda não existem.
+ *
+ * Eles ficam `null`, e NÃO viram texto na tela: a primeira versão deste
+ * arquivo mostrava ao usuário final um marcador pedindo a razão social, o
+ * que é a mesma falha que este projeto passou a sessão inteira removendo —
+ * botão que não leva a lugar nenhum, card que promete o que o app não faz.
+ * Usuário não é o público do nosso recado.
+ *
+ * Enquanto forem `null`, a frase que dependeria deles simplesmente não é
+ * escrita — o documento fica mais curto, nunca quebrado. E o aviso vai para
+ * quem pode agir: `npm run validate:legal` falha, e em DEV sai um warning no
+ * console. É assim que isto não passa batido sem cobrar o preço do usuário.
  */
 
-/** Identidade do controlador. Falta em todas as telas legais do app hoje. */
+/** Identidade do controlador. Ver docs/CONFORMIDADE_LEGAL.md, itens L1 e L2. */
 export const CONTROLADOR = {
-    // PREENCHER: razão social completa e CNPJ (LGPD art. 9º, I; RGPD art. 13(1)(a)).
-    nome: '[PREENCHER: razão social e CNPJ]',
+    // Razão social completa + CNPJ (LGPD art. 9º, I; RGPD art. 13(1)(a)).
+    razaoSocial: null,
     email: 'contato@vigilarocare.ia.br',
-    // PREENCHER antes de publicar na UE: representante no território da União
-    // (RGPD art. 27). Controlador fora da UE que oferece serviço a residentes
-    // da UE precisa designar um, por escrito, e informar o contato aqui.
-    representanteUE: '[PREENCHER: representante na UE — art. 27 do RGPD]',
+    // Representante no território da União (RGPD art. 27): obrigatório para
+    // controlador fora da UE que oferece serviço a residentes da UE.
+    representanteUE: null,
 };
+
+/** Campos legais obrigatórios que ainda não foram preenchidos. */
+export const pendenciasDoControlador = () => {
+    const faltam = [];
+    if (!CONTROLADOR.razaoSocial) faltam.push('razaoSocial (LGPD art. 9º, I; RGPD art. 13(1)(a))');
+    if (!CONTROLADOR.representanteUE) faltam.push('representanteUE (RGPD art. 27 — obrigatório para publicar na UE)');
+    return faltam;
+};
+
+if (__DEV__ && pendenciasDoControlador().length) {
+    console.warn('[legal] Política de privacidade incompleta — não publicar. Falta: ' + pendenciasDoControlador().join(' · '));
+}
+
+/** Trecho de identificação, omitido por inteiro enquanto não houver dado. */
+const identifica = (rotulo) => (CONTROLADOR.razaoSocial ? `${rotulo}: ${CONTROLADOR.razaoSocial}. ` : '');
+const identificaUE = (rotulo) => (CONTROLADOR.representanteUE ? `${rotulo}: ${CONTROLADOR.representanteUE}. ` : '');
 
 const TERCEIROS_COMUNS = {
     ia: 'OpenAI (análise de texto, imagem e voz) e ElevenLabs (síntese de voz)',
@@ -58,7 +83,7 @@ const TERCEIROS_COMUNS = {
 // ═══════════════════════════════════════════════════════════════════════
 const PT_BR = {
     titulo: 'Política de Privacidade',
-    subtitulo: `Tratamento de dados conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018). Controlador: ${CONTROLADOR.nome}. Contato: ${CONTROLADOR.email}.`,
+    subtitulo: `Tratamento de dados conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018). ${identifica('Controlador')}Contato: ${CONTROLADOR.email}.`,
     secoes: [
         {
             titulo: '1. Compromisso com sua privacidade',
@@ -112,11 +137,11 @@ const PT_BR = {
 // ═══════════════════════════════════════════════════════════════════════
 const PT_PT = {
     titulo: 'Política de Privacidade',
-    subtitulo: `Tratamento de dados ao abrigo do Regulamento (UE) 2016/679 (RGPD). Responsável pelo tratamento: ${CONTROLADOR.nome}. Contacto: ${CONTROLADOR.email}. Representante na União: ${CONTROLADOR.representanteUE}.`,
+    subtitulo: `Tratamento de dados ao abrigo do Regulamento (UE) 2016/679 (RGPD). ${identifica('Responsável pelo tratamento')}Contacto: ${CONTROLADOR.email}. ${identificaUE('Representante na União')}`.trim(),
     secoes: [
         {
             titulo: '1. Quem trata os seus dados',
-            texto: `O responsável pelo tratamento é ${CONTROLADOR.nome}, com contacto em ${CONTROLADOR.email}. Por estar estabelecido fora da União Europeia e oferecer a aplicação a residentes na União, designou um representante na União nos termos do artigo 27.º do RGPD, indicado acima.`,
+            texto: `O responsável pelo tratamento tem contacto em ${CONTROLADOR.email}.${CONTROLADOR.representanteUE ? ` Por estar estabelecido fora da União Europeia e oferecer a aplicação a residentes na União, designou como representante na União, nos termos do artigo 27.º do RGPD: ${CONTROLADOR.representanteUE}.` : ''}`,
         },
         {
             titulo: '2. Os dados ficam no seu equipamento',
@@ -174,11 +199,11 @@ const PT_PT = {
 // ═══════════════════════════════════════════════════════════════════════
 const ES = {
     titulo: 'Política de Privacidad',
-    subtitulo: `Tratamiento de datos conforme al Reglamento (UE) 2016/679 (RGPD). Responsable del tratamiento: ${CONTROLADOR.nome}. Contacto: ${CONTROLADOR.email}. Representante en la Unión: ${CONTROLADOR.representanteUE}.`,
+    subtitulo: `Tratamiento de datos conforme al Reglamento (UE) 2016/679 (RGPD). ${identifica('Responsable del tratamiento')}Contacto: ${CONTROLADOR.email}. ${identificaUE('Representante en la Unión')}`.trim(),
     secoes: [
         {
             titulo: '1. Quién trata sus datos',
-            texto: `El responsable del tratamiento es ${CONTROLADOR.nome}, con contacto en ${CONTROLADOR.email}. Al estar establecido fuera de la Unión Europea y ofrecer la aplicación a residentes en la Unión, ha designado un representante en la Unión conforme al artículo 27 del RGPD, indicado más arriba.`,
+            texto: `El responsable del tratamiento tiene contacto en ${CONTROLADOR.email}.${CONTROLADOR.representanteUE ? ` Al estar establecido fuera de la Unión Europea y ofrecer la aplicación a residentes en la Unión, ha designado como representante en la Unión, conforme al artículo 27 del RGPD: ${CONTROLADOR.representanteUE}.` : ''}`,
         },
         {
             titulo: '2. Los datos permanecen en su dispositivo',
@@ -236,7 +261,7 @@ const ES = {
 // ═══════════════════════════════════════════════════════════════════════
 const EN = {
     titulo: 'Privacy Policy',
-    subtitulo: `How Vigilaro Care handles your information. Operator: ${CONTROLADOR.nome}. Contact: ${CONTROLADOR.email}.`,
+    subtitulo: `How Vigilaro Care handles your information. ${identifica('Operator')}Contact: ${CONTROLADOR.email}.`,
     secoes: [
         {
             titulo: '1. The short version',
