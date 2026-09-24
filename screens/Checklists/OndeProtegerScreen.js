@@ -266,30 +266,17 @@ export default function OndeProtegerScreen({ navigation }) {
                             ))}
                         </View>
 
-                        {/* SEÇÃO: INVENTÁRIO */}
-                        <Text style={[styles.sectionTitle, { marginTop: 32 }]}>{t('headersFirst.oQueTenhoAtivos', 'O Que Tenho (Ativos)')}</Text>
-                        <TouchableOpacity
-                            style={styles.inventoryCard}
-                            onPress={() => navigation.navigate('HazardMapping')}
-                        >
-                            <SafeGradient
-                                colors={[themeColors.accent.copper, themeColors.feedback.warning]}
-                                style={styles.inventoryGradient}
-                            >
-                                <View style={styles.inventoryIconBox}>
-                                    <NeoIcon name="Box" size={32} color={themeColors.accent.copper} variant="Bold" />
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.inventoryTitle, { color: textPrimary }]}>{t('headersFirst.inventRioDeRisco', 'Inventário de Risco')}</Text>
-                                    <Text style={styles.inventorySubtitle}>
-                                        {t('headersFirst.mapeie25ItensPerigososAirFryerVidrosEsca', 'Mapeie 25+ itens perigosos (Air Fryer, Vidros, Escadas...) para ativar a proteção inteligente.')}
-                                    </Text>
-                                </View>
-                                <View style={styles.inventoryBtn}>
-                                    <Text style={styles.inventoryBtnText}>{t('headersFirst.mapear', 'Mapear')}</Text>
-                                </View>
-                            </SafeGradient>
-                        </TouchableOpacity>
+                        {/* SEÇÃO "INVENTÁRIO DE RISCO" REMOVIDA em 24/09.
+                            O card prometia "Mapeie 25+ itens perigosos (Air
+                            Fryer, Vidros, Escadas...) para ativar a proteção
+                            inteligente" e navegava para 'HazardMapping' — rota
+                            que NÃO existe no App.js. Tocar nele não fazia nada.
+                            A tela nunca foi construída: não há arquivo, nem
+                            registro em docs. O que existe é `data/HazardDatabase.js`
+                            (+ 4 traduções, ~1400 linhas) que nenhum módulo importa.
+                            Botão que não leva a lugar nenhum é pior que ausência
+                            de botão; a base fica no repositório para quando a
+                            tela for feita. */}
 
                         <TouchableOpacity
                             style={styles.adjustButton}

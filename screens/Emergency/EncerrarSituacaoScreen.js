@@ -27,7 +27,10 @@ export default function EncerrarSituacaoScreen({ route, navigation }) {
   const toggle = (k) => setDone(prev => ({ ...prev, [k]: !prev[k] }));
 
   const finalizar = () => {
-    navigation.navigate('DashboardPersonalizado');
+    // 'DashboardPersonalizado' nao existe em App.js: o botao de concluir do
+    // encerramento de situacao nao levava a lugar nenhum. Volta para as abas,
+    // que e o destino que as outras telas deste fluxo usam.
+    navigation.navigate('MainTabs');
   };
 
   return (
