@@ -2151,5 +2151,10 @@
         "descSegurancaIdade": "Crucial adaptations for safety and independence of seniors.",
         "descGestanteSegura": "Structural care and habits for safety during pregnancy.",
         "descBrinquedosHub": "Guide on age classification, choking hazards, and dangerous toys."
+    },
+    "areas": {
+        "ambientesDaCasa": "Areas of the home",
+        "semRoteiroProprio": "No dedicated checklist yet — see the areas we cover",
+        "quandoChamarAjuda": "When to call for help"
     }
 }

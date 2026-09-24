@@ -123,7 +123,6 @@ import VisitTypeScreen       from "./screens/VisitFlow/VisitTypeScreen";
 import VisitRiskFormScreen   from "./screens/VisitFlow/VisitRiskFormScreen"; // Caminho CORRIGIDO
 import ChecklistVisitScreen  from "./screens/Checklists/ChecklistVisitScreen";
 import AreasInternasScreen   from "./screens/Checklists/AreasInternasScreen";
-import AreasExternasScreen   from "./screens/Checklists/AreasExternasScreen";
 
 // ---------------------------------------------------------------------------
 // EDUCAÇÃO E RISCOS
@@ -681,7 +680,6 @@ export default function App() {
                       <Stack.Screen name="EscolaSegura" component={EscolaSeguraScreen} />
                       <Stack.Screen name="EscolaSeguraReport" component={EscolaSeguraReportScreen} />
                       <Stack.Screen name="AreasInternas" component={AreasInternasScreen} />
-                      <Stack.Screen name="AreasExternas" component={AreasExternasScreen} />
                       <Stack.Screen name="VistoriaAsilo" component={VistoriaAsiloScreen} />
                       <Stack.Screen name="VistoriaAsiloReport" component={VistoriaAsiloReportScreen} />
                       <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />

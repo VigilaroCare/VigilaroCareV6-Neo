@@ -2151,5 +2151,10 @@
         "descSegurancaIdade": "Adaptaciones cruciales para la seguridad e independencia de la tercera edad.",
         "descGestanteSegura": "Cuidados estructurales y de hábitos para la seguridad durante la gestación.",
         "descBrinquedosHub": "Guía sobre clasificación por edades, riesgos de asfixia y juguetes peligrosos."
+    },
+    "areas": {
+        "ambientesDaCasa": "Espacios del hogar",
+        "semRoteiroProprio": "Aún sin guía propia: vea los espacios cubiertos",
+        "quandoChamarAjuda": "Cuándo pedir ayuda"
     }
 }

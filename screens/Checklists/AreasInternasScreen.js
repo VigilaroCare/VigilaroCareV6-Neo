@@ -17,6 +17,7 @@ import AppBackground from '../../components/AppBackground';
 import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { areasInternas } from '../../data/areas_internas';
+import { areasExternas } from '../../data/areas_externas';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -24,19 +25,48 @@ import NeoAlert from '../../utils/NeoAlert';
 import { useTranslation } from 'react-i18next';
 import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 
-// Mapeamento de IDs de ambiente para IDs de áreas internas
+/**
+ * TODAS as áreas — internas e externas.
+ *
+ * Esta tela carregava só `areas_internas`, mas `OndeProteger` manda para cá
+ * TODOS os ambientes que o usuário marcou, inclusive quintal, piscina, jardim,
+ * parquinho, oficina e depósito — cujo roteiro vive em `areas_externas`. O
+ * conteúdo existia e nunca era carregado: a tela que o servia
+ * (AreasExternasScreen) tinha ficado sem caminho de navegação.
+ *
+ * Os dois arquivos têm o mesmo formato no que esta tela usa — id, titulo,
+ * icone, situacao, oQueFazer, oQueNaoFazer, quandoChamarAjuda. `grupo`, `cor`
+ * e `riscos` só existem na base interna e não são renderizados aqui.
+ *
+ * `quandoChamarAjuda` era renderizado só pela tela externa; foi trazido para
+ * cá antes de ela sair, senão a absorção teria perdido conteúdo de segurança.
+ */
+const TODAS_AS_AREAS = [...areasInternas, ...areasExternas];
+
+/**
+ * Ambiente escolhido em "Onde Proteger" → roteiro correspondente.
+ *
+ * Antes desta revisão, 9 dos 21 ambientes oferecidos não casavam com nada e
+ * caíam num fallback que exibia a lista inteira de ambientes internos. O
+ * usuário escolhia "Piscina" e recebia cozinha, banheiro e quartos, com cara
+ * de tela normal — falha silenciosa, não erro visível.
+ *
+ * Dois problemas distintos estavam somados:
+ *   - as áreas externas não eram carregadas (ver TODAS_AS_AREAS acima);
+ *   - `quarto_bebe` apontava para a chave `baby_room`, que não existe: o dado
+ *     se chama `bedroom_baby`. O quarto do bebê — dos ambientes mais críticos
+ *     do app — nunca casava por causa de um nome errado.
+ */
 const AMBIENTE_TO_AREA = {
+  // ── internas ──
   kitchen: ['cozinha'],
   bathroom: ['banheiro'],
   living_room: ['sala'],
   bedroom: ['quarto', 'quartos'],
-  baby_room: ['quarto_bebe', 'quarto'],
+  bedroom_baby: ['quarto_bebe', 'quarto'],
   laundry: ['area_servico', 'lavanderia'],
   garage: ['garagem'],
-  garden: ['jardim', 'quintal'],
-  pool: ['piscina'],
   stairs: ['escadas'],
-  balcony: ['varanda', 'sacada'],
   dining_room: ['copa', 'sala'],
   pantry: ['despensa'],
   bedroom_kids: ['quarto_crianca'],
@@ -44,7 +74,14 @@ const AMBIENTE_TO_AREA = {
   bedroom_adult: ['quarto_adulto'],
   bedroom_senior: ['quarto_idoso'],
   gas_central: ['central_gas', 'gas_encanado', 'botijao', 'botijao_gas'],
-  balcony_indoor: ['varanda'],
+  balcony_indoor: ['varanda', 'sacada'],
+  // ── externas ──
+  backyard: ['quintal'],
+  garden_farming: ['jardim_horta', 'jardim', 'horta'],
+  collective_areas: ['parquinho', 'areas_coletivas', 'playground'],
+  pool_safe: ['piscina'],
+  workshop_tool: ['oficina'],
+  storage_depot: ['deposito'],
 };
 
 export default function AreasInternasScreen({ navigation, route }) {
@@ -66,25 +103,30 @@ export default function AreasInternasScreen({ navigation, route }) {
     return AMBIENTE_TO_AREA[areaId]?.[0] || areaId;
   };
 
-  const dadosFiltrados = useMemo(() => {
-    let baseData = areasInternas;
+  const { dadosFiltrados, semRoteiroProprio } = useMemo(() => {
+    let baseData = TODAS_AS_AREAS;
 
     if (mapping && mapping.length > 0) {
-      baseData = areasInternas.filter(area => {
+      baseData = TODAS_AS_AREAS.filter(area => {
         const mappedTerms = AMBIENTE_TO_AREA[area.id];
         if (!mappedTerms) return true;
         return mappedTerms.some(term => mapping.includes(term));
       });
     }
 
-    if (!ambienteId) return baseData;
+    if (!ambienteId) return { dadosFiltrados: baseData, semRoteiroProprio: false };
 
     const filtered = baseData.filter(area => {
       const mappedTerms = AMBIENTE_TO_AREA[area.id] || [];
       return mappedTerms.includes(ambienteId);
     });
 
-    return filtered.length > 0 ? filtered : baseData;
+    // Ainda sobram ambientes sem roteiro dedicado (canil, hall/corredor). Em vez
+    // de mandar o usuário para uma tela vazia — ou, pior, fingir que a lista
+    // inteira é a resposta, como acontecia antes —, mostramos o que existe e
+    // dizemos com todas as letras que aquele ambiente ainda não tem roteiro.
+    if (filtered.length > 0) return { dadosFiltrados: filtered, semRoteiroProprio: false };
+    return { dadosFiltrados: baseData, semRoteiroProprio: true };
   }, [ambienteId, mapping]);
 
   useFocusEffect(
@@ -123,11 +165,16 @@ export default function AreasInternasScreen({ navigation, route }) {
     }
   }, [dadosFiltrados]);
 
-  const tituloDinamico = ambienteId && dadosFiltrados.length > 0
+  // `semRoteiroProprio` precisa entrar aqui também: sem isso o título viraria o
+  // do PRIMEIRO item da lista de recuo, e quem escolhesse "Canil" leria "Sala
+  // de Estar" no cabeçalho.
+  const tituloDinamico = ambienteId && dadosFiltrados.length > 0 && !semRoteiroProprio
     ? (dadosFiltrados[0].id === 'gas_central'
         ? getDynamicAreaName('central_gas', dadosFiltrados[0].titulo, mapping, t)
         : dadosFiltrados[0].titulo)
-    : 'Áreas internas';
+    // A tela deixou de ser só das áreas internas — passa a cobrir as externas
+    // também, então o título genérico não pode mais dizer "internas".
+    : t('areas.ambientesDaCasa', 'Ambientes da casa');
 
   const flatListRef = useRef(null);
 
@@ -380,6 +427,22 @@ export default function AreasInternasScreen({ navigation, route }) {
               </View>
             )}
 
+            {/* QUANDO CHAMAR AJUDA — estava só na antiga tela de áreas externas.
+                É o campo que diz a hora de parar de tentar resolver sozinho e
+                acionar socorro; sem ele, absorver as áreas externas aqui teria
+                perdido conteúdo de segurança em vez de só mudar de lugar. */}
+            {item.quandoChamarAjuda && (
+              <View style={s.quandoAjudaBox}>
+                <View style={s.quandoAjudaHeader}>
+                  <NeoIcon name="Call" size={14} color={Neo.colors.feedback.info} variant="Bold" />
+                  <Text style={s.quandoAjudaTitulo}>
+                    {t('areas.quandoChamarAjuda', 'Quando chamar ajuda')}
+                  </Text>
+                </View>
+                <Text style={[s.stepText, { color: textBody }]}>{item.quandoChamarAjuda}</Text>
+              </View>
+            )}
+
             {/* ALERTAS */}
             {item.alertas?.map((alerta, idx) => {
               const accent = alerta.tipo === 'warning'
@@ -437,7 +500,9 @@ export default function AreasInternasScreen({ navigation, route }) {
           <View style={{ flex: 1 }}>
             <H1 style={s.title}>{tituloDinamico}</H1>
             <Caption style={s.subtitle}>
-              {dadosFiltrados.length} {dadosFiltrados.length === 1 ? 'ambiente' : 'ambientes'} para verificar
+              {semRoteiroProprio
+                ? t('areas.semRoteiroProprio', 'Ainda sem roteiro próprio — veja os ambientes cobertos')
+                : `${dadosFiltrados.length} ${dadosFiltrados.length === 1 ? 'ambiente' : 'ambientes'} para verificar`}
             </Caption>
           </View>
         </View>
@@ -638,6 +703,28 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: 10,
+  },
+  quandoAjudaBox: {
+    marginTop: 4,
+    marginBottom: 12,
+    padding: 12,
+    borderRadius: 12,
+    borderLeftWidth: 3,
+    borderLeftColor: Neo.colors.feedback.info,
+    backgroundColor: Neo.colors.feedback.info + '15',
+  },
+  quandoAjudaHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 6,
+  },
+  quandoAjudaTitulo: {
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 0.4,
+    textTransform: 'uppercase',
+    color: Neo.colors.feedback.info,
   },
   bulletError: {
     width: 6,
