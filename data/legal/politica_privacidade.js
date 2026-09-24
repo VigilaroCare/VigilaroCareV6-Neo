@@ -47,7 +47,7 @@
 /** Identidade do controlador. Ver docs/CONFORMIDADE_LEGAL.md, itens L1 e L2. */
 export const CONTROLADOR = {
     // Razão social completa + CNPJ (LGPD art. 9º, I; RGPD art. 13(1)(a)).
-    razaoSocial: null,
+    razaoSocial: 'Vigilaro Care LTDA, CNPJ 65.297.217/0001-50',
     email: 'contato@vigilarocare.ia.br',
     // Representante no território da União (RGPD art. 27): obrigatório para
     // controlador fora da UE que oferece serviço a residentes da UE.

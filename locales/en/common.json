@@ -829,7 +829,8 @@
     "terms": {
         "monitoringTitle": "6. Monitoring & Alert Features",
         "monitoringBody": "Monitoring and alert features (fall detection, audio monitor, check-in and SOS) are AUXILIARY and depend on factors beyond our control: the device's sensors and battery, cell signal, an SMS-capable plan, operating system restrictions and correct configuration.\n\nThey may miss events or trigger false alerts, and they are NOT an emergency service, a medical device or a substitute for human supervision. Vigilaro Care is a day-to-day utility and prevention tool — use these features as an additional layer of support, never as the only line of protection for the people you love.",
-        "privacyTitle": "7. Privacy"
+        "privacyTitle": "7. Privacy",
+        "provider": "App provided by {{empresa}}. Contact: {{email}}."
     },
     "privacy": {
         "collectionBody": "The app requires no account or sign-up and does not collect personally identifying data (such as national IDs or your address).\n\nThe only situation in which information leaves your device is the optional Artificial Intelligence features described in section 6 — and even there, names and contacts are never sent.\n\nAnonymous, aggregated usage data (e.g. \"how many times screen X was opened\") is only collected with your explicit opt-in consent and cannot identify you.",
@@ -1026,7 +1027,7 @@
         "cancel": "Cancel",
         "yesDeleteAll": "Yes, Delete All",
         "madeWith": "Made with love by the Vigilaro team",
-        "copyright": "2026 Vigilaro Inc. All rights reserved.",
+        "copyright": "2026 Vigilaro Care LTDA. All rights reserved.",
         "creditsTitle": "Credits and sources",
         "creditsIntro": "Vigilaro Care content draws on public and collaborative databases. Credits and licences:",
         "creditsOFF": "Product data: Open Food Facts, an open collaborative database, under the ODbL licence.",

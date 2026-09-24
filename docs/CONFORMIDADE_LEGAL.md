@@ -63,7 +63,7 @@ Essa combinação é incomum em apps de saúde e deve ser dita na política, por
 
 | # | Pendência | Por quê |
 |---|---|---|
-| **L1** | **Razão social e CNPJ** nas quatro políticas | Identidade do controlador é obrigatória: LGPD art. 9º, I, e RGPD art. 13(1)(a). Hoje há um marcador `[PREENCHER]` **visível na tela**, de propósito. |
+| ~~L1~~ | ~~Razão social e CNPJ~~ | **Resolvido em 24/09: Vigilaro Care LTDA, CNPJ 65.297.217/0001-50.** Preenchido em `CONTROLADOR.razaoSocial` e propagado às quatro políticas, aos Termos de Uso (que não identificavam o fornecedor) e ao aviso de copyright — que dizia **"Vigilaro Inc."**, entidade diferente da real, nos quatro idiomas. |
 | **L2** | **Representante na União Europeia** (RGPD art. 27) | Controlador fora da UE que oferece serviço a residentes da UE precisa designar um por escrito e publicar o contato. Sem isso, **não publique nas lojas europeias**. |
 | **L3** | **Contratos com os operadores** (RGPD art. 28) e mecanismo de transferência (cap. V) | A política afirma que as transferências para OpenAI, Sentry e RevenueCat se apoiam em cláusulas-padrão ou no EU-US Data Privacy Framework. É preciso **confirmar e arquivar** o instrumento de cada um. A afirmação precisa ser verdadeira. |
 | **L4** | **Encarregado / DPO** | Avaliar se o tratamento em larga escala de dados de saúde exige encarregado (LGPD art. 41; RGPD art. 37(1)(c)). Dado o volume potencial, é provável que sim. |

@@ -5,6 +5,7 @@ import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing } from '../utils/Theme';
+import { CONTROLADOR } from '../data/legal/politica_privacidade';
 
 export default function TermsOfUseScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -22,6 +23,16 @@ export default function TermsOfUseScreen({ navigation }) {
                 <View style={styles.iconContainer}>
                     <NeoIcon name="ShieldTick" size={48} color={Colors.primary} />
                 </View>
+
+                {/* Identificacao do fornecedor: os Termos sao um contrato, e a
+                    outra parte precisa ser identificavel. Ate 24/09 o documento
+                    nao dizia com quem o usuario estava contratando. */}
+                <Text style={styles.fornecedor}>
+                    {t('terms.provider', 'Aplicativo fornecido por {{empresa}}. Contato: {{email}}.', {
+                        empresa: CONTROLADOR.razaoSocial,
+                        email: CONTROLADOR.email,
+                    })}
+                </Text>
 
                 <Text style={styles.sectionTitle}>{t('headersFirst.1NaturezaInformativa', '1. Natureza Informativa')}</Text>
                 <Text style={styles.text}>
@@ -105,6 +116,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: Colors.textPrimary,
         marginTop: 16,
+        marginBottom: 8,
+    },
+    fornecedor: {
+        fontSize: 13,
+        fontStyle: 'italic',
+        color: Colors.textSecondary,
         marginBottom: 8,
     },
     text: {

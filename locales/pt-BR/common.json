@@ -863,7 +863,8 @@
     "terms": {
         "monitoringTitle": "6. Recursos de Monitoramento e Alerta",
         "monitoringBody": "Os recursos de monitoramento e alerta (detecção de queda, monitor de áudio, check-in e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: sensores e bateria do aparelho, sinal de celular, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem não detectar todos os eventos ou gerar alertas indevidos, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.",
-        "privacyTitle": "7. Privacidade"
+        "privacyTitle": "7. Privacidade",
+        "provider": "Aplicativo fornecido por {{empresa}}. Contato: {{email}}."
     },
     "privacy": {
         "collectionBody": "O aplicativo não exige conta ou cadastro e não coleta dados de identificação pessoal (como CPF, RG ou endereço).\n\nA única situação em que informações saem do seu aparelho é nos recursos opcionais de Inteligência Artificial, descritos na seção 6 — e, mesmo neles, nomes e contatos nunca são enviados.\n\nDados anônimos e agregados de uso (ex.: \"quantas vezes a tela X foi aberta\") só são coletados mediante o seu consentimento explícito (opt-in) e não permitem identificar você.",
@@ -1060,7 +1061,7 @@
         "cancel": "Cancelar",
         "yesDeleteAll": "Sim, Apagar Tudo",
         "madeWith": "Feito com amor pela equipe Vigilaro",
-        "copyright": "2026 Vigilaro Inc. Todos os direitos reservados.",
+        "copyright": "2026 Vigilaro Care LTDA. Todos os direitos reservados.",
         "creditsTitle": "Créditos e fontes",
         "creditsIntro": "O conteúdo do Vigilaro Care se apoia em bases públicas e colaborativas. Créditos e licenças:",
         "creditsOFF": "Dados de produtos: Open Food Facts, base colaborativa aberta, sob licença ODbL.",

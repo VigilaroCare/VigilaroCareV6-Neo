@@ -829,7 +829,8 @@
     "terms": {
         "monitoringTitle": "6. Funciones de Monitoreo y Alerta",
         "monitoringBody": "Las funciones de monitoreo y alerta (detección de caídas, monitor de audio, check-in y SOS) son AUXILIARES y dependen de factores fuera de nuestro control: sensores y batería del dispositivo, señal celular, plan para SMS, restricciones del sistema operativo y configuración correcta.\n\nPueden no detectar todos los eventos o generar alertas indebidas, y NO constituyen un servicio de emergencia, un dispositivo médico ni un sustituto de la supervisión humana. Vigilaro Care es una herramienta de utilidad y prevención para el día a día — use estas funciones como capa adicional de apoyo, nunca como única línea de protección de quienes ama.",
-        "privacyTitle": "7. Privacidad"
+        "privacyTitle": "7. Privacidad",
+        "provider": "Aplicación proporcionada por {{empresa}}. Contacto: {{email}}."
     },
     "privacy": {
         "collectionBody": "La aplicación no exige cuenta ni registro y no recopila datos de identificación personal (como documentos de identidad o dirección).\n\nLa única situación en la que la información sale de su dispositivo son las funciones opcionales de Inteligencia Artificial, descritas en la sección 6 — e incluso en ellas, nombres y contactos nunca se envían.\n\nLos datos anónimos y agregados de uso (p. ej., \"cuántas veces se abrió la pantalla X\") solo se recopilan con su consentimiento explícito (opt-in) y no permiten identificarle.",
@@ -1026,7 +1027,7 @@
         "cancel": "Cancelar",
         "yesDeleteAll": "Si, Borrar Todo",
         "madeWith": "Hecho con amor por el equipo Vigilaro",
-        "copyright": "2026 Vigilaro Inc. Todos los derechos reservados.",
+        "copyright": "2026 Vigilaro Care LTDA. Todos los derechos reservados.",
         "creditsTitle": "Créditos y fuentes",
         "creditsIntro": "El contenido de Vigilaro Care se apoya en bases públicas y colaborativas. Créditos y licencias:",
         "creditsOFF": "Datos de productos: Open Food Facts, base colaborativa abierta, con licencia ODbL.",
