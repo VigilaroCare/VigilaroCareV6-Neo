@@ -45,7 +45,24 @@ const CUSTOM_ICONS = {
  * ──────────────────────────────────────────────────────────────────────
  * CONTRATO SEMÂNTICO (governança visual do app):
  *
- *   "Fill ancora, Regular atua."
+ *   "Conceito pesa, Fill ancora, Regular atua."
+ *
+ * ── REGISTRO DE CONCEITO (23/09) ─────────────────────────────────────
+ * Os ícones que representam uma ENTIDADE do domínio — pessoa, pessoas,
+ * saúde, proteção, idoso — renderizam em DUOTONE e não aceitam variante
+ * do caller. É o peso mais próximo da cerâmica dos pictogramas, e é o
+ * que separa "o que o app protege" de "o que o usuário aperta".
+ *
+ * Por que a regra mora aqui e não nas telas: metade das 766 chamadas do
+ * app omitia `variant`, apesar deste contrato dizer "NUNCA omita". Regra
+ * que depende de disciplina em 766 lugares é intenção, não regra.
+ *
+ * Exceção medida: abaixo de 20px o duotone vira sujeira (a massa da
+ * cabeça do glifo de pessoa mede 9,9px² a 12px contra 27,9px² a 20px),
+ * então nesses tamanhos o conceito cai para `regular`.
+ *
+ * Duotone segue valendo também para conteúdo educativo (ver `Bulk`
+ * abaixo): os dois casos dizem "isto é assunto, não botão".
  *
  *   - variant="Bold"    →  ícones que ANCORAM uma seção/contexto.
  *                          Renderiza como Phosphor weight="fill".
@@ -66,6 +83,9 @@ const CUSTOM_ICONS = {
  *                          no Fique Atento — percepção de "ilustração rica"
  *                          sem pack pago). Regra: "Bold ancora, Bulk
  *                          informa, Linear atua."
+ *                          Desde 23/09 os ícones de CONCEITO também saem
+ *                          neste peso, por decisão própria — não precisam
+ *                          (nem adianta) receber `Bulk` no callsite.
  *
  * A regra não é rígida — é um padrão consistente do DS. O caller decide
  * passando `variant` explicitamente. NUNCA omita (default é 'Linear').
@@ -437,6 +457,32 @@ const VARIANT_TO_WEIGHT = {
 
 const variantToWeight = (variant) => VARIANT_TO_WEIGHT[variant] || 'regular';
 
+/**
+ * Os conceitos do domínio — as ENTIDADES que o app protege. Têm registro
+ * visual próprio (duotone), separado dos ícones de ação.
+ */
+const CONCEITOS = new Set(['Profile', 'People', 'Health', 'ShieldTick', 'Elderly']);
+
+/**
+ * Abaixo deste tamanho o duotone não compensa. Medido na massa da cabeça do
+ * glifo de pessoa: 9,9px² a 12px e 17,3px² a 16px — a 20% de opacidade isso
+ * é sujeira, não volume. A 20px são 27,9px² e a massa finalmente lê.
+ */
+const MINIMO_DUOTONE = 20;
+
+/**
+ * Peso final do glifo.
+ *
+ * Conceito manda no peso, não o caller: é o que impede a regra de se perder
+ * por omissão. Metade das 766 chamadas do app omitia `variant`, apesar do
+ * contrato dizer "NUNCA omita" — uma regra que depende de disciplina em 766
+ * lugares não é uma regra, é uma intenção.
+ */
+const pesoEfetivo = (name, size, variant) => {
+    if (CONCEITOS.has(name) && size >= MINIMO_DUOTONE) return 'duotone';
+    return variantToWeight(variant);
+};
+
 export default function NeoIcon({
     name: rawName,
     size = 24,
@@ -445,7 +491,7 @@ export default function NeoIcon({
     style
 }) {
     const name = mapName(rawName);
-    const weight = variantToWeight(variant);
+    const weight = pesoEfetivo(name, size, variant);
 
     // 0. Glifos próprios do Vigilaro (conceitos sem equivalente no Phosphor).
     //    Mesma API: respeitam size/color/weight.
