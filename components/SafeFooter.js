@@ -1,9 +1,6 @@
 
-import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import NeoIcon from './NeoIcon';
-import { Colors, Shadows } from '../utils/Theme';
-
 export default function SafeFooter({ navigation }) {
     // Função helper para navegar na Tab
     const navigateTab = (tabName, screenName) => {

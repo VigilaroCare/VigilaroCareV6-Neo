@@ -2,7 +2,6 @@
  * components.js
  * Componentes reutilizáveis das etapas do NewHomeWizard (Chip + NeoInput).
  */
-import React from 'react';
 import { View, TouchableOpacity, TextInput } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { Small, Caption } from '../../components/NeoTypography';

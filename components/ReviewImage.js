@@ -13,7 +13,6 @@
  * Vigilaro Care V6 Neo
  */
 
-import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 

@@ -8,10 +8,7 @@
  */
 
 import React, { useState, useCallback, useMemo } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    Animated, Image
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Image } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';

@@ -7,7 +7,7 @@
  * Seção opcional: Cuidador Remoto (SMS/WhatsApp).
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from "react";
 import {
     View, Text, StyleSheet, ScrollView,
     TouchableOpacity, TextInput, Modal,

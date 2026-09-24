@@ -12,7 +12,6 @@
 //     subIntro="Conte primeiro o tipo de moradia e quantos andares."
 //   />
 
-import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoIcon from '../../components/NeoIcon';

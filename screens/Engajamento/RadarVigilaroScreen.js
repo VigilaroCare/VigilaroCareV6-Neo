@@ -5,15 +5,11 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import {
-  View, StyleSheet, FlatList, TouchableOpacity,
-  Animated, Text
-} from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
-import NeoTypography from '../../components/NeoTypography';
 import NeoIcon from '../../components/NeoIcon';
 import RadarVigilaroService from '../../services/RadarVigilaroService';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';

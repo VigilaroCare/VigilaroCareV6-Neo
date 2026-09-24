@@ -3,12 +3,11 @@
  * Tela genérica de destino para conteúdos de Educação (Padrão 2: Parallax Hero).
  * A imagem ocupa o topo da tela, e as seções de conteúdo rolam por cima.
  */
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
-import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import ReviewImage from '../components/ReviewImage';
 import NeoIcon from '../components/NeoIcon';

@@ -10,7 +10,6 @@
  * Estado do checkbox vem do ProfileService.isProfileLinkedToActiveResidence.
  * Tap → link/unlink na residência ATIVA, sem deletar o perfil global.
  */
-import React from 'react';
 import { View, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body, Caption, Small } from '../../components/NeoTypography';

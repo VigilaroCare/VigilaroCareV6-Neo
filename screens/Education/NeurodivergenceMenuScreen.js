@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Animated, Image, Text } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Animated, Image, Text } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import NeoIcon from '../../components/NeoIcon';
-import { H1, Caption } from '../../components/NeoTypography';
+import { Caption } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import { useThemeColors } from '../../utils/ThemeContext';
 import { NEURODIVERGENCE_DATA } from '../../data/neurodivergence_data';

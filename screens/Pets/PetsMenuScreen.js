@@ -8,12 +8,9 @@
  * 3 seções: Por tipo/idade · Bem-estar · Emergência
  */
 
-import React, { useRef } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Animated
-} from 'react-native';
+import { useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
@@ -21,7 +18,6 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { Shadows } from '../../utils/Theme';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
-import { H1, Small, Caption } from '../../components/NeoTypography';
 import ReviewImage from '../../components/ReviewImage';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { PET_SAFETY_CONTENT } from '../../data/pet_safety_content';

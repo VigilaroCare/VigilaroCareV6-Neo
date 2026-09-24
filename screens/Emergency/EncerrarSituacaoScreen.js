@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
-import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, Body, Caption } from "../../components/NeoTypography";
 import { DS as Neo } from '../../utils/DesignSystem2026';
 
 const POST_ITEMS = [

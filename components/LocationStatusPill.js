@@ -19,7 +19,6 @@
  * O componente é puramente de apresentação: não busca localização nem pede
  * permissão. Quem decide é a tela, que já é dona desse ciclo de vida.
  */
-import React from 'react';
 import { View, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { Small } from './NeoTypography';

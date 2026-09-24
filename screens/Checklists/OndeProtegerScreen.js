@@ -13,7 +13,7 @@
  * #6 — import() dinâmico removido; Alert importado estaticamente
  */
 
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import {
   View,
@@ -23,13 +23,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import ProfileService from '../../services/ProfileService';
-import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';

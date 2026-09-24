@@ -11,7 +11,6 @@
  * - Badge visual diferenciado por formato (caso/fato/protocolo/sazonal)
  */
 
-import React from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity

@@ -14,10 +14,8 @@
 // - style 'destructive' = vermelho; 'cancel' = quieto; default = primário verde
 // - Suporta cancelable (toque fora) e onDismiss
 
-import React, { useEffect, useState, useRef } from 'react';
-import {
-  Modal, View, Text, TouchableOpacity, StyleSheet, Animated, Easing, Platform,
-} from 'react-native';
+import { useEffect, useState, useRef } from "react";
+import { Modal, View, Text, TouchableOpacity, StyleSheet, Animated, Easing } from "react-native";
 import { registerNeoAlertHost, unregisterNeoAlertHost } from '../utils/NeoAlert';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';

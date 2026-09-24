@@ -5,7 +5,6 @@
  * O tipo de moradia + andares migrou para P1_TipoMoradiaStep.
  * Este passo cuida apenas de áreas externas e cômodos internos.
  */
-import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { H3, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';

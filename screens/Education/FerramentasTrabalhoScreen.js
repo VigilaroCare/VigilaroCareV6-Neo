@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager } from "react-native";
 import { H3, Body, Small } from '../../components/NeoTypography';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
-import { Colors, Spacing, Shadows, BorderRadius } from '../../utils/Theme';
+import { Spacing, Shadows } from "../../utils/Theme";
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
-import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';
 import { FERRAMENTAS_DATA } from '../../data/ferramentas_seguranca';
 import { useTranslation } from 'react-i18next';

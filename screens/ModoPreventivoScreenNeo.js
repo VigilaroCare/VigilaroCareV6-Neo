@@ -1,11 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, Animated, StyleSheet } from 'react-native';
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-
 // Services & Utils
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
@@ -14,8 +11,7 @@ import { RISK_CATEGORIES } from '../data/RiskCategories';
 // Neo Components
 import NeoCard from '../components/NeoCard';
 import NeoHorizontalCard from '../components/NeoHorizontalCard';
-import NeoScreenHeader from '../components/NeoScreenHeader';
-import NeoText, { H2, H3, Body, Small, Caption } from '../components/NeoTypography';
+import { H2, H3, Body, Small } from "../components/NeoTypography";
 import TriColorBar from '../components/TriColorBar';
 import FadeInView from '../components/FadeInView';
 

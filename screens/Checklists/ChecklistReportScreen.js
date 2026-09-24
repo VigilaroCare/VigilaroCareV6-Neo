@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Share } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from '../../components/NeoIcon';
-import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoAlert from '../../utils/NeoAlert';
 import ScoreService from '../../services/ScoreService';

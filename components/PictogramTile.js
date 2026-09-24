@@ -20,7 +20,7 @@
  * sempre, de propósito. Mudar para 1:1 cresceria a altura de cada tile em um
  * terço e quebraria a regra de produto "Home sem scroll".
  */
-import React, { useState } from 'react';
+import { useState } from "react";
 import { View, Image, StyleSheet } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors } from '../utils/ThemeContext';

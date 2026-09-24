@@ -9,7 +9,6 @@
  *
  * Só renderiza algo com mais de 1 residência: com 0-1 não há o que escolher.
  */
-import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';

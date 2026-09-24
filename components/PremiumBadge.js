@@ -12,7 +12,6 @@
  *   <PremiumBadge variant="icon" />   → só o cadeado
  */
 
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Small } from './NeoTypography';
 import NeoIcon from './NeoIcon';

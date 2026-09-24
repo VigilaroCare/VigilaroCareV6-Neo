@@ -9,7 +9,6 @@
  *   🔴 V (Crítico)  — Itens não-conformes de risco crítico
  */
 
-import React from 'react';
 import { View } from 'react-native';
 import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';

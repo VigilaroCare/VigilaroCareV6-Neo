@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Animated, Easing, StyleSheet } from 'react-native';
+import { useEffect, useRef } from "react";
+import { View, Animated, Easing } from "react-native";
 import { useAccessibility } from '../context/AccessibilityContext';
 
 /**

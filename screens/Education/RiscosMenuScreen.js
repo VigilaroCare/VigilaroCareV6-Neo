@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { useRef } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -11,7 +11,7 @@ import ReviewImage from '../../components/ReviewImage';
 import AppBackground from '../../components/AppBackground';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { Body, Small } from "../../components/NeoTypography";
 import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
 import { useThemeColors } from '../../utils/ThemeContext';
 

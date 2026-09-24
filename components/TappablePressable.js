@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import { useRef, useCallback } from "react";
 import { Pressable, Animated } from 'react-native';
 import { useAccessibility } from '../context/AccessibilityContext';
 import haptic from '../utils/Haptics';

@@ -1,13 +1,12 @@
 
-import React, { useRef, useState, useCallback } from 'react';
-import { View, Text, Image, Animated, ScrollView, StyleSheet, Share, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useRef, useState, useCallback } from "react";
+import { View, Text, Image, Animated, StyleSheet, Share, TouchableOpacity } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H2, H3, Body, Small, Eyebrow } from '../../components/NeoTypography';
-import NeoScreenHeader from '../../components/NeoScreenHeader';
+import { H3, Body, Small, Eyebrow } from "../../components/NeoTypography";
 import NeoCard from '../../components/NeoCard';
 import ButtonNeo from '../../components/ButtonNeo';
 import AppBackground from '../../components/AppBackground';

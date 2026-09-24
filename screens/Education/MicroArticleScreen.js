@@ -2,12 +2,8 @@
  * MicroArticleScreen.js
  * Tela de leitura de micro artigo individual
  */
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    Image, Linking, Share, Platform
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking, Share } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';

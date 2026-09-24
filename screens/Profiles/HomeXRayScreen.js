@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import {
     View, Text, ScrollView, TouchableOpacity, StyleSheet, Image,
@@ -13,7 +13,7 @@ import { AMBIENTES } from '../../data/mapeamento_dados';
 
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, H3, Caption } from "../../components/NeoTypography";
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';

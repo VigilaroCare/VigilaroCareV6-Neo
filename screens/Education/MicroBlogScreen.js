@@ -2,11 +2,8 @@
  * MicroBlogScreen.js
  * Lista categorizada de micro artigos do Prevenir em Casa
  */
-import React, { useState, useMemo } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity,
-    Image, FlatList
-} from 'react-native';
+import { useState, useMemo } from "react";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DS as Neo } from '../../utils/DesignSystem2026';

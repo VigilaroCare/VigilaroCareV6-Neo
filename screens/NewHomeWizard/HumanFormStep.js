@@ -2,7 +2,6 @@
  * HumanFormStep.js
  * Formulário de cadastro de morador (humano).
  */
-import React from 'react';
 import { View, ScrollView, TouchableOpacity, KeyboardAvoidingView, Image, Platform } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, Body, Caption } from '../../components/NeoTypography';

@@ -6,7 +6,7 @@
  * Executa a validação completa do @vigilaro_data e exibe o relatório.
  */
 
-import React, { useState } from 'react';
+import { useState } from "react";
 import { View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';

@@ -28,7 +28,7 @@
  *  - accessibilityLabel no card: antes o leitor de tela anunciava a subárvore
  *    inteira sem dizer o que o número significa.
  */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import NeoIcon from './NeoIcon';

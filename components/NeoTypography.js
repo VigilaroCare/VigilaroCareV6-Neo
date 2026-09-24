@@ -1,7 +1,6 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text } from "react-native";
 import Theme from '../utils/Theme';
-import { FONTS, displayFont } from '../utils/DesignSystem2026';
+import { displayFont } from "../utils/DesignSystem2026";
 
 import { useAccessibility } from '../context/AccessibilityContext';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';

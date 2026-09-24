@@ -18,7 +18,6 @@
  * segurança: o usuário precisa saber que a análise pode errar antes de agir
  * sobre um risco doméstico.
  */
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';

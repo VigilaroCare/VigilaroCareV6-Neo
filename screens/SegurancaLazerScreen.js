@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../utils/getLocalizedField';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import { H2, H3, Body, Small } from '../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 export default function SegurancaLazerScreen({ navigation }) {

@@ -1,15 +1,13 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { View, Text, Animated, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { H1, H3, Body, Small } from '../../components/NeoTypography';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';
 import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { Shadows } from '../../utils/Theme';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import SafeGradient from '../../components/SafeGradient';
 

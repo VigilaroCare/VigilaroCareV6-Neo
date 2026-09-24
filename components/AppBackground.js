@@ -12,9 +12,7 @@
  * existente precisa de mudança, props ficam estáveis.
  */
 
-import React from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';

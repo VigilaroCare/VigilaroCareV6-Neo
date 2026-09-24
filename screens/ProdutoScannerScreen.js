@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from "react";
 import { useTranslation } from 'react-i18next';
 import NeoIcon from '../components/NeoIcon';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';

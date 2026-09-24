@@ -20,8 +20,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system/legacy';
 import LegacyMigrationService from './LegacyMigrationService';
 import { getDefaultData, getDefaultProfile, VIGILARO_DATA_KEY } from './ProfileModels';
-import { areasInternas } from '../data/areas_internas';
-import { areasExternas } from '../data/areas_externas';
 import { Storage } from '../utils/SecureStorage';
 
 class ProfileService {

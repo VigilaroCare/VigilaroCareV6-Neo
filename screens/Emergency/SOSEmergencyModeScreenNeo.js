@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import NetInfo from '@react-native-community/netinfo';
-import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, ActivityIndicator, Vibration, AppState } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, TextInput, Linking, Text, Platform, Share, Vibration, AppState } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
@@ -18,10 +18,9 @@ import ProfileService from '../../services/ProfileService';
 import HealthService from '../../services/HealthService';
 
 // Neo Design (Custom Red Theme for SOS)
-import Theme, { Neo } from '../../utils/Theme';
+import { Neo } from "../../utils/Theme";
 import NeoCard from '../../components/NeoCard';
-import ScaleButton from '../../components/ScaleButton';
-import NeoText, { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 
 // ─── Helper: gerar Ficha Médica de Emergência ──────────────────────────────
@@ -87,7 +86,6 @@ async function generateMedicalCard(locationCoords) {
     }
 }
 
-import AppBackground from '../../components/AppBackground';
 import NeoAlert from '../../utils/NeoAlert';
 
 export default function SOSEmergencyModeScreenNeo({ navigation, route }) {

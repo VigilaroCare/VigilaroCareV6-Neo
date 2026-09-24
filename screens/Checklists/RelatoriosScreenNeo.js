@@ -1,12 +1,9 @@
-import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
-import {
-    View, ScrollView, TouchableOpacity, Modal, ActivityIndicator, Text, Animated, StyleSheet, Dimensions
-} from 'react-native';
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { View, ScrollView, TouchableOpacity, Modal, ActivityIndicator, Text, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
-import { LinearGradient } from 'expo-linear-gradient';
 import ReviewImage from '../../components/ReviewImage';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -14,11 +11,11 @@ import ProfileService from '../../services/ProfileService';
 import { ChecklistService } from '../../services/ChecklistService';
 import SafetyReportService from '../../services/SafetyReportService';
 import { isAreaRelevant, getRoomChecklistStructure } from '../../utils/ProfileFilterEngine';
-import { AMBIENTES, CHECKLISTS } from '../../data/mapeamento_dados';
+import { AMBIENTES } from "../../data/mapeamento_dados";
 
 import NeoCard from '../../components/NeoCard';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
-import NeoText, { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import NeoText, { H3, Body, Small } from "../../components/NeoTypography";
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { t_field } from '../../utils/getLocalizedField';

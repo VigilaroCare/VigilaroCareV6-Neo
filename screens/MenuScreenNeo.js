@@ -1,13 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Modal,
-  Image,
-} from 'react-native';
+import { useState, useCallback } from "react";
+import { View, ScrollView, TouchableOpacity, Text, StyleSheet, Modal } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +9,6 @@ import ProfileService from '../services/ProfileService';
 import SubscriptionService from '../services/SubscriptionService';
 
 import NeoCard from '../components/NeoCard';
-import NeoHorizontalCard from '../components/NeoHorizontalCard';
 import PictogramTile from '../components/PictogramTile';
 import { H1, H3, Body, Small } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';

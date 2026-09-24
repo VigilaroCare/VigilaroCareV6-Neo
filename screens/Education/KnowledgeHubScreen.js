@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 /**
  * KnowledgeHubScreen.js
  * Aba Aprender — Biblioteca de Guias e Conteúdo Educacional
@@ -12,22 +11,18 @@ import { LinearGradient } from 'expo-linear-gradient';
  *  - Conceitos Essenciais (1 item) vira card único, evita grid órfão
  */
 
-import React, { useRef } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, FlatList, Animated
-} from 'react-native';
+import { useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
-import Svg, { Circle, G, Line, Path, Rect } from 'react-native-svg';
-
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import PictogramTile from '../../components/PictogramTile';
-import { H1, Body } from '../../components/NeoTypography';
+import { Body } from "../../components/NeoTypography";
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import NeoIcon from '../../components/NeoIcon';

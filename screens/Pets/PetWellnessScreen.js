@@ -1,7 +1,5 @@
-import React, { useRef } from 'react';
-import {
-  View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Dimensions
-} from 'react-native';
+import { useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
 import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -9,8 +7,6 @@ import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
-import AppBackground from '../../components/AppBackground';
-import { H1, Caption } from '../../components/NeoTypography';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { PET_WELLNESS_DATA } from '../../data/pet_wellness_data';
 import { t_field } from '../../utils/getLocalizedField';

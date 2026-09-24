@@ -1,15 +1,13 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { KITS_EDUCATIONAL_CONTENT } from '../../data/kits/educational_content';
-import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import PetHeroBanner from '../../components/PetHeroBanner';
 import ReviewImage from '../../components/ReviewImage';
-import { H1, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { t_field, t_array } from '../../utils/getLocalizedField';

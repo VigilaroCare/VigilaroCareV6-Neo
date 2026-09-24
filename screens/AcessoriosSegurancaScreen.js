@@ -1,4 +1,3 @@
-import { LinearGradient } from 'expo-linear-gradient';
 /**
  * AcessoriosSegurancaScreen.js
  * Tela de Acessórios de Segurança (Baby-proof, Idosos, Pets, PCD)
@@ -8,18 +7,10 @@ import { LinearGradient } from 'expo-linear-gradient';
  * ConceitoDetail (hero = foto do card). Sem expand inline.
  */
 
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import {
-    Animated,
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
-    TouchableOpacity,
-} from 'react-native';
+import { Animated, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../components/NeoIcon';
 import { Shadows } from '../utils/Theme';
 import { ACESSORIOS_SEGURANCA } from '../data/acessorios_seguranca';

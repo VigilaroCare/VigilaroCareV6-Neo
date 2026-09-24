@@ -19,7 +19,7 @@
  *
  * Anatomia Editorial: 2º nível (hub) — header fixo, seções, listas em 1 card.
  */
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import { View, ScrollView, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';

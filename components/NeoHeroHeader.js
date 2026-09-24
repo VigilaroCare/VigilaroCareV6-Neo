@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import ReviewImage from './ReviewImage';
 import { useThemeColors } from '../utils/ThemeContext';

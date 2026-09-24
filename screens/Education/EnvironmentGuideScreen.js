@@ -1,12 +1,10 @@
 
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import { Shadows } from '../../utils/Theme';
 import { EDUCATIONAL_GUIDES } from '../../data/educational_guides';
-import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors } from '../../utils/ThemeContext';
 

@@ -1,25 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-  Modal,
-  AccessibilityInfo,
-} from 'react-native';
+import { useState, useEffect, useRef } from "react";
+import { View, StyleSheet, ScrollView, TouchableOpacity, Platform, AccessibilityInfo } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CHECKLISTS, AMBIENTES } from '../../data/mapeamento_dados';
+import { AMBIENTES } from "../../data/mapeamento_dados";
 import { getArticleById } from '../../data/SafetyArticlesDB';
 import { isItemRelevant, getRoomChecklistStructure, isAreaRelevant, getDynamicAreaName } from '../../utils/ProfileFilterEngine';
 import { ChecklistService } from '../../services/ChecklistService';
 import ProfileService from '../../services/ProfileService';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H3, Body, Small, Caption } from "../../components/NeoTypography";
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBg from '../../components/AppBackground';

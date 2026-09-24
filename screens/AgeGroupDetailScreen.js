@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Vibration, Animated, Dimensions } from 'react-native';
+import { useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { ChecklistService } from '../services/ChecklistService';
-import AppBackground from '../components/AppBackground';
 import NeoCard from '../components/NeoCard';
 import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';

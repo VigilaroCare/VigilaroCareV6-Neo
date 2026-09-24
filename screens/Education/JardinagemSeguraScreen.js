@@ -1,13 +1,11 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
-import AppBackground from '../../components/AppBackground';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
-import { H1, Caption } from '../../components/NeoTypography';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 export default function JardinagemSeguraScreen({ navigation }) {

@@ -3,19 +3,8 @@
 // Vermelho intenso, fontes imensas, contraste máximo.
 // NÃO usa AppBackground/NeoCard glass — quebraria a UX de emergência.
 
-import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Animated,
-  Vibration,
-  Linking,
-  Platform,
-  Modal,
-  AccessibilityInfo,
-} from 'react-native';
+import { useState, useEffect, useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Vibration, Linking, Platform, AccessibilityInfo } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { AudioPlayer } from 'expo-audio';
@@ -23,7 +12,6 @@ import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
 import { Storage } from '../../utils/SecureStorage';
-import NetInfo from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';

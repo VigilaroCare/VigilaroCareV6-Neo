@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect, useCallback, useMemo } from 'react';
+import { createContext, useState, useContext, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from 'react-i18next'; // BUG-11 FIX: i18n
 import ProfileService from '../services/ProfileService';
 import { registrarTermosSensiveis } from '../services/SentryService';

@@ -20,7 +20,6 @@
  * Aceita todas as props do LinearGradient. `locations` é descartado quando não
  * casa com o número de cores sobreviventes — o nativo também crasha nesse caso.
  */
-import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const COR_NEUTRA = '#E5E5EA'; // neutral[300] do DS — literal de propósito:

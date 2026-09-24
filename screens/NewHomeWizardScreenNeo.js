@@ -11,7 +11,7 @@
  * "Continuar depois" no header salva o draft via BriefingDraftService
  * e fecha o wizard sem perder estado.
  */
-import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import { useState, useCallback, useRef, useMemo } from "react";
 import { useFocusEffect } from '@react-navigation/native';
 import { View, TouchableOpacity, Animated, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';

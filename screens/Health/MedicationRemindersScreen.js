@@ -7,11 +7,8 @@
  * Acesso: MinhaSaudeScreen → botão "Gerenciar Lembretes"
  */
 
-import React, { useState, useCallback } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView,
-    TouchableOpacity, Alert, Switch,
-} from 'react-native';
+import { useState, useCallback } from "react";
+import { View, StyleSheet, ScrollView, TouchableOpacity, Alert, Switch } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';

@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import { View, Modal, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
-import { BlurView } from 'expo-blur';
 import NeoIcon from './NeoIcon';
 import NetInfo from '@react-native-community/netinfo';
 import { DS as Neo } from '../utils/DesignSystem2026';
-import NeoText, { H3, Body, Small } from './NeoTypography';
+import { H3, Body } from "./NeoTypography";
 import NeoCard from './NeoCard';
 import { useThemeColors } from '../utils/ThemeContext';
 

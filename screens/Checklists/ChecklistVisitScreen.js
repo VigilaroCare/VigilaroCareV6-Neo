@@ -4,7 +4,7 @@
  * Vigilaro Care V6 Neo — Padronizado Neo Design
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';

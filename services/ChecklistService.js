@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { isAreaRelevant } from '../utils/ProfileFilterEngine';
 import TimelineService from './TimelineService'; // Added F-05
 import AchievementService from './AchievementService'; // Added F-07
 

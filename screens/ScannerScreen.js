@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -25,7 +25,6 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { VisionService } from '../services/VisionService';
 import GamificationService from '../services/GamificationService';
-import { buscarProduto } from '../data/produtos_scanner';
 import { resolveBarcode } from '../services/InfoRotulosSubstanceService';
 import { Config } from '../utils/Config';
 import { useTranslation } from 'react-i18next';

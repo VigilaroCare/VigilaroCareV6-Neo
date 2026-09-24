@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
-import { View, Animated, Text, ScrollView, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { useRef } from "react";
+import { View, Animated, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
-import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { riscosFisicos } from '../../data/riscos_fisicos';

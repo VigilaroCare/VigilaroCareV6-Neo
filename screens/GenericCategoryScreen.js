@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';

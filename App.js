@@ -28,8 +28,8 @@
 //  [FIX-C20] Arquivos legados movidos para _legacy/screens (ou já removidos)
 //  [FEAT-RA01] Adicionado RecentActivityScreen
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { View, Platform, LogBox, AppState } from "react-native";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { View, Platform, LogBox } from "react-native";
 
 // Supressões de warning — cada item documentado com motivo.
 // Revisar esta lista a cada bump de dependência major.

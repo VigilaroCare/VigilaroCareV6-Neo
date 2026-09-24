@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { H3, Body } from './NeoTypography';

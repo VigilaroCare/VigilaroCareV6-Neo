@@ -6,7 +6,7 @@
  * a UX. Mantém visual escuro + cards coloridos por severidade.
  */
 
-import React, { useState } from 'react';
+import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import {
   View, Text, StyleSheet, TouchableOpacity, Linking,

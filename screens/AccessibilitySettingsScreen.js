@@ -1,7 +1,4 @@
-import React from 'react';
-import {
-    View, Switch, ScrollView, TouchableOpacity, StyleSheet, Text,
-} from 'react-native';
+import { View, Switch, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -10,7 +7,7 @@ import haptic from '../utils/Haptics';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
-import { H1, H3, Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
+import { H3, Body, Small, Caption, Eyebrow } from "../components/NeoTypography";
 import NeoScreenHeader from '../components/NeoScreenHeader';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { View } from 'react-native';
 import * as Phosphor from 'phosphor-react-native';
 import ElderlyIcon from './icons/ElderlyIcon';

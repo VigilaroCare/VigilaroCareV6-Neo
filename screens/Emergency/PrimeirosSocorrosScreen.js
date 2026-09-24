@@ -1,14 +1,13 @@
-import React, { useMemo, useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions, TextInput } from 'react-native';
+import { useMemo, useState, useRef } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions, TextInput } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
 import NeoIcon from '../../components/NeoIcon';
-import AppBackground from '../../components/AppBackground';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import PetHeroBanner from '../../components/PetHeroBanner';
-import { H1, Caption } from '../../components/NeoTypography';
+import { Caption } from "../../components/NeoTypography";
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getPrimeirosSocorros } from '../../data/primeiros_socorros';
 import { getEmergenciasPets } from '../../data/primeiros_socorros_pets';

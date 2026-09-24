@@ -26,7 +26,7 @@
  * O modelo de dados já suportava isto desde sempre (moradia.habitantes[] e
  * moradia.frequentadores[] por residência). Só faltava mostrar.
  */
-import React, { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef } from "react";
 import { View, Image, ScrollView, TouchableOpacity, Modal, TextInput, KeyboardAvoidingView, Platform, Animated } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -38,7 +38,7 @@ import ProfileService from '../../services/ProfileService';
 
 import { Neo } from '../../utils/Theme';
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H1, H2, H3, Body, Small, Caption, Eyebrow } from '../../components/NeoTypography';
+import { H2, H3, Body, Caption, Eyebrow } from "../../components/NeoTypography";
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import NeoAlert from '../../utils/NeoAlert';

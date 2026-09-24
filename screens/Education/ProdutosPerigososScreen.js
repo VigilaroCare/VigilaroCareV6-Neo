@@ -1,14 +1,11 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { View, Text, Animated, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
 import NeoIcon from '../../components/NeoIcon';
-import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import NeoCard from '../../components/NeoCard';
 import ReviewImage from '../../components/ReviewImage';
-import { H1, H2, Small, Caption } from '../../components/NeoTypography';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';

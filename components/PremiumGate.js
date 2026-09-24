@@ -21,7 +21,7 @@
  *   </PremiumGate>
  */
 
-import React, { useCallback } from 'react';
+import { useCallback } from "react";
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { DS as Neo } from '../utils/DesignSystem2026';

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../../components/NeoIcon';
 import { RISK_GROUPS } from '../../data/visitChecklists';
-import { Spacing, Typography, BorderRadius, Shadows, Colors, Components } from '../../utils/Theme';
+import { Spacing, Typography, BorderRadius, Shadows } from "../../utils/Theme";
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 

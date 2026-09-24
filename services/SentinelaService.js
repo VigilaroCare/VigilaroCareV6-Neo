@@ -1,4 +1,3 @@
-import NeoIcon from '../components/NeoIcon';
 // Simulação de Clima (Num app real, viria de uma API)
 const WEATHER_CONDITIONS = [
     { type: 'RAIN', title: 'Possibilidade de Chuva', message: 'Pisos externos escorregadios. Feche as janelas.', icon: 'rainy', color: '#3B82F6', iconBg: '#EFF6FF' },

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { View, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
@@ -8,7 +8,7 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import AnimatedProgressBar from '../../components/AnimatedProgressBar';
-import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H1, Body, Small, Caption } from "../../components/NeoTypography";
 import { DS as Neo } from '../../utils/DesignSystem2026';
 
 import { AID_KIT_ITEMS } from '../../data/kits/first_aid';

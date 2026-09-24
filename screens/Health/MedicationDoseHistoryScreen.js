@@ -7,7 +7,7 @@
  * Acessado a partir do card do lembrete na MedicationRemindersScreen.
  */
 
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import {
     View, Text, StyleSheet, ScrollView,
     TouchableOpacity, Alert,
@@ -16,10 +16,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H2, H3, Body, Small, Eyebrow } from '../../components/NeoTypography';
+import { H2, Body, Small, Eyebrow } from "../../components/NeoTypography";
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import ButtonNeo from '../../components/ButtonNeo';
 import AppBackground from '../../components/AppBackground';
 import EmptyState from '../../components/EmptyState';
 import { SkeletonCard } from '../../components/SkeletonLoader';

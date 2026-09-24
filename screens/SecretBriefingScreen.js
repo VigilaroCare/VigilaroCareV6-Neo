@@ -4,7 +4,7 @@
  * Estilo "Confidencial" / Segurança
  */
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, TouchableOpacity, Animated, Vibration } from 'react-native';
 import { StatusBar } from 'expo-status-bar';

@@ -10,7 +10,7 @@
  * Exibe: contexto familiar, histórico, CIATOX, disclaimer
  */
 
-import React, { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import {
   View,

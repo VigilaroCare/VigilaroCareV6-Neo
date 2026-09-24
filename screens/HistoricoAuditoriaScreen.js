@@ -1,11 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Colors } from '../utils/Theme';
 import NeoIcon from '../components/NeoIcon';
-import AppBackground from '../components/AppBackground';
-import { DS as Neo } from '../utils/DesignSystem2026';
-
 export default function HistoricoAuditoriaScreen({ navigation }) {
     const { t } = useTranslation('common');
     // Dados mockados por enquanto para não quebrar

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform, Animated, Dimensions, Image, DeviceEventEmitter } from 'react-native';
+import { useState, useEffect, useRef } from "react";
+import { View, TouchableOpacity, UIManager, Platform, Animated, Dimensions, Image, DeviceEventEmitter } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H2, Body, Small } from '../../components/NeoTypography';
+import { H2, Body } from "../../components/NeoTypography";
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';

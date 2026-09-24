@@ -17,7 +17,7 @@
  *
  * Uso: <TravelTipsAccordion phase="chegada" />
  */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, LayoutAnimation, Linking, Platform, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';

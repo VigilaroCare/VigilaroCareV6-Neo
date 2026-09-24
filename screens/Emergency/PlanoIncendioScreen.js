@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,9 +7,8 @@ import ReviewImage from '../../components/ReviewImage';
 
 import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
-import AppBackground from '../../components/AppBackground';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
-import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { Small } from "../../components/NeoTypography";
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { getFirePreventionContent } from '../../data/fire_prevention_content';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';

@@ -7,17 +7,9 @@
  * (card horizontal com imagem à esquerda, badge de risco, resumo)
  */
 
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import {
-    View,
-    Animated,
-    Dimensions,
-    Text,
-    ScrollView,
-    TouchableOpacity,
-    StyleSheet,
-} from 'react-native';
+import { View, Animated, Dimensions, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';

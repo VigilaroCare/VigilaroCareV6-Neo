@@ -12,7 +12,7 @@
  *   - Re-escanear via câmera (opcional)
  */
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
     Linking, ActivityIndicator,
@@ -25,7 +25,7 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import { Body, Small, Caption } from '../components/NeoTypography';
+import { Small, Caption } from "../components/NeoTypography";
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 import { SkeletonCard } from '../components/SkeletonLoader';

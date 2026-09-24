@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
 import NeoIcon from './NeoIcon';
-import { Colors, Shadows, BorderRadius, Typography } from '../utils/Theme';
+import { Colors, Shadows, BorderRadius } from "../utils/Theme";
 import { DS as Neo } from '../utils/DesignSystem2026';
 
 const { width } = Dimensions.get('window');

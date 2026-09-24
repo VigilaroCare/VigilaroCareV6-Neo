@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 // da consolidação com a antiga tela KitViagem.
 import { buildDynamicKits, contarItens } from '../../data/kits/bagagem_viagem';
 import { t_field, t_array } from '../../utils/getLocalizedField';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager, Animated, Dimensions, Image } from 'react-native';
+import { View, TouchableOpacity, LayoutAnimation, Platform, UIManager, Animated, Dimensions, Image } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';

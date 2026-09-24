@@ -4,7 +4,6 @@
 // Extraído do antigo OndeStep pra dar respiro narrativo e separar o
 // "como é a estrutura física" (P1) do "que ambientes existem" (P2).
 
-import React from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body } from '../../components/NeoTypography';

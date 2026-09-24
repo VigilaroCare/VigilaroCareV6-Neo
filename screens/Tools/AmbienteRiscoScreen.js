@@ -17,8 +17,8 @@
  * Anatomia Editorial: 3º nível (folha) — header fixo, hero-lead, seções de
  * conteúdo, CTA no fim do scroll.
  */
-import React, { useState, useCallback } from 'react';
-import { View, ScrollView, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { useState, useCallback } from "react";
+import { View, ScrollView, StyleSheet, ActivityIndicator } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFocusEffect } from '@react-navigation/native';

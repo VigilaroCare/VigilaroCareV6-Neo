@@ -14,7 +14,7 @@
  * - console.error removido (regra global)
  */
 
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import { View, ScrollView, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';

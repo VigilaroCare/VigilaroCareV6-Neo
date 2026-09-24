@@ -6,7 +6,7 @@
  * Regra 4: Nenhum preço hardcoded — preços sempre vêm da API da loja via RevenueCat.
  */
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   View,
   Text,
@@ -20,10 +20,8 @@ import {
 import NetInfo from '@react-native-community/netinfo';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
-import * as Haptics from 'expo-haptics';
 import AppBackground from '../components/AppBackground';
-import { DS as Neo } from '../utils/DesignSystem2026';
-import { Colors, Shadows } from '../utils/Theme';
+import { Shadows } from "../utils/Theme";
 import { useThemeColors } from '../utils/ThemeContext';
 import SubscriptionService from '../services/SubscriptionService';
 import { useTranslation } from 'react-i18next';

@@ -4,7 +4,7 @@
  * Utiliza expo-battery para leitura do estado atual
  */
 import { useEffect, useRef } from 'react';
-import { AppState, Platform } from 'react-native';
+import { AppState } from "react-native";
 import * as Battery from 'expo-battery';
 import NeoAlert from '../utils/NeoAlert';
 

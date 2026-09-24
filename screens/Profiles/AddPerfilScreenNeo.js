@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -18,9 +18,9 @@ import NeoIcon from '../../components/NeoIcon';
 import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
 
 // Neo Design
-import Theme, { Neo } from '../../utils/Theme';
+import { Neo } from "../../utils/Theme";
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H3, Body, Small, Caption } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import AppBackground from '../../components/AppBackground';
 import NeoAlert from '../../utils/NeoAlert';

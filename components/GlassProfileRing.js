@@ -6,7 +6,7 @@
  * Tactical Calm Design System — Epic Redesign 2026
  */
 
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 import { View, Image, Text, StyleSheet, Animated, Easing } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';

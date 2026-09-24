@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Shadows } from '../utils/Theme';
 import { DS as Neo } from '../utils/DesignSystem2026';

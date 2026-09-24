@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { DS as Neo } from "../../utils/DesignSystem2026";
@@ -16,7 +9,7 @@ import NeoIcon from "../../components/NeoIcon";
 import AppBackground from "../../components/AppBackground";
 import NeoScreenHeader from "../../components/NeoScreenHeader";
 import ScaleButton from "../../components/ScaleButton";
-import { H1, H2, H3, Body, Small, Caption } from "../../components/NeoTypography";
+import { H2, H3, Body, Small, Caption } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 

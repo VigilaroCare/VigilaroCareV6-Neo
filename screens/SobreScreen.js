@@ -1,5 +1,4 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Image, Linking } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
@@ -7,12 +6,11 @@ import { Spacing } from '../utils/Theme';
 
 import Constants from 'expo-constants';
 import ProfileService from '../services/ProfileService';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoCard from '../components/NeoCard';
 import NeoScreenHeader from '../components/NeoScreenHeader';
-import { H1, H2, H3, Body, Small } from '../components/NeoTypography';
+import { H1, H3, Body, Small } from "../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import { getLocalizedLogo } from '../utils/getLocalizedLogo';
 import NeoAlert from '../utils/NeoAlert';

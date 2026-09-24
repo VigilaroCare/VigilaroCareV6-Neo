@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Linking, StyleSheet, Animated, Dimensions } from 'react-native';
+import { useRef } from "react";
+import { View, Text, TouchableOpacity, Linking, StyleSheet, Animated, Dimensions } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import ReviewImage from '../../components/ReviewImage';
@@ -8,8 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
-import AppBackground from '../../components/AppBackground';
-import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
+import { H3, Body, Small } from "../../components/NeoTypography";
 import { PET_FOOD_SAFETY } from '../../data/pet_food_safety';
 import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';

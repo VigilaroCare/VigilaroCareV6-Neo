@@ -12,7 +12,6 @@
  * Vigilaro Care V6 Neo — 2026-05-21
  */
 
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Shadows } from '../utils/Theme';
 import ReviewImage from './ReviewImage';

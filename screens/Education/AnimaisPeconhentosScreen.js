@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from "react";
 import {
     View,
     Text,
@@ -16,7 +16,7 @@ import { Shadows } from '../../utils/Theme';
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
-import { H1, H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H2, H3, Body, Small } from "../../components/NeoTypography";
 import NeoIcon from '../../components/NeoIcon';
 import { animaisCatalog } from '../../data/animais_ciatox';
 import { useTranslation } from 'react-i18next';

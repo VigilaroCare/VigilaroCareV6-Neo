@@ -4,26 +4,16 @@
  * Vigilaro Care V6 Neo
  */
 
-import React, { useRef } from 'react';
+import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import {
-    View,
-    Text,
-    Image,
-    ScrollView,
-    TouchableOpacity,
-    StyleSheet,
-    Animated,
-} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
-import NeoScreenHeader from '../../components/NeoScreenHeader';
 import { UTENSILIOS_REVIEWS } from '../../data/utensilios_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 

@@ -1,13 +1,10 @@
-import React, { useMemo, useState, useCallback, useRef } from 'react';
+import { useMemo, useState, useCallback, useRef } from "react";
 import { View, Text, Animated, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
-
 import NeoIcon from '../../components/NeoIcon';
 import { getConteudoPrevencao } from '../../data/knowledge_prevencao';
 import { Shadows } from '../../utils/Theme';
-import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors } from '../../utils/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../../context/AccessibilityContext';

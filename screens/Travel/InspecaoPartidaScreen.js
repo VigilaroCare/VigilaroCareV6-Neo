@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { View, TouchableOpacity, LayoutAnimation, UIManager, Platform, Animated, Dimensions, Image } from 'react-native';
+import { useState, useRef } from "react";
+import { View, TouchableOpacity, UIManager, Platform, Animated, Dimensions, Image } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H2, Body, Small } from '../../components/NeoTypography';
+import { H2, Body } from "../../components/NeoTypography";
 import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';

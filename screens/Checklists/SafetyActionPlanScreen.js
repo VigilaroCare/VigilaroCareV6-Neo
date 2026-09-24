@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator, Platform } from 'react-native';
+import { useState, useCallback } from "react";
+import { View, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -7,7 +7,6 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
 import { Small, Body, H2, H3, Caption } from '../../components/NeoTypography';
 import NeoScreenHeader from '../../components/NeoScreenHeader';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { ChecklistService } from '../../services/ChecklistService';

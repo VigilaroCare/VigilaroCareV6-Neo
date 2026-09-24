@@ -8,8 +8,6 @@
 import React, { useMemo, useState } from 'react';
 import { View, ScrollView, TouchableOpacity, StatusBar, Linking, Dimensions, Text, TextInput } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-
 // Icons
 import NeoIcon from '../../components/NeoIcon';
 

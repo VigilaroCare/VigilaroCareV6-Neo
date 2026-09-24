@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from "react";
 import { useFocusEffect } from '@react-navigation/native';
-import { View, ScrollView, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, LayoutAnimation, UIManager, Platform, Image, Dimensions, Animated } from 'react-native';
+import { View, TouchableOpacity, Linking, ActivityIndicator, DeviceEventEmitter, Text, StyleSheet, Image, Dimensions, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import NeoCard from '../../components/NeoCard';
-import NeoText, { H2, H3, Body, Small } from '../../components/NeoTypography';
+import { H2, H3, Body, Small } from "../../components/NeoTypography";
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
 import PictogramTile from '../../components/PictogramTile';

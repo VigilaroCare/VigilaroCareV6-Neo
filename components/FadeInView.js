@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 import { Animated } from 'react-native';
 import { useAccessibility } from '../context/AccessibilityContext';
 

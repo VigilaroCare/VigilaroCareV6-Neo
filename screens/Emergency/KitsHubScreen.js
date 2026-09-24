@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity, Text, Animated } from 'react-native';
+import { useRef } from "react";
+import { View, StyleSheet, TouchableOpacity, Text, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -11,7 +11,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H1, Body, Small, Caption } from '../../components/NeoTypography';
+import { Body, Small } from "../../components/NeoTypography";
 import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function KitsHubScreen() {

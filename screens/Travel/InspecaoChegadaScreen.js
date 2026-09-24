@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, LayoutAnimation, UIManager, Platform, Animated, Dimensions, Image } from 'react-native';
+import { useState, useEffect, useRef } from "react";
+import { View, TouchableOpacity, UIManager, Platform, Animated, Dimensions, Image } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
