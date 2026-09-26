@@ -53,12 +53,19 @@ if (!razao || razao === 'null') {
         'não publique em NENHUMA loja.'
     );
 }
+// O representante na UE NÃO derruba a suíte: é pendência de negócio, aberta de
+// propósito, e só impede publicar nas lojas europeias. Na primeira versão deste
+// script ele entrava como bloqueio — e como `validate:legal` está na cadeia de
+// `&&` do `npm run validate`, a suíte INTEIRA passou a nunca poder passar, e
+// `validate:types` e `validate:android-export` deixaram de rodar. Virou aviso:
+// aparece sempre, não trava nada.
+const avisos = [];
 if (!repUE || repUE === 'null') {
-    problemas.push(
+    avisos.push(
         'CONTROLADOR.representanteUE está vazio. Controlador fora da UE que ' +
         'oferece serviço a residentes da União precisa designar representante ' +
-        'por escrito — RGPD art. 27. Sem isso, não publique nas lojas EUROPEIAS ' +
-        '(pt-PT e es). A publicação no Brasil e nos EUA não depende deste item.'
+        'por escrito — RGPD art. 27. Impede publicar nas lojas EUROPEIAS ' +
+        '(pt-PT e es); Brasil e EUA não dependem deste item.'
     );
 }
 
@@ -67,17 +74,34 @@ for (const chave of ["'pt-BR'", "'pt-PT'", 'es:', 'en:']) {
     if (!src.includes(chave)) problemas.push('Falta a política da jurisdição ' + chave);
 }
 
-if (!problemas.length) {
+const mostrar = (rotulo, lista) => {
+    if (!lista.length) return;
+    console.log(linha(rotulo));
+    console.log('');
+    lista.forEach((p, i) => {
+        console.log(linha('  ' + (i + 1) + '. ' + p));
+        console.log('');
+    });
+};
+
+mostrar('BLOQUEIOS — nenhuma loja aceita assim:', problemas);
+mostrar('AVISOS — não derrubam a suíte:', avisos);
+
+if (!problemas.length && !avisos.length) {
     console.log(linha('Nenhum campo obrigatório em falta.'));
     console.log(linha('As quatro jurisdições estão presentes.\n'));
-    console.log('RESULTADO: aprovado — política publicável.\n');
-    process.exit(0);
+} else {
+    console.log(linha('Ver docs/CONFORMIDADE_LEGAL.md, itens L1 e L2.\n'));
 }
 
-problemas.forEach((p, i) => {
-    console.log(linha((i + 1) + '. ' + p));
-    console.log('');
-});
-console.log(linha('Ver docs/CONFORMIDADE_LEGAL.md, itens L1 e L2.\n'));
-console.log('RESULTADO: reprovado — ' + problemas.length + ' pendência(s) antes de publicar.\n');
-process.exit(1);
+if (problemas.length) {
+    console.log('RESULTADO: reprovado — ' + problemas.length + ' bloqueio(s) antes de publicar.\n');
+    process.exit(1);
+}
+
+console.log(
+    avisos.length
+        ? 'RESULTADO: aprovado com ' + avisos.length + ' aviso(s) — publicável no Brasil e nos EUA.\n'
+        : 'RESULTADO: aprovado — política publicável.\n'
+);
+process.exit(0);

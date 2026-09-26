@@ -24,6 +24,19 @@ import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 import { useTranslation } from 'react-i18next';
 import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
+import { AMBIENTES } from '../../data/mapeamento_dados';
+// Todo conteudo de /data/ passa por aqui: t_field/t_array resolvem os tokens
+// de emergencia ({{POISON_CONTROL}}, {{EMERGENCY_NUMBER}}) pelo numero do pais
+// do usuario, e ja preparam a traducao. Sem isso o texto sai com a chave crua.
+import { t_field, t_array } from '../../utils/getLocalizedField';
+
+/**
+ * Áreas que aparecem independentemente do mapeamento da moradia, porque não
+ * correspondem a um ambiente declarável. `armarios_geral` e `accessibility_pcd`
+ * são transversais; `beach_rivers` é de viagem e fica FORA desta tela.
+ */
+const SEM_FILTRO_DE_MAPEAMENTO = new Set(['armarios_geral', 'accessibility_pcd']);
+const FORA_DESTA_TELA = new Set(['beach_rivers']);
 
 /**
  * TODAS as áreas — internas e externas.
@@ -41,7 +54,7 @@ import { getDynamicAreaName } from '../../utils/ProfileFilterEngine';
  * `quandoChamarAjuda` era renderizado só pela tela externa; foi trazido para
  * cá antes de ela sair, senão a absorção teria perdido conteúdo de segurança.
  */
-const TODAS_AS_AREAS = [...areasInternas, ...areasExternas];
+const TODAS_AS_AREAS = [...areasInternas, ...areasExternas].filter(a => !FORA_DESTA_TELA.has(a.id));
 
 /**
  * Ambiente escolhido em "Onde Proteger" → roteiro correspondente.
@@ -82,7 +95,43 @@ const AMBIENTE_TO_AREA = {
   pool_safe: ['piscina'],
   workshop_tool: ['oficina'],
   storage_depot: ['deposito'],
+  // `beach_rivers` ("Praia, Rios e Lagos") NÃO entra: não é ambiente de
+  // residência, é conteúdo de viagem. Sem entrada aqui ele seria tratado como
+  // área sem filtro e apareceria na lista de TODA moradia, apartamento
+  // incluído — ver `SEM_FILTRO_DE_MAPEAMENTO` abaixo, que é o que o resolve.
 };
+
+/**
+ * Chave de armazenamento das respostas, por área. CONGELADO.
+ *
+ * Contém exatamente os valores que `AMBIENTE_TO_AREA[areaId][0]` produzia
+ * antes da correção do mapa de casamento, para que nenhuma vistoria já
+ * respondida perca o endereço. As áreas externas usam o próprio id porque
+ * nunca foram renderizadas antes — não há dado antigo debaixo delas.
+ *
+ * `bedroom_teen` e `bedroom_adult` compartilham o balde `quarto_adulto`. É
+ * herança, não desenho: mudar agora órfã o que já foi respondido.
+ */
+const CHAVE_DE_ARMAZENAMENTO = {
+  kitchen: 'cozinha',
+  bathroom: 'banheiro',
+  living_room: 'sala',
+  laundry: 'area_servico',
+  garage: 'garagem',
+  stairs: 'escadas',
+  dining_room: 'copa',
+  pantry: 'despensa',
+  bedroom_kids: 'quarto_crianca',
+  bedroom_teen: 'quarto_adulto',
+  bedroom_adult: 'quarto_adulto',
+  bedroom_senior: 'quarto_idoso',
+  gas_central: 'central_gas',
+  balcony_indoor: 'varanda',
+  // O quarto do bebê grava sob o PRÓPRIO id: antes da correção a chave do mapa
+  // era `baby_room`, que não casava com `bedroom_baby`, então caía no id.
+  bedroom_baby: 'bedroom_baby',
+};
+
 
 export default function AreasInternasScreen({ navigation, route }) {
   // BUG FIX: ambienteId/ambiente extraído de route.params com suporte a ambos os formatos
@@ -99,17 +148,32 @@ export default function AreasInternasScreen({ navigation, route }) {
   const [checklistState, setChecklistState] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const getNativeAreaId = (areaId) => {
-    return AMBIENTE_TO_AREA[areaId]?.[0] || areaId;
-  };
+  /**
+   * Chave sob a qual as respostas daquela área são gravadas.
+   *
+   * Isto NÃO pode sair de `AMBIENTE_TO_AREA`. A versão anterior fazia
+   * `AMBIENTE_TO_AREA[areaId]?.[0]`, misturando duas coisas diferentes — que
+   * termos de ambiente casam com a área, e onde o dado mora. Quando o mapa de
+   * casamento foi corrigido (`baby_room` → `bedroom_baby`), a chave do quarto
+   * do bebê mudou de `bedroom_baby` para `quarto_bebe` junto, e toda vistoria
+   * já respondida ali virou inalcançável, sem migração e sem aviso.
+   *
+   * Agora o de-para é explícito e CONGELADO nos valores que estavam em vigor.
+   * Mexer aqui órfã dado de usuário; mexer no mapa de casamento, não.
+   */
+  const getNativeAreaId = (areaId) => CHAVE_DE_ARMAZENAMENTO[areaId] || areaId;
 
   const { dadosFiltrados, semRoteiroProprio } = useMemo(() => {
     let baseData = TODAS_AS_AREAS;
 
     if (mapping && mapping.length > 0) {
       baseData = TODAS_AS_AREAS.filter(area => {
+        // Area sem termos de ambiente so passa se for transversal. O `return
+        // true` incondicional que havia aqui deixava qualquer area nao mapeada
+        // entrar na lista de TODA moradia — foi assim que "Praia, Rios e Lagos"
+        // aparecia em apartamento sem praia declarada.
         const mappedTerms = AMBIENTE_TO_AREA[area.id];
-        if (!mappedTerms) return true;
+        if (!mappedTerms) return SEM_FILTRO_DE_MAPEAMENTO.has(area.id);
         return mappedTerms.some(term => mapping.includes(term));
       });
     }
@@ -168,13 +232,31 @@ export default function AreasInternasScreen({ navigation, route }) {
   // `semRoteiroProprio` precisa entrar aqui também: sem isso o título viraria o
   // do PRIMEIRO item da lista de recuo, e quem escolhesse "Canil" leria "Sala
   // de Estar" no cabeçalho.
-  const tituloDinamico = ambienteId && dadosFiltrados.length > 0 && !semRoteiroProprio
-    ? (dadosFiltrados[0].id === 'gas_central'
-        ? getDynamicAreaName('central_gas', dadosFiltrados[0].titulo, mapping, t)
-        : dadosFiltrados[0].titulo)
-    // A tela deixou de ser só das áreas internas — passa a cobrir as externas
-    // também, então o título genérico não pode mais dizer "internas".
-    : t('areas.ambientesDaCasa', 'Ambientes da casa');
+  /**
+   * Título do cabeçalho.
+   *
+   * Com UMA área casada, o título é o dela. Com MAIS de uma, tem de ser o nome
+   * do ambiente escolhido — não o da primeira da lista: `quarto_adulto` casa
+   * com o quarto de adulto E com o de adolescente, e quem escolhia "Quarto
+   * Adulto" lia "Quarto Adolescente" no cabeçalho. Duas áreas para um ambiente
+   * é proposital (adolescente herda a orientação de criança); o título errado
+   * não era.
+   */
+  const tituloDinamico = useMemo(() => {
+    if (!ambienteId || !dadosFiltrados.length || semRoteiroProprio) {
+      // A tela deixou de ser só das áreas internas — passa a cobrir as
+      // externas também, então o título genérico não pode dizer "internas".
+      return t('areas.ambientesDaCasa', 'Ambientes da casa');
+    }
+    if (dadosFiltrados.length > 1) {
+      const amb = AMBIENTES.find(a => a.id === ambienteId);
+      if (amb) return getDynamicAreaName(ambienteId, t_field(amb, 'nome'), mapping, t);
+    }
+    const area = dadosFiltrados[0];
+    return area.id === 'gas_central'
+      ? getDynamicAreaName('central_gas', area.titulo, mapping, t)
+      : area.titulo;
+  }, [ambienteId, dadosFiltrados, semRoteiroProprio, mapping, t]);
 
   const flatListRef = useRef(null);
 
@@ -234,9 +316,9 @@ export default function AreasInternasScreen({ navigation, route }) {
     const isExpanded = expandedId === item.id;
     const nativeId = getNativeAreaId(item.id);
     const areaState = checklistState[nativeId] || {};
-    const totalItems = (item.oQueFazer || []).length;
+    const totalItems = t_array(item, 'oQueFazer').length;
 
-    const oQueFazerSafe = item.oQueFazer || [];
+    const oQueFazerSafe = t_array(item, 'oQueFazer');
     const naItems = oQueFazerSafe.filter(step => areaState[step] === 'na').length;
     const checkedItems = oQueFazerSafe.filter(step => areaState[step] === true).length;
     const validTotal = totalItems - naItems;
@@ -330,7 +412,7 @@ export default function AreasInternasScreen({ navigation, route }) {
               </View>
 
               <View style={s.questionsContainer}>
-                {(item.oQueFazer || []).map((step, index) => {
+                {t_array(item, 'oQueFazer').map((step, index) => {
                   const state = checklistState[nativeId]?.[step];
 
                   return (
@@ -405,7 +487,7 @@ export default function AreasInternasScreen({ navigation, route }) {
             </View>
 
             {/* EVITE */}
-            {(item.oQueNaoFazer || []).length > 0 && (
+            {t_array(item, 'oQueNaoFazer').length > 0 && (
               <View style={s.sectionContainer}>
                 <View style={s.sectionHeader}>
                   <NeoIcon
@@ -418,7 +500,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                     EVITE
                   </Text>
                 </View>
-                {item.oQueNaoFazer.map((step, index) => (
+                {t_array(item, 'oQueNaoFazer').map((step, index) => (
                   <View key={index} style={s.stepRow}>
                     <View style={s.bulletError} />
                     <Text style={[s.stepText, { color: textBody }]}>{step}</Text>
@@ -439,7 +521,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                     {t('areas.quandoChamarAjuda', 'Quando chamar ajuda')}
                   </Text>
                 </View>
-                <Text style={[s.stepText, { color: textBody }]}>{item.quandoChamarAjuda}</Text>
+                <Text style={[s.stepText, { color: textBody }]}>{t_field(item, 'quandoChamarAjuda')}</Text>
               </View>
             )}
 

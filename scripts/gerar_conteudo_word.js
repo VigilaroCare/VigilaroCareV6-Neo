@@ -128,7 +128,16 @@ function converterConteudo(arquivo) {
 
 // ── 2. _textos-rasos.md, que já é tabela markdown ────────────────────────
 function converterRasos() {
-    const bruto = fs.readFileSync(path.join(ORIGEM, '_textos-rasos.md'), 'utf8');
+    // Leitura protegida: a versão anterior lia sem checar, e como a IIFE do
+    // final não tinha catch, um arquivo ausente virava rejeição não tratada
+    // DEPOIS de os outros .docx já terem sido sobrescritos — o pior momento
+    // possível para abortar, porque as revisões já estariam perdidas.
+    const caminho = path.join(ORIGEM, '_textos-rasos.md');
+    if (!fs.existsSync(caminho)) {
+        console.log('  aviso: _textos-rasos.md não encontrado — documento de prioridade não gerado.');
+        return null;
+    }
+    const bruto = fs.readFileSync(caminho, 'utf8');
     const linhasMd = bruto.split('\n').filter((l) => /^\|\s*[A-Z]{2,5}-\d+\s*\|/.test(l));
     if (!linhasMd.length) return null;
 
@@ -157,6 +166,16 @@ function converterRasos() {
 
 // ── execução ─────────────────────────────────────────────────────────────
 (async () => {
+    if (!fs.existsSync(ORIGEM)) {
+        console.error('Pasta de origem não encontrada: ' + ORIGEM);
+        process.exitCode = 1;
+        return;
+    }
+    const jaExistia = fs.existsSync(DESTINO) && fs.readdirSync(DESTINO).some((f) => f.endsWith('.docx'));
+    if (jaExistia) {
+        console.log('\nATENÇÃO: já existem .docx em ' + path.relative(RAIZ, DESTINO) + '.');
+        console.log('Eles serão SOBRESCRITOS — revisões feitas neles se perdem.\n');
+    }
     fs.mkdirSync(DESTINO, { recursive: true });
     const arquivos = fs.readdirSync(ORIGEM).filter((f) => f.endsWith('.md') && f !== '_textos-rasos.md' && f !== '_INDICE.md');
 
@@ -178,4 +197,8 @@ function converterRasos() {
     console.log('\n' + feitos.length + ' documentos Word em docs/conteudo-editavel/word/  (' + total + ' textos)\n');
     feitos.slice(0, 10).forEach((f) => console.log('  ' + String(f.n).padStart(5) + '  ' + f.nome + '.docx'));
     if (feitos.length > 10) console.log('  ...e mais ' + (feitos.length - 10) + '.');
-})();
+})().catch((e) => {
+    console.error('\nFalhou ao gerar os documentos: ' + (e && e.message ? e.message : e));
+    console.error('Parte dos .docx pode ter sido gravada. Confira a pasta antes de revisar.');
+    process.exitCode = 1;
+});
