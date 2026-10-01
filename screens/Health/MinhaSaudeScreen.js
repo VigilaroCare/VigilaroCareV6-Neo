@@ -14,6 +14,8 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import FichaMedicaService from '../../services/FichaMedicaService';
+import NeoAlert from '../../utils/NeoAlert';
 import EmptyState from '../../components/EmptyState';
 import { SkeletonCard } from '../../components/SkeletonLoader';
 
@@ -37,6 +39,7 @@ export default function MinhaSaudeScreen() {
     const perfilId = route.params?.perfilId ?? null;
 
     const [profile, setProfile] = useState(null);
+    const [compartilhando, setCompartilhando] = useState(false);
     const [others, setOthers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [imageError, setImageError] = useState(false);
@@ -92,21 +95,17 @@ export default function MinhaSaudeScreen() {
     const necessidades = asList(profile?.necessidadesEspeciais);
     const tipoSanguineo = profile?.tipoSanguineo || '';
 
+    // A ficha é montada pelo FichaMedicaService — fonte única. Antes, esta tela
+    // e a do SOS tinham cada uma a sua, e discordavam: a do SOS lia campos que
+    // o formulário de perfil nunca grava e saía SEM condições médicas e SEM
+    // idade. Aqui sai o PDF; o texto colável continua disponível no SOS.
     const handleShare = async () => {
         if (!profile) return;
-        const fmt = (label, arr) => `*${label}:*\n${arr.length ? arr.join(', ') : '—'}`;
-        const msg = `*Ficha de Emergência — ${profile.nome || 'Perfil'} (VigilaroCare)*\n\n` +
-            (tipoSanguineo ? `*Tipo Sanguíneo:* ${tipoSanguineo}\n` : '') +
-            (idade != null ? `*Idade:* ${idade} anos\n` : '') + `\n` +
-            fmt('Condições Médicas', condicoes) + `\n\n` +
-            fmt('Alergias', alergias) + `\n\n` +
-            fmt('Medicamentos em Uso', medicamentos) + `\n\n` +
-            fmt('Necessidades Especiais', necessidades) + `\n\n` +
-            `Gerado por VigilaroCare — Prevenção Familiar`;
-        try {
-            await Share.share({ message: msg, title: `Ficha de ${profile.nome || 'Emergência'}` });
-        } catch (e) {
-            if (__DEV__) console.error('[MinhaSaude] share', e);
+        setCompartilhando(true);
+        const r = await FichaMedicaService.compartilharPdf({ perfil: profile });
+        setCompartilhando(false);
+        if (!r.ok && r.motivo !== 'sem-compartilhamento') {
+            NeoAlert.alert('Ficha médica', 'Não foi possível gerar a ficha agora. Tente novamente.');
         }
     };
 
@@ -315,10 +314,11 @@ export default function MinhaSaudeScreen() {
 
                         <View style={s.actionContainer}>
                             <ButtonNeo
-                                title="Compartilhar Ficha de Emergência"
+                                title={compartilhando ? 'Gerando ficha...' : 'Compartilhar Ficha de Emergência'}
                                 iconName="ShareNetwork"
                                 onPress={handleShare}
                                 type="primary"
+                                disabled={compartilhando || !profile}
                             />
                         </View>
                     </View>

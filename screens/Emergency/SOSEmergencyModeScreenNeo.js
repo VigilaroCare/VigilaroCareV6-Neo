@@ -15,7 +15,7 @@ import * as Clipboard from 'expo-clipboard';
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
 import { Storage } from '../../utils/SecureStorage';
 import ProfileService from '../../services/ProfileService';
-import HealthService from '../../services/HealthService';
+import FichaMedicaService from '../../services/FichaMedicaService';
 
 // Neo Design (Custom Red Theme for SOS)
 import { Neo } from "../../utils/Theme";
@@ -24,67 +24,6 @@ import { H1, H2, H3, Body, Small } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 
 // ─── Helper: gerar Ficha Médica de Emergência ──────────────────────────────
-async function generateMedicalCard(locationCoords) {
-    try {
-        const profile = await ProfileService.getPerfilAtivo();
-        if (!profile) return null;
-
-        const moradia = await ProfileService.getMoradia();
-        let healthData = null;
-        try {
-            healthData = await HealthService.getHealthSummary(profile.id);
-        } catch (e) { /* saúde opcional */ }
-
-        // Dados do perfil
-        const nome = profile.nome || 'Não informado';
-        const idade = profile.idade || '—';
-        const sexo = profile.sexo === 'M' ? 'Masculino' : profile.sexo === 'F' ? 'Feminino' : profile.sexo || '—';
-        const tipoSanguineo = profile.tipoSanguineo || profile.tipo_sanguineo || '—';
-        const alergias = profile.alergias || profile.alergia || '—';
-        const condicoes = profile.condicoesEspeciais || profile.condicoes || '';
-
-        // Medicamentos
-        let medsText = 'Nenhum cadastrado';
-        if (healthData?.medications?.length > 0) {
-            medsText = healthData.medications
-                .map(m => `• ${m.nome || m.name}${m.dosagem ? ` (${m.dosagem})` : ''}${m.frequencia ? `, ${m.frequencia}` : ''}`)
-                .join('\n');
-        }
-
-        // Localização
-        let locationText = '';
-        if (locationCoords) {
-            locationText = `\n📍 LOCALIZAÇÃO:\nhttps://maps.google.com/?q=${locationCoords.latitude},${locationCoords.longitude}`;
-        }
-
-        // Endereço da moradia
-        let enderecoText = '';
-        if (moradia) {
-            const parts = [];
-            if (moradia.endereco) parts.push(moradia.endereco);
-            if (moradia.cidade) parts.push(moradia.cidade);
-            if (moradia.estado) parts.push(moradia.estado);
-            if (moradia.tipo) parts.push(`(${moradia.tipo})`);
-            if (moradia.andar) parts.push(`${moradia.andar}º andar`);
-            if (parts.length > 0) enderecoText = `\n🏠 ENDEREÇO: ${parts.join(', ')}`;
-        }
-
-        const ficha = `🚨 *FICHA MÉDICA DE EMERGÊNCIA* 🚨\n\n` +
-            `👤 *PACIENTE:* ${nome}\n` +
-            `📅 *IDADE:* ${idade} anos\n` +
-            `⚧ *SEXO:* ${sexo}\n` +
-            `🩸 *TIPO SANGUÍNEO:* ${tipoSanguineo}${enderecoText}${locationText}\n\n` +
-            `⚠️ *ALERGIAS:* ${alergias}\n\n` +
-            `💊 *MEDICAMENTOS EM USO:*\n${medsText}\n` +
-            `${condicoes ? `\n🏥 *CONDIÇÕES ESPECIAIS:*\n${condicoes}\n` : ''}\n` +
-            `_Gerado por Vigilaro Care - ${new Date().toLocaleString('pt-BR')}_`;
-
-        return ficha;
-    } catch (e) {
-        console.error('Erro ao gerar ficha médica:', e);
-        return null;
-    }
-}
 
 import NeoAlert from '../../utils/NeoAlert';
 
@@ -264,15 +203,32 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     };
 
     // ── Gerar e exibir Ficha Médica ──
+    // A ficha vem do FichaMedicaService — fonte única com a tela Minha Saúde.
+    // O gerador que vivia aqui lia `profile.condicoesEspeciais`, `profile.
+    // condicoes` e `profile.idade`, três campos que o formulário de perfil
+    // nunca grava: a ficha entregue ao socorrista saía SEM condições médicas e
+    // SEM idade, com o dado correto disponível o tempo todo em
+    // HealthService.getHealthSummary().
     const handleFichaMedica = async () => {
         setLoadingFicha(true);
-        const ficha = await generateMedicalCard(lastLocation);
+        const dados = await FichaMedicaService.coletar({ coords: lastLocation });
         setLoadingFicha(false);
-        if (ficha) {
-            setFichaTexto(ficha);
+        if (dados) {
+            setFichaTexto(FichaMedicaService.gerarTexto(dados));
             setFichaModalVisible(true);
         } else {
             NeoAlert.alert('Erro', 'Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.');
+        }
+    };
+
+    // Em emergência o texto é o caminho rápido — cola em qualquer campo, abre
+    // em tela bloqueada. O PDF fica ao lado, para quem precisa do documento.
+    const handleFichaPdf = async () => {
+        setLoadingFicha(true);
+        const r = await FichaMedicaService.compartilharPdf({ coords: lastLocation });
+        setLoadingFicha(false);
+        if (!r.ok && r.motivo !== 'sem-compartilhamento') {
+            NeoAlert.alert('Ficha médica', 'Não foi possível gerar o PDF agora. Use o texto, que funciona offline.');
         }
     };
 
@@ -572,9 +528,22 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                     <NeoIcon name="Copy" size={24} color="#FFF" style={{ marginRight: 12 }} />
                                     <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Copiar Ficha</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={handleShareFicha} style={{ backgroundColor: Neo.colors.neutral[200], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16 }}>
+                                <TouchableOpacity onPress={handleShareFicha} style={{ backgroundColor: Neo.colors.neutral[200], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
                                     <NeoIcon name="ShareNetwork" size={24} color={Neo.colors.neutral[800]} style={{ marginRight: 12 }} />
                                     <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 16 }}>Compartilhar</Text>
+                                </TouchableOpacity>
+                                {/* O PDF fica por último de propósito: em emergência o texto
+                                    resolve mais rápido. O documento serve ao hospital e ao
+                                    médico, não ao primeiro minuto. */}
+                                <TouchableOpacity
+                                    onPress={handleFichaPdf}
+                                    disabled={loadingFicha}
+                                    style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: Neo.colors.neutral[400], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 14, borderRadius: 16, opacity: loadingFicha ? 0.5 : 1 }}
+                                >
+                                    <NeoIcon name="DocumentText" size={22} color={Neo.colors.neutral[700]} style={{ marginRight: 10 }} />
+                                    <Text style={{ color: Neo.colors.neutral[700], fontWeight: '600', fontSize: 15 }}>
+                                        {loadingFicha ? 'Gerando PDF...' : 'Salvar em PDF'}
+                                    </Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
