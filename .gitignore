@@ -95,6 +95,14 @@ backend-proxy/.env
 !docs/conteudo-editavel/
 !docs/conteudo-editavel/**
 
+# Revisao editorial por TEMA (educacao, atividades eventuais, primeiros
+# socorros, explicativos). Substitui na pratica o `conteudo-editavel` acima:
+# aquele exportou tudo em 52 arquivos de tabela e o Agnaldo disse que o formato
+# "mostrou-se trabalhoso". Versionado porque o `_manifesto.json` guarda o texto
+# original de cada codigo — e por ele que o .docx devolvido vira diff de codigo.
+!docs/revisao-conteudo/
+!docs/revisao-conteudo/**
+
 # Skills de projeto do Claude Code. Ficam sob .claude/skills/<nome>/SKILL.md —
 # é o único caminho que a ferramenta carrega. Sem esta whitelist o *.md acima
 # come a definição da skill e o clone limpo vem com a pasta vazia.
