@@ -52,6 +52,13 @@ backend-proxy/.env
 *.json
 !app.json
 !package.json
+# Config de deploy do proxy na Vercel — o `*.json` acima a engolia.
+!backend-proxy/vercel.json
+
+# Documentacao do proxy. O `*.md` do whitelist ja tinha engolido o
+# ATTESTATION.md sem ninguem notar — ele existia em disco e nunca esteve no git.
+!backend-proxy/ATTESTATION.md
+!backend-proxy/DEPLOY.md
 !package-lock.json
 !tsconfig.json
 !iconMapUpdates.json
