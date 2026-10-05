@@ -25,8 +25,19 @@ export const Config = {
     // BACKEND PROXY — Vigilaro
     // O fallback aponta para o IP local do seu computador rodando o server.js
     // ---------------------------------------------------------------------------
-    VIGILARO_PROXY_URL: process.env.EXPO_PUBLIC_VIGILARO_PROXY_URL || 
-        (__DEV__ ? 'http://192.168.100.65:3000' : 'https://vigilaro-proxy.onrender.com'),
+    // Em DEV cai no IP da máquina que roda o server.js. Em PRODUÇÃO não há
+    // fallback, de propósito.
+    //
+    // Havia um: `https://vigilaro-proxy.onrender.com`. Verificado em 05/10/2026,
+    // esse host responde 404 com `x-render-routing: no-server` — ou seja, não
+    // existe serviço nenhum ali. Um build de loja sem
+    // EXPO_PUBLIC_VIGILARO_PROXY_URL nos EAS Secrets ia bater num endereço
+    // morto e receber 404 em toda chamada de IA e de SMS, que é o erro mais
+    // difícil de diagnosticar: parece problema de rede ou de conta.
+    //
+    // Sem fallback, a ausência de configuração falha na hora, dizendo o que é.
+    VIGILARO_PROXY_URL: process.env.EXPO_PUBLIC_VIGILARO_PROXY_URL
+        || (__DEV__ ? 'http://192.168.100.65:3000' : ''),
     // Token publico do cliente mobile. Nao trate como segredo: qualquer APK/IPA
     // pode expor esse valor. O backend deve combinar isso com rate limiting,
     // allow-list, monitoramento e, idealmente, attestation por plataforma.
@@ -51,3 +62,21 @@ export const Config = {
     // ---------------------------------------------------------------------------
     ELEVENLABS_VOICE_ID: 'cgSgspJ2msm6clMCkdW9', // Jessica (pt-br)
 };
+
+/**
+ * O proxy está configurado? Tudo que depende dele — IA, scanner, voz, SMS do
+ * cuidador — para sem isto.
+ *
+ * Checar explicitamente evita o pior modo de falha: URL vazia vira requisição
+ * relativa, e o erro que chega ao usuário fala de JSON ou de rede, nunca de
+ * configuração ausente. Quem for diagnosticar perde horas no lugar errado.
+ */
+export const PROXY_CONFIGURADO = Boolean(Config.VIGILARO_PROXY_URL);
+
+if (__DEV__ && !PROXY_CONFIGURADO) {
+    console.warn(
+        '[Config] EXPO_PUBLIC_VIGILARO_PROXY_URL não definida e não há fallback '
+        + 'em produção. IA, scanner e SMS do cuidador não vão funcionar. '
+        + 'Defina a variável nos EAS Secrets antes de gerar o build de loja.'
+    );
+}
