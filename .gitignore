@@ -85,6 +85,10 @@ backend-proxy/.env
 !docs/PENDENCIAS.md
 !docs/CONFORMIDADE_IA_E_DIREITOS.md
 !docs/CONFORMIDADE_LEGAL.md
+# Fonte canonica do conteudo educativo e de risco do app: o livro do Agnaldo.
+# Estava so neste disco, fora do git. Toda copy nova de prevencao sai daqui, e
+# por isso ela precisa viajar com o repositorio e ter historico de versoes.
+!guia-completo-prevencao.md
 
 # Textos do app extraidos para revisao editorial. Versionados de proposito:
 # e por diff que as edicoes do Agnaldo voltam para o codigo.
