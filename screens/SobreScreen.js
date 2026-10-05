@@ -60,6 +60,33 @@ export default function SobreScreen({ navigation }) {
             </Body>
           </NeoCard>
 
+          {/* Autoria — quem responde pelo conteúdo. Não é vaidade nem marketing:
+              num app que orienta prevenção, a qualificação de quem escreve é o
+              que sustenta a orientação, e é o que a revisão das lojas procura
+              em app de saúde e segurança.
+
+              A empresa empregadora NÃO é nomeada, de propósito. Trajetória
+              profissional é fato biográfico e pode ser declarada, mas citar a
+              marca do empregador num produto comercial sugere patrocínio ou
+              chancela que não existem — e cria problema com a empresa antes de
+              criar com a lei. O que dá autoridade aqui é o ambiente (refinaria,
+              terminal de combustíveis), não o nome no contracheque.
+
+              O authorScope fecha o cartão fixando a fronteira da qualificação:
+              segurança do trabalho não é medicina. É a mesma linha que já
+              derrubou a gestão de medicamentos no Minha Saúde. */}
+          <NeoCard variant="elevated" style={styles.card}>
+            <View style={styles.cardHeader}>
+              <NeoIcon name="ShieldTick" size={24} color={Neo.colors.primary[600]} />
+              <H3 style={styles.cardTitle}>{t('about.authorTitle')}</H3>
+            </View>
+            <Body style={styles.cardText}>{t('about.authorText')}</Body>
+            <Body style={[styles.cardText, { marginTop: 12 }]}>{t('about.authorMethod')}</Body>
+            <Small style={styles.authorBook}>{t('about.authorBook')}</Small>
+            <View style={styles.authorDivider} />
+            <Small style={styles.authorScope}>{t('about.authorScope')}</Small>
+          </NeoCard>
+
           {/* Créditos e fontes — obrigação, não cortesia: a base de produtos
               Open Food Facts é licenciada em ODbL, que EXIGE atribuição. A
               última linha declara o uso de IA nas ilustrações, seguindo a
@@ -211,6 +238,20 @@ const styles = StyleSheet.create({
   cardText: {
     color: Neo.colors.neutral[600],
     lineHeight: 22,
+  },
+  authorBook: {
+    color: Neo.colors.neutral[500],
+    marginTop: 12,
+    lineHeight: 18,
+  },
+  authorDivider: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: 'rgba(0,0,0,0.08)',
+    marginVertical: 14,
+  },
+  authorScope: {
+    color: Neo.colors.neutral[500],
+    lineHeight: 18,
   },
   sectionTitle: {
     marginBottom: 8,
