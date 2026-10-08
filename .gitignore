@@ -102,6 +102,9 @@ backend-proxy/.env
 # original de cada codigo — e por ele que o .docx devolvido vira diff de codigo.
 !docs/revisao-conteudo/
 !docs/revisao-conteudo/**
+# ...menos os ficheiros de lock que o Word cria enquanto o documento esta
+# aberto. Sao temporarios e nao dizem nada sobre o conteudo.
+docs/revisao-conteudo/~$*
 
 # Skills de projeto do Claude Code. Ficam sob .claude/skills/<nome>/SKILL.md —
 # é o único caminho que a ferramenta carrega. Sem esta whitelist o *.md acima

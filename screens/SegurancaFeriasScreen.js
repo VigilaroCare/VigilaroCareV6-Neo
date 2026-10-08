@@ -70,15 +70,15 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Seguros para niños en las puertas traseras.'
             ],
             emergencias: [
-                'Acidente: Ligue 193 (Bombeiros) ou 191 (PRF).',
+                'Acidente: ligue {{FIRE_NUMBER}} (Bombeiros).',
                 'Pane: Sinalize com triângulo, vá para local seguro.'
             ],
             emergencias_en: [
-                'Accident: Call 193 (Firefighters) or 191 (Highway Police).',
+                'Accident: call the fire service on {{FIRE_NUMBER}}.',
                 'Breakdown: Signal with triangle, move to a safe place.'
             ],
             emergencias_es: [
-                'Accidente: Llame al 193 (Bomberos) o 191 (Policía de Carreteras).',
+                'Accidente: llame a los Bomberos al {{FIRE_NUMBER}}.',
                 'Avería: Señale con triángulo, vaya a un lugar seguro.'
             ],
             dicasExtras: [

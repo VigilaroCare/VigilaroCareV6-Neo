@@ -7709,7 +7709,7 @@
     "item": "Comunicação",
     "chave": "content[]",
     "linha": 453,
-    "original": "**Contatos Salvos:** {{EMERGENCY_MEDICAL}}, Bombeiros (193), Centro de Intoxicação (CIATOX) e familiares."
+    "original": "**Contatos Salvos:** {{EMERGENCY_MEDICAL}}, Bombeiros ({{FIRE_NUMBER}}), {{POISON_CONTROL}} e familiares."
   },
   "ED-0793": {
     "arquivo": "data/kits/educational_content.js",
@@ -8172,7 +8172,7 @@
     "rotulo": "Gas",
     "item": "Sinais e Perigos Iniciais",
     "chave": "title",
-    "linha": 9,
+    "linha": 37,
     "original": "Sinais e Perigos Iniciais"
   },
   "AE-0026": {
@@ -8180,42 +8180,18 @@
     "rotulo": "Gas",
     "item": "Sinais e Perigos Iniciais",
     "chave": "description",
-    "linha": 14,
-    "original": "O gás de cozinha é mais pesado que o ar e se acumula no chão. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar uma explosão violenta."
+    "linha": 43,
+    "original": "O gás de cozinha é mais pesado que o ar e se acumula no chão e nos ralos. Em ambiente fechado, qualquer faísca — até a do interruptor de luz — pode causar uma explosão violenta."
   },
   "AE-0027": {
     "arquivo": "data/safety_gas.js",
     "rotulo": "Gas",
-    "item": "Regras de Ouro (Ação Imediata)",
+    "item": "Ação Imediata (nesta ordem)",
     "chave": "title",
-    "linha": 17,
-    "original": "Regras de Ouro (Ação Imediata)"
+    "linha": 51,
+    "original": "Ação Imediata (nesta ordem)"
   },
   "AE-0028": {
-    "arquivo": "data/safety_gas.js",
-    "rotulo": "Gas",
-    "item": "Regras de Ouro (Ação Imediata)",
-    "chave": "description",
-    "linha": 22,
-    "original": "1. NUNCA acenda luzes, risque fósforos ou mexa em tomadas se sentir cheiro de gás.\n2. Não utilize o celular dentro do cômodo afetado.\n3. Abra portas e janelas na hora para o gás sair, feche o botijão e saia de casa.\n4. Ligue para os Bombeiros no 193 de um local aberto na calçada."
-  },
-  "AE-0029": {
-    "arquivo": "data/safety_gas.js",
-    "rotulo": "Gas",
-    "item": "Verificações Críticas de Segurança",
-    "chave": "title",
-    "linha": 25,
-    "original": "Verificações Críticas de Segurança"
-  },
-  "AE-0030": {
-    "arquivo": "data/safety_gas.js",
-    "rotulo": "Gas",
-    "item": "Verificações Críticas de Segurança",
-    "chave": "description",
-    "linha": 30,
-    "original": "• Saia de casa sem mexer em nada elétrico.\n• Gire a chave do regulador do botijão no sentido horário para fechar o registro.\n• Abra todas as janelas e portas para o gás dispersar.\n• Só ligue para os bombeiros e use o celular quando estiver do lado de fora do imóvel."
-  },
-  "AE-0031": {
     "arquivo": "data/safety_fire.js",
     "rotulo": "Incendio",
     "item": "Prevenção de Incêndios",
@@ -8223,7 +8199,7 @@
     "linha": 7,
     "original": "A prevenção é a melhor ferramenta contra incêndios. Conheça os riscos e saiba como agir."
   },
-  "AE-0032": {
+  "AE-0029": {
     "arquivo": "data/safety_fire.js",
     "rotulo": "Incendio",
     "item": "Cozinha Segura",
@@ -8231,7 +8207,7 @@
     "linha": 13,
     "original": "Nunca jogue água em panelas com óleo pegando fogo. Desligue o fogo e com calma, cubra a panela com uma tampa para abafar as chamas."
   },
-  "AE-0033": {
+  "AE-0030": {
     "arquivo": "data/safety_fire.js",
     "rotulo": "Incendio",
     "item": "Instalações Elétricas",
@@ -8239,7 +8215,7 @@
     "linha": 19,
     "original": "Evite o uso de muitos adaptadores (\"benjamins\") na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga."
   },
-  "AE-0034": {
+  "AE-0031": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "Guia de Brinquedos (Expert)",
@@ -8247,7 +8223,7 @@
     "linha": 3,
     "original": "Guia de Brinquedos (Expert)"
   },
-  "AE-0035": {
+  "AE-0032": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "Guia de Brinquedos (Expert)",
@@ -8255,7 +8231,7 @@
     "linha": 10,
     "original": "Brinquedos devem divertir, não ferir. Aqui está a auditoria completa para o quarto de brincar, baseada no método \"Memória de Elefante\"."
   },
-  "AE-0036": {
+  "AE-0033": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "1. A Regra de Ouro (Compra)",
@@ -8263,7 +8239,7 @@
     "linha": 15,
     "original": "1. A Regra de Ouro (Compra)"
   },
-  "AE-0037": {
+  "AE-0034": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "1. A Regra de Ouro (Compra)",
@@ -8271,7 +8247,7 @@
     "linha": 20,
     "original": "Antes de comprar, verifique:\n\n• Classificação Etária: Respeite a faixa indicada. Não é sobre inteligência, é sobre peças engolíveis.\n• Selo INMETRO: Obrigatório. Garante testes químicos e físicos.\n• Materiais: Evite vidro ou metal para menores de 8 anos. Prefira plásticos atóxicos.\n• Fique atendo aos brinquedos de faixas etárias diferentes nas interações"
   },
-  "AE-0038": {
+  "AE-0035": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "2. Teste do Rolo (Asfixia)",
@@ -8279,7 +8255,7 @@
     "linha": 25,
     "original": "2. Teste do Rolo (Asfixia)"
   },
-  "AE-0039": {
+  "AE-0036": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "2. Teste do Rolo (Asfixia)",
@@ -8287,7 +8263,7 @@
     "linha": 30,
     "original": "Para crianças menores de 3 anos, faça este teste:\n\nSe o brinquedo (ou qualquer parte dele) passar por dentro de um rolo de papel higiênico, ele é PERIGOSO.\n\nIsso significa que é pequeno o suficiente para bloquear a traqueia e causar asfixia."
   },
-  "AE-0040": {
+  "AE-0037": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "3. Verificação de Perigos",
@@ -8295,7 +8271,7 @@
     "linha": 35,
     "original": "3. Verificação de Perigos"
   },
-  "AE-0041": {
+  "AE-0038": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "3. Verificação de Perigos",
@@ -8303,7 +8279,7 @@
     "linha": 40,
     "original": "Faça uma varredura nos brinquedos atuais:\n\n• Olhos e Botões: Em pelúcias, verifique se olhos/narizes estão costurados firmemente.\n• Costuras: Pelúcias rasgadas podem soltar enchimento (risco de sufocamento ou ingestão).\n• Pilhas e Baterias: O compartimento DEVE ser parafusado. Baterias botão são letais se engolidas (queimadura química interna)."
   },
-  "AE-0042": {
+  "AE-0039": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "4. Itens Proibidos (Riscos Altos)",
@@ -8311,7 +8287,7 @@
     "linha": 45,
     "original": "4. Itens Proibidos (Riscos Altos)"
   },
-  "AE-0043": {
+  "AE-0040": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "4. Itens Proibidos (Riscos Altos)",
@@ -8319,7 +8295,7 @@
     "linha": 50,
     "original": "• Cordões e Fitas: Risco de estrangulamento. Remova de chupetas e brinquedos de berço.\n• Bexigas (Balões): Causa #1 de asfixia em festas. Se estourar, recolha todos os pedaços imediatamente.\n• Andadores: Contraindicados pela Sociedade Brasileira de Pediatria (risco de traumatismo craniano)."
   },
-  "AE-0044": {
+  "AE-0041": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "5. Organização Segura",
@@ -8327,7 +8303,7 @@
     "linha": 60,
     "original": "• Separação: Irmãos mais velhos devem manter seus brinquedos (Lego, peças pequenas) longe dos caçulas.\n• Berço Livre: Nada de pelúcias ou brinquedos gigantes no berço (risco de sufocamento).\n• Móbiles: Retire assim que o bebê conseguir sentar ou alcançar (risco de se enrolar)."
   },
-  "AE-0045": {
+  "AE-0042": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "6. Brincadeiras ao Ar Livre e Água",
@@ -8335,7 +8311,7 @@
     "linha": 65,
     "original": "6. Brincadeiras ao Ar Livre e Água"
   },
-  "AE-0046": {
+  "AE-0043": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
     "item": "6. Brincadeiras ao Ar Livre e Água",
@@ -8343,7 +8319,7 @@
     "linha": 70,
     "original": "• Piscinas Infláveis e Baldes: Esvazie imediatamente após o término da brincadeira. Afogamentos infantis ocorrem em vãos com menos de 10 centímetros de água.\n• Bicicletas e Patinetes: O uso de capacete afivelado deve ser obrigatório. Quedas sem proteção na cabeça são a maior causa de traumas infantis graves."
   },
-  "AE-0047": {
+  "AE-0044": {
     "arquivo": "data/safety_mobility.js",
     "rotulo": "Mobilidade",
     "item": "Casa Segura (Quedas)",
@@ -8351,7 +8327,7 @@
     "linha": 10,
     "original": "Remova tapetes soltos (use fitas dupla-face). Melhore a iluminação (luzes noturnas no corredor). Instale barras de apoio no box e vaso sanitário."
   },
-  "AE-0048": {
+  "AE-0045": {
     "arquivo": "data/safety_mobility.js",
     "rotulo": "Mobilidade",
     "item": "Adaptações Simples",
@@ -8359,7 +8335,7 @@
     "linha": 14,
     "original": "Eleve a altura de sofás e poltronas (calços) para facilitar levantar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas."
   },
-  "AE-0049": {
+  "AE-0046": {
     "arquivo": "data/safety_mobility.js",
     "rotulo": "Mobilidade",
     "item": "Segurança no Banho",
@@ -8367,7 +8343,7 @@
     "linha": 18,
     "original": "Utilize cadeira de banho ou banco firme. Tapete antiderrapante dentro e fora do box. Nunca deixe a pessoa trancada no banheiro (fechadura deve abrir por fora)."
   },
-  "AE-0050": {
+  "AE-0047": {
     "arquivo": "data/safety_mobility.js",
     "rotulo": "Mobilidade",
     "item": "Emergência",
@@ -8375,7 +8351,7 @@
     "linha": 22,
     "original": "Tenha um botão de pânico ou celular sempre ao alcance. Cadastre vizinhos na discagem rápida. Deixe uma chave extra com alguém de confiança."
   },
-  "AE-0051": {
+  "AE-0048": {
     "arquivo": "data/safety_mobility.js",
     "rotulo": "Mobilidade",
     "item": "Evacuação",
@@ -8383,7 +8359,7 @@
     "linha": 26,
     "original": "Em caso de incêndio, planeje como sair com cadeira de rodas ou andador. Mantenha os corredores sempre livres de obstáculos."
   },
-  "AE-0052": {
+  "AE-0049": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8391,7 +8367,7 @@
     "linha": 16,
     "original": "Áreas em obra isoladas com barreira física (tapume, porta trancada)"
   },
-  "AE-0053": {
+  "AE-0050": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8399,7 +8375,7 @@
     "linha": 17,
     "original": "Sinalização \"Área em Obra\" visível nas entradas"
   },
-  "AE-0054": {
+  "AE-0051": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8407,7 +8383,7 @@
     "linha": 18,
     "original": "Caminho livre e seguro entre cômodos habitados"
   },
-  "AE-0055": {
+  "AE-0052": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8415,7 +8391,7 @@
     "linha": 21,
     "original": "Ferramentas cortantes guardadas ao final do expediente"
   },
-  "AE-0056": {
+  "AE-0053": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8423,7 +8399,7 @@
     "linha": 22,
     "original": "Solventes, tintas e produtos químicos em local ventilado e trancado"
   },
-  "AE-0057": {
+  "AE-0054": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8431,7 +8407,7 @@
     "linha": 23,
     "original": "Pregos, parafusos e materiais pontiagudos recolhidos do chão"
   },
-  "AE-0058": {
+  "AE-0055": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8439,7 +8415,7 @@
     "linha": 26,
     "original": "Extensões elétricas organizadas e longe de água"
   },
-  "AE-0059": {
+  "AE-0056": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8447,7 +8423,7 @@
     "linha": 27,
     "original": "Disjuntor da área em obra desligado ao final do dia"
   },
-  "AE-0060": {
+  "AE-0057": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8455,7 +8431,7 @@
     "linha": 28,
     "original": "Registros de água e gás verificados antes de intervenções"
   },
-  "AE-0061": {
+  "AE-0058": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8463,7 +8439,7 @@
     "linha": 31,
     "original": "Trabalhadores com EPIs adequados (capacete, luvas, óculos)"
   },
-  "AE-0062": {
+  "AE-0059": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8471,7 +8447,7 @@
     "linha": 32,
     "original": "Crianças e pets sem acesso à área de obra"
   },
-  "AE-0063": {
+  "AE-0060": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8479,7 +8455,7 @@
     "linha": 33,
     "original": "Entulho removido diariamente ou em caçamba fechada"
   },
-  "AE-0064": {
+  "AE-0061": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8487,7 +8463,7 @@
     "linha": 36,
     "original": "Ventilação adequada durante uso de tintas e vernizes"
   },
-  "AE-0065": {
+  "AE-0062": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8495,7 +8471,7 @@
     "linha": 37,
     "original": "Proteção contra poeira nos cômodos habitados (vedação de portas)"
   },
-  "AE-0066": {
+  "AE-0063": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8503,7 +8479,7 @@
     "linha": 38,
     "original": "Rota de fuga desobstruída durante toda a obra"
   },
-  "AE-0067": {
+  "AE-0064": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8511,7 +8487,7 @@
     "linha": 43,
     "original": "Sinalização de obra nos acessos e áreas comuns do prédio"
   },
-  "AE-0068": {
+  "AE-0065": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8519,7 +8495,7 @@
     "linha": 44,
     "original": "Escadas e corredores livres — sem obstruir rotas de fuga"
   },
-  "AE-0069": {
+  "AE-0066": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8527,7 +8503,7 @@
     "linha": 45,
     "original": "Proteção interna no elevador de serviço (papelão/compensado)"
   },
-  "AE-0070": {
+  "AE-0067": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8535,7 +8511,7 @@
     "linha": 48,
     "original": "Respeito aos horários de obra do regimento interno"
   },
-  "AE-0071": {
+  "AE-0068": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8543,7 +8519,7 @@
     "linha": 49,
     "original": "Vizinhos diretos avisados sobre tipo e duração da obra"
   },
-  "AE-0072": {
+  "AE-0069": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8551,7 +8527,7 @@
     "linha": 50,
     "original": "Limpeza de resíduos nas áreas comuns ao final do dia"
   },
-  "AE-0073": {
+  "AE-0070": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8559,7 +8535,7 @@
     "linha": 53,
     "original": "Caçamba em local permitido, sinalizada e dentro da validade"
   },
-  "AE-0074": {
+  "AE-0071": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8567,7 +8543,7 @@
     "linha": 54,
     "original": "Materiais estocados dentro do apartamento, não no corredor"
   },
-  "AE-0075": {
+  "AE-0072": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8575,7 +8551,7 @@
     "linha": 55,
     "original": "Vedação de porta de entrada para evitar poeira no corredor"
   },
-  "AE-0076": {
+  "AE-0073": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8583,7 +8559,7 @@
     "linha": 58,
     "original": "Confirmação com engenheiro antes de demolir paredes"
   },
-  "AE-0077": {
+  "AE-0074": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8591,7 +8567,7 @@
     "linha": 59,
     "original": "Teste de impermeabilização antes de fechar pisos molhados"
   },
-  "AE-0078": {
+  "AE-0075": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8599,7 +8575,7 @@
     "linha": 60,
     "original": "Plantas de elétrica e gás consultadas antes de perfurações"
   },
-  "AE-0079": {
+  "AE-0076": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8607,7 +8583,7 @@
     "linha": 63,
     "original": "Trabalhadores identificados e cadastrados na portaria"
   },
-  "AE-0080": {
+  "AE-0077": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8615,7 +8591,7 @@
     "linha": 64,
     "original": "EPIs obrigatórios para trabalho em altura ou demolição"
   },
-  "AE-0081": {
+  "AE-0078": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8623,7 +8599,7 @@
     "linha": 69,
     "original": "Animais domésticos e de criação afastados da área de obra"
   },
-  "AE-0082": {
+  "AE-0079": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8631,7 +8607,7 @@
     "linha": 70,
     "original": "Inspeção de ninhos/tocas antes de escavar ou desmatar"
   },
-  "AE-0083": {
+  "AE-0080": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8639,7 +8615,7 @@
     "linha": 71,
     "original": "Buracos, valas e escavações sinalizados e cercados"
   },
-  "AE-0084": {
+  "AE-0081": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8647,7 +8623,7 @@
     "linha": 74,
     "original": "Máquinas pesadas travadas e chave retirada quando paradas"
   },
-  "AE-0085": {
+  "AE-0082": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8655,7 +8631,7 @@
     "linha": 75,
     "original": "Perímetro de segurança ao redor de máquinas em operação"
   },
-  "AE-0086": {
+  "AE-0083": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8663,7 +8639,7 @@
     "linha": 76,
     "original": "Combustível armazenado longe de fontes de calor"
   },
-  "AE-0087": {
+  "AE-0084": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8671,7 +8647,7 @@
     "linha": 79,
     "original": "Distância segura de rede elétrica aérea (mín. 3m)"
   },
-  "AE-0088": {
+  "AE-0085": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8679,7 +8655,7 @@
     "linha": 80,
     "original": "Localização de fiação subterrânea antes de escavar"
   },
-  "AE-0089": {
+  "AE-0086": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8687,7 +8663,7 @@
     "linha": 81,
     "original": "Poços, cisternas e fossas abertas cercados e sinalizados"
   },
-  "AE-0090": {
+  "AE-0087": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8695,7 +8671,7 @@
     "linha": 84,
     "original": "Prevenção de incêndio em vegetação seca — extintor acessível"
   },
-  "AE-0091": {
+  "AE-0088": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8703,7 +8679,7 @@
     "linha": 85,
     "original": "Suspender trabalhos em campo aberto durante tempestades"
   },
-  "AE-0092": {
+  "AE-0089": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8711,7 +8687,7 @@
     "linha": 86,
     "original": "Água potável e sombra disponíveis para trabalhadores"
   },
-  "AE-0093": {
+  "AE-0090": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8719,7 +8695,7 @@
     "linha": 89,
     "original": "Porteira/portão trancado para evitar acesso de terceiros"
   },
-  "AE-0094": {
+  "AE-0091": {
     "arquivo": "data/renovationChecklists.js",
     "rotulo": "Obra e reforma",
     "item": "(sem titulo)",
@@ -8727,7 +8703,7 @@
     "linha": 90,
     "original": "Kit de primeiros socorros acessível no local da obra"
   },
-  "AE-0095": {
+  "AE-0092": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8735,7 +8711,7 @@
     "linha": 14,
     "original": "PCD / Mobilidade Reduzida"
   },
-  "AE-0096": {
+  "AE-0093": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8743,7 +8719,7 @@
     "linha": 16,
     "original": "Crianças (Hiperativas/Arteiras)"
   },
-  "AE-0097": {
+  "AE-0094": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8751,7 +8727,7 @@
     "linha": 17,
     "original": "Enfermos / Convalescentes"
   },
-  "AE-0098": {
+  "AE-0095": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8759,7 +8735,7 @@
     "linha": 28,
     "original": "Entrada desobstruída e bem iluminada"
   },
-  "AE-0099": {
+  "AE-0096": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8767,7 +8743,7 @@
     "linha": 29,
     "original": "Pisos secos e sem objetos no caminho"
   },
-  "AE-0100": {
+  "AE-0097": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8775,7 +8751,7 @@
     "linha": 30,
     "original": "Animais em local seguro ou com guia/coleira"
   },
-  "AE-0101": {
+  "AE-0098": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8783,7 +8759,7 @@
     "linha": 33,
     "original": "Piscina cercada, coberta ou com alarme ativo"
   },
-  "AE-0102": {
+  "AE-0099": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8791,7 +8767,7 @@
     "linha": 34,
     "original": "Churrasqueira/fogueira com perímetro seguro delimitado"
   },
-  "AE-0103": {
+  "AE-0100": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8799,7 +8775,7 @@
     "linha": 35,
     "original": "Iluminação externa funcionando (quintal, escada, varanda)"
   },
-  "AE-0104": {
+  "AE-0101": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8807,7 +8783,7 @@
     "linha": 38,
     "original": "Perguntou sobre alergias alimentares dos convidados"
   },
-  "AE-0105": {
+  "AE-0102": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8815,7 +8791,7 @@
     "linha": 39,
     "original": "Bebidas alcoólicas fora do alcance de menores"
   },
-  "AE-0106": {
+  "AE-0103": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8823,7 +8799,7 @@
     "linha": 40,
     "original": "Facas e utensílios cortantes guardados durante o evento"
   },
-  "AE-0107": {
+  "AE-0104": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8831,7 +8807,7 @@
     "linha": 43,
     "original": "Extensões elétricas protegidas e longe de água/passagem"
   },
-  "AE-0108": {
+  "AE-0105": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8839,7 +8815,7 @@
     "linha": 44,
     "original": "Endereço e telefone de emergência à mão para convidados"
   },
-  "AE-0109": {
+  "AE-0106": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8847,7 +8823,7 @@
     "linha": 45,
     "original": "Pessoa designada para supervisão de crianças e pets"
   },
-  "AE-0110": {
+  "AE-0107": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8855,7 +8831,7 @@
     "linha": 49,
     "original": "Retirar tapetes soltos e capachos escorregadios"
   },
-  "AE-0111": {
+  "AE-0108": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8863,7 +8839,7 @@
     "linha": 50,
     "original": "Sinalizar degraus e desníveis com fita antiderrapante"
   },
-  "AE-0112": {
+  "AE-0109": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8871,7 +8847,7 @@
     "linha": 51,
     "original": "Disponibilizar cadeira ou barra de apoio no banheiro"
   },
-  "AE-0113": {
+  "AE-0110": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8879,7 +8855,7 @@
     "linha": 52,
     "original": "Cadeira confortável reservada em local acessível"
   },
-  "AE-0114": {
+  "AE-0111": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8887,7 +8863,7 @@
     "linha": 53,
     "original": "Saber se o visitante toma medicação com horário fixo"
   },
-  "AE-0115": {
+  "AE-0112": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8895,7 +8871,7 @@
     "linha": 56,
     "original": "Verificar largura de portas para cadeira de rodas (mín. 80cm)"
   },
-  "AE-0116": {
+  "AE-0113": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8903,7 +8879,7 @@
     "linha": 57,
     "original": "Instalar rampas provisórias em degraus de entrada"
   },
-  "AE-0117": {
+  "AE-0114": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8911,7 +8887,7 @@
     "linha": 58,
     "original": "Remover móveis, vasos e fios do caminho principal"
   },
-  "AE-0118": {
+  "AE-0115": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8919,7 +8895,7 @@
     "linha": 59,
     "original": "Banheiro acessível no mesmo nível da área social"
   },
-  "AE-0119": {
+  "AE-0116": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8927,7 +8903,7 @@
     "linha": 60,
     "original": "Vaga de estacionamento próxima e acessível reservada"
   },
-  "AE-0120": {
+  "AE-0117": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8935,7 +8911,7 @@
     "linha": 63,
     "original": "Retirar objetos pequenos engolíveis do alcance (moedas, peças)"
   },
-  "AE-0121": {
+  "AE-0118": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8943,7 +8919,7 @@
     "linha": 64,
     "original": "Proteger tomadas baixas com protetores"
   },
-  "AE-0122": {
+  "AE-0119": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8951,7 +8927,7 @@
     "linha": 65,
     "original": "Produtos de limpeza trancados em armário alto"
   },
-  "AE-0123": {
+  "AE-0120": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8959,7 +8935,7 @@
     "linha": 66,
     "original": "Proteger quinas de mesas baixas (centro, lateral, café)"
   },
-  "AE-0124": {
+  "AE-0121": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8967,7 +8943,7 @@
     "linha": 67,
     "original": "Portão de segurança instalado em escadas"
   },
-  "AE-0125": {
+  "AE-0122": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8975,7 +8951,7 @@
     "linha": 68,
     "original": "Baldes, vasos e recipientes com água esvaziados ou cobertos"
   },
-  "AE-0126": {
+  "AE-0123": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8983,7 +8959,7 @@
     "linha": 71,
     "original": "Travar janelas e portas de varanda/sacada"
   },
-  "AE-0127": {
+  "AE-0124": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8991,7 +8967,7 @@
     "linha": 72,
     "original": "Guardar objetos quebráveis e valiosos em local alto"
   },
-  "AE-0128": {
+  "AE-0125": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -8999,7 +8975,7 @@
     "linha": 73,
     "original": "Trancar portas de cômodos com riscos (oficina, lavanderia)"
   },
-  "AE-0129": {
+  "AE-0126": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9007,7 +8983,7 @@
     "linha": 74,
     "original": "Facas, tesouras e ferramentas fora do alcance"
   },
-  "AE-0130": {
+  "AE-0127": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9015,7 +8991,7 @@
     "linha": 75,
     "original": "Adulto designado exclusivamente para vigiar a piscina"
   },
-  "AE-0131": {
+  "AE-0128": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9023,7 +8999,7 @@
     "linha": 76,
     "original": "Áreas proibidas comunicadas claramente aos pais"
   },
-  "AE-0132": {
+  "AE-0129": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9031,7 +9007,7 @@
     "linha": 79,
     "original": "Reduzir ruídos no cômodo de descanso"
   },
-  "AE-0133": {
+  "AE-0130": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9039,7 +9015,7 @@
     "linha": 80,
     "original": "Ventilação adequada e temperatura agradável no quarto"
   },
-  "AE-0134": {
+  "AE-0131": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9047,7 +9023,7 @@
     "linha": 81,
     "original": "Espaço organizado para medicamentos com horários visíveis"
   },
-  "AE-0135": {
+  "AE-0132": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9055,7 +9031,7 @@
     "linha": 82,
     "original": "Refeição compatível com restrições do enfermo"
   },
-  "AE-0136": {
+  "AE-0133": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9063,7 +9039,7 @@
     "linha": 83,
     "original": "Telefone do médico responsável acessível"
   },
-  "AE-0137": {
+  "AE-0134": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9071,7 +9047,7 @@
     "linha": 94,
     "original": "Contato de emergência (ICE) salvo no celular"
   },
-  "AE-0138": {
+  "AE-0135": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9079,7 +9055,7 @@
     "linha": 95,
     "original": "Medicamentos de uso contínuo na bolsa"
   },
-  "AE-0139": {
+  "AE-0136": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9087,7 +9063,7 @@
     "linha": 96,
     "original": "Alergias informadas ao anfitrião (alimentos, pets, plantas)"
   },
-  "AE-0140": {
+  "AE-0137": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9095,7 +9071,7 @@
     "linha": 99,
     "original": "Endereço completo compartilhado com familiar de confiança"
   },
-  "AE-0141": {
+  "AE-0138": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9103,7 +9079,7 @@
     "linha": 100,
     "original": "Ao chegar, identificar saídas de emergência"
   },
-  "AE-0142": {
+  "AE-0139": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9111,7 +9087,7 @@
     "linha": 101,
     "original": "Retorno planejado (motorista, app, não dirigir alcoolizado)"
   },
-  "AE-0143": {
+  "AE-0140": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9119,7 +9095,7 @@
     "linha": 105,
     "original": "Perguntar sobre escadas e desníveis no local"
   },
-  "AE-0144": {
+  "AE-0141": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9127,7 +9103,7 @@
     "linha": 106,
     "original": "Verificar acessibilidade do banheiro antecipadamente"
   },
-  "AE-0145": {
+  "AE-0142": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9135,7 +9111,7 @@
     "linha": 107,
     "original": "Usar calçado antiderrapante e confortável"
   },
-  "AE-0146": {
+  "AE-0143": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9143,7 +9119,7 @@
     "linha": 108,
     "original": "Planejar pausas para descanso durante a visita"
   },
-  "AE-0147": {
+  "AE-0144": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9151,7 +9127,7 @@
     "linha": 111,
     "original": "Confirmar acessibilidade completa (elevador, rampas, banheiro)"
   },
-  "AE-0148": {
+  "AE-0145": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9159,7 +9135,7 @@
     "linha": 112,
     "original": "Transporte adaptado confirmado (ida e volta)"
   },
-  "AE-0149": {
+  "AE-0146": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9167,7 +9143,7 @@
     "linha": 113,
     "original": "Kit de autonomia pessoal na bolsa (bateria extra, acessórios)"
   },
-  "AE-0150": {
+  "AE-0147": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9175,7 +9151,7 @@
     "linha": 116,
     "original": "Levar berço portátil ou verificar local seguro para sono"
   },
-  "AE-0151": {
+  "AE-0148": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9183,7 +9159,7 @@
     "linha": 117,
     "original": "Inspecionar o ambiente ao chegar (tomadas, escadas, objetos)"
   },
-  "AE-0152": {
+  "AE-0149": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9191,7 +9167,7 @@
     "linha": 118,
     "original": "Bolsa completa: fraldas, troca, alimentação, medicação"
   },
-  "AE-0153": {
+  "AE-0150": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9199,7 +9175,7 @@
     "linha": 119,
     "original": "Verificar imediatamente piscinas, lagos ou espelhos d'água"
   },
-  "AE-0154": {
+  "AE-0151": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9207,7 +9183,7 @@
     "linha": 122,
     "original": "Definir responsável pela supervisão constante da criança"
   },
-  "AE-0155": {
+  "AE-0152": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9215,7 +9191,7 @@
     "linha": 123,
     "original": "Estabelecer limites do espaço permitido logo ao chegar"
   },
-  "AE-0156": {
+  "AE-0153": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9223,7 +9199,7 @@
     "linha": 124,
     "original": "Verificar acesso à piscina, rua e áreas perigosas"
   },
-  "AE-0157": {
+  "AE-0154": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9231,7 +9207,7 @@
     "linha": 125,
     "original": "Levar brinquedos/tablet para manter a criança entretida"
   },
-  "AE-0158": {
+  "AE-0155": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9239,7 +9215,7 @@
     "linha": 128,
     "original": "Confirmar local disponível para repouso se necessário"
   },
-  "AE-0159": {
+  "AE-0156": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9247,7 +9223,7 @@
     "linha": 129,
     "original": "Planejar visita com duração adequada à condição de saúde"
   },
-  "AE-0160": {
+  "AE-0157": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Visitas",
     "item": "(sem titulo)",
@@ -9255,7 +9231,7 @@
     "linha": 130,
     "original": "Kit emergencial pessoal (medicação SOS, documentos médicos)"
   },
-  "AE-0161": {
+  "AE-0158": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9263,7 +9239,7 @@
     "linha": 40,
     "original": "A parte mais crítica do preparo. Falta de remédio em viagem não se resolve no destino."
   },
-  "AE-0162": {
+  "AE-0159": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9271,7 +9247,7 @@
     "linha": 49,
     "original": "Remédios de condições crônicas (pressão, diabetes e afins)"
   },
-  "AE-0163": {
+  "AE-0160": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9279,7 +9255,7 @@
     "linha": 50,
     "original": "Calcule os dias da viagem + margem de 3 a 5 dias extras"
   },
-  "AE-0164": {
+  "AE-0161": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9287,7 +9263,7 @@
     "linha": 51,
     "original": "Mantenha na embalagem original, com a bula"
   },
-  "AE-0165": {
+  "AE-0162": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9295,7 +9271,7 @@
     "linha": 52,
     "original": "Leve na bagagem de mão — nunca no porão"
   },
-  "AE-0166": {
+  "AE-0163": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9303,7 +9279,7 @@
     "linha": 75,
     "original": "Antigripal e descongestionante"
   },
-  "AE-0167": {
+  "AE-0164": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9311,7 +9287,7 @@
     "linha": 76,
     "original": "Antiácido e antidiarreico"
   },
-  "AE-0168": {
+  "AE-0165": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9319,7 +9295,7 @@
     "linha": 98,
     "original": "Receitas atualizadas e legíveis"
   },
-  "AE-0169": {
+  "AE-0166": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9327,7 +9303,7 @@
     "linha": 99,
     "original": "Laudo para medicamento controlado"
   },
-  "AE-0170": {
+  "AE-0167": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9335,7 +9311,7 @@
     "linha": 100,
     "original": "Viagem internacional: receita traduzida ou em inglês"
   },
-  "AE-0171": {
+  "AE-0168": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Medicamentos",
@@ -9343,7 +9319,7 @@
     "linha": 101,
     "original": "Lista de alergias e contatos médicos"
   },
-  "AE-0172": {
+  "AE-0169": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9351,7 +9327,7 @@
     "linha": 136,
     "original": "Band-aids de vários tamanhos"
   },
-  "AE-0173": {
+  "AE-0170": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9359,7 +9335,7 @@
     "linha": 137,
     "original": "Compressas de gaze esterilizadas"
   },
-  "AE-0174": {
+  "AE-0171": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9367,7 +9343,7 @@
     "linha": 165,
     "original": "Antisséptico (clorexidina ou iodopovidona)"
   },
-  "AE-0175": {
+  "AE-0172": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9375,7 +9351,7 @@
     "linha": 166,
     "original": "Álcool 70% em lenço ou spray"
   },
-  "AE-0176": {
+  "AE-0173": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9383,7 +9359,7 @@
     "linha": 167,
     "original": "Soro fisiológico para limpar ferimento"
   },
-  "AE-0177": {
+  "AE-0174": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9391,7 +9367,7 @@
     "linha": 185,
     "original": "Tesoura de pontas redondas"
   },
-  "AE-0178": {
+  "AE-0175": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9399,7 +9375,7 @@
     "linha": 186,
     "original": "Pinça para farpa e espinho"
   },
-  "AE-0179": {
+  "AE-0176": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9407,7 +9383,7 @@
     "linha": 214,
     "original": "Pomada para queimadura leve"
   },
-  "AE-0180": {
+  "AE-0177": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Primeiros Socorros",
@@ -9415,7 +9391,7 @@
     "linha": 215,
     "original": "Gel ou roll-on para picada de inseto"
   },
-  "AE-0181": {
+  "AE-0178": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9423,7 +9399,7 @@
     "linha": 242,
     "original": "Higiene e proteção ambiental são prevenção — não são supérfluos de mala."
   },
-  "AE-0182": {
+  "AE-0179": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9431,7 +9407,7 @@
     "linha": 251,
     "original": "Escova, pasta e fio dental"
   },
-  "AE-0183": {
+  "AE-0180": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9439,7 +9415,7 @@
     "linha": 252,
     "original": "Sabonete e shampoo em tamanho de viagem"
   },
-  "AE-0184": {
+  "AE-0181": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9447,7 +9423,7 @@
     "linha": 253,
     "original": "Desodorante e cuidados pessoais"
   },
-  "AE-0185": {
+  "AE-0182": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9455,7 +9431,7 @@
     "linha": 254,
     "original": "Absorventes ou itens de higiene íntima"
   },
-  "AE-0186": {
+  "AE-0183": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9463,7 +9439,7 @@
     "linha": 274,
     "original": "Protetor solar FPS 30 ou maior"
   },
-  "AE-0187": {
+  "AE-0184": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9471,7 +9447,7 @@
     "linha": 276,
     "original": "Hidratante corporal — o ar do avião resseca"
   },
-  "AE-0188": {
+  "AE-0185": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9479,7 +9455,7 @@
     "linha": 277,
     "original": "Repelente, sobretudo em destino tropical"
   },
-  "AE-0189": {
+  "AE-0186": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9487,7 +9463,7 @@
     "linha": 298,
     "original": "Lenços umedecidos antissépticos"
   },
-  "AE-0190": {
+  "AE-0187": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Higiene e Proteção",
@@ -9495,7 +9471,7 @@
     "linha": 299,
     "original": "Máscaras descartáveis para lugar cheio"
   },
-  "AE-0191": {
+  "AE-0188": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9503,7 +9479,7 @@
     "linha": 326,
     "original": "Passaporte e RG válidos e em bom estado"
   },
-  "AE-0192": {
+  "AE-0189": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9511,7 +9487,7 @@
     "linha": 327,
     "original": "Cartão de vacinas, físico e digital"
   },
-  "AE-0193": {
+  "AE-0190": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9519,7 +9495,7 @@
     "linha": 328,
     "original": "Certidão de nascimento, para menores de idade"
   },
-  "AE-0194": {
+  "AE-0191": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9527,7 +9503,7 @@
     "linha": 329,
     "original": "Cartão do plano de saúde e do SUS"
   },
-  "AE-0195": {
+  "AE-0192": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9535,7 +9511,7 @@
     "linha": 330,
     "original": "Cópias dos documentos, físicas e na nuvem"
   },
-  "AE-0196": {
+  "AE-0193": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9543,7 +9519,7 @@
     "linha": 331,
     "original": "Seguro viagem impresso ou acessível offline"
   },
-  "AE-0197": {
+  "AE-0194": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Documentos Vitais",
@@ -9551,7 +9527,7 @@
     "linha": 332,
     "original": "Cartão de emergência: tipo sanguíneo, alergias e contatos"
   },
-  "AE-0198": {
+  "AE-0195": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Conforto e Hidratação",
@@ -9559,7 +9535,7 @@
     "linha": 370,
     "original": "Evita os pequenos estresses do trajeto — e a desidratação, que passa despercebida."
   },
-  "AE-0199": {
+  "AE-0196": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Conforto e Hidratação",
@@ -9567,7 +9543,7 @@
     "linha": 374,
     "original": "Garrafa reutilizável, vazia para encher depois do raio-x"
   },
-  "AE-0200": {
+  "AE-0197": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Conforto e Hidratação",
@@ -9575,7 +9551,7 @@
     "linha": 376,
     "original": "Pastilha ou purificador de água, em destino rural"
   },
-  "AE-0201": {
+  "AE-0198": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Conforto e Hidratação",
@@ -9583,7 +9559,7 @@
     "linha": 378,
     "original": "Muda de roupa leve na bagagem de mão, caso a despachada atrase"
   },
-  "AE-0202": {
+  "AE-0199": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Conforto e Hidratação",
@@ -9591,7 +9567,7 @@
     "linha": 379,
     "original": "Higiene básica: escova, pasta e frascos de até 100 ml"
   },
-  "AE-0203": {
+  "AE-0200": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo de Trabalho",
@@ -9599,7 +9575,7 @@
     "linha": 438,
     "original": "Notebook, tablet e carregadores"
   },
-  "AE-0204": {
+  "AE-0201": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo de Trabalho",
@@ -9607,7 +9583,7 @@
     "linha": 438,
     "original": "Powerbank e adaptador universal"
   },
-  "AE-0205": {
+  "AE-0202": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo de Trabalho",
@@ -9615,7 +9591,7 @@
     "linha": 438,
     "original": "Fones com cancelamento de ruído"
   },
-  "AE-0206": {
+  "AE-0203": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo de Trabalho",
@@ -9623,7 +9599,7 @@
     "linha": 438,
     "original": "Cadeado de cabo para o notebook"
   },
-  "AE-0207": {
+  "AE-0204": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9631,7 +9607,7 @@
     "linha": 455,
     "original": "Carteira de vacinação do pet atualizada"
   },
-  "AE-0208": {
+  "AE-0205": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9639,7 +9615,7 @@
     "linha": 456,
     "original": "Caixa de transporte adequada ao meio de transporte"
   },
-  "AE-0209": {
+  "AE-0206": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9647,7 +9623,7 @@
     "linha": 457,
     "original": "Coleira extra com plaquinha de identificação e microchip"
   },
-  "AE-0210": {
+  "AE-0207": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9655,7 +9631,7 @@
     "linha": 458,
     "original": "Medicamentos específicos do animal"
   },
-  "AE-0211": {
+  "AE-0208": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9663,7 +9639,7 @@
     "linha": 459,
     "original": "Comedouro e bebedouro portáteis"
   },
-  "AE-0212": {
+  "AE-0209": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Pet",
@@ -9671,7 +9647,7 @@
     "linha": 460,
     "original": "Alimento e água para o trajeto"
   },
-  "AE-0213": {
+  "AE-0210": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Infantil",
@@ -9679,7 +9655,7 @@
     "linha": 494,
     "original": "Medicamentos pediátricos específicos (enjoo, febre)"
   },
-  "AE-0214": {
+  "AE-0211": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Infantil",
@@ -9687,7 +9663,7 @@
     "linha": 495,
     "original": "Pulseira de identificação com nome e telefone"
   },
-  "AE-0215": {
+  "AE-0212": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Infantil",
@@ -9695,7 +9671,7 @@
     "linha": 496,
     "original": "Lanches fáceis e sem farelo"
   },
-  "AE-0216": {
+  "AE-0213": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Infantil",
@@ -9703,7 +9679,7 @@
     "linha": 497,
     "original": "Brinquedo de apego e itens de distração"
   },
-  "AE-0217": {
+  "AE-0214": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Acessibilidade e Apoio",
@@ -9711,7 +9687,7 @@
     "linha": 523,
     "original": "Módulo Acessibilidade e Apoio"
   },
-  "AE-0218": {
+  "AE-0215": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Acessibilidade e Apoio",
@@ -9719,7 +9695,7 @@
     "linha": 530,
     "original": "Bengala, andador ou cadeira de rodas revisados"
   },
-  "AE-0219": {
+  "AE-0216": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Acessibilidade e Apoio",
@@ -9727,7 +9703,7 @@
     "linha": 531,
     "original": "Laudos médicos, sobretudo para voo e cruzeiro"
   },
-  "AE-0220": {
+  "AE-0217": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Acessibilidade e Apoio",
@@ -9735,7 +9711,7 @@
     "linha": 532,
     "original": "Calçado muito confortável e antiderrapante"
   },
-  "AE-0221": {
+  "AE-0218": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Acessibilidade e Apoio",
@@ -9743,7 +9719,7 @@
     "linha": 533,
     "original": "Travesseiro de pescoço ergonômico"
   },
-  "AE-0222": {
+  "AE-0219": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Praia e Resort",
@@ -9751,7 +9727,7 @@
     "linha": 566,
     "original": "Repelente resistente à água"
   },
-  "AE-0223": {
+  "AE-0220": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Praia e Resort",
@@ -9759,7 +9735,7 @@
     "linha": 567,
     "original": "Boia de corpo ou colete salva-vidas infantil"
   },
-  "AE-0224": {
+  "AE-0221": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Praia e Resort",
@@ -9767,7 +9743,7 @@
     "linha": 568,
     "original": "Saco estanque para proteger o celular da areia e da água"
   },
-  "AE-0225": {
+  "AE-0222": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Campo e Natureza",
@@ -9775,7 +9751,7 @@
     "linha": 598,
     "original": "Repelente forte (icaridina) para carrapato e mosquito"
   },
-  "AE-0226": {
+  "AE-0223": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Campo e Natureza",
@@ -9783,7 +9759,7 @@
     "linha": 599,
     "original": "Bota ou calçado fechado, contra animais peçonhentos"
   },
-  "AE-0227": {
+  "AE-0224": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Campo e Natureza",
@@ -9791,7 +9767,7 @@
     "linha": 601,
     "original": "Lanterna de cabeça com pilhas extras"
   },
-  "AE-0228": {
+  "AE-0225": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Internacional",
@@ -9799,7 +9775,7 @@
     "linha": 634,
     "original": "Adaptador universal de tomadas"
   },
-  "AE-0229": {
+  "AE-0226": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Internacional",
@@ -9807,7 +9783,7 @@
     "linha": 635,
     "original": "Cópias do passaporte, física e na nuvem"
   },
-  "AE-0230": {
+  "AE-0227": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Internacional",
@@ -9815,7 +9791,7 @@
     "linha": 636,
     "original": "Apólice do seguro viagem acessível offline"
   },
-  "AE-0231": {
+  "AE-0228": {
     "arquivo": "data/kits/bagagem_viagem.js",
     "rotulo": "Bagagem de viagem",
     "item": "Módulo Internacional",
@@ -9823,7 +9799,7 @@
     "linha": 637,
     "original": "Contato do consulado brasileiro no destino"
   },
-  "AE-0232": {
+  "AE-0229": {
     "arquivo": "data/kits/emergency.js",
     "rotulo": "Kit de emergencia",
     "item": "(sem titulo)",
@@ -9831,7 +9807,7 @@
     "linha": 5,
     "original": "Água potável (2L/pessoa/dia)"
   },
-  "AE-0233": {
+  "AE-0230": {
     "arquivo": "data/kits/emergency.js",
     "rotulo": "Kit de emergencia",
     "item": "(sem titulo)",
@@ -9839,7 +9815,7 @@
     "linha": 8,
     "original": "Documentos em saco estanque"
   },
-  "AE-0234": {
+  "AE-0231": {
     "arquivo": "data/kits/tools.js",
     "rotulo": "Kit de ferramentas",
     "item": "Fita Isolante",
@@ -9847,7 +9823,7 @@
     "linha": 6,
     "original": "Reparos elétricos provisórios"
   },
-  "AE-0235": {
+  "AE-0232": {
     "arquivo": "data/kits/medicines.js",
     "rotulo": "Kit de medicamentos",
     "item": "Analgésico",
@@ -9855,7 +9831,7 @@
     "linha": 2,
     "original": "Para dores de cabeça e corpo"
   },
-  "AE-0236": {
+  "AE-0233": {
     "arquivo": "data/kits/medicines.js",
     "rotulo": "Kit de medicamentos",
     "item": "Medicamentos de uso contínuo",
@@ -9863,7 +9839,7 @@
     "linha": 9,
     "original": "Medicamentos de uso contínuo"
   },
-  "AE-0237": {
+  "AE-0234": {
     "arquivo": "data/kits/medicines.js",
     "rotulo": "Kit de medicamentos",
     "item": "Soro Fisiológico",

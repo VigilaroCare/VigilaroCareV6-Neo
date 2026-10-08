@@ -494,10 +494,29 @@ function montarDocumento(tema, dados, manifesto) {
 // EXECUCAO
 // ---------------------------------------------------------------------------
 
+/**
+ * Documento que ja existe nunca e sobrescrito sem ordem explicita.
+ *
+ * MOTIVO (08/10/2026): rodei este script com o `AE-Atividades-Eventuais.docx`
+ * aberto no Word, no meio da revisao do Agnaldo. O lock do Windows barrou a
+ * escrita por acidente — e so por isso o trabalho dele nao foi perdido. Com o
+ * ficheiro fechado, a regeracao teria apagado a revisao em silencio.
+ *
+ * O gerador anterior tinha essa guarda (`jaExistia` em gerar_conteudo_word.js)
+ * e eu nao a trouxe. Trazida, e explicita: a revisao humana e o unico artefacto
+ * aqui que nao da para refazer com um comando.
+ */
+const ehSeguroEscrever = (destino, forcar) => {
+    if (forcar || !fs.existsSync(destino)) return true;
+    return false;
+};
+
 async function principal() {
+    const forcar = process.argv.includes('--forcar');
     fs.mkdirSync(DESTINO, { recursive: true });
     const manifesto = {};
     const resumo = [];
+    const preservados = [];
 
     for (const tema of TEMAS) {
         const dados = [];
@@ -511,9 +530,19 @@ async function principal() {
         }
         const doc = montarDocumento(tema, dados, manifesto);
         const nome = `${tema.sigla}-${tema.nome.replace(/\s+/g, '-')}.docx`;
-        const buffer = await Packer.toBuffer(doc);
-        fs.writeFileSync(path.join(DESTINO, nome), buffer);
+        const destino = path.join(DESTINO, nome);
         const n = dados.reduce((s, f) => s + f.blocos.reduce((t, b) => t + b.textos.length, 0), 0);
+
+        // O manifesto continua sendo gerado para todos os temas: ele reflete o
+        // codigo de hoje e e a ancora do reimport. So o .docx e preservado.
+        if (!ehSeguroEscrever(destino, forcar)) {
+            preservados.push(nome);
+            console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos  (PRESERVADO — ja existe)`);
+            continue;
+        }
+
+        const buffer = await Packer.toBuffer(doc);
+        fs.writeFileSync(destino, buffer);
         resumo.push({ nome, textos: n });
         console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos`);
     }
@@ -524,6 +553,12 @@ async function principal() {
         'utf8',
     );
     console.log(`\n  _manifesto.json              ${String(Object.keys(manifesto).length).padStart(4)} codigos`);
+    if (preservados.length) {
+        console.log(`\n  ${preservados.length} documento(s) preservado(s) por ja existirem:`);
+        preservados.forEach((n) => console.log(`    ${n}`));
+        console.log('  Podem conter revisao humana. Para regerar mesmo assim:');
+        console.log('    node scripts/gerar_revisao_conteudo.js --forcar');
+    }
     console.log(`\nSaida: docs/revisao-conteudo/`);
 }
 

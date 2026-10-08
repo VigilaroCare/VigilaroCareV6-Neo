@@ -20,6 +20,12 @@
  *                           Use quando a frase ja diz "Ligue ...".
  *   {{POISON_CONTROL}}    — centro de intoxicacao quando existe no pais;
  *                           cai pro servico de emergencia geral quando nao.
+ *   {{FIRE_NUMBER}}       — so o numero dos bombeiros, ex: "193" no Brasil,
+ *                           "112" na UE, "911" nos EUA. Use em texto de
+ *                           incendio, gas e evacuacao, onde o servico certo
+ *                           e o Corpo de Bombeiros e nao o atendimento
+ *                           medico. So o Brasil tem linha separada; nos
+ *                           demais paises o numero geral atende tudo.
  *
  * GARANTIA DE COMPATIBILIDADE: com pais = BR, cada token expande exatamente
  * para o texto que estava fixo antes desta mudanca, em pt/en/es. A saida
@@ -36,7 +42,7 @@ import {
     DEFAULT_EMERGENCY_NUMBERS,
 } from '../data/emergencyNumbersByCountry';
 
-const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL)\}\}/g;
+const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER)\}\}/g;
 
 /**
  * Nome do servico medico de emergencia por pais e idioma.
@@ -156,6 +162,18 @@ function getTokenValue(token, country, langKey) {
                 MEDICAL_SERVICE_LABELS[country] || MEDICAL_SERVICE_LABELS.DEFAULT;
             const label = labels[langKey] || MEDICAL_SERVICE_LABELS.DEFAULT[langKey];
             return `${label} (${number})`;
+        }
+
+        case 'FIRE_NUMBER': {
+            // Mesma logica do getFireDial, mas aqui para texto corrido.
+            const numbers = country
+                ? getEmergencyNumbersForCountry(country)
+                : DEFAULT_EMERGENCY_NUMBERS;
+            return (
+                numbers?.bombeiros ||
+                numbers?.geral ||
+                DEFAULT_EMERGENCY_NUMBERS.geral
+            );
         }
 
         case 'POISON_CONTROL': {

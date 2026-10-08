@@ -323,6 +323,118 @@ if (achados.length) {
 }
 
 // ---------------------------------------------------------------------------
+// 6c. NUMERO BRASILEIRO DENTRO DE TEXTO QUE NAO E pt-BR.
+//
+//     A varredura 6b acima tem um ponto cego: ela so reconhece a forma
+//     "SAMU (192)" e o discador `tel:`. Numero solto numa frase — "Ligue para
+//     os Bombeiros no 193", "Chame a emergencia (192 ou 193)" — passava
+//     limpo. Foram 47 ocorrencias no repositorio quando isto foi escrito
+//     (08/10/2026), cinco delas em string traduzida, que e o caso grave:
+//     `data/locales/pt-PT/SafetyArticlesDB.js` mandava um utilizador em
+//     Portugal ligar para "192 ou 193" num acidente eletrico.
+//
+//     A separacao importa e nao e burocratica:
+//
+//     BLOQUEIO — numero BR em string que NAO e pt-BR (campo com sufixo
+//       _en/_es/_ptpt, ou ficheiro sob data/locales/{en,es,pt-PT}/). Ali o
+//       numero esta simplesmente errado para quem le. Numero errado numa
+//       emergencia e pior que nenhum numero.
+//
+//     AVISO — numero BR em prosa pt-BR. Esta certo para quem esta no Brasil
+//       hoje, mas nao acompanha o pais. Divida real, nao defeito: derrubar a
+//       suite por isso pararia o projeto sem necessidade. Conta e segue.
+//
+//     Usa o parser do Babel, nao regex de linha: `emergencias_en: [...]`
+//     coloca o sufixo de idioma a varias linhas de distancia da string, e um
+//     BLOQUEIO falso-positivo quebraria o build de quem nao errou nada.
+// ---------------------------------------------------------------------------
+console.log('\n6c. NUMERO BR EM TEXTO NAO-pt-BR\n');
+{
+    const parser = require('@babel/parser');
+    const traverse = require('@babel/traverse').default;
+
+    // Numero BR de emergencia junto de verbo de acionamento ou do nome do
+    // servico. Exige a vizinhanca para nao marcar "193" que seja medida,
+    // ano, id ou indice.
+    const RX_PROSA = new RegExp(
+        '(?:bombeir\\w*|bomber\\w*|fire\\s+(?:service|department|brigade)|salva-?vidas'
+        + '|lifeguard|socorrista|ligue|ligar|llame|llamar|chame|chamar|acione|acionar'
+        + '|disque|discar|marque|call|dial|emerg\\w*|SAMU)'
+        + '[^.\\n]{0,45}?\\(?\\b(?:19[123])\\b'
+        + '|\\(?\\b(?:19[123])\\b[^.\\n]{0,25}?'
+        + '(?:bombeir\\w*|bomber\\w*|fire\\s+(?:service|department)|salva-?vidas|lifeguard)',
+        'i',
+    );
+
+    const SUFIXO_ESTRANGEIRO = /_(en|es|ptpt|pt_pt|ptPT)$/i;
+    const DIR_ESTRANGEIRO = /^data\/locales\/(en|es|pt-PT)\//;
+
+    const bloqueios = [];
+    const avisos = [];
+
+    const varrerAst = (rel) => {
+        const codigo = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+        let ast;
+        try {
+            ast = parser.parse(codigo, { sourceType: 'module', plugins: ['jsx'] });
+        } catch {
+            return; // ficheiro que o parser nao le nao e problema deste teste
+        }
+        const ficheiroEstrangeiro = DIR_ESTRANGEIRO.test(rel);
+        traverse(ast, {
+            'StringLiteral|TemplateElement'(p) {
+                const texto = p.isStringLiteral()
+                    ? p.node.value
+                    : (p.node.value && p.node.value.cooked) || '';
+                if (!texto || !RX_PROSA.test(texto)) return;
+
+                let estrangeiro = ficheiroEstrangeiro;
+                let atual = p.parentPath;
+                while (atual && !estrangeiro) {
+                    if (atual.isObjectProperty()) {
+                        const k = atual.node.key
+                            && (atual.node.key.name || atual.node.key.value);
+                        if (typeof k === 'string' && SUFIXO_ESTRANGEIRO.test(k)) estrangeiro = true;
+                    }
+                    atual = atual.parentPath;
+                }
+
+                const onde = `${rel}:${p.node.loc ? p.node.loc.start.line : 0}`;
+                const amostra = texto.replace(/\s+/g, ' ').trim().slice(0, 72);
+                (estrangeiro ? bloqueios : avisos).push(`${onde}  ${amostra}`);
+            },
+        });
+    };
+
+    const varrerDir = (dir) => {
+        for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+            const rel = `${dir}/${e.name}`;
+            if (e.isDirectory()) { varrerDir(rel); continue; }
+            if (!e.name.endsWith('.js')) continue;
+            if (FONTES_DE_VERDADE.includes(rel)) continue;
+            varrerAst(rel);
+        }
+    };
+    for (const dir of ['data', 'screens', 'components', 'utils']) varrerDir(dir);
+
+    if (bloqueios.length) {
+        failures++;
+        console.log(`   FALHA ${bloqueios.length} numero(s) BR em texto nao-pt-BR:`);
+        bloqueios.forEach((b) => console.log(`         ${b}`));
+        console.log('         Troque por {{FIRE_NUMBER}} ou {{EMERGENCY_NUMBER}}.');
+    } else {
+        console.log('   OK    nenhum numero BR dentro de string traduzida');
+    }
+
+    if (avisos.length) {
+        console.log(`\n   AVISO ${avisos.length} numero(s) BR fixo em prosa pt-BR.`);
+        console.log('         Correto no Brasil, nao acompanha o pais. Divida, nao falha.');
+        avisos.slice(0, 8).forEach((a) => console.log(`         ${a}`));
+        if (avisos.length > 8) console.log(`         ... e mais ${avisos.length - 8}`);
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 7. As chaves novas existem nos 4 locales (senao a UI mostra a chave crua).
 // ---------------------------------------------------------------------------
 console.log('\n7. CHAVES DE INTERFACE NOS 4 LOCALES\n');

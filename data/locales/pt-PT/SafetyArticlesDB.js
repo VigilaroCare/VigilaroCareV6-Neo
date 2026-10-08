@@ -318,7 +318,7 @@ O choque elétrico, embora às vezes pareça inofensivo ("levou um formigamento"
 1. **Não toque na vítima** enquanto ela estiver em contato com a fonte de energia.
 2. **Desligue a energia** imediatamente (disjuntor ou tire da tomada, se seguro).
 3. **Se não puder desligar**, afaste a vítima da fonte usando um objeto *não condutor* (cabo de vassoura de madeira, plástico seco).
-4. **Chame a emergência (192 ou 193)**.
+4. **Chame a emergência ({{EMERGENCY_NUMBER}})**.
 5. **Inicie RCP** se a vítima estiver inconsciente e sem respirar, após estar segura longe da corrente.
         `,
         tags: ['elétrica', 'manutenção', 'choque', 'primeiros_socorros']

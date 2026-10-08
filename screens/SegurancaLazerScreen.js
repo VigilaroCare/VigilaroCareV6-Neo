@@ -74,17 +74,17 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Acuerden un punto de encuentro fijo.'
       ],
       emergencias: [
-        'Afogamento: Chame o salva-vidas (193).',
+        'Afogamento: acione o salva-vidas e ligue {{FIRE_NUMBER}}.',
         'Queimadura de água-viva: Use vinagre (NÃO use água doce).',
         'Insolação: Leve para sombra e hidrate.'
       ],
       emergencias_en: [
-        'Drowning: Call the lifeguard (193).',
+        'Drowning: alert the lifeguard and call {{FIRE_NUMBER}}.',
         'Jellyfish sting: Use vinegar (DO NOT use fresh water).',
         'Sunstroke: Move to the shade and hydrate.'
       ],
       emergencias_es: [
-        'Ahogamiento: Llame al salvavidas (193).',
+        'Ahogamiento: avise al socorrista y llame al {{FIRE_NUMBER}}.',
         'Quemadura de medusa: Use vinagre (NO use agua dulce).',
         'Insolación: Lleve a la sombra e hidrate.'
       ],
