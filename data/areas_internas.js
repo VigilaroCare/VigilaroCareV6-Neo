@@ -126,7 +126,7 @@ export const areasInternas = [
             'Não deixe o bebê sozinho no trocador.',
             'Não use protetores de berço fofos (risco de sufocamento).'
         ],
-        quandoChamarAjuda: 'Bebê engasgado ou roxo: Inicie manobra de Heimlich e chame 193.'
+        quandoChamarAjuda: 'Bebê engasgado ou roxo: alterne 5 pancadas nas costas com 5 compressões no peito (NUNCA Heimlich em bebê) e ligue {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'bedroom_kids',

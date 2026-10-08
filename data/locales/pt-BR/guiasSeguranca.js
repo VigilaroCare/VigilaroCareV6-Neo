@@ -277,7 +277,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         itens: [
           'Quedas: se um idoso cair e sentir dor forte no quadril ou perna, não tente levantá-lo. Chame o {{EMERGENCY_MEDICAL}}',
           'Mantenha a pessoa aquecida e deitada imóvel até a chegada do socorro',
-          'Engasgo (Criança/Adulto): se não conseguir tossir ou falar, faça a manobra de Heimlich por trás',
+          'Engasgo (Criança/Adulto): se não conseguir tossir ou falar, alterne 5 pancadas entre as escápulas com 5 compressões abdominais',
           'Engasgo (Bebê menor de 1 ano): deite o bebê no antebraço e dê 5 tapinhas nas costas alternados com 5 compressões no peito',
         ],
       },

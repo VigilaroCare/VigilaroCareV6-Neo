@@ -410,7 +410,7 @@ export const riscosFisicos = [
             'Verifique a indicação de idade e {{CERT_SEAL}} nos brinquedos.',
             'Mantenha feijões crus, milho e moedas longe do alcance.'
         ],
-        primeirosSocorros: 'Realize a Manobra de Heimlich imediatamente. Para bebês, 5 tapas nas costas e 5 compressões no peito. Ligue {{EMERGENCY_NUMBER}} se não desengasgar.'
+        primeirosSocorros: 'Acima de 1 ano: alterne 5 pancadas entre as escápulas com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue {{EMERGENCY_NUMBER}} se não desengasgar.'
     },
     {
         id: 'rf_cortes',

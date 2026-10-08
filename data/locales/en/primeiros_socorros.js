@@ -19,37 +19,41 @@ export const primeirosSocorrosEN = [
     },
     {
         id: 'ps_2',
-        titulo: 'Choking (Adult/Child)',
+        titulo: 'Choking (Adult and Child over 1 year)',
         emoji: '🤢',
-        situacao: 'Airway obstruction',
+        situacao: 'Airway obstruction — 2025 AHA protocol',
         oQueFazer: [
-            'Encourage coughing if the person can cough.',
-            'If they make no sound: Start the Heimlich Maneuver.',
-            'Stand behind them, make a fist above their navel.',
-            'Give quick, upward thrusts (J-shape).',
+            'If the person can cough forcefully, encourage them to keep coughing. Their own cough is more effective than anything you can do.',
+            'If they cannot cough, speak or breathe, the airway is fully blocked: have someone call {{EMERGENCY_MEDICAL}} and start the manoeuvres.',
+            'Stand behind them, lean their upper body forward and deliver 5 firm back blows between the shoulder blades with the heel of your hand.',
+            'If the object has not come out, give 5 abdominal thrusts: fist just above the navel, other hand over it, pulling inwards and upwards (a "J" motion).',
+            'Alternate 5 back blows with 5 abdominal thrusts until the object is expelled or the person becomes unresponsive.',
+            'If the person is pregnant, or you cannot get your arms around their abdomen, replace the abdominal thrusts with 5 chest thrusts.',
         ],
         oQueNaoFazer: [
-            'Do not slap their back if they are standing up (it can worsen the obstruction).',
-            'Do not offer water.',
+            'Do not offer water or food: the airway is blocked.',
+            'Do not perform a blind finger sweep — you may push the object further in.',
+            'Do not break the cycles to look for the object. Stop only if it comes out or the person collapses.',
         ],
-        quandoChamarAjuda: 'If the person loses consciousness (start CPR) or if choking persists.'
+        quandoChamarAjuda: 'As soon as you see the person cannot cough, speak or breathe. If they lose consciousness, lower them to the floor and start CPR (see "Cardiac Arrest").'
     },
     {
         id: 'ps_3',
-        titulo: 'Choking (Infant)',
+        titulo: 'Choking (Infant under 1 year)',
         emoji: '👶',
-        situacao: 'Obstruction in infants',
+        situacao: 'Obstruction in infants — 2025 AHA protocol',
         oQueFazer: [
-            'Place the infant face down along your forearm, head lower than the chest.',
-            'Give 5 firm back blows (between the shoulder blades).',
-            'Turn them face up and give 5 chest thrusts with two fingers.',
-            'Repeat until the object is dislodged.',
+            'Lay the infant face down along your forearm, head lower than the chest, supporting their chin and jaw with your hand.',
+            'Give 5 firm back blows between the shoulder blades with the heel of your hand.',
+            'Turn the infant face up along your forearm and give 5 chest thrusts in the centre of the chest with the heel of one hand.',
+            'Alternate 5 back blows with 5 chest thrusts until the object is expelled or the infant becomes unresponsive.',
         ],
         oQueNaoFazer: [
-            'Do not shake the infant.',
+            'NEVER give abdominal thrusts (Heimlich) to an infant under 1 year: they risk injuring the liver and spleen.',
+            'Never shake the infant.',
             'Do not perform a blind finger sweep.',
         ],
-        quandoChamarAjuda: 'If the infant turns blue or loses consciousness.'
+        quandoChamarAjuda: 'As soon as the infant stops crying, coughing or breathing. If they become unresponsive, start infant CPR and call {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'ps_4',

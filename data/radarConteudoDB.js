@@ -273,13 +273,14 @@ export const PROTOCOLOS_DESTAQUE = [
     categoria: 'engasgo',
     perfil: 'geral',
     titulo: 'Manobra de Desengasgo — Protocolo 2025',
-    resumo: 'O protocolo de desengasgo foi atualizado em 2025. Para crianças maiores de 1 ano, a sequência correta agora começa com 5 pancadas entre as escápulas (omoplatas) antes de iniciar as compressões abdominais (Heimlich).',
+    resumo: 'As Diretrizes AHA 2025 mudaram a ordem do desengasgo. As pancadas entre as escápulas deixaram de ser alternativa e passaram a ser o PRIMEIRO passo, em qualquer idade — inclusive no adulto, onde antes se ia direto para o Heimlich.',
     orientacoes: [
-      'Bebê (< 1 ano): 5 tapas firmes nas costas (inclinado cabeça para baixo) + 5 compressões no peito com 2 dedos.',
-      'Criança (> 1 ano): 5 golpes entre as escápulas com a base da palma + Heimlich se necessário.',
-      'Adulto: Heimlich clássico — mãos acima do umbigo, compressões para dentro e para cima. Chame o {{EMERGENCY_MEDICAL}}.'
+      'Bebê (< 1 ano): alterne 5 pancadas firmes nas costas (cabeça mais baixa que o tronco) com 5 compressões no centro do peito usando a BASE DE UMA DAS MÃOS — não mais dois dedos. Compressão abdominal é proibida nessa idade.',
+      'Criança (> 1 ano) e adulto: alterne 5 pancadas entre as escápulas, com a base da mão, com 5 compressões abdominais (Heimlich) logo acima do umbigo. Repita o ciclo até o objeto sair ou a pessoa perder a consciência.',
+      'Gestante, ou quando não se consegue abraçar o abdômen: troque as compressões abdominais por 5 compressões no centro do peito.',
+      'Se a pessoa perder a consciência, deite-a no chão, ligue para {{EMERGENCY_MEDICAL}} e inicie a RCP.'
     ],
-    fonte: 'Protocolo AHA / ACLS 2025 — SBP',
+    fonte: 'Diretrizes AHA 2025 de RCP e ACE (Circulation, 22/10/2025)',
     icone: 'Health',
     cor: '#E91E63',
   },

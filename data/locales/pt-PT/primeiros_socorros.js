@@ -19,37 +19,41 @@ export const primeirosSocorrosPTPT = [
     },
     {
         id: 'ps_2',
-        titulo: 'Engasgamento (Adulto/Criança)',
+        titulo: 'Engasgamento (Adulto e Criança acima de 1 ano)',
         emoji: '🤢',
-        situacao: 'Obstrução da via aérea',
+        situacao: 'Obstrução da via aérea — protocolo AHA 2025',
         oQueFazer: [
-            'Incentive a tosse se a pessoa conseguir tossir.',
-            'Se não emitir som: Inicie a Manobra de Heimlich.',
-            'Posicione-se por trás, feche o punho na boca do estômago.',
-            'Faça compressões fortes para dentro e para cima (formato de J).',
+            'Se a pessoa conseguir tossir com força, incentive-a a continuar. A tosse dela é mais eficaz do que qualquer manobra sua.',
+            'Se não conseguir tossir, falar nem respirar, a obstrução é total: peça a alguém para ligar para {{EMERGENCY_MEDICAL}} e comece as manobras.',
+            'Posicione-se por trás, incline-lhe o tronco para a frente e dê 5 pancadas firmes entre as omoplatas, com a base da mão.',
+            'Se o objeto não saiu, dê 5 compressões abdominais: punho fechado logo acima do umbigo, a outra mão por cima, a puxar para dentro e para cima (em "J").',
+            'Alterne 5 pancadas nas costas com 5 compressões abdominais até o objeto sair ou a pessoa perder a consciência.',
+            'Em grávida, ou se não conseguir abraçar-lhe o abdómen, substitua as compressões abdominais por 5 compressões no centro do peito.',
         ],
         oQueNaoFazer: [
-            'Não dê palmadas nas costas se a pessoa estiver de pé (pode agravar).',
-            'Não ofereça água.',
+            'Não ofereça água nem comida: a via aérea está fechada.',
+            'Não meta o dedo na boca às cegas para retirar o objeto — pode empurrá-lo mais para dentro.',
+            'Não interrompa os ciclos para procurar o objeto. Pare apenas se ele sair ou a pessoa perder a consciência.',
         ],
-        quandoChamarAjuda: 'Se a pessoa perder a consciência (iniciar SBV) ou não desengasgar.'
+        quandoChamarAjuda: 'Assim que perceber que a pessoa não consegue tossir, falar nem respirar. Se perder a consciência, deite-a no chão e inicie o SBV (ver "Paragem Cardíaca").'
     },
     {
         id: 'ps_3',
-        titulo: 'Engasgamento (Bebé)',
+        titulo: 'Engasgamento (Bebé com menos de 1 ano)',
         emoji: '👶',
-        situacao: 'Obstrução em lactentes',
+        situacao: 'Obstrução em lactentes — protocolo AHA 2025',
         oQueFazer: [
-            'Apoie o bebé de barriga para baixo no seu antebraço, cabeça mais baixa que o corpo.',
-            'Dê 5 pancadas firmes nas costas (entre as omoplatas).',
-            'Vire de barriga para cima e faça 5 compressões no peito com dois dedos.',
-            'Repita até desengasgar.',
+            'Apoie o bebé de barriga para baixo no seu antebraço, com a cabeça mais baixa que o tronco, a segurar-lhe o queixo e a mandíbula com a sua mão.',
+            'Dê 5 pancadas firmes nas costas, entre as omoplatas, com a base da mão.',
+            'Vire-o de barriga para cima no seu antebraço e dê 5 compressões no centro do peito com a base de uma das mãos.',
+            'Alterne 5 pancadas nas costas com 5 compressões no peito até o objeto sair ou o bebé perder a consciência.',
         ],
         oQueNaoFazer: [
+            'NUNCA faça compressões abdominais (Heimlich) em bebé com menos de 1 ano: há risco de lesão no fígado e no baço.',
             'Não sacuda o bebé.',
             'Não tente retirar o objeto com o dedo às cegas.',
         ],
-        quandoChamarAjuda: 'Se o bebé ficar roxo ou perder a consciência.'
+        quandoChamarAjuda: 'Assim que o bebé deixar de chorar, tossir ou respirar. Se perder a consciência, inicie o SBV de lactente e ligue para {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'ps_4',

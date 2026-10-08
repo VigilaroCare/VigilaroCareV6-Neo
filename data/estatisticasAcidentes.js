@@ -53,7 +53,7 @@ export const ALERTAS_CATEGORIA = {
     intoxicacao: "Guarde produtos de limpeza e medicamentos em locais altos e trancados.",
     corte: "Mantenha facas e objetos cortantes fora do alcance de crianças.",
     choque: "Use protetores de tomada. Nunca mexa em equipamentos elétricos com as mãos molhadas.",
-    engasgo: "Evite dar alimentos pequenos e duros para crianças. Aprenda a manobra de Heimlich.",
+    engasgo: "Evite dar alimentos pequenos e duros para crianças. Aprenda a manobra de desengasgo: 5 pancadas nas costas alternadas com 5 compressões.",
     esmagamento: "Use protetores de porta para evitar que dedos sejam prensados."
 };
 

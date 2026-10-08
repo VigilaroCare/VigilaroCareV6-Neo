@@ -40,9 +40,9 @@ export const FASES_VIDA_DATA = {
             'Nunca dejar solo en la bañera o el cambiador.',
             'Probar la temperatura del agua y el biberón.'
         ],
-        primeirosSocorros: 'Engasgo: Manobra de Heimlich para bebês. Queda: Observar vômito/sonolência e ir ao PS.',
-        primeirosSocorros_en: 'Choking: Heimlich maneuver for babies. Fall: Observe vomiting/drowsiness and go to the ER.',
-        primeirosSocorros_es: 'Atragantamiento: Maniobra de Heimlich para bebés. Caída: Observar vómito/somnolencia e ir a Urgencias.',
+        primeirosSocorros: 'Engasgo em bebê: 5 pancadas nas costas + 5 compressões no peito, alternando. NUNCA Heimlich. Queda: observar vômito/sonolência e ir ao PS.',
+        primeirosSocorros_en: 'Infant choking: 5 back blows + 5 chest thrusts, alternating. NEVER the Heimlich. Fall: watch for vomiting or drowsiness and go to the ER.',
+        primeirosSocorros_es: 'Atragantamiento en bebé: 5 golpes en la espalda + 5 compresiones en el pecho, alternando. NUNCA Heimlich. Caída: observar vómito o somnolencia e ir a Urgencias.',
         oQueNaoFazer: [
             'Não usar "kit berço" fofo (risco de asfixia).',
             'Não aquecer mamadeira no micro-ondas (aquecimento desigual).',

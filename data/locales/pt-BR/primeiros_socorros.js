@@ -19,37 +19,41 @@ export const primeirosSocorrosPTBR = [
     },
     {
         id: 'ps_2',
-        titulo: 'Engasgo (Adulto/Criança)',
+        titulo: 'Engasgo (Adulto e Criança acima de 1 ano)',
         emoji: '🤢',
-        situacao: 'Obstrução da via aérea',
+        situacao: 'Obstrução da via aérea — protocolo AHA 2025',
         oQueFazer: [
-            'Incentive a pessoa a tossir forte se ela ainda conseguir tossir.',
-            'Se ela não conseguir falar ou emitir som, comece a Manobra de Heimlich.',
-            'Fique de pé atrás da pessoa e feche o punho na boca do estômago dela.',
-            'Com a outra mão por cima, faça compressões rápidas para dentro e para cima (em formato de "J").',
+            'Se a pessoa consegue tossir com força, incentive a tossir. A tosse dela é mais eficaz que qualquer manobra sua.',
+            'Se ela não consegue tossir, falar nem respirar, a obstrução é total: peça a alguém para ligar para {{EMERGENCY_MEDICAL}} e comece as manobras.',
+            'Fique atrás dela, incline o tronco dela para a frente e dê 5 pancadas firmes entre as escápulas, usando a base da mão.',
+            'Se o objeto não saiu, dê 5 compressões abdominais: punho fechado logo acima do umbigo, a outra mão por cima, puxando para dentro e para cima (em "J").',
+            'Alterne 5 pancadas nas costas com 5 compressões abdominais até o objeto sair ou a pessoa perder a consciência.',
+            'Em gestante, ou se você não conseguir abraçar o abdômen da pessoa, troque as compressões abdominais por 5 compressões no centro do peito.',
         ],
         oQueNaoFazer: [
-            'Não dê tapas nas costas se a pessoa estiver de pé ou sentada (isso pode empurrar o objeto ainda mais para baixo).',
-            'Não ofereça água ou comida.',
+            'Não ofereça água nem comida: a via aérea está fechada.',
+            'Não coloque o dedo na boca às cegas para pescar o objeto — você pode empurrá-lo mais para dentro.',
+            'Não interrompa os ciclos para procurar o objeto. Só pare se ele sair ou a pessoa desmaiar.',
         ],
-        quandoChamarAjuda: 'Se a pessoa desmaiar (nesse caso, inicie a massagem cardíaca) ou se o objeto não sair após as compressões.'
+        quandoChamarAjuda: 'Assim que perceber que a pessoa não consegue tossir, falar nem respirar. Se ela perder a consciência, deite-a no chão e inicie a RCP (ver "Parada Cardíaca").'
     },
     {
         id: 'ps_3',
-        titulo: 'Engasgo (Bebê)',
+        titulo: 'Engasgo (Bebê menor de 1 ano)',
         emoji: '👶',
-        situacao: 'Obstrução em lactentes',
+        situacao: 'Obstrução em lactentes — protocolo AHA 2025',
         oQueFazer: [
-            'Apoie o bebê de bruços sobre o seu antebraço, deixando a cabeça dele mais baixa que o bumbum.',
-            'Dê 5 batidas firmes com a base da mão nas costas dele (entre as escápulas).',
-            'Vire o bebê de barriga para cima no seu braço e faça 5 compressões no peito usando dois dedos.',
-            'Repita esses passos até o bebê desengasgar ou chorar.',
+            'Apoie o bebê de bruços sobre o seu antebraço, com a cabeça mais baixa que o tronco, sustentando o queixo e a mandíbula dele com a sua mão.',
+            'Dê 5 pancadas firmes nas costas, entre as escápulas, usando a base da mão.',
+            'Vire o bebê de barriga para cima no seu antebraço e dê 5 compressões no centro do peito usando a base de uma das mãos.',
+            'Alterne 5 pancadas nas costas com 5 compressões no peito até o objeto sair ou o bebê perder a consciência.',
         ],
         oQueNaoFazer: [
+            'NUNCA faça compressões abdominais (Heimlich) em bebê menor de 1 ano: há risco de lesão no fígado e no baço.',
             'Nunca sacuda o bebê.',
             'Não coloque os dedos na boca do bebê às cegas para tentar pescar o objeto.',
         ],
-        quandoChamarAjuda: 'Se o bebê ficar roxo, sem ar ou perder a consciência.'
+        quandoChamarAjuda: 'Assim que o bebê parar de chorar, tossir ou respirar. Se ele perder a consciência, inicie a RCP de lactente e ligue para {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'ps_4',

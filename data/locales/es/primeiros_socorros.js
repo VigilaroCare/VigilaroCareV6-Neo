@@ -19,37 +19,41 @@ export const primeirosSocorrosES = [
     },
     {
         id: 'ps_2',
-        titulo: 'Atragantamiento (Adulto/Niño)',
+        titulo: 'Atragantamiento (Adulto y Niño mayor de 1 año)',
         emoji: '🤢',
-        situacao: 'Obstrucción de la vía aérea',
+        situacao: 'Obstrucción de la vía aérea — protocolo AHA 2025',
         oQueFazer: [
-            'Anime a la persona a toser si puede hacerlo.',
-            'Si no emite sonido: Inicie la Maniobra de Heimlich.',
-            'Colóquese detrás, cierre el puño en la boca del estómago.',
-            'Haga compresiones fuertes hacia adentro y hacia arriba (forma de J).',
+            'Si la persona puede toser con fuerza, anímela a seguir tosiendo. Su propia tos es más eficaz que cualquier maniobra.',
+            'Si no puede toser, hablar ni respirar, la obstrucción es total: pida a alguien que llame a {{EMERGENCY_MEDICAL}} y comience las maniobras.',
+            'Colóquese detrás, inclínele el tronco hacia adelante y dé 5 golpes firmes entre los omóplatos con el talón de la mano.',
+            'Si el objeto no sale, dé 5 compresiones abdominales: puño cerrado justo encima del ombligo, la otra mano encima, tirando hacia adentro y hacia arriba (en "J").',
+            'Alterne 5 golpes en la espalda con 5 compresiones abdominales hasta que el objeto salga o la persona pierda el conocimiento.',
+            'Si está embarazada, o si no puede abarcar su abdomen con los brazos, sustituya las compresiones abdominales por 5 compresiones en el pecho.',
         ],
         oQueNaoFazer: [
-            'No dé golpes en la espalda si la persona está de pie (puede empeorar).',
-            'No ofrezca agua.',
+            'No ofrezca agua ni comida: la vía aérea está cerrada.',
+            'No introduzca el dedo a ciegas para sacar el objeto — puede empujarlo más adentro.',
+            'No interrumpa los ciclos para buscar el objeto. Pare solo si sale o la persona se desvanece.',
         ],
-        quandoChamarAjuda: 'Si la persona pierde el conocimiento (iniciar RCP) o no se desobstruye.'
+        quandoChamarAjuda: 'En cuanto vea que la persona no puede toser, hablar ni respirar. Si pierde el conocimiento, tiéndala en el suelo e inicie la RCP (ver "Paro Cardíaco").'
     },
     {
         id: 'ps_3',
-        titulo: 'Atragantamiento (Bebé)',
+        titulo: 'Atragantamiento (Bebé menor de 1 año)',
         emoji: '👶',
-        situacao: 'Obstrucción en lactantes',
+        situacao: 'Obstrucción en lactantes — protocolo AHA 2025',
         oQueFazer: [
-            'Apoye al bebé boca abajo sobre su antebrazo, cabeza más baja que el cuerpo.',
-            'Dé 5 golpes firmes en la espalda (entre los omóplatos).',
-            'Gírelo boca arriba y haga 5 compresiones en el pecho con dos dedos.',
-            'Repita hasta desobstruir.',
+            'Apoye al bebé boca abajo sobre su antebrazo, con la cabeza más baja que el tronco, sujetándole el mentón y la mandíbula con su mano.',
+            'Dé 5 golpes firmes en la espalda, entre los omóplatos, con el talón de la mano.',
+            'Gírelo boca arriba sobre su antebrazo y dé 5 compresiones en el centro del pecho con el talón de una mano.',
+            'Alterne 5 golpes en la espalda con 5 compresiones en el pecho hasta que el objeto salga o el bebé pierda el conocimiento.',
         ],
         oQueNaoFazer: [
+            'NUNCA haga compresiones abdominales (Heimlich) en un bebé menor de 1 año: hay riesgo de lesión en el hígado y el bazo.',
             'No sacuda al bebé.',
             'No intente retirar el objeto con el dedo a ciegas.',
         ],
-        quandoChamarAjuda: 'Si el bebé se pone morado o pierde el conocimiento.'
+        quandoChamarAjuda: 'En cuanto el bebé deje de llorar, toser o respirar. Si pierde el conocimiento, inicie la RCP de lactante y llame a {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'ps_4',
