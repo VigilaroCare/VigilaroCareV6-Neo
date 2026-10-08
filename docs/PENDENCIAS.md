@@ -55,12 +55,15 @@ Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 
 | # | Pendência | Situação |
 |---|---|---|
-| D1 | **Revisão dos textos educativos** | 3.942 trechos extraídos para `docs/conteudo-editavel/`. 967 campos explicativos têm menos de 90 caracteres — a lista priorizada está em `_textos-rasos.md`. Aguardando sua revisão. |
+| D1 | **Revisão dos textos educativos** | O formato de `docs/conteudo-editavel/` (52 ficheiros em tabela) mostrou-se trabalhoso e foi substituído por `docs/revisao-conteudo/`: 4 documentos por tema, só prosa. **AE (Atividades Eventuais) concluído** em 08/10/2026 — 30 edições aplicadas. Faltam PS (167 textos), ED (676) e EX (658). |
 | D2 | **Nenhum item de checklist tem dica de segurança** | O código lê `dica_seguranca` em `ChecklistService.js:282`, mas **nenhum dos 245 itens tem esse campo**. Por isso o card de pendências mostra sempre "Verifique: <título>" em vez de uma orientação real. É o "texto raso" mais visível do app. |
 | D3 | **Orientação por tag cobre 22 de 73 tags** | `data/tag_guidance.js` deixa 51 tags sem texto, incluindo as mais usadas (`básico`, `crianças`, `idosos`, `prevenção`). |
 | D4 | **Os 245 itens ainda são perguntas de vistoria** | Para o Mapa de Riscos, precisam virar enunciados de risco. |
 | D5 | **Números da landing page** | Publica "224 itens, 16 ambientes, 8 categorias". O real é **245 itens, 25 ambientes, 5 categorias + preparação**. A landing não está neste repositório. |
 | D6 | **Traduções** | Todo texto revisado precisa sair em pt-PT, en e es na mesma passada. |
+| D7 | **Campos de conteúdo que nenhuma tela exibe** | `GenericCategoryScreen` (único consumidor dos `data/safety_*.js`) lê apenas o `title` do topo e, por seção, `title` e `content`. Ficam órfãos: `subtitle` em 6 ficheiros, `intro` e `checklist` em `safety_fire.js`. O Agnaldo revisou o `intro` (AE-0031) sem saber que ele não chega ao utilizador. Decidir: exibir ou remover. Estão traduzidos, para não travar a decisão. |
+| D8 | **Código de revisão é posicional, não estável** | Os códigos do `_manifesto.json` (`AE-0001`...) são sequenciais por posição. Quando consolidei `safety_gas.js`, 209 dos 237 códigos AE passaram a apontar para outro texto — ler a revisão com o manifesto novo aplicaria as edições nos campos errados, em silêncio. Hoje o importador exige o manifesto que gerou o documento e para se menos da metade bater. A correção de raiz é derivar o código de um hash de (ficheiro + campo + texto), que não se desloca. |
+| D9 | **33 números de emergência fixos em prosa pt-BR** | `verify_emergency_tokens.js` 6c lista todos. Corretos no Brasil, não acompanham o país. Trocar por `{{FIRE_NUMBER}}` / `{{EMERGENCY_NUMBER}}`. Os casos em texto traduzido — que eram erro, não dívida — já foram corrigidos. |
 
 ---
 
