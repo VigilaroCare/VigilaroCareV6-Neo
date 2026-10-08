@@ -49,7 +49,7 @@ const MEDICAMENTOS = {
                 'Remédios de condições crônicas (pressão, diabetes e afins)',
                 'Calcule os dias da viagem + margem de 3 a 5 dias extras',
                 'Mantenha na embalagem original, com a bula',
-                'Leve na bagagem de mão — nunca no porão',
+                'Leve na bagagem de mão — nunca no porão de carga',
             ],
             items_en: [
                 'Medication for chronic conditions (blood pressure, diabetes and the like)',
@@ -133,7 +133,7 @@ const PRIMEIROS_SOCORROS = {
             subtitle_es: 'Vendajes',
             subtitle_ptpt: 'Pensos',
             items: [
-                'Band-aids de vários tamanhos',
+                'Band-aid de vários tamanhos',
                 'Compressas de gaze esterilizadas',
                 'Esparadrapo ou micropore',
                 'Atadura elástica',
@@ -249,7 +249,7 @@ const HIGIENE = {
             subtitle_es: 'Higiene personal',
             items: [
                 'Escova, pasta e fio dental',
-                'Sabonete e shampoo em tamanho de viagem',
+                'Sabonete e xampu em tamanho de viagem',
                 'Desodorante e cuidados pessoais',
                 'Absorventes ou itens de higiene íntima',
             ],
@@ -271,19 +271,19 @@ const HIGIENE = {
             subtitle_en: 'Sun and environment',
             subtitle_es: 'Sol y ambiente',
             items: [
-                'Protetor solar FPS 30 ou maior',
+                'Protetor solar FPS 30 ou maior. Tenha à mão também, creme para aliviar a dor e a inflamação da queimadura solar ou insolação',
                 'Protetor labial com FPS',
                 'Hidratante corporal — o ar do avião resseca',
                 'Repelente, sobretudo em destino tropical',
             ],
             items_en: [
-                'Sunscreen SPF 30 or higher',
+                'Sunscreen SPF 30 or higher. Also keep an after-sun cream on hand to ease the pain and inflammation of sunburn or heatstroke',
                 'Lip balm with SPF',
                 'Body moisturiser — cabin air is very drying',
                 'Insect repellent, especially for tropical destinations',
             ],
             items_es: [
-                'Protector solar FPS 30 o superior',
+                'Protector solar FPS 30 o superior. Lleve también una crema para aliviar el dolor y la inflamación de la quemadura solar o insolación',
                 'Protector labial con FPS',
                 'Crema hidratante — el aire del avión reseca',
                 'Repelente, sobre todo en destinos tropicales',
@@ -633,7 +633,7 @@ const MODULO_INTERNACIONAL = {
     items: [
         'Adaptador universal de tomadas',
         'Cópias do passaporte, física e na nuvem',
-        'Apólice do seguro viagem acessível offline',
+        'Apólice do seguro-viagem acessível offline',
         'Contato do consulado brasileiro no destino',
     ],
     items_ptpt: [

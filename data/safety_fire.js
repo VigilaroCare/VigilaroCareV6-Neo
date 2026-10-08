@@ -10,13 +10,13 @@ export const SAFETY_FIRE = {
             title: 'Cozinha Segura',
             icon: 'restaurant',
             imagemUrl: 'https://images.pexels.com/photos/3722212/pexels-photo-3722212.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            content: 'Nunca jogue água em panelas com óleo pegando fogo. Desligue o fogo e com calma, cubra a panela com uma tampa para abafar as chamas.'
+            content: 'Nunca jogue água em panelas com óleo pegando fogo. Desligue o fogo e com muito cuidado, cubra a panela com uma tampa para abafar as chamas.'
         },
         {
             title: 'Instalações Elétricas',
             icon: 'flash',
             imagemUrl: null,
-            content: 'Evite o uso de muitos adaptadores ("benjamins") na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga.'
+            content: 'Evite o uso de adaptadores ("benjamins") de baixa qualidade e o uso de vários na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga. Observe se os espelhos (tampa) das tomadas e dos interruptores mudam de cor (escurecem). Isso pode sinalizar emendas malfeitas e aquecimento que podem resultar em fonte de incêndio.'
         }
     ],
     checklist: [

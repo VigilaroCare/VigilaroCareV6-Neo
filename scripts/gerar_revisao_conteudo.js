@@ -354,10 +354,31 @@ const marcador = (codigo) => new TextRun({
     font: 'Consolas',
 });
 
-const paragrafoDeTexto = (codigo, texto) => new Paragraph({
-    spacing: { after: 160, line: 300 },
-    children: [marcador(codigo), new TextRun({ text: texto, size: 22 })],
-});
+/**
+ * Um paragrafo por texto, com as quebras internas preservadas.
+ *
+ * MOTIVO (08/10/2026): a primeira versao punha a string inteira num TextRun,
+ * inclusive os "\n". O Word os engole. A revisao do Agnaldo voltou com listas
+ * de seis itens numa linha unica, e eu tive de reconstituir a estrutura por
+ * marcador ("• ", "1. ") e por espaco duplo — adivinhacao que num caso falhou
+ * e gerou string JS com newline real, quebrando o ficheiro.
+ *
+ * `TextRun` aceita `break: n`, que emite <w:br/>: a quebra sobrevive ao
+ * round-trip e volta como quebra, nao como palpite.
+ */
+const paragrafoDeTexto = (codigo, texto) => {
+    const linhas = String(texto).split('\n');
+    const runs = [marcador(codigo)];
+    linhas.forEach((linha, i) => {
+        runs.push(new TextRun({
+            text: linha,
+            size: 22,
+            // Linha vazia no original = paragrafo em branco: vale 2 quebras.
+            ...(i > 0 ? { break: 1 } : {}),
+        }));
+    });
+    return new Paragraph({ spacing: { after: 160, line: 300 }, children: runs });
+};
 
 /** Rotulo de papel do campo: versalete cinza, acima do grupo de paragrafos. */
 const rotuloDePapel = (papel) => new Paragraph({
@@ -562,4 +583,14 @@ async function principal() {
     console.log(`\nSaida: docs/revisao-conteudo/`);
 }
 
-principal().catch((e) => { console.error(e); process.exit(1); });
+// Só executa quando chamado direto. O importador faz `require` deste ficheiro
+// para ler PAPEL_DO_CAMPO; sem esta guarda, importar o gerador o RODAVA, e uma
+// simples leitura de constante reescrevia o manifesto.
+if (require.main === module) {
+    principal().catch((e) => { console.error(e); process.exit(1); });
+}
+
+// Exportado para o importador: `importar_revisao_conteudo.js` precisa saber
+// quais paragrafos sao rotulo de papel deste gerador, e nao texto do revisor.
+// Sem isto, "ITENS" e "DESCRICAO" entram como inclusao humana.
+module.exports = { PAPEL_DO_CAMPO, TEMAS };

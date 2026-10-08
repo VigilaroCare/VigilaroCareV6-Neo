@@ -6,7 +6,7 @@ export const SAFETY_CONDO = {
     sections: [
         {
             title: "Extintores de Incêndio",
-            content: "Observe o MANÔMETRO: O ponteiro deve estar na faixa VERDE. Se estiver no vermelho, o extintor está despressurizado. Verifique também se o lacre plástico está intacto e se a data de validade (no selo do INMETRO) não expirou."
+            content: "Observe o MANÔMETRO: O ponteiro deve estar na faixa VERDE. Se estiver no vermelho ou se aproximando dele, considere que o extintor está despressurizado. Verifique também se o lacre plástico está intacto e se a data de validade da carga (no selo do INMETRO) não expirou. Oriente o responsável para que garanta que a validade do cilindro não esteja vencida."
         },
         {
             title: "Saídas de Emergência",
@@ -14,7 +14,7 @@ export const SAFETY_CONDO = {
         },
         {
             title: "Playground e Parquinho",
-            content: "Balance os brinquedos para checar fixação. Procure por ferrugem exposta, parafusos soltos ou farpas de madeira. O piso deve ser de material que absorva impacto (areia, grama ou borracha), nunca concreto puro."
+            content: "Balance os brinquedos para checar fixação ou folgas. Procure por ferrugem exposta, parafusos soltos ou farpas de madeira ou rebarbas. O piso deve ser de material que absorva impacto (areia, grama ou borracha), nunca concreto puro."
         },
         {
             title: "Elevadores",
@@ -30,7 +30,7 @@ export const SAFETY_CONDO = {
         },
         {
             title: "Áreas de Serviço e Utilidades",
-            content: "CENTRAIS DE GÁS/ELÉTRICA devem estar trancadas com acesso restrito. FOSSO DO ELEVADOR deve ser inacessível. O acesso à CAIXA D'ÁGUA ou CISTERNA deve ter cadeado para evitar quedas e contaminação."
+            content: "CENTRAIS DE GÁS/PAINÉIS ELÉTRICOS devem estar trancados com acesso restrito. FOSSO DO ELEVADOR deve ser inacessível. O acesso à CAIXA D'ÁGUA ou CISTERNA deve ter cadeado para evitar quedas e contaminação."
         }
     ]
 };

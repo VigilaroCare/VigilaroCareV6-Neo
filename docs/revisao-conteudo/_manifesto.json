@@ -7981,7 +7981,7 @@
     "item": "Na Estrada",
     "chave": "content",
     "linha": 10,
-    "original": "Use cadeirinha adequada ao peso/idade. Faça paradas a cada 2h. Nunca deixe objetos soltos no carro (viram projéteis em freadas). Trave as portas traseiras (trava de criança)."
+    "original": "Use cadeirinha adequada ao peso/idade. Faça paradas a cada 2h. Nunca deixe objetos soltos no carro: viram projéteis em freadas e podem agravar a situação em caso de acidentes, além de ser passível de infração de trânsito. Utilize as travas manuais das portas traseiras (trava de criança)."
   },
   "AE-0002": {
     "arquivo": "data/safety_vacation.js",
@@ -8029,7 +8029,7 @@
     "item": "Transporte Escolar",
     "chave": "content",
     "linha": 14,
-    "original": "Ensine a criança a esperar o ônibus na calçada, nunca na rua. Dentro da van ou carro, o cinto de segurança é obrigatório o tempo todo. Nunca colocar cabeça ou braços para fora."
+    "original": "Ensine a criança a esperar o ônibus na calçada, nunca na rua. Dentro da van ou carro, o cinto de segurança é obrigatório o tempo todo. Oriente a criança para nunca colocar cabeça ou braços para fora."
   },
   "AE-0008": {
     "arquivo": "data/safety_school.js",
@@ -8053,7 +8053,7 @@
     "item": "Lanche Seguro",
     "chave": "content",
     "linha": 26,
-    "original": "Cuidado com alimentos que estragam fácil no calor (maionese, iogurte). Use lancheiras térmicas. Evite alimentos com alto risco de engasgo para os menores (uvas inteiras, pipoca)."
+    "original": "Cuidado com alimentos que estragam fácil em dias quentes (maionese, iogurte). Use lancheiras térmicas. Evite alimentos com alto risco de engasgo para os menores (uvas inteiras, pipoca)."
   },
   "AE-0011": {
     "arquivo": "data/safety_pregnant.js",
@@ -8061,7 +8061,7 @@
     "item": "Prevenção de Quedas",
     "chave": "content",
     "linha": 17,
-    "original": "O centro de gravidade muda. Evite subir em bancos e escadas. Use sapatos baixos e antiderrapantes. Cuidado extra com pisos molhados e tapetes soltos."
+    "original": "O centro de gravidade muda à medida que a barriga cresce. Evite subir em bancos e escadas para alcançar algo do alto. Use sapatos baixos e antiderrapantes. Cuidado extra com pisos molhados e tapetes soltos."
   },
   "AE-0012": {
     "arquivo": "data/safety_pregnant.js",
@@ -8069,7 +8069,7 @@
     "item": "Cinto de Segurança",
     "chave": "content",
     "linha": 26,
-    "original": "O cinto deve passar POR BAIXO da barriga (sobre os quadris) e entre os seios. Nunca sobre o útero. Uso obrigató no carro, mesmo no banco de trás."
+    "original": "O cinto deve passar POR BAIXO da barriga (sobre os quadris) e entre os seios. Nunca sobre o útero. Uso obrigatório no carro, mesmo no banco de trás."
   },
   "AE-0013": {
     "arquivo": "data/safety_pregnant.js",
@@ -8077,7 +8077,7 @@
     "item": "Produtos Químicos",
     "chave": "content",
     "linha": 35,
-    "original": "Evite tintas fortes, inseticidas e produtos de limpeza com vapores tóxicos (amônia/cloro puro). Use luvas e máscaras se precisar manusear, ou peça ajuda. Manuseie sempre em ambientes abertos e ventilados"
+    "original": "Evite tintas fortes, solventes, inseticidas e produtos de limpeza com vapores tóxicos (amônia/cloro puro). Use luvas e máscaras se precisar manusear, ou peça ajuda. Manuseie sempre em ambientes abertos e ventilados"
   },
   "AE-0014": {
     "arquivo": "data/safety_pregnant.js",
@@ -8101,7 +8101,7 @@
     "item": "Extintores de Incêndio",
     "chave": "content",
     "linha": 9,
-    "original": "Observe o MANÔMETRO: O ponteiro deve estar na faixa VERDE. Se estiver no vermelho, o extintor está despressurizado. Verifique também se o lacre plástico está intacto e se a data de validade (no selo do INMETRO) não expirou."
+    "original": "Observe o MANÔMETRO: O ponteiro deve estar na faixa VERDE. Se estiver no vermelho ou se aproximando dele, considere que o extintor está despressurizado. Verifique também se o lacre plástico está intacto e se a data de validade da carga (no selo do INMETRO) não expirou. Oriente o responsável para que garanta que a validade do cilindro não esteja vencida."
   },
   "AE-0017": {
     "arquivo": "data/safety_condo.js",
@@ -8117,7 +8117,7 @@
     "item": "Playground e Parquinho",
     "chave": "content",
     "linha": 17,
-    "original": "Balance os brinquedos para checar fixação. Procure por ferrugem exposta, parafusos soltos ou farpas de madeira. O piso deve ser de material que absorva impacto (areia, grama ou borracha), nunca concreto puro."
+    "original": "Balance os brinquedos para checar fixação ou folgas. Procure por ferrugem exposta, parafusos soltos ou farpas de madeira ou rebarbas. O piso deve ser de material que absorva impacto (areia, grama ou borracha), nunca concreto puro."
   },
   "AE-0019": {
     "arquivo": "data/safety_condo.js",
@@ -8165,7 +8165,7 @@
     "item": "Áreas de Serviço e Utilidades",
     "chave": "content",
     "linha": 33,
-    "original": "CENTRAIS DE GÁS/ELÉTRICA devem estar trancadas com acesso restrito. FOSSO DO ELEVADOR deve ser inacessível. O acesso à CAIXA D'ÁGUA ou CISTERNA deve ter cadeado para evitar quedas e contaminação."
+    "original": "CENTRAIS DE GÁS/PAINÉIS ELÉTRICOS devem estar trancados com acesso restrito. FOSSO DO ELEVADOR deve ser inacessível. O acesso à CAIXA D'ÁGUA ou CISTERNA deve ter cadeado para evitar quedas e contaminação."
   },
   "AE-0025": {
     "arquivo": "data/safety_gas.js",
@@ -8205,7 +8205,7 @@
     "item": "Cozinha Segura",
     "chave": "content",
     "linha": 13,
-    "original": "Nunca jogue água em panelas com óleo pegando fogo. Desligue o fogo e com calma, cubra a panela com uma tampa para abafar as chamas."
+    "original": "Nunca jogue água em panelas com óleo pegando fogo. Desligue o fogo e com muito cuidado, cubra a panela com uma tampa para abafar as chamas."
   },
   "AE-0030": {
     "arquivo": "data/safety_fire.js",
@@ -8213,7 +8213,7 @@
     "item": "Instalações Elétricas",
     "chave": "content",
     "linha": 19,
-    "original": "Evite o uso de muitos adaptadores (\"benjamins\") na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga."
+    "original": "Evite o uso de adaptadores (\"benjamins\") de baixa qualidade e o uso de vários na mesma tomada. Fios quentes ou disjuntores desarmando indicam sobrecarga. Observe se os espelhos (tampa) das tomadas e dos interruptores mudam de cor (escurecem). Isso pode sinalizar emendas malfeitas e aquecimento que podem resultar em fonte de incêndio."
   },
   "AE-0031": {
     "arquivo": "data/safety_toys.js",
@@ -8229,23 +8229,23 @@
     "item": "Guia de Brinquedos (Expert)",
     "chave": "intro",
     "linha": 10,
-    "original": "Brinquedos devem divertir, não ferir. Aqui está a auditoria completa para o quarto de brincar, baseada no método \"Memória de Elefante\"."
+    "original": "Brinquedos devem divertir, não ferir. Aqui estão itens de verificação completa para o quarto de brincar ou locais de guarda dos brinquedos."
   },
   "AE-0033": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
-    "item": "1. A Regra de Ouro (Compra)",
+    "item": "1. Regras de Ouro (Compra)",
     "chave": "title",
     "linha": 15,
-    "original": "1. A Regra de Ouro (Compra)"
+    "original": "1. Regras de Ouro (Compra)"
   },
   "AE-0034": {
     "arquivo": "data/safety_toys.js",
     "rotulo": "Brinquedos",
-    "item": "1. A Regra de Ouro (Compra)",
+    "item": "1. Regras de Ouro (Compra)",
     "chave": "content",
     "linha": 20,
-    "original": "Antes de comprar, verifique:\n\n• Classificação Etária: Respeite a faixa indicada. Não é sobre inteligência, é sobre peças engolíveis.\n• Selo INMETRO: Obrigatório. Garante testes químicos e físicos.\n• Materiais: Evite vidro ou metal para menores de 8 anos. Prefira plásticos atóxicos.\n• Fique atendo aos brinquedos de faixas etárias diferentes nas interações"
+    "original": "Antes de comprar, verifique:\n\n• Classificação Etária: Respeite a faixa indicada. Não é sobre inteligência, é sobre peças engolíveis.\n• Selo INMETRO: Obrigatório. Garante testes químicos e físicos.\n• Materiais: Evite vidro ou metal para menores de 8 anos. Prefira plásticos atóxicos.\n• Fique atento aos brinquedos de faixas etárias diferentes nas interações.\n• Crianças de faixas etárias diferentes devem receber maior atenção."
   },
   "AE-0035": {
     "arquivo": "data/safety_toys.js",
@@ -8301,7 +8301,7 @@
     "item": "5. Organização Segura",
     "chave": "content",
     "linha": 60,
-    "original": "• Separação: Irmãos mais velhos devem manter seus brinquedos (Lego, peças pequenas) longe dos caçulas.\n• Berço Livre: Nada de pelúcias ou brinquedos gigantes no berço (risco de sufocamento).\n• Móbiles: Retire assim que o bebê conseguir sentar ou alcançar (risco de se enrolar)."
+    "original": "• Separação: Irmãos mais velhos devem manter seus brinquedos (Lego, peças pequenas) longe dos caçulas.\n• Berço Livre: Nada de pelúcias ou brinquedos gigantes no berço (risco de sufocamento).\n• Móbiles: Retire assim que o bebê conseguir sentar-se ou alcançar (risco de se enrolar ou soltar peças pequenas engolíveis)."
   },
   "AE-0042": {
     "arquivo": "data/safety_toys.js",
@@ -8317,7 +8317,7 @@
     "item": "6. Brincadeiras ao Ar Livre e Água",
     "chave": "content",
     "linha": 70,
-    "original": "• Piscinas Infláveis e Baldes: Esvazie imediatamente após o término da brincadeira. Afogamentos infantis ocorrem em vãos com menos de 10 centímetros de água.\n• Bicicletas e Patinetes: O uso de capacete afivelado deve ser obrigatório. Quedas sem proteção na cabeça são a maior causa de traumas infantis graves."
+    "original": "• Piscinas Infláveis e Baldes: Esvazie imediatamente após o término da brincadeira. Afogamentos infantis ocorrem em recipientes com menos de 10 centímetros de água.\n• Bicicletas e Patinetes: O uso de capacete afivelado deve ser obrigatório. Quedas sem proteção na cabeça são a maior causa de traumas infantis graves."
   },
   "AE-0044": {
     "arquivo": "data/safety_mobility.js",
@@ -8325,7 +8325,7 @@
     "item": "Casa Segura (Quedas)",
     "chave": "content",
     "linha": 10,
-    "original": "Remova tapetes soltos (use fitas dupla-face). Melhore a iluminação (luzes noturnas no corredor). Instale barras de apoio no box e vaso sanitário."
+    "original": "Remova tapetes soltos ou fixe com fitas dupla-face. Melhore a iluminação (luzes noturnas no corredor). Instale barras de apoio no box e vaso sanitário."
   },
   "AE-0045": {
     "arquivo": "data/safety_mobility.js",
@@ -8333,7 +8333,7 @@
     "item": "Adaptações Simples",
     "chave": "content",
     "linha": 14,
-    "original": "Eleve a altura de sofás e poltronas (calços) para facilitar levantar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas."
+    "original": "Eleve a altura de camas, sofás e poltronas (calços) para facilitar o levantar e se sentar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas."
   },
   "AE-0046": {
     "arquivo": "data/safety_mobility.js",
@@ -8341,7 +8341,7 @@
     "item": "Segurança no Banho",
     "chave": "content",
     "linha": 18,
-    "original": "Utilize cadeira de banho ou banco firme. Tapete antiderrapante dentro e fora do box. Nunca deixe a pessoa trancada no banheiro (fechadura deve abrir por fora)."
+    "original": "Utilize cadeira de banho ou banco firme. Tapete antiderrapante dentro e fora do box. Caso o idoso ou pessoa tenha dificuldade de mobilidade ou limitação cognitiva, nunca deve ser deixada sem supervisão contínua. O banheiro (fechadura) deve abrir por fora."
   },
   "AE-0047": {
     "arquivo": "data/safety_mobility.js",
@@ -9269,7 +9269,7 @@
     "item": "Medicamentos",
     "chave": "items[]",
     "linha": 52,
-    "original": "Leve na bagagem de mão — nunca no porão"
+    "original": "Leve na bagagem de mão — nunca no porão de carga"
   },
   "AE-0163": {
     "arquivo": "data/kits/bagagem_viagem.js",
@@ -9325,7 +9325,7 @@
     "item": "Primeiros Socorros",
     "chave": "items[]",
     "linha": 136,
-    "original": "Band-aids de vários tamanhos"
+    "original": "Band-aid de vários tamanhos"
   },
   "AE-0170": {
     "arquivo": "data/kits/bagagem_viagem.js",
@@ -9413,7 +9413,7 @@
     "item": "Higiene e Proteção",
     "chave": "items[]",
     "linha": 252,
-    "original": "Sabonete e shampoo em tamanho de viagem"
+    "original": "Sabonete e xampu em tamanho de viagem"
   },
   "AE-0181": {
     "arquivo": "data/kits/bagagem_viagem.js",
@@ -9437,7 +9437,7 @@
     "item": "Higiene e Proteção",
     "chave": "items[]",
     "linha": 274,
-    "original": "Protetor solar FPS 30 ou maior"
+    "original": "Protetor solar FPS 30 ou maior. Tenha à mão também, creme para aliviar a dor e a inflamação da queimadura solar ou insolação"
   },
   "AE-0184": {
     "arquivo": "data/kits/bagagem_viagem.js",
@@ -9789,7 +9789,7 @@
     "item": "Módulo Internacional",
     "chave": "items[]",
     "linha": 636,
-    "original": "Apólice do seguro viagem acessível offline"
+    "original": "Apólice do seguro-viagem acessível offline"
   },
   "AE-0228": {
     "arquivo": "data/kits/bagagem_viagem.js",

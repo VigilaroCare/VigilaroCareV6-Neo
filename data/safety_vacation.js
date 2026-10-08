@@ -7,7 +7,7 @@ export const SAFETY_VACATION = {
     sections: [
         {
             title: 'Na Estrada',
-            content: 'Use cadeirinha adequada ao peso/idade. Faça paradas a cada 2h. Nunca deixe objetos soltos no carro (viram projéteis em freadas). Trave as portas traseiras (trava de criança).'
+            content: 'Use cadeirinha adequada ao peso/idade. Faça paradas a cada 2h. Nunca deixe objetos soltos no carro: viram projéteis em freadas e podem agravar a situação em caso de acidentes, além de ser passível de infração de trânsito. Utilize as travas manuais das portas traseiras (trava de criança).'
         },
         {
             title: 'Praia e Piscina',

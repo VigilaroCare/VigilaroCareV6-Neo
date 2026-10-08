@@ -11,7 +11,7 @@ export const SAFETY_SCHOOL = {
         },
         {
             title: 'Transporte Escolar',
-            content: 'Ensine a criança a esperar o ônibus na calçada, nunca na rua. Dentro da van ou carro, o cinto de segurança é obrigatório o tempo todo. Nunca colocar cabeça ou braços para fora.'
+            content: 'Ensine a criança a esperar o ônibus na calçada, nunca na rua. Dentro da van ou carro, o cinto de segurança é obrigatório o tempo todo. Oriente a criança para nunca colocar cabeça ou braços para fora.'
         },
         {
             title: 'Bullying e Cyberbullying',
@@ -23,7 +23,7 @@ export const SAFETY_SCHOOL = {
         },
         {
             title: 'Lanche Seguro',
-            content: 'Cuidado com alimentos que estragam fácil no calor (maionese, iogurte). Use lancheiras térmicas. Evite alimentos com alto risco de engasgo para os menores (uvas inteiras, pipoca).'
+            content: 'Cuidado com alimentos que estragam fácil em dias quentes (maionese, iogurte). Use lancheiras térmicas. Evite alimentos com alto risco de engasgo para os menores (uvas inteiras, pipoca).'
         }
     ]
 };

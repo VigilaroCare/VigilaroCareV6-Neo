@@ -7,15 +7,15 @@ export const SAFETY_MOBILITY = {
     sections: [
         {
             title: 'Casa Segura (Quedas)',
-            content: 'Remova tapetes soltos (use fitas dupla-face). Melhore a iluminação (luzes noturnas no corredor). Instale barras de apoio no box e vaso sanitário.'
+            content: 'Remova tapetes soltos ou fixe com fitas dupla-face. Melhore a iluminação (luzes noturnas no corredor). Instale barras de apoio no box e vaso sanitário.'
         },
         {
             title: 'Adaptações Simples',
-            content: 'Eleve a altura de sofás e poltronas (calços) para facilitar levantar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas.'
+            content: 'Eleve a altura de camas, sofás e poltronas (calços) para facilitar o levantar e se sentar. Use maçanetas tipo alavanca. Mantenha objetos de uso diário em prateleiras baixas.'
         },
         {
             title: 'Segurança no Banho',
-            content: 'Utilize cadeira de banho ou banco firme. Tapete antiderrapante dentro e fora do box. Nunca deixe a pessoa trancada no banheiro (fechadura deve abrir por fora).'
+            content: 'Utilize cadeira de banho ou banco firme. Tapete antiderrapante dentro e fora do box. Caso o idoso ou pessoa tenha dificuldade de mobilidade ou limitação cognitiva, nunca deve ser deixada sem supervisão contínua. O banheiro (fechadura) deve abrir por fora.'
         },
         {
             title: 'Emergência',
