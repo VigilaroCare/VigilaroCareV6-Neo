@@ -451,7 +451,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Are you using a proper ladder (not a chair)?',
         consequence: 'Chairs tip over easily.',
-        checkAction: 'Use a certified domestic ladder.',
+        checkAction: 'Use a domestic ladder that carries {{CERT_SEAL}}.',
         options: [
           { label: 'Yes', safe: true },
           { label: 'Used chair', safe: false }
@@ -515,7 +515,7 @@ export const RISK_CATEGORIES_EN = [
       description: 'Improper mixing of cleaning products can generate lethal toxic gases. Products must be in original packaging.',
       keyPoints: [
         'NEVER mix bleach with other products: ammonia, vinegar, all-purpose cleaner, muriatic acid, or any other cleaning product.',
-        'The most dangerous and common mix: bleach + detergent. It generates chlorine gas that can cause respiratory arrest indoors. (Source: CIATOX/ANVISA)',
+        'The most dangerous and common mix: bleach + detergent. It generates chlorine gas that can cause respiratory arrest indoors. (Source: CIATOX/ANVISA, Brazil)',
         'Keep the room highly ventilated (open windows).',
         'Wear protective gloves to prevent dermatitis and burns.',
         'Do not store products in soda bottles (PET).'

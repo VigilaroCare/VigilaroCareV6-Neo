@@ -453,7 +453,7 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'Você usa uma escada firme e apropriada?',
         consequence: 'Subir em cadeiras ou caixas é instável e causa tombos perigosos.',
-        checkAction: 'Adquira e use uma escada de metal aprovada para uso doméstico.',
+        checkAction: 'Adquira e use uma escada doméstica que tenha {{CERT_SEAL}}.',
         options: [
           { label: 'Sim (Escada)', safe: true },
           { label: 'Usei cadeira', safe: false }

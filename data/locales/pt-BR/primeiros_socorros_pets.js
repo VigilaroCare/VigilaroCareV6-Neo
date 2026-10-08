@@ -148,7 +148,7 @@ export const emergenciasPetsPTBR = [
             { titulo: 'Afaste o produto', descricao: 'Retire o pet de perto do produto químico e isole a área para evitar contaminação.', critico: true },
             { titulo: 'Pele ou olhos afetados', descricao: 'Lave a região com bastante água corrente fria por 15 minutos sem parar.', critico: true },
             { titulo: 'Ingestão (Lambeu/Comeu)', descricao: 'NÃO force o vômito, pois produtos ácidos ou alcalinos queimam o esôfago. Apenas ofereça água fresca para limpar a boca.' },
-            { titulo: 'Ligue para o CIATOX', descricao: 'Ligue para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes químicos para o atendente.' },
+            { titulo: 'Ligue para a toxicologia', descricao: 'Ligue para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes químicos para o atendente.' },
             { titulo: 'Leve ao pronto-socorro', descricao: 'Leve a embalagem do produto químico ou a caixa do veneno junto com você para o veterinário saber como neutralizar.', },
         ],
         alertas: ['Nunca dê remédios de humanos (como paracetamol ou aspirina) para cães e gatos. Eles são tóxicos para o fígado deles.', 'Alimentos como chocolate, cebola e xilitol (adoçante) também são venenosos para pets.'],

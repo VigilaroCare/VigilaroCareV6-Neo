@@ -89,7 +89,7 @@ export const primeirosSocorrosPTBR = [
         situacao: 'Ingestão de veneno/químicos',
         oQueFazer: [
             'Identifique na hora qual produto ou remédio a pessoa engoliu.',
-            'Ligue imediatamente para o CIATOX no telefone {{POISON_CONTROL}}.',
+            'Ligue imediatamente para {{POISON_CONTROL}}.',
             'Siga exatamente o que o atendente médico orientar.',
         ],
         oQueNaoFazer: [

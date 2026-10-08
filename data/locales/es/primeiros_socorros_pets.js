@@ -148,7 +148,7 @@ export const emergenciasPetsES = [
             { titulo: 'Aleje la fuente', descricao: 'Saque al animal de cerca del veneno inmediatamente.', critico: true },
             { titulo: 'Contacto con PIEL/OJOS', descricao: 'Lave con MUCHA agua corriente por 15 min.', critico: true },
             { titulo: 'Ingestión (Lamió)', descricao: 'NO provoque vómito (quema al volver). Ofrezca agua.' },
-            { titulo: 'Llame al CIATOX', descricao: 'Tenga el empaque a mano para leer la etiqueta.' },
+            { titulo: 'Llame a toxicología', descricao: 'Llame a {{POISON_CONTROL}} con el envase en la mano para leer la etiqueta.' },
             { titulo: 'Ventilación', descricao: 'Si es olor fuerte (pintura/cloro), llévelo al aire libre.' },
         ],
         alertas: ['Nunca automedique', 'El chocolate y Xilitol también son tóxicos (trate como ingestión)'],

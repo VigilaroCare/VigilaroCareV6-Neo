@@ -89,7 +89,7 @@ export const primeirosSocorrosEN = [
         situacao: 'Ingestion of poison/chemicals',
         oQueFazer: [
             'Identify the ingested product.',
-            'Call the Poison Control Center immediately.',
+            'Call {{POISON_CONTROL}} immediately.',
             'Follow the operator\'s instructions.',
         ],
         oQueNaoFazer: [

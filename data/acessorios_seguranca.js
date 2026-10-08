@@ -157,7 +157,7 @@ export const ACESSORIOS_SEGURANCA = {
                 'Poliamida (mais resistente, áreas internas)'
             ],
             verificacoes: [
-                'Certificação INMETRO',
+                'Certificação de segurança',
                 'Validade de 3-5 anos',
                 'Ganchos de aço galvanizado',
                 'Tensão adequada (não cede ao empurrar)'

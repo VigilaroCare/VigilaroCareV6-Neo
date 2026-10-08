@@ -52,7 +52,7 @@ export const DISPOSITIVOS_RETENCAO = [
       'Usar SEMPRE que o bebê estiver no veículo',
       'Nunca usar bebê conforto com sinais de desgaste',
       'Substituir após qualquer acidente de carro',
-      'Verificar selo do Inmetro',
+      'Verificar {{CERT_SEAL}}',
       'Seguir instruções do fabricante rigorosamente',
       'Nunca instalar em banco com airbag frontal ativo'
     ],
@@ -107,7 +107,7 @@ export const DISPOSITIVOS_RETENCAO = [
     ],
     
     seguranca: [
-      'Verificar selo do Inmetro',
+      'Verificar {{CERT_SEAL}}',
       'Respeitar limites de peso e altura',
       'Substituir após acidente',
       'Verificar prazo de validade do produto',
@@ -166,7 +166,7 @@ export const DISPOSITIVOS_RETENCAO = [
     
     seguranca: [
       'Usar até a criança atingir 1,45m',
-      'Verificar se assento é certificado (Inmetro)',
+      'Verificar se o assento tem {{CERT_SEAL}}',
       'Nunca usar apenas o cinto sem o booster se menor que 1,45m',
       'Substituir se danificado',
       'Guardar em local seguro quando não estiver em uso'
@@ -430,7 +430,7 @@ export const SEGURANCA_MOTO = {
     {
       item: 'Capacete',
       requisitos: [
-        'Certificado pelo Inmetro (selo obrigatório)',
+        'Com {{CERT_SEAL}} (obrigatório)',
         'Tamanho adequado à cabeça',
         'Viseira sem trincas ou arranhões',
         'Fivela funcionando corretamente',

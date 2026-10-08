@@ -24,7 +24,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             { descricao: 'Queimaduras na cama por carregar celular sob o travesseiro durante a noite', gravidade: 'alto' },
         ],
         prevencao: [
-            'Use SOMENTE carregadores originais ou certificados pelo Inmetro — nunca falsificados',
+            'Use SOMENTE carregadores originais ou com {{CERT_SEAL}} — nunca falsificados',
             'NUNCA carregue o celular debaixo do travesseiro ou sobre a cama — use uma superfície rígida e ventilada',
             'Desconecte o carregador da tomada quando não estiver em uso (consome energia e aquece)',
             'Descarte cabos com revestimento danificado, dobra rígida ou fios expostos',

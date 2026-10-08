@@ -88,22 +88,22 @@ export const SAFETY_GAS = {
             icon: 'ShieldTick',
             emoji: '✅', icone: 'CheckCircle',
             description: '• Confira o estado da mangueira, do regulador e das braçadeiras. Procure rachaduras, endurecimento e folga.\n'
-                + '• Respeite o prazo de validade impresso na mangueira e no regulador, e use só peças com certificação do INMETRO.\n'
+                + '• Respeite o prazo de validade impresso na mangueira e no regulador, e use só peças com {{CERT_SEAL}}.\n'
                 + '• Para procurar vazamento, passe espuma de sabão nas conexões e veja se borbulha. NUNCA use chama para testar.\n'
                 + '• Mantenha o botijão em pé, em área externa ventilada, longe de fonte de calor e de ralos. Nunca em subsolo ou cômodo fechado.\n'
                 + '• Em prédio com central de gás, o abrigo dos cilindros deve ser ventilado, sinalizado e protegido das intempéries.',
             description_en: '• Check the hose, regulator and clamps. Look for cracks, stiffness and slack.\n'
-                + '• Respect the expiry date printed on the hose and regulator, and use only certified parts.\n'
+                + '• Respect the expiry date printed on the hose and regulator, and use only parts carrying {{CERT_SEAL}}.\n'
                 + '• To look for a leak, brush soapy foam on the connections and watch for bubbles. NEVER test with a flame.\n'
                 + '• Keep the cylinder upright, outdoors and ventilated, away from heat sources and drains. Never in a basement or closed room.\n'
                 + '• In a building with a central gas installation, the cylinder housing must be ventilated, signposted and weather-protected.',
             description_es: '• Revise el estado de la manguera, el regulador y las abrazaderas. Busque grietas, endurecimiento y holgura.\n'
-                + '• Respete la fecha de caducidad impresa en la manguera y el regulador, y use solo piezas certificadas.\n'
+                + '• Respete la fecha de caducidad impresa en la manguera y el regulador, y use solo piezas con {{CERT_SEAL}}.\n'
                 + '• Para buscar una fuga, aplique espuma de jabón en las conexiones y observe si burbujea. NUNCA use llama para probar.\n'
                 + '• Mantenga la bombona de pie, en zona exterior ventilada, lejos de fuentes de calor y desagües. Nunca en sótano o habitación cerrada.\n'
                 + '• En edificio con central de gas, el armario de las bombonas debe estar ventilado, señalizado y protegido de la intemperie.',
             description_ptpt: '• Confira o estado da mangueira, do redutor e das abraçadeiras. Procure fissuras, endurecimento e folga.\n'
-                + '• Respeite o prazo de validade impresso na mangueira e no redutor, e use apenas peças certificadas.\n'
+                + '• Respeite o prazo de validade impresso na mangueira e no redutor, e use apenas peças com {{CERT_SEAL}}.\n'
                 + '• Para procurar fuga, passe espuma de sabão nas ligações e veja se borbulha. NUNCA use chama para testar.\n'
                 + '• Mantenha a botija em pé, em área exterior ventilada, longe de fontes de calor e de ralos. Nunca em cave ou compartimento fechado.\n'
                 + '• Em edifício com central de gás, o abrigo das botijas deve ser ventilado, sinalizado e protegido das intempéries.',

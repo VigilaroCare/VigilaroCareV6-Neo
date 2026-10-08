@@ -449,7 +449,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Está usando una escalera adecuada (no una silla)?',
         consequence: 'Las sillas se vuelcan fácilmente.',
-        checkAction: 'Use una escalera doméstica certificada.',
+        checkAction: 'Use una escalera doméstica que tenga {{CERT_SEAL}}.',
         options: [
           { label: 'Sí', safe: true },
           { label: 'Usé silla', safe: false }

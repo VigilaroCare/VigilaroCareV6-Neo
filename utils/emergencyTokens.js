@@ -20,6 +20,26 @@
  *                           Use quando a frase ja diz "Ligue ...".
  *   {{POISON_CONTROL}}    — centro de intoxicacao quando existe no pais;
  *                           cai pro servico de emergencia geral quando nao.
+ *   {{CERT_SEAL}}         — selo/marca de conformidade a procurar no produto:
+ *                           "o selo do INMETRO" no Brasil, "a marcacao CE" na
+ *                           UE, "a marca de um laboratorio certificador (UL,
+ *                           ETL)" nos EUA, "a marcacao UKCA" no Reino Unido.
+ *   {{STANDARDS_BODY}}    — organismo de normas: ABNT (BR), EN (UE),
+ *                           ASTM/ANSI (EUA), BS EN (GB).
+ *   {{PEDIATRIC_BODY}}    — sociedade de pediatria de referencia: SBP (BR),
+ *                           SPP (PT), AEP (ES), AAP (EUA), RCPCH (GB).
+ *   {{HEALTH_AUTHORITY}}  — regulador sanitario: ANVISA (BR), INFARMED (PT),
+ *                           AEMPS (ES), FDA (EUA), MHRA (GB).
+ *   {{TRAFFIC_AUTHORITY}} — fonte da regra de transito: CTB (BR), Codigo da
+ *                           Estrada (PT), RGC (ES), lei estadual (EUA).
+ *
+ *   Os cinco acima vem de data/instituicoesPorPais.js e foram acrescentados
+ *   em 08/10/2026, por decisao do Agnaldo: conteudo de prevencao nao se
+ *   resolve com traducao, porque o orgao que certifica, a norma que vale e a
+ *   autoridade que recomenda MUDAM com o pais. Pais sem entrada cai numa
+ *   formulacao generica correta ("uma certificacao de seguranca reconhecida"),
+ *   nunca no orgao de outro pais.
+ *
  *   {{FIRE_NUMBER}}       — so o numero dos bombeiros, ex: "193" no Brasil,
  *                           "112" na UE, "911" nos EUA. Use em texto de
  *                           incendio, gas e evacuacao, onde o servico certo
@@ -41,8 +61,16 @@ import {
     getEmergencyNumbersForCountry,
     DEFAULT_EMERGENCY_NUMBERS,
 } from '../data/emergencyNumbersByCountry';
+import {
+    SELO_CERTIFICACAO,
+    ORGAO_DE_NORMAS,
+    ORGAO_PEDIATRIA,
+    AUTORIDADE_SANITARIA,
+    AUTORIDADE_TRANSITO,
+    getInstituicao,
+} from '../data/instituicoesPorPais';
 
-const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER)\}\}/g;
+const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY)\}\}/g;
 
 /**
  * Nome do servico medico de emergencia por pais e idioma.
@@ -87,6 +115,15 @@ const POISON_CONTROL_BY_COUNTRY = {
     // Portugal — CIAV, Centro de Informacao Antivenenos do INEM. Centro unico
     // nacional, 24h, gratuito. Fonte oficial: https://www.inem.pt/ciav/
     PT: 'CIAV (800 250 250)',
+
+    // Espanha — Instituto Nacional de Toxicologia y Ciencias Forenses,
+    // servico de informacao toxicologica nacional 24h. Fonte oficial:
+    // https://www.mjusticia.gob.es (Instituto Nacional de Toxicologia)
+    ES: 'Instituto Nacional de Toxicología (91 562 04 20)',
+
+    // EUA — Poison Help, linha nacional unica 24h operada pela AAPCC, que
+    // encaminha para o centro regional. Fonte oficial: https://poisonhelp.hrsa.gov
+    US: 'Poison Help (1-800-222-1222)',
 };
 
 /**
@@ -97,6 +134,8 @@ const POISON_CONTROL_BY_COUNTRY = {
 const POISON_CONTROL_DIAL_BY_COUNTRY = {
     BR: '08007226001',
     PT: '800250250',
+    ES: '915620420',
+    US: '18002221222',
 };
 
 /** Normaliza i18n.language ('pt-BR', 'pt-PT', 'en', 'es') pra chave de label. */
@@ -175,6 +214,20 @@ function getTokenValue(token, country, langKey) {
                 DEFAULT_EMERGENCY_NUMBERS.geral
             );
         }
+
+        // Instituicoes: orgao, selo e norma mudam com o pais. A tabela
+        // devolve o DEFAULT generico quando o pais e desconhecido, nunca o
+        // orgao de outro pais.
+        case 'CERT_SEAL':
+            return getInstituicao(SELO_CERTIFICACAO, country, langKey);
+        case 'STANDARDS_BODY':
+            return getInstituicao(ORGAO_DE_NORMAS, country, langKey);
+        case 'PEDIATRIC_BODY':
+            return getInstituicao(ORGAO_PEDIATRIA, country, langKey);
+        case 'HEALTH_AUTHORITY':
+            return getInstituicao(AUTORIDADE_SANITARIA, country, langKey);
+        case 'TRAFFIC_AUTHORITY':
+            return getInstituicao(AUTORIDADE_TRANSITO, country, langKey);
 
         case 'POISON_CONTROL': {
             const poison = country ? POISON_CONTROL_BY_COUNTRY[country] : null;

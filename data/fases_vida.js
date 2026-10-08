@@ -286,7 +286,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
         ],
         primeirosSocorros: 'Tenha o número do {{POISON_CONTROL}} sempre à mão.',
         primeirosSocorros_en: 'Always have the Poison Control number at hand.',
-        primeirosSocorros_es: 'Tenga siempre a mano el número de CIATOX.',
+        primeirosSocorros_es: 'Tenga siempre a mano el número de {{POISON_CONTROL}}.',
         oQueNaoFazer: [
             'Não usar andador (risco grave de queda e traumatismo).',
             'Não deixar cabos elétricos ou toalhas de mesa pendurados.',
@@ -502,7 +502,7 @@ A sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialm
             'Capacete obrigatório em bicicleta e skate',
             'Cadeirinha adequada no carro conforme peso/idade',
             'Ensinar sobre perigos de fogo e eletricidade',
-            'Brinquedos adequados à faixa etária (selo INMETRO)',
+            'Brinquedos adequados à faixa etária, com {{CERT_SEAL}}',
             'Atenção nas interações de faixas etárias muito diferentes'
         ],
         comoEvitar_en: [
@@ -546,7 +546,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 
@@ -586,7 +586,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 ### O que fazer (e NÃO fazer):
 *   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.
 *   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.
-*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tença nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
+*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
         conteudo_en: `# Toys: Fun with Safety
 
@@ -688,7 +688,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 
@@ -728,7 +728,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 ### O que fazer (e NÃO fazer):
 *   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.
 *   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.
-*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tença nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
+*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
     },
     'child_3_5': {
@@ -796,7 +796,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 
@@ -836,7 +836,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 ### O que fazer (e NÃO fazer):
 *   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.
 *   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.
-*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tença nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
+*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
         conteudo_en: `# Toys: Fun with Safety
 
@@ -938,7 +938,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 
@@ -978,7 +978,7 @@ Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tud
 ### O que fazer (e NÃO fazer):
 *   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.
 *   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.
-*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tença nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
+*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)
 *   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.`,
     },
     'child_6_14': {
@@ -1043,7 +1043,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 
@@ -1099,7 +1099,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
 *   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
-*   **Tintas Tóxicas:** Prefira produtos certificados pelo INMETRO.
+*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
 

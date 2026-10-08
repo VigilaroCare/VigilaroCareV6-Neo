@@ -451,7 +451,7 @@ export const RISK_CATEGORIES_PT = [
         critico: true,
         text: 'Você está usando uma escada apropriada (não cadeira)?',
         consequence: 'Cadeiras viram facilmente.',
-        checkAction: 'Use uma escada doméstica com selo Inmetro.',
+        checkAction: 'Use uma escada doméstica que tenha {{CERT_SEAL}}.',
         options: [
           { label: 'Sim', safe: true },
           { label: 'Usei cadeira', safe: false }
@@ -515,7 +515,7 @@ export const RISK_CATEGORIES_PT = [
       description: 'A mistura indevida de produtos de limpeza pode gerar gases tóxicos letais. Produtos devem estar em embalagens originais.',
       keyPoints: [
         'NUNCA misture água sanitária com outros produtos: amônia, vinagre, detergente multiuso, ácido muriático ou qualquer outro produto de limpeza.',
-        'A mistura mais perigosa e mais comum: água sanitária + detergente. Gera cloro gasoso que pode causar parada respiratória em ambiente fechado. (Fonte: CIATOX/ANVISA)',
+        'A mistura mais perigosa e mais comum: lixívia + detergente. Gera cloro gasoso que pode causar paragem respiratória em ambiente fechado. (Fonte: CIATOX/ANVISA, Brasil)',
         'Mantenha o ambiente super ventilado (janelas abertas).',
         'Use luvas de proteção para evitar dermatites e queimaduras.',
         'Não armazene produtos em garrafas de refrigerante (pet).'

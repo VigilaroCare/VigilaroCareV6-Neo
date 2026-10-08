@@ -216,11 +216,11 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         },
         {
           id: 'bercos-certificados',
-          texto: 'Berços certificados pelo Inmetro (para berçários)',
+          texto: 'Berços com {{CERT_SEAL}} (para berçários)',
           texto_en: 'Cribs certified by safety standards (for nurseries)',
           texto_es: 'Cunas certificadas por estándares de seguridad (para guarderías)',
           critico: true,
-          detalhes: 'Verificar selo do Inmetro e conformidade com normas ABNT.',
+          detalhes: 'Verificar {{CERT_SEAL}} e a conformidade com {{STANDARDS_BODY}}.',
           detalhes_en: 'Check for safety certification seal and compliance with standards.',
           detalhes_es: 'Verificar el sello de certificación y el cumplimiento de las normas.'
         },

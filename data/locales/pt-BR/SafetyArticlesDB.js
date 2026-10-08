@@ -36,7 +36,7 @@ Muitas vezes, um incêndio devastador começa com um detalhe bobo que poderia se
 Luzes improvisadas e fios velhos aumentam o risco de curto-circuito no fim do ano. Curta as festas sem preocupações.
 
 ### Dicas essenciais:
-*   **Pisca-Pisca:** Veja se os fios não estão desencapados ou emendados antes de pendurar. Prefira luzes de LED, que esquentam bem menos, e dê prioridade a produtos com selo do INMETRO.
+*   **Pisca-Pisca:** Veja se os fios não estão desencapados ou emendados antes de pendurar. Prefira luzes de LED, que esquentam bem menos, e dê prioridade a produtos com {{CERT_SEAL}}.
 *   **Desligue ao Sair:** Não deixe as luzes da árvore ligadas se não houver ninguém em casa ou quando for dormir.
 *   **Árvore:** Mantenha a árvore longe de cortinas, sofás e velas acesas.
 *   **Tomadas:** Evite ligar todas as decorações na mesma tomada. Filtros de linha com fusível ajudam a proteger contra sobrecarga.

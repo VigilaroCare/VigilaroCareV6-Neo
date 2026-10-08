@@ -407,7 +407,7 @@ export const riscosFisicos = [
         prevencao: [
             'Bebês devem dormir de barriga para cima, em berço vazio (sem protetores, ursos ou travesseiros).',
             'Corte alimentos redondos (uvas, tomate cereja) ao comprido antes de servir a crianças.',
-            'Verifique a indicação de idade e selo do INMETRO nos brinquedos.',
+            'Verifique a indicação de idade e {{CERT_SEAL}} nos brinquedos.',
             'Mantenha feijões crus, milho e moedas longe do alcance.'
         ],
         primeirosSocorros: 'Realize a Manobra de Heimlich imediatamente. Para bebês, 5 tapas nas costas e 5 compressões no peito. Ligue {{EMERGENCY_NUMBER}} se não desengasgar.'

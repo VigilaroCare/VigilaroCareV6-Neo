@@ -289,7 +289,7 @@ export const DISPOSITIVOS_PROTECAO = [
             'A abertura máxima segura é de 10cm (largura que não permite a passagem do corpo)',
             'Nunca posicione móveis, camas ou cadeiras próximos a janelas',
             'Prefira telas de proteção como complemento ao limitador',
-            'Verifique se o limitador é resistente a impacto — testes com certificação Inmetro',
+            'Verifique se o limitador é resistente a impacto — testes com {{CERT_SEAL}}',
         ],
         oQueFazer: 'Em caso de queda de altura: NÃO movimente a vítima. Ligue {{EMERGENCY_NUMBER}} (SAMU) imediatamente. Mantenha a vítima estável e aquecida até a chegada do socorro.',
         estatistica: 'Quedas de janelas e varandas são responsáveis por 40% dos óbitos por acidente doméstico infantil em grandes cidades (SBP).',

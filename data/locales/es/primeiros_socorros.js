@@ -89,7 +89,7 @@ export const primeirosSocorrosES = [
         situacao: 'Ingestión de veneno/químicos',
         oQueFazer: [
             'Identifique el producto ingerido.',
-            'Llame al Centro de Intoxicaciones (CIATOX).',
+            'Llame de inmediato a {{POISON_CONTROL}}.',
             'Siga las instrucciones del operador.',
         ],
         oQueNaoFazer: [

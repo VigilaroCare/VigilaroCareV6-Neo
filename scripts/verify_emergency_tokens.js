@@ -55,6 +55,14 @@ vm.runInContext(
     sandbox
 );
 
+// data/instituicoesPorPais.js — tabela real de orgaos, selos e normas.
+// Carregada ANTES de emergencyTokens.js porque o loader apaga os imports: sem
+// isto, getInstituicao seria undefined no sandbox.
+vm.runInContext(
+    toEvaluable(fs.readFileSync(path.join(ROOT, 'data/instituicoesPorPais.js'), 'utf8')),
+    sandbox
+);
+
 // utils/emergencyTokens.js — logica real de resolucao.
 // detectEmergencyCountry e stubado porque depende de GPS/expo-localization;
 // o pais e injetado diretamente pelo teste.
@@ -225,9 +233,13 @@ console.log('\n5. CENTRO DE INTOXICACAO (rotulo e numero discavel)\n');
 const DIAL_ESPERADO = {
     BR: '08007226001', // Disque-Intoxicacao / Anvisa
     PT: '800250250',   // CIAV / INEM
-    ES: '112',         // sem centro mapeado: cai no geral
-    US: '911',
-    XX: '112',
+    // ES e US acrescentados em 08/10/2026. Antes caiam no numero geral (112 /
+    // 911) por nao terem centro mapeado — o fallback funcionava, mas mandava
+    // uma ingestao de produto quimico para a emergencia geral em vez da linha
+    // toxicologica, que atende melhor esse caso especifico.
+    ES: '915620420',   // Instituto Nacional de Toxicologia y Ciencias Forenses
+    US: '18002221222', // Poison Help (AAPCC), linha nacional unica
+    XX: '112',         // pais desconhecido: cai no geral, como deve
 };
 for (const [country, esperado] of Object.entries(DIAL_ESPERADO)) {
     sandbox.__country = country;
@@ -431,6 +443,111 @@ console.log('\n6c. NUMERO BR EM TEXTO NAO-pt-BR\n');
         console.log('         Correto no Brasil, nao acompanha o pais. Divida, nao falha.');
         avisos.slice(0, 8).forEach((a) => console.log(`         ${a}`));
         if (avisos.length > 8) console.log(`         ... e mais ${avisos.length - 8}`);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 6d. ORGAO, SELO OU NORMA BRASILEIRA DENTRO DE TEXTO QUE NAO E pt-BR.
+//
+//     Mesma logica do 6c, para instituicoes em vez de numeros. Decisao do
+//     Agnaldo em 08/10/2026: "nunca sera apenas uma questao de traducao (...)
+//     proceda com todas as adequacoes necessarias para que cada usuario veja
+//     aquilo que lhe diz respeito".
+//
+//     O caso que abriu: a ficha do extintor mandava conferir "a data de
+//     validade no selo do INMETRO". Em Lisboa isso manda procurar um selo
+//     brasileiro que nao existe. A varredura achou 184 referencias do tipo.
+//
+//     DISTINCAO QUE O TESTE PRECISA FAZER, e que nenhuma regex sabe sozinha:
+//
+//       INSTRUCAO ao utilizador  -> tem de virar token. "Exija o selo do
+//         INMETRO" deve ler {{CERT_SEAL}}, que resolve INMETRO no Brasil,
+//         marcacao CE na UE, UL/ETL nos EUA.
+//
+//       CITACAO DE FONTE         -> fica como esta. "(Fonte: CIATOX/SBP 2023)"
+//         nomeia quem de facto afirmou aquilo. Trocar por {{PEDIATRIC_BODY}}
+//         faria o texto atribuir a American Academy of Pediatrics uma frase
+//         que ela nunca disse. Atribuicao falsa e pior que termo estrangeiro.
+//
+//     Por isso o teste ignora o que vem precedido de Fonte:/Source:/Fuente: ou
+//     esta entre parenteses com ano. O resto e tratado como instrucao.
+// ---------------------------------------------------------------------------
+console.log('\n6d. ORGAO/SELO BR EM TEXTO NAO-pt-BR\n');
+{
+    const parser = require('@babel/parser');
+    const traverse = require('@babel/traverse').default;
+
+    // Instituicoes brasileiras que tem token equivalente por pais.
+    const RX_ORGAO = /(INMETRO|ABNT|ANVISA|CONTRAN|DETRAN)|NBR\s*\d|C[óo]digo de Tr[âa]nsito Brasileiro/i;
+
+    // Marcas de citacao: se a mencao esta num destes contextos, e fonte.
+    const RX_CITACAO = /(fonte|source|fuente|baseado em|based on|segun|segundo)|\(\s*[^)]{0,40}(19|20)\d{2}\s*\)/i;
+
+    const SUFIXO_ESTRANGEIRO = /_(en|es|ptpt|pt_pt|ptPT)$/i;
+    const DIR_ESTRANGEIRO = /^data\/locales\/(en|es|pt-PT)\//;
+    const IGNORAR = ['data/instituicoesPorPais.js'];
+
+    const bloqueios = [];
+    const citacoes = [];
+
+    const varrerAst = (rel) => {
+        if (IGNORAR.includes(rel)) return;
+        let ast;
+        try {
+            ast = parser.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'), {
+                sourceType: 'module', plugins: ['jsx'],
+            });
+        } catch { return; }
+        const ficheiroEstrangeiro = DIR_ESTRANGEIRO.test(rel);
+        traverse(ast, {
+            'StringLiteral|TemplateElement'(p) {
+                const texto = p.isStringLiteral()
+                    ? p.node.value
+                    : (p.node.value && p.node.value.cooked) || '';
+                if (!texto || !RX_ORGAO.test(texto)) return;
+
+                let estrangeiro = ficheiroEstrangeiro;
+                let atual = p.parentPath;
+                while (atual && !estrangeiro) {
+                    if (atual.isObjectProperty()) {
+                        const k = atual.node.key
+                            && (atual.node.key.name || atual.node.key.value);
+                        if (typeof k === 'string' && SUFIXO_ESTRANGEIRO.test(k)) estrangeiro = true;
+                    }
+                    atual = atual.parentPath;
+                }
+                if (!estrangeiro) return;
+
+                // Olha a frase onde a mencao esta, nao a string toda: um artigo
+                // longo pode ter instrucao num paragrafo e fonte noutro.
+                const frase = (texto.split(/[.\n]/).find((f) => RX_ORGAO.test(f)) || texto).trim();
+                const onde = `${rel}:${p.node.loc ? p.node.loc.start.line : 0}`;
+                const amostra = frase.replace(/\s+/g, ' ').slice(0, 76);
+                (RX_CITACAO.test(frase) ? citacoes : bloqueios).push(`${onde}  ${amostra}`);
+            },
+        });
+    };
+
+    const varrerDir = (dir) => {
+        for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+            const rel = `${dir}/${e.name}`;
+            if (e.isDirectory()) { varrerDir(rel); continue; }
+            if (e.name.endsWith('.js')) varrerAst(rel);
+        }
+    };
+    varrerDir('data');
+
+    if (bloqueios.length) {
+        failures++;
+        console.log(`   FALHA ${bloqueios.length} orgao/selo BR como INSTRUCAO em texto nao-pt-BR:`);
+        bloqueios.forEach((b) => console.log(`         ${b}`));
+        console.log('         Troque por {{CERT_SEAL}}, {{STANDARDS_BODY}},');
+        console.log('         {{HEALTH_AUTHORITY}} ou {{TRAFFIC_AUTHORITY}}.');
+    } else {
+        console.log('   OK    nenhum orgao/selo BR dado como instrucao em texto traduzido');
+    }
+    if (citacoes.length) {
+        console.log(`   nota  ${citacoes.length} mencao(oes) em citacao de fonte — mantidas de proposito`);
     }
 }
 

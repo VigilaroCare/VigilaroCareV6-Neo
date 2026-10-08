@@ -39,7 +39,7 @@ A maioria dos incêndios começa pequeno e poderia ser evitado.
 Luzes e decorações improvisadas aumentam o risco de incêndio no fim de ano.
 
 ### Dicas:
-*   **Pisca-Pisca:** Verifique se os fios estão descascados antes de usar. Combre produtos com selo do INMETRO. Dê preferência a LEDs (esquentam menos).
+*   **Pisca-Pisca:** Verifique se os fios estão descascados antes de usar. Compre produtos que tenham {{CERT_SEAL}}. Dê preferência a LEDs (esquentam menos).
 *   **Desligue ao Sair:** Nunca deixe as luzes da árvore ligadas se não tiver ninguém em casa ou ao ir dormir.
 *   **Árvore:** Mantenha longe de cortinas e velas.
 *   **Sobrecarga:** Evite ligar todas as decorações na mesma tomada. Use filtros de linha com fusível.
@@ -152,10 +152,10 @@ Evite cortes, queimaduras e contaminação.
         content: `
 # Redes de Proteção
 
-Se você mora em sobrado ou apartamento, a rede é obrigatória.
+Se vive em apartamento ou em casa com mais de um piso, a rede é a barreira mais eficaz contra quedas.
 
 ### Dicas de Instalação:
-*   **Norma Técnica:** Exija redes que sigam a norma ABNT NBR 16046.
+*   **Norma Técnica:** Exija redes que cumpram {{STANDARDS_BODY}} aplicável a redes de proteção.
 *   **Ganchos:** Devem ser de aço (não use ganchos plásticos antigos) e estarem bem fixados.
 *   **Tamanho da Malha:** Para gatos e crianças pequenas, malhas menores (3x3 cm ou 5x5 cm) são ideais.
 *   **Manutenção:** As redes duram cerca de 3 a 5 anos expostas ao sol. Verifique se os fios estão ressecados ou quebradiços e troque se necessário.
@@ -370,16 +370,16 @@ A panela de pressão acelera o cozimento, mas exige respeito. Acidentes podem se
     {
         id: 'redes_protecao',
         categoryId: 'manutencao_casa',
-        title: 'Redes de Proteção: Janelas e Sacadas',
+        title: 'Redes de Proteção: Janelas e Varandas',
         summary: 'Essenciais para quem tem crianças ou pets em apartamentos. Saiba como escolher e manter.',
         content: `
-# Redes de Proteção para Janelas e Sacadas
+# Redes de Proteção para Janelas e Varandas
 
-Se você mora em apartamento ou sobrado, as redes de proteção são a barreira física mais eficaz contra quedas.
+Se vive em apartamento ou em casa com mais de um piso, as redes de proteção são a barreira física mais eficaz contra quedas.
 
 **Onde Instalar:**
 * Janelas de quartos e salas.
-* Sacadas e varandas.
+* Varandas e terraços.
 * Áreas de serviço.
 * Mezaninos e escadas abertas.
 
@@ -389,7 +389,7 @@ Se você mora em apartamento ou sobrado, as redes de proteção são a barreira 
 * **Teste de Tensão**: A rede deve estar esticada. Se estiver frouxa, chame um técnico.
 * **Pets**: Gatos podem roer a rede. Verifique com frequência se há danos.
 
-**Dica**: Ao contratar, exija empresas que sigam as normas da ABNT e ofereçam garantia.
+**Dica**: Ao contratar, exija empresas que cumpram {{STANDARDS_BODY}} e ofereçam garantia.
         `,
         tags: ['janelas', 'apartamento', 'segurança', 'quedas', 'manutenção']
     }
