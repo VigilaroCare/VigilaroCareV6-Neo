@@ -30,6 +30,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 const parser = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const {
@@ -528,9 +529,42 @@ function montarDocumento(tema, dados, manifesto) {
  * e eu nao a trouxe. Trazida, e explicita: a revisao humana e o unico artefacto
  * aqui que nao da para refazer com um comando.
  */
-const ehSeguroEscrever = (destino, forcar) => {
-    if (forcar || !fs.existsSync(destino)) return true;
-    return false;
+/**
+ * Ficheiro que o git ve como modificado tem trabalho que nao esta em lugar
+ * nenhum. Nem `--forcar` passa por cima dele.
+ *
+ * MOTIVO (08/10/2026): o Agnaldo fechou o PS para eu atualizar o tema do
+ * desengasgo. Eu corri `git status && ... --forcar` encadeados; o git status
+ * imprimiu "M docs/revisao-conteudo/PS-Primeiros-Socorros.docx" na linha de
+ * cima e eu regerei em cima. A revisao que ele tinha em andamento foi
+ * destruida — nao estava commitada, o AutoRecover do Word estava vazio, a
+ * Protecao do Sistema do Windows esta desligada e sobrescrita nao passa pela
+ * lixeira.
+ *
+ * "Fechei o documento para que vc pudesse atualizar este tema" nao e
+ * autorizacao para regerar o documento inteiro. E a distincao que o
+ * `--forcar` nao sabia fazer, e que agora e feita aqui: se o ficheiro diverge
+ * do que esta commitado, ha trabalho nao guardado e o script para.
+ *
+ * Para ultrapassar e preciso `--descartar-modificacoes`, que tem de ser
+ * escrito a mao e diz exactamente o que faz.
+ */
+const estaModificadoNoGit = (destino) => {
+    try {
+        const rel = path.relative(RAIZ, destino).split(path.sep).join('/');
+        const saida = execFileSync('git', ['status', '--porcelain', '--', rel],
+            { cwd: RAIZ, encoding: 'utf8' });
+        return saida.trim().length > 0;
+    } catch {
+        return false;   // fora de um repo git: a copia de seguranca cobre
+    }
+};
+
+const ehSeguroEscrever = (destino, forcar, descartar) => {
+    if (!fs.existsSync(destino)) return true;
+    if (!forcar) return false;
+    if (estaModificadoNoGit(destino) && !descartar) return 'modificado';
+    return true;
 };
 
 /**
@@ -565,12 +599,14 @@ const lerEstado = () => {
 
 async function principal() {
     const forcar = process.argv.includes('--forcar');
+    const descartar = process.argv.includes('--descartar-modificacoes');
     fs.mkdirSync(DESTINO, { recursive: true });
     const manifesto = {};
     const resumo = [];
     const preservados = [];
     const desatualizados = [];
     const copias = [];
+    const bloqueados = [];
     const estadoAnterior = lerEstado();
     const estadoNovo = {};
 
@@ -593,7 +629,15 @@ async function principal() {
         // codigo de hoje e e a ancora do reimport. So o .docx e preservado.
         const digital = impressaoDigital(dados);
 
-        if (!ehSeguroEscrever(destino, forcar)) {
+        const veredito = ehSeguroEscrever(destino, forcar, descartar);
+
+        if (veredito === 'modificado') {
+            bloqueados.push(nome);
+            console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos  (BLOQUEADO — modificado no git)`);
+            continue;
+        }
+
+        if (!veredito) {
             preservados.push(nome);
             // Documento que ja existia antes de haver `_estado.json` nao tem
             // digital conhecida. Registar a ATUAL seria declara-lo em dia sem
@@ -650,6 +694,16 @@ async function principal() {
     }
     fs.writeFileSync(CAMINHO_ESTADO, JSON.stringify(estadoNovo, null, 2), 'utf8');
 
+    if (bloqueados.length) {
+        console.log(`
+  ${bloqueados.length} documento(s) BLOQUEADO(S) — o git ve modificacoes neles:`);
+        bloqueados.forEach((n) => console.log(`    ${n}`));
+        console.log('  Ha trabalho ai que nao esta guardado em lugar nenhum.');
+        console.log('  Commite, ou confirme com quem revisou, antes de regerar.');
+        console.log('  Para regerar mesmo assim, perdendo o que esta no ficheiro:');
+        console.log('    node scripts/gerar_revisao_conteudo.js --forcar --descartar-modificacoes');
+    }
+
     if (copias.length) {
         console.log(`
   ${copias.length} copia(s) de seguranca do que existia antes:`);
@@ -680,4 +734,4 @@ if (require.main === module) {
 // Exportado para o importador: `importar_revisao_conteudo.js` precisa saber
 // quais paragrafos sao rotulo de papel deste gerador, e nao texto do revisor.
 // Sem isto, "ITENS" e "DESCRICAO" entram como inclusao humana.
-module.exports = { PAPEL_DO_CAMPO, TEMAS };
+module.exports = { PAPEL_DO_CAMPO, TEMAS, extrair };
