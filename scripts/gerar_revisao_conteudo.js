@@ -29,6 +29,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const parser = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const {
@@ -532,12 +533,45 @@ const ehSeguroEscrever = (destino, forcar) => {
     return false;
 };
 
+/**
+ * Impressao digital do conteudo que entrou num documento.
+ *
+ * MOTIVO (08/10/2026): o Agnaldo revisou o PS e apontou treze textos como
+ * desalinhados com os protocolos de saude. Estava certo quanto ao texto que
+ * tinha na frente — mas eu ja o havia corrigido uma hora antes. O documento
+ * era das 19:18 e a correcao das 20:19. Ele pediu desculpa pelo "equivoco";
+ * o equivoco foi meu, por lhe entregar um documento e depois mexer na fonte
+ * sem o avisar.
+ *
+ * Com tres documentos ainda por revisar e conteudo a ser corrigido em
+ * paralelo, isto repetiria. O estado fica em `_estado.json` e e conferido a
+ * cada execucao: documento cuja fonte mudou depois de ele ser escrito passa a
+ * ser anunciado como DESATUALIZADO, em voz alta.
+ */
+const impressaoDigital = (dados) => {
+    const texto = dados
+        .map((f) => f.blocos
+            .map((b) => [b.item, ...b.textos.map((t) => t.texto)].join('|'))
+            .join('||'))
+        .join('|||');
+    return crypto.createHash('sha256').update(texto, 'utf8').digest('hex').slice(0, 16);
+};
+
+const CAMINHO_ESTADO = path.join(DESTINO, '_estado.json');
+
+const lerEstado = () => {
+    try { return JSON.parse(fs.readFileSync(CAMINHO_ESTADO, 'utf8')); } catch { return {}; }
+};
+
 async function principal() {
     const forcar = process.argv.includes('--forcar');
     fs.mkdirSync(DESTINO, { recursive: true });
     const manifesto = {};
     const resumo = [];
     const preservados = [];
+    const desatualizados = [];
+    const estadoAnterior = lerEstado();
+    const estadoNovo = {};
 
     for (const tema of TEMAS) {
         const dados = [];
@@ -556,14 +590,28 @@ async function principal() {
 
         // O manifesto continua sendo gerado para todos os temas: ele reflete o
         // codigo de hoje e e a ancora do reimport. So o .docx e preservado.
+        const digital = impressaoDigital(dados);
+
         if (!ehSeguroEscrever(destino, forcar)) {
             preservados.push(nome);
+            // Documento que ja existia antes de haver `_estado.json` nao tem
+            // digital conhecida. Registar a ATUAL seria declara-lo em dia sem
+            // prova — foi assim que o PS desatualizado passou por atual. Fica
+            // `null`, que se le como "estado desconhecido" e nao como "ok".
+            const antes = estadoAnterior[nome];
+            estadoNovo[nome] = antes || { digital: null, escritoEm: null };
+            if (antes && antes.digital && antes.digital !== digital) {
+                desatualizados.push({ nome, escritoEm: antes.escritoEm });
+                console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos  (PRESERVADO, mas DESATUALIZADO)`);
+                continue;
+            }
             console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos  (PRESERVADO — ja existe)`);
             continue;
         }
 
         const buffer = await Packer.toBuffer(doc);
         fs.writeFileSync(destino, buffer);
+        estadoNovo[nome] = { digital, escritoEm: new Date().toISOString() };
         resumo.push({ nome, textos: n });
         console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos`);
     }
@@ -580,6 +628,18 @@ async function principal() {
         console.log('  Podem conter revisao humana. Para regerar mesmo assim:');
         console.log('    node scripts/gerar_revisao_conteudo.js --forcar');
     }
+    fs.writeFileSync(CAMINHO_ESTADO, JSON.stringify(estadoNovo, null, 2), 'utf8');
+
+    if (desatualizados.length) {
+        console.log('\n  ATENCAO — o conteudo mudou depois destes documentos serem escritos:');
+        desatualizados.forEach((d) => {
+            const quando = d.escritoEm ? d.escritoEm.slice(0, 16).replace('T', ' ') : 'data desconhecida';
+            console.log(`    ${d.nome}  (escrito em ${quando})`);
+        });
+        console.log('  Quem estiver a revisar le texto que ja nao existe no codigo.');
+        console.log('  Avise a pessoa antes de regerar, se ela tiver o ficheiro aberto.');
+    }
+
     console.log(`\nSaida: docs/revisao-conteudo/`);
 }
 
