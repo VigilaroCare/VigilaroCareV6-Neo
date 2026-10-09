@@ -570,6 +570,7 @@ async function principal() {
     const resumo = [];
     const preservados = [];
     const desatualizados = [];
+    const copias = [];
     const estadoAnterior = lerEstado();
     const estadoNovo = {};
 
@@ -609,6 +610,25 @@ async function principal() {
             continue;
         }
 
+        // Copia de seguranca ANTES de sobrescrever, sempre.
+        //
+        // MOTIVO (08/10/2026): regerei o PS com --forcar logo depois de o
+        // `git status` me dizer, na mesma linha de comando, que o ficheiro
+        // estava modificado. A modificacao vinha da sessao do Word do Agnaldo
+        // e eu nao sei se continha anotacoes dele, porque apaguei os bytes
+        // sem guardar copia. Nao havia nada no git (nao estava commitado),
+        // nem no AutoRecover do Word.
+        //
+        // A guarda do --forcar protegia contra escrita acidental, mas nao
+        // contra escrita AUTORIZADA sobre trabalho que eu nao sabia existir.
+        // Autorizacao para regerar nao e autorizacao para perder.
+        if (fs.existsSync(destino)) {
+            const selo = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15);
+            const copia = `${destino}.anterior-${selo}`;
+            fs.copyFileSync(destino, copia);
+            copias.push(path.basename(copia));
+        }
+
         const buffer = await Packer.toBuffer(doc);
         fs.writeFileSync(destino, buffer);
         estadoNovo[nome] = { digital, escritoEm: new Date().toISOString() };
@@ -629,6 +649,13 @@ async function principal() {
         console.log('    node scripts/gerar_revisao_conteudo.js --forcar');
     }
     fs.writeFileSync(CAMINHO_ESTADO, JSON.stringify(estadoNovo, null, 2), 'utf8');
+
+    if (copias.length) {
+        console.log(`
+  ${copias.length} copia(s) de seguranca do que existia antes:`);
+        copias.forEach((c) => console.log(`    ${c}`));
+        console.log('  Apague-as depois de confirmar que nao se perdeu nada.');
+    }
 
     if (desatualizados.length) {
         console.log('\n  ATENCAO — o conteudo mudou depois destes documentos serem escritos:');

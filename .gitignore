@@ -144,3 +144,4 @@ update_menu.js
 # QA local (dumps de storage podem conter dados sensiveis)
 qa-artifacts/
 
+docs/revisao-conteudo/*.anterior-*
