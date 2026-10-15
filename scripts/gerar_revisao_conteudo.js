@@ -162,6 +162,16 @@ const CHAVES_DE_PROSA = new Set([
     'checkAction', 'acao', 'action', 'oQueFazer', 'oQueNaoFazer', 'comoEvitar',
     'prevencao', 'orientacoes', 'itens', 'items', 'passos', 'steps', 'label',
     'curto', 'medio', 'longo', 'sintomas', 'quandoChamarAjuda', 'observacao',
+    // Acrescentadas em 15/10/2026, depois de o Agnaldo achar codigos sem
+    // conteudo em EX-Explicativos: eram campos de prosa que o limiar de 70
+    // caracteres cortava por nao estarem nesta lista.
+    'short_desc', 'shortDesc', 'subtitulo', 'subtitle', 'introducao', 'intro',
+    'keyPoints', 'regrasSeguranca', 'comoUsar', 'comoInstalar',
+    'comoIdentificar', 'perguntas_sugeridas', 'orientacoes_finais',
+    'riskDetails', 'importancia', 'definicao', 'expert_tip', 'primeirosSocorros',
+    'alertas', 'caracteristicas', 'fatoresRisco', 'riscos', 'contexto',
+    'estatisticas', 'quando_parar', 'ondeAndar', 'regras_passageiro',
+    'mensagem', 'message',
 ]);
 
 /** Titulos: viram cabecalho no documento e tambem sao revisaveis. */
@@ -288,6 +298,49 @@ function extrair(relativo) {
     // Preserva a ordem do arquivo: e a ordem em que o conteudo aparece no app.
     const achados = [];
     traverse(ast, {
+        /**
+         * Template literal (`...`) — o buraco que o Agnaldo encontrou.
+         *
+         * MOTIVO (15/10/2026): ele reportou que EX-0456 e EX-0457 apareciam no
+         * documento sem conteudo nenhum. Eram os itens "Emergencias e
+         * Sensorialidade" e "Pica e Ingestao de Perigos", que tem artigos
+         * inteiros em markdown — escritos com backticks em vez de aspas. O
+         * extrator so visitava `StringLiteral`, logo saiu o cabecalho e nao
+         * saiu o texto.
+         *
+         * Alcance do que estava invisivel: 33 blocos, ~6.400 palavras, ~19
+         * paginas, incluindo 18 artigos de `SafetyArticlesDB.js`. Era conteudo
+         * educativo central que nunca chegou a revisao humana.
+         *
+         * Cada literal sai como UM codigo, com as quebras de linha
+         * preservadas: e um artigo inteiro, e dividi-lo por linha daria dezenas
+         * de codigos por artigo e tornaria a volta impossivel de remontar.
+         */
+        TemplateLiteral(caminho) {
+            if (caminho.node.expressions.length) return;   // tem interpolacao: e codigo
+            const texto = (caminho.node.quasis || [])
+                .map((q) => (q.value.cooked !== undefined ? q.value.cooked : q.value.raw))
+                .join('')
+                .replace(/^\n+|\s+$/g, '');
+            if (!texto || texto.length < MIN_PROSA_CONHECIDA) return;
+            if (!/[a-zA-ZÀ-ÿ]/.test(texto)) return;
+            if (dentroDeBlocoTraduzido(caminho)) return;
+
+            const prop = caminho.findParent((x) => x.isObjectProperty());
+            const chave = prop && prop.node.key
+                ? (prop.node.key.name || prop.node.key.value)
+                : null;
+            if (!chave || CHAVES_TECNICAS.has(chave) || SUFIXO_IDIOMA.test(chave)) return;
+
+            achados.push({
+                texto,
+                chave,
+                ehTitulo: false,
+                item: tituloDoItem(caminho),
+                linha: caminho.node.loc ? caminho.node.loc.start.line : 0,
+            });
+        },
+
         StringLiteral(caminho) {
             const texto = caminho.node.value.trim();
             if (!texto || !/[a-zA-ZÀ-ÿ]/.test(texto)) return;
