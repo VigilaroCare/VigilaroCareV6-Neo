@@ -45,12 +45,12 @@ export const primeirosSocorrosPTBR = [
         oQueFazer: [
             'Apoiar o bebê de bruços sobre o antebraço, mantendo a cabeça mais baixa que o tronco, sustentando firmemente o queixo e a mandíbula sem apertar o pescoço.',
             'Aplicar 5 pancadas firmes nas costas, entre as escápulas, utilizando a base da palma da mão.',
-            'Virar o bebê de barriga para cima no antebraço e aplicar 5 compressões torácicas no centro do peito, com a base da palma da mão ou dois dedos.',
+            'Virar o bebê de barriga para cima no antebraço e aplicar 5 compressões torácicas no centro do peito, com a base da palma de uma das mãos.',
             'Alternar ciclos de 5 pancadas nas costas com 5 compressões no peito até o corpo estranho ser expelido ou o bebê perder a consciência.',
         ],
         oQueNaoFazer: [
             'NUNCA realizar compressões abdominais (Heimlich) em bebês menores de 1 ano (risco de lesão grave em órgãos internos como fígado e baço).',
-            'Nunca sacuda o bebê.',
+            'NUNCA sacudir o bebê.',
             'NÃO colocar os dedos na boca do bebê às cegas se o objeto ou alimento não estiver visível na cavidade oral.',
         ],
         quandoChamarAjuda: 'Acionar o {{EMERGENCY_MEDICAL}} assim que notar ausência de choro, tosse ou respiração. Se o bebê desmaiar, iniciar a RCP de lactente (30 compressões para 2 ventilações).'
@@ -93,11 +93,11 @@ export const primeirosSocorrosPTBR = [
         situacao: 'Ingestão de veneno/químicos',
         oQueFazer: [
             'Identificar imediatamente qual produto ou medicamento a pessoa engoliu.',
-            'Ligar imediatamente para o Centro de Informações Antiveneno ({{POISON_CONTROL}}).',
+            'Ligar imediatamente para o centro de informações toxicológicas: {{POISON_CONTROL}}.',
             'Seguir rigorosamente as orientações do atendente médico.',
         ],
         oQueNaoFazer: [
-            'NÃO provocar vômito se for ingerido produto químico (produtos corrosivos queimam o esôfago na ida e na volta).',
+            'NÃO provocar vômito, a menos que o centro de toxicologia oriente (produtos corrosivos queimam o esôfago na ida e na volta).',
             'NÃO oferecer leite, água ou remédios caseiros sem orientação médica prévia.',
         ],
         quandoChamarAjuda: 'Imediatamente.'
@@ -174,7 +174,7 @@ export const primeirosSocorrosPTBR = [
         oQueFazer: [
             'Lavar bem o ferimento com água corrente e sabão neutro por 10 minutos.',
             'Pressionar com um pano limpo em caso de sangramento.',
-            'Dirigir-se ao pronto-socorro para higienização profunda e avaliação da necessidade vacina contra raiva e Tétano.',
+            'Dirigir-se ao pronto-socorro para higienização profunda e avaliação da necessidade de vacina contra raiva e tétano.',
         ],
         oQueNaoFazer: [
             'NÃO tentar costurar ou fechar o machucado em casa.',

@@ -5,17 +5,17 @@ export const primeirosSocorrosEN = [
         emoji: '🔥',
         situacao: 'Thermal, Chemical, or Electrical',
         oQueFazer: [
-            'Move the victim away from the heat source.',
-            'Cool the area with running water (room temperature) for 15-20 minutes.',
-            'Remove accessories (rings, watches) before the area swells.',
-            'Cover with a clean, damp cloth.',
+            'Move the person away from the fire or heat source.',
+            'Cool the area under running water at room temperature for 15 to 20 minutes.',
+            'Remove rings, bracelets and watches before the area starts to swell.',
+            'Cover the wound gently with a clean, damp cloth.',
         ],
         oQueNaoFazer: [
-            'NEVER apply toothpaste, butter, coffee grounds, or direct ice.',
-            'DO NOT pop blisters.',
-            'DO NOT try to unstick burnt clothing from the skin.',
+            'NEVER put ointments, toothpaste, butter, coffee grounds or ice directly on the burn.',
+            'DO NOT burst any blisters that form.',
+            'DO NOT try to pull off pieces of clothing stuck to the burned skin.',
         ],
-        quandoChamarAjuda: 'If the burn is extensive, on the face, hands, genitals, or in children/elderly.'
+        quandoChamarAjuda: 'Call for help if the burn is larger than the palm of the hand, affects the face, hands or genitals, or happens to a child or an older person.'
     },
     {
         id: 'ps_2',
@@ -23,19 +23,19 @@ export const primeirosSocorrosEN = [
         emoji: '🤢',
         situacao: 'Airway obstruction — 2025 AHA protocol',
         oQueFazer: [
-            'If the person can cough forcefully, encourage them to keep coughing. Their own cough is more effective than anything you can do.',
-            'If they cannot cough, speak or breathe, the airway is fully blocked: have someone call {{EMERGENCY_MEDICAL}} and start the manoeuvres.',
-            'Stand behind them, lean their upper body forward and deliver 5 firm back blows between the shoulder blades with the heel of your hand.',
-            'If the object has not come out, give 5 abdominal thrusts: fist just above the navel, other hand over it, pulling inwards and upwards (a "J" motion).',
-            'Alternate 5 back blows with 5 abdominal thrusts until the object is expelled or the person becomes unresponsive.',
-            'If the person is pregnant, or you cannot get your arms around their abdomen, replace the abdominal thrusts with 5 chest thrusts.',
+            'Encourage coughing if the person can cough forcefully (coughing is the most effective manoeuvre for a partial obstruction).',
+            'Have someone call {{EMERGENCY_MEDICAL}} and start the manoeuvres if the person cannot cough, speak or breathe (total obstruction).',
+            'Stand behind the person, lean their upper body slightly forward and give 5 firm back blows between the shoulder blades with the heel of your hand.',
+            'If the object does not come out, give 5 abdominal thrusts (Heimlich manoeuvre): place your fist just above the navel, cover it with your other hand and pull inwards and upwards in a \'J\' motion.',
+            'Keep alternating 5 back blows with 5 abdominal thrusts until the object is expelled or the person loses consciousness.',
+            'For pregnant women, or people with obesity when you cannot get your arms around the abdomen, replace the abdominal thrusts with 5 thrusts to the centre of the chest.',
         ],
         oQueNaoFazer: [
-            'Do not offer water or food: the airway is blocked.',
-            'Do not perform a blind finger sweep — you may push the object further in.',
-            'Do not break the cycles to look for the object. Stop only if it comes out or the person collapses.',
+            'DO NOT offer water or food (the airway is blocked).',
+            'DO NOT put your fingers in the mouth blindly to try to remove the object (you may push it further in).',
+            'DO NOT stop the cycles of 5 blows and 5 thrusts to look for the object unless it is visible or the person faints.',
         ],
-        quandoChamarAjuda: 'As soon as you see the person cannot cough, speak or breathe. If they lose consciousness, lower them to the floor and start CPR (see "Cardiac Arrest").'
+        quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} as soon as you recognise a total obstruction. If the person loses consciousness, lay them on the floor and start CPR with chest compressions right away.'
     },
     {
         id: 'ps_3',
@@ -43,17 +43,17 @@ export const primeirosSocorrosEN = [
         emoji: '👶',
         situacao: 'Obstruction in infants — 2025 AHA protocol',
         oQueFazer: [
-            'Lay the infant face down along your forearm, head lower than the chest, supporting their chin and jaw with your hand.',
+            'Lay the baby face down along your forearm, head lower than the chest, firmly supporting the chin and jaw without squeezing the neck.',
             'Give 5 firm back blows between the shoulder blades with the heel of your hand.',
-            'Turn the infant face up along your forearm and give 5 chest thrusts in the centre of the chest with the heel of one hand.',
-            'Alternate 5 back blows with 5 chest thrusts until the object is expelled or the infant becomes unresponsive.',
+            'Turn the baby face up along your forearm and give 5 chest thrusts in the centre of the chest with the heel of one hand.',
+            'Alternate cycles of 5 back blows and 5 chest thrusts until the object is expelled or the baby loses consciousness.',
         ],
         oQueNaoFazer: [
-            'NEVER give abdominal thrusts (Heimlich) to an infant under 1 year: they risk injuring the liver and spleen.',
-            'Never shake the infant.',
-            'Do not perform a blind finger sweep.',
+            'NEVER give abdominal thrusts (Heimlich) to babies under 1 year (risk of serious injury to internal organs such as the liver and spleen).',
+            'NEVER shake the baby.',
+            'DO NOT put your fingers in the baby\'s mouth blindly if the object or food is not visible inside the mouth.',
         ],
-        quandoChamarAjuda: 'As soon as the infant stops crying, coughing or breathing. If they become unresponsive, start infant CPR and call {{EMERGENCY_MEDICAL}}.'
+        quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} as soon as you notice the baby is not crying, coughing or breathing. If the baby becomes unresponsive, start infant CPR (30 compressions to 2 breaths).'
     },
     {
         id: 'ps_4',
@@ -61,15 +61,15 @@ export const primeirosSocorrosEN = [
         emoji: '🩸',
         situacao: 'Open wounds',
         oQueFazer: [
-            'Wash with water and mild soap.',
-            'Compress the area with a clean cloth applying direct pressure for 5-10 mins.',
-            'Keep the injured limb elevated if possible.',
+            'Gently wash the cut with saline or water and mild soap.',
+            'Press firmly on the area with a clean cloth for 5 to 10 minutes without letting go.',
+            'Keep the affected limb (arm or leg) raised to reduce pressure and blood flow.',
         ],
         oQueNaoFazer: [
-            'Do not apply a tourniquet (unless amputation or extreme life threat).',
-            'Do not apply coffee grounds or sugar.',
+            'DO NOT apply a tourniquet (use one only for amputations or very severe arterial bleeding that does not stop with pressure).',
+            'DO NOT put coffee grounds, sugar or ointments on the cut.',
         ],
-        quandoChamarAjuda: 'If the bleeding does not stop, is very deep, or might need stitches.'
+        quandoChamarAjuda: 'Call for help if the bleeding has not stopped after 10 minutes of direct pressure, if the cut is very deep, or if its edges stay open.'
     },
     {
         id: 'ps_5',
@@ -77,14 +77,14 @@ export const primeirosSocorrosEN = [
         emoji: '⚡',
         situacao: 'Contact with electric current',
         oQueFazer: [
-            'Turn off the power source (circuit breaker) IMMEDIATELY.',
-            'If you cannot turn it off, move the victim using a NON-conductive object (dry wooden broom).',
-            'Check breathing and pulse.',
+            'Switch off the main circuit breaker IMMEDIATELY.',
+            'If you cannot cut the power, move the person away from the source using a dry wooden or plastic object (such as a dry broom handle).',
+            'Once the person is away from the electrical source, check whether they are breathing and have a heartbeat.',
         ],
         oQueNaoFazer: [
-            'NEVER touch the victim if they are still connected to the current.',
+            'NEVER touch the person while they are still in contact with the electric current.',
         ],
-        quandoChamarAjuda: 'ALWAYS call emergency services. Shocks can cause delayed arrhythmias.'
+        quandoChamarAjuda: 'ALWAYS call {{EMERGENCY_MEDICAL}}: an electric shock can cause heart rhythm problems hours later.'
     },
     {
         id: 'ps_6',
@@ -92,13 +92,13 @@ export const primeirosSocorrosEN = [
         emoji: '☠️',
         situacao: 'Ingestion of poison/chemicals',
         oQueFazer: [
-            'Identify the ingested product.',
-            'Call {{POISON_CONTROL}} immediately.',
-            'Follow the operator\'s instructions.',
+            'Find out right away which product or medicine the person swallowed.',
+            'Call the poison information centre immediately: {{POISON_CONTROL}}.',
+            'Follow the advice of the medical staff exactly.',
         ],
         oQueNaoFazer: [
-            'DO NOT induce vomiting (it can burn the esophagus again).',
-            'Do not give milk or water without medical advice.',
+            'DO NOT induce vomiting unless the poison centre tells you to (corrosive products burn the oesophagus on the way down and on the way back up).',
+            'DO NOT give milk, water or home remedies without medical advice first.',
         ],
         quandoChamarAjuda: 'Immediately.'
     },
@@ -108,15 +108,15 @@ export const primeirosSocorrosEN = [
         emoji: '🤕',
         situacao: 'Fall from a height or heavy impact',
         oQueFazer: [
-            'Keep the victim completely still, especially if they have back or neck pain.',
-            'Apply ice to the impact site (wrapped in a cloth, not directly on the skin).',
-            'If there is bleeding, apply pressure.',
+            'Keep the person lying down and still, especially if there is back or neck pain.',
+            'Apply an ice pack wrapped in a towel to the painful area.',
+            'If there is a bleeding wound, press gently with a clean cloth.',
         ],
         oQueNaoFazer: [
-            'DO NOT try to set the bone back into place.',
-            'DO NOT move the victim if you suspect a spinal injury.',
+            'DO NOT try to straighten the bone or put it back in place.',
+            'DO NOT move or lift the person if a spinal injury is suspected.',
         ],
-        quandoChamarAjuda: 'If there is deformity, intense pain, inability to move, or fainting.'
+        quandoChamarAjuda: 'Call for help if there is a visible deformity of the bone, very severe pain, inability to move the limb, or fainting.'
     },
     {
         id: 'ps_8',
@@ -124,15 +124,15 @@ export const primeirosSocorrosEN = [
         emoji: '🧠',
         situacao: 'Heavy blow to the head',
         oQueFazer: [
-            'Observe the victim closely for the next 24 hours.',
-            'Keep the person awake if they are drowsy immediately after the blow.',
-            'Apply a cold compress to reduce swelling.',
+            'Watch the person closely for the next 24 hours.',
+            'Keep the person awake and talking for a while after the impact.',
+            'Apply a cold compress to the area to limit swelling.',
         ],
         oQueNaoFazer: [
-            'Do not ignore symptoms like vomiting or mental confusion.',
-            'Do not give sleep medication.',
+            'DO NOT ignore symptoms such as vomiting, dizziness or memory lapses.',
+            'DO NOT give strong painkillers or sedatives without medical advice.',
         ],
-        quandoChamarAjuda: 'Vomiting, fainting, bleeding from the nose/ear, unequal pupil sizes.'
+        quandoChamarAjuda: 'Call for help if the person vomits, faints, bleeds from the nose or ears, or if the pupils become different sizes.'
     },
     {
         id: 'ps_9',
@@ -140,15 +140,15 @@ export const primeirosSocorrosEN = [
         emoji: '🤢',
         situacao: 'Vomiting and diarrhea after eating',
         oQueFazer: [
-            'Hydrate with oral rehydration salts or coconut water in small sips.',
+            'Drink oral rehydration solution or coconut water in small sips throughout the day.',
             'Rest.',
-            'Maintain a light diet (no fat/dairy) when hunger returns.',
+            'Eat light, fat-free food (such as white rice, potatoes and toast) once appetite returns.',
         ],
         oQueNaoFazer: [
-            'Do not take anti-diarrhea medication (the toxin needs to leave the body).',
-            'Do not force food if vomiting.',
+            'DO NOT take medicine to stop diarrhoea (the body needs to eliminate the toxins).',
+            'DO NOT force yourself to eat if you have strong nausea.',
         ],
-        quandoChamarAjuda: 'Signs of dehydration (dry mouth, no urine), blood in stool, or high fever.'
+        quandoChamarAjuda: 'Call for help if you notice signs of dehydration (dry mouth, no tears, or no urine for hours), high fever, or blood in the stools.'
     },
     {
         id: 'ps_10',
@@ -156,16 +156,15 @@ export const primeirosSocorrosEN = [
         emoji: '👁️',
         situacao: 'Object in the eye, nose, or ear',
         oQueFazer: [
-            'Eyes: Wash thoroughly with saline or running water.',
-            'Nose/Ear: If visible and easy, try to remove with tweezers (CAUTION).',
-            'Best option: Seek medical attention.',
+            'Eyes: rinse with plenty of saline or lukewarm running water.',
+            'Nose/ear: try to remove it gently with tweezers only if the object is visible and right at the opening.',
+            'Go to the emergency department if the object is deep or hard to remove.',
         ],
         oQueNaoFazer: [
-            'DO NOT rub your eyes (can scratch the cornea).',
-            'DO NOT use a cotton swab to push objects further into the ear.',
-            'DO NOT try to remove deeply lodged objects.',
+            'DO NOT rub the eyes (risk of scratching the cornea).',
+            'DO NOT put cotton buds or pointed objects into the ear (risk of pushing the object further in or perforating the eardrum).',
         ],
-        quandoChamarAjuda: 'Whenever it does not come out easily with washing or if there is pain/blurred vision.'
+        quandoChamarAjuda: 'Call for help whenever the object does not come out easily with the first gentle rinse, or if there is pain or blurred vision.'
     },
     {
         id: 'ps_11',
@@ -173,15 +172,15 @@ export const primeirosSocorrosEN = [
         emoji: '🐕',
         situacao: 'Dog, cat, or other animals',
         oQueFazer: [
-            'Wash the wound with soap and water for 5-10 minutes.',
-            'Apply pressure to stop bleeding.',
-            'Seek medical care to evaluate tetanus/rabies vaccination.',
+            'Wash the wound thoroughly with running water and mild soap for 10 minutes.',
+            'If it is bleeding, press with a clean cloth.',
+            'Go to the emergency department for thorough cleaning and to assess whether rabies and tetanus vaccination is needed.',
         ],
         oQueNaoFazer: [
-            'Do not close the wound with stitches at home.',
-            'Do not ignore small bites (high risk of infection).',
+            'DO NOT try to stitch or close the wound at home.',
+            'DO NOT ignore small bites (animal saliva carries bacteria that cause fast-spreading infection).',
         ],
-        quandoChamarAjuda: 'Always, for vaccination protocol and deep cleaning.'
+        quandoChamarAjuda: 'Call for help for any bite that breaks the skin, so it can be assessed and preventive vaccination considered.'
     },
     {
         id: 'ps_12',
@@ -189,15 +188,15 @@ export const primeirosSocorrosEN = [
         emoji: '😵',
         situacao: 'Dizziness, weakness, paleness, or chest pain',
         oQueFazer: [
-            'Sit or lay the victim down in a ventilated area.',
-            'Loosen tight clothing (collar, belt).',
-            'Ask if they take any medication and if they have felt this way before.',
+            'Help the person sit or lie down in a cool, well-ventilated place.',
+            'Loosen tight clothing such as shirt collars and belts.',
+            'Ask about known health conditions and regular medication.',
         ],
         oQueNaoFazer: [
-            'DO NOT give water or food if the person is confused.',
-            'DO NOT leave the victim alone.',
+            'DO NOT give water or food if the person is confused or disoriented.',
+            'DO NOT leave the person alone.',
         ],
-        quandoChamarAjuda: 'If symptoms do not pass in a few minutes or if there is intense chest pain.'
+        quandoChamarAjuda: 'Call for help if the person does not improve within 2 minutes, faints, or reports severe pain or tightness in the chest.'
     },
     {
         id: 'ps_13',
@@ -205,16 +204,16 @@ export const primeirosSocorrosEN = [
         emoji: '💤',
         situacao: 'Sudden, brief loss of consciousness',
         oQueFazer: [
-            'Lay the person flat on their back.',
-            'Elevate their legs (above heart level) to facilitate blood return.',
-            'Monitor breathing.',
+            'Lay the person on their back.',
+            'Raise their legs about 30 cm off the ground to help blood return to the heart and brain.',
+            'Keep watching their breathing.',
         ],
         oQueNaoFazer: [
-            'DO NOT throw water on their face.',
-            'DO NOT offer alcohol or ammonia to smell.',
-            'DO NOT try to sit or stand the person up quickly.',
+            'DO NOT splash cold water on the person\'s face.',
+            'DO NOT give alcohol, perfume or any substance to smell.',
+            'DO NOT rush to get the person up as soon as they come round.',
         ],
-        quandoChamarAjuda: 'If the person does not wake up in 1-2 minutes or if they fell and hit their head.'
+        quandoChamarAjuda: 'Call for help if the person takes more than 2 minutes to come round, or if they had a hard fall with a head injury.'
     },
     {
         id: 'ps_14',
@@ -222,17 +221,17 @@ export const primeirosSocorrosEN = [
         emoji: '🧠',
         situacao: 'Muscle spasms, loss of consciousness, salivation',
         oQueFazer: [
-            'Protect their head (place a cushion or coat underneath).',
-            'Move dangerous objects away from the area.',
-            'Time the seizure.',
-            'Once it ends, roll the person onto their side (recovery position).',
+            'Protect the person\'s head by placing a folded jacket or a cushion under it.',
+            'Move chairs and hard objects away to prevent injuries during the jerking.',
+            'Time the seizure. If it lasts more than 3 minutes, it already calls for closer attention.',
+            'Turn the person on their side (recovery position) as soon as the seizure ends.',
         ],
         oQueNaoFazer: [
-            'NEVER hold their tongue or put your hand in the victim\'s mouth.',
-            'DO NOT try to forcefully restrain their movements.',
-            'DO NOT give water or medication during the seizure.',
+            'NEVER try to hold the person\'s tongue or put objects or fingers in their mouth.',
+            'DO NOT forcibly restrain the arm and leg movements.',
+            'DO NOT give water or medicine while the seizure is going on.',
         ],
-        quandoChamarAjuda: 'If the seizure lasts more than 5 minutes, if it is their first time, or if another seizure follows immediately.'
+        quandoChamarAjuda: 'Call for help if the seizure lasts more than 5 minutes, if it is the first one, or if seizures happen one after another.'
     },
     {
         id: 'ps_15',
@@ -240,15 +239,15 @@ export const primeirosSocorrosEN = [
         emoji: '🥴',
         situacao: 'Facial drooping, slurred speech, loss of strength',
         oQueFazer: [
-            'Do the FAST test: Face (drooping?), Arms (drifting down?), Speech (slurred?), Time (call emergency).',
-            'Note the exact time symptoms started.',
-            'Keep the victim strictly resting.',
+            'Use the FAST test: Face (ask them to smile — does one side droop?), Arms (ask them to raise both arms — does one drift down?), Speech (is it slurred?). If any sign is present, it is urgent.',
+            'Note the exact time the symptoms started.',
+            'Call {{EMERGENCY_MEDICAL}} immediately.',
         ],
         oQueNaoFazer: [
-            'DO NOT wait to see if symptoms improve.',
-            'DO NOT give aspirin or any medication (could worsen a hemorrhagic stroke).',
+            'DO NOT wait for the symptoms to get better on their own.',
+            'DO NOT give medicines (such as aspirin or sedatives) before a medical assessment.',
         ],
-        quandoChamarAjuda: 'IMMEDIATELY. Time is brain.'
+        quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} as soon as you see any sign from the FAST test. Time is vital to prevent lasting damage.'
     },
     {
         id: 'ps_16',
@@ -256,14 +255,14 @@ export const primeirosSocorrosEN = [
         emoji: '💔',
         situacao: 'Victim unresponsive and NOT breathing',
         oQueFazer: [
-            'Call emergency services and ask for an AED (Defibrillator) if available.',
-            'Begin CPR (Chest Compressions) IMMEDIATELY.',
-            'Push hard and fast in the center of the chest (100-120 compressions per minute).',
-            'Allow full chest recoil after each compression.',
+            'Call {{EMERGENCY_MEDICAL}} immediately and ask for an Automated External Defibrillator (AED), if one is available nearby.',
+            'Start chest compressions (CPR) without losing any time.',
+            'Interlock your hands and place the heel of your palm in the centre of the person\'s chest (on the breastbone), then push hard and fast (100 to 120 compressions per minute, about 5 to 6 cm deep).',
+            'Let the chest come all the way back up after each compression, without lifting your hands off.',
         ],
         oQueNaoFazer: [
-            'DO NOT stop compressions until help arrives or the victim reacts.',
-            'DO NOT worry about breaking ribs (it is better than death).',
+            'DO NOT stop chest compressions until {{EMERGENCY_MEDICAL}} take over, the AED tells you to stand clear, or the person starts breathing normally again.',
+            'DO NOT worry about breaking a rib — keeping blood flowing to the brain and heart is the absolute priority.',
         ],
         quandoChamarAjuda: 'IMMEDIATAMENTE.'
     }
