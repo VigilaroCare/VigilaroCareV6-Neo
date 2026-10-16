@@ -511,8 +511,8 @@ export const RISK_CATEGORIES_ES = [
     educational: {
       description: 'Mezclar productos de limpieza puede generar gases venenosos invisibles que queman los pulmones. Use un producto cada vez y mantenga la casa ventilada.',
       keyPoints: [
-        'NUNCA mezcle lejía (cloro) con otros productos: amoníaco, vinagre o ácido.',
-        'La mezcla más peligrosa: lejía + detergente. Genera gas cloro.',
+        'NUNCA mezcle productos de limpieza: combine solo lo que la etiqueta autorice.',
+        'La lejía con ácidos (vinagre, salfumán, antical) libera gas cloro; con amoníaco o alcohol, otros gases tóxicos.',
         'Mantenga la habitación muy ventilada.',
         'Use guantes para evitar quemaduras.',
         'No guarde productos en botellas de refresco.'

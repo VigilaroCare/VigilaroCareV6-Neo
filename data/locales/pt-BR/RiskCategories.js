@@ -520,7 +520,8 @@ export const RISK_CATEGORIES = [
     educational: {
       description: 'Misturar produtos de limpeza pode gerar gases venenosos invisíveis que queimam os pulmões. Use um produto por vez e mantenha a casa ventilada.',
       keyPoints: [
-        'Nunca misture água sanitária com amônia, vinagre ou detergentes.',
+        'Nunca misture produtos de limpeza: só combine o que o rótulo autorizar.',
+        'Água sanitária com ácidos (vinagre, ácido muriático, limpa-pedras) solta gás cloro; com amônia ou álcool, outros gases tóxicos.',
         'Use sempre luvas de borracha para proteger a pele das mãos.',
         'Abra janelas e portas para manter o ar circulando durante a faxina.',
         'Não mude produtos de limpeza de embalagem para garrafas PET.'

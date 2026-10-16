@@ -513,8 +513,8 @@ export const RISK_CATEGORIES_EN = [
     educational: {
       description: 'Mixing cleaning products can release invisible poisonous gases that burn the lungs. Use one product at a time and keep the home ventilated.',
       keyPoints: [
-        'NEVER mix bleach with other products: ammonia, vinegar, all-purpose cleaner, muriatic acid, or any other cleaning product.',
-        'The most dangerous and common mix: bleach + detergent. It generates chlorine gas that can cause respiratory arrest indoors. (Source: CIATOX/ANVISA, Brazil)',
+        'NEVER mix cleaning products: only combine what the label allows.',
+        'Bleach with acids (vinegar, muriatic acid, rust or limescale removers) releases chlorine gas; with ammonia or rubbing alcohol, other toxic gases.',
         'Keep the room highly ventilated (open windows).',
         'Wear protective gloves to prevent dermatitis and burns.',
         'Do not store products in soda bottles (PET).'

@@ -119,7 +119,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         tipo: 'lista',
         itens: [
           'Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — a criança confunde com refrigerante ou água.',
-          'Nunca misture água sanitária com desinfetantes que contêm amônia ou vinagre. Essa mistura solta um gás altamente tóxico',
+          'Nunca misture produtos de limpeza: só combine o que o rótulo autorizar. Água sanitária com ácidos (vinagre, ácido muriático, limpa-pedras), com amônia ou com álcool solta gases tóxicos',
           'Nunca guarde produtos de limpeza no chão ou debaixo da pia sem travas de segurança',
           'Nunca deixe produtos sem rótulo. Em caso de acidente, o médico precisa saber exatamente o que foi ingerido',
         ],

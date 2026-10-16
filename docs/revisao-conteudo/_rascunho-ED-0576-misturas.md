@@ -1,4 +1,4 @@
-# RASCUNHO — Misturas proibidas (ED-0576) — aguarda aprovação do Agnaldo
+# Misturas proibidas (ED-0576) — APROVADO e aplicado em 16/10/2026
 
 Substitui o item hoje em `data/locales/pt-BR/guiasSeguranca.js` (ERROS GRAVES - NUNCA FAÇA):
 "Nunca misture água sanitária com desinfetantes que contêm amônia ou vinagre. Essa mistura solta um gás altamente tóxico".
@@ -15,8 +15,7 @@ autorizar. Mais produto não limpa mais — respeite a diluição indicada pelo 
 
 1. **Água sanitária + produtos ácidos** (vinagre, ácido muriático, limpa-pedras, removedores de
    ferrugem e de crostas, alguns limpadores de vaso sanitário) → libera **gás cloro**.
-2. **Água sanitária + produtos com amônia** (alguns limpa-vidros e desinfetantes; urina também
-   contém amônia) → libera **cloraminas**, gases irritantes e tóxicos.
+2. **Água sanitária + produtos com amônia** (alguns limpa-vidros e desinfetantes) → libera **cloraminas**, gases irritantes e tóxicos.
 3. **Água sanitária + álcool** → forma **clorofórmio** e outros compostos tóxicos.
 4. **Água oxigenada + vinagre** → forma **ácido peracético**, corrosivo para olhos, pele e pulmões.
 5. **Dois desentupidores diferentes** (ou desentupidor + outro produto) → reação violenta, calor e
@@ -39,12 +38,17 @@ autorizar. Mais produto não limpa mais — respeite a diluição indicada pelo 
 - Itens 4 e 5: **fonte secundária** (centros de controle de intoxicação dos EUA citados pela imprensa;
   alerta do NJ Department of Health não pôde ser lido). Conferir antes de publicar ou retirar.
 
-## Para decidir
+## Decisões (16/10/2026 — critério do Agnaldo: manter o que agrega e protege; suprimir o pouco prático)
 
-- Item 2: "urina também contém amônia" — útil para quem limpa banheiro e caixa de areia de gato com
-  água sanitária; manter?
-- O texto em pt-PT (`RiskCategories.js`) afirma que "lixívia + detergente" é a mistura mais perigosa e
-  comum, citando CIATOX/ANVISA. Não encontrei essa afirmação na Anvisa: detergente comum (neutro) não
-  é o problema, e sim ácidos e amônia. Proposta: substituir pelo texto acima.
-- Depois de aprovado: uma única fonte do texto, usada pelos 10 lugares, e traduzir com adequação por
-  país (lixívia em pt-PT, lejía em es; token de centro de intoxicação).
+- Itens 4 e 5 (água oxigenada + vinagre; dois desentupidores): MANTIDOS — situações reais do dia a dia
+  (receitas "naturais" de limpeza; trocar de desentupidor quando o primeiro não resolve) e protegem o usuário.
+- "Urina também contém amônia": RETIRADO — pouco prático no dia a dia.
+- pt-PT "lixívia + detergente é a mistura mais perigosa (CIATOX/ANVISA)": SUPRIMIDO — sem respaldo na
+  Anvisa; detergente neutro não é o problema. Removido também de en e es, que repetiam a afirmação.
+
+## Onde foi aplicado
+
+- `data/knowledge_prevencao.js` — tópico "Produtos Químicos e Misturas Letais": lista completa.
+- `data/locales/*/guiasSeguranca.js` — "ERROS GRAVES - NUNCA FAÇA" (ED-0576): versão curta, 4 idiomas.
+- `data/locales/*/RiskCategories.js` — pontos-chave de produtos químicos, 4 idiomas.
+- Adequação por país: lixívia/ácido clorídrico (PT), lejía/salfumán/antical (ES), {{POISON_CONTROL}}.

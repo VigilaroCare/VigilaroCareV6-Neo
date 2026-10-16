@@ -513,8 +513,8 @@ export const RISK_CATEGORIES_PT = [
     educational: {
       description: 'Misturar produtos de limpeza pode libertar gases venenosos invisíveis que queimam os pulmões. Use um produto de cada vez e mantenha a casa arejada.',
       keyPoints: [
-        'NUNCA misture água sanitária com outros produtos: amônia, vinagre, detergente multiuso, ácido muriático ou qualquer outro produto de limpeza.',
-        'A mistura mais perigosa e mais comum: lixívia + detergente. Gera cloro gasoso que pode causar paragem respiratória em ambiente fechado. (Fonte: CIATOX/ANVISA, Brasil)',
+        'NUNCA misture produtos de limpeza: só combine o que o rótulo autorizar.',
+        'Lixívia com ácidos (vinagre, ácido clorídrico, produtos para tirar calcário) liberta cloro gasoso; com amoníaco ou álcool, outros gases tóxicos.',
         'Mantenha o ambiente super ventilado (janelas abertas).',
         'Use luvas de proteção para evitar dermatites e queimaduras.',
         'Não armazene produtos em garrafas de refrigerante (pet).'

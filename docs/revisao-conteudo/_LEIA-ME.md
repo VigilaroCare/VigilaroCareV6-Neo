@@ -42,3 +42,17 @@ A extração original varreu apenas `data/*.js`. Nunca desceu em `data/locales/p
 5. Comentário do Word = dúvida ou observação para mim.
 
 Na volta, o `.docx` é comparado contra `original` no manifesto; o que mudou vira edição no arquivo e no campo que o manifesto aponta. Texto aprovado entra também em `en`, `es` e `pt-PT`, conforme a regra do projeto — conteúdo não sai só em pt-BR.
+
+## Versões revisadas pelo Agnaldo (como recuperar)
+
+Os documentos PS, ED, AE e EX com as anotações e correções do Agnaldo foram substituídos em
+16/10/2026 por versões regeradas a partir do código. As versões revisadas ficam no git, no commit
+`7e703b5~1` (= `ffa6a8b`):
+
+    git show 7e703b5~1:docs/revisao-conteudo/PS-Primeiros-Socorros.docx > PS-revisado.docx
+    git show 7e703b5~1:docs/revisao-conteudo/ED-Educacao.docx > ED-revisado.docx
+    git show 7e703b5~1:docs/revisao-conteudo/AE-Atividades-Eventuais.docx > AE-revisado.docx
+    git show 7e703b5~1:docs/revisao-conteudo/EX-Explicativos.docx > EX-revisado.docx
+
+As cópias locais `.anterior-*` foram apagadas depois de conferido que eram idênticas, byte a byte,
+a essas versões do git. O que cada revisão mudou está em `_plano-<documento>.json`.
