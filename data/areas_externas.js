@@ -95,7 +95,7 @@ export const areasExternas = [
         oQueFazer: [
             'Ferramentas estão organizadas em caixas/painéis (evita corte)?',
             'Ambiente é ventilado e iluminado?',
-            'Químicos (tinta, solvente) estão na embalagem original e rotulados?',
+            'Produtos químicos (tinta, solvente) estão na embalagem original e rotulados?',
             'Usa EPIs (óculos, luvas) ao trabalhar?'
         ],
         oQueNaoFazer: [

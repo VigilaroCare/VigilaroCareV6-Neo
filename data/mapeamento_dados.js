@@ -194,9 +194,9 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Químicos no alto e baldes vazios. Área técnica segura.',
+        descricao: 'Produtos químicos no alto e baldes vazios. Área técnica segura.',
         descricao_en: 'Chemicals stored high and empty buckets. Safe utility area.',
-        descricao_es: 'Químicos en alto y cubetas vacías. Área técnica segura.',
+        descricao_es: 'Productos químicos en alto y cubetas vacías. Área técnica segura.',
         condicional: 'opcional',
         fase: 2,
         imagemUrl: null,
@@ -488,7 +488,7 @@ export const CHECKLISTS = {
                 itens: [
                     { titulo: 'Cabos das panelas estão sempre virados para o interior do fogão?', titulo_en: 'Are pot handles always turned towards the inside of the stove?', titulo_es: '¿Los mangos de las ollas están siempre girados hacia el interior de la estufa?', tipo: 'perigo', tags: ['queimadura', 'básico'] },
                     { titulo: 'Mangueira e regulador de gás dentro da validade (5 anos)', titulo_en: 'Gas hose and regulator within validity (5 years)', titulo_es: 'Manguera y regulador de gas dentro de la validez (5 años)', titulo_ptpt: 'Mangueira e redutor de gás dentro da validade (5 anos)', tipo: 'perigo', tags: ['explosão', 'gás'] },
-                    { titulo: 'Produtos de limpeza e químicos guardados em armários altos ou com trava', titulo_en: 'Cleaning products and chemicals stored in high cabinets or with safety locks', titulo_es: 'Productos de limpieza y químicos guardados en gabinetes altos o con cerradura de seguridad', titulo_ptpt: 'Produtos de limpeza e químicos guardados em armários altos ou com fecho de segurança', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Produtos de limpeza e outros produtos químicos guardados em armários altos ou com trava', titulo_en: 'Cleaning products and chemicals stored in high cabinets or with safety locks', titulo_es: 'Productos de limpieza y otros productos químicos guardados en gabinetes altos o con cerradura de seguridad', titulo_ptpt: 'Produtos de limpeza e outros produtos químicos guardados em armários altos ou com fecho de segurança', tipo: 'perigo', tags: ['intoxicação'] },
                     { titulo: 'Facas e ferramentas de corte guardadas de forma segura e inacessíveis a crianças/pets', titulo_en: 'Knives and cutting tools stored safely and inaccessible to children/pets', titulo_es: 'Cuchillos y herramientas de corte guardados de forma segura e inaccesibles para niños/mascotas', titulo_ptpt: 'Facas e ferramentas de corte guardadas de forma segura e inacessíveis a crianças/animais', tipo: 'perigo', tags: ['corte', 'crianças'] }
                 ]
             },
@@ -558,11 +558,11 @@ export const CHECKLISTS = {
                 ],
             },
             {
-                nome: 'Químicos', nome_en: 'Chemicals', nome_es: 'Químicos',
+                nome: 'Produtos Químicos', nome_en: 'Chemicals', nome_es: 'Productos Químicos',
                 emoji: '☠️', icone: 'Skull',
                 itens: [
                     { titulo: 'Produtos de limpeza em armários altos ou com trava magnética', titulo_en: 'Cleaning products in high cabinets or with magnetic lock', titulo_es: 'Productos de limpieza en gabinetes altos o con cerradura magnética', tipo: 'perigo', tags: ['intoxicação'] },
-                    { titulo: 'Químicos não são transferidos para embalagens de alimentos (garrafa pet, potes)', titulo_en: 'Chemicals are not transferred to food packaging (PET bottles, jars)', titulo_es: 'Los químicos no se transfieren a envases de alimentos (botellas PET, frascos)', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Produtos químicos não são transferidos para embalagens de alimentos (garrafa pet, potes)', titulo_en: 'Chemicals are not transferred to food packaging (PET bottles, jars)', titulo_es: 'Los productos químicos no se transfieren a envases de alimentos (botellas PET, frascos)', tipo: 'perigo', tags: ['intoxicação'] },
                 ],
             },
         ],
@@ -690,7 +690,7 @@ export const CHECKLISTS = {
     area_servico: {
         categorias: [
             {
-                nome: 'Produtos Químicos', nome_en: 'Chemicals', nome_es: 'Químicos',
+                nome: 'Produtos Químicos', nome_en: 'Chemicals', nome_es: 'Productos Químicos',
                 emoji: '☠️', icone: 'Skull',
                 itens: [
                     { titulo: 'Produtos de limpeza estritamente no alto e trancados', titulo_en: 'Cleaning products strictly high up and locked', titulo_es: 'Productos de limpieza estrictamente en alto y bajo llave', tipo: 'perigo', tags: ['intoxicação'] },
@@ -886,7 +886,7 @@ export const CHECKLISTS = {
                 ],
             },
             {
-                nome: 'Ferramentas e Químicos', nome_en: 'Tools and Chemicals', nome_es: 'Herramientas y Químicos',
+                nome: 'Ferramentas e Produtos Químicos', nome_en: 'Tools and Chemicals', nome_es: 'Herramientas y Productos Químicos',
                 emoji: '🛠️', icone: 'Toolbox',
                 itens: [
                     { titulo: 'Fertilizantes e venenos ficam trancados rigorosamente na embalagem original', titulo_en: 'Fertilizers and poisons are strictly locked in their original packaging', titulo_es: 'Los fertilizantes y venenos están estrictamente bajo llave en su envase original', tipo: 'perigo', tags: ['intoxicação'] },
@@ -899,7 +899,7 @@ export const CHECKLISTS = {
                 emoji: '🧤', icone: 'Hand',
                 itens: [
                     { titulo: 'Manuseio da terra vegetal ocorre com uso rotineiro de luvas e botas fechadas', titulo_en: 'Potting soil handled with routine use of gloves and closed boots', titulo_es: 'Manejo de la tierra con uso rutinario de guantes y botas cerradas', tipo: 'normal', tags: ['biológico'] },
-                    { titulo: 'Uso padronizado de proteção ocular ao manipular químicos em spray ou galhos finos', titulo_en: 'Standard use of eye protection when handling chemical sprays or thin branches', titulo_es: 'Uso estandarizado de protección ocular al manipular aerosoles químicos o ramas finas', tipo: 'sugestão', tags: ['epi'] },
+                    { titulo: 'Uso padronizado de proteção ocular ao manipular produtos químicos em spray ou galhos finos', titulo_en: 'Standard use of eye protection when handling chemical sprays or thin branches', titulo_es: 'Uso estandarizado de protección ocular al manipular aerosoles químicos o ramas finas', tipo: 'sugestão', tags: ['epi'] },
                 ],
             },
         ],
@@ -958,7 +958,7 @@ export const CHECKLISTS = {
                 nome: 'Segurança Alimentar', nome_en: 'Food Safety', nome_es: 'Seguridad Alimentaria',
                 emoji: 'cans',
                 itens: [
-                    { titulo: 'Alimentos guardados longe de produtos de limpeza e químicos', titulo_en: 'Food stored away from cleaning products and chemicals', titulo_es: 'Alimentos almacenados lejos de productos de limpieza y químicos', tipo: 'perigo', tags: ['contaminação'] },
+                    { titulo: 'Alimentos guardados longe de produtos de limpeza e outros produtos químicos', titulo_en: 'Food stored away from cleaning products and chemicals', titulo_es: 'Alimentos almacenados lejos de productos de limpieza y otros productos químicos', tipo: 'perigo', tags: ['contaminação'] },
                     { titulo: 'Escada segura disponível para alcançar o alto (sem uso de banquinhos improvisados)', titulo_en: 'Safe ladder available to reach high (no use of makeshift stools)', titulo_es: 'Escalera segura disponible para alcanzar alturas (sin uso de taburetes improvisados)', tipo: 'normal', tags: ['queda'] },
                     { titulo: 'Grãos crus (feijão, milho) ficam trancados em potes (risco de asfixia/nariz)', titulo_en: 'Raw grains (beans, corn) are locked in jars (choking/nose risk)', titulo_es: 'Los granos crudos (frijoles, maíz) están encerrados en frascos (riesgo de asfixia/nariz)', tipo: 'sugestão', tags: ['crianças'] },
                 ],
@@ -1091,7 +1091,7 @@ export const CHECKLISTS = {
                     { titulo: 'Área do pet possui abrigo protegido contra sol direto, chuva e vento forte', tipo: 'normal', tags: ['conforto'] },
                     { titulo: 'Piso da área é liso e fácil de higienizar (sem acúmulo de urina/fezes)', tipo: 'normal', tags: ['saúde'] },
                     { titulo: 'Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) foram removidas da área de acesso', tipo: 'perigo', tags: ['intoxicação'] },
-                    { titulo: 'Produtos carrapaticidas, venenos e químicos de limpeza ficam completamente inacessíveis ao animal', tipo: 'perigo', tags: ['intoxicação'] },
+                    { titulo: 'Produtos carrapaticidas, venenos e produtos químicos de limpeza ficam completamente inacessíveis ao animal', tipo: 'perigo', tags: ['intoxicação'] },
                 ],
             },
             {

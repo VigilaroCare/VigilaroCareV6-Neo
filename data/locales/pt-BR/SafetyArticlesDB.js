@@ -97,7 +97,7 @@ A eletricidade é silenciosa e invisível. O perigo real só aparece quando o ac
 Produtos coloridos e perfumados parecem suco ou refrigerante para as crianças. A curiosidade natural delas pode gerar acidentes graves com produtos químicos.
 
 ### Como evitar acidentes:
-*   **Guarde no Alto:** Mantenha desinfetantes, cloro, sabão e outros químicos em armários altos, acima de 1,5 metro, de preferência com travas.
+*   **Guarde no Alto:** Mantenha desinfetantes, cloro, sabão e outros produtos químicos em armários altos, acima de 1,5 metro, de preferência com travas.
 *   **Embalagem Original:** Nunca coloque cloro ou desinfetante em garrafas de refrigerante ou potes de comida. Guarde-os sempre nas embalagens de fábrica com rótulo legível.
 *   **Sem Misturas:** Não misture produtos de limpeza (como água sanitária e vinagre). Essas misturas soltam vapores tóxicos que podem queimar as vias respiratórias.
 

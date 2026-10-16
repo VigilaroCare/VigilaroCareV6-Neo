@@ -93,7 +93,7 @@ A eletricidade não tem cheiro nem cor, mas pode matar.
         id: 'produtos_limpeza',
         categoryId: 'produtos_perigosos',
         title: 'Risco Químico (Produtos de Limpeza)',
-        summary: 'Armazenamento seguro de químicos domésticos para evitar intoxicação.',
+        summary: 'Armazenamento seguro de produtos químicos domésticos para evitar intoxicação.',
         content: `
 # Risco Químico (Produtos de Limpeza)
 

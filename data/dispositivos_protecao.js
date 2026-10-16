@@ -139,7 +139,7 @@ export const DISPOSITIVOS_PROTECAO = [
         perfilRisco: ['crianca', 'pet'],
         resumo: 'Alternativa prática para quem não quer travar portas inteiras. Impede que crianças abram armários com conteúdo perigoso.',
         riscos: [
-            { descricao: 'Acesso a produtos de limpeza e químicos armazenados', gravidade: 'critico' },
+            { descricao: 'Acesso a produtos de limpeza e outros produtos químicos armazenados', gravidade: 'critico' },
             { descricao: 'Prensamento de dedos ao abrir e fechar portas de armário', gravidade: 'medio' },
         ],
         prevencao: [

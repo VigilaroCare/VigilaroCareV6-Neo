@@ -512,11 +512,11 @@ export const ALERTAS_SAZONAIS = [
     formato: 'sazonal',
     categoria: 'intoxicacao',
     titulo: 'Agosto: ventos fortes e plantas — alerta de intoxicação por ingestão',
-    resumo: 'O vento de agosto derruba frutos e sementes de plantas ornamentais para áreas de quintal e jardim. Frutos caídos de plantas tóxicas como limoeiro ornamental, comigo-ninguém-pode e buxinho ficam ao nível do chão.',
+    resumo: 'O vento de agosto derruba frutos e sementes de árvores e arbustos no quintal, no jardim e na calçada. Alguns são tóxicos, como os frutos do cinamomo e as sementes de mamona, chapéu-de-napoleão e pinhão-roxo, e ficam ao alcance de crianças pequenas e pets.',
     orientacoes: [
       'Após tempestades: inspecione o quintal antes de liberar crianças e pets.',
       'Conheça as plantas do seu quintal — verifique quais são tóxicas na lista do CIATOX.',
-      'Frutos caídos no chão: recolha sempre que encontrar, mesmo que não seja da sua planta.'
+      'Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca.'
     ],
     icone: 'Danger',
     cor: '#4CAF50',
@@ -559,7 +559,7 @@ export const ALERTAS_SAZONAIS = [
     titulo: 'Novembro: calor intenso e fogos de artifício ilegais',
     resumo: 'Novembro antecede o Réveillon e o Natal, com aumento de fogos de artifício artesanais e ilegais em bairros populares. O Corpo de Bombeiros Militares de SP registra queimaduras graves — especialmente em mãos e rosto — em crianças e adolescentes.',
     orientacoes: [
-      'Fogos artesanais e de farmacopeia são ilegais e extremamente perigosos. Nunca compre ou deixe crianças manusearem.',
+      'Fogos de fabricação caseira ou sem procedência são ilegais e extremamente perigosos. Nunca compre nem deixe crianças manusearem.',
       'Mesmo fogos legais devem ser manuseados apenas por adultos. Crianças assistem de longe.',
       'Em caso de queimadura por fogos: água corrente por 20 minutos e PS imediatamente.'
     ],
@@ -572,7 +572,7 @@ export const ALERTAS_SAZONAIS = [
     formato: 'sazonal',
     categoria: 'intoxicacao',
     titulo: 'Dezembro: decoração de Natal — plantas e enfeites tóxicos',
-    resumo: 'A decoração natalina traz para dentro de casa plantas como Flor de Natal (Euphorbia pulcherrima), azevinho e frutas de plástico que imitam alimentos. Bebês e crianças pequenas são atraídos pelos enfeites coloridos e os colocam na boca.',
+    resumo: 'A decoração natalina traz para dentro de casa plantas como o bico-de-papagaio (também chamado poinsétia ou flor-de-natal), o azevinho e frutas de plástico que imitam alimentos. Bebês e crianças pequenas são atraídos pelos enfeites coloridos e os colocam na boca.',
     orientacoes: [
       'Flor de Natal (Bico-de-papagaio): causa irritação intensa em boca e olhos. Mantenha fora do alcance de crianças e pets.',
       'Enfeites pequenos e bolas de árvore de natal são riscos de engasgo para crianças menores de 3 anos.',

@@ -75,7 +75,7 @@ La electricidad no tiene olor ni color, pero puede matar.
         id: 'produtos_limpeza',
         categoryId: 'produtos_perigosos',
         title: 'Riesgo Químico (Productos de Limpieza)',
-        summary: 'Almacenamiento seguro de químicos domésticos para evitar intoxicaciones.',
+        summary: 'Almacenamiento seguro de productos químicos domésticos para evitar intoxicaciones.',
         content: `
 # Riesgo Químico (Productos de Limpieza)
 

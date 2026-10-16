@@ -104,7 +104,7 @@ export const areasInternas = [
             'Nunca armazene produtos em garrafas pet de refrigerante.',
             'Não deixe baldes com "molho" no chão acessíveis a bebês.'
         ],
-        quandoChamarAjuda: 'Ingestão de químicos: Não provoque vômito. Ligue {{EMERGENCY_NUMBER}} ou CIATOX.'
+        quandoChamarAjuda: 'Ingestão de produtos químicos: Não provoque vômito. Ligue {{EMERGENCY_NUMBER}} ou CIATOX.'
     },
 
     // === DORMITÓRIOS (Segmentados) ===
@@ -294,7 +294,7 @@ export const areasInternas = [
         riscos: 'Queda de objetos, acesso indevido.',
         oQueFazer: [
             'Objetos pesados estão nas partes baixas?',
-            'Produtos perigosos (remédios, químicos) estão nas partes altas ou trancados?',
+            'Produtos perigosos (remédios, produtos químicos) estão nas partes altas ou trancados?',
             'Há travas de segurança externas nas portas (proteção infantil)?'
         ],
         oQueNaoFazer: [

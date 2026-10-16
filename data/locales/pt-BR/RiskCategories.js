@@ -511,7 +511,7 @@ export const RISK_CATEGORIES = [
   {
     id: 'faxina_quimica',
     title: 'Faxina Pesada',
-    subtitle: 'Manuseio de Químicos',
+    subtitle: 'Manuseio de Produtos Químicos',
     audience: [ 'adult' ],
     icon: 'bottle-tonic-skull',
     color: '#9C27B0',

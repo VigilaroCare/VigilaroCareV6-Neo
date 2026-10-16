@@ -200,7 +200,7 @@ export const MAPA_PREVENCAO = {
         ],
         conteudo: [
             { tipo: 'destaque', texto: 'A lavanderia junta três fatores de risco o tempo todo: máquinas puxando muita corrente, produtos químicos concentrados e piso quase sempre molhado.' },
-            { tipo: 'topico', titulo: 'Químicos e Misturas Letais', texto: 'A lavanderia é o centro dos químicos domésticos. Misturas como água sanitária + amônia geram gases letais. Leia o "Guia de Produtos Químicos" completo para evitar asfixia química.' },
+            { tipo: 'topico', titulo: 'Produtos Químicos e Misturas Letais', texto: 'A lavanderia é o centro dos produtos químicos domésticos. Misturas como água sanitária + amônia geram gases letais. Leia o "Guia de Produtos Químicos" completo para evitar asfixia química.' },
             { tipo: 'topico', titulo: 'Baldes e Tanques com água', texto: 'Baldes com roupas de molho atraem crianças pequenas, inclusive as que ainda engatinham, e uma queda ali dentro pode ser fatal: afogamento acontece em poucos centímetros de água. Mantenha tanques e baldes secos e virados para baixo, de preferência longe do alcance dos pequenos, eles podem querer brincar com água. Bloqueie o acesso à lavanderia.' },
             { tipo: 'topico', titulo: 'Extensões e Sobrecarga', texto: 'Máquina de lavar e secadora puxam muita corrente. Nunca ligue esses equipamentos em adaptadores ou extensões subdimensionadas: o superaquecimento (efeito Joule) é causa real de incêndio. Cada uma precisa da própria tomada de 20A com aterramento.' },
             { tipo: 'topico', titulo: 'Escorpiões e Aranhas', texto: 'Estrados vazios e cantos atrás da máquina são abrigos ocultos para escorpiões e aranhas marrons no verão. Mantenha o local sempre limpo e organizado, sem entulho ou roupa acumulada. Sacuda roupas e os calçados antes de calçar: escorpiões adoram esses esconderijos, principalmente em áreas com vegetação.' }
@@ -291,7 +291,7 @@ export const MAPA_PREVENCAO = {
         conteudo: [
             { tipo: 'destaque', texto: 'O quintal é onde a criança tem mais liberdade para brincar, e exatamente por isso merece um mapeamento cuidadoso dos riscos.' },
             { tipo: 'topico', titulo: 'Plantas Tóxicas e Animais Peçonhentos', texto: 'As regras sobre plantas venenosas (comigo-ninguém-pode, espirradeira) e o combate a escorpiões e aranhas estão centralizadas. Consulte os Guias "Plantas Tóxicas" e "Animais Peçonhentos" na seção de Riscos.' },
-            { tipo: 'topico', titulo: 'Ferramentas e Químicos', texto: 'Todas as ferramentas e produtos tóxicos devem seguir os protocolos rigorosos descritos no Guia de EPIs e Ferramentas.' }
+            { tipo: 'topico', titulo: 'Ferramentas e Produtos Químicos', texto: 'Todas as ferramentas e produtos tóxicos devem seguir os protocolos rigorosos descritos no Guia de EPIs e Ferramentas.' }
         ]
     },
 

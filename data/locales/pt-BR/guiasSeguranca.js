@@ -160,7 +160,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         itens: [
           'Mantenha a calma e afaste a criança do produto',
           'Pegue a embalagem do produto químico para saber os componentes',
-          'NÃO provoque vômito. O químico pode queimar a garganta na volta',
+          'NÃO provoque vômito. O produto químico pode queimar a garganta na volta',
           'NÃO force a pessoa a beber leite ou água sem orientação médica',
           'Ligue imediatamente para o {{POISON_CONTROL}} ou {{EMERGENCY_MEDICAL}}',
           'Siga exatamente o que o médico do atendimento orientar',

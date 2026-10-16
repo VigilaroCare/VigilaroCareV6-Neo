@@ -504,7 +504,7 @@ export const RISK_CATEGORIES_ES = [
   {
     id: 'faxina_quimica',
     title: 'Limpieza Profunda',
-    subtitle: 'Manejo de Químicos',
+    subtitle: 'Manejo de Productos Químicos',
     audience: [ 'adult' ],
     icon: 'bottle-tonic-skull',
     color: '#9C27B0',
