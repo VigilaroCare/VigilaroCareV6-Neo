@@ -1,0 +1,2210 @@
+{
+ "NV-0001": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+  "chave": "oQueFazer[]",
+  "linha": 27,
+  "original": "Pedir a alguém para ligar para o {{EMERGENCY_MEDICAL}} e iniciar as manobras caso a pessoa não consiga tossir, falar nem respirar (obstrução total)."
+ },
+ "NV-0002": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+  "chave": "quandoChamarAjuda",
+  "linha": 38,
+  "original": "Ligar para o {{EMERGENCY_MEDICAL}} imediatamente ao identificar obstrução total. Caso a vítima perca a consciência, deitá-la no chão e iniciar imediatamente a RCP com compressões torácicas."
+ },
+ "NV-0003": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Engasgo (Bebê menor de 1 ano)",
+  "chave": "oQueFazer[]",
+  "linha": 48,
+  "original": "Virar o bebê de barriga para cima no antebraço e aplicar 5 compressões torácicas no centro do peito, com a base da palma de uma das mãos."
+ },
+ "NV-0004": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Engasgo (Bebê menor de 1 ano)",
+  "chave": "quandoChamarAjuda",
+  "linha": 56,
+  "original": "Acionar o {{EMERGENCY_MEDICAL}} assim que notar ausência de choro, tosse ou respiração. Se o bebê desmaiar, iniciar a RCP de lactente (30 compressões para 2 ventilações)."
+ },
+ "NV-0005": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Choque Elétrico",
+  "chave": "quandoChamarAjuda",
+  "linha": 87,
+  "original": "SEMPRE chamar o {{EMERGENCY_MEDICAL}}, pois a corrente elétrica pode provocar arritmias cardíacas tardias."
+ },
+ "NV-0006": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Intoxicação",
+  "chave": "oQueFazer[]",
+  "linha": 96,
+  "original": "Ligar imediatamente para o centro de informações toxicológicas: {{POISON_CONTROL}}."
+ },
+ "NV-0007": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Intoxicação",
+  "chave": "oQueNaoFazer[]",
+  "linha": 100,
+  "original": "NÃO provocar vômito, a menos que o centro de toxicologia oriente (produtos corrosivos queimam o esôfago na ida e na volta)."
+ },
+ "NV-0008": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Mordidas de Animais",
+  "chave": "oQueFazer[]",
+  "linha": 177,
+  "original": "Dirigir-se ao pronto-socorro para higienização profunda e avaliação da necessidade de vacina contra raiva e tétano."
+ },
+ "NV-0009": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "AVC (Derrame)",
+  "chave": "oQueFazer[]",
+  "linha": 244,
+  "original": "Ligar imediatamente para o {{EMERGENCY_MEDICAL}}."
+ },
+ "NV-0010": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "AVC (Derrame)",
+  "chave": "quandoChamarAjuda",
+  "linha": 250,
+  "original": "Chamar o {{EMERGENCY_MEDICAL}} imediatamente ao identificar qualquer sinal do teste SAMU. O tempo é vital para evitar sequelas."
+ },
+ "NV-0011": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Parada Cardíaca",
+  "chave": "oQueFazer[]",
+  "linha": 258,
+  "original": "Ligar imediatamente para o {{EMERGENCY_MEDICAL}} e solicitar um Desfibrilador Externo Automático (DEA), se disponível no local."
+ },
+ "NV-0012": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Parada Cardíaca",
+  "chave": "oQueFazer[]",
+  "linha": 260,
+  "original": "Entrelaçar as mãos e posicionar a base da palma no centro do peito da vítima (na altura do osso esterno) e comprimir com força e rapidez (frequência de 100 a 120 compressões por minuto, afundando cerca de 5 a 6 cm)."
+ },
+ "NV-0013": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+  "rotulo": "PS · Primeiros socorros — pessoas",
+  "item": "Parada Cardíaca",
+  "chave": "oQueNaoFazer[]",
+  "linha": 264,
+  "original": "NÃO interromper as compressões torácicas até a equipe do {{EMERGENCY_MEDICAL}} assumir, o DEA orientar a afastar-se ou a vítima voltar a respirar normalmente."
+ },
+ "NV-0014": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Heimlich (Pequenos)",
+  "chave": "descricao",
+  "linha": 14,
+  "original": "Manejo específico para cães pequenos e gatos: deitar o pet de lado e pressionar o abdômen logo abaixo das costelas com as pontas dos dedos, com força controlada."
+ },
+ "NV-0015": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Golpes nas costas",
+  "chave": "descricao",
+  "linha": 15,
+  "original": "Aplicar batidas firmes entre as omoplatas com a palma da mão (indicado apenas para gatos e cães pequenos)."
+ },
+ "NV-0016": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Engasgo (Pet)",
+  "chave": "alertas[]",
+  "linha": 17,
+  "original": "Ligar para o veterinário e avisar que está a caminho."
+ },
+ "NV-0017": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Atropelamento / Trauma",
+  "chave": "alertas[]",
+  "linha": 34,
+  "original": "Manter o corpo do animal aquecido durante o trajeto."
+ },
+ "NV-0018": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Checar batimentos e ar",
+  "chave": "descricao",
+  "linha": 45,
+  "original": "Posicionar a mão sobre o peito para sentir batimentos, aproximar o ouvido do focinho para checar a respiração e checar o pulso na parte interna da coxa."
+ },
+ "NV-0019": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Parada Cardíaca (Pet)",
+  "chave": "alertas[]",
+  "linha": 52,
+  "original": "Não parar as compressões até chegar ao pronto-socorro veterinário ou o pet voltar a respirar."
+ },
+ "NV-0020": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Parada Cardíaca (Pet)",
+  "chave": "alertas[]",
+  "linha": 52,
+  "original": "O procedimento é exaustivo: revezar com outra pessoa a cada 2 minutos, se possível."
+ },
+ "NV-0021": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Levar ao veterinário",
+  "chave": "descricao",
+  "linha": 67,
+  "original": "Encaminhar ao veterinário mesmo que o pet pareça melhorar, pois o superaquecimento pode danificar rins e órgãos internos."
+ },
+ "NV-0022": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Hipertermia (Calor)",
+  "chave": "alertas[]",
+  "linha": 69,
+  "original": "Não jogar baldes de água gelada por cima dele."
+ },
+ "NV-0023": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Calma após a crise",
+  "chave": "descricao",
+  "linha": 84,
+  "original": "Aguardar o retorno gradual da consciência (o pet acorda assustado e com desorientação temporária). Falar baixo e evitar tocá-lo com pressa, pois pode morder."
+ },
+ "NV-0024": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Convulsão (Pet)",
+  "chave": "alertas[]",
+  "linha": 86,
+  "original": "Manter a calma, pois os animais percebem nossa tensão."
+ },
+ "NV-0025": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Torniquete (Cuidado)",
+  "chave": "descricao",
+  "linha": 100,
+  "original": "Último recurso: usar apenas em sangramento grave de pata ou cauda que não para com pressão firme e contínua. Usar faixa larga e elástica (cordão fino corta e escorrega na pata). Anotar o horário da aplicação e levar imediatamente ao veterinário, que decide quando soltar."
+ },
+ "NV-0026": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Tirar uma foto do bicho",
+  "chave": "descricao",
+  "linha": 114,
+  "original": "Se for seguro, fotografar o animal causador, para o veterinário saber qual soro aplicar. NUNCA tentar capturar o bicho."
+ },
+ "NV-0027": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Picada de Cobra / Escorpião",
+  "chave": "alertas[]",
+  "linha": 120,
+  "original": "Picada de escorpião causa dor extrema e faz o pet vomitar rápido."
+ },
+ "NV-0028": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Picada de Cobra / Escorpião",
+  "chave": "alertas[]",
+  "linha": 120,
+  "original": "Picada de cobra gera inchaço imediato e arroxeamento da pele."
+ },
+ "NV-0029": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Carvão ativado: só com veterinário",
+  "chave": "descricao",
+  "linha": 135,
+  "original": "NÃO dar carvão ativado nem remédios caseiros por conta própria: há risco de aspiração para o pulmão. Dar somente se o veterinário orientar."
+ },
+ "NV-0030": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Comeu Planta Venenosa",
+  "chave": "alertas[]",
+  "linha": 137,
+  "original": "Sinais comuns: salivação excessiva, língua inchada, vômito e apatia."
+ },
+ "NV-0031": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Ingestão",
+  "chave": "descricao",
+  "linha": 150,
+  "original": "NÃO provocar o vômito por conta própria (produtos corrosivos queimam na volta); só se o veterinário orientar. Oferecer água fresca para limpar a boca."
+ },
+ "NV-0032": {
+  "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+  "rotulo": "PS · Primeiros socorros — pets",
+  "item": "Ligar para a toxicologia",
+  "chave": "descricao",
+  "linha": 151,
+  "original": "Ligar para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes."
+ },
+ "NV-0033": {
+  "arquivo": "data/knowledge_prevencao.js",
+  "rotulo": "ED · Central de Conhecimento",
+  "item": "Produtos Químicos e Misturas Letais",
+  "chave": "texto",
+  "linha": 203,
+  "original": "A lavanderia é o centro dos produtos químicos domésticos. Misturas como água sanitária + amônia geram gases letais. Leia o \"Guia de Produtos Químicos\" completo para evitar asfixia química."
+ },
+ "NV-0034": {
+  "arquivo": "data/knowledge_prevencao.js",
+  "rotulo": "ED · Central de Conhecimento",
+  "item": "Garagem",
+  "chave": "texto",
+  "linha": 219,
+  "original": "A garagem junta veículo em movimento, ferramentas pesadas, produtos químicos e pouca visibilidade. É ali que acontece o atropelamento doméstico, uma das principais causas de morte infantil em casas com veículo: SEMPRE dê a volta completa no carro antes de dar partida e de engatar a ré. Câmera de ré ajuda, mas não substitui olhar. Regra da casa: \"ninguém na garagem enquanto o carro manobra\"."
+ },
+ "NV-0035": {
+  "arquivo": "data/radarConteudoDB.js",
+  "rotulo": "ED · Radar de conteudo",
+  "item": "Agosto: ventos fortes e plantas — alerta de intoxicação por ingestão",
+  "chave": "resumo",
+  "linha": 515,
+  "original": "O vento de agosto derruba frutos e sementes de árvores e arbustos no quintal, no jardim e na calçada. Alguns são tóxicos, como os frutos do cinamomo e as sementes de mamona, chapéu-de-napoleão e pinhão-roxo, e ficam ao alcance de crianças pequenas e pets."
+ },
+ "NV-0036": {
+  "arquivo": "data/radarConteudoDB.js",
+  "rotulo": "ED · Radar de conteudo",
+  "item": "Agosto: ventos fortes e plantas — alerta de intoxicação por ingestão",
+  "chave": "orientacoes[]",
+  "linha": 519,
+  "original": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca."
+ },
+ "NV-0037": {
+  "arquivo": "data/radarConteudoDB.js",
+  "rotulo": "ED · Radar de conteudo",
+  "item": "Novembro: calor intenso e fogos de artifício ilegais",
+  "chave": "orientacoes[]",
+  "linha": 562,
+  "original": "Fogos de fabricação caseira ou sem procedência são ilegais e extremamente perigosos. Nunca compre nem deixe crianças manusearem."
+ },
+ "NV-0038": {
+  "arquivo": "data/radarConteudoDB.js",
+  "rotulo": "ED · Radar de conteudo",
+  "item": "Dezembro: decoração de Natal — plantas e enfeites tóxicos",
+  "chave": "resumo",
+  "linha": 575,
+  "original": "A decoração natalina traz para dentro de casa plantas como o bico-de-papagaio (também chamado poinsétia ou flor-de-natal), o azevinho e frutas de plástico que imitam alimentos. Bebês e crianças pequenas são atraídos pelos enfeites coloridos e os colocam na boca."
+ },
+ "NV-0039": {
+  "arquivo": "data/intro_safety.js",
+  "rotulo": "ED · Introducao a seguranca",
+  "item": "Metodologia 3D",
+  "chave": "importancia",
+  "linha": 42,
+  "original": "A grande maioria dos acidentes não acontece por acaso, mas por descaso. Praticar a segurança de forma constante é sempre mais vantajoso do que remediar uma emergência e sequelas que poderiam ter sido evitadas."
+ },
+ "NV-0040": {
+  "arquivo": "data/intro_safety.js",
+  "rotulo": "ED · Introducao a seguranca",
+  "item": "Metodologia 3D",
+  "chave": "comoIdentificar[]",
+  "linha": 48,
+  "original": "♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção deve ser duradoura e somente a constância pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos a saúde e bem-estar. Praticar segurança sempre será mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família."
+ },
+ "NV-0041": {
+  "arquivo": "data/intro_safety.js",
+  "rotulo": "ED · Introducao a seguranca",
+  "item": "Metodologia 3D",
+  "chave": "conteudo",
+  "linha": 78,
+  "original": "## Quem, Onde, O Quê e Como\n\nA Metodologia de Prevenção 3D ganha vida através da lógica estrutural do aplicativo, dividida em quatro pilares fundamentais:\n\n* Quem (Proteger): O foco na proteção de todos os membros da família, com atenção especial aos grupos mais vulneráveis (crianças e idosos), recebendo recomendações personalizadas para cada perfil.\n* Onde (Ambientes): A segurança se estende a todos os locais frequentados (dentro de casa, quintal, lazer e viagens). A prevenção é sempre contextualizada para o ambiente em que você está.\n* O Quê (Riscos): Auxiliamos na identificação e compreensão cirúrgica dos diversos riscos ocultos, desde quedas até intoxicações e acidentes elétricos.\n* Como (Ações): O Vigilaro Care não apenas aponta os problemas, mas oferece o \"Como\", com soluções práticas, vistorias e conteúdos educativos que guiarão ações rápidas e eficazes."
+ },
+ "NV-0042": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "O Triângulo do Fogo",
+  "chave": "comoIdentificar[]",
+  "linha": 16,
+  "original": "Combustível: O que queima (papel, madeira, gás)."
+ },
+ "NV-0043": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "O Triângulo do Fogo",
+  "chave": "comoIdentificar[]",
+  "linha": 17,
+  "original": "Comburente: O ar que respiramos (Oxigênio)."
+ },
+ "NV-0044": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "O Triângulo do Fogo",
+  "chave": "comoIdentificar[]",
+  "linha": 18,
+  "original": "Calor: A faísca ou chama inicial."
+ },
+ "NV-0045": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Classes de Incêndio",
+  "chave": "importancia",
+  "linha": 34,
+  "original": "Usar o extintor errado (ex: água em fogo elétrico) pode ser fatal."
+ },
+ "NV-0046": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Classes de Incêndio",
+  "chave": "comoIdentificar[]",
+  "linha": 36,
+  "original": "Classe A: Sólidos (papel, madeira, tecido). Deixam cinzas."
+ },
+ "NV-0047": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Classes de Incêndio",
+  "chave": "comoIdentificar[]",
+  "linha": 38,
+  "original": "Classe C: Equipamentos Elétricos energizados."
+ },
+ "NV-0048": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Classes de Incêndio",
+  "chave": "comoIdentificar[]",
+  "linha": 39,
+  "original": "Classe D: Metais combustíveis (magnésio, titânio)."
+ },
+ "NV-0049": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Classes de Incêndio",
+  "chave": "comoIdentificar[]",
+  "linha": 40,
+  "original": "Classe K: Óleos e gorduras de cozinha (fritadeiras)."
+ },
+ "NV-0050": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Tipos de Extintores",
+  "chave": "comoIdentificar[]",
+  "linha": 53,
+  "original": "Água (A): Só para papel/madeira. NUNCA em elétrico ou óleo."
+ },
+ "NV-0051": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Tipos de Extintores",
+  "chave": "comoIdentificar[]",
+  "linha": 54,
+  "original": "Pó Químico (BC): Líquidos e elétricos. Suja muito."
+ },
+ "NV-0052": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Tipos de Extintores",
+  "chave": "comoIdentificar[]",
+  "linha": 55,
+  "original": "Pó ABC: O \"curinga\" residencial."
+ },
+ "NV-0053": {
+  "arquivo": "data/teoria_fogo.js",
+  "rotulo": "ED · Teoria do fogo",
+  "item": "Tipos de Combate",
+  "chave": "definicao",
+  "linha": 108,
+  "original": "Extinguir o fogo significa quebrar o Triângulo do Fogo."
+ },
+ "NV-0054": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (0-2 anos)",
+  "chave": "definicao",
+  "linha": 14,
+  "original": "Os primeiros passos com segurança."
+ },
+ "NV-0055": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (0-2 anos)",
+  "chave": "comoEvitar[]",
+  "linha": 22,
+  "original": "Bebê dorme sempre de barriga para cima (reduz o risco de morte súbita)"
+ },
+ "NV-0056": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (0-2 anos)",
+  "chave": "estatisticas",
+  "linha": 72,
+  "original": "Sufocamento mecânico é uma causa frequente de óbito nesta fase."
+ },
+ "NV-0057": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (0-2 anos)",
+  "chave": "conteudo",
+  "linha": 76,
+  "original": "# Bebê Conforto – Cuidados Necessários\n\nO bebê conforto é um item essencial para transportar seu filho com segurança. A atenção na compra e no uso correto pode salvar vidas.\n\n### Dicas de Segurança:\n1. **Fivelas e Cintos:** Certifique-se sempre de ajustar e travar todas as fivelas ao transportar o bebê.\n2. **Resistência:** Verifique a integridade do equipamento regularmente.\n3. **Instalação:** Siga rigorosamente o manual. A cadeira deve estar firme e, para recém-nascidos, voltada para trás (contra o fluxo do trânsito).\n4. **Validade:** Sim, cadeirinhas têm validade! O plástico resseca e perde resistência com o tempo.\n\n### Posição Segura para Dormir (Safe to Sleep — SBP/AHA 2023)\nEste protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):\n- **SEMPRE de costas** — nunca de bruços ou de lado.\n- Em **superfície firme e plana** (colchão firme de berço).\n- **Sem travesseiros, almofadas, pelúcios ou cobertores fofos** dentro do berço.\n- Temperatura do quarto: confortável — não superaquecer o bebê.\n- Berço no quarto dos pais (não na cama dos pais) **até os 6 meses**.\n\n*Consulte sempre o manual do fabricante e peça orientações ao pediatra.*\n\n---\n\n# A Chegada do Bebê (Visão 3D)\n\n**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.\n\n**Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.\n\n**Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).\n\n[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)\n\n---\n\n# Prevenção de Engasgo e Sufocamento\n\nA sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialmente para bebês até 1 ano.\n\n### 5 Dicas de Prevenção:\n1.  **Dormir de Barriga para Cima:** A posição mais segura para evitar morte súbita e sufocamento.\n2.  **Berço Livre:** Evite protetores de berço, bichos de pelúcia, travesseiros e cobertores soltos dentro do berço. O colchão deve ser firme.\n3.  **Peças Pequenas:** Cuidado com brinquedos com peças destacáveis, botões de roupa e moedas.\n4.  **Alimentação:** Supervisione sempre a amamentação e a introdução alimentar. Corte alimentos redondos (uva, tomate cereja) em quatro partes.\n5.  **Cordões:** Nunca deixe cordões de chupeta ou roupas com tiras longas que possam enrolar no pescoço."
+ },
+ "NV-0058": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (7 a 12 meses)",
+  "chave": "comoIdentificar[]",
+  "linha": 266,
+  "original": "Bebê engatinhando pela casa toda."
+ },
+ "NV-0059": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (7 a 12 meses)",
+  "chave": "comoIdentificar[]",
+  "linha": 267,
+  "original": "Tentando ficar em pé nos móveis."
+ },
+ "NV-0060": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Bebês (7 a 12 meses)",
+  "chave": "primeirosSocorros",
+  "linha": 298,
+  "original": "Tenha o número do {{POISON_CONTROL}} sempre à mão."
+ },
+ "NV-0061": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3-12 anos)",
+  "chave": "definicao",
+  "linha": 503,
+  "original": "Explorando o mundo com proteção"
+ },
+ "NV-0062": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3-12 anos)",
+  "chave": "primeirosSocorros",
+  "linha": 531,
+  "original": "Queimadura: Água corrente (ambiente) por 20 min. Não passar nada."
+ },
+ "NV-0063": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3-12 anos)",
+  "chave": "estatisticas",
+  "linha": 549,
+  "original": "Afogamento e intoxicação são picos nesta idade."
+ },
+ "NV-0064": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3-12 anos)",
+  "chave": "conteudo",
+  "linha": 553,
+  "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Queimaduras em Crianças\n\nA pele da criança é muito mais sensível que a do adulto. O que é \"quente\" para você pode causar queimadura de 3º grau nela.\n\n### Dicas Práticas:\n*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.\n*   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.\n*   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.\n*   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.\n\n---\n\n# Objeto Estranho no Nariz\n\nFeijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.\n\n### Sinais de Alerta:\n*   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.\n*   Dificuldade de respirar por uma narina.\n*   Dor ou desconforto no nariz.\n\n### O que fazer (e NÃO fazer):\n*   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.\n*   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.\n*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)\n*   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar."
+ },
+ "NV-0065": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3 a 5 anos)",
+  "chave": "primeirosSocorros",
+  "linha": 781,
+  "original": "Cortes: Lavar com água e sabão, comprimir se sangrar."
+ },
+ "NV-0066": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (3 a 5 anos)",
+  "chave": "estatisticas",
+  "linha": 799,
+  "original": "Atropelamentos começam a surgir nas estatísticas."
+ },
+ "NV-0067": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (6 a 14 anos)",
+  "chave": "definicao",
+  "linha": 1007,
+  "original": "Energia explosiva, imitação de heróis, esportes e aventuras."
+ },
+ "NV-0068": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (6 a 14 anos)",
+  "chave": "estatisticas",
+  "linha": 1046,
+  "original": "Quedas de bicicleta e acidentes de trânsito são comuns."
+ },
+ "NV-0069": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Crianças (6 a 14 anos)",
+  "chave": "conteudo",
+  "linha": 1050,
+  "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)"
+ },
+ "NV-0070": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Adolescentes (13-17 anos)",
+  "chave": "definicao",
+  "linha": 1139,
+  "original": "Autonomia com responsabilidade"
+ },
+ "NV-0071": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Adolescentes (13-17 anos)",
+  "chave": "estatisticas",
+  "linha": 1180,
+  "original": "Suicídio e acidentes de moto/carro são as maiores causas de morte."
+ },
+ "NV-0072": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Adultos (18-59 anos)",
+  "chave": "definicao",
+  "linha": 1196,
+  "original": "Os responsáveis por cuidar do ambiente."
+ },
+ "NV-0073": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Necessidades Especiais",
+  "chave": "definicao",
+  "linha": 1251,
+  "original": "Foco na acessibilidade e eliminação de barreiras arquitetônicas."
+ },
+ "NV-0074": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Necessidades Especiais",
+  "chave": "importancia",
+  "linha": 1254,
+  "original": "Ambientes inadequados causam acidentes e isolamento."
+ },
+ "NV-0075": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Necessidades Especiais",
+  "chave": "comoIdentificar",
+  "linha": 1275,
+  "original": "Dificuldade de locomoção ou alcance."
+ },
+ "NV-0076": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Necessidades Especiais",
+  "chave": "estatisticas",
+  "linha": 1278,
+  "original": "Quedas são frequentes devido a pisos inadequados."
+ },
+ "NV-0077": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Idosos (60+ anos)",
+  "chave": "primeirosSocorros",
+  "linha": 1321,
+  "original": "Em caso de queda, não levantar bruscamente. Avaliar dor no quadril."
+ },
+ "NV-0078": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Idosos (60+ anos)",
+  "chave": "estatisticas",
+  "linha": 1339,
+  "original": "75% das lesões em idosos ocorrem em casa."
+ },
+ "NV-0079": {
+  "arquivo": "data/fases_vida.js",
+  "rotulo": "ED · Fases da vida",
+  "item": "Idosos (60+ anos)",
+  "chave": "conteudo",
+  "linha": 1343,
+  "original": "# Quedas na Terceira Idade\n\n**O Risco Invisível:** Sarcopenia e polifarmácia transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.\n\n**Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.\n\n[Veja adaptações vitais para idosos em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Segurança Medicamentosa\n\nIdosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o risco de confusão.\n\n### Estratégias de Segurança:\n*   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).\n*   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.\n*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio.\n*   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum).\n*   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)\n\n---\n\n# Banheiro Acessível e Seguro\n\nO banheiro combina piso molhado, superfícies duras e necessidade de sentar/levantar, criando uma armadilha perfeita.\n\n### Checklist de Adaptação:\n1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!\n2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.\n3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho evita a fadiga e quedas.\n4.  **Box:** Abertura ampla, sem degraus na entrada se possível.\n5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos."
+ },
+ "NV-0080": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Como Evitar Incêndios Domésticos",
+  "chave": "content",
+  "linha": 14,
+  "original": "# Prevenção de Incêndios\n\nMuitas vezes, um incêndio devastador começa com um detalhe bobo que poderia ser evitado em segundos. Ficar atento no dia a dia é a melhor defesa.\n\n### Onde moram os maiores perigos e como evitar:\n*   **Velas:** Nunca deixe velas acesas sozinhas em um cômodo, nem perto de cortinas ou lençóis. Use sempre suportes firmes e pesados.\n*   **Cozinha:** Óleo quente pega fogo muito rápido. Se a panela começar a queimar, **NUNCA jogue água** — isso causa uma explosão de vapor perigosíssima. Desligue o fogão e abafe a panela com a própria tampa ou com um pano bem úmido.\n*   **Cigarro:** Evite fumar na cama ou quando estiver com muito sono no sofá. É fácil cochilar e iniciar um incêndio no colchão.\n*   **Sobrecarga Elétrica:** Não ligue secador de cabelo, ferro de passar e aquecedor na mesma tomada usando benjamins ou adaptadores (T).\n*   **Gás de Cozinha:** Sentiu cheiro de gás? Não ligue luzes, não aperte tomadas e nem risque fósforos. Abra imediatamente as janelas e feche o registro do botijão."
+ },
+ "NV-0081": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Decoração de Natal Segura",
+  "chave": "content",
+  "linha": 33,
+  "original": "# Natal Seguro\n\nLuzes improvisadas e fios velhos aumentam o risco de curto-circuito no fim do ano. Curta as festas sem preocupações.\n\n### Dicas essenciais:\n*   **Pisca-Pisca:** Veja se os fios não estão desencapados ou emendados antes de pendurar. Prefira luzes de LED, que esquentam bem menos, e dê prioridade a produtos com {{CERT_SEAL}}.\n*   **Desligue ao Sair:** Não deixe as luzes da árvore ligadas se não houver ninguém em casa ou quando for dormir.\n*   **Árvore:** Mantenha a árvore longe de cortinas, sofás e velas acesas.\n*   **Tomadas:** Evite ligar todas as decorações na mesma tomada. Filtros de linha com fusível ajudam a proteger contra sobrecarga."
+ },
+ "NV-0082": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Churrasco com Segurança",
+  "chave": "content",
+  "linha": 51,
+  "original": "# Churrasco sem Acidentes\n\nReunir a família é ótimo, mas acender a churrasqueira exige respeito e atenção.\n\n### Regras de ouro para evitar acidentes:\n*   **Álcool Líquido:** Não use! O álcool líquido evapora rápido, gera gases explosivos e o fogo pode subir direto para a garrafa na sua mão. Prefira acendedores em gel, pastilhas sólidas ou acendedor elétrico.\n*   **Crianças Longe:** Mantenha crianças e pets a pelo menos 1 metro de distância da churrasqueira.\n*   **Local:** Nunca faça churrasco em garagens fechadas ou cômodos sem ventilação. Isso evita acúmulo de fumaça e intoxicação por monóxido de carbono.\n*   **Facas:** Guarde as facas de churrasco em local alto e seguro logo após terminar de usá-las."
+ },
+ "NV-0083": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Choques Elétricos: Prevenção e Ação",
+  "chave": "content",
+  "linha": 69,
+  "original": "# Choques Elétricos: Perigo Invisível\n\nA eletricidade é silenciosa e invisível. O perigo real só aparece quando o acidente já aconteceu.\n\n### Como se prevenir:\n*   **Manutenção:** Fios descascados, tomadas com marcas pretas de queimado ou disjuntores que desarmam toda hora indicam problemas graves. Chame um eletricista.\n*   **Água e Eletricidade:** Nunca mexa em aparelhos elétricos, tomadas ou disjuntores se estiver com as mãos molhadas ou pisando em chão úmido.\n*   **Protetores de Tomada:** São indispensáveis se você tiver crianças pequenas ou pets curiosos em casa.\n\n### Se alguém levar um choque:\n1.  **NÃO toque na pessoa** enquanto ela estiver em contato com a tomada ou fio. Você também levará o choque.\n2.  **Desligue a energia:** Corra para o quadro de luz e desligue o disjuntor geral.\n3.  **Afaste a fonte:** Se não der para desligar, use um objeto de madeira ou plástico seco (como um cabo de vassoura seco) para empurrar o fio longe da pessoa.\n4.  **Chame socorro:** Ligue para o SAMU no 192."
+ },
+ "NV-0084": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Produtos de Limpeza e Risco Químico",
+  "chave": "content",
+  "linha": 94,
+  "original": "# Produtos de Limpeza e Segurança\n\nProdutos coloridos e perfumados parecem suco ou refrigerante para as crianças. A curiosidade natural delas pode gerar acidentes graves com produtos químicos.\n\n### Como evitar acidentes:\n*   **Guarde no Alto:** Mantenha desinfetantes, cloro, sabão e outros produtos químicos em armários altos, acima de 1,5 metro, de preferência com travas.\n*   **Embalagem Original:** Nunca coloque cloro ou desinfetante em garrafas de refrigerante ou potes de comida. Guarde-os sempre nas embalagens de fábrica com rótulo legível.\n*   **Sem Misturas:** Não misture produtos de limpeza (como água sanitária e vinagre). Essas misturas soltam vapores tóxicos que podem queimar as vias respiratórias.\n\n### Se acontecer um acidente:\nNão provoque vômito de jeito nenhum, pois o produto químico pode queimar a garganta na ida e na volta. Ligue imediatamente para o {{POISON_CONTROL}} ou chame o {{EMERGENCY_MEDICAL}} segurando a embalagem do produto para ler os componentes para o médico."
+ },
+ "NV-0085": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Intoxicação por Medicamentos",
+  "chave": "content",
+  "linha": 114,
+  "original": "# Medicamentos Longe das Crianças\n\nRemédios coloridos parecem doces para as crianças. A intoxicação por medicamentos é uma das principais causas de envenenamento infantil no Brasil.\n\n### Dicas de segurança:\n*   **Gavetas Trancadas:** Remédios devem ficar em caixas organizadoras fechadas, em prateleiras altas e trancadas.\n*   **Fale a Verdade:** Nunca diga que o remédio é \"balinha\", \"doce\" ou \"suquinho\" para convencer a criança a tomar. Diga que é um remédio que vai fazê-la sarar.\n*   **Dosagem Correta:** Use sempre a seringa ou copinho medidor que veio com o xarope. Colheres de cozinha comuns têm tamanhos muito variados."
+ },
+ "NV-0086": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Boas Práticas na Cozinha",
+  "chave": "content",
+  "linha": 133,
+  "original": "# Segurança na Cozinha\n\nCortes, queimaduras e tombos na cozinha podem ser evitados com pequenas mudanças na rotina.\n\n### Dicas para o dia a dia:\n1.  **Facas Afiadas:** Facas cegas exigem mais força na hora de cortar, facilitando escorregões que causam cortes. Mantenha as facas afiadas e guardadas em local seguro.\n2.  **Panela de Pressão:** Cheque se a válvula de escape não está entupida antes de usar. Só tente abrir a panela depois que todo o vapor sair completamente. Troque a borracha de vedação assim que ela começar a ressecar.\n3.  **Chão Seco:** Se cair água ou óleo no piso, limpe na mesma hora para evitar escorregões perigosos.\n4.  **Panos de Prato:** Não deixe panos de prato ou toalhas pendurados perto do fogão quando estiver cozinhando.\n5.  **Micro-ondas:** Cuidado ao retirar pratos quentes. O vapor que sai ao abrir tampas ou sacos de pipoca pode causar queimaduras sérias."
+ },
+ "NV-0087": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Redes de Proteção para Janelas",
+  "chave": "content",
+  "linha": 152,
+  "original": "# Redes de Proteção\n\nSe você mora em apartamento ou sobrado, a instalação de redes de proteção nas janelas e sacadas é indispensável.\n\n### O que você precisa saber:\n*   **Qualidade:** Escolha redes que sigam as normas técnicas (ABNT NBR 16046). Os ganchos devem ser de aço bem fixados.\n*   **Malhas Menores:** Para lares com gatos ou crianças muito pequenas, use malhas menores (3x3 cm ou 5x5 cm).\n*   **Móveis Longe:** Afaste camas, sofás, cadeiras e vasos das janelas para que as crianças não os usem como escada.\n*   **Validade:** A exposição ao sol e à chuva desgasta as redes. Cheque o estado dos fios a cada 3 anos e troque se estiverem ressecados."
+ },
+ "NV-0088": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Plantas Tóxicas em Casa",
+  "chave": "content",
+  "linha": 170,
+  "original": "# Plantas Tóxicas Comuns\n\nMuitas plantas bonitas e populares no Brasil escondem substâncias venenosas se forem mastigadas ou tocadas.\n\n### Espécies perigosas e seus efeitos:\n*   **Comigo-Ninguém-Pode:** Muito tóxica. Causa inchaço imediato na boca e na garganta, gerando dor intensa e dificuldade de respirar.\n*   **Costela-de-Adão:** Possui cristais que irritam as mucosas da boca e do estômago.\n*   **Bico-de-Papagaio:** A seiva leitosa da planta causa irritação na pele e nos olhos.\n*   **Espirradeira:** Altamente tóxica. Pode afetar o ritmo do coração.\n*   **Lírio:** É extremamente perigoso para gatos, podendo causar falência renal rápida com apenas algumas mordidas na folha.\n\n**Conselho:** Se você tem crianças ou bichos de estimação em casa, prefira espécies seguras como orquídeas, lavanda, bromélias ou samambaias. Se tiver espécies tóxicas, mantenha-as em prateleiras altas e fora de alcance."
+ },
+ "NV-0089": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Animais Peçonhentos: Prevenção e Socorro",
+  "chave": "content",
+  "linha": 191,
+  "original": "# Animais Peçonhentos\n\nAcidentes com escorpiões, aranhas e cobras são mais comuns no calor, em épocas de chuvas ou perto de terrenos com mato.\n\n### Como evitar esses animais em casa:\n*   **Limpeza:** Não acumule entulho, telhas ou madeira no quintal.\n*   **Frestas:** Coloque rodinhos de vedação nas portas e telas nos ralos do banheiro e da lavanderia.\n*   **Sapatos:** Crie o hábito de sacudir tênis e sapatos antes de calçar. Escorpiões adoram cantos escuros e apertados.\n\n### Se alguém for picado:\n*   Lave o local com água corrente e sabão neutro.\n*   Deixe a pessoa em repouso com o membro elevado. O movimento rápido ajuda o veneno a circular mais rápido.\n*   Vá direto para o hospital. Se for seguro, tire uma foto do animal para que os médicos saibam qual soro aplicar.\n*   **NÃO** faça torniquetes, **NÃO** tente cortar o local e **NÃO** chupe o veneno."
+ },
+ "NV-0090": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Kit de Primeiros Socorros Doméstico",
+  "chave": "content",
+  "linha": 214,
+  "original": "# Kit de Primeiros Socorros Básico\n\nTer uma caixinha com itens básicos de saúde em casa evita correria e pânico na hora de um pequeno corte ou tombo.\n\n### O que colocar na caixinha:\n1.  **Curativos:** Gaze estéril, esparadrapo antialérgico, band-aids de vários tamanhos e ataduras.\n2.  **Higiene:** Soro fisiológico (frascos pequenos), sabonete líquido neutro e um antisséptico suave.\n3.  **Ferramentas:** Uma tesoura pequena sem ponta, uma pinça limpa (ótima para tirar farpas de madeira) e um termômetro.\n4.  **Básicos:** Luvas descartáveis de procedimento e uma bolsa térmica em gel (para compressas frias em pancadas).\n\n*Dica:* Dê uma olhada na validade dos itens e pomadas a cada seis meses e troque o que estiver vencido."
+ },
+ "NV-0091": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Escolhendo o Pet com Segurança",
+  "chave": "content",
+  "linha": 234,
+  "original": "# Pet Seguro, Família Feliz\n\nTrazer um bicho de estimação para casa traz muita alegria, mas exige adaptar o lar para garantir a segurança de todos.\n\n### O que considerar na escolha:\n*   **Espaço e Energia:** Cães muito ativos em apartamentos pequenos podem ficar estressados e ter problemas de comportamento. Avalie a necessidade de passeios diários de cada raça.\n*   **Crianças Pequenas:** Se tiver crianças em casa, dê preferência a cães com temperamento dócil e paciente. Filhotes muito pequenos ou raças frágeis podem se machucar em brincadeiras brutas.\n*   **Alergias:** Se alguém na casa tem asma ou rinite forte, converse com um médico antes de adotar. Aves, peixes ou espécies que soltam menos pelos podem ser boas opções.\n\n### Adaptando a casa:\nInstale redes nas janelas se tiver gatos. Guarde fios elétricos e carregadores de celular, pois filhotes roem tudo o que encontram no chão."
+ },
+ "NV-0092": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Mordida de Animal: Como Agir",
+  "chave": "content",
+  "linha": 254,
+  "original": "# Mordida de Animal: Primeiros Socorros\n\nArranhões ou mordidas de animais podem parecer pequenos, mas a boca deles contém bactérias que transmitem infecções graves e doenças como a Raiva.\n\n### O que fazer na hora:\n1.  **Lave muito bem:** Coloque o ferimento embaixo de água corrente e lave com bastante sabão neutro por pelo menos **15 minutos**. Isso limpa a saliva e reduz drasticamente o risco de vírus.\n2.  **Não invente:** Não coloque pó de café, pomadas ou remédios caseiros sobre o corte.\n3.  **Vá ao médico:** Toda mordida que rasgar a pele deve ser avaliada em um pronto-socorro para decidir se há necessidade de vacina ou soro antirrábico e antitetânico.\n4.  **Observe o animal:** Se o animal for de rua, avise o centro de controle de zoonoses. Se for o bicho de um conhecido, pergunte sobre a carteira de vacinação dele e o observe por 10 dias."
+ },
+ "NV-0093": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Diferença entre Peçonhentos e Venenosos",
+  "chave": "content",
+  "linha": 272,
+  "original": "# Peçonhentos ou Venenosos?\n\nExiste uma diferença importante na forma como esses animais atacam, e entender isso ajuda na prevenção:\n* **Peçonhentos**: São os que têm dentes, ferrões ou agulhas para injetar veneno ativamente (cobras coral/jararaca, escorpiões, aranhas).\n* **Venenosos**: Não têm ferrão. Eles causam envenenamento se você tocá-los ou engoli-los (lagartas de fogo, alguns sapos, plantas).\n\n### Primeiros Socorros Gerais:\n1. **Calma:** O desespero faz o coração bater mais forte, espalhando as toxinas mais rápido pelo sangue.\n2. **Água e sabão:** Lave apenas com água e sabão no local.\n3. **Membro elevado:** Mantenha o braço ou perna picada mais alto que o resto do corpo.\n4. **Socorro Médico:** Vá direto para o hospital de referência mais próximo. Não perca tempo tentando extrair o veneno em casa."
+ },
+ "NV-0094": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Choques Elétricos: Como Evitar",
+  "chave": "content",
+  "linha": 292,
+  "original": "# Prevenindo Choques Elétricos\n\nUm choque elétrico pode parecer um formigamento bobo, mas tem potencial para causar queimaduras internas e arritmia cardíaca. A segurança na fiação deve ser levada a sério.\n\n### Cuidados essenciais:\n* **Fiação em Ordem:** Não faça emendas com fita isolante comum em fios desgastados. Troque fios danificados por inteiro.\n* **Desligue o Disjuntor:** Vai trocar uma lâmpada ou limpar um lustre? Desligue a chave geral ou o disjuntor daquele cômodo antes.\n* **Corpo Seco:** Nunca use aparelhos elétricos (como secador ou barbeador) descalço em pisos úmidos ou logo após sair do banho.\n* **Chapeuzinho de Tomada:** Mantenha tomadas baixas tampadas se tiver bebês ou pets que andam pelo chão."
+ },
+ "NV-0095": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Panela de Pressão sem Medo",
+  "chave": "content",
+  "linha": 310,
+  "original": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são feios, mas perfeitamente evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão."
+ },
+ "NV-0096": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "10 Regras Rápidas de Segurança na Cozinha",
+  "chave": "content",
+  "linha": 330,
+  "original": "# 10 Regras na Cozinha\n\nA cozinha concentra a maior parte dos acidentes domésticos. Proteja-se com essas dicas rápidas:\n\n1. **Cabos para Dentro:** Vire os cabos das panelas para o lado de dentro do fogão para ninguém esbarrar e derrubar.\n2. **Facas Guardadas:** Guarde facas e cortadores logo após o uso. Lembre-se: faca cega é mais perigosa porque exige força e escorrega mais fácil.\n3. **Sem Panos no Fogo:** Nunca deixe panos de prato ou luvas de tecido muito perto do fogão.\n4. **Piso Seco:** Limpe gordura ou respingos de água no chão na mesma hora.\n5. **Embalagens Originais:** Nunca guarde veneno de rato ou inseticida em garrafas de refrigerante na despensa.\n6. **Micro-ondas:** Cuidado com o vapor quente ao abrir potes plásticos ou sacos de pipoca.\n7. **Crianças Longe:** Mantenha crianças longe do fogão enquanto cozinha. Defina um limite visual.\n8. **Vazamento de Gás:** Sentiu cheiro de gás? Não acenda luzes. Abra as janelas e feche o botijão.\n9. **Fogo no Óleo:** Se o óleo pegar fogo, nunca jogue água. Abafe com uma tampa.\n10. **Atenção Plena:** Evite cozinhar se estiver com muito sono ou sob efeito de remédios que dão tontura."
+ },
+ "NV-0097": {
+  "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+  "rotulo": "ED · Artigos de seguranca",
+  "item": "Redes em Janelas e Varandas",
+  "chave": "content",
+  "linha": 353,
+  "original": "# Redes de Proteção: Janelas e Sacadas\n\nSe você mora em apartamento ou casa com mais de um andar, as redes de proteção são a única barreira física realmente eficaz contra quedas graves.\n\n### Onde a proteção é obrigatória:\n* Janelas de quartos e salas.\n* Sacadas, varandas e mezaninos.\n* Áreas de serviço com janelas baixas.\n* Escadas abertas com vãos laterais.\n\n### Dicas de manutenção:\nA durabilidade média da rede é de 3 a 5 anos. O sol e a chuva ressecam o material. Cheque regularmente se há ganchos soltos, fios desfiados ou cortados. Se tiver gatos, olhe com mais atenção, pois eles gostam de morder as redes."
+ },
+ "NV-0098": {
+  "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+  "rotulo": "ED · Guias de seguranca",
+  "item": "Plano de Emergência",
+  "chave": "itens[]",
+  "linha": 95,
+  "original": "Ligue para os Bombeiros ({{FIRE_NUMBER}}) assim que estiver fora de perigo"
+ },
+ "NV-0099": {
+  "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+  "rotulo": "ED · Guias de seguranca",
+  "item": "Se Acontecer uma Intoxicação",
+  "chave": "itens[]",
+  "linha": 163,
+  "original": "NÃO provoque vômito. O produto químico pode queimar a garganta na volta"
+ },
+ "NV-0100": {
+  "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+  "rotulo": "ED · Guias de seguranca",
+  "item": "Se Alguém Levar um Choque",
+  "chave": "itens[]",
+  "linha": 219,
+  "original": "Se a pessoa estiver inconsciente e sem respirar, inicie a massagem cardíaca (compressões no centro do peito) mesmo sem treinamento: o atendente do {{EMERGENCY_MEDICAL}} orienta por telefone"
+ },
+ "NV-0101": {
+  "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+  "rotulo": "ED · Guias de seguranca",
+  "item": "Riscos Físicos",
+  "chave": "subtitulo",
+  "linha": 235,
+  "original": "Quedas, Queimaduras e Engasgos"
+ },
+ "NV-0102": {
+  "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+  "rotulo": "ED · Prevencao de incendio",
+  "item": "Em Caso de Incêndio",
+  "chave": "steps[]",
+  "linha": 76,
+  "original": "Ligue para os Bombeiros no {{FIRE_NUMBER}} assim que estiver em local seguro."
+ },
+ "NV-0103": {
+  "arquivo": "data/safety_vacation.js",
+  "rotulo": "AE · Ferias e viagem",
+  "item": "Férias e Viagem",
+  "chave": "subtitle",
+  "linha": 21,
+  "original": "Relaxamento sem acidentes"
+ },
+ "NV-0104": {
+  "arquivo": "data/safety_school.js",
+  "rotulo": "AE · Volta as aulas",
+  "item": "Escola Segura",
+  "chave": "subtitle",
+  "linha": 17,
+  "original": "Proteção dentro e fora da sala de aula"
+ },
+ "NV-0105": {
+  "arquivo": "data/safety_pregnant.js",
+  "rotulo": "AE · Gestacao",
+  "item": "Segurança da Gestante",
+  "chave": "subtitle",
+  "linha": 6,
+  "original": "Cuidados para mamãe e bebê"
+ },
+ "NV-0106": {
+  "arquivo": "data/safety_condo.js",
+  "rotulo": "AE · Condominio",
+  "item": "Segurança em Condomínio",
+  "chave": "subtitle",
+  "linha": 22,
+  "original": "O que observar nas áreas comuns do seu prédio"
+ },
+ "NV-0107": {
+  "arquivo": "data/safety_gas.js",
+  "rotulo": "AE · Gas",
+  "item": "Sinais e Perigos Iniciais",
+  "chave": "description",
+  "linha": 43,
+  "original": "O gás de cozinha, por ser mais pesado que o ar, se acumula no chão e nos ralos. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar uma explosão violenta."
+ },
+ "NV-0108": {
+  "arquivo": "data/safety_toys.js",
+  "rotulo": "AE · Brinquedos",
+  "item": "Guia de Brinquedos (Expert)",
+  "chave": "subtitle",
+  "linha": 6,
+  "original": "Segurança, Compra e Auditoria"
+ },
+ "NV-0109": {
+  "arquivo": "data/safety_mobility.js",
+  "rotulo": "AE · Mobilidade",
+  "item": "Mobilidade e Idosos",
+  "chave": "subtitle",
+  "linha": 17,
+  "original": "Acessibilidade e prevenção de quedas"
+ },
+ "NV-0110": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Primeiros Socorros",
+  "chave": "intro",
+  "linha": 126,
+  "original": "Vale ainda mais se a viagem tem criança ou atividade ao ar livre."
+ },
+ "NV-0111": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Documentos Vitais",
+  "chave": "intro",
+  "linha": 322,
+  "original": "Imprevisto acontece. Tenha cópia física e acesso offline."
+ },
+ "NV-0112": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo de Lazer",
+  "chave": "intro",
+  "linha": 420,
+  "original": "Itens para diversão e atividade ao ar livre."
+ },
+ "NV-0113": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo de Trabalho",
+  "chave": "intro",
+  "linha": 435,
+  "original": "Segurança para equipamento e produtividade."
+ },
+ "NV-0114": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Pet",
+  "chave": "intro",
+  "linha": 451,
+  "original": "Segurança e bem-estar do animal."
+ },
+ "NV-0115": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Infantil",
+  "chave": "intro",
+  "linha": 490,
+  "original": "Cuidado e distração para os pequenos."
+ },
+ "NV-0116": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Acessibilidade e Apoio",
+  "chave": "intro",
+  "linha": 526,
+  "original": "Facilitadores de locomoção e conforto."
+ },
+ "NV-0117": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Praia e Resort",
+  "chave": "intro",
+  "linha": 562,
+  "original": "Cuidados essenciais sob o sol."
+ },
+ "NV-0118": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Campo e Natureza",
+  "chave": "intro",
+  "linha": 594,
+  "original": "Prevenção contra insetos e clima imprevisível."
+ },
+ "NV-0119": {
+  "arquivo": "data/kits/bagagem_viagem.js",
+  "rotulo": "AE · Bagagem de viagem",
+  "item": "Módulo Internacional",
+  "chave": "intro",
+  "linha": 630,
+  "original": "Documentação e energia para outro país."
+ },
+ "NV-0120": {
+  "arquivo": "data/tag_guidance.js",
+  "rotulo": "EX · Orientacao por tipo de risco",
+  "item": "Risco de queimadura",
+  "chave": "curto",
+  "linha": 26,
+  "original": "Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos se recuperam mais devagar e com mais dor."
+ },
+ "NV-0121": {
+  "arquivo": "data/tag_guidance.js",
+  "rotulo": "EX · Orientacao por tipo de risco",
+  "item": "Risco de aprisionamento",
+  "chave": "curto",
+  "linha": 250,
+  "original": "Uma criança pode ficar presa em espaços apertados ou trancados já na próxima brincadeira."
+ },
+ "NV-0122": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Celular no Banheiro/Molhado",
+  "chave": "primeirosSocorros",
+  "linha": 52,
+  "original": "Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o {{EMERGENCY_MEDICAL}}"
+ },
+ "NV-0123": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Fios Desencapados (Pets e Bebês)",
+  "chave": "descricao",
+  "linha": 63,
+  "original": "Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, aumentando o risco de choque elétrico."
+ },
+ "NV-0124": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Troca da Resistência do Chuveiro",
+  "chave": "descricao",
+  "linha": 90,
+  "original": "Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas fechando a água."
+ },
+ "NV-0125": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Pipas na Rede Elétrica",
+  "chave": "primeirosSocorros",
+  "linha": 187,
+  "original": "Afaste curiosos (risco de cabo partido no chão). Ligue imediatamente para {{EMERGENCY_MEDICAL}} e para a concessionária de energia."
+ },
+ "NV-0126": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Extensões sob Tapetes e Portas",
+  "chave": "descricao",
+  "linha": 225,
+  "original": "O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo."
+ },
+ "NV-0127": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Armas de Fogo",
+  "chave": "primeirosSocorros",
+  "linha": 299,
+  "original": "Ligue para o {{EMERGENCY_MEDICAL}} e para a polícia ({{POLICE_NUMBER}}). Estanque sangramentos com compressão forte."
+ },
+ "NV-0128": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Prevenção de Quedas",
+  "chave": "primeirosSocorros",
+  "linha": 332,
+  "original": "Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame o {{EMERGENCY_MEDICAL}}."
+ },
+ "NV-0129": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Afogamento",
+  "chave": "primeirosSocorros",
+  "linha": 362,
+  "original": "Retire da água. Se não respirar, inicie RCP imediatamente. Chame o {{EMERGENCY_MEDICAL}}"
+ },
+ "NV-0130": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Esmagamento por Tombamento",
+  "chave": "primeirosSocorros",
+  "linha": 391,
+  "original": "Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}."
+ },
+ "NV-0131": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Queimaduras",
+  "chave": "prevencao[]",
+  "linha": 404,
+  "original": "Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente."
+ },
+ "NV-0132": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Queimaduras",
+  "chave": "prevencao[]",
+  "linha": 405,
+  "original": "Atenção ao abrir a porta do forno ou retirar recipientes quentes (use cabos apropriados ou luvas térmicas) e ao usar panelas de pressão."
+ },
+ "NV-0133": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Sufocação e Engasgo",
+  "chave": "descricao",
+  "linha": 426,
+  "original": "Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros e excesso de roupa de cama no berço, peças pequenas e alimentos granulados."
+ },
+ "NV-0134": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Sufocação e Engasgo",
+  "chave": "primeirosSocorros",
+  "linha": 443,
+  "original": "Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar."
+ },
+ "NV-0135": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Cortes Profundos",
+  "chave": "prevencao[]",
+  "linha": 457,
+  "original": "Coloque películas protetoras ou redes em portas de vidro. Isso evita cacos e estilhaços cortantes."
+ },
+ "NV-0136": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "E-bikes e Bicicletas",
+  "chave": "primeirosSocorros",
+  "linha": 485,
+  "original": "Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue para o {{EMERGENCY_MEDICAL}} e mantenha a pessoa calma até o resgate chegar."
+ },
+ "NV-0137": {
+  "arquivo": "data/riscos_fisicos.js",
+  "rotulo": "EX · Riscos fisicos",
+  "item": "Lesões em Parquinhos",
+  "chave": "descricao",
+  "linha": 494,
+  "original": "Falta de manutenção gera ferrugem, pregos expostos e partes folgadas ou soltas. Brincar em áreas não compatíveis com a idade ou crianças com grande diferença de idade também causa choques violentos."
+ },
+ "NV-0138": {
+  "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+  "rotulo": "EX · Base de perigos",
+  "item": "(sem titulo)",
+  "chave": "desc",
+  "linha": 22,
+  "original": "O aparelho pode tombar e derramar gordura ou comida quente se o fio for puxado."
+ },
+ "NV-0139": {
+  "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+  "rotulo": "EX · Base de perigos",
+  "item": "(sem titulo)",
+  "chave": "expert_tip",
+  "linha": 98,
+  "original": "Acabou de usar o balde, bacia ou tanque? Esvazie-os imediatamente. Guarde de cabeça para baixo (baldes e bacias) e não os guarde no chão. Ao alcance das crianças, elas podem brincar com a água das torneiras."
+ },
+ "NV-0140": {
+  "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+  "rotulo": "EX · Base de perigos",
+  "item": "(sem titulo)",
+  "chave": "expert_tip",
+  "linha": 225,
+  "original": "Identifique as plantas do seu quintal (consultar um especialista é uma boa opção). Se notar espécies tóxicas, mude-as para vasos suspensos ou doe."
+ },
+ "NV-0141": {
+  "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+  "rotulo": "EX · Base de perigos",
+  "item": "(sem titulo)",
+  "chave": "expert_tip",
+  "linha": 268,
+  "original": "Use portõezinhos de segurança (grades) fixados no topo e na base das escadas se tiver bebês e crianças pequenas (principalmente as que engatinham)."
+ },
+ "NV-0142": {
+  "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+  "rotulo": "EX · Base de perigos",
+  "item": "(sem titulo)",
+  "chave": "desc",
+  "linha": 318,
+  "original": "Armazenar galões de combustível ou thinner perto de tomadas ou faíscas da garagem."
+ },
+ "NV-0143": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Festas e Eventos",
+  "chave": "subtitle",
+  "linha": 5,
+  "original": "Segurança em reuniões sociais"
+ },
+ "NV-0144": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Festas e Eventos",
+  "chave": "keyPoints[]",
+  "linha": 17,
+  "original": "Recolha copos de bebidas alcoólicas vazios ou pela metade nas mesas."
+ },
+ "NV-0145": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Visitação Segura",
+  "chave": "subtitle",
+  "linha": 117,
+  "original": "Receber ou visitar idosos e bebês"
+ },
+ "NV-0146": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Visitação Segura",
+  "chave": "keyPoints[]",
+  "linha": 126,
+  "original": "Tire capachos e tapetes soltos do caminho dos idosos."
+ },
+ "NV-0147": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Visitação Segura",
+  "chave": "keyPoints[]",
+  "linha": 127,
+  "original": "Mostre degraus e garanta boa iluminação nos corredores da casa."
+ },
+ "NV-0148": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Visitação Segura",
+  "chave": "keyPoints[]",
+  "linha": 129,
+  "original": "Remédios e venenos devem ir para armários altos e trancados."
+ },
+ "NV-0149": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Reformas e Obras",
+  "chave": "subtitle",
+  "linha": 222,
+  "original": "Manutenções e construções ativas"
+ },
+ "NV-0150": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Reformas e Obras",
+  "chave": "keyPoints[]",
+  "linha": 232,
+  "original": "Desligue a chave geral no quadro de luz antes de mexer na fiação."
+ },
+ "NV-0151": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Reformas e Obras",
+  "chave": "consequence",
+  "linha": 241,
+  "original": "Crianças e pets entram, exploram os locais de obra e se machucam nos entulhos."
+ },
+ "NV-0152": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Mudança de Residência",
+  "chave": "keyPoints[]",
+  "linha": 313,
+  "original": "Instale as redes de proteção nas janelas antes de trazer as caixas."
+ },
+ "NV-0153": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "subtitle",
+  "linha": 367,
+  "original": "Supervisão ativa e rotina"
+ },
+ "NV-0154": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "description",
+  "linha": 374,
+  "original": "Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são rápidas e se expõem a perigos em segundos."
+ },
+ "NV-0155": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "keyPoints[]",
+  "linha": 376,
+  "original": "Nunca deixe bebês sozinhos em cima de trocadores ou camas."
+ },
+ "NV-0156": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "keyPoints[]",
+  "linha": 378,
+  "original": "Verifique se as redes de proteção das janelas estão firmes."
+ },
+ "NV-0157": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "checkAction",
+  "linha": 419,
+  "original": "Guarde desinfetantes e comprimidos em prateleiras fora do alcance de crianças."
+ },
+ "NV-0158": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Monitorando Crianças",
+  "chave": "text",
+  "linha": 425,
+  "original": "Certificou-se de que não há moedas ou pilhas no chão?"
+ },
+ "NV-0159": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "subtitle",
+  "linha": 435,
+  "original": "Limpeza de teto e cortinas"
+ },
+ "NV-0160": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "keyPoints[]",
+  "linha": 444,
+  "original": "Nunca use bancos ou cadeiras empilhadas para alcançar o teto."
+ },
+ "NV-0161": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "keyPoints[]",
+  "linha": 445,
+  "original": "Use uma escada de alumínio em boas condições e travada."
+ },
+ "NV-0162": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "keyPoints[]",
+  "linha": 446,
+  "original": "Peça para um ajudante firmar a base da escada enquanto você sobe."
+ },
+ "NV-0163": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "keyPoints[]",
+  "linha": 447,
+  "original": "Evite se inclinar muito para as laterais; desça e mova a escada."
+ },
+ "NV-0164": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Serviços em Altura",
+  "chave": "consequence",
+  "linha": 455,
+  "original": "Subir em cadeiras ou caixas é perigoso, instável e causa quedas."
+ },
+ "NV-0165": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Faxina Pesada",
+  "chave": "subtitle",
+  "linha": 514,
+  "original": "Manuseio de Produtos Químicos"
+ },
+ "NV-0166": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Faxina Pesada",
+  "chave": "keyPoints[]",
+  "linha": 523,
+  "original": "Nunca misture água sanitária com amônia, vinagre ou detergentes."
+ },
+ "NV-0167": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Faxina Pesada",
+  "chave": "keyPoints[]",
+  "linha": 524,
+  "original": "Use sempre luvas de borracha para proteger a pele das mãos."
+ },
+ "NV-0168": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Faxina Pesada",
+  "chave": "keyPoints[]",
+  "linha": 525,
+  "original": "Abra janelas e portas para manter o ar circulando durante a faxina."
+ },
+ "NV-0169": {
+  "arquivo": "data/locales/pt-BR/RiskCategories.js",
+  "rotulo": "EX · Categorias de risco",
+  "item": "Faxina Pesada",
+  "chave": "keyPoints[]",
+  "linha": 526,
+  "original": "Não mude produtos de limpeza de embalagem para garrafas PET."
+ },
+ "NV-0170": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Lar Neurodiverso",
+  "chave": "subtitle",
+  "linha": 3,
+  "original": "Segurança inclusiva e adaptação do lar"
+ },
+ "NV-0171": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Fuga e Perambulação",
+  "chave": "short_desc",
+  "linha": 12,
+  "original": "Estratégias vitais contra saídas não assistidas."
+ },
+ "NV-0172": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Fuga e Perambulação",
+  "chave": "content",
+  "linha": 13,
+  "original": "# Risco de Fuga (Elopement)\nO comportamento de \"perambulação\" ou fuga é um dos riscos mais críticos, especialmente no espectro autista. Muitas vezes, não possuem percepção de perigo em relação a trânsito ou corpos d'água.\n\n### 1. Barreiras e Trancas\nTrancas comuns não são suficientes, pois a memória visual e a capacidade de aprendizado por repetição costumam ser altíssimas.\n* **Trancas de dupla ação:** Utilize fechaduras que exigem dois movimentos simultâneos.\n* **Trancas altas e invertidas:** Instale trancas do lado de fora de portas de risco ou em alturas superiores a 1,60m. \n* **Olho mágico digital:** Impede que a porta seja aberta às cegas.\n\n### 2. Alarmes de Perímetro\nO tempo de reação é crucial. Cada porta que dá acesso à rua deve ter um sistema de alerta.\n* **Chimes:** Instale alarmes magnéticos nas portas. O som deve acordar os responsáveis à noite, mas não tão estridente a ponto de causar uma crise sensorial.\n\n### 3. Rastreamento e Pulseiras\n* **Wearables:** Pulseiras com GPS, AirTags fixadas no cadarço do tênis ou costuradas na roupa (para evitar remoção).\n* Roupas com etiquetas contendo nome e telefone. No caso de não-verbais, uma pulseira de identificação emborrachada inquebrável é essencial."
+ },
+ "NV-0173": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Atração Fatal por Água",
+  "chave": "short_desc",
+  "linha": 38,
+  "original": "Prevenção de afogamentos e fascínio aquático."
+ },
+ "NV-0174": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Atração Fatal por Água",
+  "chave": "content",
+  "linha": 39,
+  "original": "# Fascínio e Atração por Água\nO afogamento é a causa principal de acidentes fatais após fugas em pessoas com TEA. O fascínio visual ou sensorial pela água frequentemente as atrai para piscinas ou banheiras.\n\n### 1. Piscinas e Barreiras\nUma cerca ao redor da piscina é o mínimo, mas não é suficiente.\n* **Cercas Não-Escaláveis:** A cerca deve ter no mínimo 1,5m, sem vãos horizontais. O portão deve ter fechamento automático e tranca magnética no topo.\n* **Alarmes de Superfície:** Use alarmes flutuantes que disparam uma sirene interna caso a tensão da água seja rompida. Não confie apenas em lonas.\n\n### 2. Riscos Internos (Banheiros)\n* Mantenha portas dos banheiros sempre trancadas por fora quando não estiverem em uso.\n* Instale travas de segurança na tampa do vaso sanitário.\n* Esvazie imediatamente baldes e bacias. Apenas 5 cm de água causam acidentes fatais."
+ },
+ "NV-0175": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Emergências e Sensorialidade",
+  "chave": "short_desc",
+  "linha": 60,
+  "original": "Lidando com alarmes e planos de evacuação."
+ },
+ "NV-0176": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Emergências e Sensorialidade",
+  "chave": "content",
+  "linha": 61,
+  "original": "# Sobrecarga Sensorial (Meltdown)\nEm emergências (como incêndio), alarmes convencionais podem ser o maior inimigo. Sirenes agudas podem causar paralisia ou pânico.\n\n### 1. Alarmes Adaptados\n* Se o som agudo é um gatilho severo, considere detectores de fumaça com alertas visuais (luzes estroboscópicas suaves) ou \"falantes\".\n* Existem alarmes onde os pais podem gravar instruções (\"Fogo! Venha para o quarto!\"). Uma voz familiar no caos reduz a chance de paralisia.\n\n### 2. Refúgio Sensorial (Sensory Safe Space)\nToda casa deve ter um \"canto do refúgio\" seguro projetado para momentos de desregulação severa.\n* O refúgio não deve ter móveis com quinas, vidros ou objetos cortantes.\n* Pode incluir fones abafadores de ruído e luz controlada."
+ },
+ "NV-0177": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Pica e Ingestão de Perigos",
+  "chave": "short_desc",
+  "linha": 81,
+  "original": "Prevenção contra ingestão de produtos químicos."
+ },
+ "NV-0178": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Pica e Ingestão de Perigos",
+  "chave": "content",
+  "linha": 82,
+  "original": "# Pica e Riscos Químicos\nO transtorno de Pica é a compulsão por ingerir itens não nutritivos. A busca sensorial por cores vivas atrai neurodivergentes para produtos de limpeza.\n\n### 1. Armazenamento Cego\nEsconder não basta; o acesso visual deve ser bloqueado.\n* Evite armários de vidro para produtos químicos.\n* O armazenamento \"cego\" significa usar armários opacos no alto, fechados com travas magnéticas embutidas invisíveis.\n\n### 2. O Perigo das Cores e Cápsulas\nCápsulas de sabão (pods) e produtos fluorescentes ativam os centros de recompensa visual.\n* Nunca guarde cápsulas em potes transparentes (parecem doces).\n* Jamais transfira produtos de limpeza para garrafas de refrigerante ou suco."
+ },
+ "NV-0179": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Janelas e Alturas",
+  "chave": "short_desc",
+  "linha": 103,
+  "original": "Segurança avançada contra quedas."
+ },
+ "NV-0180": {
+  "arquivo": "data/neurodivergence_data.js",
+  "rotulo": "EX · Neurodivergencia",
+  "item": "Janelas e Alturas",
+  "chave": "content",
+  "linha": 104,
+  "original": "# Percepção de Altura\nMuitas pessoas no espectro não possuem o medo inato de altura ou não julgam corretamente a profundidade. O hiperfoco num objeto pode fazê-los ignorar o limite de uma janela.\n\n### 1. Redes e Limitadores de Janela\n* Janelas não devem abrir mais do que 10 centímetros. Instale limitadores de abertura com chave.\n* Afaste móveis como camas e sofás de baixo das janelas (funcionam como \"escadas\").\n* Se necessário, consulte redes de polietileno com fios internos de metal (contra cortes e mordidas).\n\n### 2. Vidros e Películas\nA busca por estímulos pode incluir bater nos vidros. A aplicação de uma película transparente (anti-estilhaço) evita que o vidro comum quebre em lâminas perigosas em caso de impacto."
+ },
+ "NV-0181": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 34,
+  "original": "Posicionar de costas para o movimento do veículo"
+ },
+ "NV-0182": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 35,
+  "original": "Instalar no banco traseiro"
+ },
+ "NV-0183": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 36,
+  "original": "Passar o cinto de segurança pelos pontos indicados"
+ },
+ "NV-0184": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 37,
+  "original": "Apertar firmemente - não deve se mover mais que 2,5 cm"
+ },
+ "NV-0185": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 38,
+  "original": "Ajustar o ângulo de reclinação (geralmente 45°)"
+ },
+ "NV-0186": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoInstalar[]",
+  "linha": 39,
+  "original": "Verificar se o cinto não está torcido"
+ },
+ "NV-0187": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 43,
+  "original": "Ajustar as tiras nos ombros do bebê"
+ },
+ "NV-0188": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 44,
+  "original": "Deixar espaço de apenas 1 dedo entre tira e ombro"
+ },
+ "NV-0189": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 45,
+  "original": "Fivela deve ficar na altura do peito"
+ },
+ "NV-0190": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 46,
+  "original": "Remover roupas muito volumosas (interferem no ajuste)"
+ },
+ "NV-0191": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 47,
+  "original": "Nunca colocar nada entre bebê e o dispositivo"
+ },
+ "NV-0192": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bebê Conforto",
+  "chave": "comoUsar[]",
+  "linha": 48,
+  "original": "Cabeça não deve ultrapassar o encosto"
+ },
+ "NV-0193": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoInstalar[]",
+  "linha": 92,
+  "original": "Posicionar de frente para o movimento"
+ },
+ "NV-0194": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoInstalar[]",
+  "linha": 93,
+  "original": "Instalar no banco traseiro (meio é mais seguro)"
+ },
+ "NV-0195": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoInstalar[]",
+  "linha": 94,
+  "original": "Passar o cinto de segurança pelos pontos corretos"
+ },
+ "NV-0196": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoInstalar[]",
+  "linha": 95,
+  "original": "Apertar firmemente - não deve mover mais que 2,5 cm"
+ },
+ "NV-0197": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoInstalar[]",
+  "linha": 96,
+  "original": "Se tiver sistema Isofix, usar preferencialmente"
+ },
+ "NV-0198": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 101,
+  "original": "Ajustar altura das tiras conforme crescimento"
+ },
+ "NV-0199": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 102,
+  "original": "Tiras devem passar na altura dos ombros"
+ },
+ "NV-0200": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 103,
+  "original": "Fivela na altura do peito"
+ },
+ "NV-0201": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 104,
+  "original": "Apertar bem as tiras (1 dedo de folga)"
+ },
+ "NV-0202": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 105,
+  "original": "Remover casacos grossos antes de colocar"
+ },
+ "NV-0203": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Cadeirinha",
+  "chave": "comoUsar[]",
+  "linha": 106,
+  "original": "Verificar ajuste a cada uso"
+ },
+ "NV-0204": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 150,
+  "original": "Posicionar no banco traseiro"
+ },
+ "NV-0205": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 151,
+  "original": "Colocar a criança no assento"
+ },
+ "NV-0206": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 152,
+  "original": "Passar o cinto de segurança do veículo"
+ },
+ "NV-0207": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 153,
+  "original": "Cinto diagonal deve passar pelo MEIO do ombro"
+ },
+ "NV-0208": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 154,
+  "original": "Cinto abdominal deve ficar SOBRE o quadril (não na barriga)"
+ },
+ "NV-0209": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoInstalar[]",
+  "linha": 155,
+  "original": "Verificar se não está torcido"
+ },
+ "NV-0210": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 159,
+  "original": "Criança deve sentar completamente encostada"
+ },
+ "NV-0211": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 160,
+  "original": "Pés devem alcançar o chão"
+ },
+ "NV-0212": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 161,
+  "original": "Cinto não pode passar pelo pescoço"
+ },
+ "NV-0213": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 162,
+  "original": "Cinto não pode ficar sobre a barriga"
+ },
+ "NV-0214": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 163,
+  "original": "Nunca passar cinto por baixo do braço"
+ },
+ "NV-0215": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Assento de Elevação (Booster)",
+  "chave": "comoUsar[]",
+  "linha": 164,
+  "original": "Verificar posicionamento a cada viagem"
+ },
+ "NV-0216": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 251,
+  "original": "Respeitar semáforos e sinalização"
+ },
+ "NV-0217": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 252,
+  "original": "Sinalizar conversões com o braço"
+ },
+ "NV-0218": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 253,
+  "original": "Andar no mesmo sentido dos carros"
+ },
+ "NV-0219": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 255,
+  "original": "Não usar celular enquanto pedala"
+ },
+ "NV-0220": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 256,
+  "original": "Verificar freios antes de sair"
+ },
+ "NV-0221": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 257,
+  "original": "Usar roupas claras/reflexivas à noite"
+ },
+ "NV-0222": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 258,
+  "original": "Reduzir velocidade em cruzamentos"
+ },
+ "NV-0223": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 291,
+  "original": "SEMPRE usar todos os equipamentos de proteção"
+ },
+ "NV-0224": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 292,
+  "original": "Praticar em locais apropriados"
+ },
+ "NV-0225": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 293,
+  "original": "Não andar em vias públicas com trânsito"
+ },
+ "NV-0226": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 294,
+  "original": "Respeitar limites de habilidade"
+ },
+ "NV-0227": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 295,
+  "original": "Não praticar próximo a carros ou pedestres"
+ },
+ "NV-0228": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 296,
+  "original": "Evitar manobras arriscadas sem treinamento"
+ },
+ "NV-0229": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 297,
+  "original": "Verificar equipamento antes de usar"
+ },
+ "NV-0230": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 320,
+  "original": "Usar equipamentos de proteção"
+ },
+ "NV-0231": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 322,
+  "original": "Não usar em vias movimentadas"
+ },
+ "NV-0232": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 324,
+  "original": "Não andar à noite sem iluminação"
+ },
+ "NV-0233": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 345,
+  "original": "Usar TODOS os equipamentos de proteção"
+ },
+ "NV-0234": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 346,
+  "original": "Aprender a frear corretamente"
+ },
+ "NV-0235": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 347,
+  "original": "Praticar em áreas seguras"
+ },
+ "NV-0236": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regrasSeguranca[]",
+  "linha": 348,
+  "original": "Não andar próximo a trânsito"
+ },
+ "NV-0237": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 393,
+  "original": "Vias com alto fluxo de veículos"
+ },
+ "NV-0238": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 395,
+  "original": "Pouca sinalização (falta de faixa, semáforo)"
+ },
+ "NV-0239": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 396,
+  "original": "Calçadas inadequadas ou ausentes"
+ },
+ "NV-0240": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 397,
+  "original": "Ruas escuras sem iluminação"
+ },
+ "NV-0241": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 398,
+  "original": "Regiões com alto consumo de álcool"
+ },
+ "NV-0242": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 399,
+  "original": "Horários de pico de trânsito"
+ },
+ "NV-0243": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "fatoresRisco[]",
+  "linha": 400,
+  "original": "Condições climáticas adversas (chuva, neblina)"
+ },
+ "NV-0244": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regras_passageiro[]",
+  "linha": 453,
+  "original": "Idade mínima legal: 10 anos completos (Art. 244 do CTB)"
+ },
+ "NV-0245": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regras_passageiro[]",
+  "linha": 456,
+  "original": "Segurar nas alças laterais ou na cintura do piloto"
+ },
+ "NV-0246": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regras_passageiro[]",
+  "linha": 457,
+  "original": "Manter pés sempre apoiados nas pedaleiras"
+ },
+ "NV-0247": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regras_passageiro[]",
+  "linha": 458,
+  "original": "Inclinar junto com o piloto nas curvas"
+ },
+ "NV-0248": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "regras_passageiro[]",
+  "linha": 459,
+  "original": "Não fazer movimentos bruscos e aguardar a moto parar para descer"
+ },
+ "NV-0249": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bicicleta Elétrica",
+  "chave": "caracteristicas[]",
+  "linha": 498,
+  "original": "Exige força (pedalar) para que o motor funcione"
+ },
+ "NV-0250": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bicicleta Elétrica",
+  "chave": "caracteristicas[]",
+  "linha": 499,
+  "original": "Não possui acelerador no punho"
+ },
+ "NV-0251": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Bicicleta Elétrica",
+  "chave": "ondeAndar",
+  "linha": 502,
+  "original": "Permitido em ciclofaixas e ciclovias."
+ },
+ "NV-0252": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Autopropelidos",
+  "chave": "caracteristicas[]",
+  "linha": 509,
+  "original": "Patinetes elétricos, monociclos e hoverboards"
+ },
+ "NV-0253": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "Ciclomotor",
+  "chave": "caracteristicas[]",
+  "linha": 522,
+  "original": "Exige habilitação (ACC ou Categoria A)"
+ },
+ "NV-0254": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "riscos[]",
+  "linha": 538,
+  "original": "Riscos de traumatismos e fraturas devido à desproporção de impacto."
+ },
+ "NV-0255": {
+  "arquivo": "data/mobilidade_data.js",
+  "rotulo": "EX · Mobilidade reduzida",
+  "item": "(sem titulo)",
+  "chave": "riscos[]",
+  "linha": 539,
+  "original": "Possibilidade de incêndios causados por baterias."
+ },
+ "NV-0256": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "introducao",
+  "linha": 25,
+  "original": "Este checklist ajudará pais e responsáveis na verificação do nível de segurança da Instituição de Ensino e se ela está preparada para prevenir acidentes.\n\nSolicite um tour pelas instalações e não hesite em fazer perguntas sobre a visão da escola sobre a prevenção de acidentes com seus alunos."
+ },
+ "NV-0257": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "orientacoes_finais",
+  "linha": 931,
+  "original": "COMO USAR ESTE CHECKLIST:\n\n1. **Agende uma visita**: Peça para conhecer todas as instalações\n2. **Faça perguntas**: Não hesite em questionar sobre segurança\n3. **Observe atentamente**: Veja como funcionários e crianças interagem\n4. **Priorize itens críticos**: São os mais importantes para segurança\n5. **Compare escolas**: Use o mesmo checklist para comparar opções\n\nIMPORTANTE:\n- Nenhuma escola será perfeita em todos os itens\n- Priorize os itens marcados como \"críticos\"\n- Questione como a escola pretende melhorar pontos fracos\n- Reavalie periodicamente a segurança da escola"
+ },
+ "NV-0258": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 949,
+  "original": "Com que frequência é feita inspeção dos brinquedos do parquinho?"
+ },
+ "NV-0259": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 950,
+  "original": "Qual o protocolo em caso de acidente?"
+ },
+ "NV-0260": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 951,
+  "original": "Como é feita a comunicação com os pais em emergências?"
+ },
+ "NV-0261": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 952,
+  "original": "Há seguro de acidentes para as crianças?"
+ },
+ "NV-0262": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 953,
+  "original": "Quantos funcionários têm treinamento em primeiros socorros?"
+ },
+ "NV-0263": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 954,
+  "original": "Com que frequência são realizados simulados de evacuação?"
+ },
+ "NV-0264": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 955,
+  "original": "Como a escola lida com crianças com necessidades especiais?"
+ },
+ "NV-0265": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 956,
+  "original": "Qual a política de administração de medicamentos?"
+ },
+ "NV-0266": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 957,
+  "original": "Como é feito o controle de visitantes?"
+ },
+ "NV-0267": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "Escola Segura",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 958,
+  "original": "A escola já teve algum acidente grave? Como foi tratado?"
+ },
+ "NV-0268": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "(sem titulo)",
+  "chave": "mensagem",
+  "linha": 1010,
+  "original": "A escola atende à maioria dos critérios críticos de segurança!"
+ },
+ "NV-0269": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "(sem titulo)",
+  "chave": "mensagem",
+  "linha": 1021,
+  "original": "A escola atende a maioria dos critérios, mas há pontos a melhorar."
+ },
+ "NV-0270": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "(sem titulo)",
+  "chave": "mensagem",
+  "linha": 1032,
+  "original": "Atenção! Vários critérios críticos não são atendidos."
+ },
+ "NV-0271": {
+  "arquivo": "data/escola_segura_data.js",
+  "rotulo": "EX · Escola segura",
+  "item": "(sem titulo)",
+  "chave": "mensagem",
+  "linha": 1043,
+  "original": "ALERTA! A escola não atende critérios básicos de segurança."
+ },
+ "NV-0272": {
+  "arquivo": "data/asilo_seguro_data.js",
+  "rotulo": "EX · Instituicao de longa permanencia",
+  "item": "Asilo Seguro",
+  "chave": "introducao",
+  "linha": 20,
+  "original": "Este checklist foi desenvolvido para auxiliar famílias na avaliação da segurança e infraestrutura de casas de repouso e asilos.\n\nA segurança em instituições sênior vai além da acessibilidade física; envolve protocolos de medicação, detecção de quedas e ética no cuidado."
+ },
+ "NV-0273": {
+  "arquivo": "data/asilo_seguro_data.js",
+  "rotulo": "EX · Instituicao de longa permanencia",
+  "item": "Asilo Seguro",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 268,
+  "original": "Qual a formação técnica da equipe de cuidadores e enfermagem?"
+ },
+ "NV-0274": {
+  "arquivo": "data/asilo_seguro_data.js",
+  "rotulo": "EX · Instituicao de longa permanencia",
+  "item": "Asilo Seguro",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 269,
+  "original": "Como é feito o controle de saída de idosos com Alzheimer ou demência?"
+ },
+ "NV-0275": {
+  "arquivo": "data/asilo_seguro_data.js",
+  "rotulo": "EX · Instituicao de longa permanencia",
+  "item": "Asilo Seguro",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 270,
+  "original": "Qual o protocolo em caso de queda com suspeita de fratura?"
+ },
+ "NV-0276": {
+  "arquivo": "data/asilo_seguro_data.js",
+  "rotulo": "EX · Instituicao de longa permanencia",
+  "item": "Asilo Seguro",
+  "chave": "perguntas_sugeridas[]",
+  "linha": 271,
+  "original": "Com que frequência os familiares recebem relatórios de saúde?"
+ }
+}

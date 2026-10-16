@@ -1,0 +1,956 @@
+{
+  "documento": "ED-Educacao.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-16T21:44:36.809Z",
+  "coerencia": {
+    "lidos": 826,
+    "intactos": 744,
+    "taxa": 0.9007
+  },
+  "editados": [
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "A Ameaça Silenciosa dos Móveis",
+      "chave": "texto",
+      "linha": 44,
+      "original": "Estantes, racks e aparelhos de TV que não estão firmemente fixados na parede (anti-tombamento) representam risco crítico, especialmente para crianças pequenas que usam gavetas como \"escadas\". Ancore móveis pesados com fitas de segurança ou buchas adequadas.",
+      "codigo": "ED-0003",
+      "novo": "Estantes, racks e aparelhos de TV que não estão firmemente fixados na parede (anti-tombamento) representam risco crítico, especialmente para crianças pequenas que usam gavetas como \"escadas\". Ancore móveis pesados com cintas/kits de ancoragem de segurança."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Sala de Estar",
+      "chave": "texto",
+      "linha": 46,
+      "original": "Proteja as quinas! Mesas de centro e racks com bordas vivas devem receber protetores de silicone para evitar lesões graves na cabeça de bebês e crianças em fase de aprender a andar.",
+      "codigo": "ED-0005",
+      "novo": "Proteja as quinas! Mesas de centro e racks e balcões com bordas vivas devem receber protetores de silicone para evitar lesões graves na cabeça de bebês e crianças em fase de aprender a andar, bem como causar lesões em idosos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Regras de Ouro no Fogão",
+      "chave": "texto",
+      "linha": 61,
+      "original": "Priorize sempre as bocas de trás do fogão. Cabos de panelas devem ficar virados para o centro ou para trás, nunca voltados para a borda. Uma panela de água fervente virada sobre uma criança causa queimaduras de 2º e 3º grau irreversíveis.",
+      "codigo": "ED-0007",
+      "novo": "Priorize sempre as bocas de trás do fogão. Cabos de panelas devem ficar virados para o centro ou para trás, nunca voltados para a borda. Uma chaleira de água fervente virada sobre uma criança causa queimaduras de 2º e 3º grau com lesões irreversíveis."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Armazenamento de Químicos",
+      "chave": "titulo",
+      "linha": 62,
+      "original": "Armazenamento de Químicos",
+      "codigo": "ED-0008",
+      "novo": "Armazenamento de Produtos Químicos"
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Cortes e Eletrodomésticos",
+      "chave": "texto",
+      "linha": 63,
+      "original": "Facas afiadas não devem secar soltas no escorredor; guarde-as em blocos de madeira ou gavetas específicas. Liquidificadores e processadores devem ficar desligados da tomada enquanto não estiverem em uso direto.",
+      "codigo": "ED-0011",
+      "novo": "Facas afiadas não devem secar soltas no escorredor; guarde-as em blocos de madeira ou gavetas específicas, com trava ou em lugar alto longe do alcance de crianças. Liquidificadores, processadores e batedeiras devem ficar desligados da tomada enquanto não estiverem em uso direto."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Cozinha",
+      "chave": "texto",
+      "linha": 64,
+      "original": "Evite toalhas de mesa compridas se houver crianças. Puxar a ponta da toalha é instinto comum que pode trazer pratos quentes e travessas diretamente sobre elas.",
+      "codigo": "ED-0012",
+      "novo": "Evite toalhas de mesa compridas se houver crianças ou pets. Puxar a ponta da toalha é instinto comum que pode trazer pratos quentes e travessas diretamente sobre elas."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Despensa",
+      "chave": "texto",
+      "linha": 78,
+      "original": "A despensa esconde dois riscos que passam despercebidos: pragas atraídas pela comida e prateleiras mal dimensionadas que desabam com o peso.",
+      "codigo": "ED-0013",
+      "novo": "A despensa esconde dois riscos que passam despercebidos: pragas atraídas pela comida e prateleiras mal dimensionadas que desabam com o peso. Devem ser espaço proibido para crianças."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Eletrônicos Carregando à Noite",
+      "chave": "texto",
+      "linha": 98,
+      "original": "Celulares e tablets carregando sob travesseiros ou sobre a cama são a principal causa moderna de incêndios noturnos em quartos. A bateria de lítio em curto atinge 600 °C em segundos. Carregue sempre em superfícies rígidas (mesa, criado-mudo) longe de tecidos.",
+      "codigo": "ED-0021",
+      "novo": "Celulares e tablets carregando sob travesseiros ou sobre a cama são a principal causa de incêndios noturnos em quartos, atualmente. A bateria de lítio quando em curto pode atingir 600 °C em segundos. Carregue sempre em superfícies rígidas (mesa, criado-mudo) longe de tecidos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Caminho Noturno Desimpedido",
+      "chave": "texto",
+      "linha": 99,
+      "original": "Adultos cansados, acordando de madrugada para ir ao banheiro, são vítimas frequentes de quedas. Mantenha o caminho da cama até a porta livre de cabos, calçados e quinas pontiagudas. Uma luz noturna LED próxima ao chão evita acidentes sem comprometer o sono.",
+      "codigo": "ED-0023",
+      "novo": "Adultos sonolentos, acordando de madrugada para ir ao banheiro, são vítimas frequentes de quedas. Mantenha o caminho da cama até a porta livre de cabos, calçados e quinas pontiagudas. Uma luz noturna LED próxima ao chão evita acidentes sem comprometer o sono."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Quarto de Adulto",
+      "chave": "texto",
+      "linha": 101,
+      "original": "Mantenha uma lanterna e o celular carregado ao alcance da cama. Em emergências noturnas (terremoto, incêndio, intrusão), os primeiros 10 segundos no escuro fazem toda a diferença.",
+      "codigo": "ED-0026",
+      "novo": "Mantenha uma lanterna e o celular carregado ao alcance da cama. Em emergências noturnas (desastre natural, incêndio, intrusão), os primeiros 10 segundos no escuro fazem toda a diferença."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Quarto do Idoso",
+      "chave": "texto",
+      "linha": 148,
+      "original": "O quarto do idoso precisa de boa luz à noite, caminho livre até o banheiro e nada no chão para tropeçar. Queda é a maior causa de hospitalização nessa fase da vida.",
+      "codigo": "ED-0036",
+      "novo": "O quarto do idoso precisa de boa iluminação, caminho livre até o banheiro e nada no chão para tropeçar. Queda é a maior causa de hospitalização nessa fase da vida."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "A Regra Anti-Afogamento",
+      "chave": "texto",
+      "linha": 167,
+      "original": "Crianças pequenas podem se afogar em apenas 3 dedos de água. Nunca deixe bacias, baldes ou banheiras cheias de água desacompanhadas. Após o banho infantil, esvazie imediatamente os recipientes. A tampa do vaso sanitário deve permanecer abaixada e, idealmente, travada.",
+      "codigo": "ED-0045",
+      "novo": "Crianças pequenas podem se afogar em apenas 3 dedos de água. Nunca deixe bacias, baldes ou banheiras cheias de água quando fora de uso. Após o banho infantil, esvazie imediatamente os recipientes. A tampa do vaso sanitário deve permanecer abaixada e, idealmente, travada."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Armários",
+      "chave": "texto",
+      "linha": 183,
+      "original": "Os armários guardam de tudo: medicamentos, pilhas, produtos químicos, ferramentas, sacolas plásticas. Organizá-los bem é uma das partes mais subestimadas da prevenção doméstica.",
+      "codigo": "ED-0049",
+      "novo": "Os armários guardam de tudo: medicamentos, pilhas, produtos químicos, ferramentas, sacolas plásticas. Organizá-los bem é uma das partes mais subestimadas da prevenção de acidentes domésticos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Lei da Gravidade Cotidiana",
+      "chave": "texto",
+      "linha": 184,
+      "original": "Coloque objetos pesados sempre nas prateleiras inferiores. Itens leves no alto. Um liquidificador caindo da prateleira mais alta pode causar fratura craniana. Caixas pesadas em armários sem porta devem ter cinta de retenção.",
+      "codigo": "ED-0051",
+      "novo": "Coloque objetos pesados sempre nas prateleiras inferiores. Itens leves no alto. Um liquidificador caindo da prateleira mais alta pode causar ferimentos graves."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Trancas para o que Mata",
+      "chave": "texto",
+      "linha": 185,
+      "original": "Medicamentos, pilhas-moeda (botão), produtos químicos, lâminas de barbear, fósforos e isqueiros devem ficar em armários trancados, não só \"no alto\". Crianças de 4-5 anos já escalam cadeiras. Use travas magnéticas (são invisíveis e exigem ímã para abrir).",
+      "codigo": "ED-0052",
+      "novo": "Medicamentos, pilhas-moeda (botão), produtos químicos, lâminas de barbear, estiletes, fósforos e isqueiros devem ficar em armários trancados, não só \"no alto\". Crianças de 4-5 anos já escalam cadeiras com desenvoltura. Use travas magnéticas (são invisíveis e exigem ímã para abrir)."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Embalagens Originais e Sacolas Plásticas",
+      "chave": "texto",
+      "linha": 186,
+      "original": "NUNCA transfira produtos químicos para garrafas pet, potes de sorvete ou potes de vidro reaproveitados: a confusão com sucos ou temperos causa intoxicação fatal. Sacolas plásticas devem ser mantidas longe do alcance das mão de crianças, bebês e pets, sob risco de asfixia.",
+      "codigo": "ED-0054",
+      "novo": "NUNCA transfira produtos químicos para garrafas pet, potes de sorvete ou potes de vidro reaproveitados: a confusão com sucos ou temperos causa intoxicação fatal. Sacolas plásticas devem ser mantidas longe do alcance e da visão de crianças, bebês e pets, sob risco de asfixia."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Baldes e Tanques com água",
+      "chave": "texto",
+      "linha": 204,
+      "original": "Baldes com roupas de molho atraem crianças pequenas, inclusive as que ainda engatinham, e uma queda ali dentro pode ser fatal: afogamento acontece em poucos centímetros de água. Mantenha tanques e baldes secos e virados para baixo, ou bloqueie a entrada da lavanderia com portão.",
+      "codigo": "ED-0060",
+      "novo": "Baldes com roupas de molho atraem crianças pequenas, inclusive as que ainda engatinham, e uma queda ali dentro pode ser fatal: afogamento acontece em poucos centímetros de água. Mantenha tanques e baldes secos e virados para baixo, de preferência longe do alcance dos pequenos, eles podem querer brincar com água. Bloqueie o acesso à lavanderia."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Escorpiões e Aranhas",
+      "chave": "texto",
+      "linha": 206,
+      "original": "Estrados vazios e cantos atrás da máquina são abrigos ocultos para escorpiões e aranhas marrons no verão. Mantenha o local impecável, sem entulho ou pilhas de tecidos. Sacuda os calçados antes de calçar: escorpiões adoram esses esconderijos.",
+      "codigo": "ED-0062",
+      "novo": "Estrados vazios e cantos atrás da máquina são abrigos ocultos para escorpiões e aranhas marrons no verão. Mantenha o local sempre limpo e organizado, sem entulho ou roupa acumulada. Sacuda roupas e os calçados antes de calçar: escorpiões adoram esses esconderijos, principalmente em áreas com vegetação."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Monóxido de Carbono: o Assassino Invisível",
+      "chave": "texto",
+      "linha": 221,
+      "original": "JAMAIS deixe o motor ligado com o portão fechado, mesmo por \"apenas um minuto\". O CO é incolor e inodoro, acumula em segundos e mata em minutos. Mesmo motor parado, freios e escapamento quentes em garagem fechada liberam compostos voláteis perigosos.",
+      "codigo": "ED-0066",
+      "novo": "JAMAIS deixe o motor ligado em garagens fechadas (se for pequena e sem ventilação é muito mais letal), mesmo por \"apenas um minuto\". O monóxido de carbono não tem cor nem cheiro, acumula em segundos e mata em minutos. Mesmo motor parado, freios e escapamento quentes em garagem fechada podem liberam compostos voláteis perigosos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Produtos Inflamáveis",
+      "chave": "texto",
+      "linha": 222,
+      "original": "Gasolina, óleo, tinta, solvente e removedor devem ficar guardados em armários metálicos trancados, longe de qualquer fonte de calor. Nunca armazene em sua residência quantidades acima de 2 litros.",
+      "codigo": "ED-0067",
+      "novo": "Gasolina, óleo, tinta, solvente e removedor devem ficar guardados de preferência em armários metálicos trancados, longe de qualquer fonte de calor. Nunca armazene em sua residência quantidades acima de 2 litros."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Portão Automático",
+      "chave": "texto",
+      "linha": 223,
+      "original": "Portões modernos têm sensores anti-esmagamento por lei (NBR 16654), mas equipamentos antigos não. Teste mensalmente: posicione uma caixa alta no caminho e veja se o portão recua na hora. Crianças e pets jamais devem brincar perto do portão em operação.",
+      "codigo": "ED-0068",
+      "novo": "Portões modernos têm sensores antiesmagamento por lei (NBR 16654), mas equipamentos antigos não. Teste periodicamente: posicione uma caixa alta no caminho e veja se o portão recua na hora. Crianças e pets jamais devem brincar perto do portão em operação."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Oficina / Ferramentas",
+      "chave": "texto",
+      "linha": 238,
+      "original": "A oficina junta lâminas, motores rotativos, eletricidade e produtos inflamáveis no mesmo espaço, e isso pede protocolos rigorosos.",
+      "codigo": "ED-0070",
+      "novo": "A oficina junta lâminas, objetos perfurantes, motores rotativos, eletricidade e produtos inflamáveis no mesmo espaço, e isso exige atenção redobrada."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Guias de Ferramentas e EPI",
+      "chave": "texto",
+      "linha": 239,
+      "original": "Os protocolos completos de manuseio e armazenamento seguro de ferramentas de corte, elétricas, inflamáveis e o uso de EPIs foram centralizados. Consulte a seção de Ferramentas e EPIs para conhecer as regras vitais para este ambiente.",
+      "codigo": "ED-0072",
+      "novo": "Os protocolos completos de manuseio e armazenamento seguros de ferramentas de corte, elétricas, inflamáveis e o uso de EPIs foram centralizados. Consulte a seção de Ferramentas e EPIs para conhecer as regras vitais para este ambiente."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Gravidade nas Caixas",
+      "chave": "texto",
+      "linha": 255,
+      "original": "Caixas pesadas SEMPRE no chão; partes altas só para itens leves. Empilhamento máximo de 3 caixas, com a base ancorada na parede.",
+      "codigo": "ED-0075",
+      "novo": "Caixas pesadas SEMPRE no chão; partes altas só para itens leves. Empilhamento máximo de 3 caixas, mesmo que sejam leves. Tenha esta conduta como hábito."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Visitantes Indesejados",
+      "chave": "texto",
+      "linha": 256,
+      "original": "Mantenha rodapés vedados, troque caixas de papelão por caixas plásticas com tampa hermética e inspecione mensalmente.",
+      "codigo": "ED-0076",
+      "novo": "Mantenha rodapés de portas vedados, troque caixas de papelão por caixas plásticas com tampa hermética e inspecione periódicamente."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Não Vire Lixeira",
+      "chave": "texto",
+      "linha": 258,
+      "original": "Depósito não é \"para guardar tudo o que talvez um dia precise\". A cada 6 meses, descarte o que não foi usado em 2 anos. Pilhas velhas, eletrônicos quebrados e materiais inflamáveis esquecidos viram bombas-relógio.",
+      "codigo": "ED-0078",
+      "novo": "Depósito não é \"para guardar tudo o que talvez um dia precise\". A cada 6 meses, descarte, venda ou doe o que não foi usado em 2 anos. Pilhas velhas, eletrônicos quebrados e materiais inflamáveis esquecidos viram bombas-relógio."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Depósito",
+      "chave": "texto",
+      "linha": 259,
+      "original": "Use luvas de raspa e calçado fechado SEMPRE que entrar no depósito após mais de 30 dias sem visita. Sacuda caixas antes de abrir.",
+      "codigo": "ED-0079",
+      "novo": "Use luvas de vaqueta ou raspa e calçado fechado SEMPRE que entrar no depósito após mais de 30 dias sem visita. Sacuda caixas antes de abrir. Usar lanterna para inspecionar o conteúdo de caixas é um boa prática."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Gás (GLP)",
+      "chave": "texto",
+      "linha": 273,
+      "original": "O poder adormecido do gás GLP não perdoa falha de ventilação ou confinamento. Cada protocolo aqui foi escrito após acidentes reais.",
+      "codigo": "ED-0080",
+      "novo": "O poder adormecido do gás de cozinha não perdoa falha de ventilação ou confinamento. Cada protocolo aqui foi escrito após acidentes reais."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Posicionamento e Ventilação",
+      "chave": "texto",
+      "linha": 274,
+      "original": "Botijões P13 (o cilindro comum) e cilindros P45 (aqueles de restaurantes e prédios) NUNCA devem ficar em locais fechados, porões ou áreas abaixo do nível do solo: o GLP é mais pesado que o ar e desce em casos de vazamento. Mantenha os botijões a uma distância mínima de 1,5 m de portas e janelas: isso evita que o gás escape para outros ambientes da casa e encontre uma faísca ou fonte de calor.",
+      "codigo": "ED-0082",
+      "novo": "Botijões P13 (o cilindro comum) e cilindros P45 (aqueles de restaurantes e prédios) NUNCA devem ficar em locais fechados, porões ou áreas abaixo do nível do solo: o GLP é mais pesado que o ar e desce em casos de vazamento. Verifique se seu edifício ou conjunto residência com garagem subterrânea tem central de gás. Mantenha os botijões a uma distância mínima de 1,5 m de portas e janelas: isso evita que o gás escape para outros ambientes da casa e encontre uma faísca ou fonte de calor."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Mangueiras e Validade",
+      "chave": "texto",
+      "linha": 275,
+      "original": "Mangueiras amarelas (NBR 8613) têm validade IMPRESSA de 5 anos. Após esse prazo ressecam, racham e vazam. Inspecione a borracha mensalmente: dobre-a e, se aparecerem fissuras, troque imediatamente. Use abraçadeiras metálicas nas conexões (jamais arame ou plástico).",
+      "codigo": "ED-0083",
+      "novo": "Mangueiras amarelas (NBR 8613) têm validade IMPRESSA de 5 anos. Após esse prazo ressecam, racham e vazam. Inspecione mensalmente: dobre-a e, se aparecerem fissuras, troque imediatamente. Use abraçadeiras metálicas nas conexões (jamais arame ou plástico)."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Quintal / Jardim",
+      "chave": "texto",
+      "linha": 292,
+      "original": "O quintal é onde a criança tem mais liberdade para se mover, e exatamente por isso merece um mapeamento cuidadoso dos riscos.",
+      "codigo": "ED-0087",
+      "novo": "O quintal é onde a criança tem mais liberdade para brincar, e exatamente por isso merece um mapeamento cuidadoso dos riscos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Ferramentas e Químicos",
+      "chave": "texto",
+      "linha": 294,
+      "original": "Todas as ferramentas e venenos devem seguir os protocolos rigorosos descritos no Guia de EPIs e Ferramentas.",
+      "codigo": "ED-0090",
+      "novo": "Todas as ferramentas e produtos tóxicos devem seguir os protocolos rigorosos descritos no Guia de EPIs e Ferramentas."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Jardinagem / Plantas",
+      "chave": "texto",
+      "linha": 308,
+      "original": "Cuidar do jardim ou da horta traz riscos próprios, que vão da insolação à intoxicação letal por produtos químicos.",
+      "codigo": "ED-0091",
+      "novo": "Cuidar do jardim ou da horta traz riscos próprios, que vão da insolação à intoxicação letal potencialmente por produtos químicos."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Fertilizantes e Pesticidas",
+      "chave": "texto",
+      "linha": 309,
+      "original": "O uso e o armazenamento inadequado de químicos de jardinagem representam alto risco de intoxicação letal para crianças e pets. Mantenha trancados em armários altos ou caixas originais rotuladas. Dê preferência aos naturais.",
+      "codigo": "ED-0093",
+      "novo": "O uso e o armazenamento inadequado de produtos químicos de jardinagem representam alto risco de intoxicação letal para crianças e pets. Mantenha trancados em armários altos ou caixas originais rotuladas. Dê preferência aos naturais."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Jardinagem / Plantas",
+      "chave": "texto",
+      "linha": 312,
+      "original": "Identifique e evite cultivar plantas tóxicas em áreas de fácil acesso a crianças e animais. Ao podá-las, use luvas, pois muitas liberam látex corrosivo.",
+      "codigo": "ED-0098",
+      "novo": "Identifique e evite cultivar plantas tóxicas em áreas de fácil acesso a crianças e pets. Ao podá-las, use luvas, pois muitas liberam seiva corrosivo."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Piscina",
+      "chave": "texto",
+      "linha": 342,
+      "original": "Afogamento é silencioso e rápido, e é a principal causa de morte entre crianças de 1 a 4 anos no verão.",
+      "codigo": "ED-0103",
+      "novo": "Afogamento é silencioso e rápido, e é a principal causa de morte entre crianças de 1 a 4 anos, principalmente no verão."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Áreas Naturais",
+      "chave": "texto",
+      "linha": 358,
+      "original": "Praia, rio, cachoeira e represa não têm o controle de um ambiente fechado: correntezas, marés, fauna marinha e clima variável pedem atenção constante.",
+      "codigo": "ED-0107",
+      "novo": "Praia, rio, cachoeira, cavas e represa não têm o controle de um ambiente fechado: correntezas, marés, fauna marinha e clima variável pedem atenção constante."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Águas-vivas, Ouriços e Outros",
+      "chave": "texto",
+      "linha": 361,
+      "original": "Em contato com água-viva: lave com água do mar (água doce pode piorar), remova tentáculos com objeto rígido (nunca com a mão), aplique compressa morna. Espinhos de ouriço: jamais arranque (quebram); compressa quente ajuda a dissolver. Procure atendimento médico se houver dor intensa.",
+      "codigo": "ED-0112",
+      "novo": "Em contato com água-viva: lave com água do mar (água doce pode piorar), remova tentáculos com objeto rígido (nunca com a mão), aplique compressa morna. Espinhos de ouriço: jamais arranque (quebram); compressa quente ajuda a dissolver. Procure atendimento médico se houver dor intensa ou se constatar reação alérgica severa."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Sol, Hidratação e Insolação",
+      "chave": "texto",
+      "linha": 362,
+      "original": "Protetor solar FPS 50+ aplicado 30 min antes da exposição e reaplicado a cada 2 h. Água a cada 30 min, mesmo sem sede. Evite o sol das 10 às 16 h. Crianças menores de 6 meses NÃO devem ficar expostas ao sol direto: use barreira física (sombra, chapéu, roupa UV).",
+      "codigo": "ED-0114",
+      "novo": "Protetor solar FPS 50+ aplicado 30 min antes da exposição e reaplicado a cada 2 h. Água a cada 30 min, mesmo sem sede. Evite o sol das 10 às 16 h. Crianças menores de 6 meses NÃO devem ficar expostas diretamente ao sol: use barreira física (sombra, chapéu, roupa e guarda-sol UV)."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Escadas",
+      "chave": "texto",
+      "linha": 378,
+      "original": "A gravidade sempre vence na ausência de limites e aderência. Escadas merecem atenção militar em casas com crianças e idosos.",
+      "codigo": "ED-0116",
+      "novo": "A gravidade sempre vence na ausência de limites e aderência. Escadas merecem atenção redobrada, principalmente em casas com crianças, idosos e pessoas com necessidades especiais ou com limitações físicas e cognitivas."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Baby Gates Infalíveis",
+      "chave": "texto",
+      "linha": 379,
+      "original": "Nunca instale portões tipo \"sanfona\". Os trincos devem estar AFIXADOS COM PARAFUSOS nas paredes, jamais por pressão.",
+      "codigo": "ED-0117",
+      "novo": "Nunca instale portões tipo \"sanfona\". Os trincos devem estar AFIXADOS COM PARAFUSOS nas paredes, jamais por pressão. Sistema de fixação por pressão podem ceder a  um forte empurrão ou ferramenta utilizados como alavanca podes deslocá-lo facilmente, mesmo para produtos de qualidade."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Iluminação e Caminho Livre",
+      "chave": "texto",
+      "linha": 381,
+      "original": "Escadas precisam de interruptor no INÍCIO e no FIM do percurso (sistema \"three-way\"). Brinquedos, calçados e qualquer objeto solto nos degraus = tropeço garantido. Crie a regra de família: degrau nunca é prateleira.",
+      "codigo": "ED-0120",
+      "novo": "Escadas precisam de interruptor no INÍCIO e no FIM do percurso (sistema \"three-way\"). Brinquedos, calçados e qualquer objeto solto nos degraus = tropeço garantido. Crie a regra de família: degrau nunca é prateleira nem área de permanência de pets."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Varanda",
+      "chave": "texto",
+      "linha": 395,
+      "original": "A varanda concentra dois riscos sérios: queda de altura (crianças e idosos) e objetos caindo em cima de quem passa embaixo.",
+      "codigo": "ED-0122",
+      "novo": "A varanda concentra dois riscos sérios: queda de altura (crianças, idosos e pets) e objetos com o risco adicional de cair sobre quem passa embaixo."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Objetos que Caem Matam",
+      "chave": "texto",
+      "linha": 397,
+      "original": "Vasos de planta, brinquedos, ferramentas, garrafas: qualquer objeto caindo de uma sacada gera energia cinética suficiente para fraturar crânios no térreo. Mantenha objetos pesados sempre afastados do parapeito (mínimo 50 cm). Em dias de vento forte, recolha tudo que possa voar.",
+      "codigo": "ED-0125",
+      "novo": "Vasos de planta, brinquedos, ferramentas, garrafas: qualquer objeto caindo de uma sacada gera energia cinética suficiente para provocar graves acidentes sobre quem passa embaixo. Mantenha objetos pesados sempre afastados do parapeito (mínimo 50 cm). Em dias de vento forte, recolha tudo que possa voar."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Churrasqueira e Gás na Varanda",
+      "chave": "texto",
+      "linha": 398,
+      "original": "Se a varanda for área de churrasco, mantenha o botijão sempre do lado externo da sacada (nunca encostado em paredes vizinhas). Verifique que a saída de fumaça não invada o apartamento de cima: convenções de condomínio têm exigência clara sobre coifa.",
+      "codigo": "ED-0127",
+      "novo": "Se a varanda for área de churrasco, mantenha o botijão sempre do lado externo da sacada (nunca encostado em paredes vizinhas). Verifique que a saída de fumaça não invada o apartamento de cima: convenções de condomínio têm exigência clara sobre este tema."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Piso Antiderrapante",
+      "chave": "texto",
+      "linha": 399,
+      "original": "Cerâmica polida em varanda + chuva = pista de patinação. Aplique antiderrapante químico transparente (vendido em casas de construção) ou tapetes de borracha com base ventosa. Idosos em sacadas escorregadias têm taxa de queda 4x maior.",
+      "codigo": "ED-0128",
+      "novo": "Cerâmica polida em varanda + chuva = pista de patinação sem patins. Aplique revestimentos antiderrapante transparente (vendido em casas de construção) ou tapetes de borracha com base ventosa. Idosos em sacadas escorregadias têm taxa de queda 4x maior."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Varanda",
+      "chave": "texto",
+      "linha": 400,
+      "original": "Nunca coloque mesas, cadeiras ou bancos junto ao parapeito. Crianças escalam tudo. A distância mínima entre mobiliário e parapeito deve ser de 1 metro.",
+      "codigo": "ED-0129",
+      "novo": "Nunca coloque mesas, cadeiras ou bancos junto ao parapeito. Crianças escalam tudo. A distância mínima entre mobiliário e parapeito deve ser de 1 metro. Lembre que crianças maiores que já tem independência de locomoção podem ser capazes de movimentar determinadas mobílias. Telas de proteção ou grades são indispensáveis."
+    },
+    {
+      "arquivo": "data/micro_blog.js",
+      "rotulo": "Micro-blog",
+      "item": "O que fazer se o bebê engasgar mamando",
+      "chave": "title",
+      "linha": 51,
+      "original": "O que fazer se o bebê engasgar mamando",
+      "codigo": "ED-0134",
+      "novo": "O que fazer se o bebê se engasgar mamando"
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Uvas inteiras matam crianças menores de 5 anos",
+      "chave": "orientacoes[]",
+      "linha": 156,
+      "original": "Corte sempre no sentido do comprimento (longitudinal), nunca em rodelas.",
+      "codigo": "ED-0254",
+      "novo": "Corte sempre no sentido do comprimento (longitudinal), nunca em rodelas. Lembre de descartar as sementes antes de entregar à criança."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Piscina com cerca de 1,5m reduz afogamentos em 80%",
+      "chave": "titulo",
+      "linha": 236,
+      "original": "Piscina com cerca de 1,5m reduz afogamentos em 80%",
+      "codigo": "ED-0277",
+      "novo": "Piscina com cercas de 1,5m reduz afogamentos em 80%"
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Piscina com cerca de 1,5m reduz afogamentos em 80%",
+      "chave": "resumo",
+      "linha": 237,
+      "original": "A SBP (2024) reforça que cercas de piscina com altura mínima de 1,5m, portão com fechamento automático e ausência de pontos de escalada reduzem em até 80% a incidência de afogamentos em crianças. Altura inferior ou cerca sem portão adequado têm eficácia próxima de zero.",
+      "codigo": "ED-0278",
+      "novo": "A SBP (2024) reforça que cercas de piscina com altura mínima de 1,5m, portão com fechamento automático e ausência de pontos de escalada reduzem em até 80% a incidência de afogamentos em crianças. Altura inferior ou cercas sem portão adequado têm eficácia próxima de zero."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Piscina com cerca de 1,5m reduz afogamentos em 80%",
+      "chave": "orientacoes[]",
+      "linha": 243,
+      "original": "Remova qualquer objeto ao redor da piscina que possa servir de degrau (caixas, cadeiras, vasos).",
+      "codigo": "ED-0281",
+      "novo": "Remova qualquer objeto ao redor das cercas que possa servir de degrau (caixas, cadeiras, vasos)."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Primeiros socorros para queimaduras — o que NÃO fazer",
+      "chave": "orientacoes[]",
+      "linha": 295,
+      "original": "Água corrente fria (não gelada) por 10 a 20 minutos. Não gelo — causa vasoconstrição e piora.",
+      "codigo": "ED-0295",
+      "novo": "Água corrente fria (não gelada) por 10 a 20 minutos. Não gelo, pois causa vasoconstrição e piora."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Choque elétrico — como agir com segurança",
+      "chave": "orientacoes[]",
+      "linha": 359,
+      "original": "Desligue o disjuntor ou o quadro de força ANTES de tocar na vítima. Nunca use objeto de metal para afastar a vítima do fio.",
+      "codigo": "ED-0315",
+      "novo": "Desligue o disjuntor ou o quadro de força ANTES de tocar na vítima. Nunca use objeto de metal para afastar o fio ou a vítima."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Choque elétrico — como agir com segurança",
+      "chave": "orientacoes[]",
+      "linha": 361,
+      "original": "Mesmo que a vítima pareça bem, leve ao médico — choques internos podem não ter sinal externo imediato.",
+      "codigo": "ED-0317",
+      "novo": "Mesmo que a vítima pareça bem, leve ao médico — lesões internas causadas por choques elétricos podem não ter sinal externo imediato."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Janeiro: pico de afogamentos infantis no Brasil",
+      "chave": "orientacoes[]",
+      "linha": 413,
+      "original": "Nenhum dispositivo eletrônico durante o turno de vigilância. Distrações matam.",
+      "codigo": "ED-0331",
+      "novo": "Nenhum dispositivo eletrônico ou interação nas redes sociais durante o turno de vigilância. Distrações matam."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Fevereiro: cuidado com churrasqueiras e fogueiras no carnaval",
+      "chave": "orientacoes[]",
+      "linha": 427,
+      "original": "Proibido álcool líquido (92%) para acender churrasqueira. Use somente carvão com acendedor sólido.",
+      "codigo": "ED-0335",
+      "novo": "Proibido álcool líquido (92%) para acender churrasqueira. Use somente carvão com acendedor sólido ou elétrico."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Fevereiro: cuidado com churrasqueiras e fogueiras no carnaval",
+      "chave": "orientacoes[]",
+      "linha": 428,
+      "original": "Estabeleça perímetro de 3 metros ao redor de qualquer fogo. Crianças nunca ultrapassam esse limite.",
+      "codigo": "ED-0336",
+      "novo": "Estabeleça perímetro de 3 metros ao redor de qualquer fogo. Crianças nunca devem ultrapassar esse limite."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Maio: período de frio — aquecedores improvisados e risco de choque",
+      "chave": "orientacoes[]",
+      "linha": 474,
+      "original": "Mantenha aquecedor a no mínimo 1 metro de qualquer material inflamável (cortinas, roupas, camas).",
+      "codigo": "ED-0352",
+      "novo": "Mantenha aquecedor a no mínimo 1 metro de qualquer material inflamável (cortinas, roupas, camas) e fora do alcance de crianças, idosos e de quem tem limitações cognitivas."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Junho: festas juninas — fogueiras e perigo de queimadura",
+      "chave": "resumo",
+      "linha": 485,
+      "original": "O mês das festas juninas reúne crianças e fogueiras sem proteção adequada. Roupas típicas com tecidos sintéticos amplificam o risco. O CBMSP registra pico de queimaduras em junho anualmente.",
+      "codigo": "ED-0354",
+      "novo": "O mês das festas juninas reúne crianças e fogueiras sem proteção adequada. Roupas típicas com tecidos sintéticos amplificam o risco. O Corpo Bombeiros Militares de SP registra pico de queimaduras em junho anualmente."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Junho: festas juninas — fogueiras e perigo de queimadura",
+      "chave": "orientacoes[]",
+      "linha": 488,
+      "original": "Fogueiras devem ter cerca de proteção e adulto responsável exclusivo.",
+      "codigo": "ED-0356",
+      "novo": "Fogueiras devem ter cerca de proteção e monitoramento por adulto responsável exclusivamente para isso."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Outubro: mês das crianças — brinquedos com pilhas no foco",
+      "chave": "resumo",
+      "linha": 545,
+      "original": "O Dia das Crianças em outubro intensifica a presença de brinquedos com pilhas — incluindo pilhas-botão. O pico de vendas de eletrônicos infantis está associado a aumento de casos de ingestão de pilhas.",
+      "codigo": "ED-0374",
+      "novo": "O Dia das Crianças em outubro intensifica a presença de brinquedos com pilhas e baterias — incluindo pilhas-botão. O pico de vendas de eletrônicos infantis está associado a aumento de casos de ingestão de pilhas. Dê referência por brinquedos com carregamento via USB."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Novembro: calor intenso e fogos de artifício ilegais",
+      "chave": "resumo",
+      "linha": 560,
+      "original": "Novembro antecede o Réveillon e o Natal, com aumento de fogos de artifício artesanais e ilegais em bairros populares. O CBMSP registra queimaduras graves — especialmente em mãos e rosto — em crianças e adolescentes.",
+      "codigo": "ED-0379",
+      "novo": "Novembro antecede o Réveillon e o Natal, com aumento de fogos de artifício artesanais e ilegais em bairros populares. O Corpo de Bombeiros Militares de SP registra queimaduras graves — especialmente em mãos e rosto — em crianças e adolescentes."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "Radar de conteudo",
+      "item": "Dezembro: decoração de Natal — plantas e enfeites tóxicos",
+      "chave": "orientacoes[]",
+      "linha": 579,
+      "original": "Arvorezinhas de natal devem ficar em local alto ou cercado — nunca no nível do chão com crianças pequenas na casa.",
+      "codigo": "ED-0387",
+      "novo": "Arvorezinhas de natal devem ficar em local alto ou cercado — nunca no nível do chão com crianças pequenas na casa, principalmente se forem eletrificados."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "Introducao a seguranca",
+      "item": "Introdução à Segurança",
+      "chave": "definicao",
+      "linha": 14,
+      "original": "Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família.",
+      "codigo": "ED-0388",
+      "novo": "Segurança doméstica não é só prevenção, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "Introducao a seguranca",
+      "item": "Introdução à Segurança",
+      "chave": "importancia",
+      "linha": 17,
+      "original": "A maioria dos os acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos previne tragédias antes que aconteçam.",
+      "codigo": "ED-0389",
+      "novo": "A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos previne tragédias antes que aconteçam."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "Introducao a seguranca",
+      "item": "Metodologia 3D",
+      "chave": "definicao",
+      "linha": 39,
+      "original": "A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves.",
+      "codigo": "ED-0390",
+      "novo": "A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando nossa casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "Introducao a seguranca",
+      "item": "Metodologia 3D",
+      "chave": "importancia",
+      "linha": 42,
+      "original": "A grande maioria dos acidentes não acontece por acaso, mas por descaso. Praticar a segurança de forma constante é sempre mais vantajoso do que remediar uma emergência que poderia ter sido evitada.",
+      "codigo": "ED-0391",
+      "novo": "A grande maioria dos acidentes não acontece por acaso, mas por descaso. Praticar a segurança de forma constante é sempre mais vantajoso do que remediar uma emergência e sequelas que poderia ter sido evitada."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "Introducao a seguranca",
+      "item": "Metodologia 3D",
+      "chave": "comoIdentificar[]",
+      "linha": 46,
+      "original": "🗓️ DIÁRIA: Devemos diariamente estar muito atentos ao nosso ambiente doméstico, já que ele deve ser um refúgio e não uma armadilha criada por nós mesmos. E para isso, a prevenção deve ser diária e jamais negligenciada pela pressa, distrações ou mesmo por estarmos habituados a conviver com situações ou praticar ações com potencial de causarem acidentes.",
+      "codigo": "ED-0392",
+      "novo": "🗓️ DIÁRIA: Devemos diariamente estar muito atentos ao nosso ambiente doméstico, já que ele deve ser um refúgio e não uma armadilha criada por nós mesmos. E para isso, a prevenção deve ser diária e jamais negligenciada pela pressa, distrações ou mesmo por estarmos habituados a conviver com situações ou práticas com potencial de causarem acidentes."
+    },
+    {
+      "arquivo": "data/teoria_fogo.js",
+      "rotulo": "Teoria do fogo",
+      "item": "O Triângulo do Fogo",
+      "chave": "importancia",
+      "linha": 14,
+      "original": "Entender como o fogo começa é o primeiro passo para saber como apagá-lo ou prevení-lo.",
+      "codigo": "ED-0401",
+      "novo": "Entender como o fogo começa é o primeiro passo para saber como apagá-lo ou preveni-lo."
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "Fases da vida",
+      "item": "Bebês (0-2 anos)",
+      "chave": "comoEvitar[]",
+      "linha": 24,
+      "original": "Fixar móveis na parede (anti-tombamento)",
+      "codigo": "ED-0422",
+      "novo": "Fixar móveis na parede (antitombamento)"
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "Fases da vida",
+      "item": "Bebês (0-2 anos)",
+      "chave": "comoEvitar[]",
+      "linha": 25,
+      "original": "Testar temperatura da água do banho com o cotovelo",
+      "codigo": "ED-0423",
+      "novo": "Testar temperatura da água do banho com o cotovelo ou a curva da mão que é em cima entre o polegar e o indicador."
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "Fases da vida",
+      "item": "Bebês (0-2 anos)",
+      "chave": "comoEvitar[]",
+      "linha": 27,
+      "original": "Guardar objetos pequenos fora do alcance",
+      "codigo": "ED-0425",
+      "novo": "Guardar objetos pequenos fora do alcance das mãozinhas"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Plano de Emergência",
+      "chave": "itens[]",
+      "linha": 96,
+      "original": "Nunca volte para dentro de uma casa pegando fogo para buscar objetos",
+      "codigo": "ED-0571",
+      "novo": "Nunca volte a uma casa em chamas para buscar objetos"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "ERROS GRAVES - NUNCA FAÇA",
+      "chave": "itens[]",
+      "linha": 121,
+      "original": "Nunca coloque desinfetante ou cloro em garrafas PET ou copos — a criança confunde com refrigerante ou água",
+      "codigo": "ED-0575",
+      "novo": "Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — a criança confunde com refrigerante ou água."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Segurança Elétrica",
+      "chave": "resumo",
+      "linha": 184,
+      "original": "Um choque elétrico leva frações de segundo para ser fatal. Fiação antiga, gambiarras elétricas e falta de disjuntor DR no quadro de força multiplicam o risco doméstico.",
+      "codigo": "ED-0604",
+      "novo": "Um choque elétrico dura frações de segundo e pode ser fatal. Fiação antiga, gambiarras elétricas e falta de disjuntor DR no quadro de força multiplicam o risco doméstico."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Checklist de Prevenção Elétrica",
+      "chave": "itens[]",
+      "linha": 204,
+      "original": "Tapar tomadas baixas com protetores plásticos específicos",
+      "codigo": "ED-0613",
+      "novo": "Proteger principalmente as tomadas baixas com protetores plásticos específicos"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Se Alguém Levar um Choque",
+      "chave": "itens[]",
+      "linha": 215,
+      "original": "NÃO toque na pessoa enquanto ela estiver colada na energia. Você também levará o choque",
+      "codigo": "ED-0618",
+      "novo": "NÃO toque na pessoa enquanto ela estiver em contato com a energia. Você também levará o choque"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Sinais de Alerta Críticos",
+      "chave": "conteudo",
+      "linha": 226,
+      "original": "Levar choques leves ao tocar em torneiras ou no chuveiro, cheiro de plástico queimado perto de tomadas ou faíscas constantes indicam problemas graves na fiação. Chame um eletricista urgente.",
+      "codigo": "ED-0624",
+      "novo": "Levar choques leves ao tocar em torneiras ou no chuveiro, cheiro de plástico queimado perto de tomadas ou faíscas constantes indicam problemas graves na fiação. Chame um eletricista urgentemente."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Checklist contra Quedas",
+      "chave": "itens[]",
+      "linha": 259,
+      "original": "Chequear se o playground tem piso de borracha macio para amortecer quedas",
+      "codigo": "ED-0634",
+      "novo": "Verificar se o playground tem piso de borracha macio para amortecer quedas"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Remédios que Exigem Atenção Redobrada",
+      "chave": "itens[]",
+      "linha": 313,
+      "original": "Paracetamol: o excesso causa danos graves e silenciosos no fígado",
+      "codigo": "ED-0654",
+      "novo": "Paracetamol: o excesso causa danos graves e silenciosos ao fígado"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+      "rotulo": "Prevencao de incendio",
+      "item": "Em Caso de Incêndio",
+      "chave": "steps[]",
+      "linha": 73,
+      "original": "Se houver fumaça no caminho, rasteje. O ar limpo e respirável fica próximo ao chão.",
+      "codigo": "ED-0743",
+      "novo": "Se houver fumaça no caminho, rasteje. O ar mais limpo e respirável fica próximo ao chão."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Apenas fazer referência de onde encontrar o conteúdo não me parece adequado. Estes conteúdos devem ser claros e diretos. Cada item com seu conteúdo (brinquedos Risco de Engasgo."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "ED-0063 e ED-0064, podem ser unificados em um único item?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Requem adequações de órgãos concernentes á cada região-país. No caso daos idiomas fora do Brasil"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Estude a possibilidade de implementação de lincagem desta citação: Consulte os Guias \"Plantas Tóxicas\" e \"Animais Peçonhentos\" na seção de Riscos.ONDE APLICAVEL AO  LONGO DOS CONTEÚDOS DO APP. Em tempo, analise tb a viabilidade, aplicabilidade de lupa de busca por sessão ou assunto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Evirtar ao longo do app onde aplicável a palavra químicos isoladamente. A citação deverá ser sempre produtos químicos"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Assim como já dito anteriomente, onde houver refer~encia a um tema, lincar o mesmo. Uma vez que o link for acessado, oferecer opção de voltar para onde estava. Vale para todas as implementações neste contexto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Idem item anterior e itens posteriores."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Além de lincar o tema, como solicitado anteriormente, devermos mostrar o conteúdo pertinente."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Idem item anterior e posteriores no contexto da funcionalidade."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Verificar contexto´pós tradução ara outros idiomas de acordo com autoridades e orgãos reguladores ou ficalizadores de acordo com cada contexto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Replicar ao longo do app este contexto onde houver aplicabilidade e similaridade."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Coloquei no plural para que o usuário não confunda com cerca (bloqueio) e ser diferente de cerca (aproximadamente)."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkar com conteúdo em Atividades Eventuais como já citado anteriormente."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkar com nosso conteúdo."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Qual justificativa?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O clima tem mudado considerávelmente. No inverno atual por exemplo há regiões do Brasil que tem 39ºC."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "De difícil compreensão popular. Nem eu entendi."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Tem nome popular?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Este conteúdo não está adequado. Vou definir novo conteúdo mais completo e didático."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Onde estão as outras classes?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkar como já citado anteriormente."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Adicionar neuro divergentes?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Como citado no chat, precisamos rever/reimplantar ou não os kits."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Nas traduções ver órgão de controle e autoridades de cada local"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Precisamos incluir lista e instruções sobre misturas proibidas que podem acontecer em qualquer casa."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkcar com item específico de OS como já citado anteriormente"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkcar como já mencionado."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Redundante com a Teoria do fogo que citei acima."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Precisamos incluir a Classe D. Antigamente restringia-se á industria mas atualmente nossos lares já estão inundados por baterias, por exemplo. Isso faz sentido?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Eliminar os asteriscos de todos os conteúdos"
+    }
+  ]
+}

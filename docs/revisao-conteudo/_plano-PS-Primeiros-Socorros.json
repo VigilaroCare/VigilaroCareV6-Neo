@@ -1,0 +1,1830 @@
+{
+  "documento": "PS-Primeiros-Socorros.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-16T21:44:36.093Z",
+  "coerencia": {
+    "lidos": 174,
+    "intactos": 3,
+    "taxa": 0.0172
+  },
+  "editados": [
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueFazer[]",
+      "linha": 8,
+      "original": "Tire a pessoa de perto do fogo ou da fonte de calor.",
+      "codigo": "PS-0001",
+      "novo": "Tirar a pessoa de perto do fogo ou da fonte de calor."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueFazer[]",
+      "linha": 9,
+      "original": "Resfrie o local jogando água corrente em temperatura ambiente por 15 a 20 minutos.",
+      "codigo": "PS-0002",
+      "novo": "Resfriar o local jogando água corrente em temperatura ambiente por 15 a 20 minutos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueFazer[]",
+      "linha": 10,
+      "original": "Tire anéis, pulseiras e relógios antes que a região comece a inchar.",
+      "codigo": "PS-0003",
+      "novo": "Tirar anéis, pulseiras e relógios antes que a região comece a inchar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueFazer[]",
+      "linha": 11,
+      "original": "Cubra a ferida de leve com um pano limpo e úmido.",
+      "codigo": "PS-0004",
+      "novo": "Cobrir a ferida cuidadosamente com um pano limpo e úmido."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueNaoFazer[]",
+      "linha": 14,
+      "original": "NUNCA passe pomadas, pasta de dente, manteiga, pó de café ou gelo direto sobre a queimadura.",
+      "codigo": "PS-0005",
+      "novo": "NUNCA passar pomadas, pasta de dente, manteiga, pó de café ou gelo diretamente sobre a queimadura."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueNaoFazer[]",
+      "linha": 15,
+      "original": "NÃO estoure as bolhas que se formarem.",
+      "codigo": "PS-0006",
+      "novo": "NÃO estourar as bolhas que se formarem."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "oQueNaoFazer[]",
+      "linha": 16,
+      "original": "NÃO tente arrancar pedaços de roupa que tenham grudado na pele queimada.",
+      "codigo": "PS-0007",
+      "novo": "NÃO tentar arrancar pedaços de roupa grudados na pele queimada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Queimaduras",
+      "chave": "quandoChamarAjuda",
+      "linha": 18,
+      "original": "Se a queimadura for maior que a palma da mão, atingir o rosto, mãos, genitais ou ocorrer em crianças e idosos.",
+      "codigo": "PS-0008",
+      "novo": "Chamar ajuda se a queimadura for maior que a palma da mão, atingir o rosto, mãos, genitais ou ocorrer em crianças e idosos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 26,
+      "original": "Se a pessoa consegue tossir com força, incentive a tossir. A tosse dela é mais eficaz que qualquer manobra sua.",
+      "codigo": "PS-0010",
+      "novo": "Incentivar a tosse se a pessoa conseguir tossir com força (a tosse é a manobra mais eficaz em obstrução parcial)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 27,
+      "original": "Se ela não consegue tossir, falar nem respirar, a obstrução é total: peça a alguém para ligar para {{EMERGENCY_MEDICAL}} e comece as manobras.",
+      "codigo": "PS-0011",
+      "novo": "Pedir a alguém para ligar para {{EMERGENCY_MEDICAL}} (192) e iniciar as manobras caso a pessoa não consiga tossir, falar nem respirar (obstrução total)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 28,
+      "original": "Fique atrás dela, incline o tronco dela para a frente e dê 5 pancadas firmes entre as escápulas, usando a base da mão.",
+      "codigo": "PS-0012",
+      "novo": "Posicionar-se atrás da vítima, inclinar o tronco dela levemente para a frente e aplicar 5 pancadas firmes nas costas, entre as escápulas, com a base da mão."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 29,
+      "original": "Se o objeto não saiu, dê 5 compressões abdominais: punho fechado logo acima do umbigo, a outra mão por cima, puxando para dentro e para cima (em \"J\").",
+      "codigo": "PS-0013",
+      "novo": "Aplicar 5 compressões abdominais (manobra de Heimlich) se o objeto não sair: posicionar o punho fechado acima do umbigo, cobrir com a outra mão e puxar para dentro e para cima em 'J'."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 30,
+      "original": "Alterne 5 pancadas nas costas com 5 compressões abdominais até o objeto sair ou a pessoa perder a consciência.",
+      "codigo": "PS-0014",
+      "novo": "Alternar continuamente 5 pancadas nas costas com 5 compressões abdominais até o objeto ser expelido ou a pessoa perder a consciência."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 31,
+      "original": "Em gestante, ou se você não conseguir abraçar o abdômen da pessoa, troque as compressões abdominais por 5 compressões no centro do peito.",
+      "codigo": "PS-0015",
+      "novo": "Substituir as compressões abdominais por 5 compressões no centro do peito em gestantes ou em pessoas obesas quando não for possível abraçar o abdômen."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 34,
+      "original": "Não ofereça água nem comida: a via aérea está fechada.",
+      "codigo": "PS-0016",
+      "novo": "NÃO oferecer água nem comida (a via aérea está obstruída)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 35,
+      "original": "Não coloque o dedo na boca às cegas para pescar o objeto — você pode empurrá-lo mais para dentro.",
+      "codigo": "PS-0017",
+      "novo": "NÃO colocar os dedos na boca às cegas para tentar retirar o objeto (risco de empurrá-lo mais profundamente)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 36,
+      "original": "Não interrompa os ciclos para procurar o objeto. Só pare se ele sair ou a pessoa desmaiar.",
+      "codigo": "PS-0018",
+      "novo": "NÃO interromper os ciclos de 5 pancadas e 5 compressões para procurar o objeto a menos que seja visível ou haja desmaio."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Adulto e Criança acima de 1 ano)",
+      "chave": "quandoChamarAjuda",
+      "linha": 38,
+      "original": "Assim que perceber que a pessoa não consegue tossir, falar nem respirar. Se ela perder a consciência, deite-a no chão e inicie a RCP (ver \"Parada Cardíaca\").",
+      "codigo": "PS-0019",
+      "novo": "Ligar para {{EMERGENCY_MEDICAL}} (192) imediatamente ao identificar obstrução total. Caso a vítima perca a consciência, deitá-la no chão e iniciar imediatamente a RCP com compressões torácicas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 46,
+      "original": "Apoie o bebê de bruços sobre o seu antebraço, com a cabeça mais baixa que o tronco, sustentando o queixo e a mandíbula dele com a sua mão.",
+      "codigo": "PS-0021",
+      "novo": "Apoiar o bebê de bruços sobre o antebraço, mantendo a cabeça mais baixa que o tronco, sustentando firmemente o queixo e a mandíbula sem apertar o pescoço."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 47,
+      "original": "Dê 5 pancadas firmes nas costas, entre as escápulas, usando a base da mão.",
+      "codigo": "PS-0022",
+      "novo": "Aplicar 5 pancadas firmes nas costas, entre as escápulas, utilizando a base da palma da mão."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 48,
+      "original": "Vire o bebê de barriga para cima no seu antebraço e dê 5 compressões no centro do peito usando a base de uma das mãos.",
+      "codigo": "PS-0023",
+      "novo": "Virar o bebê de barriga para cima no antebraço e aplicar 5 compressões torácicas no centro do peito, com a base da palma da mão ou dois dedos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueFazer[]",
+      "linha": 49,
+      "original": "Alterne 5 pancadas nas costas com 5 compressões no peito até o objeto sair ou o bebê perder a consciência.",
+      "codigo": "PS-0024",
+      "novo": "Alternar ciclos de 5 pancadas nas costas com 5 compressões no peito até o corpo estranho ser expelido ou o bebê perder a consciência."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 52,
+      "original": "NUNCA faça compressões abdominais (Heimlich) em bebê menor de 1 ano: há risco de lesão no fígado e no baço.",
+      "codigo": "PS-0025",
+      "novo": "NUNCA realizar compressões abdominais (Heimlich) em bebês menores de 1 ano (risco de lesão grave em órgãos internos como fígado e baço)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 54,
+      "original": "Não coloque os dedos na boca do bebê às cegas para tentar pescar o objeto.",
+      "codigo": "PS-0026",
+      "novo": "NÃO colocar os dedos na boca do bebê às cegas se o objeto ou alimento não estiver visível na cavidade oral."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Engasgo (Bebê menor de 1 ano)",
+      "chave": "quandoChamarAjuda",
+      "linha": 56,
+      "original": "Assim que o bebê parar de chorar, tossir ou respirar. Se ele perder a consciência, inicie a RCP de lactente e ligue para {{EMERGENCY_MEDICAL}}.",
+      "codigo": "PS-0027",
+      "novo": "Acionar {{EMERGENCY_MEDICAL}} (192) assim que notar ausência de choro, tosse ou respiração. Se o bebê desmaiar, iniciar a RCP de lactente (30 compressões para 2 ventilações)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "oQueFazer[]",
+      "linha": 64,
+      "original": "Lave o corte delicadamente com soro ou água e sabão neutro.",
+      "codigo": "PS-0028",
+      "novo": "Lavar o corte delicadamente com soro fisiológico ou água e sabão neutro."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "oQueFazer[]",
+      "linha": 65,
+      "original": "Aperte o local com firmeza usando um pano limpo por 5 a 10 minutos sem parar.",
+      "codigo": "PS-0029",
+      "novo": "Pressionar o local com firmeza usando um pano limpo por 5 a 10 minutos sem interromper."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "oQueFazer[]",
+      "linha": 66,
+      "original": "Se for nos braços ou pernas, mantenha o membro levantado para diminuir o fluxo de sangue.",
+      "codigo": "PS-0030",
+      "novo": "Manter o membro afetado (braço ou perna) elevado para diminuir a pressão e o fluxo de sangue."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "oQueNaoFazer[]",
+      "linha": 69,
+      "original": "Não faça torniquetes (use apenas em amputações ou sangramentos gravíssimos que não param de jeito nenhum).",
+      "codigo": "PS-0031",
+      "novo": "NÃO fazer torniquetes (utilizar apenas em amputações ou sangramentos arteriais gravíssimos que não estancam com pressão)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "oQueNaoFazer[]",
+      "linha": 70,
+      "original": "Não coloque pó de café, açúcar ou pomadas no corte.",
+      "codigo": "PS-0032",
+      "novo": "NÃO aplicar pó de café, açúcar ou pomadas no corte."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Cortes e Sangramentos",
+      "chave": "quandoChamarAjuda",
+      "linha": 72,
+      "original": "Se o sangramento não parar após 10 minutos de pressão direta, se o corte for muito profundo ou se as bordas ficarem abertas.",
+      "codigo": "PS-0033",
+      "novo": "Chamar ajuda se o sangramento não parar após 10 minutos de pressão direta, se o corte for muito profundo ou se as bordas ficarem abertas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Choque Elétrico",
+      "chave": "oQueFazer[]",
+      "linha": 80,
+      "original": "Corra para o quadro de luz e desligue o disjuntor geral IMEDIATAMENTE.",
+      "codigo": "PS-0034",
+      "novo": "Desligar o disjuntor geral no quadro de luz IMEDIATAMENTE."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Choque Elétrico",
+      "chave": "oQueFazer[]",
+      "linha": 81,
+      "original": "Se não puder desligar a energia, empurre o fio ou afaste a pessoa usando um objeto de madeira ou plástico seco (como um cabo de vassoura seco).",
+      "codigo": "PS-0035",
+      "novo": "Afastar a pessoa da fonte elétrica usando um objeto de madeira ou plástico seco (como cabo de vassoura seco) caso não seja possível desligar a energia."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Choque Elétrico",
+      "chave": "oQueFazer[]",
+      "linha": 82,
+      "original": "Depois de afastar da energia, cheque se a pessoa está respirando e se tem batimentos.",
+      "codigo": "PS-0036",
+      "novo": "Checar se a pessoa está respirando e se tem batimentos cardíacos após o afastamento da fonte elétrica."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Choque Elétrico",
+      "chave": "oQueNaoFazer[]",
+      "linha": 85,
+      "original": "NUNCA encoste na pessoa se ela ainda estiver colada ao fio ou tomada elétrica.",
+      "codigo": "PS-0037",
+      "novo": "NUNCA encostar na pessoa se ela ainda estiver em contato com a corrente elétrica."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Choque Elétrico",
+      "chave": "quandoChamarAjuda",
+      "linha": 87,
+      "original": "SEMPRE chame o {{EMERGENCY_MEDICAL}}. A corrente elétrica pode causar arritmias no coração horas após o choque.",
+      "codigo": "PS-0038",
+      "novo": "SEMPRE chamar o {{EMERGENCY_MEDICAL}} (192), pois a corrente elétrica pode provocar arritmias cardíacas tardias."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação",
+      "chave": "oQueFazer[]",
+      "linha": 95,
+      "original": "Identifique na hora qual produto ou remédio a pessoa engoliu.",
+      "codigo": "PS-0039",
+      "novo": "Identificar imediatamente qual produto ou medicamento a pessoa engoliu."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação",
+      "chave": "oQueFazer[]",
+      "linha": 96,
+      "original": "Ligue imediatamente para {{POISON_CONTROL}}.",
+      "codigo": "PS-0040",
+      "novo": "Ligar imediatamente para o Centro de Informações Antiveneno ({{POISON_CONTROL}})."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação",
+      "chave": "oQueFazer[]",
+      "linha": 97,
+      "original": "Siga exatamente o que o atendente médico orientar.",
+      "codigo": "PS-0041",
+      "novo": "Seguir rigorosamente as orientações do atendente médico."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação",
+      "chave": "oQueNaoFazer[]",
+      "linha": 100,
+      "original": "NÃO provoque vômito (se o produto for corrosivo, vai queimar a garganta duas vezes).",
+      "codigo": "PS-0042",
+      "novo": "NÃO provocar vômito ser for ingerido produto químico (produtos corrosivos queimam o esôfago na ida e na volta)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação",
+      "chave": "oQueNaoFazer[]",
+      "linha": 101,
+      "original": "Não dê leite, água ou remédios caseiros sem orientação médica.",
+      "codigo": "PS-0043",
+      "novo": "NÃO oferecer leite, água ou remédios caseiros sem orientação médica prévia."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "oQueFazer[]",
+      "linha": 111,
+      "original": "Deixe a pessoa deitada imóvel, principalmente se ela reclamar de dor nas costas ou no pescoço.",
+      "codigo": "PS-0044",
+      "novo": "Manter a pessoa deitada e imóvel, especialmente em caso de dor nas costas ou no pescoço."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "oQueFazer[]",
+      "linha": 112,
+      "original": "Coloque uma bolsa de gelo enrolada em uma toalha sobre o local dolorido.",
+      "codigo": "PS-0045",
+      "novo": "Aplicar bolsa de gelo enrolada em uma toalha sobre o local dolorido."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "oQueFazer[]",
+      "linha": 113,
+      "original": "Se houver corte com sangue, pressione de leve com um pano limpo.",
+      "codigo": "PS-0046",
+      "novo": "Pressionar suavemente com pano limpo em caso de ferimento com sangramento."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "oQueNaoFazer[]",
+      "linha": 116,
+      "original": "NÃO tente colocar o osso de volta no lugar.",
+      "codigo": "PS-0047",
+      "novo": "NÃO tentar alinhar ou colocar o osso de volta no lugar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "oQueNaoFazer[]",
+      "linha": 117,
+      "original": "NÃO mexa ou levante a pessoa se houver suspeita de lesão na coluna.",
+      "codigo": "PS-0048",
+      "novo": "NÃO mover ou levantar a pessoa se houver suspeita de lesão na coluna."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Quedas e Fraturas",
+      "chave": "quandoChamarAjuda",
+      "linha": 119,
+      "original": "Se houver deformidade visível no osso, dor muito forte, incapacidade de mover o membro ou se a pessoa desmaiou.",
+      "codigo": "PS-0049",
+      "novo": "Chamar ajuda se houver deformidade visível no osso, dor muito forte, incapacidade de mover o membro ou desmaio."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "oQueFazer[]",
+      "linha": 127,
+      "original": "Fique de olho na pessoa pelas próximas 24 horas.",
+      "codigo": "PS-0050",
+      "novo": "Observar a pessoa atentamente nas 24 horas seguintes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "oQueFazer[]",
+      "linha": 128,
+      "original": "Mantenha a pessoa acordada e conversando por algum tempo após a pancada.",
+      "codigo": "PS-0051",
+      "novo": "Manter a pessoa acordada e conversando por algum tempo após o impacto."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "oQueFazer[]",
+      "linha": 129,
+      "original": "Coloque uma compressa fria no local para diminuir o inchaço (o famoso \"galo\").",
+      "codigo": "PS-0052",
+      "novo": "Aplicar compressa fria no local para conter o inchaço."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "oQueNaoFazer[]",
+      "linha": 132,
+      "original": "Não ignore sintomas como vômitos, tonturas ou falhas de memória.",
+      "codigo": "PS-0053",
+      "novo": "NÃO ignorar sintomas como vômitos, tonturas ou falhas de memória."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "oQueNaoFazer[]",
+      "linha": 133,
+      "original": "Não dê remédios fortes para dor ou para dormir sem orientação.",
+      "codigo": "PS-0054",
+      "novo": "NÃO administrar remédios fortes para dor ou sedativos sem orientação médica."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Traumatismo Craniano",
+      "chave": "quandoChamarAjuda",
+      "linha": 135,
+      "original": "Se a pessoa vomitar, desmaiar, tiver sangramento pelo nariz ou ouvidos, ou se as pupilas ficarem com tamanhos diferentes.",
+      "codigo": "PS-0055",
+      "novo": "Chamar ajuda se a pessoa vomitar, desmaiar, apresentar sangramento pelo nariz ou ouvidos, ou se as pupilas ficarem com tamanhos diferentes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação Alimentar",
+      "chave": "oQueFazer[]",
+      "linha": 143,
+      "original": "Tome soro caseiro ou água de coco em pequenos goles ao longo do dia.",
+      "codigo": "PS-0056",
+      "novo": "Ingerir soro caseiro ou água de coco em pequenos goles ao longo do dia."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação Alimentar",
+      "chave": "oQueFazer[]",
+      "linha": 145,
+      "original": "Quando a fome voltar, coma alimentos leves e sem gordura (como arroz branco, batata e torradas).",
+      "codigo": "PS-0057",
+      "novo": "Consumir alimentos leves e sem gordura (como arroz branco, batata e torradas) quando a fome voltar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação Alimentar",
+      "chave": "oQueNaoFazer[]",
+      "linha": 148,
+      "original": "Não tome remédios para \"prender\" o intestino (as toxinas precisam ser eliminadas pelo corpo).",
+      "codigo": "PS-0058",
+      "novo": "NÃO tomar remédios para 'prender' o intestino (as toxinas precisam ser eliminadas pelo corpo)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação Alimentar",
+      "chave": "oQueNaoFazer[]",
+      "linha": 149,
+      "original": "Não se force a comer se ainda estiver com muita náusea.",
+      "codigo": "PS-0059",
+      "novo": "NÃO forçar a alimentação se houver náusea forte."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Intoxicação Alimentar",
+      "chave": "quandoChamarAjuda",
+      "linha": 151,
+      "original": "Se notar sinais de desidratação (boca muito seca, choro sem lágrimas, ficar horas sem urinar), se tiver sangue nas fezes ou febre alta.",
+      "codigo": "PS-0060",
+      "novo": "Chamar ajuda ao notar sinais de desidratação (boca seca, ausência de lágrimas ou urina por horas), febre alta ou sangue nas fezes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "oQueFazer[]",
+      "linha": 159,
+      "original": "Olhos: lave com bastante soro fisiológico ou água morna corrente.",
+      "codigo": "PS-0061",
+      "novo": "Olhos: lavar com bastante soro fisiológico ou água morna corrente."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "oQueFazer[]",
+      "linha": 160,
+      "original": "Nariz/Ouvido: se o objeto estiver bem na pontinha e for fácil, tente tirar delicadamente com uma pinça.",
+      "codigo": "PS-0062",
+      "novo": "Nariz/Ouvido: tentar retirar delicadamente com pinça apenas se o objeto estiver visível e na extremidade."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "oQueFazer[]",
+      "linha": 161,
+      "original": "Se estiver difícil ou profundo, vá direto ao pronto-socorro.",
+      "codigo": "PS-0063",
+      "novo": "Dirigir-se ao pronto-socorro se o objeto estiver profundo ou difícil de remover."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "oQueNaoFazer[]",
+      "linha": 164,
+      "original": "NÃO esfregue os olhos (um grão de areia ou metal pode riscar a córnea).",
+      "codigo": "PS-0064",
+      "novo": "NÃO esfregar os olhos (risco de lesão na córnea por atrito)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "oQueNaoFazer[]",
+      "linha": 165,
+      "original": "NÃO use cotonetes para cutucar o ouvido (você vai empurrar o objeto ainda mais para dentro).",
+      "codigo": "PS-0065",
+      "novo": "NÃO introduzir cotonetes ou objetos pontiagudos no ouvido (risco de empurrar o objeto ou perfurar o tímpano)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Corpos Estranhos",
+      "chave": "quandoChamarAjuda",
+      "linha": 167,
+      "original": "Sempre que o objeto não sair com facilidade na primeira lavagem ou se a pessoa sentir dor e vista embaçada.",
+      "codigo": "PS-0066",
+      "novo": "Chamar ajuda sempre que o objeto não sair com facilidade na primeira lavagem leve ou se houver dor e visão embaçada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "oQueFazer[]",
+      "linha": 175,
+      "original": "Lave bem o ferimento com água corrente e sabão neutro por 10 minutos.",
+      "codigo": "PS-0067",
+      "novo": "Lavar bem o ferimento com água corrente e sabão neutro por 10 minutos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "oQueFazer[]",
+      "linha": 176,
+      "original": "Se estiver sangrando, pressione com um pano limpo.",
+      "codigo": "PS-0068",
+      "novo": "Pressionar com um pano limpo em caso de sangramento."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "oQueFazer[]",
+      "linha": 177,
+      "original": "Vá ao pronto-socorro para limpar profundamente e avaliar a necessidade de vacina contra Raiva e Tétano.",
+      "codigo": "PS-0069",
+      "novo": "Dirigir-se ao pronto-socorro para higienização profunda e avaliação da necessidade vacina contra raiva e Tétano."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "oQueNaoFazer[]",
+      "linha": 180,
+      "original": "Não tente costurar ou fechar o machucado em casa.",
+      "codigo": "PS-0070",
+      "novo": "NÃO tentar costurar ou fechar o machucado em casa."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "oQueNaoFazer[]",
+      "linha": 181,
+      "original": "Não ignore mordidas pequenas (a saliva do animal tem bactérias que causam infecções rápidas).",
+      "codigo": "PS-0071",
+      "novo": "NÃO ignorar mordidas pequenas (a saliva do animal tem bactérias de infecção rápida)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mordidas de Animais",
+      "chave": "quandoChamarAjuda",
+      "linha": 183,
+      "original": "Sempre. Qualquer mordida que rasgue a pele precisa de avaliação e protocolo preventivo de vacinação.",
+      "codigo": "PS-0072",
+      "novo": "Chamar ajuda em qualquer mordida que cause ferimento na pele para avaliação e protocolo preventivo de vacinação."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "oQueFazer[]",
+      "linha": 191,
+      "original": "Ajude a pessoa a sentar ou deitar em um local fresco e ventilado.",
+      "codigo": "PS-0073",
+      "novo": "Ajudar a pessoa a sentar ou deitar em um local fresco e ventilado."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "oQueFazer[]",
+      "linha": 192,
+      "original": "Afrouxe roupas apertadas, como golas de camisa e cintos.",
+      "codigo": "PS-0074",
+      "novo": "Afrouxar roupas apertadas, como golas de camisa e cintos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "oQueFazer[]",
+      "linha": 193,
+      "original": "Pergunte se a pessoa tem algum problema de saúde conhecido ou toma remédios diários.",
+      "codigo": "PS-0075",
+      "novo": "Perguntar sobre problemas de saúde conhecidos e uso de remédios contínuos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "oQueNaoFazer[]",
+      "linha": 196,
+      "original": "NÃO dê água ou comida se a pessoa estiver confusa ou desorientada.",
+      "codigo": "PS-0076",
+      "novo": "NÃO oferecer água ou comida se a pessoa estiver confusa ou desorientada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "oQueNaoFazer[]",
+      "linha": 197,
+      "original": "NÃO deixe a pessoa sozinha.",
+      "codigo": "PS-0077",
+      "novo": "NÃO deixar a pessoa sozinha."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Mal Súbito",
+      "chave": "quandoChamarAjuda",
+      "linha": 199,
+      "original": "Se a pessoa não melhorar em 2 minutos, se desmaiar ou se relatar uma dor forte ou aperto no peito.",
+      "codigo": "PS-0078",
+      "novo": "Chamar ajuda se a pessoa não melhorar em 2 minutos, se desmaiar ou se relatar dor forte ou aperto no peito."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueFazer[]",
+      "linha": 207,
+      "original": "Deite a pessoa de barriga para cima.",
+      "codigo": "PS-0079",
+      "novo": "Deitar a pessoa de barriga para cima."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueFazer[]",
+      "linha": 208,
+      "original": "Levante as pernas dela (cerca de 30 cm do chão) para ajudar o sangue a voltar para a cabeça.",
+      "codigo": "PS-0080",
+      "novo": "Elevar as pernas a cerca de 30 cm do chão para favorecer o retorno venoso e a circulação cerebral."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueFazer[]",
+      "linha": 209,
+      "original": "Fique de olho na respiração dela.",
+      "codigo": "PS-0081",
+      "novo": "Observar a respiração continuamente."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueNaoFazer[]",
+      "linha": 212,
+      "original": "NÃO jogue água fria no rosto da pessoa.",
+      "codigo": "PS-0082",
+      "novo": "NÃO jogar água fria no rosto da pessoa."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueNaoFazer[]",
+      "linha": 213,
+      "original": "NÃO dê álcool ou perfume para ela cheirar.",
+      "codigo": "PS-0083",
+      "novo": "NÃO oferecer álcool, perfume ou qualquer substância para cheirar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "oQueNaoFazer[]",
+      "linha": 214,
+      "original": "NÃO tente levantar a pessoa com pressa assim que ela acordar.",
+      "codigo": "PS-0084",
+      "novo": "NÃO tentar levantar a pessoa com pressa assim que ela recobrar a consciência."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Desmaio",
+      "chave": "quandoChamarAjuda",
+      "linha": 216,
+      "original": "Se a pessoa demorar mais de 2 minutos para acordar ou se caiu de forma brusca e bateu a cabeça.",
+      "codigo": "PS-0085",
+      "novo": "Chamar ajuda se a pessoa demorar mais de 2 minutos para acordar ou se sofreu queda grave com trauma na cabeça."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueFazer[]",
+      "linha": 224,
+      "original": "Proteja a cabeça da pessoa colocando um casaco dobrado ou almofada por baixo.",
+      "codigo": "PS-0086",
+      "novo": "Proteger a cabeça da pessoa colocando um casaco dobrado ou almofada por baixo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueFazer[]",
+      "linha": 225,
+      "original": "Afaste cadeiras ou objetos duros para ela não se machucar durante os tremores.",
+      "codigo": "PS-0087",
+      "novo": "Afastar cadeiras ou objetos duros para evitar traumas durante os tremores."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueFazer[]",
+      "linha": 226,
+      "original": "Cronometre a duração da crise.",
+      "codigo": "PS-0088",
+      "novo": "Cronometrar a duração da crise. Se durar mais de 3 minutos já requer maior atenção."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueFazer[]",
+      "linha": 227,
+      "original": "Assim que a crise passar, vire a pessoa de lado (posição de segurança) para ajudá-la a respirar.",
+      "codigo": "PS-0089",
+      "novo": "Virar a pessoa de lado (posição lateral de segurança) assim que a crise passar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueNaoFazer[]",
+      "linha": 230,
+      "original": "NUNCA tente segurar a língua da pessoa ou colocar objetos/dedos na boca dela.",
+      "codigo": "PS-0090",
+      "novo": "NUNCA tentar segurar a língua da pessoa ou colocar objetos/dedos em sua boca."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueNaoFazer[]",
+      "linha": 231,
+      "original": "NÃO tente segurar os braços ou pernas dela à força.",
+      "codigo": "PS-0091",
+      "novo": "NÃO conter com firmeza os movimentos de braços e pernas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "oQueNaoFazer[]",
+      "linha": 232,
+      "original": "NÃO ofereça água ou remédios enquanto ela estiver tremendo.",
+      "codigo": "PS-0092",
+      "novo": "NÃO oferecer água ou remédios enquanto houver convulsão."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Convulsão",
+      "chave": "quandoChamarAjuda",
+      "linha": 234,
+      "original": "Se a crise durar mais de 5 minutos, se for a primeira vez que a pessoa tem isso, ou se ela tiver uma convulsão atrás da outra.",
+      "codigo": "PS-0093",
+      "novo": "Chamar ajuda se a crise durar mais de 5 minutos, se for o primeiro episódio ou em crises consecutivas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "oQueFazer[]",
+      "linha": 242,
+      "original": "Faça o teste SAMU: peça para ela Sorrir (boca entorta?), dar um Abraço (um braço cai?), cantar uma Música (fala enrolada?). Se sim, é Urgente.",
+      "codigo": "PS-0094",
+      "novo": "Realizar o teste SAMU: pedir para a pessoa Sorrir (boca entorta?), dar um Abraço (um braço cai?), cantar uma Música (fala enrolada?). Se sim, é urgente."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "oQueFazer[]",
+      "linha": 243,
+      "original": "Marque no relógio a hora exata em que os sintomas começaram.",
+      "codigo": "PS-0095",
+      "novo": "Marcar a hora exata em que os sintomas começaram."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "oQueFazer[]",
+      "linha": 244,
+      "original": "Ligue imediatamente para o SAMU no 192.",
+      "codigo": "PS-0096",
+      "novo": "Ligar imediatamente para o {{EMERGENCY_MEDICAL}} (192)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 247,
+      "original": "Não espere os sintomas melhorarem sozinhos.",
+      "codigo": "PS-0097",
+      "novo": "NÃO esperar os sintomas melhorarem sozinhos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "oQueNaoFazer[]",
+      "linha": 248,
+      "original": "Não dê remédios como aspirina ou calmantes (pode piorar gravemente se for um AVC hemorrágico).",
+      "codigo": "PS-0098",
+      "novo": "NÃO administrar remédios (como aspirina ou calmantes) antes da avaliação médica."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "AVC (Derrame)",
+      "chave": "quandoChamarAjuda",
+      "linha": 250,
+      "original": "Na mesma hora (192). O tempo de resposta é vital para evitar sequelas permanentes.",
+      "codigo": "PS-0099",
+      "novo": "Chamar o {{EMERGENCY_MEDICAL}} (192)  imediatamente ao identificar qualquer sinal do teste SAMU. O tempo é vital para evitar sequelas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueFazer[]",
+      "linha": 258,
+      "original": "Ligue imediatamente para o 192 e peça a um ajudante para buscar um DEA (Desfibrilador), se houver um por perto.",
+      "codigo": "PS-0100",
+      "novo": "Ligar imediatamente para o {{EMERGENCY_MEDICAL}} (192) e solicitar um Desfibrilador Externo Automático (DEA), se disponível no local."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueFazer[]",
+      "linha": 259,
+      "original": "Comece as massagens cardíacas (RCP) sem perder tempo.",
+      "codigo": "PS-0101",
+      "novo": "Iniciar as compressões torácicas (RCP) sem perda de tempo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueFazer[]",
+      "linha": 260,
+      "original": "Apoie as mãos no centro do peito e empurre com força e rapidez (ritmo de 100 a 120 compressões por minuto).",
+      "codigo": "PS-0102",
+      "novo": "Posicionar as mãos entrelaçadas e posicionar a base da palma no centro do peito da vítima (na altura do osso esterno e comprimir com força e rapidez (frequência de 100 a 120 compressões por minuto, afundando cerca de 5 a 6 cm)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueFazer[]",
+      "linha": 261,
+      "original": "Deixe o peito voltar à posição normal após cada empurrão.",
+      "codigo": "PS-0103",
+      "novo": "Permitir o retorno completo do tórax após cada compressão, sem retirar as mãos da posição."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueNaoFazer[]",
+      "linha": 264,
+      "original": "Não interrompa as compressões até o socorro chegar ou a pessoa reagir.",
+      "codigo": "PS-0104",
+      "novo": "NÃO interromper as compressões torácicas até a chegada do socorro especializado {{EMERGENCY_MEDICAL}} (192) ou instalação do DEA."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Parada Cardíaca",
+      "chave": "oQueNaoFazer[]",
+      "linha": 265,
+      "original": "Não tenha medo de fraturar uma costela — fazer o coração voltar a bater é a prioridade.",
+      "codigo": "PS-0105",
+      "novo": "NÃO recear fraturas de costela — a manutenção do fluxo sanguíneo para o cérebro e coração é a prioridade absoluta."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Engasgo (Pet)",
+      "chave": "descricao",
+      "linha": 5,
+      "original": "Animal agitado, tentando tossir ou sem conseguir respirar",
+      "codigo": "PS-0106",
+      "novo": "DESCRICAO: Animal agitado, tentando tossir ou sem conseguir respirar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Abra a boca com cuidado",
+      "chave": "descricao",
+      "linha": 11,
+      "original": "Puxe a língua dele para o lado e veja se há algum objeto visível. Cuidado para não levar uma mordida por reflexo!",
+      "codigo": "PS-0107",
+      "novo": "Abra a boca com cuidado: Puxar a língua do animal para o lado e verificar se há objeto visível (cuidado com mordidas reflexas)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Retire SÓ se estiver fácil",
+      "chave": "titulo",
+      "linha": 12,
+      "original": "Retire SÓ se estiver fácil",
+      "codigo": "PS-0108",
+      "novo": "Ação recomendada: Retirar o objeto SÓ se estiver fácil e visível na cavidade oral."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Retire SÓ se estiver fácil",
+      "chave": "descricao",
+      "linha": 12,
+      "original": "Se o objeto estiver muito fundo, não tente puxar com o dedo ou pinça, pois você pode empurrar ainda mais.",
+      "codigo": "PS-0109",
+      "novo": "O QUE NUNCA FAZER: NÃO tentar puxar com dedos ou pinças se o objeto estiver profundo, evitando empurrá-lo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Heimlich (Cães Grandes)",
+      "chave": "descricao",
+      "linha": 13,
+      "original": "Fique por trás dele, abrace a cintura posicionando os punhos logo abaixo das costelas e aperte para cima e para a frente com firmeza.",
+      "codigo": "PS-0110",
+      "novo": "Heimlich (Cães Grandes): Posicionar-se atrás do cão, abraçar a cintura posicionando os punhos logo abaixo das costelas e pressionar para cima e para a frente com firmeza."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Heimlich (Cães Pequenos e Gatos)",
+      "chave": "titulo",
+      "linha": 14,
+      "original": "Heimlich (Cães Pequenos e Gatos)",
+      "codigo": "PS-0111",
+      "novo": "Heimlich (Pequenos): Manejo específico para cães pequenos e gatos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Heimlich (Cães Pequenos e Gatos)",
+      "chave": "descricao",
+      "linha": 14,
+      "original": "Deite o pet de lado e pressione o abdômen logo abaixo das costelas com as pontas dos dedos (faça força, mas com cuidado para não machucar).",
+      "codigo": "PS-0112",
+      "novo": "Técnica: Deitar o pet de lado e pressionar o abdômen logo abaixo das costelas com as pontas dos dedos com força controlada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Golpes nas costas",
+      "chave": "descricao",
+      "linha": 15,
+      "original": "Dê batidas firmes entre as omoplatas com a palma da mão (indicado apenas para gatos e cães pequenos).",
+      "codigo": "PS-0113",
+      "novo": "Golpes nas costas: Aplicar batidas firmes entre as omoplatas com a palma da mão (indicado para gatos e cães pequenos)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Engasgo (Pet)",
+      "chave": "alertas[]",
+      "linha": 17,
+      "original": "Cuidado para não ser mordido: animais engasgados entram em pânico e atacam por instinto.",
+      "codigo": "PS-0114",
+      "novo": "ALERTAS: Cuidado para não sofrer mordidas ou arranhaduras: animais engasgados entram em pânico e reagem por instinto."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Atropelamento / Trauma",
+      "chave": "descricao",
+      "linha": 22,
+      "original": "Pancadas fortes, dor intensa ou dificuldade para se mexer",
+      "codigo": "PS-0115",
+      "novo": "DESCRICAO: Pancadas fortes, dor intensa ou dificuldade para se mexer."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Mova para local seguro",
+      "chave": "descricao",
+      "linha": 28,
+      "original": "Retire o pet da via com muito cuidado. Use um lençol ou cobertor esticado como maca para não entortar a coluna dele.",
+      "codigo": "PS-0116",
+      "novo": "Mover para local seguro: Retirar o pet da via com muito cuidado utilizando lençol ou cobertor esticado como maca para proteger a coluna."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "NÃO o deixe andar",
+      "chave": "descricao",
+      "linha": 29,
+      "original": "Mesmo que ele pareça bem e queira correr, force-o a ficar deitado. Pancadas fortes podem causar hemorragia interna silenciosa.",
+      "codigo": "PS-0117",
+      "novo": "NÃO o deixar andar: Manter o pet deitado mesmo que pareça bem e queira correr (pancadas podem causar hemorragia interna silenciosa)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Sinalize a área",
+      "chave": "descricao",
+      "linha": 30,
+      "original": "Garanta que o local onde você parou para socorrer esteja seguro contra novos acidentes.",
+      "codigo": "PS-0118",
+      "novo": "Sinalizar a área: Garantir a segurança do local onde parou para socorrer contra novos acidentes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Contenha sangramentos",
+      "chave": "descricao",
+      "linha": 31,
+      "original": "Pressione machucados que estejam vertendo sangue usando um pano limpo ou gaze.",
+      "codigo": "PS-0119",
+      "novo": "Conter sangramentos: Pressionar machucados sangrentos com pano limpo ou gaze."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Veterinário Urgente",
+      "chave": "descricao",
+      "linha": 32,
+      "original": "Leve-o imediatamente ao hospital veterinário para exames de imagem e suporte.",
+      "codigo": "PS-0120",
+      "novo": "Veterinário Urgente: Encaminhar o pet imediatamente ao hospital veterinário para atendimento, exames de imagem e suporte."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Atropelamento / Trauma",
+      "chave": "alertas[]",
+      "linha": 34,
+      "original": "Pets sentindo dor forte mordem quem tenta ajudar: improvise uma focinheira leve (só se ele não estiver vomitando).",
+      "codigo": "PS-0121",
+      "novo": "ALERTAS: Pets com dor forte mordem por instinto: improvisar focinheira leve (apenas se não houver risco de vômito)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Parada Cardíaca (RCP)",
+      "chave": "descricao",
+      "linha": 39,
+      "original": "Pet inconsciente, sem respirar e sem batimentos no peito",
+      "codigo": "PS-0122",
+      "novo": "DESCRICAO: Pet inconsciente, sem respiração e sem batimentos cardíacos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Cheque batimentos e ar",
+      "chave": "descricao",
+      "linha": 45,
+      "original": "Coloque a mão sobre o peito para sentir batimentos e aproxime o ouvido do focinho. Sinta o pulso na parte interna da coxa dele.",
+      "codigo": "PS-0123",
+      "novo": "Checar batimentos e ar: Posicionar a mão sobre o peito para sentir batimentos e checar o pulso na parte interna da coxa."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Apenas se estiver PARADO",
+      "chave": "descricao",
+      "linha": 46,
+      "original": "Nunca faça compressões cardíacas se o coração do pet ainda estiver batendo.",
+      "codigo": "PS-0124",
+      "novo": "Apenas se estiver PARADO: NUNCA realizar compressões cardíacas se o coração do pet ainda estiver batendo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Deite do lado DIREITO",
+      "chave": "descricao",
+      "linha": 47,
+      "original": "Deite o animal sobre o lado direito do corpo. O coração dele fica posicionado embaixo do cotovelo esquerdo.",
+      "codigo": "PS-0125",
+      "novo": "Deitar do lado DIREITO: Deitar o animal sobre o lado direito do corpo (o coração fica posicionado sob o cotovelo esquerdo)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Compressões (Pequenos)",
+      "chave": "descricao",
+      "linha": 48,
+      "original": "Para gatos e cães pequenos, envolva o peito dele com uma das mãos (dedão de um lado, dedos do outro) e aperte no ritmo de 100 a 120 por minuto.",
+      "codigo": "PS-0126",
+      "novo": "Compressões (Pequenos): Para gatos e cães pequenos, envolver o peito com uma das mãos e comprimir na frequência de 100 a 120 por minuto."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Compressões (Médios/Grandes)",
+      "chave": "titulo",
+      "linha": 49,
+      "original": "Compressões (Médios/Grandes)",
+      "codigo": "PS-0127",
+      "novo": "Compressões (Médios/Grandes): Técnica de RCP para cães médios e grandes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Compressões (Médios/Grandes)",
+      "chave": "descricao",
+      "linha": 49,
+      "original": "Use as duas mãos sobrepostas sobre a parte mais larga do peito e empurre para baixo comprimindo cerca de um terço da largura do tórax.",
+      "codigo": "PS-0128",
+      "novo": "Execução: Usar as duas mãos sobrepostas na parte mais larga do peito e comprimir cerca de um terço da largura do tórax."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Respiração boca-focinho",
+      "chave": "descricao",
+      "linha": 50,
+      "original": "Mantenha a boca do pet bem fechada com as mãos e sopre ar direto nas narinas dele (faça 2 sopros rápidos a cada 30 compressões).",
+      "codigo": "PS-0129",
+      "novo": "Respiração boca-focinho: Manter a boca do pet bem fechada e soprar ar diretamente nas narinas (2 sopros a cada 30 compressões)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Parada Cardíaca (RCP)",
+      "chave": "alertas[]",
+      "linha": 52,
+      "original": "O procedimento é muito cansativo: se tiver alguém junto, revezem a cada 2 minutos.",
+      "codigo": "PS-0130",
+      "novo": "ALERTAS: O procedimento é exaustivo: revezar com outra pessoa a cada 2 minutos se possível."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Hipertermia (Calor)",
+      "chave": "descricao",
+      "linha": 57,
+      "original": "Respiração extremamente ofegante, gengivas muito vermelhas e desânimo",
+      "codigo": "PS-0131",
+      "novo": "DESCRICAO: Respiração extremamente ofegante, gengivas muito vermelhas e prostração."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Tire do calor na hora",
+      "chave": "descricao",
+      "linha": 63,
+      "original": "Mova o pet imediatamente para a sombra, ar-condicionado ou local com ventilador.",
+      "codigo": "PS-0132",
+      "novo": "Tirar do calor na hora: Mover o pet imediatamente para a sombra, ar-condicionado ou local ventilado."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Molhe patinhas e barriga",
+      "chave": "descricao",
+      "linha": 64,
+      "original": "Use água fresca em temperatura ambiente. Nunca use água gelada ou pedras de gelo, pois o choque térmico pode causar parada cardíaca.",
+      "codigo": "PS-0133",
+      "novo": "Molhar patinhas e barriga: Molhar patinhas e barriga com água fresca em temperatura ambiente (NUNCA água gelada ou gelo, pelo risco de choque térmico)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Aumente o vento",
+      "chave": "descricao",
+      "linha": 65,
+      "original": "Ligue um ventilador direcionado para ele ou abane com um papel ou toalha.",
+      "codigo": "PS-0134",
+      "novo": "Aumente a ventilação: Ligar ventilador direcionado para ele ou abanar com firmeza."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Ofereça água fresca",
+      "chave": "descricao",
+      "linha": 66,
+      "original": "Deixe um pote de água perto, mas não force o animal a beber para evitar engasgos.",
+      "codigo": "PS-0135",
+      "novo": "Ofereça água fresca: Oferecer pote de água fresca sem forçar a ingestão para evitar engasgos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Leve ao Veterinário",
+      "chave": "descricao",
+      "linha": 67,
+      "original": "Mesmo que ele pareça melhorar, o superaquecimento do corpo pode danificar rins e outros órgãos internos.",
+      "codigo": "PS-0136",
+      "novo": "Leve ao Veterinário: Encaminhar ao veterinário pois o superaquecimento pode danificar rins e órgãos internos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Hipertermia (Calor)",
+      "chave": "alertas[]",
+      "linha": 69,
+      "original": "Animais de focinho curto (como Pugs, Bulldogs e Persas) sofrem muito mais no calor.",
+      "codigo": "PS-0137",
+      "novo": "ALERTAS: Animais de focinho curto (como Pugs, Bulldogs e Persas) sofrem muito mais no calor."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Convulsão (Pet)",
+      "chave": "descricao",
+      "linha": 74,
+      "original": "Corpo rígido, salivando e debatendo as patinhas no ar",
+      "codigo": "PS-0138",
+      "novo": "DESCRICAO: Corpo rígido, salivando e debatendo as patinhas no ar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "NÃO puxe a língua",
+      "chave": "descricao",
+      "linha": 80,
+      "original": "Cães e gatos não engolem a própria língua durante a convulsão. Tentar segurar só vai fazer você ser mordido com muita força.",
+      "codigo": "PS-0139",
+      "novo": "NÃO puxar a língua: NÃO puxar a língua do animal (cães e gatos não engolem a língua; tentar segurar resulta em mordidas graves)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Afaste móveis e quinas",
+      "chave": "descricao",
+      "linha": 81,
+      "original": "Retire objetos duros de perto para que o pet não bata a cabeça ou machuque os olhos ao se debater.",
+      "codigo": "PS-0140",
+      "novo": "Afaste móveis e quinas: Afastar móveis e objetos duros para o pet não bater a cabeça ou machucar os olhos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Reduza a luz e sons",
+      "chave": "descricao",
+      "linha": 82,
+      "original": "Apague as luzes do cômodo e desligue TV ou rádio para diminuir o estímulo no cérebro dele.",
+      "codigo": "PS-0141",
+      "novo": "Reduzir a luz e sons: Apagar luzes e desligar TV/rádio para diminuir estímulos no cérebro."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Marque a duração",
+      "chave": "descricao",
+      "linha": 83,
+      "original": "Observe quanto tempo a crise dura. Se passar de 5 minutos, leve-o ao veterinário como emergência crítica.",
+      "codigo": "PS-0142",
+      "novo": "Marcar a duração: Cronometrar a duração da crise. Se ultrapassar 5 minutos, levar ao veterinário como emergência."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Calma após a crise",
+      "chave": "descricao",
+      "linha": 84,
+      "original": "Quando a convulsão passar, o pet vai acordar cego temporariamente e muito assustado. Fale baixinho e evite tocá-lo com pressa.",
+      "codigo": "PS-0143",
+      "novo": "Calma após a crise: Aguardar o retorno gradual da consciência (o pet acorda assustado e com desorientação temporária)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Convulsão (Pet)",
+      "chave": "alertas[]",
+      "linha": 86,
+      "original": "Se conseguir, filme a crise com o celular para mostrar ao veterinário.",
+      "codigo": "PS-0144",
+      "novo": "ALERTAS: Se possível, filmar a crise com o celular para mostrar ao médico veterinário."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Sangramento / Corte",
+      "chave": "descricao",
+      "linha": 91,
+      "original": "Machucados com sangue em orelhas, patinhas ou pele",
+      "codigo": "PS-0145",
+      "novo": "DESCRICAO: Machucados com sangue em orelhas, patinhas ou pele."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Pressione com firmeza",
+      "chave": "descricao",
+      "linha": 97,
+      "original": "Coloque um pano limpo ou gaze sobre o corte e aperte sem parar por pelo menos 5 minutos.",
+      "codigo": "PS-0146",
+      "novo": "Pressionar com firmeza: Colocar pano limpo ou gaze sobre o corte e pressionar sem parar por pelo menos 5 minutos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Não fique espiando",
+      "chave": "descricao",
+      "linha": 98,
+      "original": "Se você ficar tirando o pano para ver se o sangue parou, vai romper a casquinha em formação e reiniciar o sangramento.",
+      "codigo": "PS-0147",
+      "novo": "Não fique espiando: NÃO remover o pano para checar o sangramento, prevenindo a ruptura do coágulo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Eleve o machucado",
+      "chave": "descricao",
+      "linha": 99,
+      "original": "Se o corte for na patinha, levante o membro acima do nível do peito para diminuir a pressão.",
+      "codigo": "PS-0148",
+      "novo": "Elevar o machucado: Elevar a patinha machucada acima do nível do peito para diminuir a pressão sanguínea."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Torniquete (Cuidado)",
+      "chave": "descricao",
+      "linha": 100,
+      "original": "Use apenas se o sangue estiver jorrando de uma artéria. Desaperte o pano a cada 15 minutos para manter a circulação do membro.",
+      "codigo": "PS-0149",
+      "novo": "Torniquete (Cuidado): Utilizar torniquete apenas em hemorragias arteriais graves, desapertando a cada 15 minutos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Vá ao Veterinário",
+      "chave": "descricao",
+      "linha": 101,
+      "original": "Cortes profundos em patinhas ou orelhas costumam precisar de pontos e curativos profissionais.",
+      "codigo": "PS-0150",
+      "novo": "Ir o quanto antes  ao veterinário: Encaminhar ao veterinário pois cortes profundos precisam de pontos e curativos profissionais."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Sangramento / Corte",
+      "chave": "alertas[]",
+      "linha": 103,
+      "original": "Cortes em orelhas sangram muito e espirram sangue quando o pet chacoalha a cabeça.",
+      "codigo": "PS-0151",
+      "novo": "ALERTAS: Cortes em orelhas sangram muito e espirram sangue ao chacoalhar a cabeça."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Sangramento / Corte",
+      "chave": "alertas[]",
+      "linha": 103,
+      "original": "Se cortar a unha do pet curto demais e sangrar, passe amido de milho para ajudar a estancar.",
+      "codigo": "PS-0152",
+      "novo": "DICA: Se cortar a unha do pet curto demais e sangrar, aplicar amido de milho para ajudar a estancar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Picada de Cobra / Escorpião",
+      "chave": "titulo",
+      "linha": 107,
+      "original": "Picada de Cobra / Escorpião",
+      "codigo": "PS-0153",
+      "novo": "DESCRICAO: Bichos peçonhentos e picadas doloridas no quintal."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Picada de Cobra / Escorpião",
+      "chave": "descricao",
+      "linha": 108,
+      "original": "Bichos peçonhentos e picadas doloridas no quintal",
+      "codigo": "PS-0154",
+      "novo": "Tirar uma foto do bicho: Se for Seguro, fotografar o animal causador, para o veterinário saber qual soro aplicar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Tire uma foto do bicho",
+      "chave": "descricao",
+      "linha": 114,
+      "original": "Se for seguro, tire uma foto do animal para o veterinário saber qual soro aplicar. Nunca tente capturar o bicho.",
+      "codigo": "PS-0155",
+      "novo": "Manter o pet imóvel: Evitar que o pet ande ou corra (o movimento acelera os batimentos e espalha o veneno)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Mantenha o pet imóvel",
+      "chave": "descricao",
+      "linha": 115,
+      "original": "Evite que o animal ande ou corra. O movimento acelera os batimentos e espalha o veneno mais rápido pelo sangue.",
+      "codigo": "PS-0156",
+      "novo": "NÃO corte ou aperte: NUNCA cortar o local da picada, não fazer torniquetes e não tentar sugar o veneno."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "NÃO corte ou aperte",
+      "chave": "descricao",
+      "linha": 116,
+      "original": "Nunca corte o local da picada, não faça torniquetes e não tente sugar o veneno com a boca. Isso causa necrose grave.",
+      "codigo": "PS-0157",
+      "novo": "Elevar a região: Elevar a patinha picada em relação ao corpo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Eleve a região",
+      "chave": "descricao",
+      "linha": 117,
+      "original": "Se a picada tiver sido em uma das patinhas, mantenha o membro elevado.",
+      "codigo": "PS-0158",
+      "novo": "Dirija-se para o Veterinário: Encaminhar imediatamente ao veterinário para aplicação do soro antiofídico/antiescorpiônico."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Corra para o Veterinário",
+      "chave": "descricao",
+      "linha": 118,
+      "original": "O soro específico aplicado no hospital é o único tratamento real capaz de salvar o bicho.",
+      "codigo": "PS-0159",
+      "novo": "DESCRICAO: Ingestão de flores, folhas ou seiva de plantas tóxicas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Comeu Planta Venenosa",
+      "chave": "descricao",
+      "linha": 125,
+      "original": "Ingestão de flores, folhas ou seiva de plantas tóxicas",
+      "codigo": "PS-0160",
+      "novo": "Limpar a boca na hora: Retirar restos de folhas da boca e lavar com água corrente abundante para limpar a seiva."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Limpe a boca na hora",
+      "chave": "descricao",
+      "linha": 131,
+      "original": "Retire restos de folhas que estejam na boca e lave com água corrente abundante para limpar a seiva.",
+      "codigo": "PS-0161",
+      "novo": "Foto da planta: Fotografar a planta mastigada ou levar um raminho para identificação."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Tire foto da planta",
+      "chave": "descricao",
+      "linha": 132,
+      "original": "Tire uma foto da planta mastigada ou leve um raminho dela com você para o veterinário identificar.",
+      "codigo": "PS-0162",
+      "novo": "Monitorar a respiração: Observar a respiração, pois plantas tóxicas causam inchaço na boca e garganta."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Monitore a respiração",
+      "chave": "descricao",
+      "linha": 133,
+      "original": "Muitas plantas causam inchaço na boca e na garganta, dificultando a passagem do ar.",
+      "codigo": "PS-0163",
+      "novo": "NÃO induzir vômito: NÃO induzir vômito sem recomendação expressa do veterinário (plantas corrosivas queimam na volta)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "NÃO induza vômito",
+      "chave": "descricao",
+      "linha": 134,
+      "original": "Certas plantas são corrosivas e queimarão a garganta ao subir. Induza apenas sob recomendação expressa do veterinário.",
+      "codigo": "PS-0164",
+      "novo": "Carvão Ativado: Administrar carvão ativado em pó diluído em água se disponível para diminuir a absorção."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Carvão Ativado",
+      "chave": "descricao",
+      "linha": 135,
+      "original": "Se tiver em casa, dê carvão ativado em pó diluído em água para ajudar a bloquear a absorção das toxinas no estômago.",
+      "codigo": "PS-0165",
+      "novo": "ALERTAS: Folhas de lírio são altamente venenosas para gatos, podendo causar falência renal grave."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Comeu Planta Venenosa",
+      "chave": "alertas[]",
+      "linha": 137,
+      "original": "Folhas de lírio são altamente venenosas para gatos, podendo causar falência renal grave em poucas horas.",
+      "codigo": "PS-0166",
+      "novo": "DESCRICAO: Ingestão de cloro, desinfetantes ou veneno de rato."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Produtos Químicos / Veneno",
+      "chave": "titulo",
+      "linha": 141,
+      "original": "Produtos Químicos / Veneno",
+      "codigo": "PS-0167",
+      "novo": "Afastar o produto: Retirar o pet de perto do produto químico e isolar a área."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Produtos Químicos / Veneno",
+      "chave": "descricao",
+      "linha": 142,
+      "original": "Ingestão de cloro, desinfetantes ou veneno de rato",
+      "codigo": "PS-0168",
+      "novo": "Pele ou olhos afetados: Lavar pele ou olhos afetados com água corrente fria por 15 minutos sem parar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Afaste o produto",
+      "chave": "descricao",
+      "linha": 148,
+      "original": "Retire o pet de perto do produto químico e isole a área para evitar contaminação.",
+      "codigo": "PS-0169",
+      "novo": "Ingestão: NÃO force o vômito em substâncias corrosivas; oferecer água fresca para limpar a boca."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Pele ou olhos afetados",
+      "chave": "descricao",
+      "linha": 149,
+      "original": "Lave a região com bastante água corrente fria por 15 minutos sem parar.",
+      "codigo": "PS-0170",
+      "novo": "Ligar para a toxicologia: Ligar para EMERGENCY_MEDICAL}} (192) segurando a embalagem do produto para ler os componentes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Ingestão (Lambeu/Comeu)",
+      "chave": "descricao",
+      "linha": 150,
+      "original": "NÃO force o vômito, pois produtos ácidos ou alcalinos queimam o esôfago. Apenas ofereça água fresca para limpar a boca.",
+      "codigo": "PS-0171",
+      "novo": "Levar ao pronto-socorro: Levar a embalagem do produto químico ou a caixa do veneno junto com o pet ao veterinário."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Ligue para a toxicologia",
+      "chave": "descricao",
+      "linha": 151,
+      "original": "Ligue para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes químicos para o atendente.",
+      "codigo": "PS-0172",
+      "novo": "ALERTAS: NUNCA dar remédios de humanos (como paracetamol ou aspirina) para cães e gatos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "Primeiros socorros — pets",
+      "item": "Leve ao pronto-socorro",
+      "chave": "descricao",
+      "linha": 152,
+      "original": "Leve a embalagem do produto químico ou a caixa do veneno junto com você para o veterinário saber como neutralizar.",
+      "codigo": "PS-0173",
+      "novo": "ALIMENTOS TÓXICOS: Alimentos como chocolate, cebola e xilitol (adoçante) também são venenosos para pets."
+    }
+  ],
+  "removidos": [],
+  "novos": [
+    {
+      "depoisDe": "PS-0008",
+      "texto": "Engasgo (Adulto e Criança acima de 1 ano)"
+    },
+    {
+      "depoisDe": "PS-0019",
+      "texto": "Engasgo (Bebê menor de 1 ano)"
+    },
+    {
+      "depoisDe": "PS-0027",
+      "texto": "Cortes e Sangramentos"
+    },
+    {
+      "depoisDe": "PS-0033",
+      "texto": "Choque Elétrico"
+    },
+    {
+      "depoisDe": "PS-0038",
+      "texto": "Intoxicação"
+    },
+    {
+      "depoisDe": "PS-0043",
+      "texto": "Quedas e Fraturas"
+    },
+    {
+      "depoisDe": "PS-0049",
+      "texto": "Traumatismo Craniano"
+    },
+    {
+      "depoisDe": "PS-0055",
+      "texto": "Intoxicação Alimentar"
+    },
+    {
+      "depoisDe": "PS-0060",
+      "texto": "Corpos Estranhos"
+    },
+    {
+      "depoisDe": "PS-0066",
+      "texto": "Mordidas de Animais"
+    },
+    {
+      "depoisDe": "PS-0072",
+      "texto": "Mal Súbito"
+    },
+    {
+      "depoisDe": "PS-0078",
+      "texto": "Desmaio"
+    },
+    {
+      "depoisDe": "PS-0085",
+      "texto": "Convulsão"
+    },
+    {
+      "depoisDe": "PS-0093",
+      "texto": "AVC (Derrame)"
+    },
+    {
+      "depoisDe": "PS-0099",
+      "texto": "Parada Cardíaca"
+    },
+    {
+      "depoisDe": "PS-0105",
+      "texto": "Primeiros Socorros — Pets"
+    },
+    {
+      "depoisDe": "PS-0105",
+      "texto": "Engasgo (Pet)"
+    },
+    {
+      "depoisDe": "PS-0114",
+      "texto": "Atropelamento / Trauma"
+    },
+    {
+      "depoisDe": "PS-0121",
+      "texto": "Parada Cardíaca (Pet)"
+    },
+    {
+      "depoisDe": "PS-0130",
+      "texto": "Hipertermia (Calor)"
+    },
+    {
+      "depoisDe": "PS-0137",
+      "texto": "Convulsão (Pet)"
+    },
+    {
+      "depoisDe": "PS-0144",
+      "texto": "Sangramento / Corte (Pet)"
+    },
+    {
+      "depoisDe": "PS-0152",
+      "texto": "Picada de Cobra / Escorpião"
+    },
+    {
+      "depoisDe": "PS-0158",
+      "texto": "Comeu Planta Venenosa"
+    },
+    {
+      "depoisDe": "PS-0165",
+      "texto": "Produtos Químicos / Veneno"
+    },
+    {
+      "depoisDe": "PS-0173",
+      "texto": "Kit de Primeiros Socorros"
+    }
+  ],
+  "comentarios": []
+}

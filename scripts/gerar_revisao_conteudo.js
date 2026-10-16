@@ -787,4 +787,4 @@ if (require.main === module) {
 // Exportado para o importador: `importar_revisao_conteudo.js` precisa saber
 // quais paragrafos sao rotulo de papel deste gerador, e nao texto do revisor.
 // Sem isto, "ITENS" e "DESCRICAO" entram como inclusao humana.
-module.exports = { PAPEL_DO_CAMPO, TEMAS, extrair };
+module.exports = { PAPEL_DO_CAMPO, TEMAS, extrair, montarDocumento };

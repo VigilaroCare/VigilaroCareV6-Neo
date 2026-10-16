@@ -1,0 +1,1385 @@
+{
+  "documento": "EX-Explicativos.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-16T21:44:37.322Z",
+  "coerencia": {
+    "lidos": 682,
+    "intactos": 545,
+    "taxa": 0.7991
+  },
+  "editados": [
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de queimadura",
+      "chave": "curto",
+      "linha": 26,
+      "original": "Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos se recuperam mais devagar e com mais dor.",
+      "codigo": "EX-0001",
+      "novo": "Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos se recuperam mais devagar e mais doloramente."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de choque elétrico",
+      "chave": "longo",
+      "linha": 46,
+      "original": "Instalações elétricas não corrigidas estão entre as principais causas de incêndio doméstico com o tempo.",
+      "codigo": "EX-0006",
+      "novo": "Problemas elétricos não corrigidos estão entre as principais causas de incêndio doméstico."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de afogamento",
+      "chave": "curto",
+      "linha": 54,
+      "original": "Uma criança pode se afogar em silêncio, em menos de 2 minutos, sem gritar ou se debater.",
+      "codigo": "EX-0007",
+      "novo": "Uma criança pode se afogar silenciosamente, em menos de 2 minutos, sem gritar ou se debater."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de afogamento",
+      "chave": "medio",
+      "linha": 57,
+      "original": "Enquanto a área ficar sem barreira, a supervisão constante vira a única proteção — um único descuido é suficiente.",
+      "codigo": "EX-0008",
+      "novo": "Enquanto a área ficar sem barreira, a supervisão constante vira a única proteção — um único descuido pode ser fatal."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de corte",
+      "chave": "longo",
+      "linha": 88,
+      "original": "Cortes profundos não tratados a tempo podem deixar cicatrizes ou comprometer a mobilidade da mão.",
+      "codigo": "EX-0015",
+      "novo": "Cortes profundos não tratados a tempo podem deixar cicatrizes ou comprometer a mobilidade da região afetada."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de queda",
+      "chave": "longo",
+      "linha": 102,
+      "original": "Fraturas de fêmur ou quadril em idosos exigem longos períodos de imobilização e podem comprometer a independência.",
+      "codigo": "EX-0018",
+      "novo": "Fraturas de fêmur ou quadril em idosos exigem longos períodos de imobilização e podem comprometer a independência e causar abalo emocional."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de sufocamento",
+      "chave": "longo",
+      "linha": 130,
+      "original": "É a principal causa de morte acidental em bebês no Brasil — o risco não diminui com o tempo, só a atenção diminui.",
+      "codigo": "EX-0024",
+      "novo": "É a principal causa de morte acidental em bebês no Brasil — o risco não diminui com o tempo, só a atenção e cuidado podem evitar."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de estrangulamento",
+      "chave": "medio",
+      "linha": 155,
+      "original": "Crianças em crescimento alcançam alturas novas a cada mês — o que hoje está \"fora de alcance\" deixa de estar.",
+      "codigo": "EX-0029",
+      "novo": "Crianças em crescimento alcançam alturas novas a cada dia — o que hoje está \"fora de alcance\" deixa de estar."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de incêndio",
+      "chave": "medio",
+      "linha": 183,
+      "original": "Sinais pequenos e ignorados — cheiro de queimado, disjuntor caindo — tendem a se repetir até o incêndio acontecer de verdade.",
+      "codigo": "EX-0035",
+      "novo": "Sinais pequenos e ignorados — cheiro de queimado, disjuntor caindo — tendem a se repetir até que o incêndio aconteça."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de vazamento de gás",
+      "chave": "medio",
+      "linha": 225,
+      "original": "Mangueiras fora da validade perdem a vedação aos poucos, aumentando o risco a cada mês.",
+      "codigo": "EX-0044",
+      "novo": "Mangueiras fora da validade perdem a vedação aos poucos, aumentando o risco com o passar do tempo."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de atropelamento",
+      "chave": "curto",
+      "linha": 236,
+      "original": "Uma criança ou pet pode correr para a garagem no exato momento em que o carro for movimentado.",
+      "codigo": "EX-0046",
+      "novo": "Uma criança ou pet podem ficar expostos a acidentes  na garagem nos momentos em que o carro esteja em manobras de entrada ou saída."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de atropelamento",
+      "chave": "medio",
+      "linha": 239,
+      "original": "A rotina de não checar a área embaixo e ao redor do carro tende a se repetir a cada saída.",
+      "codigo": "EX-0047",
+      "novo": "A rotina de não checar a área embaixo e ao redor do carro tende a se repetir a cada manobra de entrada ou saída."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de atropelamento",
+      "chave": "longo",
+      "linha": 242,
+      "original": "Atropelamentos em garagem estão entre os acidentes domésticos mais graves — e mais evitáveis — com crianças pequenas.",
+      "codigo": "EX-0048",
+      "novo": "Atropelamentos em garagem estão entre os acidentes domésticos mais graves — e mais evitáveis — com crianças pequenas e idosos."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de aprisionamento",
+      "chave": "curto",
+      "linha": 250,
+      "original": "Uma criança pode ficar presa em um espaço apertado ou trancado já na próxima brincadeira.",
+      "codigo": "EX-0049",
+      "novo": "Uma criança pode ficar presa em espaços apertados ou trancado já na próxima brincadeira."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de animais peçonhentos",
+      "chave": "curto",
+      "linha": 264,
+      "original": "Frestas e entulho acumulado continuam servindo de esconderijo para aranhas, escorpiões ou cobras a qualquer momento.",
+      "codigo": "EX-0053",
+      "novo": "Frestas e entulhos acumulados continuam servindo de esconderijo para aranhas, escorpiões ou cobras a qualquer momento."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de animais peçonhentos",
+      "chave": "longo",
+      "linha": 270,
+      "original": "Picadas não tratadas a tempo podem evoluir para quadros graves que exigem soroterapia hospitalar.",
+      "codigo": "EX-0055",
+      "novo": "Picadas não tratadas a tempo e que exigem soroterapia hospitalar podem evoluir para quadros graves."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de pragas",
+      "chave": "medio",
+      "linha": 295,
+      "original": "Pragas se reproduzem rápido — o problema tende a crescer, não a desaparecer sozinho.",
+      "codigo": "EX-0060",
+      "novo": "Pragas se reproduzem rapidamente — o problema tende a crescer e não desaparecer sozinho."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Risco de vazamento",
+      "chave": "longo",
+      "linha": 326,
+      "original": "Vazamentos crônicos podem causar infiltração estrutural, mofo ou risco elétrico e de incêndio.",
+      "codigo": "EX-0067",
+      "novo": "Vazamentos recorrentes podem causar infiltração estrutural, mofo ou risco elétrico e de incêndio."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "Orientacao por tipo de risco",
+      "item": "Ponto de atenção",
+      "chave": "curto",
+      "linha": 351,
+      "original": "Este ponto pode evoluir para um problema maior se continuar sem ser observado.",
+      "codigo": "EX-0071",
+      "novo": "Este ponto pode evoluir para um problema maior se continuar sendo ignorado."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Benjamins e Tês (Sobrecarga)",
+      "chave": "descricao",
+      "linha": 9,
+      "original": "Principal causa de incêndios elétricos no Brasil (Abracopel). Plásticos derretem e propagam fogo rapidamente.",
+      "codigo": "EX-0075",
+      "novo": "Principal causa de incêndios elétricos no Brasil segundo a Abracopel. Plásticos derretem e propagam fogo rapidamente."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Benjamins e Tês (Sobrecarga)",
+      "chave": "prevencao[]",
+      "linha": 11,
+      "original": "Nunca ligue aparelhos de resistência (micro-ondas, airfryer, secador) em benjamins.",
+      "codigo": "EX-0076",
+      "novo": "Nunca ligue aparelhos de micro-ondas, airfryer, secador, ferro elétrico em benjamins."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Celular no Banheiro/Molhado",
+      "chave": "primeirosSocorros",
+      "linha": 52,
+      "original": "Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o {{EMERGENCY_MEDICAL}}.",
+      "codigo": "EX-0085",
+      "novo": "Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o EMERGENCY_MEDICAL}} (192)"
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Fios Desencapados (Pets e Bebês)",
+      "chave": "descricao",
+      "linha": 63,
+      "original": "Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, fechando curto-circuito.",
+      "codigo": "EX-0087",
+      "novo": "Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, aumentado o risco de choque elétrico."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Fios Desencapados (Pets e Bebês)",
+      "chave": "prevencao[]",
+      "linha": 66,
+      "original": "Use organizadores de fios em formato de conduíte espiral duro.",
+      "codigo": "EX-0089",
+      "novo": "Use organizadores de fios em formato de conduíte espiral rígido"
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Fios Desencapados (Pets e Bebês)",
+      "chave": "prevencao[]",
+      "linha": 67,
+      "original": "Retire extensões rasteiras do chão, subindo a fiação.",
+      "codigo": "EX-0090",
+      "novo": "Retire extensões rasteiras, mantenha os cabos elétricos suspensos e fora do chão."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Fios Desencapados (Pets e Bebês)",
+      "chave": "primeirosSocorros",
+      "linha": 79,
+      "original": "Desligue a energia geral. Se for pet, afaste-o do fio com material plástico/madeira. Faça RCP se houver parada.",
+      "codigo": "EX-0091",
+      "novo": "Desligue a energia geral. Se for pet, afaste-o do fio com material plástico/madeira. Faça RCP se houver parada cardíaca."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Troca da Resistência do Chuveiro",
+      "chave": "descricao",
+      "linha": 90,
+      "original": "Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas desligando a torneira.",
+      "codigo": "EX-0093",
+      "novo": "Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas desligando fechando a  água."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Troca da Resistência do Chuveiro",
+      "chave": "primeirosSocorros",
+      "linha": 106,
+      "original": "Derrube a chave geral da casa. Arraste a vítima para fora do box seco e inicie ressuscitação se necessário.",
+      "codigo": "EX-0097",
+      "novo": "Desligue a chave geral da casa. Arraste a vítima para fora do box seco e inicie ressuscitação se necessário."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Tomadas Desprotegidas (Crianças)",
+      "chave": "prevencao[]",
+      "linha": 121,
+      "original": "Ensine as crianças sobre o risco do choque de forma lúdica.",
+      "codigo": "EX-0102",
+      "novo": "Ensine as crianças sobre o risco do choque elétrico de forma lúdica."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Eletrodomésticos Perto de Pias/Piscinas",
+      "chave": "descricao",
+      "linha": 144,
+      "original": "Secadores na pia, rádios na borda da piscina ou liquidificadores molhados causam acidentes com alta letalidade.",
+      "codigo": "EX-0105",
+      "novo": "Secadores na pia, equipamentos eletro-eletrônicos na borda da piscina causam acidentes com alta letalidade."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Pipas na Rede Elétrica",
+      "chave": "descricao",
+      "linha": 171,
+      "original": "Acidente grave em ruas e condomínios. Linhas chilenas ou úmidas conduzem a alta tensão direto para o adolescente.",
+      "codigo": "EX-0110",
+      "novo": "Acidente grave em ruas e condomínios. Linhas chilenas (de óxido de alumínio e pó de quartzo) ou úmidas conduzem a alta tensão diretamente para quem as usa."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Pipas na Rede Elétrica",
+      "chave": "prevencao[]",
+      "linha": 175,
+      "original": "Se a pipa enroscar no fio, NÃO tente tirar com cabos de vassoura, canos ou pedras.",
+      "codigo": "EX-0113",
+      "novo": "Se a pipa enroscar no fio, NÃO tente tirar com cabos de vassoura, canos ou pedras. Muito menos tente alcançar."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Pipas na Rede Elétrica",
+      "chave": "primeirosSocorros",
+      "linha": 187,
+      "original": "Afaste curiosos (risco de cabo partido no chão). Ligue imediatamente para 193 e para a concessionária de energia.",
+      "codigo": "EX-0114",
+      "novo": "Afaste curiosos (risco de cabo partido no chão). Ligue imediatamente para EMERGENCY_MEDICAL}} (192) e para a concessionária de energia."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Instalações Antigas e Gambiarras",
+      "chave": "descricao",
+      "linha": 198,
+      "original": "Casas construídas há mais de 20 anos não suportam as cargas atuais. Fios ressecam no forro, causando fogo.",
+      "codigo": "EX-0116",
+      "novo": "Casas antigas normalmente não suportam as cargas atuais. Fios ressecam no forro, causando fogo."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Instalações Antigas e Gambiarras",
+      "chave": "primeirosSocorros",
+      "linha": 214,
+      "original": "Instale detectores de fumaça, especialmente em lares de idosos, para alerta precoce.",
+      "codigo": "EX-0120",
+      "novo": "Instale detectores de fumaça, especialmente em lares de idosos, para alerta preventivo."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Extensões sob Tapetes e Portas",
+      "chave": "descricao",
+      "linha": 225,
+      "original": "O pisoteio constante ou esmagamento sob portas quebra os filamentos de cobre, gerando um ponto de calor extremo.",
+      "codigo": "EX-0122",
+      "novo": "O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando um pontos de calor que podem provocar fogo."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Extensões sob Tapetes e Portas",
+      "chave": "prevencao[]",
+      "linha": 228,
+      "original": "Não passe extensões por frestas de portas que possam \"prensar\" o cabo.",
+      "codigo": "EX-0124",
+      "novo": "Não passe extensões por frestas de portas que possam \"prensar\" e danificar o cabo."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Armas de Fogo",
+      "chave": "descricao",
+      "linha": 280,
+      "original": "O acesso indevido por crianças ou em momentos de raiva pode ser fatal.",
+      "codigo": "EX-0132",
+      "novo": "O acesso indevido por crianças curiosas ou em momentos de raiva pode ser fatal."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Armas de Fogo",
+      "chave": "primeirosSocorros",
+      "linha": 299,
+      "original": "Ligue {{EMERGENCY_NUMBER}} e 190. Estanque sangramentos com compressão forte.",
+      "codigo": "EX-0137",
+      "novo": "Ligue EMERGENCY_MEDICAL}} (192). Estanque sangramentos com compressão forte."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Prevenção de Quedas",
+      "chave": "prevencao[]",
+      "linha": 312,
+      "original": "Instale corrimão em ambos os lados da escada.",
+      "codigo": "EX-0139",
+      "novo": "Instale corrimão em ambos os lados de escadas."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Prevenção de Quedas",
+      "chave": "prevencao[]",
+      "linha": 315,
+      "original": "Instale grades de proteção em janelas e sacadas.",
+      "codigo": "EX-0142",
+      "novo": "Instale grades de proteção ou telas  em janelas e sacadas."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Prevenção de Quedas",
+      "chave": "primeirosSocorros",
+      "linha": 332,
+      "original": "Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame {{EMERGENCY_NUMBER}}.",
+      "codigo": "EX-0144",
+      "novo": "Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame EMERGENCY_MEDICAL}} (192)."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Afogamento",
+      "chave": "descricao",
+      "linha": 343,
+      "original": "Pode acontecer em poucos centímetros de água (baldes, banheiras).",
+      "codigo": "EX-0145",
+      "novo": "Pode acontecer com crianças pequenas em apenas 2,5 a 5 centímetros de água (baldes, banheiras) e de forma rápida e silenciosa."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Afogamento",
+      "chave": "prevencao[]",
+      "linha": 346,
+      "original": "Esvazie baldes e bacias após o uso.",
+      "codigo": "EX-0147",
+      "novo": "Esvazie baldes, bacias, tanques e máquinas de lavar após o uso."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Afogamento",
+      "chave": "primeirosSocorros",
+      "linha": 362,
+      "original": "Retire da água. Se não respirar, inicie RCP imediatamente. Chame 193/192.",
+      "codigo": "EX-0150",
+      "novo": "Retire da água. Se não respirar, inicie RCP imediatamente. Chame EMERGENCY_MEDICAL}} (192)"
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Esmagamento por Tombamento",
+      "chave": "descricao",
+      "linha": 374,
+      "original": "O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas lesões.",
+      "codigo": "EX-0152",
+      "novo": "O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas e irreversíveis lesões."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Esmagamento por Tombamento",
+      "chave": "prevencao[]",
+      "linha": 376,
+      "original": "Fixe estantes altas e cômodas na parede usando suportes.",
+      "codigo": "EX-0153",
+      "novo": "Fixe estantes altas e cômodas na parede usando suportes ou cabos apropriados."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Esmagamento por Tombamento",
+      "chave": "primeirosSocorros",
+      "linha": 381,
+      "original": "Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue {{EMERGENCY_NUMBER}}.",
+      "codigo": "EX-0157",
+      "novo": "Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue EMERGENCY_MEDICAL}} (192)."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras",
+      "chave": "descricao",
+      "linha": 390,
+      "original": "A cozinha é o ambiente mais crítico. Tombamento de líquidos ferventes (ao puxar toalhas) e cabos de panela para fora causam lesões irreparáveis.",
+      "codigo": "EX-0158",
+      "novo": "A cozinha é o ambiente mais crítico. Tombamento de líquidos ferventes (ao puxar toalhas) e cabos de panela para fora causam queimaduras irreparáveis."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras",
+      "chave": "prevencao[]",
+      "linha": 394,
+      "original": "Não use toalhas de mesa compridas se houver crianças que possam puxá-las.",
+      "codigo": "EX-0161",
+      "novo": "Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem casuar este tipo de acidentes."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras",
+      "chave": "prevencao[]",
+      "linha": 395,
+      "original": "Atenção ao abrir a porta do forno quente e ao usar panelas de pressão.",
+      "codigo": "EX-0162",
+      "novo": "Atenção ao abrir a porta do forno ou retirar recipientes quente (use cabos apropriados ou luvas térmicas) e ao usar panelas de pressão."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Sufocação e Engasgo",
+      "chave": "descricao",
+      "linha": 406,
+      "original": "Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros no berço, peças pequenas e alimentos granulados.",
+      "codigo": "EX-0164",
+      "novo": "Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros e excesso de no berço, peças pequenas e alimentos granulados."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Sufocação e Engasgo",
+      "chave": "prevencao[]",
+      "linha": 411,
+      "original": "Mantenha feijões crus, milho e moedas longe do alcance.",
+      "codigo": "EX-0168",
+      "novo": "Mantenha feijões crus, milho e moedas longe do alcance. Despensa assim como cozinha é local proibido para crianças."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Sufocação e Engasgo",
+      "chave": "primeirosSocorros",
+      "linha": 413,
+      "original": "Acima de 1 ano: alterne 5 pancadas entre as escápulas com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue {{EMERGENCY_NUMBER}} se não desengasgar.",
+      "codigo": "EX-0169",
+      "novo": "Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue EMERGENCY_MEDICAL}} (192) se não desengasgar."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Cortes Profundos",
+      "chave": "prevencao[]",
+      "linha": 425,
+      "original": "NUNCA se apoie na pia do banheiro (cerâmica). Instale barras de apoio de metal fixadas na alvenaria.",
+      "codigo": "EX-0172",
+      "novo": "NUNCA se apoie na pia do banheiro ou suba no vaso sanitário (cerâmica). Instale barras de apoio de metal fixadas na alvenaria."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Cortes Profundos",
+      "chave": "prevencao[]",
+      "linha": 427,
+      "original": "Coloque películas protetoras ou redes em portas de vidro.",
+      "codigo": "EX-0174",
+      "novo": "Coloque películas protetoras ou redes em portas de vidro. Isso vai evitar cacos e estilhaçamento contatantes."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "E-bikes e Bicicletas",
+      "chave": "primeirosSocorros",
+      "linha": 445,
+      "original": "Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue {{EMERGENCY_NUMBER}} e mantenha a pessoa calma até o resgate.",
+      "codigo": "EX-0181",
+      "novo": "Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue EMERGENCY_MEDICAL}} (192) e mantenha a pessoa calma até o resgate chegar."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Lesões em Parquinhos",
+      "chave": "descricao",
+      "linha": 454,
+      "original": "Falta de manutenção gera ferrugem, pregos expostos e partes soltas. Brincar em áreas não compatíveis com a idade também causa choques violentos.",
+      "codigo": "EX-0182",
+      "novo": "Falta de manutenção gera ferrugem, pregos expostos e partes folgadas ou soltas. Brincar em áreas não compatíveis com a idade ou crianças de grande diferenças de idade também causa choques violentos."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Lesões em Parquinhos",
+      "chave": "prevencao[]",
+      "linha": 458,
+      "original": "Certifique-se de que o piso do parquinho seja de borracha ou areia fofa, não asfalto.",
+      "codigo": "EX-0185",
+      "novo": "Certifique-se de que o piso do parquinho seja de borracha ou areia fofa, não superfícies ásperas."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras em Eventos",
+      "chave": "descricao",
+      "linha": 470,
+      "original": "Uso de álcool líquido em churrasqueiras e manuseio amador de fogos de artifício em festas representam os maiores picos de acidentes do ano.",
+      "codigo": "EX-0188",
+      "novo": "Uso de álcool líquido em churrasqueiras e manuseio amador de fogos de artifício em festas representam os maiores picos de acidentes em determinadas épocas do ano."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras em Eventos",
+      "chave": "prevencao[]",
+      "linha": 472,
+      "original": "NUNCA use álcool líquido (seja de qual volume for) para acender o carvão. Use acendedores sólidos.",
+      "codigo": "EX-0189",
+      "novo": "NUNCA use álcool líquido (seja de qual volume for) para acender o carvão. Use acendedores sólidos ou acendedores elétricos."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Queimaduras em Eventos",
+      "chave": "prevencao[]",
+      "linha": 473,
+      "original": "Mantenha as crianças longe (pelo menos 2 metros) da churrasqueira.",
+      "codigo": "EX-0190",
+      "novo": "Mantenha as crianças longe (pelo menos 2 metros) da churrasqueira. Qualquer distração pode permitir que tragédias aconteçam."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Exposição ao Clima e Insolação",
+      "chave": "prevencao[]",
+      "linha": 489,
+      "original": "Priorize o trabalho no jardim nas primeiras horas da manhã ou no fim da tarde.",
+      "codigo": "EX-0196",
+      "novo": "Priorize a jardinagem nas primeiras horas da manhã ou no fim da tarde."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "Riscos fisicos",
+      "item": "Exposição ao Clima e Insolação",
+      "chave": "primeirosSocorros",
+      "linha": 493,
+      "original": "Vá para um local fresco e arejado. Beba água aos poucos. Faça compressas frias na cabeça. Se houver tontura forte ou vômito, procure um médico.",
+      "codigo": "EX-0199",
+      "novo": "Se sofrer insolação, vá para um local fresco e arejado. Beba água aos poucos. Faça compressas frias na cabeça. Se houver tontura forte ou vômito, procure um médico."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 22,
+      "original": "O aparelho pode tombar e derramar gordura ou comida quente se puxarem o fio.",
+      "codigo": "EX-0202",
+      "novo": "O aparelho pode tombar e derramar gordura ou comida quente o fio for puxado."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 24,
+      "original": "Nunca deixe a fritadeira em cima de toalhas que crianças ou pets possam puxar. Deixe o fio elétrico curto e bem organizado.",
+      "codigo": "EX-0203",
+      "novo": "Nunca deixe a fritadeira em cima de toalhas que crianças ou pets possam puxar. Deixe o fio elétrico curto e bem organizado preferencialmente na parte de trás da bancada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 32,
+      "original": "As lâminas cortam muito rápido, com risco de acidentes sérios nos dedos.",
+      "codigo": "EX-0205",
+      "novo": "As lâminas são altamente cortantes, com risco de acidentes sérios principalmente nos dedos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 35,
+      "original": "Tire sempre o aparelho da tomada antes de mexer ou limpar as lâminas. Guarde as peças cortantes desmontadas e no alto.",
+      "codigo": "EX-0207",
+      "novo": "Tire sempre o aparelho da tomada após o uso e antes de mexer ou limpar as lâminas. Guarde as peças cortantes desmontadas e no alto."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 44,
+      "original": "Cacos microscópicos que ficam no chão após a quebra.",
+      "codigo": "EX-0210",
+      "novo": "Cacos minúsculos que ficam no chão após a quebra."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 46,
+      "original": "Se quebrar um refratário ou copo, apague a luz e mire a lanterna do celular paralela ao chão. Os caquinhos invisíveis vão brilhar no escuro.",
+      "codigo": "EX-0211",
+      "novo": "Se quebrar um refratário ou copo, apague a luz e mire a lanterna do celular paralela ao chão. Os caquinhos invisíveis vão brilhar no escuro. Efetue a coleta imediatamente."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 56,
+      "original": "O vidro externo pode queimar mesmo com isolamento térmico. Coloque uma trava de porta específica para fornos.",
+      "codigo": "EX-0213",
+      "novo": "O vidro externo, se tocado, pode queimar mesmo com isolamento térmico. Coloque uma trava de porta específica para fornos. Com o forno ou fogão em uso, jamais permita crianças na cozinha."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 88,
+      "original": "Mantenha a porta da máquina de lavar trancada ou fechada quando ela não estiver batendo roupas.",
+      "codigo": "EX-0220",
+      "novo": "Mantenha a porta da máquina de lavar trancada ou fechada e com o cabo fora da tomada quando não estiver em uso."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 98,
+      "original": "Acabou de usar o balde? Esvazie-o na mesma hora e guarde de cabeça para baixo no chão.",
+      "codigo": "EX-0223",
+      "novo": "Acabou de usar o balde, bacia ou tanque? Esvazie-os imediatamente. Guarde de cabeça para baixo (baldes e bacias) e não gos guarde no chão. Ao alcance de crianças elas pode brincar com água das suas torneiras."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 129,
+      "original": "A porta do box pode emperrar se alguém cair desmaiado encostado nela.",
+      "codigo": "EX-0228",
+      "novo": "A porta do box pode emperrar se houver queda e desmaio ao encostar nela."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 151,
+      "original": "Veja se o seu banheiro conta com o disjuntor DR no quadro elétrico para cortar a energia em caso de contato com a água.",
+      "codigo": "EX-0234",
+      "novo": "Veja o painel elétrico se o seu banheiro conta com o disjuntor DR para cortar a energia em caso de contato com a água."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 183,
+      "original": "Se tiver bebês aprendendo a andar, guarde a mesa de centro por alguns meses ou cubra as quinas com protetores macios.",
+      "codigo": "EX-0241",
+      "novo": "Se tiver bebês aprendendo a andar, guarde a mesa de centro por alguns meses ou proteja as quinas com protetores macios."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 201,
+      "original": "Engolir a pilha redonda causa queimadura química severa no estômago em 2 horas.",
+      "codigo": "EX-0246",
+      "novo": "Engolir a pilha redonda causa em 2 horas  queimadura química severa no estômago."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 225,
+      "original": "Identifique as plantas do seu quintal. Se notar espécies tóxicas, mude-as para vasos suspensos ou doe.",
+      "codigo": "EX-0251",
+      "novo": "Identifique as plantas do seu quintal (Consulte um especialista é uma boa opção). Se notar espécies tóxicas, mude-as para vasos suspensos ou doe."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 233,
+      "original": "Cinzas por cima podem esconder brasas ainda muito quentes por horas no quintal.",
+      "codigo": "EX-0253",
+      "novo": "Cinzas por cima podem esconder brasas ainda muito quentes por horas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 234,
+      "original": "Jogar álcool líquido direto no carvão para acender ou atiçar a chama.",
+      "codigo": "EX-0254",
+      "novo": "Jogar álcool líquido direto no carvão para acender ou causar chama."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 265,
+      "original": "Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês e idosos.",
+      "codigo": "EX-0259",
+      "novo": "Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês, crianças pequenas e idosos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 268,
+      "original": "Use portõezinhos de segurança (grades) aparafusados no topo e na base das escadas se tiver bebês.",
+      "codigo": "EX-0261",
+      "novo": "Use portõezinhos de segurança (grades) fixados no topo e na base das escadas se tiver bebês e crianças pequenas (as que engatinham, peincipalemente)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "expert_tip",
+      "linha": 309,
+      "original": "Nunca guarde ferramentas na tomada. Guarde furadeiras e serras elétricas em caixas fechadas no alto.",
+      "codigo": "EX-0269",
+      "novo": "Nunca guarde ferramentas na tomada. Guarde furadeiras e serras elétricas em caixas fechadas no alto e com seus acessórios separados e organizados."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+      "rotulo": "Base de perigos",
+      "item": "(sem titulo)",
+      "chave": "desc",
+      "linha": 318,
+      "original": "Armazenar galões de combustível ou tiner perto de tomadas ou faíscas da garagem.",
+      "codigo": "EX-0272",
+      "novo": "Armazenar galões de combustível ou tinner perto de tomadas ou faíscas da garagem."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Festas e Eventos",
+      "chave": "consequence",
+      "linha": 64,
+      "original": "Tropeções e quedas graves em pisos desconhecidos.",
+      "codigo": "EX-0294",
+      "novo": "Tropeções e quedas graves em pisos desconhecidos ou mal iluminados."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Festas e Eventos",
+      "chave": "checkAction",
+      "linha": 95,
+      "original": "Mantenha portões trancados e proíba passeios perto da água sem adultos.",
+      "codigo": "EX-0307",
+      "novo": "Mantenha portões trancados e proíba passeios perto da água sem adultos supervisionando."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Festas e Eventos",
+      "chave": "text",
+      "linha": 107,
+      "original": "O banheiro e as áreas de lazer são acessíveis?",
+      "codigo": "EX-0311",
+      "novo": "O banheiro e as áreas de lazer são acessíveis (adaptados)?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "description",
+      "linha": 124,
+      "original": "Receber visitas exige adaptar a casa para quem não a conhece. Idosos e bebês têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia.",
+      "codigo": "EX-0314",
+      "novo": "Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças e bebês têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "checkAction",
+      "linha": 161,
+      "original": "Use protetores plásticos específicos nas tomadas não usadas.",
+      "codigo": "EX-0326",
+      "novo": "Use protetores plásticos específicos nas tomadas não utilizadas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "consequence",
+      "linha": 168,
+      "original": "Intoxicações acidentais com vidros coloridos deixados em gavetas ou debaixo da pia.",
+      "codigo": "EX-0328",
+      "novo": "Intoxicações acidentais com recipientes coloridos deixados em gavetas ou debaixo da pia."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "checkAction",
+      "linha": 177,
+      "original": "Use tapete de borracha no box e disponibilize apoio.",
+      "codigo": "EX-0332",
+      "novo": "Use tapete de borracha no box e disponibilize barras de apoio."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "text",
+      "linha": 205,
+      "original": "Garantia de acessibilidade para visitantes com deficiência?",
+      "codigo": "EX-0342",
+      "novo": "Garantia de acessibilidade para visitantes com necessidades especiais?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "consequence",
+      "linha": 206,
+      "original": "Degraus soltos ou portas apertadas causam quedas graves ao improvisar.",
+      "codigo": "EX-0343",
+      "novo": "Degraus soltos ou portas estreitas causam quedas graves ao improvisar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Visitação Segura",
+      "chave": "consequence",
+      "linha": 213,
+      "original": "A desorientação em um novo ambiente favorece tombos sérios.",
+      "codigo": "EX-0346",
+      "novo": "A desorientação em um novo ambiente favorece quedas graves."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Reformas e Obras",
+      "chave": "description",
+      "linha": 229,
+      "original": "Obras em casa sempre deixam o ambiente de pernas para o ar. Fios expostos provisórios e pregos ou pedaços de madeira espalhados no chão são as maiores armadilhas de acidentes.",
+      "codigo": "EX-0348",
+      "novo": "Obras em casa sempre deixam o ambiente de pernas para o ar. Fios expostos provisórios e pregos e parafusos ou pedaços de madeira espalhados no chão são as maiores armadilhas de acidentes."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Reformas e Obras",
+      "chave": "consequence",
+      "linha": 241,
+      "original": "Crianças e pets entram para explorar entulhos e se machucam.",
+      "codigo": "EX-0352",
+      "novo": "Crianças e pets entram explora os locais de obra se machucam  nos entulhos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Reformas e Obras",
+      "chave": "consequence",
+      "linha": 248,
+      "original": "Instalações provisórias de obra podem aquecer à noite e pegar fogo.",
+      "codigo": "EX-0355",
+      "novo": "Instalações elétricas provisórias de obra podem aquecer à noite e pegar fogo."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Reformas e Obras",
+      "chave": "checkAction",
+      "linha": 281,
+      "original": "Organize as extensões longe de umidade e canos.",
+      "codigo": "EX-0368",
+      "novo": "Organize as extensões e mantenha longe de umidade e tubulações."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Mudança de Residência",
+      "chave": "checkAction",
+      "linha": 323,
+      "original": "Mantenha janelas trancadas até a empresa instalar as redes.",
+      "codigo": "EX-0380",
+      "novo": "Mantenha janelas trancadas até que redes sejam instaladas. Prefira empresas especializadas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Mudança de Residência",
+      "chave": "consequence",
+      "linha": 351,
+      "original": "Instalações antigas podem esquentar ou dar curto-circuito com aparelhos novos.",
+      "codigo": "EX-0391",
+      "novo": "Instalações antigas podem esquentar ou causar curto-circuito com aparelhos de alta potência (Watts)."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Mudança de Residência",
+      "chave": "checkAction",
+      "linha": 352,
+      "original": "Teste disjuntores e cheque se há fios soltos nas paredes.",
+      "codigo": "EX-0392",
+      "novo": "Teste disjuntores e cheque se há fios soltos nas paredes ou aquecimento. Consulte um profissional qualificado."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Mudança de Residência",
+      "chave": "consequence",
+      "linha": 358,
+      "original": "Portas e portões abertos o tempo todo facilitam fugas ou quedas na rua.",
+      "codigo": "EX-0394",
+      "novo": "Portas e portões abertos o tempo todo facilitam fugas, quedas ou acidentes de trânsito."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Mudança de Residência",
+      "chave": "checkAction",
+      "linha": 359,
+      "original": "Deixe as crianças e pets com familiares ou trancados em um quarto seguro.",
+      "codigo": "EX-0395",
+      "novo": "Deixe as crianças e pets com familiares ou em um quarto seguro."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "description",
+      "linha": 374,
+      "original": "Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são ágeis e encontram perigos em segundos.",
+      "codigo": "EX-0396",
+      "novo": "Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são rápidas e se expõem à perigos em segundos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "keyPoints[]",
+      "linha": 377,
+      "original": "Impeça a entrada de crianças na cozinha enquanto o fogão estiver aceso.",
+      "codigo": "EX-0397",
+      "novo": "Impeça a entrada de crianças na cozinha quando o fogão estiver em uso."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "keyPoints[]",
+      "linha": 379,
+      "original": "Evite se distrair com o celular, TV ou redes sociais enquanto vigia as crianças.",
+      "codigo": "EX-0398",
+      "novo": "Evite distração com o celular, TV ou redes sociais se sua tarefa for vigiar as crianças."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "consequence",
+      "linha": 387,
+      "original": "Bastam alguns segundos longe da vista para o bebê mexer em algo perigoso.",
+      "codigo": "EX-0400",
+      "novo": "Bastam alguns segundos de distração para o bebê mexer ou alcançar algo perigoso."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "checkAction",
+      "linha": 388,
+      "original": "Mantenha contato visual ou fique perto da criança.",
+      "codigo": "EX-0401",
+      "novo": "Mantenha constante contato visual e permaneça sempre próximo da criança."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "consequence",
+      "linha": 394,
+      "original": "Olhar redes sociais ou responder mensagens tira a sua atenção rápida.",
+      "codigo": "EX-0403",
+      "novo": "Acessar redes sociais ou trocar mensagens tira a sua atenção imediata."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "text",
+      "linha": 401,
+      "original": "As janelas do cômodo têm redes de proteção firmes?",
+      "codigo": "EX-0405",
+      "novo": "As janelas do cômodo têm redes de proteção apropriadas e em boas condições?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "checkAction",
+      "linha": 403,
+      "original": "Instale redes e mantenha as janelas travadas se não tiver tela.",
+      "codigo": "EX-0407",
+      "novo": "Instale redes de proteção e mantenha as janelas trancadas caso não tenha."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "checkAction",
+      "linha": 411,
+      "original": "Feche a porta da cozinha ou use portõezinhos de proteção.",
+      "codigo": "EX-0410",
+      "novo": "Mantenha  a porta da cozinha fechada ou use portõezinhos de proteção."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "checkAction",
+      "linha": 419,
+      "original": "Guarde desinfetantes e comprimidos em prateleiras bem altas.",
+      "codigo": "EX-0413",
+      "novo": "Guarde desinfetantes e comprimidos em prateleiras fora do alcance de croianças."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "text",
+      "linha": 425,
+      "original": "Checou se não há moedas ou pilhas no chão?",
+      "codigo": "EX-0414",
+      "novo": "Ceertificou-se que não haja moedas ou pilhas no chão?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Monitorando Crianças",
+      "chave": "consequence",
+      "linha": 426,
+      "original": "Bebês colocam tudo na boca, gerando asfixia ou queimaduras no esôfago por baterias.",
+      "codigo": "EX-0415",
+      "novo": "Bebês colocam tudo na boca. Baterias geram asfixia ou queimaduras no esôfago."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "consequence",
+      "linha": 455,
+      "original": "Subir em cadeiras ou caixas é instável e causa tombos perigosos.",
+      "codigo": "EX-0419",
+      "novo": "Subir em cadeiras ou caixas é perigosos, instável e causa quedas."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "checkAction",
+      "linha": 466,
+      "original": "Chame alguém na casa para apoiar os pés na base da escada.",
+      "codigo": "EX-0423",
+      "novo": "Peça ajuda de alguém para apoiar os pés da escada para evitar que deslize."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "consequence",
+      "linha": 484,
+      "original": "Apoiar em piso molhado ou irregular causa escorregamento da escada.",
+      "codigo": "EX-0428",
+      "novo": "Apoiar em piso molhado ou irregular causa deslizamento ou tombamento da escada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "checkAction",
+      "linha": 485,
+      "original": "Seque o piso e limpe qualquer poeira antes de posicionar.",
+      "codigo": "EX-0429",
+      "novo": "Seque o piso e limpe a área antes de posicionar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "text",
+      "linha": 501,
+      "original": "Se for subir no telhado ou laje, avaliou chamar um profissional?",
+      "codigo": "EX-0433",
+      "novo": "Se for subir no telhado ou laje, avaliou chamar um profissional especializado?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "consequence",
+      "linha": 502,
+      "original": "Quedas de lajes e telhados quebrados costumam ser fatais.",
+      "codigo": "EX-0434",
+      "novo": "Quedas de lajes e telhados que quebram costumam ser fatais."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "checkAction",
+      "linha": 503,
+      "original": "Contrate um calheiro ou telhador especializado em vez de se arriscar.",
+      "codigo": "EX-0435",
+      "novo": "Contrate um calheiro ou telhadeiro especializado em vez de se arriscar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "description",
+      "linha": 521,
+      "original": "Misturar produtos de limpeza pode soltar gases venenosos invisíveis que queimam os pulmões. Use um produto por vez e deixe a casa ventilada.",
+      "codigo": "EX-0436",
+      "novo": "Misturar produtos de limpeza pode gerar gases venenosos invisíveis que queimam os pulmões. Use um produto por vez e mantenha a casa ventilada."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "text",
+      "linha": 533,
+      "original": "As janelas e portas da área de faxina estão abertas?",
+      "codigo": "EX-0437",
+      "novo": "As janelas e portas da área da faxina estão abertas?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "checkAction",
+      "linha": 535,
+      "original": "Abra tudo para o ar circular e renovar.",
+      "codigo": "EX-0439",
+      "novo": "Abra tudo para circulação e renovação do ar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "consequence",
+      "linha": 552,
+      "original": "O cloro e ácidos causam dermatite e queimaduras químicas na pele.",
+      "codigo": "EX-0444",
+      "novo": "Cloro e ácidos causam dermatite e queimaduras químicas na pele."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "text",
+      "linha": 559,
+      "original": "Crianças e cachorros estão longe da faxina?",
+      "codigo": "EX-0446",
+      "novo": "Crianças e pets estão longe da faxina?"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "consequence",
+      "linha": 560,
+      "original": "Eles respiram os vapores rentes ao chão ou podem beber a água suja do balde.",
+      "codigo": "EX-0447",
+      "novo": "Eles respiram os vapores do chão ou podem beber a água suja do balde."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "consequence",
+      "linha": 568,
+      "original": "Guardar desinfetante ou cloro em garrafa de suco causa envenenamento por engano.",
+      "codigo": "EX-0450",
+      "novo": "Guardar desinfetante ou cloro em garrafa de suco causa envenenamento acidental."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "Categorias de risco",
+      "item": "Faxina Pesada",
+      "chave": "consequence",
+      "linha": 575,
+      "original": "Escorregões no chão ensaboado geram tombos perigosos.",
+      "codigo": "EX-0453",
+      "novo": "Escorregões no chão ensaboado causam tombos perigosos."
+    },
+    {
+      "arquivo": "data/neurodivergence_data.js",
+      "rotulo": "Neurodivergencia",
+      "item": "Lar Neurodiverso",
+      "chave": "description",
+      "linha": 4,
+      "original": "A segurança vai muito além das barreiras físicas. Para pessoas atípicas (TEA, TDAH, TPS), a percepção de risco e o comportamento em emergências são únicos. Este módulo oferece protocolos vitais de prevenção.",
+      "codigo": "EX-0455",
+      "novo": "A segurança vai muito além das barreiras físicas. Para pessoas atípicas (TEA, TDAH, TPS), a percepção de risco e o comportamento em emergências são únicos. Este módulo apresenta protocolos vitais de prevenção."
+    },
+    {
+      "arquivo": "data/mobilidade_data.js",
+      "rotulo": "Mobilidade reduzida",
+      "item": "Assento de Elevação (Booster)",
+      "chave": "quando_parar",
+      "linha": 187,
+      "original": "Quando a criança atingir 1,45m E o cinto passar corretamente (ombro e quadril)",
+      "codigo": "EX-0462",
+      "novo": "Quando a criança atingir 1,45m e o cinto passar corretamente (ombro e quadril)"
+    },
+    {
+      "arquivo": "data/escola_segura_data.js",
+      "rotulo": "Escola segura",
+      "item": "Estrutura Física",
+      "chave": "texto",
+      "linha": 147,
+      "original": "Extintores de incêndio visíveis e dentro da validade",
+      "codigo": "EX-0504",
+      "novo": "Extintores de incêndio visíveis, dentro da validade e desobstruídos."
+    },
+    {
+      "arquivo": "data/escola_segura_data.js",
+      "rotulo": "Escola segura",
+      "item": "Estrutura Física",
+      "chave": "detalhes",
+      "linha": 151,
+      "original": "Verificar se há extintores suficientes e se estão em locais acessíveis.",
+      "codigo": "EX-0505",
+      "novo": "Verificar se há extintores suficientes e se estão em locais acessíveis e sinalizados."
+    },
+    {
+      "arquivo": "data/escola_segura_data.js",
+      "rotulo": "Escola segura",
+      "item": "Mobiliário e Equipamentos",
+      "chave": "detalhes",
+      "linha": 203,
+      "original": "Protetores de quina previnem ferimentos em quedas.",
+      "codigo": "EX-0514",
+      "novo": "Protetores de quina previnem ferimentos em impactos."
+    },
+    {
+      "arquivo": "data/escola_segura_data.js",
+      "rotulo": "Escola segura",
+      "item": "Piscina (se houver)",
+      "chave": "texto",
+      "linha": 587,
+      "original": "Equipamentos de salvamento acessíveis (boia, vara)",
+      "codigo": "EX-0579",
+      "novo": "Equipamentos de salvamento acessíveis (boia, vara, corda)"
+    },
+    {
+      "arquivo": "data/escola_segura_data.js",
+      "rotulo": "Escola segura",
+      "item": "Segurança Geral",
+      "chave": "texto",
+      "linha": 781,
+      "original": "Fichas médicas das crianças atualizadas",
+      "codigo": "EX-0611",
+      "novo": "Fichas médicas das crianças, atualizadas"
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}
