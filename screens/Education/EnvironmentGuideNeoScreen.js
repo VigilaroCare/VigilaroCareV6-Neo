@@ -9,6 +9,7 @@ import { useThemeColors } from '../../utils/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../../context/AccessibilityContext';
 import SafeGradient from '../../components/SafeGradient';
+import { t_field } from '../../utils/getLocalizedField';
 
 const { width } = Dimensions.get('window');
 const HERO_HEIGHT = Math.round(width * 0.78);
@@ -136,7 +137,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
     const currentUrl = capaList[imgIndex];
     const showImage = !allFailed && !!currentUrl && !guideData.useStyledHero;
 
-    const destaqueText = guideData.conteudo.find(c => c.tipo === 'destaque')?.texto;
+    const destaqueText = t_field(guideData.conteudo.find(c => c.tipo === 'destaque'), 'texto');
     const topicos = guideData.conteudo.filter(c => c.tipo === 'topico');
     const dicas = guideData.conteudo.filter(c => c.tipo === 'dica');
 
@@ -172,7 +173,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                             source={typeof currentUrl === 'number' ? currentUrl : { uri: currentUrl }}
                             style={{ width: '100%', height: '100%' }}
                             resizeMode="cover"
-                            accessibilityLabel={guideData.nome}
+                            accessibilityLabel={t_field(guideData, 'nome')}
                             onError={handleImgError}
                         />
                     ) : (
@@ -193,7 +194,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }} accessibilityRole="header">
-                            {guideData.nome}
+                            {t_field(guideData, 'nome')}
                         </Text>
                     </View>
                 </Animated.View>
@@ -235,7 +236,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                                 flex: 1,
                                 lineHeight: 24,
                             }}>
-                                {topico.titulo}
+                                {t_field(topico, 'titulo')}
                             </Text>
                         </View>
                         <Text style={{
@@ -243,7 +244,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                             color: colors.neutral[700],
                             lineHeight: 24,
                         }}>
-                            {topico.texto}
+                            {t_field(topico, 'texto')}
                         </Text>
                     </View>
                 ))}
@@ -281,7 +282,7 @@ export default function EnvironmentGuideNeoScreen({ route, navigation }) {
                                 lineHeight: 22,
                                 marginBottom: idx < dicas.length - 1 ? 10 : 0,
                             }}>
-                                {dica.texto}
+                                {t_field(dica, 'texto')}
                             </Text>
                         ))}
                     </View>

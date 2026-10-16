@@ -9,6 +9,7 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
 import { useThemeColors } from '../utils/ThemeContext';
+import { t_field } from '../utils/getLocalizedField';
 
 export default function ProdutoScannerScreen({ route, navigation }) {
   const { t } = useTranslation('common');
@@ -50,8 +51,8 @@ export default function ProdutoScannerScreen({ route, navigation }) {
         {/* Produto Info */}
         <View style={[styles.produtoHeader, { backgroundColor: nivelInfo.cor }]}>
           <NeoIcon name={produto.icone || 'TestTube'} size={44} color={Neo.colors.neutral.white} variant="Bold" />
-          <Text style={styles.produtoNome}>{produto.nome}</Text>
-          <Text style={styles.produtoCategoria}>{produto.categoria}</Text>
+          <Text style={styles.produtoNome}>{t_field(produto, 'nome')}</Text>
+          <Text style={styles.produtoCategoria}>{t_field(produto, 'categoria')}</Text>
           <View style={styles.nivelBadge}>
             <NeoIcon name={nivelInfo.icone || 'Circle'} size={14} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 6 }} />
             <Text style={styles.nivelTexto}>PERIGO: {produto.perigo.toUpperCase()}</Text>
@@ -106,7 +107,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
               <NeoIcon name="Drop" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
               <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.SeINGERIU', 'Se INGERIU:')}</Text>
             </View>
-            <Text style={styles.socorroTexto}>{produto.primeiros_socorros.ingestao}</Text>
+            <Text style={styles.socorroTexto}>{t_field(produto.primeiros_socorros, 'ingestao')}</Text>
           </View>
 
           <View style={styles.socorroItem}>
@@ -114,7 +115,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
               <NeoIcon name="Eye" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
               <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.ContatoComOLHOS', 'Contato com OLHOS:')}</Text>
             </View>
-            <Text style={styles.socorroTexto}>{produto.primeiros_socorros.olhos}</Text>
+            <Text style={styles.socorroTexto}>{t_field(produto.primeiros_socorros, 'olhos')}</Text>
           </View>
 
           <View style={styles.socorroItem}>
@@ -122,7 +123,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
               <NeoIcon name="Hand" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
               <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.ContatoComPELE', 'Contato com PELE:')}</Text>
             </View>
-            <Text style={styles.socorroTexto}>{produto.primeiros_socorros.pele}</Text>
+            <Text style={styles.socorroTexto}>{t_field(produto.primeiros_socorros, 'pele')}</Text>
           </View>
 
           {produto.primeiros_socorros.inalacao && (
@@ -131,7 +132,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
                 <NeoIcon name="Wind" size={16} color={colors.feedback.info} style={{ marginRight: 6 }} />
                 <Text style={[styles.socorroTitulo, { marginBottom: 0 }]}>{t('headersFirst.INALAO', 'INALAÇÃO:')}</Text>
               </View>
-              <Text style={styles.socorroTexto}>{produto.primeiros_socorros.inalacao}</Text>
+              <Text style={styles.socorroTexto}>{t_field(produto.primeiros_socorros, 'inalacao')}</Text>
             </View>
           )}
         </View>

@@ -19,6 +19,7 @@ import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
 import NeoHeroHeader from '../components/NeoHeroHeader';
 import ScoreService from '../services/ScoreService';
+import { resolveEmergencyTokens } from '../utils/emergencyTokens';
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation();
@@ -293,7 +294,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                         }}
                                                     >
                                                         <View style={{ flex: 1, paddingRight: 12 }}>
-                                                            <Body style={{ fontWeight: '500', lineHeight: 20 }}>{item.text}</Body>
+                                                            <Body style={{ fontWeight: '500', lineHeight: 20 }}>{resolveEmergencyTokens(item.text)}</Body>
                                                         </View>
 
                                                         {/* Botões S / N / NA (PADRÃO VISTORIAS) */}
@@ -442,10 +443,10 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                         <View style={{ flexDirection: 'row', gap: 12 }}>
                                                                             <NeoIcon name="Danger" size={22} color={isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning} />
                                                                             <View style={{ flex: 1 }}>
-                                                                                <Body style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 4 }}>{answer.questionText}</Body>
+                                                                                <Body style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 4 }}>{resolveEmergencyTokens(answer.questionText)}</Body>
                                                                                 <View style={{ marginTop: 8, padding: 10, backgroundColor: isCritico ? 'rgba(211, 47, 47, 0.1)' : 'rgba(255, 179, 0, 0.1)', borderRadius: 8 }}>
                                                                                     <Small style={{ color: isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning, fontWeight: 'bold' }}>
-                                                                                        AÇÃO: {answer.checkAction}
+                                                                                        AÇÃO: {resolveEmergencyTokens(answer.checkAction)}
                                                                                     </Small>
                                                                                 </View>
                                                                             </View>

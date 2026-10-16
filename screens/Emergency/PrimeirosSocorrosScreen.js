@@ -47,7 +47,7 @@ const buildSearchText = (item) => normalizeSearch([
     SEARCH_ALIASES[item.id],
     ...(item.oQueFazer || []),
     ...(item.oQueNaoFazer || []),
-    ...(item.quandoChamarAjuda || []),
+    ...[].concat(item.quandoChamarAjuda || []),
     ...(item.passos || []).flatMap(step => [step?.titulo, step?.descricao]),
     ...(item.alertas || []),
 ].filter(Boolean).join(' '));

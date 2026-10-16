@@ -19,6 +19,7 @@ import NeoCard from '../../components/NeoCard';
 import { H1, H2, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
+import { t_field } from '../../utils/getLocalizedField';
 
 export default function EscolaSeguraReportScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -148,7 +149,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                                     <View key={idx} style={styles.itemFraco}>
                                         <NeoIcon name={item.critico ? "Danger" : "Warning2"} size={16} color={item.critico ? Neo.colors.feedback.error : Neo.colors.feedback.warning} />
                                         <Small style={{ flex: 1, marginLeft: 8, color: Neo.colors.neutral[700], fontWeight: item.critico ? 'bold' : 'normal' }}>
-                                            {item.texto}
+                                            {t_field(item, 'texto')}
                                         </Small>
                                     </View>
                                 ))}
