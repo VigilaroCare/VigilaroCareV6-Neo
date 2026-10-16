@@ -10,6 +10,7 @@ import ReviewImage from '../../components/ReviewImage';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import SafeGradient from '../../components/SafeGradient';
+import MarkdownLeve, { renderInline } from '../../components/MarkdownLeve';
 
 const { width } = Dimensions.get('window');
 const HERO_HEIGHT = Math.round(width * 0.78);
@@ -174,7 +175,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                     {/* Main Content */}
                     <View style={s.bodyContent}>
                         {content ? (
-                            <Body style={[s.bodyText, { color: textBody }]}>{content}</Body>
+                            <MarkdownLeve texto={content} estiloTexto={[s.bodyText, { color: textBody }]} corDestaque={cor} />
                         ) : null}
 
                         {conceito.exemplos && conceito.exemplos.length > 0 && (
@@ -186,7 +187,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                                 {conceito.exemplos.map((ex, i) => (
                                     <View key={i} style={s.listItem}>
                                         <View style={[s.bullet, { backgroundColor: cor }]} />
-                                        <Body style={[s.listText, { color: textBody }]}>{ex}</Body>
+                                        <Body style={[s.listText, { color: textBody }]}>{renderInline(ex)}</Body>
                                     </View>
                                 ))}
                             </View>
@@ -201,7 +202,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                                 {conceito.prevencao.map((prev, i) => (
                                     <View key={i} style={s.listItem}>
                                         <View style={[s.bullet, { backgroundColor: Neo.colors.primary[500] }]} />
-                                        <Body style={[s.listText, { color: textBody }]}>{prev}</Body>
+                                        <Body style={[s.listText, { color: textBody }]}>{renderInline(prev)}</Body>
                                     </View>
                                 ))}
                             </View>
@@ -263,7 +264,7 @@ export default function PremiumArticleScreen({ route, navigation }) {
                                 {Array.isArray(conceito.naoFazer) ? conceito.naoFazer.map((item, i) => (
                                     <View key={i} style={s.listItem}>
                                         <NeoIcon name="CloseSquare" size={16} color={Neo.colors.feedback.error} style={{ marginTop: 4, marginRight: 8 }} />
-                                        <Body style={[s.listText, { color: Neo.colors.feedback.error }]}>{item}</Body>
+                                        <Body style={[s.listText, { color: Neo.colors.feedback.error }]}>{renderInline(item)}</Body>
                                     </View>
                                 )) : (
                                     <View style={s.listItem}>

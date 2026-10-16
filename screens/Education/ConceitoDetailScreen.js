@@ -7,6 +7,7 @@ import NeoCard from '../../components/NeoCard';
 import NeoIcon from '../../components/NeoIcon';
 import ReviewImage from '../../components/ReviewImage';
 import { H1, H2, H3, Body } from "../../components/NeoTypography";
+import MarkdownLeve from '../../components/MarkdownLeve';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array, t_object } from '../../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
@@ -71,18 +72,9 @@ export default function ConceitoDetailScreen({ route, navigation }) {
 
   const renderMarkdown = (markdown, customTitle) => {
     if (!markdown) return null;
-    const lines = markdown.split('\n');
     const title = customTitle || t('detail.completeGuide', 'Guia Completo');
     return (
-      <NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={[styles.cardTitle, { flex: 1 }]}>{title}</H3></View>{lines.map((line, index) => {
-          const trimmed = line.trim();
-          if (!trimmed) return <View key={index} style={{ height: 8 }} />;
-          if (trimmed.startsWith('# ')) return <H2 key={index} style={[styles.mdH1, { color: HeroColor, marginTop: 16, marginBottom: 8 }]}>{trimmed.substring(2)}</H2>;
-          if (trimmed.startsWith('## ')) return <H3 key={index} style={[styles.mdH2, { color: Neo.colors.neutral[800], marginTop: 12, marginBottom: 4 }]}>{trimmed.substring(3)}</H3>;
-          if (trimmed.startsWith('### ')) return <H3 key={index} style={[styles.mdH3, { color: Neo.colors.neutral[700], marginTop: 8, marginBottom: 4, fontSize: 16 }]}>{trimmed.substring(4)}</H3>;
-          if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) return (<View key={index} style={styles.listItem}><View style={[styles.bullet, { backgroundColor: HeroColor }]} /><Text style={[styles.text, { color: textBody }]}>{trimmed.substring(2)}</Text></View>);
-          return <Text key={index} style={[styles.text, { marginBottom: 4, color: textBody }]}>{trimmed}</Text>;
-        })}</NeoCard>
+      <NeoCard variant="glass" style={styles.card}><View style={styles.cardHeader}><NeoIcon name="Book1" size={24} color={HeroColor} variant="Bold" /><H3 style={[styles.cardTitle, { flex: 1 }]}>{title}</H3></View><MarkdownLeve texto={markdown} estiloTexto={[styles.text, { color: textBody }]} corDestaque={HeroColor} /></NeoCard>
     );
   };
 
