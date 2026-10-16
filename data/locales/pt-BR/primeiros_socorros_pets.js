@@ -147,7 +147,7 @@ export const emergenciasPetsPTBR = [
         passos: [
             { titulo: 'Afastar o produto', descricao: 'Retirar o pet de perto do produto químico e isolar a área.', critico: true },
             { titulo: 'Pele ou olhos afetados', descricao: 'Lavar pele ou olhos afetados com água corrente fria por 15 minutos sem parar.', critico: true },
-            { titulo: 'Ingestão', descricao: 'NÃO forçar o vômito em substâncias corrosivas; oferecer água fresca para limpar a boca.' },
+            { titulo: 'Ingestão', descricao: 'NÃO provocar o vômito por conta própria (produtos corrosivos queimam na volta); só se o veterinário orientar. Oferecer água fresca para limpar a boca.' },
             { titulo: 'Ligar para a toxicologia', descricao: 'Ligar para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes.' },
             { titulo: 'Levar ao pronto-socorro', descricao: 'Levar a embalagem do produto químico ou a caixa do veneno junto com o pet ao veterinário.', },
         ],
