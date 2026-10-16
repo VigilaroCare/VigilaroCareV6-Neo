@@ -71,16 +71,11 @@ export default function SafetyActionPlanScreen() {
                 }
 
                 // Get Answered State for this Area
-                const areaState = allState[area.id] || []; // Expected Array
+                const respostaDe = ChecklistService.respostasDaArea(allState[area.id]);
 
                 areaItemsDef.forEach(itemDef => {
-                    // Find saved state
-                    let status = null; // null = Pending
-                    const found = Array.isArray(areaState) ? areaState.find(i => i.text === itemDef.titulo) : null;
-
-                    if (found) {
-                        status = found.status; // 'conforme', 'risco', 'na'
-                    }
+                    // 'conforme' | 'risco' | 'na' | null (pendente)
+                    let status = respostaDe(itemDef);
 
                     // Categorize
                     if (status === 'risco') {
@@ -94,7 +89,8 @@ export default function SafetyActionPlanScreen() {
 
                     // Build View Item
                     visibleItems.push({
-                        id: `${area.id}_${itemDef.titulo}`,
+                        id: `${area.id}_${itemDef.id || itemDef.titulo}`,
+                        itemId: itemDef.id,
                         areaId: area.id,
                         areaName: t_field(area, 'nome'),
                         areaColor: area.cor,
@@ -103,7 +99,6 @@ export default function SafetyActionPlanScreen() {
                         originalText: itemDef.titulo,
                         type: itemDef.tipo,
                         status: status, // 'conforme', 'risco', 'na', 'pendente'
-                        originalState: found
                     });
                 });
             });
@@ -162,32 +157,12 @@ export default function SafetyActionPlanScreen() {
         // Persist via ChecklistService (isolado por residência)
         try {
             const activeResId = await ProfileService.getActiveResidenceId();
-            const allState = await ChecklistService.getAllState(activeResId);
-
-            let currentRoomList = allState[item.areaId] || [];
-            if (!Array.isArray(currentRoomList)) currentRoomList = [];
-
-            let finalStatus = nextStatus;
-            if (nextStatus === 'pendente') finalStatus = null;
-
-            const index = currentRoomList.findIndex(i => i.text === item.originalText);
-
-            const newItemObj = {
-                id: item.id,
-                text: item.originalText,
-                category: 'Geral',
-                priority: item.type === 'perigo' ? 'high' : 'medium',
-                status: finalStatus,
-                checked: finalStatus === 'conforme' || finalStatus === 'na'
-            };
-
-            if (index >= 0) {
-                currentRoomList[index] = newItemObj;
-            } else {
-                currentRoomList.push(newItemObj);
-            }
-
-            await ChecklistService.saveRoomState(item.areaId, currentRoomList, activeResId);
+            await ChecklistService.saveItemState(
+                item.areaId,
+                { id: item.itemId, titulo: item.originalText },
+                nextStatus === 'pendente' ? null : nextStatus,
+                activeResId
+            );
 
         } catch (e) {
             console.error(e);

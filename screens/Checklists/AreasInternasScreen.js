@@ -278,34 +278,46 @@ export default function AreasInternasScreen({ navigation, route }) {
     }
   };
 
-  const handleSetStatus = async (areaId, itemText, status) => {
+  // Os passos do roteiro NAO sao itens da vistoria: vivem num balde proprio
+  // (ChecklistService.chaveRoteiro). Antes gravavam no mesmo balde da vistoria
+  // guiada, em outro formato, e as duas telas apagavam a resposta uma da outra.
+  // A chave e o passo em pt-BR: com o texto traduzido, trocar o idioma do app
+  // perdia a resposta.
+  const chaveDoPasso = (item, index, passoExibido) => (item.oQueFazer || [])[index] || passoExibido;
+  const estadoDoPasso = (areaState, item, index, passoExibido) => {
+    const v = areaState[chaveDoPasso(item, index, passoExibido)];
+    return v !== undefined ? v : areaState[passoExibido];
+  };
+
+  const handleSetStatus = async (areaId, chavePasso, status) => {
     if (!activeResidenceId) {
       NeoAlert.alert('Erro', 'Residência não selecionada');
       return;
     }
 
-    const nativeId = getNativeAreaId(areaId);
-    const currentAreaState = checklistState[nativeId] || {};
-    const currentState = currentAreaState[itemText];
+    const balde = ChecklistService.chaveRoteiro(getNativeAreaId(areaId));
+    const currentAreaState = checklistState[balde] || {};
+    const currentState = currentAreaState[chavePasso];
     const newStatus = currentState === status ? null : status;
 
     const updatedState = {
       ...checklistState,
-      [nativeId]: {
+      [balde]: {
         ...currentAreaState,
-        [itemText]: newStatus,
+        [chavePasso]: newStatus,
       },
     };
     setChecklistState(updatedState);
     if (newStatus !== null) Vibration.vibrate(10);
 
     try {
-      await ChecklistService.saveItemState(
-        nativeId,
-        itemText,
+      const ok = await ChecklistService.saveRoteiroState(
+        getNativeAreaId(areaId),
+        chavePasso,
         newStatus,
         activeResidenceId
       );
+      if (!ok) throw new Error('saveRoteiroState falhou');
     } catch (error) {
       if (__DEV__) console.error('[AreasInternas] Erro ao salvar status:', error);
       NeoAlert.alert('Erro', 'Falha ao salvar resposta. Tente novamente.');
@@ -314,13 +326,12 @@ export default function AreasInternasScreen({ navigation, route }) {
 
   const renderItem = ({ item }) => {
     const isExpanded = expandedId === item.id;
-    const nativeId = getNativeAreaId(item.id);
-    const areaState = checklistState[nativeId] || {};
+    const areaState = checklistState[ChecklistService.chaveRoteiro(getNativeAreaId(item.id))] || {};
     const totalItems = t_array(item, 'oQueFazer').length;
 
     const oQueFazerSafe = t_array(item, 'oQueFazer');
-    const naItems = oQueFazerSafe.filter(step => areaState[step] === 'na').length;
-    const checkedItems = oQueFazerSafe.filter(step => areaState[step] === true).length;
+    const naItems = oQueFazerSafe.filter((step, i) => estadoDoPasso(areaState, item, i, step) === 'na').length;
+    const checkedItems = oQueFazerSafe.filter((step, i) => estadoDoPasso(areaState, item, i, step) === true).length;
     const validTotal = totalItems - naItems;
     const progress =
       validTotal > 0 ? checkedItems / validTotal : naItems > 0 ? 1 : 0;
@@ -413,7 +424,8 @@ export default function AreasInternasScreen({ navigation, route }) {
 
               <View style={s.questionsContainer}>
                 {t_array(item, 'oQueFazer').map((step, index) => {
-                  const state = checklistState[nativeId]?.[step];
+                  const state = estadoDoPasso(areaState, item, index, step);
+                  const chavePasso = chaveDoPasso(item, index, step);
 
                   return (
                     <View key={index} style={s.questionCard}>
@@ -428,7 +440,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                               borderColor: Neo.colors.feedback.success,
                             },
                           ]}
-                          onPress={() => handleSetStatus(item.id, step, true)}
+                          onPress={() => handleSetStatus(item.id, chavePasso, true)}
                         >
                           <Text
                             style={[
@@ -448,7 +460,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                               borderColor: Neo.colors.feedback.error,
                             },
                           ]}
-                          onPress={() => handleSetStatus(item.id, step, false)}
+                          onPress={() => handleSetStatus(item.id, chavePasso, false)}
                         >
                           <Text
                             style={[
@@ -468,7 +480,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                               borderColor: Neo.colors.neutral[500],
                             },
                           ]}
-                          onPress={() => handleSetStatus(item.id, step, 'na')}
+                          onPress={() => handleSetStatus(item.id, chavePasso, 'na')}
                         >
                           <Text
                             style={[

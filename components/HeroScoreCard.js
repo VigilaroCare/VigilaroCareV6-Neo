@@ -188,7 +188,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 .filter((item) => reviewAnswers[item.key] === 'resolvido' || reviewAnswers[item.key] === 'na')
                 .map((item) => ChecklistService.saveItemState(
                     item.ambienteId,
-                    item.titulo,
+                    { id: item.id, titulo: item.titulo },
                     reviewAnswers[item.key] === 'resolvido' ? true : 'na',
                 ));
             if (writes.length > 0) {

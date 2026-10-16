@@ -188,9 +188,7 @@ const RiskInterpreterService = {
         (structure.categorias || []).forEach((cat) => {
           (cat.itens || []).forEach((item) => {
             if (!isItemRelevant(item, safeProfiles, moradia)) return;
-            const itemKey = item.titulo || item.text;
-            const status = areaState[itemKey];
-            const isChecked = status === true;
+            const isChecked = ChecklistService.respostaDe(areaState, item) === 'conforme';
             if (!isChecked) {
               if (item.prioridade === 'maxima' || item.prioridade === 'critica') {
                 criticalCount += 1;

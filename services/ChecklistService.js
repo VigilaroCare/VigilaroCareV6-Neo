@@ -8,7 +8,174 @@ let _ProfileService = null, _FilterEngine = null, _MapeamentoDados = null;
 
 const normalizeString = (str) => str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
 
+// ---------------------------------------------------------------------------
+// Identidade do item da vistoria (D18)
+//
+// A resposta e gravada pelo `id` fixo do item de `mapeamento_dados.js`. Antes
+// era gravada pelo TEXTO do titulo, em dois formatos diferentes no mesmo balde
+// do ambiente: lista `[{ text, status }]` (vistoria guiada, plano de acao) e
+// mapa `{ titulo: true|'na' }` (revisao de pendencias, roteiro das areas). Dois
+// defeitos silenciosos vinham dai: toda revisao de texto apagava a resposta, e
+// gravar no formato mapa sobre um balde lista criava propriedade em array, que
+// o JSON.stringify descarta \u2014 a resposta sumia sem erro.
+//
+// Formato unico, garantido por `migrarEstado` em toda leitura:
+//   estado[ambiente] = [{ id, text, status: 'conforme'|'risco'|'na', checked }]
+//   estado['roteiro_' + ambiente] = { passoPtBR: true|'na' }  (AreasInternas)
+// Leitura de resposta: SEMPRE por `ChecklistService.respostaDe` /
+// `respostasDaArea`. Nao compare texto na tela.
+// ---------------------------------------------------------------------------
+
+const PREFIXO_ROTEIRO = 'roteiro_';
+const chaveRoteiro = (areaId) => `${PREFIXO_ROTEIRO}${areaId}`;
+
+let _indice = null;
+const indiceDeItens = () => {
+    if (_indice) return _indice;
+    const { CHECKLISTS, TITULOS_ANTERIORES = {} } = require('../data/mapeamento_dados');
+    const porId = {};
+    const porTitulo = {}; // titulo normalizado -> [ids]
+    const add = (titulo, id) => {
+        const k = normalizeString(titulo);
+        if (k) (porTitulo[k] = porTitulo[k] || []).push(id);
+    };
+    Object.keys(CHECKLISTS).forEach((area) => (CHECKLISTS[area].categorias || []).forEach((cat) => (cat.itens || []).forEach((item) => {
+        if (!item.id) return;
+        porId[item.id] = { titulo: item.titulo, area };
+        add(item.titulo, item.id);
+    })));
+    Object.entries(TITULOS_ANTERIORES).forEach(([id, titulos]) => titulos.forEach((t) => add(t, id)));
+    _indice = { porId, porTitulo, areas: new Set(Object.keys(CHECKLISTS)) };
+    return _indice;
+};
+
+/**
+ * Id do item a partir do id gravado ou do texto (atual ou anterior). Um mesmo
+ * titulo existe em mais de um ambiente (ex.: cabos de panela na cozinha e no
+ * ambiente integrado) \u2014 prefere o item do proprio ambiente.
+ */
+const resolverId = (areaId, idGravado, texto) => {
+    const { porId, porTitulo } = indiceDeItens();
+    if (idGravado && porId[idGravado]) return idGravado;
+    const ids = porTitulo[normalizeString(texto)];
+    if (!ids || ids.length === 0) return null;
+    return ids.find((id) => porId[id].area === areaId) || ids[0];
+};
+
+const normalizarStatus = (v) => {
+    if (v === true || v === 'sim' || v === 'conforme') return 'conforme';
+    if (v === false || v === 'nao' || v === 'risco') return 'risco';
+    if (v === 'na') return 'na';
+    return null;
+};
+
+const statusDaEntrada = (e) => {
+    if (!e) return null;
+    const s = normalizarStatus(e.status);
+    if (s) return s;
+    return e.status == null && e.checked === true ? 'conforme' : null;
+};
+
+const entradaCanonica = (id, status) => {
+    const { porId } = indiceDeItens();
+    return { id, text: porId[id].titulo, status, checked: status === 'conforme' };
+};
+
+/** Converte o balde de um ambiente para a lista canonica. Nao apaga dado que nao reconhece. */
+const migrarArea = (areaId, balde) => {
+    const lista = [];
+    const posicao = {};
+    let roteiro = null;
+    const gravar = (id, entrada) => {
+        if (id in posicao) lista[posicao[id]] = entrada;
+        else { posicao[id] = lista.length; lista.push(entrada); }
+    };
+    if (Array.isArray(balde)) {
+        balde.forEach((e) => {
+            if (!e) return;
+            const id = resolverId(areaId, e.id, e.text || e.titulo);
+            if (!id) { lista.push(e); return; } // orfao: guarda como esta
+            const status = statusDaEntrada(e);
+            if (status) gravar(id, entradaCanonica(id, status));
+        });
+    } else if (balde && typeof balde === 'object') {
+        Object.entries(balde).forEach(([chave, valor]) => {
+            const id = resolverId(areaId, chave, chave);
+            if (!id) { (roteiro = roteiro || {})[chave] = valor; return; } // passo do roteiro
+            const status = normalizarStatus(valor);
+            if (status) gravar(id, entradaCanonica(id, status));
+        });
+    }
+    return { lista, roteiro };
+};
+
 export const ChecklistService = {
+    /**
+     * Normaliza o estado gravado para o formato unico (ver topo do ficheiro).
+     * Pura: devolve { estado, mudou } sem tocar no storage.
+     */
+    migrarEstado: (dados) => {
+        const { areas } = indiceDeItens();
+        const estado = { ...(dados || {}) };
+        let mudou = false;
+        Object.keys(dados || {}).forEach((chave) => {
+            const balde = dados[chave];
+            if (areas.has(chave)) {
+                const { lista, roteiro } = migrarArea(chave, balde);
+                if (JSON.stringify(lista) !== JSON.stringify(balde)) { estado[chave] = lista; mudou = true; }
+                if (roteiro) {
+                    estado[chaveRoteiro(chave)] = { ...roteiro, ...(estado[chaveRoteiro(chave)] || {}) };
+                    mudou = true;
+                }
+            } else if (!chave.startsWith(PREFIXO_ROTEIRO) && !chave.startsWith('custom_')
+                && balde && typeof balde === 'object' && !Array.isArray(balde)) {
+                // Roteiro de area sem vistoria propria, gravado antes da separacao.
+                estado[chaveRoteiro(chave)] = { ...balde, ...(estado[chaveRoteiro(chave)] || {}) };
+                delete estado[chave];
+                mudou = true;
+            }
+        });
+        return { estado, mudou };
+    },
+
+    /** Chave do balde de respostas do roteiro (AreasInternasScreen) de uma area. */
+    chaveRoteiro,
+
+    /** Id fixo do item a partir de um id ou de um titulo (atual ou anterior); null se nao for item. */
+    idDoItem: (areaId, idOuTitulo) => resolverId(areaId, idOuTitulo, idOuTitulo),
+
+    /**
+     * Resposta de UM item: 'conforme' | 'risco' | 'na' | null (sem resposta).
+     * Casa pelo id e, na falta dele, pelo titulo (atual ou anterior).
+     */
+    respostaDe: (areaData, item) => ChecklistService.respostasDaArea(areaData)(item),
+
+    /** Igual a `respostaDe`, indexado uma vez para varrer muitos itens. */
+    respostasDaArea: (areaData) => {
+        const porId = {};
+        const porTexto = {};
+        if (Array.isArray(areaData)) {
+            areaData.forEach((e) => {
+                if (!e) return;
+                const s = statusDaEntrada(e);
+                if (e.id) porId[e.id] = s;
+                const k = normalizeString(e.text || e.titulo);
+                if (k) porTexto[k] = s;
+            });
+        } else if (areaData && typeof areaData === 'object') {
+            Object.entries(areaData).forEach(([k, v]) => {
+                porId[k] = normalizarStatus(v);
+                porTexto[normalizeString(k)] = normalizarStatus(v);
+            });
+        }
+        return (item) => {
+            if (!item) return null;
+            if (item.id && porId[item.id] !== undefined) return porId[item.id];
+            const s = porTexto[normalizeString(item.titulo || item.text)];
+            return s === undefined ? null : s;
+        };
+    },
+
     /**
      * Retorna os perfis que declaram USAR um cômodo específico.
      * Fundamento do RiskInterpreter (D4) — permite priorizar riscos
@@ -63,8 +230,13 @@ export const ChecklistService = {
         console.log("ChecklistService cache cleared.");
     },
 
-    // Salva o estado de um item específico
-    saveItemState: async (areaId, itemTitulo, isChecked, residenceId = null) => {
+    /**
+     * Grava a resposta de UM item da vistoria.
+     * @param {string} areaId - ambiente (balde) onde a resposta vive
+     * @param {object|string} item - o item ({ id, titulo }) ou, por compatibilidade, o id/titulo
+     * @param {*} valor - 'conforme'|'risco'|'na'|null, ou true/false/'sim'/'nao' (legado)
+     */
+    saveItemState: async (areaId, item, valor, residenceId = null) => {
         try {
             const key = await ChecklistService.getStorageKey(residenceId);
 
@@ -75,15 +247,30 @@ export const ChecklistService = {
 
             const currentData = stateCache[key] || {};
 
-            if (!currentData[areaId]) {
-                currentData[areaId] = {};
+            const id = typeof item === 'object' && item
+                ? resolverId(areaId, item.id, item.titulo || item.text)
+                : resolverId(areaId, item, item);
+            if (!id) {
+                // Nao e item de vistoria: gravar seria criar resposta que nenhuma tela le.
+                if (__DEV__) console.warn('[ChecklistService] item sem id de vistoria, nada gravado:', areaId, item);
+                return false;
             }
 
-            currentData[areaId][itemTitulo] = isChecked;
+            const status = normalizarStatus(valor);
+            const lista = migrarArea(areaId, currentData[areaId]).lista;
+            const i = lista.findIndex((e) => e && e.id === id);
+            if (status === null) {
+                if (i >= 0) lista.splice(i, 1);
+            } else if (i >= 0) {
+                lista[i] = entradaCanonica(id, status);
+            } else {
+                lista.push(entradaCanonica(id, status));
+            }
+            currentData[areaId] = lista;
 
             // F-05: Registra no Histórico de Melhorias quando uma ação preventiva é marcada como segura
-            if (isChecked === true) {
-                TimelineService.logMelhoria(areaId, itemTitulo);
+            if (status === 'conforme') {
+                TimelineService.logMelhoria(areaId, indiceDeItens().porId[id].titulo);
                 // F-07: Conquistas e XP
                 AchievementService.grantChecklistPoint();
                 AchievementService.grantFirstInspection();
@@ -135,7 +322,9 @@ export const ChecklistService = {
                 }
             }
 
-            const data = json ? JSON.parse(json) : {};
+            const bruto = json ? JSON.parse(json) : {};
+            const { estado: data, mudou } = ChecklistService.migrarEstado(bruto);
+            if (mudou) await AsyncStorage.setItem(key, JSON.stringify(data));
             stateCache[key] = data; // Atualiza cache
             return data;
         } catch (error) {
@@ -155,13 +344,41 @@ export const ChecklistService = {
             }
 
             const currentData = stateCache[key] || {};
-            currentData[areaId] = itemsArray;
+            // Normaliza na entrada: id fixo, texto atual, sem objetos pesados
+            // (itemObj/categoryObj) e sem duplicata do mesmo item.
+            currentData[areaId] = indiceDeItens().areas.has(areaId)
+                ? migrarArea(areaId, itemsArray).lista
+                : itemsArray;
 
             stateCache[key] = currentData;
             await AsyncStorage.setItem(key, JSON.stringify(currentData));
             return true;
         } catch (error) {
             if (__DEV__) { console.error('Erro ao salvar estado do ambiente:', error); }
+            return false;
+        }
+    },
+
+    /**
+     * Roteiro das areas (AreasInternasScreen): passos de `areas_internas.js`,
+     * que NAO sao itens da vistoria e vivem em balde proprio. Chave = texto do
+     * passo em pt-BR (independe do idioma da tela).
+     */
+    saveRoteiroState: async (areaId, passoPtBR, valor, residenceId = null) => {
+        try {
+            const key = await ChecklistService.getStorageKey(residenceId);
+            if (!stateCache[key]) await ChecklistService.getAllState(residenceId);
+            const currentData = stateCache[key] || {};
+            const chave = chaveRoteiro(areaId);
+            const balde = { ...(currentData[chave] || {}) };
+            if (valor === null || valor === undefined) delete balde[passoPtBR];
+            else balde[passoPtBR] = valor;
+            currentData[chave] = balde;
+            stateCache[key] = currentData;
+            await AsyncStorage.setItem(key, JSON.stringify(currentData));
+            return true;
+        } catch (error) {
+            if (__DEV__) { console.error('Erro ao salvar roteiro:', error); }
             return false;
         }
     },
@@ -262,21 +479,16 @@ export const ChecklistService = {
             return stats;
         }
 
-        // OTIMIZAÇÃO: Hash Map O(1)
-        const areaDataMap = {};
-        const isArrayData = Array.isArray(areaData);
-        if (isArrayData) areaData.forEach(i => { if (i.text || i.titulo) areaDataMap[normalizeString(i.text || i.titulo)] = i; });
+        const respostaDe = ChecklistService.respostasDaArea(areaData);
 
         items.forEach(schemaItem => {
             if (!_FilterEngine.isItemRelevant(schemaItem, profiles, moradia)) return;
 
-            const itemKey = schemaItem.titulo || schemaItem.text;
-            let found = isArrayData ? areaDataMap[normalizeString(itemKey)] : (areaData[itemKey] !== undefined ? { status: areaData[itemKey] === 'na' ? 'na' : (areaData[itemKey] === true ? 'conforme' : 'pendente'), checked: areaData[itemKey] === true } : null);
+            const resposta = respostaDe(schemaItem);
+            const isChecked = resposta === 'conforme';
+            const isNA = resposta === 'na';
 
-            let isChecked = found && (found.status === 'conforme' || found.checked);
-            let isNA = found && found.status === 'na';
-
-            if (found) stats.respondidos++;
+            if (resposta) stats.respondidos++;
 
             if (isNA) { stats.na++; return; }
             stats.total++;
@@ -285,7 +497,7 @@ export const ChecklistService = {
             } else { 
                 const isCrit = schemaItem.tipo === 'perigo';
                 isCrit ? stats.critical++ : stats.warning++; 
-                stats.failedItems.push({ titulo: schemaItem.titulo || schemaItem.text, isCritical: isCrit, dica: schemaItem.dica_seguranca || '', tags: schemaItem.tags || [] });
+                stats.failedItems.push({ id: schemaItem.id, titulo: schemaItem.titulo || schemaItem.text, isCritical: isCrit, dica: schemaItem.dica_seguranca || '', tags: schemaItem.tags || [] });
             }
         });
 

@@ -474,40 +474,17 @@ class SafetyReportService {
                     });
                 }
 
-                // Normaliza texto para comparação robusta
-                const normStr = (str) => str
-                    ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim()
-                    : "";
-
-                // Lê o estado do item suportando AMBOS os formatos de armazenamento:
-                // Novo: array de {text, status} com status='conforme'/'risco'/'na'
-                // Legado: objeto chave-valor com valor='sim'/'nao'/'na'
-                const getItemAnswer = (titulo) => {
-                    if (Array.isArray(roomAnswers)) {
-                        const found = roomAnswers.find(i =>
-                            normStr(i.text) === normStr(titulo) ||
-                            normStr(i.titulo) === normStr(titulo)
-                        );
-                        if (!found) return undefined;
-                        if (found.status === 'conforme' || found.checked === true) return 'sim';
-                        if (found.status === 'risco') return 'nao';
-                        if (found.status === 'na') return 'na';
-                        return undefined;
-                    } else {
-                        const v = roomAnswers[titulo];
-                        if (v === 'sim' || v === true) return 'sim';
-                        if (v === 'nao' || v === false) return 'nao';
-                        if (v === 'na') return 'na';
-                        return undefined;
-                    }
-                };
+                // Resposta pelo id do item (D18) — o formato gravado e assunto
+                // do ChecklistService, nao desta tela.
+                const respostaDe = CS.respostasDaArea(roomAnswers);
+                const PARA_RELATORIO = { conforme: 'sim', risco: 'nao', na: 'na' };
 
                 allItems.forEach(q => {
-                    const answer = getItemAnswer(q.titulo);
+                    const answer = PARA_RELATORIO[respostaDe(q)];
                     if (answer === 'sim' || answer === 'nao' || answer === 'na') {
                         answeredCount++;
                     }
-                    const itemKey = `${roomKey}::${q.titulo}`;
+                    const itemKey = `${roomKey}::${q.id || q.titulo}`;
                     const implication = getImplication(q, type);
                     const tip = getActionTip(q, knowledge?.tip);
 
@@ -638,8 +615,22 @@ class SafetyReportService {
      */
     async getAcknowledgments(profileId) {
         try {
-            const { data } = await this.readProfileResidenceJson('@safety_acknowledgment', profileId);
-            return data || {};
+            const { storageKey, data } = await this.readProfileResidenceJson('@safety_acknowledgment', profileId);
+            // D18: a chave era `ambiente::titulo` e passou a `ambiente::id`.
+            // Converte na leitura (e grava), para que a revisao de texto nao
+            // reabra o que o usuario ja tinha reconhecido.
+            const CS = require('./ChecklistService').ChecklistService;
+            let mudou = false;
+            const migrado = {};
+            Object.entries(data || {}).forEach(([chave, valor]) => {
+                const [ambiente, ...resto] = chave.split('::');
+                const id = CS.idDoItem(ambiente, resto.join('::'));
+                const nova = id ? `${ambiente}::${id}` : chave;
+                if (nova !== chave) mudou = true;
+                if (!(nova in migrado) || nova === chave) migrado[nova] = valor;
+            });
+            if (mudou) await Storage.setItem(storageKey, JSON.stringify(migrado));
+            return migrado;
         } catch (e) {
             return {};
         }

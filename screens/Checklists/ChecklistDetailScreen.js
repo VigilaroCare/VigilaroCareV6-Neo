@@ -131,18 +131,12 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       const storedItems = await ChecklistService.getAllState(resId);
       const savedRoomItems = storedItems[roomId];
 
-      if (savedRoomItems && Array.isArray(savedRoomItems)) {
-        // 3. Merge: Atualizar status dos itens frescos com o que foi salvo
+      if (savedRoomItems) {
+        // 3. Merge: resposta casada pelo id do item (D18), nunca pelo texto
+        const respostaDe = ChecklistService.respostasDaArea(savedRoomItems);
         const mergedItems = freshItems.map(item => {
-          const saved = savedRoomItems.find(s => s.text === item.text);
-          if (saved) {
-            return {
-              ...item,
-              status: saved.status,
-              checked: saved.checked === true
-            };
-          }
-          return item;
+          const status = respostaDe(item.itemObj);
+          return status ? { ...item, status, checked: status === 'conforme' } : item;
         });
 
         if (categoryFilter) {
@@ -199,13 +193,10 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           continue;
         }
 
-        const stateOfPotential = storedItems[potentialRoom.roomId] || [];
+        const respostaDe = ChecklistService.respostasDaArea(storedItems[potentialRoom.roomId]);
 
         // Conta quantos itens frescos já foram respondidos
-        const answeredCount = potentialFreshItems.filter(item => {
-          const saved = stateOfPotential.find(s => s.text === item.text);
-          return saved && saved.status && ['conforme', 'risco', 'na'].includes(saved.status);
-        }).length;
+        const answeredCount = potentialFreshItems.filter(item => respostaDe(item.itemObj) !== null).length;
 
         const hasUnanswered = answeredCount < potentialFreshItems.length;
 
@@ -250,7 +241,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
           }
 
           flatItems.push({
-            id: `${roomId}-${categoryFilter ? categoryFilter.substring(0, 3) : ''}-${counter++}`,
+            // id fixo do item (D18). O id posicional antigo mudava quando o
+            // filtro de perfil mudava, e a gravacao casava com o item errado.
+            id: item.id || `${roomId}-${categoryFilter ? categoryFilter.substring(0, 3) : ''}-${counter++}`,
             text: item.titulo,
             category: categoria.nome,
             priority: mapTypeToPriority(item.tipo),
@@ -290,26 +283,12 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
       });
       setItems(updatedLocalItems);
 
-      // 2. Ler lista COMPLETA da área (pode ter outras categorias)
+      // 2. Grava SO este item, pelo id (o resto do ambiente fica como esta)
       const resId = activeResidenceId || await ProfileService.getActiveResidenceId();
-      const allState = await ChecklistService.getAllState(resId);
-      let currentRoomFullList = allState[roomId] || [];
-
       const changedItem = updatedLocalItems.find(i => i.id === itemId);
-
-      // Atualiza ou adiciona na lista completa
-      const indexGlobal = currentRoomFullList.findIndex(
-        i => i.id === itemId || i.text === changedItem?.text
-      );
-
-      if (indexGlobal >= 0) {
-        currentRoomFullList[indexGlobal] = changedItem;
-      } else {
-        if (changedItem) currentRoomFullList.push(changedItem);
+      if (changedItem) {
+        await ChecklistService.saveItemState(roomId, changedItem.itemObj, changedItem.status, resId);
       }
-
-      // 3. Salva via ChecklistService (isolado por residência)
-      await ChecklistService.saveRoomState(roomId, currentRoomFullList, resId);
 
     } catch (error) {
       console.error('Erro ao atualizar status:', error);
@@ -345,17 +324,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
 
             try {
               const resId = activeResidenceId || await ProfileService.getActiveResidenceId();
-              const allState = await ChecklistService.getAllState(resId);
-              let currentRoomFullList = allState[roomId] || [];
-
-              // Atualiza global
-              updatedItems.forEach(changed => {
-                const idx = currentRoomFullList.findIndex(i => i.id === changed.id || i.text === changed.text);
-                if (idx >= 0) currentRoomFullList[idx] = changed;
-                else currentRoomFullList.push(changed);
-              });
-
-              await ChecklistService.saveRoomState(roomId, currentRoomFullList, resId);
+              for (const changed of updatedItems) {
+                await ChecklistService.saveItemState(roomId, changed.itemObj, 'na', resId);
+              }
 
               // AUTO-ADVANCE logic
               if (nextRoomData) {
