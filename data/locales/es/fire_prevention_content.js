@@ -69,13 +69,13 @@ export const firePreventionContentES = {
         title: 'En Caso de Incendio',
         emoji: '🚨',
         steps: [
-            'SALGA INMEDIATAMENTE. La vida es prioridad.',
-            'Si hay humo, gatee (el aire limpio está abajo).',
-            'Toque la puerta antes de abrir. Si está caliente, no la abra.',
-            'Cierre las puertas detrás de usted para retrasar el fuego.',
-            'Llame a emergencias (Bomberos) desde un lugar seguro.',
-            'NUNCA regrese a buscar objetos.',
-            'Si su ropa se incendia: DETÉNGASE, TÍRESE AL SUELO y RUEDE.'
+            'SALGA DE LA VIVIENDA DE INMEDIATO. Salvar vidas es la única prioridad.',
+            'Si hay humo en el camino, avance a gatas. El aire más limpio y respirable está cerca del suelo.',
+            'Toque la puerta con el dorso de la mano antes de abrirla. Si está caliente, no la abra.',
+            'Cierre las puertas al pasar por las habitaciones para ayudar a contener las llamas.',
+            'Llame a los Bomberos al {{FIRE_NUMBER}} en cuanto esté en un lugar seguro.',
+            'NUNCA vuelva a por bolsos, documentos o móviles.',
+            'Si se le prende la ropa: DETÉNGASE, TÍRESE al suelo y RUEDE de un lado a otro.',
         ]
     }
 };

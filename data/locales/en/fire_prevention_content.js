@@ -69,13 +69,13 @@ export const firePreventionContentEN = {
         title: 'In Case of Fire',
         emoji: '🚨',
         steps: [
-            'GET OUT IMMEDIATELY. Life is the priority.',
-            'If there is smoke, crawl (clean air is near the floor).',
-            'Touch the door before opening. If it is hot, do not open it.',
-            'Close doors behind you to slow the fire.',
-            'Call 911 (or local emergency) from a safe location.',
-            'NEVER go back inside for belongings.',
-            'If your clothes catch fire: STOP, DROP, and ROLL.'
+            'GET OUT OF THE BUILDING IMMEDIATELY. Saving lives is the only priority.',
+            'If there is smoke in the way, crawl. The cleanest, most breathable air is near the floor.',
+            'Touch the door with the back of your hand before opening it. If it is hot, do not open it.',
+            'Close doors behind you as you go through rooms to help hold back the flames.',
+            'Call the fire service on {{FIRE_NUMBER}} as soon as you are somewhere safe.',
+            'NEVER go back for bags, documents or phones.',
+            'If your clothes catch fire: STOP, DROP to the floor and ROLL from side to side.',
         ]
     }
 };

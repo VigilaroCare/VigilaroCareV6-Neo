@@ -238,7 +238,7 @@ export const RISK_CATEGORIES = [
         id: 'ref_1',
         critico: true,
         text: 'A área da obra está trancada ou isolada?',
-        consequence: 'Crianças e pets entram explora os locais de obra se machucam  nos entulhos.',
+        consequence: 'Crianças e pets entram, exploram os locais de obra e se machucam nos entulhos.',
         checkAction: 'Feche portas ou coloque placas/tapumes impedindo a entrada.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
@@ -371,7 +371,7 @@ export const RISK_CATEGORIES = [
     gradient: [ '#00695C', '#4DB6AC' ],
     image: 'https://images.pexels.com/photos/8612920/pexels-photo-8612920.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
-      description: 'Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são rápidas e se expõem à perigos em segundos.',
+      description: 'Vigiar ativamente é a chave para evitar acidentes com os pequenos. Crianças não têm noção do perigo, são rápidas e se expõem a perigos em segundos.',
       keyPoints: [
         'Nunca deixe bebês sozinhos em cima de trocadores ou camas.',
         'Impeça a entrada de crianças na cozinha quando o fogão estiver em uso.',
@@ -408,7 +408,7 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'A cozinha está isolada enquanto você cozinha?',
         consequence: 'Queimaduras graves com respingos de gordura quente ou puxões de panelas.',
-        checkAction: 'Mantenha  a porta da cozinha fechada ou use portõezinhos de proteção.',
+        checkAction: 'Mantenha a porta da cozinha fechada ou use portõezinhos de proteção.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {
@@ -416,13 +416,13 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'Medicamentos e desinfetantes estão fora de alcance?',
         consequence: 'A ingestão de remédios coloridos ou cloro causa intoxicação rápida.',
-        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance de croianças.',
+        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance de crianças.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {
         id: 'kid_6',
         critico: true,
-        text: 'Ceertificou-se que não haja moedas ou pilhas no chão?',
+        text: 'Certificou-se de que não há moedas ou pilhas no chão?',
         consequence: 'Bebês colocam tudo na boca. Baterias geram asfixia ou queimaduras no esôfago.',
         checkAction: 'Faça uma varredura visual no chão do quarto e da sala.',
         options: [ { label: 'Não', safe: true }, { label: 'Sim', safe: false } ]
@@ -452,7 +452,7 @@ export const RISK_CATEGORIES = [
         id: 'alt_1',
         critico: true,
         text: 'Você usa uma escada firme e apropriada?',
-        consequence: 'Subir em cadeiras ou caixas é perigosos, instável e causa quedas.',
+        consequence: 'Subir em cadeiras ou caixas é perigoso, instável e causa quedas.',
         checkAction: 'Adquira e use uma escada doméstica que tenha {{CERT_SEAL}}.',
         options: [
           { label: 'Sim (Escada)', safe: true },

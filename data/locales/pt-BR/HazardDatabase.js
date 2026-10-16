@@ -19,7 +19,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 riskLevel: 'ALTO',
                 hazards: [
                     { type: 'queimadura', desc: 'As laterais externas da fritadeira esquentam muito no uso e queimam se encostar.', target: ['crianca'] },
-                    { type: 'queda', desc: 'O aparelho pode tombar e derramar gordura ou comida quente o fio for puxado.', target: ['crianca', 'pet'] }
+                    { type: 'queda', desc: 'O aparelho pode tombar e derramar gordura ou comida quente se o fio for puxado.', target: ['crianca', 'pet'] }
                 ],
                 expert_tip: 'Nunca deixe a fritadeira em cima de toalhas que crianças ou pets possam puxar. Deixe o fio elétrico curto e bem organizado preferencialmente na parte de trás da bancada.'
             },
@@ -95,7 +95,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 hazards: [
                     { type: 'afogamento', desc: 'Bebês podem se afogar de cabeça para baixo em baldes com apenas 5 centímetros de água.', target: ['bebe', 'crianca'] }
                 ],
-                expert_tip: 'Acabou de usar o balde, bacia ou tanque? Esvazie-os imediatamente. Guarde de cabeça para baixo (baldes e bacias) e não gos guarde no chão. Ao alcance de crianças elas pode brincar com água das suas torneiras.'
+                expert_tip: 'Acabou de usar o balde, bacia ou tanque? Esvazie-os imediatamente. Guarde de cabeça para baixo (baldes e bacias) e não os guarde no chão. Ao alcance das crianças, elas podem brincar com a água das torneiras.'
             },
             {
                 id: 'ferro_aquecido',
@@ -198,7 +198,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'objeto',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'ingestao', desc: 'Engolir a pilha redonda causa em 2 horas  queimadura química severa no estômago.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Engolir a pilha redonda causa em 2 horas queimadura química severa no estômago.', target: ['crianca', 'pet'] }
                 ],
                 expert_tip: 'Garanta que controles remotos ou chaves de carro tenham a tampinha das pilhas parafusada ou muito bem travada.'
             }
@@ -222,7 +222,7 @@ export const HAZARD_DATABASE_PT_BR = {
                     { type: 'intoxicacao', desc: 'Mastigar folhas causa inchaço na garganta e impede a passagem de ar.', target: ['crianca', 'pet'] },
                     { type: 'alergia', desc: 'A seiva líquida da planta gera irritações e coceiras fortes nos olhos e pele.', target: ['todos'] }
                 ],
-                expert_tip: 'Identifique as plantas do seu quintal (Consulte um especialista é uma boa opção). Se notar espécies tóxicas, mude-as para vasos suspensos ou doe.'
+                expert_tip: 'Identifique as plantas do seu quintal (consultar um especialista é uma boa opção). Se notar espécies tóxicas, mude-as para vasos suspensos ou doe.'
             },
             {
                 id: 'churrasqueira',
@@ -265,7 +265,7 @@ export const HAZARD_DATABASE_PT_BR = {
                     { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês, crianças pequenas e idosos.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Pisos muito polidos ou tapetes decorativos colocados nos degraus.', target: ['todos'] }
                 ],
-                expert_tip: 'Use portõezinhos de segurança (grades) fixados no topo e na base das escadas se tiver bebês e crianças pequenas (as que engatinham, peincipalemente).'
+                expert_tip: 'Use portõezinhos de segurança (grades) fixados no topo e na base das escadas se tiver bebês e crianças pequenas (principalmente as que engatinham).'
             },
             {
                 id: 'janelas_sacadas',
@@ -315,7 +315,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 riskLevel: 'CRITICO',
                 hazards: [
                     { type: 'intoxicacao', desc: 'Líquidos coloridos e doces (como fluido de radiador) ingeridos por engano.', target: ['crianca', 'pet'] },
-                    { type: 'incendio', desc: 'Armazenar galões de combustível ou tinner perto de tomadas ou faíscas da garagem.', target: ['todos'] }
+                    { type: 'incendio', desc: 'Armazenar galões de combustível ou thinner perto de tomadas ou faíscas da garagem.', target: ['todos'] }
                 ],
                 expert_tip: 'Guarde óleos, fluidos e tintas em prateleiras altas da garagem, longe do calor do motor do carro.'
             }

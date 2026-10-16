@@ -69,13 +69,13 @@ export const firePreventionContentPTPT = {
         title: 'Em Caso de Incêndio',
         emoji: '🚨',
         steps: [
-            'SAIA IMEDIATAMENTE. A vida é a prioridade.',
-            'Se houver fumo, rasteje (o ar limpo fica mais abaixo).',
-            'Toque na porta antes de abrir. Se estiver quente, não abra.',
-            'Feche as portas atrás de si para retardar o fogo.',
-            'Ligue 112 (Bombeiros) de um local seguro.',
-            'NUNCA volte para trás para ir buscar objetos.',
-            'Se a sua roupa pegar fogo: PARE, DEITE-SE e ROLE.'
+            'SAIA DE CASA DE IMEDIATO. Salvar vidas é a única prioridade.',
+            'Se houver fumo no caminho, rasteje. O ar mais limpo e respirável está junto ao chão.',
+            'Toque na porta com as costas da mão antes de abrir. Se estiver quente, não abra.',
+            'Feche as portas ao passar pelas divisões para ajudar a conter as chamas.',
+            'Ligue para os Bombeiros: {{FIRE_NUMBER}}, assim que estiver em local seguro.',
+            'NUNCA volte para ir buscar malas, documentos ou telemóveis.',
+            'Se a roupa pegar fogo: PARE, DEITE-SE no chão e ROLE de um lado para o outro.',
         ]
     }
 };

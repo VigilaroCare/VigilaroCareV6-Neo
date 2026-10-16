@@ -73,7 +73,7 @@ export const firePreventionContentPTBR = {
             'Se houver fumaça no caminho, rasteje. O ar mais limpo e respirável fica próximo ao chão.',
             'Toque a porta com as costas da mão antes de abrir. Se estiver quente, não abra.',
             'Feche as portas ao passar pelos cômodos para ajudar a segurar as chamas.',
-            'Ligue para os Bombeiros no 193 assim que estiver em local seguro.',
+            'Ligue para os Bombeiros no {{FIRE_NUMBER}} assim que estiver em local seguro.',
             'NUNCA volte para pegar bolsas, documentos ou celulares.',
             'Se a sua roupa pegar fogo: PARE, DEITE no chão e ROLE de um lado para o outro.'
         ]

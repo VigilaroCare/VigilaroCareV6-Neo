@@ -60,7 +60,7 @@ export const RISK_CATEGORIES_ES = [
       {
         id: 'fes_6',
         text: '¿Se ha alertado a los invitados sobre desniveles y escalones?',
-        consequence: 'Caídas por desconocimiento del entorno.',
+        consequence: 'Tropiezos y caídas graves en suelos desconocidos o mal iluminados.',
         checkAction: 'Señalizar con cinta o advertir al llegar.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
@@ -91,7 +91,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: 'Si el evento es en una finca: ¿están cercados los pozos, lagos y ríos?',
         consequence: 'Los niños de apartamento no conocen los riesgos del agua natural.',
-        checkAction: 'Cerque los cuerpos de agua y asigne un vigilante.',
+        checkAction: 'Mantenga las puertas cerradas con llave y prohíba acercarse al agua sin adultos supervisando.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -103,7 +103,7 @@ export const RISK_CATEGORIES_ES = [
       },
       {
         id: 'fes_12',
-        text: '¿La PCD tiene acceso sin barreras al baño y a las áreas sociales?',
+        text: '¿El baño y las zonas de ocio son accesibles (adaptados)?',
         consequence: 'Exclusión y riesgo de accidentes al improvisar accesos.',
         checkAction: 'Verifique el ancho de las puertas, escalones y baño antes del evento.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
@@ -119,7 +119,7 @@ export const RISK_CATEGORIES_ES = [
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
     educational: {
-      description: 'Recibir visitas requiere adaptar la casa para quienes no la conocen. Los ancianos y los bebés tienen necesidades de seguridad específicas que pueden no estar mapeadas en su vida diaria.',
+      description: 'Recibir visitas exige adaptar la casa para quien no la conoce. Las personas mayores, los niños y los bebés tienen necesidades de seguridad específicas que quizá no note en el ajetreo diario.',
       keyPoints: [
         'Retire las alfombras sueltas para los visitantes ancianos.',
         'Verifique el ancho de los pasillos y la iluminación de los escalones.',
@@ -156,14 +156,14 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Están protegidos los enchufes bajos?',
         consequence: 'Descarga eléctrica en bebés y niños curiosos.',
-        checkAction: 'Instale protectores de enchufes.',
+        checkAction: 'Coloque protectores de plástico específicos en los enchufes que no use.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'vis_5',
         critico: true,
         text: '¿Están bajo llave los productos de limpieza y los medicamentos?',
-        consequence: 'El envenenamiento accidental es una emergencia frecuente.',
+        consequence: 'Intoxicaciones accidentales con envases de colores dejados en cajones o debajo del fregadero.',
         checkAction: 'Guarde en un gabinete alto y cerrado.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
@@ -172,7 +172,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿El baño tiene soporte o barras de apoyo para ancianos?',
         consequence: 'Las caídas en el baño pueden ser fatales para los ancianos.',
-        checkAction: 'Proporcione una silla o barra temporal.',
+        checkAction: 'Use una alfombrilla de goma en la ducha y ponga barras de apoyo.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -200,15 +200,15 @@ export const RISK_CATEGORIES_ES = [
       },
       {
         id: 'vis_10',
-        text: '¿El visitante PCD tiene garantizado el acceso al baño y áreas comunes?',
-        consequence: 'Puertas estrechas, escalones y pisos irregulares impiden el acceso seguro.',
+        text: '¿Está garantizada la accesibilidad para visitantes con necesidades especiales?',
+        consequence: 'Los escalones sueltos o las puertas estrechas causan caídas graves al improvisar.',
         checkAction: 'Verifique la accesibilidad y proporcione rampas si es necesario.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'vis_11',
         text: '¿Se ha informado al anciano/PCD sobre desniveles, escaleras y pisos?',
-        consequence: 'Un entorno desconocido multiplica el riesgo de caídas.',
+        consequence: 'La desorientación en un lugar nuevo favorece las caídas graves.',
         checkAction: 'Acompañe al llegar y señale los puntos de atención.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       }
@@ -223,7 +223,7 @@ export const RISK_CATEGORIES_ES = [
     color: '#795548',
     gradient: [ '#5D4037', '#D7CCC8' ],
     educational: {
-      description: '**El Riesgo Invisible:** La electricidad no tiene olor y no avisa. Un "arreglo" temporal a menudo se vuelve permanente, y los clavos ocultos en los escombros causan pinchazos graves.',
+      description: 'Las obras en casa siempre lo ponen todo patas arriba. Los cables provisionales expuestos, los clavos, los tornillos y los trozos de madera esparcidos por el suelo son las mayores trampas.',
       keyPoints: [
         '**Acción Táctica Inmediata:** Aísle el área con barreras físicas.',
         'Apague el INTERRUPTOR PRINCIPAL antes de cualquier reparación eléctrica.',
@@ -236,14 +236,14 @@ export const RISK_CATEGORIES_ES = [
         id: 'ref_1',
         critico: true,
         text: '¿El área de construcción está cerrada o aislada?',
-        consequence: 'La curiosidad infantil en las obras de construcción es fatal.',
+        consequence: 'Los niños y las mascotas entran, exploran la zona de obra y se lastiman con los escombros.',
         checkAction: 'Use vallas o cierre las puertas.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'ref_2',
         text: '¿Se apaga el disyuntor al final del día?',
-        consequence: 'Riesgo de incendio nocturno.',
+        consequence: 'Las instalaciones eléctricas provisionales de obra pueden calentarse por la noche y provocar un incendio.',
         checkAction: 'Apague el disyuntor al salir.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
@@ -276,7 +276,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Los cables están organizados y lejos del agua?',
         consequence: 'Cortocircuito e incendio.',
-        checkAction: 'Organice los cables y aléjelos del área mojada.',
+        checkAction: 'Ordene los alargadores y manténgalos lejos de la humedad y de las tuberías.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -316,7 +316,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Se instalaron mallas de seguridad en las ventanas?',
         consequence: 'Alto riesgo de caída en pisos altos.',
-        checkAction: 'No abra ventanas sin protección.',
+        checkAction: 'Mantenga las ventanas cerradas hasta que se instalen las redes. Prefiera empresas especializadas.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -344,15 +344,15 @@ export const RISK_CATEGORIES_ES = [
       {
         id: 'mud_5',
         text: '¿Se revisaron los enchufes y cables nuevos?',
-        consequence: 'Cortocircuito e incendio por cableado viejo.',
-        checkAction: 'Pruebe los disyuntores.',
+        consequence: 'Las instalaciones antiguas pueden calentarse o provocar un cortocircuito con aparatos de alta potencia (vatios).',
+        checkAction: 'Pruebe los interruptores automáticos y compruebe si hay cables sueltos en las paredes o calentamiento. Consulte a un profesional cualificado.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'mud_6',
         text: '¿Se supervisa a los niños y mascotas durante la mudanza?',
-        consequence: 'Entorno desconocido con puertas abiertas.',
-        checkAction: 'Asigne a alguien exclusivamente para supervisar.',
+        consequence: 'Las puertas y portones abiertos todo el tiempo facilitan fugas, caídas o accidentes de tráfico.',
+        checkAction: 'Deje a los niños y las mascotas con familiares o en una habitación segura.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       }
     ]
@@ -366,13 +366,12 @@ export const RISK_CATEGORIES_ES = [
     color: '#009688',
     gradient: [ '#00695C', '#4DB6AC' ],
     educational: {
-      description: 'La supervisión activa es clave para prevenir accidentes infantiles. Los niños no tienen sentido del peligro y son rápidos e impredecibles.',
+      description: 'Vigilar activamente es la clave para evitar accidentes con los pequeños. Los niños no tienen noción del peligro, son rápidos y se exponen a riesgos en segundos.',
       keyPoints: [
-        'Nunca deje a los bebés solos en los cambiadores o en las bañeras.',
-        'La cocina es un área prohibida durante la preparación de las comidas.',
-        'Las medicinas y productos de limpieza deben guardarse en alto y bajo llave.',
-        'Las mallas de seguridad son obligatorias en ventanas y balcones.',
-        'Cuidado con las distracciones digitales: el celular quita el foco de la supervisión.'
+          'Nunca deje a los bebés solos sobre cambiadores o camas.',
+          'Impida la entrada de los niños en la cocina cuando el fogón esté en uso.',
+          'Compruebe que las redes de protección de las ventanas estén firmes.',
+          'Evite distraerse con el móvil, la televisión o las redes sociales si su tarea es vigilar a los niños.',
       ]
     },
     questions: [
@@ -380,23 +379,23 @@ export const RISK_CATEGORIES_ES = [
         id: 'kid_1',
         critico: true,
         text: '¿Puede ver al niño en este momento?',
-        consequence: 'Segundos de distracción bastan para un accidente grave.',
-        checkAction: 'Mantenga contacto visual constante.',
+        consequence: 'Bastan unos segundos de distracción para que el bebé toque o alcance algo peligroso.',
+        checkAction: 'Mantenga contacto visual constante y permanezca siempre cerca del niño.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_2',
         text: '¿El celular está lejos de usted?',
-        consequence: 'El celular es la principal causa de distracción de los padres.',
+        consequence: 'Consultar redes sociales o intercambiar mensajes le quita la atención inmediata.',
         checkAction: 'Deje el celular en otra habitación.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_3',
         critico: true,
-        text: '¿Están cerradas o con red las ventanas y balcones?',
+        text: '¿Las ventanas de la habitación tienen redes de protección adecuadas y en buen estado?',
         consequence: 'Las caídas son la principal causa de muerte infantil.',
-        checkAction: 'Cierre las ventanas e instale redes certificadas.',
+        checkAction: 'Instale redes de protección y mantenga las ventanas cerradas si no las tiene.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -404,7 +403,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Es inaccesible la cocina durante la preparación?',
         consequence: 'Quemaduras por líquidos calientes y ollas.',
-        checkAction: 'Use una puerta de seguridad o mantenga al niño fuera.',
+        checkAction: 'Mantenga cerrada la puerta de la cocina o use barreras de seguridad.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -412,14 +411,14 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Las medicinas y los productos de limpieza están bajo llave?',
         consequence: 'La intoxicación es una emergencia frecuente en menores de 5 años.',
-        checkAction: 'Guárdelos en un gabinete alto con cerradura.',
+        checkAction: 'Guarde los desinfectantes y las pastillas en estantes fuera del alcance de los niños.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_6',
         critico: true,
-        text: '¿Hay objetos pequeños al alcance (monedas, pilas, piezas)?',
-        consequence: 'La asfixia y la ingestión de pilas son emergencias.',
+        text: '¿Se ha asegurado de que no hay monedas ni pilas en el suelo?',
+        consequence: 'Los bebés se lo llevan todo a la boca. Las pilas provocan asfixia o quemaduras en el esófago.',
         checkAction: 'Haga un barrido a nivel del suelo.',
         options: [ { label: 'No', safe: true }, { label: 'Sí', safe: false } ]
       }
@@ -448,7 +447,7 @@ export const RISK_CATEGORIES_ES = [
         id: 'alt_1',
         critico: true,
         text: '¿Está usando una escalera adecuada (no una silla)?',
-        consequence: 'Las sillas se vuelcan fácilmente.',
+        consequence: 'Subirse a sillas o cajas es peligroso, inestable y provoca caídas.',
         checkAction: 'Use una escalera doméstica que tenga {{CERT_SEAL}}.',
         options: [
           { label: 'Sí', safe: true },
@@ -459,7 +458,7 @@ export const RISK_CATEGORIES_ES = [
         id: 'alt_2',
         text: '¿Alguien está sosteniendo la base de la escalera?',
         consequence: 'La escalera puede resbalar en pisos lisos.',
-        checkAction: 'Llame a alguien para que ayude.',
+        checkAction: 'Pida a alguien que sujete la base de la escalera para evitar que resbale.',
         options: [
           { label: 'Sí', safe: true },
           { label: 'Estoy solo', safe: false }
@@ -477,8 +476,8 @@ export const RISK_CATEGORIES_ES = [
         id: 'alt_4',
         critico: true,
         text: '¿El piso donde descansa la escalera es firme y seco?',
-        consequence: 'La escalera resbala en pisos mojados o irregulares.',
-        checkAction: 'Seque el piso y use base antideslizante.',
+        consequence: 'Apoyarla en un suelo mojado o irregular hace que la escalera resbale o vuelque.',
+        checkAction: 'Seque el suelo y despeje la zona antes de colocarla.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -491,9 +490,9 @@ export const RISK_CATEGORIES_ES = [
       {
         id: 'alt_6',
         critico: true,
-        text: 'Si es un techo/losa — ¿consideró llamar a un profesional?',
-        consequence: 'Las caídas del techo suelen ser fatales.',
-        checkAction: 'Considere contratar a un profesional.',
+        text: 'Si va a subir al tejado o a la azotea, ¿ha valorado llamar a un profesional especializado?',
+        consequence: 'Las caídas desde tejados y azoteas, o al romperse la cubierta, suelen ser mortales.',
+        checkAction: 'Contrate a un tejador o especialista en canalones en lugar de arriesgarse.',
         options: [
           { label: 'Sí', safe: true },
           { label: 'Lo haré', safe: false }
@@ -510,7 +509,7 @@ export const RISK_CATEGORIES_ES = [
     color: '#9C27B0',
     gradient: [ '#7B1FA2', '#E1BEE7' ],
     educational: {
-      description: 'La mezcla inadecuada de productos de limpieza puede generar gases tóxicos letales.',
+      description: 'Mezclar productos de limpieza puede generar gases venenosos invisibles que queman los pulmones. Use un producto cada vez y mantenga la casa ventilada.',
       keyPoints: [
         'NUNCA mezcle lejía (cloro) con otros productos: amoníaco, vinagre o ácido.',
         'La mezcla más peligrosa: lejía + detergente. Genera gas cloro.',
@@ -523,9 +522,9 @@ export const RISK_CATEGORIES_ES = [
       {
         id: 'qui_1',
         critico: true,
-        text: '¿Están abiertas las ventanas y puertas?',
+        text: '¿Están abiertas las ventanas y puertas de la zona de limpieza?',
         consequence: 'Acumulación de vapores tóxicos en el interior.',
-        checkAction: 'Abra todo para ventilar.',
+        checkAction: 'Ábralo todo para que el aire circule y se renueve.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -539,15 +538,15 @@ export const RISK_CATEGORIES_ES = [
       {
         id: 'qui_3',
         text: '¿Lleva guantes protectores?',
-        consequence: 'Dermatitis y quemaduras químicas en las manos.',
+        consequence: 'La lejía y los ácidos provocan dermatitis y quemaduras químicas en la piel.',
         checkAction: 'Use guantes de goma antes de manipular.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'qui_4',
         critico: true,
-        text: '¿Están los niños y las mascotas fuera de la habitación?',
-        consequence: 'Inhalación de vapores y contacto con productos.',
+        text: '¿Están los niños y las mascotas lejos de la limpieza?',
+        consequence: 'Respiran los vapores del suelo o pueden beber el agua sucia del cubo.',
         checkAction: 'Manténgalos en otra habitación durante la limpieza.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
@@ -555,14 +554,14 @@ export const RISK_CATEGORIES_ES = [
         id: 'qui_5',
         critico: true,
         text: '¿Están los productos en envases originales (no en PET)?',
-        consequence: 'Ingestión accidental por confusión.',
+        consequence: 'Guardar desinfectante o lejía en una botella de zumo provoca intoxicaciones accidentales.',
         checkAction: 'Nunca los pase a botellas de refresco.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'qui_6',
         text: '¿Señalizó el piso mojado?',
-        consequence: 'Resbalones y caídas durante la limpieza.',
+        consequence: 'Los resbalones en el suelo enjabonado provocan caídas peligrosas.',
         checkAction: 'Use un letrero o advierta a los residentes.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       }

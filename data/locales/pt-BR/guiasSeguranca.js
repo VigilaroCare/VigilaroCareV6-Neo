@@ -92,7 +92,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
           'Se houver fumaça no ambiente, rasteje. O ar limpo fica perto do chão',
           'Toque a porta com as costas da mão antes de abrir. Se estiver quente, não abra',
           'Se não conseguir sair do quarto, feche a porta, abafe a fresta com pano e vá para a janela pedir ajuda',
-          'Ligue para os Bombeiros (193) assim que estiver fora de perigo',
+          'Ligue para os Bombeiros ({{FIRE_NUMBER}}) assim que estiver fora de perigo',
           'Nunca volte a uma casa em chamas para buscar objetos',
         ],
       },
@@ -216,7 +216,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
           'Desligue imediatamente o disjuntor geral da casa ou tire o aparelho da tomada',
           'Se não der para desligar, afaste a pessoa usando um objeto de madeira ou plástico seco (como um cabo de vassoura seco)',
           'Ligue para o {{EMERGENCY_MEDICAL}} na hora. No caso de pets, leve-os direto ao veterinário',
-          'Se a pessoa estiver inconsciente e sem respirar, inicie a massagem cardíaca se souber o procedimento',
+          'Se a pessoa estiver inconsciente e sem respirar, inicie a massagem cardíaca (compressões no centro do peito) mesmo sem treinamento: o atendente do {{EMERGENCY_MEDICAL}} orienta por telefone',
         ],
       },
       {

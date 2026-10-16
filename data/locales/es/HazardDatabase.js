@@ -11,9 +11,9 @@ export const HAZARD_DATABASE_ES = {
                 riskLevel: 'ALTO',
                 hazards: [
                     { type: 'queimadura', desc: 'La superficie externa se calienta mucho durante el uso.', target: ['crianca'] },
-                    { type: 'queda', desc: 'Tirar del cable (efecto látigo) derribando aceite/comida caliente.', target: ['crianca', 'pet'] }
+                    { type: 'queda', desc: 'El aparato puede volcar y derramar grasa o comida caliente si se tira del cable.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Nunca lo use sobre manteles que puedan ser tirados. Mantenga el cable enrollado y corto.'
+                expert_tip: 'Nunca deje la freidora de aire sobre manteles que los niños o las mascotas puedan tirar. Mantenga el cable corto y ordenado, preferiblemente en la parte de atrás de la encimera.'
             },
             {
                 id: 'processador_mixer',
@@ -21,10 +21,10 @@ export const HAZARD_DATABASE_ES = {
                 type: 'eletro',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'corte', desc: 'Cuchillas extremadamente afiladas, riesgo de amputación de dedos.', target: ['crianca', 'adulto'] },
+                    { type: 'corte', desc: 'Las cuchillas son muy cortantes, con riesgo de accidentes graves, sobre todo en los dedos.', target: ['crianca', 'adulto'] },
                     { type: 'eletrico', desc: 'Activación accidental durante la limpieza.', target: ['adulto'] }
                 ],
-                expert_tip: 'Desenchufe siempre antes de limpiar. Guarde las cuchillas por separado y en lo alto.'
+                expert_tip: 'Desenchufe siempre el aparato después de usarlo y antes de tocar o limpiar las cuchillas. Guarde las piezas cortantes desmontadas y en alto.'
             },
             {
                 id: 'potes_vidro',
@@ -33,9 +33,9 @@ export const HAZARD_DATABASE_ES = {
                 riskLevel: 'MEDIO',
                 hazards: [
                     { type: 'corte', desc: 'Explosión por choque térmico (caliente -> frío).', target: ['todos'] },
-                    { type: 'ingestao', desc: 'Fragmentos invisibles después de romperse.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Pequeños fragmentos que quedan en el suelo tras la rotura.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Al romperse vidrio, use una linterna contra el piso para encontrar micro-fragmentos brillantes.'
+                expert_tip: 'Si se rompe una fuente o un vaso, apague la luz y apunte la linterna del móvil paralela al suelo. Los trocitos invisibles brillarán en la oscuridad. Recójalos de inmediato.'
             },
             {
                 id: 'forno_embutido',
@@ -45,7 +45,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'queimadura', desc: 'El vidrio de la puerta alcanza altas temperaturas. A la altura de los ojos de los niños.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Instale seguros en la puerta del horno. El aislamiento térmico no siempre es 100% efectivo.'
+                expert_tip: 'El cristal exterior puede quemar al tocarlo, incluso con aislamiento térmico. Coloque un bloqueo de puerta específico para hornos. Con el horno o los fogones encendidos, no permita nunca a los niños en la cocina.'
             },
             {
                 id: 'produtos_limpeza_pia',
@@ -74,7 +74,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'sufocamento', desc: 'Los niños pequeños y mascotas pueden entrar y quedar atrapados.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Mantenga la puerta siempre cerrada y, si es posible, con seguro cuando no esté en uso.'
+                expert_tip: 'Mantenga la puerta de la lavadora bloqueada o cerrada y el aparato desenchufado cuando no lo use.'
             },
             {
                 id: 'baldes_bacias',
@@ -84,7 +84,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'afogamento', desc: 'Los bebés pueden ahogarse en 5cm de agua silenciosamente.', target: ['bebe', 'crianca'] }
                 ],
-                expert_tip: 'Regla de oro: Cubo usado es cubo vacío y boca abajo. Nunca deje cosas en remojo en el suelo.'
+                expert_tip: '¿Terminó de usar el cubo, el barreño o el lavadero? Vacíelos de inmediato. Guarde cubos y barreños boca abajo y no en el suelo. Al alcance de los niños, pueden jugar con el agua de los grifos.'
             },
             {
                 id: 'ferro_aquecido',
@@ -112,7 +112,7 @@ export const HAZARD_DATABASE_ES = {
                 riskLevel: 'MEDIO',
                 hazards: [
                     { type: 'corte', desc: 'Estallido espontáneo o por impacto, generando miles de fragmentos.', target: ['todos'] },
-                    { type: 'aprisionamento', desc: 'Encerrarse o atascarse si alguien se siente mal adentro.', target: ['idoso'] }
+                    { type: 'aprisionamento', desc: 'La mampara de la ducha puede atascarse si alguien se cae o se desmaya contra ella.', target: ['idoso'] }
                 ],
                 expert_tip: 'Aplique película de seguridad al vidrio. Tenga una llave de repuesto o apertura fácil por fuera.'
             },
@@ -134,7 +134,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'choque', desc: 'Caída de secador/afeitadora en el agua (electrocución).', target: ['todos'] }
                 ],
-                expert_tip: 'Instale un interruptor GFCI (Diferencial) que se apaga en milisegundos en caso de choque.'
+                expert_tip: 'Revise el cuadro eléctrico para ver si el baño cuenta con un interruptor diferencial que corte la corriente en caso de contacto con el agua.'
             }
         ]
     },
@@ -163,7 +163,7 @@ export const HAZARD_DATABASE_ES = {
                     { type: 'corte', desc: 'Traumatismo craneal o cortes en caídas de niños aprendiendo a caminar.', target: ['bebe', 'crianca'] },
                     { type: 'quebra', desc: 'Rotura del vidrio con peso o impacto.', target: ['todos'] }
                 ],
-                expert_tip: 'Si hay un niño aprendiendo a caminar, quite la mesa temporalmente o proteja las esquinas.'
+                expert_tip: 'Si tiene bebés aprendiendo a caminar, guarde la mesa de centro unos meses o proteja las esquinas con protectores blandos.'
             },
             {
                 id: 'cortinas_cordoes',
@@ -181,7 +181,7 @@ export const HAZARD_DATABASE_ES = {
                 type: 'objeto',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'ingestao', desc: 'Ingerir la pila causa quemaduras químicas esofágicas en 2 horas.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Tragar una pila de botón provoca en 2 horas una quemadura química grave en el estómago.', target: ['crianca', 'pet'] }
                 ],
                 expert_tip: 'Atornille los compartimentos de pilas. Si falta una pila, vaya al hospital de inmediato.'
             }
@@ -202,7 +202,7 @@ export const HAZARD_DATABASE_ES = {
                     { type: 'intoxicacao', desc: 'Su ingestión causa edema de glotis y asfixia rápida.', target: ['crianca', 'pet'] },
                     { type: 'alergia', desc: 'La savia puede causar quemaduras en piel/ojos.', target: ['todos'] }
                 ],
-                expert_tip: 'Conozca sus plantas por el nombre científico. En caso de duda, elévelas o quítelas.'
+                expert_tip: 'Identifique las plantas de su jardín (consultar a un especialista es una buena opción). Si encuentra especies tóxicas, páselas a macetas colgantes o regálelas.'
             },
             {
                 id: 'churrasqueira',
@@ -210,8 +210,8 @@ export const HAZARD_DATABASE_ES = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Las brasas permanecen calientes por horas bajo las cenizas.', target: ['crianca', 'pet'] },
-                    { type: 'explosao', desc: 'Uso de alcohol líquido para encender.', target: ['todos'] }
+                    { type: 'queimadura', desc: 'La ceniza por encima puede ocultar brasas que siguen muy calientes durante horas.', target: ['crianca', 'pet'] },
+                    { type: 'explosao', desc: 'Echar alcohol líquido directamente sobre el carbón para encenderlo o avivar la llama.', target: ['todos'] }
                 ],
                 expert_tip: 'Aísle el área de la parrilla. Apague totalmente las brasas con agua al terminar.'
             },
@@ -239,10 +239,10 @@ export const HAZARD_DATABASE_ES = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Caída por escalones (falta de pasamanos o puerta). Alto riesgo para bebés y ancianos.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Caídas en escalones sin pasamanos firme o desprotegidos. Riesgo alto para bebés, niños pequeños y personas mayores.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Suelo resbaladizo o alfombra suelta en escalones.', target: ['todos'] }
                 ],
-                expert_tip: 'Instale puertas de seguridad arriba y abajo. Use tiras antideslizantes.'
+                expert_tip: 'Instale barreras de seguridad fijas arriba y abajo de la escalera si tiene bebés y niños pequeños (sobre todo los que gatean).'
             },
             {
                 id: 'janelas_sacadas',
@@ -280,7 +280,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'corte', desc: 'Activación accidental por curiosidad.', target: ['crianca'] }
                 ],
-                expert_tip: 'Guárdelas en cajas bajo llave y desconectadas. Nunca las deje enchufadas entre usos.'
+                expert_tip: 'Nunca guarde herramientas enchufadas. Guarde taladros y sierras eléctricas en cajas cerradas en alto, con sus accesorios separados y ordenados.'
             },
             {
                 id: 'quimicos_automotivos',
@@ -289,7 +289,7 @@ export const HAZARD_DATABASE_ES = {
                 riskLevel: 'CRITICO',
                 hazards: [
                     { type: 'intoxicacao', desc: 'Ingestión de líquidos de colores (gasolina, anticongelante).', target: ['crianca', 'pet'] },
-                    { type: 'incendio', desc: 'El almacenamiento inadecuado genera vapores explosivos.', target: ['todos'] }
+                    { type: 'incendio', desc: 'Almacenar bidones de combustible o disolvente cerca de enchufes o chispas del garaje.', target: ['todos'] }
                 ],
                 expert_tip: 'Almacénelos en un lugar ventilado, alto y bajo llave. Lejos de fuentes de calor.'
             }

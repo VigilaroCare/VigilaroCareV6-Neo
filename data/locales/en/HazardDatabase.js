@@ -11,9 +11,9 @@ export const HAZARD_DATABASE_EN = {
                 riskLevel: 'ALTO',
                 hazards: [
                     { type: 'queimadura', desc: 'Outer surface gets very hot during use.', target: ['crianca'] },
-                    { type: 'queda', desc: 'Pulling the cord (whip effect) knocking over hot oil/food.', target: ['crianca', 'pet'] }
+                    { type: 'queda', desc: 'The appliance can tip over and spill hot fat or food if the cord is pulled.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Never use on tablecloths that can be pulled. Keep the cord wrapped and short.'
+                expert_tip: 'Never leave the air fryer on a tablecloth that children or pets could pull. Keep the cord short and tidy, preferably at the back of the worktop.'
             },
             {
                 id: 'processador_mixer',
@@ -21,10 +21,10 @@ export const HAZARD_DATABASE_EN = {
                 type: 'eletro',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'corte', desc: 'Extremely sharp blades, risk of finger amputation.', target: ['crianca', 'adulto'] },
+                    { type: 'corte', desc: 'The blades are extremely sharp, with a risk of serious injury, especially to the fingers.', target: ['crianca', 'adulto'] },
                     { type: 'eletrico', desc: 'Accidental activation during cleaning.', target: ['adulto'] }
                 ],
-                expert_tip: 'Always unplug before any cleaning. Store blades separately and up high.'
+                expert_tip: 'Always unplug the appliance after use and before touching or cleaning the blades. Store the sharp parts dismantled and up high.'
             },
             {
                 id: 'potes_vidro',
@@ -33,9 +33,9 @@ export const HAZARD_DATABASE_EN = {
                 riskLevel: 'MEDIO',
                 hazards: [
                     { type: 'corte', desc: 'Explosion from thermal shock (hot -> cold).', target: ['todos'] },
-                    { type: 'ingestao', desc: 'Invisible fragments after breaking.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Tiny shards that stay on the floor after something breaks.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'When glass breaks, use a flashlight against the floor to find shiny micro-shards.'
+                expert_tip: 'If an oven dish or glass breaks, turn off the light and shine your phone torch parallel to the floor. The invisible shards will sparkle in the dark. Pick them up straight away.'
             },
             {
                 id: 'forno_embutido',
@@ -45,7 +45,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'queimadura', desc: 'Door glass reaches high temperatures. At eye level for children.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Install oven door locks. Thermal insulation is not always 100% effective.'
+                expert_tip: 'The outer glass can burn if touched, even with thermal insulation. Fit a dedicated oven door lock. While the oven or cooker is on, never allow children in the kitchen.'
             },
             {
                 id: 'produtos_limpeza_pia',
@@ -74,7 +74,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'sufocamento', desc: 'Toddlers and pets can get in and get trapped (hide and seek).', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Keep the machine door always closed and, if possible, locked when not in use.'
+                expert_tip: 'Keep the washing machine door locked or closed, and unplugged, when not in use.'
             },
             {
                 id: 'baldes_bacias',
@@ -84,7 +84,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'afogamento', desc: 'Babies can silently drown in 2 inches of water.', target: ['bebe', 'crianca'] }
                 ],
-                expert_tip: 'Golden rule: A used bucket is an empty bucket turned upside down. Never leave soaking on the floor.'
+                expert_tip: 'Finished with the bucket, basin or tub? Empty it straight away. Store buckets and basins upside down and not on the floor. Within children\'s reach, they may play with the water from the taps.'
             },
             {
                 id: 'ferro_aquecido',
@@ -112,7 +112,7 @@ export const HAZARD_DATABASE_EN = {
                 riskLevel: 'MEDIO',
                 hazards: [
                     { type: 'corte', desc: 'Spontaneous shattering or from impact, generating thousands of shards.', target: ['todos'] },
-                    { type: 'aprisionamento', desc: 'Locking/jamming with someone sick inside.', target: ['idoso'] }
+                    { type: 'aprisionamento', desc: 'The shower door can jam if someone falls or faints against it.', target: ['idoso'] }
                 ],
                 expert_tip: 'Apply safety film to the glass. Have a spare key or easy opening from the outside.'
             },
@@ -134,7 +134,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'choque', desc: 'Dropping hairdryer/shaver into water (electrocution).', target: ['todos'] }
                 ],
-                expert_tip: 'Install a GFCI (Ground Fault Circuit Interrupter) outlet that shuts off in milliseconds in case of shock.'
+                expert_tip: 'Check your electrical panel to see whether the bathroom circuit has a residual-current device (RCD) that cuts the power on contact with water.'
             }
         ]
     },
@@ -163,7 +163,7 @@ export const HAZARD_DATABASE_EN = {
                     { type: 'corte', desc: 'Head trauma or cuts in falls by toddlers learning to walk.', target: ['bebe', 'crianca'] },
                     { type: 'quebra', desc: 'Glass breaking under weight or impact.', target: ['todos'] }
                 ],
-                expert_tip: 'If you have a toddler learning to walk, temporarily remove the coffee table or protect corners.'
+                expert_tip: 'If you have babies learning to walk, put the coffee table away for a few months or protect the corners with soft guards.'
             },
             {
                 id: 'cortinas_cordoes',
@@ -181,7 +181,7 @@ export const HAZARD_DATABASE_EN = {
                 type: 'objeto',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'ingestao', desc: 'Battery ingestion causes esophageal chemical burns in 2 hours.', target: ['crianca', 'pet'] }
+                    { type: 'ingestao', desc: 'Swallowing a button battery causes a severe chemical burn in the stomach within 2 hours.', target: ['crianca', 'pet'] }
                 ],
                 expert_tip: 'Screw down battery compartments. If a battery goes missing, go to the hospital immediately.'
             }
@@ -202,7 +202,7 @@ export const HAZARD_DATABASE_EN = {
                     { type: 'intoxicacao', desc: 'Ingestion causes glottis edema and rapid asphyxiation.', target: ['crianca', 'pet'] },
                     { type: 'alergia', desc: 'Sap can cause skin/eye burns.', target: ['todos'] }
                 ],
-                expert_tip: 'Know your plants by scientific name. When in doubt, raise them or remove them.'
+                expert_tip: 'Identify the plants in your garden (consulting a specialist is a good option). If you spot toxic species, move them to hanging pots or give them away.'
             },
             {
                 id: 'churrasqueira',
@@ -210,8 +210,8 @@ export const HAZARD_DATABASE_EN = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'queimadura', desc: 'Embers stay hot for hours under ashes (children step on them).', target: ['crianca', 'pet'] },
-                    { type: 'explosao', desc: 'Using liquid alcohol to light it.', target: ['todos'] }
+                    { type: 'queimadura', desc: 'A layer of ash on top can hide embers that stay very hot for hours.', target: ['crianca', 'pet'] },
+                    { type: 'explosao', desc: 'Pouring liquid alcohol straight onto the charcoal to light it or make a flame.', target: ['todos'] }
                 ],
                 expert_tip: 'Isolate the grill area. Completely extinguish embers with water when finished.'
             },
@@ -239,10 +239,10 @@ export const HAZARD_DATABASE_EN = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Falling down stairs (lack of handrail or gate). High risk for babies and elderly.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Falls on steps without a sturdy handrail or with no protection. High risk for babies, young children and older adults.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Slippery floor or loose carpet on steps.', target: ['todos'] }
                 ],
-                expert_tip: 'Install baby gates at the top and bottom. Use anti-slip strips.'
+                expert_tip: 'Fit safety gates at the top and bottom of the stairs if you have babies and young children (especially those who crawl).'
             },
             {
                 id: 'janelas_sacadas',
@@ -280,7 +280,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'corte', desc: 'Accidental activation out of curiosity.', target: ['crianca'] }
                 ],
-                expert_tip: 'Store in locked boxes and unplugged. Never leave "plugged in" between uses.'
+                expert_tip: 'Never store tools while plugged in. Keep drills and power saws in closed boxes up high, with their accessories separate and organised.'
             },
             {
                 id: 'quimicos_automotivos',
@@ -289,7 +289,7 @@ export const HAZARD_DATABASE_EN = {
                 riskLevel: 'CRITICO',
                 hazards: [
                     { type: 'intoxicacao', desc: 'Ingestion of colored liquids (gasoline, antifreeze).', target: ['crianca', 'pet'] },
-                    { type: 'incendio', desc: 'Improper storage generates explosive vapors.', target: ['todos'] }
+                    { type: 'incendio', desc: 'Storing fuel cans or thinner near sockets or sparks in the garage.', target: ['todos'] }
                 ],
                 expert_tip: 'Store in a ventilated, high, and locked place. Away from heat sources.'
             }

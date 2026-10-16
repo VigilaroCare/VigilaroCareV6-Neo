@@ -60,7 +60,7 @@ export const RISK_CATEGORIES_EN = [
       {
         id: 'fes_6',
         text: 'Have guests been alerted about uneven floors and steps?',
-        consequence: 'Falls due to unfamiliarity with the environment.',
+        consequence: 'Trips and serious falls on unfamiliar or poorly lit floors.',
         checkAction: 'Signal with tape or warn upon arrival.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
@@ -91,7 +91,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'If the event is at a farm: are wells, lakes, and rivers fenced?',
         consequence: 'Apartment children are unaware of natural water risks.',
-        checkAction: 'Fence water bodies and assign a watcher.',
+        checkAction: 'Keep gates locked and do not allow anyone near the water without adults supervising.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -103,7 +103,7 @@ export const RISK_CATEGORIES_EN = [
       },
       {
         id: 'fes_12',
-        text: 'Does the PWD have barrier-free access to the bathroom and social areas?',
+        text: 'Are the bathroom and leisure areas accessible (adapted)?',
         consequence: 'Exclusion and risk of accidents when improvising access.',
         checkAction: 'Check door widths, steps, and bathroom before the event.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
@@ -119,7 +119,7 @@ export const RISK_CATEGORIES_EN = [
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
     educational: {
-      description: 'Hosting visitors requires adapting the house for those who do not know it. Elderly and babies have specific safety needs that may not be mapped in your daily life.',
+      description: 'Having guests means adapting the home for people who do not know it. Older adults, children and babies have specific safety needs you may not notice in the rush of everyday life.',
       keyPoints: [
         'Remove loose rugs for elderly visitors.',
         'Check the width of passages and lighting of steps.',
@@ -156,14 +156,14 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Are low outlets protected?',
         consequence: 'Electric shock in babies and curious children.',
-        checkAction: 'Install outlet covers.',
+        checkAction: 'Fit dedicated plastic covers on unused sockets.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'vis_5',
         critico: true,
         text: 'Are cleaning products and medicines locked?',
-        consequence: 'Accidental poisoning is a frequent emergency.',
+        consequence: 'Accidental poisoning from colourful containers left in drawers or under the sink.',
         checkAction: 'Store in a high, locked cabinet.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
@@ -172,7 +172,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Does the bathroom have support or grab bars for the elderly?',
         consequence: 'Bathroom falls can be fatal for the elderly.',
-        checkAction: 'Provide a chair or temporary bar.',
+        checkAction: 'Use a rubber mat in the shower and provide grab bars.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -200,15 +200,15 @@ export const RISK_CATEGORIES_EN = [
       },
       {
         id: 'vis_10',
-        text: 'Is the PWD visitor guaranteed access to the bathroom and common areas?',
-        consequence: 'Narrow doors, steps, and uneven floors prevent safe access.',
+        text: 'Is the home accessible for visitors with special needs?',
+        consequence: 'Loose steps or narrow doorways cause serious falls when people improvise.',
         checkAction: 'Check accessibility and provide ramps if necessary.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'vis_11',
         text: 'Has the elderly/PWD been informed about unevenness, stairs, and house floors?',
-        consequence: 'Unknown environment multiplies fall risk.',
+        consequence: 'Disorientation in a new place makes serious falls more likely.',
         checkAction: 'Accompany upon arrival and point out attention points.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       }
@@ -223,7 +223,7 @@ export const RISK_CATEGORIES_EN = [
     color: '#795548',
     gradient: [ '#5D4037', '#D7CCC8' ],
     educational: {
-      description: '**The Invisible Risk:** Electricity has no smell and gives no warning. A temporary "fix" often becomes permanent, and hidden nails in debris cause severe punctures.',
+      description: 'Building work always turns the home upside down. Temporary exposed wiring, nails, screws and pieces of wood scattered on the floor are the biggest accident traps.',
       keyPoints: [
         '**Immediate Tactical Action:** Isolate the area with physical barriers.',
         'Turn off the MAIN SWITCH before any electrical repair.',
@@ -236,14 +236,14 @@ export const RISK_CATEGORIES_EN = [
         id: 'ref_1',
         critico: true,
         text: 'Is the construction area locked or isolated?',
-        consequence: 'Childish curiosity in construction sites is fatal.',
+        consequence: 'Children and pets wander in, explore the work area and get hurt on the rubble.',
         checkAction: 'Use hoardings or lock the doors.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'ref_2',
         text: 'Is the area breaker turned off at the end of the day?',
-        consequence: 'Risk of nighttime fire.',
+        consequence: 'Temporary electrical installations on a building site can overheat at night and catch fire.',
         checkAction: 'Turn off the breaker when leaving.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
@@ -276,7 +276,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Are extension cords organized and away from water?',
         consequence: 'Short-circuit and fire.',
-        checkAction: 'Organize wires and keep away from wet areas.',
+        checkAction: 'Keep extension leads tidy and away from moisture and pipes.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -317,7 +317,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Have safety nets been installed on windows?',
         consequence: 'High fall risk on high floors.',
-        checkAction: 'Do not open windows without protection.',
+        checkAction: 'Keep windows locked until safety nets are fitted. Prefer specialised companies.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -345,15 +345,15 @@ export const RISK_CATEGORIES_EN = [
       {
         id: 'mud_5',
         text: 'Have outlets and wiring of the new property been inspected?',
-        consequence: 'Short circuit and fire due to old wiring.',
-        checkAction: 'Test the breakers and check for signs of heating.',
+        consequence: 'Old wiring can overheat or short-circuit with high-power (high-wattage) appliances.',
+        checkAction: 'Test the circuit breakers and check for loose wires in the walls or signs of heating. Consult a qualified professional.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'mud_6',
         text: 'Are children and pets supervised during the move?',
-        consequence: 'Unknown environment with open doors, windows, and stairs.',
-        checkAction: 'Assign someone exclusively for supervision.',
+        consequence: 'Doors and gates left open all the time make escapes, falls and traffic accidents easier.',
+        checkAction: 'Leave children and pets with relatives or in a safe room.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       }
     ]
@@ -367,13 +367,12 @@ export const RISK_CATEGORIES_EN = [
     color: '#009688',
     gradient: [ '#00695C', '#4DB6AC' ],
     educational: {
-      description: 'Active supervision is the key to preventing childhood accidents, whether in your daily life or during leisure, visitation, travel, or vacations. Children have no sense of danger and are fast and unpredictable.',
+      description: 'Active supervision is the key to preventing accidents with young children. Children have no sense of danger, they are quick, and they put themselves at risk in seconds.',
       keyPoints: [
-        'Never leave babies alone on changing tables or in bathtubs.',
-        'Kitchen is a forbidden area during meal preparation.',
-        'Medicines and cleaning products must be kept high and locked.',
-        'Safety nets are mandatory on windows and balconies.',
-        'Beware of digital distractions: Cell phones, TV, Streamings, Movies, and Series take focus away from supervising those who need care.'
+          'Never leave babies alone on changing tables or beds.',
+          'Keep children out of the kitchen while the cooker is in use.',
+          'Check that window safety nets are secure.',
+          'Avoid being distracted by your phone, TV or social media when your job is to watch the children.',
       ]
     },
     questions: [
@@ -381,23 +380,23 @@ export const RISK_CATEGORIES_EN = [
         id: 'kid_1',
         critico: true,
         text: 'Can you see the child right now?',
-        consequence: 'Seconds of distraction are enough for a severe accident.',
-        checkAction: 'Maintain constant visual contact.',
+        consequence: 'A few seconds of distraction are enough for a baby to touch or reach something dangerous.',
+        checkAction: 'Keep constant eye contact and always stay close to the child.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_2',
         text: 'Is the cell phone away from you?',
-        consequence: 'The cell phone is the main cause of parental distraction.',
+        consequence: 'Checking social media or messaging takes your attention away right when it is needed.',
         checkAction: 'Leave the cell phone in another room.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_3',
         critico: true,
-        text: 'Are windows and balconies locked or netted?',
+        text: 'Do the windows in the room have suitable safety nets in good condition?',
         consequence: 'Falls from heights are the leading cause of childhood death.',
-        checkAction: 'Lock windows and install certified nets.',
+        checkAction: 'Fit safety nets, and keep the windows locked if you do not have them.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -405,7 +404,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Is the kitchen inaccessible during preparation?',
         consequence: 'Burns from hot liquids and pots.',
-        checkAction: 'Use a safety gate or keep the child out.',
+        checkAction: 'Keep the kitchen door closed or use safety gates.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -413,14 +412,14 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Are medicines and cleaning products locked?',
         consequence: 'Accidental poisoning is a frequent emergency in under-5s.',
-        checkAction: 'Store in a high cabinet with a lock.',
+        checkAction: 'Store disinfectants and pills on shelves out of children\'s reach.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'kid_6',
         critico: true,
-        text: 'Are there small objects within reach (coins, batteries, parts)?',
-        consequence: 'Choking and battery ingestion are emergencies.',
+        text: 'Have you made sure there are no coins or batteries on the floor?',
+        consequence: 'Babies put everything in their mouths. Batteries cause choking or burns to the oesophagus.',
         checkAction: 'Do a floor-level sweep.',
         options: [ { label: 'No', safe: true }, { label: 'Yes', safe: false } ]
       }
@@ -450,7 +449,7 @@ export const RISK_CATEGORIES_EN = [
         id: 'alt_1',
         critico: true,
         text: 'Are you using a proper ladder (not a chair)?',
-        consequence: 'Chairs tip over easily.',
+        consequence: 'Standing on chairs or boxes is dangerous and unstable, and causes falls.',
         checkAction: 'Use a domestic ladder that carries {{CERT_SEAL}}.',
         options: [
           { label: 'Yes', safe: true },
@@ -461,7 +460,7 @@ export const RISK_CATEGORIES_EN = [
         id: 'alt_2',
         text: 'Is someone holding the base of the ladder?',
         consequence: 'The ladder can slip on smooth floors.',
-        checkAction: 'Call someone to help.',
+        checkAction: 'Ask someone to hold the foot of the ladder to stop it slipping.',
         options: [
           { label: 'Yes', safe: true },
           { label: 'I am alone', safe: false }
@@ -479,8 +478,8 @@ export const RISK_CATEGORIES_EN = [
         id: 'alt_4',
         critico: true,
         text: 'Is the floor where the ladder rests firm and dry?',
-        consequence: 'Ladder slips on wet or uneven floors.',
-        checkAction: 'Dry the floor and use an anti-slip base.',
+        consequence: 'Standing it on a wet or uneven floor makes the ladder slip or tip over.',
+        checkAction: 'Dry the floor and clear the area before setting it up.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -493,9 +492,9 @@ export const RISK_CATEGORIES_EN = [
       {
         id: 'alt_6',
         critico: true,
-        text: "If it's a roof/slab — considered calling a professional?",
-        consequence: 'Roof falls are often fatal.',
-        checkAction: 'Consider hiring a professional.',
+        text: 'If you are going up on the roof or a flat roof, have you considered calling a specialist?',
+        consequence: 'Falls from roofs and from roofing that gives way are often fatal.',
+        checkAction: 'Hire a specialist roofer or gutter installer instead of taking the risk.',
         options: [
           { label: 'Yes', safe: true },
           { label: 'I will do it', safe: false }
@@ -506,13 +505,13 @@ export const RISK_CATEGORIES_EN = [
   {
     id: 'faxina_quimica',
     title: 'Heavy Cleaning',
-    subtitle: 'Handling Chemicals',
+    subtitle: 'Handling Chemical Products',
     audience: [ 'adult' ],
     icon: 'bottle-tonic-skull',
     color: '#9C27B0',
     gradient: [ '#7B1FA2', '#E1BEE7' ],
     educational: {
-      description: 'Improper mixing of cleaning products can generate lethal toxic gases. Products must be in original packaging.',
+      description: 'Mixing cleaning products can release invisible poisonous gases that burn the lungs. Use one product at a time and keep the home ventilated.',
       keyPoints: [
         'NEVER mix bleach with other products: ammonia, vinegar, all-purpose cleaner, muriatic acid, or any other cleaning product.',
         'The most dangerous and common mix: bleach + detergent. It generates chlorine gas that can cause respiratory arrest indoors. (Source: CIATOX/ANVISA, Brazil)',
@@ -525,9 +524,9 @@ export const RISK_CATEGORIES_EN = [
       {
         id: 'qui_1',
         critico: true,
-        text: 'Are windows and doors open?',
+        text: 'Are the windows and doors in the cleaning area open?',
         consequence: 'Accumulation of toxic vapors indoors.',
-        checkAction: 'Open everything to ventilate.',
+        checkAction: 'Open everything up so the air can circulate and be renewed.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
@@ -541,15 +540,15 @@ export const RISK_CATEGORIES_EN = [
       {
         id: 'qui_3',
         text: 'Are you wearing protective gloves?',
-        consequence: 'Dermatitis and chemical burns on hands.',
+        consequence: 'Bleach and acids cause dermatitis and chemical burns on the skin.',
         checkAction: 'Wear rubber gloves before handling.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'qui_4',
         critico: true,
-        text: 'Are children and pets out of the room?',
-        consequence: 'Inhalation of vapors and contact with products.',
+        text: 'Are children and pets kept away from the cleaning?',
+        consequence: 'They breathe in fumes from the floor or may drink the dirty water from the bucket.',
         checkAction: 'Keep them in another room during cleaning.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
@@ -557,14 +556,14 @@ export const RISK_CATEGORIES_EN = [
         id: 'qui_5',
         critico: true,
         text: 'Are products in original packaging (not in PET bottles)?',
-        consequence: 'Accidental ingestion due to confusion with a drink.',
+        consequence: 'Storing disinfectant or bleach in a juice bottle causes accidental poisoning.',
         checkAction: 'Never transfer to soda bottles.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {
         id: 'qui_6',
         text: 'Is the wet floor signposted?',
-        consequence: 'Slips and falls during cleaning.',
+        consequence: 'Slipping on a soapy floor causes dangerous falls.',
         checkAction: 'Use a sign or warn residents.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       }
