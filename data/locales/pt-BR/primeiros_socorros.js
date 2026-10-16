@@ -97,7 +97,7 @@ export const primeirosSocorrosPTBR = [
             'Seguir rigorosamente as orientações do atendente médico.',
         ],
         oQueNaoFazer: [
-            'NÃO provocar vômito ser for ingerido produto químico (produtos corrosivos queimam o esôfago na ida e na volta).',
+            'NÃO provocar vômito se for ingerido produto químico (produtos corrosivos queimam o esôfago na ida e na volta).',
             'NÃO oferecer leite, água ou remédios caseiros sem orientação médica prévia.',
         ],
         quandoChamarAjuda: 'Imediatamente.'
@@ -141,7 +141,7 @@ export const primeirosSocorrosPTBR = [
         situacao: 'Vômitos e diarreia após comer',
         oQueFazer: [
             'Ingerir soro caseiro ou água de coco em pequenos goles ao longo do dia.',
-            'Fique de repouso.',
+            'Ficar em repouso.',
             'Consumir alimentos leves e sem gordura (como arroz branco, batata e torradas) quando a fome voltar.',
         ],
         oQueNaoFazer: [
@@ -257,11 +257,11 @@ export const primeirosSocorrosPTBR = [
         oQueFazer: [
             'Ligar imediatamente para o {{EMERGENCY_MEDICAL}} e solicitar um Desfibrilador Externo Automático (DEA), se disponível no local.',
             'Iniciar as compressões torácicas (RCP) sem perda de tempo.',
-            'Posicionar as mãos entrelaçadas e posicionar a base da palma no centro do peito da vítima (na altura do osso esterno e comprimir com força e rapidez (frequência de 100 a 120 compressões por minuto, afundando cerca de 5 a 6 cm).',
+            'Entrelaçar as mãos e posicionar a base da palma no centro do peito da vítima (na altura do osso esterno) e comprimir com força e rapidez (frequência de 100 a 120 compressões por minuto, afundando cerca de 5 a 6 cm).',
             'Permitir o retorno completo do tórax após cada compressão, sem retirar as mãos da posição.',
         ],
         oQueNaoFazer: [
-            'NÃO interromper as compressões torácicas até a chegada do socorro especializado {{EMERGENCY_MEDICAL}} ou instalação do DEA.',
+            'NÃO interromper as compressões torácicas até a equipe do {{EMERGENCY_MEDICAL}} assumir, o DEA orientar a afastar-se ou a vítima voltar a respirar normalmente.',
             'NÃO recear fraturas de costela — a manutenção do fluxo sanguíneo para o cérebro e coração é a prioridade absoluta.',
         ],
         quandoChamarAjuda: 'Imediatamente.'

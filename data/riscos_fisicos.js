@@ -296,9 +296,9 @@ export const riscosFisicos = [
             'La llave/combinación de la caja fuerte debe estar restringida a los dueños.',
             'Eduque a los niños: si ven un arma, NO TOCAR, alejarse y llamar a un adulto.',
         ],
-        primeirosSocorros: 'Ligue para o {{EMERGENCY_MEDICAL}}. Estanque sangramentos com compressão forte.',
-        primeirosSocorros_en: 'Call 911. Stop bleeding with strong compression.',
-        primeirosSocorros_es: 'Llame al 911. Detenga el sangrado con fuerte compresión.'
+        primeirosSocorros: 'Ligue para o {{EMERGENCY_MEDICAL}} e para a polícia ({{POLICE_NUMBER}}). Estanque sangramentos com compressão forte.',
+        primeirosSocorros_en: 'Call {{EMERGENCY_MEDICAL}} and the police ({{POLICE_NUMBER}}). Stop bleeding with strong compression.',
+        primeirosSocorros_es: 'Llame a {{EMERGENCY_MEDICAL}} y a la policía ({{POLICE_NUMBER}}). Detenga el sangrado con fuerte compresión.'
     },
     {
         id: 'rf_4',

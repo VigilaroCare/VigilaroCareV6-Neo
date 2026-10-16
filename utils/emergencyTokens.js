@@ -40,6 +40,12 @@
  *   formulacao generica correta ("uma certificacao de seguranca reconhecida"),
  *   nunca no orgao de outro pais.
  *
+ *   {{POLICE_NUMBER}}     — so o numero da policia: "190" no Brasil, o numero
+ *                           geral nos demais (112/911/999). Acrescentado em
+ *                           16/10/2026 para armas de fogo, onde o primeiro
+ *                           socorro trazia "190" fixo no pt-BR e "911" fixo
+ *                           no en e no es — errado no Reino Unido (999) e na
+ *                           Espanha (112).
  *   {{FIRE_NUMBER}}       — so o numero dos bombeiros, ex: "193" no Brasil,
  *                           "112" na UE, "911" nos EUA. Use em texto de
  *                           incendio, gas e evacuacao, onde o servico certo
@@ -70,7 +76,7 @@ import {
     getInstituicao,
 } from '../data/instituicoesPorPais';
 
-const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY)\}\}/g;
+const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|POLICE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY)\}\}/g;
 
 /**
  * Nome do servico medico de emergencia por pais e idioma.
@@ -215,6 +221,17 @@ function getTokenValue(token, country, langKey) {
                 MEDICAL_SERVICE_LABELS[country] || MEDICAL_SERVICE_LABELS.DEFAULT;
             const label = labels[langKey] || MEDICAL_SERVICE_LABELS.DEFAULT[langKey];
             return `${label} (${number})`;
+        }
+
+        case 'POLICE_NUMBER': {
+            const numbers = country
+                ? getEmergencyNumbersForCountry(country)
+                : DEFAULT_EMERGENCY_NUMBERS;
+            return (
+                numbers?.policia ||
+                numbers?.geral ||
+                DEFAULT_EMERGENCY_NUMBERS.geral
+            );
         }
 
         case 'FIRE_NUMBER': {
