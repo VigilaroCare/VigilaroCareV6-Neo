@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { t_field, t_array } from '../utils/getLocalizedField';
 import {
   View,
   Text,
@@ -210,7 +211,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
                 <ReviewImage
                   source={typeof dispositivo.imagemUrl === 'string' ? (typeof dispositivo.imagemUrl === 'string' ? { uri: dispositivo.imagemUrl } : dispositivo.imagemUrl) : dispositivo.imagemUrl}
                   tint={dispositivo.cor}
-                  accessibilityLabel={dispositivo.nome}
+                  accessibilityLabel={t_field(dispositivo, 'nome')}
                 />
               ) : (
                 <NeoIcon name={dispositivo.icone} size={48} color={Neo.colors.primary[600]} variant="Bold" />
@@ -218,7 +219,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
             </View>
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
-                <Text style={styles.guideTitle} numberOfLines={1}>{dispositivo.nome}</Text>
+                <Text style={styles.guideTitle} numberOfLines={1}>{t_field(dispositivo, 'nome')}</Text>
                 <Text style={styles.guideSubtitle}>{dispositivo.idadeMin}-{dispositivo.idadeMax} anos • {dispositivo.pesoMin}-{dispositivo.pesoMax} kg</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -237,7 +238,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
       {expandido && (
         <View style={styles.dispositivoConteudo}>
           {/* Descrição */}
-          <Text style={styles.dispositivoDescricao}>{dispositivo.descricao}</Text>
+          <Text style={styles.dispositivoDescricao}>{t_field(dispositivo, 'descricao')}</Text>
 
           {/* Posição */}
           <View style={styles.secao}>
@@ -246,8 +247,8 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.PosiONoVeCulo', 'Posição no Veículo')}</Text>
             </View>
             <Text style={styles.secaoTexto}>
-              <Text style={styles.textoDestaque}>{dispositivo.posicao}</Text>{'\n'}
-              Local: {dispositivo.localizacao}
+              <Text style={styles.textoDestaque}>{t_field(dispositivo, 'posicao')}</Text>{'\n'}
+              Local: {t_field(dispositivo, 'localizacao')}
             </Text>
           </View>
 
@@ -257,7 +258,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               <NeoIcon name="Setting2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ComoInstalar', 'Como Instalar')}</Text>
             </View>
-            {dispositivo.comoInstalar.map((item, index) => (
+            {t_array(dispositivo, 'comoInstalar').map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
               </Text>
@@ -270,7 +271,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               <NeoIcon name="Profile" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ComoUsar', 'Como Usar')}</Text>
             </View>
-            {dispositivo.comoUsar.map((item, index) => (
+            {t_array(dispositivo, 'comoUsar').map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
               </Text>
@@ -283,7 +284,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               <NeoIcon name="CloseCircle" size={16} color={colors.feedback.error} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ErrosComunsEVITE', 'Erros Comuns (EVITE!)')}</Text>
             </View>
-            {dispositivo.errosComuns.map((item, index) => (
+            {t_array(dispositivo, 'errosComuns').map((item, index) => (
               <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
                 • {item}
               </Text>
@@ -296,8 +297,8 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               <NeoIcon name="ShieldTick" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
               <Text style={[styles.legislacaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.LegislaO', 'Legislação')}</Text>
             </View>
-            <Text style={styles.legislacaoTexto}>{dispositivo.legislacao}</Text>
-            <Text style={styles.multaTexto}>Multa: {dispositivo.multa}</Text>
+            <Text style={styles.legislacaoTexto}>{t_field(dispositivo, 'legislacao')}</Text>
+            <Text style={styles.multaTexto}>Multa: {t_field(dispositivo, 'multa')}</Text>
           </View>
         </View>
       )}
@@ -376,7 +377,7 @@ function TipoMobilidadeCard({ tipo }) {
             </View>
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
-                <Text style={styles.guideTitle} numberOfLines={1}>{tipo.tipo}</Text>
+                <Text style={styles.guideTitle} numberOfLines={1}>{t_field(tipo, 'tipo')}</Text>
                 <Text style={styles.guideSubtitle}>Idade mínima: {tipo.idadeMinima} anos</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -400,7 +401,7 @@ function TipoMobilidadeCard({ tipo }) {
               <NeoIcon name="ShieldTick" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.EquipamentosNecessRios', 'Equipamentos Necessários')}</Text>
             </View>
-            {tipo.equipamentos.map((item, index) => (
+            {t_array(tipo, 'equipamentos').map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
               </Text>
@@ -413,7 +414,7 @@ function TipoMobilidadeCard({ tipo }) {
               <NeoIcon name="TickCircle" size={16} color={colors.feedback.success} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.LocaisApropriados', 'Locais Apropriados')}</Text>
             </View>
-            {tipo.locaisApropriados.map((item, index) => (
+            {t_array(tipo, 'locaisApropriados').map((item, index) => (
               <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                 <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
                 <Text style={[styles.listaItem, styles.listaItemSucesso, { flex: 1 }]}>{item}</Text>
@@ -425,7 +426,7 @@ function TipoMobilidadeCard({ tipo }) {
           {tipo.locaisEvitar && (
             <View style={styles.secao}>
               <Text style={styles.secaoTitulo}>{t('headersFirst.LocaisAEvitar', 'Locais a Evitar')}</Text>
-              {tipo.locaisEvitar.map((item, index) => (
+              {t_array(tipo, 'locaisEvitar').map((item, index) => (
                 <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                   <NeoIcon name="CloseCircle" size={14} color={Neo.colors.feedback.error} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
                   <Text style={[styles.listaItem, styles.listaItemAviso, { flex: 1 }]}>{item}</Text>
@@ -440,7 +441,7 @@ function TipoMobilidadeCard({ tipo }) {
               <NeoIcon name="Warning2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
               <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasDeSeguranA', 'Regras de Segurança')}</Text>
             </View>
-            {tipo.regrasSeguranca.map((item, index) => (
+            {t_array(tipo, 'regrasSeguranca').map((item, index) => (
               <Text key={index} style={styles.listaItem}>
                 • {item}
               </Text>
@@ -454,7 +455,7 @@ function TipoMobilidadeCard({ tipo }) {
                 <NeoIcon name="Setting2" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
                 <Text style={[styles.secaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.ManutenO', 'Manutenção')}</Text>
               </View>
-              {tipo.manutencao.map((item, index) => (
+              {t_array(tipo, 'manutencao').map((item, index) => (
                 <Text key={index} style={styles.listaItem}>
                   • {item}
                 </Text>
