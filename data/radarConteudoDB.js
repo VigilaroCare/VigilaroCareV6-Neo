@@ -153,7 +153,7 @@ export const FATOS_IMPACTO = [
     destaque: 'Uva está no top 5 de mortes por engasgo',
     fonte: 'American Academy of Pediatrics / SBP 2024',
     orientacoes: [
-      'Corte sempre no sentido do comprimento (longitudinal), nunca em rodelas.',
+      'Corte sempre no sentido do comprimento (longitudinal), nunca em rodelas. Lembre de descartar as sementes antes de entregar à criança.',
       'Outros alimentos de risco: tomate cereja, azeitona, amendoim, balinhas redondas, salsichão.',
       'Crianças menores de 5 anos ainda não mastigam completamente — supervisão durante refeições é essencial.'
     ],
@@ -233,14 +233,14 @@ export const FATOS_IMPACTO = [
     formato: 'fato',
     categoria: 'afogamento',
     perfil: 'crianca',
-    titulo: 'Piscina com cerca de 1,5m reduz afogamentos em 80%',
-    resumo: 'A SBP (2024) reforça que cercas de piscina com altura mínima de 1,5m, portão com fechamento automático e ausência de pontos de escalada reduzem em até 80% a incidência de afogamentos em crianças. Altura inferior ou cerca sem portão adequado têm eficácia próxima de zero.',
+    titulo: 'Piscina com cercas de 1,5m reduz afogamentos em 80%',
+    resumo: 'A SBP (2024) reforça que cercas de piscina com altura mínima de 1,5m, portão com fechamento automático e ausência de pontos de escalada reduzem em até 80% a incidência de afogamentos em crianças. Altura inferior ou cercas sem portão adequado têm eficácia próxima de zero.',
     destaque: 'Redução de 80% com cerca correta',
     fonte: 'SBP — Campanha Prevenção de Afogamento 2024',
     orientacoes: [
       'Altura mínima obrigatória: 1,5m (não 1,2m — essa medida antiga foi atualizada pela SBP).',
       'Portão deve ter fechamento automático tipo "mola" e abrir PARA FORA.',
-      'Remova qualquer objeto ao redor da piscina que possa servir de degrau (caixas, cadeiras, vasos).'
+      'Remova qualquer objeto ao redor das cercas que possa servir de degrau (caixas, cadeiras, vasos).'
     ],
     icone: 'Drop',
     cor: '#2196F3',
@@ -292,7 +292,7 @@ export const PROTOCOLOS_DESTAQUE = [
     titulo: 'Primeiros socorros para queimaduras — o que NÃO fazer',
     resumo: 'Pasta de dente, manteiga, clara de ovo e álcool sobre queimaduras são mitos perigosos. A única primeira conduta correta é resfriar a área com água corrente fria (não gelada) por 10 a 20 minutos — e isso deve acontecer imediatamente.',
     orientacoes: [
-      'Água corrente fria (não gelada) por 10 a 20 minutos. Não gelo — causa vasoconstrição e piora.',
+      'Água corrente fria (não gelada) por 10 a 20 minutos. Não gelo, pois causa vasoconstrição e piora.',
       'NÃO aplicar: pasta de dente, manteiga, óleo, mel, curativo com algodão ou qualquer pomada caseira.',
       'Queimaduras maiores que a palma da mão, em face, genitais ou mãos: vá ao PS imediatamente após resfriar.'
     ],
@@ -356,9 +356,9 @@ export const PROTOCOLOS_DESTAQUE = [
     titulo: 'Choque elétrico — como agir com segurança',
     resumo: 'Socorrer uma vítima de choque elétrico sem desligar a corrente pode eletrificar o socorrista. A primeira ação é sempre cortar a energia — não tocar na vítima antes disso.',
     orientacoes: [
-      'Desligue o disjuntor ou o quadro de força ANTES de tocar na vítima. Nunca use objeto de metal para afastar a vítima do fio.',
+      'Desligue o disjuntor ou o quadro de força ANTES de tocar na vítima. Nunca use objeto de metal para afastar o fio ou a vítima.',
       'Após desligar: verifique se a vítima respira. Se não, inicie RCP e chame o {{EMERGENCY_MEDICAL}}.',
-      'Mesmo que a vítima pareça bem, leve ao médico — choques internos podem não ter sinal externo imediato.'
+      'Mesmo que a vítima pareça bem, leve ao médico — lesões internas causadas por choques elétricos podem não ter sinal externo imediato.'
     ],
     fonte: 'CBMSP — Protocolo de Atendimento a Vítimas de Choque Elétrico 2024',
     icone: 'Flash',
@@ -410,7 +410,7 @@ export const ALERTAS_SAZONAIS = [
     resumo: 'Janeiro concentra o maior número de afogamentos infantis do Brasil — coincidindo com férias de verão e uso intenso de piscinas. A SBP chama de "onda invisível": o risco aumenta mas a vigilância cai nas confraternizações.',
     orientacoes: [
       'Designe um "vigia de piscina" em confraternizações — um adulto com foco exclusivo nas crianças.',
-      'Nenhum dispositivo eletrônico durante o turno de vigilância. Distrações matam.',
+      'Nenhum dispositivo eletrônico ou interação nas redes sociais durante o turno de vigilância. Distrações matam.',
       'Crianças com boia ou colete salva-vidas ainda precisam de supervisão ativa.'
     ],
     icone: 'Drop',
@@ -424,8 +424,8 @@ export const ALERTAS_SAZONAIS = [
     titulo: 'Fevereiro: cuidado com churrasqueiras e fogueiras no carnaval',
     resumo: 'O período de carnaval concentra registros de queimaduras por álcool em eventos ao ar livre. O relaxamento da atenção e o uso de álcool são os fatores agravantes.',
     orientacoes: [
-      'Proibido álcool líquido (92%) para acender churrasqueira. Use somente carvão com acendedor sólido.',
-      'Estabeleça perímetro de 3 metros ao redor de qualquer fogo. Crianças nunca ultrapassam esse limite.',
+      'Proibido álcool líquido (92%) para acender churrasqueira. Use somente carvão com acendedor sólido ou elétrico.',
+      'Estabeleça perímetro de 3 metros ao redor de qualquer fogo. Crianças nunca devem ultrapassar esse limite.',
       'Roupas largas e sintéticas pegam fogo facilmente — prefira algodão em eventos com churrasco.'
     ],
     icone: 'Flash',
@@ -471,7 +471,7 @@ export const ALERTAS_SAZONAIS = [
     orientacoes: [
       'Nunca ligue aquecedor em extensão ou régua junto com outros aparelhos.',
       'Resistências com fio exposto, manchas ou cheiro de queimado devem ser descartadas.',
-      'Mantenha aquecedor a no mínimo 1 metro de qualquer material inflamável (cortinas, roupas, camas).'
+      'Mantenha aquecedor a no mínimo 1 metro de qualquer material inflamável (cortinas, roupas, camas) e fora do alcance de crianças, idosos e de quem tem limitações cognitivas.'
     ],
     icone: 'Flash',
     cor: '#FFC107',
@@ -482,10 +482,10 @@ export const ALERTAS_SAZONAIS = [
     formato: 'sazonal',
     categoria: 'queimadura',
     titulo: 'Junho: festas juninas — fogueiras e perigo de queimadura',
-    resumo: 'O mês das festas juninas reúne crianças e fogueiras sem proteção adequada. Roupas típicas com tecidos sintéticos amplificam o risco. O CBMSP registra pico de queimaduras em junho anualmente.',
+    resumo: 'O mês das festas juninas reúne crianças e fogueiras sem proteção adequada. Roupas típicas com tecidos sintéticos amplificam o risco. O Corpo Bombeiros Militares de SP registra pico de queimaduras em junho anualmente.',
     orientacoes: [
       'Tecidos sintéticos (poliéster, nylon) pegam fogo facilmente. Prefira algodão nas festas.',
-      'Fogueiras devem ter cerca de proteção e adulto responsável exclusivo.',
+      'Fogueiras devem ter cerca de proteção e monitoramento por adulto responsável exclusivamente para isso.',
       'Proibido balão de fogo em qualquer festa com crianças — além de ilegal, é altamente perigoso.'
     ],
     icone: 'Flash',
@@ -542,7 +542,7 @@ export const ALERTAS_SAZONAIS = [
     formato: 'sazonal',
     categoria: 'choque',
     titulo: 'Outubro: mês das crianças — brinquedos com pilhas no foco',
-    resumo: 'O Dia das Crianças em outubro intensifica a presença de brinquedos com pilhas — incluindo pilhas-botão. O pico de vendas de eletrônicos infantis está associado a aumento de casos de ingestão de pilhas.',
+    resumo: 'O Dia das Crianças em outubro intensifica a presença de brinquedos com pilhas e baterias — incluindo pilhas-botão. O pico de vendas de eletrônicos infantis está associado a aumento de casos de ingestão de pilhas. Dê referência por brinquedos com carregamento via USB.',
     orientacoes: [
       'Ao abrir brinquedos novos: cheque se há pilhas-botão e se os compartimentos têm parafuso.',
       'Tape com fita adesiva qualquer compartimento de pilha de brinquedo sem parafuso.',
@@ -557,7 +557,7 @@ export const ALERTAS_SAZONAIS = [
     formato: 'sazonal',
     categoria: 'queimadura',
     titulo: 'Novembro: calor intenso e fogos de artifício ilegais',
-    resumo: 'Novembro antecede o Réveillon e o Natal, com aumento de fogos de artifício artesanais e ilegais em bairros populares. O CBMSP registra queimaduras graves — especialmente em mãos e rosto — em crianças e adolescentes.',
+    resumo: 'Novembro antecede o Réveillon e o Natal, com aumento de fogos de artifício artesanais e ilegais em bairros populares. O Corpo de Bombeiros Militares de SP registra queimaduras graves — especialmente em mãos e rosto — em crianças e adolescentes.',
     orientacoes: [
       'Fogos artesanais e de farmacopeia são ilegais e extremamente perigosos. Nunca compre ou deixe crianças manusearem.',
       'Mesmo fogos legais devem ser manuseados apenas por adultos. Crianças assistem de longe.',
@@ -576,7 +576,7 @@ export const ALERTAS_SAZONAIS = [
     orientacoes: [
       'Flor de Natal (Bico-de-papagaio): causa irritação intensa em boca e olhos. Mantenha fora do alcance de crianças e pets.',
       'Enfeites pequenos e bolas de árvore de natal são riscos de engasgo para crianças menores de 3 anos.',
-      'Arvorezinhas de natal devem ficar em local alto ou cercado — nunca no nível do chão com crianças pequenas na casa.'
+      'Arvorezinhas de natal devem ficar em local alto ou cercado — nunca no nível do chão com crianças pequenas na casa, principalmente se forem eletrificados.'
     ],
     icone: 'Danger',
     cor: '#4CAF50',

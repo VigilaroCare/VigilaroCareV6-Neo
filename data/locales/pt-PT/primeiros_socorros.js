@@ -24,7 +24,7 @@ export const primeirosSocorrosPTPT = [
         situacao: 'Obstrução da via aérea — protocolo AHA 2025',
         oQueFazer: [
             'Se a pessoa conseguir tossir com força, incentive-a a continuar. A tosse dela é mais eficaz do que qualquer manobra sua.',
-            'Se não conseguir tossir, falar nem respirar, a obstrução é total: peça a alguém para ligar para {{EMERGENCY_MEDICAL}} e comece as manobras.',
+            'Se não conseguir tossir, falar nem respirar, a obstrução é total: peça a alguém para ligar para o {{EMERGENCY_MEDICAL}} e comece as manobras.',
             'Posicione-se por trás, incline-lhe o tronco para a frente e dê 5 pancadas firmes entre as omoplatas, com a base da mão.',
             'Se o objeto não saiu, dê 5 compressões abdominais: punho fechado logo acima do umbigo, a outra mão por cima, a puxar para dentro e para cima (em "J").',
             'Alterne 5 pancadas nas costas com 5 compressões abdominais até o objeto sair ou a pessoa perder a consciência.',

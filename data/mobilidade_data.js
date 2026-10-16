@@ -184,7 +184,7 @@ export const DISPOSITIVOS_RETENCAO = [
     multa: 'Multa gravíssima + 7 pontos na CNH',
     reducao_risco: 'Reduz em 59% o risco de lesão grave',
     
-    quando_parar: 'Quando a criança atingir 1,45m E o cinto passar corretamente (ombro e quadril)'
+    quando_parar: 'Quando a criança atingir 1,45m e o cinto passar corretamente (ombro e quadril)'
   }
 ];
 

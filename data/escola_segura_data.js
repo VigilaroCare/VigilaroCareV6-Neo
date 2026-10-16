@@ -144,11 +144,11 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         },
         {
           id: 'extintores',
-          texto: 'Extintores de incêndio visíveis e dentro da validade',
+          texto: 'Extintores de incêndio visíveis, dentro da validade e desobstruídos.',
           texto_en: 'Fire extinguishers visible and within expiration date',
           texto_es: 'Extintores de incendio visibles y dentro de la fecha de vigencia',
           critico: true,
-          detalhes: 'Verificar se há extintores suficientes e se estão em locais acessíveis.',
+          detalhes: 'Verificar se há extintores suficientes e se estão em locais acessíveis e sinalizados.',
           detalhes_en: 'Check if there are enough extinguishers and if they are in accessible locations.',
           detalhes_es: 'Verificar si hay suficientes extintores y si están en lugares accesibles.'
         },
@@ -200,7 +200,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Furniture corners protected or rounded',
           texto_es: 'Esquinas de muebles protegidas o redondeadas',
           critico: false,
-          detalhes: 'Protetores de quina previnem ferimentos em quedas.',
+          detalhes: 'Protetores de quina previnem ferimentos em impactos.',
           detalhes_en: 'Corner protectors prevent injuries from falls.',
           detalhes_es: 'Los protectores de esquinas previenen lesiones en caídas.'
         },
@@ -584,7 +584,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         },
         {
           id: 'piscina-equipamentos',
-          texto: 'Equipamentos de salvamento acessíveis (boia, vara)',
+          texto: 'Equipamentos de salvamento acessíveis (boia, vara, corda)',
           texto_en: 'Rescue equipment accessible (buoy, pole)',
           texto_es: 'Equipos de rescate accesibles (boya, vara)',
           critico: true,
@@ -778,7 +778,7 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         },
         {
           id: 'ficha-medica',
-          texto: 'Fichas médicas das crianças atualizadas',
+          texto: 'Fichas médicas das crianças, atualizadas',
           texto_en: 'Children\'s medical records up to date',
           texto_es: 'Fichas médicas de los niños actualizadas',
           critico: true,

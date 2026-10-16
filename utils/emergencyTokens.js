@@ -85,9 +85,23 @@ const MEDICAL_SERVICE_LABELS = {
         en: 'emergency services',
         es: 'emergencias',
     },
+    // SEM artigo, como o "SAMU" do Brasil. O texto leva o artigo ou a
+    // contracao ("Chame o", "Ligue para o", "do", "ao").
+    //
+    // MOTIVO (16/10/2026): o rotulo era "o serviço de emergência", COM artigo,
+    // enquanto o do Brasil era "SAMU", sem. Metade dos textos escrevia "Chame
+    // o {{EMERGENCY_MEDICAL}}" — certo no Brasil, "Chame o o serviço de
+    // emergência" em Portugal. A outra metade escrevia "Ligue
+    // {{EMERGENCY_MEDICAL}}" — certo fora, seco no Brasil. Nenhuma forma do
+    // texto servia aos dois rotulos ao mesmo tempo. Com os dois sem artigo,
+    // o texto decide a gramatica e serve aos dois. Contracoes ("do", "ao",
+    // "pelo") so funcionam assim — artigo dentro do token as impediria.
+    //
+    // es mantem o artigo: "Llame a los servicios" e a forma natural e nenhum
+    // texto espanhol pede contracao com o token.
     DEFAULT: {
-        pt: 'o serviço de emergência',
-        ptPT: 'o serviço de emergência',
+        pt: 'serviço de emergência',
+        ptPT: 'serviço de emergência',
         en: 'emergency services',
         es: 'los servicios de emergencia',
     },

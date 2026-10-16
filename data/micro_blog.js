@@ -48,7 +48,7 @@ export const MICRO_BLOG_ARTICLES = [
     },
     {
         id: 'mb_003',
-        title: 'O que fazer se o bebê engasgar mamando',
+        title: 'O que fazer se o bebê se engasgar mamando',
         title_en: 'What to do if the baby chokes while breastfeeding',
         title_es: 'Qué hacer si el bebé se atraganta amamantando',
         category: 'bebes',

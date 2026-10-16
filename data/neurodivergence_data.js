@@ -1,7 +1,7 @@
 export const NEURODIVERGENCE_DATA = {
     title: "Lar Neurodiverso",
     subtitle: "Segurança inclusiva e adaptação do lar",
-    description: "A segurança vai muito além das barreiras físicas. Para pessoas atípicas (TEA, TDAH, TPS), a percepção de risco e o comportamento em emergências são únicos. Este módulo oferece protocolos vitais de prevenção.",
+    description: "A segurança vai muito além das barreiras físicas. Para pessoas atípicas (TEA, TDAH, TPS), a percepção de risco e o comportamento em emergências são únicos. Este módulo apresenta protocolos vitais de prevenção.",
     categories: [
         {
             id: "nd_fuga",

@@ -164,6 +164,22 @@ function normalizar(s) {
         .trim();
 }
 
+/** Sobreposicao de vocabulario (Dice), para reconhecer reescrita. */
+function semelhanca(a, b) {
+    const palavras = (t) => new Set(
+        String(t).toLowerCase()
+            .replace(/[^a-z0-9\u00C0-\u024F\s]/g, ' ')
+            .split(/\s+/)
+            .filter((w) => w.length > 2),
+    );
+    const A = palavras(a);
+    const C = palavras(b);
+    if (!A.size || !C.size) return 0;
+    let comum = 0;
+    for (const w of A) if (C.has(w)) comum++;
+    return (2 * comum) / (A.size + C.size);
+}
+
 const RX_CODIGO = /^\s*([A-Z]{2}-\d{4})\b[\s ]*([\s\S]*)$/;
 
 /**
@@ -274,7 +290,30 @@ function principal() {
     console.log(`codigos lidos: ${lidos.length}  |  intactos: ${iguais} (${(taxa * 100).toFixed(1)}%)`);
     console.log(`estrutura do gerador ignorada: ${estrutura} paragrafo(s)`);
 
-    if (taxa < 0.5) {
+    // Segunda leitura da coerencia: textos que mudaram mas continuam a falar
+    // do mesmo assunto.
+    //
+    // MOTIVO (16/10/2026): o Agnaldo reescreveu o PS inteiro — passou todas as
+    // instrucoes do imperativo para o infinitivo ("Tire" -> "Tirar"), padrao de
+    // procedimento tecnico. So 3 de 174 textos ficaram identicos, e a trava
+    // parou achando que o manifesto estava trocado. Nao estava.
+    //
+    // Com o manifesto trocado, cada codigo aponta para um texto sem relacao com
+    // o do documento. Numa reescrita, aponta para o mesmo assunto com outras
+    // palavras. Sobreposicao de vocabulario separa as duas situacoes.
+    const parentes = lidos.filter((l) => {
+        const a = normalizar(l.texto);
+        const o = normalizar(manifesto[l.codigo].original);
+        return a === o || semelhanca(a, o) >= 0.3;
+    }).length;
+    const taxaParentesco = parentes / lidos.length;
+    console.log(`mesmo assunto (identicos ou reescritos): ${parentes} (${(taxaParentesco * 100).toFixed(1)}%)`);
+    if (taxa < 0.5 && taxaParentesco >= 0.8) {
+        console.log('REESCRITA AMPLA reconhecida: os textos mudaram, mas cada codigo continua');
+        console.log('a falar do mesmo assunto. O par documento/manifesto esta correto.');
+    }
+
+    if (taxa < 0.5 && taxaParentesco < 0.8) {
         console.error('\nPARADO: menos da metade dos textos bate com o manifesto.');
         console.error('Revisao humana nao reescreve tudo — o par documento/manifesto esta trocado.');
         console.error('Passe o manifesto que gerou ESTE documento com --manifesto <ref do git>.');

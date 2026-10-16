@@ -55,7 +55,7 @@ export const animaisCatalog = [
         primeirosSocorros: {
             "fazer": [
                 "Mantenha a vítima calma e deitada",
-                "Chame {{EMERGENCY_MEDICAL}} imediatamente",
+                "Chame o {{EMERGENCY_MEDICAL}} imediatamente",
                 "Lave o local com água e sabão",
                 "Mantenha o membro afetado em posição neutra",
                 "Remova anéis, pulseiras e roupas apertadas",
@@ -269,7 +269,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar o local com água e sabão",
                 "Aplicar compressa fria (NÃO gelo direto)",
-                "Chamar {{EMERGENCY_MEDICAL}} IMEDIATAMENTE",
+                "Chamar o {{EMERGENCY_MEDICAL}} IMEDIATAMENTE",
                 "Manter a pessoa calma",
                 "Anotar hora do acidente",
                 "Se possível, capturar o escorpião com cuidado",
@@ -613,7 +613,7 @@ export const animaisCatalog = [
         },
         primeirosSocorros: {
             "fazer": [
-                "Chamar {{EMERGENCY_MEDICAL}} URGENTEMENTE",
+                "Chamar o {{EMERGENCY_MEDICAL}} URGENTEMENTE",
                 "Manter vítima ABSOLUTAMENTE calma e deitada",
                 "Imobilizar membro afetado",
                 "Observar sinais respiratórios",
@@ -788,7 +788,7 @@ export const animaisCatalog = [
             "fazer": [
                 "Lavar com água e sabão",
                 "Compressa fria",
-                "Chamar {{EMERGENCY_MEDICAL}} imediatamente",
+                "Chamar o {{EMERGENCY_MEDICAL}} imediatamente",
                 "Manter pessoa calma",
                 "Capturar aranha se possível (com segurança)",
                 "Levar ao hospital urgentemente"

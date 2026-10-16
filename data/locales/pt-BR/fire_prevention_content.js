@@ -70,7 +70,7 @@ export const firePreventionContentPTBR = {
         emoji: '🚨',
         steps: [
             'SAIA DO IMÓVEL IMEDIATAMENTE. Salvar vidas é a única prioridade.',
-            'Se houver fumaça no caminho, rasteje. O ar limpo e respirável fica próximo ao chão.',
+            'Se houver fumaça no caminho, rasteje. O ar mais limpo e respirável fica próximo ao chão.',
             'Toque a porta com as costas da mão antes de abrir. Se estiver quente, não abra.',
             'Feche as portas ao passar pelos cômodos para ajudar a segurar as chamas.',
             'Ligue para os Bombeiros no 193 assim que estiver em local seguro.',

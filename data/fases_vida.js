@@ -21,10 +21,10 @@ export const FASES_VIDA_DATA = {
         comoEvitar: [
             'Berço sem almofadas, pelúcias ou protetores acolchoados',
             'Proteger todas as tomadas',
-            'Fixar móveis na parede (anti-tombamento)',
-            'Testar temperatura da água do banho com o cotovelo',
+            'Fixar móveis na parede (antitombamento)',
+            'Testar temperatura da água do banho com o cotovelo ou a curva da mão que é em cima entre o polegar e o indicador.',
             'Nunca deixar sozinho na banheira, nem por segundos',
-            'Guardar objetos pequenos fora do alcance',
+            'Guardar objetos pequenos fora do alcance das mãozinhas',
             'Instalar portões nas escadas',
             'Redes de proteção em todas as janelas'
         ],

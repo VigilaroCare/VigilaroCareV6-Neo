@@ -93,7 +93,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
           'Toque a porta com as costas da mão antes de abrir. Se estiver quente, não abra',
           'Se não conseguir sair do quarto, feche a porta, abafe a fresta com pano e vá para a janela pedir ajuda',
           'Ligue para os Bombeiros (193) assim que estiver fora de perigo',
-          'Nunca volte para dentro de uma casa pegando fogo para buscar objetos',
+          'Nunca volte a uma casa em chamas para buscar objetos',
         ],
       },
       {
@@ -118,7 +118,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         titulo: 'ERROS GRAVES - NUNCA FAÇA',
         tipo: 'lista',
         itens: [
-          'Nunca coloque desinfetante ou cloro em garrafas PET ou copos — a criança confunde com refrigerante ou água',
+          'Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — a criança confunde com refrigerante ou água.',
           'Nunca misture água sanitária com desinfetantes que contêm amônia ou vinagre. Essa mistura solta um gás altamente tóxico',
           'Nunca guarde produtos de limpeza no chão ou debaixo da pia sem travas de segurança',
           'Nunca deixe produtos sem rótulo. Em caso de acidente, o médico precisa saber exatamente o que foi ingerido',
@@ -181,7 +181,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
     titulo: 'Segurança Elétrica',
     subtitulo: 'Prevenção de Choques',
     cor: '#F59E0B',
-    resumo: 'Um choque elétrico leva frações de segundo para ser fatal. Fiação antiga, gambiarras elétricas e falta de disjuntor DR no quadro de força multiplicam o risco doméstico.',
+    resumo: 'Um choque elétrico dura frações de segundo e pode ser fatal. Fiação antiga, gambiarras elétricas e falta de disjuntor DR no quadro de força multiplicam o risco doméstico.',
     secoes: [
       {
         emoji: '⚠️',
@@ -201,7 +201,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         tipo: 'checklist',
         itens: [
           'Verificar se o quadro de luz tem o disjuntor DR instalado (ele desliga a energia ao menor sinal de choque)',
-          'Tapar tomadas baixas com protetores plásticos específicos',
+          'Proteger principalmente as tomadas baixas com protetores plásticos específicos',
           'Esconder fios de aparelhos atrás de móveis ou usar canaletas organizadoras',
           'Usar apenas uma tomada para cada aparelho de alta potência',
           'Manter carregadores de celular e aparelhos elétricos longe da água',
@@ -212,7 +212,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         titulo: 'Se Alguém Levar um Choque',
         tipo: 'passos',
         itens: [
-          'NÃO toque na pessoa enquanto ela estiver colada na energia. Você também levará o choque',
+          'NÃO toque na pessoa enquanto ela estiver em contato com a energia. Você também levará o choque',
           'Desligue imediatamente o disjuntor geral da casa ou tire o aparelho da tomada',
           'Se não der para desligar, afaste a pessoa usando um objeto de madeira ou plástico seco (como um cabo de vassoura seco)',
           'Ligue para o {{EMERGENCY_MEDICAL}} na hora. No caso de pets, leve-os direto ao veterinário',
@@ -223,7 +223,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         emoji: '⚠️',
         titulo: 'Sinais de Alerta Críticos',
         tipo: 'alerta',
-        conteudo: 'Levar choques leves ao tocar em torneiras ou no chuveiro, cheiro de plástico queimado perto de tomadas ou faíscas constantes indicam problemas graves na fiação. Chame um eletricista urgente.',
+        conteudo: 'Levar choques leves ao tocar em torneiras ou no chuveiro, cheiro de plástico queimado perto de tomadas ou faíscas constantes indicam problemas graves na fiação. Chame um eletricista urgentemente.',
       },
     ],
   },
@@ -256,7 +256,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
           'Instalar barras de apoio de metal firmes no box do banheiro e ao lado do vaso sanitário',
           'Colocar luzes guia noturnas com sensores de movimento no caminho até o banheiro',
           'Evitar passar cera que deixe o piso da sala ou cozinha muito liso',
-          'Chequear se o playground tem piso de borracha macio para amortecer quedas',
+          'Verificar se o playground tem piso de borracha macio para amortecer quedas',
         ],
       },
       {
@@ -310,7 +310,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         itens: [
           'Calmantes e soníferos: pouquíssimos comprimidos podem causar parada respiratória em crianças',
           'Analgésicos líquidos (gotas): dosagem errada em frasco conta-gotas pode intoxicar rápido',
-          'Paracetamol: o excesso causa danos graves e silenciosos no fígado',
+          'Paracetamol: o excesso causa danos graves e silenciosos ao fígado',
           'Colírios: a ingestão acidental do líquido pode levar a convulsões e coma',
           'Aspirina: doses altas causam irritação estomacal severa e sangramentos',
         ],
