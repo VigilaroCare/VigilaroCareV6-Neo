@@ -65,23 +65,35 @@ function noParaValor(n) {
     }
 }
 
-/** Primeiro array/objeto exportado do ficheiro. */
+/**
+ * TODAS as exportacoes de array/objeto, como um objeto { nomeExportado: valor }.
+ *
+ * A primeira versao lia so a primeira exportacao — e micro_blog.js,
+ * riscos_fisicos.js e outros exportam varias (categorias, artigos, ...). A
+ * edicao do Agnaldo no micro_blog ficava numa exportacao que o script nem
+ * olhava: "0 campos mudaram", sem erro.
+ *
+ * A chave e a POSICAO da exportacao (@0, @1...), nao o nome: nos ficheiros por
+ * idioma cada um nomeia a sua (primeirosSocorrosPTBR, primeirosSocorrosEN), mas
+ * a ordem e a mesma nos quatro.
+ */
 function raizExportada(fonte) {
     const ast = parser.parse(fonte, { sourceType: 'module', plugins: ['jsx'] });
+    const raiz = { tipo: 'obj', v: {}, ini: 0, fim: fonte.length };
+    let n = 0;
     for (const st of ast.program.body) {
-        const d = st.type === 'ExportNamedDeclaration' ? st.declaration
-            : st.type === 'ExportDefaultDeclaration' ? st.declaration : null;
-        if (!d) continue;
-        if (d.type === 'VariableDeclaration') {
-            for (const dec of d.declarations) {
+        if (st.type === 'ExportNamedDeclaration' && st.declaration && st.declaration.type === 'VariableDeclaration') {
+            for (const dec of st.declaration.declarations) {
                 const v = noParaValor(dec.init);
-                if (v && (v.tipo === 'arr' || v.tipo === 'obj')) return v;
+                if (v && (v.tipo === 'arr' || v.tipo === 'obj')) raiz.v[`@${n++}`] = v;
             }
+        } else if (st.type === 'ExportDefaultDeclaration') {
+            const v = noParaValor(st.declaration);
+            if (v && (v.tipo === 'arr' || v.tipo === 'obj')) raiz.v[`@${n++}`] = v;
         }
-        const v = noParaValor(d);
-        if (v && (v.tipo === 'arr' || v.tipo === 'obj')) return v;
     }
-    throw new Error('nenhum array/objeto exportado');
+    if (!Object.keys(raiz.v).length) throw new Error('nenhum array/objeto exportado');
+    return raiz;
 }
 
 const lerGit = (ref, rel) => execFileSync('git', ['show', `${ref}:${rel}`], { cwd: RAIZ, maxBuffer: 64 << 20 }).toString('utf8');
@@ -157,6 +169,13 @@ function diferencas(depois, antes, caminho, out) {
 // listar
 // ---------------------------------------------------------------------------
 
+const _sufixosUsados = {};
+function fonteUsaSufixo(abs, suf) {
+    const k = abs + suf;
+    if (!(k in _sufixosUsados)) _sufixosUsados[k] = new RegExp('\\w' + suf + '\\s*:').test(fs.readFileSync(abs, 'utf8'));
+    return _sufixosUsados[k];
+}
+
 function listar(relPt, ref) {
     const absPt = path.join(RAIZ, relPt);
     const depois = raizExportada(fs.readFileSync(absPt, 'utf8'));
@@ -178,7 +197,15 @@ function listar(relPt, ref) {
                 const campo = m.caminho[m.caminho.length - 1];
                 const pai = resolver(depois, m.caminho.slice(0, -1));
                 const irmao = pai && pai.tipo === 'obj' ? pai.v[campo + SUFIXOS[lang]] : null;
-                if (irmao === undefined) continue;
+                if (irmao === undefined) {
+                    // Campo nunca traduzido: nao ha onde trocar, mas da para CRIAR
+                    // o _en/_es ao lado do pt-BR — so nos idiomas que o ficheiro ja usa.
+                    if (!fonteUsaSufixo(absPt, SUFIXOS[lang])) continue;
+                    item.criar = item.criar || {};
+                    item.criar[lang] = true;
+                    item.atual[lang] = null;
+                    continue;
+                }
                 item.atual[lang] = irmao ? (irmao.tipo === 'arr' ? irmao.v.map((e) => e && e.v) : irmao.v) : null;
             }
         }
@@ -222,6 +249,19 @@ function aplicar(caminhoJson) {
                 const campo = t.caminho[t.caminho.length - 1];
                 const pai = resolver(raiz, t.caminho.slice(0, -1));
                 no = pai && pai.tipo === 'obj' ? pai.v[campo + SUFIXOS[lang]] : null;
+            }
+            if (!no && !porIdioma && t.criar && t.criar[lang]) {
+                // Cria `campo_en: ...` logo depois do valor pt-BR, na mesma linha.
+                const raiz = raizExportada(fs.readFileSync(path.join(RAIZ, rel), 'utf8'));
+                const pt = resolver(raiz, t.caminho);
+                if (!pt) { falhas.push(`${rel} ${t.caminho.join('.')}: campo pt-BR sumiu`); continue; }
+                const fonteC = fs.readFileSync(path.join(RAIZ, rel), 'utf8');
+                const iniLinha = fonteC.lastIndexOf('\n', pt.ini) + 1;
+                const indentC = fonteC.slice(iniLinha, pt.ini).match(/^\s*/)[0].length;
+                const campo = t.caminho[t.caminho.length - 1];
+                const valor = Array.isArray(novo) ? literalArray(novo, indentC) : literal(novo);
+                push(rel, { ini: pt.fim, fim: pt.fim, texto: `, ${campo}${SUFIXOS[lang]}: ${valor}` });
+                continue;
             }
             if (!no) { falhas.push(`${rel} ${t.caminho.join('.')} (${lang}): campo nao existe`); continue; }
             const fonte = fs.readFileSync(path.join(RAIZ, rel), 'utf8');

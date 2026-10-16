@@ -6,21 +6,21 @@ export const riscosFisicos = [
         emoji: '🔌',
         imagemUrl: require('../assets/illustrations/pad/pessoas-lifestyle_convertkit-yrdsq-1gyre-unsplash_003.jpg'),
         risco: 'Superaquecimento e Incêndio', risco_en: 'Overheating and Fire', risco_es: 'Sobrecalentamiento e Incendio',
-        descricao: 'Principal causa de incêndios elétricos no Brasil segundo a Abracopel. Plásticos derretem e propagam fogo rapidamente.', descricao_en: 'Main cause of electrical fires. Plastics melt and spread fire quickly.', descricao_es: 'Principal causa de incendios eléctricos. Los plásticos se derriten y propagan el fuego.',
+        descricao: 'Principal causa de incêndios elétricos no Brasil segundo a Abracopel. Plásticos derretem e propagam fogo rapidamente.', descricao_en: 'One of the leading causes of electrical fires — in Brazil, the leading one according to Abracopel. Plastics melt and spread fire quickly.', descricao_es: 'Una de las principales causas de incendios eléctricos — en Brasil, la principal según Abracopel. Los plásticos se derriten y propagan el fuego rápidamente.',
         prevencao: [
             'Nunca ligue aparelhos de micro-ondas, airfryer, secador, ferro elétrico em benjamins.',
             'Prefira filtros de linha com fusível embutido.',
             'Se a tomada ou o pino do aparelho estiverem quentes, desligue imediatamente.'
         ],
         prevencao_en: [
-            'Never plug heating appliances (microwave, airfryer, dryer) into power strips.',
-            'Prefer surge protectors with built-in fuses.',
-            'If the outlet or plug is hot, unplug immediately.'
+            'Never plug microwaves, air fryers, hair dryers or irons into multi-plug adapters.',
+            'Prefer power strips with a built-in fuse.',
+            'If the outlet or the appliance plug feels hot, unplug it immediately.',
         ],
         prevencao_es: [
-            'Nunca enchufe aparatos de resistencia (microondas, airfryer, secador) en regletas.',
+            'Nunca conecte microondas, freidoras de aire, secadores de pelo ni planchas en ladrones o enchufes múltiples.',
             'Prefiera regletas con fusible incorporado.',
-            'Si el enchufe o la clavija están calientes, desconecte inmediatamente.'
+            'Si el enchufe o la clavija del aparato están calientes, desconéctelo de inmediato.',
         ],
         primeirosSocorros: 'Se houver princípio de incêndio, NUNCA jogue água. Desligue a chave geral e use extintor pó químico ou CO2.',
         primeirosSocorros_en: 'If a fire starts, NEVER throw water. Turn off the main switch and use a dry chemical or CO2 extinguisher.',
@@ -50,8 +50,8 @@ export const riscosFisicos = [
             'Evite cables falsificados sin aislamiento seguro.'
         ],
         primeirosSocorros: 'Desconecte o carregador da tomada usando um cabo de vassoura seco. Chame o {{EMERGENCY_MEDICAL}}',
-        primeirosSocorros_en: 'Unplug the charger using a dry broomstick. Call 911.',
-        primeirosSocorros_es: 'Desconecte el cargador usando un palo de escoba seco. Llame al 911.'
+        primeirosSocorros_en: 'Unplug the charger from the outlet using a dry wooden broom handle. Call {{EMERGENCY_MEDICAL}}',
+        primeirosSocorros_es: 'Desconecte el cargador del enchufe usando un palo de escoba seco. Llame a {{EMERGENCY_MEDICAL}}'
     },
     {
         id: 'rf_e3',
@@ -60,25 +60,25 @@ export const riscosFisicos = [
         emoji: '🐶',
         imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_bebe-mordendo-fios-eletricos_020.jpg'),
         risco: 'Eletrocussão e Asfixia', risco_en: 'Electrocution and Asphyxiation', risco_es: 'Electrocución y Asfixia',
-        descricao: 'Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, aumentado o risco de choque elétrico.', descricao_en: 'Pets chew low cables and babies put them in their mouths, causing short circuits.', descricao_es: 'Las mascotas muerden cables bajos y los bebés se los llevan a la boca, causando cortos.',
+        descricao: 'Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, aumentando o risco de choque elétrico.', descricao_en: 'Pets chew low-hanging cables and babies (in the oral phase) put them in their mouths, increasing the risk of electric shock.', descricao_es: 'Las mascotas muerden los cables bajos y los bebés (en la fase oral) se los llevan a la boca, lo que aumenta el riesgo de descarga eléctrica.',
         prevencao: [
             'Passe cabos por dentro de canaletas de PVC rígidas.',
             'Use organizadores de fios em formato de conduíte espiral rígido',
             'Retire extensões rasteiras, mantenha os cabos elétricos suspensos e fora do chão.'
         ],
         prevencao_en: [
-            'Run cables through rigid PVC conduits.',
-            'Use hard spiral cable organizers.',
-            'Remove trailing extension cords from the floor.'
+            'Run cables through rigid PVC cable channels.',
+            'Use rigid spiral-wrap cable organizers.',
+            'Remove extension cords that run along the floor; keep electrical cables raised and off the floor.',
         ],
         prevencao_es: [
-            'Pase los cables por canaletas de PVC rígidas.',
-            'Use organizadores de cables en espiral dura.',
-            'Retire las extensiones del piso.'
+            'Pase los cables por canaletas rígidas de PVC.',
+            'Use organizadores de cables tipo espiral rígida.',
+            'Retire las extensiones que corren por el suelo; mantenga los cables eléctricos elevados y fuera del piso.',
         ],
         primeirosSocorros: 'Desligue a energia geral. Se for pet, afaste-o do fio com material plástico/madeira. Faça RCP se houver parada cardíaca.',
-        primeirosSocorros_en: 'Turn off power. Move pet/baby with plastic/wood. Perform CPR if stopped breathing.',
-        primeirosSocorros_es: 'Apague la energía. Aleje a la mascota/bebé con plástico/madera. Haga RCP si no respira.'
+        primeirosSocorros_en: 'Turn off the main power. If it is a pet, move it away from the wire using plastic or wood. Perform CPR if there is cardiac arrest.',
+        primeirosSocorros_es: 'Corte la electricidad general. Si es una mascota, apártela del cable con un objeto de plástico o madera. Haga RCP si hay paro cardíaco.'
     },
     {
         id: 'rf_e4',
@@ -87,7 +87,7 @@ export const riscosFisicos = [
         emoji: '🚿',
         imagemUrl: require('../assets/illustrations/pad/eletrico_chuveiro-eletrico_007.jpg'),
         risco: 'Choque Fibrilar no Banho', risco_en: 'Fibrillating Shock in Shower', risco_es: 'Choque Fibrilar en la Ducha',
-        descricao: 'Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas desligando fechando a  água.', descricao_en: 'Very common accident when fixing a shower with a wet floor without cutting power.', descricao_es: 'Accidente muy común al reparar una ducha con el piso mojado sin cortar la energía.',
+        descricao: 'Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas fechando a água.', descricao_en: 'A very common accident when trying to fix an electric shower with the stall still wet, having only shut off the water.', descricao_es: 'Accidente muy común al intentar reparar una ducha eléctrica con la mampara aún mojada, habiendo cerrado solo el agua.',
         prevencao: [
             'Sempre desligue o DISJUNTOR no quadro de força, não apenas a torneira.',
             'Use calçado de borracha (chinelo seco) durante a troca.',
@@ -104,8 +104,8 @@ export const riscosFisicos = [
             'Después del cambio, deje correr agua Fría primero.'
         ],
         primeirosSocorros: 'Desligue a chave geral da casa. Arraste a vítima para fora do box seco e inicie ressuscitação se necessário.',
-        primeirosSocorros_en: 'Turn off the main switch. Drag victim to a dry area and start CPR if needed.',
-        primeirosSocorros_es: 'Apague el interruptor general. Arrastre a la víctima a un área seca y comience RCP si es necesario.'
+        primeirosSocorros_en: 'Turn off the home\'s main breaker. Pull the victim out of the shower to a dry area and start resuscitation if needed.',
+        primeirosSocorros_es: 'Desconecte el interruptor general de la casa. Saque a la víctima de la ducha hacia un área seca e inicie la reanimación si es necesario.'
     },
     {
         id: 'rf_e5',
@@ -121,14 +121,14 @@ export const riscosFisicos = [
             'Ensine as crianças sobre o risco do choque elétrico de forma lúdica.'
         ],
         prevencao_en: [
-            'Put plastic protectors in all unused outlets.',
-            'Block access to outlets with heavy furniture.',
-            'Teach children about shock risks playfully.'
+            'Fit plastic covers on every unused outlet.',
+            'Block access to outlets with heavy furniture (sofas, bookcases).',
+            'Teach children about the risk of electric shock in a playful way.',
         ],
         prevencao_es: [
-            'Coloque protectores de plástico en todos los enchufes no utilizados.',
-            'Bloquee el acceso a los enchufes con muebles pesados.',
-            'Enseñe a los niños sobre el riesgo de manera lúdica.'
+            'Coloque protectores de plástico en todos los enchufes que no se usen.',
+            'Bloquee el acceso a los enchufes con muebles pesados (sofás, estanterías).',
+            'Enseñe a los niños sobre el riesgo de descarga eléctrica de forma lúdica.',
         ],
         primeirosSocorros: 'Não toque na criança se ela estiver grudada. Desligue a energia geral. Verifique batimentos e respiração.',
         primeirosSocorros_en: 'Do not touch the child if stuck. Turn off main power. Check pulse and breathing.',
@@ -141,7 +141,7 @@ export const riscosFisicos = [
         emoji: '🔌',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e6.png'),
         risco: 'Choque por Queda na Água', risco_en: 'Shock from Falling in Water', risco_es: 'Choque por Caída en el Agua',
-        descricao: 'Secadores na pia, equipamentos eletro-eletrônicos na borda da piscina causam acidentes com alta letalidade.', descricao_en: 'Hairdryers near sinks, radios by pools cause highly lethal accidents.', descricao_es: 'Secadores en el lavabo, radios en piscinas causan accidentes muy letales.',
+        descricao: 'Secadores na pia, equipamentos eletro-eletrônicos na borda da piscina causam acidentes com alta letalidade.', descricao_en: 'Hair dryers by the sink and electrical or electronic equipment at the edge of the pool cause accidents with high fatality rates.', descricao_es: 'Secadores junto al lavabo y equipos eléctricos o electrónicos al borde de la piscina causan accidentes de alta letalidad.',
         prevencao: [
             'Mantenha aparelhos elétricos a pelo menos 1 metro de pias, banheiras e piscinas.',
             'Instale tomadas com Dispositivo DR (Diferencial Residual) nestas áreas.',
@@ -168,25 +168,25 @@ export const riscosFisicos = [
         emoji: '🪁',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e7.png'),
         risco: 'Arco Elétrico de Alta Tensão', risco_en: 'High Voltage Arc', risco_es: 'Arco de Alta Tensión',
-        descricao: 'Acidente grave em ruas e condomínios. Linhas chilenas (de óxido de alumínio e pó de quartzo) ou úmidas conduzem a alta tensão diretamente para quem as usa.', descricao_en: 'Severe accident on streets. Wet or metallic lines conduct high voltage to the user.', descricao_es: 'Accidente grave en calles. Líneas húmedas o metálicas conducen alto voltaje al usuario.',
+        descricao: 'Acidente grave em ruas e condomínios. Linhas chilenas (de óxido de alumínio e pó de quartzo) ou úmidas conduzem a alta tensão diretamente para quem as usa.', descricao_en: 'A serious accident on streets and in residential complexes. Abrasive kite lines (coated with aluminum oxide and quartz powder) or wet lines conduct high voltage straight to whoever is holding them.', descricao_es: 'Accidente grave en calles y condominios. Los hilos abrasivos de cometa (recubiertos de óxido de aluminio y polvo de cuarzo) o los hilos mojados conducen la alta tensión directamente a quien los sostiene.',
         prevencao: [
             'Solte pipas apenas em parques abertos, longe de postes de rua.',
             'Jamais use linha com cerol, linha chilena ou fios metálicos.',
             'Se a pipa enroscar no fio, NÃO tente tirar com cabos de vassoura, canos ou pedras. Muito menos tente alcançar.'
         ],
         prevencao_en: [
-            'Fly kites only in open parks, away from power poles.',
-            'Never use metallic or glass-coated strings.',
-            'If the kite gets stuck, DO NOT try to remove it with poles or stones.'
+            'Fly kites only in open parks, far from utility poles.',
+            'Never use glass-coated or abrasive line, or metal wire.',
+            'If the kite gets caught on a power line, DO NOT try to free it with broom handles, pipes or stones. And never try to reach it.',
         ],
         prevencao_es: [
-            'Vuele cometas solo en parques abiertos, lejos de postes.',
-            'Nunca use hilo curado o hilos metálicos.',
-            'Si la cometa se enreda, NO intente sacarla con palos o piedras.'
+            'Vuele cometas solo en parques abiertos, lejos de los postes de luz.',
+            'Nunca use hilo con vidrio, hilo abrasivo ni alambre metálico.',
+            'Si la cometa se enreda en el cable, NO intente soltarla con palos de escoba, tubos o piedras. Mucho menos intente alcanzarla.',
         ],
         primeirosSocorros: 'Afaste curiosos (risco de cabo partido no chão). Ligue imediatamente para {{EMERGENCY_MEDICAL}} e para a concessionária de energia.',
-        primeirosSocorros_en: 'Keep onlookers away (risk of downed line). Call 911 and the power company immediately.',
-        primeirosSocorros_es: 'Aleje a los curiosos (riesgo de cable caído). Llame al 911 y a la compañía eléctrica.'
+        primeirosSocorros_en: 'Keep onlookers away (risk of a downed live wire). Immediately call {{EMERGENCY_MEDICAL}} and the electric utility.',
+        primeirosSocorros_es: 'Aleje a los curiosos (riesgo de cable caído en el suelo). Llame de inmediato a {{EMERGENCY_MEDICAL}} y a la compañía eléctrica.'
     },
     {
         id: 'rf_e8',
@@ -195,7 +195,7 @@ export const riscosFisicos = [
         emoji: '🏚️',
         imagemUrl: require('../assets/illustrations/pad/eletrico_photo-of-electrical-wirings-on-white-wal_018.jpg'),
         risco: 'Incêndio Noturno (Idosos)', risco_en: 'Nighttime Fire (Elderly)', risco_es: 'Incendio Nocturno (Ancianos)',
-        descricao: 'Casas antigas normalmente não suportam as cargas atuais. Fios ressecam no forro, causando fogo.', descricao_en: 'Houses older than 20 years cannot handle modern loads. Wires dry out in the attic, causing fires.', descricao_es: 'Casas de más de 20 años no soportan cargas modernas. Los cables se secan en el techo, causando fuego.',
+        descricao: 'Casas antigas normalmente não suportam as cargas atuais. Fios ressecam no forro, causando fogo.', descricao_en: 'Older homes usually cannot handle today\'s electrical loads. Wiring dries out in the ceiling space and starts fires.', descricao_es: 'Las casas antiguas normalmente no soportan las cargas eléctricas actuales. Los cables se resecan en el entretecho y provocan incendios.',
         prevencao: [
             'Realize uma revisão com eletricista qualificado a cada 10 anos.',
             'Substitua quadros de força de fusível antigo por disjuntores DIN e DR.',
@@ -212,8 +212,8 @@ export const riscosFisicos = [
             'Evite empalmes mal hechos con cinta aislante barata.'
         ],
         primeirosSocorros: 'Instale detectores de fumaça, especialmente em lares de idosos, para alerta preventivo.',
-        primeirosSocorros_en: 'Install smoke detectors, especially in homes with elderly, for early warning.',
-        primeirosSocorros_es: 'Instale detectores de humo, especialmente en hogares de ancianos, para alerta temprana.'
+        primeirosSocorros_en: 'Install smoke detectors, especially in homes with older adults, for early warning.',
+        primeirosSocorros_es: 'Instale detectores de humo, especialmente en hogares con personas mayores, para tener una alerta temprana.'
     },
     {
         id: 'rf_e9',
@@ -222,21 +222,21 @@ export const riscosFisicos = [
         emoji: '🧶',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e9.png'),
         risco: 'Curto-circuito e Fogo em Tecido', risco_en: 'Short Circuit and Fabric Fire', risco_es: 'Cortocircuito y Fuego en Tela',
-        descricao: 'O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando um pontos de calor que podem provocar fogo.', descricao_en: 'Constant trampling breaks copper filaments, generating extreme heat points.', descricao_es: 'El pisoteo constante rompe los filamentos de cobre, generando puntos de calor extremo.',
+        descricao: 'O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo.', descricao_en: 'Constant stepping on cords or crushing them under doors breaks the copper strands, creating hot spots that can start a fire.', descricao_es: 'Pisar los cables constantemente o aplastarlos bajo las puertas rompe los filamentos de cobre y genera puntos de calor que pueden provocar fuego.',
         prevencao: [
             'Nunca passe fios elétricos debaixo de tapetes, sofás ou colchões.',
             'Não passe extensões por frestas de portas que possam "prensar" e danificar o cabo.',
             'Se precisar cruzar um cômodo, use passadores de piso protetores de borracha.'
         ],
         prevencao_en: [
-            'Never run electrical cords under rugs, sofas, or mattresses.',
-            'Do not run extensions through door jambs that can pinch the cable.',
-            'If you must cross a room, use rubber floor cord covers.'
+            'Never run electrical cords under rugs, sofas or mattresses.',
+            'Do not run extension cords through door gaps where they can be "pinched" and damaged.',
+            'If you need to cross a room, use protective rubber floor cord covers.',
         ],
         prevencao_es: [
             'Nunca pase cables eléctricos debajo de alfombras, sofás o colchones.',
-            'No pase extensiones por huecos de puertas que puedan pellizcar el cable.',
-            'Si debe cruzar una habitación, use protectores de cables de goma para el piso.'
+            'No pase extensiones por las rendijas de las puertas, donde pueden quedar "prensadas" y dañarse.',
+            'Si necesita cruzar una habitación, use pasacables de goma para el suelo.',
         ],
         primeirosSocorros: 'Ao sentir cheiro de queimado ou ver fumaça no tapete, desligue o aparelho e depois a chave geral.',
         primeirosSocorros_en: 'If you smell burning or see smoke on the rug, unplug the appliance then turn off main power.',
@@ -277,7 +277,7 @@ export const riscosFisicos = [
         categoria: 'Armas', categoria_en: 'Weapons', categoria_es: 'Armas',
         emoji: '🔫',
         risco: 'Morte Acidental', risco_en: 'Accidental Death', risco_es: 'Muerte Accidental',
-        descricao: 'O acesso indevido por crianças curiosas ou em momentos de raiva pode ser fatal.', descricao_en: 'Improper access by children or in moments of anger can be fatal.', descricao_es: 'El acceso indebido por niños o en momentos de ira puede ser fatal.',
+        descricao: 'O acesso indevido por crianças curiosas ou em momentos de raiva pode ser fatal.', descricao_en: 'Access by curious children, or in moments of anger, can be fatal.', descricao_es: 'El acceso por parte de niños curiosos, o en momentos de ira, puede ser fatal.',
         prevencao: [
             'Armazene a arma desmuniciada em cofre trancado.',
             'Guarde a munição em local separado e também trancado.',
@@ -297,8 +297,8 @@ export const riscosFisicos = [
             'Eduque a los niños: si ven un arma, NO TOCAR, alejarse y llamar a un adulto.',
         ],
         primeirosSocorros: 'Ligue para o {{EMERGENCY_MEDICAL}} e para a polícia ({{POLICE_NUMBER}}). Estanque sangramentos com compressão forte.',
-        primeirosSocorros_en: 'Call {{EMERGENCY_MEDICAL}} and the police ({{POLICE_NUMBER}}). Stop bleeding with strong compression.',
-        primeirosSocorros_es: 'Llame a {{EMERGENCY_MEDICAL}} y a la policía ({{POLICE_NUMBER}}). Detenga el sangrado con fuerte compresión.'
+        primeirosSocorros_en: 'Call {{EMERGENCY_MEDICAL}} and the police ({{POLICE_NUMBER}}). Control bleeding with firm pressure.',
+        primeirosSocorros_es: 'Llame a {{EMERGENCY_MEDICAL}} y a la policía ({{POLICE_NUMBER}}). Detenga las hemorragias con compresión firme.'
     },
     {
         id: 'rf_4',
@@ -312,26 +312,26 @@ export const riscosFisicos = [
             'Instale corrimão em ambos os lados de escadas.',
             'Iluminação adequada em corredores e banheiros (luz noturna).',
             'Remova tapetes soltos ou use antiderrapantes.',
-            'Instale grades de proteção ou telas  em janelas e sacadas.',
+            'Instale grades de proteção ou telas em janelas e sacadas.',
             'Instale barras de apoio na parede do chuveiro e ao lado do vaso sanitário.'
         ],
         prevencao_en: [
-            'Install handrails on both sides of the stairs.',
+            'Install handrails on both sides of stairs.',
             'Adequate lighting in hallways and bathrooms (night light).',
-            'Remove loose rugs or use non-slip mats.',
-            'Install safety gates on windows and balconies.',
-            'Install grab bars in the shower and next to the toilet.'
+            'Remove loose rugs or use non-slip backing.',
+            'Install guards or safety netting on windows and balconies.',
+            'Install grab bars on the shower wall and next to the toilet.',
         ],
         prevencao_es: [
-            'Instale pasamanos a ambos lados de la escalera.',
+            'Instale pasamanos a ambos lados de las escaleras.',
             'Iluminación adecuada en pasillos y baños (luz nocturna).',
-            'Retire alfombras sueltas o use antideslizantes.',
-            'Instale rejas de protección en ventanas y balcones.',
-            'Instale barras de apoyo en la ducha y junto al inodoro.'
+            'Retire las alfombras sueltas o use antideslizantes.',
+            'Instale rejas de protección o redes en ventanas y balcones.',
+            'Instale barras de apoyo en la pared de la ducha y junto al inodoro.',
         ],
         primeirosSocorros: 'Não mova a vítima se houver suspeita de fratura na coluna/pescoço. Chame o {{EMERGENCY_MEDICAL}}.',
-        primeirosSocorros_en: 'Do not move the victim if a spine/neck fracture is suspected. Call 911.',
-        primeirosSocorros_es: 'No mueva a la víctima si se sospecha una fractura de columna/cuello. Llame al 911.'
+        primeirosSocorros_en: 'Do not move the victim if a spine or neck fracture is suspected. Call {{EMERGENCY_MEDICAL}}.',
+        primeirosSocorros_es: 'No mueva a la víctima si hay sospecha de fractura de columna o cuello. Llame a {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'rf_5',
@@ -340,7 +340,7 @@ export const riscosFisicos = [
         categoria: 'Água', categoria_en: 'Water', categoria_es: 'Agua',
         emoji: '💧',
         risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
-        descricao: 'Pode acontecer com crianças pequenas em apenas 2,5 a 5 centímetros de água (baldes, banheiras) e de forma rápida e silenciosa.', descricao_en: 'It can happen in a few centimeters of water (buckets, bathtubs).', descricao_es: 'Puede ocurrir en unos pocos centímetros de agua (cubos, bañeras).',
+        descricao: 'Pode acontecer com crianças pequenas em apenas 2,5 a 5 centímetros de água (baldes, banheiras) e de forma rápida e silenciosa.', descricao_en: 'It can happen to young children in just 1 to 2 inches (2.5 to 5 cm) of water (buckets, bathtubs) — quickly and silently.', descricao_es: 'Puede ocurrirles a niños pequeños en apenas 2,5 a 5 centímetros de agua (cubos, bañeras), de forma rápida y silenciosa.',
         prevencao: [
             'Nunca deixe crianças sozinhas no banho ou piscina.',
             'Esvazie baldes, bacias, tanques e máquinas de lavar após o uso.',
@@ -349,19 +349,19 @@ export const riscosFisicos = [
         ],
         prevencao_en: [
             'Never leave children alone in the bath or pool.',
-            'Empty buckets and basins after use.',
+            'Empty buckets, basins, laundry tubs and washing machines after use.',
             'Keep the toilet lid locked.',
             'Fence the pool completely.',
         ],
         prevencao_es: [
             'Nunca deje a los niños solos en el baño o la piscina.',
-            'Vacíe los cubos y recipientes después de su uso.',
-            'Mantenga la tapa del inodoro cerrada.',
-            'Cerca la piscina por completo.',
+            'Vacíe cubos, palanganas, lavaderos y lavadoras después de usarlos.',
+            'Mantenga la tapa del inodoro trabada.',
+            'Cerque la piscina por completo.',
         ],
         primeirosSocorros: 'Retire da água. Se não respirar, inicie RCP imediatamente. Chame o {{EMERGENCY_MEDICAL}}',
-        primeirosSocorros_en: 'Remove from water. If not breathing, start CPR immediately. Call 911.',
-        primeirosSocorros_es: 'Retírelo del agua. Si no respira, inicie la RCP inmediatamente. Llame al 911.'
+        primeirosSocorros_en: 'Get them out of the water. If they are not breathing, start CPR immediately. Call {{EMERGENCY_MEDICAL}}',
+        primeirosSocorros_es: 'Sáquelo del agua. Si no respira, inicie la RCP de inmediato. Llame a {{EMERGENCY_MEDICAL}}'
     },
     // NOVOS CARDS - RISCOS FÍSICOS (DOMÉSTICOS E LAZER)
     {
@@ -371,14 +371,24 @@ export const riscosFisicos = [
         emoji: '📺',
         imagemUrl: require('../assets/illustrations/pad/acidentes-estatisticas_acidentes-domesticos-no-brasil_002.jpg'),
         risco: 'Lesões Fatais', risco_en: 'Fatal Injuries', risco_es: 'Lesiones Fatales',
-        descricao: 'O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas e irreversíveis lesões.',
+        descricao: 'O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas e irreversíveis lesões.', descricao_es: 'La costumbre infantil de trepar a los muebles puede hacer que estanterías altas y televisores se vuelquen sobre los niños. Además, las puertas sin protectores antiaplastamiento causan lesiones graves e irreversibles.', descricao_en: 'Children\'s habit of climbing furniture can make tall bookcases and TVs tip over onto them. Doors without anti-pinch guards also cause severe, irreversible injuries.',
         prevencao: [
             'Fixe estantes altas e cômodas na parede usando suportes ou cabos apropriados.',
             'Fixe televisores de tela plana na parede ou no rack.',
             'Use protetores salva-dedos (trava antiesmagamento) em todas as portas.',
             'Não coloque brinquedos no topo de móveis altos, evitando que a criança tente escalar.'
+        ], prevencao_es: [
+            'Fije las estanterías altas y cómodas a la pared con soportes o cables adecuados.',
+            'Fije los televisores de pantalla plana a la pared o al mueble.',
+            'Use protectores salvadedos (antiaplastamiento) en todas las puertas.',
+            'No coloque juguetes encima de muebles altos, para que el niño no intente trepar.',
+        ], prevencao_en: [
+            'Anchor tall bookcases and dressers to the wall with proper brackets or straps.',
+            'Mount flat-screen TVs on the wall or secure them to the stand.',
+            'Use finger-pinch guards (anti-pinch devices) on every door.',
+            'Do not put toys on top of tall furniture, so the child is not tempted to climb.',
         ],
-        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}.'
+        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}.', primeirosSocorros_es: 'Retire el peso de inmediato. Si la víctima está inconsciente o hay sospecha de fractura interna, no le mueva el cuello y llame a {{EMERGENCY_MEDICAL}}.', primeirosSocorros_en: 'Remove the weight immediately. If the victim is unconscious or an internal fracture is suspected, do not move the neck and call {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'rf_queimaduras_domesticas',
@@ -387,12 +397,22 @@ export const riscosFisicos = [
         emoji: '🔥',
         imagemUrl: require('../assets/illustrations/pad/outros_bebe-alcancando-panela-fogao_009.jpg'),
         risco: 'Queimaduras Térmicas Graves', risco_en: 'Severe Thermal Burns', risco_es: 'Quemaduras Térmicas Graves',
-        descricao: 'A cozinha é o ambiente mais crítico. Tombamento de líquidos ferventes (ao puxar toalhas) e cabos de panela para fora causam queimaduras irreparáveis.',
+        descricao: 'A cozinha é o ambiente mais crítico. Tombamento de líquidos ferventes (ao puxar toalhas) e cabos de panela para fora causam queimaduras irreparáveis.', descricao_es: 'La cocina es el ambiente más crítico. Los líquidos hirviendo que se vuelcan (al tirar de manteles) y los mangos de sartenes hacia afuera causan quemaduras irreparables.', descricao_en: 'The kitchen is the most critical room. Boiling liquids pulled over (by tugging on tablecloths) and pan handles sticking out cause irreparable burns.',
         prevencao: [
             'Vire os cabos das panelas para o centro do fogão.',
             'Use as bocas de trás do fogão sempre que possível.',
-            'Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem casuar este tipo de acidentes.',
-            'Atenção ao abrir a porta do forno ou retirar recipientes quente (use cabos apropriados ou luvas térmicas) e ao usar panelas de pressão.'
+            'Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente.',
+            'Atenção ao abrir a porta do forno ou retirar recipientes quentes (use cabos apropriados ou luvas térmicas) e ao usar panelas de pressão.'
+        ], prevencao_es: [
+            'Gire los mangos de las ollas hacia el centro de la cocina.',
+            'Use los quemadores traseros siempre que sea posible.',
+            'No use manteles largos si hay niños que puedan tirar de ellos. Las mascotas también pueden causar eventualmente este tipo de accidente.',
+            'Atención al abrir la puerta del horno o retirar recipientes calientes (use asas adecuadas o guantes térmicos) y al usar ollas a presión.',
+        ], prevencao_en: [
+            'Turn pan handles toward the center of the stove.',
+            'Use the back burners whenever possible.',
+            'Do not use long tablecloths if there are children who could pull them. Pets can occasionally cause this kind of accident too.',
+            'Take care when opening the oven door or taking out hot dishes (use proper handles or oven mitts) and when using pressure cookers.',
         ],
         primeirosSocorros: 'Resfrie o local com água corrente em temperatura ambiente por 10-15 minutos. NUNCA aplique gelo, pasta de dente ou manteiga. Procure o pronto-socorro.'
     },
@@ -403,14 +423,24 @@ export const riscosFisicos = [
         emoji: '👶',
         imagemUrl: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),
         risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
-        descricao: 'Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros e excesso de no berço, peças pequenas e alimentos granulados.',
+        descricao: 'Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros e excesso de roupa de cama no berço, peças pequenas e alimentos granulados.', descricao_es: 'Una de las principales causas de muerte accidental en bebés menores de un año. Los riesgos incluyen almohadas y exceso de ropa de cama en la cuna, piezas pequeñas y alimentos pequeños y redondos.', descricao_en: 'A leading cause of accidental death in babies under one year old. Risks include pillows and excess bedding in the crib, small parts and small, round foods.',
         prevencao: [
             'Bebês devem dormir de barriga para cima, em berço vazio (sem protetores, ursos ou travesseiros).',
             'Corte alimentos redondos (uvas, tomate cereja) ao comprido antes de servir a crianças.',
             'Verifique a indicação de idade e {{CERT_SEAL}} nos brinquedos.',
             'Mantenha feijões crus, milho e moedas longe do alcance. Despensa assim como cozinha é local proibido para crianças.'
+        ], prevencao_es: [
+            'Los bebés deben dormir boca arriba, en una cuna vacía (sin protectores, peluches ni almohadas).',
+            'Corte los alimentos redondos (uvas, tomates cherry) a lo largo antes de servirlos a los niños.',
+            'Verifique la indicación de edad y el {{CERT_SEAL}} en los juguetes.',
+            'Mantenga frijoles crudos, maíz y monedas fuera del alcance. La despensa, al igual que la cocina, es un lugar prohibido para los niños.',
+        ], prevencao_en: [
+            'Babies should sleep on their backs in an empty crib (no bumpers, stuffed animals or pillows).',
+            'Cut round foods (grapes, cherry tomatoes) lengthwise before serving them to children.',
+            'Check the age rating and the {{CERT_SEAL}} on toys.',
+            'Keep dried beans, corn kernels and coins out of reach. The pantry, like the kitchen, is off-limits to children.',
         ],
-        primeirosSocorros: 'Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar.'
+        primeirosSocorros: 'Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar.', primeirosSocorros_es: 'Mayores de 1 año: alterne 5 golpes entre los omóplatos (con el talón de la mano) y 5 compresiones abdominales (Heimlich). Bebé: alterne 5 golpes en la espalda y 5 compresiones en el pecho, nunca Heimlich. Llame a {{EMERGENCY_MEDICAL}} si no se desatraganta.', primeirosSocorros_en: 'Over 1 year: alternate 5 back blows between the shoulder blades (with the heel of the hand) and 5 abdominal thrusts (Heimlich). Baby: alternate 5 back blows and 5 chest thrusts — never Heimlich. Call {{EMERGENCY_MEDICAL}} if the airway does not clear.'
     },
     {
         id: 'rf_cortes',
@@ -424,7 +454,17 @@ export const riscosFisicos = [
             'Guarde facas e ferramentas cortantes em gavetas altas ou com trava.',
             'NUNCA se apoie na pia do banheiro ou suba no vaso sanitário (cerâmica). Instale barras de apoio de metal fixadas na alvenaria.',
             'Use luvas anticorte (EPI) ao manusear ferramentas pesadas.',
-            'Coloque películas protetoras ou redes em portas de vidro. Isso vai evitar cacos e estilhaçamento contatantes.'
+            'Coloque películas protetoras ou redes em portas de vidro. Isso evita cacos e estilhaços cortantes.'
+        ], prevencao_es: [
+            'Guarde cuchillos y herramientas cortantes en cajones altos o con traba.',
+            'NUNCA se apoye en el lavabo ni se suba al inodoro (cerámica). Instale barras de apoyo metálicas fijadas a la mampostería.',
+            'Use guantes anticorte (EPP) al manipular herramientas pesadas.',
+            'Coloque láminas de seguridad o redes en las puertas de vidrio. Así se evitan fragmentos cortantes si el vidrio se rompe.',
+        ], prevencao_en: [
+            'Store knives and sharp tools in high or locked drawers.',
+            'NEVER lean on the bathroom sink or stand on the toilet (ceramic). Install metal grab bars anchored into the masonry.',
+            'Wear cut-resistant gloves (PPE) when handling heavy tools.',
+            'Apply safety film or netting to glass doors. This prevents sharp shards if the glass shatters.',
         ],
         primeirosSocorros: 'Faça compressão direta no ferimento com um pano limpo para estancar o sangramento. Eleve o membro se possível. Vá ao hospital.'
     },
@@ -442,7 +482,7 @@ export const riscosFisicos = [
             'Crianças em bikes comuns devem pedalar em locais seguros, longe do trânsito de carros.',
             'Sinalize suas ações e evite usar fones de ouvido no trânsito.'
         ],
-        primeirosSocorros: 'Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue para o {{EMERGENCY_MEDICAL}} e mantenha a pessoa calma até o resgate chegar.'
+        primeirosSocorros: 'Em caso de colisão, não mova a vítima (risco de lesão medular). Ligue para o {{EMERGENCY_MEDICAL}} e mantenha a pessoa calma até o resgate chegar.', primeirosSocorros_es: 'En caso de colisión, no mueva a la víctima (riesgo de lesión medular). Llame a {{EMERGENCY_MEDICAL}} y mantenga a la persona tranquila hasta que llegue el rescate.', primeirosSocorros_en: 'After a collision, do not move the victim (risk of spinal cord injury). Call {{EMERGENCY_MEDICAL}} and keep the person calm until help arrives.'
     },
     {
         id: 'rf_playgrounds',
@@ -451,12 +491,22 @@ export const riscosFisicos = [
         emoji: '🛝',
         imagemUrl: require('../assets/illustrations/pad/criancas-bebes_playground-aventura_004.jpg'),
         risco: 'Cortes, Tétano e Fraturas', risco_en: 'Cuts, Tetanus and Fractures', risco_es: 'Cortes, Tétanos y Fracturas',
-        descricao: 'Falta de manutenção gera ferrugem, pregos expostos e partes folgadas ou soltas. Brincar em áreas não compatíveis com a idade ou crianças de grande diferenças de idade também causa choques violentos.',
+        descricao: 'Falta de manutenção gera ferrugem, pregos expostos e partes folgadas ou soltas. Brincar em áreas não compatíveis com a idade ou crianças com grande diferença de idade também causa choques violentos.', descricao_es: 'La falta de mantenimiento genera óxido, clavos expuestos y piezas flojas o sueltas. Jugar en áreas no adecuadas para la edad, o con niños de edades muy distintas, también provoca choques violentos.', descricao_en: 'Poor maintenance leads to rust, exposed nails and loose or detached parts. Playing in areas not suited to the child\'s age, or alongside much older children, also causes violent collisions.',
         prevencao: [
             'Faça uma vistoria visual rápida antes da criança brincar (Vistoria Dinâmica).',
             'Supervisione ativamente. Acidentes acontecem em frações de segundo.',
             'Certifique-se de que o piso do parquinho seja de borracha ou areia fofa, não superfícies ásperas.',
             'Evite roupas com cordões no parquinho para prevenir enforcamento.'
+        ], prevencao_es: [
+            'Haga una inspección visual rápida antes de que el niño juegue (inspección dinámica).',
+            'Supervise activamente. Los accidentes ocurren en fracciones de segundo.',
+            'Asegúrese de que el piso del parque infantil sea de goma o arena suelta, no superficies ásperas.',
+            'Evite la ropa con cordones en el parque infantil para prevenir el ahorcamiento.',
+        ], prevencao_en: [
+            'Do a quick visual inspection before the child plays (a dynamic check).',
+            'Supervise actively. Accidents happen in a split second.',
+            'Make sure the playground surface is rubber or loose, soft sand — not hard, rough ground.',
+            'Avoid clothing with drawstrings at the playground to prevent strangulation.',
         ],
         primeirosSocorros: 'Lave cortes com água e sabão. Se o metal estava enferrujado, verifique a vacina antitetânica. Imobilize fraturas e vá ao PS.'
     },
@@ -467,12 +517,22 @@ export const riscosFisicos = [
         emoji: '🎆',
         imagemUrl: require('../assets/illustrations/pad/Churrasco.png'),
         risco: 'Explosões e Queimaduras Graves', risco_en: 'Explosions and Severe Burns', risco_es: 'Explosiones y Quemaduras Graves',
-        descricao: 'Uso de álcool líquido em churrasqueiras e manuseio amador de fogos de artifício em festas representam os maiores picos de acidentes em determinadas épocas do ano.',
+        descricao: 'Uso de álcool líquido em churrasqueiras e manuseio amador de fogos de artifício em festas representam os maiores picos de acidentes em determinadas épocas do ano.', descricao_es: 'El uso de alcohol líquido en parrillas y la manipulación aficionada de fuegos artificiales en fiestas representan los mayores picos de accidentes en ciertas épocas del año.', descricao_en: 'Using liquid alcohol on barbecues and amateur handling of fireworks at parties account for the biggest accident peaks at certain times of year.',
         prevencao: [
             'NUNCA use álcool líquido (seja de qual volume for) para acender o carvão. Use acendedores sólidos ou acendedores elétricos.',
             'Mantenha as crianças longe (pelo menos 2 metros) da churrasqueira. Qualquer distração pode permitir que tragédias aconteçam.',
             'Fogos de artifício só devem ser manuseados por profissionais com licença.',
             'Não acenda fogueiras próximo à rede elétrica ou vegetação seca.'
+        ], prevencao_es: [
+            'NUNCA use alcohol líquido (en ninguna cantidad) para encender el carbón. Use pastillas de encendido sólidas o encendedores eléctricos.',
+            'Mantenga a los niños lejos de la parrilla (al menos 2 metros). Cualquier distracción puede provocar una tragedia.',
+            'Los fuegos artificiales solo deben ser manipulados por profesionales con licencia.',
+            'No encienda hogueras cerca de la red eléctrica ni de vegetación seca.',
+        ], prevencao_en: [
+            'NEVER use liquid alcohol, in any amount, to light charcoal. Use solid fire starters or electric starters.',
+            'Keep children away from the grill (at least 2 meters / 6 feet). Any distraction can lead to tragedy.',
+            'Fireworks should only be handled by licensed professionals.',
+            'Do not light bonfires near power lines or dry vegetation.',
         ],
         primeirosSocorros: 'Apague as chamas (abafando). Resfrie com muita água corrente. Cubra com pano limpo úmido e corra para o hospital. Não estoure bolhas.'
     },
@@ -489,7 +549,15 @@ export const riscosFisicos = [
             'Priorize a jardinagem nas primeiras horas da manhã ou no fim da tarde.',
             'Use sempre chapéus de abas largas, óculos de sol e protetor solar.',
             'Mantenha uma garrafa de água por perto e faça pausas regulares à sombra.'
+        ], prevencao_es: [
+            'Priorice la jardinería a primera hora de la mañana o al final de la tarde.',
+            'Use siempre sombrero de ala ancha, gafas de sol y protector solar.',
+            'Mantenga una botella de agua cerca y haga pausas regulares a la sombra.',
+        ], prevencao_en: [
+            'Do your gardening early in the morning or late in the afternoon.',
+            'Always wear a wide-brimmed hat, sunglasses and sunscreen.',
+            'Keep a bottle of water nearby and take regular breaks in the shade.',
         ],
-        primeirosSocorros: 'Se sofrer insolação, vá para um local fresco e arejado. Beba água aos poucos. Faça compressas frias na cabeça. Se houver tontura forte ou vômito, procure um médico.'
+        primeirosSocorros: 'Se sofrer insolação, vá para um local fresco e arejado. Beba água aos poucos. Faça compressas frias na cabeça. Se houver tontura forte ou vômito, procure um médico.', primeirosSocorros_es: 'Si sufre una insolación, vaya a un lugar fresco y ventilado. Beba agua poco a poco. Aplique compresas frías en la cabeza. Si hay mareo intenso o vómitos, busque atención médica.', primeirosSocorros_en: 'If you have heatstroke, move to a cool, well-ventilated place. Sip water slowly. Apply cold compresses to the head. If there is severe dizziness or vomiting, seek medical care.'
     }
 ];

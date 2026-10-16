@@ -145,12 +145,12 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         {
           id: 'extintores',
           texto: 'Extintores de incêndio visíveis, dentro da validade e desobstruídos.',
-          texto_en: 'Fire extinguishers visible and within expiration date',
-          texto_es: 'Extintores de incendio visibles y dentro de la fecha de vigencia',
+          texto_en: 'Fire extinguishers visible, within their expiration date and unobstructed.',
+          texto_es: 'Extintores de incendio visibles, vigentes y sin obstrucciones.',
           critico: true,
           detalhes: 'Verificar se há extintores suficientes e se estão em locais acessíveis e sinalizados.',
-          detalhes_en: 'Check if there are enough extinguishers and if they are in accessible locations.',
-          detalhes_es: 'Verificar si hay suficientes extintores y si están en lugares accesibles.'
+          detalhes_en: 'Check that there are enough extinguishers and that they are in accessible, clearly marked locations.',
+          detalhes_es: 'Verificar que haya suficientes extintores y que estén en lugares accesibles y señalizados.'
         },
         {
           id: 'piso-conservacao',
@@ -201,8 +201,8 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_es: 'Esquinas de muebles protegidas o redondeadas',
           critico: false,
           detalhes: 'Protetores de quina previnem ferimentos em impactos.',
-          detalhes_en: 'Corner protectors prevent injuries from falls.',
-          detalhes_es: 'Los protectores de esquinas previenen lesiones en caídas.'
+          detalhes_en: 'Corner guards prevent injuries from impacts.',
+          detalhes_es: 'Los protectores de esquinas previenen lesiones por golpes.'
         },
         {
           id: 'moveis-conservacao',
@@ -585,8 +585,8 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         {
           id: 'piscina-equipamentos',
           texto: 'Equipamentos de salvamento acessíveis (boia, vara, corda)',
-          texto_en: 'Rescue equipment accessible (buoy, pole)',
-          texto_es: 'Equipos de rescate accesibles (boya, vara)',
+          texto_en: 'Rescue equipment accessible (ring buoy, reaching pole, rope)',
+          texto_es: 'Equipo de salvamento accesible (aro salvavidas, pértiga, cuerda)',
           critico: true,
           detalhes: 'Devem estar sempre disponíveis para uso imediato.',
           detalhes_en: 'Must always be available for immediate use.',
@@ -779,8 +779,8 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
         {
           id: 'ficha-medica',
           texto: 'Fichas médicas das crianças, atualizadas',
-          texto_en: 'Children\'s medical records up to date',
-          texto_es: 'Fichas médicas de los niños actualizadas',
+          texto_en: 'Children\'s medical records, kept up to date',
+          texto_es: 'Fichas médicas de los niños, actualizadas',
           critico: true,
           detalhes: 'Incluindo alergias, condições especiais e contatos de emergência.',
           detalhes_en: 'Including allergies, special conditions, and emergency contacts.',

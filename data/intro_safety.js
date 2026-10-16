@@ -12,11 +12,11 @@ export const INTRO_CONCEPTS = [
         titulo_es: 'Introducción a la Seguridad',
         emoji: '🛡️', icone: 'ShieldCheck',
         definicao: 'Segurança doméstica não é só prevenção, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família.',
-        definicao_en: 'Home safety is not an accident, it is planning. It is the set of measures adopted to minimize risks and ensure the physical integrity of the entire family.',
-        definicao_es: 'La seguridad doméstica no es un accidente, es planificación. Es el conjunto de medidas adoptadas para minimizar riesgos y garantizar la integridad física de toda la familia.',
+        definicao_en: 'Home safety is not just prevention — it is planning. It is the set of measures taken to minimize risks and protect the physical well-being of the whole family.',
+        definicao_es: 'La seguridad en el hogar no es solo prevención: es planificación. Es el conjunto de medidas adoptadas para minimizar riesgos y garantizar la integridad física de toda la familia.',
         importancia: 'A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos previne tragédias antes que aconteçam.',
         importancia_en: 'Most accidents happen where we should be safest: at home. Understanding the fundamentals prevents tragedies before they happen.',
-        importancia_es: 'La mayoría de los accidentes ocurren donde deberíamos estar más seguros: en casa. Comprender los fundamentos previene tragedias antes de que sucedan.',
+        importancia_es: 'La mayoría de los accidentes ocurren donde deberíamos estar más seguros: en casa. Entender los fundamentos previene tragedias antes de que ocurran.',
         curiosidades: [
             'As quedas são a principal causa de acidentes domésticos no Brasil.',
             'Crianças e idosos são os grupos mais vulneráveis.'
@@ -37,25 +37,25 @@ export const INTRO_CONCEPTS = [
         titulo_es: 'Metodología 3D',
         emoji: '💎', icone: 'Diamond',
         definicao: 'A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando nossa casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves.',
-        definicao_en: 'To eliminate home hazards, prevention and awareness are the only keys. The 3D Methodology defines actions for Daily, Dynamic, and Durable prevention, transforming the home into a safe refuge.',
-        definicao_es: 'Para eliminar los peligros del hogar, la prevención y la concientización son las únicas claves. La Metodología 3D define acciones para una prevención Diaria, Dinámica y Duradera, transformando la casa en un refugio seguro.',
-        importancia: 'A grande maioria dos acidentes não acontece por acaso, mas por descaso. Praticar a segurança de forma constante é sempre mais vantajoso do que remediar uma emergência e sequelas que poderia ter sido evitada.',
-        importancia_en: 'The vast majority of accidents do not happen by chance, but by neglect. Practicing safety consistently is always more advantageous than dealing with an emergency that could have been avoided.',
-        importancia_es: 'La gran mayoría de los accidentes no ocurren por casualidad, sino por descuido. Practicar la seguridad de forma constante siempre es más ventajoso que remediar una emergencia que podría haberse evitado.',
+        definicao_en: 'The 3D Methodology sets out actions for Daily, Dynamic and Durable prevention, turning our home into a safe refuge. To eliminate household hazards, prevention and awareness are the only keys.',
+        definicao_es: 'La Metodología 3D define acciones para una prevención Diaria, Dinámica y Duradera, transformando nuestra casa en un refugio seguro. Para eliminar los peligros del hogar, la prevención y la concientización son las únicas llaves.',
+        importancia: 'A grande maioria dos acidentes não acontece por acaso, mas por descaso. Praticar a segurança de forma constante é sempre mais vantajoso do que remediar uma emergência e sequelas que poderiam ter sido evitadas.',
+        importancia_en: 'The vast majority of accidents do not happen by chance, but through neglect. Practicing safety consistently is always better than dealing with an emergency — and its lasting effects — that could have been avoided.',
+        importancia_es: 'La gran mayoría de los accidentes no ocurren por casualidad, sino por descuido. Practicar la seguridad de forma constante siempre es más ventajoso que remediar una emergencia y secuelas que podrían haberse evitado.',
         comoIdentificar: [
             '🗓️ DIÁRIA: Devemos diariamente estar muito atentos ao nosso ambiente doméstico, já que ele deve ser um refúgio e não uma armadilha criada por nós mesmos. E para isso, a prevenção deve ser diária e jamais negligenciada pela pressa, distrações ou mesmo por estarmos habituados a conviver com situações ou práticas com potencial de causarem acidentes.',
             '🔄 DINÂMICA: Tal como nossas vidas, a prevenção deve ser dinâmica, pois devemos estar sempre atentos em nossos afazeres do dia a dia. Precisamos ser abrangentes em relação às diferentes características dos nossos lares, tendo constantemente um olhar crítico e atento.',
-            '♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção deve ser duradoura e somente a constância pode evitar que novas situações de perigo nos exponham, desnecessariamente a acidentes que possam tirar de nós e de quem amamos, a saúde e bem-estar. Praticar segurança sempre será mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
+            '♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção deve ser duradoura e somente a constância pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos a saúde e bem-estar. Praticar segurança sempre será mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
         ],
         comoIdentificar_en: [
-            '🗓️ DAILY: We must be attentive to our environment every day. Prevention should never be neglected due to haste, distractions, or the habit of living with risk.',
-            '🔄 DYNAMIC: Prevention must keep up with changes in life and home. Maintain a critical and alert eye to prevent environmental changes from creating new traps.',
-            '♾️ DURABLE: Only consistency guarantees real protection. Prevention must be continuous to prevent new dangers from threatening the family\'s health and well-being.'
+            '🗓️ DAILY: Every day we must pay close attention to our home, because it should be a refuge, not a trap of our own making. For that, prevention must be daily and never neglected because of haste, distraction, or simply because we have grown used to living with situations or habits that could cause accidents.',
+            '🔄 DYNAMIC: Just like our lives, prevention must be dynamic, because we must always stay alert in our everyday tasks. We need to take in the different characteristics of our homes, always with a critical and attentive eye.',
+            '♾️ DURABLE: Only consistency guarantees real protection. Prevention must be continuous so that new dangers do not threaten the family\'s health and well-being. Prevention must be durable, and only consistency can keep new dangerous situations from needlessly exposing us to accidents that could take health and well-being away from us and the people we love. Practicing safety will always be better than an easily avoidable emergency. Prevention spares us the anguish of seeking medical care, whether for ourselves or someone in our family.',
         ],
         comoIdentificar_es: [
-            '🗓️ DIARIA: Debemos estar atentos a nuestro entorno todos los días. La prevención nunca debe ser descuidada por la prisa, las distracciones o la costumbre de convivir con el riesgo.',
-            '🔄 DINÁMICA: La prevención debe acompañar los cambios de la vida y del hogar. Mantenga una mirada crítica y alerta para evitar que los cambios en el ambiente creen nuevas trampas.',
-            '♾️ DURADERA: Solo la constancia garantiza la protección real. La prevención debe ser continua para evitar que nuevos peligros amenacen la salud y el bienestar de la familia.'
+            '🗓️ DIARIA: Debemos estar muy atentos a nuestro hogar todos los días, ya que debe ser un refugio y no una trampa creada por nosotros mismos. Para ello, la prevención debe ser diaria y nunca descuidada por la prisa, las distracciones o por estar acostumbrados a convivir con situaciones o prácticas que pueden causar accidentes.',
+            '🔄 DINÁMICA: Al igual que nuestras vidas, la prevención debe ser dinámica, pues debemos estar siempre atentos en nuestras tareas del día a día. Necesitamos abarcar las diferentes características de nuestros hogares, con una mirada crítica y atenta en todo momento.',
+            '♾️ DURADERA: Solo la constancia garantiza la protección real. La prevención debe ser continua para evitar que nuevos peligros amenacen la salud y el bienestar de la familia. La prevención debe ser duradera y solo la constancia puede evitar que nuevas situaciones de peligro nos expongan innecesariamente a accidentes que puedan quitarnos, a nosotros y a quienes amamos, la salud y el bienestar. Practicar la seguridad siempre será más ventajoso que una emergencia fácilmente evitable. Prevenir nos ahorra la angustia de una atención médica, ya sea para nosotros o para alguien de nuestra familia.',
         ],
         exemplos: [
             'Reflita: Seu lar é um refúgio ou uma armadilha?',

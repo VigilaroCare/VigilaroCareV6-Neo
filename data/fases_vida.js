@@ -19,6 +19,7 @@ export const FASES_VIDA_DATA = {
         importancia_es: 'Asfixia (objetos pequeños), caídas, quemaduras, ahogamiento, intoxicación.',
         comoIdentificar: null,
         comoEvitar: [
+            'Bebê dorme sempre de barriga para cima (reduz o risco de morte súbita)',
             'Berço sem almofadas, pelúcias ou protetores acolchoados',
             'Proteger todas as tomadas',
             'Fixar móveis na parede (antitombamento)',
@@ -29,16 +30,26 @@ export const FASES_VIDA_DATA = {
             'Redes de proteção em todas as janelas'
         ],
         comoEvitar_en: [
-            'Sleep on their back (prevents sudden infant death syndrome).',
-            'Crib free of bumpers, pillows, and toys.',
-            'Never leave alone in the bathtub or on the changing table.',
-            'Test the temperature of water and bottle.'
+            'Baby always sleeps on their back (reduces the risk of sudden infant death)',
+            'Crib with no pillows, stuffed animals or padded bumpers',
+            'Cover all electrical outlets',
+            'Anchor furniture to the wall (anti-tip)',
+            'Test bath water temperature with your elbow or with the web of your hand between the thumb and index finger.',
+            'Never leave the baby alone in the bathtub, not even for seconds',
+            'Keep small objects out of reach of little hands',
+            'Install safety gates on stairs',
+            'Safety netting on all windows',
         ],
         comoEvitar_es: [
-            'Dormir boca arriba (previene la muerte súbita).',
-            'Cuna libre de protectores, almohadas y juguetes.',
-            'Nunca dejar solo en la bañera o el cambiador.',
-            'Probar la temperatura del agua y el biberón.'
+            'El bebé duerme siempre boca arriba (reduce el riesgo de muerte súbita)',
+            'Cuna sin almohadas, peluches ni protectores acolchados',
+            'Proteger todos los enchufes',
+            'Fijar los muebles a la pared (antivuelco)',
+            'Probar la temperatura del agua del baño con el codo o con el pliegue de la mano entre el pulgar y el índice.',
+            'Nunca dejarlo solo en la bañera, ni por segundos',
+            'Guardar los objetos pequeños fuera del alcance de sus manitas',
+            'Instalar puertas de seguridad en las escaleras',
+            'Redes de protección en todas las ventanas',
         ],
         primeirosSocorros: 'Engasgo em bebê: 5 pancadas nas costas + 5 compressões no peito, alternando. NUNCA Heimlich. Queda: observar vômito/sonolência e ir ao PS.',
         primeirosSocorros_en: 'Infant choking: 5 back blows + 5 chest thrusts, alternating. NEVER the Heimlich. Fall: watch for vomiting or drowsiness and go to the ER.',

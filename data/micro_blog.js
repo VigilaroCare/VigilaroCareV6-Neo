@@ -49,8 +49,8 @@ export const MICRO_BLOG_ARTICLES = [
     {
         id: 'mb_003',
         title: 'O que fazer se o bebê se engasgar mamando',
-        title_en: 'What to do if the baby chokes while breastfeeding',
-        title_es: 'Qué hacer si el bebé se atraganta amamantando',
+        title_en: 'What to do if the baby chokes while feeding',
+        title_es: 'Qué hacer si el bebé se atraganta al mamar',
         category: 'bebes',
         thumbnail: 'https://preveniremcasa.com.br/wp-content/uploads/2019/03/Meu-filho-se-engasgou-mamando-1.jpg',
         readTime: 1,

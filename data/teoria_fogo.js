@@ -11,7 +11,7 @@ export const TEORIA_FOGO_DATA = {
         bg: '#FEE2E2', // Red 100
         imagemUrl: require('../assets/illustrations/pad/ambientes-casa_forma-de-gota-de-gua-tempestade-previs-o_017.jpg'),
         definicao: 'Para que o fogo exista, são necessários três elementos: Combustível, Comburente (Oxigênio) e Calor. Se retirar um, o fogo apaga.',
-        importancia: 'Entender como o fogo começa é o primeiro passo para saber como apagá-lo ou preveni-lo.',
+        importancia: 'Entender como o fogo começa é o primeiro passo para saber como apagá-lo ou preveni-lo.', importancia_es: 'Entender cómo comienza el fuego es el primer paso para saber cómo apagarlo o prevenirlo.', importancia_en: 'Understanding how fire starts is the first step to knowing how to put it out or prevent it.',
         comoIdentificar: [
             'Combustível: O que queima (papel, madeira, gás).',
             'Comburente: O ar que respiramos (Oxigênio).',
