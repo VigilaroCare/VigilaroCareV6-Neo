@@ -15,6 +15,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { Config } from '../utils/Config';
 import { fetchWithTimeout } from '../utils/fetchWithTimeout';
 import i18n from '../i18n';
+import ConsentimentoIAService from './ConsentimentoIAService';
 
 const PROXY_URL = Config.VIGILARO_PROXY_URL;
 const APP_SECRET = Config.VIGILARO_APP_SECRET;
@@ -218,6 +219,7 @@ class OpenAIService {
     }
 
     async sendMessage(userMessage, history = []) {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         if (!this.context) {
             await this.loadContext();
         }
@@ -290,6 +292,7 @@ ${this.context}`;
      * @param {Object} reportData - Dados cruzados (perfil, moradia, saude, riscos)
      */
     async generateConsultativeReport(reportData) {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         const { profile, typeLabel, age, moradia, health, riskItems, pendingItems } = reportData;
 
         // Verifica se é pet
@@ -469,6 +472,7 @@ Regras de Tom e Estilo:
      * @returns {Promise<{resumo:string, prioridades:string[]}>}
      */
     async generateTravelBriefing(travelData) {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         const { trip, tripLabel, isInternational, sections, travelers } = travelData || {};
         const purpose = trip?.purpose === 'trabalho' ? 'trabalho' : 'lazer';
 
@@ -547,6 +551,7 @@ Regras de Tom e Estilo:
      * @returns {Promise<Array>} - Array de objetos: [{ title: 'Vacina', date: 'YYYY-MM-DD', description: 'Dose X' }]
      */
     async analyzeVaccineCard(base64Image) {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         let systemPrompt = `Você é um OCR assistente médico altamente treinado em ler caligrafias de cadernetas de vacinação e comprovantes do SUS.\n`;
         systemPrompt += `Sua função é identificar os registros de vacinas legíveis na imagem fornecida.\n`;
         systemPrompt += `Retorne estritamente um JSON no seguinte formato, e com formatação de data ISO (YYYY-MM-DD), ou vazio se for ilegível:\n`;
@@ -613,6 +618,7 @@ Regras de Tom e Estilo:
      * @returns {Promise<string>} - Texto transcrito
      */
     async transcribeAudio(audioUri) {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         try {
             const formData = new FormData();
 

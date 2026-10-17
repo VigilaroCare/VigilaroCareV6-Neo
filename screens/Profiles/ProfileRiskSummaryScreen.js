@@ -19,6 +19,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import { H1, H3, Body, Small, Caption } from '../../components/NeoTypography';
 import SafetyReportService from '../../services/SafetyReportService';
+import ConsentimentoIAService from '../../services/ConsentimentoIAService';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
@@ -154,6 +155,7 @@ export default function ProfileRiskSummaryScreen() {
     const [generatingAi, setGeneratingAi] = useState(false);
     const [aiFailed, setAiFailed] = useState(false);
     const [aiOffline, setAiOffline] = useState(false);
+    const [aiNeedsConsent, setAiNeedsConsent] = useState(false);
 
     const loadReport = useCallback(async (profileId) => {
         try {
@@ -172,6 +174,17 @@ export default function ProfileRiskSummaryScreen() {
 
     const handleGenerateAI = useCallback(async (force = false) => {
         if (generatingAi) return;
+        // A análise envia idade, condições de saúde e medicamentos (sem nome)
+        // à OpenAI. Antes era gerada sozinha ao abrir a tela; agora, sem
+        // permissão, nada sai: ao abrir só mostra o botão, e a pergunta vem
+        // quando a pessoa toca (Apple 5.1.2(i); LGPD art. 11, I, e 33, VIII).
+        if (!(await ConsentimentoIAService.temConsentimento())) {
+            if (!force || !(await ConsentimentoIAService.pedir())) {
+                setAiNeedsConsent(true);
+                return;
+            }
+        }
+        setAiNeedsConsent(false);
         setGeneratingAi(true);
         setAiFailed(false);
         setAiOffline(false);
@@ -224,11 +237,11 @@ export default function ProfileRiskSummaryScreen() {
     }, [activeProfileId, generatingAi, t]);
 
     useEffect(() => {
-        if (!aiReport && !generatingAi && !aiFailed && report && !loading && report.stats?.answeredCount > 0) {
+        if (!aiReport && !generatingAi && !aiFailed && !aiNeedsConsent && report && !loading && report.stats?.answeredCount > 0) {
             handleGenerateAI(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [aiReport, report, loading, generatingAi, aiFailed, handleGenerateAI]);
+    }, [aiReport, report, loading, generatingAi, aiFailed, aiNeedsConsent, handleGenerateAI]);
 
     useEffect(() => {
         const initReport = async () => {
@@ -506,7 +519,19 @@ export default function ProfileRiskSummaryScreen() {
                         </NeoCard>
                     ) : !aiReport ? (
                         <NeoCard variant="elevated" style={s.aiLoadingCard}>
-                            {aiFailed ? (
+                            {aiNeedsConsent ? (
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 4 }}>
+                                    <NeoIcon name="InfoCircle" size={20} color={Neo.colors.primary[600]} />
+                                    <View style={{ flex: 1 }}>
+                                        <Body style={{ fontSize: 13, color: Neo.colors.neutral[700] }}>
+                                            {t('consentimentoIA.cartaoResumo', 'A análise personalizada é feita por inteligência artificial e só é gerada com a sua permissão.')}
+                                        </Body>
+                                        <TouchableOpacity onPress={() => handleGenerateAI(true)} style={{ marginTop: 4 }} accessibilityRole="button">
+                                            <Text style={{ color: Neo.colors.primary[600], fontWeight: 'bold', fontSize: 13 }}>{t('consentimentoIA.gerarAnalise', 'Gerar análise com IA')}</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            ) : aiFailed ? (
                                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 4 }}>
                                     <NeoIcon name="InfoCircle" size={20} color={Neo.colors.neutral[500]} />
                                     <View style={{ flex: 1 }}>

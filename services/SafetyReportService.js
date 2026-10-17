@@ -726,6 +726,11 @@ class SafetyReportService {
                 }
             }
 
+            // Sem permissão explícita para IA, não gera (nem no PDF): o
+            // relatório sai sem a seção de IA. Ver ConsentimentoIAService.
+            const ConsentimentoIAService = require('./ConsentimentoIAService').default;
+            if (!(await ConsentimentoIAService.temConsentimento())) return null;
+
             // Precisamos dos dados cruzados atuais
             const reportData = await this.getDeepDiveReport(profileId);
             if (!reportData) return null;

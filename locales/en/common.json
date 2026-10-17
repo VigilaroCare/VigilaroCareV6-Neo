@@ -3078,6 +3078,18 @@
     "privacidade": {
         "suasEscolhas": "Your choices",
         "paisTitulo": "Find the country for emergency numbers",
-        "paisTexto": "Uses your location, only on the device, to show the emergency number of the country you are in. Only the country is stored. When off, the numbers follow the country set on your phone. Sending your location in an SOS does not depend on this."
+        "paisTexto": "Uses your location, only on the device, to show the emergency number of the country you are in. Only the country is stored. When off, the numbers follow the country set on your phone. Sending your location in an SOS does not depend on this.",
+        "iaTitulo": "Artificial intelligence analyses",
+        "iaTexto": "Sends the Scanner photo to OpenAI (US) and, for the personalized analysis, age, health conditions and medications — without names. When off, none of this leaves your phone and the rest of the app works as usual."
+    },
+    "consentimentoIA": {
+        "titulo": "Analysis with artificial intelligence",
+        "texto": "To create this analysis, Vigilaro sends to OpenAI (United States), through Vigilaro's server:\n\n• the photo you choose, when you use the Scanner;\n• the age, health conditions and medications entered in the profile — WITHOUT names;\n• the type of home, its rooms and the city.\n\nOpenAI does not use this data to train models and keeps it for up to 30 days only for abuse monitoring. You can withdraw this permission at any time under Privacy → Your choices. Without it, the rest of the app works as usual.",
+        "agoraNao": "Not now",
+        "permitir": "Allow",
+        "semPermissaoTitulo": "Analysis not sent",
+        "semPermissaoScanner": "Photo analysis uses artificial intelligence and needs your permission. The photo did not leave your phone. You can allow it under Privacy → Your choices.",
+        "cartaoResumo": "The personalized analysis is made by artificial intelligence and is only created with your permission.",
+        "gerarAnalise": "Create AI analysis"
     }
 }

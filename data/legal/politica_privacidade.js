@@ -71,11 +71,11 @@ const identifica = (rotulo) => (CONTROLADOR.razaoSocial ? `${rotulo}: ${CONTROLA
 const identificaUE = (rotulo) => (CONTROLADOR.representanteUE ? `${rotulo}: ${CONTROLADOR.representanteUE}. ` : '');
 
 const TERCEIROS_COMUNS = {
-    ia: 'OpenAI (análise de texto, imagem e voz) e ElevenLabs (síntese de voz)',
-    sms: 'Zenvia ou Twilio',
-    bases: 'Open Food Facts, Open Beauty Facts, Open Products Facts, UPCitemdb, PubChem (NCBI) e EPA CompTox',
+    ia: 'OpenAI, Inc.',
+    // sms: cuidador remoto desligado no app (CUIDADOR_REMOTO_DISPONIVEL = false) — fora da política até existir.
+    bases: 'Open Food Facts, Open Beauty Facts, Open Products Facts, UPCitemdb, PubChem (NCBI), EPA CompTox',
     erros: 'Sentry (Functional Software, Inc.)',
-    assinatura: 'RevenueCat, com a App Store ou o Google Play',
+    assinatura: 'RevenueCat (App Store / Google Play)',
 };
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -99,7 +99,7 @@ const PT_BR = {
         },
         {
             titulo: '4. Base legal do tratamento',
-            texto: 'Os dados comuns são tratados para executar o serviço que você contratou ao instalar e usar o app (art. 7º, V). Os dados de saúde e os dados de crianças e adolescentes são sensíveis e dependem do seu consentimento específico e destacado (art. 11, I, e art. 14), que você dá ao preencher esses campos e pode retirar apagando a informação ou usando Resetar Aplicativo. Retirar o consentimento não afeta o que foi feito antes, e pode limitar funções que dependem daquele dado.',
+            texto: 'Os dados comuns são tratados para executar o serviço que você contratou ao instalar e usar o app (art. 7º, V). Os dados de saúde e os dados de crianças e adolescentes são sensíveis e dependem do seu consentimento específico e destacado (art. 11, I, e art. 14), que você dá ao preencher esses campos e pode retirar apagando a informação ou usando Resetar Aplicativo. O envio desses dados à inteligência artificial depende de outra permissão, específica e destacada, pedida no app antes do primeiro envio. Retirar o consentimento não afeta o que foi feito antes, e pode limitar funções que dependem daquele dado.',
         },
         {
             titulo: '5. Dados de crianças e adolescentes',
@@ -111,7 +111,7 @@ const PT_BR = {
         },
         {
             titulo: '7. Compartilhamento com terceiros',
-            texto: `Recursos opcionais de inteligência artificial enviam, através do servidor intermediário do Vigilaro, o texto ou a foto que você submeter e um contexto reduzido do lar para ${TERCEIROS_COMUNS.ia}. O módulo de cuidador remoto, quando ativado, envia o número e a mensagem que você configurar para ${TERCEIROS_COMUNS.sms}. O scanner e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de falha vão para ${TERCEIROS_COMUNS.erros}. Assinaturas são validadas por ${TERCEIROS_COMUNS.assinatura}. Se você não usar IA nem o cuidador remoto, esses dados não saem do aparelho.`,
+            texto: `Os recursos de inteligência artificial — a análise de fotos do Scanner, a análise personalizada de riscos e o resumo do dossiê de viagem — só enviam dados com a sua permissão explícita, pedida no próprio app antes do primeiro envio e revogável em Privacidade > Suas escolhas. Com ela, o Vigilaro envia, através do seu servidor intermediário (que não guarda o conteúdo), para a ${TERCEIROS_COMUNS.ia}, nos Estados Unidos: a foto que você escolher; e, para a análise personalizada, idade, condições de saúde e medicamentos informados no perfil — sem nome —, além do tipo de casa, dos ambientes e da cidade. A OpenAI não usa esses dados para treinar modelos e os mantém por até 30 dias apenas para prevenir abuso. O leitor de código de barras e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de falha, sem nomes, telefones, endereços ou dados de saúde, vão para ${TERCEIROS_COMUNS.erros}. Assinaturas são validadas por ${TERCEIROS_COMUNS.assinatura}. Sem a permissão de IA, seus dados de saúde e suas fotos não saem do aparelho.`,
         },
         {
             titulo: '8. O que o app nunca faz',
@@ -128,6 +128,10 @@ const PT_BR = {
         {
             titulo: '11. Limites em emergência',
             texto: 'SOS, SMS, WhatsApp, ligação, localização e check-in dependem do sistema operacional, do sinal, da bateria, das permissões e de aplicativos externos. O Vigilaro Care prepara e abre canais de contato; ele não substitui os serviços oficiais de emergência.',
+        },
+        {
+            titulo: '12. Transferência internacional',
+            texto: 'Três prestadores ficam nos Estados Unidos: OpenAI (inteligência artificial), Sentry (relatórios de falha) e RevenueCat (validação de assinatura). Para a OpenAI, a transferência se apoia no seu consentimento específico e destacado, pedido no app antes do primeiro envio (art. 33, VIII, da LGPD). Para a validação da assinatura, na execução do contrato que você celebra ao assinar (art. 33, IX, combinado com o art. 7º, V). Os relatórios de falha seguem sem nomes, telefones, endereços ou dados de saúde.',
         },
     ],
 };
@@ -165,11 +169,11 @@ const PT_PT = {
         },
         {
             titulo: '7. Destinatários',
-            texto: `Funcionalidades opcionais de inteligência artificial enviam, através do servidor intermédio do Vigilaro, o texto ou a imagem que submeter e um contexto reduzido da habitação para ${TERCEIROS_COMUNS.ia}. O módulo de cuidador remoto, quando ativado, envia o número e a mensagem que configurar para ${TERCEIROS_COMUNS.sms}. O leitor de códigos e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de erro seguem para ${TERCEIROS_COMUNS.erros}. As subscrições são validadas por ${TERCEIROS_COMUNS.assinatura}. Estes destinatários atuam como subcontratantes.`,
+            texto: `As funcionalidades de inteligência artificial — a análise de fotografias do leitor, a análise personalizada de riscos e o resumo do dossiê de viagem — só enviam dados com a sua autorização expressa, pedida na própria aplicação antes do primeiro envio e revogável em Privacidade > As suas escolhas. Com ela, o Vigilaro envia, através do seu servidor intermédio (que não guarda o conteúdo), para a ${TERCEIROS_COMUNS.ia}, nos Estados Unidos: a imagem que escolher; e, para a análise personalizada, idade, condições de saúde e medicamentos indicados no perfil — sem nome —, além do tipo de habitação, das divisões e da cidade. A OpenAI não usa estes dados para treinar modelos e conserva-os até 30 dias apenas para prevenir abusos. O leitor de códigos e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de erro, sem nomes, telefones, moradas ou dados de saúde, seguem para ${TERCEIROS_COMUNS.erros}. As subscrições são validadas por ${TERCEIROS_COMUNS.assinatura}. Estes destinatários atuam como subcontratantes.`,
         },
         {
             titulo: '8. Transferências para fora da União',
-            texto: 'Os prestadores de inteligência artificial, de relatórios de erro e de validação de subscrição estão estabelecidos nos Estados Unidos. Quando usa essas funcionalidades, há transferência de dados para fora do Espaço Económico Europeu, ao abrigo do capítulo V do RGPD, com base em cláusulas contratuais-tipo aprovadas pela Comissão Europeia ou, quando aplicável, na decisão de adequação do EU-US Data Privacy Framework. Se não usar a inteligência artificial nem o cuidador remoto, não há transferência de dados de saúde.',
+            texto: 'Os prestadores de inteligência artificial, de relatórios de erro e de validação de subscrição estão estabelecidos nos Estados Unidos. Quando usa essas funcionalidades, há transferência de dados para fora do Espaço Económico Europeu, ao abrigo do capítulo V do RGPD, com base em cláusulas contratuais-tipo aprovadas pela Comissão Europeia ou, quando aplicável, na decisão de adequação do EU-US Data Privacy Framework. Os dados de saúde só são transferidos com o seu consentimento explícito para a análise por inteligência artificial (RGPD, artigo 9.º, n.º 2, alínea a)), pedido na aplicação antes do primeiro envio; sem ele, não há transferência de dados de saúde.',
         },
         {
             titulo: '9. Conservação',
@@ -227,11 +231,11 @@ const ES = {
         },
         {
             titulo: '7. Destinatarios',
-            texto: `Las funciones opcionales de inteligencia artificial envían, a través del servidor intermedio de Vigilaro, el texto o la imagen que usted remita y un contexto reducido del hogar a ${TERCEIROS_COMUNS.ia}. El módulo de cuidador remoto, cuando se activa, envía el número y el mensaje que configure a ${TERCEIROS_COMUNS.sms}. El escáner y el módulo Info Etiquetas consultan ${TERCEIROS_COMUNS.bases}, enviando únicamente el código de barras o el nombre de la sustancia. Los informes de error se envían a ${TERCEIROS_COMUNS.erros}. Las suscripciones se validan mediante ${TERCEIROS_COMUNS.assinatura}. Estos destinatarios actúan como encargados del tratamiento.`,
+            texto: `Las funciones de inteligencia artificial — el análisis de fotos del escáner, el análisis personalizado de riesgos y el resumen del dosier de viaje — solo envían datos con su permiso explícito, solicitado en la propia aplicación antes del primer envío y revocable en Privacidad > Sus opciones. Con él, Vigilaro envía, a través de su servidor intermedio (que no guarda el contenido), a ${TERCEIROS_COMUNS.ia}, en Estados Unidos: la imagen que usted elija; y, para el análisis personalizado, la edad, las condiciones de salud y los medicamentos indicados en el perfil — sin nombre —, además del tipo de vivienda, los ambientes y la ciudad. OpenAI no usa estos datos para entrenar modelos y los conserva hasta 30 días solo para prevenir abusos. El escáner de códigos y el módulo Info Etiquetas consultan ${TERCEIROS_COMUNS.bases}, enviando únicamente el código de barras o el nombre de la sustancia. Los informes de error, sin nombres, teléfonos, direcciones ni datos de salud, se envían a ${TERCEIROS_COMUNS.erros}. Las suscripciones se validan mediante ${TERCEIROS_COMUNS.assinatura}. Estos destinatarios actúan como encargados del tratamiento.`,
         },
         {
             titulo: '8. Transferencias fuera de la Unión',
-            texto: 'Los proveedores de inteligencia artificial, de informes de error y de validación de suscripción están establecidos en Estados Unidos. Al usar esas funciones se produce una transferencia fuera del Espacio Económico Europeo, amparada en el capítulo V del RGPD mediante cláusulas contractuales tipo aprobadas por la Comisión Europea o, cuando resulte aplicable, la decisión de adecuación del EU-US Data Privacy Framework. Si no utiliza la inteligencia artificial ni el cuidador remoto, no se transfieren datos de salud.',
+            texto: 'Los proveedores de inteligencia artificial, de informes de error y de validación de suscripción están establecidos en Estados Unidos. Al usar esas funciones se produce una transferencia fuera del Espacio Económico Europeo, amparada en el capítulo V del RGPD mediante cláusulas contractuales tipo aprobadas por la Comisión Europea o, cuando resulte aplicable, la decisión de adecuación del EU-US Data Privacy Framework. Los datos de salud solo se transfieren con su consentimiento explícito para el análisis por inteligencia artificial (RGPD, artículo 9.2.a), solicitado en la aplicación antes del primer envío; sin él, no se transfieren datos de salud.',
         },
         {
             titulo: '9. Conservación',
@@ -273,7 +277,7 @@ const EN = {
         },
         {
             titulo: '3. Consumer health data',
-            texto: 'Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. We do not use geofencing around health care facilities for any purpose.',
+            texto: 'Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. Health details leave the device only if you allow AI analysis in the app; OpenAI keeps them for up to 30 days for abuse monitoring and then deletes them. We do not use geofencing around health care facilities for any purpose.',
         },
         {
             titulo: '4. Children',
@@ -285,7 +289,7 @@ const EN = {
         },
         {
             titulo: '6. When information leaves your device',
-            texto: `Optional artificial intelligence features send the text or photo you submit, plus a reduced description of your home, through Vigilaro’s intermediary server to ${TERCEIROS_COMUNS.ia}. The remote caregiver module, when you turn it on, sends the phone number and message you configure to ${TERCEIROS_COMUNS.sms}. The barcode scanner and label information module query ${TERCEIROS_COMUNS.bases}, sending only the barcode or the substance name — nothing about you or your household. Crash reports go to ${TERCEIROS_COMUNS.erros}. Subscriptions are validated by ${TERCEIROS_COMUNS.assinatura}. If you use none of those features, none of this data leaves your phone.`,
+            texto: `Artificial intelligence features — photo analysis in the Scanner, the personalized risk analysis and the travel dossier summary — send data only with your explicit permission, asked for in the app before anything is first sent and revocable under Privacy > Your choices. With it, Vigilaro sends, through its intermediary server (which does not keep the content), to ${TERCEIROS_COMUNS.ia}, in the United States: the photo you choose; and, for the personalized analysis, the age, health conditions and medications entered in the profile — without names — plus the type of home, its rooms and the city. OpenAI does not use this data to train models and keeps it for up to 30 days only for abuse monitoring. The barcode scanner and label information module query ${TERCEIROS_COMUNS.bases}, sending only the barcode or the substance name — nothing about you or your household. Crash reports, without names, phone numbers, addresses or health information, go to ${TERCEIROS_COMUNS.erros}. Subscriptions are validated by ${TERCEIROS_COMUNS.assinatura}. Without the AI permission, your health information and photos never leave your phone.`,
         },
         {
             titulo: '7. Crash reports and subscriptions',

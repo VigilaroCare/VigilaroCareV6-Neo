@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, DeviceEventEmitter } from 'react-native';
 import PaisAtualService, { EVENTO_PAIS } from '../services/PaisAtualService';
 import { aceitarUsoDaLocalizacao } from '../components/AvisoPaisEmergencia';
+import ConsentimentoIAService, { EVENTO_CONSENTIMENTO_IA } from '../services/ConsentimentoIAService';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
@@ -40,6 +41,22 @@ function SuasEscolhas() {
         else await PaisAtualService.definirCiencia(false);
         setUsaPais(await PaisAtualService.usaLocalizacaoParaPais());
     };
+    // Permissão para IA de terceiro (ver ConsentimentoIAService). Ligar pelo
+    // interruptor mostra o mesmo texto do pedido — a pessoa vê o que vai.
+    const [usaIA, setUsaIA] = useState(false);
+    useEffect(() => {
+        let vivo = true;
+        const ler = () => ConsentimentoIAService.temConsentimento().then((v) => vivo && setUsaIA(v));
+        ler();
+        const sub = DeviceEventEmitter.addListener(EVENTO_CONSENTIMENTO_IA, ler);
+        return () => { vivo = false; sub.remove(); };
+    }, []);
+    const mudarIA = async (ligar) => {
+        setUsaIA(ligar);
+        if (ligar) await ConsentimentoIAService.pedir();
+        else await ConsentimentoIAService.definir(false);
+        setUsaIA(await ConsentimentoIAService.temConsentimento());
+    };
     return (
         <View style={styles.escolhas}>
             <Text style={styles.sectionTitle}>{t('privacidade.suasEscolhas', 'Suas escolhas')}</Text>
@@ -52,6 +69,17 @@ function SuasEscolhas() {
                     value={usaPais}
                     onValueChange={mudar}
                     accessibilityLabel={t('privacidade.paisTitulo', 'Identificar o país pelos números de emergência')}
+                />
+            </View>
+            <View style={[styles.escolhaLinha, { marginTop: 14 }]}>
+                <View style={{ flex: 1, paddingRight: 12 }}>
+                    <Text style={styles.escolhaTitulo}>{t('privacidade.iaTitulo', 'Análises com inteligência artificial')}</Text>
+                    <Text style={styles.escolhaTexto}>{t('privacidade.iaTexto', 'Envia à OpenAI (EUA) a foto do Scanner e, para a análise personalizada, idade, condições de saúde e medicamentos — sem nome. Desligado, nada disso sai do aparelho e o resto do app funciona normalmente.')}</Text>
+                </View>
+                <Switch
+                    value={usaIA}
+                    onValueChange={mudarIA}
+                    accessibilityLabel={t('privacidade.iaTitulo', 'Análises com inteligência artificial')}
                 />
             </View>
         </View>

@@ -3078,6 +3078,18 @@
     "privacidade": {
         "suasEscolhas": "Suas escolhas",
         "paisTitulo": "Identificar o país pelos números de emergência",
-        "paisTexto": "Usa a localização, só no aparelho, para mostrar o número de emergência do país onde você está. Só o país é guardado. Desligado, os números seguem o país configurado no celular. O envio da localização no SOS não depende disto."
+        "paisTexto": "Usa a localização, só no aparelho, para mostrar o número de emergência do país onde você está. Só o país é guardado. Desligado, os números seguem o país configurado no celular. O envio da localização no SOS não depende disto.",
+        "iaTitulo": "Análises com inteligência artificial",
+        "iaTexto": "Envia à OpenAI (EUA) a foto do Scanner e, para a análise personalizada, idade, condições de saúde e medicamentos — sem nome. Desligado, nada disso sai do aparelho e o resto do app funciona normalmente."
+    },
+    "consentimentoIA": {
+        "titulo": "Análise com inteligência artificial",
+        "texto": "Para gerar esta análise, o Vigilaro envia à OpenAI (Estados Unidos), pelo servidor do Vigilaro:\n\n• a foto que você escolher, quando usar o Scanner;\n• a idade, as condições de saúde e os medicamentos informados no perfil — SEM nome;\n• o tipo de casa, os ambientes e a cidade.\n\nA OpenAI não usa esses dados para treinar modelos e os guarda por até 30 dias apenas para prevenir abuso. Você pode retirar esta permissão a qualquer momento em Privacidade → Suas escolhas. Sem ela, o resto do app funciona normalmente.",
+        "agoraNao": "Agora não",
+        "permitir": "Permitir",
+        "semPermissaoTitulo": "Análise não enviada",
+        "semPermissaoScanner": "A análise de fotos usa inteligência artificial e precisa da sua permissão. A foto não saiu do aparelho. Você pode permitir em Privacidade → Suas escolhas.",
+        "cartaoResumo": "A análise personalizada é feita por inteligência artificial e só é gerada com a sua permissão.",
+        "gerarAnalise": "Gerar análise com IA"
     }
 }

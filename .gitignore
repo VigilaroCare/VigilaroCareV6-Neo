@@ -65,6 +65,13 @@ backend-proxy/.env
 !unique_icons.json
 !files_to_modify.json
 !locales/**/common.json
+# Respostas dos formulários das lojas e revisão jurídica.
+!docs/lojas/
+!docs/lojas/**
+# Páginas públicas de Política e Termos (scripts/gerar_paginas_legais.js) —
+# as lojas exigem a URL pública; o `*.html` acima as engolia.
+!site-legal/
+!site-legal/**
 # Textos dos pedidos de permissão do iOS por idioma (app.json → "locales").
 # Sem eles no git, o build do EAS falha ao procurar os arquivos.
 !locales/ios/*.json

@@ -112,6 +112,45 @@ const textosLegais = [src, ...['pt-BR', 'pt-PT', 'en', 'es'].map((l) => JSON.str
 const fantasmas = textosLegais.match(/detec[çc][ãa]o de queda|dete[çc][ãa]o de queda|detecci[óo]n de ca[íi]das|fall detection|monitor de [áa]udio|audio monitor|grava[çc][ãa]o acionada|grabaci[óo]n activada|recording triggered/gi);
 if (fantasmas) problemas.push(`Termos/Política prometem recurso que não existe: ${[...new Set(fantasmas)].join(', ')}.`);
 
+// 5. Formulários das lojas (17/10/2026) — o que o app faz tem de bater com o
+// que se declara: docs/lojas/FORMULARIOS_LOJAS.md.
+// 5a. IA de terceiro só com permissão explícita (Apple 5.1.2(i); LGPD art. 11 e 33).
+const lerSrc = (rel) => fs.readFileSync(path.join(RAIZ, rel), 'utf8');
+const assinaturasIA = {
+    'services/OpenAIService.js': ['sendMessage(', 'generateConsultativeReport(', 'generateTravelBriefing(', 'analyzeVaccineCard(', 'transcribeAudio('],
+    'services/VisionService.js': ['analyzeImage:', 'analyzeVaccineCard:', 'analyzeMedication:', 'analyzeProductLabel:'],
+};
+for (const [arq, funcs] of Object.entries(assinaturasIA)) {
+    const s = lerSrc(arq);
+    for (const fn of funcs) {
+        const i = s.indexOf(fn.endsWith(':') ? fn : 'async ' + fn);
+        const trecho = i >= 0 ? s.slice(i, i + 400) : '';
+        if (!/ConsentimentoIAService\.exigir\(\)/.test(trecho)) problemas.push(`${arq}: ${fn} envia dados à IA sem ConsentimentoIAService.exigir() no início.`);
+    }
+}
+// 5b. Manifesto de privacidade da Apple: sem rastreamento e com os tipos declarados.
+const pm = app.ios?.privacyManifests;
+if (!pm || pm.NSPrivacyTracking !== false) problemas.push('app.json: ios.privacyManifests ausente ou com rastreamento ligado.');
+const tiposDeclarados = new Set((pm?.NSPrivacyCollectedDataTypes || []).map((x) => x.NSPrivacyCollectedDataType.replace('NSPrivacyCollectedDataType', '')));
+for (const t of ['Health', 'PhotosorVideos', 'CoarseLocation', 'PurchaseHistory', 'CrashData']) {
+    if (!tiposDeclarados.has(t)) problemas.push(`Manifesto de privacidade sem ${t} — o app coleta esse dado (ver docs/lojas/FORMULARIOS_LOJAS.md).`);
+}
+// 5c. Páginas públicas iguais ao texto do app (as lojas pedem a URL pública).
+try {
+    const os = require('os');
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'site-legal-'));
+    require('child_process').execFileSync(process.execPath, [path.join(RAIZ, 'scripts', 'gerar_paginas_legais.js'), tmp], { stdio: 'ignore' });
+    for (const rel of ['index.html', 'politica-de-privacidade/index.html', 'termos-de-uso/index.html']) {
+        const pub = path.join(RAIZ, 'site-legal', rel);
+        if (!fs.existsSync(pub) || fs.readFileSync(pub, 'utf8') !== fs.readFileSync(path.join(tmp, rel), 'utf8')) {
+            problemas.push(`site-legal/${rel} desatualizada em relação ao texto do app — rode node scripts/gerar_paginas_legais.js e republique.`);
+        }
+    }
+    fs.rmSync(tmp, { recursive: true, force: true });
+} catch (e) {
+    problemas.push('Não foi possível gerar as páginas públicas para conferir: ' + e.message);
+}
+
 const mostrar = (rotulo, lista) => {
     if (!lista.length) return;
     console.log(linha(rotulo));

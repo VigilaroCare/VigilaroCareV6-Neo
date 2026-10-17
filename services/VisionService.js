@@ -6,6 +6,7 @@
 import { Config } from "../utils/Config";
 import { fetchWithTimeout as fetchWithTimeoutBase } from "../utils/fetchWithTimeout";
 import { getFamilySummary } from "./InfoRotulosRuleEngine";
+import ConsentimentoIAService from './ConsentimentoIAService';
 
 // Rota do backend-proxy: /api/openai/* (o proxy reescreve para /v1/* na OpenAI).
 // /v1/... direto não existe no proxy e retorna 404.
@@ -91,6 +92,7 @@ const fetchWithTimeout = (url, options, timeout = VISION_TIMEOUT) =>
 export const VisionService = {
 
     analyzeImage: async (imageBase64, mode = 'environment') => {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         if (Config.USE_MOCK_VISION) {
             await new Promise((resolve) => setTimeout(resolve, 2000));
             return { analises: [VisionService._getMockAnalysis()] };
@@ -168,6 +170,7 @@ export const VisionService = {
     },
 
     analyzeVaccineCard: async (imageBase64) => {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         if (Config.USE_MOCK_VISION) {
             return { vaccines: [{ name: "V10", date: "2024-05-10", nextDue: "2025-05-10" }] };
         }
@@ -216,6 +219,7 @@ export const VisionService = {
     },
 
     analyzeMedication: async (imageBase64) => {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         if (Config.USE_MOCK_VISION) {
             return { name: "Dipirona", dosage: "500 mg" };
         }
@@ -264,6 +268,7 @@ export const VisionService = {
     },
 
     analyzeProductLabel: async (imageBase64) => {
+        await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
         if (Config.USE_MOCK_VISION) {
             return { titulo: "Produto (Mock)", risco: "Médio", cor: "#F59E0B" };
         }

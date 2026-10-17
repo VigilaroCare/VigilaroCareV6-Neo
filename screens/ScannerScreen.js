@@ -24,6 +24,7 @@ import FadeInView from '../components/FadeInView';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { VisionService } from '../services/VisionService';
+import ConsentimentoIAService from '../services/ConsentimentoIAService';
 import GamificationService from '../services/GamificationService';
 import { resolveBarcode } from '../services/InfoRotulosSubstanceService';
 import { Config } from '../utils/Config';
@@ -239,6 +240,17 @@ export default function ScannerScreen({ navigation, route }) {
   };
 
   const analyzePhoto = async (imageUri) => {
+    // A análise da foto É feita por IA de terceiro: sem permissão explícita,
+    // a foto não sai do aparelho (Apple 5.1.2(i); LGPD art. 33).
+    if (!(await ConsentimentoIAService.pedir())) {
+      setIsAnalyzing(false);
+      setPhoto(null);
+      NeoAlert.alert(
+        t('consentimentoIA.semPermissaoTitulo', 'Análise não enviada'),
+        t('consentimentoIA.semPermissaoScanner', 'A análise de fotos usa inteligência artificial e precisa da sua permissão. A foto não saiu do aparelho. Você pode permitir em Privacidade → Suas escolhas.'),
+      );
+      return;
+    }
     const startTime = Date.now();
     AccessibilityInfo.announceForAccessibility(t('scanner.analyzing', 'Analisando imagem…'));
     try {

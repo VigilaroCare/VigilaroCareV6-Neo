@@ -19,6 +19,7 @@ import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 import TravelReportService from '../../services/TravelReportService';
 import * as ExpoLocation from 'expo-location';
 import PaisAtualService from '../../services/PaisAtualService';
+import ConsentimentoIAService from '../../services/ConsentimentoIAService';
 import AvisoPaisEmergencia, { aceitarUsoDaLocalizacao } from '../../components/AvisoPaisEmergencia';
 
 // Dimensões em PIXELS (lição da Home: % não resolve dentro de wrappers
@@ -288,6 +289,10 @@ export default function TravelModeScreen({ navigation }) {
 
     const runDossie = async (includeHealth) => {
         try {
+            // O dossiê tem um resumo opcional feito por IA. Pergunta uma vez
+            // (quem já respondeu não é perguntado de novo); recusou, o dossiê
+            // sai com o resumo offline — nada é bloqueado.
+            if ((await ConsentimentoIAService.situacao()) === null) await ConsentimentoIAService.pedir();
             setGeneratingDossie(true);
             await TravelReportService.generateTravelPDF({ includeHealth });
         } catch (e) {
