@@ -288,7 +288,7 @@
         "startNow": "Começar Agora",
         "next": "Próximo",
         "locationTitle": "Localização no socorro",
-        "locationBody": "Quando você acionar o SOS, o Vigilaro envia sua localização junto com o pedido de ajuda — para que quem for te socorrer saiba onde você está. Fora do SOS, a localização não é usada.",
+        "locationBody": "Quando você acionar o SOS, o Vigilaro envia sua localização junto com o pedido de ajuda — para que quem for te socorrer saiba onde você está. Ela também mostra o número de emergência do país onde você está, inclusive em viagem. Para isso, a posição fica no seu aparelho: o app guarda apenas o país.",
         "locationAllow": "Autorizar",
         "locationLater": "Agora não"
     },
@@ -508,7 +508,9 @@
         "locationBlockedTitle": "Localização bloqueada",
         "locationBlockedBody": "Autorize o acesso à localização nos ajustes do aparelho para que o alerta inclua onde você está.",
         "tabHuman": "Humano",
-        "tabPet": "Pet"
+        "tabPet": "Pet",
+        "ligarSamu": "Ligar {{numero}} • SAMU",
+        "ligarNumero": "Ligar {{numero}}"
     },
     "travel": {
         "checklistTailored": "Checklist ajustado ao briefing da sua viagem.",
@@ -1074,7 +1076,8 @@
         "creditsEPA": "Dados toxicológicos: EPA CompTox, da agência ambiental dos Estados Unidos.",
         "creditsCiatox": "Animais peçonhentos, plantas tóxicas e telefones de emergência: Centros de Informação e Assistência Toxicológica (CIATox) e fontes oficiais de saúde.",
         "creditsPhotos": "Fotografias: acervo do autor, Pexels e Unsplash.",
-        "creditsIllustrations": "Ilustrações e pictogramas: criados com auxílio de inteligência artificial e revisados pela equipe."
+        "creditsIllustrations": "Ilustrações e pictogramas: criados com auxílio de inteligência artificial e revisados pela equipe.",
+        "creditsMapas": "Fronteiras dos países, para identificar o número de emergência de onde você está: Natural Earth, em domínio público."
     },
     "upgrade": {
         "heroTitle": "Sua família merece protecao sem limites",
@@ -3053,5 +3056,18 @@
         "geradaEm": "Gerada em {{data}}",
         "fichaMedica": "Ficha médica",
         "fichaMedicaEmergencia": "Ficha médica de emergência"
+    },
+    "paisEmergencia": {
+        "ligue112": "Se estiver em outro país, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países.",
+        "semLocalizacao": "Sem localização, os números de emergência mostrados são de {{pais}}, o país configurado no seu celular.",
+        "semLocalizacaoGenerico": "Sem localização, o Vigilaro não sabe em que país você está e mostra o número de emergência geral, 112.",
+        "fronteira": "Você está perto de uma fronteira. Para não indicar o número de outro país, o Vigilaro usa o 112 — o celular encaminha a chamada para o socorro local.",
+        "desconhecido": "Não foi possível identificar o país em que você está. Ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países.",
+        "semNumeroVerificado": "Você está em {{pais}}. O Vigilaro ainda não tem os números locais verificados para este país: ligue 112 — o celular encaminha para o socorro local na maioria dos países — e confirme o número local assim que puder.",
+        "outroPais": "Você está em {{pais}}: o número de emergência aqui é {{numero}}. Os números desta tela já são os daqui.",
+        "ativar": "Ativar localização",
+        "agoraNao": "Agora não",
+        "viagemTitulo": "Números de emergência no destino",
+        "viagemTexto": "Com a localização ativada, o Vigilaro reconhece o país onde você está e mostra o número de emergência de lá. Sem ela, o app mostra os números do país configurado no seu celular. No exterior, se tiver dúvida, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países. Para identificar o país, a posição fica no aparelho."
     }
 }

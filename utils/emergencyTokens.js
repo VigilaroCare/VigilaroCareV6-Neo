@@ -62,7 +62,7 @@
  * como atalho de emergencia). Token nao resolvido nunca deve chegar na tela.
  */
 import i18n from '../i18n';
-import { detectEmergencyCountry } from './getEmergencyCountry';
+import { detectEmergencyCountry, nomeDoPais } from './getEmergencyCountry';
 import {
     getEmergencyNumbersForCountry,
     DEFAULT_EMERGENCY_NUMBERS,
@@ -190,6 +190,45 @@ function getLangKey() {
 let cachedCountry;
 let cachedCountryResolved = false;
 
+/**
+ * País FÍSICO, vindo da posição (services/PaisAtualService). Vale só para os
+ * NÚMEROS de emergência — socorro, bombeiros, polícia, intoxicação: quem está
+ * em Lisboa liga para o 112, seja qual for o país do aparelho. Normas, selos,
+ * leis e órgãos (CERT_SEAL, TRAFFIC_AUTHORITY…) seguem o país do aparelho,
+ * que em geral é o da casa que o app protege.
+ *   undefined → sem posição: usa o país do aparelho (comportamento antigo)
+ *   { pais: 'PT' | 'JP' | null, motivo } → pais null = na dúvida (fronteira
+ *     com número diferente, mar): genérico, 112.
+ */
+let paisFisico;
+const TOKENS_DE_EMERGENCIA = new Set(['EMERGENCY_MEDICAL', 'EMERGENCY_NUMBER', 'POLICE_NUMBER', 'FIRE_NUMBER', 'POISON_CONTROL']);
+
+export function definirPaisFisico(resultado) {
+    paisFisico = resultado && typeof resultado === 'object' ? resultado : undefined;
+}
+
+/** Nome do país no idioma do app (ex.: "Portugal", "Japan"), ou null. */
+export function getNomePais(codigo) {
+    const k = getLangKey();
+    return nomeDoPais(codigo, k === 'en' ? 'en' : k === 'es' ? 'es' : 'pt');
+}
+
+/** País cujos números de emergência valem agora. */
+export function getPaisEmergencia() {
+    return paisFisico ? paisFisico.pais : getCountry();
+}
+
+/**
+ * Para os avisos: de onde vem o país dos números.
+ * @returns {{origem: 'posicao'|'aparelho', pais: string|null, motivo?: string, paisAparelho: string|null}}
+ */
+export function getEstadoPaisEmergencia() {
+    const paisAparelho = getCountry();
+    return paisFisico
+        ? { origem: 'posicao', pais: paisFisico.pais, motivo: paisFisico.motivo, paisAparelho }
+        : { origem: 'aparelho', pais: paisAparelho, paisAparelho };
+}
+
 function getCountry() {
     if (!cachedCountryResolved) {
         try {
@@ -303,7 +342,7 @@ function getTokenValue(token, country, langKey) {
  * Portugal, e o servico de emergencia geral onde nao ha centro conhecido.
  */
 export function getPoisonControlLabel(country) {
-    const pais = country === undefined ? getCountry() : country;
+    const pais = country === undefined ? getPaisEmergencia() : country;
     return getTokenValue('POISON_CONTROL', pais, getLangKey());
 }
 
@@ -313,7 +352,7 @@ export function getPoisonControlLabel(country) {
  * porque o botao de ligar nao pode ficar sem destino.
  */
 export function getPoisonControlDial(country) {
-    const pais = country === undefined ? getCountry() : country;
+    const pais = country === undefined ? getPaisEmergencia() : country;
     const direto = pais ? POISON_CONTROL_DIAL_BY_COUNTRY[pais] : null;
     if (direto) return direto;
     return String(getMedicalNumber(pais)).replace(/\D/g, '');
@@ -325,7 +364,7 @@ export function getPoisonControlDial(country) {
  * Portugal, "emergency services (911)" nos EUA.
  */
 export function getMedicalLabel(country) {
-    const pais = country === undefined ? getCountry() : country;
+    const pais = country === undefined ? getPaisEmergencia() : country;
     return getTokenValue('EMERGENCY_MEDICAL', pais, getLangKey());
 }
 
@@ -334,7 +373,7 @@ export function getMedicalLabel(country) {
  * BR 192 (SAMU), UE 112, EUA 911, Reino Unido 999, desconhecido 112.
  */
 export function getMedicalDial(country) {
-    const pais = country === undefined ? getCountry() : country;
+    const pais = country === undefined ? getPaisEmergencia() : country;
     return String(getMedicalNumber(pais)).replace(/\D/g, '');
 }
 
@@ -343,7 +382,7 @@ export function getMedicalDial(country) {
  * Só o Brasil tem linha separada (193); nos demais o 112/911/999 atende tudo.
  */
 export function getFireDial(country) {
-    const pais = country === undefined ? getCountry() : country;
+    const pais = country === undefined ? getPaisEmergencia() : country;
     const numbers = pais ? getEmergencyNumbersForCountry(pais) : DEFAULT_EMERGENCY_NUMBERS;
     const numero = numbers?.bombeiros || numbers?.geral || DEFAULT_EMERGENCY_NUMBERS.geral;
     return String(numero).replace(/\D/g, '');
@@ -360,10 +399,11 @@ export function resolveEmergencyTokens(text) {
     if (text.indexOf('{{') === -1) return text;
 
     const country = getCountry();
+    const paisEmergencia = getPaisEmergencia();
     const langKey = getLangKey();
 
     return text.replace(TOKEN_PATTERN, (_match, token) =>
-        getTokenValue(token, country, langKey)
+        getTokenValue(token, TOKENS_DE_EMERGENCIA.has(token) ? paisEmergencia : country, langKey)
     );
 }
 

@@ -84,7 +84,7 @@ export default function WelcomeTourScreenNeo({ navigation, route }) {
     const pedirLocalizacaoESeguir = () => {
         NeoAlert.alert(
             t('onboarding.locationTitle', 'Localização no socorro'),
-            t('onboarding.locationBody', 'Quando você acionar o SOS, o Vigilaro envia sua localização junto com o pedido de ajuda — para que quem for te socorrer saiba onde você está. Fora do SOS, a localização não é usada.'),
+            t('onboarding.locationBody', 'Quando você acionar o SOS, o Vigilaro envia sua localização junto com o pedido de ajuda — para que quem for te socorrer saiba onde você está. Ela também mostra o número de emergência do país onde você está, inclusive em viagem. Para isso, a posição fica no seu aparelho: o app guarda apenas o país.'),
             [
                 {
                     text: t('onboarding.locationLater', 'Agora não'),

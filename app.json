@@ -45,7 +45,7 @@
         "NSCameraUsageDescription": "O Vigilaro precisa da câmera para escanear produtos e identificar riscos domésticos.",
         "NSMicrophoneUsageDescription": "O Vigilaro precisa do microfone para o monitoramento de áudio ambiente por segurança.",
         "NSPhotoLibraryUsageDescription": "Precisamos acessar suas fotos para analisar imagens de possíveis riscos domésticos.",
-        "NSLocationWhenInUseUsageDescription": "Usamos sua localização para exibir alertas de segurança relevantes para a sua região.",
+        "NSLocationWhenInUseUsageDescription": "Usamos sua localização para enviar onde você está quando aciona o SOS e para mostrar o número de emergência do país em que você está. Para identificar o país, a posição fica no aparelho.",
         "NSMotionUsageDescription": "O Vigilaro usa o sensor de movimento do dispositivo para detectar quedas e acionar alertas de emergência automaticamente."
       }
     },

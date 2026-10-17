@@ -17,6 +17,7 @@ import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { resolveEmergencyTokens, getPoisonControlLabel, getMedicalLabel, getPoisonControlDial, getMedicalDial, getFireDial } from '../../utils/emergencyTokens';
+import AvisoPaisEmergencia from '../../components/AvisoPaisEmergencia';
 import { tx } from '../../utils/txFixo';
 
 const EMERGENCIA_TIPOS = [
@@ -98,6 +99,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
 
         {/* Botões Telefone no Rodapé */}
         <View style={s.footerCall}>
+          <AvisoPaisEmergencia tom="escuro" style={{ marginBottom: 12 }} />
           {tipoSelecionado.id === 'intoxicacao' ? (
             <TouchableOpacity onPress={LigarCIT} style={[s.callBtn, { backgroundColor: '#5B21B6' }]}>{/* TODO: map #5B21B6 to DS token */}
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />

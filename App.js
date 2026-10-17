@@ -29,7 +29,7 @@
 //  [FEAT-RA01] Adicionado RecentActivityScreen
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { View, Platform, LogBox } from "react-native";
+import { View, Platform, LogBox, AppState } from "react-native";
 
 // Supressões de warning — cada item documentado com motivo.
 // Revisar esta lista a cada bump de dependência major.
@@ -239,6 +239,7 @@ import * as NavigationService from "./services/NavigationService";
 import VitalCheckService      from "./services/VitalCheckService";
 import AchievementService     from "./services/AchievementService";
 import SubscriptionService    from "./services/SubscriptionService";
+import PaisAtualService       from "./services/PaisAtualService";
 import HandednessDetector     from "./services/HandednessDetector";
 import LeftHandedSuggestionModal from "./components/LeftHandedSuggestionModal";
 import { initSentry }          from "./services/SentryService";
@@ -311,6 +312,10 @@ export default function App() {
             setSuggestionModalVisible(true);
           }
         });
+
+        // 0b. País onde a pessoa ESTÁ (números de emergência de quem viaja).
+        // Sem await: não atrasa o boot; nunca pede permissão, só consulta.
+        PaisAtualService.iniciar();
 
         // 1. SubscriptionService — determina features disponíveis
         await SubscriptionService.initialize();
@@ -426,6 +431,17 @@ export default function App() {
       }
     };
   }, [hideSplash]);
+
+  // ---------------------------------------------------------------------------
+  // PAÍS ATUAL — ao voltar ao app (quem desembarca abre o app já em outro
+  // país; quem negou a localização nos Ajustes perde o país físico na hora).
+  // ---------------------------------------------------------------------------
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (estado) => {
+      if (estado === 'active') PaisAtualService.atualizar();
+    });
+    return () => sub.remove();
+  }, []);
 
   // ---------------------------------------------------------------------------
   // SERVIÇOS PESADOS — só após onboarding completo

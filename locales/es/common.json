@@ -288,7 +288,7 @@
         "startNow": "Empezar Ahora",
         "next": "Siguiente",
         "locationTitle": "Ubicación en el socorro",
-        "locationBody": "Cuando active el SOS, Vigilaro envía su ubicación junto con la petición de ayuda — para que quien acuda sepa dónde está. Fuera del SOS, la ubicación no se usa.",
+        "locationBody": "Cuando active el SOS, Vigilaro envía su ubicación junto con el pedido de ayuda — para que quien vaya a socorrerle sepa dónde está. También muestra el número de emergencia del país en el que se encuentra, incluso de viaje. Para ello, la posición se queda en su dispositivo: la app solo guarda el país.",
         "locationAllow": "Autorizar",
         "locationLater": "Ahora no"
     },
@@ -474,7 +474,9 @@
         "locationBlockedTitle": "Ubicación bloqueada",
         "locationBlockedBody": "Autorice el acceso a la ubicación en los ajustes del dispositivo para que la alerta incluya dónde se encuentra.",
         "tabHuman": "Humano",
-        "tabPet": "Mascota"
+        "tabPet": "Mascota",
+        "ligarSamu": "Llamar al {{numero}} • SAMU",
+        "ligarNumero": "Llamar al {{numero}}"
     },
     "travel": {
         "checklistTailored": "Checklist ajustado al briefing de su viaje.",
@@ -1040,7 +1042,8 @@
         "creditsEPA": "Datos toxicológicos: EPA CompTox, de la agencia ambiental de Estados Unidos.",
         "creditsCiatox": "Animales venenosos, plantas tóxicas y teléfonos de emergencia: Centros de Información y Asistencia Toxicológica (CIATox) y fuentes oficiales de salud.",
         "creditsPhotos": "Fotografías: archivo del autor, Pexels y Unsplash.",
-        "creditsIllustrations": "Ilustraciones y pictogramas: creados con ayuda de inteligencia artificial y revisados por el equipo."
+        "creditsIllustrations": "Ilustraciones y pictogramas: creados con ayuda de inteligencia artificial y revisados por el equipo.",
+        "creditsMapas": "Fronteras de los países, para identificar el número de emergencia del lugar donde se encuentra: Natural Earth, de dominio público."
     },
     "upgrade": {
         "heroTitle": "Tu familia merece proteccion sin limites",
@@ -3053,5 +3056,18 @@
         "geradaEm": "Generada el {{data}}",
         "fichaMedica": "Ficha médica",
         "fichaMedicaEmergencia": "Ficha médica de emergencia"
+    },
+    "paisEmergencia": {
+        "ligue112": "Si está en otro país, llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países.",
+        "semLocalizacao": "Sin ubicación, los números de emergencia que se muestran son de {{pais}}, el país configurado en su móvil.",
+        "semLocalizacaoGenerico": "Sin ubicación, Vigilaro no sabe en qué país se encuentra y muestra el número de emergencia general, 112.",
+        "fronteira": "Está cerca de una frontera. Para no indicar el número de otro país, Vigilaro usa el 112 — el móvil desvía la llamada al servicio de emergencias local.",
+        "desconhecido": "No fue posible identificar el país en el que se encuentra. Llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países.",
+        "semNumeroVerificado": "Está en {{pais}}. Vigilaro aún no tiene verificados los números locales de este país: llame al 112 — el móvil lo desvía al servicio de emergencias local en la mayoría de los países — y confirme el número local en cuanto pueda.",
+        "outroPais": "Está en {{pais}}: el número de emergencia aquí es el {{numero}}. Los números de esta pantalla ya son los de aquí.",
+        "ativar": "Activar ubicación",
+        "agoraNao": "Ahora no",
+        "viagemTitulo": "Números de emergencia en el destino",
+        "viagemTexto": "Con la ubicación activada, Vigilaro reconoce el país en el que se encuentra y muestra su número de emergencia. Sin ella, la app muestra los números del país configurado en su móvil. En el extranjero, si tiene dudas, llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países. Para identificar el país, la posición se queda en el dispositivo."
     }
 }

@@ -7,9 +7,11 @@ import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getEmergencyLocationDetailed, LOCATION_STATUS } from '../../utils/getEmergencyLocation';
 import LocationStatusPill from '../../components/LocationStatusPill';
+import AvisoPaisEmergencia from '../../components/AvisoPaisEmergencia';
 import { detectEmergencyCountry } from '../../utils/getEmergencyCountry';
 import { getEmergencyNumbersForCountry } from '../../data/emergencyNumbersByCountry';
-import { getPoisonControlDial, getPoisonControlLabel } from '../../utils/emergencyTokens';
+import { getPoisonControlDial, getPoisonControlLabel, getPaisEmergencia, getNomePais } from '../../utils/emergencyTokens';
+import PaisAtualService from '../../services/PaisAtualService';
 import * as Clipboard from 'expo-clipboard';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
@@ -49,13 +51,13 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     // (decisao de produto 2026-07-30 — ver data/emergencyNumbersByCountry.js).
     // Default imediato = Brasil (mercado principal do app), atualiza assim
     // que GPS/regiao do aparelho responderem — nunca deixa o botao sem numero.
-    const [emergencyNumbers, setEmergencyNumbers] = useState(() => getEmergencyNumbersForCountry('BR'));
+    const [emergencyNumbers, setEmergencyNumbers] = useState(() => getEmergencyNumbersForCountry(getPaisEmergencia()));
 
     // Mesmo raciocinio para o centro de intoxicacao: o botao discava
     // a linha brasileira em qualquer pais. Guardamos o codigo do pais
     // detectado para resolver a linha correta — CIATOX no Brasil, CIAV em
     // Portugal, servico de emergencia geral onde nao ha centro mapeado.
-    const [emergencyCountry, setEmergencyCountry] = useState('BR');
+    const [emergencyCountry, setEmergencyCountry] = useState(() => getPaisEmergencia());
 
     // Estado visivel da localizacao — ver components/LocationStatusPill.js.
     // Comeca em BUSCANDO porque captureLocation() dispara no mount.
@@ -98,7 +100,10 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         // contra poligono local + regionCode do aparelho), sem chamada de
         // rede. country pode vir null (indeterminado) — o helper ja cai
         // pro fallback generico (112) nesse caso.
-        const country = detectEmergencyCountry(coords);
+        // Com posição: o país onde a pessoa ESTÁ (na dúvida, null → 112).
+        // Sem posição: o último país físico conhecido; sem ele, o do aparelho.
+        if (coords) PaisAtualService.registrarPosicao(coords);
+        const country = coords ? detectEmergencyCountry(coords) : getPaisEmergencia();
         setEmergencyNumbers(getEmergencyNumbersForCountry(country));
         setEmergencyCountry(country);
     };
@@ -312,9 +317,11 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     // unico), resto do mapa usa o "geral" (112/911); pais desconhecido cai
     // no fallback generico ja embutido em emergencyNumbers.
     const primaryEmergencyNumber = emergencyNumbers.samu || emergencyNumbers.geral;
+    // Nome do país no idioma do app (o `label` da tabela era só em português).
+    const nomePaisSos = getNomePais(emergencyCountry);
     const primaryEmergencyLabel = emergencyNumbers.samu
-        ? `Ligar ${emergencyNumbers.samu} • SAMU`
-        : `Ligar ${emergencyNumbers.geral}${emergencyNumbers.label ? ` • ${emergencyNumbers.label}` : ''}`;
+        ? t('sos.ligarSamu', { numero: emergencyNumbers.samu, defaultValue: 'Ligar {{numero}} • SAMU' })
+        : `${t('sos.ligarNumero', { numero: emergencyNumbers.geral, defaultValue: 'Ligar {{numero}}' })}${nomePaisSos ? ` • ${nomePaisSos}` : ''}`;
 
     return (
         <LinearGradient colors={['#991B1B', '#450A0A']} style={{ flex: 1 }}>
@@ -418,6 +425,8 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         onPress={resolverLocalizacao}
                         t={t}
                     />
+                    {/* De que país são os números acima — e 112 na dúvida. */}
+                    <AvisoPaisEmergencia tom="escuro" semBotao style={{ marginBottom: 10 }} />
 
                     {/* Secondary Actions Row */}
                     <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', marginBottom: 10 }}>

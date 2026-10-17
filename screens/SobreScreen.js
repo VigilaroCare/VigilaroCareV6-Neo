@@ -98,7 +98,7 @@ export default function SobreScreen({ navigation }) {
               <H3 style={styles.cardTitle}>{t('about.creditsTitle')}</H3>
             </View>
             <Body style={styles.cardText}>{t('about.creditsIntro')}</Body>
-            {['creditsOFF', 'creditsUPC', 'creditsEPA', 'creditsCiatox', 'creditsPhotos', 'creditsIllustrations'].map((chave) => (
+            {['creditsOFF', 'creditsUPC', 'creditsEPA', 'creditsCiatox', 'creditsMapas', 'creditsPhotos', 'creditsIllustrations'].map((chave) => (
               <Body key={chave} style={[styles.cardText, { marginTop: 10 }]}>
                 {`• ${t(`about.${chave}`)}`}
               </Body>

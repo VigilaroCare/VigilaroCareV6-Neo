@@ -288,7 +288,7 @@
         "startNow": "Start Now",
         "next": "Next",
         "locationTitle": "Location in an emergency",
-        "locationBody": "When you trigger SOS, Vigilaro sends your location along with the call for help — so whoever comes for you knows where you are. Outside SOS, your location is not used.",
+        "locationBody": "When you trigger SOS, Vigilaro sends your location along with the call for help — so whoever comes for you knows where you are. It also shows the emergency number of the country you are in, including when you travel. For that, your position stays on your device: the app only keeps the country.",
         "locationAllow": "Allow",
         "locationLater": "Not now"
     },
@@ -474,7 +474,9 @@
         "locationBlockedTitle": "Location blocked",
         "locationBlockedBody": "Allow location access in your device settings so your alert can include where you are.",
         "tabHuman": "Person",
-        "tabPet": "Pet"
+        "tabPet": "Pet",
+        "ligarSamu": "Call {{numero}} • SAMU",
+        "ligarNumero": "Call {{numero}}"
     },
     "medications": {
         "title": "Medication Time",
@@ -1040,7 +1042,8 @@
         "creditsEPA": "Toxicology data: EPA CompTox, from the United States Environmental Protection Agency.",
         "creditsCiatox": "Venomous animals, toxic plants and emergency numbers: Toxicological Information and Assistance Centres (CIATox) and official health sources.",
         "creditsPhotos": "Photographs: the author’s own collection, Pexels and Unsplash.",
-        "creditsIllustrations": "Illustrations and pictograms: created with the help of artificial intelligence and reviewed by the team."
+        "creditsIllustrations": "Illustrations and pictograms: created with the help of artificial intelligence and reviewed by the team.",
+        "creditsMapas": "Country borders, used to find the emergency number where you are: Natural Earth, public domain."
     },
     "upgrade": {
         "heroTitle": "Your family deserves unlimited protection",
@@ -3053,5 +3056,18 @@
         "geradaEm": "Generated on {{data}}",
         "fichaMedica": "Medical record",
         "fichaMedicaEmergencia": "Emergency medical record"
+    },
+    "paisEmergencia": {
+        "ligue112": "If you are in another country, call 112 — your phone routes the call to local emergency services in most countries.",
+        "semLocalizacao": "Without location, the emergency numbers shown are for {{pais}}, the country set on your phone.",
+        "semLocalizacaoGenerico": "Without location, Vigilaro cannot tell which country you are in and shows the general emergency number, 112.",
+        "fronteira": "You are near a border. So as not to show another country's number, Vigilaro uses 112 — your phone routes the call to local emergency services.",
+        "desconhecido": "We could not tell which country you are in. Call 112 — your phone routes the call to local emergency services in most countries.",
+        "semNumeroVerificado": "You are in {{pais}}. Vigilaro does not have verified local numbers for this country yet: call 112 — your phone routes it to local emergency services in most countries — and check the local number as soon as you can.",
+        "outroPais": "You are in {{pais}}: the emergency number here is {{numero}}. The numbers on this screen are already the local ones.",
+        "ativar": "Turn on location",
+        "agoraNao": "Not now",
+        "viagemTitulo": "Emergency numbers at your destination",
+        "viagemTexto": "With location on, Vigilaro recognizes the country you are in and shows its emergency number. Without it, the app shows the numbers of the country set on your phone. Abroad, if in doubt, call 112 — your phone routes the call to local emergency services in most countries. To work out the country, your position stays on the device."
     }
 }

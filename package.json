@@ -17,12 +17,13 @@
     "validate:imagens": "node scripts/verify_imagens.js",
     "validate:types": "tsc --noEmit",
     "validate:android-export": "expo export --platform android",
-    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:ocorrencia && npm run validate:icons && npm run validate:paleta && npm run validate:imagens && npm run validate:legal && npm run validate:respostas && npm run validate:radar && npm run validate:ficha && npm run validate:types && npm run validate:android-export",
+    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:pais && npm run validate:ocorrencia && npm run validate:icons && npm run validate:paleta && npm run validate:imagens && npm run validate:legal && npm run validate:respostas && npm run validate:radar && npm run validate:ficha && npm run validate:types && npm run validate:android-export",
     "check:contrast": "node scripts/checkContrast.mjs",
     "validate:legal": "node scripts/verify_legal.js",
     "validate:respostas": "node scripts/verify_respostas_vistoria.js",
     "validate:radar": "node scripts/verify_radar.js",
-    "validate:ficha": "node scripts/verify_ficha_medica.js"
+    "validate:ficha": "node scripts/verify_ficha_medica.js",
+    "validate:pais": "node scripts/verify_pais_emergencia.js"
   },
   "dependencies": {
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",
