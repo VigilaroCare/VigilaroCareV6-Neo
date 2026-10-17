@@ -32,9 +32,18 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 import { getDynamicAreaName, MAPPING_TRIGGERS } from '../../utils/ProfileFilterEngine';
+import { AMBIENTES } from '../../data/mapeamento_dados';
+import { t_field } from '../../utils/getLocalizedField';
 import SafeGradient from '../../components/SafeGradient';
 
 const CHECKLIST_KEY = '@checklist_progress_v2';
+
+// Nome traduzido vem do catálogo canônico (data/mapeamento_dados AMBIENTES);
+// o `label` daqui é só o fallback em pt-BR. `riscos` só entra na contagem.
+const nomeDoAmbiente = (amb) => {
+    const canonico = AMBIENTES.find((a) => a.id === amb.id);
+    return (canonico && t_field(canonico, 'nome')) || amb.label;
+};
 
 // DS: data-level color
 const AMBIENTES_DISPONIVEIS = [
@@ -168,11 +177,11 @@ export default function OndeProtegerScreen({ navigation }) {
     const handleAddResidence = async () => {
         NeoAlert.alert(
             t('telas.OndeProtegerScreen.novaResidencia', 'Nova Residência'),
-            'Deseja criar e mapear um novo local?',
+            t('telas.OndeProtegerScreen.desejaCriarNovoLocal', 'Deseja criar e mapear um novo local?'),
             [
                 { text: t('telas.OndeProtegerScreen.cancelar', 'Cancelar'), style: 'cancel' },
                 {
-                    text: 'Criar',
+                    text: t('telas.OndeProtegerScreen.criar', 'Criar'),
                     onPress: async () => {
                         try {
                             const novoNome = 'Nova Casa ' + new Date().toLocaleTimeString().slice(0, 5);
@@ -254,7 +263,7 @@ export default function OndeProtegerScreen({ navigation }) {
                                     </View>
                                     <View>
                                         <Text style={[styles.ambienteLabel, { color: textPrimary }]}>
-                                            {getDynamicAreaName(ambiente.id, ambiente.label, ambientesMapeados, t)}
+                                            {getDynamicAreaName(ambiente.id, nomeDoAmbiente(ambiente), ambientesMapeados, t)}
                                         </Text>
                                         <Text style={styles.ambienteRiscos}>
                                             {ambiente.riscos.length}{t('telas.OndeProtegerScreen.pontosDeAtencao', ' pontos de atenção')}</Text>

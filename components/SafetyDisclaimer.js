@@ -21,11 +21,13 @@
 import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';
+import { getMedicalLabel, getFireDial } from '../utils/emergencyTokens';
 import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
 const COPY = {
-    sos: ['disclaimer.sos', 'O envio do SOS depende de o aparelho ter sinal e plano para SMS. Combine com seus contatos o que fazer ao receber um alerta. Em risco imediato, ligue {{EMERGENCY_NUMBER}} (SAMU) ou 193 (Bombeiros).'],
+    // Números do PAÍS (não do idioma): pt-BR em Portugal recebe o 112.
+    sos: ['disclaimer.sos', 'O envio do SOS depende de o aparelho ter sinal e plano para SMS. Combine com seus contatos o que fazer ao receber um alerta. Em risco imediato, ligue para o {{servico}} ou para os Bombeiros ({{bombeiros}}).'],
     travelAir: ['disclaimer.travelAir', 'As regras de viagem e os limites de bagagem mudam com frequência. Confirme sempre com a sua companhia aérea — e, em viagem internacional, com o consulado — antes de viajar.'],
     ia: ['disclaimer.ia', 'Esta análise foi gerada por inteligência artificial a partir da sua foto e pode conter erros. Confira o ambiente ou o rótulo antes de agir. Não substitui laudo técnico nem orientação médica.'],
 };
@@ -36,7 +38,7 @@ export default function SafetyDisclaimer({ variant = 'sos', style }) {
     return (
         <View style={[styles.box, style]} accessibilityRole="text">
             <NeoIcon name="InfoCircle" size={16} color={Neo.colors.accent.warm || '#A16207'} variant="Bold" />
-            <Small style={styles.text}>{t(key, fallback)}</Small>
+            <Small style={styles.text}>{t(key, { defaultValue: fallback, servico: getMedicalLabel(), bombeiros: getFireDial() })}</Small>
         </View>
     );
 }

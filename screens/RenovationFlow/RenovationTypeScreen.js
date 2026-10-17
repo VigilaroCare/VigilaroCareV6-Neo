@@ -14,9 +14,9 @@ export default function RenovationTypeScreen({ navigation }) {
     };
 
     const options = [
-        { key: RENOVATION_TYPES.HOME, title: 'Casa / Apartamento', icon: 'home' },
-        { key: RENOVATION_TYPES.BUILDING, title: 'Prédio / Condomínio', icon: 'business' },
-        { key: RENOVATION_TYPES.RURAL, title: 'Sítio / Área Rural', icon: 'leaf' },
+        { key: RENOVATION_TYPES.HOME, title: t('telas.RenovationTypeScreen.tipoCasa', 'Casa / Apartamento'), icon: 'home' },
+        { key: RENOVATION_TYPES.BUILDING, title: t('telas.RenovationTypeScreen.tipoPredio', 'Prédio / Condomínio'), icon: 'business' },
+        { key: RENOVATION_TYPES.RURAL, title: t('telas.RenovationTypeScreen.tipoRural', 'Sítio / Área Rural'), icon: 'leaf' },
     ];
 
     return (

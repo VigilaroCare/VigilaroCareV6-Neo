@@ -17,6 +17,7 @@ import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { tx } from '../../utils/txFixo';
 
 const RISK_COLORS = {
     critico: Neo.severity?.high?.bg || '#D32F2F', // DS: data-level color
@@ -26,18 +27,18 @@ const RISK_COLORS = {
 };
 
 const RISK_LABELS = {
-    critico: 'Crítico',
-    alto: 'Alto',
-    medio: 'Médio',
-    baixo: 'Baixo',
+    get critico() { return tx('telas.SafetyReviewDetailScreen.riscoCritico', 'Crítico'); },
+    get alto() { return tx('telas.SafetyReviewDetailScreen.riscoAlto', 'Alto'); },
+    get medio() { return tx('telas.SafetyReviewDetailScreen.riscoMedio', 'Médio'); },
+    get baixo() { return tx('telas.SafetyReviewDetailScreen.riscoBaixo', 'Baixo'); },
 };
 
 const PERFIL_LABELS = {
-    bebe: '👶 Bebês',
-    crianca: '🧒 Crianças',
-    idoso: '👴 Idosos',
-    pet: '🐶 Pets',
-    todos: '👥 Todos',
+    get bebe() { return tx('telas.SafetyReviewDetailScreen.perfilBebes', '👶 Bebês'); },
+    get crianca() { return tx('telas.SafetyReviewDetailScreen.perfilCriancas', '🧒 Crianças'); },
+    get idoso() { return tx('telas.SafetyReviewDetailScreen.perfilIdosos', '👴 Idosos'); },
+    get pet() { return tx('telas.SafetyReviewDetailScreen.perfilPets', '🐶 Pets'); },
+    get todos() { return tx('telas.SafetyReviewDetailScreen.perfilTodos', '👥 Todos'); },
 };
 
 export default function SafetyReviewDetailScreen({ navigation, route }) {

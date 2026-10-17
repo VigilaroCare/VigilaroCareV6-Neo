@@ -188,7 +188,7 @@ class ErrorBoundary extends React.Component {
           <TouchableOpacity
             style={[styles.button, styles.buttonSecondary]}
             onPress={this.handleRetry}
-            accessibilityLabel="Tentar novamente"
+            accessibilityLabel={tx('telas.ErrorBoundary.a11yTentarNovamente', 'Tentar novamente')}
           >
             <Text style={[styles.buttonText, { color: Neo.colors.primary[500] }]}>{tx('telas.ErrorBoundary.tentarNovamente', 'Tentar novamente')}</Text>
           </TouchableOpacity>
@@ -196,7 +196,7 @@ class ErrorBoundary extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={this.handleRestart}
-            accessibilityLabel="Reiniciar aplicativo"
+            accessibilityLabel={tx('telas.ErrorBoundary.a11yReiniciar', 'Reiniciar aplicativo')}
           >
             <Text style={styles.buttonText}>{tx('telas.ErrorBoundary.reiniciarAplicativo', 'Reiniciar Aplicativo')}</Text>
           </TouchableOpacity>

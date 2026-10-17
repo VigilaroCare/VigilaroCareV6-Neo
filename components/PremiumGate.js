@@ -100,7 +100,7 @@ export default function PremiumGate({
                         <NeoIcon name="Lock1" variant="Bold" size={20} color={CLR_PREMIUM} />
                     </View>
                     <Small style={gStyles.inlineText}>
-                        {PAYWALL_CONTEXT[feature]?.title ?? 'Recurso Premium'}
+                        {PAYWALL_CONTEXT[feature]?.title ?? tx('telas.PremiumGate.recursoPremium', 'Recurso Premium')}
                     </Small>
                     <Small style={gStyles.inlineCta}>{tx('telas.PremiumGate.tocarParaDesbloquear', 'Tocar para desbloquear')}</Small>
                 </View>

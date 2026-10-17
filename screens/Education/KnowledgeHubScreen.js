@@ -346,7 +346,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                     <View style={s.featuredContent}>
                                         {!!cat && (() => {
                                             const label = t_field(cat, 'label') || '';
-                                            const displayLabel = (label === 'Primeiros Socorros' || label === 'Primeiros socorros' || label === 'Primeros Auxilios') ? 'Socorros' : label;
+                                            const displayLabel = (label === 'Primeiros Socorros' || label === 'Primeiros socorros' || label === 'Primeros Auxilios') ? t('telas.KnowledgeHubScreen.socorrosCurto', 'Socorros') : label;
                                             return (
                                                 <View style={[s.featuredBadge, { backgroundColor: cat.color || themeColors.neutral[500] }]}>
                                                     <Text style={s.featuredBadgeText} numberOfLines={1} adjustsFontSizeToFit>

@@ -165,40 +165,40 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             await Linking.openURL(`tel:${number}`);
         } catch (e) {
             if (__DEV__) console.warn('Falha ao abrir discador:', e);
-            NeoAlert.alert('Ligacao', 'Nao foi possivel abrir o discador neste aparelho.');
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.ligacao', 'Ligacao'), t('telas.SOSEmergencyModeScreenNeo.naoAbriuDiscador', 'Nao foi possivel abrir o discador neste aparelho.'));
         }
     };
 
     const handleSOS = async () => {
         if (customContacts.length === 0) {
-            NeoAlert.alert('Sem contatos', t('telas.SOSEmergencyModeScreenNeo.adicioneContatosDeEmergenciaParaUsar', 'Adicione contatos de emergência para usar o SOS.'));
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.semContatos', 'Sem contatos'), t('telas.SOSEmergencyModeScreenNeo.adicioneContatosDeEmergenciaParaUsar', 'Adicione contatos de emergência para usar o SOS.'));
             return;
         }
 
         let locationText = '';
         const coords = lastLocation;
         if (coords) {
-            locationText = ` Estou em: https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
+            locationText = ` ${t('telas.SOSEmergencyModeScreenNeo.estouEm', 'Estou em:')} https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
         }
 
-        const message = `SOS! Preciso de ajuda urgente.${locationText} (Mensagem automática Vigilaro)`;
+        // A mensagem sai no idioma do app — o da família que a recebe.
         const phones = customContacts.map(c => c.phone).join(Platform.OS === 'ios' ? '&' : ';');
         const separator = Platform.OS === 'ios' ? '&' : '?';
 
-        const messageForSms = `SOS! Preciso de ajuda urgente.${locationText} (Vigilaro Care - confirme o envio no app de mensagens)`;
+        const messageForSms = `${t('telas.SOSEmergencyModeScreenNeo.sosAjuda', 'SOS! Preciso de ajuda urgente.')}${locationText} (${t('telas.SOSEmergencyModeScreenNeo.sosRodape', 'Vigilaro Care - confirme o envio no app de mensagens')})`;
         const smsUrl = `sms:${phones}${separator}body=${encodeURIComponent(messageForSms)}`;
 
         try {
             const firstPhone = customContacts[0]?.phone || '';
             const canOpenSms = await Linking.canOpenURL(`sms:${firstPhone}`);
             if (!canOpenSms) {
-                NeoAlert.alert('SMS indisponivel', t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
+                NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.smsIndisponivel', 'SMS indisponível'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
                 return;
             }
             await Linking.openURL(smsUrl);
         } catch (e) {
             if (__DEV__) console.warn('Falha ao abrir SMS de emergencia:', e);
-            NeoAlert.alert('SMS indisponivel', t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo2', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.smsIndisponivel', 'SMS indisponível'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo2', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
         }
     };
 
@@ -277,7 +277,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         }
         
         // 4. Usa o link oficial wa.me para maior compatibilidade
-        const message = "🚨 ALERTA VIGILARO CARE: Preciso de ajuda urgente!";
+        const message = `🚨 ${t('telas.SOSEmergencyModeScreenNeo.mensagemWhatsapp', 'ALERTA VIGILARO CARE: Preciso de ajuda urgente!')}`;
         const url = `https://wa.me/${finalPhone}?text=${encodeURIComponent(message)}`;
         
         Vibration.vibrate(50);
@@ -296,7 +296,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const handleCopyFicha = async () => {
         try {
             await Clipboard.setStringAsync(fichaTexto);
-            NeoAlert.alert('Copiado', t('telas.SOSEmergencyModeScreenNeo.fichaMedicaCopiadaColeEmQualquer', 'Ficha médica copiada. Cole em qualquer app de mensagem.'));
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.copiado', 'Copiado'), t('telas.SOSEmergencyModeScreenNeo.fichaMedicaCopiadaColeEmQualquer', 'Ficha médica copiada. Cole em qualquer app de mensagem.'));
         } catch (e) {
             NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.erro3', 'Erro'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelCopiar', 'Não foi possível copiar.'));
         }
@@ -304,7 +304,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
     const handleShareFicha = async () => {
         try {
-            await Share.share({ message: fichaTexto, title: 'Ficha Médica de Emergência' });
+            await Share.share({ message: fichaTexto, title: t('telas.SOSEmergencyModeScreenNeo.fichaMedicaEmergencia', 'Ficha Médica de Emergência') });
         } catch (e) { if (__DEV__) console.error(e); }
     };
 
@@ -434,7 +434,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         >
                             <NeoIcon name="Profile" size={24} color="#FFF" style={{ marginBottom: 8 }} />
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
-                                {customContacts.length > 0 ? customContacts[0].name.split(' ')[0] : 'Contatos'}
+                                {customContacts.length > 0 ? customContacts[0].name.split(' ')[0] : t('telas.SOSEmergencyModeScreenNeo.contatos', 'Contatos')}
                             </Body>
                         </TouchableOpacity>
 

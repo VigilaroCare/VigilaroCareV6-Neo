@@ -16,6 +16,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { ELETRODOMESTICOS_REVIEWS } from '../../data/eletrodomesticos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { tx } from '../../utils/txFixo';
 
 // DS: data-level color
 const RISK_COLORS = {
@@ -26,10 +27,10 @@ const RISK_COLORS = {
 };
 
 const RISK_LABELS = {
-    critico: 'Crítico',
-    alto: 'Alto',
-    medio: 'Médio',
-    baixo: 'Baixo',
+    get critico() { return tx('telas.EletrodomesticosReviewsScreen.riscoCritico', 'Crítico'); },
+    get alto() { return tx('telas.EletrodomesticosReviewsScreen.riscoAlto', 'Alto'); },
+    get medio() { return tx('telas.EletrodomesticosReviewsScreen.riscoMedio', 'Médio'); },
+    get baixo() { return tx('telas.EletrodomesticosReviewsScreen.riscoBaixo', 'Baixo'); },
 };
 
 // DS: data-level color

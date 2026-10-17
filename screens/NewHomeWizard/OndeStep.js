@@ -10,6 +10,7 @@ import { View, ScrollView } from 'react-native';
 import { H3, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
 import { EXTERNAL_AREAS, INTERNAL_ROOMS } from '../../data/onboarding_data';
+import { t_field } from '../../utils/getLocalizedField';
 import { Chip } from './components';
 import { ss } from './styles';
 import NarrativeHeader from './NarrativeHeader';
@@ -37,7 +38,7 @@ export default function OndeStep({
             <H3 style={{ marginBottom: 12, fontSize: 17 }}>{tx('telas.OndeStep.areasExternasELazer', 'Áreas externas e lazer')}</H3>
             <View style={ss.chipRow}>
                 {EXTERNAL_AREAS.map(a => (
-                    <Chip key={a.id} label={a.label} icon={a.icon} selected={externalAreas.includes(a.id)}
+                    <Chip key={a.id} label={t_field(a, 'label')} icon={a.icon} selected={externalAreas.includes(a.id)}
                         onPress={() => onToggleArray(externalAreas, setExternalAreas, a.id)} />
                 ))}
             </View>
@@ -47,11 +48,11 @@ export default function OndeStep({
             {INTERNAL_ROOMS.map(cat => (
                 <View key={cat.category} style={{ marginBottom: 20 }}>
                     <Caption style={{ color: C.neutral[500], fontWeight: '700', letterSpacing: 1, marginBottom: 10 }}>
-                        {cat.category.toUpperCase()}
+                        {t_field(cat, 'category').toUpperCase()}
                     </Caption>
                     <View style={ss.chipRow}>
                         {cat.items.map(r => (
-                            <Chip key={r.id} label={r.label} selected={internalRooms.includes(r.id)}
+                            <Chip key={r.id} label={t_field(r, 'label')} selected={internalRooms.includes(r.id)}
                                 onPress={() => onToggleArray(internalRooms, setInternalRooms, r.id)} />
                         ))}
                     </View>

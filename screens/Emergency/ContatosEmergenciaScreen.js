@@ -16,8 +16,14 @@ import ProfileService from '../../services/ProfileService';
 import NeoAlert from '../../utils/NeoAlert';
 import SafetyDisclaimer from '../../components/SafetyDisclaimer';
 import { Storage } from '../../utils/SecureStorage';
+import { tx } from '../../utils/txFixo';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
+
+// O tipo é GRAVADO em pt-BR (e é chave das cores e ícones abaixo): traduz só
+// ao exibir. Tipo desconhecido (dado antigo) aparece como está.
+const CHAVE_TIPO = { Familiar: 'familiar', Médico: 'medico', Vizinho: 'vizinho', Amigo: 'amigo', Outro: 'outro', Veterinário: 'veterinario' };
+const rotuloTipo = (tp) => (CHAVE_TIPO[tp] ? tx(`telas.ContatosEmergenciaScreen.tipos.${CHAVE_TIPO[tp]}`, tp) : tp);
 
 // DS: data-level colors — each tipo has its own brand color
 const TIPO_COLORS = {
@@ -250,10 +256,10 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
     );
   }
 
-  const headerTitle = activeProfile ? `Contatos de ${activeProfile.nome}` : 'Contatos de emergência';
+  const headerTitle = activeProfile ? t('telas.ContatosEmergenciaScreen.contatosDe', { nome: activeProfile.nome, defaultValue: 'Contatos de {{nome}}' }) : t('telas.ContatosEmergenciaScreen.contatosDeEmergencia', 'Contatos de emergência');
   const headerSubtitle = activeProfile
     ? `Rede de apoio específica`
-    : 'Contatos gerais da residência';
+    : t('telas.ContatosEmergenciaScreen.contatosGerais', 'Contatos gerais da residência');
 
   return (
     <AppBackground>
@@ -300,7 +306,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
           {modalVisible && (
             <NeoCard variant="elevated" style={s.formCard}>
               <Text style={s.formTitle}>
-                {editando ? t('telas.ContatosEmergenciaScreen.editarContato', 'Editar contato') : 'Novo contato'}
+                {editando ? t('telas.ContatosEmergenciaScreen.editarContato', 'Editar contato') : t('telas.ContatosEmergenciaScreen.novoContato', 'Novo contato')}
               </Text>
 
               <View style={s.field}>
@@ -367,7 +373,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                             { color: isSelected ? Neo.colors.neutral.white : Neo.colors.neutral[700] },
                           ]}
                         >
-                          {tp}
+                          {rotuloTipo(tp)}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -383,7 +389,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                 </TouchableOpacity>
                 <TouchableOpacity style={s.saveButton} onPress={adicionarContato}>
                   <Text style={s.saveButtonText}>
-                    {editando ? 'Atualizar' : t('telas.ContatosEmergenciaScreen.salvar', 'Salvar')}
+                    {editando ? t('telas.ContatosEmergenciaScreen.atualizar', 'Atualizar') : t('telas.ContatosEmergenciaScreen.salvar', 'Salvar')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -461,7 +467,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         ) : null}
                         <Text style={s.contatoTelefone}>{contato.telefone}</Text>
                         <View style={[s.contatoBadge, { backgroundColor: color }]}>
-                          <Text style={s.contatoBadgeText}>{contato.tipo}</Text>
+                          <Text style={s.contatoBadgeText}>{rotuloTipo(contato.tipo)}</Text>
                         </View>
                       </View>
 

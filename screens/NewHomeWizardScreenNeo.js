@@ -34,6 +34,7 @@ import OndeStep from './NewHomeWizard/OndeStep';
 import { ss } from './NewHomeWizard/styles';
 import NeoAlert from '../utils/NeoAlert';
 import { EXTERNAL_AREAS, INTERNAL_ROOMS } from '../data/onboarding_data';
+import { t_field } from '../utils/getLocalizedField';
 
 const C = DS.colors;
 const TOTAL_PHASES = 3;
@@ -222,7 +223,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         try {
             await BriefingDraftService.save(buildDraft());
             NeoAlert.alert(
-                'Guardado',
+                tx('telas.NewHomeWizardScreenNeo.guardado', 'Guardado'),
                 tx('telas.NewHomeWizardScreenNeo.voceVoltaDeOndeParouPelo', 'Você volta de onde parou pelo menu "Seu mapa sensível".'),
                 [{ text: 'OK', onPress: () => navigation.goBack() }]
             );
@@ -247,12 +248,12 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         const list = [];
         (externalAreas || []).forEach(id => {
             const ext = EXTERNAL_AREAS.find(e => e.id === id);
-            if (ext) list.push({ id, label: ext.label });
+            if (ext) list.push({ id, label: t_field(ext, 'label') });
         });
         (internalRooms || []).forEach(id => {
             for (const cat of INTERNAL_ROOMS) {
                 const room = cat.items.find(i => i.id === id);
-                if (room) { list.push({ id, label: room.label }); break; }
+                if (room) { list.push({ id, label: t_field(room, 'label') }); break; }
             }
         });
         return list;
@@ -438,13 +439,13 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             // Briefing concluído → limpa o draft pra não restaurar de novo
             await BriefingDraftService.clear();
 
-            const title = isOnboarding ? 'Pronto!' : 'Mapeamento concluído!';
+            const title = isOnboarding ? tx('telas.NewHomeWizardScreenNeo.pronto', 'Pronto!') : tx('telas.NewHomeWizardScreenNeo.mapeamentoConcluido', 'Mapeamento concluído!');
             const message = isOnboarding
-                ? 'Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.'
-                : 'Esta residência foi configurada com sucesso.';
+                ? tx('telas.NewHomeWizardScreenNeo.mapaVivo', 'Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.')
+                : tx('telas.NewHomeWizardScreenNeo.residenciaConfigurada', 'Esta residência foi configurada com sucesso.');
 
             NeoAlert.alert(title, message, [
-                { text: 'Acessar painel', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
+                { text: tx('telas.NewHomeWizardScreenNeo.acessarPainel', 'Acessar painel'), onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
             ]);
         } catch (e) {
             NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.erro', 'Erro'), tx('telas.NewHomeWizardScreenNeo.naoDeuPraSalvarAgoraToca', 'Não deu pra salvar agora. Toca em "Continuar depois" e tenta de novo.'));

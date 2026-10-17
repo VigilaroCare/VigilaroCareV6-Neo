@@ -25,8 +25,8 @@ export default function PlanoIncendioScreen({ navigation }) {
   const secoes = [
     {
       id: 'prevention',
-      nome: FIRE_PREVENTION_CONTENT?.prevention?.title || 'Prevenção',
-      subtitulo: 'Ações para evitar o início de incêndios',
+      nome: FIRE_PREVENTION_CONTENT?.prevention?.title || t('telas.PlanoIncendioScreen.prevencao', 'Prevenção'),
+      subtitulo: t('telas.PlanoIncendioScreen.prevencaoSub', 'Ações para evitar o início de incêndios'),
       emoji: FIRE_PREVENTION_CONTENT?.prevention?.emoji || '🛡️',
       cor: Neo.colors.feedback.success,
       imagemUrl: require('../../assets/illustrations/pad/queimaduras-fogo_combustao_006.jpg'),
@@ -34,8 +34,8 @@ export default function PlanoIncendioScreen({ navigation }) {
     },
     {
       id: 'action',
-      nome: FIRE_PREVENTION_CONTENT?.action?.title || 'Ação',
-      subtitulo: 'Como agir no primeiro minuto',
+      nome: FIRE_PREVENTION_CONTENT?.action?.title || t('telas.PlanoIncendioScreen.acao', 'Ação'),
+      subtitulo: t('telas.PlanoIncendioScreen.acaoSub', 'Como agir no primeiro minuto'),
       emoji: FIRE_PREVENTION_CONTENT?.action?.emoji || '🔥',
       cor: Neo.colors.feedback.error,
       imagemUrl: require('../../assets/illustrations/pad/generated_action_incendio.png'),
@@ -43,17 +43,17 @@ export default function PlanoIncendioScreen({ navigation }) {
     },
     {
       id: 'plan',
-      nome: 'Plano de fuga',
-      subtitulo: 'Estratégia de evacuação em família',
+      nome: t('telas.PlanoIncendioScreen.planoFuga', 'Plano de fuga'),
+      subtitulo: t('telas.PlanoIncendioScreen.planoFugaSub', 'Estratégia de evacuação em família'),
       emoji: '🗺️',
       cor: Neo.colors.secondary[500],
       imagemUrl: require('../../assets/illustrations/pad/acidentes-estatisticas_acidentes-domesticos-no-brasil_002.jpg'),
       itens: [
-        'Desenhe a planta da casa e marque 2 saídas por cômodo.',
-        'COMBINE UM PONTO DE ENCONTRO seguro fora da casa (ex: poste, árvore vizinha).',
-        'Se houver fumaça: RASTEJE. O ar é mais limpo e fresco junto ao chão.',
-        'Toque na porta com as costas da mão antes de abrir. Se quente, NÃO ABRA.',
-        'Se suas roupas pegarem fogo: PARE, DEITE e ROLE no chão.',
+        t('telas.PlanoIncendioScreen.fuga1', 'Desenhe a planta da casa e marque 2 saídas por cômodo.'),
+        t('telas.PlanoIncendioScreen.fuga2', 'COMBINE UM PONTO DE ENCONTRO seguro fora da casa (ex: poste, árvore vizinha).'),
+        t('telas.PlanoIncendioScreen.fuga3', 'Se houver fumaça: RASTEJE. O ar é mais limpo e fresco junto ao chão.'),
+        t('telas.PlanoIncendioScreen.fuga4', 'Toque na porta com as costas da mão antes de abrir. Se quente, NÃO ABRA.'),
+        t('telas.PlanoIncendioScreen.fuga5', 'Se suas roupas pegarem fogo: PARE, DEITE e ROLE no chão.'),
       ],
     },
   ];
@@ -72,7 +72,7 @@ export default function PlanoIncendioScreen({ navigation }) {
         subtitulo: secao.subtitulo,
         emoji: secao.emoji,
         color: secao.cor,
-        tags: ['Plano de Incêndio'],
+        tags: [t('telas.PlanoIncendioScreen.tagPlano', 'Plano de Incêndio')],
         passos: passos,
       }
     });

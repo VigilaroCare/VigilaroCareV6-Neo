@@ -53,18 +53,20 @@ export default function BatteryMonitor() {
                 lastAlertLevel.current = 'critical';
                 NeoAlert.alert(
                     tx('telas.BatteryMonitor.bateriaCritica', '🔴 Bateria Crítica'),
-                    `Sua bateria está em ${Math.round(level * 100)}%. ` +
-                    'Em caso de emergência, você pode não conseguir usar o telefone. ' +
-                    'Conecte o carregador imediatamente.\n\n' +
-                    '💡 Dica: Tenha sempre uma lanterna e uma lista de contatos de emergência em papel.',
+                    tx('telas.BatteryMonitor.criticaMsg', {
+                        pct: Math.round(level * 100),
+                        defaultValue: 'Sua bateria está em {{pct}}%. Em caso de emergência, você pode não conseguir usar o telefone. Conecte o carregador imediatamente.\n\n💡 Dica: Tenha sempre uma lanterna e uma lista de contatos de emergência em papel.',
+                    }),
                     [{ text: tx('telas.BatteryMonitor.entendi', 'Entendi'), style: 'default' }]
                 );
             } else if (level <= BATTERY_LOW_THRESHOLD && level > BATTERY_CRITICAL_THRESHOLD && lastAlertLevel.current !== 'low') {
                 lastAlertLevel.current = 'low';
                 NeoAlert.alert(
-                    '🟡 Bateria Baixa',
-                    `Sua bateria está em ${Math.round(level * 100)}%. ` +
-                    'Recomendamos carregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro.',
+                    tx('telas.BatteryMonitor.bateriaBaixa', '🟡 Bateria Baixa'),
+                    tx('telas.BatteryMonitor.baixaMsg', {
+                        pct: Math.round(level * 100),
+                        defaultValue: 'Sua bateria está em {{pct}}%. Recomendamos carregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro.',
+                    }),
                     [{ text: 'OK', style: 'default' }]
                 );
             } else if (level > BATTERY_LOW_THRESHOLD) {

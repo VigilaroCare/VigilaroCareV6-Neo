@@ -16,6 +16,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { UTENSILIOS_REVIEWS } from '../../data/utensilios_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { tx } from '../../utils/txFixo';
 
 // DS: data-level color
 const RISK_COLORS = {
@@ -26,10 +27,10 @@ const RISK_COLORS = {
 };
 
 const RISK_LABELS = {
-    critico: 'Crítico',
-    alto: 'Alto',
-    medio: 'Médio',
-    baixo: 'Baixo',
+    get critico() { return tx('telas.UtensiliosReviewsScreen.riscoCritico', 'Crítico'); },
+    get alto() { return tx('telas.UtensiliosReviewsScreen.riscoAlto', 'Alto'); },
+    get medio() { return tx('telas.UtensiliosReviewsScreen.riscoMedio', 'Médio'); },
+    get baixo() { return tx('telas.UtensiliosReviewsScreen.riscoBaixo', 'Baixo'); },
 };
 
 // DS: data-level color

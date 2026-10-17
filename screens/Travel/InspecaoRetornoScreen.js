@@ -9,6 +9,7 @@ import NeoIcon from '../../components/NeoIcon';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import TravelChecklistCard from '../../components/TravelChecklistCard';
+import { tx } from '../../utils/txFixo';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -19,39 +20,39 @@ const SCREEN_W = Dimensions.get('window').width;
 const CHECKLIST_ITEMS = [
     {
         id: 'sweep',
-        title: 'Varredura Visual',
+        get title() { return tx('telas.InspecaoRetornoScreen.varredura', 'Varredura Visual'); },
         icon: 'SearchNormal',
         color: '#F44336',
         items: [
-            { id: 'under_beds', label: 'Olhou embaixo de TODAS as camas?' },
-            { id: 'bathroom_hooks', label: 'Checou ganchos e portas atrás do banheiro?' },
-            { id: 'drawers', label: 'Abriu todas as gavetas e armários?' },
-            { id: 'safebox', label: 'Cofre vazio e deixado aberto?' },
-            { id: 'outlets', label: 'Tomadas sem carregadores esquecidos?' },
+            { id: 'under_beds', get label() { return tx('telas.InspecaoRetornoScreen.camas', 'Olhou embaixo de TODAS as camas?'); } },
+            { id: 'bathroom_hooks', get label() { return tx('telas.InspecaoRetornoScreen.ganchos', 'Checou ganchos e portas atrás do banheiro?'); } },
+            { id: 'drawers', get label() { return tx('telas.InspecaoRetornoScreen.gavetas', 'Abriu todas as gavetas e armários?'); } },
+            { id: 'safebox', get label() { return tx('telas.InspecaoRetornoScreen.cofre', 'Cofre vazio e deixado aberto?'); } },
+            { id: 'outlets', get label() { return tx('telas.InspecaoRetornoScreen.tomadas', 'Tomadas sem carregadores esquecidos?'); } },
         ]
     },
     {
         id: 'returns',
-        title: 'Devoluções e Acertos',
+        get title() { return tx('telas.InspecaoRetornoScreen.devolucoes', 'Devoluções e Acertos'); },
         icon: 'Receipt2',
         color: Neo.colors.feedback.warning,
         items: [
-            { id: 'keys', label: 'Chaves / cartões de acesso devolvidos' },
-            { id: 'minibar', label: 'Consumo do frigobar conferido e pago' },
-            { id: 'towels', label: 'Toalhas da piscina/praia devolvidas' },
-            { id: 'rentals', label: 'Equipamentos alugados devolvidos' },
+            { id: 'keys', get label() { return tx('telas.InspecaoRetornoScreen.chaves', 'Chaves / cartões de acesso devolvidos'); } },
+            { id: 'minibar', get label() { return tx('telas.InspecaoRetornoScreen.frigobar', 'Consumo do frigobar conferido e pago'); } },
+            { id: 'towels', get label() { return tx('telas.InspecaoRetornoScreen.toalhas', 'Toalhas da piscina/praia devolvidas'); } },
+            { id: 'rentals', get label() { return tx('telas.InspecaoRetornoScreen.alugados', 'Equipamentos alugados devolvidos'); } },
         ]
     },
     {
         id: 'packing',
-        title: 'Fechamento de Bagagem',
+        get title() { return tx('telas.InspecaoRetornoScreen.bagagem', 'Fechamento de Bagagem'); },
         icon: 'BagCross',
         color: Neo.colors.primary[500],
         items: [
-            { id: 'liquids', label: 'Líquidos bem vedados (risco de vazamento no voo)' },
-            { id: 'weight', label: 'Peso estimado OK para o voo (cuidado com compras)' },
-            { id: 'dirty_clothes', label: 'Roupas sujas separadas em sacos isolados' },
-            { id: 'tags', label: 'Tags de identificação presas nas malas' },
+            { id: 'liquids', get label() { return tx('telas.InspecaoRetornoScreen.liquidos', 'Líquidos bem vedados (risco de vazamento no voo)'); } },
+            { id: 'weight', get label() { return tx('telas.InspecaoRetornoScreen.peso', 'Peso estimado OK para o voo (cuidado com compras)'); } },
+            { id: 'dirty_clothes', get label() { return tx('telas.InspecaoRetornoScreen.roupas', 'Roupas sujas separadas em sacos isolados'); } },
+            { id: 'tags', get label() { return tx('telas.InspecaoRetornoScreen.tags', 'Tags de identificação presas nas malas'); } },
         ]
     }
 ];

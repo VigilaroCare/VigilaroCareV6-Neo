@@ -185,7 +185,7 @@ function HorarioList({ horarios, onChange }) {
     const adicionar = guard('maxHorariosPerLembrete', () => {
         const v = input.trim();
         if (!validar(v)) { setErro('Use o formato HH:MM (ex: 08:00)'); return; }
-        if (horarios.includes(v)) { setErro('Horário já adicionado'); return; }
+        if (horarios.includes(v)) { setErro(tx('telas.MedicationReminderFormScreen.horarioJaAdicionado', 'Horário já adicionado')); return; }
         onChange([...horarios, v].sort());
         setInput('');
         setErro('');
@@ -290,9 +290,9 @@ export default function MedicationReminderFormScreen() {
 
     const validar = () => {
         let ok = true;
-        if (!medicamentoNome.trim()) { setErroNome('Informe o nome do medicamento'); ok = false; }
+        if (!medicamentoNome.trim()) { setErroNome(tx('telas.MedicationReminderFormScreen.informeNome', 'Informe o nome do medicamento')); ok = false; }
         else setErroNome('');
-        if (horarios.length === 0) { setErroHorario('Adicione ao menos um horário'); ok = false; }
+        if (horarios.length === 0) { setErroHorario(tx('telas.MedicationReminderFormScreen.adicioneHorario', 'Adicione ao menos um horário')); ok = false; }
         else setErroHorario('');
         return ok;
     };
@@ -356,7 +356,7 @@ export default function MedicationReminderFormScreen() {
     const canalOptions = [
         { value: 'whatsapp', label: 'WhatsApp', icon: 'MessageText1' },
         { value: 'sms',      label: 'SMS',       icon: 'Sms' },
-        { value: 'ambos',    label: 'Ambos',      icon: 'MobileProgramming' },
+        { value: 'ambos',    label: tx('telas.MedicationReminderFormScreen.canalAmbos', 'Ambos'),      icon: 'MobileProgramming' },
     ];
 
     return (
@@ -385,7 +385,7 @@ export default function MedicationReminderFormScreen() {
                             <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                         </TouchableOpacity>
                         <H2 style={fStyles.headerTitle}>
-                            {editing ? tx('telas.MedicationReminderFormScreen.editarLembrete', 'Editar lembrete') : 'Novo lembrete'}
+                            {editing ? tx('telas.MedicationReminderFormScreen.editarLembrete', 'Editar lembrete') : tx('telas.MedicationReminderFormScreen.novoLembrete', 'Novo lembrete')}
                         </H2>
                     </View>
 
@@ -548,7 +548,7 @@ export default function MedicationReminderFormScreen() {
 
                         {/* ── Botão Salvar ── */}
                         <ButtonNeo
-                            title={saving ? 'Salvando...' : editing ? tx('telas.MedicationReminderFormScreen.salvarAlteracoes', 'Salvar alterações') : 'Criar lembrete'}
+                            title={saving ? 'Salvando...' : editing ? tx('telas.MedicationReminderFormScreen.salvarAlteracoes', 'Salvar alterações') : tx('telas.MedicationReminderFormScreen.criarLembrete', 'Criar lembrete')}
                             iconName="TickCircle"
                             onPress={handleSave}
                             type="primary"

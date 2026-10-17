@@ -114,9 +114,9 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
                     {/* Benefits mini-list */}
                     <View style={styles.benefitsList}>
                         {[
-                            'Botões de ação mais perto do polegar',
-                            'Menu e navegação otimizados',
-                            'Pode mudar a qualquer momento',
+                            tx('telas.LeftHandedSuggestionModal.beneficio1', 'Botões de ação mais perto do polegar'),
+                            tx('telas.LeftHandedSuggestionModal.beneficio2', 'Menu e navegação otimizados'),
+                            tx('telas.LeftHandedSuggestionModal.beneficio3', 'Pode mudar a qualquer momento'),
                         ].map((item, idx) => (
                             <View key={idx} style={styles.benefitRow}>
                                 <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[500]} />

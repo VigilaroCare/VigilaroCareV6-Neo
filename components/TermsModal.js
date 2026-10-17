@@ -117,7 +117,7 @@ export default function TermsModal({ onAccept }) {
                             disabled={!canAccept}
                         >
                             <Text style={styles.buttonText}>
-                                {canAccept ? "Li e Concordo" : tx('telas.TermsModal.roleAteOFimParaAceitar', 'Role até o fim para aceitar')}
+                                {canAccept ? tx('telas.TermsModal.liEConcordo', 'Li e Concordo') : tx('telas.TermsModal.roleAteOFimParaAceitar', 'Role até o fim para aceitar')}
                             </Text>
                         </TouchableOpacity>
                     </View>

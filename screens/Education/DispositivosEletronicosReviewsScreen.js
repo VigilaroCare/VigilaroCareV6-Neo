@@ -16,6 +16,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { DISPOSITIVOS_ELETRONICOS_REVIEWS } from '../../data/dispositivos_eletronicos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { tx } from '../../utils/txFixo';
 
 // DS: data-level color
 const RISK_COLORS = {
@@ -26,10 +27,10 @@ const RISK_COLORS = {
 };
 
 const RISK_LABELS = {
-    critico: 'Crítico',
-    alto: 'Alto',
-    medio: 'Médio',
-    baixo: 'Baixo',
+    get critico() { return tx('telas.DispositivosEletronicosReviewsScreen.riscoCritico', 'Crítico'); },
+    get alto() { return tx('telas.DispositivosEletronicosReviewsScreen.riscoAlto', 'Alto'); },
+    get medio() { return tx('telas.DispositivosEletronicosReviewsScreen.riscoMedio', 'Médio'); },
+    get baixo() { return tx('telas.DispositivosEletronicosReviewsScreen.riscoBaixo', 'Baixo'); },
 };
 
 // DS: data-level color

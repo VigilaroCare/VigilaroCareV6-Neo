@@ -35,6 +35,14 @@ import ProfileService from './ProfileService';
 import HealthService from './HealthService';
 import { Storage } from '../utils/SecureStorage';
 import { htmlDocument } from '../utils/pdfReport';
+import i18n from '../i18n';
+import { tx } from '../utils/txFixo';
+import { rotuloOpcaoPerfil } from '../data/opcoesPerfil';
+
+// A ficha sai no idioma do app (D20): é o idioma de quem a entrega e, quase
+// sempre, do país onde o socorro acontece. Antes saía sempre em português.
+const L = (chave, pt, vars) => tx(`fichaMedica.${chave}`, vars ? { ...vars, defaultValue: pt } : pt);
+const dataHora = (d) => d.toLocaleString(i18n.language || 'pt-BR');
 
 const esc = (s) => String(s ?? '')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -47,9 +55,9 @@ const lista = (v) => {
     return arr.map((x) => String(x).trim()).filter(Boolean);
 };
 
-const AVISO_LEGAL =
+const avisoLegal = () => L('avisoLegal',
     'Informações declaradas pelo próprio usuário no aplicativo Vigilaro Care. '
-    + 'Não constituem prontuário, laudo ou prescrição médica, e não foram verificadas por profissional de saúde.';
+    + 'Não constituem prontuário, laudo ou prescrição médica, e não foram verificadas por profissional de saúde.');
 
 class FichaMedicaService {
     /**
@@ -95,21 +103,24 @@ class FichaMedicaService {
         if (moradia?.endereco) endereco.push(moradia.endereco);
         if (moradia?.cidade) endereco.push(moradia.cidade);
         if (moradia?.estado) endereco.push(moradia.estado);
-        if (moradia?.andar) endereco.push(`${moradia.andar}º andar`);
+        if (moradia?.andar) endereco.push(L('andar', '{{andar}}º andar', { andar: moradia.andar }));
 
+        // Condições, alergias e necessidades são gravadas em pt-BR ou por id
+        // ('visual', 'chronic_pain'); rotuloOpcaoPerfil devolve o texto no
+        // idioma do app. Antes as necessidades saíam como o id cru.
         return {
-            nome: profile.nome || 'Não informado',
+            nome: profile.nome || L('naoInformado', 'Não informado'),
             idade,
             tipoSanguineo: profile.tipoSanguineo || profile.saude?.tipoSanguineo || '',
-            alergias: lista(profile.alergias ?? profile.saude?.alergias),
-            condicoes: lista(saude?.conditions ?? profile.condicoesMedicas),
+            alergias: lista(profile.alergias ?? profile.saude?.alergias).map(rotuloOpcaoPerfil),
+            condicoes: lista(saude?.conditions ?? profile.condicoesMedicas).map(rotuloOpcaoPerfil),
             medicamentos: (saude?.medications || []).map((m) => {
                 const nome = m.nome || m.name || String(m);
                 const dose = m.dosagem ? ` (${m.dosagem})` : '';
                 const freq = m.frequencia ? `, ${m.frequencia}` : '';
                 return `${nome}${dose}${freq}`;
             }),
-            necessidades: lista(saude?.specialNeeds ?? profile.necessidadesEspeciais),
+            necessidades: lista(saude?.specialNeeds ?? profile.necessidadesEspeciais).map(rotuloOpcaoPerfil),
             endereco: endereco.join(', '),
             contatos,
             coords,
@@ -120,27 +131,28 @@ class FichaMedicaService {
     // ── SAÍDA 1: texto, para colar ────────────────────────────────────────
     static gerarTexto(f) {
         if (!f) return '';
-        const bloco = (rotulo, itens) => `${rotulo}: ${itens.length ? itens.join(', ') : 'nenhuma'}`;
+        const nenhuma = L('nenhuma', 'nenhuma');
+        const bloco = (rotulo, itens) => `${rotulo}: ${itens.length ? itens.join(', ') : nenhuma}`;
         const linhas = [
-            `FICHA MÉDICA DE EMERGÊNCIA — ${f.nome}`,
+            `${L('tituloTexto', 'FICHA MÉDICA DE EMERGÊNCIA')} — ${f.nome}`,
             '',
             // Os dois primeiros são o que muda a conduta do socorro. Vêm antes
             // de tudo, inclusive do nome do app.
-            `TIPO SANGUÍNEO: ${f.tipoSanguineo || 'não informado'}`,
-            bloco('ALERGIAS', f.alergias).toUpperCase(),
+            `${L('tipoSanguineoCaixaAlta', 'TIPO SANGUÍNEO')}: ${f.tipoSanguineo || L('naoInformadoMinusculo', 'não informado')}`,
+            bloco(L('alergias', 'Alergias'), f.alergias).toUpperCase(),
             '',
-            bloco('Condições médicas', f.condicoes),
-            bloco('Medicamentos em uso', f.medicamentos),
+            bloco(L('condicoesMedicas', 'Condições médicas'), f.condicoes),
+            bloco(L('medicamentosEmUso', 'Medicamentos em uso'), f.medicamentos),
         ];
-        if (f.necessidades.length) linhas.push(bloco('Necessidades especiais', f.necessidades));
-        if (f.idade != null) linhas.push(`Idade: ${f.idade} anos`);
-        if (f.endereco) linhas.push(`Endereço: ${f.endereco}`);
-        if (f.coords) linhas.push(`Localização: https://maps.google.com/?q=${f.coords.latitude},${f.coords.longitude}`);
+        if (f.necessidades.length) linhas.push(bloco(L('necessidadesEspeciais', 'Necessidades especiais'), f.necessidades));
+        if (f.idade != null) linhas.push(`${L('idade', 'Idade')}: ${L('anos', '{{n}} anos', { n: f.idade })}`);
+        if (f.endereco) linhas.push(`${L('endereco', 'Endereço')}: ${f.endereco}`);
+        if (f.coords) linhas.push(`${L('localizacao', 'Localização')}: https://maps.google.com/?q=${f.coords.latitude},${f.coords.longitude}`);
         if (f.contatos.length) {
-            linhas.push('', 'Contatos de emergência:');
-            f.contatos.forEach((c) => linhas.push(`  ${c.nome || 'Contato'}: ${c.telefone}`));
+            linhas.push('', `${L('contatosEmergencia', 'Contatos de emergência')}:`);
+            f.contatos.forEach((c) => linhas.push(`  ${c.nome || L('contato', 'Contato')}: ${c.telefone}`));
         }
-        linhas.push('', AVISO_LEGAL, `Gerada em ${f.geradoEm.toLocaleString('pt-BR')} · Vigilaro Care`);
+        linhas.push('', avisoLegal(), `${L('geradaEm', 'Gerada em {{data}}', { data: dataHora(f.geradoEm) })} · Vigilaro Care`);
         return linhas.join('\n');
     }
 
@@ -156,43 +168,43 @@ class FichaMedicaService {
         const critico = `
             <div class="critico">
                 <div class="critico-item">
-                    <span class="critico-rotulo">Tipo sanguíneo</span>
+                    <span class="critico-rotulo">${esc(L('tipoSanguineo', 'Tipo sanguíneo'))}</span>
                     <span class="critico-valor">${esc(f.tipoSanguineo || '—')}</span>
                 </div>
                 <div class="critico-item">
-                    <span class="critico-rotulo">Alergias</span>
-                    <span class="critico-valor ${f.alergias.length ? 'alerta' : ''}">${f.alergias.length ? esc(f.alergias.join(' · ')) : 'Nenhuma declarada'}</span>
+                    <span class="critico-rotulo">${esc(L('alergias', 'Alergias'))}</span>
+                    <span class="critico-valor ${f.alergias.length ? 'alerta' : ''}">${f.alergias.length ? esc(f.alergias.join(' · ')) : esc(L('nenhumaDeclarada', 'Nenhuma declarada'))}</span>
                 </div>
             </div>`;
 
         const secao = (titulo, conteudo) => `<h2>${esc(titulo)}</h2>${conteudo}`;
 
         const identificacao = [
-            f.idade != null ? `${f.idade} anos` : null,
+            f.idade != null ? L('anos', '{{n}} anos', { n: f.idade }) : null,
             f.endereco || null,
         ].filter(Boolean).join(' · ');
 
         const contatosHtml = f.contatos.length
-            ? `<ul class="bullets">${f.contatos.map((c) => `<li><strong>${esc(c.nome || 'Contato')}</strong> — ${esc(c.telefone)}</li>`).join('')}</ul>`
-            : '<p class="muted">Nenhum contato de emergência cadastrado.</p>';
+            ? `<ul class="bullets">${f.contatos.map((c) => `<li><strong>${esc(c.nome || L('contato', 'Contato'))}</strong> — ${esc(c.telefone)}</li>`).join('')}</ul>`
+            : `<p class="muted">${esc(L('nenhumContato', 'Nenhum contato de emergência cadastrado.'))}</p>`;
 
         const body = `
             ${critico}
-            ${secao('Condições médicas', `<div>${chips(f.condicoes, 'Nenhuma declarada')}</div>`)}
-            ${secao('Medicamentos em uso', f.medicamentos.length
+            ${secao(L('condicoesMedicas', 'Condições médicas'), `<div>${chips(f.condicoes, esc(L('nenhumaDeclarada', 'Nenhuma declarada')))}</div>`)}
+            ${secao(L('medicamentosEmUso', 'Medicamentos em uso'), f.medicamentos.length
                 ? `<ul class="bullets">${f.medicamentos.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>`
-                : '<p class="muted">Nenhum declarado.</p>')}
-            ${f.necessidades.length ? secao('Necessidades especiais', `<div>${chips(f.necessidades, '')}</div>`) : ''}
-            ${secao('Contatos de emergência', contatosHtml)}
-            ${f.coords ? `<p class="muted">Localização no momento da geração: ${f.coords.latitude}, ${f.coords.longitude}</p>` : ''}
-            <div class="disclaimer">${esc(AVISO_LEGAL)}</div>`;
+                : `<p class="muted">${esc(L('nenhumDeclarado', 'Nenhum declarado.'))}</p>`)}
+            ${f.necessidades.length ? secao(L('necessidadesEspeciais', 'Necessidades especiais'), `<div>${chips(f.necessidades, '')}</div>`) : ''}
+            ${secao(L('contatosEmergencia', 'Contatos de emergência'), contatosHtml)}
+            ${f.coords ? `<p class="muted">${esc(L('localizacaoNaGeracao', 'Localização no momento da geração'))}: ${f.coords.latitude}, ${f.coords.longitude}</p>` : ''}
+            <div class="disclaimer">${esc(avisoLegal())}</div>`;
 
         return htmlDocument({
-            title: `Ficha médica — ${f.nome}`,
+            title: `${L('fichaMedica', 'Ficha médica')} — ${f.nome}`,
             headline: f.nome,
-            subtitle: identificacao || 'Ficha médica de emergência',
+            subtitle: identificacao || L('fichaMedicaEmergencia', 'Ficha médica de emergência'),
             bodyHtml: `<style>${FICHA_CSS}</style>${body}`,
-            footerNote: `Gerada em ${f.geradoEm.toLocaleString('pt-BR')} · Vigilaro Care`,
+            footerNote: `${L('geradaEm', 'Gerada em {{data}}', { data: dataHora(f.geradoEm) })} · Vigilaro Care`,
         });
     }
 
@@ -205,7 +217,7 @@ class FichaMedicaService {
             if (await Sharing.isAvailableAsync()) {
                 await Sharing.shareAsync(uri, {
                     mimeType: 'application/pdf',
-                    dialogTitle: `Ficha médica — ${f.nome}`,
+                    dialogTitle: `${L('fichaMedica', 'Ficha médica')} — ${f.nome}`,
                     UTI: 'com.adobe.pdf',
                 });
                 return { ok: true, uri };
@@ -222,7 +234,7 @@ class FichaMedicaService {
         const f = await this.coletar(opts);
         if (!f) return { ok: false, motivo: 'sem-perfil' };
         try {
-            await Share.share({ message: this.gerarTexto(f), title: `Ficha médica — ${f.nome}` });
+            await Share.share({ message: this.gerarTexto(f), title: `${L('fichaMedica', 'Ficha médica')} — ${f.nome}` });
             return { ok: true };
         } catch (e) {
             if (__DEV__) console.error('[FichaMedica] texto:', e);

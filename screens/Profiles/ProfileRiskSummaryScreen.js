@@ -464,7 +464,7 @@ export default function ProfileRiskSummaryScreen() {
                                         <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.responderAosChecklistsDosAmbientesInform', 'Responder aos checklists dos ambientes informados no onboarding.')}</Text>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne }]}>
-                                        {stats.answeredCount > 0 ? t('telas.ProfileRiskSummaryScreen.concluido', 'Concluído') : "Pendente"}
+                                        {stats.answeredCount > 0 ? t('telas.ProfileRiskSummaryScreen.concluido', 'Concluído') : t('telas.ProfileRiskSummaryScreen.pendente', 'Pendente')}
                                     </Text>
                                 </View>
 
@@ -477,7 +477,7 @@ export default function ProfileRiskSummaryScreen() {
                                         <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.preencherMedicacoesLimitacoesEEnfermidad', 'Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.')}</Text>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500] }]}>
-                                        {hasHealthInfo ? t('telas.ProfileRiskSummaryScreen.concluido2', 'Concluído') : "Recomendado"}
+                                        {hasHealthInfo ? t('telas.ProfileRiskSummaryScreen.concluido2', 'Concluído') : t('telas.ProfileRiskSummaryScreen.recomendado', 'Recomendado')}
                                     </Text>
                                 </View>
                             </View>

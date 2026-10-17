@@ -14,11 +14,12 @@ import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';
 import { Body, Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { tx } from '../utils/txFixo';
 
 const RELATION_OPTIONS = [
-    { key: 'morador', label: 'Morador Fixo' },
-    { key: 'frequentador', label: 'Visitante' },
-    { key: 'nenhum', label: 'Não Frequenta' },
+    { key: 'morador', get label() { return tx('telas.ResidenceLinksPicker.moradorFixo', 'Morador Fixo'); } },
+    { key: 'frequentador', get label() { return tx('telas.ResidenceLinksPicker.visitante', 'Visitante'); } },
+    { key: 'nenhum', get label() { return tx('telas.ResidenceLinksPicker.naoFrequenta', 'Não Frequenta'); } },
 ];
 
 export default function ResidenceLinksPicker({ residencesList, relationships, onChange }) {

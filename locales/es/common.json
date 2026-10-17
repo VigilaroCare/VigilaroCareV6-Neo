@@ -823,7 +823,7 @@
     "disclaimer": {
         "monitor": "Función auxiliar: no sustituye la supervisión de un adulto responsable.",
         "fall": "La detección usa los sensores del dispositivo y puede no identificar todas las caídas — o generar alertas falsas. Es una capa extra de protección, no un sustituto del acompañamiento.",
-        "sos": "El envío del SOS depende de que el dispositivo tenga señal y plan para SMS. Acuerde con sus contactos qué hacer al recibir una alerta. Ante un riesgo inmediato, llame al número de emergencias local.",
+        "sos": "El envío del SOS depende de que el dispositivo tenga señal y plan para SMS. Acuerde con sus contactos qué hacer al recibir una alerta. Ante un riesgo inmediato, llame a {{servico}} o a los bomberos ({{bombeiros}}).",
         "ia": "Este análisis fue generado por inteligencia artificial a partir de tu foto y puede contener errores. Comprueba el ambiente o la etiqueta antes de actuar. No sustituye un informe técnico ni una orientación médica."
     },
     "terms": {
@@ -2200,7 +2200,11 @@
             "informacoesObrigatorias": "Información Obligatoria",
             "informacoesPessoaisNomeEIdade": "Información Personal (Nombre y Edad)",
             "peloMenosUmContatoDeEmergencia": "Al menos un Contacto de Emergencia",
-            "salvarPerfil": "Guardar Perfil"
+            "salvarPerfil": "Guardar Perfil",
+            "alergiasESensibilidades": "Alergias y Sensibilidades",
+            "macho": "Macho",
+            "masculino": "Masculino",
+            "feminino": "Femenino"
         },
         "MedicalDisclaimerModal": {
             "emergenciaLigue": "En caso de emergencia médica, llame de inmediato a {{servico}} o acuda al hospital más cercano.",
@@ -2234,7 +2238,9 @@
             "entendi": "Entendido",
             "erro3": "Error",
             "falhaAoBuscarDadosDoProduto": "No se pudieron obtener los datos del producto. Inténtelo de nuevo.",
-            "riscoSDetectadoS": " riesgo(s) detectado(s)"
+            "riscoSDetectadoS": " riesgo(s) detectado(s)",
+            "servidorIndisponivelMsg": "El servicio de análisis no está disponible en este momento. Inténtelo de nuevo en unos minutos.",
+            "tempoEsgotado": "Tiempo agotado"
         },
         "SecretBriefingScreen": {
             "segureOBotao": "Mantenga pulsado el botón ",
@@ -2271,7 +2277,9 @@
             "selecioneOMeioDeTransporte": "Seleccione el medio de transporte",
             "selecioneADuracaoAproximada": "Seleccione la duración aproximada",
             "issoDesativaraOModoViagem": "Esto desactivará el Modo Viaje.",
-            "cancelar": "Cancelar"
+            "cancelar": "Cancelar",
+            "selecioneODestino": "Seleccione el destino",
+            "encerrar": "Finalizar"
         },
         "UpgradePremiumScreen": {
             "erro": "Error",
@@ -2284,7 +2292,10 @@
         },
         "BatteryMonitor": {
             "bateriaCritica": "🔴 Batería Crítica",
-            "entendi": "Entendido"
+            "entendi": "Entendido",
+            "bateriaBaixa": "🟡 Batería Baja",
+            "criticaMsg": "Su batería está al {{pct}}%. En una emergencia, es posible que no pueda usar el teléfono. Conecte el cargador de inmediato.\n\n💡 Consejo: Tenga siempre una linterna y una lista de contactos de emergencia en papel.",
+            "baixaMsg": "Su batería está al {{pct}}%. Le recomendamos cargar el dispositivo para garantizar el acceso a las funciones de emergencia de Vigilaro."
         },
         "DisclaimerModal": {
             "avisoImportante": "Aviso Importante",
@@ -2301,7 +2312,9 @@
             "algoDeuErrado": "Algo salió mal",
             "ocorreuUmProblemaInesperadoPorFavor": "Ocurrió un problema inesperado. Reinicie la aplicación para continuar.",
             "tentarNovamente": "Intentar de nuevo",
-            "reiniciarAplicativo": "Reiniciar Aplicación"
+            "reiniciarAplicativo": "Reiniciar Aplicación",
+            "a11yTentarNovamente": "Intentar de nuevo",
+            "a11yReiniciar": "Reiniciar aplicación"
         },
         "GlobalFloatingFooter": {
             "sos": "SOS"
@@ -2312,7 +2325,10 @@
             "modoCanhoto": "Modo Zurdo",
             "paraBotoesEControlesMaisAcessiveis": " para botones y controles más accesibles a su mano.",
             "manterPadrao": "Mantener Predeterminado",
-            "ativar": "Activar"
+            "ativar": "Activar",
+            "beneficio1": "Botones de acción más cerca del pulgar",
+            "beneficio2": "Menú y navegación optimizados",
+            "beneficio3": "Puede cambiarlo en cualquier momento"
         },
         "OfflineModeModal": {
             "modoOfflineAtivado": "Modo Sin Conexión Activado",
@@ -2330,10 +2346,14 @@
         },
         "PremiumGate": {
             "premium": "Premium",
-            "tocarParaDesbloquear": "Toque para desbloquear"
+            "tocarParaDesbloquear": "Toque para desbloquear",
+            "recursoPremium": "Función Premium"
         },
         "ResidenceLinksPicker": {
-            "vinculoComOsLocaisOndeMora": "VÍNCULO CON LOS LUGARES (DONDE VIVE / FRECUENTA)"
+            "vinculoComOsLocaisOndeMora": "VÍNCULO CON LOS LUGARES (DONDE VIVE / FRECUENTA)",
+            "moradorFixo": "Vive aquí",
+            "visitante": "Visitante",
+            "naoFrequenta": "No frecuenta"
         },
         "SafeFooter": {
             "inicio": "Inicio",
@@ -2354,7 +2374,8 @@
             "osDesenvolvedoresDoVigilaroCareNao": "Los desarrolladores de Vigilaro Care no se responsabilizan por daños, lesiones o pérdidas derivados del uso de la información proporcionada por la aplicación. La seguridad final del entorno y de las personas es responsabilidad del usuario.",
             "5InteligenciaArtificial": "5. Inteligencia Artificial",
             "oRecursoDeScannerIaUtiliza": "La función \"Escáner IA\" usa inteligencia artificial para identificar posibles riesgos. Esta tecnología puede fallar o cometer errores. Verifique siempre visualmente el entorno y use su propio criterio.",
-            "roleAteOFimParaAceitar": "Desplácese hasta el final para aceptar"
+            "roleAteOFimParaAceitar": "Desplácese hasta el final para aceptar",
+            "liEConcordo": "He Leído y Acepto"
         },
         "TriColorBar": {
             "nenhumItemRespondido": "Ningún ítem respondido",
@@ -2379,7 +2400,9 @@
             "verificacaoDeSeguranca": "VERIFICACIÓN DE SEGURIDAD",
             "sim": "SÍ",
             "nao": "NO",
-            "evite": "EVITE"
+            "evite": "EVITE",
+            "seguro": "Seguro",
+            "pctProtegido": "{{pct}}% protegido"
         },
         "ChecklistDetailScreen": {
             "erro": "Error"
@@ -2393,12 +2416,17 @@
             "prepareSuaCasa": "Prepare su casa",
             "fiqueAtentoAoVisitar": "Esté atento al visitar",
             "verificados": " verificados",
-            "prontoParaVisitar": "Listo para Visitar"
+            "prontoParaVisitar": "Listo para Visitar",
+            "recebendoVisita": "Recibiendo Visita",
+            "indoVisitar": "De Visita",
+            "ativarModoVisita": "Activar Modo Visita"
         },
         "OndeProtegerScreen": {
             "novaResidencia": "Nueva Vivienda",
             "cancelar": "Cancelar",
-            "pontosDeAtencao": " puntos de atención"
+            "pontosDeAtencao": " puntos de atención",
+            "desejaCriarNovoLocal": "¿Desea crear y mapear un nuevo lugar?",
+            "criar": "Crear"
         },
         "SafetyActionPlanScreen": {
             "critico": "CRÍTICO",
@@ -2409,15 +2437,27 @@
         },
         "DispositivosEletronicosReviewsScreen": {
             "itensToqueParaVerOReview": " artículos • Toque para ver la reseña completa",
-            "uso": "Uso "
+            "uso": "Uso ",
+            "riscoCritico": "Crítico",
+            "riscoAlto": "Alto",
+            "riscoMedio": "Medio",
+            "riscoBaixo": "Bajo"
         },
         "DispositivosProtecaoScreen": {
             "dispositivosToqueParaVerDetalhes": " dispositivos • Toque para ver detalles",
-            "uso": "Uso "
+            "uso": "Uso ",
+            "riscoCritico": "Crítico",
+            "riscoAlto": "Alto",
+            "riscoMedio": "Medio",
+            "riscoBaixo": "Bajo"
         },
         "EletrodomesticosReviewsScreen": {
             "itensToqueParaVerOReview": " artículos • Toque para ver la reseña completa",
-            "uso": "Uso "
+            "uso": "Uso ",
+            "riscoCritico": "Crítico",
+            "riscoAlto": "Alto",
+            "riscoMedio": "Medio",
+            "riscoBaixo": "Bajo"
         },
         "MicroArticleScreen": {
             "minDeLeitura": " min de lectura"
@@ -2429,7 +2469,16 @@
             "todos": "Todos ("
         },
         "SafetyReviewDetailScreen": {
-            "risco": "Riesgo "
+            "risco": "Riesgo ",
+            "riscoCritico": "Crítico",
+            "riscoAlto": "Alto",
+            "riscoMedio": "Medio",
+            "riscoBaixo": "Bajo",
+            "perfilBebes": "👶 Bebés",
+            "perfilCriancas": "🧒 Niños",
+            "perfilIdosos": "👴 Adultos mayores",
+            "perfilPets": "🐶 Mascotas",
+            "perfilTodos": "👥 Todos"
         },
         "UtensiliosDomesticosScreen": {
             "buscarUtensilioExFacasPanelas": "Buscar utensilio (ej.: cuchillos, ollas)",
@@ -2437,7 +2486,11 @@
         },
         "UtensiliosReviewsScreen": {
             "itensToqueParaVerOReview": " artículos • Toque para ver la reseña completa",
-            "uso": "Uso "
+            "uso": "Uso ",
+            "riscoCritico": "Crítico",
+            "riscoAlto": "Alto",
+            "riscoMedio": "Medio",
+            "riscoBaixo": "Bajo"
         },
         "EletrodomesticosScreen": {
             "trava": "Seguro"
@@ -2459,7 +2512,20 @@
             "sms": "SMS",
             "editar": "Editar",
             "excluir2": "Eliminar",
-            "suaCasa": "su casa"
+            "suaCasa": "su casa",
+            "contatosDeEmergencia": "Contactos de emergencia",
+            "contatosGerais": "Contactos generales de la vivienda",
+            "novoContato": "Nuevo contacto",
+            "atualizar": "Actualizar",
+            "tipos": {
+                "familiar": "Familiar",
+                "medico": "Médico",
+                "vizinho": "Vecino",
+                "amigo": "Amigo",
+                "outro": "Otro",
+                "veterinario": "Veterinario"
+            },
+            "contatosDe": "Contactos de {{nome}}"
         },
         "EmergenciaPetScreen": {
             "ligar": "LLAMAR",
@@ -2469,7 +2535,10 @@
         },
         "EncerrarSituacaoScreen": {
             "encerrar": "Cerrar ",
-            "restaurarSegurancaDoLar": "Restaurar la seguridad del hogar"
+            "restaurarSegurancaDoLar": "Restaurar la seguridad del hogar",
+            "posResiduos": "Residuos y herramientas recogidos",
+            "posProtetores": "Protectores reinstalados",
+            "posVentilacao": "Áreas ventiladas y limpias"
         },
         "KitEmergenciaScreen": {
             "de": " de ",
@@ -2488,14 +2557,28 @@
         },
         "ModoSituacaoAtivaScreen": {
             "deDuracao": " de duración",
-            "riscoTemporarioDetectadoSigaAsRecomendac": "Riesgo temporal detectado — siga las recomendaciones."
+            "riscoTemporarioDetectadoSigaAsRecomendac": "Riesgo temporal detectado — siga las recomendaciones.",
+            "modoReformaAtivo": "Modo Reforma activo",
+            "situacaoTemporariaAtiva": "Situación temporal activa"
         },
         "PlanoIncendioScreen": {
             "voceTemMenosDe3Minutos": "Tiene menos de 3 minutos para salir en un incendio. Tener un plan puede salvar a su familia.",
             "3min": "3min",
             "diariaVerificarExtintores": "• DIARIA: revisar extintores",
             "dinamicaAtualizarPlano": "• DINÁMICA: actualizar el plan",
-            "duradouraTreinarRegularmente": "• DURADERA: practicar con regularidad"
+            "duradouraTreinarRegularmente": "• DURADERA: practicar con regularidad",
+            "prevencao": "Prevención",
+            "prevencaoSub": "Acciones para evitar que se inicie un incendio",
+            "acao": "Acción",
+            "acaoSub": "Cómo actuar en el primer minuto",
+            "planoFuga": "Plan de evacuación",
+            "planoFugaSub": "Estrategia de evacuación en familia",
+            "fuga1": "Dibuje el plano de la casa y marque 2 salidas por habitación.",
+            "fuga2": "ACUERDEN UN PUNTO DE ENCUENTRO seguro fuera de la casa (ej.: un poste, un árbol vecino).",
+            "fuga3": "Si hay humo: AVANCE A GATAS. El aire es más limpio y fresco cerca del suelo.",
+            "fuga4": "Toque la puerta con el dorso de la mano antes de abrirla. Si está caliente, NO LA ABRA.",
+            "fuga5": "Si su ropa se prende fuego: DETÉNGASE, TÍRESE AL SUELO y RUEDE.",
+            "tagPlano": "Plan contra Incendios"
         },
         "SOSEmergencyModeScreenNeo": {
             "adicioneContatosDeEmergenciaParaUsar": "Agregue contactos de emergencia para usar el SOS.",
@@ -2526,13 +2609,26 @@
             "nomeExFilhaAna": "Nombre (ej.: hija Ana)",
             "telefone": "Teléfono",
             "cancelar": "Cancelar",
-            "salvar": "Guardar"
+            "salvar": "Guardar",
+            "ligacao": "Llamada",
+            "naoAbriuDiscador": "No se pudo abrir el marcador en este dispositivo.",
+            "semContatos": "Sin contactos",
+            "copiado": "Copiado",
+            "fichaMedicaEmergencia": "Ficha Médica de Emergencia",
+            "contatos": "Contactos",
+            "mensagemWhatsapp": "ALERTA VIGILARO CARE: ¡Necesito ayuda urgente!",
+            "estouEm": "Estoy en:",
+            "sosAjuda": "¡SOS! Necesito ayuda urgente.",
+            "sosRodape": "Vigilaro Care - confirme el envío en la app de mensajes",
+            "smsIndisponivel": "SMS no disponible"
         },
         "EPIDomesticoScreen": {
-            "toqueParaVerDetalhes": " • Toque para ver detalles"
+            "toqueParaVerDetalhes": " • Toque para ver detalles",
+            "epiEssencial": "EPI esencial para esta actividad."
         },
         "GenericCategoryScreen": {
-            "toqueParaSaberMais": "Toque para saber más."
+            "toqueParaSaberMais": "Toque para saber más.",
+            "categoriaDesconhecida": "Categoría Desconocida"
         },
         "MedicationDoseHistoryScreen": {
             "diasAnalisados": " días analizados",
@@ -2555,7 +2651,9 @@
             "toqueEmTomeiAgoraSempreQue": "Toque en 'La tomé ahora' cada vez que tome el medicamento.",
             "doseDas": "Dosis de las ",
             "removerRegistro2": "Eliminar registro",
-            "esteHistoricoEApenasUmRegistro": "Este historial es solo un registro personal. No constituye una historia clínica. Consulte siempre a su médico sobre su medicación."
+            "esteHistoricoEApenasUmRegistro": "Este historial es solo un registro personal. No constituye una historia clínica. Consulte siempre a su médico sobre su medicación.",
+            "a11yRegistrarAgora": "Registrar dosis tomada ahora",
+            "nenhumaDose": "Ninguna dosis registrada"
         },
         "MedicationReminderFormScreen": {
             "lembretesDeMedicamentos": "Recordatorios de Medicamentos",
@@ -2602,7 +2700,13 @@
             "relacaoComOAssistido": "Relación con la persona asistida",
             "canalDeNotificacao": "Canal de notificación",
             "salvarAlteracoes": "Guardar cambios",
-            "esteRecursoEUmAssistenteDe": "Este recurso es un asistente de organización personal y no sustituye la orientación de su médico o farmacéutico. Consulte siempre a un profesional de la salud sobre medicamentos."
+            "esteRecursoEUmAssistenteDe": "Este recurso es un asistente de organización personal y no sustituye la orientación de su médico o farmacéutico. Consulte siempre a un profesional de la salud sobre medicamentos.",
+            "horarioJaAdicionado": "Horario ya agregado",
+            "informeNome": "Indique el nombre del medicamento",
+            "adicioneHorario": "Agregue al menos un horario",
+            "canalAmbos": "Ambos",
+            "novoLembrete": "Nuevo recordatorio",
+            "criarLembrete": "Crear recordatorio"
         },
         "MedicationRemindersScreen": {
             "para": "Para: ",
@@ -2632,7 +2736,23 @@
             "toqueEmParaAdicionarSeuPrimeiro": "Toque en + para agregar su primer recordatorio de medicamento.",
             "cadastrado": " registrado",
             "adicionarLembrete2": "Agregar recordatorio",
-            "asNotificacoesDependemDasPermissoesE": "Las notificaciones dependen de los permisos y la configuración de su dispositivo. Pueden no funcionar en modo \"No molestar\" o con batería baja. En iOS el límite es de 64 notificaciones programadas."
+            "asNotificacoesDependemDasPermissoesE": "Las notificaciones dependen de los permisos y la configuración de su dispositivo. Pueden no funcionar en modo \"No molestar\" o con batería baja. En iOS el límite es de 64 notificaciones programadas.",
+            "statusAguardando": "Esperando",
+            "statusConfirmado": "Confirmado",
+            "statusRecusado": "Rechazado",
+            "todosOsDias": "Todos los días",
+            "diaDom": "Dom",
+            "diaSeg": "Lun",
+            "diaTer": "Mar",
+            "diaQua": "Mié",
+            "diaQui": "Jue",
+            "diaSex": "Vie",
+            "diaSab": "Sáb",
+            "a11yRegistrar": "Registrar dosis tomada",
+            "limiteLembretes": "Se alcanzó el límite de recordatorios activos.",
+            "naoAtualizou": "No se pudo actualizar el recordatorio.",
+            "adiarLembrete": "Posponer recordatorio",
+            "nenhumLembrete": "Aún no hay recordatorios"
         },
         "MinhaSaudeScreen": {
             "fichaMedica": "Ficha médica",
@@ -2647,7 +2767,9 @@
             "gerenciarLembretesDeMedicamentos": "Gestionar recordatorios de medicamentos",
             "gerenciarLembretes": "Gestionar recordatorios",
             "outrosPerfisDaCasa": "Otros perfiles de la casa",
-            "compartilharFichaDeEmergencia": "Compartir Ficha de Emergencia"
+            "compartilharFichaDeEmergencia": "Compartir Ficha de Emergencia",
+            "necessidadesEspeciais": "Necesidades Especiales",
+            "perfil": "Perfil"
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nada registrado",
@@ -2658,10 +2780,25 @@
             "listaInformativaSemAlarmesOuLembretes": "Lista informativa — sin alarmas ni recordatorios activos.",
             "compartilharFichaDoPet": "Compartir Ficha de la Mascota",
             "animaisDaCasa": "Animales de la casa",
-            "cuidadoAtivo": "Cuidado Activo"
+            "cuidadoAtivo": "Cuidado Activo",
+            "idadeAnos_one": "{{count}} año",
+            "idadeAnos_other": "{{count}} años",
+            "castrado": "Castrado",
+            "fichaTitulo": "Ficha de Salud de la Mascota — {{nome}}",
+            "fichaDe": "Ficha de {{nome}}",
+            "necessidadesEspeciais": "Necesidades Especiales",
+            "geradoPor": "Generado por VigilaroCare — Prevención Familiar"
         },
         "InfoRotulosResultScreen": {
-            "fontePubchemNihNlm": "Fuente: PubChem (NIH/NLM)"
+            "fontePubchemNihNlm": "Fuente: PubChem (NIH/NLM)",
+            "seTocarPele": "Si TOCA LA PIEL",
+            "seCairOlhos": "Si CAE EN LOS OJOS",
+            "seQueimar": "Si QUEMA",
+            "seReacao": "Si hay REACCIÓN ALÉRGICA",
+            "sePetIngerir": "Si una MASCOTA lo INGIERE",
+            "seHumanoIngerir": "Si una PERSONA lo INGIERE",
+            "fonteLocal": "Base local",
+            "fonteNaoEncontrado": "No encontrado"
         },
         "IntroSafetyMenuScreen": {
             "introducaoASeguranca": "Introducción a la Seguridad",
@@ -2738,11 +2875,13 @@
             "quemVamosProteger": "¿A quién vamos a proteger?",
             "marqueQuemMoraOuFrequentaEsta": "Marque quién vive o frecuenta esta vivienda. Puede agregar personas y mascotas, y usar los mismos perfiles en otras viviendas (casa de playa, casa de campo…).",
             "naoMora": "no vive aquí",
-            "moradorFixo": "Residente",
+            "moradorFixo": "Vive Aquí",
             "visitanteEventual": "Visitante Ocasional",
             "nenhumPerfilAindaAdicioneUmMorador": "Aún no hay perfiles. Agregue un residente o mascota abajo.",
             "adicionarMoradorVisitante": "Agregar Residente / Visitante",
-            "adicionarPet": "Agregar Mascota"
+            "adicionarPet": "Agregar Mascota",
+            "semData": "Sin fecha",
+            "naoVinculado": "No vinculado a esta vivienda"
         },
         "NewHomeWizardScreenNeo": {
             "voceVoltaDeOndeParouPelo": "Puede retomar donde lo dejó desde el menú \"Su mapa sensible\".",
@@ -2768,7 +2907,13 @@
             "proximoAmbientes": "Siguiente: ambientes",
             "proximoQuemMora": "Siguiente: quién vive aquí",
             "concluirMapaSensivel": "Finalizar mapa sensible",
-            "concluirMapeamento": "Finalizar mapeo"
+            "concluirMapeamento": "Finalizar mapeo",
+            "guardado": "Guardado",
+            "pronto": "¡Listo!",
+            "mapeamentoConcluido": "¡Mapeo completado!",
+            "mapaVivo": "Su mapa sensible está activo. A partir de aquí, cuidamos juntos.",
+            "residenciaConfigurada": "Esta vivienda se configuró correctamente.",
+            "acessarPainel": "Ir al panel"
         },
         "PetFoodSafetyScreen": {
             "risco": "RIESGO "
@@ -2806,7 +2951,8 @@
             "preencherFichaDeSaude": "Completar Ficha de Salud",
             "analisePersonalizadaIndisponivelOfflineC": "El análisis personalizado no está disponible sin conexión. Conéctese a internet para generarlo.",
             "naoFoiPossivelCarregarAAnalise": "No se pudo cargar el análisis inteligente.",
-            "tentarNovamente": "Intentar de nuevo"
+            "tentarNovamente": "Intentar de nuevo",
+            "recomendado": "Recomendado"
         },
         "EscolaSeguraReportScreen": {
             "escolaSegura": "Escuela segura",
@@ -2823,6 +2969,89 @@
             "naoEncontrado": "' no encontrado.",
             "atencao": "Atención",
             "respondaTodasAsPerguntasParaGarantir": "Responda todas las preguntas para garantizar su seguridad."
+        },
+        "EmergenciaRapidaScreen": {
+            "engasgo": "ATRAGANTAMIENTO",
+            "engasgo1": "1. Colóquese detrás de la persona.",
+            "engasgo2": "2. Rodee su cintura con los brazos.",
+            "engasgo3": "3. Tire con fuerza hacia adentro y hacia arriba (maniobra de Heimlich).",
+            "parada": "PARO CARDÍACO",
+            "parada1": "1. Acueste a la persona sobre un suelo firme.",
+            "parada2": "2. Coloque las manos en el centro del pecho.",
+            "parada3": "3. Comprima fuerte y rápido (de 100 a 120 veces por minuto) sin parar.",
+            "queda": "CAÍDA GRAVE",
+            "queda1": "1. ¡No intente levantar a la persona!",
+            "queda2": "2. Detenga cualquier sangrado con un paño limpio.",
+            "queda3": "3. Tranquilícela y espere la ayuda.",
+            "intoxicacao": "INTOXICACIÓN",
+            "intoxicacao1": "1. ¡NO provoque el vómito!",
+            "intoxicacao2": "2. Identifique el producto o medicamento.",
+            "intoxicacao3": "3. Llame de inmediato a {{POISON_CONTROL}}.",
+            "incendio": "INCENDIO",
+            "incendio1": "1. Salga del lugar lo más rápido posible.",
+            "incendio2": "2. Si hay humo, avance a gatas.",
+            "incendio3": "3. Cierre las puertas detrás de usted para frenar el fuego."
+        },
+        "PrimeirosSocorrosScreen": {
+            "tagPets": "Mascotas",
+            "tagPessoas": "Personas"
+        },
+        "InspecaoRetornoScreen": {
+            "varredura": "Revisión Visual",
+            "camas": "¿Miró debajo de TODAS las camas?",
+            "ganchos": "¿Revisó los ganchos y detrás de las puertas del baño?",
+            "gavetas": "¿Abrió todos los cajones y armarios?",
+            "cofre": "¿Caja fuerte vacía y abierta?",
+            "tomadas": "¿Ningún cargador olvidado en los enchufes?",
+            "devolucoes": "Devoluciones y Pagos",
+            "chaves": "Llaves / tarjetas de acceso devueltas",
+            "frigobar": "Consumo del minibar revisado y pagado",
+            "toalhas": "Toallas de piscina/playa devueltas",
+            "alugados": "Equipos alquilados devueltos",
+            "bagagem": "Cierre del Equipaje",
+            "liquidos": "Líquidos bien cerrados (riesgo de fuga en el vuelo)",
+            "peso": "Peso estimado OK para el vuelo (cuidado con las compras)",
+            "roupas": "Ropa sucia separada en bolsas aparte",
+            "tags": "Etiquetas de identificación en las maletas"
+        },
+        "RelatoriosScreenNeo": {
+            "semItens": "Sin ítems",
+            "itensContagem": "{{feitos}}/{{total}} Ítems"
+        },
+        "RenovationTypeScreen": {
+            "tipoCasa": "Casa / Departamento",
+            "tipoPredio": "Edificio / Condominio",
+            "tipoRural": "Finca / Zona Rural"
+        },
+        "KnowledgeHubScreen": {
+            "socorrosCurto": "Auxilios"
         }
+    },
+    "fichaMedica": {
+        "avisoLegal": "Información declarada por el propio usuario en la aplicación Vigilaro Care. No constituye historia clínica, informe ni receta médica, y no ha sido verificada por un profesional de la salud.",
+        "andar": "piso {{andar}}",
+        "naoInformado": "No informado",
+        "naoInformadoMinusculo": "no informado",
+        "nenhuma": "ninguna",
+        "tituloTexto": "FICHA MÉDICA DE EMERGENCIA",
+        "tipoSanguineoCaixaAlta": "GRUPO SANGUÍNEO",
+        "tipoSanguineo": "Grupo sanguíneo",
+        "alergias": "Alergias",
+        "condicoesMedicas": "Condiciones médicas",
+        "medicamentosEmUso": "Medicamentos en uso",
+        "necessidadesEspeciais": "Necesidades especiales",
+        "idade": "Edad",
+        "anos": "{{n}} años",
+        "endereco": "Dirección",
+        "localizacao": "Ubicación",
+        "localizacaoNaGeracao": "Ubicación en el momento de la generación",
+        "contatosEmergencia": "Contactos de emergencia",
+        "contato": "Contacto",
+        "nenhumContato": "No hay contactos de emergencia registrados.",
+        "nenhumaDeclarada": "Ninguna declarada",
+        "nenhumDeclarado": "Ninguno declarado.",
+        "geradaEm": "Generada el {{data}}",
+        "fichaMedica": "Ficha médica",
+        "fichaMedicaEmergencia": "Ficha médica de emergencia"
     }
 }

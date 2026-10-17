@@ -92,7 +92,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
             icon: isPet ? 'Pet' : 'Health',
             emoji: item.emoji,
             color: THEME_COLOR,
-            tags: [isPet ? 'Pets' : 'Pessoas'],
+            tags: [isPet ? t('telas.PrimeirosSocorrosScreen.tagPets', 'Pets') : t('telas.PrimeirosSocorrosScreen.tagPessoas', 'Pessoas')],
             imagemUrl: item.imagem || item.imagemUrl,
         };
 

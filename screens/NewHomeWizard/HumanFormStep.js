@@ -8,6 +8,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { H2, Body, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
 import { GENDERS, BOND_TYPES, SPECIAL_CONDITIONS, formatDOB } from '../../data/onboarding_data';
+import { t_field } from '../../utils/getLocalizedField';
 import { Chip, NeoInput } from './components';
 import { ss } from './styles';
 import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
@@ -65,14 +66,14 @@ export default function HumanFormStep({
                 <Caption style={{ marginBottom: 8, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.genero', 'Gênero')}</Caption>
                 <View style={ss.chipRow}>
                     {GENDERS.map(g => (
-                        <Chip key={g.id} label={g.label} selected={formGender === g.id} onPress={() => setFormGender(g.id)} />
+                        <Chip key={g.id} label={t_field(g, 'label')} selected={formGender === g.id} onPress={() => setFormGender(g.id)} />
                     ))}
                 </View>
 
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.vinculo', 'Vínculo')}</Caption>
                 <View style={ss.chipRow}>
                     {BOND_TYPES.map(b => (
-                        <Chip key={b.id} label={b.label} selected={formBond === b.id} onPress={() => setFormBond(b.id)} />
+                        <Chip key={b.id} label={t_field(b, 'label')} selected={formBond === b.id} onPress={() => setFormBond(b.id)} />
                     ))}
                 </View>
 
@@ -85,7 +86,7 @@ export default function HumanFormStep({
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.condicoesEspeciaisOpcional', 'Condições Especiais (opcional)')}</Caption>
                 <View style={ss.chipRow}>
                     {SPECIAL_CONDITIONS.map(c => (
-                        <Chip key={c.id} label={c.label} selected={formConditions.includes(c.id)} onPress={() => onToggleArray(formConditions, setFormConditions, c.id)} />
+                        <Chip key={c.id} label={t_field(c, 'label')} selected={formConditions.includes(c.id)} onPress={() => onToggleArray(formConditions, setFormConditions, c.id)} />
                     ))}
                 </View>
 

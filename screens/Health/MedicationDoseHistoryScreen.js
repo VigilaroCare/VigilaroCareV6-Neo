@@ -176,7 +176,7 @@ export default function MedicationDoseHistoryScreen() {
                         <TouchableOpacity
                             style={hStyles.tomeiBtn}
                             onPress={handleRegistrar}
-                            accessibilityLabel="Registrar dose tomada agora"
+                            accessibilityLabel={tx('telas.MedicationDoseHistoryScreen.a11yRegistrarAgora', 'Registrar dose tomada agora')}
                         >
                             <NeoIcon name="TickCircle" variant="Bold" size={22} color="#FFF" />
                             <Text style={hStyles.tomeiBtnText}>{tx('telas.MedicationDoseHistoryScreen.tomeiAgora', 'Tomei agora')}</Text>
@@ -215,7 +215,7 @@ export default function MedicationDoseHistoryScreen() {
                         {historico.length === 0 ? (
                             <EmptyState
                                 icon="Clock"
-                                title="Nenhuma dose registrada"
+                                title={tx('telas.MedicationDoseHistoryScreen.nenhumaDose', 'Nenhuma dose registrada')}
                                 description={tx('telas.MedicationDoseHistoryScreen.toqueEmTomeiAgoraSempreQue', 'Toque em \'Tomei agora\' sempre que tomar o medicamento.')}
                             />
                         ) : (

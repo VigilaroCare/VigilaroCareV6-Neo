@@ -254,10 +254,14 @@ export default function ScannerScreen({ navigation, route }) {
         if (__DEV__) console.error('[Scanner] ❌ Proxy offline:', proxyErr.message);
         NeoAlert.alert(
           t('telas.ScannerScreen.servidorIndisponivel', 'Servidor indisponível'),
-          'O servidor de análise (proxy) não está acessível.\n\n' +
-          'Verifique se o backend proxy está rodando:\n' +
-          `📍 ${Config.VIGILARO_PROXY_URL}\n\n` +
-          'Execute: node server.js na pasta backend-proxy',
+          // Endereço e instrução técnica só em desenvolvimento: em produção o
+          // usuário via "node server.js na pasta backend-proxy" e a URL do proxy.
+          __DEV__
+            ? 'O servidor de análise (proxy) não está acessível.\n\n' +
+              'Verifique se o backend proxy está rodando:\n' +
+              `📍 ${Config.VIGILARO_PROXY_URL}\n\n` +
+              'Execute: node server.js na pasta backend-proxy'
+            : t('telas.ScannerScreen.servidorIndisponivelMsg', 'O serviço de análise está fora do ar no momento. Tente novamente em alguns minutos.'),
         );
         setIsAnalyzing(false);
         return;
@@ -299,7 +303,7 @@ export default function ScannerScreen({ navigation, route }) {
       // Mensagem específica por tipo de erro
       if (error.name === 'AbortError') {
         NeoAlert.alert(
-          'Tempo esgotado',
+          t('telas.ScannerScreen.tempoEsgotado', 'Tempo esgotado'),
           t('telas.ScannerScreen.aAnaliseDemorouMaisQueO', 'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes'),
         );
       } else if (error.message?.includes('Network') || error.message?.includes('fetch')) {

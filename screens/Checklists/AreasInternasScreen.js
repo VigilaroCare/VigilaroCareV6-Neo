@@ -373,7 +373,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                 isComplete && { color: Neo.colors.feedback.success, fontWeight: '700' },
               ]}
             >
-              {isComplete ? 'Seguro' : `${Math.round(progress * 100)}% protegido`}
+              {isComplete ? t('telas.AreasInternasScreen.seguro', 'Seguro') : t('telas.AreasInternasScreen.pctProtegido', { pct: Math.round(progress * 100), defaultValue: '{{pct}}% protegido' })}
             </Text>
 
             <View style={s.progressTrack}>

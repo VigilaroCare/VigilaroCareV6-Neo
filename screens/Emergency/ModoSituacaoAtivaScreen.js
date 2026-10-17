@@ -19,7 +19,7 @@ export default function ModoSituacaoAtivaScreen({ route, navigation }) {
     navigation.navigate('EncerrarSituacao', { type, durationDays, tempIndex });
   };
 
-  const tituloModo = type === 'reforma' ? 'Modo Reforma ativo' : 'Situação temporária ativa';
+  const tituloModo = type === 'reforma' ? t('telas.ModoSituacaoAtivaScreen.modoReformaAtivo', 'Modo Reforma ativo') : t('telas.ModoSituacaoAtivaScreen.situacaoTemporariaAtiva', 'Situação temporária ativa');
 
   return (
     <AppBackground>

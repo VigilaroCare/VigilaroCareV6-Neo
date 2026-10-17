@@ -39,14 +39,14 @@ function RemoteBadge({ status }) {
     const s = MedicationReminderService.constructor.optinStatusIcon
         ? MedicationReminderService.constructor.optinStatusIcon(status)
         : MedicationReminderService.__proto__.constructor.optinStatusIcon?.(status)
-        ?? { icon: 'Clock', color: CLR.warning, label: 'Aguardando' };
+        ?? { icon: 'Clock', color: CLR.warning, label: tx('telas.MedicationRemindersScreen.statusAguardando', 'Aguardando') };
 
     // Static call via import helper
     const info = (() => {
         switch (status) {
-            case 'aceito':   return { icon: 'TickCircle',  color: CLR.success, label: 'Confirmado' };
-            case 'recusado': return { icon: 'CloseCircle', color: CLR.danger,  label: 'Recusado' };
-            default:         return { icon: 'Clock',        color: CLR.warning, label: 'Aguardando' };
+            case 'aceito':   return { icon: 'TickCircle',  color: CLR.success, label: tx('telas.MedicationRemindersScreen.statusConfirmado', 'Confirmado') };
+            case 'recusado': return { icon: 'CloseCircle', color: CLR.danger,  label: tx('telas.MedicationRemindersScreen.statusRecusado', 'Recusado') };
+            default:         return { icon: 'Clock',        color: CLR.warning, label: tx('telas.MedicationRemindersScreen.statusAguardando', 'Aguardando') };
         }
     })();
 
@@ -63,8 +63,8 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
     const horarios = reminder.horarios?.join(' · ') || '—';
 
     const dias = (() => {
-        if (!reminder.diasSemana?.length || reminder.diasSemana.length === 7) return 'Todos os dias';
-        const map = { 1: 'Dom', 2: 'Seg', 3: 'Ter', 4: 'Qua', 5: 'Qui', 6: 'Sex', 7: 'Sáb' };
+        if (!reminder.diasSemana?.length || reminder.diasSemana.length === 7) return tx('telas.MedicationRemindersScreen.todosOsDias', 'Todos os dias');
+        const map = { 1: tx('telas.MedicationRemindersScreen.diaDom', 'Dom'), 2: tx('telas.MedicationRemindersScreen.diaSeg', 'Seg'), 3: tx('telas.MedicationRemindersScreen.diaTer', 'Ter'), 4: tx('telas.MedicationRemindersScreen.diaQua', 'Qua'), 5: tx('telas.MedicationRemindersScreen.diaQui', 'Qui'), 6: tx('telas.MedicationRemindersScreen.diaSex', 'Sex'), 7: tx('telas.MedicationRemindersScreen.diaSab', 'Sáb') };
         return reminder.diasSemana.map(d => map[d]).join(', ');
     })();
 
@@ -130,7 +130,7 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
                 <TappablePressable
                     style={rStyles.tomeiBtn}
                     onPress={() => onTomei(reminder)}
-                    accessibilityLabel="Registrar dose tomada"
+                    accessibilityLabel={tx('telas.MedicationRemindersScreen.a11yRegistrar', 'Registrar dose tomada')}
                 >
                     <NeoIcon name="TickCircle" variant="Bold" size={16} color="#FFF" />
                     <Small style={rStyles.tomeiBtnText}>{tx('telas.MedicationRemindersScreen.tomei', 'Tomei')}</Small>
@@ -208,7 +208,7 @@ export default function MedicationRemindersScreen() {
                 prev.map(r => r.id === id ? { ...r, ativo: !r.ativo } : r)
             );
         } catch (e) {
-            Alert.alert(tx('telas.MedicationRemindersScreen.erro', 'Erro'), e.message === 'LIMIT_MAX_LEMBRETES' ? 'Limite de lembretes ativos atingido.' : 'Não foi possível atualizar o lembrete.');
+            Alert.alert(tx('telas.MedicationRemindersScreen.erro', 'Erro'), e.message === 'LIMIT_MAX_LEMBRETES' ? tx('telas.MedicationRemindersScreen.limiteLembretes', 'Limite de lembretes ativos atingido.') : tx('telas.MedicationRemindersScreen.naoAtualizou', 'Não foi possível atualizar o lembrete.'));
         }
     };
 
@@ -246,7 +246,7 @@ export default function MedicationRemindersScreen() {
 
     const handleSnooze = guard('snooze', async (reminder) => {
         Alert.alert(
-            'Adiar lembrete',
+            tx('telas.MedicationRemindersScreen.adiarLembrete', 'Adiar lembrete'),
             'Por quantos minutos deseja adiar?',
             [
                 { text: tx('telas.MedicationRemindersScreen.cancelar', 'Cancelar'), style: 'cancel' },
@@ -333,9 +333,9 @@ export default function MedicationRemindersScreen() {
                 ) : reminders.length === 0 ? (
                     <EmptyState
                         icon="MedicalSquare"
-                        title="Nenhum lembrete ainda"
+                        title={tx('telas.MedicationRemindersScreen.nenhumLembrete', 'Nenhum lembrete ainda')}
                         description={tx('telas.MedicationRemindersScreen.toqueEmParaAdicionarSeuPrimeiro', 'Toque em + para adicionar seu primeiro lembrete de medicamento.')}
-                        cta={{ label: 'Adicionar lembrete', onPress: handleAdd, color: CLR.pill }}
+                        cta={{ label: tx('telas.MedicationRemindersScreen.adicionarLembrete', 'Adicionar lembrete'), onPress: handleAdd, color: CLR.pill }}
                     />
                 ) : (
                     <ScrollView

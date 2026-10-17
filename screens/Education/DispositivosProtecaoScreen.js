@@ -19,6 +19,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
 import { DISPOSITIVOS_PROTECAO } from '../../data/dispositivos_protecao';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { tx } from '../../utils/txFixo';
 
 const RISK_COLORS = {
     critico: '#D32F2F', // DS: data-level color (severity)
@@ -28,10 +29,10 @@ const RISK_COLORS = {
 };
 
 const RISK_LABELS = {
-    critico: 'Crítico',
-    alto: 'Alto',
-    medio: 'Médio',
-    baixo: 'Baixo',
+    get critico() { return tx('telas.DispositivosProtecaoScreen.riscoCritico', 'Crítico'); },
+    get alto() { return tx('telas.DispositivosProtecaoScreen.riscoAlto', 'Alto'); },
+    get medio() { return tx('telas.DispositivosProtecaoScreen.riscoMedio', 'Médio'); },
+    get baixo() { return tx('telas.DispositivosProtecaoScreen.riscoBaixo', 'Baixo'); },
 };
 
 const RISK_BG = {

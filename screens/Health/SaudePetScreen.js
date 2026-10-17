@@ -14,6 +14,8 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import { rotuloOpcaoPerfil } from '../../data/opcoesPerfil';
+import { PET_SPECIES, PET_SIZES, rotuloOnboarding } from '../../data/onboarding_data';
 import EmptyState from '../../components/EmptyState';
 import { SkeletonCard } from '../../components/SkeletonLoader';
 
@@ -105,11 +107,11 @@ export default function SaudePetScreen() {
 
     const petMeta = (p) => {
         const idade = p.dataNascimento ? ProfileService.calcularIdade(p.dataNascimento) : null;
-        const porteMap = { pequeno: 'Pequeno', medio: 'Médio', grande: 'Grande' };
+        // especie e porte são gravados como id ('cao', 'medio'): exibe o rótulo.
         return [
-            p.especie, p.raca,
-            p.porte ? (porteMap[p.porte] || p.porte) : null,
-            idade != null ? `${idade} ${idade === 1 ? 'ano' : 'anos'}` : null,
+            p.especie ? rotuloOnboarding(PET_SPECIES, p.especie) : null, p.raca,
+            p.porte ? rotuloOnboarding(PET_SIZES, p.porte) : null,
+            idade != null ? t('telas.SaudePetScreen.idadeAnos', { count: idade, defaultValue: idade === 1 ? '{{count}} ano' : '{{count}} anos' }) : null,
         ].filter(Boolean).join(' · ');
     };
 
@@ -129,23 +131,24 @@ export default function SaudePetScreen() {
                 />
             );
         }
-        const condicoes = asList(pet.condicoesMedicas);
-        const alergias = asList(pet.alergias);
+        const condicoes = asList(pet.condicoesMedicas).map(rotuloOpcaoPerfil);
+        const alergias = asList(pet.alergias).map(rotuloOpcaoPerfil);
         const medicamentos = asList(pet.medicamentosEmUso);
-        const necessidades = asList(pet.necessidadesEspeciais);
-        const meta = [petMeta(pet), pet.castrado ? 'Castrado' : null].filter(Boolean).join(' · ');
+        const necessidades = asList(pet.necessidadesEspeciais).map(rotuloOpcaoPerfil);
+        const meta = [petMeta(pet), pet.castrado ? t('telas.SaudePetScreen.castrado', 'Castrado') : null].filter(Boolean).join(' · ');
 
         const handleShare = async () => {
             const fmt = (label, arr) => `*${label}:*\n${arr.length ? arr.join(', ') : '—'}`;
-            const msg = `*Ficha de Saúde do Pet — ${pet.nome || 'Pet'} (VigilaroCare)*\n\n` +
+            const nomePet = pet.nome || 'Pet';
+            const msg = `*${t('telas.SaudePetScreen.fichaTitulo', { nome: nomePet, defaultValue: 'Ficha de Saúde do Pet — {{nome}}' })} (VigilaroCare)*\n\n` +
                 (meta ? `${meta}\n\n` : '') +
-                fmt('Condições Médicas', condicoes) + `\n\n` +
-                fmt('Alergias e Restrições', alergias) + `\n\n` +
-                fmt('Medicamentos em Uso', medicamentos) + `\n\n` +
-                fmt('Necessidades Especiais', necessidades) + `\n\n` +
-                `Gerado por VigilaroCare — Prevenção Familiar`;
+                fmt(t('telas.SaudePetScreen.condicoesMedicas', 'Condições Médicas'), condicoes) + `\n\n` +
+                fmt(t('telas.SaudePetScreen.alergiasERestricoes', 'Alergias e Restrições'), alergias) + `\n\n` +
+                fmt(t('telas.SaudePetScreen.medicamentosEmUso', 'Medicamentos em Uso'), medicamentos) + `\n\n` +
+                fmt(t('telas.SaudePetScreen.necessidadesEspeciais', 'Necessidades Especiais'), necessidades) + `\n\n` +
+                t('telas.SaudePetScreen.geradoPor', 'Gerado por VigilaroCare — Prevenção Familiar');
             try {
-                await Share.share({ message: msg, title: `Ficha de ${pet.nome || 'Pet'}` });
+                await Share.share({ message: msg, title: t('telas.SaudePetScreen.fichaDe', { nome: nomePet, defaultValue: 'Ficha de {{nome}}' }) });
             } catch (e) {
                 if (__DEV__) console.error('[SaudePet] share', e);
             }
@@ -165,7 +168,7 @@ export default function SaudePetScreen() {
                     {renderChips(medicamentos, HUE.sky)}
                     <Body style={s.hintText}>{t('telas.SaudePetScreen.listaInformativaSemAlarmesOuLembretes', 'Lista informativa — sem alarmes ou lembretes ativos.')}</Body>
                 </Section>
-                <Section icon="Wheelchair" color={Neo.colors.primary[600]} title="Necessidades Especiais">
+                <Section icon="Wheelchair" color={Neo.colors.primary[600]} title={t('telas.SaudePetScreen.necessidadesEspeciais', 'Necessidades Especiais')}>
                     {renderChips(necessidades, Neo.colors.primary[600])}
                 </Section>
 

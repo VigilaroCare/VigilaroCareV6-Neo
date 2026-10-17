@@ -8,19 +8,14 @@ import NeoIcon from '../../components/NeoIcon';
 import { H2, Body, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
 import { PET_SPECIES, PET_SIZES } from '../../data/onboarding_data';
+import { t_field } from '../../utils/getLocalizedField';
 import { Chip, NeoInput } from './components';
 import { ss } from './styles';
 import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
+import { CONDICOES_PET as PET_CONDITIONS, rotuloOpcao } from '../../data/opcoesPerfil';
 
 const C = DS.colors;
 const S = DS.spacing;
-
-const PET_CONDITIONS = [
-    { id: 'mobilidade_reduzida', label: 'Mobilidade Reduzida / Artrose' },
-    { id: 'visao_reduzida', label: 'Visão Reduzida / Cegueira' },
-    { id: 'audicao_reduzida', label: 'Audição Reduzida / Surdez' },
-    { id: 'disfuncao_cognitiva', label: 'Condição Neurológica / Cognitiva' },
-];
 
 export default function PetFormStep({
     formName, setFormName,
@@ -64,14 +59,14 @@ export default function PetFormStep({
                 <Caption style={{ marginBottom: 8, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.PetFormStep.especie', 'Espécie')}</Caption>
                 <View style={ss.chipRow}>
                     {PET_SPECIES.map(s => (
-                        <Chip key={s.id} label={s.label} selected={formSpecies === s.id} onPress={() => setFormSpecies(s.id)} />
+                        <Chip key={s.id} label={t_field(s, 'label')} selected={formSpecies === s.id} onPress={() => setFormSpecies(s.id)} />
                     ))}
                 </View>
 
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.PetFormStep.porte', 'Porte')}</Caption>
                 <View style={ss.chipRow}>
                     {PET_SIZES.map(s => (
-                        <Chip key={s.id} label={s.label} selected={formSize === s.id} onPress={() => setFormSize(s.id)} />
+                        <Chip key={s.id} label={t_field(s, 'label')} selected={formSize === s.id} onPress={() => setFormSize(s.id)} />
                     ))}
                 </View>
 
@@ -89,7 +84,7 @@ export default function PetFormStep({
                 <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.PetFormStep.condicoesEspeciaisOpcional', 'Condições Especiais (opcional)')}</Caption>
                 <View style={ss.chipRow}>
                     {PET_CONDITIONS.map(c => (
-                        <Chip key={c.id} label={c.label} selected={formPetConditions.includes(c.id)} onPress={() => onToggleArray(formPetConditions, setFormPetConditions, c.id)} />
+                        <Chip key={c.id} label={rotuloOpcao(c)} selected={formPetConditions.includes(c.id)} onPress={() => onToggleArray(formPetConditions, setFormPetConditions, c.id)} />
                     ))}
                 </View>
 

@@ -14,6 +14,7 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import { rotuloOpcaoPerfil } from '../../data/opcoesPerfil';
 import FichaMedicaService from '../../services/FichaMedicaService';
 import NeoAlert from '../../utils/NeoAlert';
 import EmptyState from '../../components/EmptyState';
@@ -84,15 +85,15 @@ export default function MinhaSaudeScreen() {
         }
     ];
 
-    const titleStr = perfilId ? (profile?.nome || 'Perfil') : t('health.myHealth', 'Sua Saúde');
+    const titleStr = perfilId ? (profile?.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')) : t('health.myHealth', 'Sua Saúde');
     const capaSource = require('../../assets/images/headers/header-saude.jpeg');
     const themeColors = Neo.colors;
 
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
-    const condicoes = asList(profile?.condicoesMedicas);
-    const alergias = asList(profile?.alergias);
+    const condicoes = asList(profile?.condicoesMedicas).map(rotuloOpcaoPerfil);
+    const alergias = asList(profile?.alergias).map(rotuloOpcaoPerfil);
     const medicamentos = asList(profile?.medicamentosEmUso);
-    const necessidades = asList(profile?.necessidadesEspeciais);
+    const necessidades = asList(profile?.necessidadesEspeciais).map(rotuloOpcaoPerfil);
     const tipoSanguineo = profile?.tipoSanguineo || '';
 
     // A ficha é montada pelo FichaMedicaService — fonte única. Antes, esta tela
@@ -209,7 +210,7 @@ export default function MinhaSaudeScreen() {
                                         lineHeight: 32,
                                         marginBottom: 4,
                                     }} numberOfLines={2}>
-                                        {profile.nome || 'Perfil'}
+                                        {profile.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')}
                                     </Text>
                                     {!!tipoSanguineo && (
                                         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
@@ -261,7 +262,7 @@ export default function MinhaSaudeScreen() {
                         <Section icon="Warning" color={Neo.colors.accent.copper} title={t('telas.MinhaSaudeScreen.alergiasERestricoes', 'Alergias e Restrições')}>
                             {renderChips(alergias, Neo.colors.accent.copper)}
                         </Section>
-                        <Section icon="Wheelchair" color={Neo.colors.primary[600]} title="Necessidades Especiais">
+                        <Section icon="Wheelchair" color={Neo.colors.primary[600]} title={t('telas.MinhaSaudeScreen.necessidadesEspeciais', 'Necessidades Especiais')}>
                             {renderChips(necessidades, Neo.colors.primary[600])}
                         </Section>
 
@@ -302,7 +303,7 @@ export default function MinhaSaudeScreen() {
                                             style={[s.row, i > 0 && s.rowDivider]}
                                         >
                                             <GlassProfileRing profile={p} score={0} resolveUri={ProfileService.resolveImageUri} size={40} ringWidth={2} />
-                                            <Body style={s.rowName} numberOfLines={1}>{p.nome || 'Perfil'}</Body>
+                                            <Body style={s.rowName} numberOfLines={1}>{p.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')}</Body>
                                             <NeoIcon name="ArrowRight2" variant="Linear" color={Neo.colors.neutral[500]} size={16} />
                                         </TappablePressable>
                                     ))}

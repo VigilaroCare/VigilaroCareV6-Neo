@@ -28,6 +28,11 @@ import NeoAlert from '../../utils/NeoAlert';
 // Importações de dados e filtros para comodosUsados
 import { AMBIENTES } from '../../data/mapeamento_dados';
 import { MAPPING_TRIGGERS, getDynamicAreaName } from '../../utils/ProfileFilterEngine';
+import {
+    NECESSIDADES_ACESSIBILIDADE as ACCESSIBILITY_NEEDS, CONDICOES_MEDICAS as MEDICAL_CONDITIONS,
+    CATEGORIAS_ALERGIA as ALLERGY_CATEGORIES, CONDICOES_PET as PET_CONDITIONS, rotuloOpcao,
+} from '../../data/opcoesPerfil';
+import { t_field } from '../../utils/getLocalizedField';
 
 // Componente Accordion externo para evitar reconstrução e perda de foco/inputs instáveis
 const AccordionSection = ({ sectionKey, title, icon, children, isExpanded, onToggle }) => {
@@ -58,100 +63,7 @@ const AccordionSection = ({ sectionKey, title, icon, children, isExpanded, onTog
 };
 
 // Definições Estáticas Completas
-const ACCESSIBILITY_NEEDS = [
-    { id: 'visual', label: 'Deficiência Visual' },
-    { id: 'hearing', label: 'Deficiência Auditiva' },
-    { id: 'mobility', label: 'Dificuldade de Locomoção' },
-    { id: 'cognitive', label: 'Condição Cognitiva' },
-    { id: 'speech', label: 'Dificuldade de Fala' },
-    { id: 'chronic_pain', label: 'Dor Crônica' },
-    { id: 'balance', label: 'Desequilíbrio/Vertigem' },
-    { id: 'fine_motor', label: 'Habilidades Motoras Finas' }
-];
-
-const MEDICAL_CONDITIONS = [
-    { id: 'anxiety', label: 'Ansiedade' },
-    { id: 'copd', label: 'DPOC' },
-    { id: 'kidney', label: 'Doença Renal' },
-    { id: 'liver', label: 'Doença Hepática' },
-    { id: 'thyroid', label: 'Distúrbio da Tireoide' },
-    { id: 'osteoporosis', label: 'Osteoporose' },
-    { id: 'cancer', label: 'Câncer' },
-    { id: 'diabetes', label: 'Diabetes' },
-    { id: 'hypertension', label: 'Hipertensão' },
-    { id: 'heart', label: 'Doença Cardíaca' },
-    { id: 'asthma', label: 'Asma' },
-    { id: 'epilepsy', label: 'Epilepsia' },
-    { id: 'arthritis', label: 'Artrite' },
-    { id: 'stroke', label: 'Histórico de AVC' },
-    { id: 'blood_clot', label: 'Distúrbio de Coagulação' },
-    { id: 'autoimmune', label: 'Doença Autoimune' },
-    { id: 'chronic_pain', label: 'Dor Crônica' },
-    { id: 'sleep_apnea', label: 'Apneia do Sono' },
-    { id: 'migraine', label: 'Enxaqueca' }
-];
-
-const ALLERGY_CATEGORIES = [
-    {
-        title: 'Alimentos',
-        icon: '🍴',
-        items: [
-            { id: 'peanuts', label: 'Amendoim' },
-            { id: 'tree_nuts', label: 'Nozes / Castanhas' },
-            { id: 'milk', label: 'Leite / Laticínios' },
-            { id: 'eggs', label: 'Ovos' },
-            { id: 'shellfish', label: 'Frutos do Mar' },
-            { id: 'fish', label: 'Peixe' },
-            { id: 'soy', label: 'Soja' },
-            { id: 'gluten', label: 'Trigo / Glúten' }
-        ]
-    },
-    {
-        title: 'Medicamentos',
-        icon: '💊',
-        items: [
-            { id: 'penicillin', label: 'Penicilina' },
-            { id: 'aspirin', label: 'Aspirina' },
-            { id: 'ibuprofen', label: 'Ibuprofeno' },
-            { id: 'codeine', label: 'Codeína' }
-        ]
-    },
-    {
-        title: 'Ambiental',
-        icon: '🌱',
-        items: [
-            { id: 'pollen', label: 'Pólen' },
-            { id: 'mites', label: 'Ácaros' },
-            { id: 'pet_dander', label: 'Pelos de Animais' },
-            { id: 'mold', label: 'Mofo / Bolor' }
-        ]
-    },
-    {
-        title: 'Contato',
-        icon: '🔒',
-        items: [
-            { id: 'latex', label: 'Látex' },
-            { id: 'nickel', label: 'Níquel' }
-        ]
-    },
-    {
-        title: 'Insetos',
-        icon: '🐝',
-        items: [
-            { id: 'bee_stings', label: 'Picada de Abelha' },
-            { id: 'wasp_stings', label: 'Picada de Vespa' }
-        ]
-    }
-];
-
 const BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-
-const PET_CONDITIONS = [
-    { id: 'mobilidade_reduzida', label: 'Mobilidade Reduzida / Artrose' },
-    { id: 'visao_reduzida', label: 'Visão Reduzida / Cegueira' },
-    { id: 'audicao_reduzida', label: 'Audição Reduzida / Surdez' },
-    { id: 'disfuncao_cognitiva', label: 'Condição Neurológica / Cognitiva' }
-];
 
 export default function AddPerfilScreenNeo({ navigation, route }) {
     const { t } = useTranslation();
@@ -555,7 +467,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
     // Filtro de condições baseado na busca
     const filteredConditions = MEDICAL_CONDITIONS.filter(c =>
-        c.label.toLowerCase().includes(searchCondition.toLowerCase())
+        [c.label, rotuloOpcao(c)].some((l) => l.toLowerCase().includes(searchCondition.toLowerCase()))
     );
 
     return (
@@ -696,7 +608,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 ]}
                                             >
                                                 <Small style={{ color: isActive ? Neo.colors.primary[700] : Neo.colors.neutral[600], fontWeight: '600' }}>
-                                                    {tipo === 'pet' ? (opt === 'Masculino' ? 'Macho' : t('telas.AddPerfilScreenNeo.femea', 'Fêmea')) : opt}
+                                                    {tipo === 'pet' ? (opt === 'Masculino' ? t('telas.AddPerfilScreenNeo.macho', 'Macho') : t('telas.AddPerfilScreenNeo.femea', 'Fêmea')) : (opt === 'Masculino' ? t('telas.AddPerfilScreenNeo.masculino', 'Masculino') : t('telas.AddPerfilScreenNeo.feminino', 'Feminino'))}
                                                 </Small>
                                             </TouchableOpacity>
                                         );
@@ -786,7 +698,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 ]}
                                             >
                                                 <Small style={[styles.itemChipText, isSelected && { color: Neo.colors.primary[700], fontWeight: 'bold' }]}>
-                                                    {need.label}
+                                                    {rotuloOpcao(need)}
                                                 </Small>
                                             </TouchableOpacity>
                                         );
@@ -886,7 +798,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 activeOpacity={0.8}
                                             >
                                                 <Body style={{ flex: 1, color: Neo.colors.neutral[800], fontSize: 15 }}>
-                                                    {cond.label}
+                                                    {rotuloOpcao(cond)}
                                                 </Body>
                                                 <View style={[
                                                     styles.checkboxBox,
@@ -949,7 +861,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         {tipo === 'humano' && (
                             <AccordionSection
                                 sectionKey="allergies"
-                                title="Alergias e Sensibilidades"
+                                title={t('telas.AddPerfilScreenNeo.alergiasESensibilidades', 'Alergias e Sensibilidades')}
                                 icon="Danger"
                                 isExpanded={expanded.allergies}
                                 onToggle={toggleAccordion}
@@ -960,7 +872,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 {ALLERGY_CATEGORIES.map((cat) => (
                                     <View key={cat.title} style={{ marginBottom: 16 }}>
                                         <Small style={styles.allergyCatTitle}>
-                                            {cat.icon} {cat.title}
+                                            {cat.icon} {t_field(cat, 'title') || cat.title}
                                         </Small>
                                         <View style={styles.chipGrid}>
                                             {cat.items.map((item) => {
@@ -978,7 +890,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                         ]}
                                                     >
                                                         <Small style={[styles.itemChipText, isSelected && { color: Neo.colors.primary[700], fontWeight: 'bold' }]}>
-                                                            {item.label}
+                                                            {rotuloOpcao(item)}
                                                         </Small>
                                                     </TouchableOpacity>
                                                 );

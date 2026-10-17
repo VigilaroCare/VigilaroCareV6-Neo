@@ -376,7 +376,7 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                         if (statusKey === 'Atenção')  statusLabel = t('reports.statusAttention', 'Atenção');
                                         if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
 
-                                        const progressText = area.total > 0 ? `${area.checked}/${area.total} Itens` : 'Sem itens';
+                                        const progressText = area.total > 0 ? t('telas.RelatoriosScreenNeo.itensContagem', { feitos: area.checked, total: area.total, defaultValue: '{{feitos}}/{{total}} Itens' }) : t('telas.RelatoriosScreenNeo.semItens', 'Sem itens');
                                         
                                         // Pílula customizada que será injetada como subtítulo
                                         const StatusPill = (

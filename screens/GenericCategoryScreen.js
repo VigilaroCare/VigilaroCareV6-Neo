@@ -45,7 +45,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
     // Fallback content if ID not found
     const content = DATA_MAP[categoryId] || {
         title: categoryId === 'pets' ? t('knowledgeHub.protectPet', 'Proteja seu Pet') : 
-               categoryId === 'faixa_etaria' ? t('knowledgeHub.ageGroup', 'Cuidado por Faixa Etária') : 'Categoria Desconhecida',
+               categoryId === 'faixa_etaria' ? t('knowledgeHub.ageGroup', 'Cuidado por Faixa Etária') : t('telas.GenericCategoryScreen.categoriaDesconhecida', 'Categoria Desconhecida'),
         subtitle: t('common.explore', 'Explore os conteúdos'),
         color: categoryId === 'pets' ? '#EAB308' : categoryId === 'faixa_etaria' ? themeColors.categoria.rose.fill : '#9CA3AF',
         sections: []

@@ -7,6 +7,7 @@
  * TODOS os relatórios — foi assim que o dossiê elevou o padrão do relatório
  * antigo (que era "básico", queixa do autor 2026-06-14).
  */
+import i18n from '../i18n';
 
 // Paleta da marca em hex (HTML não lê tokens do DS; espelha LightColors).
 const FOREST = '#14342B';
@@ -51,7 +52,7 @@ export const REPORT_CSS = `
  */
 export function htmlDocument({ title, brand = 'Vigilaro Care', headline, subtitle, bodyHtml, footerNote } = {}) {
   return `<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="${i18n.language || 'pt-BR'}">
 <head>
   <meta charset="utf-8">
   <title>${title || 'Relatório Vigilaro Care'}</title>

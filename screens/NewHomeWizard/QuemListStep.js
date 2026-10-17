@@ -21,7 +21,7 @@ const C = DS.colors;
 const S = DS.spacing;
 
 function formatBirthdate(dateStr) {
-    if (!dateStr) return 'Sem data';
+    if (!dateStr) return tx('telas.QuemListStep.semData', 'Sem data');
     let normalized = dateStr.includes('T') ? dateStr.split('T')[0] : dateStr;
     const yyyymmddRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
     const match = normalized.match(yyyymmddRegex);
@@ -56,8 +56,8 @@ export default function QuemListStep({
                     {profiles.map(p => {
                         const isLinked = linkedSet.has(p.id);
                         const relationLabel = isLinked
-                            ? (habitanteSet.has(p.id) ? 'Morador Fixo' : 'Visitante Eventual')
-                            : 'Não vinculado a esta residência';
+                            ? (habitanteSet.has(p.id) ? tx('telas.QuemListStep.moradorFixo', 'Morador Fixo') : tx('telas.QuemListStep.visitanteEventual', 'Visitante Eventual'))
+                            : tx('telas.QuemListStep.naoVinculado', 'Não vinculado a esta residência');
                         return (
                             <View key={p.id} style={[
                                 ss.profileCard,

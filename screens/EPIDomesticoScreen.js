@@ -60,7 +60,7 @@ export default function EPIDomesticoScreen({ navigation }) {
             conceito: {
                 ...cat,
                 nome: cat.titulo,
-                descricao: cat.equipamento || cat.dica || 'EPI essencial para esta atividade.',
+                descricao: cat.equipamento || cat.dica || t('telas.EPIDomesticoScreen.epiEssencial', 'EPI essencial para esta atividade.'),
                 iconColor: catColor,
                 // "quando usar" vira lista de exemplos
                 exemplos: cat.quando || null,

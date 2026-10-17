@@ -89,8 +89,8 @@ const TRAVEL_PICTOGRAMS = {
 };
 
 const TRIP_TYPES = [
-    { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: 'Tree', color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_en: 'Aislamiento, animales, ríos.' },
-    { id: 'praia', label: 'Litoral', label_en: 'Coastal Area', label_es: 'Zona Costera', icon: 'Sun1', color: Neo.colors.feedback.warning, desc: 'Sol, mar, piscina.', desc_en: 'Sun, sea, pool.', desc_es: 'Piscinas, áreas comunes.' },
+    { id: 'rural', label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural', icon: 'Tree', color: Neo.colors.feedback.success, desc: 'Isolamento, animais, rios.', desc_en: 'Isolation, animals, rivers.', desc_es: 'Aislamiento, animales, ríos.' },
+    { id: 'praia', label: 'Litoral', label_en: 'Coastal Area', label_es: 'Zona Costera', icon: 'Sun1', color: Neo.colors.feedback.warning, desc: 'Sol, mar, piscina.', desc_en: 'Sun, sea, pool.', desc_es: 'Sol, mar, piscina.' },
     { id: 'urbano', label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana', icon: 'Building', color: Neo.colors.secondary[500], desc: 'Janelas, trânsito, aglomeração.', desc_en: 'Windows, traffic, crowds.', desc_es: 'Ventanas, tráfico, multitudes.' },
     { id: 'resort', label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio', icon: 'Sun1', color: Neo.colors.primary[500], desc: 'Piscinas, áreas comuns.', desc_en: 'Pools, common areas.', desc_es: 'Piscinas, áreas comunes.' }
 ];
@@ -208,7 +208,7 @@ export default function TravelModeScreen({ navigation }) {
     };
 
     const startTrip = async () => {
-        if (!tripType) return NeoAlert.alert('Selecione o destino');
+        if (!tripType) return NeoAlert.alert(t('telas.TravelModeScreen.selecioneODestino', 'Selecione o destino'));
         if (!transportMode) return NeoAlert.alert(t('telas.TravelModeScreen.selecioneOMeioDeTransporte', 'Selecione o meio de transporte'));
         if (!tripDuration) return NeoAlert.alert(t('telas.TravelModeScreen.selecioneADuracaoAproximada', 'Selecione a duração aproximada'));
 
@@ -238,7 +238,7 @@ export default function TravelModeScreen({ navigation }) {
             [
                 { text: t('telas.TravelModeScreen.cancelar', 'Cancelar'), style: 'cancel' },
                 {
-                    text: 'Encerrar',
+                    text: t('telas.TravelModeScreen.encerrar', 'Encerrar'),
                     style: 'destructive',
                     onPress: async () => {
                         await AsyncStorage.removeItem('@active_trip');

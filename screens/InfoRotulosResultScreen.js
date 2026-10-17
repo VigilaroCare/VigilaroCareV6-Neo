@@ -35,6 +35,7 @@ import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceSer
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
 import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
 import SafeGradient from '../components/SafeGradient';
+import { tx } from '../utils/txFixo';
 
 // Cores por severidade — agora centralizadas no Design System (DS.severity)
 // Mapeador: nome em português (vindo dos dados) → chave canônica no DS
@@ -57,22 +58,22 @@ const FIRST_AID_ICONS = {
     contato_pele:    { emoji: '✋', label: 'Se TOCAR NA PELE' },
     contato_olhos:   { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
     inalacao:        { emoji: '💨', label: 'Se INALAR' },
-    pele:            { emoji: '✋', label: 'Se TOCAR NA PELE' },
-    olhos:           { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
-    queimadura:      { emoji: '🔥', label: 'Se QUEIMAR' },
-    reacao:          { emoji: '⚡', label: 'Se REAÇÃO ALÉRGICA' },
-    ingestao_pet:    { emoji: '🐾', label: 'Se PET INGERIR' },
-    ingestao_humana: { emoji: '💧', label: 'Se HUMANO INGERIR' },
+    pele:            { emoji: '✋', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
+    olhos:           { emoji: '👁️', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
+    queimadura:      { emoji: '🔥', get label() { return tx('telas.InfoRotulosResultScreen.seQueimar', 'Se QUEIMAR'); } },
+    reacao:          { emoji: '⚡', get label() { return tx('telas.InfoRotulosResultScreen.seReacao', 'Se REAÇÃO ALÉRGICA'); } },
+    ingestao_pet:    { emoji: '🐾', get label() { return tx('telas.InfoRotulosResultScreen.sePetIngerir', 'Se PET INGERIR'); } },
+    ingestao_humana: { emoji: '💧', get label() { return tx('telas.InfoRotulosResultScreen.seHumanoIngerir', 'Se HUMANO INGERIR'); } },
 };
 
 // Labels limpas para fonte (sem emoji prefix — cor faz o trabalho)
 const SOURCE_LABELS = {
-    local:               { label: 'Base local', color: '#4CAF50' },
+    local:               { get label() { return tx('telas.InfoRotulosResultScreen.fonteLocal', 'Base local'); }, color: '#4CAF50' },
     open_food_facts:     { label: 'Open Food Facts', color: Neo.colors.categoria.ardosia.fill },
     open_beauty_facts:   { label: 'Open Beauty Facts', color: Neo.colors.categoria.rose.fill },
     open_products_facts: { label: 'Open Products Facts', color: Neo.colors.categoria.ocre.fill },
     upcitemdb:           { label: 'UPCitemdb', color: Neo.colors.categoria.ameixa.fill },
-    not_found:           { label: 'Não encontrado', color: '#9E9E9E' },
+    not_found:           { get label() { return tx('telas.InfoRotulosResultScreen.fonteNaoEncontrado', 'Não encontrado'); }, color: '#9E9E9E' },
 };
 
 export default function InfoRotulosResultScreen() {

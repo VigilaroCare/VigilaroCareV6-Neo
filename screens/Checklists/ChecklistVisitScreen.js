@@ -89,7 +89,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
         await GamificationService.addPoints('CHECKLIST_COMPLETE');
         navigation.navigate('ModoSituacaoAtiva', {
             type: 'visita',
-            title: isRecebendo ? 'Recebendo Visita' : 'Indo Visitar',
+            title: isRecebendo ? t('telas.ChecklistVisitScreen.recebendoVisita', 'Recebendo Visita') : t('telas.ChecklistVisitScreen.indoVisitar', 'Indo Visitar'),
             tempIndex,
             checklistState: state,
         });
@@ -192,7 +192,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                         }}>
                             <NeoIcon name="People" size={22} color={Neo.colors.neutral.white} variant="Bold" />
                             <H3 style={{ color: Neo.colors.neutral.white, marginLeft: 10 }}>
-                                {isRecebendo ? 'Ativar Modo Visita' : t('telas.ChecklistVisitScreen.prontoParaVisitar', 'Pronto para Visitar')}
+                                {isRecebendo ? t('telas.ChecklistVisitScreen.ativarModoVisita', 'Ativar Modo Visita') : t('telas.ChecklistVisitScreen.prontoParaVisitar', 'Pronto para Visitar')}
                             </H3>
                         </NeoCard>
                     </ScaleButton>

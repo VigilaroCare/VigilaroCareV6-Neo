@@ -9,11 +9,12 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import { H1, Body, Caption } from "../../components/NeoTypography";
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { tx } from '../../utils/txFixo';
 
 const POST_ITEMS = [
-  { key: 'residuos',   label: 'Resíduos e ferramentas recolhidos' },
-  { key: 'protetores', label: 'Protetores reinstalados' },
-  { key: 'ventilacao', label: 'Áreas ventiladas e limpas' },
+  { key: 'residuos',   get label() { return tx('telas.EncerrarSituacaoScreen.posResiduos', 'Resíduos e ferramentas recolhidos'); } },
+  { key: 'protetores', get label() { return tx('telas.EncerrarSituacaoScreen.posProtetores', 'Protetores reinstalados'); } },
+  { key: 'ventilacao', get label() { return tx('telas.EncerrarSituacaoScreen.posVentilacao', 'Áreas ventiladas e limpas'); } },
 ];
 
 export default function EncerrarSituacaoScreen({ route, navigation }) {

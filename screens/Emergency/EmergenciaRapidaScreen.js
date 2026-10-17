@@ -17,47 +17,48 @@ import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../../components/NeoIcon';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { resolveEmergencyTokens, getPoisonControlLabel, getMedicalLabel, getPoisonControlDial, getMedicalDial, getFireDial } from '../../utils/emergencyTokens';
+import { tx } from '../../utils/txFixo';
 
 const EMERGENCIA_TIPOS = [
   {
-    id: 'engasgo', titulo: 'ENGASGO', icon: 'Danger', cor: Neo.colors.accent?.champagne || '#D97706',
-    passos: [
-      '1. Posicione-se atrás da pessoa.',
-      '2. Abrace a cintura.',
-      '3. Puxe forte para dentro e para cima (Manobra de Heimlich).',
-    ],
+    id: 'engasgo', get titulo() { return tx('telas.EmergenciaRapidaScreen.engasgo', 'ENGASGO'); }, icon: 'Danger', cor: Neo.colors.accent?.champagne || '#D97706',
+    get passos() { return [
+      tx('telas.EmergenciaRapidaScreen.engasgo1', '1. Posicione-se atrás da pessoa.'),
+      tx('telas.EmergenciaRapidaScreen.engasgo2', '2. Abrace a cintura.'),
+      tx('telas.EmergenciaRapidaScreen.engasgo3', '3. Puxe forte para dentro e para cima (Manobra de Heimlich).'),
+    ]; },
   },
   {
-    id: 'parada', titulo: 'PARADA CARDÍACA', icon: 'Heart', cor: Neo.emergency?.panic || '#DC2626',
-    passos: [
-      '1. Deite a pessoa no chão duro.',
-      '2. Coloque as mãos no centro do peito.',
-      '3. Comprima forte e rápido (100 a 120 vezes por minuto) sem parar.',
-    ],
+    id: 'parada', get titulo() { return tx('telas.EmergenciaRapidaScreen.parada', 'PARADA CARDÍACA'); }, icon: 'Heart', cor: Neo.emergency?.panic || '#DC2626',
+    get passos() { return [
+      tx('telas.EmergenciaRapidaScreen.parada1', '1. Deite a pessoa no chão duro.'),
+      tx('telas.EmergenciaRapidaScreen.parada2', '2. Coloque as mãos no centro do peito.'),
+      tx('telas.EmergenciaRapidaScreen.parada3', '3. Comprima forte e rápido (100 a 120 vezes por minuto) sem parar.'),
+    ]; },
   },
   {
-    id: 'queda', titulo: 'QUEDA GRAVE', icon: 'Flash', cor: '#EA580C',
-    passos: [
-      '1. Não tente levantar a pessoa!',
-      '2. Estanque qualquer sangramento com pano limpo.',
-      '3. Acalme e aguarde o socorro.',
-    ],
+    id: 'queda', get titulo() { return tx('telas.EmergenciaRapidaScreen.queda', 'QUEDA GRAVE'); }, icon: 'Flash', cor: '#EA580C',
+    get passos() { return [
+      tx('telas.EmergenciaRapidaScreen.queda1', '1. Não tente levantar a pessoa!'),
+      tx('telas.EmergenciaRapidaScreen.queda2', '2. Estanque qualquer sangramento com pano limpo.'),
+      tx('telas.EmergenciaRapidaScreen.queda3', '3. Acalme e aguarde o socorro.'),
+    ]; },
   },
   {
-    id: 'intoxicacao', titulo: 'INTOXICAÇÃO', icon: 'Drop', cor: Neo.colors.categoria.ameixa.fill,
-    passos: [
-      '1. NÃO provoque vômito!',
-      '2. Identifique o produto ou medicamento.',
-      '3. Ligue imediatamente para {{POISON_CONTROL}}.',
-    ],
+    id: 'intoxicacao', get titulo() { return tx('telas.EmergenciaRapidaScreen.intoxicacao', 'INTOXICAÇÃO'); }, icon: 'Drop', cor: Neo.colors.categoria.ameixa.fill,
+    get passos() { return [
+      tx('telas.EmergenciaRapidaScreen.intoxicacao1', '1. NÃO provoque vômito!'),
+      tx('telas.EmergenciaRapidaScreen.intoxicacao2', '2. Identifique o produto ou medicamento.'),
+      tx('telas.EmergenciaRapidaScreen.intoxicacao3', '3. Ligue imediatamente para {{POISON_CONTROL}}.'),
+    ]; },
   },
   {
-    id: 'incendio', titulo: 'INCÊNDIO', icon: 'Flash', cor: Neo.colors.feedback.error,
-    passos: [
-      '1. Saia do local o mais rápido possível.',
-      '2. Se houver fumaça, engatinhe.',
-      '3. Feche as portas atrás de você para atrasar o fogo.',
-    ],
+    id: 'incendio', get titulo() { return tx('telas.EmergenciaRapidaScreen.incendio', 'INCÊNDIO'); }, icon: 'Flash', cor: Neo.colors.feedback.error,
+    get passos() { return [
+      tx('telas.EmergenciaRapidaScreen.incendio1', '1. Saia do local o mais rápido possível.'),
+      tx('telas.EmergenciaRapidaScreen.incendio2', '2. Se houver fumaça, engatinhe.'),
+      tx('telas.EmergenciaRapidaScreen.incendio3', '3. Feche as portas atrás de você para atrasar o fogo.'),
+    ]; },
   },
 ];
 
