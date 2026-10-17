@@ -4,7 +4,7 @@ import NeoIcon from '../components/NeoIcon';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { buscarProduto, NIVEIS_PERIGO } from '../data/produtos_scanner';
-import { getTelefoneCiatox } from '../data/telefones_ciatox';
+import { getPoisonControlLabel, getPoisonControlDial } from '../utils/emergencyTokens';
 import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoAlert from '../utils/NeoAlert';
@@ -18,17 +18,19 @@ export default function ProdutoScannerScreen({ route, navigation }) {
   const { codigo } = route.params;
   const produto = buscarProduto(codigo);
   const nivelInfo = NIVEIS_PERIGO[produto.perigo];
-  const telefoneCiatox = getTelefoneCiatox('PR');
+  // Centro de intoxicação do PAÍS do usuário. Antes: getTelefoneCiatox('PR')
+  // fixo — discava o CIATOX do Paraná para qualquer estado e qualquer país.
+  const telefoneCiatox = getPoisonControlLabel();
 
   const callCIATOX = () => {
     NeoAlert.alert(
-      'Ligar para CIATOX',
-      `${telefoneCiatox}\n\nDeseja ligar para o Centro de Intoxicação?`,
+      t('headersFirst.lIGARPARACIATOX', 'LIGAR PARA O CENTRO DE INTOXICAÇÃO'),
+      telefoneCiatox,
       [
-        { text: 'Cancelar', style: 'cancel' },
-        { 
-          text: 'Ligar Agora', 
-          onPress: () => Linking.openURL(`tel:${telefoneCiatox.replace(/\D/g, '')}`)
+        { text: t('health.cancel', 'Cancelar'), style: 'cancel' },
+        {
+          text: t('headersFirst.ligarAgora', 'Ligar agora'),
+          onPress: () => Linking.openURL(`tel:${getPoisonControlDial()}`)
         },
       ]
     );
@@ -156,8 +158,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
           <NeoIcon name="Danger" size={24} color={Neo.colors.feedback.error} variant="Bold" />
           <Text style={styles.alertaTitulo}>{t('headersFirst.iMPORTANTE', 'IMPORTANTE')}</Text>
           <Text style={styles.alertaTexto}>
-            {t('headersFirst.emCasoDeAcidenteLigueIMEDIATAMENTEParaOC', `Em caso de acidente, ligue IMEDIATAMENTE para o CIATOX.
-            Tenha em mãos a embalagem do produto para informar os componentes.`)}
+            {t('headersFirst.emCasoDeAcidenteLigueIMEDIATAMENTEParaOC', 'Em caso de acidente, ligue IMEDIATAMENTE para o centro de intoxicação. Tenha em mãos a embalagem do produto para informar os componentes.')}
           </Text>
         </View>
 
@@ -165,7 +166,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
         <TouchableOpacity style={styles.botaoCiatox} onPress={callCIATOX}>
           <NeoIcon name="Call" size={18} color={Neo.colors.neutral.white} variant="Bold" />
           <View style={styles.botaoTextos}>
-            <Text style={styles.botaoTitulo}>{t('headersFirst.lIGARPARACIATOX', 'LIGAR PARA CIATOX')}</Text>
+            <Text style={styles.botaoTitulo}>{t('headersFirst.lIGARPARACIATOX', 'LIGAR PARA O CENTRO DE INTOXICAÇÃO')}</Text>
             <Text style={styles.botaoSubtitulo}>{telefoneCiatox}</Text>
           </View>
         </TouchableOpacity>

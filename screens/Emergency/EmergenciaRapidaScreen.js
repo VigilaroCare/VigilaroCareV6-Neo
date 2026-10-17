@@ -111,7 +111,7 @@ export default function EmergenciaRapidaScreen({ navigation }) {
           {tipoSelecionado.id === 'incendio' && (
             <TouchableOpacity onPress={LigarBombeiros} style={[s.callBtn, { backgroundColor: Neo.emergency?.panicDark || '#991B1B', marginTop: 12 }]}>
               <NeoIcon name="Call" size={28} color={Neo.colors.neutral.white} variant="Bold" />
-              <Text style={s.callText}>{t('headersFirst.bOMBEIROS193', 'BOMBEIROS 193')}</Text>
+              <Text style={s.callText}>{t('headersFirst.bOMBEIROS193', { defaultValue: 'BOMBEIROS {{numero}}', numero: getFireDial() })}</Text>
             </TouchableOpacity>
           )}
         </View>
