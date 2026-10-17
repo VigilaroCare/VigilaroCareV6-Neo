@@ -76,14 +76,19 @@ import {
     getInstituicao,
 } from '../data/instituicoesPorPais';
 import { TOKENS_CLASSES_INCENDIO, getClasseIncendio } from '../data/classesIncendio';
+import { TOKENS_REGRAS_TRANSITO, getRegraTransito } from '../data/regrasTransitoPorPais';
 
 // Classes de incendio e extintores (D16): a letra muda com a NORMA do pais —
 // Classe C e eletrico no Brasil/EUA/Mexico e gas na Europa (EN 2). Ver
 // data/classesIncendio.js para a lista de tokens e as fontes.
 const TOKENS_INCENDIO = new Set(TOKENS_CLASSES_INCENDIO);
 
+// Transporte de criancas e micromobilidade (D19): a lei muda com o pais.
+// Ver data/regrasTransitoPorPais.js para as fontes.
+const TOKENS_TRANSITO = new Set(TOKENS_REGRAS_TRANSITO);
+
 const TOKEN_PATTERN = new RegExp(
-    `\\{\\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|POLICE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY|${TOKENS_CLASSES_INCENDIO.join('|')})\\}\\}`,
+    `\\{\\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|POLICE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY|${TOKENS_CLASSES_INCENDIO.join('|')}|${TOKENS_REGRAS_TRANSITO.join('|')})\\}\\}`,
     'g'
 );
 
@@ -201,6 +206,14 @@ function getCountry() {
  * Limpa o cache de pais. Chamar quando a localizacao do usuario mudar
  * (ex: apos o SOS obter coordenadas de GPS reais, ou troca de regiao).
  */
+/**
+ * Pais detectado (ISO alpha-2) ou null. Para telas que mostram um bloco
+ * inteiro so num pais (ex.: categorias do CONTRAN, so no Brasil).
+ */
+export function getEmergencyCountry() {
+    return getCountry();
+}
+
 export function resetEmergencyCountryCache() {
     cachedCountry = undefined;
     cachedCountryResolved = false;
@@ -279,6 +292,7 @@ function getTokenValue(token, country, langKey) {
 
         default:
             if (TOKENS_INCENDIO.has(token)) return getClasseIncendio(token, country, langKey);
+            if (TOKENS_TRANSITO.has(token)) return getRegraTransito(token, country, langKey);
             return '';
     }
 }

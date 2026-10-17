@@ -70,6 +70,12 @@ vm.runInContext(
     sandbox
 );
 
+// data/regrasTransitoPorPais.js — lei de transporte infantil por pais (D19).
+vm.runInContext(
+    toEvaluable(fs.readFileSync(path.join(ROOT, 'data/regrasTransitoPorPais.js'), 'utf8')),
+    sandbox
+);
+
 // utils/emergencyTokens.js — logica real de resolucao.
 // detectEmergencyCountry e stubado porque depende de GPS/expo-localization;
 // o pais e injetado diretamente pelo teste.
@@ -275,6 +281,38 @@ for (const [token, country, lang, rx] of ESPERADO_FOGO) {
     if (!rx.test(out)) { failures++; console.log(`   FALHA ${token} / ${country} / ${lang} -> "${out}"`); }
 }
 console.log(`   ${ESPERADO_FOGO.length} expectativas de norma por pais conferidas`);
+
+// 4c. Regras de transito por pais (D19): nenhuma vazia, e a lei certa em cada pais.
+console.log('\n4c. REGRAS DE TRANSITO POR PAIS\n');
+const TOKENS_TRANS = sandbox.TOKENS_REGRAS_TRANSITO || [];
+if (!TOKENS_TRANS.length) { failures++; console.log('   FALHA tabela de transito nao carregou'); }
+let vaziasTrans = 0;
+for (const token of TOKENS_TRANS) for (const country of COUNTRIES) for (const lang of LANGS) {
+    const out = resolve(`{{${token}}}`, country, lang);
+    if (!out || out.includes('{{') || out.includes('undefined')) { vaziasTrans++; failures++; console.log(`   FALHA ${token} / ${country} / ${lang} -> "${out}"`); }
+}
+if (!vaziasTrans) console.log(`   OK    ${TOKENS_TRANS.length * COUNTRIES.length * LANGS.length} combinacoes, nenhuma vazia`);
+const ESPERADO_TRANS = [
+    ['CHILD_SEAT_LAW', 'BR', 'pt-BR', /CTB, art. 64.*1,45 m/],
+    ['CHILD_SEAT_PENALTY', 'BR', 'pt-BR', /gravíssima.*7 pontos/],
+    ['CHILD_SEAT_LAW', 'PT', 'pt-PT', /art. 55.º.*12 anos.*135 cm/],
+    ['CHILD_SEAT_PENALTY', 'PT', 'pt-PT', /120 € a 600 €/],
+    ['CHILD_SEAT_LAW', 'ES', 'es', /art. 117.*135 cm/],
+    ['MOTO_PASSENGER_RULE', 'ES', 'es', /menores de 12 años/],
+    ['MOTO_PASSENGER_RULE', 'BR', 'pt-BR', /menos de 10 anos/],
+    ['MOTO_PASSENGER_RULE', 'PT', 'pt-PT', /depende da lei local/],
+    ['CHILD_SEAT_LAW', 'GB', 'en', /12 or 135 cm/],
+    ['MICROMOBILITY_RULE', 'GB', 'en', /PRIVATELY OWNED/],
+    ['CHILD_SEAT_LAW', 'US', 'en', /set by each state/],
+    ['CHILD_SEAT_LABEL', 'US', 'en', /213/],
+    ['CHILD_SEAT_LAW', 'XX', 'pt-BR', /mudam de país para país/],
+    ['CHILD_SEAT_LAW', null, 'es', /cambian de un país a otro/],
+];
+for (const [token, country, lang, rx] of ESPERADO_TRANS) {
+    const out = resolve(`{{${token}}}`, country, lang);
+    if (!rx.test(out)) { failures++; console.log(`   FALHA ${token} / ${country} / ${lang} -> "${out}"`); }
+}
+console.log(`   ${ESPERADO_TRANS.length} expectativas de lei por pais conferidas`);
 
 // ---------------------------------------------------------------------------
 // 5. Centro de intoxicacao: rotulo e numero discavel por pais.

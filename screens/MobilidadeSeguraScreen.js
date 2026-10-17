@@ -17,7 +17,8 @@ import NeoCard from '../components/NeoCard';
 import ReviewImage from '../components/ReviewImage';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Shadows } from '../utils/Theme';
-import { 
+import {
+  TEXTOS_MOBILIDADE,
   DISPOSITIVOS_RETENCAO,
   MOBILIDADE_ATIVA,
   SEGURANCA_PEDESTRE,
@@ -25,6 +26,17 @@ import {
   MICROMOBILIDADE_ELETRICA,
   getDispositivoPorIdade
 } from '../data/mobilidade_data';
+import { resolveEmergencyTokens, getEmergencyCountry } from '../utils/emergencyTokens';
+
+// Textos da tela no idioma do usuario. A LEI vem por token, pelo PAIS
+// (data/regrasTransitoPorPais.js) — D19: antes a tela mostrava CTB, CNH,
+// SAMU 192 e PRF 191 em qualquer pais.
+const tx = (campo, vars) => {
+  let s = t_field(TEXTOS_MOBILIDADE, campo);
+  if (vars && typeof s === 'string') Object.entries(vars).forEach(([k, v]) => { s = s.split(`{${k}}`).join(String(v)); });
+  return s;
+};
+const lei = (token) => resolveEmergencyTokens(`{{${token}}}`);
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 const { width } = Dimensions.get('window');
@@ -41,12 +53,13 @@ export default function MobilidadeSeguraScreen({ navigation }) {
   const textMuted = themeColors.neutral[500];
   const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
 
+  const abas = tx('abas') || {};
   const TABS = [
-    { id: 'drv', label: 'Carros', iconName: 'Car' },
-    { id: 'ativa', label: 'Bikes', iconName: 'Bicycle' },
-    { id: 'pedestre', label: 'Pedestre', iconName: 'Pedestrian' },
-    { id: 'moto', label: 'Moto', iconName: 'Motorcycle' },
-    { id: 'eletrica', label: 'E-Bikes', iconName: 'Lightning' },
+    { id: 'drv', label: abas.drv, iconName: 'Car' },
+    { id: 'ativa', label: abas.ativa, iconName: 'Bicycle' },
+    { id: 'pedestre', label: abas.pedestre, iconName: 'Pedestrian' },
+    { id: 'moto', label: abas.moto, iconName: 'Motorcycle' },
+    { id: 'eletrica', label: abas.eletrica, iconName: 'Lightning' },
   ];
 
   return (
@@ -113,23 +126,21 @@ function ConteudoDRV() {
       <View style={styles.card}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
           <NeoIcon name="Car" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
-          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.OQueDRV', 'O que é DRV?')}</Text>
+          <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{tx('drvTitulo')}</Text>
         </View>
-        <Text style={styles.cardTexto}>
-          <Text style={{fontWeight: 'bold'}}>D</Text>ispositivo de <Text style={{fontWeight: 'bold'}}>R</Text>etenção <Text style={{fontWeight: 'bold'}}>V</Text>eicular. 
-          É o termo técnico e legal para bebê conforto, cadeirinha e assento de elevação.
-        </Text>
+        <Text style={styles.cardTexto}>{tx('drvTexto')}</Text>
       </View>
 
-      {/* Alerta importante */}
+      {/* A lei do PAIS do usuario (data/regrasTransitoPorPais.js) */}
       <View style={styles.alertaImportante}>
         <NeoIcon name="Warning2" size={24} color={Neo.colors.feedback.warning} variant="Bold" />
         <View style={styles.alertaTexto}>
-          <Text style={styles.alertaTitulo}>{t('headersFirst.oBRIGATRIOPORLEI', 'OBRIGATÓRIO POR LEI')}</Text>
-          <Text style={styles.alertaDescricao}>
-            O uso correto do DRV reduz em até 71% o risco de morte em acidentes.{'\n'}
-            Multa: Gravíssima + 7 pontos na CNH
+          <Text style={styles.alertaTitulo}>{tx('leiTitulo')}</Text>
+          <Text style={styles.alertaDescricao}>{lei('CHILD_SEAT_LAW')}</Text>
+          <Text style={[styles.alertaDescricao, { marginTop: 6 }]}>
+            <Text style={{ fontWeight: 'bold' }}>{tx('multaRotulo')}: </Text>{lei('CHILD_SEAT_PENALTY')}
           </Text>
+          <Text style={[styles.alertaDescricao, { marginTop: 6 }]}>{tx('reducaoRisco')}</Text>
         </View>
       </View>
 
@@ -144,11 +155,7 @@ function ConteudoDRV() {
         </Text>
         
         <View style={styles.idadeBotoesContainer}>
-          {[
-            { idade: 0, label: '0-1 ano' },
-            { idade: 2, label: '1-4 anos' },
-            { idade: 5, label: '4-10 anos' }
-          ].map((item) => (
+          {[0, 2, 5].map((idade, i) => ({ idade, label: (tx('idadeBotoes') || [])[i] })).map((item) => (
             <TouchableOpacity
               key={item.idade}
               style={styles.idadeBotao}
@@ -182,11 +189,7 @@ function ConteudoDRV() {
         <NeoIcon name="Lightbulb" size={32} color={Neo.colors.feedback.warning} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.dicaTitulo}>{t('headersFirst.dicaImportante', 'Dica Importante')}</Text>
         <Text style={styles.dicaTexto}>
-          • Sempre verificar selo do Inmetro{'\n'}
-          • Seguir RIGOROSAMENTE instruções do fabricante{'\n'}
-          • Substituir após qualquer acidente{'\n'}
-          • Não usar dispositivos de segunda mão sem conhecer histórico{'\n'}
-          • Crianças no banco traseiro até 10 anos
+          {(tx('dicaItens') || []).map((d) => `• ${d}`).join('\n')}
         </Text>
       </View>
     </View>
@@ -220,7 +223,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
                 <Text style={styles.guideTitle} numberOfLines={1}>{t_field(dispositivo, 'nome')}</Text>
-                <Text style={styles.guideSubtitle}>{dispositivo.idadeMin}-{dispositivo.idadeMax} anos • {dispositivo.pesoMin}-{dispositivo.pesoMax} kg</Text>
+                <Text style={styles.guideSubtitle}>{tx('faixaDispositivo', { idade: `${dispositivo.idadeMin}-${dispositivo.idadeMax}`, peso: `${dispositivo.pesoMin}-${dispositivo.pesoMax}` })}</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
                 <NeoIcon
@@ -248,7 +251,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
             </View>
             <Text style={styles.secaoTexto}>
               <Text style={styles.textoDestaque}>{t_field(dispositivo, 'posicao')}</Text>{'\n'}
-              Local: {t_field(dispositivo, 'localizacao')}
+              {tx('localRotulo')}: {t_field(dispositivo, 'localizacao')}
             </Text>
           </View>
 
@@ -290,16 +293,7 @@ function DispositivoCard({ dispositivo, expandido, onToggle }) {
               </Text>
             ))}
           </View>
-
-          {/* Legislação */}
-          <View style={[styles.secao, styles.secaoLegislacao]}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-              <NeoIcon name="ShieldTick" size={16} color={colors.neutral[800]} style={{ marginRight: 8 }} />
-              <Text style={[styles.legislacaoTitulo, { marginBottom: 0 }]}>{t('headersFirst.LegislaO', 'Legislação')}</Text>
-            </View>
-            <Text style={styles.legislacaoTexto}>{t_field(dispositivo, 'legislacao')}</Text>
-            <Text style={styles.multaTexto}>Multa: {t_field(dispositivo, 'multa')}</Text>
-          </View>
+          {/* A lei fica num cartao unico no topo, pelo pais do usuario (D19). */}
         </View>
       )}
     </View>
@@ -319,10 +313,10 @@ function ConteudoAtiva() {
           <NeoIcon name="Bicycle" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.OQueMobilidadeAtiva', 'O que é Mobilidade Ativa?')}</Text>
         </View>
-        <Text style={styles.cardTexto}>{MOBILIDADE_ATIVA.definicao}</Text>
-        
+        <Text style={styles.cardTexto}>{t_field(MOBILIDADE_ATIVA, 'definicao')}</Text>
+
         <Text style={styles.subtitulo}>{t('headersFirst.benefCios', 'Benefícios:')}</Text>
-        {MOBILIDADE_ATIVA.beneficios.map((beneficio, index) => (
+        {t_array(MOBILIDADE_ATIVA, 'beneficios').map((beneficio, index) => (
           <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
             <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 6, marginTop: 2 }} />
             <Text style={[styles.beneficioItem, { flex: 1 }]}>{beneficio}</Text>
@@ -335,11 +329,10 @@ function ConteudoAtiva() {
         <NeoIcon name="Warning2" size={32} color={Neo.colors.feedback.warning} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.idadeDeAutonomia', 'Idade de Autonomia')}</Text>
         <Text style={styles.destaqueTexto}>
-          Crianças só devem transitar desacompanhadas a partir dos{' '}
-          <Text style={styles.textoDestaque}>{MOBILIDADE_ATIVA.idadeAutonomia.idade} anos</Text>
+          {tx('autonomiaAtiva', { n: MOBILIDADE_ATIVA.idadeAutonomia.idade })}
         </Text>
         <Text style={styles.destaqueSubtitulo}>{t('headersFirst.porQu', 'Por quê?')}</Text>
-        {MOBILIDADE_ATIVA.idadeAutonomia.habilidadesNecessarias.map((hab, index) => (
+        {t_array(MOBILIDADE_ATIVA.idadeAutonomia, 'habilidadesNecessarias').map((hab, index) => (
           <Text key={index} style={styles.listaItem}>
             • {hab}
           </Text>
@@ -378,7 +371,7 @@ function TipoMobilidadeCard({ tipo }) {
             <View style={styles.guideContent}>
               <View style={{ flex: 1, paddingRight: 8 }}>
                 <Text style={styles.guideTitle} numberOfLines={1}>{t_field(tipo, 'tipo')}</Text>
-                <Text style={styles.guideSubtitle}>Idade mínima: {tipo.idadeMinima} anos</Text>
+                <Text style={styles.guideSubtitle}>{tx('idadeMinimaRotulo', { n: tipo.idadeMinima })}</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
                 <NeoIcon
@@ -480,8 +473,7 @@ function ConteudoPedestre() {
         <NeoIcon name="Pedestrian" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
         <Text style={styles.destaqueTitulo}>{t('headersFirst.autonomiaDeMobilidade', 'Autonomia de Mobilidade')}</Text>
         <Text style={styles.destaqueTexto}>
-          Crianças podem andar sozinhas na rua a partir dos{' '}
-          <Text style={styles.textoDestaque}>{SEGURANCA_PEDESTRE.idadeAutonomia} anos</Text>
+          {tx('autonomiaPedestre', { n: SEGURANCA_PEDESTRE.idadeAutonomia })}
         </Text>
       </View>
 
@@ -491,7 +483,7 @@ function ConteudoPedestre() {
           <NeoIcon name="ClipboardText" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasGeraisDeSeguranA', 'Regras Gerais de Segurança')}</Text>
         </View>
-        {SEGURANCA_PEDESTRE.regrasGerais.map((regra, index) => (
+        {t_array(SEGURANCA_PEDESTRE, 'regrasGerais').map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
           </Text>
@@ -504,7 +496,7 @@ function ConteudoPedestre() {
           <NeoIcon name="Warning2" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.EntendendoASinalizaO', 'Entendendo a Sinalização')}</Text>
         </View>
-        {SEGURANCA_PEDESTRE.sinalizacaoVial.map((sinal, index) => (
+        {t_array(SEGURANCA_PEDESTRE, 'sinalizacaoVial').map((sinal, index) => (
           <View key={index} style={styles.sinalizacaoItem}>
             <Text style={styles.sinalizacaoSinal}>{sinal.sinal}</Text>
             <Text style={styles.sinalizacaoAcao}>{sinal.acao}</Text>
@@ -519,7 +511,7 @@ function ConteudoPedestre() {
           <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.FatoresDeRisco', 'Fatores de Risco')}</Text>
         </View>
         <Text style={styles.cardSubtitulo}>{t('headersFirst.eviteViasCom', 'Evite vias com:')}</Text>
-        {SEGURANCA_PEDESTRE.fatoresRisco.map((fator, index) => (
+        {t_array(SEGURANCA_PEDESTRE, 'fatoresRisco').map((fator, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
             • {fator}
           </Text>
@@ -532,7 +524,7 @@ function ConteudoPedestre() {
           <NeoIcon name="Moon" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.SeguranANoite', 'Segurança à Noite')}</Text>
         </View>
-        {SEGURANCA_PEDESTRE.dicas_seguranca_noite.map((dica, index) => (
+        {t_array(SEGURANCA_PEDESTRE, 'dicas_seguranca_noite').map((dica, index) => (
           <Text key={index} style={styles.listaItem}>
             • {dica}
           </Text>
@@ -545,7 +537,7 @@ function ConteudoPedestre() {
           <NeoIcon name="Profile" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.CuidadosComCrianAs', 'Cuidados com Crianças')}</Text>
         </View>
-        {SEGURANCA_PEDESTRE.criancas_especificas.map((cuidado, index) => (
+        {t_array(SEGURANCA_PEDESTRE, 'criancas_especificas').map((cuidado, index) => (
           <Text key={index} style={styles.listaItem}>
             • {cuidado}
           </Text>
@@ -565,11 +557,8 @@ function ConteudoMoto() {
       {/* Idade mínima */}
       <View style={[styles.card, styles.cardDestaque]}>
         <NeoIcon name="Motorcycle" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
-        <Text style={styles.destaqueTitulo}>{t('headersFirst.idadeMNima', 'Idade Mínima')}</Text>
-        <Text style={styles.destaqueTexto}>
-          Crianças podem ser passageiras em motos a partir dos{' '}
-          <Text style={styles.textoDestaque}>{SEGURANCA_MOTO.idadeMinimaPassageiro} anos</Text>
-        </Text>
+        <Text style={styles.destaqueTitulo}>{tx('motoIdadeTitulo')}</Text>
+        <Text style={styles.destaqueTexto}>{lei('MOTO_PASSENGER_RULE')}</Text>
       </View>
 
       {/* Equipamentos obrigatórios */}
@@ -577,14 +566,14 @@ function ConteudoMoto() {
         <View key={index} style={styles.card}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <NeoIcon name="ShieldTick" size={18} color={Neo.colors.primary[600]} variant="Bold" />
-            <Text style={styles.cardTitulo}>{equip.item}</Text>
+            <Text style={styles.cardTitulo}>{t_field(equip, 'item')}</Text>
           </View>
-          {equip.requisitos && equip.requisitos.map((req, idx) => (
+          {t_array(equip, 'requisitos').map((req, idx) => (
             <Text key={idx} style={styles.listaItem}>
               • {req}
             </Text>
           ))}
-          {equip.recomendacoes && equip.recomendacoes.map((rec, idx) => (
+          {t_array(equip, 'recomendacoes').map((rec, idx) => (
             <Text key={idx} style={styles.listaItem}>
               • {rec}
             </Text>
@@ -598,7 +587,7 @@ function ConteudoMoto() {
           <NeoIcon name="Profile" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasParaPassageiro', 'Regras para Passageiro')}</Text>
         </View>
-        {SEGURANCA_MOTO.regras_passageiro.map((regra, index) => (
+        {t_array(SEGURANCA_MOTO, 'regras_passageiro').map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
           </Text>
@@ -611,7 +600,7 @@ function ConteudoMoto() {
           <NeoIcon name="Motorcycle" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.RegrasParaPiloto', 'Regras para Piloto')}</Text>
         </View>
-        {SEGURANCA_MOTO.regras_piloto.map((regra, index) => (
+        {t_array(SEGURANCA_MOTO, 'regras_piloto').map((regra, index) => (
           <Text key={index} style={styles.listaItem}>
             • {regra}
           </Text>
@@ -624,7 +613,7 @@ function ConteudoMoto() {
           <NeoIcon name="Warning2" size={20} color={colors.feedback.error} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.RiscosEspecFicosDasMotos', 'Riscos Específicos das Motos')}</Text>
         </View>
-        {SEGURANCA_MOTO.riscos_especificos.map((risco, index) => (
+        {t_array(SEGURANCA_MOTO, 'riscos_especificos').map((risco, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>
             • {risco}
           </Text>
@@ -637,9 +626,13 @@ function ConteudoMoto() {
           <NeoIcon name="Danger" size={20} color={Neo.colors.primary[600]} style={{ marginRight: 8 }} />
           <Text style={[styles.emergenciaTitulo, { marginBottom: 0 }]}>{t('headersFirst.EmCasoDeAcidente', 'Em caso de acidente')}</Text>
         </View>
-        <Text style={styles.emergenciaNumero}>{t('headersFirst.sAMU192', 'SAMU: 192')}</Text>
-        <Text style={styles.emergenciaNumero}>{t('headersFirst.bombeiros193', 'Bombeiros: 193')}</Text>
-        <Text style={styles.emergenciaNumero}>{t('headersFirst.pRF191', 'PRF: 191')}</Text>
+        {/* Numeros do pais do usuario; a PRF (191) so existe no Brasil. */}
+        {(tx('emergenciaItens') || []).map((linha, i) => (
+          <Text key={i} style={styles.emergenciaNumero}>{linha}</Text>
+        ))}
+        {getEmergencyCountry() === 'BR' && (
+          <Text style={styles.emergenciaNumero}>{tx('emergenciaRodoviaria')}</Text>
+        )}
       </View>
     </View>
   );
@@ -658,41 +651,37 @@ function ConteudoEletrica() {
           <NeoIcon name="Lightning" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.MicromobilidadeElTrica', 'Micromobilidade Elétrica')}</Text>
         </View>
-        <Text style={styles.cardTexto}>{MICROMOBILIDADE_ELETRICA.definicao}</Text>
-        <Text style={[styles.cardTexto, { marginTop: 8 }]}>{MICROMOBILIDADE_ELETRICA.contexto}</Text>
+        <Text style={styles.cardTexto}>{t_field(MICROMOBILIDADE_ELETRICA, 'definicao')}</Text>
+        <Text style={[styles.cardTexto, { marginTop: 8 }]}>{t_field(MICROMOBILIDADE_ELETRICA, 'contexto')}</Text>
       </View>
 
-      {/* Categorias CTB */}
-      <Text style={[styles.subtitulo, { marginLeft: 4 }]}>{t('headersFirst.categoriasNoCTB', 'Categorias no CTB')}</Text>
-      {MICROMOBILIDADE_ELETRICA.categorias_ctb.map((cat, index) => (
+      {/* Regras do PAIS do usuario (data/regrasTransitoPorPais.js) */}
+      <View style={[styles.card, styles.cardDestaque]}>
+        <NeoIcon name="Pedestrian" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
+        <Text style={styles.destaqueTitulo}>{tx('regrasLocaisTitulo')}</Text>
+        <Text style={styles.destaqueTexto}>{lei('MICROMOBILITY_RULE')}</Text>
+      </View>
+
+      {/* Categorias do CONTRAN: definicao legal brasileira, so no Brasil. */}
+      {getEmergencyCountry() === 'BR' && MICROMOBILIDADE_ELETRICA.categorias_ctb.map((cat, index) => (
         <View key={index} style={styles.card}>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
             <NeoIcon name={cat.icone} size={24} color={Neo.colors.primary[600]} variant="Bold" style={{ marginRight: 8 }} />
             <Text style={styles.cardTitulo}>{cat.nome}</Text>
           </View>
-          <Text style={[styles.textoDestaque, { marginBottom: 8 }]}>Limite: {cat.velocidadeMax}</Text>
-          
+          <Text style={[styles.textoDestaque, { marginBottom: 8 }]}>{tx('limiteRotulo')}: {cat.velocidadeMax}</Text>
+
           <Text style={styles.cardSubtitulo}>{t('headersFirst.caracterSticas', 'Características:')}</Text>
           {cat.caracteristicas.map((carac, idx) => (
             <Text key={idx} style={styles.listaItem}>• {carac}</Text>
           ))}
-          
+
           <Text style={[styles.cardSubtitulo, { marginTop: 8 }]}>{t('headersFirst.ondeAndar', 'Onde andar:')}</Text>
-          <Text style={[styles.listaItem, { color: cat.nome === 'Ciclomotor' ? '#D32F2F' : '#2E7D32', fontWeight: 'bold' }]}>
+          <Text style={[styles.listaItem, { color: cat.proibido ? colors.feedback.error : colors.feedback.success, fontWeight: 'bold' }]}>
             {cat.ondeAndar}
           </Text>
         </View>
       ))}
-
-      {/* Regras de Calçadas */}
-      <View style={[styles.card, styles.cardDestaque]}>
-        <NeoIcon name="Pedestrian" size={32} color={Neo.colors.primary[600]} variant="Bold" style={{ marginBottom: 8 }} />
-        <Text style={styles.destaqueTitulo}>{t('headersFirst.eNasCalAdas', 'E nas calçadas?')}</Text>
-        <Text style={styles.destaqueTexto}>{MICROMOBILIDADE_ELETRICA.regras_calcadas.regraGeral}</Text>
-        {MICROMOBILIDADE_ELETRICA.regras_calcadas.detalhes.map((detalhe, idx) => (
-          <Text key={idx} style={styles.listaItem}>• {detalhe}</Text>
-        ))}
-      </View>
 
       {/* Riscos */}
       <View style={[styles.card, styles.cardAviso]}>
@@ -700,7 +689,7 @@ function ConteudoEletrica() {
           <NeoIcon name="Warning2" size={20} color={colors.feedback.error} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0, color: colors.feedback.error }]}>{t('headersFirst.RiscosDeAcidentes', 'Riscos de Acidentes')}</Text>
         </View>
-        {MICROMOBILIDADE_ELETRICA.riscos.map((risco, index) => (
+        {t_array(MICROMOBILIDADE_ELETRICA, 'riscos').map((risco, index) => (
           <Text key={index} style={[styles.listaItem, styles.listaItemAviso]}>• {risco}</Text>
         ))}
       </View>
@@ -711,7 +700,7 @@ function ConteudoEletrica() {
           <NeoIcon name="ShieldTick" size={20} color={colors.neutral[800]} style={{ marginRight: 8 }} />
           <Text style={[styles.cardTitulo, { marginBottom: 0 }]}>{t('headersFirst.PrevenO', 'Prevenção')}</Text>
         </View>
-        {MICROMOBILIDADE_ELETRICA.prevencao.map((prev, index) => (
+        {t_array(MICROMOBILIDADE_ELETRICA, 'prevencao').map((prev, index) => (
           <View key={index} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}>
               <NeoIcon name="TickCircle" size={14} color={Neo.colors.primary[600]} variant="Bold" style={{ marginTop: 2 }} />
               <Text style={[styles.listaItem, { flex: 1 }]}>{prev}</Text>
