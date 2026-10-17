@@ -19,7 +19,7 @@ import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 import TravelReportService from '../../services/TravelReportService';
 import * as ExpoLocation from 'expo-location';
 import PaisAtualService from '../../services/PaisAtualService';
-import AvisoPaisEmergencia from '../../components/AvisoPaisEmergencia';
+import AvisoPaisEmergencia, { aceitarUsoDaLocalizacao } from '../../components/AvisoPaisEmergencia';
 
 // Dimensões em PIXELS (lição da Home: % não resolve dentro de wrappers
 // auto-dimensionados — a Image assume o tamanho intrínseco do PNG, 480px)
@@ -237,9 +237,10 @@ export default function TravelModeScreen({ navigation }) {
         // do número local e o app não tem como saber o país. Avisa uma vez,
         // aqui, e oferece ativar — nunca bloqueia a viagem.
         if (isInternational) {
+            // Precisa das duas coisas: permissão do sistema E ciência deste uso.
             let concedida = false;
             try { concedida = (await ExpoLocation.getForegroundPermissionsAsync()).status === 'granted'; } catch (_) { /* trata como não concedida */ }
-            if (!concedida) {
+            if (!concedida || !(await PaisAtualService.usaLocalizacaoParaPais())) {
                 NeoAlert.alert(
                     t('paisEmergencia.viagemTitulo', 'Números de emergência no destino'),
                     t('paisEmergencia.viagemTexto', 'Com a localização ativada, o Vigilaro reconhece o país onde você está e mostra o número de emergência de lá. Sem ela, o app mostra os números do país configurado no seu celular. No exterior, se tiver dúvida, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países. Para identificar o país, a posição fica no aparelho.'),
@@ -247,14 +248,7 @@ export default function TravelModeScreen({ navigation }) {
                         { text: t('paisEmergencia.agoraNao', 'Agora não'), style: 'cancel' },
                         {
                             text: t('paisEmergencia.ativar', 'Ativar localização'),
-                            onPress: async () => {
-                                try {
-                                    const atual = await ExpoLocation.getForegroundPermissionsAsync();
-                                    if (atual.canAskAgain === false) await Linking.openSettings();
-                                    else await ExpoLocation.requestForegroundPermissionsAsync();
-                                } catch (_) { /* segue sem */ }
-                                PaisAtualService.atualizar({ forcar: true });
-                            },
+                            onPress: aceitarUsoDaLocalizacao,
                         },
                     ],
                 );

@@ -1,4 +1,7 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, DeviceEventEmitter } from 'react-native';
+import PaisAtualService, { EVENTO_PAIS } from '../services/PaisAtualService';
+import { aceitarUsoDaLocalizacao } from '../components/AvisoPaisEmergencia';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import AppBackground from '../components/AppBackground';
@@ -13,6 +16,47 @@ const Section = ({ title, children }) => (
         <Text style={styles.text}>{children}</Text>
     </>
 );
+
+/**
+ * Suas escolhas — desligar um uso tem de ser tão fácil quanto ligar (LGPD
+ * art. 8º §5º; RGPD art. 7(3)). Hoje: a localização para identificar o país
+ * dos números de emergência (services/PaisAtualService). O SOS continua a
+ * enviar a localização no pedido de ajuda — isso depende só da permissão do
+ * sistema.
+ */
+function SuasEscolhas() {
+    const { t } = useTranslation('common');
+    const [usaPais, setUsaPais] = useState(false);
+    useEffect(() => {
+        let vivo = true;
+        const ler = () => PaisAtualService.usaLocalizacaoParaPais().then((v) => vivo && setUsaPais(v));
+        ler();
+        const sub = DeviceEventEmitter.addListener(EVENTO_PAIS, ler);
+        return () => { vivo = false; sub.remove(); };
+    }, []);
+    const mudar = async (ligar) => {
+        setUsaPais(ligar);
+        if (ligar) await aceitarUsoDaLocalizacao();
+        else await PaisAtualService.definirCiencia(false);
+        setUsaPais(await PaisAtualService.usaLocalizacaoParaPais());
+    };
+    return (
+        <View style={styles.escolhas}>
+            <Text style={styles.sectionTitle}>{t('privacidade.suasEscolhas', 'Suas escolhas')}</Text>
+            <View style={styles.escolhaLinha}>
+                <View style={{ flex: 1, paddingRight: 12 }}>
+                    <Text style={styles.escolhaTitulo}>{t('privacidade.paisTitulo', 'Identificar o país pelos números de emergência')}</Text>
+                    <Text style={styles.escolhaTexto}>{t('privacidade.paisTexto', 'Usa a localização, só no aparelho, para mostrar o número de emergência do país onde você está. Só o país é guardado. Desligado, os números seguem o país configurado no celular. O envio da localização no SOS não depende disto.')}</Text>
+                </View>
+                <Switch
+                    value={usaPais}
+                    onValueChange={mudar}
+                    accessibilityLabel={t('privacidade.paisTitulo', 'Identificar o país pelos números de emergência')}
+                />
+            </View>
+        </View>
+    );
+}
 
 export default function PrivacyPolicyScreen({ navigation }) {
     // A política NÃO é traduzida: cada idioma tem a sua, escrita para o regime
@@ -38,6 +82,8 @@ export default function PrivacyPolicyScreen({ navigation }) {
                     {politica.subtitulo ? (
                         <Text style={[styles.text, styles.subtitulo]}>{politica.subtitulo}</Text>
                     ) : null}
+
+                    <SuasEscolhas />
 
                     {politica.secoes.map((sec) => (
                         <Section key={sec.titulo} title={sec.titulo}>{sec.texto}</Section>
@@ -89,6 +135,17 @@ const styles = StyleSheet.create({
         marginTop: 16,
         marginBottom: 8,
     },
+    escolhas: {
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderRadius: 16,
+        paddingHorizontal: 16,
+        paddingBottom: 14,
+        marginTop: 12,
+        marginBottom: 8,
+    },
+    escolhaLinha: { flexDirection: 'row', alignItems: 'center' },
+    escolhaTitulo: { fontSize: 15, fontWeight: '700', color: Colors.textPrimary, marginBottom: 4 },
+    escolhaTexto: { fontSize: 13, color: Colors.textSecondary, lineHeight: 19 },
     subtitulo: {
         fontSize: 13,
         fontStyle: 'italic',

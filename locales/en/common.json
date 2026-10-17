@@ -830,7 +830,7 @@
     },
     "terms": {
         "monitoringTitle": "6. Monitoring & Alert Features",
-        "monitoringBody": "Monitoring and alert features (fall detection, audio monitor, check-in and SOS) are AUXILIARY and depend on factors beyond our control: the device's sensors and battery, cell signal, an SMS-capable plan, operating system restrictions and correct configuration.\n\nThey may miss events or trigger false alerts, and they are NOT an emergency service, a medical device or a substitute for human supervision. Vigilaro Care is a day-to-day utility and prevention tool — use these features as an additional layer of support, never as the only line of protection for the people you love.",
+        "monitoringBody": "Alert features (wellbeing check-in and SOS) are AUXILIARY and depend on factors beyond our control: the device's battery, cell and GPS signal, an SMS-capable plan, operating system restrictions and correct configuration.\n\nThey may fail or not arrive in time, and they are NOT an emergency service, a medical device or a substitute for human supervision. Vigilaro Care is a day-to-day utility and prevention tool — use these features as an additional layer of support, never as the only line of protection for the people you love.",
         "privacyTitle": "7. Privacy",
         "provider": "App provided by {{empresa}}. Contact: {{email}}."
     },
@@ -3068,6 +3068,16 @@
         "ativar": "Turn on location",
         "agoraNao": "Not now",
         "viagemTitulo": "Emergency numbers at your destination",
-        "viagemTexto": "With location on, Vigilaro recognizes the country you are in and shows its emergency number. Without it, the app shows the numbers of the country set on your phone. Abroad, if in doubt, call 112 — your phone routes the call to local emergency services in most countries. To work out the country, your position stays on the device."
+        "viagemTexto": "With location on, Vigilaro recognizes the country you are in and shows its emergency number. Without it, the app shows the numbers of the country set on your phone. Abroad, if in doubt, call 112 — your phone routes the call to local emergency services in most countries. To work out the country, your position stays on the device.",
+        "semCiencia": "Vigilaro can use the location you have already allowed to work out which country you are in and show its emergency number — including when you travel. Your position stays on the device; only the country is stored. For now, the numbers shown are for {{pais}}.",
+        "recusou": "You chose not to use location to work out the country: the numbers shown are for {{pais}}, the country set on your phone.",
+        "porQueAtivar": "With location on, Vigilaro works out which country you are in; your position stays on the device.",
+        "usarParaIsso": "Use location for this",
+        "naoUsar": "Don't use"
+    },
+    "privacidade": {
+        "suasEscolhas": "Your choices",
+        "paisTitulo": "Find the country for emergency numbers",
+        "paisTexto": "Uses your location, only on the device, to show the emergency number of the country you are in. Only the country is stored. When off, the numbers follow the country set on your phone. Sending your location in an SOS does not depend on this."
     }
 }

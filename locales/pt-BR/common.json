@@ -864,7 +864,7 @@
     },
     "terms": {
         "monitoringTitle": "6. Recursos de Monitoramento e Alerta",
-        "monitoringBody": "Os recursos de monitoramento e alerta (detecção de queda, monitor de áudio, check-in e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: sensores e bateria do aparelho, sinal de celular, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem não detectar todos os eventos ou gerar alertas indevidos, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.",
+        "monitoringBody": "Os recursos de alerta (check-in de bem-estar e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: bateria do aparelho, sinal de celular e de GPS, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem falhar ou não chegar a tempo, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.",
         "privacyTitle": "7. Privacidade",
         "provider": "Aplicativo fornecido por {{empresa}}. Contato: {{email}}."
     },
@@ -3068,6 +3068,16 @@
         "ativar": "Ativar localização",
         "agoraNao": "Agora não",
         "viagemTitulo": "Números de emergência no destino",
-        "viagemTexto": "Com a localização ativada, o Vigilaro reconhece o país onde você está e mostra o número de emergência de lá. Sem ela, o app mostra os números do país configurado no seu celular. No exterior, se tiver dúvida, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países. Para identificar o país, a posição fica no aparelho."
+        "viagemTexto": "Com a localização ativada, o Vigilaro reconhece o país onde você está e mostra o número de emergência de lá. Sem ela, o app mostra os números do país configurado no seu celular. No exterior, se tiver dúvida, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países. Para identificar o país, a posição fica no aparelho.",
+        "semCiencia": "O Vigilaro pode usar a localização que você já autorizou para identificar o país onde você está e mostrar o número de emergência de lá — inclusive em viagem. A posição fica no aparelho; só o país é guardado. Por enquanto, os números mostrados são de {{pais}}.",
+        "recusou": "Você escolheu não usar a localização para identificar o país: os números mostrados são de {{pais}}, o país configurado no seu celular.",
+        "porQueAtivar": "Com a localização ativada, o Vigilaro identifica o país onde você está; a posição fica no aparelho.",
+        "usarParaIsso": "Usar a localização para isso",
+        "naoUsar": "Não usar"
+    },
+    "privacidade": {
+        "suasEscolhas": "Suas escolhas",
+        "paisTitulo": "Identificar o país pelos números de emergência",
+        "paisTexto": "Usa a localização, só no aparelho, para mostrar o número de emergência do país onde você está. Só o país é guardado. Desligado, os números seguem o país configurado no celular. O envio da localização no SOS não depende disto."
     }
 }

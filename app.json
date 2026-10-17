@@ -24,13 +24,15 @@
       "versionCode": 3,
       "blockedPermissions": [
         "android.permission.READ_PHONE_STATE",
-        "android.permission.SYSTEM_ALERT_WINDOW"
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACTIVITY_RECOGNITION",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ],
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
         "CAMERA",
-        "RECORD_AUDIO",
         "READ_MEDIA_IMAGES",
         "VIBRATE",
         "android.permission.MODIFY_AUDIO_SETTINGS"
@@ -42,11 +44,10 @@
       "bundleIdentifier": "com.agnaldoaf.vigilarocare",
       "buildNumber": "3",
       "infoPlist": {
-        "NSCameraUsageDescription": "O Vigilaro precisa da câmera para escanear produtos e identificar riscos domésticos.",
-        "NSMicrophoneUsageDescription": "O Vigilaro precisa do microfone para o monitoramento de áudio ambiente por segurança.",
-        "NSPhotoLibraryUsageDescription": "Precisamos acessar suas fotos para analisar imagens de possíveis riscos domésticos.",
+        "NSCameraUsageDescription": "O Vigilaro usa a câmera para escanear produtos e rótulos e fotografar ambientes, para identificar riscos domésticos.",
+        "NSPhotoLibraryUsageDescription": "O Vigilaro acessa suas fotos quando você escolhe uma imagem para o perfil ou para analisar possíveis riscos domésticos.",
         "NSLocationWhenInUseUsageDescription": "Usamos sua localização para enviar onde você está quando aciona o SOS e para mostrar o número de emergência do país em que você está. Para identificar o país, a posição fica no aparelho.",
-        "NSMotionUsageDescription": "O Vigilaro usa o sensor de movimento do dispositivo para detectar quedas e acionar alertas de emergência automaticamente."
+        "CFBundleAllowMixedLocalizations": true
       }
     },
     "web": {
@@ -55,8 +56,21 @@
     "plugins": [
       "expo-asset",
       "expo-font",
-      "expo-location",
-      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": false
+        }
+      ],
       [
         "expo-notifications",
         {
@@ -75,16 +89,34 @@
         }
       ],
       "@react-native-community/datetimepicker",
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
       "expo-video",
       "expo-localization",
-      "@sentry/react-native"
+      "@sentry/react-native",
+      [
+        "expo-sensors",
+        {
+          "motionPermission": false
+        }
+      ]
     ],
     "extra": {
       "eas": {
         "projectId": "b538c3ab-d303-4cc8-ab3b-34b3afa025c5"
       }
     },
-    "owner": "agnaldoaf"
+    "owner": "agnaldoaf",
+    "locales": {
+      "pt-BR": "./locales/ios/pt-BR.json",
+      "pt-PT": "./locales/ios/pt-PT.json",
+      "en": "./locales/ios/en.json",
+      "es": "./locales/ios/es.json"
+    }
   }
 }

@@ -29,13 +29,14 @@ import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { getEstadoPaisEmergencia, getNomePais, getMedicalDial } from '../utils/emergencyTokens';
 import { EMERGENCY_NUMBERS_BY_COUNTRY } from '../data/emergencyNumbersByCountry';
-import PaisAtualService, { EVENTO_PAIS } from '../services/PaisAtualService';
+import PaisAtualService, { EVENTO_PAIS, SITUACAO } from '../services/PaisAtualService';
 
 export function usePaisEmergencia() {
-    const [estado, setEstado] = useState(getEstadoPaisEmergencia);
+    const ler = () => ({ ...getEstadoPaisEmergencia(), situacao: PaisAtualService.situacao() });
+    const [estado, setEstado] = useState(ler);
     useEffect(() => {
-        const sub = DeviceEventEmitter.addListener(EVENTO_PAIS, () => setEstado(getEstadoPaisEmergencia()));
-        PaisAtualService.atualizar().finally(() => setEstado(getEstadoPaisEmergencia()));
+        const sub = DeviceEventEmitter.addListener(EVENTO_PAIS, () => setEstado(ler()));
+        PaisAtualService.atualizar().finally(() => setEstado(ler()));
         return () => sub.remove();
     }, []);
     return estado;
@@ -46,11 +47,23 @@ export function textoAvisoPais(estado, t) {
     const tem112 = t('paisEmergencia.ligue112', 'Se estiver em outro país, ligue 112 — o celular encaminha a chamada para o socorro local na maioria dos países.');
     if (estado.origem === 'aparelho') {
         const pais = getNomePais(estado.paisAparelho);
+        const deQuem = pais
+            ? t('paisEmergencia.semLocalizacao', { pais, defaultValue: 'Sem localização, os números de emergência mostrados são de {{pais}}, o país configurado no seu celular.' })
+            : t('paisEmergencia.semLocalizacaoGenerico', 'Sem localização, o Vigilaro não sabe em que país você está e mostra o número de emergência geral, 112.');
+        // Localização já autorizada, mas a pessoa ainda não viu este uso:
+        // explica a finalidade e pergunta (LGPD art. 9º §2º).
+        if (estado.situacao === SITUACAO.SEM_CIENCIA) {
+            return {
+                tipo: 'semCiencia',
+                texto: t('paisEmergencia.semCiencia', { pais: pais || '112', defaultValue: 'O Vigilaro pode usar a localização que você já autorizou para identificar o país onde você está e mostrar o número de emergência de lá — inclusive em viagem. A posição fica no aparelho; só o país é guardado. Por enquanto, os números mostrados são de {{pais}}.' }),
+            };
+        }
+        if (estado.situacao === SITUACAO.RECUSOU) {
+            return { tipo: 'recusou', texto: `${t('paisEmergencia.recusou', { pais: pais || '112', defaultValue: 'Você escolheu não usar a localização para identificar o país: os números mostrados são de {{pais}}, o país configurado no seu celular.' })} ${tem112}` };
+        }
         return {
             tipo: 'semLocalizacao',
-            texto: pais
-                ? `${t('paisEmergencia.semLocalizacao', { pais, defaultValue: 'Sem localização, os números de emergência mostrados são de {{pais}}, o país configurado no seu celular.' })} ${tem112}`
-                : `${t('paisEmergencia.semLocalizacaoGenerico', 'Sem localização, o Vigilaro não sabe em que país você está e mostra o número de emergência geral, 112.')} ${tem112}`,
+            texto: `${deQuem} ${tem112} ${t('paisEmergencia.porQueAtivar', 'Com a localização ativada, o Vigilaro identifica o país onde você está; a posição fica no aparelho.')}`,
         };
     }
     if (estado.pais == null) {
@@ -77,16 +90,20 @@ export function textoAvisoPais(estado, t) {
     return null;
 }
 
-async function ativarLocalizacao() {
+/**
+ * A pessoa leu a finalidade no aviso e tocou para usar: registra a ciência e,
+ * se faltar, pede a permissão do sistema (ou abre os Ajustes, se negada em
+ * definitivo).
+ */
+export async function aceitarUsoDaLocalizacao() {
     try {
         const atual = await ExpoLocation.getForegroundPermissionsAsync();
-        if (atual.status !== 'granted' && atual.canAskAgain === false) {
-            await Linking.openSettings();
-            return;
+        if (atual.status !== 'granted') {
+            if (atual.canAskAgain === false) await Linking.openSettings();
+            else await ExpoLocation.requestForegroundPermissionsAsync();
         }
-        await ExpoLocation.requestForegroundPermissionsAsync();
     } catch (_) { /* sem permissão: o aviso continua */ }
-    await PaisAtualService.atualizar({ forcar: true });
+    await PaisAtualService.definirCiencia(true);
 }
 
 export default function AvisoPaisEmergencia({ tom = 'claro', semBotao = false, style }) {
@@ -102,10 +119,21 @@ export default function AvisoPaisEmergencia({ tom = 'claro', semBotao = false, s
             <NeoIcon name={info ? 'Global' : 'Location'} size={16} color={escuro ? '#FFF' : (Neo.colors.accent.warm || '#A16207')} variant="Bold" />
             <View style={{ flex: 1 }}>
                 <Small style={[styles.text, escuro && styles.textEscuro]}>{aviso.texto}</Small>
-                {aviso.tipo === 'semLocalizacao' && !semBotao && (
-                    <TouchableOpacity onPress={ativarLocalizacao} accessibilityRole="button" style={styles.botao} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                        <Small style={[styles.botaoTexto, escuro && styles.textEscuro]}>{t('paisEmergencia.ativar', 'Ativar localização')}</Small>
-                    </TouchableOpacity>
+                {['semLocalizacao', 'semCiencia', 'recusou'].includes(aviso.tipo) && !(semBotao && aviso.tipo === 'semLocalizacao') && (
+                    <View style={styles.botoes}>
+                        <TouchableOpacity onPress={aceitarUsoDaLocalizacao} accessibilityRole="button" style={styles.botao} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                            <Small style={[styles.botaoTexto, escuro && styles.textEscuro]}>
+                                {aviso.tipo === 'semLocalizacao'
+                                    ? t('paisEmergencia.ativar', 'Ativar localização')
+                                    : t('paisEmergencia.usarParaIsso', 'Usar a localização para isso')}
+                            </Small>
+                        </TouchableOpacity>
+                        {aviso.tipo === 'semCiencia' && (
+                            <TouchableOpacity onPress={() => PaisAtualService.definirCiencia(false)} accessibilityRole="button" style={styles.botao} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                                <Small style={[styles.botaoTexto, styles.botaoSecundario, escuro && styles.textEscuro]}>{t('paisEmergencia.naoUsar', 'Não usar')}</Small>
+                            </TouchableOpacity>
+                        )}
+                    </View>
                 )}
             </View>
         </View>
@@ -140,7 +168,9 @@ const styles = StyleSheet.create({
         lineHeight: 17,
     },
     textEscuro: { color: '#FFF' },
-    botao: { marginTop: 8, alignSelf: 'flex-start' },
+    botoes: { flexDirection: 'row', flexWrap: 'wrap', gap: 18, marginTop: 8 },
+    botao: { alignSelf: 'flex-start' },
+    botaoSecundario: { fontWeight: '600', textDecorationLine: 'none' },
     botaoTexto: {
         color: Neo.colors.primary[700],
         fontSize: 13,

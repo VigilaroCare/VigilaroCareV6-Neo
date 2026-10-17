@@ -830,7 +830,7 @@
     },
     "terms": {
         "monitoringTitle": "6. Funciones de Monitoreo y Alerta",
-        "monitoringBody": "Las funciones de monitoreo y alerta (detección de caídas, monitor de audio, check-in y SOS) son AUXILIARES y dependen de factores fuera de nuestro control: sensores y batería del dispositivo, señal celular, plan para SMS, restricciones del sistema operativo y configuración correcta.\n\nPueden no detectar todos los eventos o generar alertas indebidas, y NO constituyen un servicio de emergencia, un dispositivo médico ni un sustituto de la supervisión humana. Vigilaro Care es una herramienta de utilidad y prevención para el día a día — use estas funciones como capa adicional de apoyo, nunca como única línea de protección de quienes ama.",
+        "monitoringBody": "Las funciones de alerta (comprobación de bienestar y SOS) son AUXILIARES y dependen de factores fuera de nuestro control: batería del dispositivo, señal celular y de GPS, plan para SMS, restricciones del sistema operativo y configuración correcta.\n\nPueden fallar o no llegar a tiempo, y NO constituyen un servicio de emergencia, un dispositivo médico ni un sustituto de la supervisión humana. Vigilaro Care es una herramienta de utilidad y prevención para el día a día — use estas funciones como capa adicional de apoyo, nunca como única línea de protección de quienes ama.",
         "privacyTitle": "7. Privacidad",
         "provider": "Aplicación proporcionada por {{empresa}}. Contacto: {{email}}."
     },
@@ -3068,6 +3068,16 @@
         "ativar": "Activar ubicación",
         "agoraNao": "Ahora no",
         "viagemTitulo": "Números de emergencia en el destino",
-        "viagemTexto": "Con la ubicación activada, Vigilaro reconoce el país en el que se encuentra y muestra su número de emergencia. Sin ella, la app muestra los números del país configurado en su móvil. En el extranjero, si tiene dudas, llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países. Para identificar el país, la posición se queda en el dispositivo."
+        "viagemTexto": "Con la ubicación activada, Vigilaro reconoce el país en el que se encuentra y muestra su número de emergencia. Sin ella, la app muestra los números del país configurado en su móvil. En el extranjero, si tiene dudas, llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países. Para identificar el país, la posición se queda en el dispositivo.",
+        "semCiencia": "Vigilaro puede usar la ubicación que ya autorizó para identificar el país en el que se encuentra y mostrar su número de emergencia — incluso de viaje. La posición se queda en el dispositivo; solo se guarda el país. Por ahora, los números que se muestran son de {{pais}}.",
+        "recusou": "Eligió no usar la ubicación para identificar el país: los números que se muestran son de {{pais}}, el país configurado en su móvil.",
+        "porQueAtivar": "Con la ubicación activada, Vigilaro identifica el país en el que se encuentra; la posición se queda en el dispositivo.",
+        "usarParaIsso": "Usar la ubicación para esto",
+        "naoUsar": "No usar"
+    },
+    "privacidade": {
+        "suasEscolhas": "Sus opciones",
+        "paisTitulo": "Identificar el país para los números de emergencia",
+        "paisTexto": "Usa la ubicación, solo en el dispositivo, para mostrar el número de emergencia del país en el que se encuentra. Solo se guarda el país. Desactivado, los números siguen el país configurado en el móvil. El envío de la ubicación en el SOS no depende de esto."
     }
 }

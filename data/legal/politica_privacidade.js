@@ -107,7 +107,7 @@ const PT_BR = {
         },
         {
             titulo: '6. Permissões do aparelho',
-            texto: 'Câmera e fotos: perfil e scanner de riscos. Microfone: recursos de voz e gravação acionada por função de emergência. Localização: SOS e recursos de segurança — inclusive identificar, no próprio aparelho, o país em que você está, para mostrar os números de emergência certos; desse uso só o país é guardado, nunca a posição. Notificações: lembretes e check-ins. Você pode negar ou revogar qualquer permissão nas configurações do sistema; as funções que dependem dela ficam limitadas.',
+            texto: 'Câmera e fotos: perfil e scanner de riscos. Microfone: o aplicativo não usa. Localização: SOS e recursos de segurança — inclusive identificar, no próprio aparelho, o país em que você está, para mostrar os números de emergência certos; desse uso só o país é guardado, nunca a posição, e ele pode ser desligado em Privacidade > Suas escolhas. Notificações: lembretes e check-ins. Você pode negar ou revogar qualquer permissão nas configurações do sistema; as funções que dependem dela ficam limitadas.',
         },
         {
             titulo: '7. Compartilhamento com terceiros',
@@ -161,7 +161,7 @@ const PT_PT = {
         },
         {
             titulo: '6. Permissões do equipamento',
-            texto: 'Câmara e fotografias: perfil e leitura de riscos. Microfone: funções de voz e gravação acionada por emergência. Localização: SOS e funções de segurança — incluindo identificar, no próprio aparelho, o país em que se encontra, para mostrar os números de emergência certos; deste uso só o país é guardado, nunca a posição. Notificações: lembretes e verificações de bem-estar. Pode recusar ou revogar qualquer permissão nas definições do sistema.',
+            texto: 'Câmara e fotografias: perfil e leitura de riscos. Microfone: a aplicação não utiliza. Localização: SOS e funções de segurança — incluindo identificar, no próprio aparelho, o país em que se encontra, para mostrar os números de emergência certos; deste uso só o país é guardado, nunca a posição, e pode ser desligado em Privacidade > As suas escolhas. Notificações: lembretes e verificações de bem-estar. Pode recusar ou revogar qualquer permissão nas definições do sistema.',
         },
         {
             titulo: '7. Destinatários',
@@ -223,7 +223,7 @@ const ES = {
         },
         {
             titulo: '6. Permisos del dispositivo',
-            texto: 'Cámara y fotos: perfil y escáner de riesgos. Micrófono: funciones de voz y grabación activada por emergencia. Ubicación: SOS y funciones de seguridad — incluido identificar, en el propio dispositivo, el país en el que se encuentra, para mostrar los números de emergencia correctos; de este uso solo se guarda el país, nunca la posición. Notificaciones: recordatorios y comprobaciones de bienestar. Puede denegar o revocar cualquier permiso en los ajustes del sistema.',
+            texto: 'Cámara y fotos: perfil y escáner de riesgos. Micrófono: la aplicación no lo usa. Ubicación: SOS y funciones de seguridad — incluido identificar, en el propio dispositivo, el país en el que se encuentra, para mostrar los números de emergencia correctos; de este uso solo se guarda el país, nunca la posición, y puede desactivarse en Privacidad > Sus opciones. Notificaciones: recordatorios y comprobaciones de bienestar. Puede denegar o revocar cualquier permiso en los ajustes del sistema.',
         },
         {
             titulo: '7. Destinatarios',
@@ -281,7 +281,7 @@ const EN = {
         },
         {
             titulo: '5. Device permissions',
-            texto: 'Camera and photos: profiles and the hazard scanner. Microphone: voice features and recording triggered by an emergency function. Location: SOS and safety features — including working out, on the device itself, which country you are in, so the right emergency numbers are shown; for this, only the country is stored, never your position. Notifications: reminders and wellbeing check-ins. You may deny or revoke any permission in your system settings; features that depend on it will stop working.',
+            texto: 'Camera and photos: profiles and the hazard scanner. Microphone: not used by the app. Location: SOS and safety features — including working out, on the device itself, which country you are in, so the right emergency numbers are shown; for this, only the country is stored, never your position, and you can turn it off under Privacy > Your choices. Notifications: reminders and wellbeing check-ins. You may deny or revoke any permission in your system settings; features that depend on it will stop working.',
         },
         {
             titulo: '6. When information leaves your device',

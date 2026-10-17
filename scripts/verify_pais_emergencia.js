@@ -21,9 +21,26 @@ Module.prototype._compile = function (codigo, ficheiro) {
 };
 let regiaoDoAparelho = 'BR';
 const i18nFalso = { language: 'pt-BR', t: (k, o) => (o && o.defaultValue) || k };
+let permissaoLocalizacao = 'granted';
+let posicaoAtual = null;
+const disco = {};
 const dubles = {
     'expo-localization': { getLocales: () => [{ regionCode: regiaoDoAparelho }] },
     '../i18n': { default: i18nFalso },
+    'expo-location': {
+        getForegroundPermissionsAsync: async () => ({ status: permissaoLocalizacao, canAskAgain: true }),
+        getLastKnownPositionAsync: async () => (posicaoAtual ? { coords: posicaoAtual } : null),
+        getCurrentPositionAsync: async () => (posicaoAtual ? { coords: posicaoAtual } : null),
+        Accuracy: { Low: 2 },
+    },
+    '@react-native-async-storage/async-storage': {
+        default: {
+            getItem: async (k) => (k in disco ? disco[k] : null),
+            setItem: async (k, v) => { disco[k] = v; },
+            removeItem: async (k) => { delete disco[k]; },
+        },
+    },
+    'react-native': { DeviceEventEmitter: { emit: () => {} } },
 };
 const carregarOriginal = Module._load;
 Module._load = function (pedido, pai, ...resto) {
@@ -92,5 +109,32 @@ e = cenario('Em Foz do Iguaçu (fronteira)', 'BR', FOZ, { medico: '112', bombeir
 ok(e.pais === null && e.motivo === 'fronteira', 'estado: na dúvida, fronteira');
 tok.definirPaisFisico(undefined);
 
-console.log(`\nRESULTADO: ${falhas ? falhas + ' falha(s)' : 'aprovado'}`);
-process.exit(falhas ? 1 : 0);
+// 3. Ciência da finalidade (LGPD art. 9º §2º; RGPD art. 13(3)): quem
+// autorizou a localização com o texto antigo do tour NÃO tem a posição usada
+// para identificar o país até aceitar; recusar ou desligar apaga o país.
+(async () => {
+    console.log('\n3. Ciência da finalidade');
+    const { default: PAS, SITUACAO } = require('../services/PaisAtualService');
+    regiaoDoAparelho = 'BR'; tok.resetEmergencyCountryCache();
+    permissaoLocalizacao = 'granted'; posicaoAtual = { latitude: 38.72, longitude: -9.14 }; // Lisboa
+
+    await PAS.iniciar();
+    ok(PAS.situacao() === SITUACAO.SEM_CIENCIA && tok.getMedicalDial() === '192', 'permissão antiga, sem ciência: posição NÃO usada (segue 192 do aparelho)');
+    await PAS.registrarPosicao(posicaoAtual);
+    ok(tok.getMedicalDial() === '192' && !disco['@vigilaro_pais_fisico'], 'SOS sem ciência: posição fica na tela do SOS, nada é guardado');
+
+    await PAS.definirCiencia(true);
+    ok(PAS.situacao() === SITUACAO.ATIVO && tok.getMedicalDial() === '112', 'aceitou: Lisboa → 112');
+    ok(disco['@vigilaro_pais_fisico'] && !/latitude|longitude|38\.7|-9\.1/.test(disco['@vigilaro_pais_fisico']), `guarda só o país: ${disco['@vigilaro_pais_fisico']}`);
+
+    await PAS.definirCiencia(false);
+    ok(PAS.situacao() === SITUACAO.RECUSOU && tok.getMedicalDial() === '192' && !disco['@vigilaro_pais_fisico'], 'desligou: país apagado, volta ao do aparelho');
+
+    await PAS.definirCiencia(true);
+    permissaoLocalizacao = 'denied';
+    await PAS.atualizar({ forcar: true });
+    ok(PAS.situacao() === SITUACAO.SEM_PERMISSAO && tok.getMedicalDial() === '192' && !disco['@vigilaro_pais_fisico'], 'revogou a permissão no sistema: país apagado');
+
+    console.log(`\nRESULTADO: ${falhas ? falhas + ' falha(s)' : 'aprovado'}`);
+    process.exit(falhas ? 1 : 0);
+})();

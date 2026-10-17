@@ -68,7 +68,7 @@ export default function TermsOfUseScreen({ navigation }) {
 
                 <Text style={styles.sectionTitle}>{t('terms.monitoringTitle', '6. Recursos de Monitoramento e Alerta')}</Text>
                 <Text style={styles.text}>
-                    {t('terms.monitoringBody', 'Os recursos de monitoramento e alerta (detecção de queda, monitor de áudio, check-in e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: sensores e bateria do aparelho, sinal de celular, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem não detectar todos os eventos ou gerar alertas indevidos, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.')}
+                    {t('terms.monitoringBody', 'Os recursos de alerta (check-in de bem-estar e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: bateria do aparelho, sinal de celular e de GPS, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem falhar ou não chegar a tempo, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.')}
                 </Text>
 
                 <Text style={styles.sectionTitle}>{t('terms.privacyTitle', '7. Privacidade')}</Text>

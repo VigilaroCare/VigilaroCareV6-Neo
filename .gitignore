@@ -65,6 +65,9 @@ backend-proxy/.env
 !unique_icons.json
 !files_to_modify.json
 !locales/**/common.json
+# Textos dos pedidos de permissão do iOS por idioma (app.json → "locales").
+# Sem eles no git, o build do EAS falha ao procurar os arquivos.
+!locales/ios/*.json
 # Config de build: sem ela, clone limpo não compila no EAS. Verificada:
 # não contém credencial (as chaves vivem no dashboard do Expo).
 !eas.json

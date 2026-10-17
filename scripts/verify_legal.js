@@ -74,6 +74,44 @@ for (const chave of ["'pt-BR'", "'pt-PT'", 'es:', 'en:']) {
     if (!src.includes(chave)) problemas.push('Falta a política da jurisdição ' + chave);
 }
 
+// 4. Permissões declaradas = uso real (17/10/2026). O app declarava microfone
+// ("monitoramento de áudio"), sensor de movimento ("detectar quedas
+// automaticamente"), Face ID e localização "sempre" sem usar nenhum — e os
+// Termos prometiam detecção de queda e monitor de áudio. Apple 5.1.1 (pedir
+// só o necessário, descrever o uso real), Google Play (permissões e Segurança
+// dos dados), LGPD art. 6º VI e CDC (oferta enganosa). Bibliotecas reinjetam
+// permissões a cada atualização: esta checagem é o que impede a volta.
+const app = JSON.parse(fs.readFileSync(path.join(RAIZ, 'app.json'), 'utf8')).expo;
+const plugin = (nome) => (app.plugins || []).find((p) => (Array.isArray(p) ? p[0] : p) === nome);
+const opcoes = (nome) => { const p = plugin(nome); return Array.isArray(p) ? p[1] || {} : {}; };
+const ipl = app.ios?.infoPlist || {};
+for (const k of ['NSMicrophoneUsageDescription', 'NSMotionUsageDescription', 'NSFaceIDUsageDescription', 'NSLocationAlwaysUsageDescription', 'NSLocationAlwaysAndWhenInUseUsageDescription']) {
+    if (ipl[k]) problemas.push(`app.json declara ${k}, mas o app não usa esse recurso.`);
+}
+if (plugin('expo-audio') && opcoes('expo-audio').microphonePermission !== false) problemas.push('expo-audio sem { microphonePermission: false } — o plugin reinjeta o pedido de microfone no iOS.');
+if (plugin('expo-audio') && opcoes('expo-audio').recordAudioAndroid !== false) problemas.push('expo-audio sem { recordAudioAndroid: false } — o plugin reinjeta RECORD_AUDIO no Android.');
+if (fs.existsSync(path.join(RAIZ, 'node_modules', 'expo-sensors')) && opcoes('expo-sensors').motionPermission !== false) problemas.push('expo-sensors instalado sem { motionPermission: false } — o iOS declara o sensor de movimento.');
+if (opcoes('expo-secure-store').faceIDPermission !== false) problemas.push('expo-secure-store sem { faceIDPermission: false } — o iOS declara Face ID, que o app não usa.');
+const loc = opcoes('expo-location');
+if (loc.locationAlwaysPermission !== false || loc.locationAlwaysAndWhenInUsePermission !== false) problemas.push('expo-location declara localização "sempre" — o app só usa em primeiro plano.');
+const bloqueadas = app.android?.blockedPermissions || [];
+for (const p of ['android.permission.RECORD_AUDIO', 'android.permission.ACTIVITY_RECOGNITION', 'android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK']) {
+    if (!bloqueadas.includes(p)) problemas.push(`Android: ${p} não está em blockedPermissions (uma biblioteca a injeta sem uso).`);
+}
+if ((app.android?.permissions || []).some((p) => /RECORD_AUDIO|BACKGROUND_LOCATION|ACTIVITY_RECOGNITION/.test(p))) problemas.push('Android declara permissão que o app não usa (áudio, localização em segundo plano ou atividade física).');
+// Textos dos pedidos do iOS nos 4 idiomas, com as mesmas chaves do infoPlist.
+const usadas = Object.keys(ipl).filter((k) => /UsageDescription$/.test(k));
+for (const lang of ['pt-BR', 'pt-PT', 'en', 'es']) {
+    const arq = app.locales?.[lang];
+    if (!arq || !fs.existsSync(path.join(RAIZ, arq))) { problemas.push(`Pedidos de permissão do iOS sem tradução para ${lang} (app.json → locales).`); continue; }
+    const ios = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8')).ios || {};
+    for (const k of usadas) if (!ios[k]) problemas.push(`${arq}: falta ${k}.`);
+}
+// Nada de prometer recurso que não existe.
+const textosLegais = [src, ...['pt-BR', 'pt-PT', 'en', 'es'].map((l) => JSON.stringify(require(path.join(RAIZ, 'locales', l, 'common.json')).terms || {}))].join('\n');
+const fantasmas = textosLegais.match(/detec[çc][ãa]o de queda|dete[çc][ãa]o de queda|detecci[óo]n de ca[íi]das|fall detection|monitor de [áa]udio|audio monitor|grava[çc][ãa]o acionada|grabaci[óo]n activada|recording triggered/gi);
+if (fantasmas) problemas.push(`Termos/Política prometem recurso que não existe: ${[...new Set(fantasmas)].join(', ')}.`);
+
 const mostrar = (rotulo, lista) => {
     if (!lista.length) return;
     console.log(linha(rotulo));

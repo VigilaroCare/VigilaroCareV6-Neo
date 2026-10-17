@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
 import * as ExpoLocation from 'expo-location';
+import PaisAtualService from '../services/PaisAtualService';
 
 const { width, height } = Dimensions.get('window');
 
@@ -96,6 +97,9 @@ export default function WelcomeTourScreenNeo({ navigation, route }) {
                     onPress: async () => {
                         try {
                             await ExpoLocation.requestForegroundPermissionsAsync();
+                            // O texto acima já informa as duas finalidades (SOS e
+                            // número do país): quem toca "Autorizar" deu ciência.
+                            await PaisAtualService.definirCiencia(true);
                         } catch (_) {
                             // Permissão é desejável, não obrigatória: seja qual
                             // for o resultado, o onboarding continua.

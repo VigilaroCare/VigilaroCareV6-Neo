@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Vigilaro usa la cámara para escanear productos y etiquetas y fotografiar ambientes, para identificar riesgos en el hogar.",
+    "NSPhotoLibraryUsageDescription": "Vigilaro accede a sus fotos cuando elige una imagen para un perfil o para analizar posibles riesgos en el hogar.",
+    "NSLocationWhenInUseUsageDescription": "Usamos su ubicación para enviar dónde está cuando activa el SOS y para mostrar el número de emergencia del país en el que se encuentra. Para identificar el país, la posición se queda en el dispositivo."
+  }
+}
