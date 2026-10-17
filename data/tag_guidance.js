@@ -23,7 +23,7 @@ export const TAG_GUIDANCE = {
         titulo: 'Risco de queimadura',
         titulo_en: 'Burn risk',
         titulo_es: 'Riesgo de quemadura',
-        curto: 'Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos se recuperam mais devagar e com mais dor.',
+        curto: 'Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos têm recuperação mais lenta e dolorosa.',
         curto_en: 'A burn can happen the very next time this space is used — children and older adults heal more slowly and with more pain.',
         curto_es: 'Una quemadura puede ocurrir la próxima vez que se use este ambiente: los niños y las personas mayores se recuperan más lento y con más dolor.',
         medio: 'Queimaduras pequenas repetidas atrasam a cicatrização e podem infeccionar sem o cuidado adequado.',

@@ -67,7 +67,7 @@ La electricidad no tiene olor ni color, pero puede matar.
 1. **NO toque a la persona** mientras esté en contacto con la fuente de energía. Usted también recibirá el choque.
 2. **Desconecte la energía:** Vaya al cuadro eléctrico y apague el interruptor principal.
 3. **Aleje la fuente:** Si no puede apagar, use un objeto **no conductor** (palo de escoba de madera seco, plástico) para alejar el cable.
-4. **Llame a Urgencias (911 o 112).**
+4. **Pida ayuda:** llame a {{EMERGENCY_MEDICAL}}.
         `,
         tags: ['electricidad', 'primeros_auxilios', 'mantenimiento']
     },

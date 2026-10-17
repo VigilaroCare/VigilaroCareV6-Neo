@@ -40,9 +40,9 @@ export const SAFETY_GAS = {
             title_ptpt: 'Sinais e Perigos Iniciais',
             icon: 'Danger',
             emoji: '⚠️', icone: 'Warning',
-            description: 'O gás de cozinha, por ser mais pesado que o ar, se acumula no chão e nos ralos. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar uma explosão violenta.',
-            description_en: 'Cooking gas is heavier than air and pools at floor level and in drains. In enclosed spaces, even a small spark — even from a light switch — can cause a violent explosion.',
-            description_es: 'El gas de cocina es más pesado que el aire y se acumula en el suelo y en los desagües. En ambientes cerrados, cualquier chispa leve — incluso la del interruptor de la luz — puede causar una explosión violenta.',
+            description: 'O gás de cozinha, por ser mais pesado que o ar, se acumula no chão, em ralos e em canaletas. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar explosão violenta.',
+            description_en: 'Cooking gas is heavier than air and pools at floor level, in drains and in floor channels. In enclosed spaces, even a small spark — even from a light switch — can cause a violent explosion.',
+            description_es: 'El gas de cocina es más pesado que el aire y se acumula en el suelo, en los desagües y en las canaletas. En ambientes cerrados, cualquier chispa leve — incluso la del interruptor de la luz — puede causar una explosión violenta.',
             description_ptpt: 'O gás de cozinha, por ser mais pesado que o ar, acumula-se no chão e nos ralos. Em ambientes fechados, qualquer faísca leve — até a do interruptor da luz — pode causar uma explosão violenta.',
         },
         {

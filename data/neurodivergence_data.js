@@ -1,7 +1,7 @@
 export const NEURODIVERGENCE_DATA = {
     title: "Lar Neurodiverso",
     subtitle: "Segurança inclusiva e adaptação do lar",
-    description: "A segurança vai muito além das barreiras físicas. Para pessoas atípicas (TEA, TDAH, TPS), a percepção de risco e o comportamento em emergências são únicos. Este módulo apresenta protocolos vitais de prevenção.",
+    description: "A segurança vai muito além das barreiras físicas. Para pessoas atípicas — com TEA (Transtorno do Espectro Autista), TDAH (Transtorno do Déficit de Atenção e Hiperatividade) ou TPS (Transtorno do Processamento Sensorial) — a percepção de risco e o comportamento em emergências são únicos. Este módulo apresenta protocolos vitais de prevenção.",
     categories: [
         {
             id: "nd_fuga",
@@ -38,17 +38,17 @@ O tempo de reação é crucial. Cada porta que dá acesso à rua deve ter um sis
             short_desc: "Prevenção de afogamentos e fascínio aquático.",
             content: `
 # Fascínio e Atração por Água
-O afogamento é a causa principal de acidentes fatais após fugas em pessoas com TEA. O fascínio visual ou sensorial pela água frequentemente as atrai para piscinas ou banheiras.
+O afogamento é a causa principal de acidentes fatais após fugas em pessoas com TEA (Transtorno do Espectro Autista). O fascínio visual ou sensorial pela água frequentemente as atrai para piscinas ou banheiras.
 
 ### 1. Piscinas e Barreiras
 Uma cerca ao redor da piscina é o mínimo, mas não é suficiente.
 * **Cercas Não-Escaláveis:** A cerca deve ter no mínimo 1,5m, sem vãos horizontais. O portão deve ter fechamento automático e tranca magnética no topo.
-* **Alarmes de Superfície:** Use alarmes flutuantes que disparam uma sirene interna caso a tensão da água seja rompida. Não confie apenas em lonas.
+* **Alarmes de Superfície:** Use alarmes flutuantes que disparam uma sirene interna quando detectam movimento na água. Não confie apenas em lonas.
 
 ### 2. Riscos Internos (Banheiros)
 * Mantenha portas dos banheiros sempre trancadas por fora quando não estiverem em uso.
 * Instale travas de segurança na tampa do vaso sanitário.
-* Esvazie imediatamente baldes e bacias. Apenas 5 cm de água causam acidentes fatais.
+* Esvazie imediatamente baldes e bacias. Poucos centímetros de água bastam para um afogamento.
             `
         },
         {
@@ -63,7 +63,7 @@ Uma cerca ao redor da piscina é o mínimo, mas não é suficiente.
 Em emergências (como incêndio), alarmes convencionais podem ser o maior inimigo. Sirenes agudas podem causar paralisia ou pânico.
 
 ### 1. Alarmes Adaptados
-* Se o som agudo é um gatilho severo, considere detectores de fumaça com alertas visuais (luzes estroboscópicas suaves) ou "falantes".
+* Se o som agudo é um gatilho severo, considere detectores de fumaça com alertas visuais (luzes estroboscópicas suaves) ou "falantes". Considere também detectores conectados ao celular por wi-fi, que avisam os cuidadores à distância.
 * Existem alarmes onde os pais podem gravar instruções ("Fogo! Venha para o quarto!"). Uma voz familiar no caos reduz a chance de paralisia.
 
 ### 2. Refúgio Sensorial (Sensory Safe Space)
@@ -81,7 +81,7 @@ Toda casa deve ter um "canto do refúgio" seguro projetado para momentos de desr
             short_desc: "Prevenção contra ingestão de produtos químicos.",
             content: `
 # Pica e Riscos Químicos
-O transtorno de Pica é a compulsão por ingerir itens não nutritivos. A busca sensorial por cores vivas atrai neurodivergentes para produtos de limpeza.
+O transtorno de Pica é a compulsão por ingerir coisas que não são alimento (terra, papel, sabão, tinta, pilhas pequenas). Não é birra nem descuido: é uma condição que pede supervisão e acompanhamento profissional. A busca sensorial por cores vivas atrai neurodivergentes para produtos de limpeza.
 
 ### 1. Armazenamento Cego
 Esconder não basta; o acesso visual deve ser bloqueado.

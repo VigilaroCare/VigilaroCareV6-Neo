@@ -11,7 +11,7 @@ Most fires start small and could be avoided.
 
 ### Main Causes and Prevention:
 * **Candles:** Never leave them lit unattended or near curtains/sheets. Use firm candlesticks.
-* **Kitchen:** Hot oil is highly flammable. If a pot catches fire, **NEVER throw water** (causes an explosion). Turn off the stove and try to cover the pot with a lid or damp cloth.
+* **Kitchen:** Hot oil is highly flammable. If a pot catches fire, **NEVER throw water** (causes an explosion). Turn off the stove and try to cover the pot with a lid or a damp, well-wrung cloth (never dripping wet).
 * **Cigarettes:** Never smoke in bed. The risk of falling asleep and setting the mattress on fire is very high.
 * **Electrical Overload:** Do not plug multiple powerful appliances (hairdryer, iron, heater) into the same power strip.
 * **Gas:** If you smell gas, do not turn on lights or strike matches. Open windows and turn off the main valve.

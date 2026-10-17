@@ -1,5 +1,5 @@
 /**
- * safety_mobility.js — Mobilidade e Idosos
+ * safety_mobility.js — Idosos e Mobilidade
  *
  * Renderizado por screens/GenericCategoryScreen.js via `t_field`: o `title` do
  * topo e, por seção, `title` e `content`. O `subtitle` não é exibido.
@@ -10,10 +10,10 @@
  */
 export const SAFETY_MOBILITY = {
     id: 'mobilidade_reduzida',
-    title: 'Mobilidade e Idosos',
-    title_en: 'Mobility and Older Adults',
-    title_es: 'Movilidad y Personas Mayores',
-    title_ptpt: 'Mobilidade e Idosos',
+    title: 'Idosos e Mobilidade',
+    title_en: 'Older Adults and Mobility',
+    title_es: 'Personas Mayores y Movilidad',
+    title_ptpt: 'Idosos e Mobilidade',
     subtitle: 'Acessibilidade e prevenção de quedas',
     subtitle_en: 'Accessibility and fall prevention',
     subtitle_es: 'Accesibilidad y prevención de caídas',

@@ -1,16 +1,22 @@
 import i18next from 'i18next';
+import { resolveEmergencyTokensDeep } from '../utils/emergencyTokens';
 import { SAFETY_ARTICLES_PT_BR, DISCLAIMER_FOOTER_PT_BR } from './locales/pt-BR/SafetyArticlesDB';
 import { SAFETY_ARTICLES_PT_PT, DISCLAIMER_FOOTER_PT_PT } from './locales/pt-PT/SafetyArticlesDB';
 import { SAFETY_ARTICLES_EN, DISCLAIMER_FOOTER_EN } from './locales/en/SafetyArticlesDB';
 import { SAFETY_ARTICLES_ES, DISCLAIMER_FOOTER_ES } from './locales/es/SafetyArticlesDB';
 
-export const getSafetyArticles = () => {
+const artigosDoIdioma = () => {
     const lang = i18next.language || 'pt-BR';
     if (lang === 'en') return SAFETY_ARTICLES_EN;
     if (lang === 'es') return SAFETY_ARTICLES_ES;
     if (lang === 'pt-PT') return SAFETY_ARTICLES_PT_PT;
     return SAFETY_ARTICLES_PT_BR;
 };
+
+// Tokens de emergencia ({{EMERGENCY_MEDICAL}} etc.) resolvidos AQUI, pelo pais
+// do usuario: nem toda tela que mostra artigo passa por t_field (a dica da
+// vistoria entregava o `content` cru e o token aparecia literal).
+export const getSafetyArticles = () => resolveEmergencyTokensDeep(artigosDoIdioma());
 
 export const getDisclaimerFooter = () => {
     const lang = i18next.language || 'pt-BR';

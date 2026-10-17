@@ -76,7 +76,7 @@ export const emergenciasPetsES = [
             { titulo: 'Llévelo al veterinario', descricao: 'Lleve la mascota al veterinario aunque parezca mejorar, porque el sobrecalentamiento puede dañar los riñones y otros órganos internos.' },
         ],
         alertas: [
-            'No le eche cubos de agua helada por encima.',
+            'No eche agua helada sobre la mascota.',
             'Los animales de hocico corto (como Pugs, Bulldogs y Persas) sufren mucho más con el calor.',
         ],
     },
@@ -93,7 +93,7 @@ export const emergenciasPetsES = [
             { titulo: 'Aparte muebles y esquinas', descricao: 'Aparte muebles y objetos duros para que la mascota no se golpee la cabeza ni se lastime los ojos.' },
             { titulo: 'Reduzca luces y sonidos', descricao: 'Apague las luces y la televisión o la radio para reducir los estímulos al cerebro.' },
             { titulo: 'Cronometre la crisis', descricao: 'Cronometre la duración de la crisis. Si supera los 5 minutos, lleve a la mascota al veterinario como urgencia.' },
-            { titulo: 'Después de la crisis', descricao: 'Espere a que recupere la conciencia poco a poco (la mascota despierta asustada y desorientada por un tiempo). Hable bajo y evite tocarla con prisa, porque puede morder.' },
+            { titulo: 'Después de la crisis', descricao: 'Espere a que recupere la conciencia poco a poco (la mascota despierta asustada y desorientada por un tiempo). Hable bajo y evite tocarla con movimientos rápidos: puede asustarse y reaccionar con una mordida.' },
         ],
         alertas: [
             'Mantenga la calma: los animales perciben nuestra tensión.',
@@ -112,7 +112,7 @@ export const emergenciasPetsES = [
             { titulo: 'Presione con firmeza', descricao: 'Coloque un paño limpio o una gasa sobre el corte y presione sin parar durante al menos 5 minutos.', critico: true },
             { titulo: 'No esté mirando', descricao: 'NO retire el paño para comprobar el sangrado: rompe el coágulo que se está formando.' },
             { titulo: 'Eleve la herida', descricao: 'Eleve la pata herida por encima del nivel del pecho para reducir la presión sanguínea.' },
-            { titulo: 'Torniquete: CUIDADO', descricao: 'Último recurso: solo en sangrado grave de pata o cola que no para con presión firme y continua. Use una banda ancha y elástica (un cordón fino corta y se resbala en la pata). Anote la hora en que lo aplicó y vaya de inmediato al veterinario, que decide cuándo soltarlo.', critico: true },
+            { titulo: 'Torniquete: CUIDADO', descricao: 'Último recurso: solo en sangrado grave de pata o cola que no para con presión firme y continua. Use una banda ancha y elástica (un cordón fino corta y se resbala en la extremidad). Anote la hora en que lo aplicó y vaya de inmediato al veterinario, que decide cuándo soltarlo.', critico: true },
             { titulo: 'Vaya al veterinario cuanto antes', descricao: 'Lleve la mascota al veterinario, porque los cortes profundos necesitan puntos y curas profesionales.' },
         ],
         alertas: [

@@ -76,7 +76,7 @@ export const emergenciasPetsEN = [
             { titulo: 'Take it to the vet', descricao: 'Take the pet to the vet even if it seems to improve, because overheating can damage the kidneys and other internal organs.' },
         ],
         alertas: [
-            'Do not throw buckets of ice-cold water over it.',
+            'Do not pour ice-cold water on your pet.',
             'Short-nosed breeds (such as Pugs, Bulldogs and Persians) suffer much more in the heat.',
         ],
     },
@@ -93,7 +93,7 @@ export const emergenciasPetsEN = [
             { titulo: 'Move furniture and corners away', descricao: 'Move furniture and hard objects away so the pet does not hit its head or hurt its eyes.' },
             { titulo: 'Dim the lights and sounds', descricao: 'Turn off the lights and the TV or radio to reduce stimulation to the brain.' },
             { titulo: 'Time it', descricao: 'Time the seizure. If it goes beyond 5 minutes, take the pet to the vet as an emergency.' },
-            { titulo: 'After the seizure', descricao: 'Wait for consciousness to return gradually (the pet wakes up frightened and temporarily disoriented). Speak softly and avoid touching it hastily, as it may bite.' },
+            { titulo: 'After the seizure', descricao: 'Wait for consciousness to return gradually (the pet wakes up frightened and temporarily disoriented). Speak softly and avoid touching it with quick movements: that can frighten it, and its reaction may be a bite.' },
         ],
         alertas: [
             'Stay calm — animals sense our tension.',
@@ -112,7 +112,7 @@ export const emergenciasPetsEN = [
             { titulo: 'Press firmly', descricao: 'Place a clean cloth or gauze over the cut and press without stopping for at least 5 minutes.', critico: true },
             { titulo: 'Do not keep checking', descricao: 'DO NOT lift the cloth to check the bleeding — it breaks the forming clot.' },
             { titulo: 'Raise the injury', descricao: 'Raise the injured paw above chest level to reduce blood pressure in it.' },
-            { titulo: 'Tourniquet: CAUTION', descricao: 'Last resort: only for severe bleeding from a leg or tail that will not stop with firm, continuous pressure. Use a wide, stretchy band (a thin cord cuts in and slips on a dog\'s leg). Note the time you applied it and go to the vet immediately; the vet decides when to release it.', critico: true },
+            { titulo: 'Tourniquet: CAUTION', descricao: 'Last resort: only for severe bleeding from a leg or tail that will not stop with firm, continuous pressure. Use a wide, stretchy band (a thin cord cuts in and slips on the limb). Note the time you applied it and go to the vet immediately; the vet decides when to release it.', critico: true },
             { titulo: 'Get to the vet as soon as possible', descricao: 'Take the pet to the vet, because deep cuts need stitches and professional dressings.' },
         ],
         alertas: [

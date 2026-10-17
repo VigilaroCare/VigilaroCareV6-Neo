@@ -45,17 +45,17 @@ export const INTRO_CONCEPTS = [
         comoIdentificar: [
             '🗓️ DIÁRIA: Devemos diariamente estar muito atentos ao nosso ambiente doméstico, já que ele deve ser um refúgio e não uma armadilha criada por nós mesmos. E para isso, a prevenção deve ser diária e jamais negligenciada pela pressa, distrações ou mesmo por estarmos habituados a conviver com situações ou práticas com potencial de causarem acidentes.',
             '🔄 DINÂMICA: Tal como nossas vidas, a prevenção deve ser dinâmica, pois devemos estar sempre atentos em nossos afazeres do dia a dia. Precisamos ser abrangentes em relação às diferentes características dos nossos lares, tendo constantemente um olhar crítico e atento.',
-            '♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção deve ser duradoura e somente a constância pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos a saúde e bem-estar. Praticar segurança sempre será mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
+            '♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos o que nos é mais precioso: nossa saúde e bem-estar. Ser preventivo será sempre mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
         ],
         comoIdentificar_en: [
             '🗓️ DAILY: Every day we must pay close attention to our home, because it should be a refuge, not a trap of our own making. For that, prevention must be daily and never neglected because of haste, distraction, or simply because we have grown used to living with situations or habits that could cause accidents.',
             '🔄 DYNAMIC: Just like our lives, prevention must be dynamic, because we must always stay alert in our everyday tasks. We need to take in the different characteristics of our homes, always with a critical and attentive eye.',
-            '♾️ DURABLE: Only consistency guarantees real protection. Prevention must be continuous so that new dangers do not threaten the family\'s health and well-being. Prevention must be durable, and only consistency can keep new dangerous situations from needlessly exposing us to accidents that could take health and well-being away from us and the people we love. Practicing safety will always be better than an easily avoidable emergency. Prevention spares us the anguish of seeking medical care, whether for ourselves or someone in our family.',
+            '♾️ DURABLE: Only consistency guarantees real protection. Prevention must be continuous so that new dangers do not threaten the family\'s health and well-being. Prevention can keep new dangerous situations from needlessly exposing us to accidents that could take away, from us and the people we love, what is most precious to us: our health and well-being. Being preventive will always be better than an easily avoidable emergency. Prevention spares us the anguish of seeking medical care, whether for ourselves or someone in our family.',
         ],
         comoIdentificar_es: [
             '🗓️ DIARIA: Debemos estar muy atentos a nuestro hogar todos los días, ya que debe ser un refugio y no una trampa creada por nosotros mismos. Para ello, la prevención debe ser diaria y nunca descuidada por la prisa, las distracciones o por estar acostumbrados a convivir con situaciones o prácticas que pueden causar accidentes.',
             '🔄 DINÁMICA: Al igual que nuestras vidas, la prevención debe ser dinámica, pues debemos estar siempre atentos en nuestras tareas del día a día. Necesitamos abarcar las diferentes características de nuestros hogares, con una mirada crítica y atenta en todo momento.',
-            '♾️ DURADERA: Solo la constancia garantiza la protección real. La prevención debe ser continua para evitar que nuevos peligros amenacen la salud y el bienestar de la familia. La prevención debe ser duradera y solo la constancia puede evitar que nuevas situaciones de peligro nos expongan innecesariamente a accidentes que puedan quitarnos, a nosotros y a quienes amamos, la salud y el bienestar. Practicar la seguridad siempre será más ventajoso que una emergencia fácilmente evitable. Prevenir nos ahorra la angustia de una atención médica, ya sea para nosotros o para alguien de nuestra familia.',
+            '♾️ DURADERA: Solo la constancia garantiza la protección real. La prevención debe ser continua para evitar que nuevos peligros amenacen la salud y el bienestar de la familia. La prevención puede evitar que nuevas situaciones de peligro nos expongan innecesariamente a accidentes que puedan quitarnos, a nosotros y a quienes amamos, lo más valioso que tenemos: nuestra salud y bienestar. Ser preventivo siempre será más ventajoso que una emergencia fácilmente evitable. Prevenir nos ahorra la angustia de una atención médica, ya sea para nosotros o para alguien de nuestra familia.',
         ],
         exemplos: [
             'Reflita: Seu lar é um refúgio ou uma armadilha?',
@@ -79,27 +79,27 @@ export const INTRO_CONCEPTS = [
 
 A Metodologia de Prevenção 3D ganha vida através da lógica estrutural do aplicativo, dividida em quatro pilares fundamentais:
 
-* Quem (Proteger): O foco na proteção de todos os membros da família, com atenção especial aos grupos mais vulneráveis (crianças e idosos), recebendo recomendações personalizadas para cada perfil.
+* Quem (Proteger): O foco na proteção de todos os membros da família, com atenção especial aos grupos mais vulneráveis (crianças, idosos e pessoas com deficiência), recebendo recomendações personalizadas para cada perfil.
 * Onde (Ambientes): A segurança se estende a todos os locais frequentados (dentro de casa, quintal, lazer e viagens). A prevenção é sempre contextualizada para o ambiente em que você está.
-* O Quê (Riscos): Auxiliamos na identificação e compreensão cirúrgica dos diversos riscos ocultos, desde quedas até intoxicações e acidentes elétricos.
+* O Quê (Riscos): Auxiliamos na identificação e compreensão profunda dos riscos ocultos, desde quedas até intoxicações e acidentes elétricos.
 * Como (Ações): O Vigilaro Care não apenas aponta os problemas, mas oferece o "Como", com soluções práticas, vistorias e conteúdos educativos que guiarão ações rápidas e eficazes.`,
 
         conteudo_en: `## Vigilaro Care Pillars: Who, Where, What and How
 
 The 3D Prevention Methodology comes to life through the application's structural logic, divided into four fundamental pillars to ensure comprehensive coverage:
 
-* **👤 Who (To Protect)**: Focus on protecting all family members, with special attention to vulnerable groups (children and the elderly), receiving personalized recommendations for each profile.
+* **👤 Who (To Protect)**: Focus on protecting all family members, with special attention to vulnerable groups (children, older adults and people with disabilities), receiving personalized recommendations for each profile.
 * **📍 Where (Environments)**: Safety extends to all frequented locations (indoors, outdoors, leisure, and travel). Prevention is always contextualized to the environment you are in.
-* **⚠️ What (Risks)**: We help identify and surgically understand various hidden risks, from falls to poisoning and electrical accidents.
+* **⚠️ What (Risks)**: We help identify and understand in depth the hidden risks, from falls to poisoning and electrical accidents.
 * **🛠️ How (Actions)**: Vigilaro doesn't just point out problems, it provides the "How" through practical solutions, checklists, and educational resources that guide quick and effective implementation.`,
 
         conteudo_es: `## Los Pilares de Vigilaro Care: Quién, Dónde, Qué y Cómo
 
 La Metodología de Prevención 3D cobra vida a través de la lógica estructural de la aplicación, dividida en cuatro pilares fundamentales para garantizar una cobertura integral:
 
-* **👤 Quién (Proteger)**: El enfoque en la protección de todos los miembros de la familia, con atención especial a los grupos vulnerables (niños y ancianos), recibiendo recomendaciones personalizadas para cada perfil.
+* **👤 Quién (Proteger)**: El enfoque en la protección de todos los miembros de la familia, con atención especial a los grupos vulnerables (niños, personas mayores y personas con discapacidad), recibiendo recomendaciones personalizadas para cada perfil.
 * **📍 Dónde (Ambientes)**: La seguridad se extiende a todos los lugares frecuentados (dentro de casa, patio, ocio y viajes). La prevención siempre está contextualizada al entorno en el que te encuentras.
-* **⚠️ Qué (Riesgos)**: Ayudamos a identificar y comprender quirúrgicamente varios riesgos ocultos, desde caídas hasta intoxicaciones y accidentes eléctricos.
+* **⚠️ Qué (Riesgos)**: Ayudamos a identificar y comprender en profundidad los riesgos ocultos, desde caídas hasta intoxicaciones y accidentes eléctricos.
 * **🛠️ Cómo (Acciones)**: Vigilaro no solo señala los problemas, sino que ofrece el "Cómo" a través de soluciones prácticas, listas de verificación y recursos educativos que guían una implementación rápida y efectiva.`
     },
     {

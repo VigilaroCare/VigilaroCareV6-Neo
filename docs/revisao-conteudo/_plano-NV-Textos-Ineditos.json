@@ -1,0 +1,446 @@
+{
+  "documento": "NV-Textos-Ineditos.docx",
+  "manifesto": "docs/revisao-conteudo/_manifesto-NV.json",
+  "geradoEm": "2026-10-17T00:39:41.219Z",
+  "coerencia": {
+    "lidos": 276,
+    "intactos": 239,
+    "taxa": 0.8659
+  },
+  "editados": [
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "PS · Primeiros socorros — pets",
+      "item": "Hipertermia (Calor)",
+      "chave": "alertas[]",
+      "linha": 69,
+      "original": "Não jogar baldes de água gelada por cima dele.",
+      "codigo": "NV-0022",
+      "novo": "Não jogar REMOVER água gelada no PET."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "PS · Primeiros socorros — pets",
+      "item": "Calma após a crise",
+      "chave": "descricao",
+      "linha": 84,
+      "original": "Aguardar o retorno gradual da consciência (o pet acorda assustado e com desorientação temporária). Falar baixo e evitar tocá-lo com pressa, pois pode morder.",
+      "codigo": "NV-0023",
+      "novo": "Aguardar o retorno gradual da consciência (o pet acorda assustado e com desorientação temporária). Falar baixo e evitar tocá-lo com movimentos rápidos, pois pode assustar e sua reação pode resultar em mordida."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "PS · Primeiros socorros — pets",
+      "item": "Torniquete (Cuidado)",
+      "chave": "descricao",
+      "linha": 100,
+      "original": "Último recurso: usar apenas em sangramento grave de pata ou cauda que não para com pressão firme e contínua. Usar faixa larga e elástica (cordão fino corta e escorrega na pata). Anotar o horário da aplicação e levar imediatamente ao veterinário, que decide quando soltar.",
+      "codigo": "NV-0025",
+      "novo": "Último recurso: usar apenas em sangramento grave de pata ou cauda que não para com pressão firme e contínua. Usar faixa larga e elástica (cordão fino corta e escorrega no membro). Anotar o horário da aplicação e levar imediatamente ao veterinário, que decide quando soltar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+      "rotulo": "PS · Primeiros socorros — pets",
+      "item": "Picada de Cobra / Escorpião",
+      "chave": "alertas[]",
+      "linha": 120,
+      "original": "Picada de escorpião causa dor extrema e faz o pet vomitar rápido.",
+      "codigo": "NV-0027",
+      "novo": "Picada de escorpião causa dor extrema e rapidamente faz o pet vomitar."
+    },
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "ED · Central de Conhecimento",
+      "item": "Garagem",
+      "chave": "texto",
+      "linha": 219,
+      "original": "A garagem junta veículo em movimento, ferramentas pesadas, produtos químicos e pouca visibilidade. É ali que acontece o atropelamento doméstico, uma das principais causas de morte infantil em casas com veículo: SEMPRE dê a volta completa no carro antes de dar partida e de engatar a ré. Câmera de ré ajuda, mas não substitui olhar. Regra da casa: \"ninguém na garagem enquanto o carro manobra\".",
+      "codigo": "NV-0034",
+      "novo": "Em uma garagem encontramos veículo em movimento, ferramentas pesadas, produtos químicos e eventualmente com pouca visibilidade. É ali que acontece o atropelamento doméstico, uma das principais causas de morte infantil em casas com veículo: SEMPRE dê a volta completa no carro antes de dar partida e de engatar a ré. Câmera de ré ajuda, mas não substitui olhar. Regra da casa: \"ninguém na garagem enquanto o carro manobra\"."
+    },
+    {
+      "arquivo": "data/radarConteudoDB.js",
+      "rotulo": "ED · Radar de conteudo",
+      "item": "Agosto: ventos fortes e plantas — alerta de intoxicação por ingestão",
+      "chave": "orientacoes[]",
+      "linha": 519,
+      "original": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca.",
+      "codigo": "NV-0036",
+      "novo": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre que algumas frutas e frutos podem deixar o chão escorregadio."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "ED · Introducao a seguranca",
+      "item": "Metodologia 3D",
+      "chave": "comoIdentificar[]",
+      "linha": 48,
+      "original": "♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção deve ser duradoura e somente a constância pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos a saúde e bem-estar. Praticar segurança sempre será mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.",
+      "codigo": "NV-0040",
+      "novo": "♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção REMOVER pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos, o que nos é mais precioso:  Nossa saúde e bem-estar. REMOVER Ser preventivo REMOVER será sempre mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família."
+    },
+    {
+      "arquivo": "data/intro_safety.js",
+      "rotulo": "ED · Introducao a seguranca",
+      "item": "Metodologia 3D",
+      "chave": "conteudo",
+      "linha": 78,
+      "original": "## Quem, Onde, O Quê e Como\n\nA Metodologia de Prevenção 3D ganha vida através da lógica estrutural do aplicativo, dividida em quatro pilares fundamentais:\n\n* Quem (Proteger): O foco na proteção de todos os membros da família, com atenção especial aos grupos mais vulneráveis (crianças e idosos), recebendo recomendações personalizadas para cada perfil.\n* Onde (Ambientes): A segurança se estende a todos os locais frequentados (dentro de casa, quintal, lazer e viagens). A prevenção é sempre contextualizada para o ambiente em que você está.\n* O Quê (Riscos): Auxiliamos na identificação e compreensão cirúrgica dos diversos riscos ocultos, desde quedas até intoxicações e acidentes elétricos.\n* Como (Ações): O Vigilaro Care não apenas aponta os problemas, mas oferece o \"Como\", com soluções práticas, vistorias e conteúdos educativos que guiarão ações rápidas e eficazes.",
+      "codigo": "NV-0041",
+      "novo": "## Quem, Onde, O Quê e Como\n\nA Metodologia de Prevenção 3D ganha vida através da lógica estrutural do aplicativo, dividida em quatro pilares fundamentais:\n\n* Quem (Proteger): O foco na proteção de todos os membros da família, com atenção especial aos grupos mais vulneráveis (crianças, idosos e portadores de necessidades especiais), recebendo recomendações personalizadas para cada perfil.\n* Onde (Ambientes): A segurança se estende a todos os locais frequentados (dentro de casa, quintal, lazer e viagens). A prevenção é sempre contextualizada para o ambiente em que você está.\n* O Quê (Riscos): Auxiliamos na identificação e compreensão REMOVER profunda dos REMOVER riscos ocultos, desde quedas até intoxicações e acidentes elétricos.\n* Como (Ações): O Vigilaro Care não apenas aponta os problemas, mas oferece o \"Como\", com soluções práticas, vistorias e conteúdos educativos que guiarão ações rápidas e eficazes."
+    },
+    {
+      "arquivo": "data/teoria_fogo.js",
+      "rotulo": "ED · Teoria do fogo",
+      "item": "Tipos de Extintores",
+      "chave": "comoIdentificar[]",
+      "linha": 55,
+      "original": "Pó ABC: O \"curinga\" residencial.",
+      "codigo": "NV-0052",
+      "novo": "Pó ABC: O \"coringa\" residencial."
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "ED · Fases da vida",
+      "item": "Bebês (0-2 anos)",
+      "chave": "conteudo",
+      "linha": 76,
+      "original": "# Bebê Conforto – Cuidados Necessários\n\nO bebê conforto é um item essencial para transportar seu filho com segurança. A atenção na compra e no uso correto pode salvar vidas.\n\n### Dicas de Segurança:\n1. **Fivelas e Cintos:** Certifique-se sempre de ajustar e travar todas as fivelas ao transportar o bebê.\n2. **Resistência:** Verifique a integridade do equipamento regularmente.\n3. **Instalação:** Siga rigorosamente o manual. A cadeira deve estar firme e, para recém-nascidos, voltada para trás (contra o fluxo do trânsito).\n4. **Validade:** Sim, cadeirinhas têm validade! O plástico resseca e perde resistência com o tempo.\n\n### Posição Segura para Dormir (Safe to Sleep — SBP/AHA 2023)\nEste protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):\n- **SEMPRE de costas** — nunca de bruços ou de lado.\n- Em **superfície firme e plana** (colchão firme de berço).\n- **Sem travesseiros, almofadas, pelúcios ou cobertores fofos** dentro do berço.\n- Temperatura do quarto: confortável — não superaquecer o bebê.\n- Berço no quarto dos pais (não na cama dos pais) **até os 6 meses**.\n\n*Consulte sempre o manual do fabricante e peça orientações ao pediatra.*\n\n---\n\n# A Chegada do Bebê (Visão 3D)\n\n**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.\n\n**Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.\n\n**Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).\n\n[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)\n\n---\n\n# Prevenção de Engasgo e Sufocamento\n\nA sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialmente para bebês até 1 ano.\n\n### 5 Dicas de Prevenção:\n1.  **Dormir de Barriga para Cima:** A posição mais segura para evitar morte súbita e sufocamento.\n2.  **Berço Livre:** Evite protetores de berço, bichos de pelúcia, travesseiros e cobertores soltos dentro do berço. O colchão deve ser firme.\n3.  **Peças Pequenas:** Cuidado com brinquedos com peças destacáveis, botões de roupa e moedas.\n4.  **Alimentação:** Supervisione sempre a amamentação e a introdução alimentar. Corte alimentos redondos (uva, tomate cereja) em quatro partes.\n5.  **Cordões:** Nunca deixe cordões de chupeta ou roupas com tiras longas que possam enrolar no pescoço.",
+      "codigo": "NV-0057",
+      "novo": "# Bebê Conforto – Cuidados Necessários\n\nO bebê conforto é um item essencial para transportar seu filho com segurança. A atenção na compra e no uso correto pode salvar vidas.\n\n### Dicas de Segurança:\n1. **Fivelas e Cintos:** Certifique-se sempre de ajustar e travar todas as fivelas ao transportar o bebê.\n2. **Resistência:** Verifique a integridade do equipamento regularmente.\n3. **Instalação:** Siga rigorosamente o manual. A cadeira deve estar firme e, para recém-nascidos, voltada para trás (contra o fluxo do trânsito).\n4. **Validade:** Sim, cadeirinhas têm validade! O plástico resseca e perde resistência com o tempo.\n\n### Posição Segura para Dormir (Safe to Sleep — SBP/AHA 2023)\nEste protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):\n- **SEMPRE de costas** — nunca de bruços ou de lado.\n- Em **superfície firme e plana** (colchão firme de berço).\n- **Sem travesseiros, almofadas, pelúcios ou cobertores fofos** dentro do berço.\n- Temperatura do quarto: confortável — não superaquecer o bebê.\n- Berço no quarto dos pais (não na cama dos pais) **até os 6 meses**.\n\n*Consulte sempre o manual do fabricante e peça orientações ao pediatra.*\n\n---\n\n# A Chegada do Bebê (Visão 3D)\n\n**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e muito sensíveis a queimaduras.\n\n**Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.\n\n**Berço Seguro:** O berço não deve ter protetores laterais macios, pelúcias ou cobertores soltos que possam obstruir a respiração (risco asfixia).\n\n[Saiba mais no Blog Prevenir em Casa](https://www.preveniremcasa.com.br)\n\n---\n\n# Prevenção de Engasgo e Sufocamento\n\nA sufocação ou obstrução das vias aéreas é um risco gravíssimo, especialmente para bebês até 1 ano.\n\n### 5 Dicas de Prevenção:\n1.  **Dormir de Barriga para Cima:** A posição mais segura para evitar morte súbita e sufocamento.\n2.  **Berço Livre:** Evite protetores de berço, bichos de pelúcia, travesseiros e cobertores soltos dentro do berço. O colchão deve ser firme.\n3.  **Peças Pequenas:** Cuidado com brinquedos com peças destacáveis, botões de roupa e moedas.\n4.  **Alimentação:** Supervisione sempre a amamentação e a introdução alimentar. Corte alimentos redondos (uva, tomate cereja) em quatro partes.\n5.  **Cordões:** Nunca deixe cordões de chupeta ou roupas com tiras longas que possam enrolar no pescoço."
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "ED · Fases da vida",
+      "item": "Crianças (3-12 anos)",
+      "chave": "conteudo",
+      "linha": 553,
+      "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Queimaduras em Crianças\n\nA pele da criança é muito mais sensível que a do adulto. O que é \"quente\" para você pode causar queimadura de 3º grau nela.\n\n### Dicas Práticas:\n*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.\n*   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.\n*   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.\n*   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.\n\n---\n\n# Objeto Estranho no Nariz\n\nFeijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.\n\n### Sinais de Alerta:\n*   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.\n*   Dificuldade de respirar por uma narina.\n*   Dor ou desconforto no nariz.\n\n### O que fazer (e NÃO fazer):\n*   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.\n*   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.\n*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)\n*   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar.",
+      "codigo": "NV-0064",
+      "novo": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Queimaduras em Crianças\n\nA pele da criança é muito mais sensível que a do adulto. O que é \"quente\" para você pode causar queimadura de 3º grau nela.\n\n### Dicas Práticas:\n*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.\n*   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.\n*   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.\n*   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.\n\n---\n\n# REMOVER Corpo Estranho no Nariz\n\nFeijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.\n\n### Sinais de Alerta:\n*   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.\n*   Dificuldade de respirar por uma narina.\n*   Dor ou desconforto no nariz.\n\n### O que fazer (e NÃO fazer):\n*   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.\n*   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.\n*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)\n*   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar."
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "ED · Fases da vida",
+      "item": "Crianças (6 a 14 anos)",
+      "chave": "conteudo",
+      "linha": 1050,
+      "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)",
+      "codigo": "NV-0069",
+      "novo": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras que sejam intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)"
+    },
+    {
+      "arquivo": "data/fases_vida.js",
+      "rotulo": "ED · Fases da vida",
+      "item": "Idosos (60+ anos)",
+      "chave": "conteudo",
+      "linha": 1343,
+      "original": "# Quedas na Terceira Idade\n\n**O Risco Invisível:** Sarcopenia e polifarmácia transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.\n\n**Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.\n\n[Veja adaptações vitais para idosos em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Segurança Medicamentosa\n\nIdosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o risco de confusão.\n\n### Estratégias de Segurança:\n*   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).\n*   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.\n*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio.\n*   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum).\n*   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)\n\n---\n\n# Banheiro Acessível e Seguro\n\nO banheiro combina piso molhado, superfícies duras e necessidade de sentar/levantar, criando uma armadilha perfeita.\n\n### Checklist de Adaptação:\n1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!\n2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.\n3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho evita a fadiga e quedas.\n4.  **Box:** Abertura ampla, sem degraus na entrada se possível.\n5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos.",
+      "codigo": "NV-0079",
+      "novo": "# Quedas na Terceira Idade\n\n**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.\n\n**Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.\n\n[Veja adaptações vitais para idosos em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Segurança Medicamentosa\n\nIdosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o risco de confusão.\n\n### Estratégias de Segurança:\n*   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).\n*   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.\n*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio.\n*   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum). Convém verificar visão periodicamente.\n*   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)\n\n---\n\n# Banheiro Acessível e Seguro\n\nO banheiro combina piso molhado, superfícies duras e necessidade de sentar/levantar, criando uma armadilha perfeita.\n\n### Checklist de Adaptação:\n1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!\n2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.\n3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho evita a fadiga e quedas.\n4.  **Box:** Abertura ampla, sem degraus na entrada se possível.\n5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Churrasco com Segurança",
+      "chave": "content",
+      "linha": 51,
+      "original": "# Churrasco sem Acidentes\n\nReunir a família é ótimo, mas acender a churrasqueira exige respeito e atenção.\n\n### Regras de ouro para evitar acidentes:\n*   **Álcool Líquido:** Não use! O álcool líquido evapora rápido, gera gases explosivos e o fogo pode subir direto para a garrafa na sua mão. Prefira acendedores em gel, pastilhas sólidas ou acendedor elétrico.\n*   **Crianças Longe:** Mantenha crianças e pets a pelo menos 1 metro de distância da churrasqueira.\n*   **Local:** Nunca faça churrasco em garagens fechadas ou cômodos sem ventilação. Isso evita acúmulo de fumaça e intoxicação por monóxido de carbono.\n*   **Facas:** Guarde as facas de churrasco em local alto e seguro logo após terminar de usá-las.",
+      "codigo": "NV-0082",
+      "novo": "# Churrasco sem Acidentes\n\nReunir a família é ótimo, mas acender a churrasqueira exige REMOVER cuidado e atenção.\n\n### Regras de ouro para evitar acidentes:\n*   **Álcool Líquido:** Não use! O álcool líquido evapora rápido, gera gases explosivos e o fogo pode subir direto para a garrafa na sua mão. Prefira acendedores em gel, pastilhas sólidas ou acendedor elétrico.\n*   **Crianças Longe:** Mantenha crianças e pets a pelo menos 1 metro de distância da churrasqueira.\n*   **Local:** Nunca faça churrasco em garagens fechadas ou cômodos sem ventilação. Isso evita acúmulo de fumaça e intoxicação por monóxido de carbono.\n*   **Facas:** Guarde as facas de churrasco em local alto e seguro logo após terminar de usá-las."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Choques Elétricos: Prevenção e Ação",
+      "chave": "content",
+      "linha": 69,
+      "original": "# Choques Elétricos: Perigo Invisível\n\nA eletricidade é silenciosa e invisível. O perigo real só aparece quando o acidente já aconteceu.\n\n### Como se prevenir:\n*   **Manutenção:** Fios descascados, tomadas com marcas pretas de queimado ou disjuntores que desarmam toda hora indicam problemas graves. Chame um eletricista.\n*   **Água e Eletricidade:** Nunca mexa em aparelhos elétricos, tomadas ou disjuntores se estiver com as mãos molhadas ou pisando em chão úmido.\n*   **Protetores de Tomada:** São indispensáveis se você tiver crianças pequenas ou pets curiosos em casa.\n\n### Se alguém levar um choque:\n1.  **NÃO toque na pessoa** enquanto ela estiver em contato com a tomada ou fio. Você também levará o choque.\n2.  **Desligue a energia:** Corra para o quadro de luz e desligue o disjuntor geral.\n3.  **Afaste a fonte:** Se não der para desligar, use um objeto de madeira ou plástico seco (como um cabo de vassoura seco) para empurrar o fio longe da pessoa.\n4.  **Chame socorro:** Ligue para o SAMU no 192.",
+      "codigo": "NV-0083",
+      "novo": "# Choques Elétricos: Perigo Invisível\n\nA eletricidade é silenciosa e invisível. O perigo real só aparece quando o acidente já aconteceu.\n\n### Como se prevenir:\n*   **Manutenção:** Fios descascados, tomadas com marcas pretas de queimado ou disjuntores que desarmam constantemente REMOVER indicam problemas graves. Chame um eletricista.\n*   **Água e Eletricidade:** Nunca mexa em aparelhos elétricos, tomadas ou disjuntores se estiver com as mãos molhadas ou pisando em chão úmido.\n*   **Protetores de Tomada:** São indispensáveis se você tiver crianças pequenas ou pets curiosos em casa.\n\n### Se alguém levar um choque:\n1.  **NÃO toque na pessoa** enquanto ela estiver em contato com a tomada ou fio. Você também levará o choque.\n2.  **Desligue a energia:** Corra para o quadro de luz e desligue o disjuntor geral.\n3.  **Afaste a fonte:** Se não der para desligar, use um objeto de madeira ou plástico seco (como um cabo de vassoura seco) para empurrar o fio longe da pessoa.\n4.  **Chame socorro:** Ligue para o SAMU no 192."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Boas Práticas na Cozinha",
+      "chave": "content",
+      "linha": 133,
+      "original": "# Segurança na Cozinha\n\nCortes, queimaduras e tombos na cozinha podem ser evitados com pequenas mudanças na rotina.\n\n### Dicas para o dia a dia:\n1.  **Facas Afiadas:** Facas cegas exigem mais força na hora de cortar, facilitando escorregões que causam cortes. Mantenha as facas afiadas e guardadas em local seguro.\n2.  **Panela de Pressão:** Cheque se a válvula de escape não está entupida antes de usar. Só tente abrir a panela depois que todo o vapor sair completamente. Troque a borracha de vedação assim que ela começar a ressecar.\n3.  **Chão Seco:** Se cair água ou óleo no piso, limpe na mesma hora para evitar escorregões perigosos.\n4.  **Panos de Prato:** Não deixe panos de prato ou toalhas pendurados perto do fogão quando estiver cozinhando.\n5.  **Micro-ondas:** Cuidado ao retirar pratos quentes. O vapor que sai ao abrir tampas ou sacos de pipoca pode causar queimaduras sérias.",
+      "codigo": "NV-0086",
+      "novo": "# Segurança na Cozinha\n\nCortes, queimaduras e tombos na cozinha podem ser evitados com pequenas mudanças na rotina.\n\n### Dicas para o dia a dia:\n1.  **Facas Afiadas:** Facas cegas exigem mais força na hora de cortar, facilitando escorregões que causam cortes. Mantenha as facas afiadas e guardadas em local seguro.\n2.  **Panela de Pressão:** Cheque se a válvula de escape não está entupida antes de usar. Só tente abrir a panela depois que todo o vapor sair completamente. Troque a borracha de vedação assim que ela começar a ressecar.\n3.  **Chão Seco:** Se cair água ou óleo no piso, limpe na REMOVER imediatamente para evitar escorregões perigosos.\n4.  **Panos de Prato:** Não deixe panos de prato ou toalhas pendurados perto do fogão quando estiver cozinhando.\n5.  **Micro-ondas:** Cuidado ao retirar pratos quentes. O vapor que sai ao abrir tampas ou sacos de pipoca pode causar queimaduras REMOVER graves."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Plantas Tóxicas em Casa",
+      "chave": "content",
+      "linha": 170,
+      "original": "# Plantas Tóxicas Comuns\n\nMuitas plantas bonitas e populares no Brasil escondem substâncias venenosas se forem mastigadas ou tocadas.\n\n### Espécies perigosas e seus efeitos:\n*   **Comigo-Ninguém-Pode:** Muito tóxica. Causa inchaço imediato na boca e na garganta, gerando dor intensa e dificuldade de respirar.\n*   **Costela-de-Adão:** Possui cristais que irritam as mucosas da boca e do estômago.\n*   **Bico-de-Papagaio:** A seiva leitosa da planta causa irritação na pele e nos olhos.\n*   **Espirradeira:** Altamente tóxica. Pode afetar o ritmo do coração.\n*   **Lírio:** É extremamente perigoso para gatos, podendo causar falência renal rápida com apenas algumas mordidas na folha.\n\n**Conselho:** Se você tem crianças ou bichos de estimação em casa, prefira espécies seguras como orquídeas, lavanda, bromélias ou samambaias. Se tiver espécies tóxicas, mantenha-as em prateleiras altas e fora de alcance.",
+      "codigo": "NV-0088",
+      "novo": "# Plantas Tóxicas Comuns\n\nMuitas plantas bonitas e populares no Brasil escondem substâncias venenosas se forem REMOVER ingeridas ou tocadas.\n\n### Espécies perigosas e seus efeitos:\n*   **Comigo-Ninguém-Pode:** Muito tóxica. Causa inchaço imediato na boca e na garganta, gerando dor intensa e dificuldade de respirar.\n*   **Costela-de-Adão:** Possui cristais que irritam as mucosas da boca e do estômago.\n*   **Bico-de-Papagaio:** A seiva leitosa da planta causa irritação na pele e nos olhos.\n*   **Espirradeira:** Altamente tóxica. Pode afetar o ritmo do coração.\n*   **Lírio:** É extremamente perigoso para gatos, podendo causar falência renal rápida com apenas algumas mordidas na folha.\n\n**Conselho:** Se você tem crianças ou bichos de estimação em casa, prefira espécies seguras como orquídeas, lavanda, bromélias ou samambaias. Se tiver espécies tóxicas, mantenha-as em prateleiras altas e fora de alcance."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Animais Peçonhentos: Prevenção e Socorro",
+      "chave": "content",
+      "linha": 191,
+      "original": "# Animais Peçonhentos\n\nAcidentes com escorpiões, aranhas e cobras são mais comuns no calor, em épocas de chuvas ou perto de terrenos com mato.\n\n### Como evitar esses animais em casa:\n*   **Limpeza:** Não acumule entulho, telhas ou madeira no quintal.\n*   **Frestas:** Coloque rodinhos de vedação nas portas e telas nos ralos do banheiro e da lavanderia.\n*   **Sapatos:** Crie o hábito de sacudir tênis e sapatos antes de calçar. Escorpiões adoram cantos escuros e apertados.\n\n### Se alguém for picado:\n*   Lave o local com água corrente e sabão neutro.\n*   Deixe a pessoa em repouso com o membro elevado. O movimento rápido ajuda o veneno a circular mais rápido.\n*   Vá direto para o hospital. Se for seguro, tire uma foto do animal para que os médicos saibam qual soro aplicar.\n*   **NÃO** faça torniquetes, **NÃO** tente cortar o local e **NÃO** chupe o veneno.",
+      "codigo": "NV-0089",
+      "novo": "# Animais Peçonhentos\n\nAcidentes com escorpiões, aranhas e cobras são mais comuns no calor, em épocas de chuvas ou REMOVER próximos de áreas com vegetação.\n\n### Como evitar esses animais em casa:\n*   **Limpeza:** Não acumule entulho, telhas ou madeira no quintal.\n*   **Frestas:** Coloque rodinhos de vedação nas portas e telas nos ralos do banheiro e da lavanderia.\n*   **Sapatos:** Crie o hábito de sacudir tênis e sapatos antes de calçar. Escorpiões adoram cantos escuros e apertados.\n\n### Se alguém for picado:\n*   Lave o local com água corrente e sabão neutro.\n*   Deixe a pessoa em repouso com o membro elevado. O movimento rápido ajuda o veneno a circular mais rápido.\n*   Vá direto para o hospital. Se for seguro, tire uma foto do animal para que os médicos saibam qual soro aplicar.\n*   **NÃO** faça torniquetes, **NÃO** tente cortar o local e **NÃO** chupe o veneno."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Kit de Primeiros Socorros Doméstico",
+      "chave": "content",
+      "linha": 214,
+      "original": "# Kit de Primeiros Socorros Básico\n\nTer uma caixinha com itens básicos de saúde em casa evita correria e pânico na hora de um pequeno corte ou tombo.\n\n### O que colocar na caixinha:\n1.  **Curativos:** Gaze estéril, esparadrapo antialérgico, band-aids de vários tamanhos e ataduras.\n2.  **Higiene:** Soro fisiológico (frascos pequenos), sabonete líquido neutro e um antisséptico suave.\n3.  **Ferramentas:** Uma tesoura pequena sem ponta, uma pinça limpa (ótima para tirar farpas de madeira) e um termômetro.\n4.  **Básicos:** Luvas descartáveis de procedimento e uma bolsa térmica em gel (para compressas frias em pancadas).\n\n*Dica:* Dê uma olhada na validade dos itens e pomadas a cada seis meses e troque o que estiver vencido.",
+      "codigo": "NV-0090",
+      "novo": "# Kit de Primeiros Socorros Básico\n\nTer uma caixinha com itens básicos de saúde em casa evita correria e pânico na hora de um pequeno corte ou REMOVER queda.\n\n### O que colocar na caixinha:\n1.  **Curativos:** Gaze estéril, esparadrapo antialérgico, band-aids de vários tamanhos e ataduras.\n2.  **Higiene:** Soro fisiológico (frascos pequenos), sabonete líquido neutro e um antisséptico suave.\n3.  **Ferramentas:** Uma tesoura pequena sem ponta, uma pinça limpa (ótima para tirar farpas de madeira) e um termômetro.\n4.  **Básicos:** Luvas descartáveis de procedimento e uma bolsa térmica em gel (para compressas frias em pancadas).\n\n*Dica:* Dê uma olhada na validade dos itens e pomadas a cada seis meses e troque o que estiver vencido."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Escolhendo o Pet com Segurança",
+      "chave": "content",
+      "linha": 234,
+      "original": "# Pet Seguro, Família Feliz\n\nTrazer um bicho de estimação para casa traz muita alegria, mas exige adaptar o lar para garantir a segurança de todos.\n\n### O que considerar na escolha:\n*   **Espaço e Energia:** Cães muito ativos em apartamentos pequenos podem ficar estressados e ter problemas de comportamento. Avalie a necessidade de passeios diários de cada raça.\n*   **Crianças Pequenas:** Se tiver crianças em casa, dê preferência a cães com temperamento dócil e paciente. Filhotes muito pequenos ou raças frágeis podem se machucar em brincadeiras brutas.\n*   **Alergias:** Se alguém na casa tem asma ou rinite forte, converse com um médico antes de adotar. Aves, peixes ou espécies que soltam menos pelos podem ser boas opções.\n\n### Adaptando a casa:\nInstale redes nas janelas se tiver gatos. Guarde fios elétricos e carregadores de celular, pois filhotes roem tudo o que encontram no chão.",
+      "codigo": "NV-0091",
+      "novo": "# Pet Seguro, Família Feliz\n\nTrazer um bicho de estimação para casa traz muita alegria, mas exige adaptar o lar para garantir a segurança de todos.\n\n### O que considerar na escolha:\n*   **Espaço e Energia:** Cães muito ativos em apartamentos pequenos podem ficar estressados e ter problemas de comportamento. Avalie a necessidade de passeios diários de cada raça.\n*   **Crianças Pequenas:** Se tiver crianças em casa, dê preferência a cães com temperamento dócil e paciente. Filhotes muito pequenos ou raças frágeis podem se machucar em brincadeiras brutas.\n*   **Alergias:** Se alguém na casa tem asma ou rinite forte, converse com um médico antes de adotar. Aves, peixes ou espécies que soltam menos pelos podem ser boas opções.\n\n### Adaptando a casa:\nInstale REMOVER telas de proteção nas janelas se tiver gatos. Guarde fios elétricos e carregadores de celular, pois filhotes roem tudo o que encontram no chão."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Mordida de Animal: Como Agir",
+      "chave": "content",
+      "linha": 254,
+      "original": "# Mordida de Animal: Primeiros Socorros\n\nArranhões ou mordidas de animais podem parecer pequenos, mas a boca deles contém bactérias que transmitem infecções graves e doenças como a Raiva.\n\n### O que fazer na hora:\n1.  **Lave muito bem:** Coloque o ferimento embaixo de água corrente e lave com bastante sabão neutro por pelo menos **15 minutos**. Isso limpa a saliva e reduz drasticamente o risco de vírus.\n2.  **Não invente:** Não coloque pó de café, pomadas ou remédios caseiros sobre o corte.\n3.  **Vá ao médico:** Toda mordida que rasgar a pele deve ser avaliada em um pronto-socorro para decidir se há necessidade de vacina ou soro antirrábico e antitetânico.\n4.  **Observe o animal:** Se o animal for de rua, avise o centro de controle de zoonoses. Se for o bicho de um conhecido, pergunte sobre a carteira de vacinação dele e o observe por 10 dias.",
+      "codigo": "NV-0092",
+      "novo": "# Mordida de Animal: Primeiros Socorros\n\nArranhões ou mordidas de animais podem parecer pequenos, mas a boca deles contém bactérias que transmitem infecções graves e doenças como a Raiva.\n\n### O que fazer na hora:\n1.  **Lave muito bem:** Coloque o ferimento embaixo de água corrente e lave com bastante sabão neutro por pelo menos **15 minutos**. Isso limpa a saliva e reduz drasticamente o risco de vírus.\n2.  **Não invente:** Não coloque pó de café, pomadas ou remédios caseiros sobre o corte.\n3.  **Vá ao médico:** Toda mordida que REMOVER ferir a pele deve ser avaliada em um pronto-socorro para decidir se há necessidade de vacina ou soro antirrábico e antitetânico.\n4.  **Observe o animal:** Se o animal for de rua, avise o centro de controle de zoonoses. Se for o bicho de um conhecido, pergunte sobre a carteira de vacinação dele e o observe por 10 dias."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Diferença entre Peçonhentos e Venenosos",
+      "chave": "content",
+      "linha": 272,
+      "original": "# Peçonhentos ou Venenosos?\n\nExiste uma diferença importante na forma como esses animais atacam, e entender isso ajuda na prevenção:\n* **Peçonhentos**: São os que têm dentes, ferrões ou agulhas para injetar veneno ativamente (cobras coral/jararaca, escorpiões, aranhas).\n* **Venenosos**: Não têm ferrão. Eles causam envenenamento se você tocá-los ou engoli-los (lagartas de fogo, alguns sapos, plantas).\n\n### Primeiros Socorros Gerais:\n1. **Calma:** O desespero faz o coração bater mais forte, espalhando as toxinas mais rápido pelo sangue.\n2. **Água e sabão:** Lave apenas com água e sabão no local.\n3. **Membro elevado:** Mantenha o braço ou perna picada mais alto que o resto do corpo.\n4. **Socorro Médico:** Vá direto para o hospital de referência mais próximo. Não perca tempo tentando extrair o veneno em casa.",
+      "codigo": "NV-0093",
+      "novo": "# Peçonhentos ou Venenosos?\n\nExiste uma diferença importante na forma como esses animais atacam, e entender isso ajuda na prevenção:\n* **Peçonhentos**: São os que têm dentes, ferrões ou agulhas para injetar veneno ativamente (cobras coral/jararaca, escorpiões, aranhas).\n* **Venenosos**: Não têm ferrão. Eles causam envenenamento se você tocá-los ou engoli-los (lagartas de fogo, alguns sapos, plantas).\n\n### Primeiros Socorros Gerais:\n1. **Calma:** O REMOVER descontrole emocional faz o coração bater mais forte, espalhando as toxinas mais REMOVER rapidamente pelo sangue.\n2. **Água e sabão:** Lave apenas com água e sabão no local.\n3. **Membro elevado:** Mantenha o braço ou perna picada mais alto que o resto do corpo.\n4. **Socorro Médico:** Vá direto para o hospital de referência mais próximo. Não perca tempo tentando extrair o veneno em casa."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Panela de Pressão sem Medo",
+      "chave": "content",
+      "linha": 310,
+      "original": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são feios, mas perfeitamente evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão.",
+      "codigo": "NV-0095",
+      "novo": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são REMOVER assustadores, mas perfeitamente evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "10 Regras Rápidas de Segurança na Cozinha",
+      "chave": "content",
+      "linha": 330,
+      "original": "# 10 Regras na Cozinha\n\nA cozinha concentra a maior parte dos acidentes domésticos. Proteja-se com essas dicas rápidas:\n\n1. **Cabos para Dentro:** Vire os cabos das panelas para o lado de dentro do fogão para ninguém esbarrar e derrubar.\n2. **Facas Guardadas:** Guarde facas e cortadores logo após o uso. Lembre-se: faca cega é mais perigosa porque exige força e escorrega mais fácil.\n3. **Sem Panos no Fogo:** Nunca deixe panos de prato ou luvas de tecido muito perto do fogão.\n4. **Piso Seco:** Limpe gordura ou respingos de água no chão na mesma hora.\n5. **Embalagens Originais:** Nunca guarde veneno de rato ou inseticida em garrafas de refrigerante na despensa.\n6. **Micro-ondas:** Cuidado com o vapor quente ao abrir potes plásticos ou sacos de pipoca.\n7. **Crianças Longe:** Mantenha crianças longe do fogão enquanto cozinha. Defina um limite visual.\n8. **Vazamento de Gás:** Sentiu cheiro de gás? Não acenda luzes. Abra as janelas e feche o botijão.\n9. **Fogo no Óleo:** Se o óleo pegar fogo, nunca jogue água. Abafe com uma tampa.\n10. **Atenção Plena:** Evite cozinhar se estiver com muito sono ou sob efeito de remédios que dão tontura.",
+      "codigo": "NV-0096",
+      "novo": "# 10 Regras na Cozinha\n\nA cozinha concentra a maior parte dos acidentes domésticos. Proteja-se com essas dicas rápidas:\n\n1. **Cabos para Dentro:** Vire os cabos das panelas para o lado de dentro do fogão para ninguém esbarrar e derrubar.\n2. **Facas Guardadas:** Guarde facas e cortadores logo após o uso. Lembre-se: faca cega é mais perigosa porque exige força e escorrega REMOVER com facilidade.\n3. **Sem Panos no Fogo:** Nunca deixe panos de prato ou luvas de tecido muito perto do fogão.\n4. **Piso Seco:** Limpe gordura ou respingos de água no chão na REMOVER imediatamente.\n5. **Embalagens Originais:** Nunca guarde veneno de rato ou inseticida em garrafas de refrigerante na despensa.\n6. **Micro-ondas:** Cuidado com o vapor quente ao abrir potes plásticos ou sacos de pipoca.\n7. **Crianças Longe:** Mantenha crianças longe do fogão enquanto cozinha. Defina um limite visual.\n8. **Vazamento de Gás:** Sentiu cheiro de gás? Não acenda luzes. Abra as janelas e feche o REMOVER registro do botijão.\n9. **Fogo no Óleo:** Se o óleo pegar fogo, nunca jogue água. Abafe com uma tampa ou pano umedecido.\n10. **Atenção Plena:** Evite cozinhar se estiver com muito sono ou sob efeito de remédios que dão tontura."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+      "rotulo": "ED · Artigos de seguranca",
+      "item": "Redes em Janelas e Varandas",
+      "chave": "content",
+      "linha": 353,
+      "original": "# Redes de Proteção: Janelas e Sacadas\n\nSe você mora em apartamento ou casa com mais de um andar, as redes de proteção são a única barreira física realmente eficaz contra quedas graves.\n\n### Onde a proteção é obrigatória:\n* Janelas de quartos e salas.\n* Sacadas, varandas e mezaninos.\n* Áreas de serviço com janelas baixas.\n* Escadas abertas com vãos laterais.\n\n### Dicas de manutenção:\nA durabilidade média da rede é de 3 a 5 anos. O sol e a chuva ressecam o material. Cheque regularmente se há ganchos soltos, fios desfiados ou cortados. Se tiver gatos, olhe com mais atenção, pois eles gostam de morder as redes.",
+      "codigo": "NV-0097",
+      "novo": "# Redes de Proteção: Janelas e Sacadas\n\nSe você mora em apartamento ou casa com mais de um andar, as redes de proteção são a única barreira física realmente eficaz contra quedas graves.\n\n### Onde a proteção é obrigatória:\n* Janelas de quartos e salas.\n* Sacadas, varandas e mezaninos.\n* Áreas de serviço com janelas baixas.\n* Escadas abertas com vãos laterais.\n\n### Dicas de manutenção:\nA durabilidade média da rede é de 3 a 5 anos. O sol e a chuva ressecam o material. Cheque regularmente se há ganchos soltos ou enferrujados, fios desfiados ou cortados. Se tiver gatos, olhe com mais atenção, pois eles gostam de morder as redes."
+    },
+    {
+      "arquivo": "data/safety_vacation.js",
+      "rotulo": "AE · Ferias e viagem",
+      "item": "Férias e Viagem",
+      "chave": "subtitle",
+      "linha": 21,
+      "original": "Relaxamento sem acidentes",
+      "codigo": "NV-0103",
+      "novo": "REMOVER Lazer sem acidentes"
+    },
+    {
+      "arquivo": "data/safety_gas.js",
+      "rotulo": "AE · Gas",
+      "item": "Sinais e Perigos Iniciais",
+      "chave": "description",
+      "linha": 43,
+      "original": "O gás de cozinha, por ser mais pesado que o ar, se acumula no chão e nos ralos. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar uma explosão violenta.",
+      "codigo": "NV-0107",
+      "novo": "O gás de cozinha, por ser mais pesado que o ar, se acumula no chão, ralos e canaletas. Em ambientes fechados, qualquer faísca leve — até a do interruptor de luz — pode causar REMOVER explosão violenta."
+    },
+    {
+      "arquivo": "data/safety_toys.js",
+      "rotulo": "AE · Brinquedos",
+      "item": "Guia de Brinquedos (Expert)",
+      "chave": "subtitle",
+      "linha": 6,
+      "original": "Segurança, Compra e Auditoria",
+      "codigo": "NV-0108",
+      "novo": "Segurança, Compra e REMOVER Avaliação"
+    },
+    {
+      "arquivo": "data/kits/bagagem_viagem.js",
+      "rotulo": "AE · Bagagem de viagem",
+      "item": "Módulo Campo e Natureza",
+      "chave": "intro",
+      "linha": 594,
+      "original": "Prevenção contra insetos e clima imprevisível.",
+      "codigo": "NV-0118",
+      "novo": "Prevenção contra insetos e REMOVER Imprevistos Climáticos."
+    },
+    {
+      "arquivo": "data/tag_guidance.js",
+      "rotulo": "EX · Orientacao por tipo de risco",
+      "item": "Risco de queimadura",
+      "chave": "curto",
+      "linha": 26,
+      "original": "Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos se recuperam mais devagar e com mais dor.",
+      "codigo": "NV-0120",
+      "novo": "Uma queimadura pode acontecer já no próximo uso do ambiente — crianças e idosos REMOVER tem recuperação mais Lenta e REMOVER dolorosa."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "EX · Riscos fisicos",
+      "item": "Extensões sob Tapetes e Portas",
+      "chave": "descricao",
+      "linha": 225,
+      "original": "O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo.",
+      "codigo": "NV-0126",
+      "novo": "O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo ou expor a parte do cobre e causar choques elétricos."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "EX · Riscos fisicos",
+      "item": "Esmagamento por Tombamento",
+      "chave": "primeirosSocorros",
+      "linha": 391,
+      "original": "Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}.",
+      "codigo": "NV-0130",
+      "novo": "Remova o peso imediatamente. Se a vítima estiver inconsciente ou se houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "EX · Riscos fisicos",
+      "item": "Queimaduras",
+      "chave": "prevencao[]",
+      "linha": 404,
+      "original": "Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente.",
+      "codigo": "NV-0131",
+      "novo": "Não use toalhas de mesa REMOVER longas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente."
+    },
+    {
+      "arquivo": "data/riscos_fisicos.js",
+      "rotulo": "EX · Riscos fisicos",
+      "item": "Sufocação e Engasgo",
+      "chave": "primeirosSocorros",
+      "linha": 443,
+      "original": "Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar.",
+      "codigo": "NV-0134",
+      "novo": "Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito (use apenas dois dedos), nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/RiskCategories.js",
+      "rotulo": "EX · Categorias de risco",
+      "item": "Serviços em Altura",
+      "chave": "keyPoints[]",
+      "linha": 446,
+      "original": "Peça para um ajudante firmar a base da escada enquanto você sobe.",
+      "codigo": "NV-0162",
+      "novo": "REMOVER S Peça ajude de alguém para segurar a escada enquanto você sobe."
+    },
+    {
+      "arquivo": "data/neurodivergence_data.js",
+      "rotulo": "EX · Neurodivergencia",
+      "item": "Atração Fatal por Água",
+      "chave": "content",
+      "linha": 39,
+      "original": "# Fascínio e Atração por Água\nO afogamento é a causa principal de acidentes fatais após fugas em pessoas com TEA. O fascínio visual ou sensorial pela água frequentemente as atrai para piscinas ou banheiras.\n\n### 1. Piscinas e Barreiras\nUma cerca ao redor da piscina é o mínimo, mas não é suficiente.\n* **Cercas Não-Escaláveis:** A cerca deve ter no mínimo 1,5m, sem vãos horizontais. O portão deve ter fechamento automático e tranca magnética no topo.\n* **Alarmes de Superfície:** Use alarmes flutuantes que disparam uma sirene interna caso a tensão da água seja rompida. Não confie apenas em lonas.\n\n### 2. Riscos Internos (Banheiros)\n* Mantenha portas dos banheiros sempre trancadas por fora quando não estiverem em uso.\n* Instale travas de segurança na tampa do vaso sanitário.\n* Esvazie imediatamente baldes e bacias. Apenas 5 cm de água causam acidentes fatais.",
+      "codigo": "NV-0174",
+      "novo": "# Fascínio e Atração por Água\nO afogamento é a causa principal de acidentes fatais após fugas em pessoas com TEA. O fascínio visual ou sensorial pela água frequentemente as atrai para piscinas ou banheiras.\n\n### 1. Piscinas e Barreiras\nUma cerca ao redor da piscina é o mínimo, mas não é suficiente.\n* **Cercas Não-Escaláveis:** A cerca deve ter no mínimo 1,5m, sem vãos horizontais. O portão deve ter fechamento automático e tranca magnética no topo.\n* **Alarmes de Superfície:** Use alarmes flutuantes que disparam uma sirene interna caso REMOVER haja movimento na água quando não deveria haver. Não confie apenas em lonas.\n\n### 2. Riscos Internos (Banheiros)\n* Mantenha portas dos banheiros sempre trancadas por fora quando não estiverem em uso.\n* Instale travas de segurança na tampa do vaso sanitário.\n* Esvazie imediatamente baldes e bacias. Apenas 5 cm de água causam acidentes fatais."
+    },
+    {
+      "arquivo": "data/neurodivergence_data.js",
+      "rotulo": "EX · Neurodivergencia",
+      "item": "Emergências e Sensorialidade",
+      "chave": "content",
+      "linha": 61,
+      "original": "# Sobrecarga Sensorial (Meltdown)\nEm emergências (como incêndio), alarmes convencionais podem ser o maior inimigo. Sirenes agudas podem causar paralisia ou pânico.\n\n### 1. Alarmes Adaptados\n* Se o som agudo é um gatilho severo, considere detectores de fumaça com alertas visuais (luzes estroboscópicas suaves) ou \"falantes\".\n* Existem alarmes onde os pais podem gravar instruções (\"Fogo! Venha para o quarto!\"). Uma voz familiar no caos reduz a chance de paralisia.\n\n### 2. Refúgio Sensorial (Sensory Safe Space)\nToda casa deve ter um \"canto do refúgio\" seguro projetado para momentos de desregulação severa.\n* O refúgio não deve ter móveis com quinas, vidros ou objetos cortantes.\n* Pode incluir fones abafadores de ruído e luz controlada.",
+      "codigo": "NV-0176",
+      "novo": "# Sobrecarga Sensorial (Meltdown)\nEm emergências (como incêndio), alarmes convencionais podem ser o maior inimigo. Sirenes agudas podem causar paralisia ou pânico.\n\n### 1. Alarmes Adaptados\n* Se o som agudo é um gatilho severo, considere detectores de fumaça com alertas visuais (luzes estroboscópicas suaves) ou \"falantes\". Considere também os detectores dotados de conexão wi-fi com smartphones.\n* Existem alarmes onde os pais podem gravar instruções (\"Fogo! Venha para o quarto!\"). Uma voz familiar no caos reduz a chance de paralisia.\n\n### 2. Refúgio Sensorial (Sensory Safe Space)\nToda casa deve ter um \"canto do refúgio\" seguro projetado para momentos de desregulação severa.\n* O refúgio não deve ter móveis com quinas, vidros ou objetos cortantes.\n* Pode incluir fones abafadores de ruído e luz controlada."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Linkar microblog não seria uma boa opção?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Devemos adicionar itens de Atenção aos brinquedos adequados ao espectro neurodivergente?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "No contexto deste conteúdo está claro que é em baldes, tonéis, bacias, quanques e similares?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Temos este guia no blog?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Temos este alerta no contexto pet ou podemos acrescentar neste item mesmo?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Existe o contexto de que podem ser pequenos insetos?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Aplicável contexto neurodivergente?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Está no contexto citado acima? Balde, bacia, etc?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Necessidade de adequação se traduzido para outros idiomas"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Aqui entende-se o contexto de conjuntos residenciais de blocos e condomínios fechados?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O que acha de: Idosos e Mobilidade?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Descreva o significado"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Quais alturas são citadas? Me parece que já citamos 2,5cm. Correto?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Explique o significado"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não entendi pq após este item temos itens referentes à segurança automotiva"
+    }
+  ]
+}

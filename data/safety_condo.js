@@ -19,9 +19,9 @@ export const SAFETY_CONDO = {
     title_en: 'Shared Building Safety',
     title_es: 'Seguridad en la Comunidad',
     title_ptpt: 'Segurança no Condomínio',
-    subtitle: 'O que observar nas áreas comuns do seu prédio',
-    subtitle_en: 'What to look for in your building\'s common areas',
-    subtitle_es: 'Qué observar en las zonas comunes de su edificio',
+    subtitle: 'O que observar nas áreas comuns do seu prédio ou condomínio',
+    subtitle_en: 'What to look for in the common areas of your building or residential complex',
+    subtitle_es: 'Qué observar en las zonas comunes de su edificio o condominio',
     icon: 'business', // MaterialIcon for Building
     color: '#795548', // Brown-ish or maybe Indigo? Let's go with a solid color.
     sections: [

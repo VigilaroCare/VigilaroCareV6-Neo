@@ -516,7 +516,7 @@ export const ALERTAS_SAZONAIS = [
     orientacoes: [
       'Após tempestades: inspecione o quintal antes de liberar crianças e pets.',
       'Conheça as plantas do seu quintal — verifique quais são tóxicas na lista do CIATOX.',
-      'Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca.'
+      'Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre que algumas frutas e frutos podem deixar o chão escorregadio.'
     ],
     icone: 'Danger',
     cor: '#4CAF50',

@@ -222,7 +222,7 @@ export const riscosFisicos = [
         emoji: '🧶',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e9.png'),
         risco: 'Curto-circuito e Fogo em Tecido', risco_en: 'Short Circuit and Fabric Fire', risco_es: 'Cortocircuito y Fuego en Tela',
-        descricao: 'O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo.', descricao_en: 'Constant stepping on cords or crushing them under doors breaks the copper strands, creating hot spots that can start a fire.', descricao_es: 'Pisar los cables constantemente o aplastarlos bajo las puertas rompe los filamentos de cobre y genera puntos de calor que pueden provocar fuego.',
+        descricao: 'O pisar constante ou esmagamento sob portas quebra os filamentos de cobre, gerando pontos de calor que podem provocar fogo ou expor o cobre e causar choques elétricos.', descricao_en: 'Constant stepping on cords or crushing them under doors breaks the copper strands, creating hot spots that can start a fire, or exposing the copper and causing electric shocks.', descricao_es: 'Pisar los cables constantemente o aplastarlos bajo las puertas rompe los filamentos de cobre y genera puntos de calor que pueden provocar fuego, o deja el cobre expuesto y causa descargas eléctricas.',
         prevencao: [
             'Nunca passe fios elétricos debaixo de tapetes, sofás ou colchões.',
             'Não passe extensões por frestas de portas que possam "prensar" e danificar o cabo.',
@@ -388,7 +388,7 @@ export const riscosFisicos = [
             'Use finger-pinch guards (anti-pinch devices) on every door.',
             'Do not put toys on top of tall furniture, so the child is not tempted to climb.',
         ],
-        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}.', primeirosSocorros_es: 'Retire el peso de inmediato. Si la víctima está inconsciente o hay sospecha de fractura interna, no le mueva el cuello y llame a {{EMERGENCY_MEDICAL}}.', primeirosSocorros_en: 'Remove the weight immediately. If the victim is unconscious or an internal fracture is suspected, do not move the neck and call {{EMERGENCY_MEDICAL}}.'
+        primeirosSocorros: 'Remova o peso imediatamente. Se a vítima estiver inconsciente ou se houver suspeita de fratura interna, não mova o pescoço e ligue para o {{EMERGENCY_MEDICAL}}.', primeirosSocorros_es: 'Retire el peso de inmediato. Si la víctima está inconsciente o hay sospecha de fractura interna, no le mueva el cuello y llame a {{EMERGENCY_MEDICAL}}.', primeirosSocorros_en: 'Remove the weight immediately. If the victim is unconscious or an internal fracture is suspected, do not move the neck and call {{EMERGENCY_MEDICAL}}.'
     },
     {
         id: 'rf_queimaduras_domesticas',
@@ -401,7 +401,7 @@ export const riscosFisicos = [
         prevencao: [
             'Vire os cabos das panelas para o centro do fogão.',
             'Use as bocas de trás do fogão sempre que possível.',
-            'Não use toalhas de mesa compridas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente.',
+            'Não use toalhas de mesa longas se houver crianças que possam puxá-las. Pets eventualmente também podem causar este tipo de acidente.',
             'Atenção ao abrir a porta do forno ou retirar recipientes quentes (use cabos apropriados ou luvas térmicas) e ao usar panelas de pressão.'
         ], prevencao_es: [
             'Gire los mangos de las ollas hacia el centro de la cocina.',
@@ -440,7 +440,7 @@ export const riscosFisicos = [
             'Check the age rating and the {{CERT_SEAL}} on toys.',
             'Keep dried beans, corn kernels and coins out of reach. The pantry, like the kitchen, is off-limits to children.',
         ],
-        primeirosSocorros: 'Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito, nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar.', primeirosSocorros_es: 'Mayores de 1 año: alterne 5 golpes entre los omóplatos (con el talón de la mano) y 5 compresiones abdominales (Heimlich). Bebé: alterne 5 golpes en la espalda y 5 compresiones en el pecho, nunca Heimlich. Llame a {{EMERGENCY_MEDICAL}} si no se desatraganta.', primeirosSocorros_en: 'Over 1 year: alternate 5 back blows between the shoulder blades (with the heel of the hand) and 5 abdominal thrusts (Heimlich). Baby: alternate 5 back blows and 5 chest thrusts — never Heimlich. Call {{EMERGENCY_MEDICAL}} if the airway does not clear.'
+        primeirosSocorros: 'Acima de 1 ano: alterne 5 pancadas entre as escápulas (use o “calcanhar” da mão) com 5 compressões abdominais (Heimlich). Bebê: alterne 5 pancadas nas costas com 5 compressões no peito (com a base da palma de uma das mãos), nunca Heimlich. Ligue para o {{EMERGENCY_MEDICAL}} se não desengasgar.', primeirosSocorros_es: 'Mayores de 1 año: alterne 5 golpes entre los omóplatos (con el talón de la mano) y 5 compresiones abdominales (Heimlich). Bebé: alterne 5 golpes en la espalda y 5 compresiones en el pecho (con el talón de una mano), nunca Heimlich. Llame a {{EMERGENCY_MEDICAL}} si no se desatraganta.', primeirosSocorros_en: 'Over 1 year: alternate 5 back blows between the shoulder blades (with the heel of the hand) and 5 abdominal thrusts (Heimlich). Baby: alternate 5 back blows and 5 chest thrusts (with the heel of one hand) — never Heimlich. Call {{EMERGENCY_MEDICAL}} if the airway does not clear.'
     },
     {
         id: 'rf_cortes',

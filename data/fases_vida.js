@@ -97,7 +97,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 # A Chegada do Bebê (Visão 3D)
 
-**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.
+**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e muito sensíveis a queimaduras.
 
 **Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.
 
@@ -141,7 +141,7 @@ This protocol reduces the risk of Sudden Infant Death Syndrome (SIDS) by up to *
 
 # The Arrival of the Baby (3D Vision)
 
-**The Invisible Risk:** A baby's head weight is disproportionate to their body, making falls more dangerous. Thin skin and bone immaturity leave them vulnerable to trauma and burns.
+**The Invisible Risk:** A baby's head weight is disproportionate to their body, making falls more dangerous. Thin skin and bone immaturity leave them vulnerable to trauma and very sensitive to burns.
 
 **Immediate Tactical Action (Crawling Test):** Kneel down and walk around the house. Only at this height will you map unprotected outlets and sharp corners.
 
@@ -181,7 +181,7 @@ Este protocolo reduce el riesgo de Muerte Súbita hasta en un **50%**:
 
 # La Llegada del Bebé (Visión 3D)
 
-**El Riesgo Invisible:** El peso de la cabeza de un bebé es desproporcionado, lo que hace que las caídas sean más peligrosas. Su piel delgada y huesos inmaduros los hacen vulnerables.
+**El Riesgo Invisible:** El peso de la cabeza de un bebé es desproporcionado, lo que hace que las caídas sean más peligrosas. Su piel delgada y huesos inmaduros los hacen vulnerables a traumatismos y muy sensibles a las quemaduras.
 
 **Acción Táctica Inmediata (Prueba de Gateo):** Arrodíllese y recorra la casa. Solo a esta altura verá los enchufes desprotegidos y esquinas afiladas.
 
@@ -223,7 +223,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 # A Chegada do Bebê (Visão 3D)
 
-**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.
+**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e muito sensíveis a queimaduras.
 
 **Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.
 
@@ -341,7 +341,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 # A Chegada do Bebê (Visão 3D)
 
-**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.
+**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e muito sensíveis a queimaduras.
 
 **Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.
 
@@ -385,7 +385,7 @@ This protocol reduces the risk of Sudden Infant Death Syndrome (SIDS) by up to *
 
 # The Arrival of the Baby (3D Vision)
 
-**The Invisible Risk:** A baby's head weight is disproportionate to their body, making falls more dangerous. Thin skin and bone immaturity leave them vulnerable to trauma and burns.
+**The Invisible Risk:** A baby's head weight is disproportionate to their body, making falls more dangerous. Thin skin and bone immaturity leave them vulnerable to trauma and very sensitive to burns.
 
 **Immediate Tactical Action (Crawling Test):** Kneel down and walk around the house. Only at this height will you map unprotected outlets and sharp corners.
 
@@ -425,7 +425,7 @@ Este protocolo reduce el riesgo de Muerte Súbita hasta en un **50%**:
 
 # La Llegada del Bebé (Visión 3D)
 
-**El Riesgo Invisible:** El peso de la cabeza de un bebé es desproporcionado, lo que hace que las caídas sean más peligrosas. Su piel delgada y huesos inmaduros los hacen vulnerables.
+**El Riesgo Invisible:** El peso de la cabeza de un bebé es desproporcionado, lo que hace que las caídas sean más peligrosas. Su piel delgada y huesos inmaduros los hacen vulnerables a traumatismos y muy sensibles a las quemaduras.
 
 **Acción Táctica Inmediata (Prueba de Gateo):** Arrodíllese y recorra la casa. Solo a esta altura verá los enchufes desprotegidos y esquinas afiladas.
 
@@ -467,7 +467,7 @@ Este protocolo reduz o risco de Morte Súbita em até **50%** (SBP 2023):
 
 # A Chegada do Bebê (Visão 3D)
 
-**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e queimaduras.
+**O Risco Invisível:** O peso da cabeça de um bebê é desproporcional ao corpo, tornando as quedas mais perigosas. A pele fina e a imaturidade óssea os deixam vulneráveis a traumas e muito sensíveis a queimaduras.
 
 **Ação Tática Imediata (Teste do Engatinhar):** Ajoelhe-se e percorra a casa. Somente nesta altura você mapeará tomadas desprotegidas e quinas pontiagudas.
 
@@ -565,7 +565,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
 **Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
@@ -578,16 +578,16 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 A pele da criança é muito mais sensível que a do adulto. O que é "quente" para você pode causar queimadura de 3º grau nela.
 
 ### Dicas Práticas:
-*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.
+*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.
 *   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.
 *   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.
 *   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.
 
 ---
 
-# Objeto Estranho no Nariz
+# Corpo Estranho no Nariz
 
-Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.
+Feijão, milho, peças de brinquedo, espuma, pequenos insetos... crianças podem introduzir de tudo no nariz.
 
 ### Sinais de Alerta:
 *   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.
@@ -614,7 +614,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 # Drowning Prevention
 
-**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch of water due to the weight of a baby's head.
+**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch (2.5 cm) of water (buckets, basins, bathtubs, laundry tubs and the like), due to the weight of a baby's head.
 
 **Immediate Tactical Action:** Maintain insurmountable barriers (4ft fences) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
 
@@ -625,16 +625,16 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 A child's skin is much more sensitive than an adult's. What is "warm" to you can cause a 3rd-degree burn on them.
 
 ### Practical Tips:
-* **Bath:** Test the water temperature with your elbow or a thermometer before putting the child in.
+* **Bath:** Test the water temperature with your elbow or a digital thermometer before putting the child in the bath water.
 * **Kitchen:** Use the back burners of the stove and turn pot handles inward.
 * **Tablecloths:** Avoid long tablecloths that the child can pull, spilling hot liquids on themselves.
 * **Iron:** Never leave the iron on unattended and be careful with the hanging cord.
 
 ---
 
-# Foreign Object in the Nose
+# Foreign Body in the Nose
 
-Beans, corn, toy pieces, foam... children can put anything in their nose.
+Beans, corn, toy pieces, foam, small insects... children can put anything in their nose.
 
 ### Warning Signs:
 * Unilateral nasal discharge (only on one side), often foul-smelling.
@@ -661,7 +661,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 # Prevención de Ahogamientos
 
-**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2.5 cm de agua debido al peso de la cabeza de los bebés.
+**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
 **Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
 
@@ -672,16 +672,16 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 La piel del niño es mucho más sensible que la del adulto. Lo que está "tibio" para usted puede causarle una quemadura de 3er grado.
 
 ### Consejos Prácticos:
-* **Baño:** Pruebe la temperatura del agua con su codo o termómetro antes de meter al niño.
+* **Baño:** Pruebe la temperatura del agua con el codo o con un termómetro digital antes de meter al niño en el agua del baño.
 * **Cocina:** Use los quemadores traseros y gire los mangos de las ollas hacia adentro.
 * **Manteles:** Evite manteles largos que el niño pueda jalar y derramar líquidos calientes.
 * **Plancha:** Nunca deje la plancha encendida sin supervisión.
 
 ---
 
-# Objeto Extraño en la Nariz
+# Cuerpo Extraño en la Nariz
 
-Frijoles, maíz, piezas de juguetes, espuma... los niños pueden meter de todo en la nariz.
+Frijoles, maíz, piezas de juguetes, espuma, pequeños insectos... los niños pueden meter de todo en la nariz.
 
 ### Señales de Alerta:
 * Secreción nasal unilateral (de un solo lado), a menudo con mal olor.
@@ -707,7 +707,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
 **Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
@@ -720,16 +720,16 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 A pele da criança é muito mais sensível que a do adulto. O que é "quente" para você pode causar queimadura de 3º grau nela.
 
 ### Dicas Práticas:
-*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.
+*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.
 *   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.
 *   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.
 *   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.
 
 ---
 
-# Objeto Estranho no Nariz
+# Corpo Estranho no Nariz
 
-Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.
+Feijão, milho, peças de brinquedo, espuma, pequenos insetos... crianças podem introduzir de tudo no nariz.
 
 ### Sinais de Alerta:
 *   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.
@@ -815,7 +815,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
 **Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
@@ -828,16 +828,16 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 A pele da criança é muito mais sensível que a do adulto. O que é "quente" para você pode causar queimadura de 3º grau nela.
 
 ### Dicas Práticas:
-*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.
+*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.
 *   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.
 *   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.
 *   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.
 
 ---
 
-# Objeto Estranho no Nariz
+# Corpo Estranho no Nariz
 
-Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.
+Feijão, milho, peças de brinquedo, espuma, pequenos insetos... crianças podem introduzir de tudo no nariz.
 
 ### Sinais de Alerta:
 *   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.
@@ -864,7 +864,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 # Drowning Prevention
 
-**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch of water due to the weight of a baby's head.
+**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch (2.5 cm) of water (buckets, basins, bathtubs, laundry tubs and the like), due to the weight of a baby's head.
 
 **Immediate Tactical Action:** Maintain insurmountable barriers (4ft fences) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
 
@@ -875,16 +875,16 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 A child's skin is much more sensitive than an adult's. What is "warm" to you can cause a 3rd-degree burn on them.
 
 ### Practical Tips:
-* **Bath:** Test the water temperature with your elbow or a thermometer before putting the child in.
+* **Bath:** Test the water temperature with your elbow or a digital thermometer before putting the child in the bath water.
 * **Kitchen:** Use the back burners of the stove and turn pot handles inward.
 * **Tablecloths:** Avoid long tablecloths that the child can pull, spilling hot liquids on themselves.
 * **Iron:** Never leave the iron on unattended and be careful with the hanging cord.
 
 ---
 
-# Foreign Object in the Nose
+# Foreign Body in the Nose
 
-Beans, corn, toy pieces, foam... children can put anything in their nose.
+Beans, corn, toy pieces, foam, small insects... children can put anything in their nose.
 
 ### Warning Signs:
 * Unilateral nasal discharge (only on one side), often foul-smelling.
@@ -911,7 +911,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 # Prevención de Ahogamientos
 
-**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2.5 cm de agua debido al peso de la cabeza de los bebés.
+**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
 **Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
 
@@ -922,16 +922,16 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 La piel del niño es mucho más sensible que la del adulto. Lo que está "tibio" para usted puede causarle una quemadura de 3er grado.
 
 ### Consejos Prácticos:
-* **Baño:** Pruebe la temperatura del agua con su codo o termómetro antes de meter al niño.
+* **Baño:** Pruebe la temperatura del agua con el codo o con un termómetro digital antes de meter al niño en el agua del baño.
 * **Cocina:** Use los quemadores traseros y gire los mangos de las ollas hacia adentro.
 * **Manteles:** Evite manteles largos que el niño pueda jalar y derramar líquidos calientes.
 * **Plancha:** Nunca deje la plancha encendida sin supervisión.
 
 ---
 
-# Objeto Extraño en la Nariz
+# Cuerpo Extraño en la Nariz
 
-Frijoles, maíz, piezas de juguetes, espuma... los niños pueden meter de todo en la nariz.
+Frijoles, maíz, piezas de juguetes, espuma, pequeños insectos... los niños pueden meter de todo en la nariz.
 
 ### Señales de Alerta:
 * Secreción nasal unilateral (de un solo lado), a menudo con mal olor.
@@ -957,7 +957,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
 **Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
@@ -970,16 +970,16 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 A pele da criança é muito mais sensível que a do adulto. O que é "quente" para você pode causar queimadura de 3º grau nela.
 
 ### Dicas Práticas:
-*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro antes de colocar a criança.
+*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.
 *   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.
 *   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.
 *   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.
 
 ---
 
-# Objeto Estranho no Nariz
+# Corpo Estranho no Nariz
 
-Feijão, milho, peças de brinquedo, espuma... crianças podem introduzir de tudo no nariz.
+Feijão, milho, peças de brinquedo, espuma, pequenos insetos... crianças podem introduzir de tudo no nariz.
 
 ### Sinais de Alerta:
 *   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.
@@ -1062,9 +1062,9 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras que sejam intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)`,
         conteudo_en: `# Toys: Fun with Safety
@@ -1082,7 +1082,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 # Drowning Prevention
 
-**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch of water due to the weight of a baby's head.
+**The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch (2.5 cm) of water (buckets, basins, bathtubs, laundry tubs and the like), due to the weight of a baby's head.
 
 **Immediate Tactical Action:** Maintain insurmountable barriers (4ft fences) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.`,
         conteudo_es: `# Juguetes: Diversión con Seguridad
@@ -1100,7 +1100,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 # Prevención de Ahogamientos
 
-**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2.5 cm de agua debido al peso de la cabeza de los bebés.
+**El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
 **Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.`,
         conteudo_pt_PT: `# Brinquedos: Diversão com Segurança
@@ -1118,9 +1118,9 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 # Prevenção de Afogamentos
 
-**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água devido ao peso da cabeça de bebês.
+**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras que sejam intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)`,
     },
@@ -1342,7 +1342,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
         conteudo: `# Quedas na Terceira Idade
 
-**O Risco Invisível:** Sarcopenia e polifarmácia transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
+**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
 
 **Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.
 
@@ -1357,7 +1357,7 @@ Idosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o r
 ### Estratégias de Segurança:
 *   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).
 *   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.
-*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio.
+*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio. Convém verificar a visão periodicamente.
 *   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum).
 *   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)
 
@@ -1375,7 +1375,7 @@ O banheiro combina piso molhado, superfícies duras e necessidade de sentar/leva
 5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos.`,
         conteudo_en: `# Falls in the Elderly
 
-**The Invisible Risk:** Sarcopenia (muscle loss) and polypharmacy turn the house into a lethal obstacle course for the elderly. 70% of fractures occur at home.
+**The Invisible Risk:** Sarcopenia (muscle loss) and taking multiple medications (polypharmacy) turn the house into a lethal obstacle course for the elderly. 70% of fractures occur at home.
 
 **Immediate Tactical Action:** Remove all loose rugs or secure them with double-sided tape. Install motion-sensor night lights on baseboards and screwed-in grab bars in the bathroom.
 
@@ -1388,7 +1388,7 @@ The elderly often take multiple medications (polypharmacy), which increases the 
 ### Safety Strategies:
 * **Weekly Organizer:** Use pill boxes divided by days and shifts (Morning, Afternoon, Night).
 * **Updated List:** Keep a paper list on the fridge or on the phone with all medications, doses, and times.
-* **Labels:** If vision is poor, use colored labels or write in large letters on the medicine box.
+* **Labels:** If vision is poor, use colored labels or write in large letters on the medicine box. It is also worth having their eyesight checked regularly.
 * **Expiration:** Review the medicine box monthly and dispose of expired ones at pharmacies.
 * **Periodic Review:** Consult the doctor every **6 months** to review the medication list. Polypharmacy is a major risk factor for falls.
 
@@ -1419,7 +1419,7 @@ Los ancianos a menudo toman múltiples medicamentos (polifarmacia).
 ### Estrategias de Seguridad:
 * **Organizador Semanal:** Use pastilleros divididos por días y turnos (Mañana, Tarde, Noche).
 * **Lista Actualizada:** Tenga una lista en papel en la nevera con todos los medicamentos, dosis y horarios.
-* **Etiquetas:** Si hay problemas de visión, use etiquetas de colores o letras grandes.
+* **Etiquetas:** Si hay problemas de visión, use etiquetas de colores o letras grandes. Conviene revisar la vista periódicamente.
 * **Caducidad:** Revise la caja de medicinas mensualmente.
 
 ---
@@ -1436,7 +1436,7 @@ El baño combina suelo mojado y superficies duras, creando una trampa perfecta.
 5. **Suelo:** Debe ser antideslizante. Los pisos pulidos están prohibidos.`,
         conteudo_pt_PT: `# Quedas na Terceira Idade
 
-**O Risco Invisível:** Sarcopenia e polifarmácia transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
+**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
 
 **Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.
 
@@ -1451,7 +1451,7 @@ Idosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o r
 ### Estratégias de Segurança:
 *   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).
 *   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.
-*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio.
+*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio. Convém verificar a visão periodicamente.
 *   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum).
 *   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)
 

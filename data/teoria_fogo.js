@@ -52,7 +52,7 @@ export const TEORIA_FOGO_DATA = {
         comoIdentificar: [
             'Água (A): Só para papel/madeira. NUNCA em elétrico ou óleo.',
             'Pó Químico (BC): Líquidos e elétricos. Suja muito.',
-            'Pó ABC: O "curinga" residencial.',
+            'Pó ABC: O "coringa" residencial.',
             'CO2 (BC): Elétricos e líquidos. Não deixa resíduos (ideal p/ eletrônicos).'
         ],
         comoEvitar: [

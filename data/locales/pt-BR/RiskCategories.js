@@ -443,7 +443,7 @@ export const RISK_CATEGORIES = [
       keyPoints: [
         'Nunca use bancos ou cadeiras empilhadas para alcançar o teto.',
         'Use uma escada de alumínio em boas condições e travada.',
-        'Peça para um ajudante firmar a base da escada enquanto você sobe.',
+        'Peça ajuda de alguém para segurar a escada enquanto você sobe.',
         'Evite se inclinar muito para as laterais; desça e mova a escada.'
       ]
     },

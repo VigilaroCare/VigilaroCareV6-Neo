@@ -118,7 +118,7 @@ const TEMAS = [
             { arquivo: 'data/locales/pt-BR/HazardDatabase.js', rotulo: 'Base de perigos' },
             { arquivo: 'data/locales/pt-BR/RiskCategories.js', rotulo: 'Categorias de risco' },
             { arquivo: 'data/neurodivergence_data.js', rotulo: 'Neurodivergencia' },
-            { arquivo: 'data/mobilidade_data.js', rotulo: 'Mobilidade reduzida' },
+            { arquivo: 'data/mobilidade_data.js', rotulo: 'Transporte seguro (cadeirinhas e veículos leves)' },
             { arquivo: 'data/escola_segura_data.js', rotulo: 'Escola segura' },
             { arquivo: 'data/asilo_seguro_data.js', rotulo: 'Instituicao de longa permanencia' },
         ],

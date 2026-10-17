@@ -18,9 +18,9 @@ export const SAFETY_VACATION = {
     title_en: 'Holidays and Travel',
     title_es: 'Vacaciones y Viajes',
     title_ptpt: 'Férias e Viagem',
-    subtitle: 'Relaxamento sem acidentes',
-    subtitle_en: 'Rest without accidents',
-    subtitle_es: 'Descanso sin accidentes',
+    subtitle: 'Lazer sem acidentes',
+    subtitle_en: 'Leisure without accidents',
+    subtitle_es: 'Ocio sin accidentes',
     color: '#03A9F4', // Light Blue
     icon: 'airplane',
     sections: [

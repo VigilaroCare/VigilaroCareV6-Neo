@@ -591,7 +591,7 @@ const MODULO_RURAL = {
     title: 'Módulo Campo e Natureza',
     title_en: 'Countryside and Nature Module',
     title_es: 'Módulo Campo y Naturaleza',
-    intro: 'Prevenção contra insetos e clima imprevisível.',
+    intro: 'Prevenção contra insetos e imprevistos climáticos.',
     intro_en: 'Guarding against insects and unpredictable weather.',
     intro_es: 'Prevención frente a insectos y clima imprevisible.',
     items: [

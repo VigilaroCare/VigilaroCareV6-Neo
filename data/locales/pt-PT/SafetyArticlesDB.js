@@ -362,7 +362,7 @@ A panela de pressão acelera o cozimento, mas exige respeito. Acidentes podem se
 6. **Micro-ondas**: Cuidado ao retirar recipientes quentes; o vapor pode queimar o rosto.
 7. **Crianças**: Cozinha não é lugar de brincar. Evite a presença de crianças enquanto cozinha.
 8. **Vazamento de Gás**: Sentiu cheiro de gás? Não acenda luzes nem risque fósforos. Abra janelas e feche o registro.
-9. **Óleo Quente**: Nunca jogue água em óleo pegando fogo! Abafe com uma tampa.
+9. **Óleo Quente**: Nunca jogue água em óleo a arder! Abafe com uma tampa ou com um pano húmido bem torcido (nunca encharcado).
 10. **Atenção**: Não cozinhe com sono ou sob efeito de medicamentos fortes.
         `,
         tags: ['cozinha', 'segurança', 'dicas', 'fogo']
@@ -385,7 +385,7 @@ Se vive em apartamento ou em casa com mais de um piso, as redes de proteção s�
 
 **Manutenção:**
 * **Validade**: As redes têm vida útil (geralmente 3 a 5 anos). O sol resseca o material (polietileno/poliamida).
-* **Inspeção**: Verifique se há cortes, furos ou ganchos soltos regularmente.
+* **Inspeção**: Verifique regularmente se há cortes, furos ou ganchos soltos ou enferrujados.
 * **Teste de Tensão**: A rede deve estar esticada. Se estiver frouxa, chame um técnico.
 * **Pets**: Gatos podem roer a rede. Verifique com frequência se há danos.
 

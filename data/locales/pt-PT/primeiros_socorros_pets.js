@@ -76,7 +76,7 @@ export const emergenciasPetsPTPT = [
             { titulo: 'Levar ao veterinário', descricao: 'Levar ao veterinário mesmo que o animal pareça melhorar, pois o sobreaquecimento pode danificar os rins e outros órgãos internos.' },
         ],
         alertas: [
-            'Não atirar baldes de água gelada por cima do animal.',
+            'Não atirar água gelada sobre o animal.',
             'Os animais de focinho curto (como Pugs, Bulldogs e Persas) sofrem muito mais com o calor.',
         ],
     },
@@ -93,7 +93,7 @@ export const emergenciasPetsPTPT = [
             { titulo: 'Afastar móveis e esquinas', descricao: 'Afastar móveis e objetos duros para que o animal não bata com a cabeça nem magoe os olhos.' },
             { titulo: 'Reduzir a luz e o som', descricao: 'Apagar as luzes e desligar a televisão ou o rádio para diminuir os estímulos ao cérebro.' },
             { titulo: 'Cronometrar a duração', descricao: 'Cronometrar a duração da crise. Se ultrapassar 5 minutos, levar ao veterinário como emergência.' },
-            { titulo: 'Após a crise', descricao: 'Aguardar o regresso gradual da consciência (o animal acorda assustado e temporariamente desorientado). Falar baixo e evitar tocar-lhe à pressa, pois pode morder.' },
+            { titulo: 'Após a crise', descricao: 'Aguardar o regresso gradual da consciência (o animal acorda assustado e temporariamente desorientado). Falar baixo e evitar tocar-lhe com movimentos rápidos: pode assustar-se e reagir com uma mordida.' },
         ],
         alertas: [
             'Manter a calma, pois os animais sentem a nossa tensão.',
@@ -112,7 +112,7 @@ export const emergenciasPetsPTPT = [
             { titulo: 'Pressionar com firmeza', descricao: 'Colocar um pano limpo ou uma compressa sobre o corte e pressionar sem parar durante pelo menos 5 minutos.', critico: true },
             { titulo: 'Não ficar a espreitar', descricao: 'NÃO retirar o pano para verificar a hemorragia, para não romper o coágulo.' },
             { titulo: 'Elevar a ferida', descricao: 'Elevar a pata ferida acima do nível do peito para diminuir a pressão sanguínea.' },
-            { titulo: 'Garrote: CUIDADO', descricao: 'Último recurso: só em hemorragia grave de pata ou cauda que não pare com pressão firme e contínua. Usar uma faixa larga e elástica (um cordão fino corta e escorrega na pata). Anotar a hora em que foi aplicado e ir de imediato ao veterinário, que decide quando o soltar.', critico: true },
+            { titulo: 'Garrote: CUIDADO', descricao: 'Último recurso: só em hemorragia grave de pata ou cauda que não pare com pressão firme e contínua. Usar uma faixa larga e elástica (um cordão fino corta e escorrega no membro). Anotar a hora em que foi aplicado e ir de imediato ao veterinário, que decide quando o soltar.', critico: true },
             { titulo: 'Ir ao veterinário o quanto antes', descricao: 'Levar ao veterinário, pois os cortes profundos precisam de pontos e de pensos profissionais.' },
         ],
         alertas: [
