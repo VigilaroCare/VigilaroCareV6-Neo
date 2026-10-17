@@ -90,7 +90,7 @@ function varrerDados(dir, achados = { quebrados: [], emojis: [], total: 0 }) {
 
         const rel = path.relative(ROOT, p).replace(/\\/g, '/');
         const src = fs.readFileSync(p, 'utf8');
-        for (const m of src.matchAll(/\bicone:\s*'([^']*)'/g)) {
+        for (const m of src.matchAll(/\bicone:\s*['"]([^'"]*)['"]/g)) {
             const valor = m[1];
             achados.total++;
             if (EMOJI.test(valor)) achados.emojis.push(`${rel}: ${valor}`);

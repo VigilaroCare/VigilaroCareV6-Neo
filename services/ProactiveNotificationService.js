@@ -260,34 +260,34 @@ class ProactiveNotificationService {
     }
 
     /**
-     * Agenda Alerta Sazonal Mensal (F-08).
-     * Dispara no dia 1 de cada mês com o conteúdo do Radar Vigilaro.
+     * Agenda os avisos do Radar sazonal (D17).
+     *
+     * Antes: UMA notificação repetida todo dia 1, com o texto do mês em que foi
+     * agendada — em março, o usuário recebia de novo o alerta de janeiro — e
+     * rota para uma tela que não existe. Agora: um aviso datado por risco do
+     * país e da região do usuário, no dia em que a janela começa ou alguns dias
+     * antes do evento, nos próximos 60 dias. refreshAll() reagenda tudo.
      * @private
      */
     async _scheduleMonthlySeasonalAlert() {
         try {
-            // BUG-13 FIX: mesAtual era declarado mas nunca usado
-            const feed = RadarVigilaroService.getFeed([], 1); // Pega apenas o primeiro (que é o sazonal do mês)
-            const sazonal = feed[0];
-
-            if (!sazonal || sazonal.formato !== 'sazonal') return;
-
-            // Agendar para o dia 1 do mês às 10:00
-            await NotificationService.scheduleNotification(
-                `🗓️ ${sazonal.titulo}`,
-                sazonal.resumo,
-                {
-                    day: 1,
-                    hour: 10,
-                    minute: 0,
-                    repeats: true,
-                    channelId: 'default'
-                },
-                { proactive: true, type: 'seasonal_alert', route: 'AlertasSazonais' },
-                'critical'
-            );
+            const { proximosAvisos } = require('./RadarSazonalEngine');
+            const { t_field } = require('../utils/getLocalizedField');
+            const pais = RadarVigilaroService.getPais();
+            const regiao = await RadarVigilaroService.getRegiao(pais);
+            const avisos = proximosAvisos({ pais, regiao, dias: 60 }).slice(0, 8);
+            for (const aviso of avisos) {
+                const j = aviso.janela;
+                await NotificationService.scheduleNotification(
+                    `🗓️ ${t_field(j, 'titulo')}`,
+                    t_field(j, 'resumo'),
+                    aviso.quando,
+                    { proactive: true, type: 'seasonal_alert', route: 'RadarVigilaro', janelaId: j.id },
+                    'critical'
+                );
+            }
         } catch (error) {
-            console.log('Aviso: Não foi possível agendar alerta sazonal:', error.message);
+            console.log('Aviso: Não foi possível agendar alertas sazonais:', error.message);
         }
     }
 

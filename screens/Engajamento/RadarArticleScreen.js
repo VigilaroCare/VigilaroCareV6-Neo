@@ -21,6 +21,12 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { TEXTOS_RADAR } from '../../data/radarSazonal/textos';
+import { t_field } from '../../utils/getLocalizedField';
+import { resolveEmergencyTokensDeep } from '../../utils/emergencyTokens';
+
+const tx = (campo) => t_field(TEXTOS_RADAR, campo);
+const ROTULO_FORMATO = { caso: 'formatoCaso', fato: 'formatoFato', protocolo: 'formatoProtocolo', sazonal: 'formatoSazonal' };
 
 const FORMAT_CONFIG = {
   caso:      { label: 'Caso Real',      cor: '#DC2626', bg: '#FFF5F5', iconeBg: '#FECACA' }, // DS: data-level color
@@ -30,7 +36,9 @@ const FORMAT_CONFIG = {
 };
 
 export default function RadarArticleScreen({ route, navigation }) {
-  const { article } = route.params || {};
+  // Tokens resolvidos aqui também: um artigo pode chegar por outro caminho
+  // (notificação, link) sem passar pelo serviço.
+  const article = resolveEmergencyTokensDeep((route.params || {}).article);
   const themeColors = useThemeColors();
   const isDark = useIsDark();
   const textPrimary = themeColors.neutral[900];
@@ -47,9 +55,9 @@ export default function RadarArticleScreen({ route, navigation }) {
             <NeoIcon name="ArrowLeft" size={24} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={s.emptyState}>
-            <Text style={s.emptyText}>Conteúdo não encontrado.</Text>
+            <Text style={s.emptyText}>{tx('naoEncontrado')}</Text>
             <TouchableOpacity style={s.returnBtn} onPress={() => navigation.goBack()}>
-              <Text style={s.returnBtnText}>Voltar</Text>
+              <Text style={s.returnBtnText}>{tx('voltar')}</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -71,14 +79,14 @@ export default function RadarArticleScreen({ route, navigation }) {
             style={[s.backBtn, { backgroundColor: isDark ? 'rgba(28,28,30,0.6)' : 'rgba(255,255,255,0.6)', borderColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)' }]}
             onPress={() => navigation.goBack()}
             accessibilityRole="button"
-            accessibilityLabel="Voltar"
+            accessibilityLabel={tx('voltar')}
           >
             <NeoIcon name="ArrowLeft" size={24} color={textBody} />
           </TouchableOpacity>
           <View style={[s.badgeHeader, { backgroundColor: config.bg }]}>
             <NeoIcon name="ShieldTick" size={14} color={config.cor} variant="Bold" />
             <Text style={[s.badgeHeaderText, { color: config.cor }]}>
-              {config.label}
+              {tx(ROTULO_FORMATO[article.formato] || 'formatoCaso')}
             </Text>
           </View>
           <View style={{ width: 44 }} />
@@ -108,6 +116,14 @@ export default function RadarArticleScreen({ route, navigation }) {
           {/* Título */}
           <Text style={[s.titulo, { color: textPrimary }]} accessibilityRole="header">{article.titulo}</Text>
 
+          {/* Contexto do Radar sazonal: fase, para quem na casa, região */}
+          {article.contexto && [article.contexto.fase, article.contexto.quem, article.contexto.vale].filter(Boolean).map((linha, i) => (
+            <View key={i} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginBottom: 6 }}>
+              <NeoIcon name={i === 0 ? 'Calendar' : 'InfoCircle'} size={14} color={config.cor} variant="Bold" />
+              <Text style={{ fontSize: 13, fontWeight: '600', color: config.cor, flex: 1, lineHeight: 18 }}>{linha}</Text>
+            </View>
+          ))}
+
           {/* Destaque (para fatos) */}
           {article.destaque && (
             <View style={[s.destaqueBox, { borderLeftColor: config.cor }]}>
@@ -127,7 +143,7 @@ export default function RadarArticleScreen({ route, navigation }) {
             <View style={s.causaBox}>
               <View style={s.causaHeader}>
                 <NeoIcon name="Danger" size={16} color={Neo.colors.accent.champagne} variant="Bold" />
-                <Text style={s.causaLabel}>Por que aconteceu</Text>
+                <Text style={s.causaLabel}>{tx('porQueAconteceu')}</Text>
               </View>
               <Text style={s.causaTexto}>{article.causaRaiz}</Text>
             </View>
@@ -138,7 +154,7 @@ export default function RadarArticleScreen({ route, navigation }) {
             <View style={s.orientacoesBox}>
               <View style={s.orientacoesHeader}>
                 <NeoIcon name="ShieldTick" size={18} color={Neo.colors.primary[600]} variant="Bold" />
-                <Text style={s.orientacoesTitle}>Como evitar</Text>
+                <Text style={s.orientacoesTitle}>{tx('comoEvitar')}</Text>
               </View>
 
               {orientacoes.map((orientacao, i) => (
@@ -166,7 +182,7 @@ export default function RadarArticleScreen({ route, navigation }) {
             onPress={() => navigation.navigate('RadarVigilaro')}
             activeOpacity={0.7}
           >
-            <Text style={s.verMaisText}>Ler outras histórias no Radar da Prevenção</Text>
+            <Text style={s.verMaisText}>{tx('voltarRadar')}</Text>
             <NeoIcon name="ArrowRight2" size={14} color={Neo.colors.primary[600]} />
           </TouchableOpacity>
 

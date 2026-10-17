@@ -387,7 +387,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                             <PictogramTile source={REAL_CASES_PICTOGRAM} width={110} moldura atenuado={isDark} />
                             <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
                                 <Body style={s.radarTitle}>
-                                    {t('knowledgeHub.realCasesTeach', 'Casos reais que ensinam')}
+                                    {t('knowledgeHub.realCasesTeach', 'Radar da Prevenção: os riscos desta época')}
                                 </Body>
                             </View>
                             <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>

@@ -201,6 +201,12 @@ export function isItemRelevant(item, profiles, moradia) {
         if (!hasIdoso) return false;
     }
 
+    // Qualquer pet (Radar sazonal, D17: processionária, fogos, calor no carro).
+    // Nenhum item de checklist usa a tag 'pet' hoje — a regra não muda a vistoria.
+    if (item.tags.includes('pet')) {
+        if (!safeProfiles.some(p => p.tipo === 'pet')) return false;
+    }
+
     // Regras de Tags Pet Vulneráveis
     if (item.tags.includes('pet_idoso')) {
         if (!hasPetIdoso) return false;

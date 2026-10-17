@@ -64,10 +64,5 @@ export const DICAS_FAIXA_ETARIA = {
     idoso: "Idosos têm maior risco de quedas. Remova obstáculos e melhore a iluminação."
 };
 
-// Alertas sazonais (baseado em mês)
-export const ALERTAS_SAZONAIS = {
-    1: "Verão: aumento de afogamentos. Reforce a vigilância em piscinas.",
-    2: "Carnaval: cuidado com fantasias inflamáveis e sprays.",
-    6: "Festas juninas: atenção redobrada com fogueiras e fogos.",
-    12: "Natal: cuidado com decorações elétricas e objetos pequenos na árvore."
-};
+// Alertas sazonais: ver data/radarSazonal/ (D17) — calendário por país, região e data.
+
