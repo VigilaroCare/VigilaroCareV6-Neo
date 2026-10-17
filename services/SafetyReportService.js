@@ -517,18 +517,24 @@ class SafetyReportService {
             const pendingCount = pendingItems.length;
 
             let executiveSummary;
+            // O APP INFORMA, NÃO OPINA (decisão do autor, 17/10/2026). Antes:
+            // "Dado que você faz uso de medicamentos como <nomes>, o risco de
+            // quedas e desequilíbrio merece atenção redobrada" — liga o remédio
+            // da pessoa a um efeito no corpo dela: opinião clínica. Agora é
+            // informação GERAL (o que a bula informa), sem nome de remédio,
+            // com encaminhamento ao profissional e ações na casa.
             const healthContext = hasMeds && type === 'senior'
-                ? ` Dado que você faz uso de medicamentos como ${medNames}, o risco de quedas e desequilíbrio merece atenção redobrada.`
+                ? ` Há medicamentos registrados neste perfil. A bula de cada um informa os efeitos possíveis — alguns medicamentos podem causar sonolência ou tontura —, e dúvidas devem ser levadas ao médico ou ao farmacêutico. Em casa, ajudam: luz noturna no caminho do banheiro, apoio firme ao lado da cama e medicamentos guardados em local seguro.`
                 : hasMeds
-                    ? ` Há medicamentos registrados — certifique-se de que estão armazenados com segurança.`
+                    ? ` Há medicamentos registrados — guarde-os em local seguro, fora do alcance de crianças e pets.`
                     : '';
 
             if (answeredCount === 0) {
-                executiveSummary = `${firstName}, sua vistoria ainda não foi iniciada. Mapeie e inspecione os ambientes para podermos gerar o diagnóstico de segurança da sua casa.`;
+                executiveSummary = `${firstName}, sua vistoria ainda não foi iniciada. Mapeie e inspecione os ambientes para podermos gerar a avaliação de segurança da sua casa.`;
             } else if (critCount === 0 && pendingCount === 0) {
                 executiveSummary = `${firstName}, sua vistoria está completa e não há irregularidades ativas. Excelente! Continue revisando periodicamente para manter este nível de proteção.${healthContext}`;
             } else if (critCount === 0 && pendingCount > 0) {
-                executiveSummary = `${firstName}, não há riscos confirmados, mas ${pendingCount} item(ns) ainda não foram verificados. Complete a vistoria para um diagnóstico preciso.${healthContext}`;
+                executiveSummary = `${firstName}, não há riscos confirmados, mas ${pendingCount} item(ns) ainda não foram verificados. Complete a vistoria para uma avaliação completa.${healthContext}`;
             } else if (critCount === 1) {
                 executiveSummary = `${firstName}, identificamos 1 irregularidade ativa na vistoria. Uma ação simples pode eliminar completamente esse risco.${healthContext}${ackCount > 0 ? ` Você já reconheceu ${ackCount} item(ns) anteriormente.` : ''}`;
             } else {

@@ -132,8 +132,29 @@ for (const [arq, funcs] of Object.entries(assinaturasIA)) {
 const pm = app.ios?.privacyManifests;
 if (!pm || pm.NSPrivacyTracking !== false) problemas.push('app.json: ios.privacyManifests ausente ou com rastreamento ligado.');
 const tiposDeclarados = new Set((pm?.NSPrivacyCollectedDataTypes || []).map((x) => x.NSPrivacyCollectedDataType.replace('NSPrivacyCollectedDataType', '')));
-for (const t of ['Health', 'PhotosorVideos', 'CoarseLocation', 'PurchaseHistory', 'CrashData']) {
+for (const t of ['PhotosorVideos', 'CoarseLocation', 'PurchaseHistory', 'CrashData']) {
     if (!tiposDeclarados.has(t)) problemas.push(`Manifesto de privacidade sem ${t} — o app coleta esse dado (ver docs/lojas/FORMULARIOS_LOJAS.md).`);
+}
+// 5b'. O APP INFORMA, NÃO OPINA (decisão do autor, 17/10/2026): nenhum dado de
+// saúde vai para a IA. Se voltar a ir, o manifesto, a Política, os
+// formulários e o consentimento ficam todos falsos — por isso é bloqueio.
+if (tiposDeclarados.has('Health')) problemas.push('Manifesto declara coleta de Saúde, mas a regra é: dado de saúde não sai do aparelho.');
+{
+    const s = lerSrc('services/OpenAIService.js');
+    const corpo = (inicio, fim) => { const i = s.indexOf(inicio); const j = s.indexOf(fim, i + 1); return i >= 0 ? s.slice(i, j > i ? j : undefined) : ''; };
+    const trechos = {
+        loadContext: corpo('async loadContext()', 'async sendMessage('),
+        generateConsultativeReport: corpo('async generateConsultativeReport(', 'async generateTravelBriefing('),
+        generateTravelBriefing: corpo('async generateTravelBriefing(', 'async analyzeVaccineCard('),
+    };
+    const SAUDE = /condicoesEspeciais|condicoesMedicas|medNames|hasMeds|medicamentosEmUso|@medications|alergias|tipoSanguineo|necessidadesEspeciais|hasPcd|pessoa com deficiência/;
+    for (const [fn, txt] of Object.entries(trechos)) {
+        if (!txt) { problemas.push(`verify_legal: não achei OpenAIService.${fn} — a checagem de saúde ficaria cega; ajuste o script.`); continue; }
+        // comentários não contam
+        const codigo = txt.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+        const m = codigo.match(SAUDE);
+        if (m) problemas.push(`OpenAIService.${fn} usa "${m[0]}" — dado de saúde não pode ir para a IA.`);
+    }
 }
 // 5c. Páginas públicas iguais ao texto do app (as lojas pedem a URL pública).
 try {

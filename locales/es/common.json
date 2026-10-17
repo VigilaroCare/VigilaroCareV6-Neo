@@ -1855,7 +1855,7 @@
         "reconhecidosPeloResponsVel": "Reconocidos por el Responsable",
         "registradoComDataENome": "Registrado con fecha y nombre",
         "nOVerificados": "No Verificados",
-        "completeAVistoriaParaDiagnSticoPreciso": "Complete la inspección para un diagnóstico preciso",
+        "completeAVistoriaParaDiagnSticoPreciso": "Complete la inspección para una evaluación completa",
         "outrosMoradores": "Otros residentes",
         "pet": "Mascota",
         "carregandoAtividades": "Cargando actividades...",
@@ -3080,11 +3080,11 @@
         "paisTitulo": "Identificar el país para los números de emergencia",
         "paisTexto": "Usa la ubicación, solo en el dispositivo, para mostrar el número de emergencia del país en el que se encuentra. Solo se guarda el país. Desactivado, los números siguen el país configurado en el móvil. El envío de la ubicación en el SOS no depende de esto.",
         "iaTitulo": "Análisis con inteligencia artificial",
-        "iaTexto": "Envía a OpenAI (EE. UU.) la foto del escáner y, para el análisis personalizado, la edad, las condiciones de salud y los medicamentos — sin nombre. Desactivado, nada de esto sale del dispositivo y el resto de la aplicación funciona con normalidad."
+        "iaTexto": "Envía a OpenAI (EE. UU.) la foto del escáner y, para el análisis personalizado, la franja de edad, la vivienda y el resultado de la inspección — sin nombre y sin ningún dato de salud. Desactivado, nada de esto sale del dispositivo y el resto de la aplicación funciona con normalidad."
     },
     "consentimentoIA": {
         "titulo": "Análisis con inteligencia artificial",
-        "texto": "Para generar este análisis, Vigilaro envía a OpenAI (Estados Unidos), a través del servidor de Vigilaro:\n\n• la foto que elija, cuando use el escáner;\n• la edad, las condiciones de salud y los medicamentos indicados en el perfil — SIN nombre;\n• el tipo de vivienda, los ambientes y la ciudad.\n\nOpenAI no usa estos datos para entrenar modelos y los conserva hasta 30 días solo para prevenir abusos. Puede retirar este permiso en cualquier momento en Privacidad → Sus opciones. Sin él, el resto de la aplicación funciona con normalidad.",
+        "texto": "Para generar este análisis, Vigilaro envía a OpenAI (Estados Unidos), a través del servidor de Vigilaro:\n\n• la foto que elija, cuando use el escáner;\n• la franja de edad del perfil, el tipo de vivienda, los ambientes, la ciudad y el resultado de la inspección.\n\nNo se envía ningún nombre ni ningún dato de salud (condiciones, medicamentos, alergias). OpenAI no usa estos datos para entrenar modelos y los conserva hasta 30 días solo para prevenir abusos. Puede retirar este permiso en cualquier momento en Privacidad → Sus opciones. Sin él, el resto de la aplicación funciona con normalidad.",
         "agoraNao": "Ahora no",
         "permitir": "Permitir",
         "semPermissaoTitulo": "Análisis no enviado",

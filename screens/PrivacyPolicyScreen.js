@@ -74,7 +74,7 @@ function SuasEscolhas() {
             <View style={[styles.escolhaLinha, { marginTop: 14 }]}>
                 <View style={{ flex: 1, paddingRight: 12 }}>
                     <Text style={styles.escolhaTitulo}>{t('privacidade.iaTitulo', 'Análises com inteligência artificial')}</Text>
-                    <Text style={styles.escolhaTexto}>{t('privacidade.iaTexto', 'Envia à OpenAI (EUA) a foto do Scanner e, para a análise personalizada, idade, condições de saúde e medicamentos — sem nome. Desligado, nada disso sai do aparelho e o resto do app funciona normalmente.')}</Text>
+                    <Text style={styles.escolhaTexto}>{t('privacidade.iaTexto', 'Envia à OpenAI (EUA) a foto do Scanner e, para a análise personalizada, a faixa etária, a casa e o resultado da vistoria — sem nome e sem nenhum dado de saúde. Desligado, nada disso sai do aparelho e o resto do app funciona normalmente.')}</Text>
                 </View>
                 <Switch
                     value={usaIA}

@@ -103,8 +103,7 @@ class OpenAIService {
             const homeMapping = vigilaroData.moradia || (await Storage.getItem('@home_mapping') ? JSON.parse(await Storage.getItem('@home_mapping')) : null);
 
             // 3. Load Medications
-            const medicationsRaw = await Storage.getItem('@medications');
-            const medications = medicationsRaw ? JSON.parse(medicationsRaw) : [];
+
 
             // 4. Load Emergency Contacts
             const emergencyContactsRaw = await Storage.getItem('@emergency_contacts');
@@ -156,8 +155,8 @@ class OpenAIService {
                         idadeStr = p.faixaEtaria;
                     }
 
-                    const condicoes = p.condicoesEspeciais ? ` (atenção: ${p.condicoesEspeciais})` : '';
-                    contextStr += `- Morador ${count}: ${tipo}, ${idadeStr}${condicoes}\n`;
+                    // Sem condições de saúde: o app informa, não opina (ver generateConsultativeReport).
+                    contextStr += `- Morador ${count}: ${tipo}, ${idadeStr}\n`;
                 });
             } else {
                 contextStr += "MORADORES: Nenhum perfil cadastrado.\n";
@@ -173,13 +172,8 @@ class OpenAIService {
                 if (homeMapping.temJardim || (homeMapping.caracteristicas && homeMapping.caracteristicas.includes('quintal'))) contextStr += "- TEM ÁREA EXTERNA\n";
             }
 
-            // Medicamentos
-            if (medications.length > 0) {
-                contextStr += `\nMEDICAMENTOS CADASTRADOS: ${medications.length}\n`;
-                medications.slice(0, 3).forEach(m => {
-                    contextStr += `- ${m.nome} (${m.horario || 'horário não definido'})\n`;
-                });
-            }
+            // Medicamentos: NÃO vão para a IA (nome nem quantidade) — dado de
+            // saúde fica no aparelho.
 
             // Contatos de Emergência
             if (emergencyContacts.length > 0) {
@@ -293,7 +287,7 @@ ${this.context}`;
      */
     async generateConsultativeReport(reportData) {
         await ConsentimentoIAService.exigir(); // Apple 5.1.2(i) / LGPD art. 11 e 33 — ver o serviço
-        const { profile, typeLabel, age, moradia, health, riskItems, pendingItems } = reportData;
+        const { profile, typeLabel, age, moradia, riskItems, pendingItems } = reportData;
 
         // Verifica se é pet
         const isPet = typeLabel?.toLowerCase() === 'pet' || profile?.tipo?.toLowerCase() === 'pet';
@@ -302,20 +296,32 @@ ${this.context}`;
         // NUNCA sai do dispositivo. A IA escreve usando o token literal
         // {{NOME}} e o app o substitui localmente após a resposta — o
         // relatório continua personalizado, mas a OpenAI só vê um placeholder.
+        // O APP INFORMA, NÃO OPINA (decisão do autor, 17/10/2026). Nenhum dado
+        // de saúde vai para a IA — nem condições, nem medicamentos, nem
+        // gestação/deficiência — e a idade vai como FAIXA, não em anos. Antes
+        // a IA recebia tudo isso e escrevia "os cuidados específicos para a
+        // pessoa, considerando medicamentos e condições": parecer clínico
+        // sobre alguém, o oposto do propósito do app. O que vem da ficha de
+        // saúde é mostrado no aparelho, como informação geral revisada
+        // (riskSummary.notaMedicamentos), sem passar pela IA.
+        const faixa = (() => {
+            if (isPet) return 'animal de estimação';
+            if (age == null || age === '') return 'idade não informada';
+            const n = Number(age);
+            if (n < 2) return 'bebê';
+            if (n < 12) return 'criança';
+            if (n < 18) return 'adolescente';
+            if (n < 60) return 'adulto';
+            return 'pessoa idosa';
+        })();
         let contextStr = `\nDADOS DO ${isPet ? 'ANIMAL (PET)' : 'MORADOR'}:\n`;
         contextStr += `- Referência: {{NOME}} (token de privacidade — use-o exatamente assim onde usaria o nome)\n`;
-        contextStr += `- Perfil: ${typeLabel} (${age ? age + ' anos' : 'Idade não informada'})\n`;
+        contextStr += `- Faixa: ${faixa}\n`;
         if (profile?.residenceRelationshipLabel || moradia?.vinculoPerfilLabel) {
             contextStr += `- Vínculo com esta residência: ${profile?.residenceRelationshipLabel || moradia?.vinculoPerfilLabel}\n`;
         }
         if (Array.isArray(profile?.usedRoomLabels) && profile.usedRoomLabels.length > 0) {
             contextStr += `- Ambientes de uso informado nesta residência: ${profile.usedRoomLabels.join(', ')}\n`;
-        }
-        if (profile?.condicoesEspeciais) {
-            contextStr += `- Condições/Atenções: ${profile.condicoesEspeciais}\n`;
-        }
-        if (health?.hasMeds) {
-            contextStr += `- Medicamentos Registrados: ${health.medNames}\n`;
         }
 
         contextStr += `\nDADOS DO AMBIENTE:\n`;
@@ -367,11 +373,17 @@ ${this.context}`;
         systemPrompt += `\nBaseie-se na metodologia "Quem, Onde, O Que, Como".
 Analise o contexto fornecido e forneça o relatório de forma objetiva no seguinte formato JSON OBRIGATÓRIO:
 {
-  "quem": "Um relato acolhedor e direto de 1 parágrafo identificando os cuidados específicos para {{NOME}}, considerando idade, medicamentos e condições. Comece usando o token de forma natural, como se estivesse conversando com a pessoa (ex: '{{NOME}}, com seus 72 anos...').",
+  "quem": "Um parágrafo acolhedor sobre os cuidados com a CASA que mais pesam para a faixa do perfil, a partir dos itens da vistoria (ex.: 'Para {{NOME}}, os pontos desta casa que mais pedem atenção são...'). Fale do ambiente e das ações na casa — nunca do corpo, da saúde ou da conduta da pessoa.",
   "onde": "Um relato claro de 1 parágrafo sobre o que o tipo de residência e suas características representam em termos de atenção. Contextualize de forma prática, não alarmista.",
   "o_que": "Um resumo tático de 1 ou 2 parágrafos sobre as irregularidades encontradas na vistoria. Seja honesto sobre a gravidade, mas explique o porquê de forma compreensível para leigos.",
   "como": "Instruções práticas e acessíveis em 1 ou 2 parágrafos. Explique como resolver os problemas de forma simples e realizável, priorizando o que é mais urgente. Incentive o usuário a agir mostrando que cada pequena ação faz diferença."
 }
+
+Limites (OBRIGATÓRIOS, acima de qualquer outra regra):
+- Você INFORMA e orienta sobre a segurança da casa. Você NÃO emite opinião sobre a pessoa, NÃO diagnostica, NÃO avalia saúde e NÃO prescreve.
+- NUNCA mencione doenças, sintomas, condições de saúde, medicamentos, efeitos de medicamentos, gestação, deficiência, dosagens ou tratamentos — nem como hipótese.
+- Fale de riscos do AMBIENTE e de ações na casa (iluminação, pisos, apoios, armazenamento, supervisão), em linguagem geral, sem afirmar o que a pessoa sente ou vai sentir.
+- Se algum ponto depender de saúde, diga apenas que dúvidas de saúde devem ser levadas a um profissional de saúde.
 
 Regras de Tom e Estilo:
 - Fale como um consultor de confiança: competente, humano e encorajador. Combine autoridade técnica com calor humano.
@@ -484,8 +496,9 @@ Regras de Tom e Estilo:
         if (trip?.config?.hasKids) companions.push('crianças');
         if (trip?.config?.hasElderly) companions.push('idosos');
         if (trip?.config?.hasPets) companions.push('pets');
-        if (trip?.config?.hasPcd) companions.push('pessoa com deficiência');
-        const topics = (sections || []).map(s => s.id).join(', ');
+        // Deficiência é dado de saúde: não vai para a IA (nem como tópico). As
+        // orientações de acessibilidade seguem no dossiê, montadas no aparelho.
+        const topics = (sections || []).map(s => s.id).filter((id) => !/pcd|acessib|deficien/i.test(id)).join(', ');
 
         let contextStr = `VIAGEM:\n- Destino: ${tripLabel}\n- Propósito: ${purpose}\n- Internacional: ${isInternational ? 'sim' : 'não'}\n- Acompanhantes: ${companions.join(', ') || 'sem grupos específicos'}\n`;
         contextStr += `\nVIAJANTES (anonimizados — sem nomes):\n${roster || '- não informado'}\n`;

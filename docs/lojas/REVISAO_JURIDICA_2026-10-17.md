@@ -8,6 +8,29 @@
 
 ---
 
+## Atualização do mesmo dia — "o app informa, não opina"
+
+O autor decidiu que **nenhum dado de saúde sai do aparelho** e que o app **não emite opinião** sobre a pessoa. A análise por IA:
+- deixou de receber condições, medicamentos, gestação e deficiência;
+- recebe a idade só como faixa etária;
+- é proibida, no próprio pedido ao modelo, de comentar doença, remédio, diagnóstico ou tratamento.
+
+O texto offline do relatório também deixou de ligar os medicamentos da pessoa a efeitos no corpo dela. Agora informa, em termos gerais, que a bula indica os efeitos possíveis, encaminha ao médico ou farmacêutico e lista as ações na casa.
+
+**Efeito sobre esta revisão:**
+
+| Item | Antes | Agora |
+|---|---|---|
+| Req. 3: consentimento destacado para enviar saúde | atendido com a permissão de IA | **não se aplica**: saúde não é enviada |
+| Req. 6: transferência de saúde à OpenAI | consentimento art. 33, VIII | só foto, faixa etária e casa, com a mesma permissão |
+| Req. 18 / R8: Washington MHMDA | parcial | **risco menor**: dado de saúde não é coletado pela empresa, só guardado no aparelho do usuário |
+| Req. 4 / R7: guardar saúde no aparelho | frágil | continua valendo a recomendação, mas com peso menor. Dado que a família guarda no próprio aparelho, para uso particular, tende a ficar fora da LGPD (art. 4º, I). **Confirmar com advogado** |
+| Manifesto da Apple / Segurança dos dados | "Saúde" declarada | "Saúde" **retirada** dos dois |
+
+`npm run validate:legal` falha se algum dado de saúde voltar a ir para a IA.
+
+---
+
 ## Resumo
 
 **Seguir com condições.** As mudanças recentes deixaram o app mais correto, mas sobram **um bloqueio de publicação** e **dois pontos de risco alto** que dependem de decisão ou de advogado:

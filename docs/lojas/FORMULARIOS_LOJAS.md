@@ -23,10 +23,11 @@ Tudo o que não está nesta tabela **fica só no aparelho** (perfis, nomes, cont
 
 | Dado | Para onde | Quando | Vínculo com a pessoa | Evidência |
 |---|---|---|---|---|
-| Condições de saúde, medicamentos, idade | OpenAI (EUA), via servidor do Vigilaro (não guarda) | Só na análise personalizada por IA, **com permissão explícita** | Não — sai sem nome (token `{{NOME}}`) | `services/OpenAIService.js` (`generateConsultativeReport`), `services/ConsentimentoIAService.js` |
+| Faixa etária do perfil, tipo de casa, ambientes, cidade/estado, resultado da vistoria | OpenAI (EUA), via servidor do Vigilaro (não guarda) | Só na análise personalizada por IA, **com permissão explícita** | Não — sai sem nome (token `{{NOME}}`) | `services/OpenAIService.js` (`generateConsultativeReport`), `services/ConsentimentoIAService.js` |
 | Foto escolhida | OpenAI | Só no Scanner, **com permissão explícita** | Não | `services/VisionService.js`, `screens/ScannerScreen.js` |
-| Cidade/estado da casa, tipo de casa, ambientes | OpenAI | Na análise personalizada por IA, com permissão | Não | `services/SafetyReportService.js` (`formatLocation`) |
 | Idades dos viajantes, tipo de viagem | OpenAI | Resumo do dossiê de viagem, com permissão | Não | `generateTravelBriefing` |
+
+**Dados de saúde não saem do aparelho.** Condições, medicamentos, alergias, tipo sanguíneo, gestação e deficiência ficam no celular. A decisão do autor, em 17/10/2026, é que o app informa e não opina, e `npm run validate:legal` falha se algum desses dados voltar a ir para a IA. A ficha médica do SOS só sai se a própria pessoa a compartilhar, pelo app de mensagens.
 | Código de barras / nome de substância | Open Food Facts, Open Beauty Facts, Open Products Facts, UPCitemdb, PubChem, EPA CompTox | Consultas do Scanner de código e do Info Rótulos | Não — só o código ou o nome | `services/InfoRotulosSubstanceService.js` |
 | Histórico de compra + ID anônimo da instalação | RevenueCat | Ao assinar/validar o Premium | Não — ID anônimo, sem e-mail | `services/SubscriptionService.js` (sem `logIn`) |
 | Relatórios de falha, desempenho, ID aleatório da instalação | Sentry | Quando há erro | Não — `sendDefaultPii: false` + limpeza de nomes, telefones, endereços e saúde | `services/SentryService.js` |
@@ -79,8 +80,7 @@ Retenção nos terceiros:
 | Categoria → tipo | Coletado | Efêmero? | Obrigatório ou opcional | Finalidades |
 |---|---|---|---|---|
 | Local → **Local aproximado** | Sim | Não (OpenAI retém até 30 dias) | **Opcional** | Funcionalidade do app |
-| Informações pessoais → **Outras informações** (idade, tipo de casa) | Sim | Não | Opcional | Funcionalidade do app |
-| Saúde e fitness → **Informações de saúde** | Sim | Não | Opcional | Funcionalidade do app |
+| Informações pessoais → **Outras informações** (faixa etária, tipo de casa) | Sim | Não | Opcional | Funcionalidade do app |
 | Fotos e vídeos → **Fotos** | Sim | Não | Opcional | Funcionalidade do app |
 | Informações financeiras → **Histórico de compras** | Sim | Não | Opcional (só quem assina) | Funcionalidade do app; Análise |
 | Atividade no app → **Histórico de pesquisa no app** (código de barras, substância) | Sim | Não | Opcional | Funcionalidade do app |
@@ -91,6 +91,7 @@ Retenção nos terceiros:
 **Não marcar:**
 - Local preciso.
 - Nome, e-mail, IDs de usuário, endereço, telefone.
+- **Saúde e fitness** (informações de saúde e de fitness): ficam no aparelho.
 - Raça/etnia, convicções, orientação sexual, outras informações sensíveis.
 - Mensagens, áudio, vídeos, arquivos, agenda.
 - Contatos, navegação na web, apps instalados, informações de fitness.
@@ -132,13 +133,14 @@ Marque no formulário as opções equivalentes a "gestão de medicamentos/tratam
 
 | Tipo da Apple | Finalidade |
 |---|---|
-| Saúde e condicionamento → **Saúde** | Funcionalidade do app |
 | Localização → **Localização aproximada** | Funcionalidade do app |
 | Conteúdo do usuário → **Fotos ou vídeos** | Funcionalidade do app |
 | Compras → **Histórico de compras** | Funcionalidade do app; Análise |
 | **Histórico de pesquisa** | Funcionalidade do app |
 | Diagnóstico → **Dados de falhas**, **Dados de desempenho**, **Outros dados de diagnóstico** | Funcionalidade do app |
-| **Outros tipos de dados** (idade, tipo de casa, ambientes) | Funcionalidade do app |
+| **Outros tipos de dados** (faixa etária, tipo de casa, ambientes) | Funcionalidade do app |
+
+**Saúde e condicionamento: não marcar.** O app guarda dados de saúde só no aparelho; pela Apple, isso não é "coleta".
 
 Isso é exatamente o `ios.privacyManifests` do `app.json`. Se um mudar, o outro muda junto.
 
