@@ -1,0 +1,3234 @@
+{
+ "RS-0001": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "titulo",
+  "linha": 16,
+  "original": "Verão: afogamento infantil"
+ },
+ "RS-0002": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "resumo",
+  "linha": 19,
+  "original": "O afogamento é a 2ª causa de morte de crianças de 1 a 4 anos no Brasil, e mais da metade das mortes até 9 anos acontece dentro de casa — piscina, balde, banheira. Nas férias o risco sobe e a vigilância cai."
+ },
+ "RS-0003": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 23,
+  "original": "Escolha um adulto “vigia da água” por turno, sem celular, ao alcance do braço da criança pequena."
+ },
+ "RS-0004": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 24,
+  "original": "Piscina cercada por todos os lados, com portão que fecha e trava sozinho."
+ },
+ "RS-0005": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Esvazie baldes e bacias e vire de boca para baixo; tampa do vaso sanitário fechada."
+ },
+ "RS-0006": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Boia e braçadeira não salvam vidas: só colete salva-vidas aprovado, e com supervisão."
+ },
+ "RS-0007": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 27,
+  "original": "Piscina inflável: esvazie depois de cada uso."
+ },
+ "RS-0008": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Carnaval chegando",
+  "chave": "resumo",
+  "linha": 56,
+  "original": "Viagens, multidão, calor, churrasco e bebida ao mesmo tempo: é a combinação que leva a crianças perdidas, afogamentos em viagem e queimaduras com álcool."
+ },
+ "RS-0009": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Carnaval chegando",
+  "chave": "orientacoes[]",
+  "linha": 60,
+  "original": "Pulseira ou etiqueta na criança com nome e telefone de contato; tire uma foto dela antes de sair."
+ },
+ "RS-0010": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Carnaval chegando",
+  "chave": "orientacoes[]",
+  "linha": 61,
+  "original": "Combine um ponto de encontro e ensine a criança a procurar um policial ou um funcionário uniformizado."
+ },
+ "RS-0011": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Carnaval chegando",
+  "chave": "orientacoes[]",
+  "linha": 62,
+  "original": "Nunca use álcool líquido para acender churrasqueira."
+ },
+ "RS-0012": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Carnaval chegando",
+  "chave": "orientacoes[]",
+  "linha": 63,
+  "original": "Em praia, rio ou piscina de casa alugada, a regra do “vigia da água” continua valendo."
+ },
+ "RS-0013": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "titulo",
+  "linha": 88,
+  "original": "Calor e chuva: temporada de escorpiões"
+ },
+ "RS-0014": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "resumo",
+  "linha": 91,
+  "original": "O Brasil passou de 200 mil notificações de acidentes com escorpião em 2023. O período quente e chuvoso tira o animal do esconderijo e o leva para dentro de casa. No Nordeste, julho a setembro também é época de alta."
+ },
+ "RS-0015": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "orientacoes[]",
+  "linha": 95,
+  "original": "Tela ou ralo com fechamento em pias, tanques e ralos; vede frestas de portas e rodapés."
+ },
+ "RS-0016": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "orientacoes[]",
+  "linha": 96,
+  "original": "Sem entulho, telha e madeira empilhados no quintal; combata baratas, o alimento do escorpião."
+ },
+ "RS-0017": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "orientacoes[]",
+  "linha": 97,
+  "original": "Sacuda roupas, sapatos e toalhas antes de usar; afaste a cama da parede."
+ },
+ "RS-0018": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor e chuva: temporada de escorpiões",
+  "chave": "orientacoes[]",
+  "linha": 98,
+  "original": "Picada em criança, idoso ou pet: vá IMEDIATAMENTE ao serviço de saúde — não espere sintomas."
+ },
+ "RS-0019": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "titulo",
+  "linha": 124,
+  "original": "Temporada de chuvas fortes e raios"
+ },
+ "RS-0020": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "resumo",
+  "linha": 127,
+  "original": "O Brasil é o país com mais raios no mundo, e as tempestades de verão trazem alagamento, deslizamento e choque elétrico em casa alagada. Cerca de 1 em cada 5 mortes por raio acontece com a pessoa dentro de casa, perto da rede elétrica ou hidráulica."
+ },
+ "RS-0021": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "orientacoes[]",
+  "linha": 131,
+  "original": "Cadastre seu CEP para alertas da Defesa Civil: envie o CEP por SMS para 40199 (gratuito)."
+ },
+ "RS-0022": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "orientacoes[]",
+  "linha": 132,
+  "original": "Durante a tempestade, longe de tomadas, chuveiro elétrico, torneiras e celular no carregador."
+ },
+ "RS-0023": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "orientacoes[]",
+  "linha": 133,
+  "original": "Água entrando em casa: desligue o disjuntor geral antes que a água chegue às tomadas — nunca pise na água com a energia ligada."
+ },
+ "RS-0024": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Temporada de chuvas fortes e raios",
+  "chave": "orientacoes[]",
+  "linha": 134,
+  "original": "Rachaduras novas, portas emperrando ou barranco cedendo perto de casa: saia e avise a Defesa Civil (199)."
+ },
+ "RS-0025": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Quadra chuvosa no litoral do Nordeste",
+  "chave": "titulo",
+  "linha": 159,
+  "original": "Quadra chuvosa no litoral do Nordeste"
+ },
+ "RS-0026": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Quadra chuvosa no litoral do Nordeste",
+  "chave": "resumo",
+  "linha": 162,
+  "original": "No litoral leste do Nordeste, as chuvas mais fortes vêm de abril a julho, com alagamentos e deslizamentos em encostas. É também época de mais escorpiões buscando abrigo dentro de casa."
+ },
+ "RS-0027": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Quadra chuvosa no litoral do Nordeste",
+  "chave": "orientacoes[]",
+  "linha": 167,
+  "original": "Água entrando em casa: desligue o disjuntor geral antes que chegue às tomadas."
+ },
+ "RS-0028": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Quadra chuvosa no litoral do Nordeste",
+  "chave": "orientacoes[]",
+  "linha": 168,
+  "original": "Mora em encosta? Observe rachaduras, árvores e postes inclinando e água barrenta brotando — saia e ligue 199."
+ },
+ "RS-0029": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Quadra chuvosa no litoral do Nordeste",
+  "chave": "orientacoes[]",
+  "linha": 169,
+  "original": "Mantenha documentos e remédios de uso contínuo em saco plástico, prontos para sair."
+ },
+ "RS-0030": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Período chuvoso e cheia dos rios no Norte",
+  "chave": "titulo",
+  "linha": 194,
+  "original": "Período chuvoso e cheia dos rios no Norte"
+ },
+ "RS-0031": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Período chuvoso e cheia dos rios no Norte",
+  "chave": "resumo",
+  "linha": 197,
+  "original": "De dezembro a maio, chuva intensa e cheia dos rios alagam casas e ruas. Água de enchente esconde buracos, fios caídos e animais peçonhentos."
+ },
+ "RS-0032": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Período chuvoso e cheia dos rios no Norte",
+  "chave": "orientacoes[]",
+  "linha": 202,
+  "original": "Desligue o disjuntor geral antes que a água chegue às tomadas."
+ },
+ "RS-0033": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Período chuvoso e cheia dos rios no Norte",
+  "chave": "orientacoes[]",
+  "linha": 203,
+  "original": "Não deixe crianças brincarem na água de enchente: afogamento, choque, cobras e doenças como a leptospirose."
+ },
+ "RS-0034": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Período chuvoso e cheia dos rios no Norte",
+  "chave": "orientacoes[]",
+  "linha": 204,
+  "original": "Água de beber e de cozinhar só tratada ou fervida."
+ },
+ "RS-0035": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "titulo",
+  "linha": 230,
+  "original": "Dengue: o criadouro está dentro de casa"
+ },
+ "RS-0036": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "resumo",
+  "linha": 233,
+  "original": "Com calor e chuva, o mosquito Aedes aegypti se multiplica, e a maior parte dos criadouros está nas casas. Dez minutos por semana de vistoria cortam o ciclo do mosquito."
+ },
+ "RS-0037": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "orientacoes[]",
+  "linha": 237,
+  "original": "Uma vez por semana: pratinhos de vaso com areia, calhas desentupidas, garrafas de boca para baixo."
+ },
+ "RS-0038": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "orientacoes[]",
+  "linha": 238,
+  "original": "Caixa d'água, tonéis e baldes sempre tampados."
+ },
+ "RS-0039": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "orientacoes[]",
+  "linha": 239,
+  "original": "Ralos pouco usados: tampe ou jogue água sanitária diluída."
+ },
+ "RS-0040": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dengue: o criadouro está dentro de casa",
+  "chave": "orientacoes[]",
+  "linha": 240,
+  "original": "Febre alta com dor no corpo: procure atendimento e não tome anti-inflamatório por conta própria."
+ },
+ "RS-0041": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "titulo",
+  "linha": 264,
+  "original": "Calor extremo: bebês, idosos e pets primeiro"
+ },
+ "RS-0042": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "resumo",
+  "linha": 267,
+  "original": "Ondas de calor já acontecem fora do verão. Idosos sentem menos sede, bebês desidratam rápido, e um carro fechado ao sol vira uma estufa em minutos."
+ },
+ "RS-0043": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "orientacoes[]",
+  "linha": 271,
+  "original": "Ofereça água ao idoso em horários marcados — não espere a sede."
+ },
+ "RS-0044": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "orientacoes[]",
+  "linha": 272,
+  "original": "NUNCA deixe criança ou pet no carro, nem “só um minuto”. Deixe a bolsa ou o celular no banco de trás, junto da cadeirinha."
+ },
+ "RS-0045": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "orientacoes[]",
+  "linha": 273,
+  "original": "Passeio com cachorro só cedo ou à noite: asfalto quente queima as patas."
+ },
+ "RS-0046": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Calor extremo: bebês, idosos e pets primeiro",
+  "chave": "orientacoes[]",
+  "linha": 274,
+  "original": "Confusão, desmaio ou pele quente e seca: é emergência — ligue para {{EMERGENCY_MEDICAL}}."
+ },
+ "RS-0047": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "titulo",
+  "linha": 299,
+  "original": "Festas juninas: fogueira, fogos e balão"
+ },
+ "RS-0048": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "resumo",
+  "linha": 302,
+  "original": "Junho concentra queimaduras com fogueira e fogos, principalmente em crianças e nas mãos e no rosto. Soltar balão é crime ambiental (Lei 9.605/1998, art. 42) e causa incêndios em casas e matas."
+ },
+ "RS-0049": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "orientacoes[]",
+  "linha": 306,
+  "original": "Criança longe da fogueira (pelo menos 3 metros) e sem soltar fogos, nem estalinho, sem adulto."
+ },
+ "RS-0050": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "orientacoes[]",
+  "linha": 307,
+  "original": "Fogos só os com {{CERT_SEAL}}, acesos no chão, longe do rosto; o que falhou, não reacenda — molhe."
+ },
+ "RS-0051": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "orientacoes[]",
+  "linha": 308,
+  "original": "Nunca álcool para avivar a fogueira; tenha um balde de água ou areia por perto."
+ },
+ "RS-0052": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "orientacoes[]",
+  "linha": 309,
+  "original": "Pets presos em lugar fechado e com identificação: o barulho faz cães e gatos fugirem."
+ },
+ "RS-0053": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Festas juninas: fogueira, fogos e balão",
+  "chave": "orientacoes[]",
+  "linha": 310,
+  "original": "Roupa de festa em algodão: tecido sintético (poliéster, náilon) pega fogo e gruda na pele."
+ },
+ "RS-0054": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "titulo",
+  "linha": 339,
+  "original": "Frio: monóxido de carbono e aquecedores"
+ },
+ "RS-0055": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "resumo",
+  "linha": 342,
+  "original": "O monóxido de carbono não tem cheiro nem cor e mata durante o sono. No inverno, bombeiros registram mais casos com aquecedor a gás, lareira, braseiro e até vasilha de álcool em quarto fechado."
+ },
+ "RS-0056": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 346,
+  "original": "Aquecedor a gás, lareira ou braseiro: sempre com uma fresta de janela aberta, e nunca ligado enquanto se dorme."
+ },
+ "RS-0057": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 347,
+  "original": "Nunca aqueça o ambiente com fogão, forno ou álcool queimando."
+ },
+ "RS-0058": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 348,
+  "original": "Aquecedor de água a gás fora do banheiro e com manutenção em dia; chaminé limpa uma vez por ano."
+ },
+ "RS-0059": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 349,
+  "original": "Dor de cabeça, tontura e sono em várias pessoas da casa ao mesmo tempo: abra tudo, saia e ligue para {{EMERGENCY_MEDICAL}}."
+ },
+ "RS-0060": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 350,
+  "original": "Aquecedor elétrico longe de cortinas e camas; bolsa de água quente nunca com água fervente."
+ },
+ "RS-0061": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Frio: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 351,
+  "original": "Aquecedor elétrico nunca em extensão ou benjamim; resistência com fio exposto ou cheiro de queimado vai para o lixo."
+ },
+ "RS-0062": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Tempo seco e queimadas",
+  "chave": "resumo",
+  "linha": 383,
+  "original": "Umidade do ar muito baixa e fumaça de queimadas agravam asma, bronquite e doenças do coração — principalmente em bebês e idosos. E fogo em terreno ou quintal vira incêndio rápido."
+ },
+ "RS-0063": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Tempo seco e queimadas",
+  "chave": "orientacoes[]",
+  "linha": 387,
+  "original": "Nunca queime lixo, folhas ou mato no quintal."
+ },
+ "RS-0064": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Tempo seco e queimadas",
+  "chave": "orientacoes[]",
+  "linha": 388,
+  "original": "Beba água ao longo do dia; soro fisiológico no nariz de bebês e idosos."
+ },
+ "RS-0065": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Tempo seco e queimadas",
+  "chave": "orientacoes[]",
+  "linha": 389,
+  "original": "Com fumaça no ar, janelas fechadas e atividades físicas suspensas ao ar livre."
+ },
+ "RS-0066": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Tempo seco e queimadas",
+  "chave": "orientacoes[]",
+  "linha": 390,
+  "original": "Viu foco de incêndio? Ligue para os Bombeiros ({{FIRE_NUMBER}})."
+ },
+ "RS-0067": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "titulo",
+  "linha": 417,
+  "original": "Ventos de agosto: frutos e sementes tóxicos no chão"
+ },
+ "RS-0068": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "resumo",
+  "linha": 420,
+  "original": "O vento de agosto derruba frutos e sementes de árvores e arbustos no quintal, no jardim e na calçada. Alguns são tóxicos, como os frutos do cinamomo e as sementes de mamona, chapéu-de-napoleão e pinhão-roxo, e ficam ao alcance de crianças pequenas e pets."
+ },
+ "RS-0069": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "orientacoes[]",
+  "linha": 424,
+  "original": "Após tempestades: inspecione o quintal antes de liberar crianças e pets."
+ },
+ "RS-0070": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "orientacoes[]",
+  "linha": 425,
+  "original": "Conheça as plantas do seu quintal — verifique quais são tóxicas na lista do CIATOX."
+ },
+ "RS-0071": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "orientacoes[]",
+  "linha": 426,
+  "original": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre que algumas frutas e frutos podem deixar o chão escorregadio."
+ },
+ "RS-0072": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+  "chave": "orientacoes[]",
+  "linha": 427,
+  "original": "Criança ou pet engoliu fruto ou semente suspeita: ligue para o {{POISON_CONTROL}} com a planta em mãos."
+ },
+ "RS-0073": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "titulo",
+  "linha": 451,
+  "original": "Férias: pipa, cerol e rede elétrica"
+ },
+ "RS-0074": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "resumo",
+  "linha": 454,
+  "original": "Nas férias, pipa enroscada na rede elétrica e linha com cerol ou “chilena” causam choques graves, quedas de laje e cortes profundos — em quem solta e em quem passa."
+ },
+ "RS-0075": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "orientacoes[]",
+  "linha": 458,
+  "original": "Pipa só em campo aberto, longe de fios e postes; nunca em laje ou telhado."
+ },
+ "RS-0076": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "orientacoes[]",
+  "linha": 459,
+  "original": "Linha com cerol ou chilena: nunca. Além de perigosa, é proibida em vários estados."
+ },
+ "RS-0077": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "orientacoes[]",
+  "linha": 460,
+  "original": "Pipa presa no fio: deixe lá e avise a distribuidora de energia — não puxe, não use vara ou cano."
+ },
+ "RS-0078": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "orientacoes[]",
+  "linha": 461,
+  "original": "Motociclistas da família: antena corta-pipa na moto."
+ },
+ "RS-0079": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Férias: pipa, cerol e rede elétrica",
+  "chave": "orientacoes[]",
+  "linha": 462,
+  "original": "Férias na casa de parentes: confira piscina, sacada, tomadas e remédios ao alcance antes de soltar as crianças."
+ },
+ "RS-0080": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "titulo",
+  "linha": 488,
+  "original": "Dia das Crianças: presente seguro"
+ },
+ "RS-0081": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "resumo",
+  "linha": 491,
+  "original": "Bateria de botão e ímã pequeno engolidos causam lesões internas graves em poucas horas. A faixa etária na embalagem não é sugestão: é segurança."
+ },
+ "RS-0082": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "orientacoes[]",
+  "linha": 495,
+  "original": "Compre só brinquedo com {{CERT_SEAL}} e respeite a idade indicada."
+ },
+ "RS-0083": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "orientacoes[]",
+  "linha": 496,
+  "original": "Compartimento de pilha com parafuso; pilhas de botão guardadas fora do alcance."
+ },
+ "RS-0084": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "orientacoes[]",
+  "linha": 497,
+  "original": "Suspeita de bateria ou ímã engolido: pronto-socorro AGORA, mesmo sem sintomas."
+ },
+ "RS-0085": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "orientacoes[]",
+  "linha": 498,
+  "original": "Para menores de 3 anos: nada que caiba num tubo de papel higiênico."
+ },
+ "RS-0086": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Dia das Crianças: presente seguro",
+  "chave": "orientacoes[]",
+  "linha": 499,
+  "original": "Compartimento sem parafuso: feche com fita adesiva forte; pilhas usadas vão direto para o coletor, nunca ficam sobre a mesa."
+ },
+ "RS-0087": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "resumo",
+  "linha": 528,
+  "original": "Fogos, luzes de Natal, bebida ao alcance das crianças e viagens com piscina e praia. É a época em que vários riscos se somam na mesma semana."
+ },
+ "RS-0088": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 532,
+  "original": "Fogos só com adultos, com {{CERT_SEAL}}, acesos no chão e longe do rosto."
+ },
+ "RS-0089": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 533,
+  "original": "Pisca-pisca com {{CERT_SEAL}}, desligado ao dormir e ao sair; árvore longe de velas."
+ },
+ "RS-0090": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 534,
+  "original": "Copos e garrafas de bebida alcoólica fora do alcance das crianças depois da festa."
+ },
+ "RS-0091": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 535,
+  "original": "Pets com identificação e em lugar fechado à meia-noite."
+ },
+ "RS-0092": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 536,
+  "original": "Fogos de fabricação caseira ou sem procedência são ilegais e extremamente perigosos: nunca compre nem deixe crianças manusearem."
+ },
+ "RS-0093": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 537,
+  "original": "Queimadura por fogos: água corrente fria por 20 minutos e pronto-socorro."
+ },
+ "RS-0094": {
+  "arquivo": "data/radarSazonal/br.js",
+  "rotulo": "Brasil",
+  "item": "Natal e Réveillon",
+  "chave": "orientacoes[]",
+  "linha": 538,
+  "original": "Bico-de-papagaio (flor-de-natal) irrita boca e olhos; enfeites pequenos e bolas de árvore são risco de engasgo para menores de 3 anos — tudo fora do alcance de crianças e pets."
+ },
+ "RS-0095": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "titulo",
+  "linha": 18,
+  "original": "Inverno: monóxido de carbono"
+ },
+ "RS-0096": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "resumo",
+  "linha": 21,
+  "original": "O INEM alerta todos os invernos para intoxicações por monóxido de carbono: braseiras em divisões fechadas, esquentadores na casa de banho, salamandras e lareiras sem tiragem. O gás não tem cheiro e mata durante o sono."
+ },
+ "RS-0097": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Nunca adormeça com a braseira ou o aquecedor a gás ligados; mantenha sempre uma entrada de ar."
+ },
+ "RS-0098": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Esquentador fora da casa de banho, com revisão em dia; chaminé limpa uma vez por ano."
+ },
+ "RS-0099": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 27,
+  "original": "Instale um detetor de monóxido de carbono perto dos quartos."
+ },
+ "RS-0100": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 28,
+  "original": "Dores de cabeça, tonturas e sonolência em várias pessoas da casa: abra tudo, saia e ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0101": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Inverno: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 29,
+  "original": "Idosos: aqueça bem as divisões onde passam mais tempo e vigie quem vive sozinho."
+ },
+ "RS-0102": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "titulo",
+  "linha": 58,
+  "original": "Lagarta do pinheiro (processionária)"
+ },
+ "RS-0103": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "resumo",
+  "linha": 61,
+  "original": "Entre janeiro e maio, as lagartas descem dos pinheiros em fila. Os pelos urticantes causam lesões graves na boca e na língua dos cães — é urgência veterinária — e reações alérgicas em crianças."
+ },
+ "RS-0104": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "orientacoes[]",
+  "linha": 65,
+  "original": "Em pinhais e jardins com pinheiros, cão sempre com trela e longe das filas e dos ninhos."
+ },
+ "RS-0105": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "orientacoes[]",
+  "linha": 66,
+  "original": "Ensine as crianças a não tocar nas lagartas nem nos ninhos."
+ },
+ "RS-0106": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "orientacoes[]",
+  "linha": 67,
+  "original": "Contacto: lave com água abundante, sem esfregar, e vá ao veterinário ou ao médico de imediato."
+ },
+ "RS-0107": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Lagarta do pinheiro (processionária)",
+  "chave": "orientacoes[]",
+  "linha": 68,
+  "original": "Ninhos no seu terreno: peça a remoção a um profissional ou à câmara municipal."
+ },
+ "RS-0108": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "titulo",
+  "linha": 94,
+  "original": "Limpeza de terrenos à volta de casa"
+ },
+ "RS-0109": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "resumo",
+  "linha": 97,
+  "original": "Quem tem casa junto a espaço florestal deve limpar a vegetação numa faixa de 50 metros (10 metros em terreno agrícola), medida a partir da parede da casa. O prazo legal é normalmente 30 de abril e o Governo anuncia as prorrogações em cada ano."
+ },
+ "RS-0110": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "orientacoes[]",
+  "linha": 101,
+  "original": "Confirme o prazo deste ano junto da câmara municipal ou do ICNF."
+ },
+ "RS-0111": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "orientacoes[]",
+  "linha": 102,
+  "original": "Retire mato, ramos secos e lenha encostados à casa; árvores com copas afastadas do telhado."
+ },
+ "RS-0112": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "orientacoes[]",
+  "linha": 103,
+  "original": "Caleiras limpas de folhas e agulhas de pinheiro."
+ },
+ "RS-0113": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Limpeza de terrenos à volta de casa",
+  "chave": "orientacoes[]",
+  "linha": 104,
+  "original": "Queimas de sobrantes só com autorização e fora dos dias de perigo elevado."
+ },
+ "RS-0114": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "titulo",
+  "linha": 129,
+  "original": "Calor: o plano de verão da DGS está ativo"
+ },
+ "RS-0115": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "resumo",
+  "linha": 132,
+  "original": "A DGS mantém o plano de resposta ao calor de 1 de maio a 30 de setembro. As noites quentes também matam: o corpo não arrefece, sobretudo em idosos, bebés e doentes crónicos."
+ },
+ "RS-0116": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "orientacoes[]",
+  "linha": 136,
+  "original": "Água ao longo do dia, mesmo sem sede; idosos com horários marcados."
+ },
+ "RS-0117": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "orientacoes[]",
+  "linha": 137,
+  "original": "Persianas fechadas durante o dia, janelas abertas à noite."
+ },
+ "RS-0118": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "orientacoes[]",
+  "linha": 138,
+  "original": "NUNCA deixe crianças ou animais dentro do carro, nem por um minuto."
+ },
+ "RS-0119": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Calor: o plano de verão da DGS está ativo",
+  "chave": "orientacoes[]",
+  "linha": 139,
+  "original": "Acompanhe os avisos do IPMA; confusão ou pele quente e seca é emergência — ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0120": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "titulo",
+  "linha": 164,
+  "original": "Afogamentos: rios e locais não vigiados"
+ },
+ "RS-0121": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "resumo",
+  "linha": 167,
+  "original": "Em 2025, todas as mortes por afogamento registadas pela FEPONS até julho ocorreram em locais sem vigilância e sem testemunhas, muitas em rios. Nas crianças pequenas, o perigo está muitas vezes na piscina de casa."
+ },
+ "RS-0122": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "orientacoes[]",
+  "linha": 171,
+  "original": "Banhos só em praias e zonas vigiadas; rios e albufeiras escondem correntes, fundões e água muito fria."
+ },
+ "RS-0123": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "orientacoes[]",
+  "linha": 172,
+  "original": "Piscina vedada em toda a volta, com portão que fecha sozinho."
+ },
+ "RS-0124": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "orientacoes[]",
+  "linha": 173,
+  "original": "Um adulto “vigia da água” por turno, sem telemóvel."
+ },
+ "RS-0125": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Afogamentos: rios e locais não vigiados",
+  "chave": "orientacoes[]",
+  "linha": 174,
+  "original": "Alguém em apuros: ligue {{EMERGENCY_NUMBER}} e atire algo que flutue — não entre na água sem formação."
+ },
+ "RS-0126": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "titulo",
+  "linha": 200,
+  "original": "Período de maior perigo de incêndio rural"
+ },
+ "RS-0127": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "resumo",
+  "linha": 203,
+  "original": "Entre julho e setembro o perigo de incêndio rural é máximo. A ANEPC envia SMS de aviso à população; tenha a família preparada para sair a tempo."
+ },
+ "RS-0128": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "orientacoes[]",
+  "linha": 207,
+  "original": "Proibido fazer queimas e fogueiras e usar maquinaria que faça faísca nos dias de perigo."
+ },
+ "RS-0129": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "orientacoes[]",
+  "linha": 208,
+  "original": "Combine com a família um ponto de encontro e o caminho de saída; mochila com documentos e medicamentos pronta."
+ },
+ "RS-0130": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "orientacoes[]",
+  "linha": 209,
+  "original": "Incêndio a aproximar-se: siga as ordens da Proteção Civil; se ficar em casa, feche janelas e portas e molhe à volta."
+ },
+ "RS-0131": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Período de maior perigo de incêndio rural",
+  "chave": "orientacoes[]",
+  "linha": 210,
+  "original": "Viu fumo? Ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0132": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "titulo",
+  "linha": 234,
+  "original": "Santos Populares: fogo de artifício e brasas"
+ },
+ "RS-0133": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "resumo",
+  "linha": 237,
+  "original": "Santo António, São João e São Pedro trazem fogo de artifício, balões de papel e assadores na rua. Queimaduras nas mãos e nos olhos são as lesões mais comuns."
+ },
+ "RS-0134": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "orientacoes[]",
+  "linha": 241,
+  "original": "Crianças afastadas dos assadores e das fogueiras."
+ },
+ "RS-0135": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "orientacoes[]",
+  "linha": 242,
+  "original": "Fogo de artifício só comprado em local autorizado, com {{CERT_SEAL}}, aceso no chão e longe da cara."
+ },
+ "RS-0136": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "orientacoes[]",
+  "linha": 243,
+  "original": "Balões de mecha acesa causam incêndios: não os lance perto de casas ou mato."
+ },
+ "RS-0137": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Santos Populares: fogo de artifício e brasas",
+  "chave": "orientacoes[]",
+  "linha": 244,
+  "original": "Animais em casa, com identificação, nas noites de festa."
+ },
+ "RS-0138": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "titulo",
+  "linha": 268,
+  "original": "Outono: cogumelos silvestres"
+ },
+ "RS-0139": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "resumo",
+  "linha": 271,
+  "original": "Com as primeiras chuvas chega a apanha de cogumelos — e as intoxicações. A Amanita phalloides causa a maioria das mortes e os sintomas só aparecem horas depois, quando o fígado já foi atingido."
+ },
+ "RS-0140": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 275,
+  "original": "Só coma cogumelos que um micologista identificou com certeza; nenhum “truque caseiro” distingue os venenosos."
+ },
+ "RS-0141": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 276,
+  "original": "Crianças e animais não apanham nem mexem em cogumelos do jardim."
+ },
+ "RS-0142": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 277,
+  "original": "Vómitos, diarreia ou dores de barriga depois de comer cogumelos: ligue já para o {{POISON_CONTROL}} e guarde um exemplar."
+ },
+ "RS-0143": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 278,
+  "original": "Não espere melhorar: a fase de alívio aparente é a mais traiçoeira."
+ },
+ "RS-0144": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Natal e passagem de ano",
+  "chave": "resumo",
+  "linha": 305,
+  "original": "Velas, luzes, lareiras acesas, pilhas de botão em brinquedos e postais, e fogo de artifício à meia-noite: vários riscos juntos na mesma quinzena."
+ },
+ "RS-0145": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Natal e passagem de ano",
+  "chave": "orientacoes[]",
+  "linha": 309,
+  "original": "Luzes com {{CERT_SEAL}}, desligadas ao deitar e ao sair; velas nunca perto da árvore."
+ },
+ "RS-0146": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Natal e passagem de ano",
+  "chave": "orientacoes[]",
+  "linha": 310,
+  "original": "Pilhas de botão fora do alcance; suspeita de ingestão é urgência imediata."
+ },
+ "RS-0147": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Natal e passagem de ano",
+  "chave": "orientacoes[]",
+  "linha": 311,
+  "original": "Lareira com resguardo e chaminé limpa."
+ },
+ "RS-0148": {
+  "arquivo": "data/radarSazonal/pt.js",
+  "rotulo": "Portugal (texto em português de Portugal)",
+  "item": "Natal e passagem de ano",
+  "chave": "orientacoes[]",
+  "linha": 312,
+  "original": "Fogo de artifício só por adultos, com {{CERT_SEAL}}; animais em casa."
+ },
+ "RS-0149": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "titulo",
+  "linha": 17,
+  "original": "Inverno: braseiros, estufas e monóxido de carbono"
+ },
+ "RS-0150": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "resumo",
+  "linha": 20,
+  "original": "A Espanha registra dezenas de mortes por ano por monóxido de carbono, quase todas no inverno e durante o sono: braseiros, estufas, aquecedores e chaminés sem manutenção."
+ },
+ "RS-0151": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 24,
+  "original": "Braseiro não é aquecimento para dormir: apague brasas e chamas antes de deitar."
+ },
+ "RS-0152": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Ventile a casa todos os dias e deixe uma entrada de ar onde houver combustão."
+ },
+ "RS-0153": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Aquecedor e caldeira a gás instalados e revisados por profissional autorizado."
+ },
+ "RS-0154": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Inverno: braseiros, estufas e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 27,
+  "original": "Dor de cabeça, enjoo e sono em várias pessoas: saia ao ar livre e ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0155": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "titulo",
+  "linha": 54,
+  "original": "Lagarta-do-pinheiro (procesionaria)"
+ },
+ "RS-0156": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "resumo",
+  "linha": 57,
+  "original": "Entre janeiro e abril as lagartas descem dos pinheiros. Veterinários espanhóis alertam: cães que as cheiram ou mordem podem ter necrose da língua e da garganta. Em crianças, causam reações alérgicas."
+ },
+ "RS-0157": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "orientacoes[]",
+  "linha": 61,
+  "original": "Evite passear com o cão em zonas de pinheiros afetados nesses meses; sempre na guia."
+ },
+ "RS-0158": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "orientacoes[]",
+  "linha": 62,
+  "original": "Ensine as crianças a não tocar nas lagartas nem nos ninhos."
+ },
+ "RS-0159": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "orientacoes[]",
+  "linha": 63,
+  "original": "Contato: lave com bastante água e vá ao veterinário ou ao médico sem demora."
+ },
+ "RS-0160": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Lagarta-do-pinheiro (procesionaria)",
+  "chave": "orientacoes[]",
+  "linha": 64,
+  "original": "Ninhos no jardim: retirada por profissional."
+ },
+ "RS-0161": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "titulo",
+  "linha": 89,
+  "original": "Fallas (Comunidade Valenciana): petardos"
+ },
+ "RS-0162": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "resumo",
+  "linha": 92,
+  "original": "A maioria das queimaduras por petardo nas Fallas acontece em crianças; as mais graves, em adultos com material mais potente. Mãos, rosto e olhos são os mais atingidos."
+ },
+ "RS-0163": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "orientacoes[]",
+  "linha": 96,
+  "original": "Criança só com petardo adequado à idade e sempre com um adulto ao lado."
+ },
+ "RS-0164": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "orientacoes[]",
+  "linha": 97,
+  "original": "Acenda no chão, pela ponta do pavio, longe do rosto; nunca guarde petardos no bolso."
+ },
+ "RS-0165": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "orientacoes[]",
+  "linha": 98,
+  "original": "Óculos de proteção para quem acende."
+ },
+ "RS-0166": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Fallas (Comunidade Valenciana): petardos",
+  "chave": "orientacoes[]",
+  "linha": 99,
+  "original": "Queimadura: água corrente fria por 10 a 20 minutos; nada de pasta de dente ou manteiga."
+ },
+ "RS-0167": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "titulo",
+  "linha": 124,
+  "original": "Calor: o plano nacional está ativo"
+ },
+ "RS-0168": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "resumo",
+  "linha": 127,
+  "original": "O Ministério da Saúde mantém o plano contra os efeitos do excesso de temperatura de 15 de maio a 30 de setembro. Idosos, grávidas, crianças e doentes crônicos são os mais vulneráveis."
+ },
+ "RS-0169": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "orientacoes[]",
+  "linha": 131,
+  "original": "Beba líquidos com frequência, mesmo sem sede; evite álcool, cafeína e bebidas muito doces."
+ },
+ "RS-0170": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "orientacoes[]",
+  "linha": 132,
+  "original": "Menos atividade física nas horas de mais calor; fique em lugares frescos."
+ },
+ "RS-0171": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "orientacoes[]",
+  "linha": 133,
+  "original": "NUNCA deixe crianças ou animais no carro."
+ },
+ "RS-0172": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Calor: o plano nacional está ativo",
+  "chave": "orientacoes[]",
+  "linha": 134,
+  "original": "Sintomas por mais de uma hora, ou confusão: procure atendimento ou ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0173": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "titulo",
+  "linha": 159,
+  "original": "Afogamentos: só em zona vigiada"
+ },
+ "RS-0174": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "resumo",
+  "linha": 162,
+  "original": "Em 2025, 89% das mortes por afogamento na Espanha ocorreram em lugares sem salva-vidas. Pessoas de 65 a 74 anos são as mais atingidas — e as crianças pequenas, na piscina."
+ },
+ "RS-0175": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "orientacoes[]",
+  "linha": 166,
+  "original": "Banho só em zonas vigiadas, respeitando bandeiras e sinalização."
+ },
+ "RS-0176": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "orientacoes[]",
+  "linha": 167,
+  "original": "Idosos: entrar na água devagar, nunca depois de refeição pesada ou de muito sol, e acompanhados."
+ },
+ "RS-0177": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "orientacoes[]",
+  "linha": 168,
+  "original": "Piscina com cerca e portão que fecha sozinho; um adulto vigiando, sem celular."
+ },
+ "RS-0178": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Afogamentos: só em zona vigiada",
+  "chave": "orientacoes[]",
+  "linha": 169,
+  "original": "Alguém em apuros: ligue {{EMERGENCY_NUMBER}} e jogue algo que flutue."
+ },
+ "RS-0179": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "titulo",
+  "linha": 193,
+  "original": "Noite de São João: fogueiras e petardos"
+ },
+ "RS-0180": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "resumo",
+  "linha": 196,
+  "original": "Fogueiras na praia, petardos e banho noturno se juntam na mesma noite: queimaduras nas mãos e nos olhos e afogamentos no escuro."
+ },
+ "RS-0181": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "orientacoes[]",
+  "linha": 200,
+  "original": "Crianças a pelo menos 3 metros da fogueira e sem petardo sem adulto."
+ },
+ "RS-0182": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "orientacoes[]",
+  "linha": 201,
+  "original": "Nada de banho de mar à noite depois de beber."
+ },
+ "RS-0183": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "orientacoes[]",
+  "linha": 202,
+  "original": "Apague a fogueira com água, não só com areia (as brasas continuam quentes por horas)."
+ },
+ "RS-0184": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Noite de São João: fogueiras e petardos",
+  "chave": "orientacoes[]",
+  "linha": 203,
+  "original": "Pets em casa e com identificação."
+ },
+ "RS-0185": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "titulo",
+  "linha": 228,
+  "original": "Época de alto perigo de incêndio florestal"
+ },
+ "RS-0186": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "resumo",
+  "linha": 231,
+  "original": "Com o verão, cada comunidade autônoma declara a época de alto perigo e proíbe queimadas. Quem mora perto de mata precisa ter um plano de saída."
+ },
+ "RS-0187": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "orientacoes[]",
+  "linha": 235,
+  "original": "Nada de queimar restos, fazer churrasco ou usar ferramentas que soltem faíscas perto do mato."
+ },
+ "RS-0188": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "orientacoes[]",
+  "linha": 236,
+  "original": "Mantenha o terreno em volta da casa limpo de mato seco e lenha."
+ },
+ "RS-0189": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "orientacoes[]",
+  "linha": 237,
+  "original": "Ative o ES-Alert no celular e siga as ordens da Proteção Civil."
+ },
+ "RS-0190": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Época de alto perigo de incêndio florestal",
+  "chave": "orientacoes[]",
+  "linha": 238,
+  "original": "Viu fumaça? Ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0191": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "titulo",
+  "linha": 262,
+  "original": "Outono: cogumelos silvestres"
+ },
+ "RS-0192": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "resumo",
+  "linha": 265,
+  "original": "A época de colheita de cogumelos traz intoxicações graves. A Amanita phalloides causa a maioria das mortes, e os sintomas aparecem só horas depois."
+ },
+ "RS-0193": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 269,
+  "original": "Coma só cogumelos identificados com certeza por um especialista."
+ },
+ "RS-0194": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 270,
+  "original": "Crianças e animais longe dos cogumelos do jardim."
+ },
+ "RS-0195": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 271,
+  "original": "Sintomas depois de comer cogumelos: ligue para o {{POISON_CONTROL}} e guarde um exemplar."
+ },
+ "RS-0196": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Outono: cogumelos silvestres",
+  "chave": "orientacoes[]",
+  "linha": 272,
+  "original": "Não espere melhorar: a fase de alívio aparente engana."
+ },
+ "RS-0197": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Natal, Réveillon e Reis",
+  "chave": "resumo",
+  "linha": 299,
+  "original": "Petardos no Réveillon, velas e luzes, e presentes de Reis com pilhas de botão e ímãs: riscos que se acumulam até 6 de janeiro."
+ },
+ "RS-0198": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Natal, Réveillon e Reis",
+  "chave": "orientacoes[]",
+  "linha": 303,
+  "original": "Brinquedos com {{CERT_SEAL}} e adequados à idade; pilhas de botão fora do alcance."
+ },
+ "RS-0199": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Natal, Réveillon e Reis",
+  "chave": "orientacoes[]",
+  "linha": 304,
+  "original": "Luzes desligadas ao dormir e ao sair; velas longe da árvore e das cortinas."
+ },
+ "RS-0200": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Natal, Réveillon e Reis",
+  "chave": "orientacoes[]",
+  "linha": 305,
+  "original": "Petardos só por adultos; animais em casa à meia-noite."
+ },
+ "RS-0201": {
+  "arquivo": "data/radarSazonal/es.js",
+  "rotulo": "Espanha",
+  "item": "Natal, Réveillon e Reis",
+  "chave": "orientacoes[]",
+  "linha": 306,
+  "original": "Suspeita de pilha ou ímã engolido: pronto-socorro na hora."
+ },
+ "RS-0202": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "titulo",
+  "linha": 16,
+  "original": "Inverno: frio e monóxido de carbono"
+ },
+ "RS-0203": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "resumo",
+  "linha": 19,
+  "original": "A UKHSA emite alertas de saúde por frio de 1º de novembro a 31 de março. O frio aumenta infartos, AVCs e infecções respiratórias em idosos; caldeiras e aquecedores mal mantidos liberam monóxido de carbono."
+ },
+ "RS-0204": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 23,
+  "original": "Maiores de 65 anos ou com doença crônica: aqueça os cômodos mais usados a pelo menos 18 °C."
+ },
+ "RS-0205": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 24,
+  "original": "Alarme de monóxido de carbono em cada cômodo com aparelho a gás, lenha ou carvão."
+ },
+ "RS-0206": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Caldeira revisada todo ano por técnico registrado no Gas Safe Register."
+ },
+ "RS-0207": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Inverno: frio e monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Gelo na calçada: calçado antiderrapante para idosos, e sal ou areia na entrada de casa."
+ },
+ "RS-0208": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "titulo",
+  "linha": 50,
+  "original": "Bonfire Night: fogos e fogueiras"
+ },
+ "RS-0209": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "resumo",
+  "linha": 53,
+  "original": "As semanas em torno de 5 de novembro (e do Diwali) concentram queimaduras com fogos e sparklers, inclusive em crianças pequenas. Um sparkler chega a mais de 1.000 °C."
+ },
+ "RS-0210": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "orientacoes[]",
+  "linha": 57,
+  "original": "Prefira um espetáculo público organizado aos fogos em casa."
+ },
+ "RS-0211": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "orientacoes[]",
+  "linha": 58,
+  "original": "Sparkler: nunca para menores de 5 anos; luvas, braço esticado e balde de água para apagar."
+ },
+ "RS-0212": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "orientacoes[]",
+  "linha": 59,
+  "original": "Fogos só com a marcação UKCA ou CE, acesos por um adulto, no chão, sem voltar a um fogo que falhou."
+ },
+ "RS-0213": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Bonfire Night: fogos e fogueiras",
+  "chave": "orientacoes[]",
+  "linha": 60,
+  "original": "Pets dentro de casa, cortinas fechadas e identificação no colar."
+ },
+ "RS-0214": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "titulo",
+  "linha": 84,
+  "original": "Halloween: fantasias e velas"
+ },
+ "RS-0215": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "resumo",
+  "linha": 87,
+  "original": "Fantasias de tecido sintético pegam fogo rápido em contato com velas de abóbora; e crianças pedindo doces no escuro ficam pouco visíveis para os motoristas."
+ },
+ "RS-0216": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "orientacoes[]",
+  "linha": 91,
+  "original": "Luz de LED dentro da abóbora, nunca vela."
+ },
+ "RS-0217": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "orientacoes[]",
+  "linha": 92,
+  "original": "Fantasia sem partes soltas e compridas; ensine “pare, deite e role” se a roupa pegar fogo."
+ },
+ "RS-0218": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "orientacoes[]",
+  "linha": 93,
+  "original": "Lanterna ou fita refletiva na fantasia e um adulto acompanhando."
+ },
+ "RS-0219": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Halloween: fantasias e velas",
+  "chave": "orientacoes[]",
+  "linha": 94,
+  "original": "Doces com embalagem fechada; atenção a alergias."
+ },
+ "RS-0220": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "titulo",
+  "linha": 118,
+  "original": "Natal: baterias de botão, luzes e velas"
+ },
+ "RS-0221": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "resumo",
+  "linha": 121,
+  "original": "Brinquedos, luzes e cartões musicais trazem baterias de botão. Engolida, uma bateria queima o esôfago em duas horas. A CAPT estima uma a duas mortes de crianças por ano no Reino Unido."
+ },
+ "RS-0222": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "orientacoes[]",
+  "linha": 125,
+  "original": "Compartimento de bateria com parafuso; baterias soltas e usadas fora do alcance."
+ },
+ "RS-0223": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "orientacoes[]",
+  "linha": 126,
+  "original": "Suspeita de bateria engolida: vá AGORA ao pronto-socorro (A&E), mesmo sem sintomas."
+ },
+ "RS-0224": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "orientacoes[]",
+  "linha": 127,
+  "original": "Luzes desligadas ao dormir e ao sair; velas longe da árvore e da decoração."
+ },
+ "RS-0225": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Natal: baterias de botão, luzes e velas",
+  "chave": "orientacoes[]",
+  "linha": 128,
+  "original": "Chocolate, uvas-passas e plantas de Natal fora do alcance dos pets."
+ },
+ "RS-0226": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "titulo",
+  "linha": 152,
+  "original": "Verão: alertas de saúde por calor"
+ },
+ "RS-0227": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "resumo",
+  "linha": 155,
+  "original": "A UKHSA emite alertas de saúde por calor de 1º de junho a 30 de setembro. As casas britânicas retêm calor, e os idosos são os primeiros afetados."
+ },
+ "RS-0228": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "orientacoes[]",
+  "linha": 159,
+  "original": "Hidratação ao longo do dia; evite o sol nas horas mais quentes."
+ },
+ "RS-0229": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "orientacoes[]",
+  "linha": 160,
+  "original": "Cortinas fechadas nas janelas que pegam sol; ventile à noite."
+ },
+ "RS-0230": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "orientacoes[]",
+  "linha": 161,
+  "original": "Ligue para parentes idosos que moram sozinhos."
+ },
+ "RS-0231": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Verão: alertas de saúde por calor",
+  "chave": "orientacoes[]",
+  "linha": 162,
+  "original": "Nunca deixe crianças ou animais em carro estacionado."
+ },
+ "RS-0232": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "titulo",
+  "linha": 187,
+  "original": "Água fria: rios, lagos e mar"
+ },
+ "RS-0233": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "resumo",
+  "linha": 190,
+  "original": "Mesmo no verão, rios e lagos britânicos ficam por volta de 12 °C. O choque térmico tira o fôlego e mata até bons nadadores. Dia quente não quer dizer água quente."
+ },
+ "RS-0234": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "orientacoes[]",
+  "linha": 194,
+  "original": "Caiu na água? “Float to Live”: deite de costas, orelhas na água, braços e pernas abertos, até a respiração acalmar."
+ },
+ "RS-0235": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "orientacoes[]",
+  "linha": 195,
+  "original": "Alguém em apuros: ligue 999 (bombeiros, ou guarda costeira no mar), diga para boiar e jogue algo que flutue — não pule."
+ },
+ "RS-0236": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "orientacoes[]",
+  "linha": 196,
+  "original": "Nunca pule em água desconhecida; nunca nade sozinho ou depois de beber."
+ },
+ "RS-0237": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Água fria: rios, lagos e mar",
+  "chave": "orientacoes[]",
+  "linha": 197,
+  "original": "Crianças perto da água sempre ao alcance do braço de um adulto."
+ },
+ "RS-0238": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "titulo",
+  "linha": 221,
+  "original": "Tempo bom, janelas abertas: queda de crianças"
+ },
+ "RS-0239": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "resumo",
+  "linha": 224,
+  "original": "Na primavera e no verão as janelas ficam abertas e as quedas de crianças aumentam. Tela de mosquito não segura o peso de uma criança."
+ },
+ "RS-0240": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 228,
+  "original": "Trava de janela que limite a abertura a cerca de 10 cm, que um adulto consiga soltar numa emergência."
+ },
+ "RS-0241": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 229,
+  "original": "Camas, sofás e brinquedos longe das janelas."
+ },
+ "RS-0242": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 230,
+  "original": "Varandas sempre com a porta trancada para a criança."
+ },
+ "RS-0243": {
+  "arquivo": "data/radarSazonal/gb.js",
+  "rotulo": "Reino Unido",
+  "item": "Tempo bom, janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 231,
+  "original": "A tela de mosquito não é barreira."
+ },
+ "RS-0244": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "titulo",
+  "linha": 16,
+  "original": "Inverno: monóxido de carbono e aquecedores"
+ },
+ "RS-0245": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "resumo",
+  "linha": 19,
+  "original": "Mais de 400 pessoas morrem por ano nos EUA por monóxido de carbono, e mais da metade das mortes ocorre de novembro a fevereiro. Geradores portáteis em uso durante falta de luz são uma causa frequente."
+ },
+ "RS-0246": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 23,
+  "original": "Alarme de CO em cada andar e perto dos quartos; teste todo mês."
+ },
+ "RS-0247": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 24,
+  "original": "Gerador SÓ ao ar livre, a pelo menos 6 metros (20 pés) da casa — nunca na garagem, mesmo de porta aberta."
+ },
+ "RS-0248": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Aquecedor portátil a 1 metro (3 pés) de qualquer coisa que queime, e desligado ao dormir."
+ },
+ "RS-0249": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Inverno: monóxido de carbono e aquecedores",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Alarme de CO tocou: saia, ligue {{EMERGENCY_NUMBER}} e só volte com autorização."
+ },
+ "RS-0250": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Mudou o relógio? Teste os alarmes",
+  "chave": "titulo",
+  "linha": 53,
+  "original": "Mudou o relógio? Teste os alarmes"
+ },
+ "RS-0251": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Mudou o relógio? Teste os alarmes",
+  "chave": "resumo",
+  "linha": 56,
+  "original": "A mudança de horário é o lembrete combinado para testar os alarmes de fumaça e de monóxido de carbono e trocar as baterias."
+ },
+ "RS-0252": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Mudou o relógio? Teste os alarmes",
+  "chave": "orientacoes[]",
+  "linha": 60,
+  "original": "Aperte o botão de teste de cada alarme."
+ },
+ "RS-0253": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Mudou o relógio? Teste os alarmes",
+  "chave": "orientacoes[]",
+  "linha": 61,
+  "original": "Troque as baterias; alarmes com mais de 10 anos devem ser substituídos."
+ },
+ "RS-0254": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Mudou o relógio? Teste os alarmes",
+  "chave": "orientacoes[]",
+  "linha": 62,
+  "original": "Revise com a família a rota de fuga e o ponto de encontro do lado de fora."
+ },
+ "RS-0255": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de tornados",
+  "chave": "resumo",
+  "linha": 89,
+  "original": "No Sul o pico vai de março a maio; nas Planícies do Norte e no Meio-Oeste, do fim da primavera ao verão. O abrigo certo é decidido antes do alerta, não durante."
+ },
+ "RS-0256": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de tornados",
+  "chave": "orientacoes[]",
+  "linha": 93,
+  "original": "Escolha o abrigo: porão, ou um cômodo interno sem janelas no andar mais baixo (banheiro, closet)."
+ },
+ "RS-0257": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de tornados",
+  "chave": "orientacoes[]",
+  "linha": 94,
+  "original": "Casa móvel não protege: combine antes para onde ir."
+ },
+ "RS-0258": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de tornados",
+  "chave": "orientacoes[]",
+  "linha": 95,
+  "original": "Alertas de emergência sem fio (WEA) ativados no celular e um rádio meteorológico NOAA."
+ },
+ "RS-0259": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de tornados",
+  "chave": "orientacoes[]",
+  "linha": 96,
+  "original": "Capacete de bicicleta e calçado fechado para as crianças no abrigo."
+ },
+ "RS-0260": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "titulo",
+  "linha": 120,
+  "original": "Janelas abertas: queda de crianças"
+ },
+ "RS-0261": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "resumo",
+  "linha": 123,
+  "original": "Primavera e verão têm mais quedas de janela do que qualquer outra estação. A tela de mosquito foi feita para insetos, não para segurar uma criança."
+ },
+ "RS-0262": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 127,
+  "original": "Trava ou limitador que deixe a janela abrir no máximo 10 cm (4 polegadas)."
+ },
+ "RS-0263": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 128,
+  "original": "Grades de janela com barras a até 10 cm, com abertura de emergência para adultos."
+ },
+ "RS-0264": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 129,
+  "original": "Móveis que a criança possa escalar longe das janelas."
+ },
+ "RS-0265": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Janelas abertas: queda de crianças",
+  "chave": "orientacoes[]",
+  "linha": 130,
+  "original": "Se possível, abra a parte de cima da janela, não a de baixo."
+ },
+ "RS-0266": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "titulo",
+  "linha": 155,
+  "original": "Verão: afogamento infantil"
+ },
+ "RS-0267": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "resumo",
+  "linha": 158,
+  "original": "Afogamento é a principal causa de morte de crianças de 1 a 4 anos nos EUA, quase sempre em piscinas de casa, em segundos e em silêncio."
+ },
+ "RS-0268": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 162,
+  "original": "Cerca de quatro lados, com pelo menos 1,2 m (4 pés), e portão que fecha e trava sozinho."
+ },
+ "RS-0269": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 163,
+  "original": "Um adulto “vigia da água” por vez, sem celular e sem bebida."
+ },
+ "RS-0270": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 164,
+  "original": "Aulas de natação a partir de 1 ano ajudam, mas não substituem vigilância."
+ },
+ "RS-0271": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Verão: afogamento infantil",
+  "chave": "orientacoes[]",
+  "linha": 165,
+  "original": "Aprenda RCP: os minutos até o socorro chegar decidem."
+ },
+ "RS-0272": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "titulo",
+  "linha": 190,
+  "original": "Criança esquecida no carro"
+ },
+ "RS-0273": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "resumo",
+  "linha": 193,
+  "original": "Cerca de 38 crianças morrem por ano nos EUA de insolação dentro de veículos; mais da metade foi simplesmente esquecida por um cuidador. Pode acontecer com qualquer família."
+ },
+ "RS-0274": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "orientacoes[]",
+  "linha": 197,
+  "original": "Ponha algo indispensável (bolsa, celular, sapato do pé esquerdo) no banco de trás, junto da cadeirinha."
+ },
+ "RS-0275": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "orientacoes[]",
+  "linha": 198,
+  "original": "Combine com a creche: se a criança não chegar, liguem na hora."
+ },
+ "RS-0276": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "orientacoes[]",
+  "linha": 199,
+  "original": "Carro sempre trancado em casa, chave longe das crianças — muitas entram sozinhas."
+ },
+ "RS-0277": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Criança esquecida no carro",
+  "chave": "orientacoes[]",
+  "linha": 200,
+  "original": "Viu uma criança ou animal sozinho em carro: ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0278": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "titulo",
+  "linha": 224,
+  "original": "4 de Julho: fogos de artifício"
+ },
+ "RS-0279": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "resumo",
+  "linha": 227,
+  "original": "Cerca de 60% dos ferimentos com fogos acontecem nos 30 dias em torno do 4 de Julho. Sparklers, que parecem inofensivos, ferem muitas crianças pequenas."
+ },
+ "RS-0280": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "orientacoes[]",
+  "linha": 231,
+  "original": "Prefira a queima de fogos pública."
+ },
+ "RS-0281": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "orientacoes[]",
+  "linha": 232,
+  "original": "Criança nunca acende nem segura fogos — nem sparkler."
+ },
+ "RS-0282": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "orientacoes[]",
+  "linha": 233,
+  "original": "Fogo que falhou: não volte nem reacenda; molhe com bastante água."
+ },
+ "RS-0283": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "4 de Julho: fogos de artifício",
+  "chave": "orientacoes[]",
+  "linha": 234,
+  "original": "Pets dentro de casa, com identificação: é a noite em que mais animais fogem."
+ },
+ "RS-0284": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Calor extremo",
+  "chave": "resumo",
+  "linha": 262,
+  "original": "O calor é o fenômeno do clima que mais mata nos EUA. Idosos, bebês e quem vive sem ar-condicionado são os mais expostos."
+ },
+ "RS-0285": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 266,
+  "original": "Acompanhe o HeatRisk do Serviço Meteorológico Nacional."
+ },
+ "RS-0286": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 267,
+  "original": "Sem ar-condicionado? Vá a um centro de resfriamento (cooling center) nas horas mais quentes."
+ },
+ "RS-0287": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 268,
+  "original": "Ventilador não basta acima de cerca de 35 °C; molhe a pele e use água fria."
+ },
+ "RS-0288": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 269,
+  "original": "Confusão ou pele quente e seca é emergência: ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0289": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "titulo",
+  "linha": 295,
+  "original": "Temporada de furacões (costa do Atlântico e do Golfo)"
+ },
+ "RS-0290": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "resumo",
+  "linha": 298,
+  "original": "De 1º de junho a 30 de novembro, com pico de meados de agosto a meados de outubro. Depois da tempestade, a maior parte das mortes vem de afogamento em enchente e de monóxido de carbono de geradores."
+ },
+ "RS-0291": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "orientacoes[]",
+  "linha": 302,
+  "original": "Saiba se você está em zona de evacuação e qual é a rota."
+ },
+ "RS-0292": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "orientacoes[]",
+  "linha": 303,
+  "original": "Kit para 3 dias: água, comida, remédios, lanterna, baterias e documentos à prova d'água."
+ },
+ "RS-0293": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "orientacoes[]",
+  "linha": 304,
+  "original": "Nunca dirija ou ande em água de enchente: “Turn around, don't drown”."
+ },
+ "RS-0294": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de furacões (costa do Atlântico e do Golfo)",
+  "chave": "orientacoes[]",
+  "linha": 305,
+  "original": "Gerador só ao ar livre, a 6 m (20 pés) da casa."
+ },
+ "RS-0295": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "titulo",
+  "linha": 331,
+  "original": "Temporada de incêndios florestais"
+ },
+ "RS-0296": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "resumo",
+  "linha": 334,
+  "original": "No Oeste, o fogo e a fumaça chegam rápido. Os primeiros metros em volta da casa decidem se uma brasa vira incêndio."
+ },
+ "RS-0297": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "orientacoes[]",
+  "linha": 338,
+  "original": "Nada que queime a menos de 1,5 m (5 pés) da casa: lenha, móveis de jardim, folhas, cobertura vegetal."
+ },
+ "RS-0298": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "orientacoes[]",
+  "linha": 339,
+  "original": "Calhas e telhado limpos de folhas e agulhas."
+ },
+ "RS-0299": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "orientacoes[]",
+  "linha": 340,
+  "original": "Mochila de evacuação pronta e rota combinada; inscreva-se nos alertas do seu condado."
+ },
+ "RS-0300": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Temporada de incêndios florestais",
+  "chave": "orientacoes[]",
+  "linha": 341,
+  "original": "Fumaça: janelas fechadas, filtro de ar e acompanhe a qualidade do ar no AirNow."
+ },
+ "RS-0301": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "titulo",
+  "linha": 365,
+  "original": "Halloween: crianças na rua à noite"
+ },
+ "RS-0302": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "resumo",
+  "linha": 368,
+  "original": "Um estudo com 42 anos de dados federais mostrou que, no Halloween, o risco de morte por atropelamento de crianças de 4 a 8 anos é cerca de 10 vezes maior."
+ },
+ "RS-0303": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "orientacoes[]",
+  "linha": 372,
+  "original": "Lanterna e fita refletiva na fantasia; máscaras que não tapem a visão."
+ },
+ "RS-0304": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "orientacoes[]",
+  "linha": 373,
+  "original": "Crianças pequenas sempre com um adulto; atravessar só na faixa."
+ },
+ "RS-0305": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "orientacoes[]",
+  "linha": 374,
+  "original": "Abóbora com luz de LED, não vela."
+ },
+ "RS-0306": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Halloween: crianças na rua à noite",
+  "chave": "orientacoes[]",
+  "linha": 375,
+  "original": "Ao dirigir nessa noite: devagar em bairros residenciais."
+ },
+ "RS-0307": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "titulo",
+  "linha": 399,
+  "original": "Thanksgiving: o dia com mais fogo na cozinha"
+ },
+ "RS-0308": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "resumo",
+  "linha": 402,
+  "original": "Thanksgiving é o dia do ano com mais incêndios em cozinhas residenciais, seguido do Natal. A causa número um é panela no fogo sem ninguém olhando."
+ },
+ "RS-0309": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "orientacoes[]",
+  "linha": 406,
+  "original": "Fogão ligado = alguém na cozinha."
+ },
+ "RS-0310": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "orientacoes[]",
+  "linha": 407,
+  "original": "Fritadeira de peru só ao ar livre, longe da casa, com o peru descongelado e seco."
+ },
+ "RS-0311": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "orientacoes[]",
+  "linha": 408,
+  "original": "Fogo na panela: tampe e desligue o fogo — nunca água."
+ },
+ "RS-0312": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Thanksgiving: o dia com mais fogo na cozinha",
+  "chave": "orientacoes[]",
+  "linha": 409,
+  "original": "Crianças a 1 metro (3 pés) do fogão."
+ },
+ "RS-0313": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "titulo",
+  "linha": 433,
+  "original": "Festas de fim de ano: árvore, velas e baterias"
+ },
+ "RS-0314": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "resumo",
+  "linha": 436,
+  "original": "Dezembro é o pico de incêndios com velas, e o Natal é o dia com mais deles. A maioria dos incêndios em árvores de Natal acontece em dezembro e janeiro."
+ },
+ "RS-0315": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "orientacoes[]",
+  "linha": 440,
+  "original": "Árvore natural regada todo dia e a 1 metro (3 pés) de aquecedores e lareira."
+ },
+ "RS-0316": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "orientacoes[]",
+  "linha": 441,
+  "original": "Velas a 30 cm (1 pé) de qualquer coisa que queime; apague ao sair do cômodo."
+ },
+ "RS-0317": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "orientacoes[]",
+  "linha": 442,
+  "original": "Luzes desligadas ao dormir; não ligue várias extensões em cadeia."
+ },
+ "RS-0318": {
+  "arquivo": "data/radarSazonal/us.js",
+  "rotulo": "Estados Unidos",
+  "item": "Festas de fim de ano: árvore, velas e baterias",
+  "chave": "orientacoes[]",
+  "linha": 443,
+  "original": "Brinquedos e cartões com bateria de botão: compartimento parafusado."
+ },
+ "RS-0319": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "titulo",
+  "linha": 16,
+  "original": "Temporada de escorpiões (alacranes)"
+ },
+ "RS-0320": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "resumo",
+  "linha": 19,
+  "original": "O México passou de 131 mil atendimentos por picada de escorpião até julho de 2026; o pico vai de abril a junho. Guanajuato, Jalisco, Guerrero e Michoacán concentram os casos. Crianças com menos de 5 anos e idosos correm mais risco."
+ },
+ "RS-0321": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "orientacoes[]",
+  "linha": 23,
+  "original": "Sacuda roupas, sapatos e cobertas antes de usar; afaste as camas da parede."
+ },
+ "RS-0322": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "orientacoes[]",
+  "linha": 24,
+  "original": "Tele portas e janelas, tampe ralos e vede rachaduras de paredes e pisos."
+ },
+ "RS-0323": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "orientacoes[]",
+  "linha": 25,
+  "original": "Não ande descalço, sobretudo à noite."
+ },
+ "RS-0324": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de escorpiões (alacranes)",
+  "chave": "orientacoes[]",
+  "linha": 26,
+  "original": "Picada: vá IMEDIATAMENTE ao serviço de saúde — o soro antiescorpiônico é gratuito; nada de remédio caseiro."
+ },
+ "RS-0325": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "titulo",
+  "linha": 51,
+  "original": "Temporada de calor extremo"
+ },
+ "RS-0326": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "resumo",
+  "linha": 54,
+  "original": "A Secretaria de Saúde acompanha a temporada de calor da semana 12 à 40 do ano. O golpe de calor pode chegar de repente; o horário de maior risco é das 10h às 17h."
+ },
+ "RS-0327": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 58,
+  "original": "Evite o sol das 10h às 17h; água ao longo do dia, mesmo sem sede."
+ },
+ "RS-0328": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 59,
+  "original": "Atenção redobrada com bebês, idosos e quem tem doença crônica."
+ },
+ "RS-0329": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 60,
+  "original": "NUNCA deixe crianças ou animais dentro do carro."
+ },
+ "RS-0330": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de calor extremo",
+  "chave": "orientacoes[]",
+  "linha": 61,
+  "original": "Temperatura do corpo acima de 39 °C, confusão ou desmaio: ligue {{EMERGENCY_NUMBER}}."
+ },
+ "RS-0331": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "titulo",
+  "linha": 86,
+  "original": "Temporada de chuvas e ciclones"
+ },
+ "RS-0332": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "resumo",
+  "linha": 89,
+  "original": "A temporada começa em 15 de maio no Pacífico e em 1º de junho no Atlântico, e vai até 30 de novembro. Cerca de cinco ciclones atingem o território por ano."
+ },
+ "RS-0333": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "orientacoes[]",
+  "linha": 93,
+  "original": "Plano familiar de proteção civil: saiba qual é o refúgio temporário mais próximo."
+ },
+ "RS-0334": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "orientacoes[]",
+  "linha": 94,
+  "original": "Mochila de emergência: documentos em plástico, água, comida não perecível, remédios, lanterna e rádio."
+ },
+ "RS-0335": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "orientacoes[]",
+  "linha": 95,
+  "original": "Não atravesse rios, arroios ou ruas alagadas a pé ou de carro."
+ },
+ "RS-0336": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Temporada de chuvas e ciclones",
+  "chave": "orientacoes[]",
+  "linha": 96,
+  "original": "Siga os avisos do SMN e da Proteção Civil."
+ },
+ "RS-0337": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "titulo",
+  "linha": 122,
+  "original": "Chuvas: dengue e criadouros"
+ },
+ "RS-0338": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "resumo",
+  "linha": 125,
+  "original": "Com as chuvas, o mosquito do dengue se multiplica em qualquer recipiente com água parada no pátio e na azotea."
+ },
+ "RS-0339": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "orientacoes[]",
+  "linha": 129,
+  "original": "“Lave, tampe, vire e jogue fora”: baldes, pneus, vasos e garrafas."
+ },
+ "RS-0340": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "orientacoes[]",
+  "linha": 130,
+  "original": "Tinacos e tambos sempre tampados."
+ },
+ "RS-0341": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "orientacoes[]",
+  "linha": 131,
+  "original": "Telas em portas e janelas; repelente em crianças e grávidas."
+ },
+ "RS-0342": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Chuvas: dengue e criadouros",
+  "chave": "orientacoes[]",
+  "linha": 132,
+  "original": "Febre alta com dor no corpo: procure atendimento; não tome anti-inflamatório por conta própria."
+ },
+ "RS-0343": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "titulo",
+  "linha": 156,
+  "original": "Semana Santa: praias, rios e balneários"
+ },
+ "RS-0344": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "resumo",
+  "linha": 159,
+  "original": "As férias de Semana Santa levam famílias para praias, rios e piscinas, com calor e multidão — terreno fértil para afogamentos e crianças perdidas."
+ },
+ "RS-0345": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "orientacoes[]",
+  "linha": 163,
+  "original": "Nade só em zonas com salva-vidas e respeite as bandeiras."
+ },
+ "RS-0346": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "orientacoes[]",
+  "linha": 164,
+  "original": "Um adulto “vigia da água” por turno, sem celular e sem bebida."
+ },
+ "RS-0347": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "orientacoes[]",
+  "linha": 165,
+  "original": "Pulseira com nome e telefone na criança; combine um ponto de encontro."
+ },
+ "RS-0348": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Semana Santa: praias, rios e balneários",
+  "chave": "orientacoes[]",
+  "linha": 166,
+  "original": "Alguém em apuros: ligue {{EMERGENCY_NUMBER}} e jogue algo que flutue."
+ },
+ "RS-0349": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "titulo",
+  "linha": 190,
+  "original": "Simulacro Nacional: plano familiar contra sismos"
+ },
+ "RS-0350": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "resumo",
+  "linha": 193,
+  "original": "Terremotos não têm estação, mas o 19 de setembro é a data do Simulacro Nacional. É o momento de revisar o plano da família."
+ },
+ "RS-0351": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "orientacoes[]",
+  "linha": 197,
+  "original": "Identifique as zonas de menor risco da casa e as rotas de saída."
+ },
+ "RS-0352": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "orientacoes[]",
+  "linha": 198,
+  "original": "Fixe estantes, espelhos e televisores na parede."
+ },
+ "RS-0353": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "orientacoes[]",
+  "linha": 199,
+  "original": "Mochila de emergência com documentos, água, lanterna e remédios."
+ },
+ "RS-0354": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Simulacro Nacional: plano familiar contra sismos",
+  "chave": "orientacoes[]",
+  "linha": 200,
+  "original": "Ative o alerta sísmico no celular (SASMEX) onde houver cobertura."
+ },
+ "RS-0355": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "titulo",
+  "linha": 224,
+  "original": "Festas Pátrias: pirotecnia"
+ },
+ "RS-0356": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "resumo",
+  "linha": 227,
+  "original": "Oito em cada dez lesões por pirotecnia no México são nas mãos, seguidas de rosto e olhos — e, na maioria dos casos graves, a criança estava sem um adulto por perto."
+ },
+ "RS-0357": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "orientacoes[]",
+  "linha": 231,
+  "original": "Pirotecnia só manuseada por adultos, com acendedor longo."
+ },
+ "RS-0358": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "orientacoes[]",
+  "linha": 232,
+  "original": "Nunca no bolso, nem acesa dentro de garrafa ou lata."
+ },
+ "RS-0359": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "orientacoes[]",
+  "linha": 233,
+  "original": "Cohete que não explodiu: não se aproxime; molhe com bastante água."
+ },
+ "RS-0360": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Festas Pátrias: pirotecnia",
+  "chave": "orientacoes[]",
+  "linha": 234,
+  "original": "Queimadura: água corrente por 10 a 20 minutos e atendimento médico."
+ },
+ "RS-0361": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "titulo",
+  "linha": 258,
+  "original": "Dia dos Mortos: velas no altar"
+ },
+ "RS-0362": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "resumo",
+  "linha": 261,
+  "original": "Velas acesas entre papel picado, flores secas e toalhas transformam o altar num risco de incêndio, sobretudo à noite e perto de crianças e animais."
+ },
+ "RS-0363": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "orientacoes[]",
+  "linha": 265,
+  "original": "Velas em base firme e longe de papel picado, cortinas e flores secas."
+ },
+ "RS-0364": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "orientacoes[]",
+  "linha": 266,
+  "original": "Apague as velas ao sair e ao dormir; prefira velas de LED."
+ },
+ "RS-0365": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "orientacoes[]",
+  "linha": 267,
+  "original": "Altar fora do alcance de crianças pequenas e animais."
+ },
+ "RS-0366": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Dia dos Mortos: velas no altar",
+  "chave": "orientacoes[]",
+  "linha": 268,
+  "original": "Fósforos e isqueiros guardados."
+ },
+ "RS-0367": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "titulo",
+  "linha": 295,
+  "original": "Frio: monóxido de carbono"
+ },
+ "RS-0368": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "resumo",
+  "linha": 298,
+  "original": "Na temporada fria 2024-2025, 18 das 19 mortes por frio no México foram por monóxido de carbono. Aquecedores dentro do banheiro, braseiros e fogareiros em quarto fechado são as causas mais comuns."
+ },
+ "RS-0369": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 302,
+  "original": "Nunca durma com braseiro, fogareiro ou chama acesa dentro de casa."
+ },
+ "RS-0370": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 303,
+  "original": "Aquecedor de água a gás fora do banheiro e com manutenção."
+ },
+ "RS-0371": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 304,
+  "original": "Não use forno ou boca do fogão para aquecer o ambiente."
+ },
+ "RS-0372": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Frio: monóxido de carbono",
+  "chave": "orientacoes[]",
+  "linha": 305,
+  "original": "Dor de cabeça, enjoo e sono em várias pessoas: saia ao ar livre e procure atendimento."
+ },
+ "RS-0373": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "titulo",
+  "linha": 329,
+  "original": "Posadas, Natal e Ano-Novo: pirotecnia e adornos"
+ },
+ "RS-0374": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "resumo",
+  "linha": 332,
+  "original": "Entre novembro e janeiro, 73% das queimaduras registradas no México estão ligadas à pirotecnia, e crianças e jovens são a maioria. Árvores e adornos em chamas e choques ao pendurar luzes completam a lista."
+ },
+ "RS-0375": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "orientacoes[]",
+  "linha": 336,
+  "original": "Pirotecnia só por adultos; crianças nunca sozinhas."
+ },
+ "RS-0376": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "orientacoes[]",
+  "linha": 337,
+  "original": "Luzes com instalação em bom estado, desligadas ao dormir."
+ },
+ "RS-0377": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "orientacoes[]",
+  "linha": 338,
+  "original": "Velas e “luces de Bengala” longe da árvore e das cortinas."
+ },
+ "RS-0378": {
+  "arquivo": "data/radarSazonal/mx.js",
+  "rotulo": "México",
+  "item": "Posadas, Natal e Ano-Novo: pirotecnia e adornos",
+  "chave": "orientacoes[]",
+  "linha": 339,
+  "original": "Animais dentro de casa, com identificação, nas noites de festa."
+ },
+ "RS-0379": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Mudou a hora? Teste os detectores",
+  "chave": "titulo",
+  "linha": 62,
+  "original": "Mudou a hora? Teste os detectores"
+ },
+ "RS-0380": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Mudou a hora? Teste os detectores",
+  "chave": "resumo",
+  "linha": 65,
+  "original": "A mudança de hora é o lembrete ideal para testar os detectores de fumaça e de monóxido de carbono da casa."
+ },
+ "RS-0381": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Mudou a hora? Teste os detectores",
+  "chave": "orientacoes[]",
+  "linha": 69,
+  "original": "Aperte o botão de teste de cada detector."
+ },
+ "RS-0382": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Mudou a hora? Teste os detectores",
+  "chave": "orientacoes[]",
+  "linha": 70,
+  "original": "Troque as pilhas se o aparelho pedir; detectores com mais de 10 anos devem ser substituídos."
+ },
+ "RS-0383": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Mudou a hora? Teste os detectores",
+  "chave": "orientacoes[]",
+  "linha": 71,
+  "original": "Revise com a família a saída de emergência e o ponto de encontro."
+ },
+ "RS-0384": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Receba os alertas da Defesa Civil",
+  "chave": "titulo",
+  "linha": 142,
+  "original": "Receba os alertas da Defesa Civil"
+ },
+ "RS-0385": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Receba os alertas da Defesa Civil",
+  "chave": "itens[]",
+  "linha": 146,
+  "original": "Envie o seu CEP por SMS para 40199 — gratuito; pode cadastrar vários CEPs."
+ },
+ "RS-0386": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Receba os alertas da Defesa Civil",
+  "chave": "itens[]",
+  "linha": 147,
+  "original": "Mantenha ligados os “alertas de emergência” do celular: a Defesa Civil Alerta avisa pela localização, sem cadastro."
+ },
+ "RS-0387": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Receba os alertas da Defesa Civil",
+  "chave": "itens[]",
+  "linha": 148,
+  "original": "Emergências: Defesa Civil 199, Bombeiros {{FIRE_NUMBER}}, {{EMERGENCY_MEDICAL}}."
+ },
+ "RS-0388": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais em Portugal",
+  "chave": "titulo",
+  "linha": 163,
+  "original": "Avisos oficiais em Portugal"
+ },
+ "RS-0389": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais em Portugal",
+  "chave": "itens[]",
+  "linha": 167,
+  "original": "Siga os avisos meteorológicos do IPMA (ipma.pt) e os da Proteção Civil (ANEPC)."
+ },
+ "RS-0390": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais em Portugal",
+  "chave": "itens[]",
+  "linha": 168,
+  "original": "A ANEPC envia SMS de aviso à população em situações de risco — não os ignore."
+ },
+ "RS-0391": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais em Portugal",
+  "chave": "itens[]",
+  "linha": 169,
+  "original": "Emergência: 112. Centro de Informação Antivenenos: 800 250 250."
+ },
+ "RS-0392": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais na Espanha",
+  "chave": "titulo",
+  "linha": 184,
+  "original": "Avisos oficiais na Espanha"
+ },
+ "RS-0393": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais na Espanha",
+  "chave": "itens[]",
+  "linha": 188,
+  "original": "ES-Alert: os alertas chegam ao celular sem cadastro — mantenha os alertas de emergência ativados."
+ },
+ "RS-0394": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais na Espanha",
+  "chave": "itens[]",
+  "linha": 189,
+  "original": "Avisos meteorológicos da AEMET (Meteoalerta) e nível de risco por calor do Ministério da Saúde."
+ },
+ "RS-0395": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais no Reino Unido",
+  "chave": "titulo",
+  "linha": 205,
+  "original": "Avisos oficiais no Reino Unido"
+ },
+ "RS-0396": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais no Reino Unido",
+  "chave": "itens[]",
+  "linha": 209,
+  "original": "Emergency Alerts: mantenha os alertas de emergência ativados no celular."
+ },
+ "RS-0397": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais no Reino Unido",
+  "chave": "itens[]",
+  "linha": 210,
+  "original": "Avisos do Met Office e alertas de saúde por calor e frio da UKHSA (é possível assinar)."
+ },
+ "RS-0398": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Avisos oficiais no Reino Unido",
+  "chave": "itens[]",
+  "linha": 211,
+  "original": "Emergência: 999 ou 112. Orientação de saúde: NHS 111."
+ },
+ "RS-0399": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais nos EUA",
+  "chave": "itens[]",
+  "linha": 230,
+  "original": "Wireless Emergency Alerts (WEA) ativados no celular."
+ },
+ "RS-0400": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais nos EUA",
+  "chave": "itens[]",
+  "linha": 231,
+  "original": "Rádio meteorológico NOAA e cadastro nos alertas do seu condado."
+ },
+ "RS-0401": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais nos EUA",
+  "chave": "itens[]",
+  "linha": 232,
+  "original": "Emergência: 911. Centro de intoxicação: 1-800-222-1222."
+ },
+ "RS-0402": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais no México",
+  "chave": "titulo",
+  "linha": 247,
+  "original": "Alertas oficiais no México"
+ },
+ "RS-0403": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais no México",
+  "chave": "itens[]",
+  "linha": 251,
+  "original": "Alerta sísmica (SASMEX) e alertas de Proteção Civil no celular, onde houver cobertura."
+ },
+ "RS-0404": {
+  "arquivo": "data/radarSazonal/index.js",
+  "rotulo": "Europa e alertas oficiais de cada país",
+  "item": "Alertas oficiais no México",
+  "chave": "itens[]",
+  "linha": 252,
+  "original": "Avisos do Serviço Meteorológico Nacional (SMN) sobre ciclones e frentes frias."
+ }
+}

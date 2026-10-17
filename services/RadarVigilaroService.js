@@ -109,7 +109,14 @@ class RadarVigilaroService {
    */
   getFeed(allProfiles = [], limit = 20) {
     const familyCategories = this._getFamilyCategories(allProfiles);
-    return resolveEmergencyTokensDeep(this._sortearConteudo(familyCategories, limit));
+    // No idioma do app (t_field/t_array caem no pt-BR se faltar tradução).
+    return resolveEmergencyTokensDeep(this._sortearConteudo(familyCategories, limit).map((item) => ({
+      ...item,
+      titulo: t_field(item, 'titulo'),
+      resumo: t_field(item, 'resumo'),
+      destaque: item.destaque ? t_field(item, 'destaque') : item.destaque,
+      orientacoes: t_array(item, 'orientacoes'),
+    })));
   }
 
   // ─── HELPERS INTERNOS ──────────────────────────────────────────────────────

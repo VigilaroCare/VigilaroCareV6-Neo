@@ -455,6 +455,40 @@ export default function App() {
   }, [appIsReady, hasCompletedOnboarding]);
 
   // ---------------------------------------------------------------------------
+  // TOQUE NAS NOTIFICAÇÕES PROATIVAS (D23, 17/10/2026)
+  // As notificações proativas levavam `route` no payload, mas nada no app
+  // tratava o toque: abriam o app na tela inicial. Só rotas conhecidas são
+  // aceitas — o payload não decide para onde o app navega. O check-in de
+  // bem-estar (VitalCheckService) tem tratamento próprio e não passa aqui.
+  // ---------------------------------------------------------------------------
+  useEffect(() => {
+    if (!navigatorReady || !hasCompletedOnboarding) return;
+    const ROTAS_PROATIVAS = new Set(['RadarVigilaro', 'Relatorios', 'ModoPreventivo']);
+    const tratar = (response) => {
+      const data = response?.notification?.request?.content?.data || {};
+      if (data.proactive && ROTAS_PROATIVAS.has(data.route)) {
+        NavigationService.navigate(data.route);
+      }
+    };
+    let sub = null;
+    try {
+      const Notifications = require('expo-notifications');
+      sub = Notifications.addNotificationResponseReceivedListener(tratar);
+      // App aberto pelo toque, a frio: a resposta chega antes do listener.
+      // Limpa depois de tratar: senão um toque antigo reabriria a tela em
+      // toda montagem.
+      Notifications.getLastNotificationResponseAsync()
+        .then((r) => {
+          if (!r) return;
+          tratar(r);
+          if (Notifications.clearLastNotificationResponseAsync) Notifications.clearLastNotificationResponseAsync().catch(() => {});
+        })
+        .catch(() => {});
+    } catch (_) { /* notificações indisponíveis neste ambiente */ }
+    return () => { if (sub) sub.remove(); };
+  }, [navigatorReady, hasCompletedOnboarding]);
+
+  // ---------------------------------------------------------------------------
   // GUARDS DE RENDERIZAÇÃO
   // ---------------------------------------------------------------------------
   if (!appIsReady) return null;
