@@ -178,6 +178,24 @@ export default function PremiumArticleScreen({ route, navigation }) {
                             <MarkdownLeve texto={content} estiloTexto={[s.bodyText, { color: textBody }]} corDestaque={cor} />
                         ) : null}
 
+                        {/* Listas com titulo proprio (ex.: Teoria do Fogo). Cada uma: { titulo, itens[] }. */}
+                        {Array.isArray(conceito.secoes) && conceito.secoes
+                            .filter(sec => sec && Array.isArray(sec.itens) && sec.itens.length > 0)
+                            .map((sec, k) => (
+                                <View key={`sec-${k}`} style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : themeColors.neutral[100], marginBottom: 16 }]}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+                                        <NeoIcon name="InfoCircle" size={20} color={cor} variant="Bold" style={{ marginRight: 8 }} />
+                                        <H3 style={[s.sessaoTitulo, { color: textPrimary }]}>{sec.titulo}</H3>
+                                    </View>
+                                    {sec.itens.map((it, i) => (
+                                        <View key={i} style={s.listItem}>
+                                            <View style={[s.bullet, { backgroundColor: cor }]} />
+                                            <Body style={[s.listText, { color: textBody }]}>{renderInline(it)}</Body>
+                                        </View>
+                                    ))}
+                                </View>
+                            ))}
+
                         {conceito.exemplos && conceito.exemplos.length > 0 && (
                             <View style={[s.cardSessao, { backgroundColor: isDark ? '#1C1C1E' : themeColors.neutral[100] }]}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>

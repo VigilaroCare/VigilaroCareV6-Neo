@@ -63,6 +63,13 @@ vm.runInContext(
     sandbox
 );
 
+// data/classesIncendio.js — classes de incendio por norma do pais (D16).
+// Tambem antes de emergencyTokens.js, pelo mesmo motivo.
+vm.runInContext(
+    toEvaluable(fs.readFileSync(path.join(ROOT, 'data/classesIncendio.js'), 'utf8')),
+    sandbox
+);
+
 // utils/emergencyTokens.js — logica real de resolucao.
 // detectEmergencyCountry e stubado porque depende de GPS/expo-localization;
 // o pais e injetado diretamente pelo teste.
@@ -223,6 +230,51 @@ for (const token of KNOWN) {
 if (!empties) {
     console.log(`   OK    ${KNOWN.length * COUNTRIES.length * LANGS.length} combinacoes, nenhuma vazia ou nao resolvida`);
 }
+
+// ---------------------------------------------------------------------------
+// 4b. Classes de incendio pela NORMA do pais (D16). Classe C e eletrico nas
+//     Americas (NBR, NFPA 10, NOM-002) e GAS na Europa (EN 2); cozinha e K
+//     nas Americas e F na Europa. Pais desconhecido cita as duas.
+// ---------------------------------------------------------------------------
+console.log('\n4b. CLASSES DE INCENDIO POR PAIS\n');
+const TOKENS_FOGO = sandbox.TOKENS_CLASSES_INCENDIO || [];
+let vaziosFogo = 0;
+for (const token of TOKENS_FOGO) {
+    for (const country of COUNTRIES) {
+        for (const lang of LANGS) {
+            const out = resolve(`{{${token}}}`, country, lang);
+            if (!out || out.includes('{{') || out.includes('undefined')) {
+                vaziosFogo++; failures++;
+                console.log(`   FALHA ${token} / ${country} / ${lang} -> "${out}"`);
+            }
+        }
+    }
+}
+if (!vaziosFogo) console.log(`   OK    ${TOKENS_FOGO.length * COUNTRIES.length * LANGS.length} combinacoes, nenhuma vazia`);
+const ESPERADO_FOGO = [
+    ['FIRE_CLASS_ELECTRICAL', 'BR', 'pt-BR', /^Classe C: equipamentos/],
+    ['FIRE_CLASS_ELECTRICAL', 'US', 'en', /^Class C: energized/],
+    ['FIRE_CLASS_ELECTRICAL', 'MX', 'es', /^Clase C: equipos/],
+    ['FIRE_CLASS_ELECTRICAL', 'PT', 'pt-PT', /não tem classe própria/],
+    ['FIRE_CLASS_ELECTRICAL', 'ES', 'es', /no tiene clase propia/],
+    ['FIRE_CLASS_ELECTRICAL', 'GB', 'en', /no class of its own/],
+    ['FIRE_CLASS_GASES', 'BR', 'pt-BR', /também são Classe B/],
+    ['FIRE_CLASS_GASES', 'PT', 'pt-PT', /^Classe C: gases/],
+    ['FIRE_CLASS_GASES', 'ES', 'es', /^Clase C: gases/],
+    ['FIRE_CLASS_COOKING', 'BR', 'pt-BR', /^Classe K/],
+    ['FIRE_CLASS_COOKING', 'PT', 'pt-PT', /^Classe F/],
+    ['FIRE_CLASS_COOKING', 'XX', 'pt-BR', /Classe K nas Américas, Classe F na Europa/],
+    // idioma nao manda: espanhol lido no Mexico segue a NOM, na Espanha a EN 2
+    ['COOKING_FIRE_CLASS', 'MX', 'es', /^Clase K$/],
+    ['COOKING_FIRE_CLASS', 'ES', 'es', /^Clase F$/],
+    // ion-litio nao e Classe D (D15)
+    ['FIRE_CLASS_METALS', 'BR', 'pt-BR', /NÃO é Classe D/],
+];
+for (const [token, country, lang, rx] of ESPERADO_FOGO) {
+    const out = resolve(`{{${token}}}`, country, lang);
+    if (!rx.test(out)) { failures++; console.log(`   FALHA ${token} / ${country} / ${lang} -> "${out}"`); }
+}
+console.log(`   ${ESPERADO_FOGO.length} expectativas de norma por pais conferidas`);
 
 // ---------------------------------------------------------------------------
 // 5. Centro de intoxicacao: rotulo e numero discavel por pais.

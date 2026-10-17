@@ -100,7 +100,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         emoji: '🧯',
         titulo: 'Extintores',
         tipo: 'alerta',
-        conteudo: 'Tenha um extintor tipo ABC em casa. Ele serve para madeira, papel, líquidos inflamáveis e fiação. Lembre-se da regra: Puxe o lacre, Aponte para a base do fogo, e Aperte o gatilho.',
+        conteudo: 'Tenha um extintor tipo ABC em casa. Ele {{EXTINGUISHER_ABC_COVERS}}. Lembre-se da regra: Puxe o lacre, Aponte para a base do fogo, e Aperte o gatilho.',
       },
     ],
   },
@@ -423,7 +423,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         tipo: 'passos',
         itens: [
           'SAIA DA CASA NA HORA e leve todos para o ar livre na calçada',
-          'Ligue para o {{EMERGENCY_MEDICAL}} ou Bombeiros (193) imediatamente',
+          'Ligue para o {{EMERGENCY_MEDICAL}} ou os Bombeiros ({{FIRE_NUMBER}}) imediatamente',
           'Diga claramente no telefone: "Suspeita de intoxicação por monóxido de carbono"',
           'Se for seguro, abra as portas e janelas ao sair para ventilar o local',
           'Não volte para dentro do imóvel até que os bombeiros avaliem a qualidade do ar',

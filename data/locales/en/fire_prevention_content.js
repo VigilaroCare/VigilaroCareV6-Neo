@@ -17,7 +17,7 @@ export const firePreventionContentEN = {
             },
             {
                 title: 'Classes of Fire',
-                content: 'Knowing the class is vital to choosing the correct extinguisher:\n\n• Class A (Solids): Paper, wood, fabric. They leave ash. Extinguish with Water or Dry Chemical.\n\n• Class B (Flammable Liquids): Gasoline, alcohol, wax. DO NOT use water! Extinguish by smothering (Dry Chemical or CO2).\n\n• Class C (Electrical): Equipment plugged into an outlet. DO NOT use water (shock risk)! Use CO2 or Dry Chemical.\n\n• Class K (Kitchen): Oils and fats in fryers. Requires special extinguishers or smothering with a lid.'
+                content: 'Knowing the class of fire is vital to choosing the correct extinguisher. The letters follow {{FIRE_STANDARD}}:\n\n• {{FIRE_CLASS_SOLIDS}}\n\n• {{FIRE_CLASS_LIQUIDS}}\n\n• {{FIRE_CLASS_GASES}}\n\n• {{FIRE_CLASS_ELECTRICAL}}\n\n• {{FIRE_CLASS_METALS}}\n\n• {{FIRE_CLASS_COOKING}}'
             },
             {
                 title: 'Phases of Fire',
@@ -52,8 +52,8 @@ export const firePreventionContentEN = {
         emoji: '🔌',
         sections: [
             {
-                title: 'Class K - Kitchen',
-                content: 'Fires involving oil and grease in fryers, grills, and baking pans. NEVER use water, as it causes a steam explosion and spreads the fire. The correct action is to turn off the heat source and smother it with a lid or use a Class K extinguisher.'
+                title: '{{COOKING_FIRE_CLASS}} - Kitchen',
+                content: 'Fires involving oil and grease in fryers, grills, and baking pans. NEVER use water, as it causes a steam explosion and spreads the fire. The correct action is to turn off the heat source and smother it with a lid or use a {{COOKING_FIRE_CLASS}} extinguisher.'
             },
             {
                 title: 'High Power Equipment',

@@ -8,7 +8,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { TEORIA_FOGO_DATA } from '../../data/teoria_fogo';
-import { t_field } from '../../utils/getLocalizedField';
+import { t_field, t_array } from '../../utils/getLocalizedField';
 
 export default function TeoriaFogoScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -27,12 +27,27 @@ export default function TeoriaFogoScreen({ navigation }) {
         { id: 'combate', ...TEORIA_FOGO_DATA.combate },
     ];
 
+    // Entrega o artigo ja no idioma do usuario e com os tokens resolvidos pelo
+    // PAIS (t_field/t_array): as classes de incendio mudam com a norma local
+    // (D16, data/classesIncendio.js). Antes ia o objeto cru — o artigo saia em
+    // pt-BR em qualquer idioma e as listas de classes nem apareciam.
     const handlePress = (item) => {
+        const lista = (campo) => ({
+            titulo: t_field(item, `rotulo${campo[0].toUpperCase()}${campo.slice(1)}`),
+            itens: t_array(item, campo),
+        });
+        const definicao = t_field(item, 'definicao');
+        const importancia = t_field(item, 'importancia');
         navigation.navigate('PremiumArticle', {
             conceito: {
-                ...item,
+                id: item.id,
+                icon: item.icon,
+                imagemUrl: item.imagemUrl,
+                titulo: t_field(item, 'titulo'),
+                definicao: [definicao, importancia ? `**${importancia}**` : null].filter(Boolean).join('\n\n'),
+                secoes: [lista('comoIdentificar'), lista('exemplos'), lista('comoEvitar')],
                 color: THEME_COLOR,
-                tags: ['Teoria do Fogo']
+                tags: [t('headersFirst.teoriaDoFogo', 'Teoria do Fogo')]
             }
         });
     };
@@ -125,7 +140,7 @@ export default function TeoriaFogoScreen({ navigation }) {
                         <NeoHorizontalCard
                             key={item.id}
                             title={t_field(item, 'titulo')}
-                            description={t_field(item, 'conteudo') || t_field(item, 'descricao')}
+                            description={t_field(item, 'subtitulo') || t_field(item, 'descricao')}
                             iconName={item.icon || 'Fire'}
                             color={THEME_COLOR}
                             onPress={() => handlePress(item)}

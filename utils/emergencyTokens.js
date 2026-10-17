@@ -75,8 +75,17 @@ import {
     AUTORIDADE_TRANSITO,
     getInstituicao,
 } from '../data/instituicoesPorPais';
+import { TOKENS_CLASSES_INCENDIO, getClasseIncendio } from '../data/classesIncendio';
 
-const TOKEN_PATTERN = /\{\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|POLICE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY)\}\}/g;
+// Classes de incendio e extintores (D16): a letra muda com a NORMA do pais —
+// Classe C e eletrico no Brasil/EUA/Mexico e gas na Europa (EN 2). Ver
+// data/classesIncendio.js para a lista de tokens e as fontes.
+const TOKENS_INCENDIO = new Set(TOKENS_CLASSES_INCENDIO);
+
+const TOKEN_PATTERN = new RegExp(
+    `\\{\\{(EMERGENCY_MEDICAL|EMERGENCY_NUMBER|POISON_CONTROL|FIRE_NUMBER|POLICE_NUMBER|CERT_SEAL|STANDARDS_BODY|PEDIATRIC_BODY|HEALTH_AUTHORITY|TRAFFIC_AUTHORITY|${TOKENS_CLASSES_INCENDIO.join('|')})\\}\\}`,
+    'g'
+);
 
 /**
  * Nome do servico medico de emergencia por pais e idioma.
@@ -269,6 +278,7 @@ function getTokenValue(token, country, langKey) {
         }
 
         default:
+            if (TOKENS_INCENDIO.has(token)) return getClasseIncendio(token, country, langKey);
             return '';
     }
 }

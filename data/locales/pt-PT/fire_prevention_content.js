@@ -17,7 +17,7 @@ export const firePreventionContentPTPT = {
             },
             {
                 title: 'Classes de Incêndio',
-                content: 'Saber a classe é vital para escolher o extintor correto:\n\n• Classe A (Sólidos): Papel, madeira, tecido. Deixam cinzas. Apaga-se com Água ou Pó Químico.\n\n• Classe B (Líquidos Inflamáveis): Gasolina, álcool, cera. NÃO use água! Apaga-se por abafamento (Pó Químico ou CO2).\n\n• Classe C (Elétricos): Equipamentos ligados à tomada. NÃO use água (risco de choque)! Use CO2 ou Pó Químico.\n\n• Classe F (Cozinha - K em alguns sistemas): Óleos e gorduras em fritadeiras. Requer extintores especiais ou abafamento com tampa.'
+                content: 'Saber a classe do fogo é vital para escolher o extintor correto. As letras seguem {{FIRE_STANDARD}}:\n\n• {{FIRE_CLASS_SOLIDS}}\n\n• {{FIRE_CLASS_LIQUIDS}}\n\n• {{FIRE_CLASS_GASES}}\n\n• {{FIRE_CLASS_ELECTRICAL}}\n\n• {{FIRE_CLASS_METALS}}\n\n• {{FIRE_CLASS_COOKING}}'
             },
             {
                 title: 'Fases do Fogo',
@@ -52,8 +52,8 @@ export const firePreventionContentPTPT = {
         emoji: '🔌',
         sections: [
             {
-                title: 'Classe F (K) - Cozinha',
-                content: 'Incêndios envolvendo óleo e gordura em fritadeiras, grelhadores e assadeiras. NUNCA use água, pois causa uma explosão de vapor e espalha o fogo. O correto é desligar a fonte de calor e abafar com uma tampa ou usar um extintor apropriado.'
+                title: '{{COOKING_FIRE_CLASS}} - Cozinha',
+                content: 'Incêndios envolvendo óleo e gordura em fritadeiras, grelhadores e assadeiras. NUNCA use água, pois causa uma explosão de vapor e espalha o fogo. O correto é desligar a fonte de calor e abafar com uma tampa ou usar um extintor de {{COOKING_FIRE_CLASS}}.'
             },
             {
                 title: 'Equipamentos de Alta Potência',

@@ -94,7 +94,7 @@ export const GUIAS_SEGURANCA_PT_PT = {
         emoji: '🧯',
         titulo: 'Extintores',
         tipo: 'alerta',
-        conteudo: 'Tenha um extintor ABC em casa (cobre madeira, líquidos e elétrica). Aprenda a usar antes da emergência: Puxe a cavilha, Aponte para a base, Aperte o gatilho.',
+        conteudo: 'Tenha um extintor ABC em casa (que {{EXTINGUISHER_ABC_COVERS}}). Aprenda a usar antes da emergência: Puxe a cavilha, Aponte para a base, Aperte o gatilho.',
       },
     ],
   },

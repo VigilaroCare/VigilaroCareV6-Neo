@@ -94,7 +94,7 @@ export const GUIAS_SEGURANCA_EN = {
         emoji: '🧯',
         titulo: 'Fire Extinguishers',
         tipo: 'alerta',
-        conteudo: 'Have an ABC extinguisher at home (covers wood, liquids, and electrical). Learn to use it before an emergency: Pull the pin, Aim at the base, Squeeze the trigger.',
+        conteudo: 'Have an ABC extinguisher at home (it {{EXTINGUISHER_ABC_COVERS}}). Learn to use it before an emergency: Pull the pin, Aim at the base, Squeeze the trigger.',
       },
     ],
   },

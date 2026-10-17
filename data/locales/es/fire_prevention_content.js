@@ -17,7 +17,7 @@ export const firePreventionContentES = {
             },
             {
                 title: 'Clases de Incendio',
-                content: 'Saber la clase es vital para elegir el extintor correcto:\n\n• Clase A (Sólidos): Papel, madera, tela. Dejan cenizas. Se apaga con Agua o Polvo Químico.\n\n• Clase B (Líquidos Inflamables): Gasolina, alcohol, cera. ¡NO use agua! Se apaga por sofocación (Polvo Químico o CO2).\n\n• Clase C (Eléctricos): Equipos conectados a la corriente. ¡NO use agua (riesgo de choque)! Use CO2 o Polvo Químico.\n\n• Clase K (Cocina): Aceites y grasas en freidoras. Requiere extintores especiales o sofocación con una tapa.'
+                content: 'Saber la clase de fuego es vital para elegir el extintor correcto. Las letras siguen {{FIRE_STANDARD}}:\n\n• {{FIRE_CLASS_SOLIDS}}\n\n• {{FIRE_CLASS_LIQUIDS}}\n\n• {{FIRE_CLASS_GASES}}\n\n• {{FIRE_CLASS_ELECTRICAL}}\n\n• {{FIRE_CLASS_METALS}}\n\n• {{FIRE_CLASS_COOKING}}'
             },
             {
                 title: 'Fases del Fuego',
@@ -52,8 +52,8 @@ export const firePreventionContentES = {
         emoji: '🔌',
         sections: [
             {
-                title: 'Clase K - Cocina',
-                content: 'Incendios que involucran aceite y grasa en freidoras, parrillas y asadores. NUNCA use agua, ya que causa una explosión de vapor y propaga el fuego. Lo correcto es apagar la fuente de calor y sofocar con una tapa o usar un extintor Clase K.'
+                title: '{{COOKING_FIRE_CLASS}} - Cocina',
+                content: 'Incendios que involucran aceite y grasa en freidoras, parrillas y asadores. NUNCA use agua, ya que causa una explosión de vapor y propaga el fuego. Lo correcto es apagar la fuente de calor y sofocar con una tapa o usar un extintor de {{COOKING_FIRE_CLASS}}.'
             },
             {
                 title: 'Equipos de Alta Potencia',

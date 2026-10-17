@@ -17,7 +17,7 @@ export const firePreventionContentPTBR = {
             },
             {
                 title: 'Classes de Incêndio',
-                content: 'Identificar a classe do fogo é fundamental para não errar no tipo de extintor:\n\n• Classe A (Sólidos): Madeira, papel, tecidos. Deixam cinzas. Apaga-se com água ou pó químico.\n\n• Classe B (Líquidos): Gasolina, álcool, óleos. Nunca jogue água, pois ela espalha o líquido queimando. Apague abafando ou com extintor de pó ou CO2.\n\n• Classe C (Elétricos): Equipamentos e fios ligados na tomada. Jogar água causa choque elétrico fatal. Use extintor de CO2 ou pó químico.\n\n• Classe K (Frituras): Óleo de cozinha e gordura quente. Exige abafamento com tampa ou pano úmido, ou extintor próprio para classe K.'
+                content: 'Identificar a classe do fogo é fundamental para não errar no tipo de extintor. As letras seguem {{FIRE_STANDARD}}:\n\n• {{FIRE_CLASS_SOLIDS}}\n\n• {{FIRE_CLASS_LIQUIDS}}\n\n• {{FIRE_CLASS_GASES}}\n\n• {{FIRE_CLASS_ELECTRICAL}}\n\n• {{FIRE_CLASS_METALS}}\n\n• {{FIRE_CLASS_COOKING}}'
             },
             {
                 title: 'Fases do Fogo',
@@ -52,7 +52,7 @@ export const firePreventionContentPTBR = {
         emoji: '🔌',
         sections: [
             {
-                title: 'Classe K na Cozinha',
+                title: '{{COOKING_FIRE_CLASS}} na Cozinha',
                 content: 'Ocorre com óleo vegetal ou gordura animal de fritadeiras e frigideiras. Jogar água cria uma cortina de fogo violenta devido à evaporação rápida. Desligue o fogo e use uma tampa metálica para cortar o oxigênio.'
             },
             {
