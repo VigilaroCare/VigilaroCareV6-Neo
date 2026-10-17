@@ -6,10 +6,12 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing } from '../utils/Theme';
 import { CONTROLADOR } from '../data/legal/politica_privacidade';
+import { getTermosUso } from '../data/legal/termos_uso';
 import { getMedicalLabel, getFireDial, resolveEmergencyTokens } from '../utils/emergencyTokens';
 
 export default function TermsOfUseScreen({ navigation }) {
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
+    const termos = getTermosUso(i18n.language);
     return (
       <AppBackground>
         <SafeAreaView style={styles.container}>
@@ -17,7 +19,7 @@ export default function TermsOfUseScreen({ navigation }) {
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
                     <NeoIcon name="ArrowLeft2" size={24} color={Colors.textPrimary} />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>{t('headersFirst.termosDeUso', 'Termos de Uso')}</Text>
+                <Text style={styles.headerTitle}>{termos.titulo}</Text>
             </View>
 
             <ScrollView contentContainerStyle={styles.content}>
@@ -25,54 +27,30 @@ export default function TermsOfUseScreen({ navigation }) {
                     <NeoIcon name="ShieldTick" size={48} color={Colors.primary} />
                 </View>
 
-                {/* Identificacao do fornecedor: os Termos sao um contrato, e a
-                    outra parte precisa ser identificavel. Ate 24/09 o documento
-                    nao dizia com quem o usuario estava contratando. */}
+                {/* Texto: data/legal/termos_uso.js — fonte única, a mesma das páginas
+                    públicas (scripts/gerar_paginas_legais.js). Identificação do
+                    fornecedor primeiro: os Termos são um contrato. */}
                 <Text style={styles.fornecedor}>
-                    {t('terms.provider', 'Aplicativo fornecido por {{empresa}}. Contato: {{email}}.', {
-                        empresa: CONTROLADOR.razaoSocial,
-                        email: CONTROLADOR.email,
-                    })}
+                    {termos.fornecedor.replace('{{empresa}}', CONTROLADOR.razaoSocial || 'Vigilaro Care').replace('{{email}}', CONTROLADOR.email || '')}
                 </Text>
+                <Text style={styles.fornecedor}>{termos.atualizado}</Text>
 
-                <Text style={styles.sectionTitle}>{t('headersFirst.1NaturezaInformativa', '1. Natureza Informativa')}</Text>
-                <Text style={styles.text}>
-                    {t('headersFirst.oAplicativoVigilaroCareUmaFerramentaDeAu', 'O aplicativo Vigilaro Care é uma ferramenta de auxílio e prevenção. Todo o conteúdo, incluindo checklists, guias de primeiros socorros e análises de IA, tem caráter EXCLUSIVAMENTE INFORMATIVO e EDUCACIONAL.')}
-                </Text>
+                {termos.secoes.map((sec) => (
+                    <View key={sec.titulo}>
+                        <Text style={styles.sectionTitle}>{sec.titulo}</Text>
+                        <Text style={styles.text}>
+                            {sec.texto}
+                            {/* Números do PAÍS onde a pessoa está (ver utils/emergencyTokens). */}
+                            {sec.emergencia
+                                ? `\n\n🚑 ${getMedicalLabel()}\n🚒 ${t('headersFirst.bombeirosRotulo', 'Bombeiros')}: ${getFireDial()}\n👮 ${t('headersFirst.policiaRotulo', 'Polícia')}: ${resolveEmergencyTokens('{{POLICE_NUMBER}}')}`
+                                : ''}
+                        </Text>
+                    </View>
+                ))}
 
-                <Text style={styles.sectionTitle}>{t('headersFirst.2NOSubstituiProfissionais', '2. Não Substitui Profissionais')}</Text>
-                <Text style={styles.text}>
-                    {t('headersFirst.asInformaEsAquiContidasNOSubstituemEmHip', 'As informações aqui contidas NÃO substituem, em hipótese alguma, o diagnóstico, aconselhamento ou tratamento por profissionais de saúde (médicos, enfermeiros, socorristas) ou especialistas em segurança.')}
-                </Text>
-
-                <Text style={styles.sectionTitle}>{t('headersFirst.3EmCasoDeEmergNcia', '3. Em Caso de Emergência')}</Text>
-                <Text style={styles.text}>{t('telas.TermsOfUseScreen.seVoceOuAlguemEstiverEm', 'Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:')}{'\n\n'}
-                    {/* Números do PAÍS do usuário — antes eram os números
-                        brasileiros fixos, errados fora do Brasil. */}
-                    {`🚑 ${getMedicalLabel()}`}
-                    {'\n'}
-                    {`🚒 ${t('headersFirst.bombeirosRotulo', 'Bombeiros')}: ${getFireDial()}`}
-                    {'\n'}
-                    {`👮 ${t('headersFirst.policiaRotulo', 'Polícia')}: ${resolveEmergencyTokens('{{POLICE_NUMBER}}')}`}
-                </Text>
-
-                <Text style={styles.sectionTitle}>{t('headersFirst.4LimitaODeResponsabilidade', '4. Limitação de Responsabilidade')}</Text>
-                <Text style={styles.text}>
-                    {t('headersFirst.osDesenvolvedoresDoVigilaroCareNOSeRespo', 'Os desenvolvedores do Vigilaro Care não se responsabilizam por quaisquer danos, lesões ou perdas resultantes do uso das informações fornecidas pelo aplicativo. A segurança final do ambiente e das pessoas é de responsabilidade do usuário.')}
-                </Text>
-
-                <Text style={styles.sectionTitle}>{t('headersFirst.5InteligNciaArtificial', '5. Inteligência Artificial')}</Text>
-                <Text style={styles.text}>
-                    {t('headersFirst.oRecursoDeScannerIAUtilizaInteligNciaArt', 'O recurso de "Scanner IA" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.')}
-                </Text>
-
-                <Text style={styles.sectionTitle}>{t('terms.monitoringTitle', '6. Recursos de Monitoramento e Alerta')}</Text>
-                <Text style={styles.text}>
-                    {t('terms.monitoringBody', 'Os recursos de alerta (check-in de bem-estar e SOS) são AUXILIARES e dependem de fatores fora do nosso controle: bateria do aparelho, sinal de celular e de GPS, plano para SMS, restrições do sistema operacional e configuração correta.\n\nEles podem falhar ou não chegar a tempo, e NÃO constituem serviço de emergência, dispositivo médico ou substituto de supervisão humana. O Vigilaro Care é uma ferramenta de utilidade e prevenção para o dia a dia — use esses recursos como camada adicional de apoio, nunca como única linha de proteção de quem você ama.')}
-                </Text>
-
-                <Text style={styles.sectionTitle}>{t('terms.privacyTitle', '7. Privacidade')}</Text>
-                <Text style={styles.text}>{t('telas.TermsOfUseScreen.paraDetalhesSobreComoTratamosSeus', 'Para detalhes sobre como tratamos seus dados, consulte nossa ')}<Text style={{ fontWeight: 'bold', color: Colors.primary }} onPress={() => navigation.navigate('PrivacyPolicy')}>{t('telas.TermsOfUseScreen.politicaDePrivacidade', 'Política de Privacidade')}</Text>{t('telas.TermsOfUseScreen.especifica', ' específica.')}</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('PrivacyPolicy')} accessibilityRole="link">
+                    <Text style={[styles.text, { fontWeight: 'bold', color: Colors.primary, marginTop: 20 }]}>{t('telas.TermsOfUseScreen.politicaDePrivacidade', 'Política de Privacidade')}</Text>
+                </TouchableOpacity>
 
                 <View style={{ height: 40 }} />
             </ScrollView>

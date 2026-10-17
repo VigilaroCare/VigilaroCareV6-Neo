@@ -1,0 +1,119 @@
+/**
+ * termos_uso.js — Termos de Uso, fonte única (17/10/2026).
+ *
+ * Lido pela tela TermsOfUseScreen e pelo gerador das páginas públicas
+ * (scripts/gerar_paginas_legais.js): o app e o site dizem o mesmo texto.
+ *
+ * RASCUNHO PARA VALIDAÇÃO DE ADVOGADO — ver docs/lojas/REVISAO_JURIDICA_2026-10-17.md.
+ * Princípios desta redação:
+ *   • o app INFORMA, NÃO OPINA: não diagnostica, não emite parecer sobre a
+ *     saúde de ninguém, não prescreve (decisão do autor, 17/10/2026);
+ *   • responsabilidade compatível com o CDC — a versão anterior ("não se
+ *     responsabilizam por quaisquer danos") é cláusula nula (arts. 25 e 51, I);
+ *   • assinatura descrita como o app realmente funciona (Premium mensal ou
+ *     anual, cobrança e renovação pela loja, sem período de teste);
+ *   • nada de prometer recurso que não existe.
+ *
+ * Seção com `emergencia: true` recebe, na tela, os números do país do usuário.
+ * Mudou algo relevante? Suba VERSAO_TERMOS: o aceite inicial é pedido de novo.
+ */
+
+export const VERSAO_TERMOS = '2026-10-17';
+
+const PT_BR = {
+    titulo: 'Termos de Uso',
+    atualizado: 'Versão de 17 de outubro de 2026',
+    fornecedor: 'Aplicativo fornecido por {{empresa}}. Contato: {{email}}.',
+    secoes: [
+        { titulo: '1. Aceitação e público', texto: 'Ao usar o Vigilaro Care você concorda com estes Termos e com a Política de Privacidade. O app é destinado a maiores de 18 anos. Perfis de crianças e de outras pessoas são cadastrados por um adulto responsável, que declara ter autorização para isso.' },
+        { titulo: '2. O que o app é — e o que não é', texto: 'O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — checklists, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nO app NÃO faz diagnóstico, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamento e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.' },
+        { titulo: '3. Em caso de emergência', texto: 'Se você ou alguém estiver em risco imediato, ferido gravemente ou passando mal, NÃO USE O APP: ligue imediatamente para os serviços de emergência locais.', emergencia: true },
+        { titulo: '4. Inteligência artificial', texto: 'As análises por inteligência artificial (Scanner de fotos, análise personalizada da casa e resumo do dossiê de viagem) são opcionais, só funcionam com a sua permissão e vêm identificadas como geradas por IA. Elas tratam do ambiente da casa e podem conter erros: confira sempre o local ou o rótulo antes de agir. Nenhum dado de saúde é enviado à inteligência artificial.' },
+        { titulo: '5. Recursos de alerta', texto: 'O check-in de bem-estar e o SOS são recursos AUXILIARES e dependem de fatores fora do nosso controle: bateria do aparelho, sinal de celular e de GPS, plano para SMS, restrições do sistema operacional e configuração correta. Eles podem falhar ou não chegar a tempo. O SOS prepara a mensagem no seu app de SMS ou WhatsApp; o envio é confirmado por você e não aciona automaticamente nenhum serviço de emergência.' },
+        { titulo: '6. Assinatura Premium', texto: 'As funções básicas são gratuitas. O Premium é uma assinatura opcional, mensal ou anual, com o preço exibido na tela antes da compra, na moeda da sua loja. A cobrança é feita pela App Store ou pelo Google Play, na conta que você usa nessas lojas.\n\nA assinatura é renovada automaticamente ao fim de cada período, pelo mesmo prazo, salvo cancelamento com pelo menos 24 horas de antecedência. Você cancela quando quiser nos ajustes de assinaturas da loja; o acesso continua até o fim do período já pago. Mudanças de preço são avisadas pela loja antes da renovação.\n\nReembolsos seguem as regras da loja. No Brasil, você pode desistir da contratação em até 7 dias (art. 49 do Código de Defesa do Consumidor), pedindo o reembolso à loja ou pelo nosso contato.' },
+        { titulo: '7. Uso adequado', texto: 'Use o app para fins pessoais e lícitos. Não use o SOS para enviar alertas falsos, não envie ao Scanner fotos de outras pessoas sem autorização delas e não tente copiar, modificar ou contornar o funcionamento do app.' },
+        { titulo: '8. Propriedade intelectual', texto: 'O conteúdo, a marca e o software do Vigilaro Care são protegidos. Você recebe uma licença pessoal, gratuita ou assinada, não exclusiva e intransferível para usar o app. Dados de bases públicas usados em consultas específicas são creditados na tela Sobre, conforme as licenças de cada uma.' },
+        { titulo: '9. Responsabilidade', texto: 'O Vigilaro Care responde pelos danos causados por defeitos do serviço, nos termos do Código de Defesa do Consumidor. O conteúdo tem caráter informativo e preventivo, e as decisões tomadas a partir dele cabem a quem usa o app. O funcionamento depende do aparelho, da bateria, do sinal, das permissões concedidas e de serviços de terceiros, que podem falhar.' },
+        { titulo: '10. Privacidade', texto: 'Seus dados ficam no seu aparelho. Dados de saúde nunca saem dele. O que pode sair — com a sua permissão ou de forma anônima — está descrito na Política de Privacidade.' },
+        { titulo: '11. Lojas de aplicativos', texto: 'Se você instalou o app pela App Store, aplica-se também o Contrato de Licença de Usuário Final padrão da Apple; pelo Google Play, os termos do Google Play. A Apple e o Google não são responsáveis pelo app nem pelo seu suporte.' },
+        { titulo: '12. Alterações', texto: 'Podemos atualizar estes Termos. Mudanças relevantes são avisadas no app e, quando necessário, pedimos um novo aceite.' },
+        { titulo: '13. Lei e foro', texto: 'Estes Termos seguem a lei brasileira. Para o consumidor no Brasil, o foro é o do seu domicílio. Quem reside em outro país mantém as proteções obrigatórias ao consumidor do lugar onde reside.' },
+    ],
+};
+
+const PT_PT = {
+    titulo: 'Termos de Utilização',
+    atualizado: 'Versão de 17 de outubro de 2026',
+    fornecedor: 'Aplicação fornecida por {{empresa}}. Contacto: {{email}}.',
+    secoes: [
+        { titulo: '1. Aceitação e público', texto: 'Ao utilizar o Vigilaro Care, aceita estes Termos e a Política de Privacidade. A aplicação destina-se a maiores de 18 anos. Os perfis de crianças e de outras pessoas são registados por um adulto responsável, que declara ter autorização para isso.' },
+        { titulo: '2. O que a aplicação é — e o que não é', texto: 'O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — listas de verificação, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nA aplicação NÃO faz diagnósticos, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamentos e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.' },
+        { titulo: '3. Em caso de emergência', texto: 'Se o próprio ou alguém estiver em risco imediato, gravemente ferido ou a sentir-se mal, NÃO USE A APLICAÇÃO: ligue de imediato para os serviços de emergência locais.', emergencia: true },
+        { titulo: '4. Inteligência artificial', texto: 'As análises por inteligência artificial (leitor de fotografias, análise personalizada da habitação e resumo do dossiê de viagem) são opcionais, só funcionam com a sua autorização e vêm identificadas como geradas por IA. Tratam do ambiente da habitação e podem conter erros: confirme sempre o local ou o rótulo antes de agir. Nenhum dado de saúde é enviado à inteligência artificial.' },
+        { titulo: '5. Recursos de alerta', texto: 'A verificação de bem-estar e o SOS são recursos AUXILIARES e dependem de fatores fora do nosso controlo: bateria do aparelho, rede móvel e GPS, plano para SMS, restrições do sistema operativo e configuração correta. Podem falhar ou não chegar a tempo. O SOS prepara a mensagem na sua aplicação de SMS ou WhatsApp; o envio é confirmado por si e não aciona automaticamente nenhum serviço de emergência.' },
+        { titulo: '6. Subscrição Premium', texto: 'As funções básicas são gratuitas. O Premium é uma subscrição opcional, mensal ou anual, com o preço apresentado no ecrã antes da compra, na moeda da sua loja. A cobrança é feita pela App Store ou pelo Google Play, na conta que utiliza nessas lojas.\n\nA subscrição renova-se automaticamente no fim de cada período, pelo mesmo prazo, salvo cancelamento com pelo menos 24 horas de antecedência. Pode cancelar quando quiser nas definições de subscrições da loja; o acesso mantém-se até ao fim do período já pago. As alterações de preço são comunicadas pela loja antes da renovação.\n\nOs reembolsos seguem as regras da loja, sem prejuízo dos direitos que a lei do seu país lhe confere.' },
+        { titulo: '7. Utilização adequada', texto: 'Utilize a aplicação para fins pessoais e lícitos. Não use o SOS para enviar alertas falsos, não envie ao leitor fotografias de outras pessoas sem autorização delas e não tente copiar, modificar ou contornar o funcionamento da aplicação.' },
+        { titulo: '8. Propriedade intelectual', texto: 'O conteúdo, a marca e o software do Vigilaro Care são protegidos. Recebe uma licença pessoal, não exclusiva e intransmissível para utilizar a aplicação. Os dados de bases públicas usados em consultas específicas são creditados no ecrã Sobre, conforme as licenças de cada uma.' },
+        { titulo: '9. Responsabilidade', texto: 'O Vigilaro Care responde pelos danos causados por defeitos do serviço, nos termos da lei aplicável. O conteúdo tem caráter informativo e preventivo, e as decisões tomadas a partir dele cabem a quem utiliza a aplicação. O funcionamento depende do aparelho, da bateria, da rede, das permissões concedidas e de serviços de terceiros, que podem falhar.' },
+        { titulo: '10. Privacidade', texto: 'Os seus dados ficam no seu equipamento. Os dados de saúde nunca saem dele. O que pode sair — com a sua autorização ou de forma anónima — está descrito na Política de Privacidade.' },
+        { titulo: '11. Lojas de aplicações', texto: 'Se instalou a aplicação pela App Store, aplica-se também o Contrato de Licença de Utilizador Final padrão da Apple; pelo Google Play, os termos do Google Play. A Apple e a Google não são responsáveis pela aplicação nem pelo seu suporte.' },
+        { titulo: '12. Alterações', texto: 'Podemos atualizar estes Termos. As alterações relevantes são comunicadas na aplicação e, quando necessário, pedimos uma nova aceitação.' },
+        { titulo: '13. Lei aplicável', texto: 'Estes Termos regem-se pela lei brasileira, sem prejuízo das normas imperativas de proteção do consumidor do país onde reside e do direito de recorrer aos tribunais desse país.' },
+    ],
+};
+
+const ES = {
+    titulo: 'Términos de Uso',
+    atualizado: 'Versión del 17 de octubre de 2026',
+    fornecedor: 'Aplicación proporcionada por {{empresa}}. Contacto: {{email}}.',
+    secoes: [
+        { titulo: '1. Aceptación y público', texto: 'Al usar Vigilaro Care, acepta estos Términos y la Política de Privacidad. La aplicación está destinada a mayores de 18 años. Los perfiles de niños y de otras personas los registra un adulto responsable, que declara tener autorización para ello.' },
+        { titulo: '2. Qué es la aplicación — y qué no es', texto: 'Vigilaro Care es una herramienta de información, de apoyo a la prevención y de mapeo de riesgos domésticos. Todo el contenido — listas de verificación, guías, protocolos de primeros auxilios y análisis — tiene carácter informativo y educativo.\n\nLa aplicación NO hace diagnósticos, NO emite opinión sobre la salud de nadie, NO prescribe tratamientos y NO sustituye a profesionales de la salud, especialistas en seguridad, la supervisión de un adulto responsable ni los servicios de emergencia.' },
+        { titulo: '3. En caso de emergencia', texto: 'Si usted u otra persona está en peligro inmediato, herida de gravedad o se siente mal, NO USE LA APLICACIÓN: llame de inmediato a los servicios de emergencia locales.', emergencia: true },
+        { titulo: '4. Inteligencia artificial', texto: 'Los análisis por inteligencia artificial (escáner de fotos, análisis personalizado de la vivienda y resumen del dosier de viaje) son opcionales, solo funcionan con su permiso y se identifican como generados por IA. Tratan del entorno de la vivienda y pueden contener errores: compruebe siempre el lugar o la etiqueta antes de actuar. No se envía ningún dato de salud a la inteligencia artificial.' },
+        { titulo: '5. Funciones de alerta', texto: 'La comprobación de bienestar y el SOS son funciones AUXILIARES y dependen de factores fuera de nuestro control: batería del dispositivo, cobertura móvil y de GPS, plan para SMS, restricciones del sistema operativo y configuración correcta. Pueden fallar o no llegar a tiempo. El SOS prepara el mensaje en su aplicación de SMS o WhatsApp; el envío lo confirma usted y no activa automáticamente ningún servicio de emergencia.' },
+        { titulo: '6. Suscripción Premium', texto: 'Las funciones básicas son gratuitas. Premium es una suscripción opcional, mensual o anual, con el precio mostrado en pantalla antes de la compra, en la moneda de su tienda. El cobro lo realiza la App Store o Google Play, en la cuenta que usa en esas tiendas.\n\nLa suscripción se renueva automáticamente al final de cada período, por el mismo plazo, salvo cancelación con al menos 24 horas de antelación. Puede cancelar cuando quiera en los ajustes de suscripciones de la tienda; el acceso continúa hasta el final del período ya pagado. Los cambios de precio los avisa la tienda antes de la renovación.\n\nLos reembolsos siguen las reglas de la tienda, sin perjuicio de los derechos que le otorga la ley de su país.' },
+        { titulo: '7. Uso adecuado', texto: 'Use la aplicación con fines personales y lícitos. No use el SOS para enviar alertas falsas, no envíe al escáner fotos de otras personas sin su autorización y no intente copiar, modificar o eludir el funcionamiento de la aplicación.' },
+        { titulo: '8. Propiedad intelectual', texto: 'El contenido, la marca y el software de Vigilaro Care están protegidos. Usted recibe una licencia personal, no exclusiva e intransferible para usar la aplicación. Los datos de bases públicas usados en consultas específicas se acreditan en la pantalla Acerca de, conforme a las licencias de cada una.' },
+        { titulo: '9. Responsabilidad', texto: 'Vigilaro Care responde por los daños causados por defectos del servicio, conforme a la ley aplicable. El contenido tiene carácter informativo y preventivo, y las decisiones tomadas a partir de él corresponden a quien usa la aplicación. El funcionamiento depende del dispositivo, la batería, la cobertura, los permisos concedidos y servicios de terceros, que pueden fallar.' },
+        { titulo: '10. Privacidad', texto: 'Sus datos permanecen en su dispositivo. Los datos de salud nunca salen de él. Lo que puede salir — con su permiso o de forma anónima — se describe en la Política de Privacidad.' },
+        { titulo: '11. Tiendas de aplicaciones', texto: 'Si instaló la aplicación desde la App Store, se aplica también el Contrato de Licencia de Usuario Final estándar de Apple; desde Google Play, los términos de Google Play. Apple y Google no son responsables de la aplicación ni de su soporte.' },
+        { titulo: '12. Cambios', texto: 'Podemos actualizar estos Términos. Los cambios relevantes se avisan en la aplicación y, cuando sea necesario, pedimos una nueva aceptación.' },
+        { titulo: '13. Ley aplicable', texto: 'Estos Términos se rigen por la ley brasileña, sin perjuicio de las normas imperativas de protección del consumidor del país donde reside y de su derecho a acudir a los tribunales de ese país.' },
+    ],
+};
+
+const EN = {
+    titulo: 'Terms of Use',
+    atualizado: 'Version of October 17, 2026',
+    fornecedor: 'App provided by {{empresa}}. Contact: {{email}}.',
+    secoes: [
+        { titulo: '1. Acceptance and audience', texto: 'By using Vigilaro Care you agree to these Terms and to the Privacy Policy. The app is intended for people aged 18 or over. Profiles of children and other people are added by a responsible adult, who confirms they are authorized to do so.' },
+        { titulo: '2. What the app is — and what it is not', texto: 'Vigilaro Care is a tool for information, prevention support and mapping hazards at home. All content — checklists, guides, first-aid protocols and analyses — is informational and educational.\n\nThe app does NOT diagnose, does NOT give an opinion on anyone\'s health, does NOT prescribe treatment and does NOT replace health professionals, safety specialists, supervision by a responsible adult or emergency services.' },
+        { titulo: '3. In an emergency', texto: 'If you or someone else is in immediate danger, seriously injured or unwell, DO NOT USE THE APP: call your local emergency services right away.', emergencia: true },
+        { titulo: '4. Artificial intelligence', texto: 'Artificial intelligence analyses (photo Scanner, personalized home analysis and travel dossier summary) are optional, work only with your permission and are labeled as AI-generated. They are about your home environment and may contain errors: always check the place or the label before acting. No health information is sent to the artificial intelligence.' },
+        { titulo: '5. Alert features', texto: 'The wellbeing check-in and SOS are SUPPORTING features and depend on factors beyond our control: the device\'s battery, cell and GPS signal, an SMS-capable plan, operating system restrictions and correct setup. They may fail or not arrive in time. SOS prepares the message in your SMS or WhatsApp app; you confirm sending it, and it does not automatically contact any emergency service.' },
+        { titulo: '6. Premium subscription', texto: 'Basic features are free. Premium is an optional monthly or annual subscription, with the price shown on screen before purchase, in your store\'s currency. Payment is charged by the App Store or Google Play to the account you use there.\n\nThe subscription renews automatically at the end of each period for the same term unless canceled at least 24 hours before it ends. You can cancel at any time in the store\'s subscription settings; access continues until the end of the period already paid. Price changes are announced by the store before renewal.\n\nRefunds follow the store\'s rules, without prejudice to the rights the law of your country gives you.' },
+        { titulo: '7. Acceptable use', texto: 'Use the app for personal and lawful purposes. Do not use SOS to send false alerts, do not send photos of other people to the Scanner without their permission, and do not try to copy, modify or circumvent how the app works.' },
+        { titulo: '8. Intellectual property', texto: 'Vigilaro Care\'s content, brand and software are protected. You receive a personal, non-exclusive, non-transferable license to use the app. Public databases used for specific lookups are credited on the About screen, under their respective licenses.' },
+        { titulo: '9. Liability', texto: 'Vigilaro Care is liable for damage caused by defects in the service, as provided by applicable law. The content is informational and preventive, and decisions made based on it are up to the person using the app. The app depends on the device, battery, signal, the permissions granted and third-party services, which may fail.' },
+        { titulo: '10. Privacy', texto: 'Your data stays on your device. Health information never leaves it. What may leave — with your permission or anonymously — is described in the Privacy Policy.' },
+        { titulo: '11. App stores', texto: 'If you installed the app from the App Store, Apple\'s standard Licensed Application End User License Agreement also applies; from Google Play, the Google Play terms. Apple and Google are not responsible for the app or its support.' },
+        { titulo: '12. Changes', texto: 'We may update these Terms. Relevant changes are announced in the app and, when needed, we ask you to accept them again.' },
+        { titulo: '13. Governing law', texto: 'These Terms are governed by Brazilian law, without prejudice to the mandatory consumer protection rules of the country where you live and your right to bring claims before its courts.' },
+    ],
+};
+
+const POR_IDIOMA = { 'pt-BR': PT_BR, 'pt-PT': PT_PT, es: ES, en: EN };
+
+export function getTermosUso(idioma) {
+    const lang = String(idioma || 'pt-BR');
+    if (POR_IDIOMA[lang]) return POR_IDIOMA[lang];
+    if (lang.toLowerCase().startsWith('pt-pt')) return PT_PT;
+    if (lang.startsWith('pt')) return PT_BR;
+    if (lang.startsWith('es')) return ES;
+    if (lang.startsWith('en')) return EN;
+    return PT_BR;
+}
+
+export default POR_IDIOMA;

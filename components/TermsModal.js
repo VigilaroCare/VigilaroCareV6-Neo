@@ -9,6 +9,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
+// v2 (17/10/2026): Termos reescritos (responsabilidade compatível com o CDC,
+// assinatura, 'o app informa, não opina'). Chave nova = aceite pedido de novo.
+const CHAVE_ACEITE = 'termsAccepted_v2';
+
 export default function TermsModal({ onAccept }) {
     const [visible, setVisible] = useState(false);
     const [canAccept, setCanAccept] = useState(false);
@@ -21,7 +25,7 @@ export default function TermsModal({ onAccept }) {
 
     const checkTerms = async () => {
         try {
-            const accepted = await AsyncStorage.getItem('termsAccepted_v1');
+            const accepted = await AsyncStorage.getItem(CHAVE_ACEITE);
             if (!accepted) {
                 setVisible(true);
             }
@@ -46,7 +50,7 @@ export default function TermsModal({ onAccept }) {
 
     const handleAccept = async () => {
         try {
-            await AsyncStorage.setItem('termsAccepted_v1', JSON.stringify({
+            await AsyncStorage.setItem(CHAVE_ACEITE, JSON.stringify({
                 accepted: true,
                 version: 1,
                 acceptedAt: new Date().toISOString(),
@@ -101,8 +105,8 @@ export default function TermsModal({ onAccept }) {
                             {`👮 ${tx('headersFirst.policiaRotulo', 'Polícia')}: ${resolveEmergencyTokens('{{POLICE_NUMBER}}')}`}
                         </Text>
 
-                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.4LimitacaoDeResponsabilidade', '4. Limitação de Responsabilidade')}</Text>
-                        <Text style={styles.text}>{tx('telas.TermsModal.osDesenvolvedoresDoVigilaroCareNao', 'Os desenvolvedores do Vigilaro Care não se responsabilizam por quaisquer danos, lesões ou perdas resultantes do uso das informações fornecidas pelo aplicativo. A segurança final do ambiente e das pessoas é de responsabilidade do usuário.')}</Text>
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.4LimitacaoDeResponsabilidade', '4. Responsabilidade')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.osDesenvolvedoresDoVigilaroCareNao', 'O Vigilaro Care responde pelos danos causados por defeitos do serviço, nos termos da lei. O conteúdo é informativo e preventivo — o app não faz diagnóstico nem emite parecer sobre a saúde de ninguém — e as decisões tomadas a partir dele cabem a quem o usa. Os Termos de Uso completos estão no Menu.')}</Text>
 
                         <Text style={styles.sectionTitle}>{tx('telas.TermsModal.5InteligenciaArtificial', '5. Inteligência Artificial')}</Text>
                         <Text style={styles.text}>{tx('telas.TermsModal.oRecursoDeScannerIaUtiliza', 'O recurso de "Scanner IA" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.')}</Text>

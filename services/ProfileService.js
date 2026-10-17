@@ -1441,6 +1441,7 @@ class ProfileService {
                 '@active_trip',
                 'historicoAvaliacoes',
                 'termsAccepted_v1',
+                'termsAccepted_v2',
             ];
 
             const SENSITIVE_KEYS_TO_NUKE = [

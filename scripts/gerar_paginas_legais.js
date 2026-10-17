@@ -29,6 +29,7 @@ Module.prototype._compile = function (codigo, ficheiro) {
 
 global.__DEV__ = false;
 const { getPoliticaPrivacidade, CONTROLADOR } = require('../data/legal/politica_privacidade');
+const { getTermosUso } = require('../data/legal/termos_uso');
 const { EMERGENCY_NUMBERS_BY_COUNTRY } = require('../data/emergencyNumbersByCountry');
 
 const IDIOMAS = [
@@ -68,18 +69,12 @@ function numeros(cod) {
 }
 
 function termos(cod) {
-    const secoes = [
-        ['headersFirst.1NaturezaInformativa', 'headersFirst.oAplicativoVigilaroCareUmaFerramentaDeAu'],
-        ['headersFirst.2NOSubstituiProfissionais', 'headersFirst.asInformaEsAquiContidasNOSubstituemEmHip'],
-        ['headersFirst.3EmCasoDeEmergNcia', 'telas.TermsOfUseScreen.seVoceOuAlguemEstiverEm', numeros],
-        ['headersFirst.4LimitaODeResponsabilidade', 'headersFirst.osDesenvolvedoresDoVigilaroCareNOSeRespo'],
-        ['headersFirst.5InteligNciaArtificial', 'headersFirst.oRecursoDeScannerIAUtilizaInteligNciaArt'],
-        ['terms.monitoringTitle', 'terms.monitoringBody'],
-    ];
-    const corpo = secoes.map(([tit, txt, extra]) => `<h2>${esc(t(cod, tit))}</h2>${par(t(cod, txt))}${extra ? extra(cod) : ''}`).join('');
-    const priv = `<h2>${esc(t(cod, 'terms.privacyTitle'))}</h2><p>${esc(t(cod, 'telas.TermsOfUseScreen.paraDetalhesSobreComoTratamosSeus'))}<a href="../politica-de-privacidade/#${cod}">${esc(t(cod, 'telas.TermsOfUseScreen.politicaDePrivacidade'))}</a>${esc(t(cod, 'telas.TermsOfUseScreen.especifica'))}</p>`;
-    const fornecedor = `<p class="fornecedor">${esc(t(cod, 'terms.provider', { empresa: CONTROLADOR.razaoSocial || 'Vigilaro Care', email: CONTROLADOR.email || '' }))}</p>`;
-    return { titulo: t(cod, 'headersFirst.termosDeUso'), html: fornecedor + corpo + priv };
+    // Fonte única: data/legal/termos_uso.js (a mesma da tela do app).
+    const tu = getTermosUso(cod);
+    const fornecedor = `<p class="fornecedor">${esc(tu.fornecedor.replace('{{empresa}}', CONTROLADOR.razaoSocial || 'Vigilaro Care').replace('{{email}}', CONTROLADOR.email || ''))}</p><p class="fornecedor">${esc(tu.atualizado)}</p>`;
+    const corpo = tu.secoes.map((sec) => `<h2>${esc(sec.titulo)}</h2>${par(sec.texto)}${sec.emergencia ? numeros(cod) : ''}`).join('');
+    const priv = `<p><a href="../politica-de-privacidade/#${cod}">${esc(getPoliticaPrivacidade(cod).titulo)}</a></p>`;
+    return { titulo: tu.titulo, html: fornecedor + corpo + priv };
 }
 
 function politica(cod) {

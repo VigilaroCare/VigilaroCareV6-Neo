@@ -172,6 +172,25 @@ try {
     problemas.push('Não foi possível gerar as páginas públicas para conferir: ' + e.message);
 }
 
+// 6. Termos de Uso (17/10/2026): fonte única em data/legal/termos_uso.js.
+{
+    // Comentários não contam (o cabeçalho cita a cláusula antiga de propósito).
+    const tu = lerSrc('data/legal/termos_uso.js').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    for (const chave of ['PT_BR', 'PT_PT', 'ES', 'EN']) {
+        if (!new RegExp(`const ${chave} = \\{`).test(tu)) problemas.push(`Termos de Uso sem a versão ${chave}.`);
+    }
+    if ((tu.match(/emergencia: true/g) || []).length !== 4) problemas.push('Termos: cada idioma precisa da seção de emergência (emergencia: true).');
+    if (!/Assinatura Premium|Subscrição Premium|Suscripción Premium|Premium subscription/.test(tu)) problemas.push('Termos sem a seção de assinatura (Apple 3.1.2; CDC art. 6º, III).');
+    if (!/NÃO faz diagnóstico|does NOT diagnose|NO hace diagnósticos|NÃO faz diagnósticos/.test(tu)) problemas.push('Termos sem a declaração de que o app não diagnostica (decisão do autor: o app informa, não opina).');
+    // Exoneração total é cláusula nula pelo CDC (arts. 25 e 51, I).
+    const textosTermos = [tu, ...['pt-BR', 'pt-PT', 'en', 'es'].map((l) => {
+        const j = require(path.join(RAIZ, 'locales', l, 'common.json'));
+        return JSON.stringify([j.welcome, j.telas?.TermsModal, j.terms]);
+    }), lerSrc('components/TermsModal.js')].join('\n');
+    const exoneracao = textosTermos.match(/não se responsabiliza[a-z]* por quaisquer|quaisquer danos|not (?:be )?(?:responsible|liable) for any damage|no se responsabiliza[a-z]* (?:por|de) (?:ningún|cualquier)/gi);
+    if (exoneracao) problemas.push(`Cláusula de exoneração total (nula pelo CDC) ainda presente: ${[...new Set(exoneracao)].join(' | ')}`);
+}
+
 const mostrar = (rotulo, lista) => {
     if (!lista.length) return;
     console.log(linha(rotulo));

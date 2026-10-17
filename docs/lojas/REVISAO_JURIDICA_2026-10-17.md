@@ -29,6 +29,38 @@ O texto offline do relatório também deixou de ligar os medicamentos da pessoa 
 
 `npm run validate:legal` falha se algum dado de saúde voltar a ir para a IA.
 
+### Termos de Uso reescritos (mesmo dia) — falta só a validação do advogado
+
+Arquivo: `data/legal/termos_uso.js`. É a fonte única: a tela do app e a página pública leem dele, nos 4 idiomas, e o texto está identificado como rascunho para validação. Cobre os requisitos 13 e 14 e o risco R1:
+
+| Seção | O que diz |
+|---|---|
+| Aceitação e público | 18+; perfis de crianças cadastrados pelo responsável |
+| O que o app é e não é | Não diagnostica, não emite parecer, não prescreve |
+| Emergência | Números do país onde a pessoa está |
+| Inteligência artificial | Opcional, com permissão, sem dado de saúde |
+| Alertas | SOS e check-in são auxiliares; o envio do SOS é confirmado pela pessoa |
+| Assinatura | Mensal ou anual; cobrança e renovação pela loja; cancelar com 24 h de antecedência; arrependimento de 7 dias (CDC art. 49) |
+| Uso adequado | — |
+| Propriedade intelectual | — |
+| Responsabilidade | Compatível com o CDC |
+| Privacidade | Remete à Política |
+| Lojas | EULA padrão da Apple e termos do Google Play |
+| Alterações | Mudanças relevantes pedem novo aceite |
+| Lei e foro | Domicílio do consumidor no Brasil; proteções obrigatórias do país de residência |
+
+Também mudaram:
+- a janela de aceite inicial e o resumo da tela de boas-vindas: a cláusula de exoneração saiu, o aceite foi para a versão 2 e é pedido de novo;
+- o resumo de privacidade das boas-vindas, que dizia "nada sai do aparelho".
+
+`validate:legal` reprova se a exoneração total voltar.
+
+**Para o advogado validar:**
+1. a redação da seção 9 (responsabilidade);
+2. o compromisso de atender o arrependimento "pela loja ou pelo nosso contato";
+3. a cláusula de lei e foro para quem não reside no Brasil;
+4. se convém um EULA próprio para a App Store (hoje: o EULA padrão da Apple mais estes Termos).
+
 ---
 
 ## Resumo
