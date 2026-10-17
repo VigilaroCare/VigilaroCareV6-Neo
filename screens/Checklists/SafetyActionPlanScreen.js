@@ -300,7 +300,7 @@ export default function SafetyActionPlanScreen() {
                                 {isHighPriority && (
                                     <View style={{ flexDirection: 'row', marginTop: 4 }}>
                                         <View style={{ backgroundColor: '#FEF2F2', paddingHorizontal: 6, paddingVertical: 1, borderRadius: 4, borderWidth: 1, borderColor: '#FEE2E2' }}>
-                                            <Small style={{ color: '#B91C1C', fontWeight: 'bold', fontSize: 8 }}>CRÍTICO</Small>
+                                            <Small style={{ color: '#B91C1C', fontWeight: 'bold', fontSize: 8 }}>{t('telas.SafetyActionPlanScreen.critico', 'CRÍTICO')}</Small>
                                         </View>
                                     </View>
                                 )}
@@ -346,7 +346,7 @@ export default function SafetyActionPlanScreen() {
                                     }}
                                     activeOpacity={0.7}
                                 >
-                                    <Small style={{ fontWeight: 'bold', fontSize: 9, color: item.status === 'na' ? '#FFF' : '#94A3B8' }}>NA</Small>
+                                    <Small style={{ fontWeight: 'bold', fontSize: 9, color: item.status === 'na' ? '#FFF' : '#94A3B8' }}>{t('telas.SafetyActionPlanScreen.na', 'NA')}</Small>
                                 </TouchableOpacity>
                             </View>
                         </NeoCard>

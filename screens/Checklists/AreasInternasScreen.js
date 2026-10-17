@@ -217,7 +217,7 @@ export default function AreasInternasScreen({ navigation, route }) {
       setChecklistState(status || {});
     } catch (error) {
       if (__DEV__) console.error('[AreasInternas] Erro ao carregar checklist:', error);
-      NeoAlert.alert('Erro', 'Falha ao carregar checklist. Tente novamente.');
+      NeoAlert.alert(t('telas.AreasInternasScreen.erro', 'Erro'), t('telas.AreasInternasScreen.falhaAoCarregarChecklistTenteNovamente', 'Falha ao carregar checklist. Tente novamente.'));
     } finally {
       setIsLoading(false);
     }
@@ -291,7 +291,7 @@ export default function AreasInternasScreen({ navigation, route }) {
 
   const handleSetStatus = async (areaId, chavePasso, status) => {
     if (!activeResidenceId) {
-      NeoAlert.alert('Erro', 'Residência não selecionada');
+      NeoAlert.alert(t('telas.AreasInternasScreen.erro2', 'Erro'), t('telas.AreasInternasScreen.residenciaNaoSelecionada', 'Residência não selecionada'));
       return;
     }
 
@@ -320,7 +320,7 @@ export default function AreasInternasScreen({ navigation, route }) {
       if (!ok) throw new Error('saveRoteiroState falhou');
     } catch (error) {
       if (__DEV__) console.error('[AreasInternas] Erro ao salvar status:', error);
-      NeoAlert.alert('Erro', 'Falha ao salvar resposta. Tente novamente.');
+      NeoAlert.alert(t('telas.AreasInternasScreen.erro3', 'Erro'), t('telas.AreasInternasScreen.falhaAoSalvarRespostaTenteNovamente', 'Falha ao salvar resposta. Tente novamente.'));
     }
   };
 
@@ -417,9 +417,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                   color={Neo.colors.primary[600]}
                   variant="Bold"
                 />
-                <Text style={[s.sectionLabel, { color: Neo.colors.primary[700] }]}>
-                  VERIFICAÇÃO DE SEGURANÇA
-                </Text>
+                <Text style={[s.sectionLabel, { color: Neo.colors.primary[700] }]}>{t('telas.AreasInternasScreen.verificacaoDeSeguranca', 'VERIFICAÇÃO DE SEGURANÇA')}</Text>
               </View>
 
               <View style={s.questionsContainer}>
@@ -447,9 +445,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                               s.responseBtnText,
                               state === true && { color: '#FFF' },
                             ]}
-                          >
-                            SIM
-                          </Text>
+                          >{t('telas.AreasInternasScreen.sim', 'SIM')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -467,9 +463,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                               s.responseBtnText,
                               state === false && { color: '#FFF' },
                             ]}
-                          >
-                            NÃO
-                          </Text>
+                          >{t('telas.AreasInternasScreen.nao', 'NÃO')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -508,9 +502,7 @@ export default function AreasInternasScreen({ navigation, route }) {
                     color={Neo.colors.feedback.error}
                     variant="Bold"
                   />
-                  <Text style={[s.sectionLabel, { color: Neo.colors.feedback.error }]}>
-                    EVITE
-                  </Text>
+                  <Text style={[s.sectionLabel, { color: Neo.colors.feedback.error }]}>{t('telas.AreasInternasScreen.evite', 'EVITE')}</Text>
                 </View>
                 {t_array(item, 'oQueNaoFazer').map((step, index) => (
                   <View key={index} style={s.stepRow}>

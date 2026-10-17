@@ -9,6 +9,7 @@
  * - Dois botões: "Ativar" e "Manter Padrão"
  */
 
+import { tx } from '../utils/txFixo';
 import { useEffect, useRef, useMemo } from "react";
 import {
     View,
@@ -104,14 +105,11 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
                     </View>
 
                     {/* Title */}
-                    <Text style={[styles.title, themed.title]}>Modo Canhoto Detectado</Text>
+                    <Text style={[styles.title, themed.title]}>{tx('telas.LeftHandedSuggestionModal.modoCanhotoDetectado', 'Modo Canhoto Detectado')}</Text>
 
                     {/* Description */}
-                    <Text style={[styles.description, themed.description]}>
-                        Notamos que você usa mais o lado esquerdo da tela. Ative o{' '}
-                        <Text style={[styles.bold, themed.bold]}>Modo Canhoto</Text> para botões e controles mais
-                        acessíveis à sua mão.
-                    </Text>
+                    <Text style={[styles.description, themed.description]}>{tx('telas.LeftHandedSuggestionModal.notamosQueVoceUsaMaisO', 'Notamos que você usa mais o lado esquerdo da tela. Ative o')}{' '}
+                        <Text style={[styles.bold, themed.bold]}>{tx('telas.LeftHandedSuggestionModal.modoCanhoto', 'Modo Canhoto')}</Text>{tx('telas.LeftHandedSuggestionModal.paraBotoesEControlesMaisAcessiveis', ' para botões e controles mais acessíveis à sua mão.')}</Text>
 
                     {/* Benefits mini-list */}
                     <View style={styles.benefitsList}>
@@ -130,12 +128,12 @@ export default function LeftHandedSuggestionModal({ visible, onDismiss }) {
                     {/* Action Buttons */}
                     <View style={styles.buttonRow}>
                         <TouchableOpacity style={[styles.dismissButton, themed.dismissButton]} onPress={handleDismiss}>
-                            <Text style={[styles.dismissText, themed.dismissText]}>Manter Padrão</Text>
+                            <Text style={[styles.dismissText, themed.dismissText]}>{tx('telas.LeftHandedSuggestionModal.manterPadrao', 'Manter Padrão')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.activateButton} onPress={handleActivate}>
                             <NeoIcon name="Hand" size={18} color={colors.neutral.white} />
-                            <Text style={[styles.activateText, themed.activateText]}>Ativar</Text>
+                            <Text style={[styles.activateText, themed.activateText]}>{tx('telas.LeftHandedSuggestionModal.ativar', 'Ativar')}</Text>
                         </TouchableOpacity>
                     </View>
                 </Animated.View>

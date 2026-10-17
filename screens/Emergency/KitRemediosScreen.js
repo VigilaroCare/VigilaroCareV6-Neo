@@ -79,8 +79,7 @@ export default function KitRemediosScreen({ navigation }) {
               {t('headersFirst.medicineKit', 'Kit de remédios')}
             </H1>
             <Caption style={s.subtitle}>
-              {checkedItems.length} de {items.length} itens
-            </Caption>
+              {checkedItems.length}{t('telas.KitRemediosScreen.de', ' de ')}{items.length}{t('telas.KitRemediosScreen.itens', ' itens')}</Caption>
           </View>
         </View>
 
@@ -107,7 +106,7 @@ export default function KitRemediosScreen({ navigation }) {
               style={{ marginBottom: 8 }}
               accessibilityLabel={`${progressPct}% completo`}
             />
-            <Small style={s.progressText}>{progressPct}% completo</Small>
+            <Small style={s.progressText}>{progressPct}{t('telas.KitRemediosScreen.completo', '% completo')}</Small>
           </View>
 
           <Small style={s.sectionLabel}>

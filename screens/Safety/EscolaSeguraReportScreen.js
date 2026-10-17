@@ -83,7 +83,7 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                 </TouchableOpacity>
                 <View style={{ flex: 1 }}>
                     <H1 style={styles.title}>{t('headersFirst.relatRioCompleto', 'Relatório')}</H1>
-                    <Caption style={styles.subtitle}>Escola segura</Caption>
+                    <Caption style={styles.subtitle}>{t('telas.EscolaSeguraReportScreen.escolaSegura', 'Escola segura')}</Caption>
                 </View>
                 <TouchableOpacity
                     onPress={handleShare}
@@ -116,16 +116,14 @@ export default function EscolaSeguraReportScreen({ navigation, route }) {
                         <Small style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.tOTAL', 'TOTAL')}</Small>
                         <H1 style={{ marginTop: 8 }}>{pontuacao.percentual}%</H1>
                         <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
-                            {pontuacao.marcados}/{pontuacao.total} itens
-                        </Caption>
+                            {pontuacao.marcados}/{pontuacao.total}{t('telas.EscolaSeguraReportScreen.itens', ' itens')}</Caption>
                     </NeoCard>
 
                     <NeoCard variant="elevated" style={[styles.statCard, { flex: 1 }]}>
                         <Small style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.cRTICOS', 'CRÍTICOS')}</Small>
                         <H1 style={{ marginTop: 8, color: nivelSeguranca.cor }}>{pontuacao.criticos_percentual}%</H1>
                         <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
-                            {pontuacao.criticos_marcados}/{pontuacao.criticos_total} itens
-                        </Caption>
+                            {pontuacao.criticos_marcados}/{pontuacao.criticos_total}{t('telas.EscolaSeguraReportScreen.itens2', ' itens')}</Caption>
                     </NeoCard>
                 </View>
 

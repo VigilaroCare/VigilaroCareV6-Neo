@@ -122,8 +122,7 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                 <FadeInView delay={100}>
                     <View style={styles.infoBar}>
                         <Text style={[styles.infoText, { color: textMuted }]}>
-                            🛡️ {ITEMS.length} dispositivos • Toque para ver detalhes
-                        </Text>
+                            🛡️ {ITEMS.length}{t('telas.DispositivosProtecaoScreen.dispositivosToqueParaVerDetalhes', ' dispositivos • Toque para ver detalhes')}</Text>
                     </View>
                 </FadeInView>
 
@@ -157,7 +156,7 @@ export default function DispositivosProtecaoScreen({ navigation }) {
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                                 <View style={{ flex: 1, paddingRight: 8 }}>
                                                     <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.nome}</Text>
-                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>Uso {item.frequenciaUso.toLowerCase()}</Text>
+                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{t('telas.DispositivosProtecaoScreen.uso', 'Uso ')}{item.frequenciaUso.toLowerCase()}</Text>
                                                 </View>
                                                 <View style={[styles.toxicBadge, { backgroundColor: riskColor + '15' }]}>
                                                     <Text style={[styles.toxicText, { color: riskColor }]}>{riskLabel}</Text>

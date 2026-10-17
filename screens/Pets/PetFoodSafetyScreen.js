@@ -31,8 +31,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
         <View style={{ flex: 1 }}>
           <H3 style={s.itemTitle}>{t_field(item, 'nome')}</H3>
           <View style={[s.itemBadge, { backgroundColor: item.cor }]}>
-            <Small style={s.itemBadgeText}>
-              RISCO {(t_field(item, 'risco') || '').toUpperCase()}
+            <Small style={s.itemBadgeText}>{t('telas.PetFoodSafetyScreen.risco', 'RISCO ')}{(t_field(item, 'risco') || '').toUpperCase()}
             </Small>
           </View>
         </View>

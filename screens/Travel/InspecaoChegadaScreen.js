@@ -208,7 +208,7 @@ export default function InspecaoChegadaScreen({ navigation }) {
                         {t('travel.arrivalIntro', 'Ao chegar no destino, faça esta inspeção rápida para identificar riscos e garantir a segurança de todos.')}
                     </Body>
                     <View style={{ marginTop: 12, backgroundColor: Neo.colors.primary[100], paddingHorizontal: 16, paddingVertical: 6, borderRadius: 20 }}>
-                        <Small style={{ fontWeight: 'bold', color: Neo.colors.primary[700] }}>{totalChecked} / {totalItems} verificados</Small>
+                        <Small style={{ fontWeight: 'bold', color: Neo.colors.primary[700] }}>{totalChecked} / {totalItems}{t('telas.InspecaoChegadaScreen.verificados', ' verificados')}</Small>
                     </View>
                     {!!trip && (
                         <Small style={{ marginTop: 8, color: Neo.colors.neutral[500], textAlign: 'center' }}>

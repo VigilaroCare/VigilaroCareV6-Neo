@@ -97,7 +97,7 @@ export default function ChecklistReformaScreen({ route, navigation }) {
           </TouchableOpacity>
           <View style={{ flex: 1, marginLeft: 12 }}>
             <H2 style={{ color: Neo.colors.neutral[800] }}>{t('headersFirst.checklistReforma', 'Checklist: Reforma')}</H2>
-            <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>Tipo: {renovationType.toUpperCase()}</Small>
+            <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>{t('telas.ChecklistReformaScreen.tipo', 'Tipo: ')}{renovationType.toUpperCase()}</Small>
           </View>
           <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: THEME_COLOR + '15', alignItems: 'center', justifyContent: 'center' }}>
             <NeoIcon name="Building4" size={22} color={THEME_COLOR} variant="Bold" />
@@ -109,10 +109,10 @@ export default function ChecklistReformaScreen({ route, navigation }) {
           <NeoCard variant="elevated" padding={12} style={{ backgroundColor: Neo.colors.neutral.white }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
               <View>
-                <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount} verificados</Small>
+                <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount}{t('telas.ChecklistReformaScreen.verificados', ' verificados')}</Small>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8 }}>
-                <Small style={{ color: Neo.colors.neutral[400] }}>Duração: {durationDays}d</Small>
+                <Small style={{ color: Neo.colors.neutral[400] }}>{t('telas.ChecklistReformaScreen.duracao', 'Duração: ')}{durationDays}d</Small>
                 <H3 style={{ color: percentage === 100 ? Neo.colors.feedback.success : THEME_COLOR }}>{percentage}%</H3>
               </View>
             </View>

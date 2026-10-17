@@ -166,8 +166,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={themeColors.neutral[500]} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: themeColors.neutral[500] }]}>
-                                {RISK_CATEGORIES.length} categorias • Toque para iniciar a verificação
-                            </Text>
+                                {RISK_CATEGORIES.length}{t('telas.ModoPreventivoScreenNeo.categoriasToqueParaIniciarAVerificacao', ' categorias • Toque para iniciar a verificação')}</Text>
                         </View>
                     </FadeInView>
 
@@ -176,7 +175,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                             <FadeInView key={item.id} delay={150 + idx * 50}>
                                 <NeoHorizontalCard
                                     title={item.title}
-                                    description={item.educational?.description || "Auditoria preventiva do ambiente"}
+                                    description={item.educational?.description || t('telas.ModoPreventivoScreenNeo.auditoriaPreventivaDoAmbiente', 'Auditoria preventiva do ambiente')}
                                     iconName={item.icon}
                                     imageUrl={item.image}
                                     color={item.color}
@@ -234,7 +233,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                     </View>
 
                                                     <Body style={{ marginBottom: 24, lineHeight: 22 }}>
-                                                        {selectedRisk.educational?.description || "Siga as instruções de segurança abaixo."}
+                                                        {selectedRisk.educational?.description || t('telas.ModoPreventivoScreenNeo.sigaAsInstrucoesDeSegurancaAbaixo', 'Siga as instruções de segurança abaixo.')}
                                                     </Body>
 
                                                     <H3 style={{ marginBottom: 16 }}>{t('headersFirst.dicasDeOuro', 'Dicas de Ouro:')}</H3>
@@ -261,7 +260,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                             {/* Progress + Tri-Color Bar */}
                                             <View style={{ padding: 20, backgroundColor: 'rgba(255,255,255,0.3)', borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.05)' }}>
                                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
-                                                    <Small style={{ fontWeight: '600', color: Neo.colors.neutral[700] }}>{completedCount} de {totalCount} verificados</Small>
+                                                    <Small style={{ fontWeight: '600', color: Neo.colors.neutral[700] }}>{completedCount}{t('telas.ModoPreventivoScreenNeo.de', ' de ')}{totalCount}{t('telas.ModoPreventivoScreenNeo.verificados', ' verificados')}</Small>
                                                     <Small style={{ fontWeight: 'bold', color: Neo.colors.neutral[900] }}>{percentage}%</Small>
                                                 </View>
                                                 {(() => {
@@ -329,12 +328,12 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                     // Smart Logic: If it's the first question and marked NA, ask if want to skip category
                                                                     if (index === 0) {
                                                                         NeoAlert.alert(
-                                                                            "Ambiente Não Aplicável?",
-                                                                            "Deseja marcar este ambiente inteiro como não aplicável e finalizar?",
+                                                                            t('telas.ModoPreventivoScreenNeo.ambienteNaoAplicavel', 'Ambiente Não Aplicável?'),
+                                                                            t('telas.ModoPreventivoScreenNeo.desejaMarcarEsteAmbienteInteiroComo', 'Deseja marcar este ambiente inteiro como não aplicável e finalizar?'),
                                                                             [
-                                                                                { text: "Não, apenas esta", style: "cancel" },
+                                                                                { text: t('telas.ModoPreventivoScreenNeo.naoApenasEsta', 'Não, apenas esta'), style: "cancel" },
                                                                                 {
-                                                                                    text: "Sim, Pular Ambiente",
+                                                                                    text: t('telas.ModoPreventivoScreenNeo.simPularAmbiente', 'Sim, Pular Ambiente'),
                                                                                     onPress: () => {
                                                                                         // Mark all remaining questions as NA
                                                                                         const remainingNA = selectedRisk.questions.map(q => ({
@@ -359,7 +358,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                     borderColor: Neo.colors.neutral[300]
                                                                 }}
                                                             >
-                                                                <Text style={{ fontWeight: 'bold', fontSize: 12, color: item.status === 'na' ? Neo.colors.neutral.white : Neo.colors.neutral[700] }}>NA</Text>
+                                                                <Text style={{ fontWeight: 'bold', fontSize: 12, color: item.status === 'na' ? Neo.colors.neutral.white : Neo.colors.neutral[700] }}>{t('telas.ModoPreventivoScreenNeo.na', 'NA')}</Text>
                                                             </TouchableOpacity>
                                                         </View>
                                                     </View>
@@ -376,7 +375,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                         }}
                                                         onPress={() => {
                                                             if (percentage === 100) setShowResult(true);
-                                                            else NeoAlert.alert("Atenção", "Responda a todas as questões para concluir.");
+                                                            else NeoAlert.alert(t('telas.ModoPreventivoScreenNeo.atencao', 'Atenção'), t('telas.ModoPreventivoScreenNeo.respondaATodasAsQuestoesPara', 'Responda a todas as questões para concluir.'));
                                                         }}
                                                     >
                                                         <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold' }}>{t('headersFirst.finalizarProtocolo', 'Finalizar Protocolo')}</Body>
@@ -392,7 +391,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                 <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: getStatusColor(), alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
                                                     <NeoIcon name={safetyScore === 100 ? "TickCircle" : "Danger"} size={40} color={Neo.colors.neutral.white} />
                                                 </View>
-                                                <H2>{safetyScore}% Seguro</H2>
+                                                <H2>{safetyScore}{t('telas.ModoPreventivoScreenNeo.seguro', '% Seguro')}</H2>
                                                 <Body style={{ textAlign: 'center', color: Neo.colors.neutral[600], marginTop: 8 }}>
                                                     {safetyScore === 100 ? "Ambiente verificado e seguro!" : `Encontramos ${userAnswers.filter(a => !a.isSafe && a.status !== 'na').length} pontos de atenção.`}
                                                 </Body>
@@ -445,8 +444,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                                                             <View style={{ flex: 1 }}>
                                                                                 <Body style={{ fontWeight: 'bold', fontSize: 13, marginBottom: 4 }}>{resolveEmergencyTokens(answer.questionText)}</Body>
                                                                                 <View style={{ marginTop: 8, padding: 10, backgroundColor: isCritico ? 'rgba(211, 47, 47, 0.1)' : 'rgba(255, 179, 0, 0.1)', borderRadius: 8 }}>
-                                                                                    <Small style={{ color: isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning, fontWeight: 'bold' }}>
-                                                                                        AÇÃO: {resolveEmergencyTokens(answer.checkAction)}
+                                                                                    <Small style={{ color: isCritico ? Neo.colors.feedback.error : Neo.colors.feedback.warning, fontWeight: 'bold' }}>{t('telas.ModoPreventivoScreenNeo.acao', 'AÇÃO: ')}{resolveEmergencyTokens(answer.checkAction)}
                                                                                     </Small>
                                                                                 </View>
                                                                             </View>

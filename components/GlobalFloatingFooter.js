@@ -418,7 +418,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
           accessibilityRole="button"
         >
           <NeoIcon name="Call" size={26} color="#FFF" variant="Bold" />
-          <Text style={styles.sosLabel}>SOS</Text>
+          <Text style={styles.sosLabel}>{t('telas.GlobalFloatingFooter.sos', 'SOS')}</Text>
         </TouchableOpacity>
       </Animated.View>
     </View>

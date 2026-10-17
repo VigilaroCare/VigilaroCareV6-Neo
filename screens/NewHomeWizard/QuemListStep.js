@@ -10,6 +10,7 @@
  * Estado do checkbox vem do ProfileService.isProfileLinkedToActiveResidence.
  * Tap → link/unlink na residência ATIVA, sem deletar o perfil global.
  */
+import { tx } from '../../utils/txFixo';
 import { View, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body, Caption, Small } from '../../components/NeoTypography';
@@ -46,11 +47,9 @@ export default function QuemListStep({
 
     return (
         <ScrollView contentContainerStyle={{ padding: S.lg, paddingBottom: 140 }}>
-            <Caption style={ss.phaseLabel}>PASSO • QUEM</Caption>
-            <H2 style={{ marginBottom: 8 }}>Quem vamos proteger?</H2>
-            <Body style={{ color: C.neutral[700], marginBottom: 24, lineHeight: 21 }}>
-                Marque quem mora ou frequenta esta residência. Você pode adicionar pessoas e pets, e usar os mesmos perfis em outras residências (casa de praia, sítio…).
-            </Body>
+            <Caption style={ss.phaseLabel}>{tx('telas.QuemListStep.passoQuem', 'PASSO • QUEM')}</Caption>
+            <H2 style={{ marginBottom: 8 }}>{tx('telas.QuemListStep.quemVamosProteger', 'Quem vamos proteger?')}</H2>
+            <Body style={{ color: C.neutral[700], marginBottom: 24, lineHeight: 21 }}>{tx('telas.QuemListStep.marqueQuemMoraOuFrequentaEsta', 'Marque quem mora ou frequenta esta residência. Você pode adicionar pessoas e pets, e usar os mesmos perfis em outras residências (casa de praia, sítio…).')}</Body>
 
             {profiles.length > 0 && (
                 <View style={{ gap: 12, marginBottom: 24 }}>
@@ -58,7 +57,7 @@ export default function QuemListStep({
                         const isLinked = linkedSet.has(p.id);
                         const relationLabel = isLinked
                             ? (habitanteSet.has(p.id) ? 'Morador Fixo' : 'Visitante Eventual')
-                            : 'NÃ£o vinculado a esta residÃªncia';
+                            : 'Não vinculado a esta residência';
                         return (
                             <View key={p.id} style={[
                                 ss.profileCard,
@@ -86,7 +85,7 @@ export default function QuemListStep({
                                     }}
                                     accessibilityRole="checkbox"
                                     accessibilityState={{ checked: isLinked }}
-                                    accessibilityLabel={`${p.nome} ${isLinked ? 'mora' : 'não mora'} aqui. Toque para alterar.`}
+                                    accessibilityLabel={`${p.nome} ${isLinked ? 'mora' : tx('telas.QuemListStep.naoMora', 'não mora')} aqui. Toque para alterar.`}
                                 >
                                     {isLinked && (
                                         <NeoIcon name="TickCircle" size={18} color="#FFF" variant="Bold" />
@@ -120,9 +119,7 @@ export default function QuemListStep({
                                                     backgroundColor: habitanteSet.has(p.id) ? C.primary[500] : 'transparent',
                                                 }}
                                             >
-                                                <Small style={{ color: habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>
-                                                    Morador Fixo
-                                                </Small>
+                                                <Small style={{ color: habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>{tx('telas.QuemListStep.moradorFixo', 'Morador Fixo')}</Small>
                                             </TouchableOpacity>
                                             <TouchableOpacity
                                                 onPress={() => onChangeVinculo && onChangeVinculo(p.id, 'frequentador')}
@@ -134,9 +131,7 @@ export default function QuemListStep({
                                                     backgroundColor: !habitanteSet.has(p.id) ? C.primary[500] : 'transparent',
                                                 }}
                                             >
-                                                <Small style={{ color: !habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>
-                                                    Visitante Eventual
-                                                </Small>
+                                                <Small style={{ color: !habitanteSet.has(p.id) ? '#FFF' : C.neutral[600], fontSize: 10, fontWeight: 'bold' }}>{tx('telas.QuemListStep.visitanteEventual', 'Visitante Eventual')}</Small>
                                             </TouchableOpacity>
                                         </View>
                                     )}
@@ -159,20 +154,18 @@ export default function QuemListStep({
 
             {profiles.length === 0 && (
                 <View style={{ paddingVertical: 16, paddingHorizontal: 4, marginBottom: 16 }}>
-                    <Small style={{ color: C.neutral[600], fontStyle: 'italic', textAlign: 'center', lineHeight: 19 }}>
-                        Nenhum perfil ainda. Adicione um morador ou pet abaixo.
-                    </Small>
+                    <Small style={{ color: C.neutral[600], fontStyle: 'italic', textAlign: 'center', lineHeight: 19 }}>{tx('telas.QuemListStep.nenhumPerfilAindaAdicioneUmMorador', 'Nenhum perfil ainda. Adicione um morador ou pet abaixo.')}</Small>
                 </View>
             )}
 
             <View style={{ gap: 12 }}>
                 <TouchableOpacity style={ss.addBtn} onPress={onAddHuman} activeOpacity={0.8}>
                     <NeoIcon name="profile-add" size={24} color={C.primary[600]} />
-                    <Body style={{ color: C.primary[700], fontWeight: '600', marginLeft: 12 }}>Adicionar Morador / Visitante</Body>
+                    <Body style={{ color: C.primary[700], fontWeight: '600', marginLeft: 12 }}>{tx('telas.QuemListStep.adicionarMoradorVisitante', 'Adicionar Morador / Visitante')}</Body>
                 </TouchableOpacity>
                 <TouchableOpacity style={[ss.addBtn, { backgroundColor: '#FFF8E1' }]} onPress={onAddPet} activeOpacity={0.8}>
                     <NeoIcon name="pet" size={24} color="#EF6C00" />
-                    <Body style={{ color: C.categoria.ocre.fill, fontWeight: '600', marginLeft: 12 }}>Adicionar Pet</Body>
+                    <Body style={{ color: C.categoria.ocre.fill, fontWeight: '600', marginLeft: 12 }}>{tx('telas.QuemListStep.adicionarPet', 'Adicionar Pet')}</Body>
                 </TouchableOpacity>
             </View>
         </ScrollView>

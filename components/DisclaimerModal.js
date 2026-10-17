@@ -1,3 +1,4 @@
+import { tx } from '../utils/txFixo';
 import { Modal, View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import NeoIcon from './NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
@@ -16,26 +17,21 @@ export default function DisclaimerModal({ visible, onClose }) {
                 <View style={styles.modalContent}>
                     <View style={styles.header}>
                         <NeoIcon name="Warning2" size={32} color="#F59E0B" />
-                        <Text style={styles.title}>Aviso Importante</Text>
+                        <Text style={styles.title}>{tx('telas.DisclaimerModal.avisoImportante', 'Aviso Importante')}</Text>
                     </View>
 
                     <ScrollView style={styles.body}>
-                        <Text style={styles.text}>
-                            O conteúdo deste aplicativo (Vigilaro Care) tem caráter puramente <Text style={styles.bold}>informativo e educativo</Text>.
+                        <Text style={styles.text}>{tx('telas.DisclaimerModal.oConteudoDesteAplicativoVigilaroCare', 'O conteúdo deste aplicativo (Vigilaro Care) tem caráter puramente ')}<Text style={styles.bold}>{tx('telas.DisclaimerModal.informativoEEducativo', 'informativo e educativo')}</Text>.
                         </Text>
-                        <Text style={styles.text}>
-                            Ele <Text style={styles.bold}>NÃO substitui</Text> o aconselhamento, diagnóstico ou tratamento médico profissional.
+                        <Text style={styles.text}>{tx('telas.DisclaimerModal.ele', 'Ele ')}<Text style={styles.bold}>{tx('telas.DisclaimerModal.naoSubstitui', 'NÃO substitui')}</Text>{tx('telas.DisclaimerModal.oAconselhamentoDiagnosticoOuTratamentoMe', ' o aconselhamento, diagnóstico ou tratamento médico profissional.')}</Text>
+                        <Text style={styles.text}>{tx('telas.DisclaimerModal.emCasoDeEmergenciaMedicaLigue', 'Em caso de emergência médica, ligue imediatamente para o ')}<Text style={styles.bold}>{getMedicalLabel()}</Text>.
                         </Text>
-                        <Text style={styles.text}>
-                            Em caso de emergência médica, ligue imediatamente para o <Text style={styles.bold}>{getMedicalLabel()}</Text>.
-                        </Text>
-                        <Text style={styles.text}>
-                            Para casos de intoxicação, contate o <Text style={styles.bold}>{getPoisonControlLabel()}</Text>.
+                        <Text style={styles.text}>{tx('telas.DisclaimerModal.paraCasosDeIntoxicacaoContateO', 'Para casos de intoxicação, contate o ')}<Text style={styles.bold}>{getPoisonControlLabel()}</Text>.
                         </Text>
                     </ScrollView>
 
                     <TouchableOpacity style={styles.button} onPress={onClose}>
-                        <Text style={styles.buttonText}>Entendi</Text>
+                        <Text style={styles.buttonText}>{tx('telas.DisclaimerModal.entendi', 'Entendi')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

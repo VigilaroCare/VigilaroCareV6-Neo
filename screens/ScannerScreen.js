@@ -232,7 +232,7 @@ export default function ScannerScreen({ navigation, route }) {
         setIsAnalyzing(true);
         analyzePhoto(photoData.uri);
       } catch (error) {
-        NeoAlert.alert("Erro", "Não foi possível capturar a foto.");
+        NeoAlert.alert(t('telas.ScannerScreen.erro', 'Erro'), t('telas.ScannerScreen.naoFoiPossivelCapturarAFoto', 'Não foi possível capturar a foto.'));
         console.error(error);
       }
     }
@@ -253,7 +253,7 @@ export default function ScannerScreen({ navigation, route }) {
       } catch (proxyErr) {
         if (__DEV__) console.error('[Scanner] ❌ Proxy offline:', proxyErr.message);
         NeoAlert.alert(
-          'Servidor indisponível',
+          t('telas.ScannerScreen.servidorIndisponivel', 'Servidor indisponível'),
           'O servidor de análise (proxy) não está acessível.\n\n' +
           'Verifique se o backend proxy está rodando:\n' +
           `📍 ${Config.VIGILARO_PROXY_URL}\n\n` +
@@ -300,12 +300,12 @@ export default function ScannerScreen({ navigation, route }) {
       if (error.name === 'AbortError') {
         NeoAlert.alert(
           'Tempo esgotado',
-          'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes',
+          t('telas.ScannerScreen.aAnaliseDemorouMaisQueO', 'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes'),
         );
       } else if (error.message?.includes('Network') || error.message?.includes('fetch')) {
-        NeoAlert.alert('Sem conexão', 'Verifique sua conexão com a internet e tente novamente.');
+        NeoAlert.alert(t('telas.ScannerScreen.semConexao', 'Sem conexão'), t('telas.ScannerScreen.verifiqueSuaConexaoComAInternet', 'Verifique sua conexão com a internet e tente novamente.'));
       } else {
-        NeoAlert.alert('Erro', 'Falha na análise. Tente novamente.');
+        NeoAlert.alert(t('telas.ScannerScreen.erro2', 'Erro'), t('telas.ScannerScreen.falhaNaAnaliseTenteNovamente', 'Falha na análise. Tente novamente.'));
       }
       AccessibilityInfo.announceForAccessibility(t('scanner.analysisFailed', 'Falha na análise. Tente novamente.'));
       setAnalysisResult(null);
@@ -342,7 +342,7 @@ export default function ScannerScreen({ navigation, route }) {
       if (__DEV__) console.log('[Scanner] ⏭️ URL detectada, mudando para foto do rótulo');
       setCurrentMode('label_scan');
       AccessibilityInfo.announceForAccessibility(t('scanner.barcodeUrlDetected', 'Código lido é um link. Câmera alternada para foto do rótulo.'));
-      NeoAlert.alert('Fotografe o rótulo', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.');
+      NeoAlert.alert(t('telas.ScannerScreen.fotografeORotulo', 'Fotografe o rótulo'), t('telas.ScannerScreen.oCodigoLidoEUmLink', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.'));
       setTimeout(() => setIsAnalyzing(false), 500);
       return;
     }
@@ -375,14 +375,14 @@ export default function ScannerScreen({ navigation, route }) {
 
           // Alerta breve informativo — atribui causa ao fabricante, não ao app
           NeoAlert.alert(
-            'Fotografe o rótulo',
+            t('telas.ScannerScreen.fotografeORotulo2', 'Fotografe o rótulo'),
             `O fabricante deste produto ainda não o cadastrou nas bases de dados públicas mundiais (código ${data}).\n\nMas não se preocupe — fotografe o rótulo e nossa IA analisará os ingredientes e riscos em segundos.`,
-            [{ text: 'Entendi' }],
+            [{ text: t('telas.ScannerScreen.entendi', 'Entendi') }],
           );
       }
     } catch (e) {
       console.warn('Erro ao ler código de barras:', e);
-      NeoAlert.alert('Erro', 'Falha ao buscar dados do produto. Tente novamente.');
+      NeoAlert.alert(t('telas.ScannerScreen.erro3', 'Erro'), t('telas.ScannerScreen.falhaAoBuscarDadosDoProduto', 'Falha ao buscar dados do produto. Tente novamente.'));
     } finally {
       setTimeout(() => setIsAnalyzing(false), 2000);
     }
@@ -532,8 +532,7 @@ export default function ScannerScreen({ navigation, route }) {
           <View style={styles.dragIndicator} />
           
           <Text style={{ fontSize: 22, fontWeight: 'bold', color: colors.neutral[900], marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
-            {analysisResult.analises.length} risco(s) detectado(s)
-          </Text>
+            {analysisResult.analises.length}{t('telas.ScannerScreen.riscoSDetectadoS', ' risco(s) detectado(s)')}</Text>
 
           {/* Identifica a origem do resultado antes da lista: o usuário precisa
               saber que é análise de IA ANTES de agir sobre os riscos. */}

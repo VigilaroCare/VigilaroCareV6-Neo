@@ -23,6 +23,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getMedicalLabel } from '../utils/emergencyTokens';
+import { tx } from '../utils/txFixo';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { H3, Body, Small } from "./NeoTypography";
@@ -105,8 +107,8 @@ export default function MedicalDisclaimerModal({ onAccept, onDismiss }) {
       }
       // Informa o usuário — aceite não foi persistido
       NeoAlert.alert(
-        'Erro ao salvar',
-        'Não foi possível registrar seu aceite. Verifique o armazenamento do dispositivo e tente novamente.',
+        tx('telas.MedicalDisclaimerModal.erroAoSalvar', 'Erro ao salvar'),
+        tx('telas.MedicalDisclaimerModal.naoFoiPossivelRegistrarSeuAceite', 'Não foi possível registrar seu aceite. Verifique o armazenamento do dispositivo e tente novamente.'),
         [{ text: 'OK' }]
       );
     }
@@ -141,9 +143,7 @@ export default function MedicalDisclaimerModal({ onAccept, onDismiss }) {
         <View style={styles.card}>
           <View style={styles.header}>
             <NeoIcon name="Health" size={32} color={Neo.colors.feedback.error} />
-            <H3 style={{ marginLeft: 12, color: Neo.colors.feedback.error }}>
-              Aviso Importante
-            </H3>
+            <H3 style={{ marginLeft: 12, color: Neo.colors.feedback.error }}>{tx('telas.MedicalDisclaimerModal.avisoImportante', 'Aviso Importante')}</H3>
           </View>
 
           <ScrollView
@@ -163,61 +163,42 @@ export default function MedicalDisclaimerModal({ onAccept, onDismiss }) {
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={true}
           >
-            <Body style={{ marginBottom: 16 }}>
-              O Vigilaro Care é uma ferramenta de apoio à prevenção e organização familiar.
-            </Body>
+            <Body style={{ marginBottom: 16 }}>{tx('telas.MedicalDisclaimerModal.oVigilaroCareEUmaFerramenta', 'O Vigilaro Care é uma ferramenta de apoio à prevenção e organização familiar.')}</Body>
 
-            <Body style={{ fontWeight: 'bold', marginBottom: 8 }}>
-              Este aplicativo NÃO fornece aconselhamento médico, diagnóstico ou tratamento.
-            </Body>
+            <Body style={{ fontWeight: 'bold', marginBottom: 8 }}>{tx('telas.MedicalDisclaimerModal.esteAplicativoNaoForneceAconselhamentoMe', 'Este aplicativo NÃO fornece aconselhamento médico, diagnóstico ou tratamento.')}</Body>
 
-            <Body style={{ marginBottom: 16 }}>
-              Todas as informações, conteúdos e materiais disponíveis neste aplicativo têm fins
-              meramente informativos e educativos. As informações não substituem o aconselhamento
-              médico profissional.
-            </Body>
+            <Body style={{ marginBottom: 16 }}>{tx('telas.MedicalDisclaimerModal.todasAsInformacoesConteudosEMateriais', 'Todas as informações, conteúdos e materiais disponíveis neste aplicativo têm fins meramente informativos e educativos. As informações não substituem o aconselhamento médico profissional.')}</Body>
 
-            <Body style={{ marginBottom: 16 }}>
-              Sempre procure o conselho do seu médico ou outro profissional de saúde qualificado
-              para qualquer dúvida que possa ter sobre uma condição médica, tratamento, medicamentos
-              ou procedimentos. Nunca desconsidere o conselho médico profissional por causa de algo
-              que tenha lido neste aplicativo.
-            </Body>
+            <Body style={{ marginBottom: 16 }}>{tx('telas.MedicalDisclaimerModal.sempreProcureOConselhoDoSeu', 'Sempre procure o conselho do seu médico ou outro profissional de saúde qualificado para qualquer dúvida que possa ter sobre uma condição médica, tratamento, medicamentos ou procedimentos. Nunca desconsidere o conselho médico profissional por causa de algo que tenha lido neste aplicativo.')}</Body>
 
-            <Body style={{ marginBottom: 16 }}>
-              As informações sobre primeiros socorros, produtos perigosos, plantas tóxicas e animais
-              peçonhentos são de caráter preventivo e educativo. Em qualquer situação de risco,
-              acione os serviços de emergência imediatamente.
-            </Body>
+            <Body style={{ marginBottom: 16 }}>{tx('telas.MedicalDisclaimerModal.asInformacoesSobrePrimeirosSocorrosProdu', 'As informações sobre primeiros socorros, produtos perigosos, plantas tóxicas e animais peçonhentos são de caráter preventivo e educativo. Em qualquer situação de risco, acione os serviços de emergência imediatamente.')}</Body>
 
             <Body style={{ fontWeight: 'bold', color: Neo.colors.feedback.error, marginBottom: 8 }}>
-              Em caso de emergência médica, ligue imediatamente para o 192 (SAMU) ou dirija-se ao
-              hospital mais próximo.
+              {tx('telas.MedicalDisclaimerModal.emergenciaLigue', {
+                defaultValue: 'Em caso de emergência médica, ligue imediatamente para o {{servico}} ou dirija-se ao hospital mais próximo.',
+                servico: getMedicalLabel(),
+              })}
             </Body>
 
-            <Small style={{ color: Neo.colors.neutral[500], marginBottom: 8 }}>
-              Ao continuar, você confirma que leu e compreendeu este aviso e concorda com nossos
-              Termos de Uso e Política de Privacidade. Versão do aviso: {DISCLAIMER_VERSION}.
+            <Small style={{ color: Neo.colors.neutral[500], marginBottom: 8 }}>{tx('telas.MedicalDisclaimerModal.aoContinuarVoceConfirmaQueLeu', 'Ao continuar, você confirma que leu e compreendeu este aviso e concorda com nossos Termos de Uso e Política de Privacidade. Versão do aviso: ')}{DISCLAIMER_VERSION}.
             </Small>
           </ScrollView>
 
           {/* Indicador de rolagem quando o botão ainda está desabilitado */}
           {!hasScrolledToEnd && (
-            <Small style={styles.scrollHint}>
-              Role até o final para continuar
-            </Small>
+            <Small style={styles.scrollHint}>{tx('telas.MedicalDisclaimerModal.roleAteOFinalParaContinuar', 'Role até o final para continuar')}</Small>
           )}
 
           <TouchableOpacity
             style={[styles.button, !hasScrolledToEnd && styles.buttonDisabled]}
             onPress={handleAccept}
             disabled={!hasScrolledToEnd}
-            accessibilityLabel="Aceitar aviso médico e continuar"
-            accessibilityHint="Disponível após rolar todo o texto do aviso"
+            accessibilityLabel={tx('telas.MedicalDisclaimerModal.aceitarAvisoMedicoEContinuar', 'Aceitar aviso médico e continuar')}
+            accessibilityHint={tx('telas.MedicalDisclaimerModal.disponivelAposRolarTodoOTexto', 'Disponível após rolar todo o texto do aviso')}
             accessibilityState={{ disabled: !hasScrolledToEnd }}
           >
             <Body style={styles.buttonText}>
-              {hasScrolledToEnd ? 'Entendi e Concordo' : 'Role para continuar'}
+              {hasScrolledToEnd ? tx('telas.MedicalDisclaimerModal.entendiEConcordo', 'Entendi e Concordo') : tx('telas.MedicalDisclaimerModal.roleParaContinuar', 'Role para continuar')}
             </Body>
           </TouchableOpacity>
         </View>

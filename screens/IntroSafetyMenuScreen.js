@@ -48,30 +48,18 @@ export default function IntroSafetyMenuScreen({ navigation }) {
                     showsVerticalScrollIndicator={false}
                 >
                     <View style={s.textContainer}>
-                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
-                            Introdução à Segurança
-                        </Text>
-                        <Text style={[s.bodyText, { color: textBody }]}>
-                            Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família. A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa.
-                        </Text>
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>{t('telas.IntroSafetyMenuScreen.introducaoASeguranca', 'Introdução à Segurança')}</Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>{t('telas.IntroSafetyMenuScreen.segurancaDomesticaNaoEAcidenteE', 'Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família. A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa.')}</Text>
                         
                         <View style={s.divider} />
 
-                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
-                            Metodologia 3D
-                        </Text>
-                        <Text style={[s.bodyText, { color: textBody }]}>
-                            A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso.
-                        </Text>
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>{t('telas.IntroSafetyMenuScreen.metodologia3d', 'Metodologia 3D')}</Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>{t('telas.IntroSafetyMenuScreen.aMetodologia3dDefineAcoesPara', 'A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso.')}</Text>
 
                         <View style={s.divider} />
 
-                        <Text style={[s.sectionTitle, { color: textPrimary }]}>
-                            Quase Acidentes
-                        </Text>
-                        <Text style={[s.bodyText, { color: textBody }]}>
-                            Os “quase acidentes”, e também os acidentes sem ferimentos ou danos materiais, não podem ser ignorados, uma vez que eles são “avisos” do que pode ou, provavelmente, irá acontecer se os atos e condições inseguras forem ignorados. Lembre-se: um acidente acontece, mais cedo ou mais tarde, quando tais “avisos” são ignorados.
-                        </Text>
+                        <Text style={[s.sectionTitle, { color: textPrimary }]}>{t('telas.IntroSafetyMenuScreen.quaseAcidentes', 'Quase Acidentes')}</Text>
+                        <Text style={[s.bodyText, { color: textBody }]}>{t('telas.IntroSafetyMenuScreen.osQuaseAcidentesETambemOs', 'Os “quase acidentes”, e também os acidentes sem ferimentos ou danos materiais, não podem ser ignorados, uma vez que eles são “avisos” do que pode ou, provavelmente, irá acontecer se os atos e condições inseguras forem ignorados. Lembre-se: um acidente acontece, mais cedo ou mais tarde, quando tais “avisos” são ignorados.')}</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>

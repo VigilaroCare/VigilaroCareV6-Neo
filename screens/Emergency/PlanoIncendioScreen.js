@@ -164,15 +164,13 @@ export default function PlanoIncendioScreen({ navigation }) {
           <View style={[s.alertCard, { backgroundColor: '#FFF7ED', borderColor: themeColors.categoria.ocre.tint }]}>{/* TODO: map #FFF7ED/#FFEDD5 to DS token (amber-50/100 tints) */}
             <NeoIcon name="Warning2" size={22} color={themeColors.categoria.ocre.fill} variant="Bold" />
             <Text style={s.alertText}>
-              <Text style={{ fontWeight: '800' }}>{t('headersFirst.critical', 'CRÍTICO:')} </Text>
-              Você tem menos de 3 minutos para sair em um incêndio. Ter um plano pode salvar sua família.
-            </Text>
+              <Text style={{ fontWeight: '800' }}>{t('headersFirst.critical', 'CRÍTICO:')} </Text>{t('telas.PlanoIncendioScreen.voceTemMenosDe3Minutos', 'Você tem menos de 3 minutos para sair em um incêndio. Ter um plano pode salvar sua família.')}</Text>
           </View>
 
           {/* STATS */}
           <NeoCard variant="elevated" style={s.statsCard}>
             <View style={s.statItem}>
-              <Text style={s.statNumber}>3min</Text>
+              <Text style={s.statNumber}>{t('telas.PlanoIncendioScreen.3min', '3min')}</Text>
               <Text style={[s.statLabel, { color: textBody }]}>
                 {t('headersFirst.tempoParaEvacuar', 'Tempo para evacuar')}
               </Text>
@@ -209,11 +207,7 @@ export default function PlanoIncendioScreen({ navigation }) {
               <Text style={[s.infoTitle, { color: Neo.colors.secondary[500] }]}>
                 {t('headersFirst.prevenO3DAplicada', 'Prevenção 3D aplicada')}
               </Text>
-              <Text style={[s.infoText, { color: Neo.colors.secondary[500] }]}>
-                • DIÁRIA: verificar extintores{'\n'}
-                • DINÂMICA: atualizar plano{'\n'}
-                • DURADOURA: treinar regularmente
-              </Text>
+              <Text style={[s.infoText, { color: Neo.colors.secondary[500] }]}>{t('telas.PlanoIncendioScreen.diariaVerificarExtintores', '• DIÁRIA: verificar extintores')}{'\n'}{t('telas.PlanoIncendioScreen.dinamicaAtualizarPlano', '• DINÂMICA: atualizar plano')}{'\n'}{t('telas.PlanoIncendioScreen.duradouraTreinarRegularmente', '• DURADOURA: treinar regularmente')}</Text>
             </View>
           </View>
         </View>

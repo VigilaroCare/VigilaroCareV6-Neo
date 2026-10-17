@@ -6,6 +6,7 @@
  * Executa a validação completa do @vigilaro_data e exibe o relatório.
  */
 
+import { tx } from '../../utils/txFixo';
 import { useState } from "react";
 import { View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -82,8 +83,8 @@ export default function DataHealthScreen({ navigation }) {
                         <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
                     </TouchableOpacity>
                     <View>
-                        <H2>Saúde dos Dados</H2>
-                        <Caption>Diagnóstico de integridade do @vigilaro_data</Caption>
+                        <H2>{tx('telas.DataHealthScreen.saudeDosDados', 'Saúde dos Dados')}</H2>
+                        <Caption>{tx('telas.DataHealthScreen.diagnosticoDeIntegridadeDoVigilaroData', 'Diagnóstico de integridade do @vigilaro_data')}</Caption>
                     </View>
                 </View>
 
@@ -107,7 +108,7 @@ export default function DataHealthScreen({ navigation }) {
                             {loading ? (
                                 <ActivityIndicator color={Neo.colors.neutral.white} />
                             ) : (
-                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold', fontSize: 16 }}>Executar Diagnóstico</Body>
+                                <Body style={{ color: Neo.colors.neutral.white, fontWeight: 'bold', fontSize: 16 }}>{tx('telas.DataHealthScreen.executarDiagnostico', 'Executar Diagnóstico')}</Body>
                             )}
                         </TouchableOpacity>
                     )}
@@ -143,7 +144,7 @@ export default function DataHealthScreen({ navigation }) {
                             </NeoCard>
 
                             {/* Stats Grid */}
-                            <H3 style={{ marginBottom: 12 }}>Estatísticas</H3>
+                            <H3 style={{ marginBottom: 12 }}>{tx('telas.DataHealthScreen.estatisticas', 'Estatísticas')}</H3>
                             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
                                 {[
                                     { label: 'Perfis', value: report.stats.totalPerfis, color: Neo.colors.primary[500] },
@@ -167,7 +168,7 @@ export default function DataHealthScreen({ navigation }) {
                             {report.issues.length > 0 && (
                                 <>
                                     <H3 style={{ marginBottom: 12 }}>
-                                        {report.issues.length} Problema{report.issues.length > 1 ? 's' : ''} Encontrado{report.issues.length > 1 ? 's' : ''}
+                                        {report.issues.length}{tx('telas.DataHealthScreen.problema', ' Problema')}{report.issues.length > 1 ? 's' : ''}{tx('telas.DataHealthScreen.encontrado', ' Encontrado')}{report.issues.length > 1 ? 's' : ''}
                                     </H3>
                                     {report.issues.map((issue, idx) => (
                                         <NeoCard key={idx} variant="elevated" style={{ padding: 14, marginBottom: 10 }}>
@@ -192,10 +193,8 @@ export default function DataHealthScreen({ navigation }) {
                             {report.issues.length === 0 && (
                                 <NeoCard variant="elevated" style={{ padding: 24, alignItems: 'center' }}>
                                     <NeoIcon name="TickCircle" size={48} color={Neo.colors.feedback.success} variant="Bold" />
-                                    <H3 style={{ marginTop: 12, color: Neo.colors.feedback.success }}>Tudo Íntegro!</H3>
-                                    <Caption style={{ textAlign: 'center', marginTop: 4 }}>
-                                        Nenhuma inconsistência encontrada nos dados.
-                                    </Caption>
+                                    <H3 style={{ marginTop: 12, color: Neo.colors.feedback.success }}>{tx('telas.DataHealthScreen.tudoIntegro', 'Tudo Íntegro!')}</H3>
+                                    <Caption style={{ textAlign: 'center', marginTop: 4 }}>{tx('telas.DataHealthScreen.nenhumaInconsistenciaEncontradaNosDados', 'Nenhuma inconsistência encontrada nos dados.')}</Caption>
                                 </NeoCard>
                             )}
 
@@ -211,7 +210,7 @@ export default function DataHealthScreen({ navigation }) {
                                     alignItems: 'center',
                                 }}
                             >
-                                <Body style={{ color: Neo.colors.primary[500], fontWeight: '600' }}>Executar Novamente</Body>
+                                <Body style={{ color: Neo.colors.primary[500], fontWeight: '600' }}>{tx('telas.DataHealthScreen.executarNovamente', 'Executar Novamente')}</Body>
                             </TouchableOpacity>
                         </>
                     )}

@@ -84,7 +84,7 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                 </TouchableOpacity>
                 <View style={{ flex: 1 }}>
                     <H1 style={styles.title}>{t('headersFirst.relatRioInstitucional', 'Relatório')}</H1>
-                    <Caption style={styles.subtitle}>Vistoria asilo</Caption>
+                    <Caption style={styles.subtitle}>{t('telas.VistoriaAsiloReportScreen.vistoriaAsilo', 'Vistoria asilo')}</Caption>
                 </View>
                 <TouchableOpacity
                     onPress={handleShare}
@@ -117,16 +117,14 @@ export default function VistoriaAsiloReportScreen({ navigation, route }) {
                         <Small style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.gERAL', 'GERAL')}</Small>
                         <H1 style={{ marginTop: 8 }}>{pontuacao.percentual}%</H1>
                         <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
-                            {pontuacao.marcados}/{pontuacao.total} conformes
-                        </Caption>
+                            {pontuacao.marcados}/{pontuacao.total}{t('telas.VistoriaAsiloReportScreen.conformes', ' conformes')}</Caption>
                     </NeoCard>
 
                     <NeoCard variant="elevated" style={[styles.statCard, { flex: 1 }]}>
                         <Small style={{ color: Neo.colors.neutral[600] }}>{t('headersFirst.cRTICOS', 'CRÍTICOS')}</Small>
                         <H1 style={{ marginTop: 8, color: nivelSeguranca.cor }}>{pontuacao.criticos_percentual}%</H1>
                         <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
-                            {pontuacao.criticos_marcados}/{pontuacao.criticos_total} conformes
-                        </Caption>
+                            {pontuacao.criticos_marcados}/{pontuacao.criticos_total}{t('telas.VistoriaAsiloReportScreen.conformes2', ' conformes')}</Caption>
                     </NeoCard>
                 </View>
 

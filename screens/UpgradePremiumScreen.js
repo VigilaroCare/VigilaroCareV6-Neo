@@ -6,6 +6,7 @@
  * Regra 4: Nenhum preço hardcoded — preços sempre vêm da API da loja via RevenueCat.
  */
 
+import { tx } from '../utils/txFixo';
 import { useState, useEffect, useMemo, useCallback } from "react";
 import {
   View,
@@ -51,10 +52,10 @@ const openURL = async (url) => {
     if (supported) {
       await Linking.openURL(url);
     } else {
-      NeoAlert.alert('Erro', 'Não foi possível abrir este link.');
+      NeoAlert.alert(tx('telas.UpgradePremiumScreen.erro', 'Erro'), tx('telas.UpgradePremiumScreen.naoFoiPossivelAbrirEsteLink', 'Não foi possível abrir este link.'));
     }
   } catch {
-    NeoAlert.alert('Erro', 'Não foi possível abrir este link.');
+    NeoAlert.alert(tx('telas.UpgradePremiumScreen.erro2', 'Erro'), tx('telas.UpgradePremiumScreen.naoFoiPossivelAbrirEsteLink2', 'Não foi possível abrir este link.'));
   }
 };
 

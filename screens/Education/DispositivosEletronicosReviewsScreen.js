@@ -143,8 +143,7 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                {ITEMS.length} itens • Toque para ver o review completo
-                            </Text>
+                                {ITEMS.length}{t('telas.DispositivosEletronicosReviewsScreen.itensToqueParaVerOReview', ' itens • Toque para ver o review completo')}</Text>
                         </View>
                     </FadeInView>
 
@@ -178,7 +177,7 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                                 <View style={{ flex: 1, paddingRight: 8 }}>
                                                     <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.nome}</Text>
-                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>Uso {item.frequenciaUso.toLowerCase()}</Text>
+                                                    <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{t('telas.DispositivosEletronicosReviewsScreen.uso', 'Uso ')}{item.frequenciaUso.toLowerCase()}</Text>
                                                 </View>
                                                 <View style={[styles.toxicBadge, { backgroundColor: riskColor + '15' }]}>
                                                     <Text style={[styles.toxicText, { color: riskColor }]}>{riskLabel}</Text>

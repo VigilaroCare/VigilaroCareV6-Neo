@@ -57,7 +57,7 @@ export default function ProdutoScannerScreen({ route, navigation }) {
           <Text style={styles.produtoCategoria}>{t_field(produto, 'categoria')}</Text>
           <View style={styles.nivelBadge}>
             <NeoIcon name={nivelInfo.icone || 'Circle'} size={14} color={Neo.colors.neutral.white} variant="Bold" style={{ marginRight: 6 }} />
-            <Text style={styles.nivelTexto}>PERIGO: {produto.perigo.toUpperCase()}</Text>
+            <Text style={styles.nivelTexto}>{t('telas.ProdutoScannerScreen.perigo', 'PERIGO: ')}{produto.perigo.toUpperCase()}</Text>
           </View>
         </View>
 

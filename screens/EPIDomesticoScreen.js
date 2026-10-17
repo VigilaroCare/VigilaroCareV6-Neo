@@ -131,8 +131,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                {categories.length} {categories.length === 1 ? 'EPI' : 'EPIs'} • Toque para ver detalhes
-                            </Text>
+                                {categories.length} {categories.length === 1 ? 'EPI' : 'EPIs'}{t('telas.EPIDomesticoScreen.toqueParaVerDetalhes', ' • Toque para ver detalhes')}</Text>
                         </View>
                     </FadeInView>
 

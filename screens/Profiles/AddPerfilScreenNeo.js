@@ -580,9 +580,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 {/* PROGRESS BAR HEADER */}
                 <View style={styles.progressContainer}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                        <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[800] }}>
-                            Complete seu Perfil de Segurança
-                        </Body>
+                        <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[800] }}>{t('telas.AddPerfilScreenNeo.completeSeuPerfilDeSeguranca', 'Complete seu Perfil de Segurança')}</Body>
                         <Body style={{ fontWeight: '900', color: Neo.colors.primary[600] }}>
                             {progress}%
                         </Body>
@@ -590,9 +588,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                     <View style={styles.progressBarBg}>
                         <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
                     </View>
-                    <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>
-                        Ajude-nos a fornecer recomendações de segurança personalizadas
-                    </Caption>
+                    <Caption style={{ color: Neo.colors.neutral[500], marginTop: 4 }}>{t('telas.AddPerfilScreenNeo.ajudeNosAFornecerRecomendacoesDe', 'Ajude-nos a fornecer recomendações de segurança personalizadas')}</Caption>
                 </View>
 
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
@@ -625,7 +621,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         {/* ACCORDION 1: INFORMAÇÕES PESSOAIS */}
                         <AccordionSection
                             sectionKey="personal"
-                            title={tipo === 'pet' ? 'Ficha do Pet' : 'Informações Pessoais'}
+                            title={tipo === 'pet' ? t('telas.AddPerfilScreenNeo.fichaDoPet', 'Ficha do Pet') : t('telas.AddPerfilScreenNeo.informacoesPessoais', 'Informações Pessoais')}
                             icon={tipo === 'pet' ? 'Pet' : 'User'}
                             isExpanded={expanded.personal}
                             onToggle={toggleAccordion}
@@ -700,7 +696,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                                 ]}
                                             >
                                                 <Small style={{ color: isActive ? Neo.colors.primary[700] : Neo.colors.neutral[600], fontWeight: '600' }}>
-                                                    {tipo === 'pet' ? (opt === 'Masculino' ? 'Macho' : 'Fêmea') : opt}
+                                                    {tipo === 'pet' ? (opt === 'Masculino' ? 'Macho' : t('telas.AddPerfilScreenNeo.femea', 'Fêmea')) : opt}
                                                 </Small>
                                             </TouchableOpacity>
                                         );
@@ -769,10 +765,10 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                             {/* Necessidades de Acessibilidade / Condições Especiais do Pet */}
                             <View style={{ marginTop: 12 }}>
                                 <Small style={styles.fieldLabel}>
-                                    {tipo === 'pet' ? 'Condições Especiais do Pet' : 'Necessidades de Acessibilidade'}
+                                    {tipo === 'pet' ? t('telas.AddPerfilScreenNeo.condicoesEspeciaisDoPet', 'Condições Especiais do Pet') : t('telas.AddPerfilScreenNeo.necessidadesDeAcessibilidade', 'Necessidades de Acessibilidade')}
                                 </Small>
                                 <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 10 }}>
-                                    {tipo === 'pet' ? 'Selecione as condições de saúde do pet' : 'Selecione para personalizar as recomendações de segurança'}
+                                    {tipo === 'pet' ? t('telas.AddPerfilScreenNeo.selecioneAsCondicoesDeSaudeDo', 'Selecione as condições de saúde do pet') : t('telas.AddPerfilScreenNeo.selecioneParaPersonalizarAsRecomendacoes', 'Selecione para personalizar as recomendações de segurança')}
                                 </Caption>
                                 <View style={styles.chipGrid}>
                                     {(tipo === 'pet' ? PET_CONDITIONS : ACCESSIBILITY_NEEDS).map((need) => {
@@ -801,11 +797,11 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                             {/* Cômodos Frequentados (Briefing Vivo) */}
                             {availableRooms.length > 0 && (
                                 <View style={{ marginTop: 20 }}>
-                                    <Small style={styles.fieldLabel}>
-                                        CÔMODOS FREQUENTADOS
-                                    </Small>
+                                    <Small style={styles.fieldLabel}>{t('telas.AddPerfilScreenNeo.comodosFrequentados', 'CÔMODOS FREQUENTADOS')}</Small>
                                     <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 10 }}>
-                                        Selecione os cômodos que este {tipo === 'pet' ? 'pet frequenta' : 'residente usa'} no dia a dia para cruzarmos os dados de segurança.
+                                        {tipo === 'pet'
+                                            ? t('telas.AddPerfilScreenNeo.selecioneComodosPet', 'Selecione os cômodos que este pet frequenta no dia a dia para cruzarmos os dados de segurança.')
+                                            : t('telas.AddPerfilScreenNeo.selecioneComodosResidente', 'Selecione os cômodos que este residente usa no dia a dia para cruzarmos os dados de segurança.')}
                                     </Caption>
                                     <View style={styles.chipGrid}>
                                         {availableRooms.map((room) => {
@@ -841,7 +837,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         {tipo === 'humano' && (
                             <AccordionSection
                                 sectionKey="medical"
-                                title="Condições Médicas"
+                                title={t('telas.AddPerfilScreenNeo.condicoesMedicas', 'Condições Médicas')}
                                 icon="medical"
                                 isExpanded={expanded.medical}
                                 onToggle={toggleAccordion}
@@ -872,7 +868,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                     <NeoIcon name="SearchNormal1" size={18} color={Neo.colors.neutral[400]} />
                                     <TextInput
                                         style={styles.searchInput}
-                                        placeholder="Buscar Condições Médicas..."
+                                        placeholder={t('telas.AddPerfilScreenNeo.buscarCondicoesMedicas', 'Buscar Condições Médicas...')}
                                         value={searchCondition}
                                         onChangeText={setSearchCondition}
                                     />
@@ -902,19 +898,17 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                         );
                                     })}
                                     {filteredConditions.length === 0 && (
-                                        <Caption style={{ color: Neo.colors.neutral[400], fontStyle: 'italic', paddingVertical: 10 }}>
-                                            Nenhuma condição encontrada. Adicione abaixo.
-                                        </Caption>
+                                        <Caption style={{ color: Neo.colors.neutral[400], fontStyle: 'italic', paddingVertical: 10 }}>{t('telas.AddPerfilScreenNeo.nenhumaCondicaoEncontradaAdicioneAbaixo', 'Nenhuma condição encontrada. Adicione abaixo.')}</Caption>
                                     )}
                                 </View>
 
                                 {/* Adicionar Condição Customizada */}
                                 <View style={{ marginTop: 12 }}>
-                                    <Small style={styles.fieldLabel}>Adicionar Condição Personalizada</Small>
+                                    <Small style={styles.fieldLabel}>{t('telas.AddPerfilScreenNeo.adicionarCondicaoPersonalizada', 'Adicionar Condição Personalizada')}</Small>
                                     <View style={styles.customAddContainer}>
                                         <TextInput
                                             style={styles.customAddInput}
-                                            placeholder="Nome da condição médica..."
+                                            placeholder={t('telas.AddPerfilScreenNeo.nomeDaCondicaoMedica', 'Nome da condição médica...')}
                                             value={customCondition}
                                             onChangeText={setCustomCondition}
                                         />
@@ -927,7 +921,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 {/* Exibir condições personalizadas selecionadas */}
                                 {condicoes.filter(c => !MEDICAL_CONDITIONS.some(mc => mc.label === c)).length > 0 && (
                                     <View style={{ marginTop: 10 }}>
-                                        <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 6 }}>Customizadas selecionadas:</Caption>
+                                        <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 6 }}>{t('telas.AddPerfilScreenNeo.customizadasSelecionadas', 'Customizadas selecionadas:')}</Caption>
                                         <View style={styles.chipGrid}>
                                             {condicoes.filter(c => !MEDICAL_CONDITIONS.some(mc => mc.label === c)).map((c) => (
                                                 <TouchableOpacity
@@ -946,9 +940,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 {/* Informational Blue Note Card */}
                                 <View style={styles.blueCard}>
                                     <NeoIcon name="InfoCircle" size={18} color={Neo.colors.primary[600]} />
-                                    <Caption style={styles.blueCardText}>
-                                        Essas informações nos ajudam a fornecer recomendações de segurança e primeiros socorros personalizadas.
-                                    </Caption>
+                                    <Caption style={styles.blueCardText}>{t('telas.AddPerfilScreenNeo.essasInformacoesNosAjudamAFornecer', 'Essas informações nos ajudam a fornecer recomendações de segurança e primeiros socorros personalizadas.')}</Caption>
                                 </View>
                             </AccordionSection>
                         )}
@@ -962,9 +954,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 isExpanded={expanded.allergies}
                                 onToggle={toggleAccordion}
                             >
-                                <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 12 }}>
-                                    Selecione todas as alergias conhecidas:
-                                </Caption>
+                                <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 12 }}>{t('telas.AddPerfilScreenNeo.selecioneTodasAsAlergiasConhecidas', 'Selecione todas as alergias conhecidas:')}</Caption>
 
                                 {/* Categorias com chips contendo ícones */}
                                 {ALLERGY_CATEGORIES.map((cat) => (
@@ -999,11 +989,11 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
                                 {/* Adicionar Alergia Customizada */}
                                 <View style={{ marginTop: 12 }}>
-                                    <Small style={styles.fieldLabel}>Adicionar Alergia Personalizada</Small>
+                                    <Small style={styles.fieldLabel}>{t('telas.AddPerfilScreenNeo.adicionarAlergiaPersonalizada', 'Adicionar Alergia Personalizada')}</Small>
                                     <View style={styles.customAddContainer}>
                                         <TextInput
                                             style={styles.customAddInput}
-                                            placeholder="Nome do alérgeno..."
+                                            placeholder={t('telas.AddPerfilScreenNeo.nomeDoAlergeno', 'Nome do alérgeno...')}
                                             value={customAllergy}
                                             onChangeText={setCustomAllergy}
                                         />
@@ -1016,7 +1006,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 {/* Exibir alergias personalizadas selecionadas */}
                                 {alergias.filter(a => !ALLERGY_CATEGORIES.some(cat => cat.items.some(i => i.label === a))).length > 0 && (
                                     <View style={{ marginTop: 10 }}>
-                                        <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 6 }}>Customizadas selecionadas:</Caption>
+                                        <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 6 }}>{t('telas.AddPerfilScreenNeo.customizadasSelecionadas2', 'Customizadas selecionadas:')}</Caption>
                                         <View style={styles.chipGrid}>
                                             {alergias.filter(a => !ALLERGY_CATEGORIES.some(cat => cat.items.some(i => i.label === a))).map((a) => (
                                                 <TouchableOpacity
@@ -1035,9 +1025,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 {/* Red Warning Card */}
                                 <View style={styles.redCard}>
                                     <NeoIcon name="Warning2" size={18} color={Neo.colors.feedback.error} />
-                                    <Caption style={styles.redCardText}>
-                                        Informações de Emergência: Estes dados de alergia serão compartilhados com os socorristas de emergência, se necessário.
-                                    </Caption>
+                                    <Caption style={styles.redCardText}>{t('telas.AddPerfilScreenNeo.informacoesDeEmergenciaEstesDadosDe', 'Informações de Emergência: Estes dados de alergia serão compartilhados com os socorristas de emergência, se necessário.')}</Caption>
                                 </View>
                             </AccordionSection>
                         )}
@@ -1046,14 +1034,12 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         {tipo === 'humano' && (
                             <AccordionSection
                                 sectionKey="medications"
-                                title="Medicamentos em Uso"
+                                title={t('telas.AddPerfilScreenNeo.medicamentosEmUso', 'Medicamentos em Uso')}
                                 icon="Task"
                                 isExpanded={expanded.medications}
                                 onToggle={toggleAccordion}
                             >
-                                <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 12 }}>
-                                    Liste os medicamentos de uso diário ou recorrente:
-                                </Caption>
+                                <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 12 }}>{t('telas.AddPerfilScreenNeo.listeOsMedicamentosDeUsoDiario', 'Liste os medicamentos de uso diário ou recorrente:')}</Caption>
 
                                 {/* Lista de Medicamentos Cadastrados */}
                                 {medicamentosEmUso.map((med, idx) => (
@@ -1070,11 +1056,11 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
                                 {/* Entrada de Medicamento */}
                                 <View style={{ marginTop: 12 }}>
-                                    <Small style={styles.fieldLabel}>Adicionar Medicamento</Small>
+                                    <Small style={styles.fieldLabel}>{t('telas.AddPerfilScreenNeo.adicionarMedicamento', 'Adicionar Medicamento')}</Small>
                                     <View style={styles.customAddContainer}>
                                         <TextInput
                                             style={styles.customAddInput}
-                                            placeholder="Nome do medicamento e dosagem..."
+                                            placeholder={t('telas.AddPerfilScreenNeo.nomeDoMedicamentoEDosagem', 'Nome do medicamento e dosagem...')}
                                             value={customMedication}
                                             onChangeText={setCustomMedication}
                                         />
@@ -1089,7 +1075,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                         {/* ACCORDION 5: CONTATOS DE EMERGÊNCIA */}
                         <AccordionSection
                             sectionKey="contacts"
-                            title="Rede de Apoio (SOS)"
+                            title={t('telas.AddPerfilScreenNeo.redeDeApoioSos', 'Rede de Apoio (SOS)')}
                             icon="Profile2User"
                             isExpanded={expanded.contacts}
                             onToggle={toggleAccordion}
@@ -1153,9 +1139,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                             <View style={styles.requiredBanner}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                                     <NeoIcon name="InfoCircle" size={18} color={Neo.colors.primary[700]} />
-                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[800] }}>
-                                        Informações Obrigatórias
-                                    </Body>
+                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[800] }}>{t('telas.AddPerfilScreenNeo.informacoesObrigatorias', 'Informações Obrigatórias')}</Body>
                                 </View>
 
                                 {/* Check 1: Dados Pessoais (Nome e Idade) */}
@@ -1164,9 +1148,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                         styles.dotIndicator,
                                         { backgroundColor: (hasName && hasAge) ? Neo.colors.feedback.success : Neo.colors.feedback.error }
                                     ]} />
-                                    <Small style={{ color: Neo.colors.neutral[700] }}>
-                                        Informações Pessoais (Nome e Idade)
-                                    </Small>
+                                    <Small style={{ color: Neo.colors.neutral[700] }}>{t('telas.AddPerfilScreenNeo.informacoesPessoaisNomeEIdade', 'Informações Pessoais (Nome e Idade)')}</Small>
                                 </View>
 
                                 {/* Check 2: Contato de Emergência */}
@@ -1175,9 +1157,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                         styles.dotIndicator,
                                         { backgroundColor: hasContact ? Neo.colors.feedback.success : Neo.colors.feedback.error }
                                     ]} />
-                                    <Small style={{ color: Neo.colors.neutral[700] }}>
-                                        Pelo menos um Contato de Emergência
-                                    </Small>
+                                    <Small style={{ color: Neo.colors.neutral[700] }}>{t('telas.AddPerfilScreenNeo.peloMenosUmContatoDeEmergencia', 'Pelo menos um Contato de Emergência')}</Small>
                                 </View>
                             </View>
 
@@ -1191,9 +1171,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                 ]}
                             >
                                 <NeoIcon name="TickCircle" size={20} color="#FFF" />
-                                <H3 style={{ color: Neo.colors.neutral.white, fontWeight: 'bold', marginLeft: 8 }}>
-                                    Salvar Perfil
-                                </H3>
+                                <H3 style={{ color: Neo.colors.neutral.white, fontWeight: 'bold', marginLeft: 8 }}>{t('telas.AddPerfilScreenNeo.salvarPerfil', 'Salvar Perfil')}</H3>
                             </TouchableOpacity>
                         </View>
 

@@ -59,7 +59,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
             <NeoHorizontalCard
                 key={`sec-${index}`}
                 title={t_field(section, 'title')}
-                description={t_field(section, 'content') || t_field(section, 'description') || 'Toque para saber mais.'}
+                description={t_field(section, 'content') || t_field(section, 'description') || t('telas.GenericCategoryScreen.toqueParaSaberMais', 'Toque para saber mais.')}
                 imageUrl={section.imagemUrl}
                 iconName={section.icon}
                 emoji={section.emoji}

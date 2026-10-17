@@ -7,6 +7,7 @@
  * Acessado a partir do card do lembrete na MedicationRemindersScreen.
  */
 
+import { tx } from '../../utils/txFixo';
 import { useState, useCallback } from "react";
 import {
     View, Text, StyleSheet, ScrollView,
@@ -46,7 +47,7 @@ function AderenciaBar({ percentual, label, dias }) {
             <View style={hStyles.barTrack}>
                 <View style={[hStyles.barFill, { width: `${pct}%`, backgroundColor: cor }]} />
             </View>
-            <Small style={hStyles.aderenciaSub}>{dias} dias analisados</Small>
+            <Small style={hStyles.aderenciaSub}>{dias}{tx('telas.MedicationDoseHistoryScreen.diasAnalisados', ' dias analisados')}</Small>
         </View>
     );
 }
@@ -96,18 +97,18 @@ export default function MedicationDoseHistoryScreen() {
             ]);
             setHistorico(h); setStats7(s7); setStats30(s30);
         } catch {
-            Alert.alert('Erro', 'Não foi possível registrar a dose.');
+            Alert.alert(tx('telas.MedicationDoseHistoryScreen.erro', 'Erro'), tx('telas.MedicationDoseHistoryScreen.naoFoiPossivelRegistrarADose', 'Não foi possível registrar a dose.'));
         }
     };
 
     const handleRemoverEntrada = (entradaId) => {
         Alert.alert(
-            'Remover registro',
-            'Deseja remover este registro do histórico?',
+            tx('telas.MedicationDoseHistoryScreen.removerRegistro', 'Remover registro'),
+            tx('telas.MedicationDoseHistoryScreen.desejaRemoverEsteRegistroDoHistorico', 'Deseja remover este registro do histórico?'),
             [
-                { text: 'Cancelar', style: 'cancel' },
+                { text: tx('telas.MedicationDoseHistoryScreen.cancelar', 'Cancelar'), style: 'cancel' },
                 {
-                    text: 'Remover',
+                    text: tx('telas.MedicationDoseHistoryScreen.remover', 'Remover'),
                     style: 'destructive',
                     onPress: async () => {
                         // Filtra localmente e salva
@@ -135,7 +136,7 @@ export default function MedicationDoseHistoryScreen() {
         return (
             <AppBackground>
                 <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Body>Nenhum lembrete selecionado.</Body>
+                    <Body>{tx('telas.MedicationDoseHistoryScreen.nenhumLembreteSelecionado', 'Nenhum lembrete selecionado.')}</Body>
                 </SafeAreaView>
             </AppBackground>
         );
@@ -151,13 +152,13 @@ export default function MedicationDoseHistoryScreen() {
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                         style={hStyles.backBtn}
-                        accessibilityLabel="Voltar"
+                        accessibilityLabel={tx('telas.MedicationDoseHistoryScreen.voltar', 'Voltar')}
                     >
                         <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <H2 style={hStyles.headerTitle} numberOfLines={1}>{reminder.medicamentoNome}</H2>
-                        <Body style={hStyles.headerSub}>Histórico de doses</Body>
+                        <Body style={hStyles.headerSub}>{tx('telas.MedicationDoseHistoryScreen.historicoDeDoses', 'Histórico de doses')}</Body>
                     </View>
                 </View>
 
@@ -178,19 +179,19 @@ export default function MedicationDoseHistoryScreen() {
                             accessibilityLabel="Registrar dose tomada agora"
                         >
                             <NeoIcon name="TickCircle" variant="Bold" size={22} color="#FFF" />
-                            <Text style={hStyles.tomeiBtnText}>Tomei agora</Text>
+                            <Text style={hStyles.tomeiBtnText}>{tx('telas.MedicationDoseHistoryScreen.tomeiAgora', 'Tomei agora')}</Text>
                         </TouchableOpacity>
 
                         {/* Estatísticas de aderência */}
                         {(stats7 || stats30) && (
                             <>
-                                <Eyebrow style={hStyles.eyebrow}>Aderência</Eyebrow>
+                                <Eyebrow style={hStyles.eyebrow}>{tx('telas.MedicationDoseHistoryScreen.aderencia', 'Aderência')}</Eyebrow>
                                 <PremiumGate feature="aderenciaStats" inline>
                                     <NeoCard variant="elevated" style={hStyles.card}>
                                         {stats7 && (
                                             <AderenciaBar
                                                 percentual={stats7.percentual}
-                                                label="Últimos 7 dias"
+                                                label={tx('telas.MedicationDoseHistoryScreen.ultimos7Dias', 'Últimos 7 dias')}
                                                 dias={7}
                                             />
                                         )}
@@ -198,28 +199,24 @@ export default function MedicationDoseHistoryScreen() {
                                         {stats30 && (
                                             <AderenciaBar
                                                 percentual={stats30.percentual}
-                                                label="Últimos 30 dias"
+                                                label={tx('telas.MedicationDoseHistoryScreen.ultimos30Dias', 'Últimos 30 dias')}
                                                 dias={30}
                                             />
                                         )}
-                                        <Small style={hStyles.statsNote}>
-                                        * Estimativa baseada nos horários e dias configurados.
-                                    </Small>
+                                        <Small style={hStyles.statsNote}>{tx('telas.MedicationDoseHistoryScreen.estimativaBaseadaNosHorariosEDias', '* Estimativa baseada nos horários e dias configurados.')}</Small>
                                     </NeoCard>
                                 </PremiumGate>
                             </>
                         )}
 
                         {/* Lista de histórico */}
-                        <Eyebrow style={[hStyles.eyebrow, { marginTop: 8 }]}>
-                            Registros ({limits.historicoDosesDias} dias)
-                        </Eyebrow>
+                        <Eyebrow style={[hStyles.eyebrow, { marginTop: 8 }]}>{tx('telas.MedicationDoseHistoryScreen.registros', 'Registros (')}{limits.historicoDosesDias}{tx('telas.MedicationDoseHistoryScreen.dias', ' dias)')}</Eyebrow>
 
                         {historico.length === 0 ? (
                             <EmptyState
                                 icon="Clock"
                                 title="Nenhuma dose registrada"
-                                description="Toque em 'Tomei agora' sempre que tomar o medicamento."
+                                description={tx('telas.MedicationDoseHistoryScreen.toqueEmTomeiAgoraSempreQue', 'Toque em \'Tomei agora\' sempre que tomar o medicamento.')}
                             />
                         ) : (
                             <NeoCard variant="elevated" padding={0} style={hStyles.card}>
@@ -244,15 +241,14 @@ export default function MedicationDoseHistoryScreen() {
                                                     : entrada.timestamp}
                                             </Body>
                                             {!!entrada.horario && (
-                                                <Small style={hStyles.entradaHorario}>
-                                                    Dose das {entrada.horario}
+                                                <Small style={hStyles.entradaHorario}>{tx('telas.MedicationDoseHistoryScreen.doseDas', 'Dose das ')}{entrada.horario}
                                                 </Small>
                                             )}
                                         </View>
                                         <TouchableOpacity
                                             onPress={() => handleRemoverEntrada(entrada.id)}
                                             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                                            accessibilityLabel="Remover registro"
+                                            accessibilityLabel={tx('telas.MedicationDoseHistoryScreen.removerRegistro2', 'Remover registro')}
                                         >
                                             <NeoIcon name="Trash" variant="Linear" size={16} color={Neo.colors.neutral[400]} />
                                         </TouchableOpacity>
@@ -261,10 +257,7 @@ export default function MedicationDoseHistoryScreen() {
                             </NeoCard>
                         )}
 
-                        <Small style={hStyles.legalNote}>
-                            Este histórico é apenas um registro pessoal. Não constitui prontuário
-                            médico. Consulte sempre seu médico para informações sobre sua medicação.
-                        </Small>
+                        <Small style={hStyles.legalNote}>{tx('telas.MedicationDoseHistoryScreen.esteHistoricoEApenasUmRegistro', 'Este histórico é apenas um registro pessoal. Não constitui prontuário médico. Consulte sempre seu médico para informações sobre sua medicação.')}</Small>
                     </ScrollView>
                 )}
             </SafeAreaView>

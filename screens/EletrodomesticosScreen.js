@@ -128,7 +128,7 @@ export default function EletrodomesticosScreen({ navigation }) {
                                 {device.travas && (
                                     <View style={styles.badgeLock}>
                                         <NeoIcon name="Lock" size={10} color={Neo.colors.neutral.white} style={{ marginRight: 3 }} />
-                                        <Text style={styles.badgeLockText}>Trava</Text>
+                                        <Text style={styles.badgeLockText}>{t('telas.EletrodomesticosScreen.trava', 'Trava')}</Text>
                                     </View>
                                 )}
                                 {device.riscos.slice(0, 2).map((risco, index) => (

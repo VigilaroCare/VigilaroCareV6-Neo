@@ -71,10 +71,10 @@ export default function MenuScreenNeo() {
                         try {
                             const success = await ProfileService.resetAllData();
                             if (success) {
-                                NeoAlert.alert('Sucesso', t('menu.resetSuccess'));
+                                NeoAlert.alert(t('telas.MenuScreenNeo.sucesso', 'Sucesso'), t('menu.resetSuccess'));
                                 navigation.reset({ index: 0, routes: [{ name: 'BoasVindas' }] });
                             } else {
-                                NeoAlert.alert('Erro', t('menu.resetError'));
+                                NeoAlert.alert(t('telas.MenuScreenNeo.erro', 'Erro'), t('menu.resetError'));
                             }
                         } catch (error) {
                             console.error('Reset error:', error);

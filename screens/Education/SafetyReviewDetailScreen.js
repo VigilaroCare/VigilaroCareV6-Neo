@@ -90,7 +90,7 @@ export default function SafetyReviewDetailScreen({ navigation, route }) {
                 <View style={styles.headerContent}>
                     <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{item.nome}</Text>
                     <View style={[styles.riskBadge, { backgroundColor: riskColor }]}>
-                        <Text style={styles.riskBadgeText}>Risco {riskLabel}</Text>
+                        <Text style={styles.riskBadgeText}>{t('telas.SafetyReviewDetailScreen.risco', 'Risco ')}{riskLabel}</Text>
                     </View>
                 </View>
             </View>

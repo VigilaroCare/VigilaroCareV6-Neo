@@ -7,6 +7,7 @@
  * Seção opcional: Cuidador Remoto (SMS/WhatsApp).
  */
 
+import { tx } from '../../utils/txFixo';
 import { useState, useEffect, useRef } from "react";
 import {
     View, Text, StyleSheet, ScrollView,
@@ -86,52 +87,41 @@ function DisclaimerModal({ visible, onAccept, onCancel }) {
                         <NeoIcon name="MedicalSquare" variant="Bold" size={32} color={CLR.pill} />
                     </View>
 
-                    <H3 style={dStyles.title}>Lembretes de Medicamentos</H3>
+                    <H3 style={dStyles.title}>{tx('telas.MedicationReminderFormScreen.lembretesDeMedicamentos', 'Lembretes de Medicamentos')}</H3>
 
                     {/* Corpo do disclaimer */}
                     <View style={dStyles.body}>
                         <View style={dStyles.item}>
                             <NeoIcon name="TickSquare" variant="Bold" size={16} color={CLR.success} />
-                            <Body style={dStyles.itemText}>
-                                Os lembretes são{' '}
-                                <Text style={{ fontWeight: '700' }}>configurados por você</Text>
-                                {' '}e funcionam como uma agenda pessoal no seu celular.
-                            </Body>
+                            <Body style={dStyles.itemText}>{tx('telas.MedicationReminderFormScreen.osLembretesSao', 'Os lembretes são')}{' '}
+                                <Text style={{ fontWeight: '700' }}>{tx('telas.MedicationReminderFormScreen.configuradosPorVoce', 'configurados por você')}</Text>
+                                {' '}{tx('telas.MedicationReminderFormScreen.eFuncionamComoUmaAgendaPessoal', 'e funcionam como uma agenda pessoal no seu celular.')}</Body>
                         </View>
                         <View style={dStyles.item}>
                             <NeoIcon name="Warning2" variant="Bold" size={16} color={CLR.warning} />
-                            <Body style={dStyles.itemText}>
-                                O VigilaroCare{' '}
-                                <Text style={{ fontWeight: '700' }}>não é um sistema médico</Text>
-                                {' '}e não substitui a orientação do seu médico ou farmacêutico.
-                            </Body>
+                            <Body style={dStyles.itemText}>{tx('telas.MedicationReminderFormScreen.oVigilarocare', 'O VigilaroCare')}{' '}
+                                <Text style={{ fontWeight: '700' }}>{tx('telas.MedicationReminderFormScreen.naoEUmSistemaMedico', 'não é um sistema médico')}</Text>
+                                {' '}{tx('telas.MedicationReminderFormScreen.eNaoSubstituiAOrientacaoDo', 'e não substitui a orientação do seu médico ou farmacêutico.')}</Body>
                         </View>
                         <View style={dStyles.item}>
                             <NeoIcon name="Mobile" variant="Bold" size={16} color={Neo.colors.neutral[500]} />
-                            <Body style={dStyles.itemText}>
-                                As notificações dependem das{' '}
-                                <Text style={{ fontWeight: '700' }}>permissões e configurações do dispositivo</Text>
-                                . Podem não funcionar no modo "Não Perturbe" ou com bateria fraca.
-                            </Body>
+                            <Body style={dStyles.itemText}>{tx('telas.MedicationReminderFormScreen.asNotificacoesDependemDas', 'As notificações dependem das')}{' '}
+                                <Text style={{ fontWeight: '700' }}>{tx('telas.MedicationReminderFormScreen.permissoesEConfiguracoesDoDispositivo', 'permissões e configurações do dispositivo')}</Text>{tx('telas.MedicationReminderFormScreen.podemNaoFuncionarNoModoNao', '. Podem não funcionar no modo "Não Perturbe" ou com bateria fraca.')}</Body>
                         </View>
                     </View>
 
                     {/* Nota legal */}
                     <View style={dStyles.legalNote}>
-                        <Small style={dStyles.legalText}>
-                            Ao continuar, você reconhece que este recurso é uma ferramenta de
-                            organização pessoal e isenta o VigilaroCare de responsabilidade por
-                            falhas de notificação decorrentes do dispositivo ou sistema operacional.
-                        </Small>
+                        <Small style={dStyles.legalText}>{tx('telas.MedicationReminderFormScreen.aoContinuarVoceReconheceQueEste', 'Ao continuar, você reconhece que este recurso é uma ferramenta de organização pessoal e isenta o VigilaroCare de responsabilidade por falhas de notificação decorrentes do dispositivo ou sistema operacional.')}</Small>
                     </View>
 
                     {/* Botões */}
                     <View style={dStyles.btns}>
                         <TouchableOpacity style={dStyles.btnCancel} onPress={onCancel}>
-                            <Small style={{ color: Neo.colors.neutral[600], fontWeight: '600' }}>Cancelar</Small>
+                            <Small style={{ color: Neo.colors.neutral[600], fontWeight: '600' }}>{tx('telas.MedicationReminderFormScreen.cancelar', 'Cancelar')}</Small>
                         </TouchableOpacity>
                         <TouchableOpacity style={dStyles.btnAccept} onPress={onAccept}>
-                            <Small style={{ color: '#FFF', fontWeight: '700' }}>Entendi e aceito</Small>
+                            <Small style={{ color: '#FFF', fontWeight: '700' }}>{tx('telas.MedicationReminderFormScreen.entendiEAceito', 'Entendi e aceito')}</Small>
                         </TouchableOpacity>
                     </View>
                 </Animated.View>
@@ -163,7 +153,7 @@ function DayPicker({ selected, onChange }) {
                 style={[fStyles.dayChip, todos && fStyles.dayChipActive]}
                 onPress={toggleTodos}
             >
-                <Small style={[fStyles.dayChipText, todos && fStyles.dayChipTextActive]}>Todos</Small>
+                <Small style={[fStyles.dayChipText, todos && fStyles.dayChipTextActive]}>{tx('telas.MedicationReminderFormScreen.todos', 'Todos')}</Small>
             </TappablePressable>
             {DIAS_SEMANA.map(d => {
                 const active = selected.includes(d.value);
@@ -222,7 +212,7 @@ function HorarioList({ horarios, onChange }) {
                     maxLength={5}
                     returnKeyType="done"
                     onSubmitEditing={adicionar}
-                    accessibilityLabel="Adicionar horário"
+                    accessibilityLabel={tx('telas.MedicationReminderFormScreen.adicionarHorario', 'Adicionar horário')}
                 />
                 <TouchableOpacity style={fStyles.horarioAddBtn} onPress={adicionar}>
                     <NeoIcon name="AddCircle" variant="Bold" size={22} color={CLR.pill} />
@@ -345,18 +335,18 @@ export default function MedicationReminderFormScreen() {
             if (salvo?.agendamentoVazio) {
                 Alert.alert(
                     'Lembrete salvo, mas sem aviso',
-                    'Não foi possível agendar as notificações deste lembrete. Verifique a permissão de notificações do Vigilaro Care nos ajustes do aparelho e edite o lembrete para tentar de novo.'
+                    tx('telas.MedicationReminderFormScreen.naoFoiPossivelAgendarAsNotificacoes', 'Não foi possível agendar as notificações deste lembrete. Verifique a permissão de notificações do Vigilaro Care nos ajustes do aparelho e edite o lembrete para tentar de novo.')
                 );
             } else if (salvo?.agendamentoIncompleto) {
                 Alert.alert(
-                    'Alguns horários não foram agendados',
-                    'Parte dos avisos deste lembrete não pôde ser agendada. Abra o lembrete e salve novamente para tentar os horários que faltaram.'
+                    tx('telas.MedicationReminderFormScreen.algunsHorariosNaoForamAgendados', 'Alguns horários não foram agendados'),
+                    tx('telas.MedicationReminderFormScreen.parteDosAvisosDesteLembreteNao', 'Parte dos avisos deste lembrete não pôde ser agendada. Abra o lembrete e salve novamente para tentar os horários que faltaram.')
                 );
             }
 
             navigation.goBack();
         } catch (e) {
-            Alert.alert('Erro', 'Não foi possível salvar o lembrete. Tente novamente.');
+            Alert.alert(tx('telas.MedicationReminderFormScreen.erro', 'Erro'), tx('telas.MedicationReminderFormScreen.naoFoiPossivelSalvarOLembrete', 'Não foi possível salvar o lembrete. Tente novamente.'));
             if (__DEV__) console.error('[MedicationReminderForm] save:', e);
         } finally {
             setSaving(false);
@@ -390,12 +380,12 @@ export default function MedicationReminderFormScreen() {
                         <TouchableOpacity
                             onPress={() => navigation.goBack()}
                             style={fStyles.backBtn}
-                            accessibilityLabel="Voltar"
+                            accessibilityLabel={tx('telas.MedicationReminderFormScreen.voltar', 'Voltar')}
                         >
                             <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                         </TouchableOpacity>
                         <H2 style={fStyles.headerTitle}>
-                            {editing ? 'Editar lembrete' : 'Novo lembrete'}
+                            {editing ? tx('telas.MedicationReminderFormScreen.editarLembrete', 'Editar lembrete') : 'Novo lembrete'}
                         </H2>
                     </View>
 
@@ -405,10 +395,10 @@ export default function MedicationReminderFormScreen() {
                         showsVerticalScrollIndicator={false}
                     >
                         {/* ── Seção: Medicamento ── */}
-                        <Eyebrow style={fStyles.eyebrow}>Medicamento</Eyebrow>
+                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.medicamento', 'Medicamento')}</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             <View style={fStyles.fieldWrap}>
-                                <Small style={fStyles.label}>Nome do medicamento *</Small>
+                                <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.nomeDoMedicamento', 'Nome do medicamento *')}</Small>
                                 <TextInput
                                     style={[fStyles.input, erroNome ? fStyles.inputError : null]}
                                     value={medicamentoNome}
@@ -416,43 +406,43 @@ export default function MedicationReminderFormScreen() {
                                     placeholder="Ex: Losartana 50mg"
                                     placeholderTextColor={Neo.colors.neutral[400]}
                                     returnKeyType="next"
-                                    accessibilityLabel="Nome do medicamento"
+                                    accessibilityLabel={tx('telas.MedicationReminderFormScreen.nomeDoMedicamento2', 'Nome do medicamento')}
                                 />
                                 {!!erroNome && <Small style={fStyles.errText}>{erroNome}</Small>}
                             </View>
 
                             <View style={fStyles.fieldWrap}>
-                                <Small style={fStyles.label}>Observações (opcional)</Small>
+                                <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.observacoesOpcional', 'Observações (opcional)')}</Small>
                                 <TextInput
                                     style={[fStyles.input, fStyles.inputMulti]}
                                     value={observacoes}
                                     onChangeText={setObservacoes}
-                                    placeholder="Ex: Tomar com água, após o café da manhã"
+                                    placeholder={tx('telas.MedicationReminderFormScreen.exTomarComAguaAposO', 'Ex: Tomar com água, após o café da manhã')}
                                     placeholderTextColor={Neo.colors.neutral[400]}
                                     multiline
                                     numberOfLines={3}
                                     textAlignVertical="top"
-                                    accessibilityLabel="Observações"
+                                    accessibilityLabel={tx('telas.MedicationReminderFormScreen.observacoes', 'Observações')}
                                 />
                             </View>
                         </NeoCard>
 
                         {/* ── Seção: Horários ── */}
-                        <Eyebrow style={fStyles.eyebrow}>Horários *</Eyebrow>
+                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.horarios', 'Horários *')}</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             <HorarioList horarios={horarios} onChange={setHorarios} />
                             {!!erroHorario && <Small style={[fStyles.errText, { marginTop: 4 }]}>{erroHorario}</Small>}
                         </NeoCard>
 
                         {/* ── Seção: Dias da semana ── */}
-                        <Eyebrow style={fStyles.eyebrow}>Dias da semana</Eyebrow>
+                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.diasDaSemana', 'Dias da semana')}</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             <DayPicker selected={diasSemana} onChange={setDiasSemana} />
                         </NeoCard>
 
                         {/* ── Seção: Cuidador Remoto ── */}
                         {CUIDADOR_REMOTO_DISPONIVEL && <>
-                        <Eyebrow style={fStyles.eyebrow}>Cuidador Remoto</Eyebrow>
+                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.cuidadorRemoto', 'Cuidador Remoto')}</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             {/* Toggle de ativação */}
                             <TappablePressable
@@ -463,14 +453,10 @@ export default function MedicationReminderFormScreen() {
                                     <NeoIcon name="Wifi" variant={remotoAtivo ? 'Bold' : 'Linear'} size={20} color={remotoAtivo ? CLR.pill : Neo.colors.neutral[500]} />
                                     <View>
                                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                                            <Body style={fStyles.remotoToggleLabel}>
-                                                Notificar por SMS / WhatsApp
-                                            </Body>
+                                            <Body style={fStyles.remotoToggleLabel}>{tx('telas.MedicationReminderFormScreen.notificarPorSmsWhatsapp', 'Notificar por SMS / WhatsApp')}</Body>
                                             {!remotoAtivo && <PremiumBadge size="sm" />}
                                         </View>
-                                        <Small style={fStyles.remotoToggleSub}>
-                                            Avisa a pessoa assistida no horário do lembrete
-                                        </Small>
+                                        <Small style={fStyles.remotoToggleSub}>{tx('telas.MedicationReminderFormScreen.avisaAPessoaAssistidaNoHorario', 'Avisa a pessoa assistida no horário do lembrete')}</Small>
                                     </View>
                                 </View>
                                 <View style={[
@@ -487,26 +473,23 @@ export default function MedicationReminderFormScreen() {
                                     {/* Aviso de opt-in */}
                                     <View style={fStyles.optinWarning}>
                                         <NeoIcon name="InfoCircle" variant="Bold" size={14} color={CLR.pill} />
-                                        <Small style={fStyles.optinWarningText}>
-                                            A pessoa assistida receberá uma mensagem pedindo
-                                            confirmação antes de receber lembretes.
-                                        </Small>
+                                        <Small style={fStyles.optinWarningText}>{tx('telas.MedicationReminderFormScreen.aPessoaAssistidaReceberaUmaMensagem', 'A pessoa assistida receberá uma mensagem pedindo confirmação antes de receber lembretes.')}</Small>
                                     </View>
 
                                     <View style={fStyles.fieldWrap}>
-                                        <Small style={fStyles.label}>Nome da pessoa assistida</Small>
+                                        <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.nomeDaPessoaAssistida', 'Nome da pessoa assistida')}</Small>
                                         <TextInput
                                             style={fStyles.input}
                                             value={destinatarioNome}
                                             onChangeText={setDestinatarioNome}
-                                            placeholder="Ex: José"
+                                            placeholder={tx('telas.MedicationReminderFormScreen.exJose', 'Ex: José')}
                                             placeholderTextColor={Neo.colors.neutral[400]}
-                                            accessibilityLabel="Nome da pessoa assistida"
+                                            accessibilityLabel={tx('telas.MedicationReminderFormScreen.nomeDaPessoaAssistida2', 'Nome da pessoa assistida')}
                                         />
                                     </View>
 
                                     <View style={fStyles.fieldWrap}>
-                                        <Small style={fStyles.label}>Telefone com DDD (+55)</Small>
+                                        <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.telefoneComDdd55', 'Telefone com DDD (+55)')}</Small>
                                         <TextInput
                                             style={fStyles.input}
                                             value={destinatarioTel}
@@ -514,24 +497,24 @@ export default function MedicationReminderFormScreen() {
                                             placeholder="+5511999999999"
                                             placeholderTextColor={Neo.colors.neutral[400]}
                                             keyboardType="phone-pad"
-                                            accessibilityLabel="Telefone do assistido"
+                                            accessibilityLabel={tx('telas.MedicationReminderFormScreen.telefoneDoAssistido', 'Telefone do assistido')}
                                         />
                                     </View>
 
                                     <View style={fStyles.fieldWrap}>
-                                        <Small style={fStyles.label}>Sua relação com essa pessoa</Small>
+                                        <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.suaRelacaoComEssaPessoa', 'Sua relação com essa pessoa')}</Small>
                                         <TextInput
                                             style={fStyles.input}
                                             value={relacaoCuidador}
                                             onChangeText={setRelacaoCuidador}
-                                            placeholder="Ex: minha mãe, meu pai"
+                                            placeholder={tx('telas.MedicationReminderFormScreen.exMinhaMaeMeuPai', 'Ex: minha mãe, meu pai')}
                                             placeholderTextColor={Neo.colors.neutral[400]}
-                                            accessibilityLabel="Relação com o assistido"
+                                            accessibilityLabel={tx('telas.MedicationReminderFormScreen.relacaoComOAssistido', 'Relação com o assistido')}
                                         />
                                     </View>
 
                                     <View style={fStyles.fieldWrap}>
-                                        <Small style={fStyles.label}>Canal de notificação</Small>
+                                        <Small style={fStyles.label}>{tx('telas.MedicationReminderFormScreen.canalDeNotificacao', 'Canal de notificação')}</Small>
                                         <View style={fStyles.canalRow}>
                                             {canalOptions.map(opt => (
                                                 <TappablePressable
@@ -565,7 +548,7 @@ export default function MedicationReminderFormScreen() {
 
                         {/* ── Botão Salvar ── */}
                         <ButtonNeo
-                            title={saving ? 'Salvando...' : editing ? 'Salvar alterações' : 'Criar lembrete'}
+                            title={saving ? 'Salvando...' : editing ? tx('telas.MedicationReminderFormScreen.salvarAlteracoes', 'Salvar alterações') : 'Criar lembrete'}
                             iconName="TickCircle"
                             onPress={handleSave}
                             type="primary"
@@ -574,11 +557,7 @@ export default function MedicationReminderFormScreen() {
                         />
 
                         {/* Nota legal no rodapé */}
-                        <Small style={fStyles.legalFooter}>
-                            Este recurso é um assistente de organização pessoal e não substitui a
-                            orientação do seu médico ou farmacêutico. Consulte sempre um profissional
-                            de saúde para dúvidas sobre medicamentos.
-                        </Small>
+                        <Small style={fStyles.legalFooter}>{tx('telas.MedicationReminderFormScreen.esteRecursoEUmAssistenteDe', 'Este recurso é um assistente de organização pessoal e não substitui a orientação do seu médico ou farmacêutico. Consulte sempre um profissional de saúde para dúvidas sobre medicamentos.')}</Small>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </SafeAreaView>

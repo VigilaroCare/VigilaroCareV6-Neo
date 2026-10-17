@@ -1,3 +1,4 @@
+import { tx } from '../utils/txFixo';
 import { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
 import NeoIcon from './NeoIcon';
@@ -69,7 +70,7 @@ export default function AchievementToast({ visible, data, onHide }) {
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>
-                    {data.levelUp ? 'Novo Nível!' : `+${data.xpGained} XP`}
+                    {data.levelUp ? tx('telas.AchievementToast.novoNivel', 'Novo Nível!') : `+${data.xpGained} XP`}
                 </Text>
                 <Text style={styles.message}>
                     {data.levelUp

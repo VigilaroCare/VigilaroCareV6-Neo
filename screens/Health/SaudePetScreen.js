@@ -81,7 +81,7 @@ export default function SaudePetScreen() {
     const themeColors = Neo.colors;
 
     const renderChips = (arr, color) => {
-        if (!arr.length) return <Body style={s.emptyText}>Nada registrado</Body>;
+        if (!arr.length) return <Body style={s.emptyText}>{t('telas.SaudePetScreen.nadaRegistrado', 'Nada registrado')}</Body>;
         return (
             <View style={s.chipsWrap}>
                 {arr.map((item, i) => (
@@ -154,23 +154,23 @@ export default function SaudePetScreen() {
         return (
             <View style={s.scroll}>
 
-                <Eyebrow style={s.eyebrow}>Saúde e Cuidados</Eyebrow>
-                <Section icon="Heartbeat" color={HUE.rose} title="Condições Médicas">
+                <Eyebrow style={s.eyebrow}>{t('telas.SaudePetScreen.saudeECuidados', 'Saúde e Cuidados')}</Eyebrow>
+                <Section icon="Heartbeat" color={HUE.rose} title={t('telas.SaudePetScreen.condicoesMedicas', 'Condições Médicas')}>
                     {renderChips(condicoes, HUE.rose)}
                 </Section>
-                <Section icon="Warning" color={Neo.colors.accent.copper} title="Alergias e Restrições">
+                <Section icon="Warning" color={Neo.colors.accent.copper} title={t('telas.SaudePetScreen.alergiasERestricoes', 'Alergias e Restrições')}>
                     {renderChips(alergias, Neo.colors.accent.copper)}
                 </Section>
-                <Section icon="Plus" color={HUE.sky} title="Medicamentos em Uso">
+                <Section icon="Plus" color={HUE.sky} title={t('telas.SaudePetScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
                     {renderChips(medicamentos, HUE.sky)}
-                    <Body style={s.hintText}>Lista informativa — sem alarmes ou lembretes ativos.</Body>
+                    <Body style={s.hintText}>{t('telas.SaudePetScreen.listaInformativaSemAlarmesOuLembretes', 'Lista informativa — sem alarmes ou lembretes ativos.')}</Body>
                 </Section>
                 <Section icon="Wheelchair" color={Neo.colors.primary[600]} title="Necessidades Especiais">
                     {renderChips(necessidades, Neo.colors.primary[600])}
                 </Section>
 
                 <View style={s.actionContainer}>
-                    <ButtonNeo title="Compartilhar Ficha do Pet" iconName="ShareNetwork" onPress={handleShare} type="primary" />
+                    <ButtonNeo title={t('telas.SaudePetScreen.compartilharFichaDoPet', 'Compartilhar Ficha do Pet')} iconName="ShareNetwork" onPress={handleShare} type="primary" />
                 </View>
             </View>
         );
@@ -194,7 +194,7 @@ export default function SaudePetScreen() {
         }
         return (
             <View style={s.scroll}>
-                <Eyebrow style={s.eyebrow}>Animais da casa</Eyebrow>
+                <Eyebrow style={s.eyebrow}>{t('telas.SaudePetScreen.animaisDaCasa', 'Animais da casa')}</Eyebrow>
                 <NeoCard variant="glass" padding={0} style={s.card}>
                     {pets.map((p, i) => {
                         const sub = petMeta(p);
@@ -285,7 +285,7 @@ export default function SaudePetScreen() {
 
                                 <View style={{ flex: 1, paddingBottom: 4 }}>
                                     <View style={{ backgroundColor: Neo.colors.primary[500], paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: 'flex-start', marginBottom: 8 }}>
-                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>Cuidado Ativo</Text>
+                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>{t('telas.SaudePetScreen.cuidadoAtivo', 'Cuidado Ativo')}</Text>
                                     </View>
                                     <Text style={{
                                         fontSize: 28,

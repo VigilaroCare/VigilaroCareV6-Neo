@@ -116,14 +116,12 @@ export default function HomeXRayScreen() {
                     <View style={s.section}>
                         <View style={s.sectionHeader}>
                             <NeoIcon name="People" size={14} color={Neo.colors.neutral[600]} variant="Bold" />
-                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
-                                Pessoas e Pets Vinculados
-                            </Text>
+                            <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">{t('telas.HomeXRayScreen.pessoasEPetsVinculados', 'Pessoas e Pets Vinculados')}</Text>
                         </View>
 
                         {/* Moradores Fixos */}
                         <View style={{ marginBottom: 10 }}>
-                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>Moradores Fixos:</Caption>
+                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>{t('telas.HomeXRayScreen.moradoresFixos', 'Moradores Fixos:')}</Caption>
                             <View style={s.avatarList}>
                                 {residents.length > 0 ? residents.map((p) => (
                                     <View key={p.id} style={s.avatarItem}>
@@ -143,14 +141,14 @@ export default function HomeXRayScreen() {
                                         </Caption>
                                     </View>
                                 )) : (
-                                    <Caption style={s.emptyInline}>Nenhum morador fixo.</Caption>
+                                    <Caption style={s.emptyInline}>{t('telas.HomeXRayScreen.nenhumMoradorFixo', 'Nenhum morador fixo.')}</Caption>
                                 )}
                             </View>
                         </View>
 
                         {/* Visitantes Eventuais */}
                         <View>
-                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>Visitantes Eventuais:</Caption>
+                            <Caption style={{ fontWeight: 'bold', color: Neo.colors.neutral[500], marginBottom: 6 }}>{t('telas.HomeXRayScreen.visitantesEventuais', 'Visitantes Eventuais:')}</Caption>
                             <View style={s.avatarList}>
                                 {visitors.length > 0 ? visitors.map((p) => (
                                     <View key={p.id} style={s.avatarItem}>
@@ -170,7 +168,7 @@ export default function HomeXRayScreen() {
                                         </Caption>
                                     </View>
                                 )) : (
-                                    <Caption style={s.emptyInline}>Nenhum visitante eventual.</Caption>
+                                    <Caption style={s.emptyInline}>{t('telas.HomeXRayScreen.nenhumVisitanteEventual', 'Nenhum visitante eventual.')}</Caption>
                                 )}
                             </View>
                         </View>

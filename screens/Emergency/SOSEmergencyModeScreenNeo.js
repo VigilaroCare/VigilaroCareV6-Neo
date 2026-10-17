@@ -171,7 +171,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
 
     const handleSOS = async () => {
         if (customContacts.length === 0) {
-            NeoAlert.alert('Sem contatos', 'Adicione contatos de emergência para usar o SOS.');
+            NeoAlert.alert('Sem contatos', t('telas.SOSEmergencyModeScreenNeo.adicioneContatosDeEmergenciaParaUsar', 'Adicione contatos de emergência para usar o SOS.'));
             return;
         }
 
@@ -192,13 +192,13 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             const firstPhone = customContacts[0]?.phone || '';
             const canOpenSms = await Linking.canOpenURL(`sms:${firstPhone}`);
             if (!canOpenSms) {
-                NeoAlert.alert('SMS indisponivel', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.');
+                NeoAlert.alert('SMS indisponivel', t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
                 return;
             }
             await Linking.openURL(smsUrl);
         } catch (e) {
             if (__DEV__) console.warn('Falha ao abrir SMS de emergencia:', e);
-            NeoAlert.alert('SMS indisponivel', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.');
+            NeoAlert.alert('SMS indisponivel', t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelAbrirOAplicativo2', 'Nao foi possivel abrir o aplicativo de mensagens neste aparelho.'));
         }
     };
 
@@ -217,7 +217,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             setFichaTexto(FichaMedicaService.gerarTexto(dados));
             setFichaModalVisible(true);
         } else {
-            NeoAlert.alert('Erro', 'Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.');
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.erro', 'Erro'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelGerarAFicha', 'Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.'));
         }
     };
 
@@ -228,7 +228,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
         const r = await FichaMedicaService.compartilharPdf({ coords: lastLocation });
         setLoadingFicha(false);
         if (!r.ok && r.motivo !== 'sem-compartilhamento') {
-            NeoAlert.alert('Ficha médica', 'Não foi possível gerar o PDF agora. Use o texto, que funciona offline.');
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.fichaMedica', 'Ficha médica'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelGerarOPdf', 'Não foi possível gerar o PDF agora. Use o texto, que funciona offline.'));
         }
     };
 
@@ -241,7 +241,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                 // Fallback para esquema direto se a URL wa.me sem número falhar em alguns ambientes
                 const fallback = `whatsapp://send?text=${encodeURIComponent(fichaTexto)}`;
                 Linking.openURL(fallback).catch(() => {
-                    NeoAlert.alert('WhatsApp', 'WhatsApp não instalado. Use "Copiar" para colar manualmente.');
+                    NeoAlert.alert('WhatsApp', t('telas.SOSEmergencyModeScreenNeo.whatsappNaoInstaladoUseCopiarPara', 'WhatsApp não instalado. Use "Copiar" para colar manualmente.'));
                 });
             }
         });
@@ -287,7 +287,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
             } else {
                 const fallbackUrl = `https://api.whatsapp.com/send?phone=${finalPhone}&text=${encodeURIComponent(message)}`;
                 Linking.openURL(fallbackUrl).catch(() => {
-                    NeoAlert.alert('Erro', 'WhatsApp não está instalado ou configurado.');
+                    NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.erro2', 'Erro'), t('telas.SOSEmergencyModeScreenNeo.whatsappNaoEstaInstaladoOuConfigurado', 'WhatsApp não está instalado ou configurado.'));
                 });
             }
         });
@@ -296,9 +296,9 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
     const handleCopyFicha = async () => {
         try {
             await Clipboard.setStringAsync(fichaTexto);
-            NeoAlert.alert('Copiado', 'Ficha médica copiada. Cole em qualquer app de mensagem.');
+            NeoAlert.alert('Copiado', t('telas.SOSEmergencyModeScreenNeo.fichaMedicaCopiadaColeEmQualquer', 'Ficha médica copiada. Cole em qualquer app de mensagem.'));
         } catch (e) {
-            NeoAlert.alert('Erro', 'Não foi possível copiar.');
+            NeoAlert.alert(t('telas.SOSEmergencyModeScreenNeo.erro3', 'Erro'), t('telas.SOSEmergencyModeScreenNeo.naoFoiPossivelCopiar', 'Não foi possível copiar.'));
         }
     };
 
@@ -389,16 +389,12 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         <View style={{ width: 120, height: 120, borderRadius: 60, backgroundColor: 'rgba(255,255,255,0.05)', alignItems: 'center', justifyContent: 'center' }}>
                             <View style={{ width: 84, height: 84, borderRadius: 42, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' }}>
                                 <View style={{ width: 60, height: 60, borderRadius: 16, backgroundColor: '#FF4B4B', alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } }}>
-                                    <H2 style={{ color: '#FFF', fontSize: 20 }}>SOS</H2>
+                                    <H2 style={{ color: '#FFF', fontSize: 20 }}>{t('telas.SOSEmergencyModeScreenNeo.sos', 'SOS')}</H2>
                                 </View>
                             </View>
                         </View>
-                        <H1 style={{ color: '#FFF', fontSize: 32, textAlign: 'center', marginTop: 10, marginBottom: 6 }}>
-                            Precisa de ajuda agora?
-                        </H1>
-                        <Body style={{ color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: 15, lineHeight: 22, paddingHorizontal: 16 }}>
-                            Acionaremos seus contatos de emergência com sua localização atual.
-                        </Body>
+                        <H1 style={{ color: '#FFF', fontSize: 32, textAlign: 'center', marginTop: 10, marginBottom: 6 }}>{t('telas.SOSEmergencyModeScreenNeo.precisaDeAjudaAgora', 'Precisa de ajuda agora?')}</H1>
+                        <Body style={{ color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: 15, lineHeight: 22, paddingHorizontal: 16 }}>{t('telas.SOSEmergencyModeScreenNeo.acionaremosSeusContatosDeEmergenciaCom', 'Acionaremos seus contatos de emergência com sua localização atual.')}</Body>
                     </View>
 
                     {/* Primary Button */}
@@ -410,7 +406,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         <H2 style={{ color: '#991B1B', fontSize: 20 }}>
                             {activeTab === 'HUMAN'
                                 ? primaryEmergencyLabel
-                                : 'Ligar Veterinário'}
+                                : t('telas.SOSEmergencyModeScreenNeo.ligarVeterinario', 'Ligar Veterinário')}
                         </H2>
                     </TouchableOpacity>
 
@@ -448,9 +444,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                             style={{ flex: 1, marginLeft: 8, backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 20, paddingVertical: 14, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
                         >
                             <NeoIcon name="Location" size={24} color="#FFF" style={{ marginBottom: 8 }} />
-                            <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>
-                                Enviar local
-                            </Body>
+                            <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 14 }}>{t('telas.SOSEmergencyModeScreenNeo.enviarLocal', 'Enviar local')}</Body>
                         </TouchableOpacity>
                     </View>
 
@@ -522,15 +516,15 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                             <View>
                                 <TouchableOpacity onPress={handleShareFichaWhatsApp} style={{ backgroundColor: '#25D366', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
                                     <NeoIcon name="Whatsapp" size={24} color="#FFF" style={{ marginRight: 12 }} />
-                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Enviar por WhatsApp</Text>
+                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>{t('telas.SOSEmergencyModeScreenNeo.enviarPorWhatsapp', 'Enviar por WhatsApp')}</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={handleCopyFicha} style={{ backgroundColor: Neo.colors.neutral[800], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
                                     <NeoIcon name="Copy" size={24} color="#FFF" style={{ marginRight: 12 }} />
-                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>Copiar Ficha</Text>
+                                    <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 16 }}>{t('telas.SOSEmergencyModeScreenNeo.copiarFicha', 'Copiar Ficha')}</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={handleShareFicha} style={{ backgroundColor: Neo.colors.neutral[200], flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 16, borderRadius: 16, marginBottom: 12 }}>
                                     <NeoIcon name="ShareNetwork" size={24} color={Neo.colors.neutral[800]} style={{ marginRight: 12 }} />
-                                    <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 16 }}>Compartilhar</Text>
+                                    <Text style={{ color: Neo.colors.neutral[800], fontWeight: 'bold', fontSize: 16 }}>{t('telas.SOSEmergencyModeScreenNeo.compartilhar', 'Compartilhar')}</Text>
                                 </TouchableOpacity>
                                 {/* O PDF fica por último de propósito: em emergência o texto
                                     resolve mais rápido. O documento serve ao hospital e ao
@@ -542,7 +536,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 >
                                     <NeoIcon name="DocumentText" size={22} color={Neo.colors.neutral[700]} style={{ marginRight: 10 }} />
                                     <Text style={{ color: Neo.colors.neutral[700], fontWeight: '600', fontSize: 15 }}>
-                                        {loadingFicha ? 'Gerando PDF...' : 'Salvar em PDF'}
+                                        {loadingFicha ? 'Gerando PDF...' : t('telas.SOSEmergencyModeScreenNeo.salvarEmPdf', 'Salvar em PDF')}
                                     </Text>
                                 </TouchableOpacity>
                             </View>
@@ -571,7 +565,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                             <View style={{ flex: 1 }}>
                                                 <Body style={{ fontWeight: 'bold', fontSize: 16, color: '#1A1A1A' }}>{c.name}</Body>
                                                 <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>{c.phone}</Small>
-                                                {c.isProfile && <Small style={{ color: Neo.colors.primary[500], fontSize: 10, marginTop: 4 }}>Rede de Apoio Perfil</Small>}
+                                                {c.isProfile && <Small style={{ color: Neo.colors.primary[500], fontSize: 10, marginTop: 4 }}>{t('telas.SOSEmergencyModeScreenNeo.redeDeApoioPerfil', 'Rede de Apoio Perfil')}</Small>}
                                             </View>
                                             
                                             <View style={{ flexDirection: 'row', gap: 12 }}>
@@ -587,12 +581,12 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                 ))}
                                 
                                 {customContacts.length === 0 && (
-                                    <Body style={{ textAlign: 'center', color: Neo.colors.neutral[400], marginVertical: 32 }}>Nenhum contato tático cadastrado.</Body>
+                                    <Body style={{ textAlign: 'center', color: Neo.colors.neutral[400], marginVertical: 32 }}>{t('telas.SOSEmergencyModeScreenNeo.nenhumContatoTaticoCadastrado', 'Nenhum contato tático cadastrado.')}</Body>
                                 )}
 
                                 <TouchableOpacity style={{ marginTop: 8, marginBottom: 32 }} onPress={() => setAddContactModalVisible(true)}>
                                     <NeoCard variant="glass" style={{ backgroundColor: Neo.colors.neutral[50], alignItems: 'center', padding: 20, borderStyle: 'dashed', borderWidth: 1, borderColor: Neo.colors.neutral[300], borderRadius: 20 }}>
-                                        <Body style={{ color: Neo.colors.neutral[600], fontWeight: 'bold' }}>+ Adicionar Novo</Body>
+                                        <Body style={{ color: Neo.colors.neutral[600], fontWeight: 'bold' }}>{t('telas.SOSEmergencyModeScreenNeo.adicionarNovo', '+ Adicionar Novo')}</Body>
                                     </NeoCard>
                                 </TouchableOpacity>
                             </ScrollView>
@@ -606,16 +600,16 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                         <View style={{ width: '85%', backgroundColor: 'rgba(22,22,26,0.97)', borderRadius: 24, padding: 32 }}>
                             <H3 style={{ marginBottom: 24, color: Neo.colors.neutral.white }}>{t('headersFirst.novoContato', 'Novo Contato')}</H3>
                             <TextInput
-                                placeholder="Nome (Ex: Filha Ana)" value={newContactName} onChangeText={setNewContactName}
+                                placeholder={t('telas.SOSEmergencyModeScreenNeo.nomeExFilhaAna', 'Nome (Ex: Filha Ana)')} value={newContactName} onChangeText={setNewContactName}
                                 style={{ borderWidth: 1, borderColor: Neo.colors.neutral[200], padding: 16, borderRadius: 16, marginBottom: 16, fontSize: 16, backgroundColor: Neo.colors.neutral[50] }}
                             />
                             <TextInput
-                                placeholder="Telefone" value={newContactPhone} onChangeText={setNewContactPhone} keyboardType="phone-pad"
+                                placeholder={t('telas.SOSEmergencyModeScreenNeo.telefone', 'Telefone')} value={newContactPhone} onChangeText={setNewContactPhone} keyboardType="phone-pad"
                                 style={{ borderWidth: 1, borderColor: Neo.colors.neutral[200], padding: 16, borderRadius: 16, marginBottom: 32, fontSize: 16, backgroundColor: Neo.colors.neutral[50] }}
                             />
                             <View style={{ flexDirection: 'row', gap: 16 }}>
                                 <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: Neo.colors.neutral[100], borderRadius: 16 }} onPress={() => setAddContactModalVisible(false)}>
-                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[600] }}>Cancelar</Body>
+                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.neutral[600] }}>{t('telas.SOSEmergencyModeScreenNeo.cancelar', 'Cancelar')}</Body>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{ flex: 1, padding: 16, alignItems: 'center', backgroundColor: Neo.colors.feedback.error, borderRadius: 16 }} onPress={() => {
                                     if (newContactName && newContactPhone) {
@@ -626,7 +620,7 @@ export default function SOSEmergencyModeScreenNeo({ navigation, route }) {
                                         setNewContactName(''); setNewContactPhone('');
                                     }
                                 }}>
-                                    <Body style={{ color: '#FFF', fontWeight: 'bold' }}>Salvar</Body>
+                                    <Body style={{ color: '#FFF', fontWeight: 'bold' }}>{t('telas.SOSEmergencyModeScreenNeo.salvar', 'Salvar')}</Body>
                                 </TouchableOpacity>
                             </View>
                         </View>

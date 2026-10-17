@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Modal, View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { getMedicalLabel, getFireDial, resolveEmergencyTokens } from '../utils/emergencyTokens';
+import { tx } from '../utils/txFixo';
 import NeoIcon from './NeoIcon';
 import { Colors, Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -69,8 +71,8 @@ export default function TermsModal({ onAccept }) {
                 <View style={styles.modalContainer}>
                     <View style={styles.header}>
                         <NeoIcon name="ShieldTick" size={32} color={Colors.primary} />
-                        <Text style={styles.title}>Termos de Uso e Segurança</Text>
-                        <Text style={styles.subtitle}>Leia atentamente para continuar</Text>
+                        <Text style={styles.title}>{tx('telas.TermsModal.termosDeUsoESeguranca', 'Termos de Uso e Segurança')}</Text>
+                        <Text style={styles.subtitle}>{tx('telas.TermsModal.leiaAtentamenteParaContinuar', 'Leia atentamente para continuar')}</Text>
                     </View>
 
                     <ScrollView
@@ -83,36 +85,27 @@ export default function TermsModal({ onAccept }) {
                         scrollEventThrottle={16}
                         showsVerticalScrollIndicator={true}
                     >
-                        <Text style={styles.sectionTitle}>1. Natureza Informativa</Text>
-                        <Text style={styles.text}>
-                            O aplicativo Vigilaro Care é uma ferramenta de auxílio e prevenção. Todo o conteúdo, incluindo checklists, guias de primeiros socorros e análises de IA, tem caráter EXCLUSIVAMENTE INFORMATIVO e EDUCACIONAL.
-                        </Text>
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.1NaturezaInformativa', '1. Natureza Informativa')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.oAplicativoVigilaroCareEUma', 'O aplicativo Vigilaro Care é uma ferramenta de auxílio e prevenção. Todo o conteúdo, incluindo checklists, guias de primeiros socorros e análises de IA, tem caráter EXCLUSIVAMENTE INFORMATIVO e EDUCACIONAL.')}</Text>
 
-                        <Text style={styles.sectionTitle}>2. Não Substitui Profissionais</Text>
-                        <Text style={styles.text}>
-                            As informações aqui contidas NÃO substituem, em hipótese alguma, o diagnóstico, aconselhamento ou tratamento por profissionais de saúde (médicos, enfermeiros, socorristas) ou especialistas em segurança.
-                        </Text>
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.2NaoSubstituiProfissionais', '2. Não Substitui Profissionais')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.asInformacoesAquiContidasNaoSubstituem', 'As informações aqui contidas NÃO substituem, em hipótese alguma, o diagnóstico, aconselhamento ou tratamento por profissionais de saúde (médicos, enfermeiros, socorristas) ou especialistas em segurança.')}</Text>
 
-                        <Text style={styles.sectionTitle}>3. Em Caso de Emergência</Text>
-                        <Text style={styles.text}>
-                            Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:
-                            {'\n\n'}
-                            🚑 SAMU: 192
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.3EmCasoDeEmergencia', '3. Em Caso de Emergência')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.seVoceOuAlguemEstiverEm', 'Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:')}{'\n\n'}
+                            {/* Números do PAÍS do usuário (antes 192/193/190 fixos). */}
+                            {`🚑 ${getMedicalLabel()}`}
                             {'\n'}
-                            🚒 Bombeiros: 193
+                            {`🚒 ${tx('headersFirst.bombeirosRotulo', 'Bombeiros')}: ${getFireDial()}`}
                             {'\n'}
-                            👮 Polícia: 190
+                            {`👮 ${tx('headersFirst.policiaRotulo', 'Polícia')}: ${resolveEmergencyTokens('{{POLICE_NUMBER}}')}`}
                         </Text>
 
-                        <Text style={styles.sectionTitle}>4. Limitação de Responsabilidade</Text>
-                        <Text style={styles.text}>
-                            Os desenvolvedores do Vigilaro Care não se responsabilizam por quaisquer danos, lesões ou perdas resultantes do uso das informações fornecidas pelo aplicativo. A segurança final do ambiente e das pessoas é de responsabilidade do usuário.
-                        </Text>
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.4LimitacaoDeResponsabilidade', '4. Limitação de Responsabilidade')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.osDesenvolvedoresDoVigilaroCareNao', 'Os desenvolvedores do Vigilaro Care não se responsabilizam por quaisquer danos, lesões ou perdas resultantes do uso das informações fornecidas pelo aplicativo. A segurança final do ambiente e das pessoas é de responsabilidade do usuário.')}</Text>
 
-                        <Text style={styles.sectionTitle}>5. Inteligência Artificial</Text>
-                        <Text style={styles.text}>
-                            O recurso de "Scanner IA" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.
-                        </Text>
+                        <Text style={styles.sectionTitle}>{tx('telas.TermsModal.5InteligenciaArtificial', '5. Inteligência Artificial')}</Text>
+                        <Text style={styles.text}>{tx('telas.TermsModal.oRecursoDeScannerIaUtiliza', 'O recurso de "Scanner IA" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.')}</Text>
 
                         <View style={{ height: 40 }} />
                     </ScrollView>
@@ -124,7 +117,7 @@ export default function TermsModal({ onAccept }) {
                             disabled={!canAccept}
                         >
                             <Text style={styles.buttonText}>
-                                {canAccept ? "Li e Concordo" : "Role até o fim para aceitar"}
+                                {canAccept ? "Li e Concordo" : tx('telas.TermsModal.roleAteOFimParaAceitar', 'Role até o fim para aceitar')}
                             </Text>
                         </TouchableOpacity>
                     </View>

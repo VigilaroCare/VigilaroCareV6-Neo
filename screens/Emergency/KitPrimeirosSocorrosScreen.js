@@ -71,8 +71,7 @@ export default function KitPrimeirosSocorrosScreen({ navigation }) {
               {t('headersFirst.kitPrimeirosSocorros', 'Primeiros socorros')}
             </H1>
             <Caption style={s.subtitle}>
-              {checkedItems.length} de {items.length} itens
-            </Caption>
+              {checkedItems.length}{t('telas.KitPrimeirosSocorrosScreen.de', ' de ')}{items.length}{t('telas.KitPrimeirosSocorrosScreen.itens', ' itens')}</Caption>
           </View>
         </View>
 
@@ -100,7 +99,7 @@ export default function KitPrimeirosSocorrosScreen({ navigation }) {
               style={{ marginBottom: 8 }}
               accessibilityLabel={`${progressPct}% completo`}
             />
-            <Small style={s.progressText}>{progressPct}% completo</Small>
+            <Small style={s.progressText}>{progressPct}{t('telas.KitPrimeirosSocorrosScreen.completo', '% completo')}</Small>
           </View>
 
           {/* CONTEÚDO */}

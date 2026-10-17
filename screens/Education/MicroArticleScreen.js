@@ -86,7 +86,7 @@ export default function MicroArticleScreen({ navigation, route }) {
                     <View style={styles.metaRow}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                             <NeoIcon name="Clock" size={13} color={themeColors.neutral[500]} />
-                            <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{article.readTime} min de leitura</Text>
+                            <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{article.readTime}{t('telas.MicroArticleScreen.minDeLeitura', ' min de leitura')}</Text>
                         </View>
                         <Text style={[styles.metaText, { color: themeColors.neutral[500] }]}>{t('headersFirst.PrevenirEmCasa', '📰 Prevenir em Casa')}</Text>
                     </View>

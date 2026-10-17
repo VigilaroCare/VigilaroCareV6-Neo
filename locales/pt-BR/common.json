@@ -2003,7 +2003,9 @@
         "prepararMinhaCasaParaConvidados": "Preparar minha casa para convidados",
         "indoVisitar": "Indo Visitar",
         "cuidadosAoIrNaCasaDeOutros": "Cuidados ao ir na casa de outros",
-        "ligarAgora": "Ligar agora"
+        "ligarAgora": "Ligar agora",
+        "bombeirosRotulo": "Bombeiros",
+        "policiaRotulo": "Polícia"
     },
     "microBlog": {
         "title": "Micro Blog",
@@ -2163,5 +2165,664 @@
         "ambientesDaCasa": "Ambientes da casa",
         "semRoteiroProprio": "Ainda sem roteiro próprio — veja os ambientes cobertos",
         "quandoChamarAjuda": "Quando chamar ajuda"
+    },
+    "telas": {
+        "AddPerfilScreenNeo": {
+            "selecioneComodosPet": "Selecione os cômodos que este pet frequenta no dia a dia para cruzarmos os dados de segurança.",
+            "selecioneComodosResidente": "Selecione os cômodos que este residente usa no dia a dia para cruzarmos os dados de segurança.",
+            "completeSeuPerfilDeSeguranca": "Complete seu Perfil de Segurança",
+            "ajudeNosAFornecerRecomendacoesDe": "Ajude-nos a fornecer recomendações de segurança personalizadas",
+            "fichaDoPet": "Ficha do Pet",
+            "informacoesPessoais": "Informações Pessoais",
+            "femea": "Fêmea",
+            "condicoesEspeciaisDoPet": "Condições Especiais do Pet",
+            "necessidadesDeAcessibilidade": "Necessidades de Acessibilidade",
+            "selecioneAsCondicoesDeSaudeDo": "Selecione as condições de saúde do pet",
+            "selecioneParaPersonalizarAsRecomendacoes": "Selecione para personalizar as recomendações de segurança",
+            "comodosFrequentados": "CÔMODOS FREQUENTADOS",
+            "condicoesMedicas": "Condições Médicas",
+            "buscarCondicoesMedicas": "Buscar Condições Médicas...",
+            "nenhumaCondicaoEncontradaAdicioneAbaixo": "Nenhuma condição encontrada. Adicione abaixo.",
+            "adicionarCondicaoPersonalizada": "Adicionar Condição Personalizada",
+            "nomeDaCondicaoMedica": "Nome da condição médica...",
+            "customizadasSelecionadas": "Customizadas selecionadas:",
+            "essasInformacoesNosAjudamAFornecer": "Essas informações nos ajudam a fornecer recomendações de segurança e primeiros socorros personalizadas.",
+            "selecioneTodasAsAlergiasConhecidas": "Selecione todas as alergias conhecidas:",
+            "adicionarAlergiaPersonalizada": "Adicionar Alergia Personalizada",
+            "nomeDoAlergeno": "Nome do alérgeno...",
+            "customizadasSelecionadas2": "Customizadas selecionadas:",
+            "informacoesDeEmergenciaEstesDadosDe": "Informações de Emergência: Estes dados de alergia serão compartilhados com os socorristas de emergência, se necessário.",
+            "medicamentosEmUso": "Medicamentos em Uso",
+            "listeOsMedicamentosDeUsoDiario": "Liste os medicamentos de uso diário ou recorrente:",
+            "adicionarMedicamento": "Adicionar Medicamento",
+            "nomeDoMedicamentoEDosagem": "Nome do medicamento e dosagem...",
+            "redeDeApoioSos": "Rede de Apoio (SOS)",
+            "informacoesObrigatorias": "Informações Obrigatórias",
+            "informacoesPessoaisNomeEIdade": "Informações Pessoais (Nome e Idade)",
+            "peloMenosUmContatoDeEmergencia": "Pelo menos um Contato de Emergência",
+            "salvarPerfil": "Salvar Perfil"
+        },
+        "MedicalDisclaimerModal": {
+            "emergenciaLigue": "Em caso de emergência médica, ligue imediatamente para o {{servico}} ou dirija-se ao hospital mais próximo.",
+            "erroAoSalvar": "Erro ao salvar",
+            "naoFoiPossivelRegistrarSeuAceite": "Não foi possível registrar seu aceite. Verifique o armazenamento do dispositivo e tente novamente.",
+            "avisoImportante": "Aviso Importante",
+            "oVigilaroCareEUmaFerramenta": "O Vigilaro Care é uma ferramenta de apoio à prevenção e organização familiar.",
+            "esteAplicativoNaoForneceAconselhamentoMe": "Este aplicativo NÃO fornece aconselhamento médico, diagnóstico ou tratamento.",
+            "todasAsInformacoesConteudosEMateriais": "Todas as informações, conteúdos e materiais disponíveis neste aplicativo têm fins meramente informativos e educativos. As informações não substituem o aconselhamento médico profissional.",
+            "sempreProcureOConselhoDoSeu": "Sempre procure o conselho do seu médico ou outro profissional de saúde qualificado para qualquer dúvida que possa ter sobre uma condição médica, tratamento, medicamentos ou procedimentos. Nunca desconsidere o conselho médico profissional por causa de algo que tenha lido neste aplicativo.",
+            "asInformacoesSobrePrimeirosSocorrosProdu": "As informações sobre primeiros socorros, produtos perigosos, plantas tóxicas e animais peçonhentos são de caráter preventivo e educativo. Em qualquer situação de risco, acione os serviços de emergência imediatamente.",
+            "aoContinuarVoceConfirmaQueLeu": "Ao continuar, você confirma que leu e compreendeu este aviso e concorda com nossos Termos de Uso e Política de Privacidade. Versão do aviso: ",
+            "roleAteOFinalParaContinuar": "Role até o final para continuar",
+            "aceitarAvisoMedicoEContinuar": "Aceitar aviso médico e continuar",
+            "disponivelAposRolarTodoOTexto": "Disponível após rolar todo o texto do aviso",
+            "entendiEConcordo": "Entendi e Concordo",
+            "roleParaContinuar": "Role para continuar"
+        },
+        "ScannerScreen": {
+            "erro": "Erro",
+            "naoFoiPossivelCapturarAFoto": "Não foi possível capturar a foto.",
+            "servidorIndisponivel": "Servidor indisponível",
+            "aAnaliseDemorouMaisQueO": "A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes",
+            "semConexao": "Sem conexão",
+            "verifiqueSuaConexaoComAInternet": "Verifique sua conexão com a internet e tente novamente.",
+            "erro2": "Erro",
+            "falhaNaAnaliseTenteNovamente": "Falha na análise. Tente novamente.",
+            "fotografeORotulo": "Fotografe o rótulo",
+            "oCodigoLidoEUmLink": "O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.",
+            "fotografeORotulo2": "Fotografe o rótulo",
+            "entendi": "Entendi",
+            "erro3": "Erro",
+            "falhaAoBuscarDadosDoProduto": "Falha ao buscar dados do produto. Tente novamente.",
+            "riscoSDetectadoS": " risco(s) detectado(s)"
+        },
+        "SecretBriefingScreen": {
+            "segureOBotao": "Segure o botão ",
+            "noRodapePor": " no rodapé por ",
+            "oAppVibraraDiscretamente": "• O app vibrará discretamente.",
+            "gravacaoDeAudioEGpsIniciam": "• Gravação de áudio e GPS iniciam na hora.",
+            "alertasSaoEnviadosApos15sSe": "• Alertas são enviados após 15s se não cancelar."
+        },
+        "TermsOfUseScreen": {
+            "seVoceOuAlguemEstiverEm": "Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:",
+            "paraDetalhesSobreComoTratamosSeus": "Para detalhes sobre como tratamos seus dados, consulte nossa ",
+            "politicaDePrivacidade": "Política de Privacidade",
+            "especifica": " específica."
+        },
+        "DataHealthScreen": {
+            "saudeDosDados": "Saúde dos Dados",
+            "diagnosticoDeIntegridadeDoVigilaroData": "Diagnóstico de integridade do @vigilaro_data",
+            "executarDiagnostico": "Executar Diagnóstico",
+            "estatisticas": "Estatísticas",
+            "problema": " Problema",
+            "encontrado": " Encontrado",
+            "tudoIntegro": "Tudo Íntegro!",
+            "nenhumaInconsistenciaEncontradaNosDados": "Nenhuma inconsistência encontrada nos dados.",
+            "executarNovamente": "Executar Novamente"
+        },
+        "FazendoAsMalasScreen": {
+            "fonte": "Fonte: ",
+            "vigenteEm": " · vigente em "
+        },
+        "InspecaoChegadaScreen": {
+            "verificados": " verificados"
+        },
+        "TravelModeScreen": {
+            "selecioneOMeioDeTransporte": "Selecione o meio de transporte",
+            "selecioneADuracaoAproximada": "Selecione a duração aproximada",
+            "issoDesativaraOModoViagem": "Isso desativará o Modo Viagem.",
+            "cancelar": "Cancelar"
+        },
+        "UpgradePremiumScreen": {
+            "erro": "Erro",
+            "naoFoiPossivelAbrirEsteLink": "Não foi possível abrir este link.",
+            "erro2": "Erro",
+            "naoFoiPossivelAbrirEsteLink2": "Não foi possível abrir este link."
+        },
+        "AchievementToast": {
+            "novoNivel": "Novo Nível!"
+        },
+        "BatteryMonitor": {
+            "bateriaCritica": "🔴 Bateria Crítica",
+            "entendi": "Entendi"
+        },
+        "DisclaimerModal": {
+            "avisoImportante": "Aviso Importante",
+            "oConteudoDesteAplicativoVigilaroCare": "O conteúdo deste aplicativo (Vigilaro Care) tem caráter puramente ",
+            "informativoEEducativo": "informativo e educativo",
+            "ele": "Ele ",
+            "naoSubstitui": "NÃO substitui",
+            "oAconselhamentoDiagnosticoOuTratamentoMe": " o aconselhamento, diagnóstico ou tratamento médico profissional.",
+            "emCasoDeEmergenciaMedicaLigue": "Em caso de emergência médica, ligue imediatamente para o ",
+            "paraCasosDeIntoxicacaoContateO": "Para casos de intoxicação, contate o ",
+            "entendi": "Entendi"
+        },
+        "ErrorBoundary": {
+            "algoDeuErrado": "Algo deu errado",
+            "ocorreuUmProblemaInesperadoPorFavor": "Ocorreu um problema inesperado. Por favor, reinicie o aplicativo para continuar.",
+            "tentarNovamente": "Tentar novamente",
+            "reiniciarAplicativo": "Reiniciar Aplicativo"
+        },
+        "GlobalFloatingFooter": {
+            "sos": "SOS"
+        },
+        "LeftHandedSuggestionModal": {
+            "modoCanhotoDetectado": "Modo Canhoto Detectado",
+            "notamosQueVoceUsaMaisO": "Notamos que você usa mais o lado esquerdo da tela. Ative o",
+            "modoCanhoto": "Modo Canhoto",
+            "paraBotoesEControlesMaisAcessiveis": " para botões e controles mais acessíveis à sua mão.",
+            "manterPadrao": "Manter Padrão",
+            "ativar": "Ativar"
+        },
+        "OfflineModeModal": {
+            "modoOfflineAtivado": "Modo Offline Ativado",
+            "detectamosFaltaDeSinalDeRede": "Detectamos falta de sinal de rede.",
+            "fiqueTranquiloVoceAindaTemAcesso": "Fique tranquilo. Você ainda tem acesso a:",
+            "fichasMedicasSaude": "Fichas Médicas & Saúde",
+            "guiasDePrimeirosSocorros": "Guias de Primeiros Socorros",
+            "kitsDeEmergencia": "Kits de Emergência",
+            "telefonesDeUtilidadePublica": "Telefones de Utilidade Pública",
+            "entendiManterProtegido": "Entendi, manter protegido"
+        },
+        "PremiumBadge": {
+            "premium": "✦ Premium",
+            "premium2": "Premium"
+        },
+        "PremiumGate": {
+            "premium": "Premium",
+            "tocarParaDesbloquear": "Tocar para desbloquear"
+        },
+        "ResidenceLinksPicker": {
+            "vinculoComOsLocaisOndeMora": "VÍNCULO COM OS LOCAIS (ONDE MORA / FREQUENTA)"
+        },
+        "SafeFooter": {
+            "inicio": "Início",
+            "opcoes": "Opções",
+            "voz": "Voz",
+            "scanner": "Scanner"
+        },
+        "TermsModal": {
+            "termosDeUsoESeguranca": "Termos de Uso e Segurança",
+            "leiaAtentamenteParaContinuar": "Leia atentamente para continuar",
+            "1NaturezaInformativa": "1. Natureza Informativa",
+            "oAplicativoVigilaroCareEUma": "O aplicativo Vigilaro Care é uma ferramenta de auxílio e prevenção. Todo o conteúdo, incluindo checklists, guias de primeiros socorros e análises de IA, tem caráter EXCLUSIVAMENTE INFORMATIVO e EDUCACIONAL.",
+            "2NaoSubstituiProfissionais": "2. Não Substitui Profissionais",
+            "asInformacoesAquiContidasNaoSubstituem": "As informações aqui contidas NÃO substituem, em hipótese alguma, o diagnóstico, aconselhamento ou tratamento por profissionais de saúde (médicos, enfermeiros, socorristas) ou especialistas em segurança.",
+            "3EmCasoDeEmergencia": "3. Em Caso de Emergência",
+            "seVoceOuAlguemEstiverEm": "Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:",
+            "4LimitacaoDeResponsabilidade": "4. Limitação de Responsabilidade",
+            "osDesenvolvedoresDoVigilaroCareNao": "Os desenvolvedores do Vigilaro Care não se responsabilizam por quaisquer danos, lesões ou perdas resultantes do uso das informações fornecidas pelo aplicativo. A segurança final do ambiente e das pessoas é de responsabilidade do usuário.",
+            "5InteligenciaArtificial": "5. Inteligência Artificial",
+            "oRecursoDeScannerIaUtiliza": "O recurso de \"Scanner IA\" utiliza inteligência artificial para identificar possíveis riscos. Esta tecnologia pode falhar ou cometer erros. Sempre verifique visualmente o ambiente e use seu próprio julgamento.",
+            "roleAteOFimParaAceitar": "Role até o fim para aceitar"
+        },
+        "TriColorBar": {
+            "nenhumItemRespondido": "Nenhum item respondido",
+            "atende": "Atende ",
+            "atencao": "Atenção ",
+            "critico": "Crítico ",
+            "conformeBaixoRisco": "Conforme (Baixo risco)",
+            "atencaoRiscoModerado": "Atenção (Risco moderado)",
+            "criticoRiscoAlto": "Crítico (Risco alto)"
+        },
+        "AcessoriosSegurancaScreen": {
+            "acessoriosToqueParaVerDetalhes": " acessórios • Toque para ver detalhes",
+            "toqueParaVerTiposEInstalacao": "Toque para ver tipos e instalação."
+        },
+        "AreasInternasScreen": {
+            "erro": "Erro",
+            "falhaAoCarregarChecklistTenteNovamente": "Falha ao carregar checklist. Tente novamente.",
+            "erro2": "Erro",
+            "residenciaNaoSelecionada": "Residência não selecionada",
+            "erro3": "Erro",
+            "falhaAoSalvarRespostaTenteNovamente": "Falha ao salvar resposta. Tente novamente.",
+            "verificacaoDeSeguranca": "VERIFICAÇÃO DE SEGURANÇA",
+            "sim": "SIM",
+            "nao": "NÃO",
+            "evite": "EVITE"
+        },
+        "ChecklistDetailScreen": {
+            "erro": "Erro"
+        },
+        "ChecklistReformaScreen": {
+            "tipo": "Tipo: ",
+            "verificados": " verificados",
+            "duracao": "Duração: "
+        },
+        "ChecklistVisitScreen": {
+            "prepareSuaCasa": "Prepare sua casa",
+            "fiqueAtentoAoVisitar": "Fique atento ao visitar",
+            "verificados": " verificados",
+            "prontoParaVisitar": "Pronto para Visitar"
+        },
+        "OndeProtegerScreen": {
+            "novaResidencia": "Nova Residência",
+            "cancelar": "Cancelar",
+            "pontosDeAtencao": " pontos de atenção"
+        },
+        "SafetyActionPlanScreen": {
+            "critico": "CRÍTICO",
+            "na": "NA"
+        },
+        "CuidarProtegerHubScreen": {
+            "categoriasExploreAsAdaptacoes": " categorias • Explore as adaptações"
+        },
+        "DispositivosEletronicosReviewsScreen": {
+            "itensToqueParaVerOReview": " itens • Toque para ver o review completo",
+            "uso": "Uso "
+        },
+        "DispositivosProtecaoScreen": {
+            "dispositivosToqueParaVerDetalhes": " dispositivos • Toque para ver detalhes",
+            "uso": "Uso "
+        },
+        "EletrodomesticosReviewsScreen": {
+            "itensToqueParaVerOReview": " itens • Toque para ver o review completo",
+            "uso": "Uso "
+        },
+        "MicroArticleScreen": {
+            "minDeLeitura": " min de leitura"
+        },
+        "MicroBlogScreen": {
+            "min": " min",
+            "microBlog": "Micro Blog",
+            "prevenirEmCasa": "Prevenir em Casa",
+            "todos": "Todos ("
+        },
+        "SafetyReviewDetailScreen": {
+            "risco": "Risco "
+        },
+        "UtensiliosDomesticosScreen": {
+            "buscarUtensilioExFacasPanelas": "Buscar utensílio (ex: Facas, Panelas)",
+            "itensToqueParaVerDetalhes": " itens • Toque para ver detalhes"
+        },
+        "UtensiliosReviewsScreen": {
+            "itensToqueParaVerOReview": " itens • Toque para ver o review completo",
+            "uso": "Uso "
+        },
+        "EletrodomesticosScreen": {
+            "trava": "Trava"
+        },
+        "ContatosEmergenciaScreen": {
+            "encontramosContatosDaFamiliaDesejaImport": "Encontramos contatos da família. Deseja importá-los para este perfil para facilitar?",
+            "naoComecarDoZero": "Não, começar do zero",
+            "simImportar": "Sim, importar",
+            "erro": "Erro",
+            "erro2": "Erro",
+            "excluirContato": "Excluir contato",
+            "cancelar": "Cancelar",
+            "excluir": "Excluir",
+            "editarContato": "Editar contato",
+            "exDrJoaoSilva": "Ex: Dr. João Silva",
+            "exCardiologistaTioVizinhoDaFrente": "Ex: Cardiologista, Tio, Vizinho da frente…",
+            "salvar": "Salvar",
+            "lista": "LISTA · ",
+            "sms": "SMS",
+            "editar": "Editar",
+            "excluir2": "Excluir",
+            "suaCasa": "sua casa"
+        },
+        "EmergenciaPetScreen": {
+            "ligar": "LIGAR",
+            "buscar": "BUSCAR",
+            "protocolosDetectados": "PROTOCOLOS DETECTADOS",
+            "documentos": "DOCUMENTOS"
+        },
+        "EncerrarSituacaoScreen": {
+            "encerrar": "Encerrar ",
+            "restaurarSegurancaDoLar": "Restaurar segurança do lar"
+        },
+        "KitEmergenciaScreen": {
+            "de": " de ",
+            "itens": " itens",
+            "completo": "% completo"
+        },
+        "KitPrimeirosSocorrosScreen": {
+            "de": " de ",
+            "itens": " itens",
+            "completo": "% completo"
+        },
+        "KitRemediosScreen": {
+            "de": " de ",
+            "itens": " itens",
+            "completo": "% completo"
+        },
+        "ModoSituacaoAtivaScreen": {
+            "deDuracao": " de duração",
+            "riscoTemporarioDetectadoSigaAsRecomendac": "Risco temporário detectado — siga as recomendações."
+        },
+        "PlanoIncendioScreen": {
+            "voceTemMenosDe3Minutos": "Você tem menos de 3 minutos para sair em um incêndio. Ter um plano pode salvar sua família.",
+            "3min": "3min",
+            "diariaVerificarExtintores": "• DIÁRIA: verificar extintores",
+            "dinamicaAtualizarPlano": "• DINÂMICA: atualizar plano",
+            "duradouraTreinarRegularmente": "• DURADOURA: treinar regularmente"
+        },
+        "SOSEmergencyModeScreenNeo": {
+            "adicioneContatosDeEmergenciaParaUsar": "Adicione contatos de emergência para usar o SOS.",
+            "naoFoiPossivelAbrirOAplicativo": "Nao foi possivel abrir o aplicativo de mensagens neste aparelho.",
+            "naoFoiPossivelAbrirOAplicativo2": "Nao foi possivel abrir o aplicativo de mensagens neste aparelho.",
+            "erro": "Erro",
+            "naoFoiPossivelGerarAFicha": "Não foi possível gerar a ficha. Verifique se há um perfil ativo cadastrado.",
+            "fichaMedica": "Ficha médica",
+            "naoFoiPossivelGerarOPdf": "Não foi possível gerar o PDF agora. Use o texto, que funciona offline.",
+            "whatsappNaoInstaladoUseCopiarPara": "WhatsApp não instalado. Use \"Copiar\" para colar manualmente.",
+            "erro2": "Erro",
+            "whatsappNaoEstaInstaladoOuConfigurado": "WhatsApp não está instalado ou configurado.",
+            "fichaMedicaCopiadaColeEmQualquer": "Ficha médica copiada. Cole em qualquer app de mensagem.",
+            "erro3": "Erro",
+            "naoFoiPossivelCopiar": "Não foi possível copiar.",
+            "sos": "SOS",
+            "precisaDeAjudaAgora": "Precisa de ajuda agora?",
+            "acionaremosSeusContatosDeEmergenciaCom": "Acionaremos seus contatos de emergência com sua localização atual.",
+            "ligarVeterinario": "Ligar Veterinário",
+            "enviarLocal": "Enviar local",
+            "enviarPorWhatsapp": "Enviar por WhatsApp",
+            "copiarFicha": "Copiar Ficha",
+            "compartilhar": "Compartilhar",
+            "salvarEmPdf": "Salvar em PDF",
+            "redeDeApoioPerfil": "Rede de Apoio Perfil",
+            "nenhumContatoTaticoCadastrado": "Nenhum contato tático cadastrado.",
+            "adicionarNovo": "+ Adicionar Novo",
+            "nomeExFilhaAna": "Nome (Ex: Filha Ana)",
+            "telefone": "Telefone",
+            "cancelar": "Cancelar",
+            "salvar": "Salvar"
+        },
+        "EPIDomesticoScreen": {
+            "toqueParaVerDetalhes": " • Toque para ver detalhes"
+        },
+        "GenericCategoryScreen": {
+            "toqueParaSaberMais": "Toque para saber mais."
+        },
+        "MedicationDoseHistoryScreen": {
+            "diasAnalisados": " dias analisados",
+            "erro": "Erro",
+            "naoFoiPossivelRegistrarADose": "Não foi possível registrar a dose.",
+            "removerRegistro": "Remover registro",
+            "desejaRemoverEsteRegistroDoHistorico": "Deseja remover este registro do histórico?",
+            "cancelar": "Cancelar",
+            "remover": "Remover",
+            "nenhumLembreteSelecionado": "Nenhum lembrete selecionado.",
+            "voltar": "Voltar",
+            "historicoDeDoses": "Histórico de doses",
+            "tomeiAgora": "Tomei agora",
+            "aderencia": "Aderência",
+            "ultimos7Dias": "Últimos 7 dias",
+            "ultimos30Dias": "Últimos 30 dias",
+            "estimativaBaseadaNosHorariosEDias": "* Estimativa baseada nos horários e dias configurados.",
+            "registros": "Registros (",
+            "dias": " dias)",
+            "toqueEmTomeiAgoraSempreQue": "Toque em 'Tomei agora' sempre que tomar o medicamento.",
+            "doseDas": "Dose das ",
+            "removerRegistro2": "Remover registro",
+            "esteHistoricoEApenasUmRegistro": "Este histórico é apenas um registro pessoal. Não constitui prontuário médico. Consulte sempre seu médico para informações sobre sua medicação."
+        },
+        "MedicationReminderFormScreen": {
+            "lembretesDeMedicamentos": "Lembretes de Medicamentos",
+            "osLembretesSao": "Os lembretes são",
+            "configuradosPorVoce": "configurados por você",
+            "eFuncionamComoUmaAgendaPessoal": "e funcionam como uma agenda pessoal no seu celular.",
+            "oVigilarocare": "O VigilaroCare",
+            "naoEUmSistemaMedico": "não é um sistema médico",
+            "eNaoSubstituiAOrientacaoDo": "e não substitui a orientação do seu médico ou farmacêutico.",
+            "asNotificacoesDependemDas": "As notificações dependem das",
+            "permissoesEConfiguracoesDoDispositivo": "permissões e configurações do dispositivo",
+            "podemNaoFuncionarNoModoNao": ". Podem não funcionar no modo \"Não Perturbe\" ou com bateria fraca.",
+            "aoContinuarVoceReconheceQueEste": "Ao continuar, você reconhece que este recurso é uma ferramenta de organização pessoal e isenta o VigilaroCare de responsabilidade por falhas de notificação decorrentes do dispositivo ou sistema operacional.",
+            "cancelar": "Cancelar",
+            "entendiEAceito": "Entendi e aceito",
+            "todos": "Todos",
+            "adicionarHorario": "Adicionar horário",
+            "naoFoiPossivelAgendarAsNotificacoes": "Não foi possível agendar as notificações deste lembrete. Verifique a permissão de notificações do Vigilaro Care nos ajustes do aparelho e edite o lembrete para tentar de novo.",
+            "algunsHorariosNaoForamAgendados": "Alguns horários não foram agendados",
+            "parteDosAvisosDesteLembreteNao": "Parte dos avisos deste lembrete não pôde ser agendada. Abra o lembrete e salve novamente para tentar os horários que faltaram.",
+            "erro": "Erro",
+            "naoFoiPossivelSalvarOLembrete": "Não foi possível salvar o lembrete. Tente novamente.",
+            "voltar": "Voltar",
+            "editarLembrete": "Editar lembrete",
+            "medicamento": "Medicamento",
+            "nomeDoMedicamento": "Nome do medicamento *",
+            "nomeDoMedicamento2": "Nome do medicamento",
+            "observacoesOpcional": "Observações (opcional)",
+            "exTomarComAguaAposO": "Ex: Tomar com água, após o café da manhã",
+            "observacoes": "Observações",
+            "horarios": "Horários *",
+            "diasDaSemana": "Dias da semana",
+            "cuidadorRemoto": "Cuidador Remoto",
+            "notificarPorSmsWhatsapp": "Notificar por SMS / WhatsApp",
+            "avisaAPessoaAssistidaNoHorario": "Avisa a pessoa assistida no horário do lembrete",
+            "aPessoaAssistidaReceberaUmaMensagem": "A pessoa assistida receberá uma mensagem pedindo confirmação antes de receber lembretes.",
+            "nomeDaPessoaAssistida": "Nome da pessoa assistida",
+            "exJose": "Ex: José",
+            "nomeDaPessoaAssistida2": "Nome da pessoa assistida",
+            "telefoneComDdd55": "Telefone com DDD (+55)",
+            "telefoneDoAssistido": "Telefone do assistido",
+            "suaRelacaoComEssaPessoa": "Sua relação com essa pessoa",
+            "exMinhaMaeMeuPai": "Ex: minha mãe, meu pai",
+            "relacaoComOAssistido": "Relação com o assistido",
+            "canalDeNotificacao": "Canal de notificação",
+            "salvarAlteracoes": "Salvar alterações",
+            "esteRecursoEUmAssistenteDe": "Este recurso é um assistente de organização pessoal e não substitui a orientação do seu médico ou farmacêutico. Consulte sempre um profissional de saúde para dúvidas sobre medicamentos."
+        },
+        "MedicationRemindersScreen": {
+            "para": "Para: ",
+            "dose": " dose",
+            "tomei": "Tomei",
+            "10Min": "+10 min",
+            "historico": "Histórico",
+            "editar": "Editar",
+            "remover": "Remover",
+            "erro": "Erro",
+            "erro2": "Erro",
+            "naoFoiPossivelRegistrarADose": "Não foi possível registrar a dose.",
+            "cancelar": "Cancelar",
+            "voceSeraLembradoEm10Minutos": "Você será lembrado em 10 minutos.",
+            "voceSeraLembradoEm30Minutos": "Você será lembrado em 30 minutos.",
+            "voceSeraLembradoEm1Hora": "Você será lembrado em 1 hora.",
+            "removerLembrete": "Remover lembrete",
+            "cancelar2": "Cancelar",
+            "remover2": "Remover",
+            "erro3": "Erro",
+            "naoFoiPossivelRemoverOLembrete": "Não foi possível remover o lembrete.",
+            "voltar": "Voltar",
+            "lembretes": "Lembretes",
+            "rotinaDeMedicamentos": "Rotina de medicamentos",
+            "adicionarLembrete": "Adicionar lembrete",
+            "assistenteDeOrganizacaoNaoSubstituiOrien": "Assistente de organização — não substitui orientação médica.",
+            "toqueEmParaAdicionarSeuPrimeiro": "Toque em + para adicionar seu primeiro lembrete de medicamento.",
+            "cadastrado": " cadastrado",
+            "adicionarLembrete2": "Adicionar lembrete",
+            "asNotificacoesDependemDasPermissoesE": "As notificações dependem das permissões e configurações do seu dispositivo. Podem não funcionar no modo \"Não Perturbe\" ou com bateria baixa. Em iOS, o limite é de 64 notificações agendadas."
+        },
+        "MinhaSaudeScreen": {
+            "fichaMedica": "Ficha médica",
+            "naoFoiPossivelGerarAFicha": "Não foi possível gerar a ficha agora. Tente novamente.",
+            "nadaRegistrado": "Nada registrado",
+            "monitoramentoAtivo": "Monitoramento Ativo",
+            "perfilDeRiscoEPrevencao": "Perfil de Risco e Prevenção",
+            "condicoesMedicas": "Condições Médicas",
+            "alergiasERestricoes": "Alergias e Restrições",
+            "muralDeRotina": "Mural de Rotina",
+            "medicamentosEmUso": "Medicamentos em Uso",
+            "gerenciarLembretesDeMedicamentos": "Gerenciar lembretes de medicamentos",
+            "gerenciarLembretes": "Gerenciar lembretes",
+            "outrosPerfisDaCasa": "Outros perfis da casa",
+            "compartilharFichaDeEmergencia": "Compartilhar Ficha de Emergência"
+        },
+        "SaudePetScreen": {
+            "nadaRegistrado": "Nada registrado",
+            "saudeECuidados": "Saúde e Cuidados",
+            "condicoesMedicas": "Condições Médicas",
+            "alergiasERestricoes": "Alergias e Restrições",
+            "medicamentosEmUso": "Medicamentos em Uso",
+            "listaInformativaSemAlarmesOuLembretes": "Lista informativa — sem alarmes ou lembretes ativos.",
+            "compartilharFichaDoPet": "Compartilhar Ficha do Pet",
+            "animaisDaCasa": "Animais da casa",
+            "cuidadoAtivo": "Cuidado Ativo"
+        },
+        "InfoRotulosResultScreen": {
+            "fontePubchemNihNlm": "Fonte: PubChem (NIH/NLM)"
+        },
+        "IntroSafetyMenuScreen": {
+            "introducaoASeguranca": "Introdução à Segurança",
+            "segurancaDomesticaNaoEAcidenteE": "Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para minimizar riscos e garantir a integridade física de toda a família. A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa.",
+            "metodologia3d": "Metodologia 3D",
+            "aMetodologia3dDefineAcoesPara": "A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para eliminarmos os perigos do lar, a prevenção e a conscientização são as únicas chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso.",
+            "quaseAcidentes": "Quase Acidentes",
+            "osQuaseAcidentesETambemOs": "Os “quase acidentes”, e também os acidentes sem ferimentos ou danos materiais, não podem ser ignorados, uma vez que eles são “avisos” do que pode ou, provavelmente, irá acontecer se os atos e condições inseguras forem ignorados. Lembre-se: um acidente acontece, mais cedo ou mais tarde, quando tais “avisos” são ignorados."
+        },
+        "MenuScreenNeo": {
+            "sucesso": "Sucesso",
+            "erro": "Erro"
+        },
+        "ModoPreventivoScreenNeo": {
+            "categoriasToqueParaIniciarAVerificacao": " categorias • Toque para iniciar a verificação",
+            "auditoriaPreventivaDoAmbiente": "Auditoria preventiva do ambiente",
+            "sigaAsInstrucoesDeSegurancaAbaixo": "Siga as instruções de segurança abaixo.",
+            "de": " de ",
+            "verificados": " verificados",
+            "ambienteNaoAplicavel": "Ambiente Não Aplicável?",
+            "desejaMarcarEsteAmbienteInteiroComo": "Deseja marcar este ambiente inteiro como não aplicável e finalizar?",
+            "naoApenasEsta": "Não, apenas esta",
+            "simPularAmbiente": "Sim, Pular Ambiente",
+            "na": "NA",
+            "atencao": "Atenção",
+            "respondaATodasAsQuestoesPara": "Responda a todas as questões para concluir.",
+            "seguro": "% Seguro",
+            "acao": "AÇÃO: "
+        },
+        "HumanFormStep": {
+            "passo1NovoIntegrantePessoa": "PASSO 1 — NOVO INTEGRANTE (PESSOA)",
+            "dadosEssenciais": "Dados Essenciais",
+            "adicionarFoto": "Adicionar Foto",
+            "nomeCompleto": "Nome Completo",
+            "exJoaoSilva": "Ex: João Silva",
+            "dataDeNascimento": "Data de Nascimento",
+            "genero": "Gênero",
+            "vinculo": "Vínculo",
+            "condicoesEspeciaisOpcional": "Condições Especiais (opcional)",
+            "quaisAmbientesEssaPessoaUsa": "Quais ambientes essa pessoa usa?",
+            "marcaTudoQueElaFrequentaAjuda": "Marca tudo que ela frequenta. Ajuda o app a priorizar o cuidado certo, no lugar certo.",
+            "voltaAoPassoOndeEMarca": "Volta ao passo \"Onde\" e marca os ambientes da casa primeiro.",
+            "salvarPerfil": "Salvar perfil"
+        },
+        "OndeStep": {
+            "areasExternasELazer": "Áreas externas e lazer",
+            "ambientesInternos": "Ambientes internos",
+            "ambiente": " ambiente",
+            "noSeuMapaSensivel": " no seu mapa sensível"
+        },
+        "P1_TipoMoradiaStep": {
+            "identificacaoDoLocalExCasaPrincipal": "Identificação do local (ex: Casa Principal, Apartamento da Filha)",
+            "exApartamentoDaFilha": "Ex: Apartamento da Filha",
+            "tipoDeMoradia": "Tipo de moradia",
+            "quantosAndares": "Quantos andares?",
+            "contaOsPavimentosHabitaveisEscadaConta": "Conta os pavimentos habitáveis — escada conta como ponto de atenção pra próxima etapa."
+        },
+        "PetFormStep": {
+            "passo1NovoPet": "PASSO 1 — NOVO PET",
+            "dadosDoPet": "Dados do Pet",
+            "adicionarFoto": "Adicionar Foto",
+            "nome": "Nome",
+            "especie": "Espécie",
+            "porte": "Porte",
+            "idadeAnos": "Idade (Anos)",
+            "condicoesEspeciaisOpcional": "Condições Especiais (opcional)",
+            "ondeEsseBichinhoFica": "Onde esse bichinho fica?",
+            "marcaOsAmbientesQueEleFrequenta": "Marca os ambientes que ele frequenta. Pet tem rotina e território — o cuidado certo segue isso.",
+            "voltaAoPassoOndeEMarca": "Volta ao passo \"Onde\" e marca os ambientes da casa primeiro.",
+            "salvarPet": "Salvar pet"
+        },
+        "QuemListStep": {
+            "passoQuem": "PASSO • QUEM",
+            "quemVamosProteger": "Quem vamos proteger?",
+            "marqueQuemMoraOuFrequentaEsta": "Marque quem mora ou frequenta esta residência. Você pode adicionar pessoas e pets, e usar os mesmos perfis em outras residências (casa de praia, sítio…).",
+            "naoMora": "não mora",
+            "moradorFixo": "Morador Fixo",
+            "visitanteEventual": "Visitante Eventual",
+            "nenhumPerfilAindaAdicioneUmMorador": "Nenhum perfil ainda. Adicione um morador ou pet abaixo.",
+            "adicionarMoradorVisitante": "Adicionar Morador / Visitante",
+            "adicionarPet": "Adicionar Pet"
+        },
+        "NewHomeWizardScreenNeo": {
+            "voceVoltaDeOndeParouPelo": "Você volta de onde parou pelo menu \"Seu mapa sensível\".",
+            "permissaoNecessaria": "Permissão Necessária",
+            "precisamosDeAcessoAGaleriaPra": "Precisamos de acesso à galeria pra escolher a foto.",
+            "atencao": "Atenção",
+            "atencao2": "Atenção",
+            "dataDeNascimentoInvalida": "Data de nascimento inválida.",
+            "atencao3": "Atenção",
+            "informeONomeDoPet": "Informe o nome do pet.",
+            "estePerfilSaiDoMapeamento": "Este perfil sai do mapeamento.",
+            "cancelar": "Cancelar",
+            "atencao4": "Atenção",
+            "escolheOTipoDeMoradiaPra": "Escolhe o tipo de moradia pra seguir.",
+            "atencao5": "Atenção",
+            "marcaPeloMenos1AmbienteVai": "Marca pelo menos 1 ambiente. Vai te ajudar depois.",
+            "atencao6": "Atenção",
+            "marcaQuemMoraOuFrequentaEsta": "Marca quem mora ou frequenta esta residência pra concluir.",
+            "erro": "Erro",
+            "naoDeuPraSalvarAgoraToca": "Não deu pra salvar agora. Toca em \"Continuar depois\" e tenta de novo.",
+            "continuarDepois": "Continuar depois",
+            "continuarDepois2": "Continuar depois",
+            "proximoAmbientes": "Próximo: ambientes",
+            "proximoQuemMora": "Próximo: quem mora",
+            "concluirMapaSensivel": "Concluir mapa sensível",
+            "concluirMapeamento": "Concluir mapeamento"
+        },
+        "PetFoodSafetyScreen": {
+            "risco": "RISCO "
+        },
+        "ProdutoScannerScreen": {
+            "perigo": "PERIGO: "
+        },
+        "HomeXRayScreen": {
+            "pessoasEPetsVinculados": "Pessoas e Pets Vinculados",
+            "moradoresFixos": "Moradores Fixos:",
+            "nenhumMoradorFixo": "Nenhum morador fixo.",
+            "visitantesEventuais": "Visitantes Eventuais:",
+            "nenhumVisitanteEventual": "Nenhum visitante eventual."
+        },
+        "ProfileRiskSummaryScreen": {
+            "medidaCorretivaAcaoFisica": "Medida Corretiva (Ação Física)",
+            "medidaPreventivaHabitoCuidado": "Medida Preventiva (Hábito/Cuidado)",
+            "medidaDeMitigacaoReducaoDeDano": "Medida de Mitigação (Redução de Dano)",
+            "anos": " anos",
+            "moradia": "📍 Moradia: ",
+            "pendente": "Pendente",
+            "fichaDeSaudeIncompleta": "Ficha de Saúde Incompleta",
+            "paraObterRecomendacoesEUmRelatorio": "Para obter recomendações e um relatório de prevenção 100% personalizado para ",
+            "informeAsMedicacoesEnfermidadesELimitaco": ", informe as medicações, enfermidades e limitações físicas/cognitivas.",
+            "completarFichaDeSaude": "Completar Ficha de Saúde",
+            "configuracaoInicialPendente": "Configuração Inicial Pendente",
+            "paraGerarAPrevencaoPersonalizadaPrecisam": "Para gerar a prevenção personalizada, precisamos de:",
+            "1VistoriaDosAmbientes": "1. Vistoria dos Ambientes",
+            "responderAosChecklistsDosAmbientesInform": "Responder aos checklists dos ambientes informados no onboarding.",
+            "concluido": "Concluído",
+            "2FichaDeSaudeMedicacoesLimitacoes": "2. Ficha de Saúde (Medicações/Limitações)",
+            "preencherMedicacoesLimitacoesEEnfermidad": "Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.",
+            "concluido2": "Concluído",
+            "iniciarVistoriaDosAmbientes": "Iniciar Vistoria dos Ambientes",
+            "preencherFichaDeSaude": "Preencher Ficha de Saúde",
+            "analisePersonalizadaIndisponivelOfflineC": "Análise personalizada indisponível offline. Conecte-se à internet para gerar.",
+            "naoFoiPossivelCarregarAAnalise": "Não foi possível carregar a análise inteligente.",
+            "tentarNovamente": "Tentar novamente"
+        },
+        "EscolaSeguraReportScreen": {
+            "escolaSegura": "Escola segura",
+            "itens": " itens",
+            "itens2": " itens"
+        },
+        "VistoriaAsiloReportScreen": {
+            "vistoriaAsilo": "Vistoria asilo",
+            "conformes": " conformes",
+            "conformes2": " conformes"
+        },
+        "SafetyPermitScreen": {
+            "protocolo": "Protocolo '",
+            "naoEncontrado": "' não encontrado.",
+            "atencao": "Atenção",
+            "respondaTodasAsPerguntasParaGarantir": "Responda todas as perguntas para garantir sua segurança."
+        }
     }
 }

@@ -1,4 +1,5 @@
 
+import { tx } from '../utils/txFixo';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import NeoIcon from './NeoIcon';
 export default function SafeFooter({ navigation }) {
@@ -18,13 +19,13 @@ export default function SafeFooter({ navigation }) {
             {/* Início */}
             <TouchableOpacity style={styles.tabItem} onPress={() => navigateTab('HomeTab')}>
                 <NeoIcon name="Home2" size={24} color="#666" />
-                <Text style={styles.label}>Início</Text>
+                <Text style={styles.label}>{tx('telas.SafeFooter.inicio', 'Início')}</Text>
             </TouchableOpacity>
 
             {/* Opções */}
             <TouchableOpacity style={styles.tabItem} onPress={() => navigateTab('MenuTab')}>
                 <NeoIcon name="Setting2" size={24} color="#666" />
-                <Text style={styles.label}>Opções</Text>
+                <Text style={styles.label}>{tx('telas.SafeFooter.opcoes', 'Opções')}</Text>
             </TouchableOpacity>
 
             {/* ESPAÇO VAZIO CENTRAL (Onde estaria o SOS) */}
@@ -33,13 +34,13 @@ export default function SafeFooter({ navigation }) {
             {/* Voz */}
             <TouchableOpacity style={styles.tabItem} onPress={() => navigateTab('AssistenteIA')}>
                 <NeoIcon name="Microphone2" size={24} color="#666" />
-                <Text style={styles.label}>Voz</Text>
+                <Text style={styles.label}>{tx('telas.SafeFooter.voz', 'Voz')}</Text>
             </TouchableOpacity>
 
             {/* Scanner */}
             <TouchableOpacity style={styles.tabItem} onPress={() => navigation.navigate('Scanner')}>
                 <NeoIcon name="Camera" size={24} color="#666" />
-                <Text style={styles.label}>Scanner</Text>
+                <Text style={styles.label}>{tx('telas.SafeFooter.scanner', 'Scanner')}</Text>
             </TouchableOpacity>
         </View>
     );

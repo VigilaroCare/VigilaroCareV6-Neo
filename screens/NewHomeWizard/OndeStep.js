@@ -5,6 +5,7 @@
  * O tipo de moradia + andares migrou para P1_TipoMoradiaStep.
  * Este passo cuida apenas de áreas externas e cômodos internos.
  */
+import { tx } from '../../utils/txFixo';
 import { View, ScrollView } from 'react-native';
 import { H3, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
@@ -33,7 +34,7 @@ export default function OndeStep({
             />
 
             {/* Áreas Externas */}
-            <H3 style={{ marginBottom: 12, fontSize: 17 }}>Áreas externas e lazer</H3>
+            <H3 style={{ marginBottom: 12, fontSize: 17 }}>{tx('telas.OndeStep.areasExternasELazer', 'Áreas externas e lazer')}</H3>
             <View style={ss.chipRow}>
                 {EXTERNAL_AREAS.map(a => (
                     <Chip key={a.id} label={a.label} icon={a.icon} selected={externalAreas.includes(a.id)}
@@ -42,7 +43,7 @@ export default function OndeStep({
             </View>
 
             {/* Ambientes Internos */}
-            <H3 style={{ marginBottom: 16, marginTop: 28, fontSize: 17 }}>Ambientes internos</H3>
+            <H3 style={{ marginBottom: 16, marginTop: 28, fontSize: 17 }}>{tx('telas.OndeStep.ambientesInternos', 'Ambientes internos')}</H3>
             {INTERNAL_ROOMS.map(cat => (
                 <View key={cat.category} style={{ marginBottom: 20 }}>
                     <Caption style={{ color: C.neutral[500], fontWeight: '700', letterSpacing: 1, marginBottom: 10 }}>
@@ -59,8 +60,7 @@ export default function OndeStep({
 
             {totalSelected > 0 && (
                 <Caption style={{ color: C.primary[700], marginTop: 16, fontWeight: '600', textAlign: 'center' }}>
-                    {totalSelected} ambiente{totalSelected > 1 ? 's' : ''} no seu mapa sensível
-                </Caption>
+                    {totalSelected}{tx('telas.OndeStep.ambiente', ' ambiente')}{totalSelected > 1 ? 's' : ''}{tx('telas.OndeStep.noSeuMapaSensivel', ' no seu mapa sensível')}</Caption>
             )}
         </ScrollView>
     );

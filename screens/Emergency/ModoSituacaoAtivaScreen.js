@@ -38,8 +38,7 @@ export default function ModoSituacaoAtivaScreen({ route, navigation }) {
           <View style={{ flex: 1 }}>
             <H1 style={s.title}>{tituloModo}</H1>
             <Caption style={s.subtitle}>
-              {durationDays} {durationDays === 1 ? 'dia' : 'dias'} de duração
-            </Caption>
+              {durationDays} {durationDays === 1 ? 'dia' : 'dias'}{t('telas.ModoSituacaoAtivaScreen.deDuracao', ' de duração')}</Caption>
           </View>
         </View>
 
@@ -47,9 +46,7 @@ export default function ModoSituacaoAtivaScreen({ route, navigation }) {
           {/* Banner laranja sutil */}
           <View style={s.bannerCard}>
             <NeoIcon name="Warning2" size={18} color={ACCENT} variant="Bold" />
-            <Body style={s.bannerText}>
-              Risco temporário detectado — siga as recomendações.
-            </Body>
+            <Body style={s.bannerText}>{t('telas.ModoSituacaoAtivaScreen.riscoTemporarioDetectadoSigaAsRecomendac', 'Risco temporário detectado — siga as recomendações.')}</Body>
           </View>
 
           {/* Índice */}

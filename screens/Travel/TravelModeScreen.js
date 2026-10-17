@@ -209,8 +209,8 @@ export default function TravelModeScreen({ navigation }) {
 
     const startTrip = async () => {
         if (!tripType) return NeoAlert.alert('Selecione o destino');
-        if (!transportMode) return NeoAlert.alert('Selecione o meio de transporte');
-        if (!tripDuration) return NeoAlert.alert('Selecione a duração aproximada');
+        if (!transportMode) return NeoAlert.alert(t('telas.TravelModeScreen.selecioneOMeioDeTransporte', 'Selecione o meio de transporte'));
+        if (!tripDuration) return NeoAlert.alert(t('telas.TravelModeScreen.selecioneADuracaoAproximada', 'Selecione a duração aproximada'));
 
         const newTrip = {
             id: Date.now().toString(),
@@ -234,9 +234,9 @@ export default function TravelModeScreen({ navigation }) {
     const endTrip = async () => {
         NeoAlert.alert(
             'Encerrar Viagem?',
-            'Isso desativará o Modo Viagem.',
+            t('telas.TravelModeScreen.issoDesativaraOModoViagem', 'Isso desativará o Modo Viagem.'),
             [
-                { text: 'Cancelar', style: 'cancel' },
+                { text: t('telas.TravelModeScreen.cancelar', 'Cancelar'), style: 'cancel' },
                 {
                     text: 'Encerrar',
                     style: 'destructive',

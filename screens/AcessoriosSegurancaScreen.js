@@ -139,8 +139,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                {allCategories.length} acessórios • Toque para ver detalhes
-                            </Text>
+                                {allCategories.length}{t('telas.AcessoriosSegurancaScreen.acessoriosToqueParaVerDetalhes', ' acessórios • Toque para ver detalhes')}</Text>
                         </View>
                     </FadeInView>
 
@@ -167,7 +166,7 @@ export default function AcessoriosSegurancaScreen({ navigation }) {
                                         <View style={styles.guideContent}>
                                             <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={2}>{cat.titulo}</Text>
                                             <View style={{ flex: 1 }} />
-                                            <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={3}>{cat.descricao || 'Toque para ver tipos e instalação.'}</Text>
+                                            <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={3}>{cat.descricao || t('telas.AcessoriosSegurancaScreen.toqueParaVerTiposEInstalacao', 'Toque para ver tipos e instalação.')}</Text>
                                         </View>
                                     </View>
                                 </View>

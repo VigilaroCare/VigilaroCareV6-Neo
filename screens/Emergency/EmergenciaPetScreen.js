@@ -108,7 +108,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                 </Body>
               </View>
               <View style={s.panicBtn}>
-                <Small style={s.panicBtnText}>LIGAR</Small>
+                <Small style={s.panicBtnText}>{t('telas.EmergenciaPetScreen.ligar', 'LIGAR')}</Small>
               </View>
             </View>
           </TouchableOpacity>
@@ -128,7 +128,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                 </Body>
               </View>
               <View style={s.panicBtn}>
-                <Small style={s.panicBtnText}>BUSCAR</Small>
+                <Small style={s.panicBtnText}>{t('telas.EmergenciaPetScreen.buscar', 'BUSCAR')}</Small>
               </View>
             </View>
           </TouchableOpacity>
@@ -136,9 +136,7 @@ export default function EmergenciaPetScreen({ navigation }) {
           {/* PROTOCOLO ESPECIAL: AVE */}
           {species && species.length > 0 && species.includes('ave') && (
             <View style={{ marginTop: 20 }}>
-              <Small style={s.sectionLabel}>
-                PROTOCOLOS DETECTADOS
-              </Small>
+              <Small style={s.sectionLabel}>{t('telas.EmergenciaPetScreen.protocolosDetectados', 'PROTOCOLOS DETECTADOS')}</Small>
               <TouchableOpacity activeOpacity={0.85} onPress={() => navigation.navigate('AvesSeguras')}>
                 <NeoCard variant="elevated" style={s.specialCard}>
                   <View style={[s.heroIconBox, { backgroundColor: 'rgba(2, 136, 209, 0.14)', width: 44, height: 44, borderRadius: 12 }]}>
@@ -159,9 +157,7 @@ export default function EmergenciaPetScreen({ navigation }) {
           )}
 
           {/* CARTEIRINHA */}
-          <Small style={[s.sectionLabel, { marginTop: 24 }]}>
-            DOCUMENTOS
-          </Small>
+          <Small style={[s.sectionLabel, { marginTop: 24 }]}>{t('telas.EmergenciaPetScreen.documentos', 'DOCUMENTOS')}</Small>
           <TouchableOpacity
             activeOpacity={0.85}
             onPress={() => navigation.navigate('MainTabs', { screen: 'Perfil' })}

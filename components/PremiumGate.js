@@ -21,6 +21,7 @@
  *   </PremiumGate>
  */
 
+import { tx } from '../utils/txFixo';
 import { useCallback } from "react";
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -38,7 +39,7 @@ function LockBadge({ compact = false }) {
         <View style={[lockStyles.badge, compact && lockStyles.badgeCompact]}>
             <NeoIcon name="Lock1" variant="Bold" size={compact ? 10 : 12} color="#FFF" />
             {!compact && (
-                <Small style={lockStyles.badgeText}>Premium</Small>
+                <Small style={lockStyles.badgeText}>{tx('telas.PremiumGate.premium', 'Premium')}</Small>
             )}
         </View>
     );
@@ -101,7 +102,7 @@ export default function PremiumGate({
                     <Small style={gStyles.inlineText}>
                         {PAYWALL_CONTEXT[feature]?.title ?? 'Recurso Premium'}
                     </Small>
-                    <Small style={gStyles.inlineCta}>Tocar para desbloquear</Small>
+                    <Small style={gStyles.inlineCta}>{tx('telas.PremiumGate.tocarParaDesbloquear', 'Tocar para desbloquear')}</Small>
                 </View>
             </TouchableOpacity>
         );

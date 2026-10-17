@@ -104,11 +104,11 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
         if (globalContacts.length > 0) {
           NeoAlert.alert(
             'Importar Contatos?',
-            'Encontramos contatos da família. Deseja importá-los para este perfil para facilitar?',
+            t('telas.ContatosEmergenciaScreen.encontramosContatosDaFamiliaDesejaImport', 'Encontramos contatos da família. Deseja importá-los para este perfil para facilitar?'),
             [
-              { text: 'Não, começar do zero', style: 'cancel' },
+              { text: t('telas.ContatosEmergenciaScreen.naoComecarDoZero', 'Não, começar do zero'), style: 'cancel' },
               {
-                text: 'Sim, importar',
+                text: t('telas.ContatosEmergenciaScreen.simImportar', 'Sim, importar'),
                 onPress: async () => {
                   await Storage.setItem(currentProfileKey, JSON.stringify(globalContacts));
                   setContatos(globalContacts);
@@ -135,11 +135,11 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
   const adicionarContato = () => {
     if (!nome.trim()) {
-      NeoAlert.alert('Erro', 'Por favor, informe o nome.');
+      NeoAlert.alert(t('telas.ContatosEmergenciaScreen.erro', 'Erro'), 'Por favor, informe o nome.');
       return;
     }
     if (!telefone.trim()) {
-      NeoAlert.alert('Erro', 'Por favor, informe o telefone.');
+      NeoAlert.alert(t('telas.ContatosEmergenciaScreen.erro2', 'Erro'), 'Por favor, informe o telefone.');
       return;
     }
 
@@ -174,12 +174,12 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
 
   const excluirContato = (id) => {
     NeoAlert.alert(
-      'Excluir contato',
+      t('telas.ContatosEmergenciaScreen.excluirContato', 'Excluir contato'),
       'Tem certeza que deseja excluir este contato deste perfil?',
       [
-        { text: 'Cancelar', style: 'cancel' },
+        { text: t('telas.ContatosEmergenciaScreen.cancelar', 'Cancelar'), style: 'cancel' },
         {
-          text: 'Excluir',
+          text: t('telas.ContatosEmergenciaScreen.excluir', 'Excluir'),
           style: 'destructive',
           onPress: () => {
             const novosContatos = contatos.filter((c) => c.id !== id);
@@ -300,14 +300,14 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
           {modalVisible && (
             <NeoCard variant="elevated" style={s.formCard}>
               <Text style={s.formTitle}>
-                {editando ? 'Editar contato' : 'Novo contato'}
+                {editando ? t('telas.ContatosEmergenciaScreen.editarContato', 'Editar contato') : 'Novo contato'}
               </Text>
 
               <View style={s.field}>
                 <Text style={s.label}>{t('headersFirst.nome', 'Nome')}</Text>
                 <TextInput
                   style={s.input}
-                  placeholder="Ex: Dr. João Silva"
+                  placeholder={t('telas.ContatosEmergenciaScreen.exDrJoaoSilva', 'Ex: Dr. João Silva')}
                   placeholderTextColor={Neo.colors.neutral[500]}
                   value={nome}
                   onChangeText={setNome}
@@ -318,7 +318,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                 <Text style={s.label}>{t('headersFirst.detalheRelacionamento', 'Detalhe / Relacionamento')}</Text>
                 <TextInput
                   style={s.input}
-                  placeholder="Ex: Cardiologista, Tio, Vizinho da frente…"
+                  placeholder={t('telas.ContatosEmergenciaScreen.exCardiologistaTioVizinhoDaFrente', 'Ex: Cardiologista, Tio, Vizinho da frente…')}
                   placeholderTextColor={Neo.colors.neutral[500]}
                   value={parentesco}
                   onChangeText={setParentesco}
@@ -383,7 +383,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                 </TouchableOpacity>
                 <TouchableOpacity style={s.saveButton} onPress={adicionarContato}>
                   <Text style={s.saveButtonText}>
-                    {editando ? 'Atualizar' : 'Salvar'}
+                    {editando ? 'Atualizar' : t('telas.ContatosEmergenciaScreen.salvar', 'Salvar')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -410,8 +410,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
           {/* LISTA */}
           {contatos.length > 0 ? (
             <>
-              <Text style={s.sectionLabel}>
-                LISTA · {contatos.length}
+              <Text style={s.sectionLabel}>{t('telas.ContatosEmergenciaScreen.lista', 'LISTA · ')}{contatos.length}
               </Text>
               {contatos.map((contato) => {
                 const color = TIPO_COLORS[contato.tipo] || TIPO_COLORS.Outro;
@@ -498,7 +497,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         accessibilityLabel={t('contacts.smsLabel', 'Enviar SMS para {{name}}', { name: contato.nome })}
                       >
                         <NeoIcon name="Sms" size={14} color={Neo.colors.neutral[700]} />
-                        <Text style={s.actionLinkText}>SMS</Text>
+                        <Text style={s.actionLinkText}>{t('telas.ContatosEmergenciaScreen.sms', 'SMS')}</Text>
                       </TouchableOpacity>
                       <View style={{ flex: 1 }} />
                       <TouchableOpacity
@@ -508,7 +507,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         accessibilityLabel={t('contacts.editLabel', 'Editar contato {{name}}', { name: contato.nome })}
                       >
                         <NeoIcon name="Edit2" size={14} color={Neo.colors.neutral[700]} />
-                        <Text style={s.actionLinkText}>Editar</Text>
+                        <Text style={s.actionLinkText}>{t('telas.ContatosEmergenciaScreen.editar', 'Editar')}</Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[s.actionLink, { backgroundColor: Neo.colors.feedback.error + '12' }]}
@@ -518,7 +517,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
                         accessibilityHint={t('contacts.deleteHint', 'Remove permanentemente este contato da lista.')}
                       >
                         <NeoIcon name="Trash" size={14} color={Neo.colors.feedback.error} />
-                        <Text style={[s.actionLinkText, { color: Neo.colors.feedback.error }]}>Excluir</Text>
+                        <Text style={[s.actionLinkText, { color: Neo.colors.feedback.error }]}>{t('telas.ContatosEmergenciaScreen.excluir2', 'Excluir')}</Text>
                       </TouchableOpacity>
                     </View>
                   </NeoCard>
@@ -531,7 +530,7 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
               <EmptyState
                 icon="ProfileCircle"
                 title={t('headersFirst.nenhumContatoNestaLista', 'Nenhum contato nesta lista')}
-                description={`Adicione médicos, parentes ou vizinhos específicos para ${activeProfile?.nome || 'sua casa'}.`}
+                description={`Adicione médicos, parentes ou vizinhos específicos para ${activeProfile?.nome || t('telas.ContatosEmergenciaScreen.suaCasa', 'sua casa')}.`}
               />
             )
           )}

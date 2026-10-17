@@ -6,6 +6,7 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { Colors, Spacing } from '../utils/Theme';
 import { CONTROLADOR } from '../data/legal/politica_privacidade';
+import { getMedicalLabel, getFireDial, resolveEmergencyTokens } from '../utils/emergencyTokens';
 
 export default function TermsOfUseScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -45,14 +46,14 @@ export default function TermsOfUseScreen({ navigation }) {
                 </Text>
 
                 <Text style={styles.sectionTitle}>{t('headersFirst.3EmCasoDeEmergNcia', '3. Em Caso de Emergência')}</Text>
-                <Text style={styles.text}>
-                    Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:
-                    {'\n\n'}
-                    🚑 SAMU: 192
+                <Text style={styles.text}>{t('telas.TermsOfUseScreen.seVoceOuAlguemEstiverEm', 'Se você ou alguém estiver em situação de risco imediato, ferido gravemente ou passando mal, NÃO USE O APP. Ligue imediatamente para os serviços de emergência locais:')}{'\n\n'}
+                    {/* Números do PAÍS do usuário — antes eram os números
+                        brasileiros fixos, errados fora do Brasil. */}
+                    {`🚑 ${getMedicalLabel()}`}
                     {'\n'}
-                    🚒 Bombeiros: 193
+                    {`🚒 ${t('headersFirst.bombeirosRotulo', 'Bombeiros')}: ${getFireDial()}`}
                     {'\n'}
-                    👮 Polícia: 190
+                    {`👮 ${t('headersFirst.policiaRotulo', 'Polícia')}: ${resolveEmergencyTokens('{{POLICE_NUMBER}}')}`}
                 </Text>
 
                 <Text style={styles.sectionTitle}>{t('headersFirst.4LimitaODeResponsabilidade', '4. Limitação de Responsabilidade')}</Text>
@@ -71,9 +72,7 @@ export default function TermsOfUseScreen({ navigation }) {
                 </Text>
 
                 <Text style={styles.sectionTitle}>{t('terms.privacyTitle', '7. Privacidade')}</Text>
-                <Text style={styles.text}>
-                    Para detalhes sobre como tratamos seus dados, consulte nossa <Text style={{ fontWeight: 'bold', color: Colors.primary }} onPress={() => navigation.navigate('PrivacyPolicy')}>Política de Privacidade</Text> específica.
-                </Text>
+                <Text style={styles.text}>{t('telas.TermsOfUseScreen.paraDetalhesSobreComoTratamosSeus', 'Para detalhes sobre como tratamos seus dados, consulte nossa ')}<Text style={{ fontWeight: 'bold', color: Colors.primary }} onPress={() => navigation.navigate('PrivacyPolicy')}>{t('telas.TermsOfUseScreen.politicaDePrivacidade', 'Política de Privacidade')}</Text>{t('telas.TermsOfUseScreen.especifica', ' específica.')}</Text>
 
                 <View style={{ height: 40 }} />
             </ScrollView>

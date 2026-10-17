@@ -7,6 +7,7 @@
  * Acesso: MinhaSaudeScreen → botão "Gerenciar Lembretes"
  */
 
+import { tx } from '../../utils/txFixo';
 import { useState, useCallback } from "react";
 import { View, StyleSheet, ScrollView, TouchableOpacity, Alert, Switch } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -80,7 +81,7 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
                 <View style={{ flex: 1 }}>
                     <H3 style={rStyles.medName} numberOfLines={2}>{reminder.medicamentoNome}</H3>
                     {!!reminder.perfilNome && (
-                        <Small style={rStyles.perfilTag}>Para: {reminder.perfilNome}</Small>
+                        <Small style={rStyles.perfilTag}>{tx('telas.MedicationRemindersScreen.para', 'Para: ')}{reminder.perfilNome}</Small>
                     )}
                 </View>
                 <Switch
@@ -105,7 +106,7 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
                 {doseCount > 0 && (
                     <View style={[rStyles.infoChip, { backgroundColor: CLR.success + '14', borderColor: CLR.success + '30', borderWidth: 1 }]}>
                         <NeoIcon name="TickCircle" variant="Bold" size={13} color={CLR.success} />
-                        <Small style={[rStyles.infoChipText, { color: CLR.success }]}>{doseCount} dose{doseCount !== 1 ? 's' : ''}</Small>
+                        <Small style={[rStyles.infoChipText, { color: CLR.success }]}>{doseCount}{tx('telas.MedicationRemindersScreen.dose', ' dose')}{doseCount !== 1 ? 's' : ''}</Small>
                     </View>
                 )}
             </View>
@@ -132,7 +133,7 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
                     accessibilityLabel="Registrar dose tomada"
                 >
                     <NeoIcon name="TickCircle" variant="Bold" size={16} color="#FFF" />
-                    <Small style={rStyles.tomeiBtnText}>Tomei</Small>
+                    <Small style={rStyles.tomeiBtnText}>{tx('telas.MedicationRemindersScreen.tomei', 'Tomei')}</Small>
                 </TappablePressable>
                 <TappablePressable
                     style={rStyles.snoozeBtn}
@@ -140,7 +141,7 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
                     accessibilityLabel="Adiar lembrete 10 minutos"
                 >
                     <NeoIcon name="Clock" variant="Bold" size={16} color={CLR.warning} />
-                    <Small style={rStyles.snoozeBtnText}>+10 min</Small>
+                    <Small style={rStyles.snoozeBtnText}>{tx('telas.MedicationRemindersScreen.10Min', '+10 min')}</Small>
                 </TappablePressable>
             </View>
 
@@ -148,15 +149,15 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
             <View style={rStyles.actions}>
                 <TappablePressable style={rStyles.actionBtn} onPress={() => onHistorico(reminder)}>
                     <NeoIcon name="Chart" variant="Linear" size={14} color={Neo.colors.neutral[500]} />
-                    <Small style={[rStyles.actionText, { color: Neo.colors.neutral[500] }]}>Histórico</Small>
+                    <Small style={[rStyles.actionText, { color: Neo.colors.neutral[500] }]}>{tx('telas.MedicationRemindersScreen.historico', 'Histórico')}</Small>
                 </TappablePressable>
                 <TappablePressable style={rStyles.actionBtn} onPress={() => onEdit(reminder)}>
                     <NeoIcon name="Edit2" variant="Linear" size={14} color={CLR.pill} />
-                    <Small style={[rStyles.actionText, { color: CLR.pill }]}>Editar</Small>
+                    <Small style={[rStyles.actionText, { color: CLR.pill }]}>{tx('telas.MedicationRemindersScreen.editar', 'Editar')}</Small>
                 </TappablePressable>
                 <TappablePressable style={rStyles.actionBtn} onPress={() => onDelete(reminder)}>
                     <NeoIcon name="Trash" variant="Linear" size={14} color={CLR.danger} />
-                    <Small style={[rStyles.actionText, { color: CLR.danger }]}>Remover</Small>
+                    <Small style={[rStyles.actionText, { color: CLR.danger }]}>{tx('telas.MedicationRemindersScreen.remover', 'Remover')}</Small>
                 </TappablePressable>
             </View>
         </NeoCard>
@@ -207,7 +208,7 @@ export default function MedicationRemindersScreen() {
                 prev.map(r => r.id === id ? { ...r, ativo: !r.ativo } : r)
             );
         } catch (e) {
-            Alert.alert('Erro', e.message === 'LIMIT_MAX_LEMBRETES' ? 'Limite de lembretes ativos atingido.' : 'Não foi possível atualizar o lembrete.');
+            Alert.alert(tx('telas.MedicationRemindersScreen.erro', 'Erro'), e.message === 'LIMIT_MAX_LEMBRETES' ? 'Limite de lembretes ativos atingido.' : 'Não foi possível atualizar o lembrete.');
         }
     };
 
@@ -239,7 +240,7 @@ export default function MedicationRemindersScreen() {
             }));
             Alert.alert('✅ Dose registrada', `"${reminder.medicamentoNome}" registrado com sucesso.`);
         } catch {
-            Alert.alert('Erro', 'Não foi possível registrar a dose.');
+            Alert.alert(tx('telas.MedicationRemindersScreen.erro2', 'Erro'), tx('telas.MedicationRemindersScreen.naoFoiPossivelRegistrarADose', 'Não foi possível registrar a dose.'));
         }
     };
 
@@ -248,10 +249,10 @@ export default function MedicationRemindersScreen() {
             'Adiar lembrete',
             'Por quantos minutos deseja adiar?',
             [
-                { text: 'Cancelar', style: 'cancel' },
-                { text: '10 min', onPress: () => MedicationReminderService.snoozeReminder(reminder, 10).then(() => Alert.alert('⏱️ Adiado', 'Você será lembrado em 10 minutos.')) },
-                { text: '30 min', onPress: () => MedicationReminderService.snoozeReminder(reminder, 30).then(() => Alert.alert('⏱️ Adiado', 'Você será lembrado em 30 minutos.')) },
-                { text: '1 hora',  onPress: () => MedicationReminderService.snoozeReminder(reminder, 60).then(() => Alert.alert('⏱️ Adiado', 'Você será lembrado em 1 hora.')) },
+                { text: tx('telas.MedicationRemindersScreen.cancelar', 'Cancelar'), style: 'cancel' },
+                { text: '10 min', onPress: () => MedicationReminderService.snoozeReminder(reminder, 10).then(() => Alert.alert('⏱️ Adiado', tx('telas.MedicationRemindersScreen.voceSeraLembradoEm10Minutos', 'Você será lembrado em 10 minutos.'))) },
+                { text: '30 min', onPress: () => MedicationReminderService.snoozeReminder(reminder, 30).then(() => Alert.alert('⏱️ Adiado', tx('telas.MedicationRemindersScreen.voceSeraLembradoEm30Minutos', 'Você será lembrado em 30 minutos.'))) },
+                { text: '1 hora',  onPress: () => MedicationReminderService.snoozeReminder(reminder, 60).then(() => Alert.alert('⏱️ Adiado', tx('telas.MedicationRemindersScreen.voceSeraLembradoEm1Hora', 'Você será lembrado em 1 hora.'))) },
             ]
         );
     });
@@ -266,19 +267,19 @@ export default function MedicationRemindersScreen() {
 
     const handleDelete = (reminder) => {
         Alert.alert(
-            'Remover lembrete',
+            tx('telas.MedicationRemindersScreen.removerLembrete', 'Remover lembrete'),
             `Deseja remover o lembrete de "${reminder.medicamentoNome}"? As notificações agendadas serão canceladas.`,
             [
-                { text: 'Cancelar', style: 'cancel' },
+                { text: tx('telas.MedicationRemindersScreen.cancelar2', 'Cancelar'), style: 'cancel' },
                 {
-                    text: 'Remover',
+                    text: tx('telas.MedicationRemindersScreen.remover2', 'Remover'),
                     style: 'destructive',
                     onPress: async () => {
                         try {
                             await MedicationReminderService.remove(reminder.id);
                             setReminders(prev => prev.filter(r => r.id !== reminder.id));
                         } catch {
-                            Alert.alert('Erro', 'Não foi possível remover o lembrete.');
+                            Alert.alert(tx('telas.MedicationRemindersScreen.erro3', 'Erro'), tx('telas.MedicationRemindersScreen.naoFoiPossivelRemoverOLembrete', 'Não foi possível remover o lembrete.'));
                         }
                     },
                 },
@@ -300,18 +301,18 @@ export default function MedicationRemindersScreen() {
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                         style={rStyles.backBtn}
-                        accessibilityLabel="Voltar"
+                        accessibilityLabel={tx('telas.MedicationRemindersScreen.voltar', 'Voltar')}
                     >
                         <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-                        <H2 style={rStyles.headerTitle}>Lembretes</H2>
-                        <Body style={rStyles.headerSub}>Rotina de medicamentos</Body>
+                        <H2 style={rStyles.headerTitle}>{tx('telas.MedicationRemindersScreen.lembretes', 'Lembretes')}</H2>
+                        <Body style={rStyles.headerSub}>{tx('telas.MedicationRemindersScreen.rotinaDeMedicamentos', 'Rotina de medicamentos')}</Body>
                     </View>
                     <TouchableOpacity
                         onPress={handleAdd}
                         style={rStyles.addBtn}
-                        accessibilityLabel="Adicionar lembrete"
+                        accessibilityLabel={tx('telas.MedicationRemindersScreen.adicionarLembrete', 'Adicionar lembrete')}
                     >
                         <NeoIcon name="AddCircle" variant="Bold" size={28} color={CLR.pill} />
                     </TouchableOpacity>
@@ -320,9 +321,7 @@ export default function MedicationRemindersScreen() {
                 {/* Aviso disclaimer permanente */}
                 <View style={rStyles.disclaimerBar}>
                     <NeoIcon name="InfoCircle" variant="Bold" size={14} color={CLR.warning} />
-                    <Small style={rStyles.disclaimerBarText}>
-                        Assistente de organização — não substitui orientação médica.
-                    </Small>
+                    <Small style={rStyles.disclaimerBarText}>{tx('telas.MedicationRemindersScreen.assistenteDeOrganizacaoNaoSubstituiOrien', 'Assistente de organização — não substitui orientação médica.')}</Small>
                 </View>
 
                 {/* Conteúdo */}
@@ -335,7 +334,7 @@ export default function MedicationRemindersScreen() {
                     <EmptyState
                         icon="MedicalSquare"
                         title="Nenhum lembrete ainda"
-                        description="Toque em + para adicionar seu primeiro lembrete de medicamento."
+                        description={tx('telas.MedicationRemindersScreen.toqueEmParaAdicionarSeuPrimeiro', 'Toque em + para adicionar seu primeiro lembrete de medicamento.')}
                         cta={{ label: 'Adicionar lembrete', onPress: handleAdd, color: CLR.pill }}
                     />
                 ) : (
@@ -344,7 +343,7 @@ export default function MedicationRemindersScreen() {
                         showsVerticalScrollIndicator={false}
                     >
                         <Eyebrow style={rStyles.eyebrow}>
-                            {reminders.length} {reminders.length === 1 ? 'lembrete' : 'lembretes'} cadastrado{reminders.length !== 1 ? 's' : ''}
+                            {reminders.length} {reminders.length === 1 ? 'lembrete' : 'lembretes'}{tx('telas.MedicationRemindersScreen.cadastrado', ' cadastrado')}{reminders.length !== 1 ? 's' : ''}
                         </Eyebrow>
 
                         {reminders.map(r => (
@@ -361,7 +360,7 @@ export default function MedicationRemindersScreen() {
                         ))}
 
                         <ButtonNeo
-                            title="Adicionar lembrete"
+                            title={tx('telas.MedicationRemindersScreen.adicionarLembrete2', 'Adicionar lembrete')}
                             iconName="AddCircle"
                             onPress={handleAdd}
                             type="secondary"
@@ -372,11 +371,7 @@ export default function MedicationRemindersScreen() {
                         <NeoCard variant="elevated" style={rStyles.footNote}>
                             <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start' }}>
                                 <NeoIcon name="Warning2" variant="Bold" size={14} color={Neo.colors.neutral[500]} />
-                                <Small style={rStyles.footNoteText}>
-                                    As notificações dependem das permissões e configurações do seu
-                                    dispositivo. Podem não funcionar no modo "Não Perturbe" ou com
-                                    bateria baixa. Em iOS, o limite é de 64 notificações agendadas.
-                                </Small>
+                                <Small style={rStyles.footNoteText}>{tx('telas.MedicationRemindersScreen.asNotificacoesDependemDasPermissoesE', 'As notificações dependem das permissões e configurações do seu dispositivo. Podem não funcionar no modo "Não Perturbe" ou com bateria baixa. Em iOS, o limite é de 64 notificações agendadas.')}</Small>
                             </View>
                         </NeoCard>
                     </ScrollView>

@@ -92,7 +92,7 @@ export default function SafetyPermitScreen({ route, navigation }) {
         return (
             <AppBackground>
         <SafeAreaView style={styles.center}>
-                <Text>Protocolo '{eventId}' não encontrado.</Text>
+                <Text>{t('telas.SafetyPermitScreen.protocolo', 'Protocolo \'')}{eventId}{t('telas.SafetyPermitScreen.naoEncontrado', '\' não encontrado.')}</Text>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
                     <Text style={styles.backBtnText}>{t('headersFirst.voltar', 'Voltar')}</Text>
                 </TouchableOpacity>
@@ -119,7 +119,7 @@ export default function SafetyPermitScreen({ route, navigation }) {
             // Logica complexa de dependencia? Vamos simplificar: Valida TUDO.
 
             if (ans === undefined) {
-                NeoAlert.alert("Atenção", "Responda todas as perguntas para garantir sua segurança.");
+                NeoAlert.alert(t('telas.SafetyPermitScreen.atencao', 'Atenção'), t('telas.SafetyPermitScreen.respondaTodasAsPerguntasParaGarantir', 'Responda todas as perguntas para garantir sua segurança.'));
                 return;
             }
             if (q.stopIf && ans === q.stopIf) {

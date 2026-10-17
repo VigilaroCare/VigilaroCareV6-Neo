@@ -128,8 +128,7 @@ export default function CuidarProtegerHubScreen({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                {contextItems.length} categorias • Explore as adaptações
-                            </Text>
+                                {contextItems.length}{t('telas.CuidarProtegerHubScreen.categoriasExploreAsAdaptacoes', ' categorias • Explore as adaptações')}</Text>
                         </View>
                     </FadeInView>
 

@@ -48,12 +48,9 @@ export default function EncerrarSituacaoScreen({ route, navigation }) {
             <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
-            <H1 style={s.title}>
-              Encerrar {type === 'reforma' ? 'reforma' : type}
+            <H1 style={s.title}>{t('telas.EncerrarSituacaoScreen.encerrar', 'Encerrar ')}{type === 'reforma' ? 'reforma' : type}
             </H1>
-            <Caption style={s.subtitle}>
-              Restaurar segurança do lar
-            </Caption>
+            <Caption style={s.subtitle}>{t('telas.EncerrarSituacaoScreen.restaurarSegurancaDoLar', 'Restaurar segurança do lar')}</Caption>
           </View>
         </View>
 

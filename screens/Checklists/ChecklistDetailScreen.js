@@ -105,7 +105,7 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
   const loadChecklistItems = async () => {
     try {
       if (!roomId) {
-        NeoAlert.alert('Erro', t('checklists.roomNotFound'));
+        NeoAlert.alert(t('telas.ChecklistDetailScreen.erro', 'Erro'), t('checklists.roomNotFound'));
         navigation.goBack();
         return;
       }

@@ -213,8 +213,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
                         </View>
                     ))}
                     <View style={{ borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], marginTop: 4, paddingTop: 8 }}>
-                        <Caption style={{ color: Neo.colors.neutral[500], fontSize: 10.5, lineHeight: 15 }}>
-                            Fonte: {TRANSPORTE_AEREO.fonte} · vigente em {TRANSPORTE_AEREO.revisao}.
+                        <Caption style={{ color: Neo.colors.neutral[500], fontSize: 10.5, lineHeight: 15 }}>{t('telas.FazendoAsMalasScreen.fonte', 'Fonte: ')}{TRANSPORTE_AEREO.fonte}{t('telas.FazendoAsMalasScreen.vigenteEm', ' · vigente em ')}{TRANSPORTE_AEREO.revisao}.
                         </Caption>
                     </View>
                     {/* Aviso de segurança em DESTAQUE (não mais grudado na fonte miúda) */}

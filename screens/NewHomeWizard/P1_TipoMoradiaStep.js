@@ -4,6 +4,7 @@
 // Extraído do antigo OndeStep pra dar respiro narrativo e separar o
 // "como é a estrutura física" (P1) do "que ambientes existem" (P2).
 
+import { tx } from '../../utils/txFixo';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, H3, Body } from '../../components/NeoTypography';
@@ -33,14 +34,14 @@ export default function P1_TipoMoradiaStep({
 
             {/* Nome do Local */}
             <NeoInput
-                label="Identificação do local (ex: Casa Principal, Apartamento da Filha)"
+                label={tx('telas.P1_TipoMoradiaStep.identificacaoDoLocalExCasaPrincipal', 'Identificação do local (ex: Casa Principal, Apartamento da Filha)')}
                 value={residenceName}
                 onChangeText={setResidenceName}
-                placeholder="Ex: Apartamento da Filha"
+                placeholder={tx('telas.P1_TipoMoradiaStep.exApartamentoDaFilha', 'Ex: Apartamento da Filha')}
             />
 
             {/* Tipo de Residência */}
-            <H3 style={{ marginBottom: 12, fontSize: 17, marginTop: 8 }}>Tipo de moradia</H3>
+            <H3 style={{ marginBottom: 12, fontSize: 17, marginTop: 8 }}>{tx('telas.P1_TipoMoradiaStep.tipoDeMoradia', 'Tipo de moradia')}</H3>
             <View style={[ss.chipRow, { marginBottom: 28 }]}>
                 {HOUSE_TYPES.map(h => (
                     <Chip key={h.id} label={t_field(h, 'label')} icon={h.icon} selected={houseType === h.id}
@@ -49,10 +50,8 @@ export default function P1_TipoMoradiaStep({
             </View>
 
             {/* Andares */}
-            <H3 style={{ marginBottom: 12, fontSize: 17 }}>Quantos andares?</H3>
-            <Body style={{ color: C.neutral[600], marginBottom: 14, lineHeight: 19 }}>
-                Conta os pavimentos habitáveis — escada conta como ponto de atenção pra próxima etapa.
-            </Body>
+            <H3 style={{ marginBottom: 12, fontSize: 17 }}>{tx('telas.P1_TipoMoradiaStep.quantosAndares', 'Quantos andares?')}</H3>
+            <Body style={{ color: C.neutral[600], marginBottom: 14, lineHeight: 19 }}>{tx('telas.P1_TipoMoradiaStep.contaOsPavimentosHabitaveisEscadaConta', 'Conta os pavimentos habitáveis — escada conta como ponto de atenção pra próxima etapa.')}</Body>
             <View style={ss.stepperRow}>
                 <TouchableOpacity style={ss.stepperBtn} onPress={() => floors > 1 && setFloors(floors - 1)}>
                     <NeoIcon name="Minus" size={20} color={floors <= 1 ? C.neutral[300] : C.primary[600]} />

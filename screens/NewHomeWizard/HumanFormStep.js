@@ -2,6 +2,7 @@
  * HumanFormStep.js
  * Formulário de cadastro de morador (humano).
  */
+import { tx } from '../../utils/txFixo';
 import { View, ScrollView, TouchableOpacity, KeyboardAvoidingView, Image, Platform } from 'react-native';
 import NeoIcon from '../../components/NeoIcon';
 import { H2, Body, Caption } from '../../components/NeoTypography';
@@ -33,8 +34,8 @@ export default function HumanFormStep({
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
             <ScrollView contentContainerStyle={{ padding: S.lg, paddingBottom: 140 }}>
-                <Caption style={ss.phaseLabel}>PASSO 1 — NOVO INTEGRANTE (PESSOA)</Caption>
-                <H2 style={{ marginBottom: 24 }}>Dados Essenciais</H2>
+                <Caption style={ss.phaseLabel}>{tx('telas.HumanFormStep.passo1NovoIntegrantePessoa', 'PASSO 1 — NOVO INTEGRANTE (PESSOA)')}</Caption>
+                <H2 style={{ marginBottom: 24 }}>{tx('telas.HumanFormStep.dadosEssenciais', 'Dados Essenciais')}</H2>
 
                 {/* FOTO DO MORADOR */}
                 <TouchableOpacity onPress={onPickPhoto} activeOpacity={0.8} style={{ alignSelf: 'center', marginBottom: 24 }}>
@@ -48,12 +49,12 @@ export default function HumanFormStep({
                             <NeoIcon name="Camera" size={16} color="#FFF" />
                         </View>
                     </View>
-                    <Caption style={{ textAlign: 'center', marginTop: 8, color: C.primary[600] }}>Adicionar Foto</Caption>
+                    <Caption style={{ textAlign: 'center', marginTop: 8, color: C.primary[600] }}>{tx('telas.HumanFormStep.adicionarFoto', 'Adicionar Foto')}</Caption>
                 </TouchableOpacity>
 
-                <NeoInput label="Nome Completo" value={formName} onChangeText={setFormName} placeholder="Ex: João Silva" />
+                <NeoInput label={tx('telas.HumanFormStep.nomeCompleto', 'Nome Completo')} value={formName} onChangeText={setFormName} placeholder={tx('telas.HumanFormStep.exJoaoSilva', 'Ex: João Silva')} />
                 <NeoInput
-                    label="Data de Nascimento"
+                    label={tx('telas.HumanFormStep.dataDeNascimento', 'Data de Nascimento')}
                     value={formDOB}
                     onChangeText={t => setFormDOB(formatDOB(t))}
                     placeholder="DD/MM/AAAA"
@@ -61,14 +62,14 @@ export default function HumanFormStep({
                     maxLength={10}
                 />
 
-                <Caption style={{ marginBottom: 8, color: C.neutral[700], fontWeight: '600' }}>Gênero</Caption>
+                <Caption style={{ marginBottom: 8, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.genero', 'Gênero')}</Caption>
                 <View style={ss.chipRow}>
                     {GENDERS.map(g => (
                         <Chip key={g.id} label={g.label} selected={formGender === g.id} onPress={() => setFormGender(g.id)} />
                     ))}
                 </View>
 
-                <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>Vínculo</Caption>
+                <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.vinculo', 'Vínculo')}</Caption>
                 <View style={ss.chipRow}>
                     {BOND_TYPES.map(b => (
                         <Chip key={b.id} label={b.label} selected={formBond === b.id} onPress={() => setFormBond(b.id)} />
@@ -81,7 +82,7 @@ export default function HumanFormStep({
                     onChange={onChangeResidenceRelationship}
                 />
 
-                <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>Condições Especiais (opcional)</Caption>
+                <Caption style={{ marginBottom: 8, marginTop: 16, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.condicoesEspeciaisOpcional', 'Condições Especiais (opcional)')}</Caption>
                 <View style={ss.chipRow}>
                     {SPECIAL_CONDITIONS.map(c => (
                         <Chip key={c.id} label={c.label} selected={formConditions.includes(c.id)} onPress={() => onToggleArray(formConditions, setFormConditions, c.id)} />
@@ -91,16 +92,10 @@ export default function HumanFormStep({
                 {/* ── Vínculo Morador↔Cômodo ──
                     O coração do briefing vivo: o app aprende quem usa cada
                     ambiente pra priorizar o que importa pra cada pessoa. */}
-                <Caption style={{ marginBottom: 6, marginTop: 22, color: C.neutral[700], fontWeight: '600' }}>
-                    Quais ambientes essa pessoa usa?
-                </Caption>
-                <Body style={{ color: C.neutral[600], marginBottom: 12, lineHeight: 19, fontSize: 13 }}>
-                    Marca tudo que ela frequenta. Ajuda o app a priorizar o cuidado certo, no lugar certo.
-                </Body>
+                <Caption style={{ marginBottom: 6, marginTop: 22, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.quaisAmbientesEssaPessoaUsa', 'Quais ambientes essa pessoa usa?')}</Caption>
+                <Body style={{ color: C.neutral[600], marginBottom: 12, lineHeight: 19, fontSize: 13 }}>{tx('telas.HumanFormStep.marcaTudoQueElaFrequentaAjuda', 'Marca tudo que ela frequenta. Ajuda o app a priorizar o cuidado certo, no lugar certo.')}</Body>
                 {availableRooms.length === 0 ? (
-                    <Caption style={{ color: C.neutral[500], fontStyle: 'italic', marginBottom: 8 }}>
-                        Volta ao passo "Onde" e marca os ambientes da casa primeiro.
-                    </Caption>
+                    <Caption style={{ color: C.neutral[500], fontStyle: 'italic', marginBottom: 8 }}>{tx('telas.HumanFormStep.voltaAoPassoOndeEMarca', 'Volta ao passo "Onde" e marca os ambientes da casa primeiro.')}</Caption>
                 ) : (
                     <View style={ss.chipRow}>
                         {availableRooms.map(r => (
@@ -116,7 +111,7 @@ export default function HumanFormStep({
 
                 <TouchableOpacity style={ss.saveBtn} onPress={onSave} activeOpacity={0.9}>
                     <NeoIcon name="TickCircle" size={22} color="#FFF" />
-                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>Salvar perfil</Body>
+                    <Body style={{ color: '#FFF', fontWeight: 'bold', marginLeft: 10 }}>{tx('telas.HumanFormStep.salvarPerfil', 'Salvar perfil')}</Body>
                 </TouchableOpacity>
             </ScrollView>
         </KeyboardAvoidingView>

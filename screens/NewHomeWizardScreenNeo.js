@@ -11,6 +11,7 @@
  * "Continuar depois" no header salva o draft via BriefingDraftService
  * e fecha o wizard sem perder estado.
  */
+import { tx } from '../utils/txFixo';
 import { useState, useCallback, useRef, useMemo } from "react";
 import { useFocusEffect } from '@react-navigation/native';
 import { View, TouchableOpacity, Animated, Text } from 'react-native';
@@ -222,7 +223,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             await BriefingDraftService.save(buildDraft());
             NeoAlert.alert(
                 'Guardado',
-                'Você volta de onde parou pelo menu "Seu mapa sensível".',
+                tx('telas.NewHomeWizardScreenNeo.voceVoltaDeOndeParouPelo', 'Você volta de onde parou pelo menu "Seu mapa sensível".'),
                 [{ text: 'OK', onPress: () => navigation.goBack() }]
             );
         } catch (_) {
@@ -284,7 +285,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const pickPhoto = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
-            return NeoAlert.alert('Permissão Necessária', 'Precisamos de acesso à galeria pra escolher a foto.');
+            return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.permissaoNecessaria', 'Permissão Necessária'), tx('telas.NewHomeWizardScreenNeo.precisamosDeAcessoAGaleriaPra', 'Precisamos de acesso à galeria pra escolher a foto.'));
         }
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
@@ -299,9 +300,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // === PROFILE CRUD ===
     const saveHumanProfile = async () => {
-        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Falta o nome.');
+        if (!formName.trim()) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao', 'Atenção'), 'Falta o nome.');
         if (formDOB && ProfileService.calcularIdade(formDOB) === null) {
-            return NeoAlert.alert('Atenção', 'Data de nascimento inválida.');
+            return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao2', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.dataDeNascimentoInvalida', 'Data de nascimento inválida.'));
         }
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'profile');
@@ -330,7 +331,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const savePetProfile = async () => {
-        if (!formName.trim()) return NeoAlert.alert('Atenção', 'Informe o nome do pet.');
+        if (!formName.trim()) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao3', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.informeONomeDoPet', 'Informe o nome do pet.'));
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'pet');
         const p = getDefaultProfile('pet');
@@ -363,8 +364,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const removeProfile = async (id) => {
-        NeoAlert.alert('Apagar?', 'Este perfil sai do mapeamento.', [
-            { text: 'Cancelar', style: 'cancel' },
+        NeoAlert.alert('Apagar?', tx('telas.NewHomeWizardScreenNeo.estePerfilSaiDoMapeamento', 'Este perfil sai do mapeamento.'), [
+            { text: tx('telas.NewHomeWizardScreenNeo.cancelar', 'Cancelar'), style: 'cancel' },
             { text: 'Apagar', style: 'destructive', onPress: async () => {
                 await ProfileService.removePerfil(id);
                 const all = await ProfileService.getAllPerfis();
@@ -387,19 +388,19 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
         if (phase === 2 && subView !== 'list') return;
 
         if (phase === 0) {
-            if (!houseType) return NeoAlert.alert('Atenção', 'Escolhe o tipo de moradia pra seguir.');
+            if (!houseType) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao4', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.escolheOTipoDeMoradiaPra', 'Escolhe o tipo de moradia pra seguir.'));
             animateTo(1, 'list');
         } else if (phase === 1) {
             const total = (externalAreas?.length || 0) + (internalRooms?.length || 0);
-            if (total === 0) return NeoAlert.alert('Atenção', 'Marca pelo menos 1 ambiente. Vai te ajudar depois.');
+            if (total === 0) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao5', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.marcaPeloMenos1AmbienteVai', 'Marca pelo menos 1 ambiente. Vai te ajudar depois.'));
             animateTo(2, 'list');
         } else {
             // phase === 2 (QUEM): exige pelo menos 1 perfil VINCULADO à residência atual
             // (não basta existir global — precisa morar/frequentar aqui pra fazer sentido).
             if (linkedIds.length === 0) {
                 return NeoAlert.alert(
-                    'Atenção',
-                    'Marca quem mora ou frequenta esta residência pra concluir.'
+                    tx('telas.NewHomeWizardScreenNeo.atencao6', 'Atenção'),
+                    tx('telas.NewHomeWizardScreenNeo.marcaQuemMoraOuFrequentaEsta', 'Marca quem mora ou frequenta esta residência pra concluir.')
                 );
             }
             finishWizard();
@@ -446,7 +447,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                 { text: 'Acessar painel', onPress: () => navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] }) }
             ]);
         } catch (e) {
-            NeoAlert.alert('Erro', 'Não deu pra salvar agora. Toca em "Continuar depois" e tenta de novo.');
+            NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.erro', 'Erro'), tx('telas.NewHomeWizardScreenNeo.naoDeuPraSalvarAgoraToca', 'Não deu pra salvar agora. Toca em "Continuar depois" e tenta de novo.'));
         }
     };
 
@@ -547,9 +548,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                         onPress={handleContinueLater}
                         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         accessibilityRole="button"
-                        accessibilityLabel="Continuar depois"
+                        accessibilityLabel={tx('telas.NewHomeWizardScreenNeo.continuarDepois', 'Continuar depois')}
                     >
-                        <Text style={{ color: C.primary[700], fontSize: 12, fontWeight: '700' }}>Continuar depois</Text>
+                        <Text style={{ color: C.primary[700], fontSize: 12, fontWeight: '700' }}>{tx('telas.NewHomeWizardScreenNeo.continuarDepois2', 'Continuar depois')}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -563,9 +564,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
                     <View style={ss.footer}>
                         <TouchableOpacity style={ss.mainBtn} onPress={handleNext} activeOpacity={0.9}>
                             <Body style={{ color: '#FFF', fontWeight: 'bold', fontSize: 17 }}>
-                                {phase === 0 && 'Próximo: ambientes'}
-                                {phase === 1 && 'Próximo: quem mora'}
-                                {phase === 2 && (isOnboarding ? 'Concluir mapa sensível' : 'Concluir mapeamento')}
+                                {phase === 0 && tx('telas.NewHomeWizardScreenNeo.proximoAmbientes', 'Próximo: ambientes')}
+                                {phase === 1 && tx('telas.NewHomeWizardScreenNeo.proximoQuemMora', 'Próximo: quem mora')}
+                                {phase === 2 && (isOnboarding ? tx('telas.NewHomeWizardScreenNeo.concluirMapaSensivel', 'Concluir mapa sensível') : tx('telas.NewHomeWizardScreenNeo.concluirMapeamento', 'Concluir mapeamento'))}
                             </Body>
                             <NeoIcon name={phase === 2 ? 'tick-square' : 'arrow-right'} size={22} color="#FFF" />
                         </TouchableOpacity>

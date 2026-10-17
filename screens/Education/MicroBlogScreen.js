@@ -2,6 +2,7 @@
  * MicroBlogScreen.js
  * Lista categorizada de micro artigos do Prevenir em Casa
  */
+import { tx } from '../../utils/txFixo';
 import { useState, useMemo } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from "react-native";
 import { StatusBar } from 'expo-status-bar';
@@ -78,7 +79,7 @@ export default function MicroBlogScreen({ navigation }) {
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                             <NeoIcon name="Clock" size={12} color={Neo.colors.neutral[500]} />
-                            <Text style={styles.readTime}>{article.readTime} min</Text>
+                            <Text style={styles.readTime}>{article.readTime}{tx('telas.MicroBlogScreen.min', ' min')}</Text>
                         </View>
                     </View>
                     <Text style={[styles.articleTitle, { color: textBody }]} numberOfLines={2}>{t_field(article, 'title')}</Text>
@@ -103,9 +104,9 @@ export default function MicroBlogScreen({ navigation }) {
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                         <NeoIcon name="Newspaper" size={22} color={textPrimary} variant="Bold" />
-                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">Micro Blog</Text>
+                        <Text style={[styles.headerTitle, { color: textPrimary }]} accessibilityRole="header">{tx('telas.MicroBlogScreen.microBlog', 'Micro Blog')}</Text>
                     </View>
-                        <Text style={styles.headerSubtitle}>Prevenir em Casa</Text>
+                        <Text style={styles.headerSubtitle}>{tx('telas.MicroBlogScreen.prevenirEmCasa', 'Prevenir em Casa')}</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
@@ -120,8 +121,7 @@ export default function MicroBlogScreen({ navigation }) {
                         onPress={() => setActiveCategory('all')}
                         style={[styles.chip, activeCategory === 'all' && styles.chipActive]}
                     >
-                        <Text style={[styles.chipText, activeCategory === 'all' && styles.chipTextActive]}>
-                            Todos ({MICRO_BLOG_ARTICLES.length})
+                        <Text style={[styles.chipText, activeCategory === 'all' && styles.chipTextActive]}>{tx('telas.MicroBlogScreen.todos', 'Todos (')}{MICRO_BLOG_ARTICLES.length})
                         </Text>
                     </TouchableOpacity>
                     {MICRO_BLOG_CATEGORIES.map(cat => {

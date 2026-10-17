@@ -28,7 +28,7 @@ export default function ResidenceLinksPicker({ residencesList, relationships, on
 
     return (
         <View style={{ marginBottom: 16 }}>
-            <Small style={styles.fieldLabel}>VÍNCULO COM OS LOCAIS (ONDE MORA / FREQUENTA)</Small>
+            <Small style={styles.fieldLabel}>{t('telas.ResidenceLinksPicker.vinculoComOsLocaisOndeMora', 'VÍNCULO COM OS LOCAIS (ONDE MORA / FREQUENTA)')}</Small>
             {residencesList.map(res => {
                 const currentRel = relationships?.[res.id] || 'nenhum';
                 return (

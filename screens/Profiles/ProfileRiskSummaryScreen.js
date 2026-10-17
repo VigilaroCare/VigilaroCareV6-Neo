@@ -71,7 +71,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                             <View style={s.measureBlockCorretiva}>
                                 <View style={s.measureHeader}>
                                     <NeoIcon name="TickSquare" size={13} color={Neo.colors.primary[500]} variant="Bold" />
-                                    <Text style={s.measureTitleCorretiva}>Medida Corretiva (Ação Física)</Text>
+                                    <Text style={s.measureTitleCorretiva}>{t('telas.ProfileRiskSummaryScreen.medidaCorretivaAcaoFisica', 'Medida Corretiva (Ação Física)')}</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaCorretiva}</Text>
                             </View>
@@ -81,7 +81,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                             <View style={s.measureBlockPreventiva}>
                                 <View style={s.measureHeader}>
                                     <NeoIcon name="Shield" size={13} color={Neo.colors.secondary[500]} variant="Bold" />
-                                    <Text style={s.measureTitlePreventiva}>Medida Preventiva (Hábito/Cuidado)</Text>
+                                    <Text style={s.measureTitlePreventiva}>{t('telas.ProfileRiskSummaryScreen.medidaPreventivaHabitoCuidado', 'Medida Preventiva (Hábito/Cuidado)')}</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaPreventiva}</Text>
                             </View>
@@ -91,7 +91,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                             <View style={s.measureBlockMitigacao}>
                                 <View style={s.measureHeader}>
                                     <NeoIcon name="Heart" size={13} color={Neo.colors.categoria.ocre.fill} variant="Bold" />
-                                    <Text style={s.measureTitleMitigacao}>Medida de Mitigação (Redução de Dano)</Text>
+                                    <Text style={s.measureTitleMitigacao}>{t('telas.ProfileRiskSummaryScreen.medidaDeMitigacaoReducaoDeDano', 'Medida de Mitigação (Redução de Dano)')}</Text>
                                 </View>
                                 <Text style={s.measureText}>{item.medidaMitigacao}</Text>
                             </View>
@@ -384,7 +384,7 @@ export default function ProfileRiskSummaryScreen() {
                                 <View style={[s.typePill, { backgroundColor: tColor + '22' }]}>
                                     <Caption style={[s.typePillText, { color: tColor }]}>{tLabel}</Caption>
                                 </View>
-                                {age ? <Caption style={s.profileAge}>{age} anos</Caption> : null}
+                                {age ? <Caption style={s.profileAge}>{age}{t('telas.ProfileRiskSummaryScreen.anos', ' anos')}</Caption> : null}
                             </View>
                             {moradia?.tipo || moradia?.location ? (
                                 <Caption style={s.profileWhere} numberOfLines={1}>
@@ -392,8 +392,7 @@ export default function ProfileRiskSummaryScreen() {
                                 </Caption>
                             ) : null}
                             {moradia?.nome ? (
-                                <Caption style={{ color: Neo.colors.primary[600], fontWeight: 'bold', marginTop: 4 }}>
-                                    📍 Moradia: {moradia.nome}
+                                <Caption style={{ color: Neo.colors.primary[600], fontWeight: 'bold', marginTop: 4 }}>{t('telas.ProfileRiskSummaryScreen.moradia', '📍 Moradia: ')}{moradia.nome}
                                 </Caption>
                             ) : null}
                         </View>
@@ -402,9 +401,7 @@ export default function ProfileRiskSummaryScreen() {
                                 <Text style={[s.scoreNumber, { color: Neo.colors.accent.copper, fontSize: 20 }]}>
                                     -
                                 </Text>
-                                <Caption style={[s.scoreLabel, { color: Neo.colors.accent.copper, fontSize: 8 }]}>
-                                    Pendente
-                                </Caption>
+                                <Caption style={[s.scoreLabel, { color: Neo.colors.accent.copper, fontSize: 8 }]}>{t('telas.ProfileRiskSummaryScreen.pendente', 'Pendente')}</Caption>
                             </View>
                         ) : (
                             <View style={[s.scoreBox, { backgroundColor: stats.risks > 0 ? 'rgba(229,57,53,0.14)' : 'rgba(16,185,129,0.18)' }]}>
@@ -426,10 +423,8 @@ export default function ProfileRiskSummaryScreen() {
                                     <NeoIcon name="InfoCircle" size={20} color={Neo.colors.accent.champagne} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={s.healthNoticeTitle}>Ficha de Saúde Incompleta</Text>
-                                    <Text style={s.healthNoticeText}>
-                                        Para obter recomendações e um relatório de prevenção 100% personalizado para {profile?.nome || 'o morador'}, informe as medicações, enfermidades e limitações físicas/cognitivas.
-                                    </Text>
+                                    <Text style={s.healthNoticeTitle}>{t('telas.ProfileRiskSummaryScreen.fichaDeSaudeIncompleta', 'Ficha de Saúde Incompleta')}</Text>
+                                    <Text style={s.healthNoticeText}>{t('telas.ProfileRiskSummaryScreen.paraObterRecomendacoesEUmRelatorio', 'Para obter recomendações e um relatório de prevenção 100% personalizado para ')}{profile?.nome || 'o morador'}{t('telas.ProfileRiskSummaryScreen.informeAsMedicacoesEnfermidadesELimitaco', ', informe as medicações, enfermidades e limitações físicas/cognitivas.')}</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
@@ -438,7 +433,7 @@ export default function ProfileRiskSummaryScreen() {
                                 activeOpacity={0.85}
                             >
                                 <NeoIcon name="Heart" size={14} color={Neo.colors.neutral.white} variant="Bold" />
-                                <Text style={s.btnHealthNoticeText}>Completar Ficha de Saúde</Text>
+                                <Text style={s.btnHealthNoticeText}>{t('telas.ProfileRiskSummaryScreen.completarFichaDeSaude', 'Completar Ficha de Saúde')}</Text>
                             </TouchableOpacity>
                         </NeoCard>
                     )}
@@ -454,8 +449,8 @@ export default function ProfileRiskSummaryScreen() {
                                     <NeoIcon name="Warning2" size={20} color={Neo.colors.accent.champagne} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={s.onboardingTitle}>Configuração Inicial Pendente</Text>
-                                    <Text style={s.onboardingSubtitle}>Para gerar a prevenção personalizada, precisamos de:</Text>
+                                    <Text style={s.onboardingTitle}>{t('telas.ProfileRiskSummaryScreen.configuracaoInicialPendente', 'Configuração Inicial Pendente')}</Text>
+                                    <Text style={s.onboardingSubtitle}>{t('telas.ProfileRiskSummaryScreen.paraGerarAPrevencaoPersonalizadaPrecisam', 'Para gerar a prevenção personalizada, precisamos de:')}</Text>
                                 </View>
                             </View>
 
@@ -465,11 +460,11 @@ export default function ProfileRiskSummaryScreen() {
                                         <NeoIcon name={stats.answeredCount > 0 ? "TickCircle" : "Clock"} size={13} color={stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={s.stepTitle}>1. Vistoria dos Ambientes</Text>
-                                        <Text style={s.stepDesc}>Responder aos checklists dos ambientes informados no onboarding.</Text>
+                                        <Text style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.1VistoriaDosAmbientes', '1. Vistoria dos Ambientes')}</Text>
+                                        <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.responderAosChecklistsDosAmbientesInform', 'Responder aos checklists dos ambientes informados no onboarding.')}</Text>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne }]}>
-                                        {stats.answeredCount > 0 ? "Concluído" : "Pendente"}
+                                        {stats.answeredCount > 0 ? t('telas.ProfileRiskSummaryScreen.concluido', 'Concluído') : "Pendente"}
                                     </Text>
                                 </View>
 
@@ -478,11 +473,11 @@ export default function ProfileRiskSummaryScreen() {
                                         <NeoIcon name={hasHealthInfo ? "TickCircle" : "InfoCircle"} size={13} color={hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500]} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={s.stepTitle}>2. Ficha de Saúde (Medicações/Limitações)</Text>
-                                        <Text style={s.stepDesc}>Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.</Text>
+                                        <Text style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.2FichaDeSaudeMedicacoesLimitacoes', '2. Ficha de Saúde (Medicações/Limitações)')}</Text>
+                                        <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.preencherMedicacoesLimitacoesEEnfermidad', 'Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.')}</Text>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500] }]}>
-                                        {hasHealthInfo ? "Concluído" : "Recomendado"}
+                                        {hasHealthInfo ? t('telas.ProfileRiskSummaryScreen.concluido2', 'Concluído') : "Recomendado"}
                                     </Text>
                                 </View>
                             </View>
@@ -494,7 +489,7 @@ export default function ProfileRiskSummaryScreen() {
                                     activeOpacity={0.85}
                                 >
                                     <NeoIcon name="ClipboardText" size={16} color={Neo.colors.neutral.white} variant="Bold" />
-                                    <Text style={s.btnOnboardingText}>Iniciar Vistoria dos Ambientes</Text>
+                                    <Text style={s.btnOnboardingText}>{t('telas.ProfileRiskSummaryScreen.iniciarVistoriaDosAmbientes', 'Iniciar Vistoria dos Ambientes')}</Text>
                                 </TouchableOpacity>
 
                                 {!hasHealthInfo && (
@@ -504,7 +499,7 @@ export default function ProfileRiskSummaryScreen() {
                                         activeOpacity={0.85}
                                     >
                                         <NeoIcon name="Heart" size={16} color={Neo.colors.primary[600]} variant="Bold" />
-                                        <Text style={s.btnOnboardingSecondaryText}>Preencher Ficha de Saúde</Text>
+                                        <Text style={s.btnOnboardingSecondaryText}>{t('telas.ProfileRiskSummaryScreen.preencherFichaDeSaude', 'Preencher Ficha de Saúde')}</Text>
                                     </TouchableOpacity>
                                 )}
                             </View>
@@ -517,13 +512,11 @@ export default function ProfileRiskSummaryScreen() {
                                     <View style={{ flex: 1 }}>
                                         <Body style={{ fontSize: 13, color: Neo.colors.neutral[700] }}>
                                             {aiOffline
-                                                ? 'Análise personalizada indisponível offline. Conecte-se à internet para gerar.'
-                                                : 'Não foi possível carregar a análise inteligente.'}
+                                                ? t('telas.ProfileRiskSummaryScreen.analisePersonalizadaIndisponivelOfflineC', 'Análise personalizada indisponível offline. Conecte-se à internet para gerar.')
+                                                : t('telas.ProfileRiskSummaryScreen.naoFoiPossivelCarregarAAnalise', 'Não foi possível carregar a análise inteligente.')}
                                         </Body>
                                         <TouchableOpacity onPress={() => handleGenerateAI(true)} style={{ marginTop: 4 }}>
-                                            <Text style={{ color: Neo.colors.primary[600], fontWeight: 'bold', fontSize: 13 }}>
-                                                Tentar novamente
-                                            </Text>
+                                            <Text style={{ color: Neo.colors.primary[600], fontWeight: 'bold', fontSize: 13 }}>{t('telas.ProfileRiskSummaryScreen.tentarNovamente', 'Tentar novamente')}</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>

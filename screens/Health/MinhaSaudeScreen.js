@@ -105,12 +105,12 @@ export default function MinhaSaudeScreen() {
         const r = await FichaMedicaService.compartilharPdf({ perfil: profile });
         setCompartilhando(false);
         if (!r.ok && r.motivo !== 'sem-compartilhamento') {
-            NeoAlert.alert('Ficha médica', 'Não foi possível gerar a ficha agora. Tente novamente.');
+            NeoAlert.alert(t('telas.MinhaSaudeScreen.fichaMedica', 'Ficha médica'), t('telas.MinhaSaudeScreen.naoFoiPossivelGerarAFicha', 'Não foi possível gerar a ficha agora. Tente novamente.'));
         }
     };
 
     const renderChips = (arr, color) => {
-        if (!arr.length) return <Body style={s.emptyText}>Nada registrado</Body>;
+        if (!arr.length) return <Body style={s.emptyText}>{t('telas.MinhaSaudeScreen.nadaRegistrado', 'Nada registrado')}</Body>;
         return (
             <View style={s.chipsWrap}>
                 {arr.map((item, i) => (
@@ -199,7 +199,7 @@ export default function MinhaSaudeScreen() {
 
                                 <View style={{ flex: 1, paddingBottom: 4 }}>
                                     <View style={{ backgroundColor: Neo.colors.success[500], paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: 'flex-start', marginBottom: 8 }}>
-                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>Monitoramento Ativo</Text>
+                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>{t('telas.MinhaSaudeScreen.monitoramentoAtivo', 'Monitoramento Ativo')}</Text>
                                     </View>
                                     <Text style={{
                                         fontSize: 28,
@@ -254,19 +254,19 @@ export default function MinhaSaudeScreen() {
                 ) : (
                     <View style={s.scroll}>
                         {/* Profile stats now in Hero */}
-                        <Eyebrow style={s.eyebrow}>Perfil de Risco e Prevenção</Eyebrow>
-                        <Section icon="Heartbeat" color={HUE.rose} title="Condições Médicas">
+                        <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.perfilDeRiscoEPrevencao', 'Perfil de Risco e Prevenção')}</Eyebrow>
+                        <Section icon="Heartbeat" color={HUE.rose} title={t('telas.MinhaSaudeScreen.condicoesMedicas', 'Condições Médicas')}>
                             {renderChips(condicoes, HUE.rose)}
                         </Section>
-                        <Section icon="Warning" color={Neo.colors.accent.copper} title="Alergias e Restrições">
+                        <Section icon="Warning" color={Neo.colors.accent.copper} title={t('telas.MinhaSaudeScreen.alergiasERestricoes', 'Alergias e Restrições')}>
                             {renderChips(alergias, Neo.colors.accent.copper)}
                         </Section>
                         <Section icon="Wheelchair" color={Neo.colors.primary[600]} title="Necessidades Especiais">
                             {renderChips(necessidades, Neo.colors.primary[600])}
                         </Section>
 
-                        <Eyebrow style={s.eyebrow}>Mural de Rotina</Eyebrow>
-                        <Section icon="Plus" color={HUE.sky} title="Medicamentos em Uso">
+                        <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.muralDeRotina', 'Mural de Rotina')}</Eyebrow>
+                        <Section icon="Plus" color={HUE.sky} title={t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
                             {renderChips(medicamentos, HUE.sky)}
                             <TouchableOpacity
                                 style={{
@@ -283,19 +283,17 @@ export default function MinhaSaudeScreen() {
                                     borderColor: HUE.sky + '30',
                                 }}
                                 onPress={() => navigation.navigate('MedicationReminders', { perfilId: profile?.id, perfilNome: profile?.nome })}
-                                accessibilityLabel="Gerenciar lembretes de medicamentos"
+                                accessibilityLabel={t('telas.MinhaSaudeScreen.gerenciarLembretesDeMedicamentos', 'Gerenciar lembretes de medicamentos')}
                             >
                                 <NeoIcon name="Clock" variant="Bold" size={14} color={HUE.sky} />
-                                <Small style={{ color: HUE.sky, fontWeight: '700', fontSize: 13 }}>
-                                    Gerenciar lembretes
-                                </Small>
+                                <Small style={{ color: HUE.sky, fontWeight: '700', fontSize: 13 }}>{t('telas.MinhaSaudeScreen.gerenciarLembretes', 'Gerenciar lembretes')}</Small>
                             </TouchableOpacity>
                         </Section>
 
                         {/* OUTROS PERFIS — linhas dentro de um NeoCard (§4); voltar retorna ao ativo */}
                         {others.length > 0 && (
                             <>
-                                <Eyebrow style={s.eyebrow}>Outros perfis da casa</Eyebrow>
+                                <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.outrosPerfisDaCasa', 'Outros perfis da casa')}</Eyebrow>
                                 <NeoCard variant="glass" padding={0} style={s.card}>
                                     {others.map((p, i) => (
                                         <TappablePressable
@@ -314,7 +312,7 @@ export default function MinhaSaudeScreen() {
 
                         <View style={s.actionContainer}>
                             <ButtonNeo
-                                title={compartilhando ? 'Gerando ficha...' : 'Compartilhar Ficha de Emergência'}
+                                title={compartilhando ? 'Gerando ficha...' : t('telas.MinhaSaudeScreen.compartilharFichaDeEmergencia', 'Compartilhar Ficha de Emergência')}
                                 iconName="ShareNetwork"
                                 onPress={handleShare}
                                 type="primary"

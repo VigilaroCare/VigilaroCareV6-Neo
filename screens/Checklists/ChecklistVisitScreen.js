@@ -111,7 +111,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                     <View style={{ flex: 1, marginLeft: 12 }}>
                         <H2 style={{ color: Neo.colors.neutral[800] }}>{t('headersFirst.checklistVisita', 'Checklist: Visita')}</H2>
                         <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>
-                            {isRecebendo ? 'Prepare sua casa' : 'Fique atento ao visitar'}
+                            {isRecebendo ? t('telas.ChecklistVisitScreen.prepareSuaCasa', 'Prepare sua casa') : t('telas.ChecklistVisitScreen.fiqueAtentoAoVisitar', 'Fique atento ao visitar')}
                         </Small>
                     </View>
                     <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: THEME_COLOR + '15', alignItems: 'center', justifyContent: 'center' }}>
@@ -123,7 +123,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                 <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
                     <NeoCard variant="elevated" padding={12} style={{ backgroundColor: Neo.colors.neutral.white }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                            <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount} verificados</Small>
+                            <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount}{t('telas.ChecklistVisitScreen.verificados', ' verificados')}</Small>
                             <H3 style={{ color: percentage === 100 ? Neo.colors.feedback.success : THEME_COLOR }}>{percentage}%</H3>
                         </View>
                         <View style={{ height: 6, backgroundColor: Neo.colors.neutral[200], borderRadius: 3, overflow: 'hidden' }}>
@@ -192,7 +192,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                         }}>
                             <NeoIcon name="People" size={22} color={Neo.colors.neutral.white} variant="Bold" />
                             <H3 style={{ color: Neo.colors.neutral.white, marginLeft: 10 }}>
-                                {isRecebendo ? 'Ativar Modo Visita' : 'Pronto para Visitar'}
+                                {isRecebendo ? 'Ativar Modo Visita' : t('telas.ChecklistVisitScreen.prontoParaVisitar', 'Pronto para Visitar')}
                             </H3>
                         </NeoCard>
                     </ScaleButton>

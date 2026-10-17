@@ -167,10 +167,10 @@ export default function OndeProtegerScreen({ navigation }) {
     // FIX #6: Handler de nova residência sem import() dinâmico
     const handleAddResidence = async () => {
         NeoAlert.alert(
-            'Nova Residência',
+            t('telas.OndeProtegerScreen.novaResidencia', 'Nova Residência'),
             'Deseja criar e mapear um novo local?',
             [
-                { text: 'Cancelar', style: 'cancel' },
+                { text: t('telas.OndeProtegerScreen.cancelar', 'Cancelar'), style: 'cancel' },
                 {
                     text: 'Criar',
                     onPress: async () => {
@@ -257,8 +257,7 @@ export default function OndeProtegerScreen({ navigation }) {
                                             {getDynamicAreaName(ambiente.id, ambiente.label, ambientesMapeados, t)}
                                         </Text>
                                         <Text style={styles.ambienteRiscos}>
-                                            {ambiente.riscos.length} pontos de atenção
-                                        </Text>
+                                            {ambiente.riscos.length}{t('telas.OndeProtegerScreen.pontosDeAtencao', ' pontos de atenção')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             ))}

@@ -145,7 +145,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         <NeoIcon name="SearchNormal1" size={20} color={textMuted} />
                         <TextInput
                             style={[styles.searchInput, { color: textPrimary }]}
-                            placeholder="Buscar utensílio (ex: Facas, Panelas)"
+                            placeholder={t('telas.UtensiliosDomesticosScreen.buscarUtensilioExFacasPanelas', 'Buscar utensílio (ex: Facas, Panelas)')}
                             placeholderTextColor={textMuted}
                             value={search}
                             onChangeText={setSearch}
@@ -156,8 +156,7 @@ export default function UtensiliosDomesticosScreen({ navigation }) {
                         <View style={styles.infoBar}>
                             <NeoIcon name="ClipboardText" size={13} color={textMuted} style={{ marginRight: 6 }} />
                             <Text style={[styles.infoText, { color: textMuted }]}>
-                                {filteredData.length} itens • Toque para ver detalhes
-                            </Text>
+                                {filteredData.length}{t('telas.UtensiliosDomesticosScreen.itensToqueParaVerDetalhes', ' itens • Toque para ver detalhes')}</Text>
                         </View>
                     </FadeInView>
 

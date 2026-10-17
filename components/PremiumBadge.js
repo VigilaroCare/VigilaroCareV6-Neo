@@ -12,6 +12,7 @@
  *   <PremiumBadge variant="icon" />   → só o cadeado
  */
 
+import { tx } from '../utils/txFixo';
 import { View, StyleSheet } from 'react-native';
 import { Small } from './NeoTypography';
 import NeoIcon from './NeoIcon';
@@ -39,9 +40,7 @@ export default function PremiumBadge({
 
     if (variant === 'text') {
         return (
-            <Small style={[bStyles.textOnly, { fontSize: fSize }, style]}>
-                ✦ Premium
-            </Small>
+            <Small style={[bStyles.textOnly, { fontSize: fSize }, style]}>{tx('telas.PremiumBadge.premium', '✦ Premium')}</Small>
         );
     }
 
@@ -49,7 +48,7 @@ export default function PremiumBadge({
     return (
         <View style={[bStyles.pill, { paddingHorizontal: pX, paddingVertical: pY }, style]}>
             <NeoIcon name="Crown1" variant="Bold" size={iSize} color={CLR_PREMIUM} />
-            <Small style={[bStyles.pillText, { fontSize: fSize }]}>Premium</Small>
+            <Small style={[bStyles.pillText, { fontSize: fSize }]}>{tx('telas.PremiumBadge.premium2', 'Premium')}</Small>
         </View>
     );
 }

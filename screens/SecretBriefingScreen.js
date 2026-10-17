@@ -68,15 +68,10 @@ export default function SecretBriefingScreen({ navigation }) {
                                 {t('headersFirst.emSituaEsDeCoaOOndeVocNOPodeRevelarQueEs', 'Em situações de coação onde você não pode revelar que está pedindo ajuda:')}
                             </Text>
                             <View style={styles.instructionBox}>
-                                <Text style={[styles.instructionText, { color: Neo.colors.neutral.white }]}>
-                                    Segure o botão <Text style={{ color: Neo.emergency.panic, fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text> no rodapé por <Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
+                                <Text style={[styles.instructionText, { color: Neo.colors.neutral.white }]}>{t('telas.SecretBriefingScreen.segureOBotao', 'Segure o botão ')}<Text style={{ color: Neo.emergency.panic, fontWeight: 'bold' }}>{t('headersFirst.sOS', 'SOS')}</Text>{t('telas.SecretBriefingScreen.noRodapePor', ' no rodapé por ')}<Text style={{ fontWeight: 'bold' }}>{t('headersFirst.3Segundos', '3 segundos')}</Text>.
                                 </Text>
                             </View>
-                            <Text style={[styles.cardDetail, { color: themeColors.neutral[400] }]}>
-                                • O app vibrará discretamente.{'\n'}
-                                • Gravação de áudio e GPS iniciam na hora.{'\n'}
-                                • Alertas são enviados após 15s se não cancelar.
-                            </Text>
+                            <Text style={[styles.cardDetail, { color: themeColors.neutral[400] }]}>{t('telas.SecretBriefingScreen.oAppVibraraDiscretamente', '• O app vibrará discretamente.')}{'\n'}{t('telas.SecretBriefingScreen.gravacaoDeAudioEGpsIniciam', '• Gravação de áudio e GPS iniciam na hora.')}{'\n'}{t('telas.SecretBriefingScreen.alertasSaoEnviadosApos15sSe', '• Alertas são enviados após 15s se não cancelar.')}</Text>
                         </View>
 
                         <Text style={[styles.disclaimer, { color: themeColors.neutral[500] }]}>

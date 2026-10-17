@@ -1,3 +1,4 @@
+import { tx } from '../utils/txFixo';
 import { useState, useEffect, useRef } from "react";
 import { View, Modal, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import NeoIcon from './NeoIcon';
@@ -105,25 +106,21 @@ export default function OfflineModeModal() {
                                 <NeoIcon name="CloudCross" size={32} color={colors.neutral.white} />
                             </View>
                             <View style={{ flex: 1 }}>
-                                <H3 style={{ color: colors.feedback.error, fontSize: 18 }}>Modo Offline Ativado</H3>
-                                <Body style={{ fontSize: 13, color: Neo.colors.neutral[600] }}>
-                                    Detectamos falta de sinal de rede.
-                                </Body>
+                                <H3 style={{ color: colors.feedback.error, fontSize: 18 }}>{tx('telas.OfflineModeModal.modoOfflineAtivado', 'Modo Offline Ativado')}</H3>
+                                <Body style={{ fontSize: 13, color: Neo.colors.neutral[600] }}>{tx('telas.OfflineModeModal.detectamosFaltaDeSinalDeRede', 'Detectamos falta de sinal de rede.')}</Body>
                             </View>
                         </View>
 
                         <View style={styles.divider} />
 
                         {/* Conteúdo Seguro */}
-                        <Body style={{ marginBottom: 12, fontWeight: '600' }}>
-                            Fique tranquilo. Você ainda tem acesso a:
-                        </Body>
+                        <Body style={{ marginBottom: 12, fontWeight: '600' }}>{tx('telas.OfflineModeModal.fiqueTranquiloVoceAindaTemAcesso', 'Fique tranquilo. Você ainda tem acesso a:')}</Body>
 
                         <View style={styles.featuresList}>
-                            <FeatureItem icon="medical" text="Fichas Médicas & Saúde" />
-                            <FeatureItem icon="medkit" text="Guias de Primeiros Socorros" />
-                            <FeatureItem icon="flashlight" text="Kits de Emergência" />
-                            <FeatureItem icon="call" text="Telefones de Utilidade Pública" />
+                            <FeatureItem icon="medical" text={tx('telas.OfflineModeModal.fichasMedicasSaude', 'Fichas Médicas & Saúde')} />
+                            <FeatureItem icon="medkit" text={tx('telas.OfflineModeModal.guiasDePrimeirosSocorros', 'Guias de Primeiros Socorros')} />
+                            <FeatureItem icon="flashlight" text={tx('telas.OfflineModeModal.kitsDeEmergencia', 'Kits de Emergência')} />
+                            <FeatureItem icon="call" text={tx('telas.OfflineModeModal.telefonesDeUtilidadePublica', 'Telefones de Utilidade Pública')} />
                         </View>
 
                         <View style={styles.divider} />
@@ -131,7 +128,7 @@ export default function OfflineModeModal() {
                         {/* Ação */}
                         <TouchableOpacity onPress={handleDismiss}>
                             <View style={styles.button}>
-                                <Body style={{ color: colors.neutral.white, fontWeight: 'bold' }}>Entendi, manter protegido</Body>
+                                <Body style={{ color: colors.neutral.white, fontWeight: 'bold' }}>{tx('telas.OfflineModeModal.entendiManterProtegido', 'Entendi, manter protegido')}</Body>
                             </View>
                         </TouchableOpacity>
 

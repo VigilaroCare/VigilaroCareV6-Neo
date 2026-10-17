@@ -3,6 +3,7 @@
  * Monitora o nível de bateria e exibe alertas proativos
  * Utiliza expo-battery para leitura do estado atual
  */
+import { tx } from '../utils/txFixo';
 import { useEffect, useRef } from 'react';
 import { AppState } from "react-native";
 import * as Battery from 'expo-battery';
@@ -51,12 +52,12 @@ export default function BatteryMonitor() {
             if (level <= BATTERY_CRITICAL_THRESHOLD && lastAlertLevel.current !== 'critical') {
                 lastAlertLevel.current = 'critical';
                 NeoAlert.alert(
-                    '🔴 Bateria Crítica',
+                    tx('telas.BatteryMonitor.bateriaCritica', '🔴 Bateria Crítica'),
                     `Sua bateria está em ${Math.round(level * 100)}%. ` +
                     'Em caso de emergência, você pode não conseguir usar o telefone. ' +
                     'Conecte o carregador imediatamente.\n\n' +
                     '💡 Dica: Tenha sempre uma lanterna e uma lista de contatos de emergência em papel.',
-                    [{ text: 'Entendi', style: 'default' }]
+                    [{ text: tx('telas.BatteryMonitor.entendi', 'Entendi'), style: 'default' }]
                 );
             } else if (level <= BATTERY_LOW_THRESHOLD && level > BATTERY_CRITICAL_THRESHOLD && lastAlertLevel.current !== 'low') {
                 lastAlertLevel.current = 'low';

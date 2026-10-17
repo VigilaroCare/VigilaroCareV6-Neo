@@ -10,6 +10,7 @@
  * - Stack trace completo em __DEV__; código de referência em produção
  */
 
+import { tx } from '../utils/txFixo';
 import React from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
@@ -157,11 +158,9 @@ class ErrorBoundary extends React.Component {
         <View style={styles.content}>
           <NeoIcon name="Danger" size={64} color={Neo.colors.feedback.error} />
 
-          <Text style={styles.title}>Algo deu errado</Text>
+          <Text style={styles.title}>{tx('telas.ErrorBoundary.algoDeuErrado', 'Algo deu errado')}</Text>
 
-          <Text style={styles.subtitle}>
-            Ocorreu um problema inesperado. Por favor, reinicie o aplicativo para continuar.
-          </Text>
+          <Text style={styles.subtitle}>{tx('telas.ErrorBoundary.ocorreuUmProblemaInesperadoPorFavor', 'Ocorreu um problema inesperado. Por favor, reinicie o aplicativo para continuar.')}</Text>
 
           {/* Caixa de erro: stack completo em DEV / código de referência em produção */}
           <View style={styles.errorBox}>
@@ -191,9 +190,7 @@ class ErrorBoundary extends React.Component {
             onPress={this.handleRetry}
             accessibilityLabel="Tentar novamente"
           >
-            <Text style={[styles.buttonText, { color: Neo.colors.primary[500] }]}>
-              Tentar novamente
-            </Text>
+            <Text style={[styles.buttonText, { color: Neo.colors.primary[500] }]}>{tx('telas.ErrorBoundary.tentarNovamente', 'Tentar novamente')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -201,7 +198,7 @@ class ErrorBoundary extends React.Component {
             onPress={this.handleRestart}
             accessibilityLabel="Reiniciar aplicativo"
           >
-            <Text style={styles.buttonText}>Reiniciar Aplicativo</Text>
+            <Text style={styles.buttonText}>{tx('telas.ErrorBoundary.reiniciarAplicativo', 'Reiniciar Aplicativo')}</Text>
           </TouchableOpacity>
         </View>
       </View>

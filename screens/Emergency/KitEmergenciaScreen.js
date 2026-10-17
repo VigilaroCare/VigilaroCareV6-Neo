@@ -71,8 +71,7 @@ export default function KitEmergenciaScreen({ navigation }) {
               {t('headersFirst.kitParaEmergNcias', 'Kit de emergência')}
             </H1>
             <Caption style={s.subtitle}>
-              {checkedItems.length} de {items.length} itens
-            </Caption>
+              {checkedItems.length}{t('telas.KitEmergenciaScreen.de', ' de ')}{items.length}{t('telas.KitEmergenciaScreen.itens', ' itens')}</Caption>
           </View>
         </View>
 
@@ -100,7 +99,7 @@ export default function KitEmergenciaScreen({ navigation }) {
               style={{ marginBottom: 8 }}
               accessibilityLabel={`${progressPct}% completo`}
             />
-            <Small style={s.progressText}>{progressPct}% completo</Small>
+            <Small style={s.progressText}>{progressPct}{t('telas.KitEmergenciaScreen.completo', '% completo')}</Small>
           </View>
 
           <Small style={s.sectionLabel}>

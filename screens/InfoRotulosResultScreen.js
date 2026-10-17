@@ -321,9 +321,7 @@ export default function InfoRotulosResultScreen() {
                                             <Text style={s.ghsText}>{stmt.text_pt}</Text>
                                         </View>
                                     ))}
-                                    <Text style={s.ghsSource}>
-                                        Fonte: PubChem (NIH/NLM)
-                                        {substanceData?.source === 'pubchem+epa' ? ' + EPA CTX' : ''}
+                                    <Text style={s.ghsSource}>{t('telas.InfoRotulosResultScreen.fontePubchemNihNlm', 'Fonte: PubChem (NIH/NLM)')}{substanceData?.source === 'pubchem+epa' ? ' + EPA CTX' : ''}
                                     </Text>
                                 </NeoCard>
                             </FadeInView>
