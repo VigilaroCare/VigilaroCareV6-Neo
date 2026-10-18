@@ -8,6 +8,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { H2, Body, Caption } from '../../components/NeoTypography';
 import { DS } from '../../utils/DesignSystem2026';
 import { GENDERS, BOND_TYPES, SPECIAL_CONDITIONS, formatDOB } from '../../data/onboarding_data';
+import ConsentimentoResponsavel from '../../components/ConsentimentoResponsavel';
 import { t_field } from '../../utils/getLocalizedField';
 import { Chip, NeoInput } from './components';
 import { ss } from './styles';
@@ -19,6 +20,8 @@ const S = DS.spacing;
 export default function HumanFormStep({
     formName, setFormName,
     formDOB, setFormDOB,
+    formIdade = null,
+    formConsentResp = false, setFormConsentResp = () => {},
     formGender, setFormGender,
     formBond, setFormBond,
     formConditions, setFormConditions,
@@ -62,6 +65,8 @@ export default function HumanFormStep({
                     keyboardType="numeric"
                     maxLength={10}
                 />
+                {/* Criança/adolescente: confirmação do responsável (LGPD art. 14, §1º). */}
+                <ConsentimentoResponsavel idade={formIdade} marcado={formConsentResp} onChange={setFormConsentResp} style={{ marginBottom: 12 }} />
 
                 <Caption style={{ marginBottom: 8, color: C.neutral[700], fontWeight: '600' }}>{tx('telas.HumanFormStep.genero', 'Gênero')}</Caption>
                 <View style={ss.chipRow}>

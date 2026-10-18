@@ -2916,7 +2916,8 @@
             "mapeamentoConcluido": "Mapeamento concluído!",
             "mapaVivo": "O seu mapa sensível está ativo. A partir daqui, cuidamos juntos.",
             "residenciaConfigurada": "Esta casa foi configurada com sucesso.",
-            "acessarPainel": "Ir para o painel"
+            "acessarPainel": "Ir para o painel",
+            "faltaONome": "Falta o nome."
         },
         "PetFoodSafetyScreen": {
             "risco": "RISCO "
@@ -3091,5 +3092,10 @@
         "semPermissaoScanner": "A análise de fotografias usa inteligência artificial e precisa da sua autorização. A fotografia não saiu do aparelho. Pode autorizar em Privacidade → As suas escolhas.",
         "cartaoResumo": "A análise personalizada é feita por inteligência artificial e só é gerada com a sua autorização.",
         "gerarAnalise": "Gerar análise com IA"
+    },
+    "consentimentoResponsavel": {
+        "texto": "Sou mãe, pai ou responsável legal e autorizo o registo destes dados na aplicação.",
+        "tituloAviso": "Confirmação do responsável",
+        "obrigatorio": "Para registar uma criança ou um adolescente, confirme que é a mãe, o pai ou o responsável legal."
     }
 }

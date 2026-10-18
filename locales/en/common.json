@@ -2916,7 +2916,8 @@
             "mapeamentoConcluido": "Mapping complete!",
             "mapaVivo": "Your sensitive map is live. From here on, we look after things together.",
             "residenciaConfigurada": "This home has been set up.",
-            "acessarPainel": "Go to dashboard"
+            "acessarPainel": "Go to dashboard",
+            "faltaONome": "The name is missing."
         },
         "PetFoodSafetyScreen": {
             "risco": "RISK "
@@ -3091,5 +3092,10 @@
         "semPermissaoScanner": "Photo analysis uses artificial intelligence and needs your permission. The photo did not leave your phone. You can allow it under Privacy → Your choices.",
         "cartaoResumo": "The personalized analysis is made by artificial intelligence and is only created with your permission.",
         "gerarAnalise": "Create AI analysis"
+    },
+    "consentimentoResponsavel": {
+        "texto": "I am the parent or legal guardian and I authorize adding this information to the app.",
+        "tituloAviso": "Guardian confirmation",
+        "obrigatorio": "To add a child or teenager, please confirm that you are their parent or legal guardian."
     }
 }

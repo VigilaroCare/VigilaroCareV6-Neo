@@ -21,6 +21,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
 import { DS } from '../utils/DesignSystem2026';
 import ProfileService from '../services/ProfileService';
+import { precisaConsentimentoResponsavel, registroConsentimentoResponsavel, avisoConsentimentoResponsavel } from '../components/ConsentimentoResponsavel';
 import BriefingDraftService from '../services/BriefingDraftService';
 import { Body, Caption } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
@@ -58,6 +59,9 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     const [profiles, setProfiles] = useState([]);
     const [formName, setFormName] = useState('');
     const [formDOB, setFormDOB] = useState('');
+    const [formConsentResp, setFormConsentResp] = useState(false);
+    // Idade só quando a data está completa e válida (DD/MM/AAAA).
+    const formIdade = formDOB && formDOB.length === 10 ? ProfileService.calcularIdade(formDOB) : null;
     const [formGender, setFormGender] = useState('');
     const [formBond, setFormBond] = useState('morador');
     const [formConditions, setFormConditions] = useState([]);
@@ -233,7 +237,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
     };
 
     const resetForm = () => {
-        setFormName(''); setFormDOB(''); setFormGender('');
+        setFormName(''); setFormDOB(''); setFormGender(''); setFormConsentResp(false);
         setFormBond('morador'); setFormConditions([]);
         setFormSpecies(''); setFormSize(''); setFormPhoto(null);
         setFormPetAge('1'); setFormPetConditions([]);
@@ -301,9 +305,15 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
 
     // === PROFILE CRUD ===
     const saveHumanProfile = async () => {
-        if (!formName.trim()) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao', 'Atenção'), 'Falta o nome.');
+        if (!formName.trim()) return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.faltaONome', 'Falta o nome.'));
         if (formDOB && ProfileService.calcularIdade(formDOB) === null) {
             return NeoAlert.alert(tx('telas.NewHomeWizardScreenNeo.atencao2', 'Atenção'), tx('telas.NewHomeWizardScreenNeo.dataDeNascimentoInvalida', 'Data de nascimento inválida.'));
+        }
+        // Criança/adolescente: confirmação do responsável (LGPD art. 14, §1º).
+        const ehMenor = precisaConsentimentoResponsavel(formIdade);
+        if (ehMenor && !formConsentResp) {
+            const aviso = avisoConsentimentoResponsavel();
+            return NeoAlert.alert(aviso.titulo, aviso.texto);
         }
         let fotoSalva = null;
         if (formPhoto) fotoSalva = await ProfileService.persistImage(formPhoto, 'profile');
@@ -316,6 +326,7 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             foto: fotoSalva,
             // Vínculo Morador↔Cômodo (D1 + D3): alimenta o Interpreter
             comodosUsados: Array.isArray(formComodos) ? formComodos : [],
+            ...(ehMenor ? { consentimentoResponsavel: registroConsentimentoResponsavel(null) } : {}),
         }, 'humano');
         if (perfil) {
             // Aplica o vínculo escolhido por residência (default: só a ativa) —
@@ -480,6 +491,8 @@ export default function NewHomeWizardScreenNeo({ navigation, route }) {
             <HumanFormStep
                 formName={formName} setFormName={setFormName}
                 formDOB={formDOB} setFormDOB={setFormDOB}
+                formIdade={formIdade}
+                formConsentResp={formConsentResp} setFormConsentResp={setFormConsentResp}
                 formGender={formGender} setFormGender={setFormGender}
                 formBond={formBond} setFormBond={setFormBond}
                 formConditions={formConditions} setFormConditions={setFormConditions}

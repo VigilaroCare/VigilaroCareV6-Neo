@@ -30,7 +30,7 @@ Tudo o que não está nesta tabela **fica só no aparelho** (perfis, nomes, cont
 **Dados de saúde não saem do aparelho.** Condições, medicamentos, alergias, tipo sanguíneo, gestação e deficiência ficam no celular. A decisão do autor, em 17/10/2026, é que o app informa e não opina, e `npm run validate:legal` falha se algum desses dados voltar a ir para a IA. A ficha médica do SOS só sai se a própria pessoa a compartilhar, pelo app de mensagens.
 | Código de barras / nome de substância | Open Food Facts, Open Beauty Facts, Open Products Facts, UPCitemdb, PubChem, EPA CompTox | Consultas do Scanner de código e do Info Rótulos | Não — só o código ou o nome | `services/InfoRotulosSubstanceService.js` |
 | Histórico de compra + ID anônimo da instalação | RevenueCat | Ao assinar/validar o Premium | Não — ID anônimo, sem e-mail | `services/SubscriptionService.js` (sem `logIn`) |
-| Relatórios de falha, desempenho, ID aleatório da instalação | Sentry | Quando há erro | Não — `sendDefaultPii: false` + limpeza de nomes, telefones, endereços e saúde | `services/SentryService.js` |
+| Relatórios de falha e de desempenho, **anônimos** (sem o ID da instalação, sem sessões, sem falhas nativas) | Sentry | Quando há erro | Não — `sendDefaultPii: false`, sem identificador do aparelho e limpeza de nomes, telefones, endereços e saúde | `services/SentryService.js` |
 
 **Não sai do aparelho:**
 - **Localização precisa.** O SOS a coloca na mensagem que a própria pessoa envia, pelo app de SMS ou WhatsApp, aos contatos que ela escolheu. A identificação do país também acontece no aparelho, e dela só o código do país é guardado.
@@ -86,7 +86,7 @@ Retenção nos terceiros:
 | Atividade no app → **Histórico de pesquisa no app** (código de barras, substância) | Sim | Não | Opcional | Funcionalidade do app |
 | Informações e desempenho do app → **Registros de falhas** | Sim | Não | **Obrigatório** (não há como desligar) | Análise; Funcionalidade do app |
 | Informações e desempenho do app → **Diagnóstico** | Sim | Não | Obrigatório | Análise; Funcionalidade do app |
-| Dispositivo ou outros IDs → **ID aleatório da instalação** (Sentry, RevenueCat) | Sim | Não | Obrigatório | Análise; Funcionalidade do app |
+| Dispositivo ou outros IDs → **ID anônimo da compra** (RevenueCat, só para validar a assinatura) | Sim | Não | Opcional (só quem assina) | Funcionalidade do app |
 
 **Não marcar:**
 - Local preciso.

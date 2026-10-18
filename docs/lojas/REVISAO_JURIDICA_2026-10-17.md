@@ -55,6 +55,17 @@ Também mudaram:
 
 `validate:legal` reprova se a exoneração total voltar.
 
+### Relatórios de falha anônimos e confirmação do responsável (mesmo dia)
+
+**Sentry: requisito 8 e risco R3 resolvidos.** Os relatórios saem sem o ID sorteado na instalação. Foram desligados três caminhos:
+- as sessões;
+- as falhas nativas, que já aparecem anônimas no Play Console e no Xcode;
+- a limpeza passou a cobrir também os eventos de desempenho.
+
+Sem identificador, o relatório deixa de ser dado pessoal, e por isso não há transferência a justificar. `validate:legal` reprova se essas opções voltarem.
+
+**Crianças: requisito 5 e risco R6 resolvidos.** Ao cadastrar um perfil com menos de 18 anos, no assistente ou em Adicionar Perfil, o app exige marcar: "Sou mãe, pai ou responsável legal e autorizo o cadastro destes dados no app". O registro fica no perfil (`consentimentoResponsavel`), e a Política descreve isso nos 4 idiomas.
+
 **Para o advogado validar:**
 1. a redação da seção 9 (responsabilidade);
 2. o compromisso de atender o arrependimento "pela loja ou pelo nosso contato";

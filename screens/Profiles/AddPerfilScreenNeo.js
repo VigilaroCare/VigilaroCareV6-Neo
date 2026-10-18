@@ -16,6 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker';
 import NeoIcon from '../../components/NeoIcon';
 import ResidenceLinksPicker from '../../components/ResidenceLinksPicker';
+import ConsentimentoResponsavel, { precisaConsentimentoResponsavel, registroConsentimentoResponsavel, avisoConsentimentoResponsavel } from '../../components/ConsentimentoResponsavel';
 
 // Neo Design
 import { Neo } from "../../utils/Theme";
@@ -306,6 +307,9 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
     // Cálculo dinâmico de completude
     const hasName = !!nome.trim();
     const hasAge = !!dia && !!mes && !!ano && ano.length === 4 && dataNascimento !== null;
+    // Idade para a confirmação do responsável (criança/adolescente).
+    const idadePerfil = hasAge && !isNaN(dataNascimento?.getTime?.()) ? ProfileService.calcularIdade(dataNascimento.toISOString()) : null;
+    const [consentResp, setConsentResp] = useState(!!editingProfile?.consentimentoResponsavel);
     const hasGender = !!genero;
     const hasContact = contatos && contatos.length > 0;
 
@@ -406,6 +410,13 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
             return;
         }
 
+        const ehMenor = tipo === 'humano' && precisaConsentimentoResponsavel(idadePerfil);
+        if (ehMenor && !consentResp) {
+            const aviso = avisoConsentimentoResponsavel();
+            NeoAlert.alert(aviso.titulo, aviso.texto);
+            return;
+        }
+
         try {
             const data = await ProfileService.getData();
             const activeId = data.activeResidenceId || 'default_home';
@@ -435,6 +446,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 infoPet: tipo === 'pet' ? { raca, chip, castrado, especie } : null,
                 especie: tipo === 'pet' ? especie : null,
                 contatos,
+                consentimentoResponsavel: ehMenor ? registroConsentimentoResponsavel(editingProfile?.consentimentoResponsavel) : (editingProfile?.consentimentoResponsavel || null),
                 dataAtualizacao: new Date().toISOString(),
                 pendente: false
             };
@@ -637,6 +649,11 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                     />
                                 </View>
                             </View>
+
+                            {/* Criança/adolescente: confirmação do responsável (LGPD art. 14, §1º). */}
+                            {tipo === 'humano' && (
+                                <ConsentimentoResponsavel idade={idadePerfil} marcado={consentResp} onChange={setConsentResp} style={{ marginBottom: 12 }} />
+                            )}
 
                             {/* Pet specific info */}
                             {tipo === 'pet' && (

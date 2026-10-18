@@ -191,6 +191,21 @@ try {
     if (exoneracao) problemas.push(`Cláusula de exoneração total (nula pelo CDC) ainda presente: ${[...new Set(exoneracao)].join(' | ')}`);
 }
 
+// 7. Relatórios de falha anônimos (17/10/2026): o id sorteado na instalação
+// distingue um aparelho e seria dado pessoal enviado aos EUA.
+{
+    const s = lerSrc('services/SentryService.js');
+    const exigido = [
+        [/sendDefaultPii:\s*false/, 'sendDefaultPii: false'],
+        [/enableAutoSessionTracking:\s*false/, 'enableAutoSessionTracking: false (sessões levam o id da instalação)'],
+        [/enableNativeCrashHandling:\s*false/, 'enableNativeCrashHandling: false (falha nativa não passa pela limpeza do JS)'],
+        [/beforeSendTransaction:/, 'beforeSendTransaction (desempenho também passa pela limpeza)'],
+        [/delete event\.user;/, 'delete event.user'],
+        [/delete event\.contexts\.device\.id;/, 'delete event.contexts.device.id'],
+    ];
+    for (const [re, nome] of exigido) if (!re.test(s)) problemas.push(`SentryService sem ${nome} — os relatórios deixariam de ser anônimos.`);
+}
+
 const mostrar = (rotulo, lista) => {
     if (!lista.length) return;
     console.log(linha(rotulo));

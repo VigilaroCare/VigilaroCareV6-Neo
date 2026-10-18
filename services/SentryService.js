@@ -117,9 +117,17 @@ export function redigir(valor, profundidade = 0) {
 export function scrubEvent(event) {
     if (!event) return event;
 
-    // Identidade: nunca enviar. O Sentry agrupa por device id anônimo.
+    // Identidade: nunca enviar — nem o id sorteado na instalação, que o SDK
+    // nativo põe em user.id e em contexts.device.id (é dado pessoal: distingue
+    // um aparelho). O evento sai sem nada que o ligue a um celular.
     delete event.user;
     delete event.server_name;
+    if (event.contexts?.device) {
+        delete event.contexts.device.id;
+        delete event.contexts.device.device_unique_identifier;
+    }
+    if (event.contexts?.app) delete event.contexts.app.device_app_hash;
+    if (event.contexts?.trace?.data) delete event.contexts.trace.data['user.id'];
 
     if (event.message) event.message = redigirTexto(event.message);
     if (event.extra) event.extra = redigir(event.extra);
@@ -199,7 +207,27 @@ export function initSentry() {
         // aqui e de novo em beforeBreadcrumb (cinto e suspensório).
         enableCaptureFailedRequests: false,
 
+        // ANÔNIMO DE VERDADE (17/10/2026). O número sorteado na instalação
+        // distingue um aparelho — pela LGPD/RGPD já é dado pessoal, e o Sentry
+        // fica nos EUA. Ele saía por três caminhos que o beforeSend não cobre:
+        //  • sessões ("usuários sem falha") levam o id da instalação → desligadas;
+        //  • falhas NATIVAS são enviadas pelo módulo Android/iOS sem passar pelo
+        //    JS → desligadas aqui; o Play Console (Android vitals) e o Xcode
+        //    Organizer já mostram essas falhas, anônimas, sem terceiro;
+        //  • desempenho (transações) usa outro gancho → beforeSendTransaction.
+        // Perde-se "quantas pessoas" um erro afetou; fica "quantas vezes".
+        enableAutoSessionTracking: false,
+        enableNativeCrashHandling: false,
+
         tracesSampleRate: 0.2,
+
+        beforeSendTransaction: (event) => {
+            try {
+                return scrubEvent(event);
+            } catch (_) {
+                return null;
+            }
+        },
 
         beforeSend: (event) => {
             try {

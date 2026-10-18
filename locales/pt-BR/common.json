@@ -2916,7 +2916,8 @@
             "mapeamentoConcluido": "Mapeamento concluído!",
             "mapaVivo": "Seu mapa sensível está vivo. A partir daqui, é a gente cuidando junto.",
             "residenciaConfigurada": "Esta residência foi configurada com sucesso.",
-            "acessarPainel": "Acessar painel"
+            "acessarPainel": "Acessar painel",
+            "faltaONome": "Falta o nome."
         },
         "PetFoodSafetyScreen": {
             "risco": "RISCO "
@@ -3091,5 +3092,10 @@
         "semPermissaoScanner": "A análise de fotos usa inteligência artificial e precisa da sua permissão. A foto não saiu do aparelho. Você pode permitir em Privacidade → Suas escolhas.",
         "cartaoResumo": "A análise personalizada é feita por inteligência artificial e só é gerada com a sua permissão.",
         "gerarAnalise": "Gerar análise com IA"
+    },
+    "consentimentoResponsavel": {
+        "texto": "Sou mãe, pai ou responsável legal e autorizo o cadastro destes dados no app.",
+        "tituloAviso": "Confirmação do responsável",
+        "obrigatorio": "Para cadastrar uma criança ou um adolescente, confirme que você é a mãe, o pai ou o responsável legal."
     }
 }
