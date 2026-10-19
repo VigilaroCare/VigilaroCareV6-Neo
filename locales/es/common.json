@@ -538,7 +538,8 @@
         "cardsMoneyKeys": "Tarjetas, dinero y llaves",
         "completedOf": "de",
         "completed": "completados",
-        "kitItemCount": "{{count}} artículos"
+        "kitItemCount": "{{count}} artículos",
+        "dossieFonteBagagem": "Fuente: {{fonte}} · vigente en {{revisao}}. Confírmelo con su aerolínea."
     },
     "medications": {
         "title": "Hora del Medicamento",

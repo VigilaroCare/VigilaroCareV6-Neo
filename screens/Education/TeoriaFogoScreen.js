@@ -22,6 +22,7 @@ export default function TeoriaFogoScreen({ navigation }) {
     const items = [
         { id: 'triangulo', ...TEORIA_FOGO_DATA.triangulo },
         { id: 'classes', ...TEORIA_FOGO_DATA.classes },
+        { id: 'baterias', ...TEORIA_FOGO_DATA.baterias },
         { id: 'extintores', ...TEORIA_FOGO_DATA.extintores },
         { id: 'transmissao', ...TEORIA_FOGO_DATA.transmissao },
         { id: 'combate', ...TEORIA_FOGO_DATA.combate },
@@ -45,7 +46,9 @@ export default function TeoriaFogoScreen({ navigation }) {
                 imagemUrl: item.imagemUrl,
                 titulo: t_field(item, 'titulo'),
                 definicao: [definicao, importancia ? `**${importancia}**` : null].filter(Boolean).join('\n\n'),
-                secoes: [lista('comoIdentificar'), lista('exemplos'), lista('comoEvitar')],
+                // comoAgir e fontes: tópico de baterias de lítio (D15). Lista
+                // vazia não aparece (PremiumArticleScreen filtra).
+                secoes: [lista('comoIdentificar'), lista('exemplos'), lista('comoEvitar'), lista('comoAgir'), lista('fontes')],
                 color: THEME_COLOR,
                 tags: [t('headersFirst.teoriaDoFogo', 'Teoria do Fogo')]
             }

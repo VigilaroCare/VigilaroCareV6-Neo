@@ -78,14 +78,19 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         ],
         prevencao: [
             'Nunca compre power banks sem certificação — a economia pode sair muito cara',
-            'Não deixe dentro do carro sob o sol — a temperatura interna pode detonar a bateria',
+            'Não deixe dentro do carro sob o sol — o calor danifica a bateria e pode levá-la a superaquecer e pegar fogo',
             'Se a bateria inchar (ficar "estufada"), pare de usar imediatamente e descarte em ponto de coleta',
             'Não carregue sobre superfícies inflamáveis (cama, sofá, papel)',
             'Não guarde power bank junto com chaves, moedas ou objetos metálicos soltos',
             'Não transporte em bolsos apertados junto com outros objetos metálicos',
         ],
-        oQueFazer: 'Se o power bank começar a esquentar anormalmente ou soltar fumaça: afaste-o de materiais inflamáveis e coloque em superfície não-combustível (piso de cerâmica, metal). NÃO jogue água — use extintor classe C se houver chamas.',
-        estatistica: 'Incidentes com baterias de lítio em dispositivos portáteis cresceram 300% nos últimos 5 anos, segundo a agência americana de segurança de produtos (CPSC).',
+        // D15 (19/10/2026): orientação de NFPA e London Fire Brigade — não
+        // combater, sair e chamar os bombeiros. Antes: "afaste-o… NÃO jogue
+        // água — use extintor classe C" (manuseava bateria fumegando e mandava
+        // combater; e "Classe C" é gás na Europa). A estatística antiga ("cresceram
+        // 300%, segundo a CPSC") não tinha fonte verificável e saiu.
+        oQueFazer: 'Se esquentar além do normal, inchar ou ficar com cheiro estranho: pare de usar e tire da tomada, se der para fazer isso sem se arriscar. Se soltar fumaça ou pegar fogo: saia do cômodo, feche a porta e ligue para os bombeiros ({{FIRE_NUMBER}}) — não tente apagar nem respire a fumaça.',
+        estatistica: 'Em 2025, a FAA, autoridade de aviação civil dos EUA, publicou um alerta de segurança porque power banks e carregadores portáteis podem iniciar incêndios a bordo (SAFO 25002).',
     },
     {
         id: 'televisores',

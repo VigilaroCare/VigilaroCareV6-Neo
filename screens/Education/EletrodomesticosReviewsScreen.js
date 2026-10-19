@@ -14,6 +14,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
+import { resolveEmergencyTokensDeep } from '../../utils/emergencyTokens';
 import { ELETRODOMESTICOS_REVIEWS } from '../../data/eletrodomesticos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { tx } from '../../utils/txFixo';
@@ -51,7 +52,9 @@ export default function EletrodomesticosReviewsScreen({ navigation }) {
     const cardBg = isDark ? themeColors.neutral[200] : Neo.colors.neutral.white;
 
     const THEME_COLOR = themeColors.secondary[500];
-    const ITEMS = ELETRODOMESTICOS_REVIEWS;
+    // Tokens ({{CERT_SEAL}}, {{FIRE_NUMBER}}…) resolvidos pelo país: antes o
+    // usuário via o literal "{{CERT_SEAL}}" na tela.
+    const ITEMS = resolveEmergencyTokensDeep(ELETRODOMESTICOS_REVIEWS);
 
     const handlePress = (item) => {
         navigation.navigate('SafetyReviewDetail', { item });

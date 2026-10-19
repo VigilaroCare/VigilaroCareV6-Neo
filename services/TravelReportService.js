@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 import { t_field, t_array } from '../utils/getLocalizedField';
+import i18n from '../i18n';
 import { htmlDocument } from '../utils/pdfReport';
 import ProfileService from './ProfileService';
 
@@ -162,10 +163,10 @@ class TravelReportService {
 
         const aereoHtml = transporteAereo ? `
             <div class="card">
-                <h3>${esc(transporteAereo.title)}</h3>
-                <div class="muted">${esc(transporteAereo.intro)}</div>
-                <ul class="bullets">${(transporteAereo.blocos || []).map(b => `<li><strong>${esc(b.rotulo)}:</strong> ${esc(b.regra)}</li>`).join('')}</ul>
-                <div class="source">Fonte: ${esc(transporteAereo.fonte)} · vigente em ${esc(transporteAereo.revisao)}. Confirme com a sua companhia.</div>
+                <h3>${esc(t_field(transporteAereo, 'title'))}</h3>
+                <div class="muted">${esc(t_field(transporteAereo, 'intro'))}</div>
+                <ul class="bullets">${(transporteAereo.blocos || []).map(b => `<li><strong>${esc(t_field(b, 'rotulo'))}:</strong> ${esc(t_field(b, 'regra'))}</li>`).join('')}</ul>
+                <div class="source">${esc(i18n.t('travel.dossieFonteBagagem', { fonte: t_field(transporteAereo, 'fonte'), revisao: t_field(transporteAereo, 'revisao'), defaultValue: 'Fonte: {{fonte}} · vigente em {{revisao}}. Confirme com a sua companhia.' }))}</div>
             </div>` : '';
 
         const fichaLinha = (label, arr) => arr.length ? `<div class="muted"><strong>${label}:</strong> ${esc(arr.join(', '))}</div>` : '';

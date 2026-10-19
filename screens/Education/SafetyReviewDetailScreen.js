@@ -16,6 +16,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
+import { resolveEmergencyTokensDeep } from '../../utils/emergencyTokens';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { tx } from '../../utils/txFixo';
 
@@ -44,7 +45,8 @@ const PERFIL_LABELS = {
 export default function SafetyReviewDetailScreen({ navigation, route }) {
     const { t } = useTranslation('common');
     const insets = useSafeAreaInsets();
-    const { item } = route.params;
+    // Tokens de país resolvidos aqui também (a tela recebe o objeto cru).
+    const item = resolveEmergencyTokensDeep(route.params.item);
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];

@@ -17,6 +17,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
+import { resolveEmergencyTokensDeep } from '../../utils/emergencyTokens';
 import { DISPOSITIVOS_PROTECAO } from '../../data/dispositivos_protecao';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { tx } from '../../utils/txFixo';
@@ -53,7 +54,9 @@ export default function DispositivosProtecaoScreen({ navigation }) {
     const cardBg = isDark ? themeColors.neutral[200] : themeColors.neutral.white;
 
     const THEME_COLOR = Neo.colors.primary[700]; // Forest/Emerald — identidade de "proteção"
-    const ITEMS = DISPOSITIVOS_PROTECAO;
+    // Tokens ({{CERT_SEAL}}, {{FIRE_NUMBER}}…) resolvidos pelo país: antes o
+    // usuário via o literal "{{CERT_SEAL}}" na tela.
+    const ITEMS = resolveEmergencyTokensDeep(DISPOSITIVOS_PROTECAO);
 
     
     const scrollY = useRef(new Animated.Value(0)).current;

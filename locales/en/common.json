@@ -590,7 +590,8 @@
         "cardsMoneyKeys": "Cards, cash, and house/car keys",
         "completedOf": "of",
         "completed": "completed",
-        "kitItemCount": "{{count}} items"
+        "kitItemCount": "{{count}} items",
+        "dossieFonteBagagem": "Source: {{fonte}} · in force as of {{revisao}}. Check with your airline."
     },
     "knowledgeHub": {
         "title": "Learning Center",

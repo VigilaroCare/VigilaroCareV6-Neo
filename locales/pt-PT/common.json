@@ -538,7 +538,8 @@
         "cardsMoneyKeys": "Cartões, dinheiro e chaves",
         "completedOf": "de",
         "completed": "concluídos",
-        "kitItemCount": "{{count}} itens"
+        "kitItemCount": "{{count}} itens",
+        "dossieFonteBagagem": "Fonte: {{fonte}} · vigente em {{revisao}}. Confirme com a sua companhia."
     },
     "medications": {
         "title": "Hora do Medicamento",
