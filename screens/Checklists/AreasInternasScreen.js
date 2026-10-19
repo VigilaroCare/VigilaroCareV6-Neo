@@ -254,8 +254,8 @@ export default function AreasInternasScreen({ navigation, route }) {
     }
     const area = dadosFiltrados[0];
     return area.id === 'gas_central'
-      ? getDynamicAreaName('central_gas', area.titulo, mapping, t)
-      : area.titulo;
+      ? getDynamicAreaName('central_gas', t_field(area, 'titulo'), mapping, t)
+      : t_field(area, 'titulo');
   }, [ambienteId, dadosFiltrados, semRoteiroProprio, mapping, t]);
 
   const flatListRef = useRef(null);
@@ -364,7 +364,7 @@ export default function AreasInternasScreen({ navigation, route }) {
 
           <View style={s.cardContent}>
             <Text style={[s.cardTitle, { color: textPrimary }]}>
-              {item.id === 'gas_central' ? getDynamicAreaName('central_gas', item.titulo, mapping, t) : item.titulo}
+              {item.id === 'gas_central' ? getDynamicAreaName('central_gas', t_field(item, 'titulo'), mapping, t) : t_field(item, 'titulo')}
             </Text>
 
             <Text
