@@ -115,16 +115,16 @@ export const TEORIA_FOGO_DATA = {
             'Bateria que caiu, sofreu impacto, amassou ou molhou merece atenção: o dano interno pode causar curto-circuito depois.',
         ],
         comoIdentificar_en: [
-            'Stop using and charging the battery if it gives off smoke or an unusual smell, gets hotter than normal, changes colour or shape (swells), leaks or stops taking a charge.',
-            'A battery that was dropped, knocked, dented or got wet needs attention: internal damage can cause a short circuit later.',
+            'Stop using and charging the battery if it gives off smoke or an unusual smell, gets hotter than normal, changes colour or shape (becomes swollen), leaks or stops taking a charge.',
+            'A battery that has been dropped, hit, dented or got wet needs attention: internal damage can cause a short circuit later.',
         ],
         comoIdentificar_es: [
             'Deje de usar y de cargar la batería si echa humo u olor extraño, se calienta más de lo normal, cambia de color o de forma (se hincha), pierde líquido o deja de cargar.',
             'Una batería que se cayó, recibió un golpe, se abolló o se mojó merece atención: el daño interno puede causar un cortocircuito después.',
         ],
         comoIdentificar_ptpt: [
-            'Pare de usar e de carregar se a bateria libertar fumo ou cheiro estranho, aquecer além do normal, mudar de cor ou de forma (inchar), verter ou deixar de carregar.',
-            'Uma bateria que caiu, levou uma pancada, amolgou ou se molhou merece atenção: o dano interno pode causar um curto-circuito mais tarde.',
+            'Pare de usar e de carregar se a bateria libertar fumo ou cheiro estranho, aquecer além do normal, mudar de cor ou de forma (ficar inchada), verter ou deixar de carregar.',
+            'Uma bateria que caiu, sofreu um impacto, amolgou ou se molhou merece atenção: o dano interno pode causar um curto-circuito mais tarde.',
         ],
         comoEvitar: [
             'Use o carregador original ou um aprovado pelo fabricante.',
@@ -140,7 +140,7 @@ export const TEORIA_FOGO_DATA = {
         comoEvitar_en: [
             'Use the original charger or one approved by the manufacturer.',
             'Plug it straight into a wall socket — no extension cord or power strip — and one device per socket.',
-            'Do not charge overnight or while no one is around; unplug it when it is full.',
+            'Do not leave it charging overnight or unattended; unplug it when it is full.',
             'Charge on a hard surface that will not burn, away from beds, sofas, curtains and paper.',
             'E-scooters and e-bikes: charge and store them away from your way out — never in the hallway, by the door or under the stairs.',
             'Fit a smoke alarm where you charge an e-scooter or e-bike.',

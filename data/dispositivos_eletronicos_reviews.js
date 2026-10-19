@@ -70,16 +70,16 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         corRisco: '#F57F17',
         frequenciaUso: 'Média',
         perfilRisco: ['todos'],
-        resumo: 'Baterias de lítio podem inchar, superaquecer e, em casos extremos, pegar fogo. A maioria dos riscos está em modelos falsificados ou danificados.',
+        resumo: 'Baterias de lítio podem estufar, superaquecer e, em casos extremos, pegar fogo. A maioria dos riscos está em modelos falsificados ou danificados.',
         riscos: [
-            { descricao: 'Incêndio espontâneo por bateria de lítio defeituosa ou inchada', gravidade: 'critico' },
+            { descricao: 'Incêndio espontâneo por bateria de lítio defeituosa ou estufada', gravidade: 'critico' },
             { descricao: 'Explosão por exposição prolongada ao calor (dentro do carro ao sol)', gravidade: 'alto' },
             { descricao: 'Queimaduras por superaquecimento durante a carga', gravidade: 'medio' },
         ],
         prevencao: [
             'Nunca compre power banks sem certificação — a economia pode sair muito cara',
             'Não deixe dentro do carro sob o sol — o calor danifica a bateria e pode levá-la a superaquecer e pegar fogo',
-            'Se a bateria inchar (ficar "estufada"), pare de usar imediatamente e descarte em ponto de coleta',
+            'Se a bateria ficar estufada, pare de usar imediatamente e descarte em ponto de coleta',
             'Não carregue sobre superfícies inflamáveis (cama, sofá, papel)',
             'Não guarde power bank junto com chaves, moedas ou objetos metálicos soltos',
             'Não transporte em bolsos apertados junto com outros objetos metálicos',
@@ -89,7 +89,7 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
         // água — use extintor classe C" (manuseava bateria fumegando e mandava
         // combater; e "Classe C" é gás na Europa). A estatística antiga ("cresceram
         // 300%, segundo a CPSC") não tinha fonte verificável e saiu.
-        oQueFazer: 'Se esquentar além do normal, inchar ou ficar com cheiro estranho: pare de usar e tire da tomada, se der para fazer isso sem se arriscar. Se soltar fumaça ou pegar fogo: saia do cômodo, feche a porta e ligue para os bombeiros ({{FIRE_NUMBER}}) — não tente apagar nem respire a fumaça.',
+        oQueFazer: 'Se esquentar além do normal, ficar estufado ou com cheiro estranho: pare de usar e tire da tomada, se der para fazer isso sem se arriscar. Se soltar fumaça ou pegar fogo: saia do cômodo, feche a porta e ligue para os bombeiros ({{FIRE_NUMBER}}) — não tente apagar nem respire a fumaça.',
         estatistica: 'Em 2025, a FAA, autoridade de aviação civil dos EUA, publicou um alerta de segurança porque power banks e carregadores portáteis podem iniciar incêndios a bordo (SAFO 25002).',
     },
     {
