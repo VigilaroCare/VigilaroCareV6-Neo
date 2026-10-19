@@ -591,7 +591,9 @@
         "completedOf": "of",
         "completed": "completed",
         "kitItemCount": "{{count}} items",
-        "dossieFonteBagagem": "Source: {{fonte}} · in force as of {{revisao}}. Check with your airline."
+        "dossieFonteBagagem": "Source: {{fonte}} · in force as of {{revisao}}. Check with your airline.",
+        "consularTitle": "Official travel advice",
+        "consularBody": "Check your government's travel advice for your destination and note down the contact details of the nearest embassy or consulate."
     },
     "knowledgeHub": {
         "title": "Learning Center",

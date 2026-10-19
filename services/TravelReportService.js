@@ -41,14 +41,14 @@ class TravelReportService {
             if (!trip) return null;
 
             // Conteúdo compartilhado (exportado das telas — fonte única).
-            const { GUIDE_SECTIONS, matchesTrip } = require('../screens/Education/TravelSafetyGuideScreen');
+            const { secoesDoGuia, matchesTrip } = require('../screens/Education/TravelSafetyGuideScreen');
             // Os kits saíram da tela para data/: conteúdo é dado, não tela.
             // TRANSPORTE_AEREO segue na tela porque é regra de embarque ligada
             // à apresentação dela, e já estava validada ali (ANAC/IATA).
             const { buildDynamicKits } = require('../data/kits/bagagem_viagem');
             const { TRANSPORTE_AEREO } = require('../screens/Travel/FazendoAsMalasScreen');
 
-            const sections = GUIDE_SECTIONS
+            const sections = secoesDoGuia()
                 .filter(s => matchesTrip(s, trip))
                 .sort((a, b) => a.prio - b.prio);
 

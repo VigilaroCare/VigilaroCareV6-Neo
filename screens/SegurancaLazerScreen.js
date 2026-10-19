@@ -49,6 +49,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Animales marinos (medusas)',
         'Niños perdidos en la multitud'
       ],
+      riscosPrincipais_ptpt: ['Afogamento (correntes de retorno)', 'Insolação e queimaduras solares', 'Animais marinhos (alforrecas)', 'Crianças perdidas no meio da multidão'],
       prevencao: [
         'NUNCA entre no mar sozinho.',
         'Respeite as bandeiras (Vermelha = Perigo).',
@@ -73,21 +74,23 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Pulsera de identificación en niños.',
         'Acuerden un punto de encuentro fijo.'
       ],
+      prevencao_ptpt: ['NUNCA entre no mar sozinho.', 'Respeite as bandeiras (vermelha = perigo).', 'Nade paralelo à praia, não para o largo.', 'Use protetor FPS 50+ a cada 2 h.', 'Pulseira de identificação nas crianças.', 'Combinem um ponto de encontro fixo.'],
       emergencias: [
         'Afogamento: acione o salva-vidas e ligue {{FIRE_NUMBER}}.',
-        'Queimadura de água-viva: Use vinagre (NÃO use água doce).',
+        'Água-viva: lave com água do mar (NÃO use água doce) e tire os tentáculos com um objeto rígido, nunca com a mão.',
         'Insolação: Leve para sombra e hidrate.'
       ],
       emergencias_en: [
         'Drowning: alert the lifeguard and call {{FIRE_NUMBER}}.',
-        'Jellyfish sting: Use vinegar (DO NOT use fresh water).',
+        'Jellyfish sting: rinse with sea water (DO NOT use fresh water) and remove tentacles with something rigid, never by hand.',
         'Sunstroke: Move to the shade and hydrate.'
       ],
       emergencias_es: [
         'Ahogamiento: avise al socorrista y llame al {{FIRE_NUMBER}}.',
-        'Quemadura de medusa: Use vinagre (NO use agua dulce).',
+        'Picadura de medusa: lave con agua de mar (NO use agua dulce) y retire los tentáculos con un objeto rígido, nunca con la mano.',
         'Insolación: Lleve a la sombra e hidrate.'
       ],
+      emergencias_ptpt: ['Afogamento: chame o nadador-salvador e ligue {{FIRE_NUMBER}}.', 'Alforreca: lave com água do mar (NÃO use água doce) e retire os tentáculos com um objeto rígido, nunca com a mão.', 'Insolação: leve para a sombra e hidrate.'],
       dicasExtras: [
         'Chegue cedo para pegar sombra.',
         'Hidrate-se com água de coco ou isotônico.',
@@ -102,7 +105,8 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Llegue temprano para conseguir sombra.',
         'Hidrátese con agua de coco o isotónicos.',
         'Cuidado con los agujeros en la arena.'
-      ]
+      ],
+      dicasExtras_ptpt: ['Chegue cedo para apanhar sombra.', 'Hidrate-se com água ou bebidas isotónicas.', 'Cuidado com buracos na areia.']
     },
     {
       id: 2,
@@ -110,6 +114,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         image: require('../assets/illustrations/pad/sub_lazer_rio_lago.png'),
       local_en: 'River and Lake',
       local_es: 'Río y Lago',
+      local_ptpt: 'Rio e Lagoa',
       icon: 'Drop',
       iconColor: themeColors.secondary[500],
       bg: themeColors.neutral[100],
@@ -131,6 +136,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Piedras resbaladizas',
         'Crecidas repentinas (en cascadas)'
       ],
+      riscosPrincipais_ptpt: ['Correntes invisíveis', 'Buracos e profundidade súbita', 'Pedras escorregadias', 'Enxurrada súbita (em cascatas)'],
       prevencao: [
         'Evite nadar após chuvas fortes.',
         'Use colete salva-vidas (boias de braço não salvam).',
@@ -149,6 +155,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'No se tire de cabeza (piedras sumergidas).',
         'Salga del agua si empieza a llover río arriba.'
       ],
+      prevencao_ptpt: ['Evite nadar depois de chuvas fortes.', 'Use colete salva-vidas (as braçadeiras não salvam).', 'Não mergulhe de cabeça (pedras submersas).', 'Saia da água se começar a chover a montante.'],
       emergencias: [
         'Afogamento: Não tente salvar nadando, jogue uma corda ou galho.',
         'Corte: Lave com água limpa e comprima.'
@@ -161,6 +168,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Ahogamiento: No intente salvar nadando, lance una cuerda o rama.',
         'Corte: Lave con agua limpia y comprima.'
       ],
+      emergencias_ptpt: ['Afogamento: não tente salvar a nado — atire uma corda ou um ramo.', 'Corte: lave com água limpa e comprima.'],
       dicasExtras: [
         'Use calçados aquáticos (evita cortes).',
         'Cuidado com animais (arraias, cobras).'
@@ -172,7 +180,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       dicasExtras_es: [
         'Use zapatos acuáticos (evita cortes).',
         'Cuidado con animales (mantarrayas, serpientes).'
-      ]
+      ],
+      dicasExtras_ptpt: ['Use calçado aquático (evita cortes).', 'Cuidado com animais (raias, cobras).']
     },
     {
       id: 3,
@@ -198,6 +207,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Resbalones en borde mojado',
         'Succión de desagües (cabello)'
       ],
+      riscosPrincipais_ptpt: ['Afogamento silencioso', 'Escorregadelas na borda molhada', 'Sucção dos ralos (cabelos)'],
       prevencao: [
         'Supervisão constante de crianças (regra do "vigilante" dedicado).',
         'Cercas de no mínimo 1,20m com portão auto-travante.',
@@ -217,18 +227,20 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Use desagües anti-atrapamiento.',
         'No deje juguetes en el agua (atraen a los niños).'
       ],
+      prevencao_ptpt: ['Vigilância constante das crianças (regra do «vigilante» dedicado).', 'Vedação com pelo menos 1,20 m e portão com fecho automático.', 'Ralos antiaprisionamento obrigatórios.', 'Boia salva-vidas e gancho de resgate acessíveis.', 'Nunca nadar sozinho.'],
       emergencias: [
-        'Afogamento: Tire da água imediatamente e inicie RCP.',
+        'Afogamento: tire da água e ligue para o {{EMERGENCY_MEDICAL}}; se não respirar e você souber, inicie a RCP.',
         'Trauma: Se bateu a cabeça, não mova o pescoço.'
       ],
       emergencias_en: [
-        'Drowning: Remove from water immediately and start CPR.',
+        'Drowning: get them out of the water and call {{EMERGENCY_MEDICAL}}; if they are not breathing and you know how, start CPR.',
         'Trauma: If they hit their head, do not move the neck.'
       ],
       emergencias_es: [
-        'Ahogamiento: Saque del agua inmediatamente e inicie RCP.',
+        'Ahogamiento: sáquelo del agua y llame a {{EMERGENCY_MEDICAL}}; si no respira y usted sabe, inicie la RCP.',
         'Trauma: Si se golpeó la cabeza, no mueva el cuello.'
       ],
+      emergencias_ptpt: ['Afogamento: retire da água e ligue para o {{EMERGENCY_MEDICAL}}; se não respirar e souber, inicie o SBV.', 'Traumatismo: se bateu com a cabeça, não mexa no pescoço.'],
       dicasExtras: [
         'Faça aulas de natação desde cedo.',
         'Tenha um telefone sempre à mão.'
@@ -240,7 +252,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       dicasExtras_es: [
         'Tome clases de natación desde temprano.',
         'Tenga siempre un teléfono a mano.'
-      ]
+      ],
+      dicasExtras_ptpt: ['Aprenda a nadar desde cedo.', 'Tenha sempre um telefone à mão.']
     },
     {
       id: 4,
@@ -248,6 +261,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       image: require('../assets/illustrations/pad/sub_lazer_camping.png'),
       local_en: 'Camping and Trails',
       local_es: 'Camping',
+      local_ptpt: 'Campismo e Trilhos',
       icon: 'Tree',
       iconColor: themeColors.primary[500],
       bg: themeColors.primary[50],
@@ -266,6 +280,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Fogatas (incendios)',
         'Hipotermia nocturna'
       ],
+      riscosPrincipais_ptpt: ['Animais venenosos (escorpiões, cobras)', 'Fogueiras (incêndios)', 'Hipotermia noturna'],
       prevencao: [
         'Avise alguém sobre o destino e horário previsto de retorno.',
         'Leve kit de primeiros socorros.',
@@ -284,6 +299,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Haga fogatas en un lugar limpio y aíslelas.',
         'Sacuda las botas antes de ponérselas.'
       ],
+      prevencao_ptpt: ['Avise alguém do destino e da hora prevista de regresso.', 'Leve um kit de primeiros socorros.', 'Proteja-se de animais venenosos.', 'Hidratação constante.'],
       emergencias: [
         'Picada: Lave o local e vá ao hospital (leve foto do animal).',
         'Queimadura: Água corrente fria por 10 min.'
@@ -296,6 +312,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Picadura: Lave el lugar y vaya al hospital (lleve foto del animal).',
         'Quemadura: Agua corriente fría durante 10 min.'
       ],
+      emergencias_ptpt: ['Picada: lave o local e vá ao hospital (leve uma foto do animal).', 'Queimadura: água corrente fria durante 10 min.'],
       dicasExtras: [
         'Leve lanternas extras e pilhas.',
         'Tenha um kit de primeiros socorros completo.'
@@ -307,7 +324,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       dicasExtras_es: [
         'Lleve linternas extra y pilas.',
         'Tenga un botiquín de primeros auxilios completo.'
-      ]
+      ],
+      dicasExtras_ptpt: ['Leve lanternas e pilhas extra.', 'Tenha um kit de primeiros socorros completo.']
     },
     {
       id: 5,
@@ -315,6 +333,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       image: require('../assets/illustrations/pad/sub_lazer_parque.png'),
       local_en: 'Amusement Parks',
       local_es: 'Parques de Diversiones',
+      local_ptpt: 'Parques e Parques Infantis',
       icon: 'Ticket',
       iconColor: themeColors.secondary[500],
       bg: themeColors.neutral[50],
@@ -333,6 +352,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Insolación/Deshidratación',
         'Accidentes en atracciones'
       ],
+      riscosPrincipais_ptpt: ['Perder-se no meio da multidão', 'Insolação/desidratação', 'Acidentes nos equipamentos'],
       prevencao: [
         'Inspeção visual antes de permitir o uso.',
         'Verificar ferrugem, parafusos soltos, pontas perigosas.',
@@ -351,6 +371,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Marque un punto de encuentro.',
         'Use pulsera con el teléfono de los padres.'
       ],
+      prevencao_ptpt: ['Inspeção visual antes de deixar usar.', 'Verificar ferrugem, parafusos soltos, pontas perigosas.', 'O piso deve amortecer quedas (borracha, areia).', 'Vigilância constante.'],
       emergencias: [
         'Perdido: Procure funcionário uniformizado imediatamente.',
         'Mal-estar: Vá ao posto médico do parque.'
@@ -363,6 +384,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Perdido: Busque a un empleado uniformado inmediatamente.',
         'Malestar: Vaya al puesto médico del parque.'
       ],
+      emergencias_ptpt: ['Criança perdida: procure de imediato um funcionário fardado.', 'Mal-estar: vá ao posto médico do parque.'],
       dicasExtras: [
         'Use roupas leves e confortáveis.',
         'Beba muita água.'
@@ -374,7 +396,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       dicasExtras_es: [
         'Use ropa ligera y cómoda.',
         'Beba mucha agua.'
-      ]
+      ],
+      dicasExtras_ptpt: ['Use roupa leve e confortável.', 'Beba muita água.']
     },
     {
       id: 6,
@@ -382,6 +405,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       image: require('../assets/illustrations/pad/sub_lazer_churrasco.png'),
       local_en: 'Barbecue Grill',
       local_es: 'Parrilla',
+      local_ptpt: 'Churrasco e Grelhador',
       icon: 'Fire',
       iconColor: themeColors.feedback.error,
       bg: themeColors.neutral[50],
@@ -415,6 +439,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Mantenga a los niños alejados.',
         'Cilindro de gas en un área ventilada.'
       ],
+      prevencao_ptpt: ['NUNCA use álcool líquido para acender.', 'Use acendalhas próprias.', 'Mantenha as crianças afastadas.', 'Botija numa zona ventilada.'],
       emergencias: [
         'Queimadura: Água corrente fria por 10 min.',
         'Incêndio: Use extintor.'
@@ -427,6 +452,7 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Quemadura: Agua corriente fría durante 10 min.',
         'Incendio: Use un extintor.'
       ],
+      emergencias_ptpt: ['Queimadura: água corrente fria durante 10 min.', 'Incêndio: use o extintor.'],
       dicasExtras: [
         'Tenha extintor próximo.'
       ],
@@ -435,7 +461,8 @@ export default function SegurancaLazerScreen({ navigation }) {
       ],
       dicasExtras_es: [
         'Tenga un extintor cerca.'
-      ]
+      ],
+      dicasExtras_ptpt: ['Tenha um extintor por perto.']
     }
   ];
 

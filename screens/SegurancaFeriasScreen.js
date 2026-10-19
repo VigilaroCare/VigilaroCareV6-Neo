@@ -48,6 +48,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Mareos en niños',
                 'Deshidratación (calor en el coche)'
             ],
+            riscosPrincipais_ptpt: ['Acidentes de viação', 'Avarias mecânicas', 'Enjoos nas crianças', 'Desidratação (calor no carro)'],
             prevencao: [
                 'Revisão completa do veículo antes de sair.',
                 'Cadeirinhas adequadas para idade/peso (OBRIGATÓRIO).',
@@ -69,6 +70,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Nunca deje a los niños solos en el coche (riesgo fatal).',
                 'Seguros para niños en las puertas traseras.'
             ],
+            prevencao_ptpt: ['Revisão completa do veículo antes de sair.', 'Cadeirinhas adequadas à idade/peso (OBRIGATÓRIO).', 'Pausas a cada 2–3 horas para esticar as pernas.', 'Nunca deixe crianças sozinhas no carro (risco fatal).', 'Fecho de segurança nas portas traseiras.'],
             emergencias: [
                 'Acidente: ligue {{FIRE_NUMBER}} (Bombeiros).',
                 'Pane: Sinalize com triângulo, vá para local seguro.'
@@ -81,6 +83,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Accidente: llame a los Bomberos al {{FIRE_NUMBER}}.',
                 'Avería: Señale con triángulo, vaya a un lugar seguro.'
             ],
+            emergencias_ptpt: ['Acidente: ligue {{FIRE_NUMBER}}.', 'Avaria: sinalize com o triângulo e vá para um local seguro.'],
             dicasExtras: [
                 'Entretenimento offline para crianças.',
                 'Leve água e lanches leves.'
@@ -92,7 +95,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             dicasExtras_es: [
                 'Entretenimiento sin conexión para niños.',
                 'Lleve agua y refrigerios ligeros.'
-            ]
+            ],
+            dicasExtras_ptpt: ['Entretenimento offline para as crianças.', 'Leve água e lanches leves.']
         },
         {
             id: 2,
@@ -100,6 +104,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             image: require('../assets/illustrations/pad/sub_ferias_hotel.png'),
             local_en: 'Hotel and Airbnb',
             local_es: 'Hotel y Airbnb',
+            local_ptpt: 'Hotel e Alojamento Local',
             icon: 'Building',
             // DS: data-level color
             iconColor: themeColors.categoria.ameixa.fill,
@@ -122,6 +127,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Acceso a áreas peligrosas (piscina, calle)',
                 'Enchufes desprotegidos'
             ],
+            riscosPrincipais_ptpt: ['Varandas e janelas sem rede', 'Móveis instáveis', 'Acesso a zonas perigosas (piscina, rua)', 'Tomadas desprotegidas'],
             prevencao: [
                 'Verifique travas de janelas/sacadas IMEDIATAMENTE.',
                 'Solicite berço seguro (sem kit berço).',
@@ -140,6 +146,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Aleje muebles de ventanas (efecto escalera).',
                 'Mantenga la puerta de la habitación siempre cerrada con llave.'
             ],
+            prevencao_ptpt: ['Verifique os fechos de janelas/varandas IMEDIATAMENTE.', 'Peça um berço seguro (sem protetores de berço).', 'Afaste os móveis das janelas (efeito escada).', 'Mantenha a porta do quarto sempre trancada.'],
             emergencias: [
                 'Incêndio: Use escadas, NUNCA elevador.',
                 'Intoxicação: Tenha o número do centro de intoxicação — {{POISON_CONTROL}}.'
@@ -152,6 +159,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Incendio: Use escaleras, NUNCA el ascensor.',
                 'Intoxicación: Tenga el número del Centro de Control de Envenenamientos {{POISON_CONTROL}}.'
             ],
+            emergencias_ptpt: ['Incêndio: use as escadas, NUNCA o elevador.', 'Intoxicação: tenha à mão o número do centro antivenenos — {{POISON_CONTROL}}.'],
             dicasExtras: [
                 'Leve protetores de quina e tomada na mala.',
                 'Use "Trava-Porta" de borracha.'
@@ -163,7 +171,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             dicasExtras_es: [
                 'Lleve protectores de esquinas y enchufes en la maleta.',
                 'Use un tope de puerta de goma.'
-            ]
+            ],
+            dicasExtras_ptpt: ['Leve protetores de esquinas e de tomadas na mala.', 'Use um calço de porta de borracha.']
         },
         {
             id: 3,
@@ -171,6 +180,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             image: require('../assets/illustrations/pad/sub_ferias_aeroporto.png'),
             local_en: 'Airport and Airplane',
             local_es: 'Aeropuerto y Avión',
+            local_ptpt: 'Aeroporto e Avião',
             icon: 'Airplane',
             // DS: data-level color
             iconColor: themeColors.secondary[500],
@@ -190,6 +200,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Molestia en los oídos (presión)',
                 'Gérmenes y virus'
             ],
+            riscosPrincipais_ptpt: ['Perder-se no meio da multidão', 'Desconforto nos ouvidos (pressão)', 'Germes e vírus'],
             prevencao: [
                 'Pulseira de identificação nas crianças.',
                 'Foto da criança no dia da viagem.',
@@ -208,8 +219,9 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Amamantar/chupete durante el despegue y aterrizaje (alivia el oído).',
                 'Lleve una chaqueta (aire acondicionado fuerte).'
             ],
+            prevencao_ptpt: ['Pulseira de identificação nas crianças.', 'Fotografia da criança no dia da viagem.', 'Amamentar/chupeta na descolagem e na aterragem (alivia os ouvidos).', 'Leve um casaco (ar condicionado forte).'],
             emergencias: [
-                'Criança perdida: Avise segurança/PF IMEDIATAMENTE.',
+                'Criança perdida: avise a segurança do aeroporto ou a polícia IMEDIATAMENTE.',
                 'Mal estar a bordo: Avise comissários.'
             ],
             emergencias_en: [
@@ -220,6 +232,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Niño perdido: Avise a seguridad/policía INMEDIATAMENTE.',
                 'Malestar a bordo: Avise a los auxiliares de vuelo.'
             ],
+            emergencias_ptpt: ['Criança perdida: avise a segurança do aeroporto ou a polícia IMEDIATAMENTE.', 'Mal-estar a bordo: avise a tripulação de cabine.'],
             dicasExtras: [
                 'Mala de mão com trocas de roupa e remédios.',
                 'Chegue com antecedência extra.'
@@ -231,7 +244,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             dicasExtras_es: [
                 'Equipaje de mano con ropa de cambio y medicinas.',
                 'Llegue con tiempo extra.'
-            ]
+            ],
+            dicasExtras_ptpt: ['Bagagem de mão com mudas de roupa e medicamentos.', 'Chegue com antecedência extra.']
         },
         {
             id: 4,
@@ -255,6 +269,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Olvidar medicamentos recetados',
                 'Falta de documentos para el embarque'
             ],
+            riscosPrincipais_ptpt: ['Esquecer medicamentos de receita especial', 'Falta de documentos para o embarque'],
             prevencao: [
                 'Checklist de documentos (RG, Certidão).',
                 'Autorização de viagem (se apenas 1 pai).',
@@ -273,6 +288,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Seguro de viaje (esencial para internacionales).',
                 'Identifique todo el equipaje.'
             ],
+            prevencao_ptpt: ['Lista de documentos (Cartão de Cidadão, certidão).', 'Autorização de viagem (se viajar só com um dos pais).', 'Seguro de viagem (essencial no estrangeiro).', 'Identifique todas as malas.'],
             emergencias: [
                 'Perda de documento: B.O. na polícia local.',
                 'Doença no exterior: Acionar seguro viagem.'
@@ -285,6 +301,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
                 'Pérdida de documento: Denuncia en la policía local.',
                 'Enfermedad en el extranjero: Active el seguro de viaje.'
             ],
+            emergencias_ptpt: ['Perda de documento: apresente queixa na polícia local.', 'Doença no estrangeiro: acione o seguro de viagem.'],
             dicasExtras: [
                 'Tenha fotos dos documentos no celular e nuvem.',
                 'Leve receitas médicas (em inglês se inter).'
@@ -296,7 +313,8 @@ export default function SegurancaFeriasScreen({ navigation }) {
             dicasExtras_es: [
                 'Tenga fotos de documentos en el teléfono y la nube.',
                 'Lleve recetas médicas (en inglés si es internacional).'
-            ]
+            ],
+            dicasExtras_ptpt: ['Tenha fotografias dos documentos no telemóvel e na nuvem.', 'Leve as receitas médicas (em inglês, se for ao estrangeiro).']
         }
     ];
 

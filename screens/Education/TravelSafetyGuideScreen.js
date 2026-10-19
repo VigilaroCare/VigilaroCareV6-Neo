@@ -22,6 +22,7 @@ import { StatusBar } from 'expo-status-bar';
 import AppBackground from '../../components/AppBackground';
 import { useTranslation } from 'react-i18next';
 import { t_field, t_array } from '../../utils/getLocalizedField';
+import { paisDoAparelho } from '../../utils/getEmergencyCountry';
 
 // ─────────────────────────────────────────────────────────────────────────
 // POOL DE SEÇÕES — cada uma etiquetada com as condições do briefing que a
@@ -39,9 +40,11 @@ export const GUIDE_SECTIONS = [
         content: 'Ambiente novo é o principal gatilho de quedas em idosos: layout desconhecido, banheiro diferente, pisos e tapetes imprevisíveis.',
         content_en: 'A new environment is the main fall trigger for older adults: unfamiliar layout, a different bathroom, unpredictable floors and rugs.',
         content_es: 'Un ambiente nuevo es el principal desencadenante de caídas en mayores: distribución desconocida, baño diferente, pisos y alfombras imprevisibles.',
+        content_ptpt: 'Um ambiente novo é o principal gatilho de quedas nos idosos: disposição desconhecida, casa de banho diferente, pisos e tapetes imprevisíveis.',
         bullets: ['No primeiro dia, percorram juntos o caminho quarto-banheiro e deixe uma luz noturna acesa.', 'Afaste tapetes soltos e use calçado antiderrapante desde a chegada.', 'Mantenha a medicação nos MESMOS horários de casa — viagem não muda prescrição.'],
         bullets_en: ['On day one, walk the bedroom-bathroom path together and leave a night light on.', 'Move loose rugs away and use non-slip footwear from arrival.', 'Keep medication at the SAME times as at home — travel does not change prescriptions.'],
         bullets_es: ['El primer día, recorran juntos el camino habitación-baño y deje una luz nocturna encendida.', 'Aparte las alfombras sueltas y use calzado antideslizante desde la llegada.', 'Mantenga la medicación en los MISMOS horarios de casa — viajar no cambia la prescripción.'],
+        bullets_ptpt: ['No primeiro dia, percorram juntos o caminho quarto–casa de banho e deixe uma luz de presença acesa.', 'Afaste tapetes soltos e use calçado antiderrapante desde a chegada.', 'Mantenha a medicação nos MESMOS horários de casa — a viagem não muda a prescrição.'],
     },
     {
         id: 'criancas_agua', prio: 1, companions: ['hasKids'], icon: 'SwimmingPool',
@@ -49,19 +52,24 @@ export const GUIDE_SECTIONS = [
         content: 'Afogamento é silencioso e leva segundos — e em viagem a água é novidade irresistível para a criança.',
         content_en: 'Drowning is silent and takes seconds — and when traveling, water is an irresistible novelty for children.',
         content_es: 'El ahogamiento es silencioso y toma segundos — y en viaje el agua es una novedad irresistible para los niños.',
+        content_ptpt: 'O afogamento é silencioso e leva segundos — e em viagem a água é uma novidade irresistível para a criança.',
         bullets: ['Regra de ouro: sem adulto DENTRO ou na borda, sem água. Sempre.', 'Nomeie um "vigia da água" por turnos — distração coletiva é o cenário clássico.', 'Colete salva-vidas em barcos e rios; boia de braço é brinquedo, não segurança.'],
         bullets_en: ['Golden rule: no adult IN the water or at the edge, no water. Always.', 'Appoint a "water watcher" in shifts — collective distraction is the classic scenario.', 'Life jackets on boats and rivers; arm floats are toys, not safety gear.'],
         bullets_es: ['Regla de oro: sin adulto DENTRO o en el borde, no hay agua. Siempre.', 'Nombre un "vigía del agua" por turnos — la distracción colectiva es el escenario clásico.', 'Chaleco salvavidas en barcos y ríos; los flotadores de brazo son juguete, no seguridad.'],
+        bullets_ptpt: ['Regra de ouro: sem um adulto DENTRO de água ou na borda, não há água. Sempre.', 'Nomeiem um «vigia da água» por turnos — a distração coletiva é o cenário clássico.', 'Colete salva-vidas em barcos e rios; as braçadeiras são brinquedo, não segurança.'],
     },
     {
         id: 'pets', prio: 1, companions: ['hasPets'], icon: 'PawPrint',
         title: 'Pet em Ambiente Novo', title_en: 'Pets in a New Environment', title_es: 'Mascotas en Ambiente Nuevo',
+        title_ptpt: 'Animal num Ambiente Novo',
         content: 'Animal em lugar estranho sente medo — e fuga é o acidente número um de pets em viagem.',
         content_en: 'Animals in unfamiliar places get scared — and escape is the number-one pet accident while traveling.',
         content_es: 'El animal en un lugar extraño siente miedo — y la fuga es el accidente número uno de mascotas en viaje.',
+        content_ptpt: 'Um animal num lugar estranho sente medo — e a fuga é o acidente número um dos animais em viagem.',
         bullets: ['Plaqueta de identificação com telefone atualizado, antes de sair de casa.', 'Guia mesmo em locais fechados nos primeiros dias — porta aberta é convite.', 'Vistorie plantas, telas e frestas do local antes de soltar o animal.'],
         bullets_en: ['ID tag with an updated phone number, before leaving home.', 'Leash on even indoors during the first days — an open door is an invitation.', 'Inspect plants, screens and gaps before letting the animal loose.'],
         bullets_es: ['Placa de identificación con teléfono actualizado, antes de salir de casa.', 'Correa incluso en lugares cerrados los primeros días — una puerta abierta es una invitación.', 'Revise plantas, mosquiteros y rendijas antes de soltar al animal.'],
+        bullets_ptpt: ['Chapa de identificação com o telefone atualizado, antes de sair de casa.', 'Trela mesmo em espaços fechados nos primeiros dias — uma porta aberta é um convite.', 'Verifique plantas, redes e frestas do local antes de soltar o animal.'],
     },
     {
         id: 'pcd', prio: 1, companions: ['hasPcd'], icon: 'Wheelchair',
@@ -69,9 +77,11 @@ export const GUIDE_SECTIONS = [
         content: 'Acessibilidade anunciada nem sempre é acessibilidade real — confirme antes, não descubra na chegada.',
         content_en: 'Advertised accessibility is not always real accessibility — confirm beforehand, do not find out on arrival.',
         content_es: 'La accesibilidad anunciada no siempre es real — confirme antes, no lo descubra al llegar.',
+        content_ptpt: 'A acessibilidade anunciada nem sempre é acessibilidade real — confirme antes, não descubra à chegada.',
         bullets: ['Confirme por telefone: rampa, elevador, banheiro adaptado e vaga reservada.', 'Ao chegar, localize a rota de evacuação acessível do prédio.', 'Leve itens de apoio extras (carregador, peças de reposição da cadeira).'],
         bullets_en: ['Confirm by phone: ramp, elevator, adapted bathroom and reserved parking.', 'On arrival, locate the building\'s accessible evacuation route.', 'Bring extra support items (charger, wheelchair spare parts).'],
         bullets_es: ['Confirme por teléfono: rampa, ascensor, baño adaptado y plaza reservada.', 'Al llegar, ubique la ruta de evacuación accesible del edificio.', 'Lleve artículos de apoyo extra (cargador, repuestos de la silla).'],
+        bullets_ptpt: ['Confirme por telefone: rampa, elevador, casa de banho adaptada e lugar de estacionamento reservado.', 'À chegada, localize o percurso de evacuação acessível do edifício.', 'Leve artigos de apoio extra (carregador, peças sobresselentes da cadeira).'],
     },
     {
         id: 'aquaticos', prio: 2, types: ['praia', 'rural'], icon: 'Waves',
@@ -79,9 +89,11 @@ export const GUIDE_SECTIONS = [
         content: 'Praias, rios e cachoeiras escondem correntezas, buracos e fundo irregular — o risco não se vê da margem.',
         content_en: 'Beaches, rivers and waterfalls hide currents, holes and uneven bottoms — the risk is invisible from the shore.',
         content_es: 'Playas, ríos y cascadas esconden corrientes, pozos y fondo irregular — el riesgo no se ve desde la orilla.',
+        content_ptpt: 'Praias, rios e cascatas escondem correntes, buracos e fundos irregulares — o risco não se vê da margem.',
         bullets: ['Entre na água apenas em áreas sinalizadas e, no mar, perto de guarda-vidas.', 'Cachoeira: saia imediatamente se a água mudar de cor ou volume (cabeça d\'água).', 'Nunca mergulhe de cabeça em água desconhecida.'],
         bullets_en: ['Enter the water only in marked areas and, at sea, near lifeguards.', 'Waterfalls: leave immediately if the water changes color or volume (flash flood).', 'Never dive headfirst into unknown water.'],
         bullets_es: ['Entre al agua solo en áreas señalizadas y, en el mar, cerca de salvavidas.', 'Cascadas: salga de inmediato si el agua cambia de color o volumen (riada).', 'Nunca se lance de cabeza en agua desconocida.'],
+        bullets_ptpt: ['Entre na água apenas em zonas sinalizadas e, no mar, perto de nadadores-salvadores.', 'Cascata: saia de imediato se a água mudar de cor ou de volume (enxurrada).', 'Nunca mergulhe de cabeça em água desconhecida.'],
     },
     {
         id: 'piscinas', prio: 2, types: ['resort', 'praia'], icon: 'SwimmingPool',
@@ -89,9 +101,11 @@ export const GUIDE_SECTIONS = [
         content: 'Piscina de viagem não tem a rotina da sua casa: profundidades, ralos e cercas são desconhecidos.',
         content_en: 'A vacation pool lacks your home routine: depths, drains and fences are all unknown.',
         content_es: 'La piscina de viaje no tiene la rutina de su casa: profundidades, desagües y cercas son desconocidos.',
+        content_ptpt: 'A piscina de viagem não tem a rotina da sua casa: profundidades, ralos e vedações são desconhecidos.',
         bullets: ['Identifique profundidade e posição dos ralos antes do primeiro mergulho.', 'Respeite a separação de piscinas por idade — ela existe por estatística, não capricho.', 'Confira se há grade/alarme entre o quarto e a piscina quando houver crianças.'],
         bullets_en: ['Identify depth and drain positions before the first swim.', 'Respect age-separated pools — they exist because of statistics, not whim.', 'Check for a fence/alarm between the room and the pool when children are along.'],
         bullets_es: ['Identifique la profundidad y la posición de los desagües antes del primer baño.', 'Respete la separación de piscinas por edad — existe por estadística, no por capricho.', 'Verifique si hay reja/alarma entre la habitación y la piscina cuando viajen niños.'],
+        bullets_ptpt: ['Identifique a profundidade e a posição dos ralos antes do primeiro mergulho.', 'Respeite a separação de piscinas por idade — existe por estatística, não por capricho.', 'Confirme se há vedação/alarme entre o quarto e a piscina quando houver crianças.'],
     },
     {
         id: 'rural', prio: 2, types: ['rural'], icon: 'Plant',
@@ -99,9 +113,11 @@ export const GUIDE_SECTIONS = [
         content: 'No campo o socorro fica longe — a prevenção vale em dobro onde a ambulância demora.',
         content_en: 'In the countryside help is far away — prevention counts double where the ambulance takes long.',
         content_es: 'En el campo el socorro queda lejos — la prevención vale doble donde la ambulancia tarda.',
-        bullets: ['Sacuda roupas, calçados e roupa de cama (escorpiões e aranhas se abrigam neles).', 'Salve o número do centro de intoxicação no telemóvel: {{POISON_CONTROL}} — orientação toxicológica gratuita, 24h.', 'Use calçado fechado em trilhas e gramados, principalmente à noite.'],
+        content_ptpt: 'No campo o socorro fica longe — a prevenção vale a dobrar onde a ambulância demora.',
+        bullets: ['Sacuda roupas, calçados e roupa de cama (escorpiões e aranhas se abrigam neles).', 'Salve o número do centro de intoxicação no celular: {{POISON_CONTROL}} — orientação toxicológica gratuita, 24h.', 'Use calçado fechado em trilhas e gramados, principalmente à noite.'],
         bullets_en: ['Shake out clothes, shoes and bedding (scorpions and spiders shelter in them).', 'Save the local poison control number — free toxicology guidance, 24h.', 'Wear closed shoes on trails and lawns, especially at night.'],
         bullets_es: ['Sacuda ropa, calzado y ropa de cama (escorpiones y arañas se refugian allí).', 'Guarde el número del centro de toxicología local — orientación gratuita, 24h.', 'Use calzado cerrado en senderos y césped, sobre todo de noche.'],
+        bullets_ptpt: ['Sacuda roupa, calçado e roupa de cama (escorpiões e aranhas abrigam-se lá).', 'Guarde no telemóvel o número do centro de informação antivenenos: {{POISON_CONTROL}} — orientação gratuita, 24 h.', 'Use calçado fechado em trilhos e relvados, sobretudo à noite.'],
     },
     {
         id: 'urbano', prio: 2, types: ['urbano'], icon: 'Building',
@@ -109,9 +125,11 @@ export const GUIDE_SECTIONS = [
         content: 'Na cidade grande, o risco mora no trânsito desconhecido e nas aglomerações.',
         content_en: 'In big cities, risk lives in unfamiliar traffic and in crowds.',
         content_es: 'En la gran ciudad, el riesgo vive en el tráfico desconocido y las aglomeraciones.',
+        content_ptpt: 'Na cidade grande, o risco está no trânsito desconhecido e nas multidões.',
         bullets: ['Combine um ponto de encontro fixo para locais cheios — antes de precisar dele.', 'Atenção redobrada nas travessias: mão e fluxo confundem o visitante.', 'À noite, prefira transporte de porta a porta a caminhadas em área desconhecida.'],
         bullets_en: ['Agree on a fixed meeting point for crowded places — before you need it.', 'Extra attention at crossings: traffic direction and flow confuse visitors.', 'At night, prefer door-to-door transport over walking in unknown areas.'],
         bullets_es: ['Acuerde un punto de encuentro fijo para lugares llenos — antes de necesitarlo.', 'Atención redoblada en los cruces: el sentido y el flujo confunden al visitante.', 'De noche, prefiera transporte puerta a puerta a caminar por zonas desconocidas.'],
+        bullets_ptpt: ['Combinem um ponto de encontro fixo para locais cheios — antes de precisarem dele.', 'Atenção redobrada nas passadeiras: o sentido e o fluxo do trânsito confundem o visitante.', 'À noite, prefira transporte porta a porta a caminhar em zonas desconhecidas.'],
     },
     {
         id: 'trabalho', prio: 3, purpose: 'trabalho', icon: 'Briefcase',
@@ -119,9 +137,11 @@ export const GUIDE_SECTIONS = [
         content: 'Em viagem de trabalho o inimigo é a combinação de pressa, fadiga e ambiente desconhecido.',
         content_en: 'On business trips the enemy is the combination of haste, fatigue and unfamiliar surroundings.',
         content_es: 'En viaje de trabajo el enemigo es la combinación de prisa, fatiga y entorno desconocido.',
+        content_ptpt: 'Em viagem de trabalho o inimigo é a combinação de pressa, cansaço e ambiente desconhecido.',
         bullets: ['Não dirija após voo longo ou jornada estendida — fadiga equivale a álcool ao volante.', 'Ao fazer check-in, localize as duas saídas de emergência mais próximas do quarto.', 'Compromissos noturnos: transporte de porta a porta, com trajeto compartilhado.'],
         bullets_en: ['Do not drive after a long flight or extended workday — fatigue equals alcohol behind the wheel.', 'At check-in, locate the two emergency exits nearest your room.', 'Evening commitments: door-to-door transport, with your route shared.'],
         bullets_es: ['No conduzca tras un vuelo largo o jornada extendida — la fatiga equivale al alcohol al volante.', 'Al hacer check-in, ubique las dos salidas de emergencia más cercanas a su habitación.', 'Compromisos nocturnos: transporte puerta a puerta, con el trayecto compartido.'],
+        bullets_ptpt: ['Não conduza depois de um voo longo ou de um dia de trabalho prolongado — o cansaço equivale ao álcool ao volante.', 'No check-in, localize as duas saídas de emergência mais próximas do quarto.', 'Compromissos noturnos: transporte porta a porta, com o trajeto partilhado.'],
     },
     {
         id: 'internacional', prio: 4, international: true, icon: 'Global',
@@ -129,19 +149,24 @@ export const GUIDE_SECTIONS = [
         content: 'No exterior, os números e protocolos de emergência mudam — decore o essencial antes de precisar.',
         content_en: 'Abroad, emergency numbers and protocols change — memorize the essentials before you need them.',
         content_es: 'En el extranjero, los números y protocolos de emergencia cambian — memorice lo esencial antes de necesitarlo.',
+        content_ptpt: 'No estrangeiro, os números e os protocolos de emergência mudam — memorize o essencial antes de precisar.',
         bullets: ['Anote o número local de emergência (Europa: 112 · EUA/Canadá: 911) e o contato do consulado brasileiro.', 'Seguro viagem: deixe a apólice acessível OFFLINE no celular.', 'Documentos: cópia digital na nuvem + cópia física guardada separada do original.'],
         bullets_en: ['Note the local emergency number (Europe: 112 · USA/Canada: 911) and your consulate\'s contact.', 'Travel insurance: keep the policy accessible OFFLINE on your phone.', 'Documents: digital copy in the cloud + physical copy stored apart from the original.'],
         bullets_es: ['Anote el número local de emergencia (Europa: 112 · EE.UU./Canadá: 911) y el contacto de su consulado.', 'Seguro de viaje: mantenga la póliza accesible SIN conexión en el celular.', 'Documentos: copia digital en la nube + copia física guardada aparte del original.'],
+        bullets_ptpt: ['Anote o número local de emergência (Europa: 112 · EUA/Canadá: 911) e o contacto do consulado do seu país.', 'Seguro de viagem: deixe a apólice acessível OFFLINE no telemóvel.', 'Documentos: cópia digital na nuvem + cópia em papel guardada separada do original.'],
     },
     {
         id: 'hospedagem', prio: 5, always: true, icon: 'Bed',
         title: 'Dormindo Fora (Hospedagem)', title_en: 'Sleeping Away (Lodging)', title_es: 'Durmiendo Fuera (Alojamiento)',
+        title_ptpt: 'Dormir Fora (Alojamento)',
         content: 'Hotéis e casas de temporada não foram adaptados para a SUA família — a vistoria de chegada é sua.',
         content_en: 'Hotels and vacation homes were not adapted for YOUR family — the arrival inspection is on you.',
         content_es: 'Hoteles y casas de temporada no fueron adaptados para SU familia — la inspección de llegada es suya.',
+        content_ptpt: 'Hotéis e casas de férias não foram adaptados à SUA família — a vistoria à chegada é sua.',
         bullets: ['Verifique janelas e sacadas assim que chegar; afaste camas e móveis escaláveis delas.', 'Localize o mapa de evacuação e as duas saídas mais próximas.', 'Tomadas, quinas e produtos de limpeza acessíveis: o olhar de casa, aplicado aqui.'],
         bullets_en: ['Check windows and balconies on arrival; move beds and climbable furniture away from them.', 'Locate the evacuation map and the two nearest exits.', 'Outlets, sharp corners and accessible cleaning products: your at-home eye, applied here.'],
         bullets_es: ['Revise ventanas y balcones al llegar; aleje camas y muebles escalables de ellos.', 'Ubique el mapa de evacuación y las dos salidas más cercanas.', 'Enchufes, esquinas y productos de limpieza accesibles: la mirada de casa, aplicada aquí.'],
+        bullets_ptpt: ['Verifique janelas e varandas assim que chegar; afaste delas camas e móveis que se possam escalar.', 'Localize a planta de evacuação e as duas saídas mais próximas.', 'Tomadas, esquinas e produtos de limpeza ao alcance: o olhar de casa, aplicado aqui.'],
     },
     {
         id: 'arlivre', prio: 5, companions: ['hasKids'], purpose: 'lazer', icon: 'Sun1',
@@ -149,9 +174,11 @@ export const GUIDE_SECTIONS = [
         content: 'Bicicletas, patinetes e parquinhos de viagem exigem o mesmo critério dos de casa — que você não conhece.',
         content_en: 'Vacation bikes, scooters and playgrounds demand the same scrutiny as the ones at home — which you do not know here.',
         content_es: 'Bicicletas, patinetes y parques de viaje exigen el mismo criterio que los de casa — que aquí usted no conoce.',
+        content_ptpt: 'Bicicletas, trotinetes e parques infantis em viagem exigem o mesmo critério dos de casa — e não os conhece.',
         bullets: ['Capacete obrigatório para tudo que tem rodas.', 'Inspecione o parquinho: ferrugem, peças soltas e piso de impacto.', 'Pipas longe de rede elétrica — e nunca com linha chilena/cerol.'],
         bullets_en: ['Helmets are mandatory for everything on wheels.', 'Inspect the playground: rust, loose parts and impact-absorbing flooring.', 'Kites far from power lines — and never with glass-coated string.'],
         bullets_es: ['Casco obligatorio para todo lo que tenga ruedas.', 'Inspeccione el parque: óxido, piezas sueltas y piso amortiguador.', 'Cometas lejos de la red eléctrica — y nunca con hilo encerado/curado.'],
+        bullets_ptpt: ['Capacete obrigatório para tudo o que tem rodas.', 'Inspecione o parque infantil: ferrugem, peças soltas e piso que amorteça quedas.', 'Papagaios longe da rede elétrica — e nunca com fio cortante.'],
     },
     {
         id: 'digital', prio: 5, companions: ['hasKids'], icon: 'Mobile',
@@ -159,25 +186,30 @@ export const GUIDE_SECTIONS = [
         content: 'O celular é o ponto cego da supervisão: segundos de tela são o tempo exato de um acidente.',
         content_en: 'The phone is supervision\'s blind spot: seconds of screen time are exactly how long an accident takes.',
         content_es: 'El celular es el punto ciego de la supervisión: segundos de pantalla son el tiempo exacto de un accidente.',
+        content_ptpt: 'O telemóvel é o ponto cego da vigilância: segundos de ecrã são o tempo exato de um acidente.',
         bullets: ['Celular guardado enquanto supervisiona crianças na água. Sem exceção.', 'Revezem a supervisão para que cada adulto tenha sua vez de descansar E de vigiar.', 'No trânsito a pé, telas no bolso — visitante distraído é pedestre vulnerável.'],
         bullets_en: ['Phone away while supervising children in the water. No exceptions.', 'Rotate supervision so each adult gets a turn to rest AND to watch.', 'Walking in traffic, screens in the pocket — a distracted visitor is a vulnerable pedestrian.'],
         bullets_es: ['Celular guardado mientras supervisa niños en el agua. Sin excepción.', 'Túrnense la supervisión para que cada adulto descanse Y vigile.', 'A pie en el tráfico, pantallas en el bolsillo — el visitante distraído es un peatón vulnerable.'],
+        bullets_ptpt: ['Telemóvel guardado enquanto vigia crianças na água. Sem exceção.', 'Revezem-se na vigilância para que cada adulto tenha a sua vez de descansar E de vigiar.', 'A pé no trânsito, ecrãs no bolso — um visitante distraído é um peão vulnerável.'],
     },
     {
         id: 'escolar', prio: 9, icon: 'Car',
         title: 'Passeios Escolares', title_en: 'School Trips', title_es: 'Paseos Escolares',
+        title_ptpt: 'Visitas de Estudo',
         content: 'Autorizar viagem escolar exige critério: a supervisão será de terceiros.',
         content_en: 'Authorizing a school trip demands scrutiny: supervision will be in someone else\'s hands.',
         content_es: 'Autorizar un paseo escolar exige criterio: la supervisión estará en manos de terceros.',
+        content_ptpt: 'Autorizar uma visita de estudo exige critério: a vigilância será de terceiros.',
         bullets: ['Avalie o destino — lagos, mar e cachoeiras exigem cautela extra.', 'Pergunte a proporção de adultos por criança.', 'Se possível, ofereça-se como monitor acompanhante.'],
         bullets_en: ['Assess the destination — lakes, sea and waterfalls demand extra caution.', 'Ask about the adult-to-child ratio.', 'If possible, volunteer as an accompanying monitor.'],
         bullets_es: ['Evalúe el destino — lagos, mar y cascadas exigen cautela extra.', 'Pregunte la proporción de adultos por niño.', 'Si es posible, ofrézcase como monitor acompañante.'],
+        bullets_ptpt: ['Avalie o destino — lagos, mar e cascatas exigem cautela extra.', 'Pergunte qual é a proporção de adultos por criança.', 'Se possível, ofereça-se como acompanhante.'],
     },
     // ── Conformidade / exigências (conteúdo SENSÍVEL — regra errada barra o
     //    embarque). Validado jun/2026; ver memória project-modo-viagem-compliance.
     //    Cada seção carrega `source` (fonte + data + "confirme antes"). ──
     {
-        id: 'docs_internacional', prio: 4, international: true, icon: 'Airplane',
+        id: 'docs_internacional', pais: 'BR', prio: 4, international: true, icon: 'Airplane',
         title: 'Documentos para Sair do País', title_en: 'Documents to Leave the Country', title_es: 'Documentos para Salir del País',
         content: 'Documento errado ou vencido é o embaraço mais caro da viagem — barra o embarque na hora. Resolva antes de comprar a passagem.',
         content_en: 'A wrong or expired document is the costliest travel snag — it stops you right at boarding. Sort it out before buying the ticket.',
@@ -190,7 +222,7 @@ export const GUIDE_SECTIONS = [
         source_es: 'Fuentes: consulados · Policía Federal · las reglas cambian, confirme antes de viajar (jun/2026).',
     },
     {
-        id: 'vacinacao_intl', prio: 4, international: true, icon: 'Health',
+        id: 'vacinacao_intl', pais: 'BR', prio: 4, international: true, icon: 'Health',
         title: 'Vacinação Internacional (Febre Amarela)', title_en: 'International Vaccination (Yellow Fever)', title_es: 'Vacunación Internacional (Fiebre Amarilla)',
         content: 'Vários países só deixam entrar quem comprova a vacina de febre amarela — e o certificado exige antecedência. Deixar pra última hora impede a viagem.',
         content_en: 'Several countries only admit travelers who prove yellow fever vaccination — and the certificate needs lead time. Leaving it to the last minute blocks the trip.',
@@ -203,7 +235,7 @@ export const GUIDE_SECTIONS = [
         source_es: 'Fuentes: Anvisa · Meu SUS Digital · confirme la exigencia del destino (jun/2026).',
     },
     {
-        id: 'autorizacao_menor', prio: 1, companions: ['hasKids'], icon: 'Baby',
+        id: 'autorizacao_menor', pais: 'BR', prio: 1, companions: ['hasKids'], icon: 'Baby',
         title: 'Autorização de Viagem de Menor', title_en: 'Travel Authorization for Minors', title_es: 'Autorización de Viaje de Menores',
         content: 'Criança sem a autorização certa é barrada no embarque, mesmo com a passagem paga. As regras mudam entre viagem nacional e internacional.',
         content_en: 'A child without the right authorization is denied boarding, even with a paid ticket. The rules differ between domestic and international travel.',
@@ -215,17 +247,72 @@ export const GUIDE_SECTIONS = [
         source_en: 'Sources: CNJ · Brazilian Federal Police · confirm at boarding (Jun/2026).',
         source_es: 'Fuentes: CNJ · Policía Federal · confirme en el embarque (jun/2026).',
     },
+    // ── As três acima são regra BRASILEIRA (Polícia Federal, CIVP/Meu SUS,
+    //    CNJ). Fora do Brasil (país do aparelho), entram estas versões gerais —
+    //    regra de outro país mostrada como se fosse a do usuário induz a erro.
+    //    Filtragem em secoesDoGuia(). ──
+    {
+        id: 'docs_internacional_geral', excetoPais: 'BR', prio: 4, international: true, icon: 'Airplane',
+        title: 'Documentos para Sair do País', title_en: 'Documents to Leave the Country', title_es: 'Documentos para Salir del País',
+        content: 'Documento errado ou vencido é o embaraço mais caro da viagem — barra o embarque na hora. Resolva antes de comprar a passagem.',
+        content_en: 'A wrong or expired document is the costliest travel snag — it stops you right at boarding. Sort it out before buying the ticket.',
+        content_es: 'Un documento erróneo o vencido es el contratiempo más caro del viaje — te frena en el embarque. Resuélvelo antes de comprar el boleto.',
+        content_ptpt: 'Um documento errado ou caducado é o contratempo mais caro da viagem — impede o embarque na hora. Resolva antes de comprar o bilhete.',
+        bullets: ['Passaporte: confira a validade mínima exigida pelo destino — o espaço Schengen pede 3 meses após a saída, mas muitos países pedem 6 meses.', 'Visto ou autorização eletrônica depende da sua nacionalidade e do destino (ex.: ESTA nos EUA, eTA no Canadá; o ETIAS europeu está previsto para o fim de 2026).', 'Confirme as exigências de entrada no consulado ou no site oficial de imigração do destino antes de comprar a passagem; elas mudam sem aviso.'],
+        bullets_en: ['Passport: check the minimum validity your destination requires — the Schengen area asks for 3 months after departure, but many countries require 6 months.', 'Visas and electronic authorizations depend on your nationality and the destination (e.g. ESTA for the USA, eTA for Canada; Europe\'s ETIAS is planned for late 2026).', 'Confirm entry requirements with the destination\'s consulate or official immigration website before buying the ticket; they change without notice.'],
+        bullets_es: ['Pasaporte: verifique la validez mínima que exige el destino — el espacio Schengen pide 3 meses tras la salida, pero muchos países exigen 6 meses.', 'La visa o autorización electrónica depende de su nacionalidad y del destino (p. ej., ESTA en EE. UU., eTA en Canadá; el ETIAS europeo está previsto para finales de 2026).', 'Confirme los requisitos de entrada en el consulado o en la web oficial de inmigración del destino antes de comprar el billete; cambian sin aviso.'],
+        bullets_ptpt: ['Passaporte: confirme a validade mínima exigida pelo destino — o espaço Schengen pede 3 meses após a saída, mas muitos países pedem 6 meses.', 'O visto ou a autorização eletrónica dependem da sua nacionalidade e do destino (ex.: ESTA nos EUA, eTA no Canadá; o ETIAS europeu está previsto para o fim de 2026).', 'Confirme as exigências de entrada no consulado ou no site oficial de imigração do destino antes de comprar o bilhete; mudam sem aviso.'],
+        source: 'Fontes: consulados e sites oficiais de imigração do destino · as regras mudam, confirme antes de viajar.',
+        source_en: 'Sources: consulates and the destination\'s official immigration websites · rules change, confirm before traveling.',
+        source_es: 'Fuentes: consulados y webs oficiales de inmigración del destino · las reglas cambian, confirme antes de viajar.',
+        source_ptpt: 'Fontes: consulados e sites oficiais de imigração do destino · as regras mudam, confirme antes de viajar.',
+    },
+    {
+        id: 'vacinacao_intl_geral', excetoPais: 'BR', prio: 4, international: true, icon: 'Health',
+        title: 'Vacinação Internacional (Febre Amarela)', title_en: 'International Vaccination (Yellow Fever)', title_es: 'Vacunación Internacional (Fiebre Amarilla)',
+        content: 'Vários países só deixam entrar quem comprova a vacina de febre amarela — e o certificado exige antecedência. Deixar pra última hora impede a viagem.',
+        content_en: 'Several countries only admit travelers who prove yellow fever vaccination — and the certificate needs lead time. Leaving it to the last minute blocks the trip.',
+        content_es: 'Varios países solo admiten a quien comprueba la vacuna de fiebre amarilla — y el certificado exige anticipación. Dejarlo para última hora impide el viaje.',
+        content_ptpt: 'Vários países só deixam entrar quem comprova a vacina da febre amarela — e o certificado exige antecedência. Deixar para a última hora impede a viagem.',
+        bullets: ['Tome a vacina pelo menos 10 dias antes de viajar — antes disso ela ainda não protege e o certificado não vale.', 'O comprovante é o Certificado Internacional de Vacinação (o "cartão amarelo" da OMS), emitido pelos serviços de saúde do seu país; para a febre amarela, vale a vida toda.', 'A exigência depende do destino e, muitas vezes, dos países por onde você passou antes — confirme antes de viajar.'],
+        bullets_en: ['Get the vaccine at least 10 days before traveling — before that it does not protect yet and the certificate is not valid.', 'The proof is the International Certificate of Vaccination (the WHO "yellow card"), issued by your country\'s health services; for yellow fever it is valid for life.', 'The requirement depends on the destination and often on the countries you passed through before — check before traveling.'],
+        bullets_es: ['Aplíquese la vacuna al menos 10 días antes de viajar — antes de eso aún no protege y el certificado no vale.', 'El comprobante es el Certificado Internacional de Vacunación (la "cartilla amarilla" de la OMS), emitido por los servicios de salud de su país; para la fiebre amarilla vale de por vida.', 'La exigencia depende del destino y, a menudo, de los países por los que pasó antes — confírmela antes de viajar.'],
+        bullets_ptpt: ['Tome a vacina pelo menos 10 dias antes de viajar — antes disso ainda não protege e o certificado não é válido.', 'O comprovativo é o Certificado Internacional de Vacinação (o "boletim amarelo" da OMS), emitido pelos serviços de saúde do seu país; para a febre amarela, é válido para toda a vida.', 'A exigência depende do destino e, muitas vezes, dos países por onde passou antes — confirme antes de viajar.'],
+        source: 'Fonte: OMS (Regulamento Sanitário Internacional) · confirme a exigência do destino.',
+        source_en: 'Source: WHO (International Health Regulations) · confirm your destination\'s requirement.',
+        source_es: 'Fuente: OMS (Reglamento Sanitario Internacional) · confirme la exigencia del destino.',
+        source_ptpt: 'Fonte: OMS (Regulamento Sanitário Internacional) · confirme a exigência do destino.',
+    },
+    {
+        id: 'autorizacao_menor_geral', excetoPais: 'BR', prio: 1, companions: ['hasKids'], icon: 'Baby',
+        title: 'Autorização de Viagem de Menor', title_en: 'Travel Authorization for Minors', title_es: 'Autorización de Viaje de Menores', title_ptpt: 'Autorização de Viagem de Menores',
+        content: 'Criança sem a documentação certa pode ser barrada no embarque, mesmo com a passagem paga. As regras dependem do país de saída e do destino.',
+        content_en: 'A child without the right documents can be denied boarding, even with a paid ticket. The rules depend on the country of departure and the destination.',
+        content_es: 'Un niño sin la documentación correcta puede ser rechazado en el embarque, aun con el billete pagado. Las reglas dependen del país de salida y del destino.',
+        content_ptpt: 'Uma criança sem a documentação certa pode ser impedida de embarcar, mesmo com o bilhete pago. As regras dependem do país de saída e do destino.',
+        bullets: ['Menor que viaja sem os pais, ou só com um deles, pode precisar de autorização escrita do outro — em alguns países, com assinatura reconhecida.', 'Menor desacompanhado costuma ter regras próprias da fronteira e da companhia de transporte.', 'Confirme com a autoridade de fronteira do seu país e com a companhia antes da viagem, e leve os documentos impressos.'],
+        bullets_en: ['A minor traveling without both parents, or with only one, may need written consent from the other — in some countries with a certified signature.', 'Unaccompanied minors usually have their own border and carrier rules.', 'Check with your country\'s border authority and the carrier before the trip, and carry printed documents.'],
+        bullets_es: ['Un menor que viaja sin los padres, o solo con uno, puede necesitar autorización escrita del otro — en algunos países, con firma legalizada.', 'Los menores no acompañados suelen tener reglas propias de la frontera y de la compañía de transporte.', 'Confírmelo con la autoridad de fronteras de su país y con la compañía antes del viaje, y lleve los documentos impresos.'],
+        bullets_ptpt: ['Um menor que viaje sem os pais, ou só com um deles, pode precisar de autorização escrita do outro — em alguns países, com assinatura reconhecida.', 'Os menores não acompanhados costumam ter regras próprias da fronteira e da companhia de transporte.', 'Confirme com a autoridade de fronteiras do seu país e com a companhia antes da viagem, e leve os documentos impressos.'],
+        source: 'Fonte: autoridade de fronteira do seu país e companhia de transporte · confirme antes de viajar.',
+        source_en: 'Source: your country\'s border authority and the carrier · confirm before traveling.',
+        source_es: 'Fuente: autoridad de fronteras de su país y compañía de transporte · confirme antes de viajar.',
+        source_ptpt: 'Fonte: autoridade de fronteiras do seu país e companhia de transporte · confirme antes de viajar.',
+    },
     // ── Regras de Modal e Duração de Viagem ──
     {
         id: 'fadiga_carro', prio: 3, icon: 'Car',
         match: (trip) => trip.transportMode === 'carro' && trip.tripDuration === 'longa',
         title: 'Viagem Longa de Carro (Fadiga)', title_en: 'Long Car Trip (Fatigue)', title_es: 'Viaje Largo en Coche (Fatiga)',
+        title_ptpt: 'Viagem Longa de Carro (Cansaço)',
         content: 'Fadiga ao volante reduz os reflexos tanto quanto o álcool. Uma viagem acima de 4h exige planejamento de pausas.',
         content_en: 'Fatigue behind the wheel reduces reflexes as much as alcohol. A trip over 4 hours requires planned breaks.',
         content_es: 'La fatiga al volante reduce los reflejos tanto como el alcohol. Un viaje de más de 4h exige planificar pausas.',
+        content_ptpt: 'O cansaço ao volante reduz os reflexos tanto como o álcool. Uma viagem de mais de 4 h exige pausas planeadas.',
         bullets: ['Pare a cada 2 horas ou 200km para esticar as pernas e beber água.', 'Evite viajar de madrugada; o relógio biológico cobra a conta.', 'Revezem a direção se houver outro motorista descansado.'],
         bullets_en: ['Stop every 2 hours or 120 miles to stretch your legs and drink water.', 'Avoid driving overnight; your biological clock will take its toll.', 'Take turns driving if there is another rested driver.'],
         bullets_es: ['Pare cada 2 horas o 200 km para estirar las piernas y beber agua.', 'Evite viajar de madrugada; el reloj biológico pasa factura.', 'Túrnense para conducir si hay otro conductor descansado.'],
+        bullets_ptpt: ['Pare a cada 2 horas ou 200 km para esticar as pernas e beber água.', 'Evite viajar de madrugada; o relógio biológico cobra a fatura.', 'Revezem-se ao volante se houver outro condutor descansado.'],
     },
     {
         id: 'tvp_aviao', prio: 3, icon: 'Airplane',
@@ -234,31 +321,38 @@ export const GUIDE_SECTIONS = [
         content: 'Voos com mais de 4 horas aumentam o risco de Trombose Venosa Profunda (TVP) devido à imobilidade prolongada.',
         content_en: 'Flights over 4 hours increase the risk of Deep Vein Thrombosis (DVT) due to prolonged immobility.',
         content_es: 'Vuelos de más de 4 horas aumentan el riesgo de Trombosis Venosa Profunda (TVP) debido a la inmovilidad prolongada.',
+        content_ptpt: 'Voos de mais de 4 horas aumentam o risco de Trombose Venosa Profunda (TVP) devido à imobilidade prolongada.',
         bullets: ['Levante-se e caminhe pelo corredor a cada 2 horas.', 'Faça movimentos circulares com os pés enquanto estiver sentado.', 'Mantenha-se bem hidratado com água e evite álcool.'],
         bullets_en: ['Stand up and walk down the aisle every 2 hours.', 'Make circular movements with your feet while seated.', 'Stay well hydrated with water and avoid alcohol.'],
         bullets_es: ['Levántese y camine por el pasillo cada 2 horas.', 'Haga movimientos circulares con los pies mientras esté sentado.', 'Manténgase bien hidratado con agua y evite el alcohol.'],
+        bullets_ptpt: ['Levante-se e caminhe pelo corredor a cada 2 horas.', 'Faça movimentos circulares com os pés enquanto estiver sentado.', 'Mantenha-se bem hidratado com água e evite o álcool.'],
     },
     {
         id: 'cinetose', prio: 3, icon: 'Health',
         match: (trip) => ['carro', 'onibus', 'navio'].includes(trip.transportMode),
         title: 'Cinetose (Enjoo de Movimento)', title_en: 'Motion Sickness', title_es: 'Cinetosis (Mareo por Movimiento)',
+        title_ptpt: 'Cinetose (Enjoo de Movimento)',
         content: 'O enjoo ocorre quando o cérebro recebe sinais conflitantes dos olhos e do labirinto durante o movimento.',
         content_en: 'Motion sickness occurs when the brain receives conflicting signals from the eyes and inner ear during movement.',
         content_es: 'El mareo ocurre cuando el cerebro recibe señales contradictorias de los ojos y del oído interno durante el movimiento.',
         bullets: ['Olhe para o horizonte ou para um ponto fixo distante.', 'Evite ler ou usar telas durante o trajeto.', 'Se houver propensão, consulte um médico sobre medicação preventiva antes de viajar.'],
         bullets_en: ['Look at the horizon or a distant fixed point.', 'Avoid reading or using screens during the trip.', 'If prone, consult a doctor about preventive medication before traveling.'],
         bullets_es: ['Mire hacia el horizonte o a un punto fijo distante.', 'Evite leer o usar pantallas durante el trayecto.', 'Si tiene propensión, consulte a un médico sobre medicación preventiva antes de viajar.'],
+        bullets_ptpt: ['Olhe para o horizonte ou para um ponto fixo distante.', 'Evite ler ou usar ecrãs durante o trajeto.', 'Se tiver tendência, fale com um médico sobre medicação preventiva antes de viajar.'],
     },
     {
         id: 'cinto_onibus', prio: 2, icon: 'Bus',
         match: (trip) => trip.transportMode === 'onibus',
         title: 'Cinto de Segurança em Ônibus', title_en: 'Seatbelts on Buses', title_es: 'Cinturón de Seguridad en Autobuses',
+        title_ptpt: 'Cinto de Segurança no Autocarro',
         content: 'O cinto de segurança é obrigatório e salva vidas em ônibus rodoviários, mas muitos passageiros ignoram.',
         content_en: 'Seatbelts are mandatory and save lives on highway buses, but many passengers ignore them.',
         content_es: 'El cinturón de seguridad es obligatorio y salva vidas en autobuses de carretera, pero muchos pasajeros lo ignoran.',
+        content_ptpt: 'O cinto de segurança é obrigatório e salva vidas nos autocarros de longo curso, mas muitos passageiros ignoram-no.',
         bullets: ['Mantenha o cinto afivelado durante toda a viagem, inclusive dormindo.', 'Em caso de tombamento, quem está sem cinto é arremessado.', 'Exija que seus acompanhantes também usem o cinto.'],
         bullets_en: ['Keep your seatbelt fastened throughout the trip, even while sleeping.', 'In a rollover crash, unbelted passengers are thrown around.', 'Demand that your traveling companions also use their seatbelts.'],
         bullets_es: ['Mantenga el cinturón abrochado durante todo el viaje, incluso al dormir.', 'En caso de vuelco, los pasajeros sin cinturón salen despedidos.', 'Exija que sus acompañantes también usen el cinturón.'],
+        bullets_ptpt: ['Mantenha o cinto apertado durante toda a viagem, mesmo a dormir.', 'Em caso de capotamento, quem não tem cinto é projetado.', 'Exija que os seus acompanhantes também usem o cinto.'],
     },
     {
         id: 'seguranca_auto', prio: 2, icon: 'CarProfile',
@@ -267,18 +361,31 @@ export const GUIDE_SECTIONS = [
         content: 'A segurança no carro exige equipamentos específicos para crianças e animais. Eles nunca devem viajar soltos.',
         content_en: 'Car safety requires specific equipment for children and animals. They must never travel loose.',
         content_es: 'La seguridad en el coche exige equipos específicos para niños y animales. Nunca deben viajar sueltos.',
+        content_ptpt: 'A segurança no carro exige equipamentos específicos para crianças e animais. Nunca devem viajar soltos.',
         bullets: ['Use cadeirinha, assento de elevação ou bebê conforto de acordo com peso/idade da criança.', 'Animais devem usar cinto de segurança peitoral ou viajar em caixas de transporte fixadas.', 'Malas soltas viram projéteis em uma freada; guarde tudo no porta-malas.'],
         bullets_en: ['Use a car seat, booster seat or infant carrier according to the child\'s weight/age.', 'Animals must use a chest harness seatbelt or travel in secured carriers.', 'Loose luggage becomes projectiles in hard braking; store everything in the trunk.'],
         bullets_es: ['Use sillita, asiento elevador o portabebés según peso/edad del niño.', 'Los animales deben usar cinturón de arnés o viajar en cajas de transporte aseguradas.', 'El equipaje suelto se vuelve proyectiles al frenar; guarde todo en el maletero.'],
+        bullets_ptpt: ['Use cadeirinha, banco elevatório ou ovo de acordo com o peso/idade da criança.', 'Os animais devem usar cinto com peitoral ou viajar em transportadoras presas.', 'Malas soltas tornam-se projéteis numa travagem; guarde tudo na bagageira.'],
     },
 ];
 
 export const TYPE_LABELS = {
-    rural: { label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural' },
+    rural: { label: 'Área Rural', label_en: 'Rural Area', label_es: 'Área Rural',
+    label_ptpt: 'Zona Rural' },
     praia: { label: 'Litoral', label_en: 'Coastal', label_es: 'Zona Costera' },
-    urbano: { label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana' },
+    urbano: { label: 'Área Urbana', label_en: 'Urban Area', label_es: 'Área Urbana',
+    label_ptpt: 'Zona Urbana' },
     resort: { label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio' },
 };
+
+/**
+ * Seções que valem para o país do APARELHO (regra/lei/documento seguem o
+ * país do usuário, não o idioma). Sem país conhecido, cai nas versões gerais.
+ * Fonte única para a tela e para o dossiê PDF (TravelReportService).
+ */
+export function secoesDoGuia(pais = paisDoAparelho()) {
+    return GUIDE_SECTIONS.filter((s) => (!s.pais || s.pais === pais) && (!s.excetoPais || s.excetoPais !== pais));
+}
 
 export function matchesTrip(section, trip) {
     if (!trip) return false;
@@ -310,12 +417,13 @@ export default function TravelSafetyGuideScreen({ navigation }) {
     }, []);
 
     // Sem viagem ativa => guia completo (fallback não-omisso)
-    const personalized = trip ? GUIDE_SECTIONS.filter((sec) => matchesTrip(sec, trip)) : [];
+    const doPais = secoesDoGuia();
+    const personalized = trip ? doPais.filter((sec) => matchesTrip(sec, trip)) : [];
     const usePersonalized = trip && personalized.length > 0 && !showAll;
-    const sections = (usePersonalized ? personalized : GUIDE_SECTIONS)
+    const sections = (usePersonalized ? personalized : doPais)
         .slice()
         .sort((a, b) => a.prio - b.prio);
-    const hiddenCount = GUIDE_SECTIONS.length - personalized.length;
+    const hiddenCount = doPais.length - personalized.length;
 
     // Chips do briefing — torna a personalização VISÍVEL
     const chips = [];
