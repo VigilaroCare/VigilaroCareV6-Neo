@@ -155,3 +155,5 @@ update_menu.js
 qa-artifacts/
 
 docs/revisao-conteudo/*.anterior-*
+# Playwright CLI output (may contain credentials)
+.playwright-cli/
