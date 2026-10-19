@@ -22,6 +22,7 @@
  * Uso:
  *   node scripts/sincronizar_traducoes.js listar  <ficheiro-pt> <ref-base>   > trabalho.json
  *   node scripts/sincronizar_traducoes.js aplicar <traducoes.json>
+ *   node scripts/sincronizar_traducoes.js faltando <ficheiro-pt>              > trabalho.json   (D21: tudo sem tradução)
  *
  * `listar` não escreve nada. `aplicar` substitui só os trechos de código de
  * cada campo apontado, de trás para a frente, e confere o parse no fim.
@@ -215,6 +216,43 @@ function listar(relPt, ref) {
 }
 
 // ---------------------------------------------------------------------------
+// faltando (D21, 19/10/2026)
+// ---------------------------------------------------------------------------
+
+/**
+ * Lista TODO campo de texto que ainda não tem tradução (sem `_en`/`_es` ao
+ * lado), num ficheiro de sufixo. Serve para ficheiros que nunca foram
+ * traduzidos — `listar` só vê o que mudou entre duas versões e só cria sufixo
+ * em ficheiro que já usa sufixo. A saída tem o mesmo formato de `listar`
+ * (com `criar` marcado), então `aplicar` grava sem mudança nenhuma.
+ *
+ * pt-PT vai marcado para criar, mas só é gravado se a tradução trouxer
+ * `pt-PT` (a maioria dos campos cai no pt-BR, de propósito).
+ */
+const IGNORAR_CONTEUDO = new Set(['gravidade', 'nivelRisco', 'perfilRisco', 'corRisco', 'severidade', 'publico',
+    'ambientes', 'rota', 'screen', 'iconName', 'nome_id', 'slug', 'categoryId', 'imagemUrl', 'url', 'link',
+    'iconColor', 'bg', 'corTexto', 'corIcone']);
+
+function faltando(relPt) {
+    if (relPt.includes('/locales/')) throw new Error('faltando é só para ficheiros de sufixo (data/*.js)');
+    const raiz = raizExportada(fs.readFileSync(path.join(RAIZ, relPt), 'utf8'));
+    const todos = [];
+    diferencas(raiz, null, [], todos);
+    const trabalho = [];
+    for (const m of todos) {
+        const campo = m.caminho[m.caminho.length - 1];
+        if (campo.startsWith('@') || campo.startsWith('[') || campo.startsWith('#') || IGNORAR_CONTEUDO.has(campo)) continue;
+        if (m.tipo === 'str' && /^#[0-9a-f]{3,8}$/i.test(m.pt)) continue; // cor
+        const pai = resolver(raiz, m.caminho.slice(0, -1));
+        if (!pai || pai.tipo !== 'obj') continue;
+        const criar = {};
+        for (const lang of IDIOMAS_FICHEIRO) if (!((campo + SUFIXOS[lang]) in pai.v)) criar[lang] = true;
+        if (criar.en || criar.es) trabalho.push({ ficheiro: relPt, caminho: m.caminho, tipo: m.tipo, pt: m.pt, criar, traducao: {} });
+    }
+    process.stdout.write(JSON.stringify(trabalho, null, 1));
+}
+
+// ---------------------------------------------------------------------------
 // aplicar
 // ---------------------------------------------------------------------------
 
@@ -295,8 +333,9 @@ function aplicar(caminhoJson) {
 
 const [, , cmd, a, b] = process.argv;
 if (cmd === 'listar') listar(a, b);
+else if (cmd === 'faltando') faltando(a);
 else if (cmd === 'aplicar') aplicar(a);
 else {
-    console.error('Uso: listar <ficheiro-pt> <ref-base> | aplicar <traducoes.json>');
+    console.error('Uso: listar <ficheiro-pt> <ref-base> | faltando <ficheiro-pt> | aplicar <traducoes.json>');
     process.exit(2);
 }

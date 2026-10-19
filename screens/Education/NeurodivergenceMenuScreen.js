@@ -10,6 +10,7 @@ import { Caption } from "../../components/NeoTypography";
 import { useTranslation } from 'react-i18next';
 import { useThemeColors } from '../../utils/ThemeContext';
 import { NEURODIVERGENCE_DATA } from '../../data/neurodivergence_data';
+import { t_field } from '../../utils/getLocalizedField';
 
 export default function NeurodivergenceMenuScreen({ navigation, route }) {
     const insets = useSafeAreaInsets();
@@ -45,12 +46,12 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
     const handlePress = (item) => {
         navigation.navigate('PremiumArticle', {
             conceito: {
-                titulo: item.title,
-                conteudo: item.content,
+                titulo: t_field(item, 'title'),
+                conteudo: t_field(item, 'content'),
                 icon: item.icon,
                 color: item.color,
                 imagemUrl: item.imagemUrl,
-                tags: [data.title]
+                tags: [t_field(data, 'title')]
             }
         });
     };
@@ -91,7 +92,7 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
                         source={capaSource}
                         style={StyleSheet.absoluteFill}
                         resizeMode="cover"
-                        accessibilityLabel={data.title}
+                        accessibilityLabel={t_field(data, 'title')}
                     />
                     <View style={{
                         position: 'absolute',
@@ -106,19 +107,19 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
                             letterSpacing: -0.8,
                             lineHeight: 38,
                         }}>
-                            {data.title}
+                            {t_field(data, 'title')}
                         </Text>
                     </View>
                 </Animated.View>
 
                 <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
-                        <Caption style={{ marginBottom: 24, fontSize: 16 }}>{data.description}</Caption>
+                        <Caption style={{ marginBottom: 24, fontSize: 16 }}>{t_field(data, 'description')}</Caption>
                         
                         {data.categories.map((cat, index) => (
                             <NeoHorizontalCard
                                 key={cat.id}
-                                title={cat.title}
-                                description={cat.short_desc}
+                                title={t_field(cat, 'title')}
+                                description={t_field(cat, 'short_desc')}
                                 iconName={cat.icon}
                                 color={cat.color}
                                 onPress={() => handlePress(cat)}

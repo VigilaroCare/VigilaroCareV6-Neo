@@ -7,6 +7,7 @@ import NeoIcon from '../../components/NeoIcon';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import ReviewImage from '../../components/ReviewImage';
 import { PRODUTOS_CATEGORIAS_DATA } from '../../data/produtos_categorias';
+import { t_field } from '../../utils/getLocalizedField';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -127,7 +128,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
                         <ReviewImage
                           source={typeof item.imagemUrl === 'string' ? (typeof item.imagemUrl === 'string' ? { uri: item.imagemUrl } : item.imagemUrl) : item.imagemUrl}
                           tint={item.iconColor || THEME_COLOR}
-                          accessibilityLabel={item.titulo}
+                          accessibilityLabel={t_field(item, 'titulo')}
                         />
                       ) : (
                         <NeoIcon name={item.icon} size={48} color={item.iconColor || THEME_COLOR} variant="Bold" />
@@ -135,11 +136,11 @@ export default function ProdutosPerigososScreen({ navigation }) {
                     </View>
                     <View style={styles.guideContent}>
                       <View style={{ flex: 1, paddingRight: 8 }}>
-                        <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{item.titulo}</Text>
-                        <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{item.subtitulo}</Text>
+                        <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={1}>{t_field(item, 'titulo')}</Text>
+                        <Text style={[styles.guideSubtitle, { color: textMuted }]} numberOfLines={1}>{t_field(item, 'subtitulo')}</Text>
                       </View>
                       <View style={{ flex: 1 }} />
-                      <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>{item.definicao}</Text>
+                      <Text style={[styles.descText, { color: textBody }]} numberOfLines={2}>{t_field(item, 'definicao')}</Text>
                     </View>
                   </View>
                 </View>
