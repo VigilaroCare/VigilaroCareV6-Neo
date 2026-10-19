@@ -14,7 +14,7 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import NeoIcon from '../../components/NeoIcon';
-import { resolveEmergencyTokensDeep } from '../../utils/emergencyTokens';
+import { t_deep } from '../../utils/getLocalizedField';
 import { DISPOSITIVOS_ELETRONICOS_REVIEWS } from '../../data/dispositivos_eletronicos_reviews';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { tx } from '../../utils/txFixo';
@@ -54,7 +54,7 @@ export default function DispositivosEletronicosReviewsScreen({ navigation }) {
     const THEME_COLOR = themeColors.primary[700];
     // Tokens ({{CERT_SEAL}}, {{FIRE_NUMBER}}…) resolvidos pelo país: antes o
     // usuário via o literal "{{CERT_SEAL}}" na tela.
-    const ITEMS = resolveEmergencyTokensDeep(DISPOSITIVOS_ELETRONICOS_REVIEWS);
+    const ITEMS = t_deep(DISPOSITIVOS_ELETRONICOS_REVIEWS);
 
     const handlePress = (item) => {
         navigation.navigate('SafetyReviewDetail', { item });

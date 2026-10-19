@@ -89,4 +89,25 @@ export const t_object = (obj, field) => {
   return resolveEmergencyTokensDeep(localizedValue ?? obj[field] ?? {});
 };
 
+/**
+ * Cópia do objeto (ou lista) com TODOS os campos já no idioma atual: cada
+ * campo de texto ou lista de textos passa por t_field/t_array, objetos e
+ * listas de objetos são percorridos, e as chaves com sufixo somem. Serve às
+ * telas que recebem o item inteiro e leem obj.campo direto (ex.: reviews de
+ * segurança, onde a lista passa o item para a tela de detalhe).
+ */
+const SUFIXO_IDIOMA = /_(en|es|ptpt|pt-PT|pt_pt)$/;
+export const t_deep = (obj) => {
+  if (Array.isArray(obj)) return obj.map(t_deep);
+  if (!obj || typeof obj !== 'object') return resolveEmergencyTokensDeep(obj);
+  const out = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (SUFIXO_IDIOMA.test(k)) continue;
+    if (typeof v === 'string') out[k] = t_field(obj, k);
+    else if (Array.isArray(v) && v.every((x) => typeof x === 'string')) out[k] = t_array(obj, k);
+    else out[k] = t_deep(v);
+  }
+  return out;
+};
+
 export default t_field;

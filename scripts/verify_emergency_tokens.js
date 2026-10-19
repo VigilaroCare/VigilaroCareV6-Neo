@@ -642,6 +642,39 @@ console.log('\n6d. ORGAO/SELO BR EM TEXTO NAO-pt-BR\n');
 }
 
 // ---------------------------------------------------------------------------
+// 6e. CONTRACAO ESPANHOLA ANTES DO TOKEN MEDICO.
+//     O rotulo es ja traz o artigo quando precisa ("los servicios de
+//     emergencia"; no Brasil, "emergencias"). Entao a forma certa e "Llame a
+//     {{EMERGENCY_MEDICAL}}": "al"/"del" dao "Llame al los servicios" (achado
+//     em 19/10/2026, 4 textos). "al"/"del" nao existem em portugues, entao a
+//     varredura vale para o ficheiro inteiro sem confundir idioma.
+// ---------------------------------------------------------------------------
+console.log('\n6e. CONTRACAO "al/del" ANTES DE {{EMERGENCY_MEDICAL}}\n');
+{
+    const RX_CONTRACAO = /\b(al|del)\s+\{\{EMERGENCY_MEDICAL\}\}/gi;
+    const achadosContracao = [];
+    const varrerContracao = (dir) => {
+        for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+            const rel = `${dir}/${e.name}`;
+            if (e.isDirectory()) { varrerContracao(rel); continue; }
+            if (!/\.(js|json)$/.test(e.name)) continue;
+            fs.readFileSync(path.join(ROOT, rel), 'utf8').split('\n').forEach((linha, i) => {
+                RX_CONTRACAO.lastIndex = 0;
+                if (RX_CONTRACAO.test(linha)) achadosContracao.push(`${rel}:${i + 1}`);
+            });
+        }
+    };
+    ['data', 'screens', 'components', 'services', 'locales'].forEach(varrerContracao);
+    if (achadosContracao.length) {
+        failures++;
+        console.log(`   FALHA ${achadosContracao.length} "al/del {{EMERGENCY_MEDICAL}}" — use "a {{EMERGENCY_MEDICAL}}":`);
+        achadosContracao.forEach((a) => console.log(`         ${a}`));
+    } else {
+        console.log('   OK    nenhum "al/del" antes do token medico');
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 7. As chaves novas existem nos 4 locales (senao a UI mostra a chave crua).
 // ---------------------------------------------------------------------------
 console.log('\n7. CHAVES DE INTERFACE NOS 4 LOCALES\n');
