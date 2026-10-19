@@ -111,8 +111,8 @@ export const TEORIA_FOGO_DATA = {
         importancia_es: 'Una batería de iones de litio no es Clase D. Su fuego es muy caliente y se propaga rápido — por eso los bomberos indican salir y llamarlos, nunca intentar apagarlo.',
         importancia_ptpt: 'Uma bateria de iões de lítio não é Classe D. O fogo é muito quente e propaga-se depressa — por isso a indicação dos bombeiros é sair e chamá-los, nunca tentar apagar.',
         comoIdentificar: [
-            'Pare de usar e de carregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (inchar), vazar ou deixar de carregar.',
-            'Bateria que caiu, levou pancada, amassou ou molhou merece atenção: o dano interno pode causar curto-circuito depois.',
+            'Pare de usar e de carregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (ficar estufada), vazar ou deixar de carregar.',
+            'Bateria que caiu, sofreu impacto, amassou ou molhou merece atenção: o dano interno pode causar curto-circuito depois.',
         ],
         comoIdentificar_en: [
             'Stop using and charging the battery if it gives off smoke or an unusual smell, gets hotter than normal, changes colour or shape (swells), leaks or stops taking a charge.',
@@ -129,7 +129,7 @@ export const TEORIA_FOGO_DATA = {
         comoEvitar: [
             'Use o carregador original ou um aprovado pelo fabricante.',
             'Ligue direto na tomada da parede — sem extensão nem filtro de linha — e um aparelho por tomada.',
-            'Não deixe carregando de madrugada nem sem ninguém por perto; tire da tomada quando completar.',
+            'Não deixe carregando de madrugada nem sem alguém por perto; tire da tomada quando completar.',
             'Carregue sobre superfície dura e que não queime, longe de cama, sofá, cortinas e papéis.',
             'Patinete e bicicleta elétrica: carregue e guarde fora do caminho de saída — nunca no corredor, junto à porta ou embaixo da escada.',
             'Tenha detector de fumaça no lugar onde carrega patinete ou bicicleta elétrica.',
