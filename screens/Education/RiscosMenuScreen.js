@@ -13,6 +13,7 @@ import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { Body, Small } from "../../components/NeoTypography";
 import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
+import { t_field } from '../../utils/getLocalizedField';
 import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function RiscosMenuScreen() {
@@ -118,7 +119,7 @@ export default function RiscosMenuScreen() {
                                         </View>
                                         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                                             <Body style={s.itemTitle} numberOfLines={2}>
-                                                {item.nome}
+                                                {t_field(item, 'nome')}
                                             </Body>
                                             <Small style={s.itemSub} numberOfLines={1}>
                                                 {topicCount} {t('riscosMenu.preventionTopics', 'tópicos')}

@@ -231,7 +231,7 @@ function listar(relPt, ref) {
  */
 const IGNORAR_CONTEUDO = new Set(['gravidade', 'nivelRisco', 'perfilRisco', 'corRisco', 'severidade', 'publico',
     'ambientes', 'rota', 'screen', 'iconName', 'nome_id', 'slug', 'categoryId', 'imagemUrl', 'url', 'link',
-    'iconColor', 'bg', 'corTexto', 'corIcone', 'grupo']);
+    'iconColor', 'bg', 'corTexto', 'corIcone', 'grupo', 'capa']);
 
 function faltando(relPt) {
     if (relPt.includes('/locales/')) throw new Error('faltando é só para ficheiros de sufixo (data/*.js)');
