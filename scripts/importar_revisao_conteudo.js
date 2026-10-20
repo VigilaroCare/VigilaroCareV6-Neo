@@ -194,7 +194,7 @@ const RX_CODIGO = /^\s*([A-Z]{2}-\d{4})\b[\s ]*([\s\S]*)$/;
  * Os rotulos vem do proprio gerador em vez de copiados: lista copiada sai de
  * sincronia na primeira vez que alguem acrescentar um campo lá.
  */
-const { PAPEL_DO_CAMPO } = require('./gerar_revisao_conteudo.js');
+const { PAPEL_DO_CAMPO, MARCAS_DE_MUDANCA } = require('./gerar_revisao_conteudo.js');
 const ROTULOS_DO_GERADOR = new Set(Object.values(PAPEL_DO_CAMPO));
 
 const ABERTURA_DO_GERADOR = [
@@ -216,6 +216,9 @@ const RX_PSTYLE_CABECALHO = /<w:pStyle\s+w:val="(?:Heading\d|T[íi]?tulo\d?|Ttul
 const ehEstruturaDoGerador = (texto) => {
     const t = texto.trim();
     if (ROTULOS_DO_GERADOR.has(t)) return true;
+    // Linhas "ANTES / NOVO / RETIRADO" da Revisao Complementar: referencia,
+    // nao texto do revisor.
+    if ((MARCAS_DE_MUDANCA || []).some((rx) => rx.test(t))) return true;
     return ABERTURA_DO_GERADOR.some((rx) => rx.test(t));
 };
 

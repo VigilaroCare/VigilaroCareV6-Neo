@@ -123,6 +123,51 @@ const TEMAS = [
             { arquivo: 'data/asilo_seguro_data.js', rotulo: 'Instituicao de longa permanencia' },
         ],
     },
+    // -----------------------------------------------------------------------
+    // RC — o que a lista acima deixou de fora.
+    //
+    // MOTIVO (19/10/2026): ao traduzir a D21, achei ~700 textos que estao no
+    // app desde maio/junho e nunca foram para revisao humana. Dois buracos:
+    // (1) arquivos de dados que simplesmente nao estavam na lista dos temas;
+    // (2) texto escrito DENTRO de telas e componentes, que nenhum tema lia.
+    // No mesmo dia esses textos foram corrigidos (estatistica sem fonte,
+    // telefone fixo, orientacao de socorro) sem passar pelo Agnaldo — por isso
+    // este documento compara com `base` e mostra, junto de cada texto, o que
+    // havia antes ("ANTES"), o que e novo e o que foi retirado.
+    //
+    // `chavesExtras`/`titulosExtras` valem SO para este tema: acrescenta-las
+    // as listas globais renumeraria os codigos dos documentos ja revisados.
+    // -----------------------------------------------------------------------
+    {
+        nome: 'Revisao Complementar',
+        sigla: 'RC',
+        base: 'c094fa9',
+        dataMudancas: '19/10/2026',
+        descricao: 'Textos que ficaram fora dos documentos PS, ED, AE e EX: os reviews de produtos, '
+            + 'os acessorios de protecao, o roteiro dos ambientes, as categorias de produtos perigosos '
+            + 'e as telas de viagem, lazer e jardinagem. Varios foram corrigidos em 19/10/2026 antes '
+            + 'desta revisao: abaixo de cada texto alterado aparece a linha "ANTES", com o texto '
+            + 'anterior; texto novo vem marcado "NOVO"; o que saiu aparece como "RETIRADO". Essas '
+            + 'linhas sao so referencia — para voltar ao texto antigo, edite o texto principal. '
+            + 'Trechos entre chaves duplas, como {{FIRE_NUMBER}} ou {{CERT_SEAL}}, sao trocados no app '
+            + 'pelo numero ou orgao do pais do usuario (no Brasil: 193, selo do INMETRO).',
+        chavesExtras: ['riscosPrincipais', 'emergencias', 'dicasExtras', 'bullets', 'estatistica', 'exemplos'],
+        titulosExtras: ['local'],
+        fontes: [
+            { arquivo: 'data/dispositivos_eletronicos_reviews.js', rotulo: 'Reviews — dispositivos eletronicos' },
+            { arquivo: 'data/eletrodomesticos_reviews.js', rotulo: 'Reviews — eletrodomesticos' },
+            { arquivo: 'data/utensilios_reviews.js', rotulo: 'Reviews — utensilios domesticos' },
+            { arquivo: 'data/dispositivos_protecao.js', rotulo: 'Acessorios de protecao' },
+            { arquivo: 'data/produtos_categorias.js', rotulo: 'Produtos perigosos — categorias' },
+            { arquivo: 'data/areas_internas.js', rotulo: 'Roteiro dos ambientes — areas internas' },
+            { arquivo: 'data/areas_externas.js', rotulo: 'Roteiro dos ambientes — areas externas' },
+            { arquivo: 'screens/Education/TravelSafetyGuideScreen.js', rotulo: 'Guia de Seguranca na Viagem' },
+            { arquivo: 'components/TravelTipsAccordion.js', rotulo: 'Modo Viagem — Fique atento' },
+            { arquivo: 'screens/SegurancaFeriasScreen.js', rotulo: 'Seguranca nas Ferias' },
+            { arquivo: 'screens/SegurancaLazerScreen.js', rotulo: 'Seguranca no Lazer' },
+            { arquivo: 'screens/Education/JardinagemSeguraScreen.js', rotulo: 'Jardinagem Segura' },
+        ],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -234,6 +279,15 @@ const PAPEL_DO_CAMPO = {
     curto: 'SE NAO RESOLVER — CURTO PRAZO',
     medio: 'SE NAO RESOLVER — MEDIO PRAZO',
     longo: 'SE NAO RESOLVER — LONGO PRAZO',
+    // Revisao Complementar (RC): campos dos reviews e das telas de lazer/viagem.
+    oQueFazer: 'O QUE FAZER',
+    riscos: 'RISCOS',
+    'riscosPrincipais[]': 'RISCOS PRINCIPAIS',
+    'emergencias[]': 'EM CASO DE EMERGENCIA',
+    'dicasExtras[]': 'DICAS EXTRAS',
+    'bullets[]': 'PONTOS DE ATENCAO',
+    'exemplos[]': 'EXEMPLOS',
+    estatistica: 'VOCE SABIA? (ESTATISTICA)',
 };
 
 // ---------------------------------------------------------------------------
@@ -271,13 +325,13 @@ function dentroDeBlocoTraduzido(caminho) {
  * Titulo do item que contem este texto — o que o usuario ve como cabecalho no
  * app. Sobe nos objetos ancestrais ate achar um com titulo/title/nome proprio.
  */
-function tituloDoItem(caminho) {
+function tituloDoItem(caminho, titulosExtras = new Set()) {
     let atual = caminho.findParent((x) => x.isObjectExpression());
     while (atual) {
         for (const prop of atual.node.properties) {
             if (prop.type !== 'ObjectProperty') continue;
             const k = prop.key && (prop.key.name || prop.key.value);
-            if (CHAVES_DE_TITULO.has(k) && prop.value.type === 'StringLiteral') {
+            if ((CHAVES_DE_TITULO.has(k) || titulosExtras.has(k)) && prop.value.type === 'StringLiteral') {
                 return prop.value.value;
             }
         }
@@ -286,11 +340,22 @@ function tituloDoItem(caminho) {
     return null;
 }
 
-function extrair(relativo) {
-    const abs = path.join(RAIZ, relativo);
-    if (!fs.existsSync(abs)) return { ausente: true, blocos: [] };
+/**
+ * @param relativo  caminho a partir da raiz do repo
+ * @param opcoes    { chavesExtras, titulosExtras } — so do tema que pede
+ * @param codigo    fonte ja lida (ex.: versao de um commit antigo); sem ela, le do disco
+ */
+function extrair(relativo, opcoes = {}, codigo = null) {
+    const extras = new Set(opcoes.chavesExtras || []);
+    const titulosExtras = new Set(opcoes.titulosExtras || []);
+    let fonte = codigo;
+    if (fonte == null) {
+        const abs = path.join(RAIZ, relativo);
+        if (!fs.existsSync(abs)) return { ausente: true, blocos: [] };
+        fonte = fs.readFileSync(abs, 'utf8');
+    }
 
-    const ast = parser.parse(fs.readFileSync(abs, 'utf8'), {
+    const ast = parser.parse(fonte, {
         sourceType: 'module',
         plugins: ['jsx'],
     });
@@ -336,7 +401,7 @@ function extrair(relativo) {
                 texto,
                 chave,
                 ehTitulo: false,
-                item: tituloDoItem(caminho),
+                item: tituloDoItem(caminho, titulosExtras),
                 linha: caminho.node.loc ? caminho.node.loc.start.line : 0,
             });
         },
@@ -352,8 +417,8 @@ function extrair(relativo) {
             if (CHAVES_TECNICAS.has(chave)) return;
             if (SUFIXO_IDIOMA.test(chave)) return;
 
-            const ehTitulo = CHAVES_DE_TITULO.has(chave);
-            const conhecida = CHAVES_DE_PROSA.has(chave) || ehTitulo;
+            const ehTitulo = CHAVES_DE_TITULO.has(chave) || titulosExtras.has(chave);
+            const conhecida = CHAVES_DE_PROSA.has(chave) || extras.has(chave) || ehTitulo;
             const minimo = conhecida ? MIN_PROSA_CONHECIDA : MIN_PROSA_GENERICA;
             if (texto.length < minimo) return;
             // Campo desconhecido e curto: provavelmente rotulo de interface.
@@ -363,7 +428,7 @@ function extrair(relativo) {
                 texto,
                 chave: emArray ? `${chave}[]` : chave,
                 ehTitulo,
-                item: tituloDoItem(caminho),
+                item: tituloDoItem(caminho, titulosExtras),
                 linha: caminho.node.loc ? caminho.node.loc.start.line : 0,
             });
         },
@@ -392,6 +457,43 @@ function extrair(relativo) {
         bloco.textos.push(a);
     }
     return { ausente: false, blocos: blocos.filter((b) => b.textos.length || b.chaveDoTitulo) };
+}
+
+/**
+ * Marca, nos blocos de agora, o que mudou desde `antes` (mesma extracao feita
+ * sobre a versao de um commit anterior). Grava:
+ *   texto.antes        — o texto que ocupava esse lugar (mesmo item, mesmo campo)
+ *   texto.novo         — nao havia nada correspondente
+ *   bloco.novoInteiro  — o item todo nao existia
+ *   bloco.retirados[]  — textos do item que sairam sem substituto
+ * e devolve os itens inteiros que sairam.
+ *
+ * Texto identico a qualquer texto antigo do arquivo conta como inalterado,
+ * mesmo que tenha mudado de lugar.
+ */
+function anotarMudancas(blocosAntes, blocosAgora) {
+    const textosAntes = new Set(blocosAntes.flatMap((b) => b.textos.map((t) => t.texto)));
+    const textosAgora = new Set(blocosAgora.flatMap((b) => b.textos.map((t) => t.texto)));
+    const usados = new Set();
+    const blocoAntigoUsado = new Set();
+    for (const bloco of blocosAgora) {
+        const antigo = blocosAntes.find((b, i) => b.item === bloco.item && !blocoAntigoUsado.has(i));
+        if (!antigo) {
+            if (bloco.textos.some((t) => !textosAntes.has(t.texto))) bloco.novoInteiro = true;
+            continue;
+        }
+        blocoAntigoUsado.add(blocosAntes.indexOf(antigo));
+        const sobras = antigo.textos.filter((t) => !textosAgora.has(t.texto));
+        for (const t of bloco.textos) {
+            if (textosAntes.has(t.texto)) continue;
+            const par = sobras.find((s) => s.chave === t.chave && !usados.has(s));
+            if (par) { t.antes = par.texto; usados.add(par); } else { t.novo = true; }
+        }
+        bloco.retirados = sobras.filter((s) => !usados.has(s)).map((s) => s.texto);
+    }
+    return blocosAntes
+        .filter((b, i) => !blocoAntigoUsado.has(i) && b.textos.some((t) => !textosAgora.has(t.texto)))
+        .map((b) => ({ item: b.item, textos: b.textos.map((t) => t.texto).filter((x) => !textosAgora.has(x)) }));
 }
 
 // ---------------------------------------------------------------------------
@@ -434,6 +536,22 @@ const paragrafoDeTexto = (codigo, texto) => {
     });
     return new Paragraph({ spacing: { after: 160, line: 300 }, children: runs });
 };
+
+/**
+ * Linha de referencia da Revisao Complementar ("ANTES", "NOVO", "RETIRADO").
+ * Cinza, italico, sem codigo. O importador reconhece estes prefixos como
+ * andaime do gerador (MARCAS_DE_MUDANCA) e nao como texto do revisor.
+ */
+const MARCAS_DE_MUDANCA = [
+    /^ANTES \(at[ée] \d{2}\/\d{2}\/\d{4}\):/i,
+    /^NOVO EM \d{2}\/\d{2}\/\d{4}/i,
+    /^RETIRADO EM \d{2}\/\d{2}\/\d{4}:/i,
+];
+const linhaDeMudanca = (texto, cor = '8A6D00') => new Paragraph({
+    spacing: { before: 0, after: 160 },
+    indent: { left: 360 },
+    children: [new TextRun({ text: texto, size: 18, italics: true, color: cor })],
+});
 
 /** Rotulo de papel do campo: versalete cinza, acima do grupo de paragrafos. */
 const rotuloDePapel = (papel) => new Paragraph({
@@ -534,6 +652,9 @@ function montarDocumento(tema, dados, manifesto) {
                     };
                 }
             }
+            if (bloco.novoInteiro && tema.dataMudancas) {
+                filhos.push(linhaDeMudanca(`NOVO EM ${tema.dataMudancas} — este item inteiro nao existia antes.`, VERDE));
+            }
             let papelAnterior = null;
             for (const t of bloco.textos) {
                 const papel = PAPEL_DO_CAMPO[t.chave] || null;
@@ -541,6 +662,11 @@ function montarDocumento(tema, dados, manifesto) {
                 papelAnterior = papel;
                 const codigo = `${tema.sigla}-${String(++sequencia).padStart(4, '0')}`;
                 filhos.push(paragrafoDeTexto(codigo, t.texto));
+                if (tema.dataMudancas && t.antes) {
+                    filhos.push(linhaDeMudanca(`ANTES (até ${tema.dataMudancas}): ${t.antes.replace(/\n/g, ' / ')}`));
+                } else if (tema.dataMudancas && t.novo && !bloco.novoInteiro) {
+                    filhos.push(linhaDeMudanca(`NOVO EM ${tema.dataMudancas} — este texto nao existia.`, VERDE));
+                }
                 manifesto[codigo] = {
                     arquivo: fonte.arquivo,
                     rotulo: fonte.rotulo,
@@ -549,6 +675,19 @@ function montarDocumento(tema, dados, manifesto) {
                     linha: t.linha,
                     original: t.texto,
                 };
+            }
+            for (const r of bloco.retirados || []) {
+                filhos.push(linhaDeMudanca(`RETIRADO EM ${tema.dataMudancas}: ${r.replace(/\n/g, ' / ')}`, 'B42318'));
+            }
+        }
+        for (const ret of fonte.itensRetirados || []) {
+            filhos.push(new Paragraph({
+                heading: HeadingLevel.HEADING_2,
+                spacing: { before: 280, after: 120 },
+                children: [new TextRun({ text: ret.item, size: 26, bold: true, color: 'B42318' })],
+            }));
+            for (const r of ret.textos) {
+                filhos.push(linhaDeMudanca(`RETIRADO EM ${tema.dataMudancas}: ${r.replace(/\n/g, ' / ')}`, 'B42318'));
             }
         }
     }
@@ -665,13 +804,24 @@ async function principal() {
 
     for (const tema of TEMAS) {
         const dados = [];
+        const opcoes = { chavesExtras: tema.chavesExtras, titulosExtras: tema.titulosExtras };
         for (const fonte of tema.fontes) {
-            const r = extrair(fonte.arquivo);
+            const r = extrair(fonte.arquivo, opcoes);
             if (r.ausente) {
                 console.warn(`  ! ausente: ${fonte.arquivo}`);
                 continue;
             }
-            dados.push({ ...fonte, blocos: r.blocos });
+            const entrada = { ...fonte, blocos: r.blocos };
+            if (tema.base) {
+                let antigo = null;
+                try {
+                    antigo = execFileSync('git', ['show', `${tema.base}:${fonte.arquivo}`],
+                        { cwd: RAIZ, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+                } catch { /* arquivo nao existia na base: tudo e novo */ }
+                const antes = antigo ? extrair(fonte.arquivo, opcoes, antigo).blocos : [];
+                entrada.itensRetirados = anotarMudancas(antes, r.blocos);
+            }
+            dados.push(entrada);
         }
         const doc = montarDocumento(tema, dados, manifesto);
         const nome = `${tema.sigla}-${tema.nome.replace(/\s+/g, '-')}.docx`;
@@ -733,6 +883,28 @@ async function principal() {
         console.log(`  ${nome.padEnd(34)} ${String(n).padStart(4)} textos`);
     }
 
+    // Documento PRESERVADO continua com os codigos que tem impressos. Regerar
+    // o manifesto dele a partir do codigo de hoje desalinharia a volta.
+    //
+    // MOTIVO (19/10/2026): ao gerar o RC, o manifesto inteiro foi reescrito e
+    // no AE nenhum codigo continuou apontando para o mesmo texto — o .docx do
+    // Agnaldo e o manifesto passaram a falar de coisas diferentes.
+    let manifestoAnterior = {};
+    try { manifestoAnterior = JSON.parse(fs.readFileSync(path.join(DESTINO, '_manifesto.json'), 'utf8')); } catch { /* primeiro uso */ }
+    const siglasPreservadas = TEMAS
+        .filter((t) => preservados.includes(`${t.sigla}-${t.nome.replace(/\s+/g, '-')}.docx`))
+        .map((t) => `${t.sigla}-`);
+    for (const k of Object.keys(manifesto)) {
+        if (siglasPreservadas.some((s) => k.startsWith(s))) delete manifesto[k];
+    }
+    for (const [k, v] of Object.entries(manifestoAnterior)) {
+        if (siglasPreservadas.some((s) => k.startsWith(s))) manifesto[k] = v;
+    }
+    // Codigos de outros geradores (NV, RS) que este script nao conhece ficam.
+    for (const [k, v] of Object.entries(manifestoAnterior)) {
+        if (!TEMAS.some((t) => k.startsWith(`${t.sigla}-`)) && !(k in manifesto)) manifesto[k] = v;
+    }
+
     fs.writeFileSync(
         path.join(DESTINO, '_manifesto.json'),
         JSON.stringify(manifesto, null, 2),
@@ -787,4 +959,4 @@ if (require.main === module) {
 // Exportado para o importador: `importar_revisao_conteudo.js` precisa saber
 // quais paragrafos sao rotulo de papel deste gerador, e nao texto do revisor.
 // Sem isto, "ITENS" e "DESCRICAO" entram como inclusao humana.
-module.exports = { PAPEL_DO_CAMPO, TEMAS, extrair, montarDocumento };
+module.exports = { PAPEL_DO_CAMPO, MARCAS_DE_MUDANCA, TEMAS, extrair, montarDocumento };
