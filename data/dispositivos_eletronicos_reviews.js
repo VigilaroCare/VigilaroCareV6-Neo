@@ -53,6 +53,10 @@ export const DISPOSITIVOS_ELETRONICOS_REVIEWS = [
             'Avoid using your phone while it charges — it produces more heat and wears the battery',
         ],
         oQueFazer: 'Se o carregador começar a soltar fumaça ou cheiro de queimado: desconecte da tomada imediatamente (se seguro) ou desligue o disjuntor. Afaste materiais inflamáveis. Se houver chamas, saia e ligue para os bombeiros ({{FIRE_NUMBER}}).', oQueFazer_ptpt: 'Se o carregador começar a deitar fumo ou cheiro a queimado: desligue-o da tomada de imediato (se for seguro) ou desligue o disjuntor. Afaste materiais inflamáveis. Se houver chamas, saia e ligue para os bombeiros ({{FIRE_NUMBER}}).', oQueFazer_es: 'Si el cargador empieza a echar humo u olor a quemado: desenchúfelo de inmediato (si es seguro) o baje el interruptor general. Aleje los materiales inflamables. Si hay llamas, salga y llame a los bomberos ({{FIRE_NUMBER}}).', oQueFazer_en: 'If the charger starts giving off smoke or a burning smell: unplug it at once (if safe) or switch off the circuit breaker. Move flammable materials away. If there are flames, get out and call the fire service ({{FIRE_NUMBER}}).',
+        estatistica: 'Num teste encomendado pelo Trading Standards do Reino Unido, 397 de 400 carregadores falsificados de iPhone falharam no ensaio de isolamento contra choque elétrico (UL, 2016).',
+        estatistica_en: 'In a test commissioned by UK Trading Standards, 397 of 400 counterfeit iPhone chargers failed the insulation test against electric shock (UL, 2016).',
+        estatistica_es: 'En una prueba encargada por Trading Standards del Reino Unido, 397 de 400 cargadores falsificados de iPhone no superaron el ensayo de aislamiento contra descargas eléctricas (UL, 2016).',
+        estatistica_ptpt: 'Num teste encomendado pelo Trading Standards do Reino Unido, 397 de 400 carregadores contrafeitos de iPhone falharam o ensaio de isolamento contra choque elétrico (UL, 2016).',
     },
     {
         id: 'extensoes_filtros',
