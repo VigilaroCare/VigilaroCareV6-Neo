@@ -2875,8 +2875,6 @@
             "moradia": "📍 Habitação: ",
             "pendente": "Pendente",
             "fichaDeSaudeIncompleta": "Ficha de Saúde Incompleta",
-            "paraObterRecomendacoesEUmRelatorio": "Para obter recomendações e um relatório de prevenção personalizado para ",
-            "informeAsMedicacoesEnfermidadesELimitaco": ", informe as medicações, enfermidades e limitações físicas/cognitivas.",
             "completarFichaDeSaude": "Completar Ficha de Saúde",
             "configuracaoInicialPendente": "Configuração Inicial Pendente",
             "paraGerarAPrevencaoPersonalizadaPrecisam": "Para gerar a prevenção personalizada, precisamos de:",
@@ -2891,7 +2889,9 @@
             "analisePersonalizadaIndisponivelOfflineC": "Análise personalizada indisponível offline. Conecte-se à internet para gerar.",
             "naoFoiPossivelCarregarAAnalise": "Não foi possível carregar a análise inteligente.",
             "tentarNovamente": "Tentar novamente",
-            "recomendado": "Recomendado"
+            "recomendado": "Recomendado",
+            "fichaIncompletaTexto": "Para obter recomendações e um relatório de prevenção personalizados para {{nome}}, indique as medicações, doenças e limitações físicas/cognitivas.",
+            "oMorador": "o morador"
         },
         "EscolaSeguraReportScreen": {
             "escolaSegura": "Escola segura",

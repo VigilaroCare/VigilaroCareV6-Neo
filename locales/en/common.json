@@ -2875,8 +2875,6 @@
             "moradia": "📍 Home: ",
             "pendente": "Pending",
             "fichaDeSaudeIncompleta": "Incomplete Health Record",
-            "paraObterRecomendacoesEUmRelatorio": "To get recommendations and a personalized prevention report for ",
-            "informeAsMedicacoesEnfermidadesELimitaco": ", add their medications, illnesses and physical/cognitive limitations.",
             "completarFichaDeSaude": "Complete Health Record",
             "configuracaoInicialPendente": "Initial Setup Pending",
             "paraGerarAPrevencaoPersonalizadaPrecisam": "To generate personalized prevention, we need:",
@@ -2891,7 +2889,9 @@
             "analisePersonalizadaIndisponivelOfflineC": "Personalized analysis is not available offline. Connect to the internet to generate it.",
             "naoFoiPossivelCarregarAAnalise": "Could not load the smart analysis.",
             "tentarNovamente": "Try again",
-            "recomendado": "Recommended"
+            "recomendado": "Recommended",
+            "fichaIncompletaTexto": "To get recommendations and a personalized prevention report for {{nome}}, add their medications, illnesses and physical/cognitive limitations.",
+            "oMorador": "this person"
         },
         "EscolaSeguraReportScreen": {
             "escolaSegura": "Safe school",

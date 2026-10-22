@@ -522,51 +522,51 @@ const PAPEL_DO_CAMPO = {
     primeirosSocorros: 'PRIMEIROS SOCORROS',
     'comoEvitar[]': 'COMO EVITAR',
     'comoIdentificar[]': 'COMO IDENTIFICAR',
-    'prevencao[]': 'PREVENCAO',
-    'orientacoes[]': 'ORIENTACOES',
+    'prevencao[]': 'PREVENÇÃO',
+    'orientacoes[]': 'ORIENTAÇÕES',
     'alertas[]': 'ALERTAS',
     'keyPoints[]': 'PONTOS-CHAVE',
     'steps[]': 'PASSOS',
     'itens[]': 'ITENS',
     'items[]': 'ITENS',
-    'caracteristicas[]': 'CARACTERISTICAS',
+    'caracteristicas[]': 'CARACTERÍSTICAS',
     'fatoresRisco[]': 'FATORES DE RISCO',
     'riscos[]': 'RISCOS',
     'detalhes[]': 'DETALHES',
     'regras_passageiro[]': 'REGRAS PARA O PASSAGEIRO',
     'perguntas_sugeridas[]': 'PERGUNTAS SUGERIDAS',
-    consequence: 'CONSEQUENCIA SE NAO FOR RESOLVIDO',
+    consequence: 'CONSEQUÊNCIA SE NÃO FOR RESOLVIDO',
     checkAction: 'O QUE VERIFICAR',
     riskDetails: 'DETALHE DO RISCO',
     importancia: 'POR QUE IMPORTA',
-    definicao: 'DEFINICAO',
+    definicao: 'DEFINIÇÃO',
     expert_tip: 'DICA DO ESPECIALISTA',
-    estatisticas: 'ESTATISTICAS',
+    estatisticas: 'ESTATÍSTICAS',
     quando_parar: 'QUANDO PARAR',
     ondeAndar: 'ONDE ANDAR',
     contexto: 'CONTEXTO',
     resumo: 'RESUMO',
     summary: 'RESUMO',
     detalhes: 'DETALHES',
-    descricao: 'DESCRICAO',
-    description: 'DESCRICAO',
-    desc: 'DESCRICAO',
-    intro: 'INTRODUCAO',
+    descricao: 'DESCRIÇÃO',
+    description: 'DESCRIÇÃO',
+    desc: 'DESCRIÇÃO',
+    intro: 'INTRODUÇÃO',
     // tag_guidance: horizonte de tempo da consequencia se o ponto nao for
     // resolvido. Sem o rotulo, os tres textos parecem variacoes do mesmo.
-    curto: 'SE NAO RESOLVER — CURTO PRAZO',
-    medio: 'SE NAO RESOLVER — MEDIO PRAZO',
-    longo: 'SE NAO RESOLVER — LONGO PRAZO',
+    curto: 'SE NÃO RESOLVER — CURTO PRAZO',
+    medio: 'SE NÃO RESOLVER — MÉDIO PRAZO',
+    longo: 'SE NÃO RESOLVER — LONGO PRAZO',
     // Revisao Complementar (RC): campos dos reviews e das telas de lazer/viagem.
     oQueFazer: 'O QUE FAZER',
     riscos: 'RISCOS',
     'riscosPrincipais[]': 'RISCOS PRINCIPAIS',
-    'emergencias[]': 'EM CASO DE EMERGENCIA',
+    'emergencias[]': 'EM CASO DE EMERGÊNCIA',
     'dicasExtras[]': 'DICAS EXTRAS',
-    'bullets[]': 'PONTOS DE ATENCAO',
+    'bullets[]': 'PONTOS DE ATENÇÃO',
     'exemplos[]': 'EXEMPLOS',
-    estatistica: 'VOCE SABIA? (ESTATISTICA)',
-    situacao: 'SITUACAO',
+    estatistica: 'VOCÊ SABIA? (ESTATÍSTICA)',
+    situacao: 'SITUAÇÃO',
     // Intoxicacao e Incendio (II): animais peconhentos, plantas toxicas, pets.
     // fazer[] e naoFazer[] SEM rotulo sairiam como paragrafos iguais — o erro
     // que inverte a orientacao de socorro (ver o comentario no inicio do mapa).
@@ -577,23 +577,23 @@ const PAPEL_DO_CAMPO = {
     'graves[]': 'SINAIS DE GRAVIDADE',
     efeito: 'EFEITO DO VENENO',
     tipoVeneno: 'TIPO DE VENENO',
-    periodoAtivo: 'QUANDO E MAIS ATIVO',
+    periodoAtivo: 'QUANDO É MAIS ATIVO',
     tratamento: 'TRATAMENTO',
     gravidade: 'GRAVIDADE',
-    nivelPerigo: 'NIVEL DE PERIGO',
+    nivelPerigo: 'NÍVEL DE PERIGO',
     habitat: 'ONDE VIVE',
     comportamento: 'COMPORTAMENTO',
     'sintomasHumanos[]': 'SINTOMAS EM PESSOAS',
     'sintomasPets[]': 'SINTOMAS EM PETS',
-    'partesToxicas[]': 'PARTES TOXICAS',
-    ondeEncontrada: 'ONDE E ENCONTRADA',
+    'partesToxicas[]': 'PARTES TÓXICAS',
+    ondeEncontrada: 'ONDE É ENCONTRADA',
     toxina: 'TOXINA',
     detalhe: 'DETALHE',
     risco: 'RISCO',
-    'peconhentos[]': 'ESPECIES PECONHENTAS NO ESTADO',
+    'peconhentos[]': 'ESPÉCIES PEÇONHENTAS NO ESTADO',
     // CK: a pergunta da vistoria (campo `titulo` lido como texto)
     titulo: 'PERGUNTA DA VISTORIA',
-    'naoPeconhentos[]': 'ESPECIES NAO PECONHENTAS NO ESTADO',
+    'naoPeconhentos[]': 'ESPÉCIES NÃO PEÇONHENTAS NO ESTADO',
 };
 
 // ---------------------------------------------------------------------------
@@ -720,6 +720,11 @@ function extrair(relativo, opcoes = {}, codigo = null) {
             if (!texto || !/[a-zA-ZÀ-ÿ]/.test(texto)) return;
             if (NAO_E_PROSA.test(texto)) return;
             if (dentroDeBlocoTraduzido(caminho)) return;
+            // Listas de palavras-chave de busca (ex.: SEARCH_ALIASES dos Primeiros
+            // Socorros) nao sao texto que o usuario le — o Agnaldo marcou no RK
+            // ("isso esta incorreto") quando apareceram para revisao.
+            const decl = caminho.findParent((x) => x.isVariableDeclarator());
+            if (decl && decl.node.id && /ALIAS|SINONIMO|KEYWORD|PALAVRAS_CHAVE/i.test(decl.node.id.name || '')) return;
 
             const { chave, emArray } = chaveDoTexto(caminho);
             if (!chave) return;

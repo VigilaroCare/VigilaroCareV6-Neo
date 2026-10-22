@@ -195,7 +195,11 @@ const RX_CODIGO = /^\s*([A-Z]{2}-\d{4})\b[\s ]*([\s\S]*)$/;
  * sincronia na primeira vez que alguem acrescentar um campo lá.
  */
 const { PAPEL_DO_CAMPO, MARCAS_DE_MUDANCA } = require('./gerar_revisao_conteudo.js');
-const ROTULOS_DO_GERADOR = new Set(Object.values(PAPEL_DO_CAMPO));
+// Comparado sem acento e sem caixa: documentos antigos saíram com rótulo sem
+// acento ("SITUACAO") e o revisor pode acentuar à mão ("SITUAÇÃO") — continua
+// sendo rótulo do gerador, não texto novo.
+const semAcento = (x) => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
+const ROTULOS_DO_GERADOR = new Set(Object.values(PAPEL_DO_CAMPO).map(semAcento));
 
 const ABERTURA_DO_GERADOR = [
     /^VIGILARO CARE/i,
@@ -215,7 +219,7 @@ const RX_PSTYLE_CABECALHO = /<w:pStyle\s+w:val="(?:Heading\d|T[íi]?tulo\d?|Ttul
 
 const ehEstruturaDoGerador = (texto) => {
     const t = texto.trim();
-    if (ROTULOS_DO_GERADOR.has(t)) return true;
+    if (ROTULOS_DO_GERADOR.has(semAcento(t))) return true;
     // Linhas "ANTES / NOVO / RETIRADO" da Revisao Complementar: referencia,
     // nao texto do revisor.
     if ((MARCAS_DE_MUDANCA || []).some((rx) => rx.test(t))) return true;

@@ -437,7 +437,7 @@ export default function ProfileRiskSummaryScreen() {
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={s.healthNoticeTitle}>{t('telas.ProfileRiskSummaryScreen.fichaDeSaudeIncompleta', 'Ficha de Saúde Incompleta')}</Text>
-                                    <Text style={s.healthNoticeText}>{t('telas.ProfileRiskSummaryScreen.paraObterRecomendacoesEUmRelatorio', 'Para obter recomendações e um relatório de prevenção 100% personalizado para ')}{profile?.nome || 'o morador'}{t('telas.ProfileRiskSummaryScreen.informeAsMedicacoesEnfermidadesELimitaco', ', informe as medicações, enfermidades e limitações físicas/cognitivas.')}</Text>
+                                    <Text style={s.healthNoticeText}>{t('telas.ProfileRiskSummaryScreen.fichaIncompletaTexto', { nome: profile?.nome || t('telas.ProfileRiskSummaryScreen.oMorador', 'o morador'), defaultValue: 'Para obter recomendações e um relatório de prevenção personalizados para {{nome}}, informe as medicações, enfermidades e limitações físicas/cognitivas.' })}</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
