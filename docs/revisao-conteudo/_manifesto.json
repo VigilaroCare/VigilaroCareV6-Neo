@@ -1,4 +1,44 @@
 {
+  "GR-0001": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Televisores de Tela Plana",
+    "chave": "prevencao[]",
+    "linha": 181,
+    "original": "Guarde o controle remoto longe das crianças e confira se a tampa das pilhas está firme — pilhas pequenas podem ser engolidas por crianças ou confundidas com comprimidos por pessoas com limitações cognitivas"
+  },
+  "GR-0002": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "br",
+    "item": "Verão: afogamento infantil",
+    "chave": "orientacoes[]",
+    "linha": 25,
+    "original": "Crianças no espectro autista costumam se sentir atraídas pela água e podem sair sem avisar: portão da piscina sempre trancado e atenção redobrada a portas e janelas."
+  },
+  "GR-0003": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "br",
+    "item": "Calor extremo: bebês, idosos e pets primeiro",
+    "chave": "orientacoes[]",
+    "linha": 274,
+    "original": "Ofereça água ao idoso e a quem tem limitações cognitivas em horários marcados — não espere a sede."
+  },
+  "GR-0004": {
+    "arquivo": "data/radarSazonal/gb.js",
+    "rotulo": "gb",
+    "item": "Inverno: frio e monóxido de carbono",
+    "chave": "orientacoes[]",
+    "linha": 26,
+    "original": "Gelo na calçada: calçado antiderrapante para idosos e pessoas com mobilidade reduzida, e sal ou areia na entrada de casa."
+  },
+  "GR-0005": {
+    "arquivo": "data/radarSazonal/gb.js",
+    "rotulo": "gb",
+    "item": "Verão: alertas de saúde por calor",
+    "chave": "orientacoes[]",
+    "linha": 161,
+    "original": "Ligue para parentes idosos ou com deficiência que moram sozinhos."
+  },
   "GS-0001": {
     "arquivo": "data/knowledge_prevencao.js",
     "rotulo": "Central de Conhecimento",

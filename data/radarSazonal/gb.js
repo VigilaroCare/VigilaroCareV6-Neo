@@ -23,19 +23,19 @@ export const JANELAS_GB = [
       "Maiores de 65 anos ou com doença crônica: aqueça os cômodos mais usados a pelo menos 18 °C.",
       "Alarme de monóxido de carbono em cada cômodo com aparelho a gás, lenha ou carvão.",
       "Caldeira revisada todo ano por técnico registrado no Gas Safe Register.",
-      "Gelo na calçada: calçado antiderrapante para idosos, e sal ou areia na entrada de casa."
+      "Gelo na calçada: calçado antiderrapante para idosos e pessoas com mobilidade reduzida, e sal ou areia na entrada de casa."
     ],
     orientacoes_en: [
       "Over-65s or people with a long-term condition: heat the rooms you use most to at least 18 °C.",
       "A carbon monoxide alarm in every room with a gas, wood or coal appliance.",
       "Boiler serviced every year by a Gas Safe registered engineer.",
-      "Icy paths: non-slip footwear for older people, and grit or sand by the front door."
+      "Icy paths: non-slip footwear for older people and anyone with reduced mobility, and grit or sand by the front door."
     ],
     orientacoes_es: [
       "Mayores de 65 años o con enfermedad crónica: caliente las habitaciones más usadas a al menos 18 °C.",
       "Alarma de monóxido de carbono en cada habitación con aparato de gas, leña o carbón.",
       "Caldera revisada cada año por un técnico registrado en Gas Safe Register.",
-      "Hielo en la acera: calzado antideslizante para mayores, y sal o arena en la entrada."
+      "Hielo en la acera: calzado antideslizante para personas mayores o con movilidad reducida, y sal o arena en la entrada."
     ],
     fonte: "UKHSA — Weather-Health Alerting System; Gas Safe Register"
   },
@@ -158,19 +158,19 @@ export const JANELAS_GB = [
     orientacoes: [
       "Hidratação ao longo do dia; evite o sol nas horas mais quentes.",
       "Cortinas fechadas nas janelas que pegam sol; ventile à noite.",
-      "Ligue para parentes idosos que moram sozinhos.",
+      "Ligue para parentes idosos ou com deficiência que moram sozinhos.",
       "Nunca deixe crianças ou animais em carro estacionado."
     ],
     orientacoes_en: [
       "Stay hydrated through the day; avoid the sun in the hottest hours.",
       "Close curtains on sun-facing windows; ventilate at night.",
-      "Call older relatives who live alone.",
+      "Call older or disabled relatives who live alone.",
       "Never leave children or animals in a parked car."
     ],
     orientacoes_es: [
       "Hidrátese durante el día; evite el sol en las horas de más calor.",
       "Cortinas cerradas en las ventanas al sol; ventile de noche.",
-      "Llame a los familiares mayores que viven solos.",
+      "Llame a los familiares mayores o con discapacidad que viven solos.",
       "Nunca deje niños ni animales en un auto estacionado."
     ],
     fonte: "UKHSA — Heat-Health Alerts"

@@ -22,6 +22,7 @@ export const JANELAS_BR = [
     orientacoes: [
       "Escolha um adulto “vigia da água” por turno, sem celular, ao alcance do braço da criança pequena.",
       "Piscina cercada por todos os lados, com portão que fecha e trava sozinho.",
+      "Crianças no espectro autista costumam se sentir atraídas pela água e podem sair sem avisar: portão da piscina sempre trancado e atenção redobrada a portas e janelas.",
       "Esvazie baldes e bacias e vire de boca para baixo; tampa do vaso sanitário fechada.",
       "Boia e braçadeira não salvam vidas: só colete salva-vidas aprovado, e com supervisão.",
       "Piscina inflável: esvazie depois de cada uso."
@@ -29,6 +30,7 @@ export const JANELAS_BR = [
     orientacoes_en: [
       "Name one adult “water watcher” per shift, no phone, within arm's reach of young children.",
       "Pool fenced on all sides, with a self-closing, self-latching gate.",
+      "Autistic children are often drawn to water and may wander off: keep the pool gate locked at all times and take extra care with doors and windows.",
       "Empty buckets and basins and turn them upside down; keep the toilet lid closed.",
       "Floats and armbands do not save lives: only an approved life jacket, and with supervision.",
       "Inflatable pool: empty it after every use."
@@ -36,6 +38,7 @@ export const JANELAS_BR = [
     orientacoes_es: [
       "Designe un adulto “vigía del agua” por turno, sin celular, al alcance del brazo de los niños pequeños.",
       "Piscina cercada por todos los lados, con puerta que se cierra y traba sola.",
+      "Los niños en el espectro autista suelen sentirse atraídos por el agua y pueden salir sin avisar: puerta de la piscina siempre cerrada con traba y atención redoblada a puertas y ventanas.",
       "Vacíe cubos y palanganas y póngalos boca abajo; tapa del inodoro cerrada.",
       "Flotadores y manguitos no salvan vidas: solo chaleco salvavidas aprobado, y con supervisión.",
       "Piscina inflable: vacíela después de cada uso."
@@ -268,19 +271,19 @@ export const JANELAS_BR = [
     resumo_en: "Heatwaves now happen outside summer too. Older adults feel less thirst, babies dehydrate fast, and a closed car in the sun becomes an oven within minutes.",
     resumo_es: "Las olas de calor ya ocurren fuera del verano. Las personas mayores sienten menos sed, los bebés se deshidratan rápido y un auto cerrado al sol se vuelve un horno en minutos.",
     orientacoes: [
-      "Ofereça água ao idoso em horários marcados — não espere a sede.",
+      "Ofereça água ao idoso e a quem tem limitações cognitivas em horários marcados — não espere a sede.",
       "NUNCA deixe criança ou pet no carro, nem “só um minuto”. Deixe a bolsa ou o celular no banco de trás, junto da cadeirinha.",
       "Passeio com cachorro só cedo ou à noite: asfalto quente queima as patas.",
       "Confusão, desmaio ou pele quente e seca: é emergência — ligue para {{EMERGENCY_MEDICAL}}."
     ],
     orientacoes_en: [
-      "Offer older adults water at set times — do not wait for thirst.",
+      "Offer water at set times to older adults and to people with cognitive impairments — do not wait for thirst.",
       "NEVER leave a child or pet in the car, not even “for a minute”. Put your bag or phone on the back seat next to the car seat.",
       "Walk dogs only early or late: hot asphalt burns their paws.",
       "Confusion, fainting or hot, dry skin: it is an emergency — call {{EMERGENCY_MEDICAL}}."
     ],
     orientacoes_es: [
-      "Ofrezca agua a la persona mayor a horas fijas — no espere a que tenga sed.",
+      "Ofrezca agua a horas fijas a las personas mayores y a quienes tienen limitaciones cognitivas — no espere a que tengan sed.",
       "NUNCA deje a un niño o una mascota en el auto, ni “un minuto”. Ponga el bolso o el celular en el asiento trasero, junto a la silla.",
       "Pasee al perro solo temprano o de noche: el asfalto caliente quema las patas.",
       "Confusión, desmayo o piel caliente y seca: es una emergencia — llame a {{EMERGENCY_MEDICAL}}."

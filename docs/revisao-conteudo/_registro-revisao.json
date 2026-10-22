@@ -52,6 +52,10 @@
   "m013": {
    "texto": "Redigido a partir de comentario do Agnaldo na revisao de 22/10/2026 (RS) - ele ainda nao viu a redacao final",
    "em": "2026-10-22"
+  },
+  "m014": {
+   "texto": "Grupos sensiveis, 2a rodada: textos que estavam nos documentos em revisao (RP, PN, TC, RS), liberados em 22/10/2026",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -1210,6 +1214,11 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "15388f6b2f7edbb9": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m014"
+  ],
   "1558d71c3413eb89": [
    "pendente",
    "data/knowledge_prevencao.js",
@@ -1979,6 +1988,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "23b95cbd4d993cfd": [
+   "pendente",
+   "data/radarSazonal/gb.js",
+   "m014"
   ],
   "23cfe63a0e7559eb": [
    "pendente",
@@ -3114,11 +3128,6 @@
    "pendente",
    "data/ferramentas_seguranca.js",
    "m010"
-  ],
-  "353f27fb01026d18": [
-   "pendente",
-   "data/dispositivos_eletronicos_reviews.js",
-   "m005"
   ],
   "353f28284c11b1a9": [
    "pendente",
@@ -5389,6 +5398,11 @@
    "pendente",
    "data/kits/bagagem_viagem.js",
    "m010"
+  ],
+  "58175e92283c6d88": [
+   "pendente",
+   "data/radarSazonal/gb.js",
+   "m014"
   ],
   "5838a6064cdab5c7": [
    "pendente",
@@ -14980,6 +14994,11 @@
    "data/radarSazonal/index.js",
    "m010"
   ],
+  "f78e3df7ada9d414": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m014"
+  ],
   "f79dc42eaac1bcb3": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -15319,6 +15338,11 @@
    "pendente",
    "data/fases_vida.js",
    "m004"
+  ],
+  "fd99fe6b2d9af49b": [
+   "pendente",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m014"
   ],
   "fdad4488d5fab287": [
    "pendente",

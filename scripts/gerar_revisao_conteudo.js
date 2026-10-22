@@ -251,6 +251,19 @@ const TEMAS = [
             + '(13.146/2015). Abaixo de cada texto, a linha "ANTES" mostra como estava.',
         fontes: [],
     },
+    // GR — 2a rodada do GS: os textos que estavam nos documentos em revisao
+    // (RP, PN, TC, RS) so podiam mudar depois que voltassem (22/10/2026).
+    {
+        nome: 'Grupos Sensiveis 2a Rodada',
+        sigla: 'GR',
+        pendentes: ['m014'],
+        marcarMudancas: false,
+        antes: '_antes-GR.json',
+        dataMudancas: '22/10/2026',
+        descricao: 'Mesma passada do documento GS, nos textos que estavam com voce em revisao. Abaixo de '
+            + 'cada texto alterado, a linha "ANTES" mostra como estava; texto que nao existia vem marcado "NOVO".',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -941,6 +954,7 @@ function filtrarPendentes(blocos, arquivo, selecao) {
             for (const t of textos) {
                 const anterior = selecao.antes[impressao(t.texto)];
                 if (anterior) t.antes = anterior;
+                else t.novo = true;
             }
         }
         for (const t of selecao.marcarMudancas ? textos : []) {
