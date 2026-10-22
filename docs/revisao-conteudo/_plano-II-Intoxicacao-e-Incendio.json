@@ -1,0 +1,25 @@
+{
+  "documento": "II-Intoxicacao-e-Incendio.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T04:04:01.520Z",
+  "coerencia": {
+    "lidos": 954,
+    "intactos": 953,
+    "taxa": 0.999
+  },
+  "editados": [
+    {
+      "arquivo": "data/animais_ciatox.js",
+      "rotulo": "Animais peconhentos",
+      "item": "Jararaca",
+      "chave": "comportamento",
+      "linha": 26,
+      "original": "Geralmente não é agressiva, mas ataca quando se sente ameaçada. Mais ativa ao entardecer e à noite.",
+      "codigo": "II-0004",
+      "novo": "Geralmente não é agressiva, mas ataca quando se sente ameaçada. Mas ativa ao entardecer e à noite."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}
