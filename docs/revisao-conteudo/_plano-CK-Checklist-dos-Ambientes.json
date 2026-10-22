@@ -1,0 +1,400 @@
+{
+  "documento": "CK-Checklist-dos-Ambientes.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T17:51:27.667Z",
+  "coerencia": {
+    "lidos": 324,
+    "intactos": 297,
+    "taxa": 0.9167
+  },
+  "editados": [
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Oficina / Ateliê",
+      "chave": "descricao",
+      "linha": 337,
+      "original": "Ferramentas afiadas longe de crianças. Ventilação adequada.",
+      "codigo": "CK-0026",
+      "novo": "Ferramentas afiadas longe de crianças. Ventilação e iluminação adequadas."
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Prevenção de Queimaduras e Equipamentos Térmicos",
+      "chave": "titulo",
+      "linha": 554,
+      "original": "Você prioriza o uso das bocas traseiras do fogão durante o preparo?",
+      "codigo": "CK-0054",
+      "novo": "Você prioriza o uso das bocas traseiras do fogão durante o uso?",
+      "novoComMarcas": "Você prioriza o uso das bocas traseiras do fogão durante o REMOVER uso?"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Prevenção de Queimaduras e Equipamentos Térmicos",
+      "chave": "titulo",
+      "linha": 557,
+      "original": "Os cabos de Airfryers ou Fornos não ficam soltos ou pendurados para fora da bancada durante o uso (evitando puxões)?",
+      "codigo": "CK-0057",
+      "novo": "Os cabos de Airfryers ou Fornos não ficam soltos ou pendurados para fora da bancada durante o uso evitando que crianças alcancem?",
+      "novoComMarcas": "Os cabos de Airfryers ou Fornos não ficam soltos ou pendurados para fora da bancada durante o uso REMOVER evitando que crianças alcancem?"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Prevenção de Queimaduras e Equipamentos Térmicos",
+      "chave": "titulo",
+      "linha": 558,
+      "original": "As toalhas de mesa são curtas (evitando puxões ou quedas de líquidos quentes)?",
+      "codigo": "CK-0058",
+      "novo": "As toalhas de mesa são curtas (evitando puxões e derramamento de líquidos quentes)?",
+      "novoComMarcas": "As toalhas de mesa são curtas (evitando puxões e REMOVER derramamento de líquidos quentes)?"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Lâminas, Vidros e Eletroportáteis Rotativos",
+      "chave": "titulo",
+      "linha": 577,
+      "original": "Facas e tesouras guardadas em gavetas altas ou com travas magnéticas",
+      "codigo": "CK-0066",
+      "novo": "Facas e tesouras são guardadas em gavetas altas ou com travas magnéticas"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Lâminas, Vidros e Eletroportáteis Rotativos",
+      "chave": "titulo",
+      "linha": 578,
+      "original": "Vidros e louças quebradas descartados em caixas rígidas (ex: leite) antes do lixo",
+      "codigo": "CK-0067",
+      "novo": "Vidros e louças quebradas são descartados em caixas rígidas (ex: leite) antes do lixo"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Prevenção de Quedas",
+      "chave": "titulo",
+      "linha": 600,
+      "original": "Piso do box possui tapete de borracha antiderrapante",
+      "codigo": "CK-0073",
+      "novo": "Piso do box possui piso ou tapete de borracha antiderrapante"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Móveis e Layout",
+      "chave": "titulo",
+      "linha": 629,
+      "original": "Tapetes soltos removidos ou fixados com fita dupla face no chão",
+      "codigo": "CK-0086",
+      "novo": "Tapetes soltos removidos ou fixados com fita dupla face",
+      "novoComMarcas": "Tapetes soltos removidos ou fixados com fita dupla face REMOVER"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Móveis e Layout",
+      "chave": "titulo",
+      "linha": 630,
+      "original": "Existem rampas ou escadinhas para acesso aos móveis altos (sofá) para o pet?",
+      "codigo": "CK-0087",
+      "novo": "Existem rampas ou escadinhas para acesso aos móveis altos (sofá) para o pet idoso ou com limitações motoras?"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Móveis e Layout",
+      "chave": "titulo",
+      "linha": 631,
+      "original": "Os móveis mantêm uma disposição constante para facilitar a orientação espacial do pet cego ou com déficit cognitivo?",
+      "codigo": "CK-0088",
+      "novo": "Os móveis mantêm uma disposição permanente para facilitar a orientação espacial do pet cego ou com déficit cognitivo?",
+      "novoComMarcas": "Os móveis mantêm uma disposição REMOVER permanente para facilitar a orientação espacial do pet cego ou com déficit cognitivo?"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Elétrica e Janelas",
+      "chave": "titulo",
+      "linha": 640,
+      "original": "Carregadores de celular fora da tomada se não usados (risco bucal e de incêndio)",
+      "codigo": "CK-0092",
+      "novo": "Carregadores de celular fora da tomada se não usados (risco choque elétrico por mordida e de incêndio)",
+      "novoComMarcas": "Carregadores de celular fora da tomada se não usados (risco REMOVER choque elétrico por mordida e de incêndio)"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Barreiras Físicas",
+      "chave": "titulo",
+      "linha": 791,
+      "original": "Alarmes de detecção de movimento ativos instalados na superfície da água",
+      "codigo": "CK-0144",
+      "novo": "Alarmes de detecção de movimento ativos instalados na superfície da piscina",
+      "novoComMarcas": "Alarmes de detecção de movimento ativos instalados na superfície REMOVER da piscina"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Instalação",
+      "chave": "titulo",
+      "linha": 814,
+      "original": "Botijões protegidos de sol forte, chuva contínua e longe de ralos (para o gás não descer)",
+      "codigo": "CK-0152",
+      "novo": "Botijões protegidos de sol forte, chuva contínua e longe de ralos (o gás acumula em partes baixas)",
+      "novoComMarcas": "Botijões protegidos de sol forte, chuva contínua e longe de ralos (REMOVER o gás acumula em partes baixas REMOVER)"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Cuidado no Banho (Área Molhada)",
+      "chave": "titulo",
+      "linha": 839,
+      "original": "Banheira é esvaziada instantaneamente após o término do uso",
+      "codigo": "CK-0162",
+      "novo": "Banheira é esvaziada imediatamente após o uso",
+      "novoComMarcas": "Banheira é esvaziada imediatamente após REMOVER o uso"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Cuidado no Banho (Área Molhada)",
+      "chave": "titulo",
+      "linha": 840,
+      "original": "Criança tem supervisão ininterrupta durante 100% do tempo do banho",
+      "codigo": "CK-0163",
+      "novo": "Criança tem supervisão constante durante o banho",
+      "novoComMarcas": "Criança tem supervisão REMOVER constante durante REMOVER o REMOVER banho"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Proteção Ambiental e Gases",
+      "chave": "nome",
+      "linha": 858,
+      "original": "Proteção Ambiental e Gases",
+      "codigo": "CK-0167",
+      "novo": "Proteção Ambiental e Gases de Escapamento (CO)"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Proteção Pessoal (EPI)",
+      "chave": "titulo",
+      "linha": 925,
+      "original": "Uso padronizado de proteção ocular ao manipular produtos químicos em spray ou galhos finos",
+      "codigo": "CK-0191",
+      "novo": "Uso habitual de proteção ocular ao manipular produtos químicos em spray ou galhos finos",
+      "novoComMarcas": "Uso REMOVER habitual de proteção ocular ao manipular produtos químicos em spray ou galhos finos"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Ferramentas",
+      "chave": "titulo",
+      "linha": 938,
+      "original": "Serras e lâminas de corte cortantes estão devidamente trancadas",
+      "codigo": "CK-0194",
+      "novo": "Serras e lâminas cortantes estão devidamente trancadas",
+      "novoComMarcas": "Serras e lâminas REMOVER cortantes estão devidamente trancadas"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Ferramentas",
+      "chave": "titulo",
+      "linha": 940,
+      "original": "Uso de equipamento de Proteção Individual (óculos, luvas) sempre acessível",
+      "codigo": "CK-0196",
+      "novo": "Equipamento de Proteção Individual (óculos, luvas) sempre acessível",
+      "novoComMarcas": "REMOVER Equipamento de Proteção Individual (óculos, luvas) sempre acessível"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Blindagem de Altura",
+      "chave": "titulo",
+      "linha": 963,
+      "original": "Piso é antiderrapante (mesmo sendo molhado com chuva)",
+      "codigo": "CK-0204",
+      "novo": "Piso é antiderrapante (mesmo quando molhado)",
+      "novoComMarcas": "Piso é antiderrapante (mesmo REMOVER quando molhado REMOVER)"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Segurança Alimentar",
+      "chave": "titulo",
+      "linha": 986,
+      "original": "Grãos crus (feijão, milho) ficam trancados em potes (risco de asfixia/nariz)",
+      "codigo": "CK-0212",
+      "novo": "Grãos crus (feijão, milho) ficam trancados em potes (risco de asfixia, nariz, ouvido )"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Estrutura e Acesso",
+      "chave": "titulo",
+      "linha": 1037,
+      "original": "Piso do sótão é forrado adequadamente (sem risco de pisar em falso no gesso/forro)",
+      "codigo": "CK-0228",
+      "novo": "Piso do sótão é forrado adequadamente (sem risco queda ao pisar em falso no gesso/forro)"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Qualidade do Ar e Umidade",
+      "chave": "titulo",
+      "linha": 1067,
+      "original": "Ambiente livre de mofo negro e infiltrações severas nas paredes",
+      "codigo": "CK-0237",
+      "novo": "Ambiente livre de mofo e infiltrações severas nas paredes",
+      "novoComMarcas": "Ambiente livre de mofo REMOVER e infiltrações severas nas paredes"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Blindagem do Adulto",
+      "chave": "titulo",
+      "linha": 1099,
+      "original": "Objetos cortantes (alicate de unha, tesoura) são guardados de forma altamente segura e fechada",
+      "codigo": "CK-0249",
+      "novo": "Objetos cortantes (alicate de unha, tesoura) são guardados seguros e fechados",
+      "novoComMarcas": "Objetos cortantes (alicate de unha, tesoura) são guardados REMOVER seguros e fechados"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Ambiente e Abrigo",
+      "chave": "titulo",
+      "linha": 1116,
+      "original": "Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) foram removidas da área de acesso",
+      "codigo": "CK-0256",
+      "novo": "Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) ficam completamente inacessíveis ao animal",
+      "novoComMarcas": "Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) REMOVER ficam completamente inacessíveis ao animal"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Equipamentos de Proteção (EPIs)",
+      "chave": "titulo",
+      "linha": 1147,
+      "original": "Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados",
+      "codigo": "CK-0268",
+      "novo": "Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados/forros"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Prontidão Pet",
+      "chave": "titulo",
+      "linha": 1210,
+      "original": "Água e Ração estocadas sob medida preventiva de segurança em recipientes herméticos de 3 dias",
+      "codigo": "CK-0289",
+      "novo": "Água e Ração estocadas sob medida preventiva de segurança em recipientes herméticos para 3 dias"
+    }
+  ],
+  "removidos": [],
+  "novos": [
+    {
+      "depoisDe": "CK-0159",
+      "texto": "Balões estourados devem ser recolhidos e descartados imediatamente (risco de ingestão e asfixia)"
+    }
+  ],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Lazer na sala de estar? Não seria mais adequado brincadeiras? Desde que tenha contexto, claro"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Em vez de relaxante desde que tenha contexto, descanso não é mais adequado?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Área técnica? Não seria mais adequado área de serviços ou similar?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Contaminação não me parece correto. O que acha de presença ou atração?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Precisamos rever isso. Nos dias atuais todos os controles remotos de eletrônicos são com tampas deslizantes. Os controles de portões eletrônicos tem os que são fechados por pressão e encaixe e os de veículos são herméticos ou aparafusados. Convém adequações ao longo do app e contextualizado para regiões diferentes"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Soa muito estranho. Pode ser roçado por exemplo? Corrija por favor."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Encontrar palavra mais apropriada dentro do exato contexto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Já resolvemos ou nos adequamos a este item? Em todo app onde aplicável?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Merece mais clareza e contextualização."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Foi a primeira vez que isso nas revisões. Foi sub utilizado ou não temos mais contexto para isso? Ou se temos não ficará excessivo e repetitivo?Lembre que temos uma premissa que não sermos nem omisso e nem prolíxos"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "INMETRO ou outro órgão em países ou regiões fora do Brasil."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Comentei sobre isso logo acima. Padronizemos ao longo do app onde houver"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O correto gramaticalmente é fluido. Verifique outras ocorrências para correção."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "É mesmo este o contexto?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Há diferentes tipos de churrasqueiras de varanda, não necessariamente a gás."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Especificamente aranha marrom?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Cabe citar na falta de luz que se utilize lanterna do celular ou de mão? Novo item se for o caso"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Isso e comum no dia a dia? Não é um contexto excepcionalmente pouco provável? Conseguimos adequar ´realidade dos lares?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não seria mais indicado periodicamente?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Este final deixa o todo confuso."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Piso liso é o adequado mas pode ser propício a escorregões e quedas"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Se faz necessária alguma ressalva jurídica aqui? Ou em qualquer outro ponto do checklist e app de um modo geral?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Conteúdo não muito facil para pessoas mais simples"
+    }
+  ]
+}

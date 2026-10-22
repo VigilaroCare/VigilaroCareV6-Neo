@@ -1,0 +1,118 @@
+{
+  "documento": "AV-Textos-Avulsos.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T17:51:27.889Z",
+  "coerencia": {
+    "lidos": 280,
+    "intactos": 272,
+    "taxa": 0.9714
+  },
+  "editados": [
+    {
+      "arquivo": "data/epi_domestico.js",
+      "rotulo": "EPI domestico",
+      "item": "Proteção para a Cabeça",
+      "chave": "dica",
+      "linha": 29,
+      "original": "Mantenha um capacete simples em casa para emergências e pequenas obras.",
+      "codigo": "AV-0042",
+      "novo": "Mantenha um capacete simples em casa para emergências e pequenas serviços.",
+      "novoComMarcas": "Mantenha um capacete simples em casa para emergências e pequenas REMOVER serviços."
+    },
+    {
+      "arquivo": "data/epi_domestico.js",
+      "rotulo": "EPI domestico",
+      "item": "Proteção para os Olhos",
+      "chave": "dica",
+      "linha": 45,
+      "original": "Óculos graduados NÃO protegem. Use óculos de segurança sobre eles.",
+      "codigo": "AV-0044",
+      "novo": "Óculos graduados NÃO protegem. Use óculos de segurança sobre eles (ampla visão)."
+    },
+    {
+      "arquivo": "data/epi_domestico.js",
+      "rotulo": "EPI domestico",
+      "item": "Proteção para as Mãos",
+      "chave": "dica",
+      "linha": 75,
+      "original": "Tenha pelo menos um par de cada tipo em casa.",
+      "codigo": "AV-0046",
+      "novo": "Tenha pelo menos um par luvas de cada tipo em casa."
+    },
+    {
+      "arquivo": "data/epi_domestico.js",
+      "rotulo": "EPI domestico",
+      "item": "Proteção para o Corpo",
+      "chave": "dica",
+      "linha": 154,
+      "original": "Roupas soltas podem enroscar em ferramentas. Use roupas justas ao corpo.",
+      "codigo": "AV-0054",
+      "novo": "Roupas soltas podem enroscar em ferramentas rotatórias. Use roupas justas ao corpo."
+    },
+    {
+      "arquivo": "data/ferramentas_seguranca.js",
+      "rotulo": "Ferramentas de trabalho",
+      "item": "EPIs",
+      "chave": "text",
+      "linha": 10,
+      "original": "Sempre utilize os EPIs adequados (óculos, luvas, protetores auriculares). Eles são a última linha de defesa.",
+      "codigo": "AV-0084",
+      "novo": "Sempre utilize os EPIs adequados (óculos, luvas, protetores auriculares). Eles são a principal linha de defesa.",
+      "novoComMarcas": "Sempre utilize os EPIs adequados (óculos, luvas, protetores auriculares). Eles são a REMOVER principal linha de defesa."
+    },
+    {
+      "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
+      "rotulo": "FazendoAsMalasScreen",
+      "item": "Bagagem Aérea: o que pode e onde",
+      "chave": "intro",
+      "linha": 41,
+      "original": "Vai de avião? Estas regras evitam barreira no embarque. Mudaram em 2026 — confirme com a sua companhia.",
+      "codigo": "AV-0261",
+      "novo": "Vai de avião? Estas regras evitam problemas no embarque. Mudaram em 2026 — confirme com a sua companhia aérea."
+    },
+    {
+      "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
+      "rotulo": "FazendoAsMalasScreen",
+      "item": "Bagagem Aérea: o que pode e onde",
+      "chave": "regra",
+      "linha": 59,
+      "original": "Voo internacional: frascos de até 100 ml dentro de um saco plástico transparente de até 1 litro. No Brasil, o voo nacional não tem esse limite; na Europa, nos EUA e no Reino Unido, em geral ele vale para todos os voos. Exceções: remédio com receita, leite materno e papinha de bebê.",
+      "codigo": "AV-0263",
+      "novo": "Voo internacional: frascos de até 100 ml dentro de um saco plástico (de até 1 litro) transparente. No Brasil, o voo nacional não tem esse limite; na Europa, nos EUA e no Reino Unido, em geral ele vale para todos os voos. Exceções: remédio com receita, leite materno e papinha de bebê."
+    },
+    {
+      "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
+      "rotulo": "FazendoAsMalasScreen",
+      "item": "Bagagem Aérea: o que pode e onde",
+      "chave": "regra",
+      "linha": 78,
+      "original": "Tesoura, canivete e lâminas vão na bagagem despachada. Isqueiro: apenas um, levado com você — nunca na mala despachada.",
+      "codigo": "AV-0265",
+      "novo": "Tesoura, canivete e lâminas vão na bagagem despachada. Isqueiro: apenas um, levado com você — nunca na mala despachada nem no compartimento superior."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Ficou muito técnico"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Se for PT-BR o correto é de grau"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Neuro divergente etc, no contexto que já foi sinalizado anteriormente"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Contemplamos todo o território nacional? E em outros países?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Está previsto em viagens internacionais a tradução para o inglês, se necessário-aplicável?"
+    }
+  ]
+}
