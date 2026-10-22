@@ -1,0 +1,93 @@
+{
+  "documento": "RK-Retorno-CK-AV-IF.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T23:47:58.392Z",
+  "coerencia": {
+    "lidos": 176,
+    "intactos": 170,
+    "taxa": 0.9659
+  },
+  "editados": [
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Corredores internos ficam livres para circular",
+      "chave": "titulo",
+      "linha": 1005,
+      "original": "Corredores internos ficam livres para circular",
+      "codigo": "RK-0103",
+      "novo": "Corredores internos ficam livres para circulação"
+    },
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes (vistoria)",
+      "item": "Área do pet tem abrigo contra sol direto, chuva e vento forte",
+      "chave": "titulo",
+      "linha": 1119,
+      "original": "Área do pet tem abrigo contra sol direto, chuva e vento forte",
+      "codigo": "RK-0124",
+      "novo": "Área do pet tem abrigo contra sol, chuva e vento forte"
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+      "item": "Raios: proteção dentro e fora de casa",
+      "chave": "orientacoes[]",
+      "linha": 240,
+      "original": "Fora de casa, saia de campo aberto, praia, piscina, rio, laje e quadra; fique longe de árvores isoladas, cercas de arame e postes. Não solte pipa.",
+      "codigo": "RK-0137",
+      "novo": "Fora de casa, não permaneça em campo aberto, praia, piscina, rio, laje e quadra; fique longe de árvores isoladas, cercas de arame e postes. Não solte pipa.",
+      "novoComMarcas": "Fora de casa, REMOVER não permaneça em campo aberto, praia, piscina, rio, laje e quadra; fique longe de árvores isoladas, cercas de arame e postes. Não solte pipa."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+      "item": "Raios: proteção dentro e fora de casa",
+      "chave": "orientacoes[]",
+      "linha": 242,
+      "original": "Em casa, durante a tempestade: nada de banho de chuveiro elétrico, torneiras ou aparelhos ligados na tomada. Antes de ela chegar, tire da tomada os eletrônicos que puder.",
+      "codigo": "RK-0139",
+      "novo": "Em casa, durante a tempestade: nada de banho de chuveiro elétrico, torneiras ou aparelhos ligados na tomada. Ao sinal de tempestade, equipamentos eletrônicos tire da tomada."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+      "item": "Vendaval, granizo e ciclone no Sul",
+      "chave": "resumo",
+      "linha": 280,
+      "original": "No Sul, ciclones extratropicais e temporais trazem vento forte, granizo e queda de árvores e de fios. Em geral, a previsão chega com um ou dois dias de antecedência — dá tempo de preparar a casa.",
+      "codigo": "RK-0144",
+      "novo": "No Sul, ciclones extratropicais e temporais trazem vento forte, granizo e queda de árvores e de fios da rede elétrica. Em geral, a previsão chega com um ou dois dias de antecedência — dá tempo de preparar a casa."
+    },
+    {
+      "arquivo": "locales/pt-BR/common.json",
+      "rotulo": "Textos de interface",
+      "item": "telas",
+      "chave": "telas.NewHomeWizardScreenNeo.naoDeuPraSalvarAgoraToca",
+      "linha": 0,
+      "original": "Não deu para salvar agora. Toca em \"Continuar depois\" e tenta de novo.",
+      "codigo": "RK-0175",
+      "novo": "Não deu para salvar agora. Toca em \"Continuar depois\" e tente de novo."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Há controvérsias dado que o raio chega antes."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Como será possível saber que é último?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Isso está incorreto"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Está incompleto"
+    }
+  ]
+}
