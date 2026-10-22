@@ -1200,6 +1200,22 @@
     "original": "Traga os pets para dentro antes do temporal: assustados, eles fogem e se ferem."
   },
   "RK-0151": {
+    "arquivo": "screens/Checklists/RelatoriosScreenNeo.js",
+    "rotulo": "RelatoriosScreenNeo",
+    "item": "(sem titulo)",
+    "chave": "defaultValue",
+    "linha": 192,
+    "original": "O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} morador(es), e o mapa pode ficar incompleto."
+  },
+  "RK-0152": {
+    "arquivo": "screens/Checklists/RelatoriosScreenNeo.js",
+    "rotulo": "RelatoriosScreenNeo",
+    "item": "(sem titulo)",
+    "chave": "defaultValue",
+    "linha": 212,
+    "original": "O relatório usa as respostas da vistoria. Ainda faltam {{count}} item(ns) sem resposta; até lá, ele mostra só o que já foi respondido."
+  },
+  "RK-0153": {
     "arquivo": "screens/Emergency/PrimeirosSocorrosScreen.js",
     "rotulo": "PrimeirosSocorrosScreen",
     "item": "(sem titulo)",
@@ -1207,7 +1223,7 @@
     "linha": 33,
     "original": "raio raios relampago trovao trovoada tempestade descarga atmosferica lightning rayo rcp cpr"
   },
-  "RK-0152": {
+  "RK-0154": {
     "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
     "rotulo": "Fazendo as Malas — bagagem aerea",
     "item": "Bagagem Aérea: o que pode e onde",
@@ -1215,7 +1231,7 @@
     "linha": 41,
     "original": "Vai de avião? Estas regras ajudam a evitar problemas no embarque. Mudaram em 2026 — confirme com a sua companhia aérea."
   },
-  "RK-0153": {
+  "RK-0155": {
     "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
     "rotulo": "Fazendo as Malas — bagagem aerea",
     "item": "Bagagem Aérea: o que pode e onde",
@@ -1223,7 +1239,7 @@
     "linha": 68,
     "original": "Leve na bagagem de mão, na embalagem original e com a receita (física ou digital) — sobretudo os de uso contínuo e de tarja preta. Em viagem internacional, leve a receita com o nome do princípio ativo e, se possível, uma tradução para o inglês ou para o idioma do destino; alguns países exigem autorização prévia para remédios controlados — consulte a embaixada ou o consulado."
   },
-  "RK-0154": {
+  "RK-0156": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "settings",
@@ -1231,7 +1247,39 @@
     "linha": 0,
     "original": "Aumenta o tamanho da letra em todas as telas para facilitar a leitura."
   },
-  "RK-0155": {
+  "RK-0157": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "reports",
+    "chave": "reports.mapaAvisoTexto_one",
+    "linha": 0,
+    "original": "O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} morador, e o mapa pode ficar incompleto."
+  },
+  "RK-0158": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "reports",
+    "chave": "reports.mapaAvisoTexto_other",
+    "linha": 0,
+    "original": "O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} moradores, e o mapa pode ficar incompleto."
+  },
+  "RK-0159": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "reports",
+    "chave": "reports.relatorioAvisoTexto_one",
+    "linha": 0,
+    "original": "O relatório usa as respostas da vistoria. Ainda falta {{count}} item sem resposta; até lá, ele mostra só o que já foi respondido."
+  },
+  "RK-0160": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "reports",
+    "chave": "reports.relatorioAvisoTexto_other",
+    "linha": 0,
+    "original": "O relatório usa as respostas da vistoria. Ainda faltam {{count}} itens sem resposta; até lá, ele mostra só o que já foi respondido."
+  },
+  "RK-0161": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "upgrade",
@@ -1239,7 +1287,7 @@
     "linha": 0,
     "original": "Se você comprou há pouco tempo, espere alguns minutos e tente novamente."
   },
-  "RK-0156": {
+  "RK-0162": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1247,7 +1295,7 @@
     "linha": 0,
     "original": "Pensado para catástrofes naturais como enchentes, deslizamentos e desmoronamentos, além de incêndios. Deve ajudar a família a se manter por cerca de 72 horas."
   },
-  "RK-0157": {
+  "RK-0163": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1255,7 +1303,7 @@
     "linha": 0,
     "original": "Essencial para o atendimento imediato de lesões antes da chegada de ajuda profissional. Estar equipado ajuda a limpar ferimentos, conter sangramentos e reduzir o risco de infecção."
   },
-  "RK-0158": {
+  "RK-0164": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1263,7 +1311,7 @@
     "linha": 0,
     "original": "Uma farmácia doméstica organizada ajuda a encontrar rápido o que é preciso. Confira a validade e guarde bem os remédios para reduzir o risco de intoxicação e manter a eficácia."
   },
-  "RK-0159": {
+  "RK-0165": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1271,7 +1319,7 @@
     "linha": 0,
     "original": "Nenhuma instituição atingirá a pontuação máxima em todos os itens. Priorize as intervenções nos quesitos classificados como críticos e pergunte como a escola pretende melhorar os pontos fracos identificados."
   },
-  "RK-0160": {
+  "RK-0166": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1279,7 +1327,7 @@
     "linha": 0,
     "original": "Este relatório é complementar e não substitui a vistoria oficial do Corpo de Bombeiros ou da Vigilância Sanitária. Qualquer falha em itens **CRÍTICOS** deve ser tratada como prioridade máxima pela administração da ILPI."
   },
-  "RK-0161": {
+  "RK-0167": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1287,7 +1335,7 @@
     "linha": 0,
     "original": "Informações de emergência: estes dados de alergia aparecem na Ficha Médica de Emergência, que você pode mostrar ou enviar aos socorristas."
   },
-  "RK-0162": {
+  "RK-0168": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1295,7 +1343,7 @@
     "linha": 0,
     "original": "Em um incêndio, você pode ter menos de 3 minutos para sair. Ter um plano pode salvar sua família."
   },
-  "RK-0163": {
+  "RK-0169": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1303,7 +1351,7 @@
     "linha": 0,
     "original": "Ao continuar, você reconhece que este recurso é uma ferramenta de organização pessoal e que os avisos dependem do aparelho e do sistema operacional, que podem atrasá-los ou bloqueá-los."
   },
-  "RK-0164": {
+  "RK-0170": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1311,7 +1359,7 @@
     "linha": 0,
     "original": "Incluir também na lista de medicamentos do perfil? Ela aparece na Ficha Médica de Emergência."
   },
-  "RK-0165": {
+  "RK-0171": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1319,7 +1367,7 @@
     "linha": 0,
     "original": "O lembrete foi salvo, mas não foi possível incluir o medicamento no perfil. Inclua pelo cadastro do perfil."
   },
-  "RK-0166": {
+  "RK-0172": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1327,7 +1375,7 @@
     "linha": 0,
     "original": "Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:"
   },
-  "RK-0167": {
+  "RK-0173": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1335,7 +1383,7 @@
     "linha": 0,
     "original": "Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para reduzir riscos e proteger a integridade física de toda a família. Muitos acidentes acontecem onde deveríamos estar mais seguros: em casa."
   },
-  "RK-0168": {
+  "RK-0174": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1343,7 +1391,7 @@
     "linha": 0,
     "original": "A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para reduzirmos os perigos do lar, prevenção e conscientização são as chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso."
   },
-  "RK-0169": {
+  "RK-0175": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1351,7 +1399,7 @@
     "linha": 0,
     "original": "Não deu para salvar agora. Toca em \"Continuar depois\" e tenta de novo."
   },
-  "RK-0170": {
+  "RK-0176": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",

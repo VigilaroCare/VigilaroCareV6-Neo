@@ -658,7 +658,17 @@
         "riskmap": "Risk Map",
         "riskmapShort": "Agents by area",
         "riskReport": "Report",
-        "riskReportShort": "Risk by person"
+        "riskReportShort": "Risk by person",
+        "analises": "Analysis",
+        "mapaAvisoTitulo": "Incomplete profile details",
+        "mapaAvisoTexto_one": "The Risk Map is built from what you entered about the home and the people who live there — it does not depend on the inspection. {{count}} resident still has to be added, so the map may be incomplete.",
+        "mapaAvisoTexto_other": "The Risk Map is built from what you entered about the home and the people who live there — it does not depend on the inspection. {{count}} residents still have to be added, so the map may be incomplete.",
+        "verAssimMesmo": "View anyway",
+        "completarCadastro": "Complete details",
+        "relatorioAvisoTitulo": "Inspection not finished",
+        "relatorioAvisoTexto_one": "The report uses your inspection answers. {{count}} item is still unanswered; until then it shows only what has been answered.",
+        "relatorioAvisoTexto_other": "The report uses your inspection answers. {{count}} items are still unanswered; until then it shows only what has been answered.",
+        "continuarVistoria": "Continue the inspection"
     },
     "sosCountdown": {
         "fallDetected": "FALL DETECTED!",

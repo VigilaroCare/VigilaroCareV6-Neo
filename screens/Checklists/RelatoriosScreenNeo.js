@@ -10,6 +10,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import ProfileService from '../../services/ProfileService';
 import { ChecklistService } from '../../services/ChecklistService';
 import SafetyReportService from '../../services/SafetyReportService';
+import NeoAlert from '../../utils/NeoAlert';
 import { isAreaRelevant, getRoomChecklistStructure } from '../../utils/ProfileFilterEngine';
 import { AMBIENTES } from "../../data/mapeamento_dados";
 
@@ -181,6 +182,54 @@ export default function RelatoriosScreenNeo({ navigation }) {
     };
 
     const missingProfilesCount = Math.max(0, (familyMeta?.totalMoradoresEsperados || 0) - profilesCount);
+
+    // Mapa de Riscos: monta-se com o cadastro da casa e dos moradores — não com a
+    // vistoria (CLAUDE.md: mapa ≠ vistoria). O aviso só fala do que o mapa usa.
+    const abrirMapa = () => {
+        if (missingProfilesCount > 0) {
+            NeoAlert.alert(
+                t('reports.mapaAvisoTitulo', 'Cadastro incompleto'),
+                t('reports.mapaAvisoTexto', { count: missingProfilesCount, defaultValue: 'O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} morador(es), e o mapa pode ficar incompleto.' }),
+                [
+                    { text: t('reports.verAssimMesmo', 'Ver assim mesmo'), onPress: () => navigation.navigate('MapaDeRiscos') },
+                    { text: t('reports.completarCadastro', 'Completar cadastro'), onPress: () => navigation.navigate('QuemProteger') },
+                ],
+            );
+            return;
+        }
+        navigation.navigate('MapaDeRiscos');
+    };
+
+    // Relatório: usa as respostas da vistoria. Com item sem resposta, avisa antes
+    // e oferece continuar a vistoria de onde parou.
+    const abrirRelatorio = () => {
+        const faltam = chartData.reduce((acc, a) => acc + Math.max(0, a.total - a.checked), 0);
+        const idx = chartData.findIndex((a) => a.checked < a.total);
+        if (faltam > 0 && idx >= 0) {
+            const area = chartData[idx];
+            NeoAlert.alert(
+                t('reports.relatorioAvisoTitulo', 'Vistoria incompleta'),
+                t('reports.relatorioAvisoTexto', { count: faltam, defaultValue: 'O relatório usa as respostas da vistoria. Ainda faltam {{count}} item(ns) sem resposta; até lá, ele mostra só o que já foi respondido.' }),
+                [
+                    { text: t('reports.verAssimMesmo', 'Ver assim mesmo'), onPress: () => navigation.navigate('ProfileRiskSummary') },
+                    {
+                        text: t('reports.continuarVistoria', 'Continuar a vistoria'),
+                        onPress: () => navigation.navigate('ChecklistDetail', {
+                            roomId: area.key,
+                            roomName: area.fullName,
+                            roomColor: area.color,
+                            roomIcon: area.emoji,
+                            fullChecklist: false,
+                            sequentialRooms: chartData.map((item) => ({ roomId: item.key, roomName: item.fullName, roomColor: item.color, roomIcon: item.emoji })),
+                            currentRoomIndex: idx,
+                        }),
+                    },
+                ],
+            );
+            return;
+        }
+        navigation.navigate('ProfileRiskSummary');
+    };
     const scrollY = useRef(new Animated.Value(0)).current;
 
 
@@ -287,63 +336,6 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             <Text style={[s.sectionLabel, { marginTop: pendingActions.length > 0 ? 4 : 0 }]}>
                                 {t('reports.environmentInspection', 'Ambientes Vistoriados')}
                             </Text>
-
-                            {/* Duas leituras dos mesmos dados, lado a lado: o
-                                Mapa de Riscos mostra o risco por AMBIENTE, o
-                                Relatório mostra por PESSOA.
-
-                                O Relatório vinha de uma aba própria no rodapé,
-                                que dividia o nome com esta tela e confundia —
-                                eram dois "relatórios" em dois lugares. A aba
-                                virou Modo Viagem (2026-07-31); a entrada é
-                                aqui, ao lado do irmão dela. */}
-                            <View style={{ flexDirection: 'row', gap: 12, marginBottom: 16 }}>
-                                <TouchableOpacity
-                                    activeOpacity={0.85}
-                                    onPress={() => navigation.navigate('MapaDeRiscos')}
-                                    style={{ flex: 1 }}
-                                >
-                                    <NeoCard variant="elevated" style={s.duploCard}>
-                                        {/* Barricade: o mesmo glifo que marca o grupo
-                                            "acidente e mecânico" dentro do mapa. A entrada
-                                            cita o conteúdo — GridFour descrevia a grade de
-                                            cômodos que a tela deixou de ser. */}
-                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
-                                            <NeoIcon name="Barricade" size={22} color={themeColors.neutral[700]} variant="Bold" />
-                                        </View>
-                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
-                                            {t('reports.riskmap', 'Mapa de Riscos')}
-                                        </Body>
-                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
-                                            {t('reports.riskmapShort', 'Agentes por ambiente')}
-                                        </Small>
-                                    </NeoCard>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    activeOpacity={0.85}
-                                    onPress={() => navigation.navigate('ProfileRiskSummary')}
-                                    style={{ flex: 1 }}
-                                >
-                                    <NeoCard variant="elevated" style={s.duploCard}>
-                                        {/* UserList: a tela é uma lista de riscos POR PESSOA,
-                                            com reconhecimento e exportação — mais lista do que
-                                            gráfico, e a pessoa é o que a distingue do card ao
-                                            lado. Cor neutra igual à do irmão: um vermelho aqui
-                                            e um verde ali leriam como "ruim × bom", quando são
-                                            só duas leituras do mesmo dado. */}
-                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
-                                            <NeoIcon name="UserList" size={22} color={themeColors.neutral[700]} variant="Bold" />
-                                        </View>
-                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
-                                            {t('reports.riskReport', 'Relatório')}
-                                        </Body>
-                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
-                                            {t('reports.riskReportShort', 'Risco por pessoa')}
-                                        </Small>
-                                    </NeoCard>
-                                </TouchableOpacity>
-                            </View>
 
                             {/* Grid de ambientes com status por cômodo usando NeoHorizontalCard */}
                             {chartData.length > 0 && (
@@ -472,6 +464,70 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                                 {t('reports.safeNursingHomeDesc', 'Vistoria de instituição')}
                                             </Small>
                                         </View>
+                                    </NeoCard>
+                                </TouchableOpacity>
+                            </View>
+
+                            {/* MAPA DE RISCOS e RELATÓRIO — no fim da tela, depois de vistoriar
+                                (decisão do Agnaldo, 22/10/2026). Cada um avisa antes de abrir se
+                                falta o que ELE usa: o mapa usa o cadastro (casa + moradores) e não a
+                                vistoria; o relatório usa as respostas da vistoria. */}
+                            <Text style={[s.sectionLabel, { marginTop: 24 }]}>
+                                {t('reports.analises', 'Análises')}
+                            </Text>
+                            {/* Duas leituras dos mesmos dados, lado a lado: o
+                                Mapa de Riscos mostra o risco por AMBIENTE, o
+                                Relatório mostra por PESSOA.
+
+                                O Relatório vinha de uma aba própria no rodapé,
+                                que dividia o nome com esta tela e confundia —
+                                eram dois "relatórios" em dois lugares. A aba
+                                virou Modo Viagem (2026-07-31); a entrada é
+                                aqui, ao lado do irmão dela. */}
+                            <View style={{ flexDirection: 'row', gap: 12, marginBottom: 16 }}>
+                                <TouchableOpacity
+                                    activeOpacity={0.85}
+                                    onPress={abrirMapa}
+                                    style={{ flex: 1 }}
+                                >
+                                    <NeoCard variant="elevated" style={s.duploCard}>
+                                        {/* Barricade: o mesmo glifo que marca o grupo
+                                            "acidente e mecânico" dentro do mapa. A entrada
+                                            cita o conteúdo — GridFour descrevia a grade de
+                                            cômodos que a tela deixou de ser. */}
+                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
+                                            <NeoIcon name="Barricade" size={22} color={themeColors.neutral[700]} variant="Bold" />
+                                        </View>
+                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
+                                            {t('reports.riskmap', 'Mapa de Riscos')}
+                                        </Body>
+                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
+                                            {t('reports.riskmapShort', 'Agentes por ambiente')}
+                                        </Small>
+                                    </NeoCard>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    activeOpacity={0.85}
+                                    onPress={abrirRelatorio}
+                                    style={{ flex: 1 }}
+                                >
+                                    <NeoCard variant="elevated" style={s.duploCard}>
+                                        {/* UserList: a tela é uma lista de riscos POR PESSOA,
+                                            com reconhecimento e exportação — mais lista do que
+                                            gráfico, e a pessoa é o que a distingue do card ao
+                                            lado. Cor neutra igual à do irmão: um vermelho aqui
+                                            e um verde ali leriam como "ruim × bom", quando são
+                                            só duas leituras do mesmo dado. */}
+                                        <View style={[s.heatmapIconWrap, { backgroundColor: themeColors.neutral[200] }]}>
+                                            <NeoIcon name="UserList" size={22} color={themeColors.neutral[700]} variant="Bold" />
+                                        </View>
+                                        <Body style={[s.duploTitulo, { color: themeColors.neutral[900] }]} numberOfLines={1}>
+                                            {t('reports.riskReport', 'Relatório')}
+                                        </Body>
+                                        <Small style={[s.duploSub, { color: themeColors.neutral[700] }]} numberOfLines={2}>
+                                            {t('reports.riskReportShort', 'Risco por pessoa')}
+                                        </Small>
                                     </NeoCard>
                                 </TouchableOpacity>
                             </View>

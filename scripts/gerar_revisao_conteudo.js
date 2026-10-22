@@ -413,7 +413,7 @@ const TEMAS = [
     {
         nome: 'Retorno CK AV IF',
         sigla: 'RK',
-        pendentes: ['m020', 'm021', 'm022', 'm023'],
+        pendentes: ['m020', 'm021', 'm022', 'm023', 'm024'],
         marcarMudancas: false,
         antes: '_antes-RK.json',
         dataMudancas: '22/10/2026',
@@ -436,7 +436,7 @@ const TEMAS = [
             + 'respostas aos seus comentarios (sobrocado, pilha botao, cerca de piscina, aranha-marrom, churrasqueira, '
             + 'radonio, soro de reidratacao...), a cautela que estava esperando estes documentos, os ambientes do '
             + 'checklist e as telas EPI e Ferramentas que nao tinham traducao, e o que levei das partes mortas do '
-            + 'checklist para as telas vivas de Escola, Asilo e Kits. No fim, o conteudo de clima que voce pediu: alerta de raios para todas as regioes, alerta de vendaval, granizo e ciclone no Sul e o tema de primeiros socorros Atingido por Raio. A linha ANTES mostra como estava; texto sem ANTES e novo.',
+            + 'checklist para as telas vivas de Escola, Asilo e Kits. No fim, o conteudo de clima que voce pediu: alerta de raios para todas as regioes, alerta de vendaval, granizo e ciclone no Sul e o tema de primeiros socorros Atingido por Raio. E os avisos que o Mapa de Riscos e o Relatorio dao antes de abrir, agora no fim da tela de vistorias. A linha ANTES mostra como estava; texto sem ANTES e novo.',
         fontes: [],
     },
 ];

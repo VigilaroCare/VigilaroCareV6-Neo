@@ -92,6 +92,10 @@
   "m023": {
    "texto": "Clima (22/10/2026, pedido do Agnaldo): alerta de raios para todas as regioes, alerta de vendaval/granizo/ciclone no Sul, tema de primeiros socorros 'Atingido por Raio'. Vai para o documento RK.",
    "em": "2026-10-22"
+  },
+  "m024": {
+   "texto": "Avisos do Mapa de Riscos e do Relatorio na tela de vistorias (decisao do Agnaldo, 22/10/2026). Vai para o documento RK.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -634,6 +638,11 @@
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
    "m010"
+  ],
+  "0a08d7cc9152f10d": [
+   "pendente",
+   "screens/Checklists/RelatoriosScreenNeo.js",
+   "m024"
   ],
   "0a31e1f5e18a19ea": [
    "aprovado",
@@ -2869,6 +2878,11 @@
    "pendente",
    "data/pet_food_safety.js",
    "m015"
+  ],
+  "2f933b1a9b32cc3b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m024"
   ],
   "2f94653fe0aa9b31": [
    "pendente",
@@ -6494,6 +6508,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "682dfa6743b95da1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m024"
   ],
   "682e5162ad63034e": [
    "pendente",
@@ -12600,6 +12619,11 @@
    "data/locales/pt-BR/fire_prevention_content.js",
    "m010"
   ],
+  "ce450d528e2d6ff8": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m024"
+  ],
   "ce634e85810cdbbe": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -12889,6 +12913,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
+  ],
+  "d25e1ebad9d763bc": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m024"
   ],
   "d28e6bc77703fd5c": [
    "pendente",
@@ -13309,6 +13338,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
+  ],
+  "d94ff5acbe118b04": [
+   "pendente",
+   "screens/Checklists/RelatoriosScreenNeo.js",
+   "m024"
   ],
   "d9596f41d20a5074": [
    "pendente",

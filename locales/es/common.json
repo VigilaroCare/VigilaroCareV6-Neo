@@ -658,7 +658,17 @@
         "riskmap": "Mapa de Riesgos",
         "riskmapShort": "Agentes por ambiente",
         "riskReport": "Informe",
-        "riskReportShort": "Riesgo por persona"
+        "riskReportShort": "Riesgo por persona",
+        "analises": "Análisis",
+        "mapaAvisoTitulo": "Registro incompleto",
+        "mapaAvisoTexto_one": "El Mapa de Riesgos se arma con lo que registró sobre la casa y quienes viven en ella; no depende de la inspección. Aún falta registrar {{count}} residente, y el mapa puede quedar incompleto.",
+        "mapaAvisoTexto_other": "El Mapa de Riesgos se arma con lo que registró sobre la casa y quienes viven en ella; no depende de la inspección. Aún falta registrar {{count}} residentes, y el mapa puede quedar incompleto.",
+        "verAssimMesmo": "Ver de todos modos",
+        "completarCadastro": "Completar registro",
+        "relatorioAvisoTitulo": "Inspección incompleta",
+        "relatorioAvisoTexto_one": "El informe usa las respuestas de la inspección. Aún falta {{count}} ítem sin responder; hasta entonces, muestra solo lo que ya se respondió.",
+        "relatorioAvisoTexto_other": "El informe usa las respuestas de la inspección. Aún faltan {{count}} ítems sin responder; hasta entonces, muestra solo lo que ya se respondió.",
+        "continuarVistoria": "Continuar la inspección"
     },
     "sosCountdown": {
         "fallDetected": "CAIDA DETECTADA!",

@@ -688,7 +688,17 @@
         "riskmap": "Mapa de Riscos",
         "riskmapShort": "Agentes por ambiente",
         "riskReport": "Relatório",
-        "riskReportShort": "Risco por pessoa"
+        "riskReportShort": "Risco por pessoa",
+        "analises": "Análises",
+        "mapaAvisoTitulo": "Cadastro incompleto",
+        "mapaAvisoTexto_one": "O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} morador, e o mapa pode ficar incompleto.",
+        "mapaAvisoTexto_other": "O Mapa de Riscos se monta com o que você cadastrou sobre a casa e os moradores — não depende da vistoria. Ainda falta cadastrar {{count}} moradores, e o mapa pode ficar incompleto.",
+        "verAssimMesmo": "Ver assim mesmo",
+        "completarCadastro": "Completar cadastro",
+        "relatorioAvisoTitulo": "Vistoria incompleta",
+        "relatorioAvisoTexto_one": "O relatório usa as respostas da vistoria. Ainda falta {{count}} item sem resposta; até lá, ele mostra só o que já foi respondido.",
+        "relatorioAvisoTexto_other": "O relatório usa as respostas da vistoria. Ainda faltam {{count}} itens sem resposta; até lá, ele mostra só o que já foi respondido.",
+        "continuarVistoria": "Continuar a vistoria"
     },
     "sosCountdown": {
         "fallDetected": "QUEDA DETECTADA!",
