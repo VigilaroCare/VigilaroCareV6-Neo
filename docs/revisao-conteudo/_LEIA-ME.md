@@ -79,7 +79,17 @@ Texto fora das quatro **faz o validate falhar**, com arquivo, linha e texto. Sa�
 - se o Agnaldo já aprovou **aquele texto** (ex.: por chat): `--aprovar "o que ele aprovou e quando" <arquivo>`;
 - para seguir sem revisão: `--pendente "por que" <arquivo>` — fica visível no backlog.
 
-`--listar` mostra o backlog por motivo e por arquivo. Os `_plano-*.json` precisam estar no git: sem eles,
+`--listar` mostra o backlog por motivo e por arquivo; `--limpar` tira do registro texto que saiu do app.
+
+Arquivo cujo texto não chega ao usuário (código morto, tela órfã) fica em `FORA_DO_ESCOPO`, com o sinal que provaria
+que voltou a ser usado — se esse sinal aparecer no código, a trava falha.
+
+### RP — Revisão de Pendências
+
+O tema `RP` do gerador não lê arquivos inteiros: lê o backlog da trava, filtrado pelos motivos listados em
+`pendentes`. Abaixo de cada texto alterado vai a linha "VERSAO QUE VOCE REVISOU" (o texto revisado mais parecido
+do mesmo arquivo); texto escrito depois vai marcado "ESCRITO DEPOIS DA SUA REVISAO". O importador ignora as duas
+linhas. Enviado em 21/10/2026 com 202 códigos. Os `_plano-*.json` precisam estar no git: sem eles,
 o que já foi revisado volta a aparecer como não revisado.
 
 Registro inicial (21/10/2026): marca REMOVER resolvida, grafia, concordância, tokens de país e replicações

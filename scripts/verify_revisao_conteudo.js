@@ -29,7 +29,8 @@
  *
  * Uso:
  *   node scripts/verify_revisao_conteudo.js            verifica (npm run validate:revisao)
- *   node scripts/verify_revisao_conteudo.js --listar   lista os pendentes por arquivo
+ *   node scripts/verify_revisao_conteudo.js --listar   lista os pendentes por motivo e arquivo
+ *   node scripts/verify_revisao_conteudo.js --limpar   tira do registro texto que saiu do app
  *   node scripts/verify_revisao_conteudo.js --aprovar "motivo" [arquivo...]
  *   node scripts/verify_revisao_conteudo.js --pendente "motivo" [arquivo...]
  *
@@ -58,14 +59,31 @@ const COMMON_PT_BR = 'locales/pt-BR/common.json';
 const PASTAS_DE_TRADUCAO = /^data\/locales\/(en|es|pt-PT)\//;
 
 /**
- * Fora do escopo, com motivo. Arquivo novo NAO entra aqui por padrao — a
- * ausencia de lista de inclusao e justamente o que esta trava corrige.
+ * Fora do escopo: texto que NAO chega ao usuario. Arquivo novo nao entra aqui
+ * por padrao — a ausencia de lista de inclusao e o que esta trava corrige.
+ *
+ * Cada entrada diz o que provaria que o texto voltou a chegar ao usuario
+ * (`uso`); se isso aparecer em qualquer arquivo de codigo, a trava FALHA. Sem
+ * isso, religar uma tela orfa poria no ar texto nunca revisado sem aviso.
  */
 const FORA_DO_ESCOPO = {
-    // Codigo morto (nenhuma referencia fora dele mesmo): conduta clinica sobre
-    // atraso de dose, que o app nao faz. Ver comentario em TEMAS (EX).
-    'data/delay_guidance.js': 'codigo morto — deve ser removido, nao revisado',
+    // Conduta clinica sobre atraso de dose, que o app nao faz. Ver TEMAS (EX).
+    'data/delay_guidance.js': {
+        motivo: 'codigo morto — deve ser removido, nao revisado',
+        uso: /delay_guidance/,
+    },
+    // MOTIVO (21/10/2026): a trava achou 112 orientacoes de socorro nunca
+    // revisadas aqui — mas a rota so existe no Stack do App.js; nenhuma tela
+    // navega ate ela. O socorro que o usuario ve vem de `PrimeirosSocorros`
+    // (data/locales/*/primeiros_socorros.js, revisado no PS). Esta tela, alem
+    // de nao revisada, so tem pt-BR e diz "(SAMU)" fixo.
+    'screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js': {
+        motivo: 'tela orfa — nenhuma navegacao leva a ela; remover ou revisar antes de religar',
+        uso: /['"]PrimeirosSocorrosEmergencia['"]/,
+        ignorarLinha: /<Stack\.Screen/,
+    },
 };
+const PASTAS_DE_CODIGO = ['data', 'screens', 'components', 'services', 'utils', 'hooks', 'context', 'contexts', 'navigation'];
 
 /** Mesmo limiar que o gerador usa para prosa em campo desconhecido. */
 const MIN_PROSA_INTERFACE = 70;
@@ -89,6 +107,27 @@ function listarJs(dir, saida = []) {
         }
     }
     return saida;
+}
+
+/** Arquivos fora do escopo que voltaram a ser usados: `[{ arquivo, onde }]`. */
+function foraDoEscopoEmUso() {
+    const codigo = [
+        ...PASTAS_DE_CODIGO.filter((p) => fs.existsSync(path.join(RAIZ, p))).flatMap((p) => listarJs(path.join(RAIZ, p))),
+        'App.js',
+    ];
+    const achados = [];
+    for (const [arquivo, regra] of Object.entries(FORA_DO_ESCOPO)) {
+        for (const outro of codigo) {
+            if (outro === arquivo) continue;
+            const linhas = fs.readFileSync(path.join(RAIZ, outro), 'utf8').split('\n');
+            linhas.forEach((l, i) => {
+                if (regra.uso.test(l) && !(regra.ignorarLinha && regra.ignorarLinha.test(l))) {
+                    achados.push({ arquivo, onde: `${outro}:${i + 1}` });
+                }
+            });
+        }
+    }
+    return achados;
 }
 
 /** Todo texto de usuario em pt-BR, com onde ele esta. */
@@ -122,6 +161,11 @@ function textosDoApp() {
 function textosDosDocumentos() {
     const revisados = new Set();
     const emRevisao = new Set();
+    const revisadosPorArquivo = {};
+    const guardar = (arquivo, texto) => {
+        revisados.add(impressao(texto));
+        (revisadosPorArquivo[arquivo] = revisadosPorArquivo[arquivo] || []).push(normalizar(texto));
+    };
     const arquivos = fs.readdirSync(DOCS);
     const devolvidas = new Set(arquivos
         .filter((f) => f.startsWith('_plano-') && f.endsWith('.json'))
@@ -129,15 +173,49 @@ function textosDosDocumentos() {
     for (const f of arquivos.filter((x) => /^_manifesto(-[A-Z]+)?\.json$/.test(x))) {
         const manifesto = JSON.parse(fs.readFileSync(path.join(DOCS, f), 'utf8'));
         for (const [codigo, v] of Object.entries(manifesto)) {
-            (devolvidas.has(codigo.slice(0, 2)) ? revisados : emRevisao).add(impressao(v.original));
+            if (devolvidas.has(codigo.slice(0, 2))) guardar(v.arquivo, v.original);
+            else emRevisao.add(impressao(v.original));
         }
     }
     for (const f of arquivos.filter((x) => x.startsWith('_plano-') && x.endsWith('.json'))) {
         const plano = JSON.parse(fs.readFileSync(path.join(DOCS, f), 'utf8'));
-        for (const e of plano.editados || []) revisados.add(impressao(e.novo));
+        for (const e of plano.editados || []) guardar(e.arquivo, e.novo);
         for (const n of plano.novos || []) revisados.add(impressao(n.texto));
     }
-    return { revisados, emRevisao, devolvidas: [...devolvidas].sort() };
+    return { revisados, emRevisao, revisadosPorArquivo, devolvidas: [...devolvidas].sort() };
+}
+
+/** Semelhanca por pares de letras (Dice): 1 = igual, 0 = nada em comum. */
+function semelhanca(a, b) {
+    const pares = (s) => {
+        const m = new Map();
+        const x = s.toLowerCase();
+        for (let i = 0; i < x.length - 1; i++) m.set(x.slice(i, i + 2), (m.get(x.slice(i, i + 2)) || 0) + 1);
+        return m;
+    };
+    const A = pares(a);
+    const B = pares(b);
+    let comum = 0;
+    for (const [k, v] of A) comum += Math.min(v, B.get(k) || 0);
+    return (2 * comum) / Math.max(1, a.length + b.length - 2);
+}
+
+/**
+ * O texto revisado do mesmo arquivo que mais se parece com `texto` — a versao
+ * que o Agnaldo leu antes da mudanca. `null` se nada passar de 60% (texto novo).
+ * Heuristica para MOSTRAR ao revisor; a trava em si nunca decide por semelhanca.
+ */
+let cacheDocumentos = null;
+function referenciaRevisada(arquivo, texto) {
+    cacheDocumentos = cacheDocumentos || textosDosDocumentos();
+    const alvo = normalizar(texto);
+    let melhor = null;
+    let nota = 0.6;
+    for (const r of cacheDocumentos.revisadosPorArquivo[arquivo] || []) {
+        const s = semelhanca(alvo, r);
+        if (s >= nota) { nota = s; melhor = r; }
+    }
+    return melhor;
 }
 
 function lerRegistro() {
@@ -180,7 +258,14 @@ function avaliar() {
     r.obsoletos = Object.keys(registro.textos).filter((id) => !vistos.has(id));
     r.devolvidas = devolvidas;
     r.registro = registro;
+    r.foraEmUso = foraDoEscopoEmUso();
     return r;
+}
+
+function limpar(r) {
+    for (const id of r.obsoletos) delete r.registro.textos[id];
+    gravarRegistro(r.registro);
+    console.log(`${r.obsoletos.length} registro(s) de texto que saiu do app removido(s).`);
 }
 
 function registrar(r, situacao, motivo, filtroArquivos) {
@@ -215,6 +300,11 @@ function principal() {
     const args = process.argv.slice(2);
     const r = avaliar();
 
+    if (args.includes('--limpar')) {
+        limpar(r);
+        return;
+    }
+
     for (const modo of ['--aprovar', '--pendente']) {
         const i = args.indexOf(modo);
         if (i < 0) continue;
@@ -244,6 +334,16 @@ function principal() {
         }
     }
 
+    if (r.foraEmUso.length) {
+        console.log('\nFALHA — arquivo tratado como fora do escopo voltou a ser usado:');
+        for (const f of r.foraEmUso) {
+            console.log(`  ${f.arquivo}  (${FORA_DO_ESCOPO[f.arquivo].motivo})`);
+            console.log(`    usado em ${f.onde}`);
+        }
+        console.log('\n  O texto dele nunca foi revisado. Tire-o de FORA_DO_ESCOPO e mande para revisao.');
+        process.exit(1);
+    }
+
     if (r.semRegistro.length) {
         console.log(`\nFALHA — ${r.semRegistro.length} texto(s) sem revisao e sem registro:`);
         for (const [arquivo, lista] of porArquivo(r.semRegistro)) {
@@ -266,4 +366,4 @@ Texto novo ou alterado que o Agnaldo nao viu. Caminhos:
 
 if (require.main === module) principal();
 
-module.exports = { avaliar };
+module.exports = { avaliar, referenciaRevisada, normalizar, impressao };

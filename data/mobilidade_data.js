@@ -1092,7 +1092,7 @@ export const MICROMOBILIDADE_ELETRICA = {
   riscos: [
     'Peso e velocidade causam colisões e atropelamentos graves em ciclovias',
     'Traumatismos e fraturas, porque o corpo fica exposto',
-    'Incêndio da bateria, sobretudo ao carregar'
+    'Incêndio da bateria, sobretudo ao recarregar'
   ],
   riscos_en: [
     'Weight and speed cause serious collisions with cyclists and pedestrians',
@@ -1109,7 +1109,7 @@ export const MICROMOBILIDADE_ELETRICA = {
     'O pedestre é o mais frágil: reduza perto dele e ceda a passagem',
     'Reduza também ao passar por bicicletas comuns',
     'Use capacete',
-    'Carregue a bateria fora dos quartos e da rota de fuga, sem cobrir e com o carregador original',
+    'Recarregue a bateria fora dos quartos e da rota de fuga, sem cobrir e com o carregador original',
     'Confira as regras do seu país e da sua cidade para o seu modelo'
   ],
   prevencao_en: [

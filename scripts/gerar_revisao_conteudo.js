@@ -168,6 +168,31 @@ const TEMAS = [
             { arquivo: 'screens/Education/JardinagemSeguraScreen.js', rotulo: 'Jardinagem Segura' },
         ],
     },
+    // -----------------------------------------------------------------------
+    // RP — Revisao de Pendencias: o backlog da trava, nao arquivos inteiros.
+    //
+    // MOTIVO (21/10/2026): a trava (verify_revisao_conteudo.js) mostrou 202
+    // textos alterados ou escritos DEPOIS das revisoes do Agnaldo, cuja
+    // redacao final ele nunca viu — reescrita de estatistica sem fonte,
+    // cadeirinhas, baterias de litio, textos pedidos em comentario. Mandar os
+    // arquivos inteiros de novo o faria reler milhares de textos ja aprovados.
+    //
+    // `pendentes` lista os motivos do `_registro-revisao.json` que entram. As
+    // fontes sao montadas na hora; o `rotulo` vem do tema que ja tinha o
+    // arquivo, para o cabecalho continuar sendo o nome que ele conhece.
+    // -----------------------------------------------------------------------
+    {
+        nome: 'Revisao de Pendencias',
+        sigla: 'RP',
+        pendentes: ['m004', 'm005'],
+        descricao: 'Textos que mudaram ou foram escritos DEPOIS das suas revisoes, e cuja redacao final '
+            + 'voce ainda nao viu. Abaixo de cada texto alterado aparece, em cinza, a "VERSAO QUE VOCE '
+            + 'REVISOU"; texto escrito depois vem marcado "ESCRITO DEPOIS DA SUA REVISAO". Essas linhas '
+            + 'sao so referencia — para voltar a versao antiga, edite o texto principal. Trechos entre '
+            + 'chaves duplas, como {{FIRE_NUMBER}} ou {{CERT_SEAL}}, sao trocados no app pelo numero ou '
+            + 'orgao do pais do usuario (no Brasil: 193, selo do INMETRO).',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -546,6 +571,9 @@ const MARCAS_DE_MUDANCA = [
     /^ANTES \(at[ée] \d{2}\/\d{2}\/\d{4}\):/i,
     /^NOVO EM \d{2}\/\d{2}\/\d{4}/i,
     /^RETIRADO EM \d{2}\/\d{2}\/\d{4}:/i,
+    // Revisao de Pendencias (RP)
+    /^VERS[ÃA]O QUE VOC[ÊE] REVISOU:/i,
+    /^ESCRITO DEPOIS DA SUA REVIS[ÃA]O/i,
 ];
 const linhaDeMudanca = (texto, cor = '8A6D00') => new Paragraph({
     spacing: { before: 0, after: 160 },
@@ -662,7 +690,11 @@ function montarDocumento(tema, dados, manifesto) {
                 papelAnterior = papel;
                 const codigo = `${tema.sigla}-${String(++sequencia).padStart(4, '0')}`;
                 filhos.push(paragrafoDeTexto(codigo, t.texto));
-                if (tema.dataMudancas && t.antes) {
+                if (t.versaoRevisada) {
+                    filhos.push(linhaDeMudanca(`VERSAO QUE VOCE REVISOU: ${t.versaoRevisada.replace(/\n/g, ' / ')}`));
+                } else if (t.escritoDepois) {
+                    filhos.push(linhaDeMudanca('ESCRITO DEPOIS DA SUA REVISAO — voce ainda nao viu este texto.', VERDE));
+                } else if (tema.dataMudancas && t.antes) {
                     filhos.push(linhaDeMudanca(`ANTES (até ${tema.dataMudancas}): ${t.antes.replace(/\n/g, ' / ')}`));
                 } else if (tema.dataMudancas && t.novo && !bloco.novoInteiro) {
                     filhos.push(linhaDeMudanca(`NOVO EM ${tema.dataMudancas} — este texto nao existia.`, VERDE));
@@ -785,6 +817,52 @@ const impressaoDigital = (dados) => {
 
 const CAMINHO_ESTADO = path.join(DESTINO, '_estado.json');
 
+/**
+ * Tema RP: o que entra vem do backlog da trava, nao de uma lista de arquivos.
+ * Extrai com as chaves do RC — as mesmas da trava —, senao o texto pendente
+ * nao e encontrado no arquivo.
+ */
+function selecaoDePendentes(tema) {
+    const { avaliar } = require('./verify_revisao_conteudo');
+    const motivos = new Set(tema.pendentes);
+    const escolhidos = new Map();
+    const arquivos = [];
+    for (const t of avaliar().pendente) {
+        if (!motivos.has(t.motivo)) continue;
+        escolhidos.set(t.id, t.motivo);
+        if (!arquivos.includes(t.arquivo)) arquivos.push(t.arquivo);
+    }
+    const conhecidas = TEMAS.flatMap((x) => x.fontes);
+    const ordem = (a) => {
+        const i = conhecidas.findIndex((c) => c.arquivo === a);
+        return i < 0 ? Infinity : i;
+    };
+    const fontes = arquivos.sort((a, b) => ordem(a) - ordem(b)).map((arquivo) => {
+        const conhecida = conhecidas.find((c) => c.arquivo === arquivo);
+        return { arquivo, rotulo: conhecida ? conhecida.rotulo : path.basename(arquivo, '.js') };
+    });
+    const rc = TEMAS.find((x) => x.sigla === 'RC');
+    return { escolhidos, fontes, opcoes: { chavesExtras: rc.chavesExtras, titulosExtras: rc.titulosExtras } };
+}
+
+/** Deixa so os textos escolhidos, cada um com a versao que o Agnaldo revisou (se houver). */
+function filtrarPendentes(blocos, arquivo, selecao) {
+    const { referenciaRevisada, impressao } = require('./verify_revisao_conteudo');
+    const saida = [];
+    for (const b of blocos) {
+        const textos = b.textos.filter((t) => selecao.escolhidos.has(impressao(t.texto)));
+        for (const t of textos) {
+            const versao = referenciaRevisada(arquivo, t.texto);
+            if (versao) t.versaoRevisada = versao;
+            else t.escritoDepois = true;
+        }
+        const tituloPendente = Boolean(b.chaveDoTitulo) && selecao.escolhidos.has(impressao(b.item));
+        if (!textos.length && !tituloPendente) continue;
+        saida.push({ ...b, textos, chaveDoTitulo: tituloPendente ? b.chaveDoTitulo : undefined });
+    }
+    return saida;
+}
+
 const lerEstado = () => {
     try { return JSON.parse(fs.readFileSync(CAMINHO_ESTADO, 'utf8')); } catch { return {}; }
 };
@@ -804,9 +882,13 @@ async function principal() {
 
     for (const tema of TEMAS) {
         const dados = [];
-        const opcoes = { chavesExtras: tema.chavesExtras, titulosExtras: tema.titulosExtras };
-        for (const fonte of tema.fontes) {
+        const selecao = tema.pendentes ? selecaoDePendentes(tema) : null;
+        const opcoes = selecao
+            ? selecao.opcoes
+            : { chavesExtras: tema.chavesExtras, titulosExtras: tema.titulosExtras };
+        for (const fonte of selecao ? selecao.fontes : tema.fontes) {
             const r = extrair(fonte.arquivo, opcoes);
+            if (selecao) r.blocos = filtrarPendentes(r.blocos, fonte.arquivo, selecao);
             if (r.ausente) {
                 console.warn(`  ! ausente: ${fonte.arquivo}`);
                 continue;
