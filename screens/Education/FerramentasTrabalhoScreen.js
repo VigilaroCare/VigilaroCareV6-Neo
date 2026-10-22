@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, LayoutAnimation, Platform, UIManager } from "react-native";
 import { H3, Body, Small } from '../../components/NeoTypography';
 import { StatusBar } from 'expo-status-bar';
@@ -9,6 +9,7 @@ import { DS as Neo } from '../../utils/DesignSystem2026';
 import AppBackground from '../../components/AppBackground';
 import ReviewImage from '../../components/ReviewImage';
 import { FERRAMENTAS_DATA } from '../../data/ferramentas_seguranca';
+import { t_deep } from '../../utils/getLocalizedField';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
@@ -20,7 +21,7 @@ if (Platform.OS === 'android') {
 
 export default function FerramentasTrabalhoScreen({ navigation }) {
     const insets = useSafeAreaInsets();
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
@@ -34,7 +35,8 @@ export default function FerramentasTrabalhoScreen({ navigation }) {
         setExpandedSection(expandedSection === id ? null : id);
     };
 
-    const { goldenRules, categories } = FERRAMENTAS_DATA;
+    // Conteúdo no idioma do usuário (campos _en/_es/_ptpt do arquivo de dados).
+    const { goldenRules, categories } = useMemo(() => t_deep(FERRAMENTAS_DATA), [i18n.language]);
 
     return (
         <AppBackground>

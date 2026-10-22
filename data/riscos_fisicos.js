@@ -32,7 +32,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '📱',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e2.png'),
-        risco: 'Choque Fatal por Umidade', risco_en: 'Fatal Shock from Moisture', risco_es: 'Choque Fatal por Humedad',
+        risco: 'Choque elétrico grave com aparelho molhado', risco_en: 'Serious electric shock from a wet device', risco_es: 'Descarga eléctrica grave con un aparato mojado',
         descricao: 'O corpo molhado reduz drasticamente a resistência da pele, tornando o choque de carregadores letal.', descricao_en: 'A wet body drastically reduces skin resistance, making charger shocks lethal.', descricao_es: 'El cuerpo mojado reduce drásticamente la resistencia de la piel, haciendo letal el choque.',
         prevencao: [
             'NUNCA use o celular conectado à tomada enquanto estiver no banho ou com o corpo úmido.',
@@ -59,7 +59,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🐶',
         imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_bebe-mordendo-fios-eletricos_020.jpg'),
-        risco: 'Eletrocussão e Asfixia', risco_en: 'Electrocution and Asphyxiation', risco_es: 'Electrocución y Asfixia',
+        risco: 'Choque elétrico e queimadura na boca', risco_en: 'Electric shock and mouth burns', risco_es: 'Descarga eléctrica y quemaduras en la boca',
         descricao: 'Animais de estimação roem cabos baixos e bebês (fase oral) os levam à boca, aumentando o risco de choque elétrico.', descricao_en: 'Pets chew low-hanging cables and babies (in the oral phase) put them in their mouths, increasing the risk of electric shock.', descricao_es: 'Las mascotas muerden los cables bajos y los bebés (en la fase oral) se los llevan a la boca, lo que aumenta el riesgo de descarga eléctrica.',
         prevencao: [
             'Passe cabos por dentro de canaletas de PVC rígidas.',
@@ -86,7 +86,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🚿',
         imagemUrl: require('../assets/illustrations/pad/eletrico_chuveiro-eletrico_007.jpg'),
-        risco: 'Choque Fibrilar no Banho', risco_en: 'Fibrillating Shock in Shower', risco_es: 'Choque Fibrilar en la Ducha',
+        risco: 'Choque elétrico grave no banho', risco_en: 'Serious electric shock in the shower', risco_es: 'Descarga eléctrica grave en la ducha',
         descricao: 'Acidente muito comum ao tentar consertar chuveiro com o box ainda molhado e apenas fechando a água.', descricao_en: 'A very common accident when trying to fix an electric shower with the stall still wet, having only shut off the water.', descricao_es: 'Accidente muy común al intentar reparar una ducha eléctrica con la mampara aún mojada, habiendo cerrado solo el agua.',
         prevencao: [
             'Sempre desligue o DISJUNTOR no quadro de força, não apenas a torneira.',
@@ -113,7 +113,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '👶',
         imagemUrl: require('../assets/illustrations/pad/outros_bebe-tomada-eletrica_028.jpg'),
-        risco: 'Queimaduras Graves nas Mãos', risco_en: 'Severe Hand Burns', risco_es: 'Quemaduras Graves en Manos',
+        risco: 'Choque elétrico e queimadura nos dedos', risco_en: 'Electric shock and finger burns', risco_es: 'Descarga eléctrica y quemaduras en los dedos',
         descricao: 'Crianças de 1 a 5 anos frequentemente inserem clipes, grampos ou chaves nos buracos das tomadas baixas.', descricao_en: 'Toddlers often insert clips, hairpins, or keys into low outlets.', descricao_es: 'Niños pequeños a menudo insertan clips, horquillas o llaves en enchufes bajos.',
         prevencao: [
             'Coloque protetores de plástico em todas as tomadas não utilizadas.',
@@ -167,7 +167,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🪁',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e7.png'),
-        risco: 'Arco Elétrico de Alta Tensão', risco_en: 'High Voltage Arc', risco_es: 'Arco de Alta Tensión',
+        risco: 'Choque e queimadura por alta tensão', risco_en: 'Shock and burns from high voltage', risco_es: 'Descarga y quemaduras por alta tensión',
         descricao: 'Acidente grave em ruas e condomínios. Linhas chilenas (de óxido de alumínio e pó de quartzo) ou úmidas conduzem a alta tensão diretamente para quem as usa.', descricao_en: 'A serious accident on streets and in residential complexes. Abrasive kite lines (coated with aluminum oxide and quartz powder) or wet lines conduct high voltage straight to whoever is holding them.', descricao_es: 'Accidente grave en calles y condominios. Los hilos abrasivos de cometa (recubiertos de óxido de aluminio y polvo de cuarzo) o los hilos mojados conducen la alta tensión directamente a quien los sostiene.',
         prevencao: [
             'Solte pipas apenas em parques abertos, longe de postes de rua.',
@@ -248,7 +248,7 @@ export const riscosFisicos = [
         categoria: 'Eletricidade', categoria_en: 'Electricity', categoria_es: 'Electricidad',
         emoji: '🚫',
         imagemUrl: require('../assets/illustrations/pad/generated_rf_e10.png'),
-        risco: 'Múltiplas Vítimas Fatais', risco_en: 'Multiple Fatalities', risco_es: 'Múltiples Víctimas Fatales',
+        risco: 'Choque elétrico também em quem tenta socorrer', risco_en: 'Electric shock for the rescuer too', risco_es: 'Descarga eléctrica también para quien intenta socorrer',
         descricao: 'Muitas mortes ocorrem quando um familiar tenta puxar a pessoa que está tomando o choque e acaba eletrocutado junto.', descricao_en: 'Many deaths occur when a family member tries to pull the victim being shocked and gets electrocuted too.', descricao_es: 'Muchas muertes ocurren cuando un familiar intenta jalar a la víctima y también se electrocuta.',
         prevencao: [
             'A primeira regra é: o corpo humano conduz eletricidade. NÃO TOQUE NA VÍTIMA DIRETAMENTE.',
@@ -276,7 +276,7 @@ export const riscosFisicos = [
         imagemUrl: require('../assets/illustrations/pad/arma-de-fogo-em-casa.jpg'),
         categoria: 'Armas', categoria_en: 'Weapons', categoria_es: 'Armas',
         emoji: '🔫',
-        risco: 'Morte Acidental', risco_en: 'Accidental Death', risco_es: 'Muerte Accidental',
+        risco: 'Disparo acidental com ferimento grave', risco_en: 'Accidental discharge causing serious injury', risco_es: 'Disparo accidental con lesiones graves',
         descricao: 'O acesso indevido por crianças curiosas ou em momentos de raiva pode ser fatal.', descricao_en: 'Access by curious children, or in moments of anger, can be fatal.', descricao_es: 'El acceso por parte de niños curiosos, o en momentos de ira, puede ser fatal.',
         prevencao: [
             'Armazene a arma desmuniciada em cofre trancado.',
@@ -339,7 +339,7 @@ export const riscosFisicos = [
         imagemUrl: require('../assets/illustrations/pad/Afogamento.webp'),
         categoria: 'Água', categoria_en: 'Water', categoria_es: 'Agua',
         emoji: '💧',
-        risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
+        risco: 'Afogamento, inclusive em pouca água', risco_en: 'Drowning, even in shallow water', risco_es: 'Ahogamiento, incluso en poca agua',
         descricao: 'Pode acontecer com crianças pequenas em apenas 2,5 a 5 centímetros de água (baldes, banheiras) e de forma rápida e silenciosa.', descricao_en: 'It can happen to young children in just 1 to 2 inches (2.5 to 5 cm) of water (buckets, bathtubs) — quickly and silently.', descricao_es: 'Puede ocurrirles a niños pequeños en apenas 2,5 a 5 centímetros de agua (cubos, bañeras), de forma rápida y silenciosa.',
         prevencao: [
             'Nunca deixe crianças sozinhas no banho ou piscina.',
@@ -370,7 +370,7 @@ export const riscosFisicos = [
         categoria: 'Traumatismos', categoria_en: 'Trauma', categoria_es: 'Traumatismos',
         emoji: '📺',
         imagemUrl: require('../assets/illustrations/pad/acidentes-estatisticas_acidentes-domesticos-no-brasil_002.jpg'),
-        risco: 'Lesões Fatais', risco_en: 'Fatal Injuries', risco_es: 'Lesiones Fatales',
+        risco: 'Esmagamento e lesões graves', risco_en: 'Crushing and serious injuries', risco_es: 'Aplastamiento y lesiones graves',
         descricao: 'O hábito infantil de escalar móveis pode fazer com que estantes altas e televisores tombem sobre as crianças. Além disso, portas sem travas antiesmagamento causam severas e irreversíveis lesões.', descricao_es: 'La costumbre infantil de trepar a los muebles puede hacer que estanterías altas y televisores se vuelquen sobre los niños. Además, las puertas sin protectores antiaplastamiento causan lesiones graves e irreversibles.', descricao_en: 'Children\'s habit of climbing furniture can make tall bookcases and TVs tip over onto them. Doors without anti-pinch guards also cause severe, irreversible injuries.',
         prevencao: [
             'Fixe estantes altas e cômodas na parede usando suportes ou cabos apropriados.',
@@ -422,7 +422,7 @@ export const riscosFisicos = [
         categoria: 'Vias Aéreas', categoria_en: 'Airways', categoria_es: 'Vías Respiratorias',
         emoji: '👶',
         imagemUrl: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),
-        risco: 'Morte por Asfixia', risco_en: 'Death by Asphyxiation', risco_es: 'Muerte por Asfixia',
+        risco: 'Asfixia por obstrução das vias aéreas', risco_en: 'Choking or blocked airway', risco_es: 'Asfixia por obstrucción de las vías respiratorias',
         descricao: 'Primeira causa de morte acidental entre bebês de até um ano. Riscos incluem travesseiros e excesso de roupa de cama no berço, peças pequenas e alimentos granulados.', descricao_es: 'Una de las principales causas de muerte accidental en bebés menores de un año. Los riesgos incluyen almohadas y exceso de ropa de cama en la cuna, piezas pequeñas y alimentos pequeños y redondos.', descricao_en: 'A leading cause of accidental death in babies under one year old. Risks include pillows and excess bedding in the crib, small parts and small, round foods.',
         prevencao: [
             'Bebês devem dormir de barriga para cima, em berço vazio (sem protetores, ursos ou travesseiros).',
@@ -448,7 +448,7 @@ export const riscosFisicos = [
         categoria: 'Ferimentos', categoria_en: 'Injuries', categoria_es: 'Heridas',
         emoji: '🔪',
         imagemUrl: require('../assets/illustrations/pad/outros_conjunto-facas-cozinha_005.jpg'),
-        risco: 'Hemorragia Severa', risco_en: 'Severe Hemorrhage', risco_es: 'Hemorragia Severa',
+        risco: 'Sangramento intenso', risco_en: 'Heavy bleeding', risco_es: 'Sangrado abundante',
         descricao: 'Facas mal armazenadas e louças de banheiro (pias) usadas como apoio por idosos e pessoas com mobilidade reduzida, que quebram e geram lâminas mortais.',
         prevencao: [
             'Guarde facas e ferramentas cortantes em gavetas altas ou com trava.',

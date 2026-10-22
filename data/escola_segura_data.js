@@ -528,9 +528,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Pool surrounded by fence',
           texto_es: 'Piscina rodeada por valla',
           critico: true,
-          detalhes: 'Cerca de no mínimo 1,5m de altura ao redor de toda a piscina.',
-          detalhes_en: 'Fence at least 1.5m high around the entire pool.',
-          detalhes_es: 'Valla de al menos 1,5m de altura alrededor de toda la piscina.'
+          detalhes: 'Cerca de no mínimo 1,50 m de altura ao redor de toda a piscina.',
+          detalhes_en: 'Fence at least 1.2 m (4 ft) high around the entire pool.',
+          detalhes_es: 'Valla de al menos 1,2 m de altura alrededor de toda la piscina.'
         },
         {
           id: 'piscina-portao',
@@ -717,6 +717,26 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           detalhes_es: 'Recepción con identificación de visitantes.'
         },
         {
+          id: 'retirada-autorizada',
+          texto: 'A criança só é entregue a pessoas autorizadas pela família',
+          texto_en: 'Children are only handed over to people authorized by the family',
+          texto_es: 'El niño solo se entrega a personas autorizadas por la familia',
+          critico: true,
+          detalhes: 'Pergunte como a escola confere quem vem buscar a criança e o que faz quando aparece alguém que não está na lista.',
+          detalhes_en: 'Ask how the school checks who is collecting the child and what it does if someone not on the list turns up.',
+          detalhes_es: 'Pregunte cómo comprueba la escuela quién viene a recoger al niño y qué hace si aparece alguien que no está en la lista.'
+        },
+        {
+          id: 'antecedentes',
+          texto: 'A escola pede certidão de antecedentes criminais de quem trabalha com as crianças',
+          texto_en: 'The school requires criminal record checks for staff who work with children',
+          texto_es: 'La escuela exige certificado de antecedentes penales a quien trabaja con los niños',
+          critico: true,
+          detalhes: 'Vale para professores e também para portaria, limpeza, cozinha e transporte.',
+          detalhes_en: 'This applies to teachers and also to reception, cleaning, kitchen and transport staff.',
+          detalhes_es: 'Vale para los docentes y también para conserjería, limpieza, cocina y transporte.'
+        },
+        {
           id: 'portoes-trancados',
           texto: 'Portões mantidos trancados durante horário de aula',
           texto_en: 'Gates kept locked during school hours',
@@ -854,9 +874,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Adequate supervision during recess',
           texto_es: 'Supervisión adecuada durante el recreo',
           critico: true,
-          detalhes: 'Adultos atentos em todas as áreas de recreação.',
-          detalhes_en: 'Attentive adults in all recreation areas.',
-          detalhes_es: 'Adultos atentos en todas las áreas de recreación.'
+          detalhes: 'Adultos atentos em todas as áreas de recreação, inclusive nas idas ao banheiro.',
+          detalhes_en: 'Attentive adults in all recreation areas, including trips to the toilet.',
+          detalhes_es: 'Adultos atentos en todas las áreas de recreo, también cuando los niños van al baño.'
         },
         {
           id: 'protocolo-bullying',

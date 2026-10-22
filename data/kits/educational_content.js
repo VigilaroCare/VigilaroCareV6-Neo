@@ -450,7 +450,9 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Comunicação',
                 content: [
                     'Mantenha um celular carregado sempre à mão, principalmente em jardinagem ou áreas isoladas.',
-                    '**Contatos Salvos:** {{EMERGENCY_MEDICAL}}, Bombeiros ({{FIRE_NUMBER}}), {{POISON_CONTROL}} e familiares.'
+                    '**Contatos Salvos:** {{EMERGENCY_MEDICAL}}, Bombeiros ({{FIRE_NUMBER}}), {{POISON_CONTROL}} e familiares.',
+                    '**Lista em papel:** os mesmos contatos impressos, perto da porta ou na geladeira — servem quando o celular está sem bateria.',
+                    '**Documentos:** identidade e cartão do SUS ou do plano de saúde num lugar fácil de pegar numa saída às pressas.'
                 ]
             },
             {
@@ -476,7 +478,9 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Communication',
                 content: [
                     'Keep a charged cell phone always at hand, especially in gardening or isolated areas.',
-                    '**Saved Contacts:** {{EMERGENCY_MEDICAL}}, fire service ({{FIRE_NUMBER}}), {{POISON_CONTROL}}, and family members.'
+                    '**Saved Contacts:** {{EMERGENCY_MEDICAL}}, fire service ({{FIRE_NUMBER}}), {{POISON_CONTROL}}, and family members.',
+                    '**Paper list:** the same contacts printed out, by the door or on the fridge — useful when your phone battery is dead.',
+                    '**Documents:** ID and health insurance or health service cards kept somewhere easy to grab if you have to leave in a hurry.'
                 ]
             },
             {
@@ -502,7 +506,9 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Comunicación',
                 content: [
                     'Mantenga un teléfono celular cargado siempre a mano, especialmente en jardinería o áreas aisladas.',
-                    '**Contactos Guardados:** {{EMERGENCY_MEDICAL}}, Bomberos ({{FIRE_NUMBER}}), {{POISON_CONTROL}} y familiares.'
+                    '**Contactos Guardados:** {{EMERGENCY_MEDICAL}}, Bomberos ({{FIRE_NUMBER}}), {{POISON_CONTROL}} y familiares.',
+                    '**Lista en papel:** los mismos contactos impresos, junto a la puerta o en la nevera; sirven cuando el celular está sin batería.',
+                    '**Documentos:** identificación y tarjeta sanitaria o del seguro médico en un lugar fácil de tomar si hay que salir deprisa.'
                 ]
             },
             {
@@ -528,7 +534,9 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Comunicação',
                 content: [
                     'Mantenha um telemóvel carregado sempre à mão, principalmente em jardinagem ou áreas isoladas.',
-                    '**Contactos Guardados:** INEM (112), Bombeiros, Centro de Informação Antivenenos (CIAV) e familiares.'
+                    '**Contactos Guardados:** INEM (112), Bombeiros, Centro de Informação Antivenenos (CIAV) e familiares.',
+                    '**Lista em papel:** os mesmos contactos impressos, junto à porta ou no frigorífico — úteis quando o telemóvel fica sem bateria.',
+                    '**Documentos:** cartão de cidadão e cartão de utente ou do seguro de saúde num local fácil de agarrar numa saída à pressa.'
                 ]
             },
             {
@@ -567,9 +575,10 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Medicamentos Básicos (Uso Livre/Sintomáticos)',
                 content: [
-                    '**Analgésicos e Antitérmicos:** Paracetamol ou Dipirona para dor de cabeça, febre ou dores leves.',
+                    '**Antes de montar:** combine a lista e as doses com o médico ou o farmacêutico — sobretudo se houver crianças, gestantes, idosos, alergias ou doenças crônicas.',
+                    '**Analgésicos e Antitérmicos:** os que o médico ou o farmacêutico indicarem para a família (por exemplo, paracetamol ou dipirona), para dor de cabeça, febre ou dores leves.',
                     '**Antialérgicos:** Para reações alérgicas leves (picadas, poeira) - *Sempre siga a orientação médica prévia*.',
-                    '**Sais de Reidratação Oral:** Essencial para episódios de diarreia ou vômito, prevenindo desidratação grave.',
+                    '**Soro de reidratação oral** (vendido em farmácia, em pó para misturar na água): ajuda a repor os líquidos perdidos em diarreia ou vômito. Em bebês, idosos ou se a pessoa não melhorar, procure atendimento.',
                     '**Pomadas:** Para alívio de picadas de insetos ou assaduras.'
                 ]
             },
@@ -602,9 +611,10 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Basic Medications (Over-the-Counter/Symptomatic)',
                 content: [
-                    '**Painkillers and Antipyretics:** Paracetamol or Dipyrone for headache, fever, or mild pain.',
+                    '**Before you stock it:** agree the list and doses with your doctor or pharmacist — especially if there are children, pregnant women, older people, allergies or long-term conditions.',
+                    '**Painkillers and fever reducers:** those your doctor or pharmacist recommends for the family (for example, paracetamol/acetaminophen or ibuprofen), for headache, fever or mild pain.',
                     '**Antiallergics:** For mild allergic reactions (stings, dust) - *Always follow prior medical advice*.',
-                    '**Oral Rehydration Salts:** Essential for episodes of diarrhea or vomiting, preventing severe dehydration.',
+                    '**Oral rehydration salts** (sold in pharmacies as a powder to mix with water): help replace the fluids lost through diarrhea or vomiting. For babies, older people, or if the person does not improve, seek medical care.',
                     '**Ointments:** For insect bite relief or rashes.'
                 ]
             },
@@ -637,9 +647,10 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Medicamentos Básicos (De Venta Libre/Sintomáticos)',
                 content: [
-                    '**Analgésicos y Antipiréticos:** Paracetamol o Dipirona para dolor de cabeza, fiebre o dolores leves.',
+                    '**Antes de armarlo:** acuerde la lista y las dosis con el médico o el farmacéutico, sobre todo si hay niños, embarazadas, personas mayores, alergias o enfermedades crónicas.',
+                    '**Analgésicos y antipiréticos:** los que indique el médico o el farmacéutico para la familia (por ejemplo, paracetamol o ibuprofeno), para dolor de cabeza, fiebre o dolores leves.',
                     '**Antialérgicos:** Para reacciones alérgicas leves (picaduras, polvo) - *Siga siempre la orientación médica previa*.',
-                    '**Sales de Rehidratación Oral:** Esenciales para episodios de diarrea o vómito, previniendo la deshidratación grave.',
+                    '**Sales de rehidratación oral** (se venden en farmacias, en polvo para mezclar con agua): ayudan a reponer los líquidos perdidos por diarrea o vómitos. En bebés, personas mayores o si la persona no mejora, busque atención médica.',
                     '**Pomadas:** Para el alivio de picaduras de insectos o rozaduras.'
                 ]
             },
@@ -672,9 +683,10 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Medicamentos Básicos (Uso Livre/Sintomáticos)',
                 content: [
-                    '**Analgésicos e Antitérmicos:** Paracetamol ou Ibuprofeno para dor de cabeça, febre ou dores leves.',
+                    '**Antes de montar:** combine a lista e as doses com o médico ou o farmacêutico — sobretudo se houver crianças, grávidas, idosos, alergias ou doenças crónicas.',
+                    '**Analgésicos e antipiréticos:** os que o médico ou o farmacêutico indicarem para a família (por exemplo, paracetamol ou ibuprofeno), para dores de cabeça, febre ou dores ligeiras.',
                     '**Anti-histamínicos:** Para reações alérgicas leves (picadas, poeiras) - *Siga sempre a orientação médica prévia*.',
-                    '**Sais de Reidratação Oral:** Essencial para episódios de diarreia ou vómitos, prevenindo a desidratação grave.',
+                    '**Sais de reidratação oral** (vendidos na farmácia, em pó para misturar com água): ajudam a repor os líquidos perdidos em diarreia ou vómitos. Em bebés, idosos ou se a pessoa não melhorar, procure assistência médica.',
                     '**Pomadas:** Para alívio de picadas de insetos ou assaduras.'
                 ]
             },

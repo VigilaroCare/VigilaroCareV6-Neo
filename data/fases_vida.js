@@ -556,7 +556,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -567,7 +567,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (cercas de pelo menos 1,50 m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)
 
@@ -605,7 +605,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 ### Points of Attention:
 * **Small Parts:** Risk of ingestion and choking for children under 3 years old.
-* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check if the battery compartment is screwed shut.
+* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check that the battery compartment is screwed shut or has a catch a child cannot open.
 * **Toxic Paints:** Prefer certified products.
 * **Excessive Noise:** Very noisy toys can damage a child's sensitive hearing.
 * **Breakables:** Avoid materials that can shatter (glass, brittle rigid plastic).
@@ -616,7 +616,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 **The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch (2.5 cm) of water (buckets, basins, bathtubs, laundry tubs and the like), due to the weight of a baby's head.
 
-**Immediate Tactical Action:** Maintain insurmountable barriers (4ft fences) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
+**Immediate Tactical Action:** Keep hard-to-climb barriers (fences at least 1.2 m / 4 ft high) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
 
 ---
 
@@ -652,7 +652,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 ### Puntos de Atención:
 * **Piezas Pequeñas:** Riesgo de ingestión y atragantamiento para menores de 3 años.
-* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimiento esté atornillado.
+* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimento esté atornillado o tenga un cierre que el niño no pueda abrir.
 * **Pinturas Tóxicas:** Prefiera productos certificados.
 * **Ruido Excesivo:** Juguetes muy ruidosos pueden dañar la audición del niño.
 * **Quebradizos:** Evite materiales que puedan astillarse.
@@ -663,7 +663,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 **El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
-**Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
+**Acción Táctica Inmediata:** Mantenga barreras difíciles de trepar (vallas de al menos 1,2 m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
 
 ---
 
@@ -698,7 +698,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -709,7 +709,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (vedações de pelo menos 1,20 m) à volta das piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)
 
@@ -806,7 +806,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -817,7 +817,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (cercas de pelo menos 1,50 m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)
 
@@ -855,7 +855,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 ### Points of Attention:
 * **Small Parts:** Risk of ingestion and choking for children under 3 years old.
-* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check if the battery compartment is screwed shut.
+* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check that the battery compartment is screwed shut or has a catch a child cannot open.
 * **Toxic Paints:** Prefer certified products.
 * **Excessive Noise:** Very noisy toys can damage a child's sensitive hearing.
 * **Breakables:** Avoid materials that can shatter (glass, brittle rigid plastic).
@@ -866,7 +866,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 **The Invisible Risk:** Real drowning is fast and silent. It can happen in just 1 inch (2.5 cm) of water (buckets, basins, bathtubs, laundry tubs and the like), due to the weight of a baby's head.
 
-**Immediate Tactical Action:** Maintain insurmountable barriers (4ft fences) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
+**Immediate Tactical Action:** Keep hard-to-climb barriers (fences at least 1.2 m / 4 ft high) around pools. Empty buckets immediately after use. Keep the toilet lid down and locked.
 
 ---
 
@@ -902,7 +902,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 ### Puntos de Atención:
 * **Piezas Pequeñas:** Riesgo de ingestión y atragantamiento para menores de 3 años.
-* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimiento esté atornillado.
+* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimento esté atornillado o tenga un cierre que el niño no pueda abrir.
 * **Pinturas Tóxicas:** Prefiera productos certificados.
 * **Ruido Excesivo:** Juguetes muy ruidosos pueden dañar la audición del niño.
 * **Quebradizos:** Evite materiales que puedan astillarse.
@@ -913,7 +913,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 **El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
-**Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
+**Acción Táctica Inmediata:** Mantenga barreras difíciles de trepar (vallas de al menos 1,2 m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.
 
 ---
 
@@ -948,7 +948,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -959,7 +959,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (vedações de pelo menos 1,20 m) à volta das piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)
 
@@ -1053,7 +1053,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -1064,7 +1064,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras que sejam intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (cercas de pelo menos 1,50 m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)`,
         conteudo_en: `# Toys: Fun with Safety
@@ -1073,7 +1073,7 @@ When choosing toys, always check the indicative age rating. A safe toy for a 7-y
 
 ### Points of Attention:
 * **Small Parts:** Risk of ingestion and choking for children under 3 years old.
-* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check if the battery compartment is screwed shut.
+* **Button Batteries:** Extremely dangerous if swallowed (risk of severe internal burns). Check that the battery compartment is screwed shut or has a catch a child cannot open.
 * **Toxic Paints:** Prefer certified products.
 * **Excessive Noise:** Very noisy toys can damage a child's sensitive hearing.
 * **Breakables:** Avoid materials that can shatter (glass, brittle rigid plastic).
@@ -1091,7 +1091,7 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 ### Puntos de Atención:
 * **Piezas Pequeñas:** Riesgo de ingestión y atragantamiento para menores de 3 años.
-* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimiento esté atornillado.
+* **Pilas de Botón:** Extremadamente peligrosas si se tragan. Compruebe que el compartimento esté atornillado o tenga un cierre que el niño no pueda abrir.
 * **Pinturas Tóxicas:** Prefiera productos certificados.
 * **Ruido Excesivo:** Juguetes muy ruidosos pueden dañar la audición del niño.
 * **Quebradizos:** Evite materiales que puedan astillarse.
@@ -1102,14 +1102,14 @@ Al elegir juguetes, verifique siempre la clasificación de edad indicativa. Un j
 
 **El Riesgo Invisible:** El ahogamiento real es rápido y silencioso. Puede ocurrir en solo 2,5 cm de agua (cubos, palanganas, bañeras, lavaderos y similares), debido al peso de la cabeza de los bebés.
 
-**Acción Táctica Inmediata:** Mantenga barreras (vallas de 1.2m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.`,
+**Acción Táctica Inmediata:** Mantenga barreras difíciles de trepar (vallas de al menos 1,2 m) alrededor de las piscinas. Vacíe los cubos inmediatamente después de usarlos. Mantenga la tapa del inodoro bajada y bloqueada.`,
         conteudo_pt_PT: `# Brinquedos: Diversão com Segurança
 
 Ao escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.
 
 ### Pontos de Atenção:
 *   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.
-*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado.
+*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.
 *   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.
 *   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.
 *   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).
@@ -1120,7 +1120,7 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
 
 **O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.
 
-**Ação Tática Imediata:** Mantenha barreiras que sejam intransponíveis (cercas de 1,5m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
+**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (vedações de pelo menos 1,20 m) à volta das piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.
 
 [Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)`,
     },

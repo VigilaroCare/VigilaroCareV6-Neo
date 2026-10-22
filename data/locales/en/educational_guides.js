@@ -21,7 +21,7 @@ export const EDUCATIONAL_GUIDES_EN = {
         label: 'Pool',
         iconName: 'Pool',
         color: '#03A9F4',
-        content: 'Pool safety requires insurmountable physical barriers: install fences at least 1.5m high with self-latching gates. Use anti-entrapment drains to prevent fatal hair or limb suction. During leisure time, designate a focused adult "water watcher", without distractions like cell phones, and keep pool chemicals locked away.'
+        content: 'Pool safety requires hard-to-climb physical barriers: install fences at least 1.2 m (4 ft) high with self-latching gates. Use anti-entrapment drains to prevent fatal hair or limb suction. During leisure time, designate a focused adult "water watcher", without distractions like cell phones, and keep pool chemicals locked away.'
     },
     praia_rios: {
         label: 'Natural Areas',

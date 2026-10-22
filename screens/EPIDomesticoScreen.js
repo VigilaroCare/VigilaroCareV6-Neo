@@ -7,6 +7,7 @@
  * (hero = foto do card). Sem expand inline.
  */
 
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     View,
@@ -23,7 +24,8 @@ import AppBackground from '../components/AppBackground';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import ReviewImage from '../components/ReviewImage';
 import FadeInView from '../components/FadeInView';
-import { EPI_DOMESTICO } from '../data/epi_domestico';
+import { EPI_DOMESTICO as EPI_BASE } from '../data/epi_domestico';
+import { t_deep } from '../utils/getLocalizedField';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
 const THEME_COLOR = '#F59E0B'; // amber
@@ -37,11 +39,14 @@ const CAT_COLORS = {
     epi_pes:         '#6366F1', // indigo
     epi_respiratorio:'#10B981', // green
     epi_corpo:       Neo.colors.categoria.rose.fill, // pink
+    epi_jardim:      '#16A34A', // green
 };
 
 export default function EPIDomesticoScreen({ navigation }) {
     const insets = useSafeAreaInsets();
-    const { t } = useTranslation('common');
+    const { t, i18n } = useTranslation('common');
+    // Conteúdo no idioma do usuário (campos _en/_es/_ptpt do arquivo de dados).
+    const EPI_DOMESTICO = useMemo(() => t_deep(EPI_BASE), [i18n.language]);
     const themeColors = useThemeColors();
     const isDark = useIsDark();
     const textPrimary = themeColors.neutral[900];
@@ -76,8 +81,8 @@ export default function EPIDomesticoScreen({ navigation }) {
                 importancia: cat.dica || null,
                 // alternativa + limiteDb viram parte da estatistica
                 estatisticas: [
-                    cat.alternativa && `Alternativa: ${cat.alternativa}`,
-                    cat.limiteDb && `Limite seguro: ${cat.limiteDb} dB`,
+                    cat.alternativa && `${t('telas.EPIDomesticoScreen.alternativa', 'Alternativa')}: ${cat.alternativa}`,
+                    cat.limiteDb && `${t('telas.EPIDomesticoScreen.limiteSeguro', 'Limite seguro')}: ${cat.limiteDb} dB`,
                 ].filter(Boolean).join('\n'),
             },
         });
@@ -161,7 +166,7 @@ export default function EPIDomesticoScreen({ navigation }) {
                                                 <Text style={[styles.guideTitle, { color: textPrimary }]} numberOfLines={2}>{cat.titulo}</Text>
                                                 <View style={{ flex: 1 }} />
                                                 <Text style={[styles.guideDesc, { color: textBody }]} numberOfLines={2}>
-                                                    {cat.equipamento || cat.dica || 'EPI essencial.'}
+                                                    {cat.equipamento || cat.dica || t('telas.EPIDomesticoScreen.epiEssencial', 'EPI essencial para esta atividade.')}
                                                 </Text>
                                             </View>
                                         </View>

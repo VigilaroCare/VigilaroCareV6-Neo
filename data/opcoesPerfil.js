@@ -18,6 +18,8 @@ export const NECESSIDADES_ACESSIBILIDADE = [
     { id: 'hearing', label: 'Deficiência Auditiva', label_en: 'Hearing Impairment', label_es: 'Discapacidad Auditiva' },
     { id: 'mobility', label: 'Dificuldade de Locomoção', label_en: 'Mobility Difficulty', label_es: 'Dificultad de Movilidad' },
     { id: 'cognitive', label: 'Condição Cognitiva', label_en: 'Cognitive Condition', label_es: 'Condición Cognitiva' },
+    { id: 'neurodivergence', label: 'Neurodivergência (TEA, TDAH e outras)', label_en: 'Neurodivergence (autism, ADHD and others)', label_es: 'Neurodivergencia (TEA, TDAH y otras)', label_ptpt: 'Neurodivergência (PEA, PHDA e outras)' },
+    { id: 'intellectual', label: 'Deficiência Intelectual', label_en: 'Intellectual Disability', label_es: 'Discapacidad Intelectual' },
     { id: 'speech', label: 'Dificuldade de Fala', label_en: 'Speech Difficulty', label_es: 'Dificultad del Habla' },
     { id: 'chronic_pain', label: 'Dor Crônica', label_en: 'Chronic Pain', label_es: 'Dolor Crónico', label_ptpt: 'Dor Crónica' },
     { id: 'balance', label: 'Desequilíbrio/Vertigem', label_en: 'Balance Problems/Vertigo', label_es: 'Desequilibrio/Vértigo' },

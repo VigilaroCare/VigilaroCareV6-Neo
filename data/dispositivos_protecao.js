@@ -635,7 +635,7 @@ export const DISPOSITIVOS_PROTECAO = [
         prevencao: [
             'Use APENAS capas de segurança homologadas — capas térmicas ou de lona fina NÃO são seguras',
             'A capa deve suportar o peso de uma criança sem afundar nem se soltar das bordas',
-            'Combine com uma cerca de pelo menos 1,20 m de altura em volta da piscina, com portão de fechamento e travamento automáticos',
+            'Combine com uma cerca de pelo menos 1,50 m de altura em volta da piscina, com portão de fechamento e travamento automáticos',
             'Mantenha a piscina coberta sempre que não estiver em uso', 'Piscina vazia ou em manutenção também é risco: uma queda no fundo causa lesões graves — mantenha-a isolada e sinalizada',
             'Em piscinas de montar ou infláveis: esvazie quando não estiverem em uso e não as deixe expostas à chuva — poucos centímetros de água acumulada bastam para um afogamento',
         ], prevencao_ptpt: [

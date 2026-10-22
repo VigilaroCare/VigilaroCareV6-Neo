@@ -2,36 +2,79 @@
  * epi_domestico.js
  * Guia de Equipamentos de Proteção Individual para Uso Doméstico
  * Vigilaro Care V5
+ *
+ * Lido pela EPIDomesticoScreen com t_deep(): cada campo tem _en, _es e _ptpt.
+ * Até 22/10/2026 o arquivo só existia em português — a tela saía em português
+ * em qualquer idioma. Na mesma revisão (AV, Agnaldo) saíram os blocos que
+ * nenhuma tela lia (lista "Tenho óculos de proteção em casa?", atividades x
+ * EPIs, "onde comprar" com nomes de lojas e preços em reais) e a "Armadura do
+ * Jardineiro" voltou para `categorias`: estava, por engano, dentro da lista de
+ * atividades e nunca aparecia.
  */
 
 export const EPI_DOMESTICO = {
     id: 'epi_dom',
     titulo: 'EPIs para Atividades Domésticas',
+    titulo_en: 'PPE for Household Tasks',
+    titulo_es: 'EPI para Tareas Domésticas',
+    titulo_ptpt: 'EPI para Atividades Domésticas',
     emoji: '🦺', icone: 'TShirt',
     descricao: 'Equipamentos de Proteção Individual não são apenas para obras. Muitas atividades domésticas exigem proteção adequada.',
+    descricao_en: 'Personal Protective Equipment is not just for building sites. Many household tasks call for proper protection.',
+    descricao_es: 'Los Equipos de Protección Individual no son solo para obras. Muchas tareas domésticas requieren una protección adecuada.',
+    descricao_ptpt: 'Os Equipamentos de Proteção Individual não são só para obras. Muitas atividades domésticas exigem proteção adequada.',
 
     advertencia: 'Acidentes domésticos podem parecer pequenos, mas causam milhares de lesões graves por ano. Use EPIs!',
+    advertencia_en: 'Household accidents may seem minor, but they cause thousands of serious injuries every year. Use PPE!',
+    advertencia_es: 'Los accidentes domésticos pueden parecer menores, pero causan miles de lesiones graves cada año. ¡Use EPI!',
+    advertencia_ptpt: 'Os acidentes domésticos podem parecer pequenos, mas causam milhares de lesões graves por ano. Use EPI!',
 
     categorias: [
         {
             id: 'epi_cabeca',
             titulo: 'Proteção para a Cabeça',
-            icone: 'HardHat',
+            titulo_en: 'Head Protection',
+            titulo_es: 'Protección para la Cabeza',
             emoji: '⛑️', icone: 'HardHat',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_capaceteproteu00e7u00e3o_008.jpg'),
             quando: [
                 'Reparos sob o telhado ou forros',
                 'Podas de árvores com risco de queda de galhos',
                 'Trabalhos com escadas em altura',
-                'Reformas e demolições'
+                'Reformas e demolições',
+            ],
+            quando_en: [
+                'Repairs under the roof or in the ceiling space',
+                'Tree pruning where branches may fall',
+                'Work on ladders at height',
+                'Renovations and demolition',
+            ],
+            quando_es: [
+                'Reparaciones bajo el tejado o en falsos techos',
+                'Poda de árboles con riesgo de caída de ramas',
+                'Trabajos en escaleras en altura',
+                'Reformas y demoliciones',
+            ],
+            quando_ptpt: [
+                'Reparações debaixo do telhado ou em tetos falsos',
+                'Podas de árvores com risco de queda de ramos',
+                'Trabalhos em escadas em altura',
+                'Obras e demolições',
             ],
             equipamento: 'Capacete de proteção (EPI classe A ou B)',
-            dica: 'Mantenha um capacete simples em casa para emergências e pequenas obras.'
+            equipamento_en: 'Safety helmet (hard hat)',
+            equipamento_es: 'Casco de protección',
+            equipamento_ptpt: 'Capacete de proteção',
+            dica: 'Mantenha um capacete simples em casa para emergências e pequenos serviços.',
+            dica_en: 'Keep a basic hard hat at home for emergencies and small jobs.',
+            dica_es: 'Tenga un casco sencillo en casa para emergencias y pequeños trabajos.',
+            dica_ptpt: 'Tenha um capacete simples em casa para emergências e pequenos trabalhos.',
         },
         {
             id: 'epi_olhos',
             titulo: 'Proteção para os Olhos',
-            icone: 'Eyeglasses',
+            titulo_en: 'Eye Protection',
+            titulo_es: 'Protección para los Ojos',
             emoji: '🥽', icone: 'Eyeglasses',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_oculos-de-seguranca_009.jpg'),
             quando: [
@@ -39,45 +82,77 @@ export const EPI_DOMESTICO = {
                 'Cortar madeira ou metal',
                 'Manusear produtos químicos (desentupidores, ácidos)',
                 'Podar jardim (risco de galhos)',
-                'Limpar com produtos em spray'
+                'Limpar com produtos em spray',
+            ],
+            quando_en: [
+                'Using a drill, angle grinder or sander',
+                'Cutting wood or metal',
+                'Handling chemicals (drain cleaners, acids)',
+                'Pruning in the garden (risk from branches)',
+                'Cleaning with spray products',
+            ],
+            quando_es: [
+                'Usar taladro, amoladora o lijadora',
+                'Cortar madera o metal',
+                'Manipular productos químicos (desatascadores, ácidos)',
+                'Podar el jardín (riesgo de ramas)',
+                'Limpiar con productos en aerosol',
+            ],
+            quando_ptpt: [
+                'Usar berbequim, rebarbadora ou lixadora',
+                'Cortar madeira ou metal',
+                'Manusear produtos químicos (desentupidores, ácidos)',
+                'Podar o jardim (risco de ramos)',
+                'Limpar com produtos em spray',
             ],
             equipamento: 'Óculos de proteção transparentes (ampla visão)',
-            dica: 'Óculos graduados NÃO protegem. Use óculos de segurança sobre eles.'
+            equipamento_en: 'Clear safety goggles (wide vision)',
+            equipamento_es: 'Gafas de protección transparentes (visión panorámica)',
+            equipamento_ptpt: 'Óculos de proteção transparentes (visão panorâmica)',
+            dica: 'Óculos de grau NÃO protegem. Use por cima deles óculos de segurança de ampla visão.',
+            dica_en: 'Prescription glasses do NOT protect you. Wear wide-vision safety goggles over them.',
+            dica_es: 'Las gafas graduadas NO protegen. Póngase encima gafas de seguridad de visión panorámica.',
+            dica_ptpt: 'Os óculos graduados NÃO protegem. Use por cima deles óculos de segurança de visão panorâmica.',
         },
         {
             id: 'epi_maos',
             titulo: 'Proteção para as Mãos',
-            icone: 'Hand',
+            titulo_en: 'Hand Protection',
+            titulo_es: 'Protección para las Manos',
             emoji: '🧤', icone: 'Hand',
             imagemUrl: require('../assets/illustrations/pad/generated_epi_maos_luvas.png'),
             tipos: [
                 {
-                    tipo: 'Luvas de borracha/látex',
-                    uso: 'Limpeza com produtos químicos'
+                    tipo: 'Luvas de borracha/látex', tipo_en: 'Rubber/latex gloves', tipo_es: 'Guantes de goma/látex',
+                    uso: 'Limpeza com produtos químicos', uso_en: 'Cleaning with chemicals', uso_es: 'Limpieza con productos químicos',
                 },
                 {
-                    tipo: 'Luvas de raspa',
-                    uso: 'Jardinagem, manuseio de entulho e depósito'
+                    tipo: 'Luvas de raspa', tipo_en: 'Split-leather work gloves', tipo_es: 'Guantes de cuero serraje', tipo_ptpt: 'Luvas de couro (crute)',
+                    uso: 'Jardinagem, manuseio de entulho e depósito', uso_en: 'Gardening, handling rubble and storage areas', uso_es: 'Jardinería, manejo de escombros y trastero', uso_ptpt: 'Jardinagem, manuseamento de entulho e arrumos',
                 },
                 {
-                    tipo: 'Luvas isolantes',
-                    uso: 'Trabalhos elétricos'
+                    tipo: 'Luvas isolantes', tipo_en: 'Insulating gloves', tipo_es: 'Guantes aislantes',
+                    uso: 'Trabalhos elétricos — de preferência, chame um eletricista', uso_en: 'Electrical work — preferably call an electrician', uso_es: 'Trabajos eléctricos: preferiblemente, llame a un electricista', uso_ptpt: 'Trabalhos elétricos — de preferência, chame um eletricista',
                 },
                 {
-                    tipo: 'Luvas anti-corte (malha de aço)',
-                    uso: 'Usar facas afiadas, trabalhar com vidro'
+                    tipo: 'Luvas anticorte (malha de aço)', tipo_en: 'Cut-resistant gloves (steel mesh)', tipo_es: 'Guantes anticorte (malla de acero)',
+                    uso: 'Usar facas afiadas, trabalhar com vidro', uso_en: 'Using sharp knives, handling glass', uso_es: 'Usar cuchillos afilados, trabajar con vidrio',
                 },
                 {
-                    tipo: 'Luvas nitrílicas descartáveis',
-                    uso: 'Pintura, aplicação de resinas, trabalho fino'
-                }
+                    tipo: 'Luvas nitrílicas descartáveis', tipo_en: 'Disposable nitrile gloves', tipo_es: 'Guantes de nitrilo desechables', tipo_ptpt: 'Luvas de nitrilo descartáveis',
+                    uso: 'Pintura, aplicação de resinas, trabalho fino', uso_en: 'Painting, applying resins, fine work', uso_es: 'Pintura, aplicación de resinas, trabajos finos', uso_ptpt: 'Pintura, aplicação de resinas, trabalhos finos',
+                },
             ],
-            dica: 'Tenha pelo menos um par de cada tipo em casa.'
+            dica: 'Tenha pelo menos um par de luvas de cada tipo em casa.',
+            dica_en: 'Keep at least one pair of each type of glove at home.',
+            dica_es: 'Tenga en casa al menos un par de guantes de cada tipo.',
+            dica_ptpt: 'Tenha em casa pelo menos um par de luvas de cada tipo.',
         },
         {
             id: 'epi_ouvidos',
             titulo: 'Proteção para os Ouvidos',
-            icone: 'Ear',
+            titulo_en: 'Hearing Protection',
+            titulo_es: 'Protección para los Oídos',
             emoji: '👂', icone: 'Ear',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_boot-4485515_004.jpg'),
             quando: [
@@ -85,16 +160,43 @@ export const EPI_DOMESTICO = {
                 'Usar roçadeira/cortador de grama',
                 'Usar lixadeira ou esmerilhadeira',
                 'Serrar madeira com serra elétrica',
-                'Qualquer ferramenta com ruído alto'
+                'Qualquer ferramenta com ruído alto',
+            ],
+            quando_en: [
+                'Using a drill for more than 5 minutes',
+                'Using a brush cutter or lawn mower',
+                'Using a sander or angle grinder',
+                'Cutting wood with a power saw',
+                'Any loud tool',
+            ],
+            quando_es: [
+                'Usar el taladro más de 5 minutos',
+                'Usar desbrozadora o cortacésped',
+                'Usar lijadora o amoladora',
+                'Cortar madera con sierra eléctrica',
+                'Cualquier herramienta ruidosa',
+            ],
+            quando_ptpt: [
+                'Usar o berbequim durante mais de 5 minutos',
+                'Usar roçadora ou corta-relva',
+                'Usar lixadora ou rebarbadora',
+                'Serrar madeira com serra elétrica',
+                'Qualquer ferramenta com ruído alto',
             ],
             equipamento: 'Protetor auricular (abafador ou plug)',
-            dica: 'Exposição a ruído intenso causa perda auditiva IRREVERSÍVEL. Proteja-se sempre!',
-            limiteDb: 85 // decibéis - limite de segurança
+            equipamento_en: 'Hearing protection (earmuffs or earplugs)',
+            equipamento_es: 'Protector auditivo (orejeras o tapones)',
+            equipamento_ptpt: 'Protetor auricular (abafador ou tampões)',
+            dica: 'Exposição a ruído intenso pode causar perda auditiva IRREVERSÍVEL. Proteja-se sempre!',
+            dica_en: 'Exposure to loud noise can cause PERMANENT hearing loss. Always protect yourself!',
+            dica_es: 'La exposición a ruido intenso puede causar pérdida auditiva IRREVERSIBLE. ¡Protéjase siempre!',
+            limiteDb: 85, // decibéis - limite de segurança
         },
         {
             id: 'epi_pes',
             titulo: 'Proteção para os Pés',
-            icone: 'Footprints',
+            titulo_en: 'Foot Protection',
+            titulo_es: 'Protección para los Pies',
             emoji: '👟', icone: 'Sneaker',
             imagemUrl: require('../assets/illustrations/pad/epi-protecao-individual_bota-de-seguranca_007.jpg'),
             quando: [
@@ -102,16 +204,46 @@ export const EPI_DOMESTICO = {
                 'Limpeza de quintais e áreas com entulho',
                 'Reformas e obras',
                 'Carregar objetos pesados',
-                'Trabalhar com ferramentas que podem cair'
+                'Trabalhar com ferramentas que podem cair',
+            ],
+            quando_en: [
+                'Gardening (risk of venomous animals)',
+                'Clearing yards and areas with rubble',
+                'Renovations and building work',
+                'Carrying heavy objects',
+                'Working with tools that may fall',
+            ],
+            quando_es: [
+                'Jardinería (riesgo de animales venenosos)',
+                'Limpieza de patios y zonas con escombros',
+                'Reformas y obras',
+                'Cargar objetos pesados',
+                'Trabajar con herramientas que pueden caer',
+            ],
+            quando_ptpt: [
+                'Jardinagem (risco de animais venenosos)',
+                'Limpeza de quintais e zonas com entulho',
+                'Obras e remodelações',
+                'Carregar objetos pesados',
+                'Trabalhar com ferramentas que podem cair',
             ],
             equipamento: 'Botas fechadas com solado grosso para jardinagem e depósito',
+            equipamento_en: 'Closed boots with thick soles for gardening and storage areas',
+            equipamento_es: 'Botas cerradas con suela gruesa para jardinería y trastero',
+            equipamento_ptpt: 'Botas fechadas de sola grossa para jardinagem e arrumos',
             alternativa: 'Calçado antiderrapante para idosos em casa',
-            dica: 'Sapatos abertos são causa frequente de acidentes com quedas de objetos.'
+            alternativa_en: 'Non-slip footwear for older people at home',
+            alternativa_es: 'Calzado antideslizante para personas mayores en casa',
+            dica: 'Com sapato aberto, uma ferramenta ou objeto que cai pode ferir o pé.',
+            dica_en: 'In open shoes, a falling tool or object can injure your foot.',
+            dica_es: 'Con calzado abierto, una herramienta u objeto que cae puede herir el pie.',
+            dica_ptpt: 'Com sapato aberto, uma ferramenta ou objeto que caia pode ferir o pé.',
         },
         {
             id: 'epi_respiratorio',
             titulo: 'Proteção Respiratória',
-            icone: 'Thermometer',
+            titulo_en: 'Respiratory Protection',
+            titulo_es: 'Protección Respiratoria',
             emoji: '😷', icone: 'FirstAid',
             imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_mulher-mascara-alcool-gel_029.jpg'),
             quando: [
@@ -119,28 +251,52 @@ export const EPI_DOMESTICO = {
                 'Lixar paredes ou madeiras',
                 'Limpar áreas com mofo',
                 'Usar produtos com vapores fortes (cloro, amônia)',
-                'Trabalhar em ambientes com poeira'
+                'Trabalhar em ambientes com poeira',
+            ],
+            quando_en: [
+                'Using paints, varnishes or solvents',
+                'Sanding walls or wood',
+                'Cleaning moldy areas',
+                'Using products with strong fumes (bleach, ammonia)',
+                'Working in dusty places',
+            ],
+            quando_es: [
+                'Usar pinturas, barnices o disolventes',
+                'Lijar paredes o maderas',
+                'Limpiar zonas con moho',
+                'Usar productos con vapores fuertes (lejía, amoníaco)',
+                'Trabajar en ambientes con polvo',
+            ],
+            quando_ptpt: [
+                'Usar tintas, vernizes ou solventes',
+                'Lixar paredes ou madeiras',
+                'Limpar zonas com bolor',
+                'Usar produtos com vapores fortes (lixívia, amoníaco)',
+                'Trabalhar em ambientes com pó',
             ],
             tipos: [
                 {
-                    tipo: 'Máscara PFF2',
-                    uso: 'Poeira, serragem e pulverização de produtos'
+                    tipo: 'Máscara PFF2', tipo_en: 'FFP2 / N95 respirator', tipo_es: 'Mascarilla FFP2', tipo_ptpt: 'Máscara FFP2',
+                    uso: 'Poeira, serragem e pulverização de produtos', uso_en: 'Dust, sawdust and sprayed products', uso_es: 'Polvo, serrín y productos pulverizados', uso_ptpt: 'Pó, serradura e pulverização de produtos',
                 },
                 {
-                    tipo: 'Máscara simples',
-                    uso: 'Limpeza com produtos de cheiro forte'
+                    tipo: 'Máscara simples', tipo_en: 'Basic mask', tipo_es: 'Mascarilla simple',
+                    uso: 'Só contra poeira leve — não filtra vapores de produtos químicos', uso_en: 'Light dust only — it does not filter chemical fumes', uso_es: 'Solo contra polvo ligero: no filtra vapores químicos', uso_ptpt: 'Só contra pó leve — não filtra vapores de produtos químicos',
                 },
                 {
-                    tipo: 'Máscara com respirador semifacial com cartucho químico',
-                    uso: 'Gases, vapores e partículas'
-                }
+                    tipo: 'Respirador semifacial com filtro químico', tipo_en: 'Half-face respirator with chemical cartridge', tipo_es: 'Respirador de media cara con filtro químico', tipo_ptpt: 'Semimáscara com filtro químico',
+                    uso: 'Gases, vapores e partículas (filtro adequado ao produto)', uso_en: 'Gases, vapors and particles (cartridge suited to the product)', uso_es: 'Gases, vapores y partículas (filtro adecuado al producto)',
+                },
             ],
-            dica: 'Trabalhe sempre em ambientes VENTILADOS. Máscara é complemento, não substituto.'
+            dica: 'Trabalhe sempre em ambientes VENTILADOS. Máscara é complemento, não substituto.',
+            dica_en: 'Always work in WELL-VENTILATED spaces. A mask is an addition, not a substitute.',
+            dica_es: 'Trabaje siempre en ambientes VENTILADOS. La mascarilla es un complemento, no un sustituto.',
         },
         {
             id: 'epi_corpo',
             titulo: 'Proteção para o Corpo',
-            icone: 'TShirt',
+            titulo_en: 'Body Protection',
+            titulo_es: 'Protección para el Cuerpo',
             emoji: '👷', icone: 'HardHat',
             imagemUrl: require('../assets/illustrations/pad/protetores-seguranca_avental-de-protecao_004.jpg'),
             quando: [
@@ -148,82 +304,74 @@ export const EPI_DOMESTICO = {
                 'Manusear materiais abrasivos',
                 'Trabalhar com solda ou faíscas',
                 'Carregar objetos pesados ou irregulares',
-                'Risco de respingos químicos'
+                'Risco de respingos químicos',
+            ],
+            quando_en: [
+                'Pruning plants (thorns, allergies)',
+                'Handling abrasive materials',
+                'Welding or working with sparks',
+                'Carrying heavy or awkward objects',
+                'Risk of chemical splashes',
+            ],
+            quando_es: [
+                'Podar plantas (espinas, alergias)',
+                'Manipular materiales abrasivos',
+                'Soldar o trabajar con chispas',
+                'Cargar objetos pesados o irregulares',
+                'Riesgo de salpicaduras químicas',
+            ],
+            quando_ptpt: [
+                'Podar plantas (espinhos, alergias)',
+                'Manusear materiais abrasivos',
+                'Trabalhar com soldadura ou faíscas',
+                'Carregar objetos pesados ou irregulares',
+                'Risco de salpicos químicos',
             ],
             equipamento: 'Avental de couro ou PVC, manga comprida',
-            dica: 'Roupas soltas podem enroscar em ferramentas. Use roupas justas ao corpo.'
-        }
-    ],
-
-    atividadesEEpis: [
-        {
-            atividade: 'Jardinagem e Poda',
-            epis: ['Luvas de couro', 'Óculos', 'Botina fechada', 'Manga comprida'],
-            riscos: ['Espinhos', 'Animais peçonhentos', 'Galhos nos olhos']
+            equipamento_en: 'Leather or PVC apron, long sleeves',
+            equipamento_es: 'Delantal de cuero o PVC, manga larga',
+            dica: 'Roupas soltas podem enroscar em ferramentas rotativas. Use roupas justas ao corpo.',
+            dica_en: 'Loose clothing can get caught in rotating tools. Wear close-fitting clothes.',
+            dica_es: 'La ropa suelta puede engancharse en herramientas rotativas. Use ropa ajustada.',
+            dica_ptpt: 'A roupa larga pode prender-se em ferramentas rotativas. Use roupa justa ao corpo.',
         },
-
         {
             id: 'epi_jardim',
             titulo: 'Armadura do Jardineiro',
-            icone: 'Leaf',
+            titulo_en: 'Gardener\'s Armor',
+            titulo_es: 'Armadura del Jardinero',
             emoji: '🧑‍🌾', icone: 'Plant',
             imagemUrl: require('../assets/illustrations/pad/generated_jardim.png'),
             quando: [
                 'Mexer na terra ou podar arbustos espessos',
                 'Trabalhar em áreas de mato alto no quintal',
-                'Aplicar produtos químicos de jardinagem'
+                'Aplicar produtos químicos de jardinagem',
+            ],
+            quando_en: [
+                'Digging or pruning dense shrubs',
+                'Working in tall grass in the yard',
+                'Applying garden chemicals',
+            ],
+            quando_es: [
+                'Remover la tierra o podar arbustos espesos',
+                'Trabajar en zonas de maleza alta del patio',
+                'Aplicar productos químicos de jardinería',
+            ],
+            quando_ptpt: [
+                'Mexer na terra ou podar arbustos densos',
+                'Trabalhar em zonas de mato alto no quintal',
+                'Aplicar produtos químicos de jardinagem',
             ],
             equipamento: 'Calças compridas (barras fechadas), blusa de manga longa e botas de cano longo.',
-            dica: 'Essa "armadura" impede que insetos subam pelas pernas e protege a pele da seiva corrosiva (látex) de plantas tóxicas.'
+            equipamento_en: 'Long trousers (closed at the ankle), a long-sleeved top and tall boots.',
+            equipamento_es: 'Pantalón largo (bajos cerrados), camiseta de manga larga y botas de caña alta.',
+            equipamento_ptpt: 'Calças compridas (bainhas fechadas), camisola de manga comprida e botas de cano alto.',
+            dica: 'Essa "armadura" dificulta que insetos subam pelas pernas e protege a pele da seiva irritante (látex) de plantas tóxicas.',
+            dica_en: 'This "armor" makes it harder for insects to crawl up your legs and protects your skin from the irritating sap (latex) of toxic plants.',
+            dica_es: 'Esta "armadura" dificulta que los insectos suban por las piernas y protege la piel de la savia irritante (látex) de las plantas tóxicas.',
+            dica_ptpt: 'Esta "armadura" dificulta que os insetos subam pelas pernas e protege a pele da seiva irritante (látex) das plantas tóxicas.',
         },
-        {
-            atividade: 'Pintura de Paredes',
-            epis: ['Óculos', 'Máscara PFF2', 'Luvas nitrílicas'],
-            riscos: ['Respingos nos olhos', 'Inalação de vapores']
-        },
-        {
-            atividade: 'Furar Parede',
-            epis: ['Óculos', 'Protetor auricular', 'Máscara contra poeira'],
-            riscos: ['Fragmentos nos olhos', 'Perda auditiva', 'Inalação de pó']
-        },
-        {
-            atividade: 'Limpeza com Produtos Fortes',
-            epis: ['Luvas de borracha', 'Óculos', 'Máscara (se vapores fortes)'],
-            riscos: ['Queimaduras químicas nas mãos', 'Respingos nos olhos']
-        },
-        {
-            atividade: 'Usar Serra Elétrica',
-            epis: ['Óculos', 'Protetor auricular', 'Luvas anti-corte', 'Botina'],
-            riscos: ['Fragmentos projetados', 'Cortes graves', 'Perda auditiva']
-        },
-        {
-            atividade: 'Desentupir Ralos',
-            epis: ['Luvas de borracha longas', 'Óculos', 'Máscara'],
-            riscos: ['Contato com produtos cáusticos', 'Respingos corrosivos']
-        }
     ],
-
-    checklist: [
-        { id: 'epi1', texto: 'Tenho óculos de proteção em casa?' },
-        { id: 'epi2', texto: 'Tenho luvas de borracha para limpeza?' },
-        { id: 'epi3', texto: 'Tenho luvas de couro para jardinagem?' },
-        { id: 'epi4', texto: 'Tenho protetor auricular para ferramentas barulhentas?' },
-        { id: 'epi5', texto: 'Tenho botina ou sapato fechado para obras?' },
-        { id: 'epi6', texto: 'Tenho máscara PFF2 para poeira?' }
-    ],
-
-    ondeComprar: 'Lojas de construção (Leroy Merlin, C&C, Telhanorte), lojas de EPIs industriais, ou online.',
-
-    investimento: {
-        basico: {
-            itens: ['Óculos', 'Luva borracha', 'Luva couro', 'Máscara PFF2'],
-            custoAproximado: 'R$ 50-80'
-        },
-        completo: {
-            itens: ['Todos os itens básicos', 'Protetor auricular', 'Botina', 'Capacete'],
-            custoAproximado: 'R$ 150-250'
-        }
-    }
 };
 
 export default EPI_DOMESTICO;

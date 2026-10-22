@@ -243,7 +243,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 hazards: [
                     { type: 'afogamento', desc: 'Afogamento é rápido, não faz barulho e ocorre em menos de 2 minutos.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Use cercas de alumínio de 1,20m ao redor da piscina com portão trancado por fora. Capas de lona não impedem quedas.'
+                expert_tip: 'Use cercas de pelo menos 1,50 m ao redor da piscina com portão trancado por fora. Capas de lona não impedem quedas.'
             }
         ]
     },

@@ -21,7 +21,7 @@ export const EDUCATIONAL_GUIDES_ES = {
         label: 'Piscina',
         iconName: 'Pool',
         color: '#03A9F4',
-        content: 'La seguridad en la piscina requiere barreras físicas insuperables: instale cercas de al menos 1,5 m de altura con puertas de cierre automático. Use desagües anti-atrapamiento para evitar la succión fatal de cabello o extremidades. Durante el esparcimiento, designe siempre a un adulto como "vigilante del agua" exclusivo, sin distracciones como el celular.'
+        content: 'La seguridad en la piscina requiere barreras físicas difíciles de trepar: instale vallas de al menos 1,2 m de altura con puertas de cierre automático. Use desagües anti-atrapamiento para evitar la succión fatal de cabello o extremidades. Durante el esparcimiento, designe siempre a un adulto como "vigilante del agua" exclusivo, sin distracciones como el celular.'
     },
     praia_rios: {
         label: 'Áreas Naturales',

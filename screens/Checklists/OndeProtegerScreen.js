@@ -56,7 +56,7 @@ const AMBIENTES_DISPONIVEIS = [
     // Íntima
     { id: 'quarto_adulto', label: 'Quarto de Adulto', icon: 'Bed', color: '#673AB7', riscos: ['Quedas', 'Sufocamento'] },
     { id: 'quarto_crianca', label: 'Quarto Infantil', icon: 'Happyemoji', color: Neo.colors.categoria.rose.fill, riscos: ['Quedas', 'Sufocamento', 'Mobília'], condicional: 'crianca' },
-    { id: 'quarto_bebe', label: 'Quarto de Bebê', icon: 'BabyCrib', color: '#FF4081', riscos: ['CONTEÚDO ESPECIAL DE SEGURANÇA'], condicional: 'bebe' },
+    { id: 'quarto_bebe', label: 'Quarto de Bebê', icon: 'BabyCrib', color: '#FF4081', riscos: ['Sufocamento', 'Quedas'], condicional: 'bebe' },
     { id: 'quarto_idoso', label: 'Quarto do Idoso', icon: 'Elder', color: '#8D6E63', riscos: ['Quedas', 'Iluminação'], condicional: 'idoso' },
     { id: 'banheiro', label: 'Banheiro', icon: 'Bathroom', color: Neo.colors.categoria.ardosia.fill, riscos: ['Quedas', 'Afogamento', 'Choques'] },
 

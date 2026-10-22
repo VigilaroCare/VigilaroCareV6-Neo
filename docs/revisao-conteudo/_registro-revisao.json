@@ -84,6 +84,10 @@
   "m021": {
    "texto": "Cautela juridica (D33): item retido enquanto o TI estava com o Agnaldo, aplicado na volta do TI em 22/10/2026 ('Evita quedas' -> 'Ajuda a evitar quedas'). Aguarda revisao dele.",
    "em": "2026-10-22"
+  },
+  "m022": {
+   "texto": "Retorno do CK, AV e IF (22/10/2026): ajustes meus ao aplicar a revisao do Agnaldo, cautela, cerca de piscina padronizada, pilha, telas EPI e Ferramentas traduzidas, itens levados das secoes mortas para Escola, Asilo e Kits. Vai para o documento RK.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -137,11 +141,6 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
-  "01119fc1100ef75f": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "012fb3993b832967": [
    "pendente",
    "data/mobilidade_data.js",
@@ -166,11 +165,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "0165a4704f8ac6c1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "01668a3c4dc6eb91": [
    "pendente",
@@ -247,10 +241,10 @@
    "data/tag_guidance.js",
    "m011"
   ],
-  "02335c4c2a3cdbc7": [
-   "aprovado",
-   "data/dispositivos_protecao.js",
-   "m003"
+  "0235544a6d477a7d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "024a2618a1ab415b": [
    "pendente",
@@ -271,6 +265,11 @@
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
    "m010"
+  ],
+  "026bffb5d3b27f8c": [
+   "pendente",
+   "data/micro_blog.js",
+   "m022"
   ],
   "0276baf48f0d3162": [
    "pendente",
@@ -297,6 +296,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "034c526c5537e963": [
+   "pendente",
+   "data/escola_segura_data.js",
+   "m022"
+  ],
   "034f244d31fecfe8": [
    "pendente",
    "data/riscos_fisicos.js",
@@ -312,11 +316,6 @@
    "data/mobilidade_data.js",
    "m010"
   ],
-  "03a1882a1abc0002": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "03a9f7019ec9bb46": [
    "pendente",
    "data/teoria_fogo.js",
@@ -326,11 +325,6 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m010"
-  ],
-  "03d4f488f12354c4": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "03e1a37ce986d3f6": [
    "aprovado",
@@ -347,10 +341,10 @@
    "data/legal/politica_privacidade.js",
    "m018"
   ],
-  "0407fe06970bb79b": [
+  "041a9dcc6f019af4": [
    "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "045fa3f1b3f41ed0": [
    "pendente",
@@ -381,11 +375,6 @@
    "pendente",
    "data/kits/bagagem_viagem.js",
    "m010"
-  ],
-  "04f4aaecbc90a1d8": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
   ],
   "051ebe62716d19f5": [
    "pendente",
@@ -522,6 +511,11 @@
    "data/safety_toys.js",
    "m010"
   ],
+  "074d52829cfad218": [
+   "pendente",
+   "data/escola_segura_data.js",
+   "m022"
+  ],
   "07652d746521dd02": [
    "pendente",
    "data/animais_ciatox.js",
@@ -592,11 +586,6 @@
    "data/radarSazonal/gb.js",
    "m012"
   ],
-  "093342765bfa8f9f": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "093c8434cf7e0470": [
    "pendente",
    "data/teoria_fogo.js",
@@ -621,6 +610,11 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m008"
+  ],
+  "09ca85ff2d9b56bf": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "09e6c5665e4e0b7b": [
    "pendente",
@@ -682,15 +676,15 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "0b014eb7c4997d12": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "0b0cc6cc88faa83d": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "0b1a3c29bbf21c58": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "0b258061fc3483fa": [
    "pendente",
@@ -742,6 +736,11 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "0bd162733fed6bbe": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "0be6685781062cdf": [
    "aprovado",
    "data/dispositivos_protecao.js",
@@ -756,11 +755,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "0c158f97cfa06790": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "0c2eff59319dc389": [
    "aprovado",
@@ -797,16 +791,6 @@
    "data/onboarding_data.js",
    "m010"
   ],
-  "0ccf305c27e1f85f": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "0cd7cf1b135a734f": [
-   "pendente",
-   "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
-  ],
   "0cdc018feb51efec": [
    "pendente",
    "data/pet_safety_content.js",
@@ -827,6 +811,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "0d2facdd0d4879ea": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "0d44ee087a624362": [
    "pendente",
    "data/animais_ciatox.js",
@@ -841,6 +830,11 @@
    "pendente",
    "data/kits/medicines.js",
    "m010"
+  ],
+  "0dadd77a5604092d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "0db64dfd91d63de2": [
    "pendente",
@@ -932,10 +926,10 @@
    "data/dispositivos_protecao.js",
    "m001"
   ],
-  "0f64fb59e08b4ba5": [
+  "0f58add9ae45a68b": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "0f73bd0c4a4fbc59": [
    "pendente",
@@ -1017,11 +1011,6 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "10fb3c186f68acb2": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "110ec75ae344553e": [
    "pendente",
    "data/locales/pt-BR/RiskCategories.js",
@@ -1051,11 +1040,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "1177cd69bf1bad94": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "1197ead42d5ff92b": [
    "pendente",
@@ -1091,6 +1075,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m010"
+  ],
+  "124031a137101932": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "12798ea0304b1e13": [
    "pendente",
@@ -1136,11 +1125,6 @@
    "pendente",
    "data/asilo_seguro_data.js",
    "m018"
-  ],
-  "132001964941e863": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "1342434d833c17f6": [
    "pendente",
@@ -1197,11 +1181,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "1417d6568ad739a8": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "14314b5fd4dfe461": [
    "pendente",
    "data/animais_ciatox.js",
@@ -1230,11 +1209,6 @@
   "14a1339d134ee0ac": [
    "pendente",
    "data/opcoesPerfil.js",
-   "m010"
-  ],
-  "14a1b9e754c68b62": [
-   "pendente",
-   "data/epi_domestico.js",
    "m010"
   ],
   "14ac796f5e771cc3": [
@@ -1267,11 +1241,6 @@
    "data/onboarding_data.js",
    "m006"
   ],
-  "14f11290b1c7e472": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "15143abbd6ad7ba7": [
    "pendente",
    "data/escola_segura_data.js",
@@ -1281,11 +1250,6 @@
    "pendente",
    "data/categoriasRisco.js",
    "m010"
-  ],
-  "152d629582f7945c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "15388f6b2f7edbb9": [
    "pendente",
@@ -1447,11 +1411,6 @@
    "components/TravelTipsAccordion.js",
    "m010"
   ],
-  "16e60d282c403c28": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "173556a0ee24cb86": [
    "pendente",
    "data/pet_food_safety.js",
@@ -1462,15 +1421,10 @@
    "data/pet_safety_content.js",
    "m006"
   ],
-  "1756895740a1e847": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "1784d23036853370": [
+  "1772fcde9a51eb92": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
+   "m022"
   ],
   "179ac2881bed8b21": [
    "pendente",
@@ -1497,6 +1451,11 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
+  "17e88a6db4c37d38": [
+   "pendente",
+   "data/escola_segura_data.js",
+   "m022"
+  ],
   "17fdfeee2abffc82": [
    "pendente",
    "data/mobilidade_data.js",
@@ -1506,6 +1465,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
+  ],
+  "1827ee9e5f2c9a42": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
   ],
   "182e7c527ed7d444": [
    "aprovado",
@@ -1547,6 +1511,11 @@
    "data/produtos_scanner.js",
    "m006"
   ],
+  "19885caed06d921e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "19b09657e9de60a4": [
    "pendente",
    "data/animais_ciatox.js",
@@ -1562,17 +1531,7 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
-  "1a9d92ef7d7f7384": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "1ad8b0adf755e8c7": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "1af445e5e977f2f8": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
@@ -1612,21 +1571,6 @@
    "data/plantas_ciatox.js",
    "m015"
   ],
-  "1b6d3e5a3de55aa6": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "1b7c170dd8d7bdb0": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "1bad7127b7a3a161": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "1bb67b679453e844": [
    "pendente",
    "data/areas_internas.js",
@@ -1662,20 +1606,15 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
-  "1c67a61fcab74675": [
+  "1c4511e8a61ae426": [
    "pendente",
-   "data/epi_domestico.js",
-   "m010"
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "1c8b39bdc990def4": [
    "aprovado",
    "data/radarSazonal/mx.js",
    "m012"
-  ],
-  "1c933d66f0c8a439": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "1c99a2d31a3f089d": [
    "pendente",
@@ -1752,11 +1691,6 @@
    "data/knowledge_prevencao.js",
    "m004"
   ],
-  "1dd5d07a0a4800ea": [
-   "pendente",
-   "data/fases_vida.js",
-   "m004"
-  ],
   "1e0defbd2ea025c6": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -1781,6 +1715,11 @@
    "pendente",
    "data/produtos_categorias.js",
    "m010"
+  ],
+  "1e24eb3681b454f0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "1e27c598e41661cb": [
    "pendente",
@@ -1842,11 +1781,6 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
-  "1f026ba906e60f10": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "1f32076e5394c17d": [
    "pendente",
    "data/animais_ciatox.js",
@@ -1861,16 +1795,6 @@
    "pendente",
    "data/produtos_scanner.js",
    "m010"
-  ],
-  "1f5a41ace8028505": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "1f784033bc031ba8": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "1f7f052354275d09": [
    "pendente",
@@ -1887,15 +1811,15 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "1f9eea7e597a04bb": [
+   "pendente",
+   "screens/SegurancaLazerScreen.js",
+   "m022"
+  ],
   "1fa650081eb904a7": [
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
-  ],
-  "1fae44aed4e06481": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
   ],
   "1fafe0b12e18d65c": [
    "pendente",
@@ -2002,15 +1926,15 @@
    "data/dispositivos_protecao.js",
    "m001"
   ],
-  "2139e9485a4a5e7b": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "21448583d375b0be": [
    "pendente",
    "data/eletrodomesticos_reviews.js",
    "m010"
+  ],
+  "2163fad96a87e56e": [
+   "pendente",
+   "data/escola_segura_data.js",
+   "m022"
   ],
   "217553c5eafe2148": [
    "pendente",
@@ -2025,11 +1949,6 @@
   "218a848e9c32c7ec": [
    "pendente",
    "data/produtos_scanner.js",
-   "m006"
-  ],
-  "21974cd0f4e9dbdc": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "21add430a55cf5a0": [
@@ -2087,11 +2006,6 @@
    "data/kits/medicines.js",
    "m010"
   ],
-  "22df8a3a3630d277": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "22dffcb9317bc28d": [
    "pendente",
    "data/animais_ciatox.js",
@@ -2116,11 +2030,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "2320873f2e9e8344": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "23363e81dced5f59": [
    "pendente",
@@ -2177,6 +2086,11 @@
    "data/pet_wellness_data.js",
    "m006"
   ],
+  "23f7d79dc83d6ec3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "240dc115a27db49a": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -2212,11 +2126,6 @@
    "data/ferramentas_seguranca.js",
    "m006"
   ],
-  "24508e6d5c4a165c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "246c93492d8f55fb": [
    "aprovado",
    "data/knowledge_prevencao.js",
@@ -2231,6 +2140,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "249be2f44a31361d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "24a192667001f03c": [
    "pendente",
@@ -2247,11 +2161,6 @@
    "data/eletrodomesticos_reviews.js",
    "m001"
   ],
-  "24cb11377067e9d0": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "24cf04b89a973ca9": [
    "pendente",
    "data/animais_ciatox.js",
@@ -2266,11 +2175,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "250045ec676d0c9a": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "2557ecb6d55dcf06": [
    "pendente",
@@ -2347,11 +2251,6 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
-  "26cba9a1af38550a": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "26f32646246b2629": [
    "pendente",
    "data/locales/pt-BR/guiasSeguranca.js",
@@ -2417,6 +2316,11 @@
    "data/radarSazonal/index.js",
    "m010"
   ],
+  "280336517d2d3821": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "280b29cee866d516": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -2472,11 +2376,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "28d4e959f5ccc15d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "28ee7c78cc392de7": [
    "pendente",
    "data/pet_food_safety.js",
@@ -2491,6 +2390,11 @@
    "pendente",
    "components/TravelTipsAccordion.js",
    "m010"
+  ],
+  "2921efe9525bec56": [
+   "pendente",
+   "data/kits/educational_content.js",
+   "m022"
   ],
   "293ff4c529895daa": [
    "pendente",
@@ -2516,16 +2420,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
-  ],
-  "298e1dd60c763053": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "298fb3596d88c15e": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "2992590b27e1f1a7": [
    "pendente",
@@ -2602,11 +2496,6 @@
    "data/teoria_fogo.js",
    "m010"
   ],
-  "2aa74e257c51b6c1": [
-   "pendente",
-   "data/ferramentas_seguranca.js",
-   "m010"
-  ],
   "2aa9ca5bc2cf5e39": [
    "pendente",
    "data/radarSazonal/mx.js",
@@ -2642,11 +2531,6 @@
    "data/mobilidade_data.js",
    "m005"
   ],
-  "2b217a7dc11be273": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "2b2237eb7c1dad0a": [
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
@@ -2671,16 +2555,6 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
-  ],
-  "2b9d1f6d87926cd4": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "2bab2c307064aba5": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
   ],
   "2bdf817d1a28e813": [
    "pendente",
@@ -2716,11 +2590,6 @@
    "pendente",
    "data/pet_food_safety.js",
    "m006"
-  ],
-  "2cb1f5a8f6af4e14": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
   ],
   "2cb99e0bdd74bced": [
    "pendente",
@@ -2762,11 +2631,6 @@
    "data/categoriasRisco.js",
    "m006"
   ],
-  "2d17e39d7d2be7c3": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "2d34b7a2b5cfb86f": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -2791,11 +2655,6 @@
    "pendente",
    "data/escola_segura_data.js",
    "m010"
-  ],
-  "2d8798fbbff64b07": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "2d8c872bd81aa5ec": [
    "pendente",
@@ -2846,6 +2705,11 @@
    "pendente",
    "data/ocorrencia_regional.js",
    "m010"
+  ],
+  "2e2b87d6879962ce": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "2e34a3a88215fc20": [
    "pendente",
@@ -2927,11 +2791,6 @@
    "data/pet_food_safety.js",
    "m006"
   ],
-  "2eee63a7b366e88c": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "2f06d143c966567f": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -2962,11 +2821,6 @@
    "data/knowledge_prevencao.js",
    "m010"
   ],
-  "2f51d0ddf28051a0": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "2f5fd70542dd2339": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -2981,11 +2835,6 @@
    "pendente",
    "data/kits/bagagem_viagem.js",
    "m010"
-  ],
-  "2f7958b2785559cd": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "2f91e7fc66174627": [
    "pendente",
@@ -3017,40 +2866,20 @@
    "data/produtos_scanner.js",
    "m006"
   ],
-  "2fd04e9c770ed48f": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "2fe3670fbfa54624": [
    "pendente",
    "data/animais_ciatox.js",
    "m006"
-  ],
-  "2ffe46ff2b919398": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "3009cdfae55dce95": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
   ],
-  "303f92cf19b28ce3": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "30407456fa7ab3c2": [
    "pendente",
    "data/escola_segura_data.js",
    "m018"
-  ],
-  "304ac5422d5a44ce": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
   ],
   "3052b0c67c342a76": [
    "pendente",
@@ -3067,11 +2896,6 @@
    "data/locales/pt-BR/guiasSeguranca.js",
    "m010"
   ],
-  "30777d3f92716282": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "307d6e4404fc20e7": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -3086,6 +2910,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m008"
+  ],
+  "30a0dd245f4122ec": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "30c11906b4c8a76c": [
    "pendente",
@@ -3152,11 +2981,6 @@
    "data/aves_seguras_data.js",
    "m010"
   ],
-  "316248974a1e2057": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "3167419f7d21ab51": [
    "pendente",
    "data/teoria_fogo.js",
@@ -3212,11 +3036,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "32246e89ef47b038": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "3231615c05b16df6": [
    "pendente",
    "data/pet_pregnancy_data.js",
@@ -3257,6 +3076,11 @@
    "data/knowledge_prevencao.js",
    "m010"
   ],
+  "3365b1c1258fe209": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m022"
+  ],
   "337a4acf9f1d3459": [
    "pendente",
    "data/safety_mobility.js",
@@ -3266,6 +3090,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m010"
+  ],
+  "337f6b07b23b68f1": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "33a15cb1d389eb45": [
    "pendente",
@@ -3326,6 +3155,11 @@
    "aprovado",
    "data/eletrodomesticos_reviews.js",
    "m001"
+  ],
+  "34d1d7b0853ac504": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "34e95de0968c1b0a": [
    "pendente",
@@ -3392,15 +3226,10 @@
    "data/eletrodomesticos_reviews.js",
    "m001"
   ],
-  "35a224b0b5ebf865": [
+  "35858709faf2df00": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "35b8d20890bf035b": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
+   "m022"
   ],
   "35bd018002c1f567": [
    "pendente",
@@ -3416,6 +3245,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "35d6c96aaffb0361": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "35f0b88c2a648c22": [
    "aprovado",
@@ -3462,11 +3296,6 @@
    "data/teoria_fogo.js",
    "m005"
   ],
-  "364d79d94a84b6f9": [
-   "pendente",
-   "screens/Checklists/OndeProtegerScreen.js",
-   "m006"
-  ],
   "364dddc6ec7c82eb": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -3481,11 +3310,6 @@
    "pendente",
    "data/locales/pt-BR/RiskCategories.js",
    "m010"
-  ],
-  "3699053f8af0f3f0": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "36b4f995cf3a470f": [
    "pendente",
@@ -3612,15 +3436,15 @@
    "data/kits/educational_content.js",
    "m018"
   ],
-  "38aecb41828a3644": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "38d0c0a663351b4d": [
    "aprovado",
    "data/eletrodomesticos_reviews.js",
    "m001"
+  ],
+  "38e0f83e1984a64d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
   ],
   "38f1eaad54efcfa3": [
    "pendente",
@@ -3636,11 +3460,6 @@
    "pendente",
    "data/dispositivos_protecao.js",
    "m005"
-  ],
-  "393f08c80901ffb9": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "394284f083a566e0": [
    "pendente",
@@ -3712,11 +3531,6 @@
    "data/produtos_scanner.js",
    "m010"
   ],
-  "3a50700d1186f6d1": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "3a5d73a5e8512e3d": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -3767,11 +3581,6 @@
    "data/locales/pt-BR/RiskCategories.js",
    "m010"
   ],
-  "3b581f5f4c0cd3fd": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "3b5bb153b0fde67a": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -3796,11 +3605,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
-  ],
-  "3be5e0b9ab975c47": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "3c0aee5d8736768d": [
    "pendente",
@@ -3827,11 +3631,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "3ca2707cb9a4c665": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "3cb670dd31056254": [
    "pendente",
    "data/mobilidade_data.js",
@@ -3857,11 +3656,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "3cff35a09bb0c666": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "3d05d54025615873": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -3871,11 +3665,6 @@
    "pendente",
    "data/kits/medicines.js",
    "m010"
-  ],
-  "3d1c74dece6dbecc": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "3d344ada5f29ee4f": [
    "pendente",
@@ -3911,16 +3700,6 @@
    "aprovado",
    "data/riscos_fisicos.js",
    "m001"
-  ],
-  "3d868eaa2d624baf": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "3d947658a4b6e6b1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m010"
   ],
   "3d9f07cb0abd43ac": [
    "aprovado",
@@ -3962,10 +3741,10 @@
    "data/pet_food_safety.js",
    "m006"
   ],
-  "3df21676c81441f1": [
+  "3dfc995388f4d32c": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/asilo_seguro_data.js",
+   "m022"
   ],
   "3e09087870d21df5": [
    "pendente",
@@ -3987,6 +3766,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
+  "3e817a01d41a0f6a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "3e8a8cd11568f7af": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -3996,6 +3780,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "3e90980fed83b22b": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m022"
   ],
   "3eb54697b371fd6a": [
    "pendente",
@@ -4032,6 +3821,11 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
+  "3f61b2194117db61": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "3f6283c24cb10449": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -4062,6 +3856,11 @@
    "data/produtos_scanner.js",
    "m010"
   ],
+  "3fa060b45295fbea": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "3fb5a0bbbd6d7ca6": [
    "pendente",
    "data/eletrodomesticos_reviews.js",
@@ -4070,16 +3869,6 @@
   "3fb8cdd00d14cc03": [
    "pendente",
    "data/pet_food_safety.js",
-   "m006"
-  ],
-  "3fc39fb5daf86e5a": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "3fc66851c0c2187a": [
-   "pendente",
-   "data/epi_domestico.js",
    "m006"
   ],
   "3fc70b7fe2c829fe": [
@@ -4277,15 +4066,15 @@
    "data/epi_domestico.js",
    "m006"
   ],
+  "425dd65f1a2b0298": [
+   "pendente",
+   "data/fases_vida.js",
+   "m022"
+  ],
   "4274f33a64e7c7c8": [
    "pendente",
    "data/pet_food_safety.js",
    "m015"
-  ],
-  "429caaa29a5b9244": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "429fc910f4e63049": [
    "pendente",
@@ -4356,6 +4145,11 @@
    "pendente",
    "data/escola_segura_data.js",
    "m010"
+  ],
+  "43bb6fb2fae9ae84": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "43cbbe7137222bb8": [
    "pendente",
@@ -4502,6 +4296,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
+  "45c24e63899be61e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "45c7900dbb1df259": [
    "pendente",
    "data/kits/bagagem_viagem.js",
@@ -4542,11 +4341,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "464faab41379430c": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "464fe964893b6348": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -4575,11 +4369,6 @@
   "46c3d4c19dacae53": [
    "pendente",
    "data/pet_pregnancy_data.js",
-   "m006"
-  ],
-  "46c4bf1158679a0d": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "46d3c95efbbc6084": [
@@ -4652,6 +4441,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "482d159cdcb2ac18": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
+  ],
   "482d75682f94dc12": [
    "pendente",
    "data/knowledge_prevencao.js",
@@ -4682,24 +4476,9 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "4876eb3c5a39adf2": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "489a953787c2570b": [
    "pendente",
    "data/opcoesPerfil.js",
-   "m006"
-  ],
-  "489e3ed238763804": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "489fa468a4eceb9d": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "48a4678c618c57f9": [
@@ -4787,6 +4566,11 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "49a705767466747c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "49bbf7c3f46d068d": [
    "pendente",
    "data/eletrodomesticos_reviews.js",
@@ -4806,6 +4590,11 @@
    "pendente",
    "data/escola_segura_data.js",
    "m018"
+  ],
+  "4a4bbcc977fcb048": [
+   "pendente",
+   "data/fases_vida.js",
+   "m022"
   ],
   "4a567d40f5252288": [
    "pendente",
@@ -4867,6 +4656,11 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
+  "4b1f2117c2226b79": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "4b245401ad1bb59a": [
    "pendente",
    "data/kits/educational_content.js",
@@ -4892,25 +4686,10 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
   ],
-  "4bc3cfedbb5fd631": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "4bdc220017436346": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "4c109915bad8e8be": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
-  ],
-  "4c21ea1dacd3cc7e": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "4c2b7e52d061144b": [
    "pendente",
@@ -5057,20 +4836,10 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "4ea34c03d8fe19dd": [
-   "pendente",
-   "data/ferramentas_seguranca.js",
-   "m010"
-  ],
   "4ea3587f600e58dd": [
    "pendente",
    "data/knowledge_prevencao.js",
    "m010"
-  ],
-  "4ea6c309a2b2efe3": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "4ebd3e48aa74b3c5": [
    "pendente",
@@ -5102,20 +4871,10 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "4f18b93f0468baba": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "4f1d4f0a2159b53f": [
    "pendente",
    "data/dispositivos_protecao.js",
    "m018"
-  ],
-  "4f2a9ef5aea15d7f": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "4f347b26fcbec513": [
    "pendente",
@@ -5142,25 +4901,10 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "4f7704338b23a522": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "4fa6d1acd26ab976": [
    "pendente",
    "data/legal/politica_privacidade.js",
    "m008"
-  ],
-  "4faa97c885a0953d": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "4fb96f44b39a7c47": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "4fc459dba9ec3ce3": [
    "pendente",
@@ -5277,6 +5021,11 @@
    "data/pet_pregnancy_data.js",
    "m006"
   ],
+  "50f5c65c5c97849d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "510090e85d0cad6f": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5287,15 +5036,15 @@
    "data/pet_pregnancy_data.js",
    "m010"
   ],
-  "511b7b902793d818": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "511ece248fc7930d": [
    "pendente",
    "data/produtos_scanner.js",
    "m010"
+  ],
+  "5126c1789b8bdc4b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
   ],
   "512abd26d5dc76be": [
    "aprovado",
@@ -5402,11 +5151,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "52a6e6269cd652a6": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "52cdfc7d489f3217": [
    "pendente",
    "screens/Education/GuiaKitsEmergenciaScreen.js",
@@ -5462,6 +5206,11 @@
    "data/plantas_ciatox.js",
    "m006"
   ],
+  "5383b6c51a07128a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "538bb4ca461f8140": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5482,11 +5231,6 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
-  "53d7d4283f010174": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "53f18be2fd452e30": [
    "pendente",
    "data/ferramentas_seguranca.js",
@@ -5501,6 +5245,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "543575ffd8ecd025": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "54371a7e2202f348": [
    "aprovado",
@@ -5537,11 +5286,6 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "54b93e623de984ed": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "54c7e69da73d857f": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -5567,10 +5311,10 @@
    "data/areas_internas.js",
    "m004"
   ],
-  "5534745664a096b1": [
+  "554a52fb69558f87": [
    "pendente",
-   "data/epi_domestico.js",
-   "m010"
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "5564b4ca3e22b1d5": [
    "aprovado",
@@ -5712,6 +5456,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "57b8aea5f54f412b": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
+  ],
   "57ca7f0f40e34bb8": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -5721,11 +5470,6 @@
    "pendente",
    "data/tag_guidance.js",
    "m010"
-  ],
-  "58106a7d2f7e6773": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "58147de87b99a977": [
    "pendente",
@@ -5762,15 +5506,15 @@
    "data/utensilios_reviews.js",
    "m005"
   ],
+  "5880691b9880f73c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "58cf275576042356": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
-  ],
-  "58e80fecae899011": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "58f3309f00bf68d3": [
    "pendente",
@@ -5832,15 +5576,15 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "59d3326b944f92fe": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "59d391196c4a9798": [
    "aprovado",
    "data/utensilios_reviews.js",
    "m001"
-  ],
-  "59f7fbe038d3c696": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
   ],
   "5a011387a226e858": [
    "pendente",
@@ -5877,6 +5621,11 @@
    "data/telefones_ciatox.js",
    "m010"
   ],
+  "5a879fde07b6425e": [
+   "pendente",
+   "data/kits/educational_content.js",
+   "m022"
+  ],
   "5a9a93154ca51aa0": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5906,11 +5655,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "5b4ee889a5adcc88": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
   ],
   "5b56df5cf7d3472f": [
    "pendente",
@@ -5972,6 +5716,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "5bfc379a3065becf": [
+   "pendente",
+   "data/kits/educational_content.js",
+   "m022"
+  ],
   "5c0229a5b0195b65": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5986,11 +5735,6 @@
    "pendente",
    "data/areas_internas.js",
    "m010"
-  ],
-  "5c3bed7e2a1ed062": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "5c41763e8257d14b": [
    "aprovado",
@@ -6016,6 +5760,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m010"
+  ],
+  "5cbeedc9012135b8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "5d153ea5f21d7bb4": [
    "pendente",
@@ -6062,16 +5811,6 @@
    "screens/SegurancaFeriasScreen.js",
    "m010"
   ],
-  "5e08af75959e937d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "5e1f95763b6627fc": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "5e2277592a54e708": [
    "pendente",
    "data/produtos_scanner.js",
@@ -6092,6 +5831,11 @@
    "data/fases_vida.js",
    "m010"
   ],
+  "5e82032905d489bd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "5edd6733256bf567": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -6107,11 +5851,6 @@
    "data/areas_externas.js",
    "m005"
   ],
-  "5f38d6d0f4b8d527": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "5f53214e063d19b6": [
    "pendente",
    "data/categoriasRisco.js",
@@ -6121,11 +5860,6 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m010"
-  ],
-  "5f54b11398504cb6": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "5f6012bd026526fc": [
    "pendente",
@@ -6137,11 +5871,6 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "5f72383f62ae50fa": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "5f743c7b6d73852c": [
    "pendente",
    "data/mobilidade_data.js",
@@ -6151,11 +5880,6 @@
    "pendente",
    "data/pet_safety_content.js",
    "m006"
-  ],
-  "5f7dafedf4b04531": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "5fa5cd8dee16d9ca": [
    "pendente",
@@ -6182,11 +5906,6 @@
    "data/plantas_ciatox.js",
    "m015"
   ],
-  "5fee257d43182d51": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "5ff170d4e71633bd": [
    "pendente",
    "data/pet_safety_content.js",
@@ -6206,11 +5925,6 @@
    "pendente",
    "data/areas_internas.js",
    "m010"
-  ],
-  "604dedca9d9957cb": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "6054f0d32d2432b3": [
    "pendente",
@@ -6267,11 +5981,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "61290091f757ff9c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "615f1371a2236073": [
    "pendente",
    "data/mobilidade_data.js",
@@ -6327,6 +6036,11 @@
    "data/animais_ciatox.js",
    "m010"
   ],
+  "6202056b3ab70504": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "62124e081768c70a": [
    "pendente",
    "components/SafetyDisclaimer.js",
@@ -6336,6 +6050,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "6233f860c7e6eab1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "623c80ed37865fd6": [
    "pendente",
@@ -6381,11 +6100,6 @@
    "aprovado",
    "data/dispositivos_eletronicos_reviews.js",
    "m001"
-  ],
-  "6283ca560c80ba09": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "6286f53b5e4a54e8": [
    "pendente",
@@ -6452,11 +6166,6 @@
    "data/epi_domestico.js",
    "m010"
   ],
-  "636ce9154e830ca7": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "638f55ae95849742": [
    "pendente",
    "data/kits/tools.js",
@@ -6492,11 +6201,6 @@
    "screens/SegurancaFeriasScreen.js",
    "m001"
   ],
-  "643b8e66b4a6d7fa": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "646ba038954fb83a": [
    "pendente",
    "data/animais_ciatox.js",
@@ -6507,25 +6211,10 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "6496b58736ee5691": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "64a00dc2f5be99da": [
    "pendente",
    "data/pet_food_safety.js",
    "m015"
-  ],
-  "64c5d396ea534fde": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "64ef05b2056e502d": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "64f8ad879fa541ac": [
    "pendente",
@@ -6536,11 +6225,6 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
-  ],
-  "6521fb382e63a472": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "653c0f2691964a20": [
    "pendente",
@@ -6566,11 +6250,6 @@
    "pendente",
    "data/opcoesPerfil.js",
    "m006"
-  ],
-  "65caac8721b8ef1b": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "65e12e02506b5a72": [
    "pendente",
@@ -6641,6 +6320,11 @@
    "pendente",
    "data/dispositivos_protecao.js",
    "m004"
+  ],
+  "66c184cd7b693f55": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "66c90633f16c3176": [
    "aprovado",
@@ -6757,6 +6441,11 @@
    "data/dispositivos_protecao.js",
    "m001"
   ],
+  "686c665be4b73ebd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "687df44e10359910": [
    "pendente",
    "data/animais_ciatox.js",
@@ -6791,6 +6480,11 @@
    "pendente",
    "data/eletrodomesticos_seguranca.js",
    "m010"
+  ],
+  "68f3fcb55729f9c5": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "68fab7b30dbabc82": [
    "aprovado",
@@ -6831,11 +6525,6 @@
    "pendente",
    "data/pet_food_safety.js",
    "m010"
-  ],
-  "698a0f0849271220": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "698d89296cf020fb": [
    "pendente",
@@ -6881,11 +6570,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
-  ],
-  "6a8168e8e2501f9f": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "6a82c3da8a93efba": [
    "pendente",
@@ -6967,11 +6651,6 @@
    "data/locales/pt-BR/fire_prevention_content.js",
    "m010"
   ],
-  "6beb18cf387b87d1": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "6c17862f826ab56f": [
    "pendente",
    "data/animais_ciatox.js",
@@ -7017,11 +6696,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "6c88568761fcc41e": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "6c8f8f075bf23f54": [
    "pendente",
    "data/animais_ciatox.js",
@@ -7036,11 +6710,6 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
-  ],
-  "6cf727cf1471d83b": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "6cf9ca3bebb826c4": [
    "pendente",
@@ -7127,11 +6796,6 @@
    "data/classesIncendio.js",
    "m006"
   ],
-  "6e643decc1cdb7e3": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "6e8aa0dfdaeea516": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -7146,11 +6810,6 @@
    "pendente",
    "data/mobilidade_data.js",
    "m005"
-  ],
-  "6e9ee7d30950bfbc": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
   ],
   "6eb274c37c9a51e2": [
    "pendente",
@@ -7232,6 +6891,11 @@
    "data/classesIncendio.js",
    "m006"
   ],
+  "6f7d698a54ca0b7c": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
+  ],
   "6f84e20bd62eb764": [
    "pendente",
    "data/produtos_scanner.js",
@@ -7287,6 +6951,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "7051779ee39cf454": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "706ae2788b407510": [
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
@@ -7295,11 +6964,6 @@
   "7099691f33540560": [
    "pendente",
    "data/radarSazonal/textos.js",
-   "m006"
-  ],
-  "7099832911442983": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "70b39c66050f7f44": [
@@ -7392,16 +7056,6 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
-  "7213cf2e44ada94f": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "725305530e0d6e5d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "725d57260ce913b2": [
    "pendente",
    "data/opcoesPerfil.js",
@@ -7420,11 +7074,6 @@
   "72c5708e8accadc3": [
    "pendente",
    "data/ferramentas_seguranca.js",
-   "m006"
-  ],
-  "72ca1d8109c10bcd": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "72ecb1e8d2e1904d": [
@@ -7507,6 +7156,11 @@
    "data/teoria_fogo.js",
    "m004"
   ],
+  "744087a4d213d22d": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
+  ],
   "744823b4b5793bcb": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -7572,11 +7226,6 @@
    "data/fases_vida.js",
    "m010"
   ],
-  "75353691db7a4ee8": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "754396f5176dab65": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -7627,11 +7276,6 @@
    "data/kits/first_aid.js",
    "m010"
   ],
-  "76151b37e508fa79": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "76380d04ee7eba2d": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -7666,6 +7310,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m004"
+  ],
+  "76fbb7a1df599080": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "770cd5914324ff32": [
    "aprovado",
@@ -7712,6 +7361,16 @@
    "data/knowledge_prevencao.js",
    "m001"
   ],
+  "77d39ecc83819896": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
+  ],
+  "77da94e99783b319": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m022"
+  ],
   "77e3b420b7576fac": [
    "pendente",
    "data/knowledge_prevencao.js",
@@ -7757,10 +7416,10 @@
    "data/safety_fire.js",
    "m010"
   ],
-  "78766e33ecb365c7": [
+  "786ef643e6fe1175": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/epi_domestico.js",
+   "m022"
   ],
   "788c4a842e789f5c": [
    "pendente",
@@ -7771,16 +7430,6 @@
    "pendente",
    "data/ferramentas_seguranca.js",
    "m010"
-  ],
-  "78985fd0592e3458": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
-  "78aed6b0742ed497": [
-   "pendente",
-   "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
   ],
   "78b818deefa4a8a6": [
    "pendente",
@@ -7801,11 +7450,6 @@
    "pendente",
    "data/locales/pt-BR/RiskCategories.js",
    "m011"
-  ],
-  "7954da9838df3e72": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
   ],
   "797781f1316beb96": [
    "pendente",
@@ -7846,6 +7490,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "7a0c47ba98b51ff5": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "7a1a5af401a99ed9": [
    "pendente",
@@ -7952,6 +7601,11 @@
    "data/plantas_ciatox.js",
    "m015"
   ],
+  "7c3aac3c5be3dbf6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "7c505e364977dd18": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -7966,6 +7620,11 @@
    "pendente",
    "data/areas_internas.js",
    "m010"
+  ],
+  "7cb55356a5f41894": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m022"
   ],
   "7cc71cdcd00d29f0": [
    "pendente",
@@ -8007,11 +7666,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "7d5b1453a707f4c4": [
-   "pendente",
-   "data/ferramentas_seguranca.js",
-   "m006"
-  ],
   "7d5b8c7423e3a8d9": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -8052,20 +7706,10 @@
    "data/dispositivos_protecao.js",
    "m001"
   ],
-  "7da55f4d37c5b151": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "7de35f917e3bac4a": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "7de9648d93c44833": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "7dec542f61cbcd72": [
    "pendente",
@@ -8132,11 +7776,6 @@
    "data/safety_vacation.js",
    "m010"
   ],
-  "7f118c6d52adf1e8": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "7f133e8881ae9b75": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -8192,11 +7831,6 @@
    "data/produtos_scanner.js",
    "m010"
   ],
-  "8019d1b0b16fa1e8": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "801b57366d0797ae": [
    "pendente",
    "data/asilo_seguro_data.js",
@@ -8221,6 +7855,11 @@
    "pendente",
    "data/telefones_ciatox.js",
    "m010"
+  ],
+  "808f370a207c52a0": [
+   "pendente",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m022"
   ],
   "80a0e4411cfa5814": [
    "pendente",
@@ -8247,6 +7886,11 @@
    "data/locales/pt-BR/fire_prevention_content.js",
    "m005"
   ],
+  "80cb466164f4468a": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
+  ],
   "80e13c7c5b7848cf": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -8261,6 +7905,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "8119c7d4ffb7deea": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "812dadb6208b0847": [
    "pendente",
@@ -8281,16 +7930,6 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m008"
-  ],
-  "8173b3389a008dd7": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "819f5f0c51d2f891": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "823dc6193e492937": [
    "pendente",
@@ -8337,16 +7976,6 @@
    "data/legal/politica_privacidade.js",
    "m008"
   ],
-  "830beeaaf8ecedf9": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "8318e41d26d3c7d0": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "831dfd813769616d": [
    "aprovado",
    "data/radarSazonal/br.js",
@@ -8376,16 +8005,6 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
-  ],
-  "83c71e735b487f1d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m010"
-  ],
-  "83cebcd7dc31c2ec": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
   ],
   "83e82c22f4d6a3c8": [
    "pendente",
@@ -8557,11 +8176,6 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
-  "86ce44d7566b3c0c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "86d39fc34761837a": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -8667,11 +8281,6 @@
    "data/knowledge_prevencao.js",
    "m004"
   ],
-  "8845ffbb0996ed9d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "88496663e27f4d9a": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -8702,10 +8311,10 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
-  "890802159c3083cc": [
+  "88d23fde37ae6fca": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
+   "m022"
   ],
   "89275a47e9cd0aab": [
    "pendente",
@@ -8716,11 +8325,6 @@
    "pendente",
    "data/mobilidade_data.js",
    "m005"
-  ],
-  "894781aea8564ff2": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "89493bccbb901ca3": [
    "pendente",
@@ -8767,11 +8371,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "898b2721ecee072d": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "898d4f74c22e6dfb": [
    "pendente",
    "data/animais_ciatox.js",
@@ -8786,11 +8385,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "89a4568a502f02ef": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
   ],
   "89a6173756bb28cb": [
    "pendente",
@@ -8812,11 +8406,6 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
-  "89e9923217cef406": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "8a0200c9d6f08743": [
    "pendente",
    "data/pet_safety_content.js",
@@ -8831,6 +8420,11 @@
    "pendente",
    "data/fases_vida.js",
    "m010"
+  ],
+  "8a2ae163d0d377e4": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m022"
   ],
   "8a325003af50c004": [
    "pendente",
@@ -8877,11 +8471,6 @@
    "data/locales/pt-BR/guiasSeguranca.js",
    "m001"
   ],
-  "8b554411d0e31520": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "8b69029713a458f8": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -8906,11 +8495,6 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
-  ],
-  "8bb3ab2bcc7824e2": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "8beb5f1dcf4a559a": [
    "pendente",
@@ -8992,11 +8576,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "8cb49feff95a6161": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "8ce5e93f3f2ed097": [
    "pendente",
    "data/pet_safety_content.js",
@@ -9017,10 +8596,10 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "8d4b0dc2ba5cfb98": [
+  "8d23bdf9700e32a6": [
    "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
+   "locales/pt-BR/common.json",
+   "m022"
   ],
   "8d7ddb918ca52129": [
    "pendente",
@@ -9317,11 +8896,6 @@
    "data/pet_food_safety.js",
    "m006"
   ],
-  "915bcc35a9c246b5": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "915c14f87a3c6ef4": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -9407,11 +8981,6 @@
    "data/plantas_ciatox.js",
    "m010"
   ],
-  "92738c00fa322d95": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "92a285eab5c75ba6": [
    "pendente",
    "data/epi_domestico.js",
@@ -9457,11 +9026,6 @@
    "screens/Travel/TravelModeScreen.js",
    "m010"
   ],
-  "93df40b5530b2602": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "93e23269ceb4a5e9": [
    "pendente",
    "data/produtos_scanner.js",
@@ -9481,11 +9045,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
-  ],
-  "9424b80b4e188e81": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "94486d4309dc1b06": [
    "aprovado",
@@ -9511,6 +9070,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "94d791ab530320b8": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
   ],
   "94f5903ad3c6b6f7": [
    "pendente",
@@ -9592,6 +9156,11 @@
    "data/legal/politica_privacidade.js",
    "m010"
   ],
+  "96ece565012e9aae": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "97255c284b9ae0ad": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -9617,15 +9186,15 @@
    "data/plantas_ciatox.js",
    "m010"
   ],
+  "97552183ca120aa1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "97bdd37a5835f2f8": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
-  ],
-  "97c74bffe270d9b1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "97eecdb5bfa954d4": [
    "pendente",
@@ -9747,16 +9316,6 @@
    "data/mobilidade_data.js",
    "m004"
   ],
-  "99adb05173a3e87d": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
-  ],
-  "99b1241f2338f1b1": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "99d427a7a85f46ac": [
    "pendente",
    "data/mobilidade_data.js",
@@ -9817,15 +9376,20 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
-  "9ad0570439daacc5": [
+  "9acef681c8a89363": [
    "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
+   "locales/pt-BR/common.json",
+   "m022"
   ],
   "9ad5d4288f843329": [
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "9ae17f414863cd1e": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m022"
   ],
   "9ae29218052550f7": [
    "pendente",
@@ -9841,11 +9405,6 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
-  ],
-  "9b0b7dafbebb0cf6": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
   ],
   "9b14bce1a85b1cb9": [
    "pendente",
@@ -9880,11 +9439,6 @@
   "9b98027c38f45b77": [
    "pendente",
    "data/ocorrencia_regional.js",
-   "m006"
-  ],
-  "9ba051486e3fa2d9": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "9ba671b5fa33dac2": [
@@ -9972,20 +9526,10 @@
    "data/dose_atrasada.js",
    "m019"
   ],
-  "9c94d3a5b983862d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "9c9587eeedd54537": [
    "pendente",
    "screens/SegurancaFeriasScreen.js",
    "m010"
-  ],
-  "9c9d4c49f05c6224": [
-   "pendente",
-   "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
   ],
   "9c9ee8cdcd57209b": [
    "pendente",
@@ -10001,11 +9545,6 @@
    "pendente",
    "data/micro_blog.js",
    "m010"
-  ],
-  "9cd09341063114ae": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "9cd4bfc3f93a7633": [
    "pendente",
@@ -10052,6 +9591,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "9dce6a02388e1820": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
+  ],
   "9dd8fe89b619df71": [
    "pendente",
    "screens/InfoRotulosResultScreen.js",
@@ -10067,11 +9611,6 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
-  "9e276fd9e4c812fb": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "9e4842a14997a696": [
    "pendente",
    "data/animais_ciatox.js",
@@ -10086,11 +9625,6 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m018"
-  ],
-  "9eb67fb3d6b119c3": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "9ec99ed1c4b25a8c": [
    "pendente",
@@ -10141,11 +9675,6 @@
    "pendente",
    "data/produtos_scanner.js",
    "m010"
-  ],
-  "9f6f8dd012b9d444": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "9f7b72cd2a474755": [
    "pendente",
@@ -10207,25 +9736,10 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
-  "a0bb22f968b59449": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "a0c2c69e8d300333": [
    "pendente",
    "data/kits/medicines.js",
    "m010"
-  ],
-  "a0d90f83b3c2abbc": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "a0ed1cec77a25dfc": [
-   "pendente",
-   "data/fases_vida.js",
-   "m004"
   ],
   "a0f0c473450614cc": [
    "pendente",
@@ -10322,6 +9836,11 @@
    "data/animais_ciatox.js",
    "m010"
   ],
+  "a23372b6d58349a4": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "a23e9e5ec944445e": [
    "pendente",
    "data/animais_ciatox.js",
@@ -10333,11 +9852,6 @@
    "m019"
   ],
   "a25995fc219066c2": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "a25ba0aac23d85c1": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
@@ -10402,11 +9916,6 @@
    "data/areas_internas.js",
    "m001"
   ],
-  "a33976d6a9902435": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "a347f780a7c58f78": [
    "pendente",
    "data/teoria_fogo.js",
@@ -10457,11 +9966,6 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
   ],
-  "a3dcf1d9310e57c0": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m010"
-  ],
   "a3e480aaa9ef7e8b": [
    "pendente",
    "data/animais_ciatox.js",
@@ -10476,6 +9980,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "a411cbe468712d7b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "a419bca7db26e26a": [
    "pendente",
@@ -10542,11 +10051,6 @@
    "data/animais_ciatox.js",
    "m010"
   ],
-  "a54b2a4695f02f6d": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
-  ],
   "a552b7547780ff39": [
    "pendente",
    "data/animais_ciatox.js",
@@ -10576,6 +10080,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "a5945eb726648c63": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m022"
   ],
   "a5c24fd59712e89f": [
    "pendente",
@@ -10647,11 +10156,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "a68ac8e314bcf904": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "a68cdd983e528bdb": [
    "pendente",
    "data/pet_food_safety.js",
@@ -10697,11 +10201,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "a711a890020069d2": [
-   "pendente",
-   "data/ferramentas_seguranca.js",
-   "m010"
-  ],
   "a71f70ac7c45fea5": [
    "pendente",
    "data/knowledge_prevencao.js",
@@ -10742,11 +10241,6 @@
    "data/knowledge_prevencao.js",
    "m016"
   ],
-  "a7caf8871fbf6dae": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "a81ec7a27800e8a5": [
    "pendente",
    "data/opcoesPerfil.js",
@@ -10776,11 +10270,6 @@
    "pendente",
    "data/dispositivos_protecao.js",
    "m010"
-  ],
-  "a87a90a2e1a94803": [
-   "pendente",
-   "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
   ],
   "a881596f3f90bc35": [
    "pendente",
@@ -10872,11 +10361,6 @@
    "data/legal/politica_privacidade.js",
    "m018"
   ],
-  "a976f5a75a2af0df": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "a977db3e2da1876c": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -10967,11 +10451,6 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
-  "aace9c9d5536d38b": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "aad02a30721fe73d": [
    "aprovado",
    "data/radarSazonal/us.js",
@@ -11022,11 +10501,6 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
-  "ab4017bc1fb84746": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "ab53353c26be5d67": [
    "pendente",
    "data/fases_vida.js",
@@ -11061,11 +10535,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m010"
-  ],
-  "abffdd1fe124b4ea": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "ac02da078a543ab8": [
    "pendente",
@@ -11122,6 +10591,11 @@
    "data/produtos_scanner.js",
    "m010"
   ],
+  "ace9caf3fe9390e7": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
+  ],
   "aceee84600c74c57": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -11147,6 +10621,11 @@
    "data/produtos_scanner.js",
    "m006"
   ],
+  "ad7f41c4a1c05e98": [
+   "pendente",
+   "data/micro_blog.js",
+   "m022"
+  ],
   "adbad2c2346590b2": [
    "pendente",
    "data/pet_pregnancy_data.js",
@@ -11166,11 +10645,6 @@
    "pendente",
    "data/eletrodomesticos_seguranca.js",
    "m010"
-  ],
-  "ae0ceea7238b27d4": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "ae14a355f04772cb": [
    "pendente",
@@ -11206,6 +10680,11 @@
    "pendente",
    "data/teoria_fogo.js",
    "m005"
+  ],
+  "aebd401bd52b8436": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "aec08b59c5814964": [
    "pendente",
@@ -11247,10 +10726,10 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
-  "af76bec3d022dd75": [
+  "af85d91750333422": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
+   "m022"
   ],
   "af9f4dad0724b9ae": [
    "pendente",
@@ -11287,6 +10766,11 @@
    "data/kits/educational_content.js",
    "m010"
   ],
+  "b08f50ba002a6853": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "b09c53d21b9a615e": [
    "pendente",
    "data/kits/bagagem_viagem.js",
@@ -11298,16 +10782,6 @@
    "m006"
   ],
   "b0a9cdf73a67bd59": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "b0af933d45e5b0c0": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "b0b33ea6f9b2b00e": [
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
@@ -11336,11 +10810,6 @@
    "pendente",
    "data/produtos_categorias.js",
    "m010"
-  ],
-  "b1290814873d0387": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "b12b1f0e54320722": [
    "pendente",
@@ -11377,11 +10846,6 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
   ],
-  "b1b446d1ecf1be6b": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
-  ],
   "b1bdf4154b1d2a22": [
    "pendente",
    "data/opcoesPerfil.js",
@@ -11407,11 +10871,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "b2275a01ba5d3652": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "b229380d2901f36c": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -11426,11 +10885,6 @@
    "pendente",
    "data/pet_safety_content.js",
    "m006"
-  ],
-  "b256aa6520f54d66": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "b25ac18ebcf930db": [
    "pendente",
@@ -11517,6 +10971,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "b3cd5e1e297a2ad7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "b3e678faf3ee0c88": [
    "pendente",
    "data/dose_atrasada.js",
@@ -11542,15 +11001,20 @@
    "data/plantas_ciatox.js",
    "m015"
   ],
-  "b462b1a8b76a706a": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "b46d4a762cd57ee7": [
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "b47b4093837f7b9f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
+  "b489088e1ed724a5": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "b4986165840a26ab": [
    "pendente",
@@ -11642,11 +11106,6 @@
    "data/pet_safety_content.js",
    "m006"
   ],
-  "b5c95879f1f42133": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "b5f55d14e4e68f76": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -11656,11 +11115,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "b621627e846d525a": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "b630329929c50ee8": [
    "pendente",
@@ -11742,11 +11196,6 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
-  "b734b7814d0c28f8": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "b735d06313ddf1ca": [
    "pendente",
    "data/animais_ciatox.js",
@@ -11756,11 +11205,6 @@
    "pendente",
    "data/categoriasRisco.js",
    "m010"
-  ],
-  "b770d852a781b660": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "b778bc3a6477a9fb": [
    "pendente",
@@ -11862,6 +11306,11 @@
    "data/areas_internas.js",
    "m010"
   ],
+  "b870992105b1096e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "b876f57a8848b8fa": [
    "pendente",
    "data/ocorrencia_regional.js",
@@ -11892,11 +11341,6 @@
    "data/produtos_scanner.js",
    "m010"
   ],
-  "b91c36fd66ef202c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "b96a67bfde3ea52a": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -11906,6 +11350,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "b976cc7b8d3c9c16": [
+   "pendente",
+   "data/escola_segura_data.js",
+   "m022"
   ],
   "b9863f10186edd15": [
    "aprovado",
@@ -11997,11 +11446,6 @@
    "data/kits/educational_content.js",
    "m010"
   ],
-  "bb14b7db9a03d34e": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
-  ],
   "bb2d4b9852b6375a": [
    "pendente",
    "data/radarSazonal/br.js",
@@ -12012,10 +11456,10 @@
    "screens/SegurancaLazerScreen.js",
    "m005"
   ],
-  "bb5192b85615d219": [
+  "bb9cb7d08b77d530": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "bba5407b2d37e7e6": [
    "pendente",
@@ -12041,6 +11485,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "bc185d22028e8e39": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "bc58d7036cbb0b1d": [
    "pendente",
@@ -12172,19 +11621,9 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "be4eb74fda9951e4": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "be549b6279e2e34d": [
    "pendente",
    "data/animais_ciatox.js",
-   "m006"
-  ],
-  "be6b0d786e659443": [
-   "pendente",
-   "data/epi_domestico.js",
    "m006"
   ],
   "be7e0f3b4973c752": [
@@ -12272,6 +11711,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "c01c22dfd486373c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "c04c56424d76b8bc": [
    "pendente",
    "data/pet_food_safety.js",
@@ -12307,11 +11751,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "c0d3c7847e48ae83": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c0e1b0e75ff27376": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -12320,11 +11759,6 @@
   "c0e39196a2956dd6": [
    "pendente",
    "data/produtos_scanner.js",
-   "m006"
-  ],
-  "c0e64f84448c62ad": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "c0fb04ac5a33a583": [
@@ -12357,11 +11791,6 @@
    "screens/SegurancaFeriasScreen.js",
    "m010"
   ],
-  "c16c702a485ba399": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c16efef49b38a88c": [
    "pendente",
    "data/animais_ciatox.js",
@@ -12375,11 +11804,6 @@
   "c17c3520871c608a": [
    "pendente",
    "data/animais_ciatox.js",
-   "m006"
-  ],
-  "c18da4fd379691f9": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "c18f53fb6f476286": [
@@ -12397,6 +11821,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "c1ce90e9b98068d0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "c224ce76076a8e03": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -12412,11 +11841,6 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
-  "c2cc2d0ed7868bde": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c2fd1cac7b76052d": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -12426,6 +11850,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "c33242e5d6011ddd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "c33944a428642f8b": [
    "pendente",
@@ -12457,11 +11886,6 @@
    "locales/pt-BR/common.json",
    "m011"
   ],
-  "c3beb5b8244762c6": [
-   "pendente",
-   "data/ferramentas_seguranca.js",
-   "m010"
-  ],
   "c3d5a2540b3c4944": [
    "pendente",
    "data/animais_ciatox.js",
@@ -12482,20 +11906,10 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "c4338862d072e9c1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c45b00234ecbbf74": [
    "pendente",
    "data/animais_ciatox.js",
    "m006"
-  ],
-  "c464433d2fc97011": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "c483804aaf05419d": [
    "pendente",
@@ -12522,11 +11936,6 @@
    "data/knowledge_prevencao.js",
    "m010"
   ],
-  "c4fcf3e9bca5b648": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c51dea419442fe97": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -12536,11 +11945,6 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m008"
-  ],
-  "c5525aa79c395f4f": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "c55e91a620040fcc": [
    "pendente",
@@ -12561,11 +11965,6 @@
    "pendente",
    "data/safety_fire.js",
    "m010"
-  ],
-  "c595767e06f8b998": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "c5e860d9fcdc836d": [
    "pendente",
@@ -12622,11 +12021,6 @@
    "data/fases_vida.js",
    "m010"
   ],
-  "c6a88aa665508156": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "c6ae941dfa5177e7": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -12640,11 +12034,6 @@
   "c71a410d635ce781": [
    "pendente",
    "data/animais_ciatox.js",
-   "m006"
-  ],
-  "c7234c3f9bf9e3dc": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "c72468c43fcd6ebe": [
@@ -12692,11 +12081,6 @@
    "data/intro_safety.js",
    "m010"
   ],
-  "c7eeb88d34149c25": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "c851e34849c4f30c": [
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
@@ -12727,6 +12111,11 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
+  "c8aea30b4f04de17": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "c8c2ae1e7aa2afc2": [
    "pendente",
    "screens/SegurancaLazerScreen.js",
@@ -12752,11 +12141,6 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
-  "c941cb0f9161bb60": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "c94e112669e44a06": [
    "pendente",
    "data/animais_ciatox.js",
@@ -12773,11 +12157,6 @@
    "m010"
   ],
   "c9664cf9b73e8fad": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "c969806641003990": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
@@ -12807,20 +12186,15 @@
    "data/produtos_scanner.js",
    "m006"
   ],
-  "c9fefbba2bfbe077": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "ca13b0cf22a95e42": [
    "aprovado",
    "data/areas_internas.js",
    "m001"
   ],
-  "ca1f802abb05c6c6": [
+  "ca35f6696dbd021d": [
    "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
+   "data/escola_segura_data.js",
+   "m022"
   ],
   "ca59bb097190d330": [
    "aprovado",
@@ -12836,11 +12210,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
-  ],
-  "ca7dcd7eeb6c01a6": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
   ],
   "ca947ae725a26b39": [
    "pendente",
@@ -12931,11 +12300,6 @@
    "pendente",
    "screens/InfoRotulosResultScreen.js",
    "m010"
-  ],
-  "cc0567f7f4d132d6": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "cc39b3e7689e62e9": [
    "pendente",
@@ -13062,11 +12426,6 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "cdca7182546e9a07": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "cddce27513c757ac": [
    "pendente",
    "data/animais_ciatox.js",
@@ -13157,10 +12516,10 @@
    "data/riscos_fisicos.js",
    "m004"
   ],
-  "cf76fb9a77e54a24": [
+  "cfa7357cd90bc001": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/opcoesPerfil.js",
+   "m022"
   ],
   "cfb93b1a21cb8deb": [
    "pendente",
@@ -13287,11 +12646,6 @@
    "data/locales/pt-BR/SafetyArticlesDB.js",
    "m001"
   ],
-  "d0f84d5acb098208": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "d0fd0560865477f7": [
    "pendente",
    "data/onboarding_data.js",
@@ -13302,12 +12656,12 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "d1154088387023d3": [
+  "d10e7c0390b65a6e": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/riscos_fisicos.js",
+   "m022"
   ],
-  "d15324497d8d1cca": [
+  "d1154088387023d3": [
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
@@ -13422,11 +12776,6 @@
    "data/locales/pt-BR/guiasSeguranca.js",
    "m010"
   ],
-  "d395a21844aba077": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m010"
-  ],
   "d3a0380172a9cf16": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -13507,11 +12856,6 @@
    "data/mobilidade_data.js",
    "m005"
   ],
-  "d44f509fed627b7e": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m010"
-  ],
   "d4543032809155c1": [
    "pendente",
    "data/animais_ciatox.js",
@@ -13527,11 +12871,6 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
-  "d463c7ffeea0b736": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "d464ea478b7f1bba": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -13542,10 +12881,10 @@
    "screens/Checklists/OndeProtegerScreen.js",
    "m010"
   ],
-  "d495c97db46c7afc": [
+  "d4a135c12051b54b": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/locales/pt-BR/educational_guides.js",
+   "m022"
   ],
   "d4b331c2975d59a2": [
    "pendente",
@@ -13561,6 +12900,11 @@
    "pendente",
    "data/radarSazonal/us.js",
    "m010"
+  ],
+  "d4f9f7924e92275d": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m022"
   ],
   "d4fe4909562e2f52": [
    "pendente",
@@ -13601,6 +12945,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "d56e4da7d768a386": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "d57fb02b2a605537": [
    "pendente",
@@ -13667,6 +13016,11 @@
    "data/epi_domestico.js",
    "m006"
   ],
+  "d69591fe649a4a5b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "d6a2598e15d65af9": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -13686,6 +13040,11 @@
    "pendente",
    "data/pet_wellness_data.js",
    "m006"
+  ],
+  "d6f36b8b8721c6ac": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "d6fdc2a21006dac8": [
    "pendente",
@@ -13731,16 +13090,6 @@
    "pendente",
    "data/intro_safety.js",
    "m005"
-  ],
-  "d86a8aab3a2548c0": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
-  "d878aaf6b1232c11": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "d87cd9aab3a9dbe1": [
    "pendente",
@@ -13842,6 +13191,11 @@
    "data/teoria_fogo.js",
    "m010"
   ],
+  "d9c2aebabf322d4e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "d9d48a7fa66170be": [
    "pendente",
    "data/ferramentas_seguranca.js",
@@ -13862,15 +13216,15 @@
    "data/dispositivos_protecao.js",
    "m010"
   ],
-  "da1e1f8d93a6ce1c": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "da2075e75243cc27": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "da262a6284f9bf01": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m022"
   ],
   "da29a4204738464d": [
    "pendente",
@@ -13907,11 +13261,6 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
-  "da72f6b30860e899": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "da8f0359d2939972": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -13926,6 +13275,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
+  ],
+  "da97633e65160e58": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m022"
   ],
   "da9fc19a98e07360": [
    "pendente",
@@ -13981,11 +13335,6 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
-  ],
-  "db148d2896137bc9": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "db1ae10772f60c13": [
    "pendente",
@@ -14062,11 +13411,6 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
-  "dc851c22a260907e": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "dcc8f6e0f320dd62": [
    "pendente",
    "data/classesIncendio.js",
@@ -14081,11 +13425,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
-  ],
-  "dcea82add9a97f1e": [
-   "pendente",
-   "data/riscos_fisicos.js",
-   "m015"
   ],
   "dcfe156a29c257a3": [
    "pendente",
@@ -14102,10 +13441,10 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
-  "dd1e7497efa80371": [
+  "dd19eca56abeece2": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
+   "m022"
   ],
   "dd2895e39bc325a0": [
    "pendente",
@@ -14116,6 +13455,11 @@
    "pendente",
    "data/dose_atrasada.js",
    "m019"
+  ],
+  "dd8f481acd4cab3e": [
+   "pendente",
+   "data/locales/pt-BR/HazardDatabase.js",
+   "m022"
   ],
   "ddae2ce579775e79": [
    "pendente",
@@ -14136,16 +13480,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "de139d23b222b77c": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "de20e7916d9bc93c": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "de43061d1b2ad847": [
    "aprovado",
@@ -14187,11 +13521,6 @@
    "data/legal/politica_privacidade.js",
    "m008"
   ],
-  "deb9a8c8de89a021": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "dec39bb801246aa5": [
    "pendente",
    "data/teoria_fogo.js",
@@ -14211,6 +13540,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "df49e1352d37d4f5": [
+   "pendente",
+   "data/asilo_seguro_data.js",
+   "m022"
   ],
   "df69f51615421ccf": [
    "pendente",
@@ -14237,11 +13571,6 @@
    "data/animais_ciatox.js",
    "m010"
   ],
-  "e00d2fc33e6f1d10": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "e01ed0529d401dc1": [
    "pendente",
    "data/opcoesPerfil.js",
@@ -14251,6 +13580,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
+  ],
+  "e0535d3c894ae48a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "e05ba6cba2b01e75": [
    "pendente",
@@ -14282,11 +13616,6 @@
    "data/pet_food_safety.js",
    "m006"
   ],
-  "e0dbcf2501595cec": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "e0dca4971fefa05c": [
    "pendente",
    "data/animais_ciatox.js",
@@ -14302,11 +13631,6 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
-  "e100f6970e1cbd59": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "e1027d0c06579044": [
    "pendente",
    "data/epi_domestico.js",
@@ -14321,6 +13645,11 @@
    "aprovado",
    "data/locales/pt-BR/SafetyArticlesDB.js",
    "m001"
+  ],
+  "e14bd515e134a7af": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "e15127911b97efed": [
    "pendente",
@@ -14362,11 +13691,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "e20c8d8710786ef3": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "e2105b2a63da28f1": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -14377,15 +13701,15 @@
    "data/locales/pt-BR/HazardDatabase.js",
    "m011"
   ],
+  "e258ff032a5de9de": [
+   "pendente",
+   "data/kits/educational_content.js",
+   "m022"
+  ],
   "e259be76521f6e3e": [
    "pendente",
    "data/legal/termos_uso.js",
    "m010"
-  ],
-  "e27d322af4a92b8d": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "e29d747a3f78b9d2": [
    "pendente",
@@ -14432,6 +13756,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
+  "e355368021416ca7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "e385e4aac0124fcc": [
    "pendente",
    "data/produtos_scanner.js",
@@ -14441,11 +13770,6 @@
    "aprovado",
    "data/areas_internas.js",
    "m001"
-  ],
-  "e38b320e20988357": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "e393fc7f46c1ef98": [
    "pendente",
@@ -14457,20 +13781,10 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "e3a7872c5ec11b4f": [
-   "pendente",
-   "data/epi_domestico.js",
-   "m006"
-  ],
   "e3adcca9a77c35f1": [
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
    "m004"
-  ],
-  "e3b1836a09af33f8": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "e3b325de138cc93d": [
    "aprovado",
@@ -14512,20 +13826,10 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
-  "e43c9ac633a3620a": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "e43e176e672d587d": [
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
-  ],
-  "e4412243521cb749": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "e44640f1678c9a04": [
    "pendente",
@@ -14547,11 +13851,6 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
-  "e4683c77eee05f3e": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "e47fd787352c1402": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -14561,11 +13860,6 @@
    "pendente",
    "data/mobilidade_data.js",
    "m004"
-  ],
-  "e4a5c7fc1de735d1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "e4a6da0514e6b1aa": [
    "pendente",
@@ -14637,15 +13931,15 @@
    "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
    "m006"
   ],
+  "e6398eb99cd93894": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "e656db462b5a4c15": [
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "e656fe54009a17a7": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "e679be99e12d9abd": [
    "pendente",
@@ -14732,11 +14026,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "e753b96f2f0e73a1": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "e75c31a8ac8d3d19": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -14761,11 +14050,6 @@
    "pendente",
    "data/kits/bagagem_viagem.js",
    "m010"
-  ],
-  "e7b3932caec47251": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "e7cfd18eb160b290": [
    "pendente",
@@ -14902,11 +14186,6 @@
    "data/pet_food_safety.js",
    "m015"
   ],
-  "ea28a16134999d72": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "ea50015f7bdaa705": [
    "pendente",
    "data/pet_pregnancy_data.js",
@@ -14932,11 +14211,6 @@
    "data/eletrodomesticos_reviews.js",
    "m017"
   ],
-  "eac0c0fffb30f306": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "eac80b81aeb49b75": [
    "pendente",
    "data/onboarding_data.js",
@@ -14952,15 +14226,15 @@
    "data/produtos_categorias.js",
    "m004"
   ],
-  "eb1a02f59ad71667": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "eb38087b26094fbd": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "eb5a6279e2a8a297": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "eb788c8d094c34a8": [
    "pendente",
@@ -14980,11 +14254,6 @@
   "ebcf8159868de61b": [
    "pendente",
    "data/kits/tools.js",
-   "m010"
-  ],
-  "ebd3367789d3b599": [
-   "pendente",
-   "data/epi_domestico.js",
    "m010"
   ],
   "ebe3a1d1d6b6c145": [
@@ -15012,6 +14281,11 @@
    "data/pet_food_safety.js",
    "m010"
   ],
+  "ec256d343d6e13da": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "ec31195c38c00b85": [
    "pendente",
    "data/animais_ciatox.js",
@@ -15035,11 +14309,6 @@
   "ec7fb560b8175ae7": [
    "pendente",
    "screens/Tools/MapaDeRiscosScreen.js",
-   "m006"
-  ],
-  "ec8a94f40ef798e3": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "eca8a1801a4d1743": [
@@ -15101,11 +14370,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "ee0a6fb6a5868ae1": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "ee12e617a7b69751": [
    "pendente",
@@ -15232,11 +14496,6 @@
    "data/animais_ciatox.js",
    "m006"
   ],
-  "f088f3a5ebf9c38a": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "f0a96fcf62df5a42": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -15253,11 +14512,6 @@
    "m006"
   ],
   "f0f80c5fe6f3b9de": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "f105c4c9c6a2524c": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
@@ -15482,25 +14736,10 @@
    "data/animais_ciatox.js",
    "m010"
   ],
-  "f42a158fd1413364": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
-  "f479116e925e036f": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "f4901cfbbba628f3": [
    "pendente",
    "data/ferramentas_seguranca.js",
    "m010"
-  ],
-  "f4d3fe7737c06e83": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "f4d469d3e3025482": [
    "aprovado",
@@ -15541,11 +14780,6 @@
    "pendente",
    "screens/Checklists/OndeProtegerScreen.js",
    "m010"
-  ],
-  "f585a677d2e07f01": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "f5e0d14a684d1581": [
    "pendente",
@@ -15667,11 +14901,6 @@
    "data/radarSazonal/mx.js",
    "m010"
   ],
-  "f7841fc14d9e8bbb": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "f786308454976b04": [
    "pendente",
    "data/radarSazonal/index.js",
@@ -15691,6 +14920,11 @@
    "pendente",
    "data/dispositivos_protecao.js",
    "m005"
+  ],
+  "f7c9178bddb0516f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "f7cd11070ab52f1c": [
    "aprovado",
@@ -15722,10 +14956,10 @@
    "data/ferramentas_seguranca.js",
    "m010"
   ],
-  "f869c7927a3d069b": [
+  "f865860cdbc3aced": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/dispositivos_protecao.js",
+   "m022"
   ],
   "f8782858ce51a752": [
    "pendente",
@@ -15747,6 +14981,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "f8974d0061f14829": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
+  ],
   "f8ad533251f89aba": [
    "aprovado",
    "data/areas_internas.js",
@@ -15756,6 +14995,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m004"
+  ],
+  "f8bb0cbba17a8e3f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "f8d7ff3adf29e877": [
    "pendente",
@@ -15776,6 +15020,11 @@
    "pendente",
    "screens/SegurancaLazerScreen.js",
    "m010"
+  ],
+  "f96fae70375f36dd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "f970639e1fac2eba": [
    "pendente",
@@ -15832,11 +15081,6 @@
    "data/legal/politica_privacidade.js",
    "m010"
   ],
-  "fa3f5243711040e6": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
-  ],
   "fa4a0a706f2aa4cd": [
    "pendente",
    "data/mobilidade_data.js",
@@ -15872,6 +15116,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "faa8427c76cd0d33": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m022"
+  ],
   "fab5b44fa6fb27ef": [
    "pendente",
    "data/mobilidade_data.js",
@@ -15882,10 +15131,10 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
-  "fae1dd38c25dfe2f": [
+  "fad052ea2a8687fa": [
    "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
+   "data/mapeamento_dados.js",
+   "m022"
   ],
   "fafdd2bb891e42ca": [
    "pendente",
@@ -15901,11 +15150,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "fb181ec3578f8961": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "fb284a944a49bf4a": [
    "aprovado",
@@ -15926,11 +15170,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
-  ],
-  "fb9d5e314cff898c": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "fba8ae495f1173bb": [
    "pendente",
@@ -15957,11 +15196,6 @@
    "data/animais_ciatox.js",
    "m015"
   ],
-  "fbf973d295e9e9ab": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m010"
-  ],
   "fc123f9ccdce5a97": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -15977,10 +15211,10 @@
    "data/mobilidade_data.js",
    "m004"
   ],
-  "fc98517c29f4e727": [
+  "fc8c069ea41b9b14": [
    "pendente",
    "data/mapeamento_dados.js",
-   "m006"
+   "m022"
   ],
   "fc9b9c01cfefda67": [
    "pendente",
@@ -16022,10 +15256,10 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
-  "fd07e3bede66f62f": [
+  "fd4fb561c806ea89": [
    "pendente",
-   "screens/SegurancaLazerScreen.js",
-   "m004"
+   "data/kits/educational_content.js",
+   "m022"
   ],
   "fd604b9b4bb13325": [
    "pendente",
@@ -16061,11 +15295,6 @@
    "pendente",
    "data/dispositivos_eletronicos_reviews.js",
    "m014"
-  ],
-  "fdad4488d5fab287": [
-   "pendente",
-   "data/mapeamento_dados.js",
-   "m006"
   ],
   "fdc16e5d8fd4a30a": [
    "pendente",
@@ -16160,11 +15389,6 @@
   "ff60c119fe24bb37": [
    "pendente",
    "data/pet_pregnancy_data.js",
-   "m006"
-  ],
-  "ff6b0e79f7a3ff77": [
-   "pendente",
-   "data/mapeamento_dados.js",
    "m006"
   ],
   "ff71f777dff25650": [

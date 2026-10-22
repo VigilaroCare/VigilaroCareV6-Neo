@@ -406,6 +406,37 @@ const TEMAS = [
             + 'saude responsavel, sem decidir pelo usuario.',
         fontes: [],
     },
+    // Retorno do CK, AV e IF (22/10/2026). Entra o que o Agnaldo ainda nao viu:
+    // ajustes feitos ao aplicar a revisao dele, respostas aos comentarios, cautela,
+    // e os itens levados das secoes mortas para as telas vivas. Entram tambem os
+    // pendentes de hoje que esperavam documento (lembretes x perfil; grade de cama).
+    {
+        nome: 'Retorno CK AV IF',
+        sigla: 'RK',
+        pendentes: ['m020', 'm021', 'm022'],
+        marcarMudancas: false,
+        antes: '_antes-RK.json',
+        dataMudancas: '22/10/2026',
+        rotulos: {
+            'data/mapeamento_dados.js': 'Checklist dos ambientes (vistoria)',
+            'data/epi_domestico.js': 'EPI Domestico',
+            'data/ferramentas_seguranca.js': 'Ferramentas & Reparos',
+            'data/riscos_fisicos.js': 'Riscos Fisicos',
+            'data/kits/educational_content.js': 'Guia de Kits',
+            'data/escola_segura_data.js': 'Escola Segura',
+            'data/asilo_seguro_data.js': 'Vistoria Asilo / ILPI',
+            'data/opcoesPerfil.js': 'Cadastro de perfil (opcoes)',
+            'screens/Travel/FazendoAsMalasScreen.js': 'Fazendo as Malas — bagagem aerea',
+            'locales/pt-BR/common.json': 'Textos de interface',
+        },
+        descricao: 'Retorno da sua revisao do CK, do AV e do IF. Suas edicoes entraram como voce escreveu; aqui estao '
+            + 'so os textos que voce ainda nao viu: onde ajustei a sua edicao ao aplicar (concordancia, repeticao), as '
+            + 'respostas aos seus comentarios (sobrocado, pilha botao, cerca de piscina, aranha-marrom, churrasqueira, '
+            + 'radonio, soro de reidratacao...), a cautela que estava esperando estes documentos, os ambientes do '
+            + 'checklist e as telas EPI e Ferramentas que nao tinham traducao, e o que levei das partes mortas do '
+            + 'checklist para as telas vivas de Escola, Asilo e Kits. A linha ANTES mostra como estava; texto sem ANTES e novo.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

@@ -21,7 +21,7 @@ export const EDUCATIONAL_GUIDES_PT_BR = {
         label: 'Piscina',
         iconName: 'Pool',
         color: '#03A9F4',
-        content: 'Piscina precisa de cerca alta (pelo menos 1,20m) e portão que tranca sozinho para nenhuma criança entrar sem querer. Use ralos que não sugam o cabelo. E escolha um adulto para vigiar os pequenos o tempo todo — sem celular nem distrações.'
+        content: 'Piscina precisa de cerca alta (pelo menos 1,50 m) e portão que tranca sozinho para nenhuma criança entrar sem querer. Use ralos que não sugam o cabelo. E escolha um adulto para vigiar os pequenos o tempo todo — sem celular nem distrações.'
     },
     praia_rios: {
         label: 'Áreas Naturais',

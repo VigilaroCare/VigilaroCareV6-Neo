@@ -210,7 +210,7 @@ export default function SegurancaLazerScreen({ navigation }) {
       riscosPrincipais_ptpt: ['Afogamento silencioso', 'Escorregadelas na borda molhada', 'Sucção dos ralos (cabelos)'],
       prevencao: [
         'Supervisão constante de crianças (regra do "vigilante" dedicado).',
-        'Cercas de no mínimo 1,20 m com portão autotravante.',
+        'Cercas de no mínimo 1,50 m com portão autotravante.',
         'Ralos antiaprisionamento obrigatórios.',
         'Boia salva-vidas e gancho de resgate acessíveis.',
         'Nunca nadar sozinho.'

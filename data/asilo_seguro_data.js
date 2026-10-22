@@ -188,9 +188,9 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
       itens: [
         {
           id: 'asilo_plano_abandono',
-          texto: 'Plano de emergência visa a retirada de pessoas acamadas',
-          texto_en: 'Emergency plan includes evacuation of bedridden patients',
-          texto_es: 'El plan de emergencia contempla la evacuación de personas encamadas',
+          texto: 'Plano de emergência prevê a retirada de pessoas acamadas ou com mobilidade reduzida',
+          texto_en: 'Emergency plan covers evacuating bedridden residents and those with reduced mobility',
+          texto_es: 'El plan de emergencia contempla la evacuación de personas encamadas o con movilidad reducida',
           critico: true,
           detalhes: 'A evacuação de pessoas com mobilidade reduzida exige treinamento e equipamentos específicos.',
           detalhes_en: 'Evacuation of people with reduced mobility requires specific training and equipment.',
@@ -208,9 +208,9 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
         },
         {
           id: 'asilo_detectores',
-          texto: 'Sistema de detecção de fumaça e alarme sonoro ativo',
-          texto_en: 'Active smoke detection and sound alarm system',
-          texto_es: 'Sistema de detección de humo y alarma sonora activo',
+          texto: 'Sistema de detecção de fumaça e alarme sonoro ativo, com equipe treinada para a evacuação',
+          texto_en: 'Active smoke detection and sound alarm system, with staff trained for evacuation',
+          texto_es: 'Sistema de detección de humo y alarma sonora activo, con personal formado para la evacuación',
           critico: true,
           detalhes: 'Sistemas automáticos ganham minutos preciosos para o início da evacuação.',
           detalhes_en: 'Automatic systems gain precious minutes for the start of evacuation.',

@@ -36,9 +36,9 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Lazer sem tropeços e com móveis estáveis.',
-        descricao_en: 'Leisure without tripping and with stable furniture.',
-        descricao_es: 'Ocio sin tropiezos y con muebles estables.',
+        descricao: 'Convívio e brincadeiras sem tropeços, com móveis estáveis.',
+        descricao_en: 'Family time and play without trips, with stable furniture.',
+        descricao_es: 'Convivencia y juegos sin tropiezos, con muebles estables.',
         condicional: 'opcional',
         fase: 1,
         imagemUrl: null,
@@ -72,9 +72,10 @@ export const AMBIENTES = [
         prioridade: 'Máxima',
         prioridade_en: 'Maximum',
         prioridade_es: 'Máxima',
-        descricao: 'O local de maior risco (queimaduras e cortes). Atenção total!',
-        descricao_en: 'The highest risk area (burns and cuts). Full attention!',
-        descricao_es: 'El área de mayor riesgo (quemaduras y cortes). ¡Atención total!',
+        descricao: 'Um dos cômodos com mais riscos da casa: queimaduras e cortes.',
+        descricao_en: 'One of the riskiest rooms in the house: burns and cuts.',
+        descricao_es: 'Una de las estancias con más riesgos de la casa: quemaduras y cortes.',
+        descricao_ptpt: 'Uma das divisões da casa com mais riscos: queimaduras e cortes.',
         condicional: 'opcional',
         fase: 1,
         imagemUrl: null,
@@ -90,9 +91,9 @@ export const AMBIENTES = [
         prioridade: 'Máxima',
         prioridade_en: 'Maximum',
         prioridade_es: 'Máxima',
-        descricao: 'Ninho seguro: Combate ao sufocamento e quedas.',
-        descricao_en: 'Safe nest: Prevention of suffocation and falls.',
-        descricao_es: 'Nido seguro: Prevención de asfixia y caídas.',
+        descricao: 'Sono seguro: prevenção de sufocamento e quedas.',
+        descricao_en: 'Safe sleep: preventing suffocation and falls.',
+        descricao_es: 'Sueño seguro: prevención de asfixia y caídas.',
         condicional: 'bebe',
         fase: 1,
         imagemUrl: null,
@@ -125,9 +126,9 @@ export const AMBIENTES = [
         prioridade: 'Média',
         prioridade_en: 'Medium',
         prioridade_es: 'Media',
-        descricao: 'Medicamentos trancados e ambiente relaxante.',
-        descricao_en: 'Locked medications and relaxing environment.',
-        descricao_es: 'Medicamentos bajo llave y ambiente relajante.',
+        descricao: 'Medicamentos guardados com segurança e ambiente de descanso.',
+        descricao_en: 'Medicines stored safely and a restful room.',
+        descricao_es: 'Medicamentos guardados con seguridad y un ambiente de descanso.',
         fase: 2,
     },
     {
@@ -141,9 +142,9 @@ export const AMBIENTES = [
         prioridade: 'Máxima',
         prioridade_en: 'Maximum',
         prioridade_es: 'Máxima',
-        descricao: 'Autonomia com zero barreiras. Prevenção de quedas.',
-        descricao_en: 'Autonomy with zero barriers. Fall prevention.',
-        descricao_es: 'Autonomía sin barreras. Prevención de caídas.',
+        descricao: 'Autonomia sem barreiras e prevenção de quedas.',
+        descricao_en: 'Independence without barriers and fall prevention.',
+        descricao_es: 'Autonomía sin barreras y prevención de caídas.',
         condicional: 'idoso',
         fase: 1,
         imagemUrl: null,
@@ -159,9 +160,9 @@ export const AMBIENTES = [
         prioridade: 'Máxima',
         prioridade_en: 'Maximum',
         prioridade_es: 'Máxima',
-        descricao: 'Evite quedas e afogamentos. Um santuário de segurança.',
-        descricao_en: 'Prevent falls and drowning. A safety sanctuary.',
-        descricao_es: 'Evita caídas y ahogamientos. Un santuario de seguridad.',
+        descricao: 'Atenção a quedas, choque elétrico e afogamento.',
+        descricao_en: 'Watch out for falls, electric shock and drowning.',
+        descricao_es: 'Atención a caídas, descargas eléctricas y ahogamiento.',
         condicional: 'opcional',
         fase: 1,
         imagemUrl: null,
@@ -194,9 +195,10 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Produtos químicos no alto e baldes vazios. Área técnica segura.',
-        descricao_en: 'Chemicals stored high and empty buckets. Safe utility area.',
-        descricao_es: 'Productos químicos en alto y cubetas vacías. Área técnica segura.',
+        descricao: 'Produtos químicos no alto e baldes vazios. Área de serviço organizada e segura.',
+        descricao_en: 'Chemicals stored high and buckets kept empty. A tidy, safe utility area.',
+        descricao_es: 'Productos químicos en alto y cubetas vacías. Zona de lavado ordenada y segura.',
+        descricao_ptpt: 'Produtos químicos no alto e baldes vazios. Lavandaria arrumada e segura.',
         condicional: 'opcional',
         fase: 2,
         imagemUrl: null,
@@ -212,9 +214,9 @@ export const AMBIENTES = [
         prioridade: 'Média',
         prioridade_en: 'Medium',
         prioridade_es: 'Media',
-        descricao: 'Organização evita quedas e contaminação por roedores.',
-        descricao_en: 'Organization prevents falls and rodent contamination.',
-        descricao_es: 'La organización evita caídas y contaminación por roedores.',
+        descricao: 'Organização ajuda a evitar quedas e a atração de roedores.',
+        descricao_en: 'Good organization helps prevent falls and avoid attracting rodents.',
+        descricao_es: 'La organización ayuda a evitar caídas y a no atraer roedores.',
         condicional: 'opcional',
         fase: 3,
     },
@@ -334,9 +336,9 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Ferramentas afiadas longe de crianças. Ventilação adequada.',
-        descricao_en: 'Sharp tools away from children. Adequate ventilation.',
-        descricao_es: 'Herramientas afiladas lejos de los niños. Ventilación adecuada.',
+        descricao: 'Ferramentas afiadas longe de crianças. Ventilação e iluminação adequadas.',
+        descricao_en: 'Sharp tools away from children. Good ventilation and lighting.',
+        descricao_es: 'Herramientas afiladas lejos de los niños. Ventilación e iluminación adecuadas.',
         condicional: 'opcional',
         fase: 3,
         imagemUrl: null,
@@ -352,9 +354,9 @@ export const AMBIENTES = [
         prioridade: 'Média',
         prioridade_en: 'Medium',
         prioridade_es: 'Media',
-        descricao: 'Organização anula abrigo para aranhas e escorpiões.',
-        descricao_en: 'Organization eliminates shelter for spiders and scorpions.',
-        descricao_es: 'La organización elimina el refugio para arañas y escorpiones.',
+        descricao: 'Organização reduz os abrigos de aranhas e escorpiões.',
+        descricao_en: 'Good organization reduces hiding places for spiders and scorpions.',
+        descricao_es: 'La organización reduce los refugios de arañas y escorpiones.',
         condicional: 'opcional',
         fase: 3,
     },
@@ -386,9 +388,10 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Risco alto de umidade, mofo e acúmulo de gases tóxicos.',
-        descricao_en: 'High risk of moisture, mold and toxic gas accumulation.',
-        descricao_es: 'Alto riesgo de humedad, moho y acumulación de gases tóxicos.',
+        descricao: 'Atenção a umidade, mofo e falta de ventilação.',
+        descricao_en: 'Watch out for damp, mold and poor ventilation.',
+        descricao_es: 'Atención a la humedad, el moho y la falta de ventilación.',
+        descricao_ptpt: 'Atenção à humidade, ao bolor e à falta de ventilação.',
         condicional: 'opcional',
         fase: 3,
     },
@@ -421,9 +424,10 @@ export const AMBIENTES = [
         prioridade: 'Alta',
         prioridade_en: 'High',
         prioridade_es: 'Alta',
-        descricao: 'Ventilação e validade. Prevenção de explosões.',
-        descricao_en: 'Ventilation and expiration date. Explosion prevention.',
-        descricao_es: 'Ventilación y fecha de caducidad. Prevención de explosiones.',
+        descricao: 'Ventilação e validade de mangueira e regulador, para prevenir vazamentos.',
+        descricao_en: 'Ventilation and in-date hoses and regulators, to help prevent leaks.',
+        descricao_es: 'Ventilación y mangueras y reguladores vigentes, para prevenir fugas.',
+        descricao_ptpt: 'Ventilação e validade do tubo e do redutor, para prevenir fugas.',
         condicional: 'opcional', // Para casas
         fase: 2,
     },
@@ -536,7 +540,7 @@ export const CHECKLISTS = {
                 emoji: '🛌', icone: 'Bed',
                 itens: [
                     { id: 'ambiente_integrado_09', titulo: 'Medicamentos e cosméticos trancados em gavetas ou totalmente fora do alcance', titulo_en: 'Medicines and cosmetics locked in drawers or completely out of reach', titulo_es: 'Medicamentos y cosméticos bajo llave en cajones o totalmente fuera del alcance', titulo_ptpt: 'Medicamentos e cosméticos trancados em gavetas ou totalmente fora do alcance', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'ambiente_integrado_10', titulo: 'O carregador de telemóvel/celular fica desligado da tomada se não estiver em uso', titulo_en: 'Phone charger unplugged from the outlet when not in use', titulo_es: 'Cargador de móvil/celular desenchufado de la toma de corriente si no está en uso', titulo_ptpt: 'O carregador de telemóvel fica desligado da tomada se não estiver a ser utilizado', tipo: 'perigo', tags: ['choque', 'incêndio'] },
+                    { id: 'ambiente_integrado_10', titulo: 'O carregador do celular fica desligado da tomada quando não está em uso', titulo_en: 'Phone charger is unplugged when not in use', titulo_es: 'El cargador del celular se desenchufa cuando no está en uso', titulo_ptpt: 'O carregador do telemóvel fica desligado da tomada quando não está a ser utilizado', tipo: 'perigo', tags: ['choque', 'incêndio'] },
                     { id: 'ambiente_integrado_11', titulo: 'Objetos cortantes e pontiagudos guardados de forma segura e fechada', titulo_en: 'Sharp and pointed objects stored in a safe and closed manner', titulo_es: 'Objetos cortantes y puntiagudos guardados de forma segura y cerrada', titulo_ptpt: 'Objetos cortantes e pontiagudos guardados de forma segura e fechada', tipo: 'normal', tags: ['corte'] }
                 ]
             }
@@ -551,11 +555,11 @@ export const CHECKLISTS = {
                 emoji: '🔥', icone: 'Fire',
                 itens: [
                     { id: 'cozinha_01', titulo: 'Cabos das panelas estão sempre virados para o interior do fogão?', titulo_en: 'Are pot handles always turned towards the inside of the stove?', titulo_es: '¿Los mangos de las ollas están siempre girados hacia el interior de la estufa?', tipo: 'perigo', tags: ['queimadura', 'básico'] },
-                    { id: 'cozinha_02', titulo: 'Você prioriza o uso das bocas traseiras do fogão durante o preparo?', titulo_en: 'Do you prioritize using the back burners of the stove while cooking?', titulo_es: '¿Prioriza el uso de los quemadores traseros de la estufa durante la preparación?', tipo: 'sugestão', tags: ['prevenção'] },
+                    { id: 'cozinha_02', titulo: 'Você prioriza as bocas traseiras do fogão durante o uso?', titulo_en: 'Do you favor the back burners when using the stove?', titulo_es: '¿Prioriza los quemadores traseros de la estufa durante el uso?', tipo: 'sugestão', tags: ['prevenção'] },
                     { id: 'cozinha_03', titulo: 'A porta do forno possui trava de segurança funcional?', titulo_en: 'Does the oven door have a functional safety lock?', titulo_es: '¿La puerta del horno tiene un cierre de seguridad funcional?', tipo: 'perigo', tags: ['crianças'] },
                     { id: 'cozinha_04', titulo: 'Eletroportáteis que geram calor extremo (AirFryer, Forno Elétrico, Torradeira) são deixados para esfriar fora do alcance infantil antes de serem guardados?', titulo_en: 'Are heat-generating appliances (AirFryer, Electric Oven, Toaster) left to cool out of children\'s reach before being stored?', titulo_es: '¿Los electrodomésticos que generan calor extremo (AirFryer, Horno Eléctrico, Tostadora) se dejan enfriar fuera del alcance de los niños antes de guardarlos?', tipo: 'perigo', tags: ['queimadura', 'crianças'] },
-                    { id: 'cozinha_05', titulo: 'Os cabos de Airfryers ou Fornos não ficam soltos ou pendurados para fora da bancada durante o uso (evitando puxões)?', titulo_en: 'Are cables of Airfryers or Ovens not left loose or hanging off the counter during use (avoiding pulls)?', titulo_es: '¿Los cables de las freidoras de aire o los hornos no quedan sueltos o colgando fuera de la encimera durante su uso (evitando tirones)?', tipo: 'perigo', tags: ['queimadura', 'crianças'] },
-                    { id: 'cozinha_06', titulo: 'As toalhas de mesa são curtas (evitando puxões ou quedas de líquidos quentes)?', titulo_en: 'Are tablecloths short (avoiding pulls or spills of hot liquids)?', titulo_es: '¿Los manteles son cortos (evitando tirones o derrames de líquidos calientes)?', tipo: 'perigo', tags: ['queimadura', 'crianças'] },
+                    { id: 'cozinha_05', titulo: 'Os cabos de airfryers ou fornos não ficam soltos ou pendurados para fora da bancada durante o uso, evitando que crianças os alcancem?', titulo_en: 'Are air fryer and oven cords kept from hanging loose off the counter during use, out of children\'s reach?', titulo_es: '¿Los cables de las freidoras de aire o los hornos no quedan sueltos ni colgando fuera de la encimera durante el uso, para que los niños no los alcancen?', tipo: 'perigo', tags: ['queimadura', 'crianças'] },
+                    { id: 'cozinha_06', titulo: 'As toalhas de mesa são curtas (evitando puxões e derramamento de líquidos quentes)?', titulo_en: 'Are tablecloths short (avoiding pulls and spills of hot liquids)?', titulo_es: '¿Los manteles son cortos (evitando tirones y derrames de líquidos calientes)?', tipo: 'perigo', tags: ['queimadura', 'crianças'] },
                     { id: 'cozinha_07', titulo: 'Luvas térmicas estão em local visível e de fácil acesso?', titulo_en: 'Are oven mitts in a visible and easily accessible location?', titulo_es: '¿Los guantes térmicos están en un lugar visible y de fácil acceso?', tipo: 'normal', tags: ['segurança'] },
                 ],
             },
@@ -574,8 +578,8 @@ export const CHECKLISTS = {
                 nome: 'Lâminas, Vidros e Eletroportáteis Rotativos', nome_en: 'Blades, Glass, and Rotating Appliances', nome_es: 'Cuchillas, Vidrio y Electrodomésticos Giratorios',
                 emoji: '🔪', icone: 'Knife',
                 itens: [
-                    { id: 'cozinha_13', titulo: 'Facas e tesouras guardadas em gavetas altas ou com travas magnéticas', titulo_en: 'Knives and scissors stored in high drawers or with magnetic locks', titulo_es: 'Cuchillos y tijeras guardados en cajones altos o con cerraduras magnéticas', tipo: 'perigo', tags: ['corte', 'crianças'] },
-                    { id: 'cozinha_14', titulo: 'Vidros e louças quebradas descartados em caixas rígidas (ex: leite) antes do lixo', titulo_en: 'Broken glass and dishes discarded in rigid boxes (e.g., milk cartons) before trashing', titulo_es: 'Vidrios y vajillas rotas desechados en cajas rígidas (ej: leche) antes de tirarlos a la basura', tipo: 'normal', tags: ['corte'] },
+                    { id: 'cozinha_13', titulo: 'Facas e tesouras são guardadas em gavetas altas ou com travas magnéticas', titulo_en: 'Knives and scissors are stored in high drawers or with magnetic locks', titulo_es: 'Los cuchillos y las tijeras se guardan en cajones altos o con cierres magnéticos', tipo: 'perigo', tags: ['corte', 'crianças'] },
+                    { id: 'cozinha_14', titulo: 'Vidros e louças quebradas são descartados em caixas rígidas (ex: leite) antes do lixo', titulo_en: 'Broken glass and crockery are wrapped in rigid cartons (e.g. milk cartons) before going in the bin', titulo_es: 'Los vidrios y la vajilla rota se desechan en cajas rígidas (ej.: de leche) antes de tirarlos a la basura', tipo: 'normal', tags: ['corte'] },
                     { id: 'cozinha_15', titulo: 'Equipamentos perfurocortantes (lâminas de liquidificador, processadores, facas elétricas) estão desmontados ou trancados fora do alcance infantil?', titulo_en: 'Are sharp equipment (blender blades, processors, electric knives) disassembled or locked out of children\'s reach?', titulo_es: '¿Están desarmados o bajo llave fuera del alcance de los niños los equipos cortopunzantes (cuchillas de licuadora, procesadores, cuchillos eléctricos)?', tipo: 'perigo', tags: ['corte', 'crianças'] },
                     { id: 'cozinha_16', titulo: 'Equipamentos rotativos pesados (batedeiras planetárias, mixers) estão guardados desligados da tomada e longe da beirada das pias?', titulo_en: 'Are heavy rotating equipment (stand mixers, blenders) stored unplugged and away from the edge of sinks?', titulo_es: '¿Los equipos rotativos pesados (batidoras de pie, licuadoras) están guardados desenchufados y lejos del borde de los fregaderos?', tipo: 'perigo', tags: ['impacto', 'crianças', 'choque'] },
                 ],
@@ -597,7 +601,7 @@ export const CHECKLISTS = {
                 nome: 'Prevenção de Quedas', nome_en: 'Fall Prevention', nome_es: 'Prevención de Caídas',
                 emoji: '👣', icone: 'Footprints',
                 itens: [
-                    { id: 'banheiro_01', titulo: 'Piso do box possui tapete de borracha antiderrapante', titulo_en: 'Shower floor has non-slip rubber mat', titulo_es: 'El piso de la ducha tiene una alfombra de goma antideslizante', tipo: 'perigo', tags: ['queda'] },
+                    { id: 'banheiro_01', titulo: 'O box tem piso ou tapete de borracha antiderrapante', titulo_en: 'Shower floor is non-slip or has a non-slip rubber mat', titulo_es: 'La ducha tiene piso o alfombra de goma antideslizante', titulo_ptpt: 'A base do duche é antiderrapante ou tem tapete de borracha antiderrapante', tipo: 'perigo', tags: ['queda'] },
                     { id: 'banheiro_02', titulo: 'Barras de apoio instaladas dentro do box e ao lado do vaso', titulo_en: 'Grab bars installed inside the shower and next to the toilet', titulo_es: 'Barras de apoyo instaladas dentro de la ducha y junto al inodoro', tipo: 'sugestão', tags: ['idosos', 'acessibilidade'] },
                     { id: 'banheiro_03', titulo: 'Piso fora do box é mantido seco após o uso', titulo_en: 'Floor outside the shower is kept dry after use', titulo_es: 'El piso fuera de la ducha se mantiene seco después de su uso', tipo: 'normal', tags: ['queda'] },
                 ],
@@ -608,7 +612,7 @@ export const CHECKLISTS = {
                 itens: [
                     { id: 'banheiro_04', titulo: 'Baldes e bacias são guardados vazios e virados para baixo?', titulo_en: 'Are buckets and basins stored empty and turned upside down?', titulo_es: '¿Se guardan los cubos y palanganas vacíos y boca abajo?', tipo: 'perigo', tags: ['afogamento'] },
                     { id: 'banheiro_05', titulo: 'O box é de vidro temperado e possui película de segurança?', titulo_en: 'Is the shower enclosure made of tempered glass and has a safety film?', titulo_es: '¿La mampara es de vidrio templado y tiene una película de seguridad?', tipo: 'normal', tags: ['corte'] },
-                    { id: 'banheiro_06', titulo: 'Medicamentos e lâminas estão trancados ou fora do alcance visual?', titulo_en: 'Are medicines and razors locked or out of sight?', titulo_es: '¿Los medicamentos y las maquinillas de afeitar están bajo llave o fuera de la vista?', tipo: 'perigo', tags: ['intoxicação', 'corte'] },
+                    { id: 'banheiro_06', titulo: 'Medicamentos e lâminas estão trancados ou fora da vista e do alcance?', titulo_en: 'Are medicines and razors locked away or out of sight and reach?', titulo_es: '¿Los medicamentos y las cuchillas están bajo llave o fuera de la vista y del alcance?', tipo: 'perigo', tags: ['intoxicação', 'corte'] },
                     { id: 'banheiro_07', titulo: 'Eletrodomésticos (secador/chapinha) são retirados da tomada após o uso?', titulo_en: 'Are appliances (hair dryer/straightener) unplugged after use?', titulo_es: '¿Están desenchufados los electrodomésticos (secador/plancha) después de su uso?', tipo: 'perigo', tags: ['choque'] },
                     { id: 'banheiro_08', titulo: 'O sistema de aquecimento a gás está instalado em local com ventilação adequada? A manutenção anual está em dia?', titulo_en: 'Is the gas heating system installed in a well-ventilated area? Is the annual maintenance up to date?', titulo_es: '¿Está instalado el sistema de calefacción a gas en un lugar con ventilación adecuada? ¿El mantenimiento anual está al día?', tipo: 'perigo', tags: ['gás'] },
                     { id: 'banheiro_09', titulo: 'A caixa de areia do pet (gato) está em local de fácil acesso para pets idosos ou com mobilidade reduzida?', titulo_en: 'Is the pet (cat) litter box in an easily accessible location for elderly or mobility-impaired pets?', titulo_es: '¿Está la caja de arena para mascotas (gato) en un lugar de fácil acceso para mascotas mayores o con movilidad reducida?', tipo: 'normal', tags: ['pet_idoso', 'pet_mobilidade'] },
@@ -626,9 +630,9 @@ export const CHECKLISTS = {
                     { id: 'sala_01', titulo: 'TVs e estantes altas fixadas na parede (antitombamento)', titulo_en: 'TVs and tall bookcases fixed to the wall (anti-tip)', titulo_es: 'Televisores y estanterías altas fijadas a la pared (antivuelco)', tipo: 'perigo', tags: ['tombamento'] },
                     { id: 'sala_02', titulo: 'Quinas de mesas e painéis baixos possuem protetores de silicone', titulo_en: 'Table corners and low panels have silicone protectors', titulo_es: 'Las esquinas de mesas y paneles bajos tienen protectores de silicona', tipo: 'normal', tags: ['impacto'] },
                     { id: 'sala_03', titulo: 'Caminho de circulação está totalmente livre de obstáculos', titulo_en: 'Circulation path is completely free of obstacles', titulo_es: 'El camino de circulación está totalmente libre de obstáculos', tipo: 'normal', tags: ['acessibilidade'] },
-                    { id: 'sala_04', titulo: 'Tapetes soltos removidos ou fixados com fita dupla face no chão', titulo_en: 'Loose rugs removed or fixed with double-sided tape to the floor', titulo_es: 'Alfombras sueltas retiradas o fijadas con cinta de doble cara al suelo', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'sala_05', titulo: 'Existem rampas ou escadinhas para acesso aos móveis altos (sofá) para o pet?', titulo_en: 'Are there ramps or steps to access high furniture (sofa) for the pet?', titulo_es: '¿Hay rampas o escalones para acceder a muebles altos (sofá) para la mascota?', tipo: 'sugestão', tags: ['pet_idoso', 'pet_mobilidade'] },
-                    { id: 'sala_06', titulo: 'Os móveis mantêm uma disposição constante para facilitar a orientação espacial do pet cego ou com déficit cognitivo?', titulo_en: 'Do furniture keep a constant arrangement to facilitate the spatial orientation of blind or cognitively impaired pets?', titulo_es: '¿Los muebles mantienen una disposición constante para facilitar la orientación espacial de la mascota ciega o con déficit cognitivo?', tipo: 'normal', tags: ['pet_visao_reduzida', 'disfuncao_cognitiva'] },
+                    { id: 'sala_04', titulo: 'Tapetes soltos removidos ou fixados com fita dupla face', titulo_en: 'Loose rugs removed or secured with double-sided tape', titulo_es: 'Alfombras sueltas retiradas o fijadas con cinta de doble cara', tipo: 'perigo', tags: ['queda'] },
+                    { id: 'sala_05', titulo: 'Existem rampas ou escadinhas para acesso aos móveis altos (sofá) para o pet idoso ou com limitações motoras?', titulo_en: 'Are there ramps or steps to high furniture (sofa) for an older pet or one with limited mobility?', titulo_es: '¿Hay rampas o escalones para acceder a los muebles altos (sofá) para la mascota mayor o con limitaciones motoras?', tipo: 'sugestão', tags: ['pet_idoso', 'pet_mobilidade'] },
+                    { id: 'sala_06', titulo: 'Os móveis mantêm uma disposição permanente para facilitar a orientação espacial do pet cego ou com déficit cognitivo?', titulo_en: 'Is the furniture kept in a fixed layout to help a blind or cognitively impaired pet find its way?', titulo_es: '¿Los muebles mantienen una disposición permanente para facilitar la orientación espacial de la mascota ciega o con déficit cognitivo?', tipo: 'normal', tags: ['pet_visao_reduzida', 'disfuncao_cognitiva'] },
                 ],
             },
             {
@@ -637,15 +641,15 @@ export const CHECKLISTS = {
                 itens: [
                     { id: 'sala_07', titulo: 'Fios elétricos organizados ou protegidos em canaletas', titulo_en: 'Electrical wires organized or protected in conduits', titulo_es: 'Cables eléctricos organizados o protegidos en canaletas', tipo: 'normal', tags: ['tropeço'] },
                     { id: 'sala_08', titulo: 'Janelas e basculantes possuem redes de proteção instaladas', titulo_en: 'Windows and transoms have safety nets installed', titulo_es: 'Ventanas y tragaluces tienen redes de protección instaladas', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'sala_09', titulo: 'Carregadores de celular fora da tomada se não usados (risco bucal e de incêndio)', titulo_en: 'Cell phone chargers unplugged if not used (mouth and fire risk)', titulo_es: 'Cargadores de celular desenchufados si no se usan (riesgo bucal y de incendio)', tipo: 'perigo', tags: ['choque'] },
+                    { id: 'sala_09', titulo: 'Carregadores de celular fora da tomada se não usados (risco de choque elétrico por mordida e de incêndio)', titulo_en: 'Phone chargers unplugged when not in use (risk of electric shock if bitten, and of fire)', titulo_es: 'Cargadores de celular desenchufados si no se usan (riesgo de descarga eléctrica por mordida y de incendio)', titulo_ptpt: 'Carregadores de telemóvel fora da tomada quando não estão a ser usados (risco de choque elétrico por mordida e de incêndio)', tipo: 'perigo', tags: ['choque'] },
                 ],
             },
             {
                 nome: 'Objetos Perigosos', nome_en: 'Dangerous Objects', nome_es: 'Objetos Peligrosos',
                 emoji: '🍷', icone: 'Wine',
                 itens: [
-                    { id: 'sala_10', titulo: 'Bebidas alcoólicas trancadas ou totalmente fora do alcance visual', titulo_en: 'Alcoholic beverages locked or totally out of sight', titulo_es: 'Bebidas alcohólicas bajo llave o totalmente fuera de la vista', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'sala_11', titulo: 'Controles remotos possuem o compartimento de pilha botão parafusado', titulo_en: 'Remote controls have the button battery compartment screwed shut', titulo_es: 'Los controles remotos tienen el compartimento de la pila de botón atornillado', tipo: 'perigo', tags: ['ingestão'] },
+                    { id: 'sala_10', titulo: 'Bebidas alcoólicas trancadas ou fora da vista e do alcance', titulo_en: 'Alcoholic drinks locked away or out of sight and reach', titulo_es: 'Bebidas alcohólicas bajo llave o fuera de la vista y del alcance', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'sala_11', titulo: 'Controles e chaves com pilha tipo botão (portão, alarme, chave do carro) têm a tampa firme, e as pilhas novas e usadas ficam fora do alcance', titulo_en: 'Remotes and key fobs with button batteries (gate, alarm, car key) have a secure cover, and new and used batteries are kept out of reach', titulo_es: 'Los mandos y llaves con pila de botón (portón, alarma, llave del coche) tienen la tapa firme, y las pilas nuevas y usadas están fuera del alcance', titulo_ptpt: 'Comandos e chaves com pilha tipo botão (portão, alarme, chave do carro) têm a tampa firme, e as pilhas novas e usadas ficam fora do alcance', tipo: 'perigo', tags: ['ingestão'] },
                 ],
             },
         ],
@@ -684,7 +688,7 @@ export const CHECKLISTS = {
                     { id: 'quarto_idoso_02', titulo: 'Luz noturna ou interruptor acessível direto da cama', titulo_en: 'Night light or switch accessible right from the bed', titulo_es: 'Luz nocturna o interruptor accesible directamente desde la cama', tipo: 'normal', tags: ['visão'] },
                     { id: 'quarto_idoso_03', titulo: 'Altura da cama permite apoiar os pés no chão ao sentar', titulo_en: 'Bed height allows feet to rest on the floor when sitting', titulo_es: 'La altura de la cama permite apoyar los pies en el suelo al sentarse', tipo: 'sugestão', tags: ['mobilidade'] },
                     { id: 'quarto_idoso_04', titulo: 'Colchão firme, não afunda excessivamente nas bordas', titulo_en: 'Firm mattress, doesn\'t sink excessively on the edges', titulo_es: 'Colchón firme, no se hunde excesivamente en los bordes', tipo: 'normal', tags: ['estabilidade'] },
-                    { id: 'quarto_idoso_05', titulo: 'Caminho até o banheiro 100% livre de móveis ou objetos', titulo_en: 'Path to the bathroom 100% free of furniture or objects', titulo_es: 'Camino al baño 100% libre de muebles u objetos', tipo: 'perigo', tags: ['acessibilidade'] },
+                    { id: 'quarto_idoso_05', titulo: 'Caminho até o banheiro livre de móveis e objetos', titulo_en: 'Path to the bathroom clear of furniture and objects', titulo_es: 'Camino al baño libre de muebles y objetos', titulo_ptpt: 'Caminho até à casa de banho livre de móveis e objetos', tipo: 'perigo', tags: ['acessibilidade'] },
                     { id: 'quarto_idoso_06', titulo: 'Fios de abajures e eletrônicos escondidos, fora da passagem', titulo_en: 'Lamp and electronic wires hidden, out of the way', titulo_es: 'Cables de lámparas y electrónicos ocultos, fuera del paso', tipo: 'normal', tags: ['tropeço'] },
                     { id: 'quarto_idoso_07', titulo: 'Móveis firmes o suficiente para servir de apoio ao caminhar', titulo_en: 'Furniture firm enough to serve as support when walking', titulo_es: 'Muebles lo suficientemente firmes para servir de apoyo al caminar', tipo: 'sugestão', tags: ['apoio'] },
                 ],
@@ -716,7 +720,7 @@ export const CHECKLISTS = {
                 nome: 'Produtos Químicos', nome_en: 'Chemicals', nome_es: 'Productos Químicos',
                 emoji: '☠️', icone: 'Skull',
                 itens: [
-                    { id: 'area_servico_01', titulo: 'Produtos de limpeza estritamente no alto e trancados', titulo_en: 'Cleaning products strictly high up and locked', titulo_es: 'Productos de limpieza estrictamente en alto y bajo llave', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'area_servico_01', titulo: 'Produtos de limpeza no alto e trancados', titulo_en: 'Cleaning products stored high up and locked', titulo_es: 'Productos de limpieza en alto y bajo llave', tipo: 'perigo', tags: ['intoxicação'] },
                     { id: 'area_servico_02', titulo: 'Produtos mantidos sempre na embalagem original (nada de garrafa PET)', titulo_en: 'Products always kept in their original packaging (no PET bottles)', titulo_es: 'Productos mantenidos siempre en el envase original (nada de botellas PET)', tipo: 'perigo', tags: ['intoxicação'] },
                     { id: 'area_servico_03', titulo: 'Inseticidas e solventes isolados preventivamente de alimentos', titulo_en: 'Insecticides and solvents preemptively isolated from food', titulo_es: 'Insecticidas y disolventes aislados preventivamente de los alimentos', tipo: 'normal', tags: ['contaminação'] },
                 ],
@@ -741,7 +745,7 @@ export const CHECKLISTS = {
                 emoji: '🦂', icone: 'Bug',
                 itens: [
                     { id: 'quintal_01', titulo: 'Quintal livre de entulhos, prevenindo abrigo para escorpiões e aranhas', titulo_en: 'Yard free of debris, preventing shelter for scorpions and spiders', titulo_es: 'Patio libre de escombros, previniendo refugio para escorpiones y arañas', tipo: 'perigo', tags: ['animais_peçonhentos'] },
-                    { id: 'quintal_02', titulo: 'Mato mantido baixo e sobrocado', titulo_en: 'Weeds kept low and trimmed', titulo_es: 'Maleza mantenida baja y recortada', tipo: 'normal', tags: ['manutenção'] },
+                    { id: 'quintal_02', titulo: 'Mato mantido baixo e roçado', titulo_en: 'Weeds kept low and trimmed', titulo_es: 'Maleza mantenida baja y desbrozada', tipo: 'normal', tags: ['manutenção'] },
                     { id: 'quintal_03', titulo: 'Inspeção regular contra focos de água parada (Dengue)', titulo_en: 'Regular inspection against stagnant water sources (Dengue)', titulo_es: 'Inspección regular contra focos de agua estancada (Dengue)', tipo: 'perigo', tags: ['saúde'] },
                 ],
             },
@@ -749,7 +753,7 @@ export const CHECKLISTS = {
                 nome: 'Estrutura', nome_en: 'Structure', nome_es: 'Estructura',
                 emoji: '🧱', icone: 'Wall',
                 itens: [
-                    { id: 'quintal_04', titulo: 'Piso plano, sem buracos ou desníveis perigosos disfarçados', titulo_en: 'Flat floor, no hidden dangerous holes or unevenness', titulo_es: 'Piso plano, sin agujeros ocultos ni desniveles peligrosos', tipo: 'normal', tags: ['queda'] },
+                    { id: 'quintal_04', titulo: 'Piso plano, sem buracos ou desníveis escondidos pela grama ou por folhas', titulo_en: 'Flat ground, with no holes or dips hidden by grass or leaves', titulo_es: 'Suelo plano, sin agujeros ni desniveles ocultos por el césped o las hojas', titulo_ptpt: 'Chão plano, sem buracos ou desníveis escondidos pela relva ou por folhas', tipo: 'normal', tags: ['queda'] },
                     { id: 'quintal_05', titulo: 'Iluminação adequada nos acessos com sensores de movimento', titulo_en: 'Adequate lighting at access points with motion sensors', titulo_es: 'Iluminación adecuada en los accesos con sensores de movimiento', tipo: 'sugestão', tags: ['segurança'] },
                     { id: 'quintal_06', titulo: 'Ralos possuem tampas rotativas (abre/fecha) contra insetos', titulo_en: 'Drains have rotating (open/close) covers against insects', titulo_es: 'Los desagües tienen tapas giratorias (abrir/cerrar) contra insectos', tipo: 'sugestão', tags: ['pragas'] },
                 ],
@@ -774,7 +778,7 @@ export const CHECKLISTS = {
                 itens: [
                     { id: 'parquinho_04', titulo: 'Cordões, colares e cachecóis são removidos antes do uso (risco de enrosco e asfixia)', titulo_en: 'Cords, necklaces, and scarves removed before use (entanglement and asphyxiation risk)', titulo_es: 'Cordones, collares y bufandas removidos antes de usar (riesgo de enredo y asfixia)', tipo: 'perigo', tags: ['asfixia', 'estrangulamento'] },
                     { id: 'parquinho_05', titulo: 'Há separação em horários ou áreas entre crianças grandes e bebês', titulo_en: 'Are there separate times or areas between big kids and babies?', titulo_es: '¿Hay separación de horarios o áreas entre niños grandes y bebés?', tipo: 'sugestão', tags: ['choque'] },
-                    { id: 'parquinho_06', titulo: 'Supervisão visual constante, garantindo que as crianças nunca fiquem sozinhas', titulo_en: 'Constant visual supervision, ensuring children are never left alone', titulo_es: 'Supervisión visual constante, asegurando que los niños nunca se queden solos', tipo: 'perigo', tags: ['supervisão'] },
+                    { id: 'parquinho_06', titulo: 'Supervisão visual constante: as crianças nunca ficam sozinhas no parquinho', titulo_en: 'Constant visual supervision: children are never left alone at the playground', titulo_es: 'Supervisión visual constante: los niños nunca se quedan solos en el parque infantil', titulo_ptpt: 'Vigilância visual constante: as crianças nunca ficam sozinhas no parque infantil', tipo: 'perigo', tags: ['supervisão'] },
                 ],
             },
         ],
@@ -786,9 +790,9 @@ export const CHECKLISTS = {
                 nome: 'Barreiras Físicas', nome_en: 'Physical Barriers', nome_es: 'Barreras Físicas',
                 emoji: '🚧', icone: 'TrafficCone',
                 itens: [
-                    { id: 'piscina_01', titulo: 'Piscina é devidamente cercada (mínimo 1.20m) com portão e trava automática', titulo_en: 'Pool is properly fenced (minimum 1.20m) with automatic gate and lock', titulo_es: 'La piscina está debidamente cercada (mínimo 1.20m) con puerta y cerradura automática', tipo: 'perigo', tags: ['afogamento'] },
-                    { id: 'piscina_02', titulo: 'Uso de capa firme de segurança que suporta peso (evitando criar bolsão "envelope")', titulo_en: 'Use of a firm safety cover that supports weight (avoiding "envelope" pockets)', titulo_es: 'Uso de cubierta de seguridad firme que soporta peso (evitando crear bolsillos "sobre")', tipo: 'perigo', tags: ['afogamento'] },
-                    { id: 'piscina_03', titulo: 'Alarmes de detecção de movimento ativos instalados na superfície da água', titulo_en: 'Active motion detection alarms installed on the water surface', titulo_es: 'Alarmas activas de detección de movimiento instaladas en la superficie del agua', tipo: 'sugestão', tags: ['tecnologia'] },
+                    { id: 'piscina_01', titulo: 'Piscina tem cerca em todo o contorno, de pelo menos 1,50 m, com portão que fecha e trava sozinho', titulo_en: 'Pool is fenced on all sides, at least 1.2 m (4 ft) high, with a self-closing, self-latching gate', titulo_es: 'La piscina tiene valla en todo el contorno, de al menos 1,2 m, con puerta que se cierra y se traba sola', titulo_ptpt: 'A piscina tem vedação em todo o contorno, com pelo menos 1,20 m, e portão que fecha e tranca sozinho', tipo: 'perigo', tags: ['afogamento'] },
+                    { id: 'piscina_02', titulo: 'Capa de segurança firme, que aguenta peso e fica bem presa nas bordas — capa solta pode afundar e prender quem cair sobre ela', titulo_en: 'A firm safety cover that bears weight and is fixed tight at the edges — a loose cover can sag and trap anyone who falls onto it', titulo_es: 'Cubierta de seguridad firme, que soporta peso y está bien sujeta a los bordes: una cubierta suelta puede hundirse y atrapar a quien caiga sobre ella', titulo_ptpt: 'Cobertura de segurança firme, que aguenta peso e fica bem presa nas bordas — uma cobertura solta pode afundar e prender quem cair sobre ela', tipo: 'perigo', tags: ['afogamento'] },
+                    { id: 'piscina_03', titulo: 'Alarmes de detecção de movimento ativos instalados na superfície da piscina', titulo_en: 'Active motion-detection alarms installed on the pool surface', titulo_es: 'Alarmas activas de detección de movimiento instaladas en la superficie de la piscina', tipo: 'sugestão', tags: ['tecnologia'] },
                 ],
             },
             {
@@ -798,7 +802,7 @@ export const CHECKLISTS = {
                     { id: 'piscina_04', titulo: 'Supervisão visual direta e engajada (sem uso de celular) mantida durante uso', titulo_en: 'Direct and engaged visual supervision (no phone use) maintained during use', titulo_es: 'Supervisión visual directa y comprometida (sin uso del celular) mantenida durante el uso', tipo: 'perigo', tags: ['supervisão'] },
                     { id: 'piscina_05', titulo: 'Brinquedos removidos da piscina após uso (evitando atrativo para crianças)', titulo_en: 'Toys removed from pool after use (avoiding attraction for children)', titulo_es: 'Juguetes removidos de la piscina después del uso (evitando atracción para niños)', tipo: 'normal', tags: ['prevenção'] },
                     { id: 'piscina_06', titulo: 'Ralos modernos do modelo antiaprisionamento de cabelos', titulo_en: 'Modern drains with anti-hair entrapment models', titulo_es: 'Desagües modernos del modelo anti-atrapamiento de cabello', tipo: 'perigo', tags: ['segurança'] },
-                    { id: 'piscina_07', titulo: 'Piscina possui rampa ou escada interna para saída autônoma de pets (Segurança 3D)', titulo_en: 'Pool has a ramp or internal stairs for autonomous pet exit (3D Safety)', titulo_es: 'La piscina tiene rampa o escalera interna para la salida autónoma de mascotas (Seguridad 3D)', tipo: 'perigo', tags: ['afogamento', 'pets'] },
+                    { id: 'piscina_07', titulo: 'Piscina tem rampa ou degrau por onde o pet consiga sair sozinho', titulo_en: 'Pool has a ramp or step the pet can use to get out on its own', titulo_es: 'La piscina tiene rampa o escalón por donde la mascota pueda salir sola', titulo_ptpt: 'A piscina tem rampa ou degrau por onde o animal consiga sair sozinho', tipo: 'perigo', tags: ['afogamento', 'pets'] },
                 ],
             },
         ],
@@ -811,7 +815,7 @@ export const CHECKLISTS = {
                 emoji: '🔥', icone: 'Fire',
                 itens: [
                     { id: 'central_gas_01', titulo: 'Botijões de gás armazenados em área externa e bem ventilada', titulo_en: 'Gas cylinders stored in an external, well-ventilated area', titulo_es: 'Cilindros de gas almacenados en una zona externa y bien ventilada', tipo: 'perigo', tags: ['explosão'] },
-                    { id: 'central_gas_02', titulo: 'Botijões protegidos de sol forte, chuva contínua e longe de ralos (para o gás não descer)', titulo_en: 'Cylinders protected from strong sun, continuous rain, and away from drains (so gas doesn\'t sink)', titulo_es: 'Cilindros protegidos del sol fuerte, lluvia continua y lejos de desagües (para que el gas no baje)', tipo: 'normal', tags: ['manutenção'] },
+                    { id: 'central_gas_02', titulo: 'Botijões protegidos de sol forte, chuva contínua e longe de ralos (o gás acumula em partes baixas)', titulo_en: 'Cylinders protected from strong sun and continuous rain, and away from drains (the gas collects in low areas)', titulo_es: 'Cilindros protegidos del sol fuerte y la lluvia continua, y lejos de desagües (el gas se acumula en las partes bajas)', titulo_ptpt: 'Garrafas de gás protegidas do sol forte e da chuva contínua, e longe de ralos (o gás acumula-se nas zonas baixas)', tipo: 'normal', tags: ['manutenção'] },
                     { id: 'central_gas_03', titulo: 'Mangueira e regulador estão devidamente dentro da validade', titulo_en: 'Hose and regulator are strictly within validity', titulo_es: 'La manguera y el regulador están debidamente dentro de la validez', tipo: 'perigo', tags: ['segurança'] },
                     { id: 'central_gas_04', titulo: 'Distância segura mantida de instalações elétricas e tomadas próximas ao botijão', titulo_en: 'Safe distance maintained from electrical installations and outlets near the cylinder', titulo_es: 'Distancia segura mantenida de instalaciones eléctricas y enchufes cerca del cilindro', tipo: 'perigo', tags: ['fogo'] },
                 ],
@@ -825,10 +829,11 @@ export const CHECKLISTS = {
                 nome: 'Brinquedos Seguros', nome_en: 'Safe Toys', nome_es: 'Juguetes Seguros',
                 emoji: '🧸', icone: 'Balloon',
                 itens: [
-                    { id: 'quarto_crianca_01', titulo: 'Brinquedos possuem selo de certificação de segurança', titulo_en: 'Toys carry a safety certification mark', titulo_es: 'Los juguetes llevan un sello de certificación de seguridad', titulo_ptpt: 'Os brinquedos têm marca de certificação de segurança', tipo: 'normal', tags: ['qualidade'] },
-                    { id: 'quarto_crianca_02', titulo: 'Verificado pelo "Teste do Rolo de Papel" (peças pequenas que passam no rolo de papel higiênico são banidas)', titulo_en: 'Verified by the "Toilet Paper Roll Test" (small parts that pass through a toilet paper roll are banned)', titulo_es: 'Verificado por la "Prueba del rollo de papel" (piezas pequeñas que pasan por el rollo de papel higiénico están prohibidas)', tipo: 'sugestão', tags: ['asfixia'] },
-                    { id: 'quarto_crianca_03', titulo: 'Brinquedos de pilha possuem o compartimento travado e parafusado', titulo_en: 'Battery toys have the compartment locked and screwed shut', titulo_es: 'Los juguetes a pilas tienen el compartimento cerrado con llave y atornillado', tipo: 'perigo', tags: ['bateria'] },
+                    { id: 'quarto_crianca_01', titulo: 'Brinquedos têm o selo de certificação de segurança exigido no país (no Brasil, o do Inmetro)', titulo_en: 'Toys carry the safety certification mark required in your country', titulo_es: 'Los juguetes llevan el sello de certificación de seguridad exigido en su país', titulo_ptpt: 'Os brinquedos têm a marcação de segurança exigida no país (na União Europeia, a marcação CE)', tipo: 'normal', tags: ['qualidade'] },
+                    { id: 'quarto_crianca_02', titulo: 'Peças pequenas (que cabem dentro de um rolo de papel higiênico) ficam longe de crianças menores de 3 anos — teste do rolo', titulo_en: 'Small parts (anything that fits inside a toilet paper roll) are kept away from children under 3 — the toilet roll test', titulo_es: 'Las piezas pequeñas (las que caben dentro de un rollo de papel higiénico) están lejos de los menores de 3 años: la prueba del rollo', titulo_ptpt: 'Peças pequenas (que cabem dentro de um rolo de papel higiénico) ficam longe de crianças com menos de 3 anos — teste do rolo', tipo: 'sugestão', tags: ['asfixia'] },
+                    { id: 'quarto_crianca_03', titulo: 'Brinquedos a pilha têm a tampa do compartimento presa com parafuso ou trava que a criança não consegue abrir', titulo_en: 'Battery-operated toys have the compartment cover secured with a screw or a catch a child cannot open', titulo_es: 'Los juguetes a pilas tienen la tapa del compartimento sujeta con tornillo o con un cierre que el niño no puede abrir', titulo_ptpt: 'Os brinquedos a pilhas têm a tampa do compartimento presa com parafuso ou com um fecho que a criança não consegue abrir', tipo: 'perigo', tags: ['bateria'] },
                     { id: 'quarto_crianca_04', titulo: 'Bexigas/Balões são usados sob supervisão rigorosa (risco alto de asfixia em caso de estouro)', titulo_en: 'Balloons are used under strict supervision (high risk of choking if popped)', titulo_es: 'Los globos se usan bajo estricta supervisión (alto riesgo de asfixia en caso de estallido)', tipo: 'perigo', tags: ['asfixia'] },
+                    { id: 'quarto_crianca_11', titulo: 'Balões estourados são recolhidos e descartados na hora (os pedaços podem ser engolidos e causar asfixia)', titulo_en: 'Popped balloons are picked up and thrown away at once (the pieces can be swallowed and cause choking)', titulo_es: 'Los globos reventados se recogen y se desechan de inmediato (los trozos pueden tragarse y causar asfixia)', titulo_ptpt: 'Os balões rebentados são apanhados e deitados fora de imediato (os pedaços podem ser engolidos e causar asfixia)', tipo: 'perigo', tags: ['asfixia'] },
                 ],
             },
             {
@@ -836,8 +841,8 @@ export const CHECKLISTS = {
                 emoji: '🛁', icone: 'Bathtub',
                 itens: [
                     { id: 'quarto_crianca_05', titulo: 'Tampa do vaso sanitário possui trava física de engate antiafogamento', titulo_en: 'Toilet lid has a physical anti-drowning catch lock', titulo_es: 'La tapa del inodoro tiene un cierre físico de enganche antiahogamiento', tipo: 'perigo', tags: ['afogamento'] },
-                    { id: 'quarto_crianca_06', titulo: 'Banheira é esvaziada instantaneamente após o término do uso', titulo_en: 'Bathtub is emptied instantly after use', titulo_es: 'La bañera se vacía instantáneamente después de su uso', tipo: 'perigo', tags: ['afogamento'] },
-                    { id: 'quarto_crianca_07', titulo: 'Criança tem supervisão ininterrupta durante 100% do tempo do banho', titulo_en: 'Child has uninterrupted supervision during 100% of bath time', titulo_es: 'El niño tiene supervisión ininterrumpida durante el 100% del tiempo del baño', tipo: 'perigo', tags: ['supervisão'] },
+                    { id: 'quarto_crianca_06', titulo: 'Banheira é esvaziada imediatamente após o uso', titulo_en: 'Bathtub is emptied immediately after use', titulo_es: 'La bañera se vacía inmediatamente después de usarla', tipo: 'perigo', tags: ['afogamento'] },
+                    { id: 'quarto_crianca_07', titulo: 'Criança tem supervisão constante durante o banho', titulo_en: 'Child is constantly supervised during bath time', titulo_es: 'El niño tiene supervisión constante durante el baño', tipo: 'perigo', tags: ['supervisão'] },
                 ],
             },
             {
@@ -855,7 +860,7 @@ export const CHECKLISTS = {
     garagem: {
         categorias: [
             {
-                nome: 'Proteção Ambiental e Gases', nome_en: 'Environmental Protection and Gases', nome_es: 'Protección Ambiental y Gases',
+                nome: 'Proteção Ambiental e Gases de Escapamento (CO)', nome_en: 'Environmental Protection and Exhaust Fumes (CO)', nome_es: 'Protección Ambiental y Gases de Escape (CO)', nome_ptpt: 'Proteção Ambiental e Gases de Escape (CO)',
                 emoji: '🚗', icone: 'Car',
                 itens: [
                     { id: 'garagem_01', titulo: 'Você verifica pontos cegos (embaixo e atrás) antes de ligar o veículo?', titulo_en: 'Do you check blind spots (under and behind) before starting the vehicle?', titulo_es: '¿Revisa los puntos ciegos (debajo y detrás) antes de encender el vehículo?', tipo: 'perigo', tags: ['atropelamento'] },
@@ -867,8 +872,8 @@ export const CHECKLISTS = {
                 nome: 'Armazenamento', nome_en: 'Storage', nome_es: 'Almacenamiento',
                 emoji: '📦', icone: 'Package',
                 itens: [
-                    { id: 'garagem_04', titulo: 'Inexistem materiais e fluídos inflamáveis estocados nesta área', titulo_en: 'There are no flammable materials and fluids stored in this area', titulo_es: 'No hay materiales y fluidos inflamables almacenados en esta área', tipo: 'perigo', tags: ['incêndio'] },
-                    { id: 'garagem_05', titulo: 'Entulhos ausentes, garantindo livre circulação das portas do veículo', titulo_en: 'Absent debris, ensuring free circulation from vehicle doors', titulo_es: 'Ausencia de escombros, garantizando la libre circulación de las puertas del vehículo', tipo: 'normal', tags: ['acessibilidade'] },
+                    { id: 'garagem_04', titulo: 'Não há materiais e fluidos inflamáveis estocados nesta área', titulo_en: 'No flammable materials or fluids are stored in this area', titulo_es: 'No hay materiales ni fluidos inflamables almacenados en esta área', tipo: 'perigo', tags: ['incêndio'] },
+                    { id: 'garagem_05', titulo: 'Sem entulho em volta do carro, para as portas abrirem e a circulação ficar livre', titulo_en: 'No clutter around the car, so the doors open and the way stays clear', titulo_es: 'Sin escombros alrededor del coche, para que las puertas abran y el paso quede libre', titulo_ptpt: 'Sem entulho à volta do carro, para as portas abrirem e a passagem ficar livre', tipo: 'normal', tags: ['acessibilidade'] },
                 ],
             },
         ],
@@ -889,7 +894,7 @@ export const CHECKLISTS = {
                 nome: 'Rota de Emergência', nome_en: 'Emergency Route', nome_es: 'Ruta de Emergencia',
                 emoji: '🚪', icone: 'Door',
                 itens: [
-                    { id: 'hall_corredor_04', titulo: 'Caminho até a saída principal está 100% livre de obstáculos em qualquer horário', titulo_en: 'Path to the main exit is 100% free of obstacles at all times', titulo_es: 'El camino hacia la salida principal está 100% libre de obstáculos en todo momento', tipo: 'perigo', tags: ['evacuação'] },
+                    { id: 'hall_corredor_04', titulo: 'Caminho até a saída principal está livre de obstáculos a qualquer hora', titulo_en: 'Path to the main exit is clear of obstacles at all times', titulo_es: 'El camino hacia la salida principal está libre de obstáculos en todo momento', titulo_ptpt: 'O caminho até à saída principal está livre de obstáculos a qualquer hora', tipo: 'perigo', tags: ['evacuação'] },
                     { id: 'hall_corredor_05', titulo: 'Existe luz de emergência ou lanterna acessível no corredor para falta de energia', titulo_en: 'Is there an emergency light or accessible flashlight in the hallway for power outages?', titulo_es: '¿Hay una luz de emergencia o una linterna accesible en el pasillo en caso de cortes de energía?', tipo: 'sugestão', tags: ['energia'] },
                     { id: 'hall_corredor_06', titulo: 'Fios elétricos embutidos ou protegidos por canaletas (sem fios soltos pelo chão)', titulo_en: 'Electrical wires embedded or protected by conduits (no loose wires on the floor)', titulo_es: 'Cables eléctricos empotrados o protegidos por canaletas (sin cables sueltos en el suelo)', tipo: 'normal', tags: ['tropeço', 'choque'] },
                 ],
@@ -912,7 +917,7 @@ export const CHECKLISTS = {
                 nome: 'Ferramentas e Produtos Químicos', nome_en: 'Tools and Chemicals', nome_es: 'Herramientas y Productos Químicos',
                 emoji: '🛠️', icone: 'Toolbox',
                 itens: [
-                    { id: 'jardim_horta_04', titulo: 'Fertilizantes e venenos ficam trancados rigorosamente na embalagem original', titulo_en: 'Fertilizers and poisons are strictly locked in their original packaging', titulo_es: 'Los fertilizantes y venenos están estrictamente bajo llave en su envase original', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'jardim_horta_04', titulo: 'Fertilizantes e venenos ficam trancados, na embalagem original', titulo_en: 'Fertilizers and poisons are locked away in their original packaging', titulo_es: 'Los fertilizantes y venenos están bajo llave, en su envase original', tipo: 'perigo', tags: ['intoxicação'] },
                     { id: 'jardim_horta_05', titulo: 'Tesouras de poda e serras estão travadas e guardadas fora de alcance', titulo_en: 'Pruning shears and saws are locked and stored out of reach', titulo_es: 'Tijeras de podar y sierras están cerradas y guardadas fuera del alcance', tipo: 'perigo', tags: ['corte'] },
                     { id: 'jardim_horta_06', titulo: 'Ferramentas são limpas após o uso (jamais largadas no chão do jardim)', titulo_en: 'Tools are cleaned after use (never left on the garden floor)', titulo_es: 'Las herramientas se limpian después de su uso (nunca se dejan en el suelo del jardín)', tipo: 'normal', tags: ['organização'] },
                 ],
@@ -922,7 +927,7 @@ export const CHECKLISTS = {
                 emoji: '🧤', icone: 'Hand',
                 itens: [
                     { id: 'jardim_horta_07', titulo: 'Manuseio da terra vegetal ocorre com uso rotineiro de luvas e botas fechadas', titulo_en: 'Potting soil handled with routine use of gloves and closed boots', titulo_es: 'Manejo de la tierra con uso rutinario de guantes y botas cerradas', tipo: 'normal', tags: ['biológico'] },
-                    { id: 'jardim_horta_08', titulo: 'Uso padronizado de proteção ocular ao manipular produtos químicos em spray ou galhos finos', titulo_en: 'Standard use of eye protection when handling chemical sprays or thin branches', titulo_es: 'Uso estandarizado de protección ocular al manipular aerosoles químicos o ramas finas', tipo: 'sugestão', tags: ['epi'] },
+                    { id: 'jardim_horta_08', titulo: 'Uso habitual de proteção ocular ao manipular produtos químicos em spray ou galhos finos', titulo_en: 'Habitual use of eye protection when handling chemical sprays or thin branches', titulo_es: 'Uso habitual de protección ocular al manipular aerosoles químicos o ramas finas', tipo: 'sugestão', tags: ['epi'] },
                 ],
             },
         ],
@@ -935,9 +940,9 @@ export const CHECKLISTS = {
                 emoji: '🛠️', icone: 'Toolbox',
                 itens: [
                     { id: 'oficina_01', titulo: 'Ferramentas mantidas guardadas em painéis ou caixas (nada solto ou espalhado)', titulo_en: 'Tools kept stored on panels or in boxes (nothing loose or scattered)', titulo_es: 'Herramientas guardadas en paneles o cajas (nada suelto o esparcido)', tipo: 'normal', tags: ['organização'] },
-                    { id: 'oficina_02', titulo: 'Serras e lâminas de corte cortantes estão devidamente trancadas', titulo_en: 'Saws and sharp cutting blades are properly locked', titulo_es: 'Sierras y cuchillas de corte afiladas están debidamente bloqueadas', tipo: 'perigo', tags: ['corte'] },
+                    { id: 'oficina_02', titulo: 'Serras e lâminas cortantes estão devidamente trancadas', titulo_en: 'Saws and sharp blades are properly locked away', titulo_es: 'Las sierras y cuchillas afiladas están debidamente guardadas bajo llave', tipo: 'perigo', tags: ['corte'] },
                     { id: 'oficina_03', titulo: 'Nível de ventilação extra e iluminação são adequados ao ambiente', titulo_en: 'Extra ventilation and lighting levels are adequate for the environment', titulo_es: 'El nivel de ventilación extra y la iluminación son adecuados para el entorno', tipo: 'normal', tags: ['saúde'] },
-                    { id: 'oficina_04', titulo: 'Uso de equipamento de Proteção Individual (óculos, luvas) sempre acessível', titulo_en: 'Use of Personal Protective Equipment (glasses, gloves) always accessible', titulo_es: 'Uso de Equipo de Protección Personal (gafas, guantes) siempre accesible', tipo: 'sugestão', tags: ['proteção'] },
+                    { id: 'oficina_04', titulo: 'Equipamento de Proteção Individual (óculos, luvas) sempre acessível', titulo_en: 'Personal Protective Equipment (goggles, gloves) always within reach', titulo_es: 'Equipo de Protección Personal (gafas, guantes) siempre accesible', tipo: 'sugestão', tags: ['proteção'] },
                 ],
             },
             {
@@ -946,7 +951,7 @@ export const CHECKLISTS = {
                 itens: [
                     { id: 'oficina_05', titulo: 'Extintor de incêndio (tipo ABC) presente e com validade conferida', titulo_en: 'Fire extinguisher (type ABC) present and validity checked', titulo_es: 'Extintor de incendios (tipo ABC) presente y validez comprobada', tipo: 'perigo', tags: ['incêndio'] },
                     { id: 'oficina_06', titulo: 'Tomadas e extensões não sobrecarregadas (sem "benjamin" em cascata)', titulo_en: 'Outlets and extensions not overloaded (no cascaded "power strips")', titulo_es: 'Enchufes y extensiones no sobrecargados (sin "regletas" en cascada)', tipo: 'perigo', tags: ['choque', 'incêndio'] },
-                    { id: 'oficina_07', titulo: 'Porta da oficina trancada quando não em uso (impedindo acesso infantil)', titulo_en: 'Workshop door locked when not in use (preventing children\'s access)', titulo_es: 'Puerta del taller cerrada con llave cuando no está en uso (impidiendo el acceso de los niños)', tipo: 'perigo', tags: ['crianças', 'segurança'] },
+                    { id: 'oficina_07', titulo: 'Porta da oficina trancada quando não está em uso (dificulta o acesso de crianças)', titulo_en: 'Workshop door locked when not in use (keeps children out)', titulo_es: 'Puerta del taller cerrada con llave cuando no se usa (dificulta el acceso de los niños)', tipo: 'perigo', tags: ['crianças', 'segurança'] },
                 ],
             },
         ],
@@ -955,20 +960,20 @@ export const CHECKLISTS = {
     varanda: {
         categorias: [
             {
-                nome: 'Blindagem de Altura', nome_en: 'Height Shielding', nome_es: 'Blindaje de Altura',
+                nome: 'Proteção em Altura', nome_en: 'Fall Protection at Height', nome_es: 'Protección en Altura',
                 emoji: '🏙️', icone: 'Buildings',
                 itens: [
                     { id: 'varanda_01', titulo: 'Rede de proteção certificada instalada em toda a extensão do vão', titulo_en: 'Certified safety net installed along the entire length of the span', titulo_es: 'Red de protección certificada instalada en toda la longitud del espacio', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'varanda_02', titulo: 'Ausência de móveis ou vasos próximos ao guarda-corpo (eliminando o "efeito escada")', titulo_en: 'Absence of furniture or pots near the guardrail (eliminating the "ladder effect")', titulo_es: 'Ausencia de muebles o macetas cerca de la barandilla (eliminando el "efecto escalera")', tipo: 'perigo', tags: ['queda', 'crianças'] },
-                    { id: 'varanda_03', titulo: 'Piso é antiderrapante (mesmo sendo molhado com chuva)', titulo_en: 'Floor is non-slip (even when wet with rain)', titulo_es: 'El piso es antideslizante (incluso cuando está mojado por la lluvia)', tipo: 'normal', tags: ['queda'] },
+                    { id: 'varanda_02', titulo: 'Sem móveis, vasos ou caixas junto ao guarda-corpo que uma criança possa usar como degrau para escalar', titulo_en: 'No furniture, plant pots or boxes next to the railing that a child could use as a step to climb over', titulo_es: 'Sin muebles, macetas ni cajas junto a la barandilla que un niño pueda usar como escalón para trepar', tipo: 'perigo', tags: ['queda', 'crianças'] },
+                    { id: 'varanda_03', titulo: 'Piso é antiderrapante (mesmo quando molhado)', titulo_en: 'Floor is non-slip (even when wet)', titulo_es: 'El piso es antideslizante (incluso mojado)', tipo: 'normal', tags: ['queda'] },
                 ],
             },
             {
                 nome: 'Segurança Complementar', nome_en: 'Complementary Safety', nome_es: 'Seguridad Complementaria',
                 emoji: '🛡️', icone: 'ShieldCheck',
                 itens: [
-                    { id: 'varanda_04', titulo: 'Vasos de plantas não obstruem a passagem e estão fixados (sem risco de queda por vento)', titulo_en: 'Plant pots do not obstruct the passage and are fixed (no risk of falling from wind)', titulo_es: 'Las macetas no obstruyen el paso y están fijas (sin riesgo de caída por el viento)', tipo: 'normal', tags: ['queda', 'organização'] },
-                    { id: 'varanda_05', titulo: 'Churrasqueira de varanda (se houver) possui ventilação adequada e extensão do gás conferida', titulo_en: 'Balcony grill (if any) has proper ventilation and checked gas extension', titulo_es: 'La parrilla del balcón (si la hay) tiene ventilación adecuada y extensión de gas verificada', tipo: 'perigo', tags: ['incêndio', 'gás'] },
+                    { id: 'varanda_04', titulo: 'Vasos de plantas não obstruem a passagem e estão fixados, para não caírem com o vento', titulo_en: 'Plant pots do not block the way and are secured so the wind cannot knock them down', titulo_es: 'Las macetas no obstruyen el paso y están fijadas para que el viento no las tire', titulo_ptpt: 'Os vasos de plantas não obstruem a passagem e estão fixos, para não caírem com o vento', tipo: 'normal', tags: ['queda', 'organização'] },
+                    { id: 'varanda_05', titulo: 'Churrasqueira da varanda (se houver) tem ventilação adequada; se for a gás, mangueira e regulador estão dentro da validade', titulo_en: 'Balcony grill (if any) has proper ventilation; if it runs on gas, the hose and regulator are in date', titulo_es: 'La parrilla del balcón (si la hay) tiene ventilación adecuada; si es de gas, la manguera y el regulador están vigentes', titulo_ptpt: 'O grelhador da varanda (se houver) tem ventilação adequada; se for a gás, o tubo e o redutor estão dentro da validade', tipo: 'perigo', tags: ['incêndio', 'gás'] },
                     { id: 'varanda_06', titulo: 'Iluminação noturna adequada para evitar tropeços e quedas', titulo_en: 'Adequate night lighting to avoid tripping and falling', titulo_es: 'Iluminación nocturna adecuada para evitar tropiezos y caídas', tipo: 'sugestão', tags: ['visão'] },
                 ],
             },
@@ -983,7 +988,7 @@ export const CHECKLISTS = {
                 itens: [
                     { id: 'despensa_01', titulo: 'Alimentos guardados longe de produtos de limpeza e outros produtos químicos', titulo_en: 'Food stored away from cleaning products and chemicals', titulo_es: 'Alimentos almacenados lejos de productos de limpieza y otros productos químicos', tipo: 'perigo', tags: ['contaminação'] },
                     { id: 'despensa_02', titulo: 'Escada segura disponível para alcançar o alto (sem uso de banquinhos improvisados)', titulo_en: 'Safe ladder available to reach high (no use of makeshift stools)', titulo_es: 'Escalera segura disponible para alcanzar alturas (sin uso de taburetes improvisados)', tipo: 'normal', tags: ['queda'] },
-                    { id: 'despensa_03', titulo: 'Grãos crus (feijão, milho) ficam trancados em potes (risco de asfixia/nariz)', titulo_en: 'Raw grains (beans, corn) are locked in jars (choking/nose risk)', titulo_es: 'Los granos crudos (frijoles, maíz) están encerrados en frascos (riesgo de asfixia/nariz)', tipo: 'sugestão', tags: ['crianças'] },
+                    { id: 'despensa_03', titulo: 'Grãos crus (feijão, milho) ficam em potes bem fechados (risco de asfixia e de a criança colocá-los no nariz ou no ouvido)', titulo_en: 'Raw grains (beans, corn) are kept in tightly closed jars (risk of choking, or of a child putting them in the nose or ear)', titulo_es: 'Los granos crudos (frijoles, maíz) están en frascos bien cerrados (riesgo de asfixia o de que el niño se los meta en la nariz o el oído)', tipo: 'sugestão', tags: ['crianças'] },
                 ],
             },
         ],
@@ -992,21 +997,21 @@ export const CHECKLISTS = {
     deposito: {
         categorias: [
             {
-                nome: 'Ordem e Progresso', nome_en: 'Order and Progress', nome_es: 'Orden y Progreso',
+                nome: 'Organização', nome_en: 'Organization', nome_es: 'Organización',
                 emoji: '📦', icone: 'Package',
                 itens: [
-                    { id: 'deposito_01', titulo: 'Ambiente se mantém limpo e ventilado (anulando atrativo para aranhas)', titulo_en: 'Environment remains clean and ventilated (nullifying attraction for spiders)', titulo_es: 'El entorno se mantiene limpio y ventilado (anulando la atracción para las arañas)', tipo: 'normal', tags: ['pragas'] },
+                    { id: 'deposito_01', titulo: 'Ambiente se mantém limpo e ventilado (reduzindo o que atrai aranhas)', titulo_en: 'Space is kept clean and ventilated (less to attract spiders)', titulo_es: 'El espacio se mantiene limpio y ventilado (reduciendo lo que atrae a las arañas)', tipo: 'normal', tags: ['pragas'] },
                     { id: 'deposito_02', titulo: 'Itens pesados apoiados no chão (nunca em prateleiras altas e instáveis)', titulo_en: 'Heavy items supported on the floor (never on high, unstable shelves)', titulo_es: 'Artículos pesados apoyados en el suelo (nunca en estantes altos e inestables)', tipo: 'perigo', tags: ['esmagamento'] },
-                    { id: 'deposito_03', titulo: 'Corredores internos de circulação se abrem totalmente livres', titulo_en: 'Internal circulation corridors open up completely free', titulo_es: 'Los pasillos de circulación interna se abren totalmente libres', tipo: 'normal', tags: ['acessibilidade'] },
+                    { id: 'deposito_03', titulo: 'Corredores internos ficam livres para circular', titulo_en: 'Inside walkways are kept clear', titulo_es: 'Los pasillos interiores quedan libres para circular', tipo: 'normal', tags: ['acessibilidade'] },
                 ],
             },
             {
                 nome: 'Prevenção de Riscos', nome_en: 'Risk Prevention', nome_es: 'Prevención de Riesgos',
                 emoji: '⚠️', icone: 'Warning',
                 itens: [
-                    { id: 'deposito_04', titulo: 'Inexistem materiais inflamáveis armazenados próximos a fontes de calor ou instalações elétricas', titulo_en: 'There are no flammable materials stored near heat sources or electrical installations', titulo_es: 'No hay materiales inflamables almacenados cerca de fuentes de calor o instalaciones eléctricas', tipo: 'perigo', tags: ['incêndio'] },
-                    { id: 'deposito_05', titulo: 'Inspeção periódica de frestas e ralos contra escorpiões e aranhas-marrom', titulo_en: 'Periodic inspection of cracks and drains against scorpions and brown spiders', titulo_es: 'Inspección periódica de grietas y desagües contra escorpiones y arañas pardas', tipo: 'perigo', tags: ['animais_peçonhentos'] },
-                    { id: 'deposito_06', titulo: 'Porta do depósito possui trava que impede acesso de crianças sem supervisão', titulo_en: 'Storage door has a lock that prevents unsupervised children\'s access', titulo_es: 'La puerta de almacenamiento tiene una cerradura que impide el acceso de los niños sin supervisión', tipo: 'sugestão', tags: ['crianças', 'segurança'] },
+                    { id: 'deposito_04', titulo: 'Não há materiais inflamáveis armazenados perto de fontes de calor ou instalações elétricas', titulo_en: 'No flammable materials are stored near heat sources or electrical installations', titulo_es: 'No hay materiales inflamables almacenados cerca de fuentes de calor o instalaciones eléctricas', tipo: 'perigo', tags: ['incêndio'] },
+                    { id: 'deposito_05', titulo: 'Inspeção periódica de frestas e ralos contra escorpiões e aranhas', titulo_en: 'Regular checks of cracks and drains for scorpions and spiders', titulo_es: 'Inspección periódica de grietas y desagües contra escorpiones y arañas', tipo: 'perigo', tags: ['animais_peçonhentos'] },
+                    { id: 'deposito_06', titulo: 'Porta do depósito tem trava que dificulta o acesso de crianças sem supervisão', titulo_en: 'Storage room door has a lock that keeps unsupervised children out', titulo_es: 'La puerta del depósito tiene un cierre que dificulta el acceso de niños sin supervisión', tipo: 'sugestão', tags: ['crianças', 'segurança'] },
                 ],
             },
         ],
@@ -1030,29 +1035,29 @@ export const CHECKLISTS = {
     sotao: {
         categorias: [
             {
-                nome: 'Estrutura e Acesso',
+                nome: 'Estrutura e Acesso', nome_en: 'Structure and Access', nome_es: 'Estructura y Acceso',
                 emoji: '🪜', icone: 'Ladder',
                 itens: [
-                    { id: 'sotao_01', titulo: 'Escada de acesso (fixa ou retrátil) é firme e suporta peso com segurança', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'sotao_02', titulo: 'Piso do sótão é forrado adequadamente (sem risco de pisar em falso no gesso/forro)', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'sotao_03', titulo: 'Iluminação é suficiente para inspecionar cantos escuros', tipo: 'normal', tags: ['visão'] },
+                    { id: 'sotao_01', titulo: 'Escada de acesso (fixa ou retrátil) é firme e suporta peso com segurança', titulo_en: 'Access ladder (fixed or retractable) is sturdy and safely bears weight', titulo_es: 'La escalera de acceso (fija o retráctil) es firme y soporta el peso con seguridad', tipo: 'perigo', tags: ['queda'] },
+                    { id: 'sotao_02', titulo: 'Piso do sótão é forrado adequadamente, para ninguém pisar em falso no gesso ou no forro e cair', titulo_en: 'Attic floor is properly boarded, so no one steps through the plaster or ceiling and falls', titulo_es: 'El piso del desván está bien entablado, para que nadie pise en falso sobre el yeso o el falso techo y se caiga', titulo_ptpt: 'O chão do sótão está bem forrado, para ninguém pisar em falso no gesso ou no teto falso e cair', tipo: 'perigo', tags: ['queda'] },
+                    { id: 'sotao_03', titulo: 'Iluminação é suficiente para ver os cantos escuros — ou há uma lanterna à mão', titulo_en: 'Lighting is good enough to see into dark corners — or there is a flashlight at hand', titulo_es: 'La iluminación permite ver los rincones oscuros, o hay una linterna a mano', titulo_ptpt: 'A iluminação permite ver os cantos escuros — ou há uma lanterna à mão', tipo: 'normal', tags: ['visão'] },
                 ],
             },
             {
-                nome: 'Clima e Pragas',
+                nome: 'Clima e Pragas', nome_en: 'Weather and Pests', nome_es: 'Clima y Plagas',
                 emoji: '🦇', icone: 'Bird',
                 itens: [
-                    { id: 'sotao_04', titulo: 'Telhado inspecionado periodicamente contra goteiras que afetem fiação elétrica', tipo: 'perigo', tags: ['choque', 'incêndio'] },
-                    { id: 'sotao_05', titulo: 'Ventilação adequada para evitar superaquecimento no verão', tipo: 'sugestão', tags: ['conforto'] },
-                    { id: 'sotao_06', titulo: 'Livre de ninhos de pássaros, morcegos, ratos ou cupins nas vigas', tipo: 'perigo', tags: ['biológico', 'pragas'] },
+                    { id: 'sotao_04', titulo: 'Telhado inspecionado periodicamente contra goteiras que afetem a fiação elétrica', titulo_en: 'Roof inspected regularly for leaks that could reach the electrical wiring', titulo_es: 'Tejado revisado periódicamente contra goteras que afecten al cableado eléctrico', titulo_ptpt: 'Telhado inspecionado periodicamente contra infiltrações que afetem a instalação elétrica', tipo: 'perigo', tags: ['choque', 'incêndio'] },
+                    { id: 'sotao_05', titulo: 'Ventilação adequada para evitar superaquecimento no verão', titulo_en: 'Adequate ventilation to prevent overheating in summer', titulo_es: 'Ventilación adecuada para evitar el sobrecalentamiento en verano', titulo_ptpt: 'Ventilação adequada para evitar o sobreaquecimento no verão', tipo: 'sugestão', tags: ['conforto'] },
+                    { id: 'sotao_06', titulo: 'Livre de ninhos de pássaros, morcegos, ratos ou cupins nas vigas', titulo_en: 'Free of bird nests, bats, rats or termites in the beams', titulo_es: 'Libre de nidos de pájaros, murciélagos, ratas o termitas en las vigas', titulo_ptpt: 'Livre de ninhos de pássaros, morcegos, ratos ou térmitas nas vigas', tipo: 'perigo', tags: ['biológico', 'pragas'] },
                 ],
             },
             {
-                nome: 'Armazenamento',
+                nome: 'Armazenamento', nome_en: 'Storage', nome_es: 'Almacenamiento',
                 emoji: '📦', icone: 'Package',
                 itens: [
-                    { id: 'sotao_07', titulo: 'Caixas pesadas são armazenadas nas bordas ou sobre vigas de sustentação', tipo: 'normal', tags: ['estrutura'] },
-                    { id: 'sotao_08', titulo: 'Nenhum material inflamável ou químico estocado próximo ao calor do telhado', tipo: 'perigo', tags: ['incêndio'] },
+                    { id: 'sotao_07', titulo: 'Caixas pesadas ficam nas bordas ou sobre as vigas de sustentação', titulo_en: 'Heavy boxes are placed at the edges or on the supporting beams', titulo_es: 'Las cajas pesadas están en los bordes o sobre las vigas de soporte', tipo: 'normal', tags: ['estrutura'] },
+                    { id: 'sotao_08', titulo: 'Nenhum material inflamável ou químico estocado perto do calor do telhado', titulo_en: 'No flammable or chemical materials stored near the heat under the roof', titulo_es: 'Ningún material inflamable o químico almacenado cerca del calor del tejado', titulo_ptpt: 'Nenhum material inflamável ou químico guardado perto do calor do telhado', tipo: 'perigo', tags: ['incêndio'] },
                 ],
             },
         ],
@@ -1061,29 +1066,29 @@ export const CHECKLISTS = {
     porao: {
         categorias: [
             {
-                nome: 'Qualidade do Ar e Umidade',
+                nome: 'Qualidade do Ar e Umidade', nome_en: 'Air Quality and Damp', nome_es: 'Calidad del Aire y Humedad', nome_ptpt: 'Qualidade do Ar e Humidade',
                 emoji: '💧', icone: 'Drop',
                 itens: [
-                    { id: 'porao_01', titulo: 'Ambiente livre de mofo negro e infiltrações severas nas paredes', tipo: 'perigo', tags: ['respiratório', 'saúde'] },
-                    { id: 'porao_02', titulo: 'Ventilação mecânica ou natural presente para evitar acúmulo de gases (ex: radônio, monóxido)', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'porao_03', titulo: 'Ralos possuem sistema de refluxo ou tampa para evitar alagamentos ou invasão de esgoto', tipo: 'perigo', tags: ['higiene'] },
+                    { id: 'porao_01', titulo: 'Ambiente livre de mofo e infiltrações severas nas paredes', titulo_en: 'Free of mold and serious damp patches on the walls', titulo_es: 'Ambiente libre de moho y de filtraciones graves en las paredes', titulo_ptpt: 'Espaço livre de bolor e de infiltrações graves nas paredes', tipo: 'perigo', tags: ['respiratório', 'saúde'] },
+                    { id: 'porao_02', titulo: 'Ventilação, natural ou mecânica, contra umidade, mofo e acúmulo de gases (como os de aquecedor ou gerador)', titulo_en: 'Natural or mechanical ventilation against damp, mold and gas build-up (such as from a heater or generator)', titulo_es: 'Ventilación, natural o mecánica, contra la humedad, el moho y la acumulación de gases (como los de un calentador o un generador)', titulo_ptpt: 'Ventilação, natural ou mecânica, contra a humidade, o bolor e a acumulação de gases (como os de um esquentador ou gerador)', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'porao_03', titulo: 'Ralos possuem sistema de refluxo ou tampa para evitar alagamentos ou invasão de esgoto', titulo_en: 'Drains have a backflow valve or cover to prevent flooding or sewage backup', titulo_es: 'Los desagües tienen válvula antirretorno o tapa para evitar inundaciones o el retorno de aguas residuales', titulo_ptpt: 'Os ralos têm válvula antirretorno ou tampa para evitar inundações ou o retorno de esgoto', tipo: 'perigo', tags: ['higiene'] },
                 ],
             },
             {
-                nome: 'Segurança Elétrica e Estrutural',
+                nome: 'Segurança Elétrica e Estrutural', nome_en: 'Electrical and Structural Safety', nome_es: 'Seguridad Eléctrica y Estructural',
                 emoji: '⚡', icone: 'Lightning',
                 itens: [
-                    { id: 'porao_04', titulo: 'Fiação elétrica não fica exposta à umidade do piso ou paredes', tipo: 'perigo', tags: ['choque', 'incêndio'] },
-                    { id: 'porao_05', titulo: 'Escada de descida possui corrimão extremamente firme e iluminação dedicada', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'porao_06', titulo: 'Ausência de rachaduras profundas nos pilares de fundação', tipo: 'normal', tags: ['estrutura'] },
+                    { id: 'porao_04', titulo: 'Fiação elétrica não fica exposta à umidade do piso ou das paredes', titulo_en: 'Electrical wiring is not exposed to damp floors or walls', titulo_es: 'El cableado eléctrico no queda expuesto a la humedad del suelo o las paredes', titulo_ptpt: 'A instalação elétrica não fica exposta à humidade do chão ou das paredes', tipo: 'perigo', tags: ['choque', 'incêndio'] },
+                    { id: 'porao_05', titulo: 'Escada de descida tem corrimão firme e iluminação própria', titulo_en: 'Stairs down have a sturdy handrail and their own lighting', titulo_es: 'La escalera de bajada tiene pasamanos firme e iluminación propia', tipo: 'perigo', tags: ['queda'] },
+                    { id: 'porao_06', titulo: 'Sem rachaduras novas ou profundas nas paredes e pilares — se houver, procure um engenheiro', titulo_en: 'No new or deep cracks in walls and pillars — if there are, consult a structural engineer', titulo_es: 'Sin grietas nuevas o profundas en paredes y pilares; si las hay, consulte a un ingeniero', titulo_ptpt: 'Sem fissuras novas ou profundas nas paredes e pilares — se houver, consulte um engenheiro', tipo: 'normal', tags: ['estrutura'] },
                 ],
             },
             {
-                nome: 'Animais e Pragas',
+                nome: 'Animais e Pragas', nome_en: 'Animals and Pests', nome_es: 'Animales y Plagas',
                 emoji: '🕷️', icone: 'Bug',
                 itens: [
-                    { id: 'porao_07', titulo: 'Inspeção contra aranhas-marrom, escorpiões e roedores feita a cada 6 meses', tipo: 'perigo', tags: ['animais_peçonhentos'] },
-                    { id: 'porao_08', titulo: 'Equipamentos e caixas armazenados elevados do chão para evitar danos por umidade e abrigos', tipo: 'normal', tags: ['organização'] },
+                    { id: 'porao_07', titulo: 'Inspeção periódica contra escorpiões, aranhas e roedores', titulo_en: 'Regular checks for scorpions, spiders and rodents', titulo_es: 'Inspección periódica contra escorpiones, arañas y roedores', tipo: 'perigo', tags: ['animais_peçonhentos'] },
+                    { id: 'porao_08', titulo: 'Equipamentos e caixas ficam elevados do chão, longe da umidade e sem servir de abrigo para baratas, escorpiões e roedores', titulo_en: 'Equipment and boxes are kept off the floor, away from damp, so they do not become a hiding place for cockroaches, scorpions and rodents', titulo_es: 'Los equipos y cajas están elevados del suelo, lejos de la humedad y sin servir de refugio a cucarachas, escorpiones y roedores', titulo_ptpt: 'Os equipamentos e caixas ficam acima do chão, longe da humidade e sem servirem de abrigo a baratas, escorpiões e roedores', tipo: 'normal', tags: ['organização'] },
                 ],
             },
         ],
@@ -1092,14 +1097,14 @@ export const CHECKLISTS = {
     quarto_adulto: {
         categorias: [
             {
-                nome: 'Blindagem do Adulto',
+                nome: 'Cuidados no Quarto', nome_en: 'Bedroom Safety', nome_es: 'Cuidados en el Dormitorio',
                 emoji: '🔒', icone: 'Lock',
                 itens: [
-                    { id: 'quarto_adulto_01', titulo: 'Medicamentos e cosméticos ficam totalmente fora do alcance ou trancados em gavetas', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'quarto_adulto_02', titulo: 'Objetos cortantes (alicate de unha, tesoura) são guardados de forma altamente segura e fechada', tipo: 'normal', tags: ['corte'] },
-                    { id: 'quarto_adulto_03', titulo: 'O carregador de celular fica desconectado e longe da cama na hora de dormir', tipo: 'perigo', tags: ['choque', 'incêndio'] },
-                    { id: 'quarto_adulto_04', titulo: 'Cigarros e isqueiros mantidos inacessíveis à curiosidade infantil', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'quarto_adulto_05', titulo: 'Aparelhos conectados diretamente na tomada ou sem sobrecarga com extensões ("benjamins")', tipo: 'normal', tags: ['choque'] },
+                    { id: 'quarto_adulto_01', titulo: 'Medicamentos e cosméticos ficam fora do alcance ou trancados em gavetas', titulo_en: 'Medicines and cosmetics are kept out of reach or locked in drawers', titulo_es: 'Los medicamentos y cosméticos están fuera del alcance o bajo llave en cajones', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'quarto_adulto_02', titulo: 'Objetos cortantes (alicate de unha, tesoura) são guardados em local seguro e fechado', titulo_en: 'Sharp objects (nail clippers, scissors) are stored in a safe, closed place', titulo_es: 'Los objetos cortantes (alicates de uñas, tijeras) se guardan en un lugar seguro y cerrado', titulo_ptpt: 'Os objetos cortantes (corta-unhas, tesoura) são guardados em local seguro e fechado', tipo: 'normal', tags: ['corte'] },
+                    { id: 'quarto_adulto_03', titulo: 'O carregador do celular fica desconectado e longe da cama na hora de dormir', titulo_en: 'Phone charger is unplugged and away from the bed at bedtime', titulo_es: 'El cargador del celular se desconecta y se aleja de la cama a la hora de dormir', titulo_ptpt: 'O carregador do telemóvel fica desligado e longe da cama à hora de dormir', tipo: 'perigo', tags: ['choque', 'incêndio'] },
+                    { id: 'quarto_adulto_04', titulo: 'Cigarros e isqueiros ficam fora do alcance das crianças', titulo_en: 'Cigarettes and lighters are kept out of children\'s reach', titulo_es: 'Cigarrillos y encendedores están fuera del alcance de los niños', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'quarto_adulto_05', titulo: 'Aparelhos ligados direto na tomada, sem sobrecarregar extensões ("benjamins")', titulo_en: 'Appliances plugged straight into the wall, without overloading extension leads or adapters', titulo_es: 'Aparatos enchufados directamente a la toma, sin sobrecargar alargadores ni ladrones', titulo_ptpt: 'Aparelhos ligados diretamente à tomada, sem sobrecarregar extensões ou fichas triplas', tipo: 'normal', tags: ['choque'] },
                 ],
             },
         ],
@@ -1108,222 +1113,26 @@ export const CHECKLISTS = {
     canil: {
         categorias: [
             {
-                nome: 'Ambiente e Abrigo',
+                nome: 'Ambiente e Abrigo', nome_en: 'Environment and Shelter', nome_es: 'Entorno y Refugio',
                 emoji: '🏠', icone: 'House',
                 itens: [
-                    { id: 'canil_01', titulo: 'Área do pet possui abrigo protegido contra sol direto, chuva e vento forte', tipo: 'normal', tags: ['conforto'] },
-                    { id: 'canil_02', titulo: 'Piso da área é liso e fácil de higienizar (sem acúmulo de urina/fezes)', tipo: 'normal', tags: ['saúde'] },
-                    { id: 'canil_03', titulo: 'Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) foram removidas da área de acesso', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'canil_04', titulo: 'Produtos carrapaticidas, venenos e produtos químicos de limpeza ficam completamente inacessíveis ao animal', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'canil_01', titulo: 'Área do pet tem abrigo contra sol direto, chuva e vento forte', titulo_en: 'Pet area has shelter from direct sun, rain and strong wind', titulo_es: 'El área de la mascota tiene refugio contra el sol directo, la lluvia y el viento fuerte', titulo_ptpt: 'A área do animal tem abrigo contra o sol direto, a chuva e o vento forte', tipo: 'normal', tags: ['conforto'] },
+                    { id: 'canil_02', titulo: 'Piso da área é fácil de limpar e antiderrapante (sem acúmulo de urina e fezes)', titulo_en: 'Floor is easy to clean and non-slip (no build-up of urine and feces)', titulo_es: 'El piso del área es fácil de limpiar y antideslizante (sin acumulación de orina y heces)', titulo_ptpt: 'O chão da área é fácil de limpar e antiderrapante (sem acumulação de urina e fezes)', tipo: 'normal', tags: ['saúde'] },
+                    { id: 'canil_03', titulo: 'Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) ficam fora do alcance do animal', titulo_en: 'Plants toxic to animals (dumb cane, lilies, snake plant) are out of the animal\'s reach', titulo_es: 'Las plantas tóxicas para animales (difenbaquia, lirio, lengua de suegra) están fuera del alcance del animal', titulo_ptpt: 'As plantas tóxicas para animais (dieffenbachia, lírio, língua-de-sogra) ficam fora do alcance do animal', tipo: 'perigo', tags: ['intoxicação'] },
+                    { id: 'canil_04', titulo: 'Produtos carrapaticidas, venenos e produtos químicos de limpeza ficam fora do alcance do animal', titulo_en: 'Tick treatments, poisons and cleaning chemicals are kept out of the animal\'s reach', titulo_es: 'Garrapaticidas, venenos y productos de limpieza están fuera del alcance del animal', titulo_ptpt: 'Carraticidas, venenos e produtos de limpeza ficam fora do alcance do animal', tipo: 'perigo', tags: ['intoxicação'] },
                 ],
             },
             {
-                nome: 'Segurança e Prevenção de Fugas',
+                nome: 'Segurança e Prevenção de Fugas', nome_en: 'Security and Escape Prevention', nome_es: 'Seguridad y Prevención de Fugas',
                 emoji: '🐕', icone: 'Dog',
                 itens: [
-                    { id: 'canil_05', titulo: 'Portões e cercas estão íntegros e sem frestas por onde o animal possa escapar', tipo: 'perigo', tags: ['fuga', 'segurança'] },
-                    { id: 'canil_06', titulo: 'Recipientes de água e comida são mantidos limpos e livres de insetos', tipo: 'normal', tags: ['saúde'] },
-                    { id: 'canil_07', titulo: 'Fios elétricos e cabos estão protegidos ou fora do alcance do animal (risco de mastigação)', tipo: 'perigo', tags: ['choque'] },
-                    { id: 'canil_08', titulo: 'Lixeiras possuem tampas pesadas ou travas para evitar acesso a restos perigosos', tipo: 'perigo', tags: ['intoxicação', 'corte'] },
-                    { id: 'canil_09', titulo: 'Em caso de evacuação, coleira, guia e caixa de transporte estão acessíveis rapidamente', tipo: 'sugestão', tags: ['evacuação'] },
+                    { id: 'canil_05', titulo: 'Portões e cercas estão íntegros e sem frestas por onde o animal possa escapar', titulo_en: 'Gates and fences are intact, with no gaps the animal could escape through', titulo_es: 'Portones y cercas están íntegros y sin huecos por donde el animal pueda escapar', titulo_ptpt: 'Portões e vedações estão intactos e sem frestas por onde o animal possa fugir', tipo: 'perigo', tags: ['fuga', 'segurança'] },
+                    { id: 'canil_06', titulo: 'Recipientes de água e comida são mantidos limpos e livres de insetos', titulo_en: 'Water and food bowls are kept clean and free of insects', titulo_es: 'Los recipientes de agua y comida se mantienen limpios y libres de insectos', tipo: 'normal', tags: ['saúde'] },
+                    { id: 'canil_07', titulo: 'Fios elétricos e cabos estão protegidos ou fora do alcance do animal (risco de mastigação)', titulo_en: 'Electrical wires and cables are protected or out of the animal\'s reach (chewing risk)', titulo_es: 'Los cables eléctricos están protegidos o fuera del alcance del animal (riesgo de mordida)', tipo: 'perigo', tags: ['choque'] },
+                    { id: 'canil_08', titulo: 'Lixeiras têm tampa pesada ou trava, para o animal não alcançar restos perigosos', titulo_en: 'Bins have heavy lids or latches so the animal cannot reach dangerous scraps', titulo_es: 'Los cubos de basura tienen tapa pesada o cierre, para que el animal no alcance restos peligrosos', titulo_ptpt: 'Os caixotes do lixo têm tampa pesada ou fecho, para o animal não chegar a restos perigosos', tipo: 'perigo', tags: ['intoxicação', 'corte'] },
+                    { id: 'canil_09', titulo: 'Em caso de evacuação, coleira, guia e caixa de transporte estão à mão', titulo_en: 'In case of evacuation, collar, leash and carrier are close at hand', titulo_es: 'En caso de evacuación, collar, correa y transportín están a mano', titulo_ptpt: 'Em caso de evacuação, coleira, trela e transportadora estão à mão', tipo: 'sugestão', tags: ['evacuação'] },
                 ],
             },
         ],
     },
-
-    kits_prontidao: {
-        categorias: [
-            {
-                nome: 'Equipamentos de Proteção (EPIs)',
-                nome_en: 'Personal Protective Equipment (PPE)',
-                nome_es: 'Equipos de Protección Personal (EPP)',
-                nome_ptpt: 'Equipamentos de Proteção (EPIs)',
-                emoji: '🪖', icone: 'HardHat',
-                itens: [
-                    { id: 'kits_prontidao_01', titulo: 'Óculos de proteção disponíveis para pequenas manutenções ou limpezas químicas', titulo_en: 'Safety glasses available for minor maintenance or chemical cleaning', titulo_es: 'Gafas de seguridad disponibles para pequeños mantenimientos o limpiezas químicas', titulo_ptpt: 'Óculos de proteção disponíveis para pequenas manutenções ou limpezas químicas', tipo: 'perigo', tags: ['visão'] },
-                    { id: 'kits_prontidao_02', titulo: 'Luvas de raspa/couro presentes para jardinagem pesada e proteção contra animais peçonhentos', titulo_en: 'Heavy duty leather gloves present for gardening and protection against venomous animals', titulo_es: 'Guantes de cuero disponibles para jardinería pesada y protección contra animales ponzoñosos', titulo_ptpt: 'Luvas de raspa/couro presentes para jardinagem pesada e proteção contra animais peçonhentos', tipo: 'perigo', tags: ['corte', 'animais_peçonhentos'] },
-                    { id: 'kits_prontidao_03', titulo: 'Calçados fechados e antiderrapantes são usados rotineiramente em limpeza e no jardim', titulo_en: 'Closed, non-slip footwear is routinely used for cleaning and in the garden', titulo_es: 'Se utiliza calzado cerrado y antideslizante de forma rutinaria en la limpieza y el jardín', titulo_ptpt: 'Calçado fechado e antiderrapante usado rotineiramente na limpeza e no jardim', tipo: 'perigo', tags: ['queda', 'animais_peçonhentos'] },
-                    { id: 'kits_prontidao_04', titulo: 'Protetores auriculares (plugue ou concha) disponíveis para uso com ferramentas ruidosas', titulo_en: 'Hearing protectors (plugs or earmuffs) available for use with noisy tools', titulo_es: 'Protectores auditivos (tapones o copas) disponibles para usar con herramientas ruidosas', titulo_ptpt: 'Protetores auriculares (tampões ou concha) disponíveis para uso com ferramentas ruidosas', tipo: 'normal', tags: ['audição'] },
-                    { id: 'kits_prontidao_05', titulo: 'Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados', titulo_en: 'Safety helmet (or bicycle helmet) accessible for maintenance at heights/roofs', titulo_es: 'Casco de protección (o de ciclista) accesible para mantenimientos en altura/techos', titulo_ptpt: 'Capacete de proteção (ou de ciclista) acessível para manutenções em altura/telhados', tipo: 'sugestão', tags: ['impacto'] }
-                ],
-            },
-            {
-                nome: 'Caixa de Ferramentas',
-                nome_en: 'Toolbox',
-                nome_es: 'Caja de Herramientas',
-                nome_ptpt: 'Caixa de Ferramentas',
-                emoji: '🧰', icone: 'Toolbox',
-                itens: [
-                    { id: 'kits_prontidao_06', titulo: 'Ferramentas de corte e perfuração são estritamente isoladas do acesso infantil', titulo_en: 'Cutting and drilling tools are strictly isolated from children\'s access', titulo_es: 'Las herramientas de corte y perforación están estrictamente aisladas del acceso infantil', titulo_ptpt: 'Ferramentas de corte e perfuração são estritamente isoladas do acesso infantil', tipo: 'perigo', tags: ['corte'] },
-                    { id: 'kits_prontidao_07', titulo: 'Fita isolante e chave de teste de tensão guardadas na caixa para emergências elétricas', titulo_en: 'Electrical tape and voltage tester stored in the box for electrical emergencies', titulo_es: 'Cinta aislante y probador de voltaje guardados en la caja para emergencias eléctricas', titulo_ptpt: 'Fita isoladora e busca-polos guardados na caixa para emergências elétricas', tipo: 'normal', tags: ['choque'] }
-                ],
-            },
-            {
-                nome: 'Kits de Apoio e Emergência',
-                nome_en: 'Support and Emergency Kits',
-                nome_es: 'Kits de Apoyo y Emergencia',
-                nome_ptpt: 'Kits de Apoio e Emergência',
-                emoji: '🎒', icone: 'Backpack',
-                itens: [
-                    { id: 'kits_prontidao_08', titulo: 'Lanterna resistente com pilhas extras ou luz de emergência mantidas funcionais', titulo_en: 'Heavy duty flashlight with extra batteries or emergency light kept functional', titulo_es: 'Linterna resistente con pilas extras o luz de emergencia mantenida funcional', titulo_ptpt: 'Lanterna resistente com pilhas extra ou luz de emergência mantidas funcionais', tipo: 'perigo', tags: ['energia'] },
-                    { id: 'kits_prontidao_09', titulo: 'Pilha extra de reserva (lacrada) para os equipamentos de iluminação e emergência', titulo_en: 'Extra backup batteries (sealed) for lighting and emergency equipment', titulo_es: 'Pilas extra de repuesto (selladas) para equipos de iluminación y emergencia', titulo_ptpt: 'Pilhas extra de reserva (seladas) para os equipamentos de iluminação e emergência', tipo: 'normal', tags: ['energia'] },
-                    { id: 'kits_prontidao_10', titulo: 'Documentos de identidade e cartilhas de saúde (SUS/Plano) guardados em acesso prioritário', titulo_en: 'Identity documents and health records stored where you can reach them first', titulo_es: 'Documentos de identidad y cartillas de salud guardados en acceso prioritario', titulo_ptpt: 'Documentos de identificação e cadernetas de saúde guardados em acesso prioritário', tipo: 'normal', tags: ['documentos'] },
-                    { id: 'kits_prontidao_11', titulo: 'Lista impressa e atualizada de contatos de emergência e apoio afixada', titulo_en: 'Printed and updated list of emergency and support contacts posted', titulo_es: 'Lista impresa y actualizada de contactos de emergencia y apoyo fijada', titulo_ptpt: 'Lista impressa e atualizada de contactos de emergência e apoio afixada', tipo: 'normal', tags: ['comunicação'] },
-                ],
-            },
-            {
-                nome: 'Kit de Primeiros Socorros / Curativos',
-                nome_en: 'First Aid Kit / Dressings',
-                nome_es: 'Kit de Primeros Auxilios / Vendajes',
-                nome_ptpt: 'Kit de Primeiros Socorros / Pensos',
-                emoji: '🩹', icone: 'Bandaids',
-                itens: [
-                    { id: 'kits_prontidao_12', titulo: 'Estoque mantido de Antisséptico (Água oxigenada 10v, Clorexidina ou similar)', titulo_en: 'Antiseptic stock maintained (Hydrogen peroxide 10v, Chlorhexidine or similar)', titulo_es: 'Existencias de antiséptico mantenidas (Agua oxigenada 10v, Clorhexidina o similar)', titulo_ptpt: 'Stock mantido de Antisséptico (Água oxigenada 10v, Clorexidina ou similar)', tipo: 'perigo', tags: ['primeiros_socorros'] },
-                    { id: 'kits_prontidao_13', titulo: 'Dotação não-vencida de compressas de gaze estéril, esparadrapo e curativos adesivos', titulo_en: 'Unexpired supply of sterile gauze pads, tape and adhesive bandages', titulo_es: 'Suministro no vencido de compresas de gasa estériles, esparadrapo y vendas adhesivas', titulo_ptpt: 'Lote não vencido de compressas de gaze estéril, fita adesiva e pensos rápidos', tipo: 'perigo', tags: ['primeiros_socorros'] },
-                    { id: 'kits_prontidao_14', titulo: 'Soro Fisiológico pronto para limpeza imediata de feridas abertas ou olhos', titulo_en: 'Saline solution ready for immediate cleaning of open wounds or eyes', titulo_es: 'Suero fisiológico listo para la limpieza inmediata de heridas abiertas u ojos', titulo_ptpt: 'Soro Fisiológico pronto para limpeza imediata de feridas abertas ou olhos', tipo: 'normal', tags: ['primeiros_socorros'] },
-                    { id: 'kits_prontidao_15', titulo: 'Tesoura sem ponta reservada no kit para corte de gazes ou vestimentas', titulo_en: 'Blunt scissors reserved in the kit for cutting gauze or clothing', titulo_es: 'Tijeras sin punta reservadas en el kit para cortar gasas o ropa', titulo_ptpt: 'Tesoura sem ponta reservada no kit para corte de gazes ou vestuário', tipo: 'normal', tags: ['primeiros_socorros'] },
-                    { id: 'kits_prontidao_16', titulo: 'Bolsa de gelo ou compressas frias instantâneas para casos de picadas e contusões', titulo_en: 'Ice pack or instant cold packs for stings and bruises', titulo_es: 'Bolsa de hielo o compresas frías instantáneas para picaduras y contusiones', titulo_ptpt: 'Saco de gelo ou compressas frias instantâneas para casos de picadas e contusões', tipo: 'sugestão', tags: ['primeiros_socorros'] }
-                ],
-            },
-            {
-                nome: 'Farmácia Caseira',
-                nome_en: 'Home Pharmacy',
-                nome_es: 'Farmacia Casera',
-                nome_ptpt: 'Farmácia Caseira',
-                emoji: '💊', icone: 'Pill',
-                itens: [
-                    { id: 'kits_prontidao_17', titulo: 'Medicamentos estritamente isolados do alcance de crianças ou pets (alto e/ou trancado)', titulo_en: 'Medicines strictly isolated from the reach of children or pets (high up and/or locked)', titulo_es: 'Medicamentos estrictamente aislados del alcance de niños o mascotas (alto y/o cerrado)', titulo_ptpt: 'Medicamentos estritamente isolados do alcance de crianças ou pets (alto e/ou trancado)', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'kits_prontidao_18', titulo: 'Sais de Reidratação Oral (SRO) disponíveis para emergências de desidratação grave', titulo_en: 'Oral Rehydration Salts (ORS) available for severe dehydration emergencies', titulo_es: 'Sales de Rehidratación Oral (SRO) disponibles para emergencias de deshidratación grave', titulo_ptpt: 'Sais de Reidratação Oral (SRO) disponíveis para emergências de desidratação grave', tipo: 'sugestão', tags: ['saúde'] },
-                    { id: 'kits_prontidao_19', titulo: 'Medicamentos e insumos conferidos periodicamente, todos estritamente no prazo de validade', titulo_en: 'Medicines and supplies checked periodically, all strictly within expiration date', titulo_es: 'Medicamentos e insumos verificados periódicamente, todos estrictamente dentro de la fecha de caducidad', titulo_ptpt: 'Medicamentos e consumíveis verificados periodicamente, todos estritamente no prazo de validade', tipo: 'perigo', tags: ['intoxicação'] },
-                ],
-            },
-            {
-                nome: 'Prontidão Pet',
-                nome_en: 'Pet Readiness',
-                nome_es: 'Preparación de Mascotas',
-                nome_ptpt: 'Prontidão Pet',
-                emoji: '🐶', icone: 'Dog',
-                itens: [
-                    { id: 'kits_prontidao_20', titulo: 'Cópia da via da Carteira de Vacinação guardada em formato físico e ágil (ou na Nuvem)', titulo_en: 'Copy of the Vaccination Card saved in physical and agile format (or in the Cloud)', titulo_es: 'Copia de la Cartilla de Vacunación guardada en formato físico y ágil (o en la Nube)', titulo_ptpt: 'Cópia da via do Boletim de Vacinas guardada em formato físico e ágil (ou na Nuvem)', tipo: 'normal', tags: ['documentos'] },
-                    { id: 'kits_prontidao_21', titulo: 'Focinheira presente para uso como ferramenta de blindagem profilática em momentos de estresse', titulo_en: 'Muzzle present for use as a prophylactic safety tool in times of stress', titulo_es: 'Bozal presente para usar como herramienta de seguridad profiláctica en momentos de estrés', titulo_ptpt: 'Açaime presente para uso como ferramenta de proteção profilática em momentos de stress', tipo: 'perigo', tags: ['segurança'] },
-                    { id: 'kits_prontidao_22', titulo: 'Caixa de transporte montada (ou bolsa de suporte) em padrão robusto, preparada para evacuação', titulo_en: 'Sturdy pet carrier (or support bag) assembled, prepared for evacuation', titulo_es: 'Caja de transporte montada (o bolsa de soporte) resistente, preparada para evacuación', titulo_ptpt: 'Caixa de transporte montada (ou bolsa de suporte) em padrão robusto, preparada para evacuação', tipo: 'perigo', tags: ['fuga'] },
-                    { id: 'kits_prontidao_23', titulo: 'Água e Ração estocadas sob medida preventiva de segurança em recipientes herméticos de 3 dias', titulo_en: 'Water and food stored Hermetically for 3 days as a preventive safety measure', titulo_es: 'Agua y alimentos almacenados Herméticamente durante 3 días como medida de seguridad preventiva', titulo_ptpt: 'Água e ração armazenadas sob medida preventiva de segurança em recipientes herméticos de 3 dias', tipo: 'sugestão', tags: ['sobrevivência'] },
-                    { id: 'kits_prontidao_24', titulo: 'Carvão Ativado em estoque (para emergências de intoxicação, sob guia veterinário)', titulo_en: 'Activated charcoal in stock (for poisoning emergencies, under veterinary guidance)', titulo_es: 'Carbón activado en stock (para emergencias de intoxicación, bajo guía veterinaria)', titulo_ptpt: 'Carvão Ativado em stock (para emergências de intoxicação, sob orientação veterinária)', tipo: 'perigo', tags: ['intoxicação'] },
-                    { id: 'kits_prontidao_25', titulo: 'Fotos impressas ou salvas offline do pet para identificação rápida em caso de busca', titulo_en: 'Printed or offline saved photos of the pet for quick identification in case of search', titulo_es: 'Fotos impresas o guardadas fuera de línea de la mascota para una identificación rápida en caso de búsqueda', titulo_ptpt: 'Fotos impressas ou guardadas offline do pet para identificação rápida em caso de busca', tipo: 'normal', tags: ['identificação'] }
-                ],
-            },
-        ],
-    },
-
-    // ==========================================
-    // VISTORIAS INSTITUCIONAIS (NOVO)
-    // ==========================================
-
-    escola_segura: {
-        categorias: [
-            {
-                nome: 'Infraestrutura e Prevenção de Quedas',
-                emoji: '🏗️', icone: 'Crane',
-                itens: [
-                    { id: 'escola_segura_01', titulo: 'Pisos das áreas de recreação absorvem impacto (grama, areia ou emborrachados)', tipo: 'perigo', tags: ['queda', 'crianças'] },
-                    { id: 'escola_segura_02', titulo: 'Escadas possuem corrimãos em dupla altura (para adultos e crianças pequenas)', tipo: 'perigo', tags: ['acessibilidade', 'queda'] },
-                    { id: 'escola_segura_03', titulo: 'Arestas e quinas vivas de balcões e pilares possuem proteção macia', tipo: 'normal', tags: ['impacto'] },
-                    { id: 'escola_segura_04', titulo: 'Janelas e basculantes nos andares superiores possuem redes de proteção', tipo: 'perigo', tags: ['queda'] },
-                    { id: 'escola_segura_05', titulo: 'Ralos dos pátios possuem telas para evitar acúmulo de sujeira e insetos', tipo: 'normal', tags: ['limpeza'] }
-                ],
-            },
-            {
-                nome: 'Incêndio e Evacuação',
-                emoji: '🧯', icone: 'FireExtinguisher',
-                itens: [
-                    { id: 'escola_segura_06', titulo: 'Existe um Plano de Abandono Escolar documentado e testado em simulados', tipo: 'perigo', tags: ['evacuação', 'incêndio'] },
-                    { id: 'escola_segura_07', titulo: 'Rotas de fuga estão sinalizadas (placas luminescentes) e desobstruídas', tipo: 'perigo', tags: ['evacuação'] },
-                    { id: 'escola_segura_08', titulo: 'Extintores de incêndio estão na validade e sem obstruções na frente', tipo: 'perigo', tags: ['incêndio'] },
-                    { id: 'escola_segura_09', titulo: 'Portas de áreas de grande circulação abrem para fora (sentido da fuga)', tipo: 'normal', tags: ['evacuação'] }
-                ],
-            },
-            {
-                nome: 'Saúde e Primeiros Socorros (Lei Lucas)',
-                emoji: '⚕️', icone: 'FirstAid',
-                itens: [
-                    { id: 'escola_segura_10', titulo: 'Profissionais possuem curso atualizado de Primeiros Socorros (Lei 13.722/18)', tipo: 'perigo', tags: ['saúde', 'legislação'] },
-                    { id: 'escola_segura_11', titulo: 'Existe um Kit de Primeiros Socorros completo e rapidamente acessível', tipo: 'perigo', tags: ['saúde'] },
-                    { id: 'escola_segura_12', titulo: 'A escola possui formulário médico dos alunos (alergias, tipo sanguíneo)', tipo: 'normal', tags: ['saúde'] },
-                    { id: 'escola_segura_13', titulo: 'Medicamentos dos alunos ficam retidos e trancados na coordenação/enfermaria', tipo: 'perigo', tags: ['intoxicação'] }
-                ],
-            },
-            {
-                nome: 'Segurança Elétrica e Acesso',
-                emoji: '⚡', icone: 'Lightning',
-                itens: [
-                    { id: 'escola_segura_14', titulo: 'Tomadas acessíveis às crianças possuem protetores firmes', tipo: 'perigo', tags: ['choque', 'crianças'] },
-                    { id: 'escola_segura_15', titulo: 'Quadro de força (disjuntores) fica trancado, sem acesso para alunos', tipo: 'perigo', tags: ['choque'] },
-                    { id: 'escola_segura_16', titulo: 'Controle de acesso rigoroso na portaria (só autorizados retiram crianças)', tipo: 'perigo', tags: ['segurança'] }
-                ],
-            },
-            {
-                nome: 'Corpo Docente e Prevenção',
-                emoji: '👥', icone: 'Users',
-                itens: [
-                    { id: 'escola_segura_17', titulo: 'A escola possui canal de denúncias ou ouvidoria ativa para pais e alunos relatarem abusos/bullying de forma confidencial', tipo: 'perigo', tags: ['psicológico', 'prevenção'] },
-                    { id: 'escola_segura_18', titulo: 'Profissionais de apoio (portaria, merenda, auxiliares) possuem checagem prévia de antecedentes criminais pela direção', tipo: 'normal', tags: ['segurança'] },
-                    { id: 'escola_segura_19', titulo: 'Existe supervisão visual constante dos monitores mesmo durante o recreio e idas ao banheiro das crianças', tipo: 'perigo', tags: ['supervisão'] }
-                ],
-            }
-        ],
-    },
-
-    asilo_seguro: {
-        categorias: [
-            {
-                nome: 'Acessibilidade (Estatuto do Idoso/ABNT)',
-                emoji: '🦽', icone: 'Wheelchair',
-                itens: [
-                    { id: 'asilo_seguro_01', titulo: 'Ausência total de degraus isolados (uso de rampas adequadas com piso tátil)', tipo: 'perigo', tags: ['queda', 'acessibilidade'] },
-                    { id: 'asilo_seguro_02', titulo: 'Corredores largos e portas dimensionadas para cadeiras de rodas', tipo: 'perigo', tags: ['acessibilidade'] },
-                    { id: 'asilo_seguro_03', titulo: 'Corrimãos contínuos instalados em ambos os lados de rampas e corredores', tipo: 'normal', tags: ['mobilidade'] },
-                    { id: 'asilo_seguro_04', titulo: 'Iluminação forte e contínua, principalmente à noite (luzes de balizamento)', tipo: 'perigo', tags: ['visão', 'queda'] },
-                    { id: 'asilo_seguro_05', titulo: 'Pisos antiderrapantes (zero tapetes soltos em áreas de circulação)', tipo: 'perigo', tags: ['queda'] }
-                ],
-            },
-            {
-                nome: 'Banheiros e Higiene (RDC Anvisa)',
-                emoji: '🚿', icone: 'Shower',
-                itens: [
-                    { id: 'asilo_seguro_06', titulo: 'Banheiros adaptados com barras de apoio fixadas no vaso e no box', tipo: 'perigo', tags: ['queda', 'acessibilidade'] },
-                    { id: 'asilo_seguro_07', titulo: 'Portas dos banheiros abrem para fora (acesso rápido em caso de queda/desmaio)', tipo: 'perigo', tags: ['emergência'] },
-                    { id: 'asilo_seguro_08', titulo: 'Piso do box é totalmente nivelado (sem ressaltos de mármore para tropeço)', tipo: 'normal', tags: ['queda'] },
-                    { id: 'asilo_seguro_09', titulo: 'Assento do vaso sanitário é elevado, facilitando o uso', tipo: 'sugestão', tags: ['conforto'] }
-                ],
-            },
-            {
-                nome: 'Emergência e Cuidados Médicos',
-                emoji: '🚨', icone: 'Siren',
-                itens: [
-                    { id: 'asilo_seguro_10', titulo: 'Quartos/banheiros possuem botões de emergência ao alcance das mãos e do chão', tipo: 'perigo', tags: ['saúde', 'emergência'] },
-                    { id: 'asilo_seguro_11', titulo: 'Medicamentos são gerenciados e trancados exclusivamente pela enfermagem', tipo: 'perigo', tags: ['intoxicação', 'saúde'] },
-                    { id: 'asilo_seguro_12', titulo: 'Camas possuem altura regulável e grades retráteis para evitar quedas', tipo: 'normal', tags: ['queda'] }
-                ],
-            },
-            {
-                nome: 'Incêndio e Evacuação Adaptada',
-                emoji: '🔥', icone: 'Fire',
-                itens: [
-                    { id: 'asilo_seguro_13', titulo: 'Plano de emergência visa a retirada de pessoas acamadas/mobilidade reduzida', tipo: 'perigo', tags: ['evacuação', 'incêndio'] },
-                    { id: 'asilo_seguro_14', titulo: 'Ausência de cadeiras ou macas soltas nos corredores bloqueando a rota de fuga', tipo: 'perigo', tags: ['evacuação'] },
-                    { id: 'asilo_seguro_15', titulo: 'Sistema de detecção de fumaça e alarme sonoro ativo com brigadistas treinados', tipo: 'perigo', tags: ['incêndio'] }
-                ],
-            },
-            {
-                nome: 'Equipe e Ética do Cuidado',
-                emoji: '🤝', icone: 'Handshake',
-                itens: [
-                    { id: 'asilo_seguro_16', titulo: 'Instalação de câmeras de monitoramento nas áreas comuns (corredores/salas) para auditoria comportamental', tipo: 'perigo', tags: ['segurança', 'monitoramento'] },
-                    { id: 'asilo_seguro_17', titulo: 'A instituição garante que cuidadores possuem qualificação técnica comprovada e antecedentes criminais checados', tipo: 'perigo', tags: ['saúde', 'profissionalismo'] },
-                    { id: 'asilo_seguro_18', titulo: 'Os idosos se comunicam livremente ou existe canal confidencial direto entre a família e a diretoria técnica', tipo: 'normal', tags: ['transparência'] }
-                ],
-            }
-        ],
-    }
-
 };
