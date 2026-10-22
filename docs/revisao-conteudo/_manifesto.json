@@ -1,4 +1,4324 @@
 {
+  "TC-0001": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Engasgo (Bebê menor de 1 ano)",
+    "chave": "oQueNaoFazer[]",
+    "linha": 53,
+    "original": "NUNCA sacuda o bebê."
+  },
+  "TC-0002": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Intoxicação",
+    "chave": "quandoChamarAjuda",
+    "linha": 103,
+    "original": "Imediatamente."
+  },
+  "TC-0003": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Intoxicação Alimentar",
+    "chave": "oQueFazer[]",
+    "linha": 144,
+    "original": "Fique em repouso."
+  },
+  "TC-0004": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Abra a boca com cuidado",
+    "chave": "titulo",
+    "linha": 11,
+    "original": "Abra a boca com cuidado"
+  },
+  "TC-0005": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Heimlich (Cães Grandes)",
+    "chave": "titulo",
+    "linha": 13,
+    "original": "Heimlich (Cães Grandes)"
+  },
+  "TC-0006": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Heimlich (Pequenos)",
+    "chave": "titulo",
+    "linha": 14,
+    "original": "Heimlich (Pequenos)"
+  },
+  "TC-0007": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Golpes nas costas",
+    "chave": "titulo",
+    "linha": 15,
+    "original": "Golpes nas costas"
+  },
+  "TC-0008": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Mova para local seguro",
+    "chave": "titulo",
+    "linha": 28,
+    "original": "Mova para local seguro"
+  },
+  "TC-0009": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "NÃO o deixar andar",
+    "chave": "titulo",
+    "linha": 29,
+    "original": "NÃO o deixar andar"
+  },
+  "TC-0010": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Sinalize a área",
+    "chave": "titulo",
+    "linha": 30,
+    "original": "Sinalize a área"
+  },
+  "TC-0011": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Contenha sangramentos",
+    "chave": "titulo",
+    "linha": 31,
+    "original": "Contenha sangramentos"
+  },
+  "TC-0012": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Veterinário Urgente",
+    "chave": "titulo",
+    "linha": 32,
+    "original": "Veterinário Urgente"
+  },
+  "TC-0013": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Cheque batimentos e ar",
+    "chave": "titulo",
+    "linha": 45,
+    "original": "Cheque batimentos e ar"
+  },
+  "TC-0014": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Apenas se estiver PARADO",
+    "chave": "titulo",
+    "linha": 46,
+    "original": "Apenas se estiver PARADO"
+  },
+  "TC-0015": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Deite do lado DIREITO",
+    "chave": "titulo",
+    "linha": 47,
+    "original": "Deite do lado DIREITO"
+  },
+  "TC-0016": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Compressões (Pequenos)",
+    "chave": "titulo",
+    "linha": 48,
+    "original": "Compressões (Pequenos)"
+  },
+  "TC-0017": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Respiração boca-focinho",
+    "chave": "titulo",
+    "linha": 50,
+    "original": "Respiração boca-focinho"
+  },
+  "TC-0018": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Tire do calor na hora",
+    "chave": "titulo",
+    "linha": 63,
+    "original": "Tire do calor na hora"
+  },
+  "TC-0019": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Molhe patinhas e barriga",
+    "chave": "titulo",
+    "linha": 64,
+    "original": "Molhe patinhas e barriga"
+  },
+  "TC-0020": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Aumente a ventilação",
+    "chave": "titulo",
+    "linha": 65,
+    "original": "Aumente a ventilação"
+  },
+  "TC-0021": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Ofereça água fresca",
+    "chave": "titulo",
+    "linha": 66,
+    "original": "Ofereça água fresca"
+  },
+  "TC-0022": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Leve ao veterinário",
+    "chave": "titulo",
+    "linha": 67,
+    "original": "Leve ao veterinário"
+  },
+  "TC-0023": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "NÃO puxe a língua",
+    "chave": "titulo",
+    "linha": 80,
+    "original": "NÃO puxe a língua"
+  },
+  "TC-0024": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Afaste móveis e quinas",
+    "chave": "titulo",
+    "linha": 81,
+    "original": "Afaste móveis e quinas"
+  },
+  "TC-0025": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Reduza a luz e sons",
+    "chave": "titulo",
+    "linha": 82,
+    "original": "Reduza a luz e sons"
+  },
+  "TC-0026": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Marque a duração",
+    "chave": "titulo",
+    "linha": 83,
+    "original": "Marque a duração"
+  },
+  "TC-0027": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Calma após a crise",
+    "chave": "titulo",
+    "linha": 84,
+    "original": "Calma após a crise"
+  },
+  "TC-0028": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Pressione com firmeza",
+    "chave": "titulo",
+    "linha": 97,
+    "original": "Pressione com firmeza"
+  },
+  "TC-0029": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Não fique espiando",
+    "chave": "titulo",
+    "linha": 98,
+    "original": "Não fique espiando"
+  },
+  "TC-0030": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Eleve o machucado",
+    "chave": "titulo",
+    "linha": 99,
+    "original": "Eleve o machucado"
+  },
+  "TC-0031": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Torniquete (Cuidado)",
+    "chave": "titulo",
+    "linha": 100,
+    "original": "Torniquete (Cuidado)"
+  },
+  "TC-0032": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Tire uma foto do bicho",
+    "chave": "titulo",
+    "linha": 114,
+    "original": "Tire uma foto do bicho"
+  },
+  "TC-0033": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Mantenha o pet imóvel",
+    "chave": "titulo",
+    "linha": 115,
+    "original": "Mantenha o pet imóvel"
+  },
+  "TC-0034": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "NÃO corte nem aperte",
+    "chave": "titulo",
+    "linha": 116,
+    "original": "NÃO corte nem aperte"
+  },
+  "TC-0035": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Eleve a região",
+    "chave": "titulo",
+    "linha": 117,
+    "original": "Eleve a região"
+  },
+  "TC-0036": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Dirija-se ao veterinário",
+    "chave": "titulo",
+    "linha": 118,
+    "original": "Dirija-se ao veterinário"
+  },
+  "TC-0037": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Limpe a boca na hora",
+    "chave": "titulo",
+    "linha": 131,
+    "original": "Limpe a boca na hora"
+  },
+  "TC-0038": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Foto da planta",
+    "chave": "titulo",
+    "linha": 132,
+    "original": "Foto da planta"
+  },
+  "TC-0039": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Monitore a respiração",
+    "chave": "titulo",
+    "linha": 133,
+    "original": "Monitore a respiração"
+  },
+  "TC-0040": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "NÃO induza vômito",
+    "chave": "titulo",
+    "linha": 134,
+    "original": "NÃO induza vômito"
+  },
+  "TC-0041": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Afaste o produto",
+    "chave": "titulo",
+    "linha": 148,
+    "original": "Afaste o produto"
+  },
+  "TC-0042": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Pele ou olhos afetados",
+    "chave": "titulo",
+    "linha": 149,
+    "original": "Pele ou olhos afetados"
+  },
+  "TC-0043": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Ligue para a toxicologia",
+    "chave": "titulo",
+    "linha": 151,
+    "original": "Ligue para a toxicologia"
+  },
+  "TC-0044": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros_pets.js",
+    "rotulo": "Primeiros socorros — pets",
+    "item": "Leve ao pronto-socorro",
+    "chave": "titulo",
+    "linha": 152,
+    "original": "Leve ao pronto-socorro"
+  },
+  "TC-0045": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 3,
+    "original": "Tesoura ponta romba"
+  },
+  "TC-0046": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 5,
+    "original": "Gaze estéril (pacotes)"
+  },
+  "TC-0047": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 6,
+    "original": "Atadura de crepe"
+  },
+  "TC-0048": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 7,
+    "original": "Esparadrapo ou Micropore"
+  },
+  "TC-0049": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 8,
+    "original": "Soro fisiológico 0.9%"
+  },
+  "TC-0050": {
+    "arquivo": "data/kits/first_aid.js",
+    "rotulo": "Kit de primeiros socorros",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 10,
+    "original": "Termômetro"
+  },
+  "TC-0051": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Sala de Estar",
+    "chave": "nome",
+    "linha": 35,
+    "original": "Sala de Estar"
+  },
+  "TC-0052": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quedas e Tropeços",
+    "chave": "titulo",
+    "linha": 45,
+    "original": "Quedas e Tropeços"
+  },
+  "TC-0053": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Regras de Ouro no Fogão",
+    "chave": "titulo",
+    "linha": 61,
+    "original": "Regras de Ouro no Fogão"
+  },
+  "TC-0054": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Organização Anti-queda",
+    "chave": "titulo",
+    "linha": 79,
+    "original": "Organização Anti-queda"
+  },
+  "TC-0055": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Pragas e Contaminação",
+    "chave": "titulo",
+    "linha": 80,
+    "original": "Pragas e Contaminação"
+  },
+  "TC-0056": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quarto de Adulto",
+    "chave": "nome",
+    "linha": 89,
+    "original": "Quarto de Adulto"
+  },
+  "TC-0057": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quarto de Bebê",
+    "chave": "nome",
+    "linha": 107,
+    "original": "Quarto de Bebê"
+  },
+  "TC-0058": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "O Berço Nu",
+    "chave": "titulo",
+    "linha": 116,
+    "original": "O Berço Nu"
+  },
+  "TC-0059": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Distâncias Vitais",
+    "chave": "titulo",
+    "linha": 117,
+    "original": "Distâncias Vitais"
+  },
+  "TC-0060": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quarto Infantil",
+    "chave": "nome",
+    "linha": 124,
+    "original": "Quarto Infantil"
+  },
+  "TC-0061": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quarto do Idoso",
+    "chave": "nome",
+    "linha": 140,
+    "original": "Quarto do Idoso"
+  },
+  "TC-0062": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "A Regra Anti-Afogamento",
+    "chave": "titulo",
+    "linha": 167,
+    "original": "A Regra Anti-Afogamento"
+  },
+  "TC-0063": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quedas no Banho",
+    "chave": "titulo",
+    "linha": 168,
+    "original": "Quedas no Banho"
+  },
+  "TC-0064": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Trancas para o que Mata",
+    "chave": "titulo",
+    "linha": 185,
+    "original": "Trancas para o que Mata"
+  },
+  "TC-0065": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Lavanderia",
+    "chave": "nome",
+    "linha": 194,
+    "original": "Lavanderia"
+  },
+  "TC-0066": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Extensões e Sobrecarga",
+    "chave": "titulo",
+    "linha": 205,
+    "original": "Extensões e Sobrecarga"
+  },
+  "TC-0067": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Escorpiões e Aranhas",
+    "chave": "titulo",
+    "linha": 206,
+    "original": "Escorpiões e Aranhas"
+  },
+  "TC-0068": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Produtos Inflamáveis",
+    "chave": "titulo",
+    "linha": 221,
+    "original": "Produtos Inflamáveis"
+  },
+  "TC-0069": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Portão Automático",
+    "chave": "titulo",
+    "linha": 222,
+    "original": "Portão Automático"
+  },
+  "TC-0070": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Oficina / Ferramentas",
+    "chave": "nome",
+    "linha": 229,
+    "original": "Oficina / Ferramentas"
+  },
+  "TC-0071": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Gravidade nas Caixas",
+    "chave": "titulo",
+    "linha": 254,
+    "original": "Gravidade nas Caixas"
+  },
+  "TC-0072": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Visitantes Indesejados",
+    "chave": "titulo",
+    "linha": 255,
+    "original": "Visitantes Indesejados"
+  },
+  "TC-0073": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Acesso e Iluminação",
+    "chave": "titulo",
+    "linha": 256,
+    "original": "Acesso e Iluminação"
+  },
+  "TC-0074": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Não Vire Lixeira",
+    "chave": "titulo",
+    "linha": 257,
+    "original": "Não Vire Lixeira"
+  },
+  "TC-0075": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Mangueiras e Validade",
+    "chave": "titulo",
+    "linha": 274,
+    "original": "Mangueiras e Validade"
+  },
+  "TC-0076": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quintal / Jardim",
+    "chave": "nome",
+    "linha": 283,
+    "original": "Quintal / Jardim"
+  },
+  "TC-0077": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Jardinagem / Plantas",
+    "chave": "nome",
+    "linha": 299,
+    "original": "Jardinagem / Plantas"
+  },
+  "TC-0078": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Áreas Comuns",
+    "chave": "nome",
+    "linha": 317,
+    "original": "Áreas Comuns"
+  },
+  "TC-0079": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Áreas Naturais",
+    "chave": "nome",
+    "linha": 349,
+    "original": "Áreas Naturais"
+  },
+  "TC-0080": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Bandeiras e Sinalização",
+    "chave": "titulo",
+    "linha": 358,
+    "original": "Bandeiras e Sinalização"
+  },
+  "TC-0081": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Baby Gates Infalíveis",
+    "chave": "titulo",
+    "linha": 378,
+    "original": "Baby Gates Infalíveis"
+  },
+  "TC-0082": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Aderência e Visibilidade",
+    "chave": "titulo",
+    "linha": 379,
+    "original": "Aderência e Visibilidade"
+  },
+  "TC-0083": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Objetos que Caem Matam",
+    "chave": "titulo",
+    "linha": 396,
+    "original": "Objetos que Caem Matam"
+  },
+  "TC-0084": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Piso Antiderrapante",
+    "chave": "titulo",
+    "linha": 398,
+    "original": "Piso Antiderrapante"
+  },
+  "TC-0085": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 8,
+    "original": "Bebês e Crianças"
+  },
+  "TC-0086": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 10,
+    "original": "Casa Segura"
+  },
+  "TC-0087": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Riscos na melhor idade",
+    "chave": "title",
+    "linha": 158,
+    "original": "Riscos na melhor idade"
+  },
+  "TC-0088": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Mentalidade preventiva",
+    "chave": "title",
+    "linha": 304,
+    "original": "Mentalidade preventiva"
+  },
+  "TC-0089": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Introdução à Segurança",
+    "chave": "titulo",
+    "linha": 10,
+    "original": "Introdução à Segurança"
+  },
+  "TC-0090": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Metodologia 3D",
+    "chave": "titulo",
+    "linha": 35,
+    "original": "Metodologia 3D"
+  },
+  "TC-0091": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Quase Acidentes",
+    "chave": "titulo",
+    "linha": 107,
+    "original": "Quase Acidentes"
+  },
+  "TC-0092": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "O Triângulo do Fogo",
+    "chave": "titulo",
+    "linha": 9,
+    "original": "O Triângulo do Fogo"
+  },
+  "TC-0093": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "O Triângulo do Fogo",
+    "chave": "subtitulo",
+    "linha": 12,
+    "original": "Conceitos Básicos"
+  },
+  "TC-0094": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "titulo",
+    "linha": 56,
+    "original": "Classes de Incêndio"
+  },
+  "TC-0095": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "subtitulo",
+    "linha": 59,
+    "original": "Tipos de Fogo"
+  },
+  "TC-0096": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "comoIdentificar[]",
+    "linha": 76,
+    "original": "{{FIRE_CLASS_SOLIDS}}"
+  },
+  "TC-0097": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "comoIdentificar[]",
+    "linha": 77,
+    "original": "{{FIRE_CLASS_LIQUIDS}}"
+  },
+  "TC-0098": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "comoIdentificar[]",
+    "linha": 78,
+    "original": "{{FIRE_CLASS_GASES}}"
+  },
+  "TC-0099": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "comoIdentificar[]",
+    "linha": 80,
+    "original": "{{FIRE_CLASS_METALS}}"
+  },
+  "TC-0100": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Classes de Incêndio",
+    "chave": "comoIdentificar[]",
+    "linha": 81,
+    "original": "{{FIRE_CLASS_COOKING}}"
+  },
+  "TC-0101": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Baterias de Lítio",
+    "chave": "titulo",
+    "linha": 94,
+    "original": "Baterias de Lítio"
+  },
+  "TC-0102": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Extintores",
+    "chave": "titulo",
+    "linha": 225,
+    "original": "Tipos de Extintores"
+  },
+  "TC-0103": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Extintores",
+    "chave": "subtitulo",
+    "linha": 228,
+    "original": "Como Escolher"
+  },
+  "TC-0104": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Extintores",
+    "chave": "comoIdentificar[]",
+    "linha": 244,
+    "original": "{{EXTINGUISHER_BC}}"
+  },
+  "TC-0105": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Extintores",
+    "chave": "comoIdentificar[]",
+    "linha": 245,
+    "original": "{{EXTINGUISHER_ABC}}"
+  },
+  "TC-0106": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Extintores",
+    "chave": "comoIdentificar[]",
+    "linha": 246,
+    "original": "{{EXTINGUISHER_CO2}}"
+  },
+  "TC-0107": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Transmissão de Calor",
+    "chave": "titulo",
+    "linha": 281,
+    "original": "Transmissão de Calor"
+  },
+  "TC-0108": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Transmissão de Calor",
+    "chave": "subtitulo",
+    "linha": 284,
+    "original": "Como o fogo se espalha"
+  },
+  "TC-0109": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Combate",
+    "chave": "titulo",
+    "linha": 315,
+    "original": "Tipos de Combate"
+  },
+  "TC-0110": {
+    "arquivo": "data/teoria_fogo.js",
+    "rotulo": "Teoria do fogo",
+    "item": "Tipos de Combate",
+    "chave": "subtitulo",
+    "linha": 318,
+    "original": "Ação direta"
+  },
+  "TC-0111": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Bebês (0-2 anos)",
+    "chave": "titulo",
+    "linha": 4,
+    "original": "Bebês (0-2 anos)"
+  },
+  "TC-0112": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Bebês (7 a 12 meses)",
+    "chave": "titulo",
+    "linha": 249,
+    "original": "Bebês (7 a 12 meses)"
+  },
+  "TC-0113": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Bebês (7 a 12 meses)",
+    "chave": "desc",
+    "linha": 253,
+    "original": "7 a 12 meses"
+  },
+  "TC-0114": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Bebês (7 a 12 meses)",
+    "chave": "comoIdentificar[]",
+    "linha": 268,
+    "original": "Abrindo armários baixos."
+  },
+  "TC-0115": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Bebês (7 a 12 meses)",
+    "chave": "comoEvitar[]",
+    "linha": 284,
+    "original": "NUNCA usar andador."
+  },
+  "TC-0116": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Crianças (3-12 anos)",
+    "chave": "titulo",
+    "linha": 493,
+    "original": "Crianças (3-12 anos)"
+  },
+  "TC-0117": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Crianças (3 a 5 anos)",
+    "chave": "titulo",
+    "linha": 747,
+    "original": "Crianças (3 a 5 anos)"
+  },
+  "TC-0118": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Crianças (3 a 5 anos)",
+    "chave": "desc",
+    "linha": 751,
+    "original": "3 a 5 anos"
+  },
+  "TC-0119": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Crianças (6 a 14 anos)",
+    "chave": "titulo",
+    "linha": 997,
+    "original": "Crianças (6 a 14 anos)"
+  },
+  "TC-0120": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Crianças (6 a 14 anos)",
+    "chave": "desc",
+    "linha": 1001,
+    "original": "6 a 14 anos"
+  },
+  "TC-0121": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Adolescentes (13-17 anos)",
+    "chave": "desc",
+    "linha": 1133,
+    "original": "13-17 anos"
+  },
+  "TC-0122": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Adolescentes (13-17 anos)",
+    "chave": "oQueNaoFazer[]",
+    "linha": 1166,
+    "original": "Não julgar sem ouvir."
+  },
+  "TC-0123": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Adultos (18-59 anos)",
+    "chave": "titulo",
+    "linha": 1186,
+    "original": "Adultos (18-59 anos)"
+  },
+  "TC-0124": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Adultos (18-59 anos)",
+    "chave": "desc",
+    "linha": 1190,
+    "original": "18-59 anos"
+  },
+  "TC-0125": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Adultos (18-59 anos)",
+    "chave": "oQueNaoFazer[]",
+    "linha": 1226,
+    "original": "Não dirigir cansado."
+  },
+  "TC-0126": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Necessidades Especiais",
+    "chave": "titulo",
+    "linha": 1241,
+    "original": "Necessidades Especiais"
+  },
+  "TC-0127": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Necessidades Especiais",
+    "chave": "comoEvitar[]",
+    "linha": 1260,
+    "original": "Tirar tapetes soltos."
+  },
+  "TC-0128": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Idosos (60+ anos)",
+    "chave": "titulo",
+    "linha": 1284,
+    "original": "Idosos (60+ anos)"
+  },
+  "TC-0129": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Idosos (60+ anos)",
+    "chave": "definicao",
+    "linha": 1294,
+    "original": "Segurança e conforto"
+  },
+  "TC-0130": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Idosos (60+ anos)",
+    "chave": "oQueNaoFazer[]",
+    "linha": 1325,
+    "original": "Não encerar o chão."
+  },
+  "TC-0131": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Churrasco com Segurança",
+    "chave": "title",
+    "linha": 49,
+    "original": "Churrasco com Segurança"
+  },
+  "TC-0132": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Boas Práticas na Cozinha",
+    "chave": "title",
+    "linha": 131,
+    "original": "Boas Práticas na Cozinha"
+  },
+  "TC-0133": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Plantas Tóxicas em Casa",
+    "chave": "title",
+    "linha": 168,
+    "original": "Plantas Tóxicas em Casa"
+  },
+  "TC-0134": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Incêndios Domésticos",
+    "chave": "titulo",
+    "linha": 11,
+    "original": "Incêndios Domésticos"
+  },
+  "TC-0135": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Incêndios Domésticos",
+    "chave": "subtitulo",
+    "linha": 12,
+    "original": "Prevenção no Dia a Dia"
+  },
+  "TC-0136": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Cozinha: O Maior Risco",
+    "chave": "titulo",
+    "linha": 18,
+    "original": "Cozinha: O Maior Risco"
+  },
+  "TC-0137": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Gás de Cozinha (GLP)",
+    "chave": "titulo",
+    "linha": 30,
+    "original": "Gás de Cozinha (GLP)"
+  },
+  "TC-0138": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Instalações Elétricas",
+    "chave": "titulo",
+    "linha": 42,
+    "original": "Instalações Elétricas"
+  },
+  "TC-0139": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Cigarros e Velas",
+    "chave": "titulo",
+    "linha": 54,
+    "original": "Cigarros e Velas"
+  },
+  "TC-0140": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Decorações de Festas",
+    "chave": "titulo",
+    "linha": 77,
+    "original": "Decorações de Festas"
+  },
+  "TC-0141": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Plano de Emergência",
+    "chave": "titulo",
+    "linha": 88,
+    "original": "Plano de Emergência"
+  },
+  "TC-0142": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Extintores",
+    "chave": "titulo",
+    "linha": 101,
+    "original": "Extintores"
+  },
+  "TC-0143": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Produtos Químicos",
+    "chave": "titulo",
+    "linha": 111,
+    "original": "Produtos Químicos"
+  },
+  "TC-0144": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Produtos Químicos",
+    "chave": "subtitulo",
+    "linha": 112,
+    "original": "Armazenamento Seguro"
+  },
+  "TC-0145": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Segurança Elétrica",
+    "chave": "titulo",
+    "linha": 181,
+    "original": "Segurança Elétrica"
+  },
+  "TC-0146": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Segurança Elétrica",
+    "chave": "subtitulo",
+    "linha": 182,
+    "original": "Prevenção de Choques"
+  },
+  "TC-0147": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Riscos Físicos",
+    "chave": "titulo",
+    "linha": 234,
+    "original": "Riscos Físicos"
+  },
+  "TC-0148": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Perigos por Faixa Etária",
+    "chave": "titulo",
+    "linha": 241,
+    "original": "Perigos por Faixa Etária"
+  },
+  "TC-0149": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Checklist contra Quedas",
+    "chave": "titulo",
+    "linha": 252,
+    "original": "Checklist contra Quedas"
+  },
+  "TC-0150": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Intoxicações",
+    "chave": "titulo",
+    "linha": 290,
+    "original": "Intoxicações"
+  },
+  "TC-0151": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Intoxicações",
+    "chave": "subtitulo",
+    "linha": 291,
+    "original": "Medicamentos e Plantas"
+  },
+  "TC-0152": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Como Guardar Remédios",
+    "chave": "titulo",
+    "linha": 320,
+    "original": "Como Guardar Remédios"
+  },
+  "TC-0153": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Plantas Venenosas Comuns",
+    "chave": "titulo",
+    "linha": 333,
+    "original": "Plantas Venenosas Comuns"
+  },
+  "TC-0154": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "SINAIS DE URGÊNCIA",
+    "chave": "titulo",
+    "linha": 358,
+    "original": "SINAIS DE URGÊNCIA"
+  },
+  "TC-0155": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Monóxido de Carbono",
+    "chave": "titulo",
+    "linha": 368,
+    "original": "Monóxido de Carbono"
+  },
+  "TC-0156": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Monóxido de Carbono",
+    "chave": "subtitulo",
+    "linha": 369,
+    "original": "O Perigo Invisível"
+  },
+  "TC-0157": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Por que é tão Perigoso?",
+    "chave": "titulo",
+    "linha": 375,
+    "original": "Por que é tão Perigoso?"
+  },
+  "TC-0158": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Fontes Mais Comuns de CO",
+    "chave": "titulo",
+    "linha": 387,
+    "original": "Fontes Mais Comuns de CO"
+  },
+  "TC-0159": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "O que NUNCA fazer",
+    "chave": "titulo",
+    "linha": 400,
+    "original": "O que NUNCA fazer"
+  },
+  "TC-0160": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Sintomas de Intoxicação",
+    "chave": "titulo",
+    "linha": 411,
+    "original": "Sintomas de Intoxicação"
+  },
+  "TC-0161": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Como Prevenir",
+    "chave": "titulo",
+    "linha": 434,
+    "original": "Como Prevenir"
+  },
+  "TC-0162": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Lembrete Crucial",
+    "chave": "titulo",
+    "linha": 445,
+    "original": "Lembrete Crucial"
+  },
+  "TC-0163": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 3,
+    "original": "Quintal / Jardim"
+  },
+  "TC-0164": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 9,
+    "original": "Jardinagem/Plantas"
+  },
+  "TC-0165": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 15,
+    "original": "Áreas Comuns"
+  },
+  "TC-0166": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 27,
+    "original": "Áreas Naturais"
+  },
+  "TC-0167": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 33,
+    "original": "Oficinas/Ferramentas"
+  },
+  "TC-0168": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 69,
+    "original": "Quarto de Adulto"
+  },
+  "TC-0169": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 81,
+    "original": "Quarto do Bebê"
+  },
+  "TC-0170": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 87,
+    "original": "Quarto Infantil"
+  },
+  "TC-0171": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 93,
+    "original": "Quarto do Idoso"
+  },
+  "TC-0172": {
+    "arquivo": "data/locales/pt-BR/educational_guides.js",
+    "rotulo": "Guias educativos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 105,
+    "original": "Lavanderia"
+  },
+  "TC-0173": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Teoria do Fogo",
+    "chave": "title",
+    "linha": 3,
+    "original": "Teoria do Fogo"
+  },
+  "TC-0174": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "O que é o Fogo?",
+    "chave": "title",
+    "linha": 7,
+    "original": "O que é o Fogo?"
+  },
+  "TC-0175": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "O Tetraedro do Fogo",
+    "chave": "title",
+    "linha": 11,
+    "original": "O Tetraedro do Fogo"
+  },
+  "TC-0176": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Como o Calor se Espalha",
+    "chave": "title",
+    "linha": 15,
+    "original": "Como o Calor se Espalha"
+  },
+  "TC-0177": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Classes de Incêndio",
+    "chave": "title",
+    "linha": 19,
+    "original": "Classes de Incêndio"
+  },
+  "TC-0178": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Fases do Fogo",
+    "chave": "title",
+    "linha": 23,
+    "original": "Fases do Fogo"
+  },
+  "TC-0179": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Prevenção em Casa",
+    "chave": "title",
+    "linha": 29,
+    "original": "Prevenção em Casa"
+  },
+  "TC-0180": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Rede Elétrica",
+    "chave": "title",
+    "linha": 37,
+    "original": "Rede Elétrica"
+  },
+  "TC-0181": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Produtos Inflamáveis",
+    "chave": "title",
+    "linha": 41,
+    "original": "Produtos Inflamáveis"
+  },
+  "TC-0182": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Velas e Cigarros",
+    "chave": "title",
+    "linha": 45,
+    "original": "Velas e Cigarros"
+  },
+  "TC-0183": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Aparelhos Pesados",
+    "chave": "title",
+    "linha": 59,
+    "original": "Aparelhos Pesados"
+  },
+  "TC-0184": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Cuidados Simples",
+    "chave": "title",
+    "linha": 63,
+    "original": "Cuidados Simples"
+  },
+  "TC-0185": {
+    "arquivo": "data/locales/pt-BR/fire_prevention_content.js",
+    "rotulo": "Prevencao de incendio",
+    "item": "Em Caso de Incêndio",
+    "chave": "title",
+    "linha": 69,
+    "original": "Em Caso de Incêndio"
+  },
+  "TC-0186": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Olhos e Face",
+    "chave": "title",
+    "linha": 23,
+    "original": "Olhos e Face"
+  },
+  "TC-0187": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Mãos (Luvas)",
+    "chave": "title",
+    "linha": 31,
+    "original": "Mãos (Luvas)"
+  },
+  "TC-0188": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Pés e Corpo",
+    "chave": "title",
+    "linha": 47,
+    "original": "Pés e Corpo"
+  },
+  "TC-0189": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Primeiros Socorros",
+    "chave": "title",
+    "linha": 177,
+    "original": "Primeiros Socorros"
+  },
+  "TC-0190": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Alívio e Apoio",
+    "chave": "title",
+    "linha": 199,
+    "original": "Alívio e Apoio"
+  },
+  "TC-0191": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "🔴 O QUE NÃO USAR",
+    "chave": "title",
+    "linha": 207,
+    "original": "🔴 O QUE NÃO USAR"
+  },
+  "TC-0192": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "🔴 O QUE NÃO USAR",
+    "chave": "content[]",
+    "linha": 211,
+    "original": "❌ Pasta de dente"
+  },
+  "TC-0193": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "🔴 O QUE NÃO USAR",
+    "chave": "content[]",
+    "linha": 212,
+    "original": "❌ Pó de café ou Manteiga"
+  },
+  "TC-0194": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Caixa de Ferramentas",
+    "chave": "title",
+    "linha": 310,
+    "original": "Caixa de Ferramentas"
+  },
+  "TC-0195": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Organização é Segurança",
+    "chave": "title",
+    "linha": 322,
+    "original": "Organização é Segurança"
+  },
+  "TC-0196": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Manutenção",
+    "chave": "title",
+    "linha": 331,
+    "original": "Manutenção"
+  },
+  "TC-0197": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Iluminação de Emergência",
+    "chave": "title",
+    "linha": 443,
+    "original": "Iluminação de Emergência"
+  },
+  "TC-0198": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Comunicação",
+    "chave": "title",
+    "linha": 450,
+    "original": "Comunicação"
+  },
+  "TC-0199": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Acessibilidade (Adaptação)",
+    "chave": "content[]",
+    "linha": 463,
+    "original": "• Protetores de quinas."
+  },
+  "TC-0200": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Regras de Ouro",
+    "chave": "title",
+    "linha": 560,
+    "original": "Regras de Ouro"
+  },
+  "TC-0201": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Gerenciamento e Validade",
+    "chave": "title",
+    "linha": 585,
+    "original": "Gerenciamento e Validade"
+  },
+  "TC-0202": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Sobrevivência Básica",
+    "chave": "title",
+    "linha": 713,
+    "original": "Sobrevivência Básica"
+  },
+  "TC-0203": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Segurança e Contenção",
+    "chave": "title",
+    "linha": 721,
+    "original": "Segurança e Contenção"
+  },
+  "TC-0204": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Saúde e Documentação",
+    "chave": "title",
+    "linha": 729,
+    "original": "Saúde e Documentação"
+  },
+  "TC-0205": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Férias e Viagem",
+    "chave": "title",
+    "linha": 17,
+    "original": "Férias e Viagem"
+  },
+  "TC-0206": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Férias e Viagem",
+    "chave": "subtitle",
+    "linha": 21,
+    "original": "Lazer sem acidentes"
+  },
+  "TC-0207": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Na Estrada",
+    "chave": "title",
+    "linha": 28,
+    "original": "Na Estrada"
+  },
+  "TC-0208": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Praia e Piscina",
+    "chave": "title",
+    "linha": 37,
+    "original": "Praia e Piscina"
+  },
+  "TC-0209": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Hotel e Pousada",
+    "chave": "title",
+    "linha": 45,
+    "original": "Hotel e Pousada"
+  },
+  "TC-0210": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Criança Perdida",
+    "chave": "title",
+    "linha": 55,
+    "original": "Criança Perdida"
+  },
+  "TC-0211": {
+    "arquivo": "data/safety_vacation.js",
+    "rotulo": "Ferias e viagem",
+    "item": "Kit Viagem",
+    "chave": "title",
+    "linha": 63,
+    "original": "Kit Viagem"
+  },
+  "TC-0212": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Escola Segura",
+    "chave": "title",
+    "linha": 13,
+    "original": "Escola Segura"
+  },
+  "TC-0213": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Mochila e Postura",
+    "chave": "title",
+    "linha": 24,
+    "original": "Mochila e Postura"
+  },
+  "TC-0214": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Transporte Escolar",
+    "chave": "title",
+    "linha": 33,
+    "original": "Transporte Escolar"
+  },
+  "TC-0215": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Bullying e Cyberbullying",
+    "chave": "title",
+    "linha": 42,
+    "original": "Bullying e Cyberbullying"
+  },
+  "TC-0216": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Emergências na Escola",
+    "chave": "title",
+    "linha": 51,
+    "original": "Emergências na Escola"
+  },
+  "TC-0217": {
+    "arquivo": "data/safety_school.js",
+    "rotulo": "Volta as aulas",
+    "item": "Lanche Seguro",
+    "chave": "title",
+    "linha": 60,
+    "original": "Lanche Seguro"
+  },
+  "TC-0218": {
+    "arquivo": "data/safety_pregnant.js",
+    "rotulo": "Gestacao",
+    "item": "Segurança da Gestante",
+    "chave": "title",
+    "linha": 3,
+    "original": "Segurança da Gestante"
+  },
+  "TC-0219": {
+    "arquivo": "data/safety_pregnant.js",
+    "rotulo": "Gestacao",
+    "item": "Cinto de Segurança",
+    "chave": "title",
+    "linha": 22,
+    "original": "Cinto de Segurança"
+  },
+  "TC-0220": {
+    "arquivo": "data/safety_pregnant.js",
+    "rotulo": "Gestacao",
+    "item": "Produtos Químicos",
+    "chave": "title",
+    "linha": 31,
+    "original": "Produtos Químicos"
+  },
+  "TC-0221": {
+    "arquivo": "data/safety_pregnant.js",
+    "rotulo": "Gestacao",
+    "item": "Zika e Dengue",
+    "chave": "title",
+    "linha": 49,
+    "original": "Zika e Dengue"
+  },
+  "TC-0222": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Segurança em Condomínio",
+    "chave": "title",
+    "linha": 18,
+    "original": "Segurança em Condomínio"
+  },
+  "TC-0223": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Extintores de Incêndio",
+    "chave": "title",
+    "linha": 29,
+    "original": "Extintores de Incêndio"
+  },
+  "TC-0224": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Saídas de Emergência",
+    "chave": "title",
+    "linha": 38,
+    "original": "Saídas de Emergência"
+  },
+  "TC-0225": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Playground e Parquinho",
+    "chave": "title",
+    "linha": 47,
+    "original": "Playground e Parquinho"
+  },
+  "TC-0226": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Elevadores",
+    "chave": "title",
+    "linha": 57,
+    "original": "Elevadores"
+  },
+  "TC-0227": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Piscinas Coletivas",
+    "chave": "title",
+    "linha": 66,
+    "original": "Piscinas Coletivas"
+  },
+  "TC-0228": {
+    "arquivo": "data/safety_gas.js",
+    "rotulo": "Gas",
+    "item": "Vazamento de Gás (GLP)",
+    "chave": "title",
+    "linha": 29,
+    "original": "Vazamento de Gás (GLP)"
+  },
+  "TC-0229": {
+    "arquivo": "data/safety_gas.js",
+    "rotulo": "Gas",
+    "item": "Verificações de Rotina",
+    "chave": "title",
+    "linha": 84,
+    "original": "Verificações de Rotina"
+  },
+  "TC-0230": {
+    "arquivo": "data/safety_fire.js",
+    "rotulo": "Incendio",
+    "item": "Prevenção de Incêndios",
+    "chave": "title",
+    "linha": 19,
+    "original": "Prevenção de Incêndios"
+  },
+  "TC-0231": {
+    "arquivo": "data/safety_fire.js",
+    "rotulo": "Incendio",
+    "item": "Prevenção de Incêndios",
+    "chave": "subtitle",
+    "linha": 23,
+    "original": "Segurança contra Fogo"
+  },
+  "TC-0232": {
+    "arquivo": "data/safety_fire.js",
+    "rotulo": "Incendio",
+    "item": "Cozinha Segura",
+    "chave": "title",
+    "linha": 33,
+    "original": "Cozinha Segura"
+  },
+  "TC-0233": {
+    "arquivo": "data/safety_fire.js",
+    "rotulo": "Incendio",
+    "item": "Instalações Elétricas",
+    "chave": "title",
+    "linha": 44,
+    "original": "Instalações Elétricas"
+  },
+  "TC-0234": {
+    "arquivo": "data/safety_toys.js",
+    "rotulo": "Brinquedos",
+    "item": "5. Organização Segura",
+    "chave": "title",
+    "linha": 55,
+    "original": "5. Organização Segura"
+  },
+  "TC-0235": {
+    "arquivo": "data/safety_mobility.js",
+    "rotulo": "Mobilidade",
+    "item": "Idosos e Mobilidade",
+    "chave": "title",
+    "linha": 13,
+    "original": "Idosos e Mobilidade"
+  },
+  "TC-0236": {
+    "arquivo": "data/safety_mobility.js",
+    "rotulo": "Mobilidade",
+    "item": "Casa Segura (Quedas)",
+    "chave": "title",
+    "linha": 24,
+    "original": "Casa Segura (Quedas)"
+  },
+  "TC-0237": {
+    "arquivo": "data/safety_mobility.js",
+    "rotulo": "Mobilidade",
+    "item": "Adaptações Simples",
+    "chave": "title",
+    "linha": 33,
+    "original": "Adaptações Simples"
+  },
+  "TC-0238": {
+    "arquivo": "data/safety_mobility.js",
+    "rotulo": "Mobilidade",
+    "item": "Segurança no Banho",
+    "chave": "title",
+    "linha": 42,
+    "original": "Segurança no Banho"
+  },
+  "TC-0239": {
+    "arquivo": "data/safety_mobility.js",
+    "rotulo": "Mobilidade",
+    "item": "Emergência",
+    "chave": "title",
+    "linha": 51,
+    "original": "Emergência"
+  },
+  "TC-0240": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "title",
+    "linha": 37,
+    "original": "Medicamentos"
+  },
+  "TC-0241": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "subtitle",
+    "linha": 45,
+    "original": "Uso contínuo"
+  },
+  "TC-0242": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "subtitle",
+    "linha": 68,
+    "original": "Sintomáticos"
+  },
+  "TC-0243": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "items[]",
+    "linha": 72,
+    "original": "Analgésico e antitérmico"
+  },
+  "TC-0244": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "items[]",
+    "linha": 73,
+    "original": "Anti-inflamatório"
+  },
+  "TC-0245": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "items[]",
+    "linha": 74,
+    "original": "Antialérgico"
+  },
+  "TC-0246": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Medicamentos",
+    "chave": "subtitle",
+    "linha": 94,
+    "original": "Documentação do remédio"
+  },
+  "TC-0247": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "title",
+    "linha": 123,
+    "original": "Primeiros Socorros"
+  },
+  "TC-0248": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 138,
+    "original": "Esparadrapo ou micropore"
+  },
+  "TC-0249": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 139,
+    "original": "Atadura elástica"
+  },
+  "TC-0250": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "subtitle",
+    "linha": 161,
+    "original": "Antissépticos e limpeza"
+  },
+  "TC-0251": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "subtitle",
+    "linha": 181,
+    "original": "Instrumentos"
+  },
+  "TC-0252": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 187,
+    "original": "Termômetro digital"
+  },
+  "TC-0253": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 188,
+    "original": "Luvas descartáveis"
+  },
+  "TC-0254": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "subtitle",
+    "linha": 210,
+    "original": "Específicos"
+  },
+  "TC-0255": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 216,
+    "original": "Analgésico de uso tópico"
+  },
+  "TC-0256": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Primeiros Socorros",
+    "chave": "items[]",
+    "linha": 217,
+    "original": "Colírio lubrificante"
+  },
+  "TC-0257": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "title",
+    "linha": 239,
+    "original": "Higiene e Proteção"
+  },
+  "TC-0258": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "subtitle",
+    "linha": 247,
+    "original": "Higiene pessoal"
+  },
+  "TC-0259": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "subtitle",
+    "linha": 270,
+    "original": "Sol e ambiente"
+  },
+  "TC-0260": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "items[]",
+    "linha": 275,
+    "original": "Protetor labial com FPS"
+  },
+  "TC-0261": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "subtitle",
+    "linha": 293,
+    "original": "Sanitização"
+  },
+  "TC-0262": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Higiene e Proteção",
+    "chave": "items[]",
+    "linha": 297,
+    "original": "Álcool em gel de bolso"
+  },
+  "TC-0263": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Documentos Vitais",
+    "chave": "title",
+    "linha": 319,
+    "original": "Documentos Vitais"
+  },
+  "TC-0264": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Conforto e Hidratação",
+    "chave": "title",
+    "linha": 367,
+    "original": "Conforto e Hidratação"
+  },
+  "TC-0265": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Conforto e Hidratação",
+    "chave": "items[]",
+    "linha": 375,
+    "original": "Sais de reidratação oral"
+  },
+  "TC-0266": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Conforto e Hidratação",
+    "chave": "items[]",
+    "linha": 377,
+    "original": "Lanche não perecível"
+  },
+  "TC-0267": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Lazer",
+    "chave": "title",
+    "linha": 417,
+    "original": "Módulo de Lazer"
+  },
+  "TC-0268": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Lazer",
+    "chave": "items[]",
+    "linha": 423,
+    "original": "Protetor solar e pós-sol"
+  },
+  "TC-0269": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Lazer",
+    "chave": "items[]",
+    "linha": 423,
+    "original": "Óculos de sol e chapéu"
+  },
+  "TC-0270": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Lazer",
+    "chave": "items[]",
+    "linha": 423,
+    "original": "Roupas de banho"
+  },
+  "TC-0271": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Lazer",
+    "chave": "items[]",
+    "linha": 423,
+    "original": "Brinquedos ou livros"
+  },
+  "TC-0272": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo de Trabalho",
+    "chave": "title",
+    "linha": 432,
+    "original": "Módulo de Trabalho"
+  },
+  "TC-0273": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Pet",
+    "chave": "title",
+    "linha": 448,
+    "original": "Módulo Pet"
+  },
+  "TC-0274": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Pet",
+    "chave": "items[]",
+    "linha": 461,
+    "original": "Saquinhos coletores"
+  },
+  "TC-0275": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Infantil",
+    "chave": "title",
+    "linha": 487,
+    "original": "Módulo Infantil"
+  },
+  "TC-0276": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Praia e Resort",
+    "chave": "title",
+    "linha": 559,
+    "original": "Módulo Praia e Resort"
+  },
+  "TC-0277": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Campo e Natureza",
+    "chave": "title",
+    "linha": 591,
+    "original": "Módulo Campo e Natureza"
+  },
+  "TC-0278": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Campo e Natureza",
+    "chave": "items[]",
+    "linha": 600,
+    "original": "Capa de chuva leve"
+  },
+  "TC-0279": {
+    "arquivo": "data/kits/bagagem_viagem.js",
+    "rotulo": "Bagagem de viagem",
+    "item": "Módulo Internacional",
+    "chave": "title",
+    "linha": 627,
+    "original": "Módulo Internacional"
+  },
+  "TC-0280": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 3,
+    "original": "Pilhas extras"
+  },
+  "TC-0281": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 4,
+    "original": "Powerbank carregado"
+  },
+  "TC-0282": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 6,
+    "original": "Alimentos não perecíveis"
+  },
+  "TC-0283": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 9,
+    "original": "Dinheiro em espécie"
+  },
+  "TC-0284": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 10,
+    "original": "Capa de chuva"
+  },
+  "TC-0285": {
+    "arquivo": "data/kits/emergency.js",
+    "rotulo": "Kit de emergencia",
+    "item": "(sem titulo)",
+    "chave": "text",
+    "linha": 11,
+    "original": "Canivete multiuso"
+  },
+  "TC-0286": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Martelo",
+    "chave": "desc",
+    "linha": 2,
+    "original": "Para pregos e ajustes"
+  },
+  "TC-0287": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Chave de Fenda",
+    "chave": "name",
+    "linha": 3,
+    "original": "Chave de Fenda"
+  },
+  "TC-0288": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Chave de Fenda",
+    "chave": "desc",
+    "linha": 3,
+    "original": "Ponta chata"
+  },
+  "TC-0289": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Chave Philips",
+    "chave": "name",
+    "linha": 4,
+    "original": "Chave Philips"
+  },
+  "TC-0290": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Chave Philips",
+    "chave": "desc",
+    "linha": 4,
+    "original": "Ponta cruzada"
+  },
+  "TC-0291": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Alicate Universal",
+    "chave": "name",
+    "linha": 5,
+    "original": "Alicate Universal"
+  },
+  "TC-0292": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Alicate Universal",
+    "chave": "desc",
+    "linha": 5,
+    "original": "Corte e torção"
+  },
+  "TC-0293": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Fita Isolante",
+    "chave": "name",
+    "linha": 6,
+    "original": "Fita Isolante"
+  },
+  "TC-0294": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Veda Rosca",
+    "chave": "name",
+    "linha": 7,
+    "original": "Veda Rosca"
+  },
+  "TC-0295": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Veda Rosca",
+    "chave": "desc",
+    "linha": 7,
+    "original": "Para vazamentos em canos"
+  },
+  "TC-0296": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Estilete",
+    "chave": "desc",
+    "linha": 9,
+    "original": "Corte preciso"
+  },
+  "TC-0297": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Lanterna de cabeça",
+    "chave": "name",
+    "linha": 10,
+    "original": "Lanterna de cabeça"
+  },
+  "TC-0298": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "Lanterna de cabeça",
+    "chave": "desc",
+    "linha": 10,
+    "original": "Mãos livres"
+  },
+  "TC-0299": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "WD-40 / Lubrificante",
+    "chave": "name",
+    "linha": 11,
+    "original": "WD-40 / Lubrificante"
+  },
+  "TC-0300": {
+    "arquivo": "data/kits/tools.js",
+    "rotulo": "Kit de ferramentas",
+    "item": "WD-40 / Lubrificante",
+    "chave": "desc",
+    "linha": 11,
+    "original": "Desemperrar peças"
+  },
+  "TC-0301": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Analgésico",
+    "chave": "name",
+    "linha": 2,
+    "original": "Analgésico"
+  },
+  "TC-0302": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antitérmico",
+    "chave": "name",
+    "linha": 3,
+    "original": "Antitérmico"
+  },
+  "TC-0303": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antitérmico",
+    "chave": "desc",
+    "linha": 3,
+    "original": "Controle de febre"
+  },
+  "TC-0304": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antialérgico",
+    "chave": "name",
+    "linha": 4,
+    "original": "Antialérgico"
+  },
+  "TC-0305": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antialérgico",
+    "chave": "desc",
+    "linha": 4,
+    "original": "Para reações alérgicas"
+  },
+  "TC-0306": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Termômetro",
+    "chave": "name",
+    "linha": 5,
+    "original": "Termômetro"
+  },
+  "TC-0307": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Termômetro",
+    "chave": "desc",
+    "linha": 5,
+    "original": "Digital ou mercúrio"
+  },
+  "TC-0308": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Curativos adesivos",
+    "chave": "name",
+    "linha": 6,
+    "original": "Curativos adesivos"
+  },
+  "TC-0309": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Curativos adesivos",
+    "chave": "desc",
+    "linha": 6,
+    "original": "Vários tamanhos"
+  },
+  "TC-0310": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antisséptico",
+    "chave": "name",
+    "linha": 7,
+    "original": "Antisséptico"
+  },
+  "TC-0311": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Antisséptico",
+    "chave": "desc",
+    "linha": 7,
+    "original": "Spray ou solução"
+  },
+  "TC-0312": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Gaze e Esparadrapo",
+    "chave": "name",
+    "linha": 8,
+    "original": "Gaze e Esparadrapo"
+  },
+  "TC-0313": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Gaze e Esparadrapo",
+    "chave": "desc",
+    "linha": 8,
+    "original": "Para curativos maiores"
+  },
+  "TC-0314": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Medicamentos de uso contínuo",
+    "chave": "desc",
+    "linha": 9,
+    "original": "Estoque de segurança"
+  },
+  "TC-0315": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Soro Fisiológico",
+    "chave": "name",
+    "linha": 10,
+    "original": "Soro Fisiológico"
+  },
+  "TC-0316": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Pomada para queimaduras",
+    "chave": "name",
+    "linha": 11,
+    "original": "Pomada para queimaduras"
+  },
+  "TC-0317": {
+    "arquivo": "data/kits/medicines.js",
+    "rotulo": "Kit de medicamentos",
+    "item": "Pomada para queimaduras",
+    "chave": "desc",
+    "linha": 11,
+    "original": "Alívio imediato"
+  },
+  "TC-0318": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de queimadura",
+    "chave": "titulo",
+    "linha": 23,
+    "original": "Risco de queimadura"
+  },
+  "TC-0319": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de choque elétrico",
+    "chave": "titulo",
+    "linha": 37,
+    "original": "Risco de choque elétrico"
+  },
+  "TC-0320": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de afogamento",
+    "chave": "titulo",
+    "linha": 51,
+    "original": "Risco de afogamento"
+  },
+  "TC-0321": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de intoxicação",
+    "chave": "titulo",
+    "linha": 65,
+    "original": "Risco de intoxicação"
+  },
+  "TC-0322": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de corte",
+    "chave": "titulo",
+    "linha": 79,
+    "original": "Risco de corte"
+  },
+  "TC-0323": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de queda",
+    "chave": "titulo",
+    "linha": 93,
+    "original": "Risco de queda"
+  },
+  "TC-0324": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de tombamento",
+    "chave": "titulo",
+    "linha": 107,
+    "original": "Risco de tombamento"
+  },
+  "TC-0325": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de sufocamento",
+    "chave": "titulo",
+    "linha": 121,
+    "original": "Risco de sufocamento"
+  },
+  "TC-0326": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de asfixia",
+    "chave": "titulo",
+    "linha": 135,
+    "original": "Risco de asfixia"
+  },
+  "TC-0327": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de estrangulamento",
+    "chave": "titulo",
+    "linha": 149,
+    "original": "Risco de estrangulamento"
+  },
+  "TC-0328": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de esmagamento",
+    "chave": "titulo",
+    "linha": 163,
+    "original": "Risco de esmagamento"
+  },
+  "TC-0329": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de incêndio",
+    "chave": "titulo",
+    "linha": 177,
+    "original": "Risco de incêndio"
+  },
+  "TC-0330": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de explosão",
+    "chave": "titulo",
+    "linha": 205,
+    "original": "Risco de explosão"
+  },
+  "TC-0331": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de atropelamento",
+    "chave": "titulo",
+    "linha": 233,
+    "original": "Risco de atropelamento"
+  },
+  "TC-0332": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de aprisionamento",
+    "chave": "titulo",
+    "linha": 247,
+    "original": "Risco de aprisionamento"
+  },
+  "TC-0333": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de contaminação",
+    "chave": "titulo",
+    "linha": 275,
+    "original": "Risco de contaminação"
+  },
+  "TC-0334": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de pragas",
+    "chave": "titulo",
+    "linha": 289,
+    "original": "Risco de pragas"
+  },
+  "TC-0335": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de tétano",
+    "chave": "titulo",
+    "linha": 303,
+    "original": "Risco de tétano"
+  },
+  "TC-0336": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de vazamento",
+    "chave": "titulo",
+    "linha": 317,
+    "original": "Risco de vazamento"
+  },
+  "TC-0337": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco crítico",
+    "chave": "titulo",
+    "linha": 333,
+    "original": "Risco crítico"
+  },
+  "TC-0338": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Ponto de atenção",
+    "chave": "titulo",
+    "linha": 348,
+    "original": "Ponto de atenção"
+  },
+  "TC-0339": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Pipas na Rede Elétrica",
+    "chave": "nome",
+    "linha": 166,
+    "original": "Pipas na Rede Elétrica"
+  },
+  "TC-0340": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "O Choque do Resgatista",
+    "chave": "nome",
+    "linha": 247,
+    "original": "O Choque do Resgatista"
+  },
+  "TC-0341": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Armas de Fogo",
+    "chave": "nome",
+    "linha": 275,
+    "original": "Armas de Fogo"
+  },
+  "TC-0342": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Sufocação e Engasgo",
+    "chave": "nome",
+    "linha": 421,
+    "original": "Sufocação e Engasgo"
+  },
+  "TC-0343": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Cortes Profundos",
+    "chave": "nome",
+    "linha": 447,
+    "original": "Cortes Profundos"
+  },
+  "TC-0344": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "E-bikes e Bicicletas",
+    "chave": "nome",
+    "linha": 473,
+    "original": "E-bikes e Bicicletas"
+  },
+  "TC-0345": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Lesões em Parquinhos",
+    "chave": "nome",
+    "linha": 489,
+    "original": "Lesões em Parquinhos"
+  },
+  "TC-0346": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Queimaduras em Eventos",
+    "chave": "nome",
+    "linha": 515,
+    "original": "Queimaduras em Eventos"
+  },
+  "TC-0347": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 50,
+    "original": "Forno Baixo / Embutido"
+  },
+  "TC-0348": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 76,
+    "original": "Área de Serviço"
+  },
+  "TC-0349": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 102,
+    "original": "Ferro de Passar Roupas"
+  },
+  "TC-0350": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 124,
+    "original": "Box de Vidro"
+  },
+  "TC-0351": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 135,
+    "original": "Tapetes de Tecido Soltos"
+  },
+  "TC-0352": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 160,
+    "original": "Sala e Quartos"
+  },
+  "TC-0353": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 212,
+    "original": "Quintal e Jardim"
+  },
+  "TC-0354": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 240,
+    "original": "Piscina e Fontes de Água"
+  },
+  "TC-0355": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 255,
+    "original": "Circulação e Estrutura"
+  },
+  "TC-0356": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 272,
+    "original": "Janelas e Sacadas Altas"
+  },
+  "TC-0357": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 297,
+    "original": "Garagem e Oficina"
+  },
+  "TC-0358": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Festas e Eventos",
+    "chave": "title",
+    "linha": 4,
+    "original": "Festas e Eventos"
+  },
+  "TC-0359": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "title",
+    "linha": 116,
+    "original": "Visitação Segura"
+  },
+  "TC-0360": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "text",
+    "linha": 159,
+    "original": "Tampou tomadas baixas?"
+  },
+  "TC-0361": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Reformas e Obras",
+    "chave": "title",
+    "linha": 221,
+    "original": "Reformas e Obras"
+  },
+  "TC-0362": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Mudança de Residência",
+    "chave": "title",
+    "linha": 302,
+    "original": "Mudança de Residência"
+  },
+  "TC-0363": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Mudança de Residência",
+    "chave": "subtitle",
+    "linha": 303,
+    "original": "Segurança no novo lar"
+  },
+  "TC-0364": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Monitorando Crianças",
+    "chave": "title",
+    "linha": 366,
+    "original": "Monitorando Crianças"
+  },
+  "TC-0365": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "title",
+    "linha": 434,
+    "original": "Serviços em Altura"
+  },
+  "TC-0366": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 458,
+    "original": "Sim (Escada)"
+  },
+  "TC-0367": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 459,
+    "original": "Usei cadeira"
+  },
+  "TC-0368": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 469,
+    "original": "Estou sozinho"
+  },
+  "TC-0369": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 494,
+    "original": "Sim, evito"
+  },
+  "TC-0370": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 505,
+    "original": "Sim (Contratei)"
+  },
+  "TC-0371": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Serviços em Altura",
+    "chave": "label",
+    "linha": 506,
+    "original": "Vou eu mesmo"
+  },
+  "TC-0372": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Faxina Pesada",
+    "chave": "title",
+    "linha": 513,
+    "original": "Faxina Pesada"
+  },
+  "TC-0373": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Faxina Pesada",
+    "chave": "label",
+    "linha": 546,
+    "original": "Sim (Não misturo)"
+  },
+  "TC-0374": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Faxina Pesada",
+    "chave": "label",
+    "linha": 547,
+    "original": "Não (Misturo)"
+  },
+  "TC-0375": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Lar Neurodiverso",
+    "chave": "title",
+    "linha": 2,
+    "original": "Lar Neurodiverso"
+  },
+  "TC-0376": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Fuga e Perambulação",
+    "chave": "title",
+    "linha": 11,
+    "original": "Fuga e Perambulação"
+  },
+  "TC-0377": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Atração Fatal por Água",
+    "chave": "title",
+    "linha": 37,
+    "original": "Atração Fatal por Água"
+  },
+  "TC-0378": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Janelas e Alturas",
+    "chave": "title",
+    "linha": 102,
+    "original": "Janelas e Alturas"
+  },
+  "TC-0379": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Bebê Conforto",
+    "chave": "nome",
+    "linha": 113,
+    "original": "Bebê Conforto"
+  },
+  "TC-0380": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Cadeirinha",
+    "chave": "nome",
+    "linha": 230,
+    "original": "Cadeirinha"
+  },
+  "TC-0381": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "regrasSeguranca[]",
+    "linha": 588,
+    "original": "Reduzir nos cruzamentos"
+  },
+  "TC-0382": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "regrasSeguranca[]",
+    "linha": 667,
+    "original": "Conferir o freio"
+  },
+  "TC-0383": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "regrasSeguranca[]",
+    "linha": 683,
+    "original": "Longe do trânsito"
+  },
+  "TC-0384": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "acao",
+    "linha": 737,
+    "original": "NÃO atravesse — aguarde"
+  },
+  "TC-0385": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "fatoresRisco[]",
+    "linha": 761,
+    "original": "Muito trânsito"
+  },
+  "TC-0386": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "fatoresRisco[]",
+    "linha": 765,
+    "original": "Ruas escuras"
+  },
+  "TC-0387": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "fatoresRisco[]",
+    "linha": 767,
+    "original": "Horários de pico"
+  },
+  "TC-0388": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "fatoresRisco[]",
+    "linha": 768,
+    "original": "Chuva e neblina"
+  },
+  "TC-0389": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Bicicleta Elétrica",
+    "chave": "nome",
+    "linha": 1053,
+    "original": "Bicicleta Elétrica"
+  },
+  "TC-0390": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Bicicleta Elétrica",
+    "chave": "caracteristicas[]",
+    "linha": 1057,
+    "original": "Tem motor e pedal"
+  },
+  "TC-0391": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Bicicleta Elétrica",
+    "chave": "caracteristicas[]",
+    "linha": 1059,
+    "original": "Sem acelerador no punho"
+  },
+  "TC-0392": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Bicicleta Elétrica",
+    "chave": "ondeAndar",
+    "linha": 1062,
+    "original": "Ciclovias e ciclofaixas."
+  },
+  "TC-0393": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Autopropelidos",
+    "chave": "nome",
+    "linha": 1066,
+    "original": "Autopropelidos"
+  },
+  "TC-0394": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Autopropelidos",
+    "chave": "caracteristicas[]",
+    "linha": 1071,
+    "original": "Têm acelerador"
+  },
+  "TC-0395": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Ciclomotor",
+    "chave": "nome",
+    "linha": 1078,
+    "original": "Ciclomotor"
+  },
+  "TC-0396": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Ciclomotor",
+    "chave": "caracteristicas[]",
+    "linha": 1082,
+    "original": "Modelos mais potentes"
+  },
+  "TC-0397": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Ciclomotor",
+    "chave": "caracteristicas[]",
+    "linha": 1083,
+    "original": "Exigem emplacamento"
+  },
+  "TC-0398": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "(sem titulo)",
+    "chave": "prevencao[]",
+    "linha": 1111,
+    "original": "Use capacete"
+  },
+  "TC-0399": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Escola Segura",
+    "chave": "nome",
+    "linha": 16,
+    "original": "Escola Segura"
+  },
+  "TC-0400": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Estrutura Física",
+    "chave": "nome",
+    "linha": 38,
+    "original": "Estrutura Física"
+  },
+  "TC-0401": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "texto",
+    "linha": 291,
+    "original": "Piso antiderrapante"
+  },
+  "TC-0402": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "texto",
+    "linha": 301,
+    "original": "Iluminação adequada"
+  },
+  "TC-0403": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "texto",
+    "linha": 311,
+    "original": "Ventilação adequada"
+  },
+  "TC-0404": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Piscina (se houver)",
+    "chave": "nome",
+    "linha": 518,
+    "original": "Piscina (se houver)"
+  },
+  "TC-0405": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Piscina (se houver)",
+    "chave": "texto",
+    "linha": 577,
+    "original": "Bordas antiderrapantes"
+  },
+  "TC-0406": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Piscina (se houver)",
+    "chave": "texto",
+    "linha": 617,
+    "original": "Água tratada e limpa"
+  },
+  "TC-0407": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Refeitório/Cantina",
+    "chave": "nome",
+    "linha": 630,
+    "original": "Refeitório/Cantina"
+  },
+  "TC-0408": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Refeitório/Cantina",
+    "chave": "texto",
+    "linha": 669,
+    "original": "Água potável disponível"
+  },
+  "TC-0409": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Segurança Geral",
+    "chave": "nome",
+    "linha": 702,
+    "original": "Segurança Geral"
+  },
+  "TC-0410": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Equipe e Capacitação",
+    "chave": "nome",
+    "linha": 814,
+    "original": "Equipe e Capacitação"
+  },
+  "TC-0411": {
+    "arquivo": "data/asilo_seguro_data.js",
+    "rotulo": "Instituicao de longa permanencia",
+    "item": "Asilo Seguro",
+    "chave": "nome",
+    "linha": 11,
+    "original": "Asilo Seguro"
+  },
+  "TC-0412": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Carregadores e Cabos USB",
+    "chave": "nome",
+    "linha": 12,
+    "original": "Carregadores e Cabos USB"
+  },
+  "TC-0413": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Power Banks",
+    "chave": "nome",
+    "linha": 112,
+    "original": "Power Banks"
+  },
+  "TC-0414": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Consoles de Videogame",
+    "chave": "nome",
+    "linha": 250,
+    "original": "Consoles de Videogame"
+  },
+  "TC-0415": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Fogão e Cooktop",
+    "chave": "nome",
+    "linha": 12,
+    "original": "Fogão e Cooktop"
+  },
+  "TC-0416": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Chuveiro Elétrico",
+    "chave": "nome",
+    "linha": 61,
+    "original": "Chuveiro Elétrico"
+  },
+  "TC-0417": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Máquina de Lavar Roupa",
+    "chave": "nome",
+    "linha": 108,
+    "original": "Máquina de Lavar Roupa"
+  },
+  "TC-0418": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Geladeira e Freezer",
+    "chave": "nome",
+    "linha": 158,
+    "original": "Geladeira e Freezer"
+  },
+  "TC-0419": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Micro-ondas",
+    "chave": "nome",
+    "linha": 253,
+    "original": "Micro-ondas"
+  },
+  "TC-0420": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Ar-Condicionado",
+    "chave": "nome",
+    "linha": 352,
+    "original": "Ar-Condicionado"
+  },
+  "TC-0421": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Ferro de Passar",
+    "chave": "nome",
+    "linha": 399,
+    "original": "Ferro de Passar"
+  },
+  "TC-0422": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Forno Elétrico",
+    "chave": "nome",
+    "linha": 497,
+    "original": "Forno Elétrico"
+  },
+  "TC-0423": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Ventilador",
+    "chave": "nome",
+    "linha": 544,
+    "original": "Ventilador"
+  },
+  "TC-0424": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aspirador de Pó",
+    "chave": "nome",
+    "linha": 586,
+    "original": "Aspirador de Pó"
+  },
+  "TC-0425": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Utensílios de Plástico",
+    "chave": "nome",
+    "linha": 115,
+    "original": "Utensílios de Plástico"
+  },
+  "TC-0426": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Escadas Domésticas",
+    "chave": "nome",
+    "linha": 162,
+    "original": "Escadas Domésticas"
+  },
+  "TC-0427": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Panelas Antiaderentes",
+    "chave": "nome",
+    "linha": 217,
+    "original": "Panelas Antiaderentes"
+  },
+  "TC-0428": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Tapetes e Passadeiras",
+    "chave": "nome",
+    "linha": 304,
+    "original": "Tapetes e Passadeiras"
+  },
+  "TC-0429": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Fósforos e Isqueiros",
+    "chave": "nome",
+    "linha": 347,
+    "original": "Fósforos e Isqueiros"
+  },
+  "TC-0430": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Sacos Plásticos",
+    "chave": "nome",
+    "linha": 394,
+    "original": "Sacos Plásticos"
+  },
+  "TC-0431": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetores de Porta",
+    "chave": "nome",
+    "linha": 58,
+    "original": "Protetores de Porta"
+  },
+  "TC-0432": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Prendedores de Portas",
+    "chave": "nome",
+    "linha": 100,
+    "original": "Prendedores de Portas"
+  },
+  "TC-0433": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetor Veda Portas",
+    "chave": "nome",
+    "linha": 139,
+    "original": "Protetor Veda Portas"
+  },
+  "TC-0434": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetores de Quina",
+    "chave": "nome",
+    "linha": 176,
+    "original": "Protetores de Quina"
+  },
+  "TC-0435": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Armários",
+    "chave": "nome",
+    "linha": 213,
+    "original": "Trava de Armários"
+  },
+  "TC-0436": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Maçaneta",
+    "chave": "nome",
+    "linha": 251,
+    "original": "Trava de Maçaneta"
+  },
+  "TC-0437": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Adesivos Antiderrapantes",
+    "chave": "nome",
+    "linha": 293,
+    "original": "Adesivos Antiderrapantes"
+  },
+  "TC-0438": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Gavetas",
+    "chave": "nome",
+    "linha": 331,
+    "original": "Trava de Gavetas"
+  },
+  "TC-0439": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Luvas Térmicas",
+    "chave": "nome",
+    "linha": 416,
+    "original": "Luvas Térmicas"
+  },
+  "TC-0440": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetores de Tomada",
+    "chave": "nome",
+    "linha": 502,
+    "original": "Protetores de Tomada"
+  },
+  "TC-0441": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barreiras Eletrônicas",
+    "chave": "nome",
+    "linha": 573,
+    "original": "Barreiras Eletrônicas"
+  },
+  "TC-0442": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Detector de Fumaça e Gás",
+    "chave": "nome",
+    "linha": 743,
+    "original": "Detector de Fumaça e Gás"
+  },
+  "TC-0443": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Telas de Proteção",
+    "chave": "nome",
+    "linha": 829,
+    "original": "Telas de Proteção"
+  },
+  "TC-0444": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Limpeza Doméstica",
+    "chave": "titulo",
+    "linha": 7,
+    "original": "Limpeza Doméstica"
+  },
+  "TC-0445": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Limpeza Doméstica",
+    "chave": "subtitulo",
+    "linha": 8,
+    "original": "Produtos Químicos"
+  },
+  "TC-0446": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Jardinagem",
+    "chave": "titulo",
+    "linha": 52,
+    "original": "Jardinagem"
+  },
+  "TC-0447": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Jardinagem",
+    "chave": "subtitulo",
+    "linha": 53,
+    "original": "Pesticidas e Adubos"
+  },
+  "TC-0448": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Jardinagem",
+    "chave": "comoIdentificar[]",
+    "linha": 62,
+    "original": "Herbicidas (Mata-mato)."
+  },
+  "TC-0449": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Jardinagem",
+    "chave": "comoIdentificar[]",
+    "linha": 63,
+    "original": "Adubos químicos (NPK)."
+  },
+  "TC-0450": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Jardinagem",
+    "chave": "comoEvitar[]",
+    "linha": 78,
+    "original": "Usar luvas ao manusear."
+  },
+  "TC-0451": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Manutenção",
+    "chave": "titulo",
+    "linha": 96,
+    "original": "Manutenção"
+  },
+  "TC-0452": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Manutenção",
+    "chave": "subtitulo",
+    "linha": 97,
+    "original": "Tintas e Solventes"
+  },
+  "TC-0453": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Manutenção",
+    "chave": "comoIdentificar[]",
+    "linha": 105,
+    "original": "Latas de tinta abertas."
+  },
+  "TC-0454": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Manutenção",
+    "chave": "comoEvitar[]",
+    "linha": 122,
+    "original": "Usar máscara ao pintar."
+  },
+  "TC-0455": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Manutenção",
+    "chave": "comoEvitar[]",
+    "linha": 123,
+    "original": "Manter local ventilado."
+  },
+  "TC-0456": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Medicamentos",
+    "chave": "titulo",
+    "linha": 140,
+    "original": "Medicamentos"
+  },
+  "TC-0457": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Medicamentos",
+    "chave": "comoIdentificar[]",
+    "linha": 149,
+    "original": "Xaropes doces."
+  },
+  "TC-0458": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Medicamentos",
+    "chave": "comoIdentificar[]",
+    "linha": 150,
+    "original": "Comprimidos coloridos."
+  },
+  "TC-0459": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Sala de Estar",
+    "chave": "titulo",
+    "linha": 6,
+    "original": "Sala de Estar"
+  },
+  "TC-0460": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Sala de Jantar",
+    "chave": "titulo",
+    "linha": 62,
+    "original": "Sala de Jantar"
+  },
+  "TC-0461": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Sala de Jantar",
+    "chave": "riscos",
+    "linha": 66,
+    "original": "Queimaduras, cortes."
+  },
+  "TC-0462": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Cozinha e Copa",
+    "chave": "titulo",
+    "linha": 104,
+    "original": "Cozinha e Copa"
+  },
+  "TC-0463": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Área de Serviço",
+    "chave": "titulo",
+    "linha": 200,
+    "original": "Área de Serviço"
+  },
+  "TC-0464": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto do Bebê",
+    "chave": "titulo",
+    "linha": 246,
+    "original": "Quarto do Bebê"
+  },
+  "TC-0465": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto do Bebê",
+    "chave": "riscos",
+    "linha": 250,
+    "original": "Sufocamento, quedas."
+  },
+  "TC-0466": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto de Criança",
+    "chave": "titulo",
+    "linha": 290,
+    "original": "Quarto de Criança"
+  },
+  "TC-0467": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto de Criança",
+    "chave": "riscos",
+    "linha": 294,
+    "original": "Quedas, tombamento."
+  },
+  "TC-0468": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto Adolescente",
+    "chave": "titulo",
+    "linha": 333,
+    "original": "Quarto Adolescente"
+  },
+  "TC-0469": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto Adolescente",
+    "chave": "riscos",
+    "linha": 337,
+    "original": "Elétricos, bagunça."
+  },
+  "TC-0470": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto Adulto",
+    "chave": "titulo",
+    "linha": 368,
+    "original": "Quarto Adulto"
+  },
+  "TC-0471": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto de Idoso",
+    "chave": "titulo",
+    "linha": 403,
+    "original": "Quarto de Idoso"
+  },
+  "TC-0472": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto de Idoso",
+    "chave": "riscos",
+    "linha": 407,
+    "original": "Quedas graves."
+  },
+  "TC-0473": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Escadas",
+    "chave": "riscos",
+    "linha": 503,
+    "original": "Quedas fatais."
+  },
+  "TC-0474": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Central de Gás",
+    "chave": "titulo",
+    "linha": 585,
+    "original": "Central de Gás"
+  },
+  "TC-0475": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Central de Gás",
+    "chave": "riscos",
+    "linha": 589,
+    "original": "Explosão, vazamento."
+  },
+  "TC-0476": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Armários Gerais",
+    "chave": "titulo",
+    "linha": 629,
+    "original": "Armários Gerais"
+  },
+  "TC-0477": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Varanda / Sacada",
+    "chave": "titulo",
+    "linha": 664,
+    "original": "Varanda / Sacada"
+  },
+  "TC-0478": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Varanda / Sacada",
+    "chave": "riscos",
+    "linha": 668,
+    "original": "Queda de altura."
+  },
+  "TC-0479": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Acessibilidade (PCD)",
+    "chave": "titulo",
+    "linha": 704,
+    "original": "Acessibilidade (PCD)"
+  },
+  "TC-0480": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Jardinagem e Hortas",
+    "chave": "titulo",
+    "linha": 49,
+    "original": "Jardinagem e Hortas"
+  },
+  "TC-0481": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Praia, Rios e Lagos",
+    "chave": "titulo",
+    "linha": 187,
+    "original": "Praia, Rios e Lagos"
+  },
+  "TC-0482": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Oficina Doméstica",
+    "chave": "titulo",
+    "linha": 227,
+    "original": "Oficina Doméstica"
+  },
+  "TC-0483": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Depósito \"Guarda-Tudo\"",
+    "chave": "titulo",
+    "linha": 268,
+    "original": "Depósito \"Guarda-Tudo\""
+  },
+  "TC-0484": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Idosos Fora de Casa",
+    "chave": "title",
+    "linha": 39,
+    "original": "Idosos Fora de Casa"
+  },
+  "TC-0485": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Crianças e Água",
+    "chave": "title",
+    "linha": 51,
+    "original": "Crianças e Água"
+  },
+  "TC-0486": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Pet em Ambiente Novo",
+    "chave": "title",
+    "linha": 63,
+    "original": "Pet em Ambiente Novo"
+  },
+  "TC-0487": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Campo e Natureza",
+    "chave": "title",
+    "linha": 112,
+    "original": "Campo e Natureza"
+  },
+  "TC-0488": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Grandes Cidades",
+    "chave": "title",
+    "linha": 124,
+    "original": "Grandes Cidades"
+  },
+  "TC-0489": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Viagem de Trabalho",
+    "chave": "title",
+    "linha": 136,
+    "original": "Viagem de Trabalho"
+  },
+  "TC-0490": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Fora do País",
+    "chave": "title",
+    "linha": 148,
+    "original": "Fora do País"
+  },
+  "TC-0491": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Brincadeiras ao Ar Livre",
+    "chave": "title",
+    "linha": 173,
+    "original": "Brincadeiras ao Ar Livre"
+  },
+  "TC-0492": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Distração Digital",
+    "chave": "title",
+    "linha": 185,
+    "original": "Distração Digital"
+  },
+  "TC-0493": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Passeios Escolares",
+    "chave": "title",
+    "linha": 197,
+    "original": "Passeios Escolares"
+  },
+  "TC-0494": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Crianças e Pets no Carro",
+    "chave": "title",
+    "linha": 360,
+    "original": "Crianças e Pets no Carro"
+  },
+  "TC-0495": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 373,
+    "original": "Área Rural"
+  },
+  "TC-0496": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 376,
+    "original": "Área Urbana"
+  },
+  "TC-0497": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 378,
+    "original": "Resort e Lazer"
+  },
+  "TC-0498": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Janelas e Sacadas",
+    "chave": "title",
+    "linha": 36,
+    "original": "Janelas e Sacadas"
+  },
+  "TC-0499": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Animais e Plantas",
+    "chave": "title",
+    "linha": 39,
+    "original": "Animais e Plantas"
+  },
+  "TC-0500": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Distância Médica",
+    "chave": "title",
+    "linha": 41,
+    "original": "Distância Médica"
+  },
+  "TC-0501": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Crianças em Viagem",
+    "chave": "title",
+    "linha": 43,
+    "original": "Crianças em Viagem"
+  },
+  "TC-0502": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Idosos em Viagem",
+    "chave": "title",
+    "linha": 45,
+    "original": "Idosos em Viagem"
+  },
+  "TC-0503": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Pets em Viagem",
+    "chave": "title",
+    "linha": 47,
+    "original": "Pets em Viagem"
+  },
+  "TC-0504": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Plano de Fuga",
+    "chave": "title",
+    "linha": 50,
+    "original": "Plano de Fuga"
+  },
+  "TC-0505": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "PCD / Acessibilidade",
+    "chave": "title",
+    "linha": 51,
+    "original": "PCD / Acessibilidade"
+  },
+  "TC-0506": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Documentos e Vistos",
+    "chave": "title",
+    "linha": 54,
+    "original": "Documentos e Vistos"
+  },
+  "TC-0507": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Saúde e Vacinas",
+    "chave": "title",
+    "linha": 56,
+    "original": "Saúde e Vacinas"
+  },
+  "TC-0508": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Medicamentos na Viagem",
+    "chave": "title",
+    "linha": 60,
+    "original": "Medicamentos na Viagem"
+  },
+  "TC-0509": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Logística Internacional",
+    "chave": "title",
+    "linha": 62,
+    "original": "Logística Internacional"
+  },
+  "TC-0510": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Fadiga ao Volante",
+    "chave": "title",
+    "linha": 65,
+    "original": "Fadiga ao Volante"
+  },
+  "TC-0511": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Risco de Trombose (TVP)",
+    "chave": "title",
+    "linha": 68,
+    "original": "Risco de Trombose (TVP)"
+  },
+  "TC-0512": {
+    "arquivo": "components/TravelTipsAccordion.js",
+    "rotulo": "Modo Viagem — Fique atento",
+    "item": "Cinto de Segurança",
+    "chave": "title",
+    "linha": 75,
+    "original": "Cinto de Segurança"
+  },
+  "TC-0513": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Na Estrada (Carro)",
+    "chave": "local",
+    "linha": 25,
+    "original": "Na Estrada (Carro)"
+  },
+  "TC-0514": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Na Estrada (Carro)",
+    "chave": "riscosPrincipais[]",
+    "linha": 34,
+    "original": "Acidentes de trânsito"
+  },
+  "TC-0515": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Na Estrada (Carro)",
+    "chave": "riscosPrincipais[]",
+    "linha": 35,
+    "original": "Falhas mecânicas"
+  },
+  "TC-0516": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Na Estrada (Carro)",
+    "chave": "riscosPrincipais[]",
+    "linha": 36,
+    "original": "Enjoos em crianças"
+  },
+  "TC-0517": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Hotel e Airbnb",
+    "chave": "local",
+    "linha": 103,
+    "original": "Hotel e Airbnb"
+  },
+  "TC-0518": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Hotel e Airbnb",
+    "chave": "riscosPrincipais[]",
+    "linha": 114,
+    "original": "Móveis instáveis"
+  },
+  "TC-0519": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Hotel e Airbnb",
+    "chave": "riscosPrincipais[]",
+    "linha": 116,
+    "original": "Tomadas desprotegidas"
+  },
+  "TC-0520": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Aeroporto e Avião",
+    "chave": "local",
+    "linha": 179,
+    "original": "Aeroporto e Avião"
+  },
+  "TC-0521": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Aeroporto e Avião",
+    "chave": "riscosPrincipais[]",
+    "linha": 189,
+    "original": "Perder-se na multidão"
+  },
+  "TC-0522": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Aeroporto e Avião",
+    "chave": "riscosPrincipais[]",
+    "linha": 191,
+    "original": "Germes e vírus"
+  },
+  "TC-0523": {
+    "arquivo": "screens/SegurancaFeriasScreen.js",
+    "rotulo": "Seguranca nas Ferias",
+    "item": "Documentos e Bagagem",
+    "chave": "local",
+    "linha": 252,
+    "original": "Documentos e Bagagem"
+  },
+  "TC-0524": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Rio e Lago",
+    "chave": "local",
+    "linha": 113,
+    "original": "Rio e Lago"
+  },
+  "TC-0525": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Rio e Lago",
+    "chave": "riscosPrincipais[]",
+    "linha": 122,
+    "original": "Correntezas invisíveis"
+  },
+  "TC-0526": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Rio e Lago",
+    "chave": "riscosPrincipais[]",
+    "linha": 124,
+    "original": "Pedras escorregadias"
+  },
+  "TC-0527": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Piscina",
+    "chave": "riscosPrincipais[]",
+    "linha": 196,
+    "original": "Afogamento silencioso"
+  },
+  "TC-0528": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Piscina",
+    "chave": "prevencao[]",
+    "linha": 216,
+    "original": "Nunca nadar sozinho."
+  },
+  "TC-0529": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Camping e Trilhas",
+    "chave": "local",
+    "linha": 250,
+    "original": "Camping e Trilhas"
+  },
+  "TC-0530": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Camping e Trilhas",
+    "chave": "riscosPrincipais[]",
+    "linha": 260,
+    "original": "Fogueiras (incêndios)"
+  },
+  "TC-0531": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Camping e Trilhas",
+    "chave": "riscosPrincipais[]",
+    "linha": 261,
+    "original": "Hipotermia noturna"
+  },
+  "TC-0532": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Camping e Trilhas",
+    "chave": "prevencao[]",
+    "linha": 278,
+    "original": "Hidratação constante."
+  },
+  "TC-0533": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "local",
+    "linha": 322,
+    "original": "Parques e Playgrounds"
+  },
+  "TC-0534": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "riscosPrincipais[]",
+    "linha": 331,
+    "original": "Perder-se na multidão"
+  },
+  "TC-0535": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "riscosPrincipais[]",
+    "linha": 332,
+    "original": "Insolação/Desidratação"
+  },
+  "TC-0536": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "riscosPrincipais[]",
+    "linha": 333,
+    "original": "Acidentes em brinquedos"
+  },
+  "TC-0537": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "prevencao[]",
+    "linha": 350,
+    "original": "Supervisão constante."
+  },
+  "TC-0538": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Parques e Playgrounds",
+    "chave": "dicasExtras[]",
+    "linha": 380,
+    "original": "Beba muita água."
+  },
+  "TC-0539": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Churrasqueira",
+    "chave": "emergencias[]",
+    "linha": 435,
+    "original": "Incêndio: Use extintor."
+  },
+  "TC-0540": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Churrasqueira",
+    "chave": "dicasExtras[]",
+    "linha": 447,
+    "original": "Tenha extintor próximo."
+  },
   "PN-0001": {
     "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
     "rotulo": "Primeiros socorros — pessoas",

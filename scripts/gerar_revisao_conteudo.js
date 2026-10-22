@@ -211,6 +211,26 @@ const TEMAS = [
             + 'sao trocados no app pelo numero do pais do usuario (no Brasil: 192 e 193).',
         fontes: [],
     },
+    // TC — textos curtos e titulos (10 a 24 caracteres) dos arquivos JA
+    // revisados. O limiar de 25 do extrator os deixava fora de todo documento.
+    // Os de arquivos nunca revisados vao com o documento do proprio tema, para
+    // o Agnaldo nao ler o mesmo assunto em duas partes.
+    {
+        nome: 'Textos Curtos e Titulos',
+        sigla: 'TC',
+        pendentes: ['m010'],
+        somenteArquivosRevisados: true,
+        minimoConhecida: 10,
+        // Nao foram escritos depois de revisao nenhuma: so nunca entraram em
+        // documento. "ESCRITO DEPOIS DA SUA REVISAO" aqui seria falso.
+        marcarMudancas: false,
+        descricao: 'Frases curtas e titulos (de 10 a 24 caracteres) dos temas que voce ja revisou. Ficaram '
+            + 'fora dos documentos anteriores por um limite de tamanho do gerador — por isso "NUNCA sacuda o '
+            + 'bebe." e "NAO use o elevador." nunca passaram por voce. O titulo cinza acima de cada grupo e o '
+            + 'item do app onde a frase aparece, para dar contexto. Rotulos de uma palavra (nomes de estados, '
+            + 'comodos, "OK") nao entram.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -266,7 +286,11 @@ const CHAVES_DE_PROSA = new Set([
 const CHAVES_DE_TITULO = new Set(['titulo', 'title', 'nome', 'name', 'pergunta']);
 
 const MIN_PROSA_GENERICA = 70;
-const MIN_PROSA_CONHECIDA = 25;
+// Era 25 ate 21/10/2026: frases curtas de socorro ("NUNCA sacuda o bebe.", 20)
+// nunca entraram em documento. O Agnaldo prefere tudo, "mesmo que eu so precise
+// passar o olho". Documentos ja entregues ficam preservados com o limiar antigo;
+// os textos de 10 a 24 caracteres deles foram no TC.
+const MIN_PROSA_CONHECIDA = 10;
 
 /**
  * Papel do campo, em portugues de gente.
@@ -847,8 +871,11 @@ function selecaoDePendentes(tema) {
     const motivos = new Set(tema.pendentes);
     const escolhidos = new Map();
     const arquivos = [];
+    const { arquivosRevisados } = require('./verify_revisao_conteudo');
+    const revisados = tema.somenteArquivosRevisados ? new Set(arquivosRevisados()) : null;
     for (const t of avaliar().pendente) {
         if (!motivos.has(t.motivo)) continue;
+        if (revisados && !revisados.has(t.arquivo)) continue;
         escolhidos.set(t.id, t.motivo);
         if (!arquivos.includes(t.arquivo)) arquivos.push(t.arquivo);
     }
@@ -866,6 +893,7 @@ function selecaoDePendentes(tema) {
         escolhidos,
         fontes,
         blocosInteiros: Boolean(tema.blocosInteiros),
+        marcarMudancas: tema.marcarMudancas !== false,
         opcoes: {
             chavesExtras: [...rc.chavesExtras, ...(tema.chavesExtras || [])],
             titulosExtras: rc.titulosExtras,
@@ -885,7 +913,7 @@ function filtrarPendentes(blocos, arquivo, selecao) {
         const textos = selecao.blocosInteiros && algum
             ? b.textos
             : b.textos.filter((t) => selecao.escolhidos.has(impressao(t.texto)));
-        for (const t of textos) {
+        for (const t of selecao.marcarMudancas ? textos : []) {
             const versao = referenciaRevisada(arquivo, t.texto);
             if (versao) t.versaoRevisada = versao;
             else t.escritoDepois = true;

@@ -84,7 +84,17 @@ const MIN_PROSA_INTERFACE = 70;
 
 /** As chaves extras do RC valem aqui para TODOS: a trava ve mais, nunca menos. */
 const RC = TEMAS.find((t) => t.sigla === 'RC') || {};
-const OPCOES = { chavesExtras: RC.chavesExtras, titulosExtras: RC.titulosExtras };
+/**
+ * Limiar de texto curto em campo de conteudo: 10, nao os 25 do gerador.
+ *
+ * MOTIVO (21/10/2026): com 25, "NUNCA sacuda o bebe." (20) e "NAO use o
+ * elevador." (19) nunca entraram em documento nem na trava — ~500 frases e
+ * ~700 titulos. O Agnaldo pediu tudo num documento, "mesmo que eu so precise
+ * passar o olho". Abaixo de 10 sobram rotulos de uma palavra (estados,
+ * comodos, "OK", nome de rota), que nao sao orientacao.
+ */
+const MIN_TEXTO_CURTO = 10;
+const OPCOES = { chavesExtras: RC.chavesExtras, titulosExtras: RC.titulosExtras, minimoConhecida: MIN_TEXTO_CURTO };
 
 const normalizar = (s) => String(s).replace(/\s+/g, ' ').trim();
 const impressao = (s) => crypto.createHash('sha256').update(normalizar(s), 'utf8').digest('hex').slice(0, 16);
@@ -360,4 +370,9 @@ Texto novo ou alterado que o Agnaldo nao viu. Caminhos:
 
 if (require.main === module) principal();
 
-module.exports = { avaliar, referenciaRevisada, normalizar, impressao };
+/** Arquivos com algum texto em documento devolvido. */
+function arquivosRevisados() {
+    return Object.keys(textosDosDocumentos().revisadosPorArquivo);
+}
+
+module.exports = { avaliar, referenciaRevisada, normalizar, impressao, arquivosRevisados, MIN_TEXTO_CURTO };

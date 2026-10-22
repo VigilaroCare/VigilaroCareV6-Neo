@@ -91,6 +91,13 @@ O tema `RP` do gerador não lê arquivos inteiros: lê o backlog da trava, filtr
 do mesmo arquivo); texto escrito depois vai marcado "ESCRITO DEPOIS DA SUA REVISAO". O importador ignora as duas
 linhas. Enviado em 21/10/2026 com 202 códigos.
 
+### TC — Textos Curtos e Títulos
+
+Até 21/10/2026 o extrator ignorava texto com menos de 25 caracteres, mesmo em campo de conteúdo ("NUNCA sacuda o
+bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos curtos e títulos (10 a 24 caracteres)
+dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
+(`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
+
 ### PN — Temas Novos de Primeiros Socorros
 
 Mesmo mecanismo do RP, com três opções a mais: `blocosInteiros` (manda o tema inteiro, não só o texto
