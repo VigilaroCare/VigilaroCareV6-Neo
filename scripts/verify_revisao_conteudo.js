@@ -72,6 +72,12 @@ const FORA_DO_ESCOPO = {
         motivo: 'codigo morto — deve ser removido, nao revisado',
         uso: /delay_guidance/,
     },
+    // MOTIVO (22/10/2026): ia para o documento de Intoxicacao e Incendio, mas
+    // ninguem importa o arquivo (o nome so aparece como categoryId de artigo).
+    'data/produtos_perigosos.js': {
+        motivo: 'codigo morto — nenhum import; remover ou ligar a uma tela antes de revisar',
+        uso: /\/produtos_perigosos(\.js)?['"]|\bprodutosPerigosos\b/,
+    },
     // Tela orfa: escreva aqui `uso` com o nome da rota e `ignorarLinha:
     // /<Stack\.Screen/`. Foi o caso de PrimeirosSocorrosEmergenciaScreen (112
     // orientacoes de socorro nunca revisadas, so pt-BR, "(SAMU)" fixo), apagada
@@ -94,7 +100,25 @@ const RC = TEMAS.find((t) => t.sigla === 'RC') || {};
  * comodos, "OK", nome de rota), que nao sao orientacao.
  */
 const MIN_TEXTO_CURTO = 10;
-const OPCOES = { chavesExtras: RC.chavesExtras, titulosExtras: RC.titulosExtras, minimoConhecida: MIN_TEXTO_CURTO };
+/**
+ * Campos de texto que o gerador nao conhecia.
+ *
+ * MOTIVO (22/10/2026): ao montar o documento de Intoxicacao e Incendio, o
+ * "fazer" e o "nao fazer" dos animais peconhentos e das plantas toxicas — 235 e
+ * 161 orientacoes de socorro — nunca tinham entrado em documento nem na trava:
+ * campo desconhecido so contava com 70+ caracteres. Idem sintomas, efeito do
+ * veneno, tratamento, partes toxicas.
+ */
+const CHAVES_EXTRAS_TRAVA = [
+    'fazer', 'naoFazer', 'imediatos', 'tardios', 'graves', 'efeito', 'tipoVeneno', 'periodoAtivo',
+    'tratamento', 'gravidade', 'nivelPerigo', 'sintomasHumanos', 'sintomasPets', 'partesToxicas',
+    'ondeEncontrada', 'toxina', 'sintomas', 'detalhe', 'risco', 'peconhentos', 'naoPeconhentos',
+];
+const OPCOES = {
+    chavesExtras: [...(RC.chavesExtras || []), ...CHAVES_EXTRAS_TRAVA],
+    titulosExtras: [...(RC.titulosExtras || []), 'nomePopular'],
+    minimoConhecida: MIN_TEXTO_CURTO,
+};
 
 const normalizar = (s) => String(s).replace(/\s+/g, ' ').trim();
 const impressao = (s) => crypto.createHash('sha256').update(normalizar(s), 'utf8').digest('hex').slice(0, 16);
@@ -375,4 +399,4 @@ function arquivosRevisados() {
     return Object.keys(textosDosDocumentos().revisadosPorArquivo);
 }
 
-module.exports = { avaliar, referenciaRevisada, normalizar, impressao, arquivosRevisados, MIN_TEXTO_CURTO };
+module.exports = { avaliar, referenciaRevisada, normalizar, impressao, arquivosRevisados, MIN_TEXTO_CURTO, OPCOES };

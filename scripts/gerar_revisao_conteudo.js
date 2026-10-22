@@ -264,6 +264,41 @@ const TEMAS = [
             + 'cada texto alterado, a linha "ANTES" mostra como estava; texto que nao existia vem marcado "NOVO".',
         fontes: [],
     },
+    // II — Intoxicacao e Incendio: primeiro documento de arquivos que NUNCA
+    // passaram por revisao (D28, ordem combinada). `arquivos` restringe o
+    // backlog a esses arquivos; `motivosSempre` traz junto os textos do Radar
+    // redigidos a partir de comentario dele (m013), os unicos com versao
+    // revisada para comparar (`marcarMotivos`).
+    {
+        nome: 'Intoxicacao e Incendio',
+        sigla: 'II',
+        pendentes: ['m006', 'm010', 'm013', 'm015'],
+        arquivos: [
+            'data/animais_ciatox.js', 'data/plantas_ciatox.js', 'data/classesIncendio.js',
+            'data/pet_food_safety.js', 'data/pet_safety_content.js', 'data/pet_pregnancy_data.js',
+            'data/pet_wellness_data.js', 'data/aves_seguras_data.js',
+        ],
+        motivosSempre: ['m013'],
+        marcarMotivos: ['m013'],
+        rotulos: {
+            'data/animais_ciatox.js': 'Animais peconhentos',
+            'data/plantas_ciatox.js': 'Plantas toxicas',
+            'data/classesIncendio.js': 'Classes de incendio (por pais)',
+            'data/pet_food_safety.js': 'Pets — alimentos perigosos',
+            'data/pet_safety_content.js': 'Pets — seguranca em casa',
+            'data/pet_pregnancy_data.js': 'Pets — gestacao',
+            'data/pet_wellness_data.js': 'Pets — bem-estar',
+            'data/aves_seguras_data.js': 'Aves',
+            'data/radarSazonal/br.js': 'Radar Sazonal — redigidos a partir dos seus comentarios',
+        },
+        descricao: 'Textos que nunca passaram por revisao: animais peconhentos, plantas toxicas, classes de '
+            + 'incendio e o conteudo de pets. Por ultimo, os quatro textos do Radar que escrevi a partir dos '
+            + 'seus comentarios (dengue, cerol, ciclistas e autopropelidos, criancas de idades diferentes), '
+            + 'com a versao que voce revisou logo abaixo. Trechos entre chaves duplas, como {{POISON_CONTROL}} '
+            + 'ou {{FIRE_CLASS_ELECTRICAL}}, sao trocados no app pelo numero ou pela norma do pais do usuario '
+            + '(no Brasil: CIATOX, classes da NBR).',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -290,7 +325,9 @@ const CHAVES_TECNICAS = new Set([
  * `data/kits/educational_content.js` existe `sections_es: [{ title, content }]`,
  * onde as chaves internas nao tem sufixo mas o bloco todo e espanhol.
  */
-const SUFIXO_IDIOMA = /_(en|es|ptpt|pt_pt|ptPT)$/i;
+// Tambem a chave sozinha (`en`, `es`, `ptPT`): e assim em classesIncendio.js, e sem isto
+// o ingles e o espanhol entravam no documento como se fossem pt-BR (22/10/2026).
+const SUFIXO_IDIOMA = /(^|_)(en|es|ptpt|pt_pt|ptPT)$/i;
 
 /** Nao e prosa: caminho de asset, URL, hex, token puro. */
 const NAO_E_PROSA = /^(https?:\/\/|\.{1,2}\/|@[a-z]|#[0-9a-fA-F]{3,8}$|[A-Z_]{3,}$)/;
@@ -389,6 +426,31 @@ const PAPEL_DO_CAMPO = {
     'exemplos[]': 'EXEMPLOS',
     estatistica: 'VOCE SABIA? (ESTATISTICA)',
     situacao: 'SITUACAO',
+    // Intoxicacao e Incendio (II): animais peconhentos, plantas toxicas, pets.
+    // fazer[] e naoFazer[] SEM rotulo sairiam como paragrafos iguais — o erro
+    // que inverte a orientacao de socorro (ver o comentario no inicio do mapa).
+    'fazer[]': 'O QUE FAZER',
+    'naoFazer[]': 'O QUE NUNCA FAZER',
+    'imediatos[]': 'SINTOMAS IMEDIATOS',
+    'tardios[]': 'SINTOMAS TARDIOS',
+    'graves[]': 'SINAIS DE GRAVIDADE',
+    efeito: 'EFEITO DO VENENO',
+    tipoVeneno: 'TIPO DE VENENO',
+    periodoAtivo: 'QUANDO E MAIS ATIVO',
+    tratamento: 'TRATAMENTO',
+    gravidade: 'GRAVIDADE',
+    nivelPerigo: 'NIVEL DE PERIGO',
+    habitat: 'ONDE VIVE',
+    comportamento: 'COMPORTAMENTO',
+    'sintomasHumanos[]': 'SINTOMAS EM PESSOAS',
+    'sintomasPets[]': 'SINTOMAS EM PETS',
+    'partesToxicas[]': 'PARTES TOXICAS',
+    ondeEncontrada: 'ONDE E ENCONTRADA',
+    toxina: 'TOXINA',
+    detalhe: 'DETALHE',
+    risco: 'RISCO',
+    'peconhentos[]': 'ESPECIES PECONHENTAS NO ESTADO',
+    'naoPeconhentos[]': 'ESPECIES NAO PECONHENTAS NO ESTADO',
 };
 
 // ---------------------------------------------------------------------------
@@ -909,6 +971,8 @@ function selecaoDePendentes(tema) {
     const doJson = {};
     for (const t of avaliar().pendente) {
         if (!motivos.has(t.motivo)) continue;
+        if (tema.arquivos && !tema.arquivos.includes(t.arquivo)
+            && !(tema.motivosSempre || []).includes(t.motivo)) continue;
         if (t.arquivo.endsWith('.json')) (doJson[t.arquivo] = doJson[t.arquivo] || []).push(t);
         if (revisados && !revisados.has(t.arquivo)) continue;
         escolhidos.set(t.id, t.motivo);
@@ -921,20 +985,23 @@ function selecaoDePendentes(tema) {
     };
     const fontes = arquivos.sort((a, b) => ordem(a) - ordem(b)).map((arquivo) => {
         const conhecida = conhecidas.find((c) => c.arquivo === arquivo);
-        return { arquivo, rotulo: conhecida ? conhecida.rotulo : path.basename(arquivo, '.js') };
+        const proprio = tema.rotulos && tema.rotulos[arquivo];
+        return { arquivo, rotulo: proprio || (conhecida ? conhecida.rotulo : path.basename(arquivo, '.js')) };
     });
-    const rc = TEMAS.find((x) => x.sigla === 'RC');
+    // As MESMAS chaves da trava: o que ela registrou como pendente tem de ser achado aqui.
+    const { OPCOES } = require('./verify_revisao_conteudo');
     return {
         escolhidos,
         fontes,
         doJson,
         blocosInteiros: Boolean(tema.blocosInteiros),
         marcarMudancas: tema.marcarMudancas !== false,
+        marcarMotivos: tema.marcarMotivos || null,
         antes: tema.antes ? JSON.parse(fs.readFileSync(path.join(DESTINO, tema.antes), 'utf8')) : null,
         opcoes: {
-            chavesExtras: [...rc.chavesExtras, ...(tema.chavesExtras || [])],
-            titulosExtras: rc.titulosExtras,
-            minimoConhecida: tema.minimoConhecida,
+            chavesExtras: [...OPCOES.chavesExtras, ...(tema.chavesExtras || [])],
+            titulosExtras: OPCOES.titulosExtras,
+            minimoConhecida: tema.minimoConhecida || OPCOES.minimoConhecida,
             manterRepetidos: Boolean(tema.blocosInteiros),
         },
     };
@@ -957,7 +1024,10 @@ function filtrarPendentes(blocos, arquivo, selecao) {
                 else t.novo = true;
             }
         }
-        for (const t of selecao.marcarMudancas ? textos : []) {
+        const marcar = (t) => (selecao.marcarMotivos
+            ? selecao.marcarMotivos.includes(selecao.escolhidos.get(impressao(t.texto)))
+            : selecao.marcarMudancas);
+        for (const t of textos.filter(marcar)) {
             const versao = referenciaRevisada(arquivo, t.texto);
             if (versao) t.versaoRevisada = versao;
             else t.escritoDepois = true;

@@ -98,6 +98,17 @@ bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos 
 dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
 (`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
 
+### II — Intoxicação e Incêndio
+
+Primeiro documento de arquivos que nunca passaram por revisão. Lê o backlog da trava com `arquivos` (só os arquivos
+do tema) e `motivosSempre` (traz junto os textos do Radar redigidos a partir de comentário, m013), e só esses levam a
+linha "VERSAO QUE VOCE REVISOU" (`marcarMotivos`). Enviado em 22/10/2026 com 954 códigos.
+
+O gerador do RP/PN/TC/GS/GR/II usa as MESMAS chaves que a trava (`OPCOES` exportado por
+`verify_revisao_conteudo.js`, com `CHAVES_EXTRAS_TRAVA`): o que a trava registra como pendente tem de ser achado no
+arquivo. Campo de conteúdo novo (como `fazer[]`/`naoFazer[]`) precisa também de rótulo em `PAPEL_DO_CAMPO` — sem
+ele, "o que fazer" e "o que nunca fazer" saem iguais no documento.
+
 ### GS — Grupos Sensíveis
 
 Textos alterados para incluir idosos, pessoas com deficiência, mobilidade reduzida, limitações cognitivas e
