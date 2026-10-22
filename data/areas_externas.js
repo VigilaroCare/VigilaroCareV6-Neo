@@ -51,7 +51,7 @@ export const areasExternas = [
         situacao: 'Manutenção', situacao_ptpt: 'Manutenção', situacao_es: 'Mantenimiento', situacao_en: 'Maintenance',
         oQueFazer: [
             'Usa EPIs (luvas, calçado fechado, manga longa) ao jardinar?',
-            'Fertilizantes e pesticidas estão trancados e longe de crianças/pets?',
+            'Fertilizantes e pesticidas estão trancados e longe de crianças e pets?',
             'Identificou e removeu plantas tóxicas (Comigo-ninguém-pode, Bico-de-papagaio)?',
             'Ferramentas (tesouras, pás) são guardadas logo após o uso?'
         ], oQueFazer_ptpt: [
@@ -72,7 +72,7 @@ export const areasExternas = [
         ],
         oQueNaoFazer: [
             'Não toque em plantas desconhecidas.',
-            'Não deixe crianças brincarem com terra adubada/química.'
+            'Não deixe crianças brincarem com terra adubada ou com tratamento químico.'
         ], oQueNaoFazer_ptpt: [
             'Não toque em plantas desconhecidas.',
             'Não deixe as crianças brincar com terra adubada ou tratada com químicos.',
@@ -95,25 +95,25 @@ export const areasExternas = [
             'O piso absorve impacto (areia/borracha)?',
             'Crianças usam brinquedos compatíveis com a idade?',
             'Há supervisão visual constante de um adulto?',
-            'Piso de quadras/salões está em bom estado?'
+            'Piso de quadras ou salões de festa está em bom estado?'
         ], oQueFazer_ptpt: [
             'Os equipamentos estão sem ferrugem, rebarbas ou peças soltas?',
             'O piso amortece impactos (areia/borracha)?',
             'As crianças usam equipamentos adequados à idade?',
             'Há vigilância visual constante de um adulto?',
-            'O piso de campos e salões está em bom estado?',
+            'O piso de campos e salões de festas está em bom estado?',
         ], oQueFazer_es: [
             '¿Los juegos están sin óxido, rebabas ni piezas sueltas?',
             '¿El suelo amortigua los impactos (arena/caucho)?',
             '¿Los niños usan juegos adecuados a su edad?',
             '¿Hay supervisión visual constante de un adulto?',
-            '¿El suelo de pistas y salones está en buen estado?',
+            '¿El suelo de pistas y salones de fiestas está en buen estado?',
         ], oQueFazer_en: [
             'Is the play equipment free of rust, sharp edges or loose parts?',
             'Does the ground absorb impact (sand/rubber)?',
             'Do children use equipment suited to their age?',
             'Is there constant visual supervision by an adult?',
-            'Are court and hall floors in good condition?',
+            'Are court and party room floors in good condition?',
         ],
         oQueNaoFazer: [
             'Não permita uso de brinquedos quebrados.',
@@ -139,7 +139,7 @@ export const areasExternas = [
             'Existe cerca de proteção física e portão com tranca automática?',
             'Há capas de proteção rígidas (suportam peso)?',
             'Alarmes de detecção na água estão ativos?',
-            'Ralos são anti-aprisionamento?',
+            'Ralos são antiaprisionamento?',
             'Piscinas plásticas são esvaziadas após o uso?'
         ], oQueFazer_ptpt: [
             'Há vigilância visual CONSTANTE (um adulto à distância de um braço)?',
@@ -210,7 +210,7 @@ export const areasExternas = [
         ],
         oQueNaoFazer: [
             'Não mergulhe em águas turvas ou desconhecidas (pedras/galhos).',
-            'Não entre na água depois de beber álcool.'
+            'Não entre na água depois de ingerir álcool.'
         ], oQueNaoFazer_ptpt: [
             'Não mergulhe em águas turvas ou desconhecidas (pedras/ramos).',
             'Não entre na água depois de beber álcool.',
@@ -249,17 +249,17 @@ export const areasExternas = [
             'Do you wear protective gear (goggles, gloves) when working?',
         ],
         oQueNaoFazer: [
-            'Não deixe ferramentas ligadas na tomada.',
-            'Não armazene produtos em garrafas de bebida.'
+            'Não deixe ferramentas ligadas na tomada.', 'Não deixe ferramentas elétricas de corte ou perfuração montadas (com lâmina ou broca) quando estiverem fora de uso.',
+            'Não armazene produtos em garrafas de bebidas ou sucos.'
         ], oQueNaoFazer_ptpt: [
-            'Não deixe ferramentas ligadas à tomada.',
-            'Não guarde produtos em garrafas de bebida.',
+            'Não deixe ferramentas ligadas à tomada.', 'Não deixe ferramentas elétricas de corte ou perfuração montadas (com lâmina ou broca) quando não estiverem a ser usadas.',
+            'Não guarde produtos em garrafas de bebidas ou sumos.',
         ], oQueNaoFazer_es: [
-            'No deje herramientas enchufadas.',
-            'No guarde productos en botellas de bebida.',
+            'No deje herramientas enchufadas.', 'No deje herramientas eléctricas de corte o perforación montadas (con hoja o broca puesta) cuando no las use.',
+            'No guarde productos en botellas de bebidas o zumos.',
         ], oQueNaoFazer_en: [
-            'Do not leave power tools plugged in.',
-            'Do not store products in drink bottles.',
+            'Do not leave power tools plugged in.', 'Do not leave cutting or drilling power tools assembled (with blade or bit fitted) when not in use.',
+            'Do not store products in drink or juice bottles.',
         ],
         quandoChamarAjuda: 'Amputação/corte profundo: comprima o local com um pano limpo e ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_ptpt: 'Amputação/corte profundo: comprima o local com um pano limpo e ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_es: 'Amputación/corte profundo: comprima la herida con un paño limpio y llame a {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_en: 'Amputation/deep cut: press on the wound with a clean cloth and call {{EMERGENCY_MEDICAL}}.'
     },
@@ -291,7 +291,7 @@ export const areasExternas = [
         ],
         oQueNaoFazer: [
             'Não acumule lixo ou caixas vazias (ninhos de pragas).',
-            'Não force a coluna ao mover peso sozinho.'
+            'Não force a coluna tentando mover peso sozinho.'
         ], oQueNaoFazer_ptpt: [
             'Não acumule lixo ou caixas vazias (ninhos de pragas).',
             'Não force a coluna ao mover peso sozinho.',

@@ -69,7 +69,7 @@ export const EDUCATIONAL_GUIDES_PT_BR = {
         label: 'Quarto de Adulto',
         iconName: 'Bed',
         color: '#512DA8',
-        content: 'Nunca carregue o celular ou tablet na cama ou debaixo do travesseiro — eles esquentam e podem queimar. Deixe o caminho do quarto até o banheiro livre de fios ou tapetes soltos, e coloque uma luz noturna fraquinha no corredor.'
+        content: 'Nunca recarregue o celular ou tablet na cama ou debaixo do travesseiro — eles esquentam e podem queimar. Deixe o caminho do quarto até o banheiro livre de fios ou tapetes soltos, e coloque uma luz noturna fraquinha no corredor.'
     },
     banheiros: {
         label: 'Banheiros',

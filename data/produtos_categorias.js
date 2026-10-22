@@ -121,19 +121,19 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         comoEvitar: [
             'Usar máscara ao pintar.',
             'Manter local ventilado.',
-            'Longe de fontes de calor (cigarro, solda).'
+            'Longe de fontes de calor (cigarro, fogão, aquecedor).'
         ], comoEvitar_ptpt: [
             'Usar máscara ao pintar.',
             'Manter o local ventilado.',
-            'Longe de fontes de calor (cigarros, soldadura).',
+            'Longe de fontes de calor (cigarros, fogão, aquecedor).',
         ], comoEvitar_es: [
             'Usar mascarilla al pintar.',
             'Mantener el lugar ventilado.',
-            'Lejos de fuentes de calor (cigarrillos, soldadura).',
+            'Lejos de fuentes de calor (cigarrillos, cocina, estufa).',
         ], comoEvitar_en: [
             'Wear a mask when painting.',
             'Keep the area ventilated.',
-            'Keep away from heat sources (cigarettes, welding).',
+            'Keep away from heat sources (cigarettes, cooker, heater).',
         ]
     },
     'remedios': {
@@ -144,7 +144,7 @@ export const PRODUTOS_CATEGORIAS_DATA = {
         bg: '#FEE2E2', // Red 100
         imagemUrl: require('../assets/illustrations/pad/fotos-stock-genericas_cartelas-comprimidos-medicamentos_038.jpg'),
         definicao: 'Remédios parecem "balinhas" para crianças. A superdosagem pode ser fatal.', definicao_ptpt: 'Para as crianças, os medicamentos parecem «rebuçados». Uma sobredosagem pode ser fatal.', definicao_es: 'Para los niños, los medicamentos parecen «caramelos». Una sobredosis puede ser mortal.', definicao_en: 'To children, medicines look like "sweets". An overdose can be fatal.',
-        importancia: 'Intoxicação medicamentosa é comum em crianças (curiosas) e idosos (confusão).', importancia_ptpt: 'A intoxicação por medicamentos é frequente em crianças (curiosidade) e idosos (confusão).', importancia_es: 'La intoxicación por medicamentos es frecuente en niños (curiosidad) y personas mayores (confusión).', importancia_en: 'Medicine poisoning is common in children (curiosity) and older adults (confusion).',
+        importancia: 'Intoxicação medicamentosa é comum em crianças (curiosas) e idosos, que podem confundir tipos e dosagens.', importancia_ptpt: 'A intoxicação por medicamentos é frequente em crianças (curiosidade) e idosos, que podem confundir medicamentos e doses.', importancia_es: 'La intoxicación por medicamentos es frecuente en niños (curiosidad) y personas mayores, que pueden confundir medicamentos y dosis.', importancia_en: 'Medicine poisoning is common in children (curiosity) and older adults, who may mix up medicines and doses.',
         comoIdentificar: [
             'Xaropes doces.',
             'Comprimidos coloridos.',

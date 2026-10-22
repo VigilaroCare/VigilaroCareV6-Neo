@@ -111,7 +111,7 @@ export const TEORIA_FOGO_DATA = {
         importancia_es: 'Una batería de iones de litio no es Clase D. Su fuego es muy caliente y se propaga rápido — por eso los bomberos indican salir y llamarlos, nunca intentar apagarlo.',
         importancia_ptpt: 'Uma bateria de iões de lítio não é Classe D. O fogo é muito quente e propaga-se depressa — por isso a indicação dos bombeiros é sair e chamá-los, nunca tentar apagar.',
         comoIdentificar: [
-            'Pare de usar e de carregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (ficar estufada), vazar ou deixar de carregar.',
+            'Pare de usar e de recarregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (ficar estufada), vazar ou deixar de carregar.',
             'Bateria que caiu, sofreu impacto, amassou ou molhou merece atenção: o dano interno pode causar curto-circuito depois.',
         ],
         comoIdentificar_en: [
@@ -129,11 +129,11 @@ export const TEORIA_FOGO_DATA = {
         comoEvitar: [
             'Use o carregador original ou um aprovado pelo fabricante.',
             'Ligue direto na tomada da parede — sem extensão nem filtro de linha — e um aparelho por tomada.',
-            'Não deixe carregando de madrugada nem sem alguém por perto; tire da tomada quando completar.',
-            'Carregue sobre superfície dura e que não queime, longe de cama, sofá, cortinas e papéis.',
-            'Patinete e bicicleta elétrica: carregue e guarde fora do caminho de saída — nunca no corredor, junto à porta ou embaixo da escada.',
-            'Tenha detector de fumaça no lugar onde carrega patinete ou bicicleta elétrica.',
-            'Carregue em temperatura ambiente (entre 0 °C e 40 °C) e não deixe a bateria ao sol ou dentro do carro quente.',
+            'Não deixe recarregando de madrugada nem sem alguém por perto; tire da tomada quando completar.',
+            'Recarregue sobre superfície dura e que não queime, longe de cama, sofá, cortinas e papéis.',
+            'Patinete e bicicleta elétrica: recarregue e guarde fora do caminho de saída — nunca no corredor, junto à porta ou embaixo da escada.',
+            'Tenha detector de fumaça no lugar onde recarrega patinete ou bicicleta elétrica.',
+            'Recarregue em temperatura ambiente (entre 0 °C e 40 °C) e não deixe a bateria ao sol ou dentro do carro quente.',
             'Compre equipamento e bateria com {{CERT_SEAL}}, de vendedor confiável; conserto, só com profissional.',
             'Não jogue bateria no lixo comum: leve a um ponto de coleta.',
         ],

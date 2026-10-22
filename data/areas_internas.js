@@ -111,44 +111,44 @@ export const areasInternas = [
             'Os cabos das panelas ficam voltados para dentro do fogão?',
             'Facas e eletrodomésticos de corte estão em armários altos ou travados?',
             'Produtos de limpeza estão trancados e longe de alimentos?',
-            'O gás é fechado após o uso ou tem válvula de segurança?'
+            'O registro do gás é fechado após o uso?'
         ], oQueFazer_ptpt: [
             'O acesso das crianças está restrito (barreiras de segurança)?',
             'Os cabos das panelas ficam virados para dentro do fogão?',
             'As facas e os eletrodomésticos de corte estão em armários altos ou trancados?',
             'Os produtos de limpeza estão fechados à chave e longe dos alimentos?',
-            'O gás é fechado após o uso ou há válvula de segurança?',
+            'A torneira do gás é fechada após o uso?',
         ], oQueFazer_es: [
             '¿El acceso de los niños está restringido (barreras de seguridad)?',
             '¿Los mangos de las ollas quedan hacia dentro de la cocina?',
             '¿Los cuchillos y aparatos cortantes están en armarios altos o con cierre?',
             '¿Los productos de limpieza están bajo llave y lejos de los alimentos?',
-            '¿Se cierra el gas después de usarlo o hay válvula de seguridad?',
+            '¿Se cierra la llave del gas después de usarlo?',
         ], oQueFazer_en: [
             'Is children’s access restricted (safety gates)?',
             'Are pan handles turned in towards the cooker?',
             'Are knives and cutting appliances in high or locked cupboards?',
             'Are cleaning products locked away and away from food?',
-            'Is the gas turned off after use, or is there a safety valve?',
+            'Is the gas valve turned off after use?',
         ],
         oQueNaoFazer: [
-            'Nunca deixe toalhas de mesa compridas pendentes.',
-            'Não cozinhe com crianças no colo.',
-            'Não deixe eletrodomésticos ligados na tomada sem uso.'
+            'Nunca deixe toalhas de mesa compridas (muita sobra para baixo).',
+            'Não cozinhe com crianças no colo ou muito próximas de você.',
+            'Não deixe eletrodomésticos ligados na tomada quando estiverem fora de uso.'
         ], oQueNaoFazer_ptpt: [
-            'Nunca deixe toalhas de mesa compridas penduradas.',
-            'Não cozinhe com crianças ao colo.',
+            'Nunca deixe toalhas de mesa compridas (com muita sobra pendurada).',
+            'Não cozinhe com crianças ao colo ou muito perto de si.',
             'Não deixe eletrodomésticos ligados à tomada sem uso.',
         ], oQueNaoFazer_es: [
-            'Nunca deje manteles largos colgando.',
-            'No cocine con niños en brazos.',
+            'Nunca deje manteles largos colgando (que sobren mucho).',
+            'No cocine con niños en brazos o muy cerca de usted.',
             'No deje electrodomésticos enchufados sin usar.',
         ], oQueNaoFazer_en: [
-            'Never leave long tablecloths hanging down.',
-            'Do not cook with a child on your lap.',
+            'Never leave long tablecloths hanging down (lots of overhang).',
+            'Do not cook with a child on your lap or right next to you.',
             'Do not leave appliances plugged in when not in use.',
         ],
-        quandoChamarAjuda: 'Queimadura: Água corrente fria por 20min. Fogo em óleo: Abafe com tampa (NUNCA JOGUE ÁGUA).', quandoChamarAjuda_ptpt: 'Queimadura: água corrente fria durante 20 min. Fogo em óleo: abafe com uma tampa (NUNCA DEITE ÁGUA).', quandoChamarAjuda_es: 'Quemadura: agua corriente fría durante 20 min. Fuego de aceite: tápelo con una tapa (NUNCA ECHE AGUA).', quandoChamarAjuda_en: 'Burn: cool running water for 20 min. Oil fire: smother it with a lid (NEVER THROW WATER).'
+        quandoChamarAjuda: 'Chame ajuda em queimadura maior que a palma da mão, no rosto ou em crianças e idosos (antes, resfrie com água corrente por 20 min). Fogo em óleo: abafe com tampa (NUNCA jogue água); se não apagar, saia e ligue para os bombeiros ({{FIRE_NUMBER}}).', quandoChamarAjuda_ptpt: 'Peça ajuda em queimaduras maiores do que a palma da mão, na cara ou em crianças e idosos (antes, arrefeça com água corrente durante 20 min). Fogo em óleo: abafe com uma tampa (NUNCA deite água); se não apagar, saia e ligue para os bombeiros ({{FIRE_NUMBER}}).', quandoChamarAjuda_es: 'Pida ayuda ante una quemadura mayor que la palma de la mano, en la cara o en niños y personas mayores (antes, enfríela con agua corriente 20 min). Fuego de aceite: tápelo con una tapa (NUNCA eche agua); si no se apaga, salga y llame a los bomberos ({{FIRE_NUMBER}}).', quandoChamarAjuda_en: 'Get help for a burn larger than the palm of the hand, on the face, or in a child or older person (first cool it under running water for 20 min). Oil fire: smother it with a lid (NEVER throw water); if it does not go out, get out and call the fire service ({{FIRE_NUMBER}}).'
     },
     {
         id: 'pantry',
@@ -159,7 +159,7 @@ export const areasInternas = [
         cor: '#795548',
         riscos: 'Intoxicação, asfixia, pragas.', riscos_ptpt: 'Intoxicação, asfixia, pragas.', riscos_es: 'Intoxicación, asfixia, plagas.', riscos_en: 'Poisoning, choking, pests.',
         oQueFazer: [
-            'O local é fresco, seco e protegido contra insetos/roedores?',
+            'O local é fresco, seco e protegido contra insetos e roedores?',
             'Produtos de limpeza/tóxicos estão SEPARADOS dos alimentos?',
             'Grãos (feijão, milho) estão em potes altos (risco de asfixia/nariz)?',
             'Há escada segura para alcançar prateleiras altas (nada de improvisos)?'
@@ -295,22 +295,22 @@ export const areasInternas = [
         oQueFazer: [
             'As janelas possuem telas/redes de proteção?',
             'Grades de proteção estão instaladas na cama?',
-            'Móveis (cômodas) estão parafusados na parede (anti-tombamento)?',
+            'Móveis altos ou com gavetas (estantes, guarda-roupas, cômodas) estão parafusados na parede (antitombamento)?',
             'Brinquedos são guardados para evitar tropeços noturnos?'
         ], oQueFazer_ptpt: [
             'As janelas têm redes de proteção?',
             'A cama tem grades de proteção?',
-            'Os móveis (cómodas) estão aparafusados à parede (antitombamento)?',
+            'Os móveis altos ou com gavetas (estantes, roupeiros, cómodas) estão aparafusados à parede (antitombamento)?',
             'Os brinquedos são arrumados para evitar tropeções à noite?',
         ], oQueFazer_es: [
             '¿Las ventanas tienen mosquiteras o redes de protección?',
             '¿La cama tiene barreras de protección?',
-            '¿Los muebles (cómodas) están atornillados a la pared (antivuelco)?',
+            '¿Los muebles altos o con cajones (estanterías, armarios, cómodas) están atornillados a la pared (antivuelco)?',
             '¿Los juguetes se recogen para evitar tropiezos por la noche?',
         ], oQueFazer_en: [
             'Do the windows have safety screens or nets?',
             'Are bed rails fitted?',
-            'Is furniture (chests of drawers) screwed to the wall (anti-tip)?',
+            'Is tall furniture or furniture with drawers (bookcases, wardrobes, chests of drawers) screwed to the wall (anti-tip)?',
             'Are toys put away to avoid tripping at night?',
         ],
         oQueNaoFazer: [
@@ -337,7 +337,7 @@ export const areasInternas = [
         riscos: 'Elétricos, bagunça.', riscos_ptpt: 'Elétricos, desarrumação.', riscos_es: 'Eléctricos, desorden.', riscos_en: 'Electrical, clutter.',
         oQueFazer: [
             'O chão está livre de objetos (evita tropeços)?',
-            'O uso de eletrônicos e fios está organizado (sem sobrecarga)?',
+            'Os eletrônicos (sem sobrecarga) e os fios estão organizados?',
             'A postura na cadeira de estudo/PC é adequada?'
         ], oQueFazer_ptpt: [
             'O chão está livre de objetos (evita tropeções)?',
@@ -353,7 +353,7 @@ export const areasInternas = [
             'Is posture at the study/computer chair appropriate?',
         ],
         oQueNaoFazer: [
-            'Não durma com celular carregando embaixo do travesseiro (aquecimento).'
+            'Não durma com o celular recarregando embaixo do travesseiro (aquecimento).'
         ], oQueNaoFazer_ptpt: [
             'Não durma com o telemóvel a carregar debaixo da almofada (sobreaquecimento).',
         ], oQueNaoFazer_es: [
@@ -406,8 +406,8 @@ export const areasInternas = [
         cor: '#9575CD',
         riscos: 'Quedas graves.', riscos_ptpt: 'Quedas graves.', riscos_es: 'Caídas graves.', riscos_en: 'Serious falls.',
         oQueFazer: [
-            'A altura da cama permite apoiar os pés no chão sentado?',
-            'O caminho ao banheiro é livre, sem tapetes e iluminado (luz noturna)?',
+            'A altura da cama permite apoiar os pés no chão quando sentado?',
+            'O caminho até o banheiro é livre, sem tapetes e iluminado (luz noturna)?',
             'Os móveis têm cantos arredondados e são firmes para apoio?',
             'Há um telefone ou botão de emergência próximo à cama?'
         ], oQueFazer_ptpt: [
@@ -477,7 +477,7 @@ export const areasInternas = [
             'Is the floor kept dry after showering?',
         ],
         oQueNaoFazer: [
-            'JAMAIS deixe crianças sozinhas na banheira (afogamento em cm de água).',
+            'JAMAIS deixe crianças sozinhas na banheira (afogamento em poucos centímetros de água).',
             'Não use secador descalço ou no piso molhado.'
         ], oQueNaoFazer_ptpt: [
             'NUNCA deixe crianças sozinhas na banheira (podem afogar-se em poucos centímetros de água).',
@@ -489,7 +489,7 @@ export const areasInternas = [
             'NEVER leave children alone in the bath (they can drown in a few centimetres of water).',
             'Do not use a hair dryer barefoot or on a wet floor.',
         ],
-        quandoChamarAjuda: 'Afogamento ou queda com batida na cabeça: ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_ptpt: 'Afogamento ou queda com pancada na cabeça: ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_es: 'Ahogamiento o caída con golpe en la cabeza: llame a {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_en: 'Drowning or a fall with a blow to the head: call {{EMERGENCY_MEDICAL}}.'
+        quandoChamarAjuda: 'Afogamento ou queda com impacto na cabeça: ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_ptpt: 'Afogamento ou queda com pancada na cabeça: ligue para o {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_es: 'Ahogamiento o caída con golpe en la cabeza: llame a {{EMERGENCY_MEDICAL}}.', quandoChamarAjuda_en: 'Drowning or a fall with a blow to the head: call {{EMERGENCY_MEDICAL}}.'
     },
 
     // === INFRA E CIRCULAÇÃO ===
@@ -523,16 +523,16 @@ export const areasInternas = [
             'Are there safety gates at the top and bottom (if there are children)?',
         ],
         oQueNaoFazer: [
-            'Não deixe objetos nos degraus.',
+            'Não deixe objetos nem permita pets nos degraus.',
             'Não use tapetes soltos nos patamares.'
         ], oQueNaoFazer_ptpt: [
-            'Não deixe objetos nos degraus.',
+            'Não deixe objetos nos degraus nem permita animais neles.',
             'Não use tapetes soltos nos patamares.',
         ], oQueNaoFazer_es: [
-            'No deje objetos en los peldaños.',
+            'No deje objetos en los peldaños ni permita que las mascotas se queden en ellos.',
             'No use alfombras sueltas en los rellanos.',
         ], oQueNaoFazer_en: [
-            'Do not leave objects on the steps.',
+            'Do not leave objects on the steps or let pets lie there.',
             'Do not use loose rugs on landings.',
         ]
     },
@@ -543,24 +543,24 @@ export const areasInternas = [
         situacao: 'Veículos', situacao_ptpt: 'Veículos', situacao_es: 'Vehículos', situacao_en: 'Vehicles',
         emoji: '🚗', icone: 'Car',
         cor: '#607D8B',
-        riscos: 'Atropelamento, CO, Inflamáveis.', riscos_ptpt: 'Atropelamento, CO, inflamáveis.', riscos_es: 'Atropellos, CO, inflamables.', riscos_en: 'Being run over, CO, flammables.',
+        riscos: 'Atropelamento, monóxido de carbono (CO), inflamáveis.', riscos_ptpt: 'Atropelamento, monóxido de carbono (CO), inflamáveis.', riscos_es: 'Atropellos, monóxido de carbono (CO), inflamables.', riscos_en: 'Being run over, carbon monoxide (CO), flammables.',
         oQueFazer: [
-            'A iluminação é boa e o chão livre de entulhos?',
+            'A iluminação é boa e o chão está livre de objetos espalhados?',
             'Você verifica atrás/embaixo do carro antes de manobrar?',
             'Materiais inflamáveis estão longe de calor?',
             'O portão tem sensor anti-esmagamento?'
         ], oQueFazer_ptpt: [
-            'A iluminação é boa e o chão está livre de entulho?',
+            'A iluminação é boa e o chão está livre de objetos espalhados?',
             'Verifica atrás e por baixo do carro antes de manobrar?',
             'Os materiais inflamáveis estão longe do calor?',
             'O portão tem sensor antiesmagamento?',
         ], oQueFazer_es: [
-            '¿La iluminación es buena y el suelo está libre de trastos?',
+            '¿La iluminación es buena y el suelo está libre de objetos tirados?',
             '¿Revisa detrás y debajo del coche antes de maniobrar?',
             '¿Los materiales inflamables están lejos del calor?',
             '¿La puerta tiene sensor antiaplastamiento?',
         ], oQueFazer_en: [
-            'Is the lighting good and the floor free of clutter?',
+            'Is the lighting good and the floor free of things lying around?',
             'Do you check behind and under the car before manoeuvring?',
             'Are flammable materials away from heat?',
             'Does the gate have an anti-crush sensor?',
@@ -588,9 +588,9 @@ export const areasInternas = [
         cor: '#D84315',
         riscos: 'Explosão, vazamento.', riscos_ptpt: 'Explosão, fugas.', riscos_es: 'Explosión, fugas.', riscos_en: 'Explosion, leaks.',
         oQueFazer: [
-            'Botijões estão em local VENTILADO e externo (protegido sol/chuva)?',
+            'Botijões estão em local VENTILADO e externo (protegidos de sol e chuva)?',
             'Estão longe de ralos e eletricidade?',
-            'A validade da mangueira/regulador foi verificada?',
+            'As validades da mangueira e do regulador foram verificadas?',
             'Teste de vazamento é feito apenas com espuma de sabão?'
         ], oQueFazer_ptpt: [
             'As botijas estão num local VENTILADO e exterior (protegidas do sol e da chuva)?',
@@ -668,19 +668,19 @@ export const areasInternas = [
         riscos: 'Queda de altura.', riscos_ptpt: 'Queda em altura.', riscos_es: 'Caída desde altura.', riscos_en: 'Falls from height.',
         oQueFazer: [
             'O piso é antiderrapante (risco se molhar)?',
-            'Redes de proteção certificadas estão instaladas (indispensáveis com crianças/pets)?',
+            'Redes de proteção certificadas estão instaladas (indispensáveis com crianças e pets)?',
             'Afastou móveis e vasos do guarda-corpo (efeito escada)?'
         ], oQueFazer_ptpt: [
             'O piso é antiderrapante (risco se molhar)?',
-            'Estão instaladas redes de proteção certificadas (indispensáveis com crianças/animais)?',
+            'Estão instaladas redes de proteção certificadas (indispensáveis com crianças e animais)?',
             'Afastou móveis e vasos do guarda-corpo (efeito escada)?',
         ], oQueFazer_es: [
             '¿El suelo es antideslizante (riesgo si se moja)?',
-            '¿Hay redes de protección certificadas instaladas (imprescindibles con niños/mascotas)?',
+            '¿Hay redes de protección certificadas instaladas (imprescindibles con niños y mascotas)?',
             '¿Ha alejado muebles y macetas de la barandilla (sirven de escalera)?',
         ], oQueFazer_en: [
             'Is the floor non-slip (risky when wet)?',
-            'Are certified safety nets fitted (essential with children/pets)?',
+            'Are certified safety nets fitted (essential with children and pets)?',
             'Have you moved furniture and plant pots away from the railing (they work as a ladder)?',
         ],
         oQueNaoFazer: [
@@ -707,20 +707,20 @@ export const areasInternas = [
         cor: '#00897B', // Teal
         riscos: 'Barreiras, quedas, falta de autonomia.', riscos_ptpt: 'Barreiras, quedas, falta de autonomia.', riscos_es: 'Barreras, caídas, falta de autonomía.', riscos_en: 'Barriers, falls, loss of independence.',
         oQueFazer: [
-            'Portas e corredores são largos o suficiente para cadeira de rodas/andador?',
+            'Portas e corredores são largos o suficiente para cadeira de rodas e andador?',
             'Há espaço de circulação e giro (360º) para cadeira de rodas nas salas?',
             'O quarto do PCD fica no térreo (evita escadas)?',
             'O banheiro possui barras de apoio e bacia sanitária elevada?',
             'O box é amplo e nivelado (sem degrau) para acesso de cadeira de banho?',
-            'Torneiras são de alavanca ou sensor (fáceis de abrir)?',
+            'Torneiras são de alavanca ou sensor (fáceis de abrir e fechar)?',
             'Pias e bancadas possuem vão livre embaixo para encaixe das pernas?'
         ], oQueFazer_ptpt: [
-            'As portas e os corredores são largos o suficiente para cadeira de rodas/andarilho?',
+            'As portas e os corredores são largos o suficiente para cadeira de rodas e andarilho?',
             'Há espaço para circular e rodar (360°) a cadeira de rodas nas salas?',
             'O quarto da pessoa com deficiência fica no rés-do-chão (evita escadas)?',
             'A casa de banho tem barras de apoio e sanita elevada?',
             'O duche é amplo e nivelado (sem degrau) para a cadeira de banho?',
-            'As torneiras são de alavanca ou sensor (fáceis de abrir)?',
+            'As torneiras são de alavanca ou sensor (fáceis de abrir e fechar)?',
             'Os lavatórios e bancadas têm espaço livre por baixo para as pernas?',
         ], oQueFazer_es: [
             '¿Las puertas y pasillos son lo bastante anchos para silla de ruedas o andador?',
@@ -728,7 +728,7 @@ export const areasInternas = [
             '¿La habitación de la persona con discapacidad está en la planta baja (sin escaleras)?',
             '¿El baño tiene barras de apoyo e inodoro elevado?',
             '¿La ducha es amplia y a ras de suelo (sin escalón) para la silla de ducha?',
-            '¿Los grifos son de palanca o con sensor (fáciles de abrir)?',
+            '¿Los grifos son de palanca o con sensor (fáciles de abrir y cerrar)?',
             '¿Los lavabos y encimeras tienen hueco libre debajo para las piernas?',
         ], oQueFazer_en: [
             'Are doors and hallways wide enough for a wheelchair or walker?',
@@ -736,7 +736,7 @@ export const areasInternas = [
             'Is the bedroom of the person with a disability on the ground floor (no stairs)?',
             'Does the bathroom have grab bars and a raised toilet?',
             'Is the shower wide and level (no step) for a shower chair?',
-            'Are the taps lever or sensor operated (easy to open)?',
+            'Are the taps lever or sensor operated (easy to open and close)?',
             'Do sinks and worktops have clear space underneath for the legs?',
         ],
         oQueNaoFazer: [

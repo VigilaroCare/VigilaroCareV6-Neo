@@ -1220,7 +1220,7 @@
         "aves": {
             "titulo": "Birds",
             "subtitulo": "Ornamental Birds",
-            "descricao": "Teflon, vapors, and drafts."
+            "descricao": "Non-stick pans, fumes and drafts."
         },
         "wellness": {
             "titulo": "Wellness Hub",
@@ -1585,7 +1585,7 @@
         "buscarClNicas24hNaRegiO": "Find 24h Clinics Nearby",
         "protocolosDetectados": "Detected Protocols",
         "atenOAveNaCasa": "Warning: Bird in the Home",
-        "riscoRespiratRioCrTicoTeflonVapores": "Critical Respiratory Risk (Teflon/Fumes)",
+        "riscoRespiratRioCrTicoTeflonVapores": "Critical Respiratory Risk (Non-Stick Pans/Fumes)",
         "carteirinhaDeVacinaO": "Vaccination Card",
         "histRicoParaApresentarAoVeterinRio": "History to show the vet.",
         "fAAAGORA": "DO IT NOW:",

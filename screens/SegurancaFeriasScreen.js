@@ -161,18 +161,18 @@ export default function SegurancaFeriasScreen({ navigation }) {
             ],
             emergencias_ptpt: ['Incêndio: use as escadas, NUNCA o elevador.', 'Intoxicação: tenha à mão o número do centro antivenenos — {{POISON_CONTROL}}.'],
             dicasExtras: [
-                'Leve protetores de quina e tomada na mala.',
+                'Se possível, leve protetores de quina e de tomada na mala.',
                 'Use "Trava-Porta" de borracha.'
             ],
             dicasExtras_en: [
-                'Pack corner and outlet protectors in your suitcase.',
+                'If possible, pack corner and outlet protectors in your suitcase.',
                 'Use a rubber door stopper.'
             ],
             dicasExtras_es: [
-                'Lleve protectores de esquinas y enchufes en la maleta.',
+                'Si es posible, lleve protectores de esquinas y enchufes en la maleta.',
                 'Use un tope de puerta de goma.'
             ],
-            dicasExtras_ptpt: ['Leve protetores de esquinas e de tomadas na mala.', 'Use um calço de porta de borracha.']
+            dicasExtras_ptpt: ['Se possível, leve protetores de esquinas e de tomadas na mala.', 'Use um calço de porta de borracha.']
         },
         {
             id: 3,
@@ -304,7 +304,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             emergencias_ptpt: ['Perda de documento: apresente queixa na polícia local.', 'Doença no estrangeiro: acione o seguro de viagem.'],
             dicasExtras: [
                 'Tenha fotos dos documentos no celular e nuvem.',
-                'Leve receitas médicas (em inglês se inter).'
+                'Leve receitas médicas (em inglês, se a viagem for internacional).'
             ],
             dicasExtras_en: [
                 'Have photos of documents on phone and cloud.',
@@ -312,7 +312,7 @@ export default function SegurancaFeriasScreen({ navigation }) {
             ],
             dicasExtras_es: [
                 'Tenga fotos de documentos en el teléfono y la nube.',
-                'Lleve recetas médicas (en inglés si es internacional).'
+                'Lleve recetas médicas (en inglés, si el viaje es internacional).'
             ],
             dicasExtras_ptpt: ['Tenha fotografias dos documentos no telemóvel e na nuvem.', 'Leve as receitas médicas (em inglês, se for ao estrangeiro).']
         }

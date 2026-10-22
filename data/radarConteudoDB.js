@@ -536,7 +536,7 @@ export const PROTOCOLOS_DESTAQUE = [
     categoria: 'queda',
     perfil: 'crianca',
     titulo: 'Criança caiu na cabeça — quando ir ao PS',
-    resumo: 'Nem toda queda com batida na cabeça exige ida ao pronto-socorro. Mas algumas situações são indiscutíveis. Aprenda a distinguir.',
+    resumo: 'Nem toda queda com impacto na cabeça exige ida ao pronto-socorro. Mas algumas situações são indiscutíveis. Aprenda a distinguir.',
     orientacoes: [
       'Vá ao PS imediatamente se: perda de consciência (mesmo breve), vômito mais de uma vez, crianças menores de 1 ano.',
       'Sinais de alerta nas 24h seguintes: dor de cabeça intensa crescente, sonolência excessiva, visão dupla, convulsão.',

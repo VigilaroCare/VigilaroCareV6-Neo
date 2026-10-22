@@ -328,7 +328,7 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'Os móveis altos foram parafusados na parede?',
         consequence: 'Cômodas e armários tombam quando as crianças tentam escalar as gavetas.',
-        checkAction: 'Fixe os móveis com suportes metálicos anti-tombamento.',
+        checkAction: 'Fixe os móveis com suportes metálicos antitombamento.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

@@ -147,7 +147,7 @@ export default function EmergenciaPetScreen({ navigation }) {
                       {t('headersFirst.atenOAveNaCasa', 'Atenção: ave na casa')}
                     </H3>
                     <Body style={{ color: Neo.colors.secondary[500], fontSize: 12, marginTop: 2 }}>
-                      {t('headersFirst.riscoRespiratRioCrTicoTeflonVapores', 'Risco respiratório crítico (Teflon/vapores)')}
+                      {t('headersFirst.riscoRespiratRioCrTicoTeflonVapores', 'Risco respiratório crítico (antiaderentes/vapores)')}
                     </Body>
                   </View>
                   <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.secondary[500]} />

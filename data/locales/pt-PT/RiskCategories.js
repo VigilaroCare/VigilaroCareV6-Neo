@@ -325,7 +325,7 @@ export const RISK_CATEGORIES_PT = [
         critico: true,
         text: 'Móveis altos estão fixados na parede?',
         consequence: 'Tombamento de estantes sobre crianças.',
-        checkAction: 'Instale kits anti-tombamento.',
+        checkAction: 'Instale kits antitombamento.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

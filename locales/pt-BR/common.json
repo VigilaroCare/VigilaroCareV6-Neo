@@ -51,7 +51,7 @@
         "attentionPoint": "⚠️ Ponto de Atenção:",
         "verifyItem": "Verifique: {{item}}",
         "offlineAlert": "Offline. Apenas conteúdos e SOS disponíveis.",
-        "batteryAlert": "Bateria crítica. Carregue o dispositivo.",
+        "batteryAlert": "Bateria crítica. Recarregue o dispositivo.",
         "labelSafe": "Seguro: {{pct}}%",
         "labelAttention": "Atenção: {{pct}}%",
         "labelCritical": "Crítico: {{pct}}%",
@@ -1254,7 +1254,7 @@
         "aves": {
             "titulo": "Aves",
             "subtitulo": "Pássaros Ornamentais",
-            "descricao": "Teflon, vapores e correntes de ar."
+            "descricao": "Panelas antiaderentes, vapores e correntes de ar."
         },
         "wellness": {
             "titulo": "Hub Bem-Estar",
@@ -1620,7 +1620,7 @@
         "buscarClNicas24hNaRegiO": "Buscar Clínicas 24h na Região",
         "protocolosDetectados": "Protocolos Detectados",
         "atenOAveNaCasa": "Atenção: Ave na Casa",
-        "riscoRespiratRioCrTicoTeflonVapores": "Risco Respiratório Crítico (Teflon/Vapores)",
+        "riscoRespiratRioCrTicoTeflonVapores": "Risco Respiratório Crítico (Antiaderentes/Vapores)",
         "carteirinhaDeVacinaO": "Carteirinha de Vacinação",
         "histRicoParaApresentarAoVeterinRio": "Histórico para apresentar ao Veterinário.",
         "fAAAGORA": "FAÇA AGORA:",

@@ -11,10 +11,10 @@ export const AVES_SEGURAS_DATA = {
         desc_es: 'Las aeronaves reales requieren pistas limpias. El sistema respiratorio de las aves es hasta 10 veces más sensible que el humano a toxinas invisibles.'
     },
     alertaCritico: {
-        title: 'Risco Fatal: Teflon (PTFE)', title_en: 'Fatal Risk: Teflon (PTFE)', title_es: 'Riesgo Fatal: Teflón (PTFE)',
-        desc: 'O Teflon superaquecido de panelas antiaderentes libera gases inodoros que paralisam o sistema respiratório das aves em segundos. É um risco letal e sem cura.',
-        desc_en: 'Overheated Teflon from non-stick pans releases odorless gases that paralyze birds\' respiratory systems in seconds. It is a lethal and incurable risk.',
-        desc_es: 'El teflón sobrecalentado de sartenes antiadherentes libera gases inodoros que paralizan el sistema respiratorio de las aves en segundos. Es un riesgo letal e incurable.',
+        title: 'Risco Fatal: Antiaderentes (PTFE)', title_en: 'Fatal Risk: Non-Stick Coatings (PTFE)', title_es: 'Riesgo Fatal: Antiadherentes (PTFE)',
+        desc: 'O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que paralisam o sistema respiratório das aves em segundos. É um risco letal e sem cura.',
+        desc_en: 'Overheated PTFE coating from non-stick pans releases odorless gases that paralyze birds\' respiratory systems in seconds. It is a lethal and incurable risk.',
+        desc_es: 'El revestimiento (PTFE) sobrecalentado de sartenes antiadherentes libera gases inodoros que paralizan el sistema respiratorio de las aves en segundos. Es un riesgo letal e incurable.',
         small: '⚠️ Mantenha aves sempre banidas da cozinha.',
         small_en: '⚠️ Keep birds always banned from the kitchen.',
         small_es: '⚠️ Mantenga a las aves siempre prohibidas en la cocina.'

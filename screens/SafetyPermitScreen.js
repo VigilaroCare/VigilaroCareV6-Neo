@@ -29,7 +29,7 @@ const PROTOCOLS = {
         questions: [
             { id: 'r1', text: 'Vai mexer na rede elétrica?', riskIf: 'yes', icon: 'flash-outline' },
             { id: 'r2', text: 'Disjuntor Geral foi DESLIGADO?', stopIf: 'no', requiredIfQ1: 'yes', stopMsg: 'CHOQUE FATAL. Desligue a energia.', icon: 'power-outline' },
-            { id: 'r3', text: 'Área da obra está isolada de crianças/pets?', stopIf: 'no', stopMsg: 'Isole a area fisicamente antes de iniciar.', icon: 'close-circle-outline' },
+            { id: 'r3', text: 'Área da obra está isolada de crianças e pets?', stopIf: 'no', stopMsg: 'Isole a area fisicamente antes de iniciar.', icon: 'close-circle-outline' },
             { id: 'r4', text: 'Ferramentas de corte possuem proteção?', icon: 'cut-outline' }
         ],
         risks: ['Choque Elétrico', 'Cortes Profundos', 'Poeira Tóxica'],

@@ -333,7 +333,7 @@ export default function HomeScreenNeo() {
         if (hasCriticalBattery) {
             return {
                 tone: 'system',
-                label: t('home.batteryAlert', 'Bateria crítica — carregue o dispositivo'),
+                label: t('home.batteryAlert', 'Bateria crítica — recarregue o dispositivo'),
                 route: null,
             };
         }

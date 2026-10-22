@@ -66,7 +66,7 @@ export const SAFETY_CONDO = {
             title: 'Piscinas Coletivas',
             title_en: 'Shared Pools',
             title_es: 'Piscinas Comunitarias',
-            content: 'O ralo de fundo deve ser do tipo \'anti-aprisionamento\' (gradeado que não suga cabelo). O botão de parada de emergência da bomba deve estar visível e sinalizado.',
+            content: 'O ralo de fundo deve ser do tipo \'antiaprisionamento\' (gradeado que não suga cabelo). O botão de parada de emergência da bomba deve estar visível e sinalizado.',
             content_en: 'The bottom drain must be the anti-entrapment type (a grate that cannot suck in hair). The pump\'s emergency stop button must be visible and clearly marked.',
             content_es: 'El sumidero de fondo debe ser del tipo antiatrapamiento (una rejilla que no pueda succionar el cabello). El botón de parada de emergencia de la bomba debe estar visible y señalizado.',
             content_ptpt: 'O ralo de fundo deve ser do tipo antiaprisionamento (grelha que não possa sugar cabelo). O botão de paragem de emergência da bomba deve estar visível e sinalizado.',

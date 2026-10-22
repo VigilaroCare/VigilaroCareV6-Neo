@@ -141,21 +141,21 @@ export default function SegurancaLazerScreen({ navigation }) {
         'Evite nadar após chuvas fortes.',
         'Use colete salva-vidas (boias de braço não salvam).',
         'Não mergulhe de cabeça (pedras submersas).',
-        'Saia da água se começar a chover na cabeceira.'
+        'Saia da água se começar a chover na cabeceira.', 'Consulte a previsão do tempo onde você está e nas proximidades.'
       ],
       prevencao_en: [
         'Avoid swimming after heavy rains.',
         'Use life jacket (arm floats don\'t save).',
         'Do not dive headfirst (submerged rocks).',
-        'Leave the water if it starts raining upstream.'
+        'Leave the water if it starts raining upstream.', 'Check the weather forecast where you are and nearby.'
       ],
       prevencao_es: [
         'Evite nadar después de fuertes lluvias.',
         'Use chaleco salvavidas (los manguitos no salvan).',
         'No se tire de cabeza (piedras sumergidas).',
-        'Salga del agua si empieza a llover río arriba.'
+        'Salga del agua si empieza a llover río arriba.', 'Consulte la previsión del tiempo donde está y en los alrededores.'
       ],
-      prevencao_ptpt: ['Evite nadar depois de chuvas fortes.', 'Use colete salva-vidas (as braçadeiras não salvam).', 'Não mergulhe de cabeça (pedras submersas).', 'Saia da água se começar a chover a montante.'],
+      prevencao_ptpt: ['Evite nadar depois de chuvas fortes.', 'Use colete salva-vidas (as braçadeiras não salvam).', 'Não mergulhe de cabeça (pedras submersas).', 'Saia da água se começar a chover a montante.', 'Consulte a previsão do tempo onde está e nas proximidades.'],
       emergencias: [
         'Afogamento: Não tente salvar nadando, jogue uma corda ou galho.',
         'Corte: Lave com água limpa e comprima.'
@@ -210,23 +210,13 @@ export default function SegurancaLazerScreen({ navigation }) {
       riscosPrincipais_ptpt: ['Afogamento silencioso', 'Escorregadelas na borda molhada', 'Sucção dos ralos (cabelos)'],
       prevencao: [
         'Supervisão constante de crianças (regra do "vigilante" dedicado).',
-        'Cercas de no mínimo 1,20m com portão auto-travante.',
-        'Ralos anti-aprisionamento obrigatórios.',
+        'Cercas de no mínimo 1,20 m com portão autotravante.',
+        'Ralos antiaprisionamento obrigatórios.',
         'Boia salva-vidas e gancho de resgate acessíveis.',
         'Nunca nadar sozinho.'
       ],
-      prevencao_en: [
-        'Install safety fences (min 1.5m).',
-        'Supervision 100% of the time (no phone).',
-        'Use anti-entrapment drains.',
-        'Do not leave toys in the water (they attract children).'
-      ],
-      prevencao_es: [
-        'Instale cercas de protección (mín. 1.5m).',
-        'Supervisión 100% del tiempo (sin celular).',
-        'Use desagües anti-atrapamiento.',
-        'No deje juguetes en el agua (atraen a los niños).'
-      ],
+      prevencao_en: ['Constant supervision of children (a dedicated "water watcher").', 'Fences at least 1.2 m (4 ft) high with a self-latching gate.', 'Anti-entrapment drains are a must.', 'Life ring and rescue hook within reach.', 'Never swim alone.'],
+      prevencao_es: ['Supervisión constante de los niños (un «vigilante» dedicado).', 'Vallas de al menos 1,20 m con puerta de cierre automático.', 'Desagües antiatrapamiento obligatorios.', 'Aro salvavidas y gancho de rescate a mano.', 'Nunca nadar solo.'],
       prevencao_ptpt: ['Vigilância constante das crianças (regra do «vigilante» dedicado).', 'Vedação com pelo menos 1,20 m e portão com fecho automático.', 'Ralos antiaprisionamento obrigatórios.', 'Boia salva-vidas e gancho de resgate acessíveis.', 'Nunca nadar sozinho.'],
       emergencias: [
         'Afogamento: tire da água e ligue para o {{EMERGENCY_MEDICAL}}; se não respirar e você souber, inicie a RCP.',
@@ -315,17 +305,17 @@ export default function SegurancaLazerScreen({ navigation }) {
       emergencias_ptpt: ['Picada: lave o local e vá ao hospital (leve uma foto do animal).', 'Queimadura: água corrente fria durante 10 min.'],
       dicasExtras: [
         'Leve lanternas extras e pilhas.',
-        'Tenha um kit de primeiros socorros completo.'
+        'Tenha um kit de primeiros socorros completo.', 'Compartilhe o trajeto com alguém de confiança.'
       ],
       dicasExtras_en: [
         'Bring extra flashlights and batteries.',
-        'Have a complete first aid kit.'
+        'Have a complete first aid kit.', 'Share your route with someone you trust.'
       ],
       dicasExtras_es: [
         'Lleve linternas extra y pilas.',
-        'Tenga un botiquín de primeros auxilios completo.'
+        'Tenga un botiquín de primeros auxilios completo.', 'Comparta el recorrido con alguien de confianza.'
       ],
-      dicasExtras_ptpt: ['Leve lanternas e pilhas extra.', 'Tenha um kit de primeiros socorros completo.']
+      dicasExtras_ptpt: ['Leve lanternas e pilhas extra.', 'Tenha um kit de primeiros socorros completo.', 'Partilhe o percurso com alguém de confiança.']
     },
     {
       id: 5,
@@ -423,23 +413,23 @@ export default function SegurancaLazerScreen({ navigation }) {
       ],
       prevencao: [
         'NUNCA use álcool líquido para acender.',
-        'Use acendedores próprios sólidos.',
+        'Use acendedores próprios sólidos ou elétricos.',
         'Mantenha crianças afastadas.',
         'Botijão em área ventilada.'
       ],
       prevencao_en: [
         'NEVER use liquid alcohol to light it.',
-        'Use proper solid fire starters.',
+        'Use proper solid or electric fire starters.',
         'Keep children away.',
         'Gas cylinder in a ventilated area.'
       ],
       prevencao_es: [
         'NUNCA use alcohol líquido para encender.',
-        'Use encendedores sólidos adecuados.',
+        'Use encendedores sólidos o eléctricos adecuados.',
         'Mantenga a los niños alejados.',
         'Cilindro de gas en un área ventilada.'
       ],
-      prevencao_ptpt: ['NUNCA use álcool líquido para acender.', 'Use acendalhas próprias.', 'Mantenha as crianças afastadas.', 'Botija numa zona ventilada.'],
+      prevencao_ptpt: ['NUNCA use álcool líquido para acender.', 'Use acendalhas próprias ou acendedores elétricos.', 'Mantenha as crianças afastadas.', 'Botija numa zona ventilada.'],
       emergencias: [
         'Queimadura: Água corrente fria por 10 min.',
         'Incêndio: Use extintor.'

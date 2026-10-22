@@ -36,7 +36,7 @@ export const riscosFisicos = [
         descricao: 'O corpo molhado reduz drasticamente a resistência da pele, tornando o choque de carregadores letal.', descricao_en: 'A wet body drastically reduces skin resistance, making charger shocks lethal.', descricao_es: 'El cuerpo mojado reduce drásticamente la resistencia de la piel, haciendo letal el choque.',
         prevencao: [
             'NUNCA use o celular conectado à tomada enquanto estiver no banho ou com o corpo úmido.',
-            'Carregue o celular fora de banheiros ou áreas de piscina.',
+            'Recarregue o celular fora de banheiros ou áreas de piscina.',
             'Evite cabos piratas ou falsificados, que não possuem isolamento seguro.'
         ],
         prevencao_en: [
