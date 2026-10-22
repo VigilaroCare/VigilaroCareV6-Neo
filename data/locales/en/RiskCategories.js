@@ -133,7 +133,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Have loose rugs and doormats been removed?',
         consequence: 'Main cause of falls in elderly visitors.',
-        checkAction: 'Remove or fix with anti-slip.',
+        checkAction: 'Remove them or fix them with double-sided tape.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {

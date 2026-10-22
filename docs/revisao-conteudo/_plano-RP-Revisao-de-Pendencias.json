@@ -1,0 +1,25 @@
+{
+  "documento": "RP-Revisao-de-Pendencias.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T03:22:49.435Z",
+  "coerencia": {
+    "lidos": 202,
+    "intactos": 201,
+    "taxa": 0.995
+  },
+  "editados": [
+    {
+      "arquivo": "data/mobilidade_data.js",
+      "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+      "item": "Cadeirinha",
+      "chave": "comoInstalar[]",
+      "linha": 252,
+      "original": "Usar o ISOFIX (ou LATCH) quando o carro e a cadeirinha tiverem; de frente, prender também a cinta superior (top tether)",
+      "codigo": "RP-0088",
+      "novo": "Usar o ISOFIX (ou LATCH) quando o carro e a cadeirinha tiverem; de frente, prender também a cinta superior (top Theather)"
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}

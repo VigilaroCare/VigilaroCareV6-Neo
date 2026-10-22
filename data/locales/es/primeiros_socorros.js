@@ -284,7 +284,7 @@ export const primeirosSocorrosES = [
             'NO intente sacar el agua de los pulmones apretando el abdomen ni poniendo a la persona boca abajo: retrasa la RCP y puede provocar vómito.',
             'NO descarte la valoración médica porque la persona parezca estar bien.',
         ],
-        quandoChamarAjuda: 'Siempre. Incluso quien salió bien del agua necesita valoración si tragó agua, tosió mucho o quedó somnoliento: los problemas para respirar pueden aparecer horas después.'
+        quandoChamarAjuda: 'Siempre. Incluso quien salió del agua sintiéndose bien necesita valoración si tragó agua, tosió mucho o quedó somnoliento: los problemas para respirar pueden aparecer horas después.'
     },
     {
         id: 'ps_18',

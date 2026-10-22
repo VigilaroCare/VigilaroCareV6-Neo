@@ -156,7 +156,7 @@ export const JANELAS_BR = [
     categoria: "clima",
     publico: [],
     icone: "CloudLightning",
-    titulo: "Quadra chuvosa no litoral do Nordeste",
+    titulo: "Quadrimestre chuvoso no litoral do Nordeste",
     titulo_en: "Rainy season on the Northeast coast",
     titulo_es: "Temporada de lluvias en la costa del Nordeste",
     resumo: "No litoral leste do Nordeste, as chuvas mais fortes vêm de abril a julho, com alagamentos e deslizamentos em encostas. É também época de mais escorpiões buscando abrigo dentro de casa.",
@@ -227,9 +227,9 @@ export const JANELAS_BR = [
     publico: [],
     ambientes: ["quintal", "jardim_horta", "varanda"],
     icone: "Bug",
-    titulo: "Dengue: o criadouro está dentro de casa",
-    titulo_en: "Dengue: the breeding site is at home",
-    titulo_es: "Dengue: el criadero está en casa",
+    titulo: "Dengue: o criadouro pode estar na sua casa ou no quintal",
+    titulo_en: "Dengue: the breeding site may be in your home or yard",
+    titulo_es: "Dengue: el criadero puede estar en su casa o en el patio",
     resumo: "Com calor e chuva, o mosquito Aedes aegypti se multiplica, e a maior parte dos criadouros está nas casas. Dez minutos por semana de vistoria cortam o ciclo do mosquito.",
     resumo_en: "With heat and rain the Aedes aegypti mosquito multiplies, and most breeding sites are in homes. Ten minutes of checking a week breaks its life cycle.",
     resumo_es: "Con calor y lluvia el mosquito Aedes aegypti se multiplica, y la mayoría de los criaderos está en las casas. Diez minutos de revisión por semana cortan su ciclo.",
@@ -306,21 +306,21 @@ export const JANELAS_BR = [
       "Criança longe da fogueira (pelo menos 3 metros) e sem soltar fogos, nem estalinho, sem adulto.",
       "Fogos só os com {{CERT_SEAL}}, acesos no chão, longe do rosto; o que falhou, não reacenda — molhe.",
       "Nunca álcool para avivar a fogueira; tenha um balde de água ou areia por perto.",
-      "Pets presos em lugar fechado e com identificação: o barulho faz cães e gatos fugirem.",
+      "Pets presos em lugar fechado e com identificação: o barulho provoca estresse severo e faz cães e gatos fugirem.",
       "Roupa de festa em algodão: tecido sintético (poliéster, náilon) pega fogo e gruda na pele."
     ],
     orientacoes_en: [
       "Keep children away from the bonfire (at least 3 metres) and never let them set off fireworks, even small ones, without an adult.",
       "Only fireworks bearing {{CERT_SEAL}}, lit on the ground, away from the face; never relight a dud — soak it.",
       "Never use alcohol to liven up the fire; keep a bucket of water or sand nearby.",
-      "Keep pets indoors and wearing ID: the noise makes dogs and cats run away.",
+      "Keep pets indoors and wearing ID: the noise causes severe stress and makes dogs and cats run away.",
       "Party clothes in cotton: synthetic fabrics (polyester, nylon) catch fire and stick to the skin."
     ],
     orientacoes_es: [
       "Niños lejos de la hoguera (al menos 3 metros) y sin encender fuegos, ni petardos pequeños, sin un adulto.",
       "Solo fuegos con {{CERT_SEAL}}, encendidos en el suelo, lejos de la cara; el que falló, no lo vuelva a encender — mójelo.",
       "Nunca alcohol para avivar la hoguera; tenga un cubo de agua o arena cerca.",
-      "Mascotas encerradas y con identificación: el ruido hace que perros y gatos escapen.",
+      "Mascotas encerradas y con identificación: el ruido provoca estrés severo y hace que perros y gatos escapen.",
       "Ropa de fiesta de algodón: las telas sintéticas (poliéster, nailon) arden y se pegan a la piel."
     ],
     fonte: "Lei 9.605/1998, art. 42; Sociedade Brasileira de Queimaduras"
@@ -339,9 +339,9 @@ export const JANELAS_BR = [
     titulo: "Frio: monóxido de carbono e aquecedores",
     titulo_en: "Cold: carbon monoxide and heaters",
     titulo_es: "Frío: monóxido de carbono y estufas",
-    resumo: "O monóxido de carbono não tem cheiro nem cor e mata durante o sono. No inverno, bombeiros registram mais casos com aquecedor a gás, lareira, braseiro e até vasilha de álcool em quarto fechado.",
-    resumo_en: "Carbon monoxide has no smell or colour and kills during sleep. In winter, fire departments see more cases from gas heaters, fireplaces, braziers and even bowls of burning alcohol in closed rooms.",
-    resumo_es: "El monóxido de carbono no tiene olor ni color y mata mientras se duerme. En invierno, los bomberos registran más casos con estufas de gas, chimeneas, braseros e incluso recipientes con alcohol en cuartos cerrados.",
+    resumo: "O monóxido de carbono (CO) não tem cheiro nem cor e mata durante o sono. No inverno, bombeiros registram mais casos com aquecedor a gás, lareira, braseiro e até vasilha de álcool em quarto fechado.",
+    resumo_en: "Carbon monoxide (CO) has no smell or colour and kills during sleep. In winter, fire departments see more cases from gas heaters, fireplaces, braziers and even bowls of burning alcohol in closed rooms.",
+    resumo_es: "El monóxido de carbono (CO) no tiene olor ni color y mata mientras se duerme. En invierno, los bomberos registran más casos con estufas de gas, chimeneas, braseros e incluso recipientes con alcohol en cuartos cerrados.",
     orientacoes: [
       "Aquecedor a gás, lareira ou braseiro: sempre com uma fresta de janela aberta, e nunca ligado enquanto se dorme.",
       "Nunca aqueça o ambiente com fogão, forno ou álcool queimando.",
@@ -380,9 +380,9 @@ export const JANELAS_BR = [
     titulo: "Tempo seco e queimadas",
     titulo_en: "Dry weather and wildfires",
     titulo_es: "Tiempo seco y quemas",
-    resumo: "Umidade do ar muito baixa e fumaça de queimadas agravam asma, bronquite e doenças do coração — principalmente em bebês e idosos. E fogo em terreno ou quintal vira incêndio rápido.",
-    resumo_en: "Very low humidity and wildfire smoke worsen asthma, bronchitis and heart disease — especially in babies and older adults. And fire in a yard or empty lot quickly becomes a blaze.",
-    resumo_es: "La humedad muy baja y el humo de las quemas agravan el asma, la bronquitis y las enfermedades del corazón — sobre todo en bebés y mayores. Y el fuego en un patio o terreno se vuelve incendio rápido.",
+    resumo: "Umidade do ar muito baixa e fumaça de queimadas agravam asma, bronquite e doenças do coração — principalmente em bebês e idosos. E fogo em terreno ou quintal pode virar incêndio rapidamente.",
+    resumo_en: "Very low humidity and wildfire smoke worsen asthma, bronchitis and heart disease — especially in babies and older adults. And fire in a yard or empty lot can quickly become a blaze.",
+    resumo_es: "La humedad muy baja y el humo de las quemas agravan el asma, la bronquitis y las enfermedades del corazón — sobre todo en bebés y mayores. Y el fuego en un patio o terreno puede volverse un incendio rápidamente.",
     orientacoes: [
       "Nunca queime lixo, folhas ou mato no quintal.",
       "Beba água ao longo do dia; soro fisiológico no nariz de bebês e idosos.",
@@ -422,7 +422,7 @@ export const JANELAS_BR = [
     resumo_es: "El viento de agosto tira frutos y semillas de árboles y arbustos en el patio, el jardín y la acera. Algunos son tóxicos, como los frutos del cinamomo y las semillas de ricino, cabalonga y piñón morado, y quedan al alcance de niños pequeños y mascotas.",
     orientacoes: [
       "Após tempestades: inspecione o quintal antes de liberar crianças e pets.",
-      "Conheça as plantas do seu quintal — verifique quais são tóxicas na lista do CIATOX.",
+      "Conheça as plantas do seu quintal — verifique quais são tóxicas na lista do CIATOX (Centro de Informação e Assistência Toxicológica).",
       "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre-se de que algumas frutas e frutos podem deixar o chão escorregadio.",
       "Criança ou pet engoliu fruto ou semente suspeita: ligue para o {{POISON_CONTROL}} com a planta em mãos."
     ],
@@ -456,23 +456,26 @@ export const JANELAS_BR = [
     resumo_es: "En vacaciones, cometas enredadas en la red eléctrica e hilos con vidrio o abrasivos causan descargas graves, caídas de azoteas y cortes profundos — a quien vuela la cometa y a quien pasa.",
     orientacoes: [
       "Pipa só em campo aberto, longe de fios e postes; nunca em laje ou telhado.",
-      "Linha com cerol ou chilena: nunca. Além de perigosa, é proibida em vários estados.",
+      "Linha com cerol ou chilena: nunca, em lugar nenhum. É proibida por lei em vários estados e, mesmo onde não há lei, corta e pode matar quem passa.",
       "Pipa presa no fio: deixe lá e avise a distribuidora de energia — não puxe, não use vara ou cano.",
       "Motociclistas da família: antena corta-pipa na moto.",
+      "Não só motociclistas: quem anda de bicicleta, ciclomotor, patinete ou outros autopropelidos também é atingido pela linha — atenção redobrada onde se solta pipa.",
       "Férias na casa de parentes: confira piscina, sacada, tomadas e remédios ao alcance antes de soltar as crianças."
     ],
     orientacoes_en: [
       "Fly kites only in open fields, away from wires and poles; never on rooftops.",
-      "Glass-coated or abrasive line: never. Besides being dangerous, it is banned in several Brazilian states.",
+      "Glass-coated or abrasive kite line: never, anywhere. It is banned by law in several Brazilian states and, even where there is no law, it cuts and can kill passers-by.",
       "Kite stuck on a wire: leave it and call the power company — do not pull it or use poles or pipes.",
       "Motorcyclists in the family: fit an anti-kite-line antenna.",
+      "Not just motorcyclists: people on bicycles, mopeds, e-scooters and other light electric vehicles are also hit by kite lines — take extra care where kites are flown.",
       "Holidays at relatives' homes: check the pool, balconies, outlets and reachable medicines before letting the children loose."
     ],
     orientacoes_es: [
       "Cometas solo en campo abierto, lejos de cables y postes; nunca en azoteas ni techos.",
-      "Hilo con vidrio o abrasivo: nunca. Además de peligroso, está prohibido en varios estados brasileños.",
+      "Hilo con vidrio o abrasivo: nunca, en ningún lugar. Está prohibido por ley en varios estados brasileños y, aun donde no hay ley, corta y puede matar a quien pasa.",
       "Cometa atrapada en el cable: déjela y avise a la compañía eléctrica — no tire de ella ni use palos o tubos.",
       "Motociclistas de la familia: antena corta-hilo en la moto.",
+      "No solo motociclistas: quien va en bicicleta, ciclomotor, patinete u otros vehículos eléctricos ligeros también es alcanzado por el hilo — atención redoblada donde se vuelan cometas.",
       "Vacaciones en casa de familiares: revise piscina, balcones, enchufes y medicamentos al alcance antes de dejar sueltos a los niños."
     ],
     fonte: "Distribuidoras de energia; Corpo de Bombeiros"
@@ -493,22 +496,25 @@ export const JANELAS_BR = [
     resumo_es: "Las pilas de botón y los imanes pequeños tragados causan lesiones internas graves en pocas horas. La edad indicada en la caja no es una sugerencia: es seguridad.",
     orientacoes: [
       "Compre só brinquedo com {{CERT_SEAL}} e respeite a idade indicada.",
+      "Pense na casa toda: irmãos, primos e filhos de vizinhos de idades diferentes dividem brinquedos — peças pequenas, ímãs e baterias do brinquedo de uma criança maior podem chegar às mãos das menores.",
       "Compartimento de pilha com parafuso; pilhas de botão guardadas fora do alcance.",
-      "Suspeita de bateria ou ímã engolido: pronto-socorro AGORA, mesmo sem sintomas.",
+      "Suspeita de bateria ou ímã engolido: pronto-socorro imediatamente, mesmo sem sintomas.",
       "Para menores de 3 anos: nada que caiba num tubo de papel higiênico.",
       "Compartimento sem parafuso: feche com fita adesiva forte; pilhas usadas vão direto para o coletor, nunca ficam sobre a mesa."
     ],
     orientacoes_en: [
       "Buy only toys with {{CERT_SEAL}} and respect the age rating.",
+      "Think of the whole household: siblings, cousins and neighbours' children of different ages share toys — small parts, magnets and batteries from an older child's toy can end up in a younger child's hands.",
       "Battery compartments must be screwed shut; keep button batteries out of reach.",
-      "Suspect a swallowed battery or magnet: emergency room NOW, even without symptoms.",
+      "Suspect a swallowed battery or magnet: emergency room immediately, even without symptoms.",
       "For under-3s: nothing that fits through a toilet-paper tube.",
       "Compartments without a screw: seal them with strong tape; used batteries go straight to a recycling point, never left on a table."
     ],
     orientacoes_es: [
       "Compre solo juguetes con {{CERT_SEAL}} y respete la edad indicada.",
+      "Piense en toda la casa: hermanos, primos e hijos de vecinos de distintas edades comparten juguetes; piezas pequeñas, imanes y pilas del juguete de un niño mayor pueden llegar a manos de los más pequeños.",
       "Compartimiento de pilas con tornillo; pilas de botón fuera del alcance.",
-      "Sospecha de pila o imán tragado: urgencias YA, aunque no haya síntomas.",
+      "Sospecha de pila o imán tragado: urgencias de inmediato, aunque no haya síntomas.",
       "Para menores de 3 años: nada que quepa por un tubo de papel higiénico.",
       "Compartimento sin tornillo: ciérrelo con cinta fuerte; las pilas usadas van directo al contenedor, nunca quedan sobre la mesa."
     ],
@@ -531,7 +537,7 @@ export const JANELAS_BR = [
     orientacoes: [
       "Fogos só com adultos, com {{CERT_SEAL}}, acesos no chão e longe do rosto.",
       "Pisca-pisca com {{CERT_SEAL}}, desligado ao dormir e ao sair; árvore longe de velas.",
-      "Copos e garrafas de bebida alcoólica fora do alcance das crianças depois da festa.",
+      "Copos e garrafas de bebida alcoólica fora do alcance das crianças durante e após a festa.",
       "Pets com identificação e em lugar fechado à meia-noite.",
       "Fogos de fabricação caseira ou sem procedência são ilegais e extremamente perigosos: nunca compre nem deixe crianças manusearem.",
       "Queimadura por fogos: água corrente fria por 20 minutos e pronto-socorro.",
@@ -540,7 +546,7 @@ export const JANELAS_BR = [
     orientacoes_en: [
       "Fireworks only by adults, with {{CERT_SEAL}}, lit on the ground and away from the face.",
       "String lights with {{CERT_SEAL}}, switched off when sleeping or going out; tree away from candles.",
-      "Glasses and bottles of alcohol out of children's reach after the party.",
+      "Glasses and bottles of alcohol out of children's reach during and after the party.",
       "Pets wearing ID and shut indoors at midnight.",
       "Homemade or unbranded fireworks are illegal and extremely dangerous: never buy them or let children handle them.",
       "Firework burn: cool running water for 20 minutes, then the emergency room.",
@@ -549,7 +555,7 @@ export const JANELAS_BR = [
     orientacoes_es: [
       "Fuegos solo por adultos, con {{CERT_SEAL}}, encendidos en el suelo y lejos de la cara.",
       "Luces navideñas con {{CERT_SEAL}}, apagadas al dormir y al salir; árbol lejos de las velas.",
-      "Vasos y botellas de alcohol fuera del alcance de los niños después de la fiesta.",
+      "Vasos y botellas de alcohol fuera del alcance de los niños durante y después de la fiesta.",
       "Mascotas con identificación y encerradas a medianoche.",
       "Los fuegos de fabricación casera o sin procedencia son ilegales y muy peligrosos: nunca los compre ni deje que los niños los manipulen.",
       "Quemadura por fuegos: agua fría corriente durante 20 minutos y urgencias.",

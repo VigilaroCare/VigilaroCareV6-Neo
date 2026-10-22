@@ -18,9 +18,9 @@ export const JANELAS_PT = [
     titulo: "Inverno: monóxido de carbono",
     titulo_en: "Winter: carbon monoxide",
     titulo_es: "Invierno: monóxido de carbono",
-    resumo: "O INEM alerta todos os invernos para intoxicações por monóxido de carbono: braseiras em divisões fechadas, esquentadores na casa de banho, salamandras e lareiras sem tiragem. O gás não tem cheiro e mata durante o sono.",
+    resumo: "O INEM (Instituto Nacional de Emergência Médica) alerta todos os invernos para intoxicações por monóxido de carbono: braseiras em divisões fechadas, esquentadores na casa de banho, salamandras e lareiras sem tiragem. O gás não tem cheiro e mata durante o sono.",
     resumo_en: "Every winter Portugal's emergency service (INEM) warns about carbon monoxide poisoning: braziers in closed rooms, gas water heaters in bathrooms, stoves and fireplaces with poor draught. The gas has no smell and kills during sleep.",
-    resumo_es: "Cada invierno el INEM de Portugal alerta sobre intoxicaciones por monóxido de carbono: braseros en habitaciones cerradas, calentadores en el baño, estufas y chimeneas con mal tiro. El gas no tiene olor y mata mientras se duerme.",
+    resumo_es: "Cada invierno el INEM (Instituto Nacional de Emergencia Médica) de Portugal alerta sobre intoxicaciones por monóxido de carbono: braseros en habitaciones cerradas, calentadores en el baño, estufas y chimeneas con mal tiro. El gas no tiene olor y mata mientras se duerme.",
     orientacoes: [
       "Nunca adormeça com a braseira ou o aquecedor a gás ligados; mantenha sempre uma entrada de ar.",
       "Esquentador fora da casa de banho, com revisão em dia; chaminé limpa uma vez por ano.",
@@ -98,19 +98,19 @@ export const JANELAS_PT = [
     resumo_en: "Homes next to woodland must keep vegetation cleared in a 50-metre strip (10 metres on farmland), measured from the house wall. The legal deadline is usually 30 April, and the Government announces any extension each year.",
     resumo_es: "Quien tiene casa junto a una zona forestal debe limpiar la vegetación en una franja de 50 metros (10 metros en terreno agrícola), medida desde la pared de la casa. El plazo legal suele ser el 30 de abril y el Gobierno anuncia las prórrogas cada año.",
     orientacoes: [
-      "Confirme o prazo deste ano junto da câmara municipal ou do ICNF.",
+      "Confirme o prazo deste ano junto da câmara municipal ou do ICNF (Instituto da Conservação da Natureza e das Florestas).",
       "Retire mato, ramos secos e lenha encostados à casa; árvores com copas afastadas do telhado.",
       "Caleiras limpas de folhas e agulhas de pinheiro.",
       "Queimas de sobrantes só com autorização e fora dos dias de perigo elevado."
     ],
     orientacoes_en: [
-      "Check this year's deadline with your local council or ICNF.",
+      "Check this year's deadline with your local council or ICNF (Portugal's nature and forests institute).",
       "Remove brush, dry branches and firewood stacked against the house; keep tree canopies clear of the roof.",
       "Gutters clear of leaves and pine needles.",
       "Burning garden waste only with authorisation and never on high-risk days."
     ],
     orientacoes_es: [
-      "Confirme el plazo de este año en el ayuntamiento o en el ICNF.",
+      "Confirme el plazo de este año en el ayuntamiento o en el ICNF (instituto portugués de conservación de la naturaleza y los bosques).",
       "Retire maleza, ramas secas y leña apoyadas en la casa; copas de los árboles lejos del tejado.",
       "Canaletas limpias de hojas y agujas de pino.",
       "Quemas de restos solo con autorización y fuera de los días de peligro alto."
@@ -126,29 +126,29 @@ export const JANELAS_PT = [
     categoria: "calor",
     publico: ["bebe", "idoso", "pet"],
     icone: "Sun1",
-    titulo: "Calor: o plano de verão da DGS está ativo",
+    titulo: "Calor: o plano de verão da Direção-Geral da Saúde está ativo",
     titulo_en: "Heat: the health authority's summer plan is active",
-    titulo_es: "Calor: el plan de verano de la DGS está activo",
-    resumo: "A DGS mantém o plano de resposta ao calor de 1 de maio a 30 de setembro. As noites quentes também matam: o corpo não arrefece, sobretudo em idosos, bebés e doentes crónicos.",
+    titulo_es: "Calor: el plan de verano de la Dirección General de la Salud está activo",
+    resumo: "A DGS (Direção-Geral da Saúde) mantém o plano de resposta ao calor de 1 de maio a 30 de setembro. As noites quentes também matam: o corpo não arrefece, sobretudo em idosos, bebés e doentes crónicos.",
     resumo_en: "Portugal's health authority (DGS) runs its heat-response plan from 1 May to 30 September. Hot nights kill too: the body cannot cool down, especially in older adults, babies and the chronically ill.",
-    resumo_es: "La DGS de Portugal mantiene su plan de respuesta al calor del 1 de mayo al 30 de septiembre. Las noches calurosas también matan: el cuerpo no se enfría, sobre todo en mayores, bebés y enfermos crónicos.",
+    resumo_es: "La DGS (Dirección General de la Salud) de Portugal mantiene su plan de respuesta al calor del 1 de mayo al 30 de septiembre. Las noches calurosas también matan: el cuerpo no se enfría, sobre todo en mayores, bebés y enfermos crónicos.",
     orientacoes: [
       "Água ao longo do dia, mesmo sem sede; idosos com horários marcados.",
       "Persianas fechadas durante o dia, janelas abertas à noite.",
       "NUNCA deixe crianças ou animais dentro do carro, nem por um minuto.",
-      "Acompanhe os avisos do IPMA; confusão ou pele quente e seca é emergência — ligue {{EMERGENCY_NUMBER}}."
+      "Acompanhe os avisos do IPMA (instituto de meteorologia); confusão ou pele quente e seca é emergência — ligue {{EMERGENCY_NUMBER}}."
     ],
     orientacoes_en: [
       "Drink water throughout the day, even without thirst; set times for older adults.",
       "Blinds closed during the day, windows open at night.",
       "NEVER leave children or animals in the car, not even for a minute.",
-      "Follow IPMA weather warnings; confusion or hot, dry skin is an emergency — call {{EMERGENCY_NUMBER}}."
+      "Follow weather warnings from IPMA (Portugal's weather institute); confusion or hot, dry skin is an emergency — call {{EMERGENCY_NUMBER}}."
     ],
     orientacoes_es: [
       "Agua durante el día, aunque no haya sed; mayores con horarios fijos.",
       "Persianas cerradas de día, ventanas abiertas de noche.",
       "NUNCA deje niños ni animales dentro del auto, ni un minuto.",
-      "Siga los avisos del IPMA; confusión o piel caliente y seca es una emergencia — llame al {{EMERGENCY_NUMBER}}."
+      "Siga los avisos del IPMA (instituto meteorológico de Portugal); confusión o piel caliente y seca es una emergencia — llame al {{EMERGENCY_NUMBER}}."
     ],
     fonte: "DGS — Plano de Resposta Sazonal em Saúde (verão)"
   },
@@ -164,9 +164,9 @@ export const JANELAS_PT = [
     titulo: "Afogamentos: rios e locais não vigiados",
     titulo_en: "Drowning: rivers and unguarded spots",
     titulo_es: "Ahogamientos: ríos y lugares sin vigilancia",
-    resumo: "Em 2025, todas as mortes por afogamento registadas pela FEPONS até julho ocorreram em locais sem vigilância e sem testemunhas, muitas em rios. Nas crianças pequenas, o perigo está muitas vezes na piscina de casa.",
-    resumo_en: "In 2025, every drowning death recorded by FEPONS up to July happened in unguarded places with no witnesses, many of them in rivers. For young children, the danger is often the home pool.",
-    resumo_es: "En 2025, todas las muertes por ahogamiento registradas por la FEPONS hasta julio ocurrieron en lugares sin vigilancia y sin testigos, muchas en ríos. En los niños pequeños, el peligro suele estar en la piscina de casa.",
+    resumo: "Em 2025, todas as mortes por afogamento registadas pela FEPONS (Federação Portuguesa de Nadadores-Salvadores) até julho ocorreram em locais sem vigilância e sem testemunhas, muitas em rios. Nas crianças pequenas, o perigo está muitas vezes na piscina de casa.",
+    resumo_en: "In 2025, every drowning death recorded by FEPONS (the Portuguese lifeguards' federation) up to July happened in unguarded places with no witnesses, many of them in rivers. For young children, the danger is often the home pool.",
+    resumo_es: "En 2025, todas las muertes por ahogamiento registradas por la FEPONS (Federación Portuguesa de Socorristas) hasta julio ocurrieron en lugares sin vigilancia y sin testigos, muchas en ríos. En los niños pequeños, el peligro suele estar en la piscina de casa.",
     orientacoes: [
       "Banhos só em praias e zonas vigiadas; rios e albufeiras escondem correntes, fundões e água muito fria.",
       "Piscina vedada em toda a volta, com portão que fecha sozinho.",
@@ -200,9 +200,9 @@ export const JANELAS_PT = [
     titulo: "Período de maior perigo de incêndio rural",
     titulo_en: "Peak wildfire danger season",
     titulo_es: "Época de mayor peligro de incendio rural",
-    resumo: "Entre julho e setembro o perigo de incêndio rural é máximo. A ANEPC envia SMS de aviso à população; tenha a família preparada para sair a tempo.",
+    resumo: "Entre julho e setembro o perigo de incêndio rural é máximo. A Proteção Civil (ANEPC) envia SMS de aviso à população; tenha a família preparada para sair a tempo.",
     resumo_en: "Between July and September wildfire danger is at its highest. Portugal's civil protection (ANEPC) sends warning text messages to the public; have the family ready to leave in time.",
-    resumo_es: "Entre julio y septiembre el peligro de incendio rural es máximo. La ANEPC de Portugal envía SMS de aviso a la población; tenga a la familia preparada para salir a tiempo.",
+    resumo_es: "Entre julio y septiembre el peligro de incendio rural es máximo. La Protección Civil de Portugal (ANEPC) envía SMS de aviso a la población; tenga a la familia preparada para salir a tiempo.",
     orientacoes: [
       "Proibido fazer queimas e fogueiras e usar maquinaria que faça faísca nos dias de perigo.",
       "Combine com a família um ponto de encontro e o caminho de saída; mochila com documentos e medicamentos pronta.",

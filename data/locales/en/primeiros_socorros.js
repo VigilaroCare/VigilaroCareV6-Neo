@@ -284,7 +284,7 @@ export const primeirosSocorrosEN = [
             'DO NOT try to get water out of the lungs by pressing on the belly or holding the person upside down: it delays CPR and can cause vomiting.',
             'DO NOT skip a medical check because the person seems fine.',
         ],
-        quandoChamarAjuda: 'Always. Even someone who came out of the water fine needs a check if they swallowed water, coughed a lot or became drowsy: breathing problems can appear hours later.'
+        quandoChamarAjuda: 'Always. Even someone who came out of the water feeling fine needs a check if they swallowed water, coughed a lot or became drowsy: breathing problems can appear hours later.'
     },
     {
         id: 'ps_18',

@@ -252,7 +252,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         titulo: 'Checklist contra Quedas',
         tipo: 'checklist',
         itens: [
-          'Tirar tapetes soltos dos corredores ou fixá-los com fitas antiderrapantes',
+          'Tirar tapetes soltos dos corredores ou fixá-los com fita dupla face',
           'Instalar barras de apoio de metal firmes no box do banheiro e ao lado do vaso sanitário',
           'Colocar luzes guia noturnas com sensores de movimento no caminho até o banheiro',
           'Evitar passar cera que deixe o piso da sala ou cozinha muito liso',
@@ -372,7 +372,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
     secoes: [
       {
         emoji: '💀',
-        titulo: 'Por que é tão Perigoso?',
+        titulo: 'Por que é tão perigoso?',
         tipo: 'lista',
         itens: [
           'Incolor: não produz fumaça visível',

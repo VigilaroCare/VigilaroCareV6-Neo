@@ -133,7 +133,7 @@ export const RISK_CATEGORIES_ES = [
         critico: true,
         text: '¿Se han retirado las alfombras sueltas y los felpudos?',
         consequence: 'Principal causa de caídas en visitantes ancianos.',
-        checkAction: 'Retirar o fijar con antideslizante.',
+        checkAction: 'Retírelas o fíjelas con cinta de doble cara.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]
       },
       {

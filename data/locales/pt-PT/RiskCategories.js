@@ -133,7 +133,7 @@ export const RISK_CATEGORIES_PT = [
         critico: true,
         text: 'Tapetes soltos e capachos foram retirados?',
         consequence: 'Principal causa de queda em idosos visitantes.',
-        checkAction: 'Remova ou fixe com antiderrapante.',
+        checkAction: 'Remova-os ou fixe-os com fita de dupla face.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

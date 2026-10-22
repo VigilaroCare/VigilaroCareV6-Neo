@@ -93,7 +93,7 @@ export const JANELAS_MX = [
       "Plano familiar de proteção civil: saiba qual é o refúgio temporário mais próximo.",
       "Mochila de emergência: documentos em plástico, água, comida não perecível, remédios, lanterna e rádio.",
       "Não atravesse rios, arroios ou ruas alagadas a pé ou de carro.",
-      "Siga os avisos do SMN e da Proteção Civil."
+      "Siga os avisos do Serviço Meteorológico Nacional (SMN) e da Proteção Civil."
     ],
     orientacoes_en: [
       "A family civil protection plan: know your nearest temporary shelter.",
@@ -105,7 +105,7 @@ export const JANELAS_MX = [
       "Plan familiar de protección civil: ubique el refugio temporal más cercano.",
       "Mochila de emergencia: documentos protegidos, agua, víveres no perecederos, medicamentos, linterna y radio.",
       "No cruce ríos, arroyos ni calles inundadas a pie o en auto.",
-      "Siga los avisos del SMN y de Protección Civil."
+      "Siga los avisos del Servicio Meteorológico Nacional (SMN) y de Protección Civil."
     ],
     fonte: "SMN / CONAGUA; CENAPRED"
   },
@@ -197,19 +197,19 @@ export const JANELAS_MX = [
       "Identifique as zonas de menor risco da casa e as rotas de saída.",
       "Fixe estantes, espelhos e televisores na parede.",
       "Mochila de emergência com documentos, água, lanterna e remédios.",
-      "Ative o alerta sísmico no celular (SASMEX) onde houver cobertura."
+      "Ative o alerta sísmico no celular (SASMEX, Sistema de Alerta Sísmico Mexicano) onde houver cobertura."
     ],
     orientacoes_en: [
       "Identify the safest spots in the home and the exit routes.",
       "Anchor shelves, mirrors and TVs to the wall.",
       "Emergency bag with documents, water, flashlight and medicines.",
-      "Enable seismic alerts on your phone (SASMEX) where available."
+      "Enable seismic alerts on your phone (SASMEX, the Mexican Seismic Alert System) where available."
     ],
     orientacoes_es: [
       "Identifique las zonas de menor riesgo de la casa y las rutas de salida.",
       "Fije libreros, espejos y televisores a la pared.",
       "Mochila de emergencia con documentos, agua, linterna y medicamentos.",
-      "Active la alerta sísmica en el celular (SASMEX) donde haya cobertura."
+      "Active la alerta sísmica en el celular (SASMEX, Sistema de Alerta Sísmica Mexicano) donde haya cobertura."
     ],
     fonte: "CENAPRED; Coordinación Nacional de Protección Civil"
   },

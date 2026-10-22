@@ -164,18 +164,18 @@ export const ALERTAS_OFICIAIS = {
     titulo_en: "Official warnings in Portugal",
     titulo_es: "Avisos oficiales en Portugal",
     itens: [
-      "Siga os avisos meteorológicos do IPMA (ipma.pt) e os da Proteção Civil (ANEPC).",
-      "A ANEPC envia SMS de aviso à população em situações de risco — não os ignore.",
+      "Siga os avisos meteorológicos do IPMA, o instituto de meteorologia de Portugal (ipma.pt), e os da Proteção Civil (ANEPC).",
+      "A Proteção Civil (ANEPC) envia SMS de aviso à população em situações de risco — não os ignore.",
       "Emergência: 112. Centro de Informação Antivenenos: 800 250 250."
     ],
     itens_en: [
-      "Follow IPMA weather warnings (ipma.pt) and civil protection (ANEPC) notices.",
-      "ANEPC sends warning text messages to the public in risk situations — do not ignore them.",
+      "Follow weather warnings from IPMA, Portugal's weather institute (ipma.pt), and civil protection (ANEPC) notices.",
+      "Civil protection (ANEPC) sends warning text messages to the public in risk situations — do not ignore them.",
       "Emergency: 112. Poison information centre (CIAV): 800 250 250."
     ],
     itens_es: [
-      "Siga los avisos meteorológicos del IPMA (ipma.pt) y los de Protección Civil (ANEPC).",
-      "La ANEPC envía SMS de aviso a la población en situaciones de riesgo — no los ignore.",
+      "Siga los avisos meteorológicos del IPMA, el instituto meteorológico de Portugal (ipma.pt), y los de Protección Civil (ANEPC).",
+      "La Protección Civil (ANEPC) envía SMS de aviso a la población en situaciones de riesgo — no los ignore.",
       "Emergencias: 112. Centro de Información Antivenenos: 800 250 250."
     ],
     fonte: "IPMA; ANEPC"
@@ -186,17 +186,17 @@ export const ALERTAS_OFICIAIS = {
     titulo_es: "Avisos oficiales en España",
     itens: [
       "ES-Alert: os alertas chegam ao celular sem cadastro — mantenha os alertas de emergência ativados.",
-      "Avisos meteorológicos da AEMET (Meteoalerta) e nível de risco por calor do Ministério da Saúde.",
+      "Avisos meteorológicos da AEMET, a agência de meteorologia da Espanha (Meteoalerta), e nível de risco por calor do Ministério da Saúde.",
       "Emergência: 112."
     ],
     itens_en: [
       "ES-Alert: alerts reach your phone with no sign-up — keep emergency alerts enabled.",
-      "AEMET weather warnings (Meteoalerta) and the Ministry of Health's heat-risk levels.",
+      "Weather warnings from AEMET, Spain's weather agency (Meteoalerta), and the Ministry of Health's heat-risk levels.",
       "Emergency: 112."
     ],
     itens_es: [
       "ES-Alert: las alertas llegan al móvil sin registro — mantenga activadas las alertas de emergencia.",
-      "Avisos meteorológicos de la AEMET (Meteoalerta) y niveles de riesgo por calor del Ministerio de Sanidad.",
+      "Avisos meteorológicos de la AEMET, la agencia meteorológica de España (Meteoalerta), y niveles de riesgo por calor del Ministerio de Sanidad.",
       "Emergencias: 112."
     ],
     fonte: "Protección Civil; AEMET; Ministerio de Sanidad"
@@ -207,18 +207,18 @@ export const ALERTAS_OFICIAIS = {
     titulo_es: "Avisos oficiales en el Reino Unido",
     itens: [
       "Emergency Alerts: mantenha os alertas de emergência ativados no celular.",
-      "Avisos do Met Office e alertas de saúde por calor e frio da UKHSA (é possível assinar).",
-      "Emergência: 999 ou 112. Orientação de saúde: NHS 111."
+      "Avisos do Met Office e alertas de saúde por calor e frio da UKHSA, a agência de segurança em saúde do Reino Unido (é possível assinar).",
+      "Emergência: 999 ou 112. Orientação de saúde: NHS 111 (serviço público de saúde)."
     ],
     itens_en: [
       "Emergency Alerts: keep emergency alerts enabled on your phone.",
-      "Met Office warnings and UKHSA heat- and cold-health alerts (you can subscribe).",
-      "Emergency: 999 or 112. Health advice: NHS 111."
+      "Met Office warnings and heat- and cold-health alerts from the UK Health Security Agency (UKHSA) (you can subscribe).",
+      "Emergency: 999 or 112. Health advice: NHS 111 (National Health Service)."
     ],
     itens_es: [
       "Emergency Alerts: mantenga activadas las alertas de emergencia del móvil.",
-      "Avisos del Met Office y alertas de salud por calor y frío de la UKHSA (puede suscribirse).",
-      "Emergencias: 999 o 112. Orientación sanitaria: NHS 111."
+      "Avisos del Met Office y alertas de salud por calor y frío de la UKHSA, la agencia de seguridad sanitaria del Reino Unido (puede suscribirse).",
+      "Emergencias: 999 o 112. Orientación sanitaria: NHS 111 (servicio público de salud)."
     ],
     fonte: "UK Government — Emergency Alerts; Met Office; UKHSA"
   },
@@ -228,17 +228,17 @@ export const ALERTAS_OFICIAIS = {
     titulo_es: "Alertas oficiales en EE. UU.",
     itens: [
       "Wireless Emergency Alerts (WEA) ativados no celular.",
-      "Rádio meteorológico NOAA e cadastro nos alertas do seu condado.",
+      "Rádio meteorológico da NOAA (agência de meteorologia dos EUA) e cadastro nos alertas do seu condado.",
       "Emergência: 911. Centro de intoxicação: 1-800-222-1222."
     ],
     itens_en: [
       "Wireless Emergency Alerts (WEA) enabled on your phone.",
-      "A NOAA Weather Radio and sign-up for your county's alerts.",
+      "A NOAA (National Oceanic and Atmospheric Administration) Weather Radio and sign-up for your county's alerts.",
       "Emergency: 911. Poison Help: 1-800-222-1222."
     ],
     itens_es: [
       "Alertas de emergencia inalámbricas (WEA) activadas en el celular.",
-      "Radio meteorológica NOAA e inscripción en las alertas de su condado.",
+      "Radio meteorológica de la NOAA (agencia meteorológica de EE. UU.) e inscripción en las alertas de su condado.",
       "Emergencias: 911. Centro de toxicología: 1-800-222-1222."
     ],
     fonte: "FEMA; NOAA; Poison Help"
@@ -248,17 +248,17 @@ export const ALERTAS_OFICIAIS = {
     titulo_en: "Official alerts in Mexico",
     titulo_es: "Alertas oficiales en México",
     itens: [
-      "Alerta sísmica (SASMEX) e alertas de Proteção Civil no celular, onde houver cobertura.",
+      "Alerta sísmico (SASMEX, Sistema de Alerta Sísmico Mexicano) e alertas da Proteção Civil no celular, onde houver cobertura.",
       "Avisos do Serviço Meteorológico Nacional (SMN) sobre ciclones e frentes frias.",
       "Emergência: 911."
     ],
     itens_en: [
-      "Seismic alerts (SASMEX) and Civil Protection alerts on your phone, where available.",
+      "Seismic alerts (SASMEX, the Mexican Seismic Alert System) and Civil Protection alerts on your phone, where available.",
       "National Weather Service (SMN) warnings on cyclones and cold fronts.",
       "Emergency: 911."
     ],
     itens_es: [
-      "Alerta sísmica (SASMEX) y alertas de Protección Civil en el celular, donde haya cobertura.",
+      "Alerta sísmica (SASMEX, Sistema de Alerta Sísmica Mexicano) y alertas de Protección Civil en el celular, donde haya cobertura.",
       "Avisos del Servicio Meteorológico Nacional (SMN) sobre ciclones y frentes fríos.",
       "Emergencias: 911."
     ],

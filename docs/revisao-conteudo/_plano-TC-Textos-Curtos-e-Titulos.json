@@ -1,0 +1,35 @@
+{
+  "documento": "TC-Textos-Curtos-e-Titulos.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T03:22:49.742Z",
+  "coerencia": {
+    "lidos": 540,
+    "intactos": 538,
+    "taxa": 0.9963
+  },
+  "editados": [
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Organização Anti-queda",
+      "chave": "titulo",
+      "linha": 79,
+      "original": "Organização Anti-queda",
+      "codigo": "TC-0054",
+      "novo": "Organização Antiqueda"
+    },
+    {
+      "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+      "rotulo": "Guias de seguranca",
+      "item": "Por que é tão Perigoso?",
+      "chave": "titulo",
+      "linha": 375,
+      "original": "Por que é tão Perigoso?",
+      "codigo": "TC-0157",
+      "novo": "Por que é tão perigoso?"
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}

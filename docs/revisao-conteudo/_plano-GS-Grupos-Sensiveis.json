@@ -1,0 +1,25 @@
+{
+  "documento": "GS-Grupos-Sensiveis.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T03:22:49.952Z",
+  "coerencia": {
+    "lidos": 44,
+    "intactos": 43,
+    "taxa": 0.9773
+  },
+  "editados": [
+    {
+      "arquivo": "data/knowledge_prevencao.js",
+      "rotulo": "Central de Conhecimento",
+      "item": "Quedas e Tropeços",
+      "chave": "texto",
+      "linha": 45,
+      "original": "Cerca de 30% das quedas de idosos ocorrem na sala. Tapetes soltos, fios atravessando o chão e mesas de centro de vidro pontiagudas são os maiores vilões. Use fitas antiderrapantes sob tapetes ou remova-os se houver idosos ou pessoas com mobilidade reduzida ou baixa visão. Organize fios atrás dos móveis ou use canaletas.",
+      "codigo": "GS-0001",
+      "novo": "Cerca de 30% das quedas de idosos ocorrem na sala. Tapetes soltos, fios atravessando o chão e mesas de centro de vidro pontiagudas são os maiores vilões. Use fitas dupla face sob tapetes ou remova-os se houver idosos ou pessoas com mobilidade reduzida ou baixa visão. Organize fios atrás dos móveis ou use canaletas."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}

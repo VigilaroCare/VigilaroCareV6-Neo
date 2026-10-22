@@ -135,7 +135,7 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'Tirou tapetes soltos e capachos do caminho?',
         consequence: 'Tropeções em tapetes são a maior causa de quedas de idosos em casas alheias.',
-        checkAction: 'Remova-os ou cole fita antiderrapante embaixo.',
+        checkAction: 'Remova-os ou cole fita dupla face embaixo.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

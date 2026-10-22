@@ -284,7 +284,7 @@ export const primeirosSocorrosPTPT = [
             'NÃO tente tirar a água dos pulmões apertando a barriga ou virando a pessoa de cabeça para baixo: isso atrasa a RCP e pode provocar vómito.',
             'NÃO dispense a avaliação médica por a pessoa parecer bem.',
         ],
-        quandoChamarAjuda: 'Sempre. Mesmo quem saiu bem da água precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: os problemas respiratórios podem surgir horas depois.'
+        quandoChamarAjuda: 'Sempre. Mesmo quem saiu da água a sentir-se bem precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: os problemas respiratórios podem surgir horas depois.'
     },
     {
         id: 'ps_18',
@@ -313,7 +313,7 @@ export const primeirosSocorrosPTPT = [
         situacao: 'Fogo em casa, fumo no ambiente ou pessoa que respirou fumo',
         oQueFazer: [
             'Saia e tire todos de casa de imediato; ligue para os bombeiros ({{FIRE_NUMBER}}) já do lado de fora.',
-            'Com fumo, baixe-se e saia a rastejar rente ao chão, onde o ar é mais limpo; se tiver um pano à mão, molhe-o e tape o nariz e a boca, sem perder tempo à procura.',
+            'Com fumo, baixe-se e saia a rastejar — rente ao chão é onde o ar é mais limpo; se tiver um pano à mão, molhe-o e tape o nariz e a boca, sem perder tempo à procura.',
             'Antes de abrir uma porta, toque-lhe com as costas da mão: se estiver quente, não a abra e procure outra saída. Feche as portas atrás de si.',
             'Se a roupa pegar fogo: pare, deite-se no chão, tape a cara com as mãos e role até apagar.',
             'Leve quem respirou fumo para o ar livre e mantenha a pessoa sentada e em repouso.',

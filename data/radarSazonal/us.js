@@ -20,19 +20,19 @@ export const JANELAS_US = [
     resumo_en: "More than 400 people die each year in the US from carbon monoxide, over half of them between November and February. Portable generators used during power outages are a frequent cause.",
     resumo_es: "Más de 400 personas mueren cada año en EE. UU. por monóxido de carbono, y más de la mitad entre noviembre y febrero. Los generadores portátiles usados durante apagones son una causa frecuente.",
     orientacoes: [
-      "Alarme de CO em cada andar e perto dos quartos; teste todo mês.",
+      "Alarme de monóxido de carbono (CO) em cada andar e perto dos quartos; teste todo mês.",
       "Gerador SÓ ao ar livre, a pelo menos 6 metros (20 pés) da casa — nunca na garagem, mesmo de porta aberta.",
       "Aquecedor portátil a 1 metro (3 pés) de qualquer coisa que queime, e desligado ao dormir.",
       "Alarme de CO tocou: saia, ligue {{EMERGENCY_NUMBER}} e só volte com autorização."
     ],
     orientacoes_en: [
-      "A CO alarm on every level and near bedrooms; test monthly.",
+      "A carbon monoxide (CO) alarm on every level and near bedrooms; test monthly.",
       "Generators OUTSIDE ONLY, at least 20 feet from the house — never in the garage, even with the door open.",
       "Space heaters 3 feet from anything that can burn, and off when sleeping.",
       "CO alarm sounding: get out, call {{EMERGENCY_NUMBER}} and go back only when cleared."
     ],
     orientacoes_es: [
-      "Alarma de CO en cada piso y cerca de los dormitorios; pruébela cada mes.",
+      "Alarma de monóxido de carbono (CO) en cada piso y cerca de los dormitorios; pruébela cada mes.",
       "Generador SOLO al aire libre, a al menos 6 metros (20 pies) de la casa — nunca en el garaje, aunque la puerta esté abierta.",
       "Calefactor portátil a 1 metro (3 pies) de cualquier cosa que pueda arder, y apagado al dormir.",
       "Si suena la alarma de CO: salga, llame al {{EMERGENCY_NUMBER}} y vuelva solo con autorización."
@@ -162,19 +162,19 @@ export const JANELAS_US = [
       "Cerca de quatro lados, com pelo menos 1,2 m (4 pés), e portão que fecha e trava sozinho.",
       "Um adulto “vigia da água” por vez, sem celular e sem bebida.",
       "Aulas de natação a partir de 1 ano ajudam, mas não substituem vigilância.",
-      "Aprenda RCP: os minutos até o socorro chegar decidem."
+      "Aprenda RCP (reanimação cardiopulmonar): os minutos até o socorro chegar decidem."
     ],
     orientacoes_en: [
       "A four-sided fence at least 4 feet high, with a self-closing, self-latching gate.",
       "One designated “water watcher” at a time, no phone and no drinks.",
       "Swim lessons from age 1 help but do not replace supervision.",
-      "Learn CPR: the minutes before help arrives decide the outcome."
+      "Learn CPR (cardiopulmonary resuscitation): the minutes before help arrives decide the outcome."
     ],
     orientacoes_es: [
       "Cerca de cuatro lados, de al menos 1,2 m (4 pies), con puerta que se cierra y traba sola.",
       "Un adulto “vigía del agua” por turno, sin celular y sin bebidas.",
       "Las clases de natación desde el año ayudan, pero no sustituyen la vigilancia.",
-      "Aprenda RCP: los minutos hasta que llega la ayuda deciden."
+      "Aprenda RCP (reanimación cardiopulmonar): los minutos hasta que llega la ayuda deciden."
     ],
     fonte: "CDC — Drowning Prevention; American Academy of Pediatrics"
   },

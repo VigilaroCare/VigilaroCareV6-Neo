@@ -16,9 +16,9 @@ export const JANELAS_GB = [
     titulo: "Inverno: frio e monóxido de carbono",
     titulo_en: "Winter: cold homes and carbon monoxide",
     titulo_es: "Invierno: frío y monóxido de carbono",
-    resumo: "A UKHSA emite alertas de saúde por frio de 1º de novembro a 31 de março. O frio aumenta infartos, AVCs e infecções respiratórias em idosos; caldeiras e aquecedores mal mantidos liberam monóxido de carbono.",
-    resumo_en: "UKHSA issues cold-health alerts from 1 November to 31 March. Cold raises the risk of heart attacks, strokes and chest infections in older people; poorly maintained boilers and heaters release carbon monoxide.",
-    resumo_es: "La UKHSA emite alertas de salud por frío del 1 de noviembre al 31 de marzo. El frío aumenta infartos, ictus e infecciones respiratorias en mayores; las calderas y estufas sin mantenimiento liberan monóxido de carbono.",
+    resumo: "A UKHSA (agência de segurança em saúde do Reino Unido) emite alertas de saúde por frio de 1º de novembro a 31 de março. O frio aumenta infartos, AVCs e infecções respiratórias em idosos; caldeiras e aquecedores mal mantidos liberam monóxido de carbono.",
+    resumo_en: "The UK Health Security Agency (UKHSA) issues cold-health alerts from 1 November to 31 March. Cold raises the risk of heart attacks, strokes and chest infections in older people; poorly maintained boilers and heaters release carbon monoxide.",
+    resumo_es: "La UKHSA (agencia de seguridad sanitaria del Reino Unido) emite alertas de salud por frío del 1 de noviembre al 31 de marzo. El frío aumenta infartos, ictus e infecciones respiratorias en mayores; las calderas y estufas sin mantenimiento liberan monóxido de carbono.",
     orientacoes: [
       "Maiores de 65 anos ou com doença crônica: aqueça os cômodos mais usados a pelo menos 18 °C.",
       "Alarme de monóxido de carbono em cada cômodo com aparelho a gás, lenha ou carvão.",
@@ -56,19 +56,19 @@ export const JANELAS_GB = [
     orientacoes: [
       "Prefira um espetáculo público organizado aos fogos em casa.",
       "Sparkler: nunca para menores de 5 anos; luvas, braço esticado e balde de água para apagar.",
-      "Fogos só com a marcação UKCA ou CE, acesos por um adulto, no chão, sem voltar a um fogo que falhou.",
+      "Fogos só com a marcação de conformidade UKCA (britânica) ou CE (europeia), acesos por um adulto, no chão, sem voltar a um fogo que falhou.",
       "Pets dentro de casa, cortinas fechadas e identificação no colar."
     ],
     orientacoes_en: [
       "Choose an organised public display over fireworks at home.",
       "Sparklers: never for under-5s; gloves, arm outstretched, and a bucket of water to put them out.",
-      "Only fireworks with UKCA or CE marking, lit by an adult, on the ground; never go back to a dud.",
+      "Only fireworks with UKCA (UK) or CE (European) conformity marking, lit by an adult, on the ground; never go back to a dud.",
       "Pets indoors, curtains drawn and ID on the collar."
     ],
     orientacoes_es: [
       "Prefiera un espectáculo público organizado a los fuegos en casa.",
       "Bengalas: nunca para menores de 5 años; guantes, brazo estirado y un cubo de agua para apagarlas.",
-      "Solo fuegos con marcado UKCA o CE, encendidos por un adulto, en el suelo; nunca vuelva a uno que falló.",
+      "Solo fuegos con marcado de conformidad UKCA (británico) o CE (europeo), encendidos por un adulto, en el suelo; nunca vuelva a uno que falló.",
       "Mascotas dentro de casa, cortinas cerradas e identificación en el collar."
     ],
     fonte: "RoSPA — Firework Code"
@@ -118,9 +118,9 @@ export const JANELAS_GB = [
     titulo: "Natal: baterias de botão, luzes e velas",
     titulo_en: "Christmas: button batteries, lights and candles",
     titulo_es: "Navidad: pilas de botón, luces y velas",
-    resumo: "Brinquedos, luzes e cartões musicais trazem baterias de botão. Engolida, uma bateria queima o esôfago em duas horas. A CAPT estima uma a duas mortes de crianças por ano no Reino Unido.",
-    resumo_en: "Toys, lights and musical cards bring button batteries. Once swallowed, a battery can burn the oesophagus within two hours. CAPT estimates one to two child deaths a year in the UK.",
-    resumo_es: "Juguetes, luces y tarjetas musicales traen pilas de botón. Tragada, una pila quema el esófago en dos horas. La CAPT estima una o dos muertes infantiles al año en el Reino Unido.",
+    resumo: "Brinquedos, luzes e cartões musicais trazem baterias de botão. Engolida, uma bateria queima o esôfago em duas horas. A CAPT (organização britânica de prevenção de acidentes com crianças) estima uma a duas mortes de crianças por ano no Reino Unido.",
+    resumo_en: "Toys, lights and musical cards bring button batteries. Once swallowed, a battery can burn the oesophagus within two hours. The Child Accident Prevention Trust (CAPT) estimates one to two child deaths a year in the UK.",
+    resumo_es: "Juguetes, luces y tarjetas musicales traen pilas de botón. Tragada, una pila quema el esófago en dos horas. La CAPT (organización británica de prevención de accidentes infantiles) estima una o dos muertes infantiles al año en el Reino Unido.",
     orientacoes: [
       "Compartimento de bateria com parafuso; baterias soltas e usadas fora do alcance.",
       "Suspeita de bateria engolida: vá AGORA ao pronto-socorro (A&E), mesmo sem sintomas.",
@@ -152,9 +152,9 @@ export const JANELAS_GB = [
     titulo: "Verão: alertas de saúde por calor",
     titulo_en: "Summer: heat-health alerts",
     titulo_es: "Verano: alertas de salud por calor",
-    resumo: "A UKHSA emite alertas de saúde por calor de 1º de junho a 30 de setembro. As casas britânicas retêm calor, e os idosos são os primeiros afetados.",
-    resumo_en: "UKHSA issues heat-health alerts from 1 June to 30 September. British homes trap heat, and older people are affected first.",
-    resumo_es: "La UKHSA emite alertas de salud por calor del 1 de junio al 30 de septiembre. Las casas británicas retienen el calor y los mayores son los primeros afectados.",
+    resumo: "A UKHSA (agência de segurança em saúde do Reino Unido) emite alertas de saúde por calor de 1º de junho a 30 de setembro. As casas britânicas retêm calor, e os idosos são os primeiros afetados.",
+    resumo_en: "The UK Health Security Agency (UKHSA) issues heat-health alerts from 1 June to 30 September. British homes trap heat, and older people are affected first.",
+    resumo_es: "La UKHSA (agencia de seguridad sanitaria del Reino Unido) emite alertas de salud por calor del 1 de junio al 30 de septiembre. Las casas británicas retienen el calor y los mayores son los primeros afectados.",
     orientacoes: [
       "Hidratação ao longo do dia; evite o sol nas horas mais quentes.",
       "Cortinas fechadas nas janelas que pegam sol; ventile à noite.",

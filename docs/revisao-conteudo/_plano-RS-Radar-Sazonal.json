@@ -1,0 +1,131 @@
+{
+  "documento": "RS-Radar-Sazonal.docx",
+  "manifesto": "docs/revisao-conteudo/_manifesto-RS.json",
+  "geradoEm": "2026-10-22T03:22:50.196Z",
+  "coerencia": {
+    "lidos": 404,
+    "intactos": 395,
+    "taxa": 0.9777
+  },
+  "editados": [
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Festas juninas: fogueira, fogos e balão",
+      "chave": "resumo",
+      "linha": 302,
+      "original": "Junho concentra queimaduras com fogueira e fogos, principalmente em crianças e nas mãos e no rosto. Soltar balão é crime ambiental (Lei 9.605/1998, art. 42) e causa incêndios em casas e matas.",
+      "codigo": "RS-0048",
+      "novo": "junho concentra queimaduras com fogueira e fogos, principalmente em crianças e nas mãos e no rosto. Soltar balão é crime ambiental (Lei 9.605/1998, art. 42) e causa incêndios em casas e matas."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Festas juninas: fogueira, fogos e balão",
+      "chave": "orientacoes[]",
+      "linha": 309,
+      "original": "Pets presos em lugar fechado e com identificação: o barulho faz cães e gatos fugirem.",
+      "codigo": "RS-0052",
+      "novo": "Pets presos em lugar fechado e com identificação: o barulho provoca stress severo e faz cães e gatos fugirem."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Frio: monóxido de carbono e aquecedores",
+      "chave": "resumo",
+      "linha": 342,
+      "original": "O monóxido de carbono não tem cheiro nem cor e mata durante o sono. No inverno, bombeiros registram mais casos com aquecedor a gás, lareira, braseiro e até vasilha de álcool em quarto fechado.",
+      "codigo": "RS-0055",
+      "novo": "O monóxido de carbono (CO) não tem cheiro nem cor e mata durante o sono. No inverno, bombeiros registram mais casos com aquecedor a gás, lareira, braseiro e até vasilha de álcool em quarto fechado."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Tempo seco e queimadas",
+      "chave": "resumo",
+      "linha": 383,
+      "original": "Umidade do ar muito baixa e fumaça de queimadas agravam asma, bronquite e doenças do coração — principalmente em bebês e idosos. E fogo em terreno ou quintal vira incêndio rápido.",
+      "codigo": "RS-0062",
+      "novo": "Umidade do ar muito baixa e fumaça de queimadas agravam asma, bronquite e doenças do coração — principalmente em bebês e idosos. E fogo em terreno ou quintal pode virar incêndio rapidamente."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Ventos de agosto: frutos e sementes tóxicos no chão",
+      "chave": "orientacoes[]",
+      "linha": 426,
+      "original": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre que algumas frutas e frutos podem deixar o chão escorregadio.",
+      "codigo": "RS-0071",
+      "novo": "Frutos e sementes caídos: recolha os do quintal e da calçada, mesmo que não sejam das suas plantas — o vento traz os da vizinhança, e crianças pequenas e pets costumam levá-los à boca. Lembre-se que algumas frutas e frutos podem deixar o chão escorregadio."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Férias: pipa, cerol e rede elétrica",
+      "chave": "orientacoes[]",
+      "linha": 462,
+      "original": "Férias na casa de parentes: confira piscina, sacada, tomadas e remédios ao alcance antes de soltar as crianças.",
+      "codigo": "RS-0079",
+      "novo": "Férias na casa de parentes: confira piscina, sacada, tomadas e remédios ao alcance antes de soltar as crianças.\nTemos uma seção dedicada a visitação, linkar?"
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Dia das Crianças: presente seguro",
+      "chave": "orientacoes[]",
+      "linha": 497,
+      "original": "Suspeita de bateria ou ímã engolido: pronto-socorro AGORA, mesmo sem sintomas.",
+      "codigo": "RS-0084",
+      "novo": "Suspeita de bateria ou ímã engolido: pronto-socorro REMOVER imediatamente, mesmo sem sintomas."
+    },
+    {
+      "arquivo": "data/radarSazonal/br.js",
+      "rotulo": "Brasil",
+      "item": "Natal e Réveillon",
+      "chave": "orientacoes[]",
+      "linha": 534,
+      "original": "Copos e garrafas de bebida alcoólica fora do alcance das crianças depois da festa.",
+      "codigo": "RS-0090",
+      "novo": "Copos e garrafas de bebida alcoólica fora do alcance das crianças durante e após a festa."
+    },
+    {
+      "arquivo": "data/radarSazonal/pt.js",
+      "rotulo": "Portugal (texto em português de Portugal)",
+      "item": "Santos Populares: fogo de artifício e brasas",
+      "chave": "orientacoes[]",
+      "linha": 243,
+      "original": "Balões de mecha acesa causam incêndios: não os lance perto de casas ou mato.",
+      "codigo": "RS-0136",
+      "novo": "Balões de mecha acesa causam incêndios: não os lances perto de casas ou mato."
+    }
+  ],
+  "removidos": [],
+  "novos": [
+    {
+      "depoisDe": "RS-0078",
+      "texto": "Atualmente temos os ciclomotores e os autopropelidos. Ciclistastb estão expostos."
+    },
+    {
+      "depoisDe": "RS-0081",
+      "texto": "Lembrar ou salientar e levar em consideração que há famílias com filhos de diferentes idades assim como vizinhos"
+    }
+  ],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Quadra=Quadrimestre, ao meu ver mais autoexplicativo."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Acredito que \"no quintal da sua casa\" seja mais adequado"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Acredito que a referência se dá devido alguns estados já abordaram o tema em suas leis. Mesmo em estados que ainda não o fizeram devem ser altamente contraindicado"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Siglas sempre explicadas"
+    }
+  ]
+}

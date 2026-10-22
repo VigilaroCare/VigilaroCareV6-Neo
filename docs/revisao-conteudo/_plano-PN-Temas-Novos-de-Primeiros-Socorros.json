@@ -1,0 +1,35 @@
+{
+  "documento": "PN-Temas-Novos-de-Primeiros-Socorros.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T03:22:49.192Z",
+  "coerencia": {
+    "lidos": 37,
+    "intactos": 35,
+    "taxa": 0.9459
+  },
+  "editados": [
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Afogamento",
+      "chave": "quandoChamarAjuda",
+      "linha": 287,
+      "original": "Sempre. Mesmo quem saiu bem da água precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: problemas para respirar podem aparecer horas depois.",
+      "codigo": "PN-0012",
+      "novo": "Sempre. Mesmo quem saiu da água se sentindo bem precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: problemas para respirar podem aparecer horas depois."
+    },
+    {
+      "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+      "rotulo": "Primeiros socorros — pessoas",
+      "item": "Incêndio e Inalação de Fumaça",
+      "chave": "oQueFazer[]",
+      "linha": 316,
+      "original": "Com fumaça, abaixe-se e saia rastejando rente ao chão, onde o ar é mais limpo; se tiver um pano à mão, molhe-o e cubra o nariz e a boca, sem perder tempo procurando.",
+      "codigo": "PN-0028",
+      "novo": "Com fumaça, abaixe-se e saia rastejando, rente ao chão é onde o ar é mais limpo; se tiver um pano à mão, molhe-o e cubra o nariz e a boca, sem perder tempo procurando."
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}
