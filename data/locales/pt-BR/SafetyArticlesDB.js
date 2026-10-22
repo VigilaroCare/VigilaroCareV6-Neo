@@ -314,8 +314,8 @@ A panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com e
 
 ### Manual prático de uso:
 * **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.
-* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.
-* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.
+* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para conferir se o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.
+* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha quando estiver ressecada, rachada ou frouxa, ou no prazo que o fabricante indicar.
 * **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.
 
 *Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão.

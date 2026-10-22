@@ -324,6 +324,20 @@ export default function MedicationRemindersScreen() {
                     <Small style={rStyles.disclaimerBarText}>{tx('telas.MedicationRemindersScreen.assistenteDeOrganizacaoNaoSubstituiOrien', 'Assistente de organização — não substitui orientação médica.')}</Small>
                 </View>
 
+                {/* Dose atrasada ou esquecida: orientacao geral, sempre visivel */}
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('DoseAtrasada')}
+                    style={rStyles.doseAtrasada}
+                    accessibilityRole="button"
+                >
+                    <NeoIcon name="Clock" variant="Bold" size={20} color={Neo.colors.textOn.info} />
+                    <View style={{ flex: 1 }}>
+                        <Body style={rStyles.doseAtrasadaTitulo}>{tx('telas.MedicationRemindersScreen.doseAtrasadaTitulo', 'Atrasou ou esqueceu uma dose?')}</Body>
+                        <Small style={rStyles.doseAtrasadaSub}>{tx('telas.MedicationRemindersScreen.doseAtrasadaSub', 'Veja o que fazer e quando falar com o médico')}</Small>
+                    </View>
+                    <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
+                </TouchableOpacity>
+
                 {/* Conteúdo */}
                 {loading ? (
                     <View style={rStyles.scroll}>
@@ -418,6 +432,22 @@ const rStyles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 17,
     },
+
+    doseAtrasada: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        marginHorizontal: Neo.spacing.lg,
+        marginBottom: Neo.spacing.sm,
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: Neo.colors.neutral[200],
+        backgroundColor: Neo.colors.neutral[50],
+    },
+    doseAtrasadaTitulo: { color: Neo.colors.textOn.ink, fontWeight: '700' },
+    doseAtrasadaSub: { color: Neo.colors.textOn.muted },
 
     scroll: {
         paddingHorizontal: Neo.spacing.lg,

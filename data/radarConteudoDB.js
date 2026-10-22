@@ -138,7 +138,7 @@ export const FATOS_IMPACTO = [
     orientacoes: [
       'Protetor de tomada com trava giratória: item obrigatório em casas com bebês.',
       'Passagem rápida de inspeção no nível do chão identifica riscos com a perspectiva da criança.',
-      'Trocar por tomadas no padrão ABNT com proteção infantil embutida é a solução mais duradoura.'
+      'Trocar por tomadas no padrão ABNT com proteção infantil embutida costuma ser a solução mais duradoura.'
     ],
     icone: 'Flash',
     cor: '#FFC107',

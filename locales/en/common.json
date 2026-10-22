@@ -2670,7 +2670,7 @@
             "observacoes": "Notes",
             "horarios": "Times *",
             "diasDaSemana": "Days of the week",
-            "cuidadorRemoto": "Remote Caregiver",
+            "cuidadorRemoto": "Carer or guardian",
             "notificarPorSmsWhatsapp": "Notify by SMS / WhatsApp",
             "avisaAPessoaAssistidaNoHorario": "Alerts the person being cared for at the reminder time",
             "aPessoaAssistidaReceberaUmaMensagem": "The person being cared for will receive a message asking for confirmation before getting reminders.",
@@ -2736,7 +2736,9 @@
             "limiteLembretes": "Active reminder limit reached.",
             "naoAtualizou": "Could not update the reminder.",
             "adiarLembrete": "Snooze reminder",
-            "nenhumLembrete": "No reminders yet"
+            "nenhumLembrete": "No reminders yet",
+            "doseAtrasadaTitulo": "Late or missed a dose?",
+            "doseAtrasadaSub": "What to do, and when to ask the doctor"
         },
         "MinhaSaudeScreen": {
             "fichaMedica": "Medical record",

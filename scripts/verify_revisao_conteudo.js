@@ -113,6 +113,8 @@ const CHAVES_EXTRAS_TRAVA = [
     'fazer', 'naoFazer', 'imediatos', 'tardios', 'graves', 'efeito', 'tipoVeneno', 'periodoAtivo',
     'tratamento', 'gravidade', 'nivelPerigo', 'sintomasHumanos', 'sintomasPets', 'partesToxicas',
     'ondeEncontrada', 'toxina', 'sintomas', 'detalhe', 'risco', 'peconhentos', 'naoPeconhentos',
+    // dose_atrasada.js (22/10/2026)
+    'pergunta', 'rotulo', 'regras', 'regrasTitulo', 'atencao', 'atencaoTitulo', 'doseAMais', 'urgencia', 'aviso',
 ];
 const OPCOES = {
     chavesExtras: [...(RC.chavesExtras || []), ...CHAVES_EXTRAS_TRAVA],

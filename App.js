@@ -213,6 +213,7 @@ import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
 import MinhaSaudeScreen            from "./screens/Health/MinhaSaudeScreen";
 import SaudePetScreen              from "./screens/Health/SaudePetScreen";
 import MedicationRemindersScreen   from "./screens/Health/MedicationRemindersScreen";
+import DoseAtrasadaScreen         from "./screens/Health/DoseAtrasadaScreen";
 import MedicationReminderFormScreen from "./screens/Health/MedicationReminderFormScreen";
 import MedicationDoseHistoryScreen  from "./screens/Health/MedicationDoseHistoryScreen";
 
@@ -721,6 +722,7 @@ export default function App() {
                       <Stack.Screen name="MinhaSaude" component={MinhaSaudeScreen} />
                       <Stack.Screen name="SaudePet" component={SaudePetScreen} />
                       <Stack.Screen name="MedicationReminders" component={MedicationRemindersScreen} />
+                      <Stack.Screen name="DoseAtrasada" component={DoseAtrasadaScreen} />
                       <Stack.Screen name="MedicationReminderForm" component={MedicationReminderFormScreen} options={{ presentation: 'modal' }} />
                       <Stack.Screen name="MedicationDoseHistory" component={MedicationDoseHistoryScreen} />
 

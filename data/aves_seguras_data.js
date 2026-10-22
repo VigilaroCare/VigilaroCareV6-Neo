@@ -12,9 +12,9 @@ export const AVES_SEGURAS_DATA = {
     },
     alertaCritico: {
         title: 'Risco Fatal: Antiaderentes (PTFE)', title_en: 'Fatal Risk: Non-Stick Coatings (PTFE)', title_es: 'Riesgo Fatal: Antiadherentes (PTFE)',
-        desc: 'O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que paralisam o sistema respiratório das aves em segundos. É um risco letal: muitas vezes não há tempo para tratar.',
-        desc_en: 'Overheated PTFE coating from non-stick pans releases odorless gases that paralyze birds\' respiratory systems in seconds. It is a lethal risk: there is often no time to treat it.',
-        desc_es: 'El revestimiento (PTFE) sobrecalentado de sartenes antiadherentes libera gases inodoros que paralizan el sistema respiratorio de las aves en segundos. Es un riesgo letal: muchas veces no hay tiempo para tratarlo.',
+        desc: 'O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que podem paralisar o sistema respiratório das aves em poucos minutos. É um risco letal: muitas vezes não há tempo para tratar.',
+        desc_en: 'Overheated PTFE coating from non-stick pans releases odorless gases that can paralyze birds\' respiratory systems within minutes. It is a lethal risk: there is often no time to treat it.',
+        desc_es: 'El revestimiento (PTFE) sobrecalentado de sartenes antiadherentes libera gases inodoros que pueden paralizar el sistema respiratorio de las aves en pocos minutos. Es un riesgo letal: muchas veces no hay tiempo para tratarlo.',
         small: '⚠️ Mantenha aves sempre banidas da cozinha.',
         small_en: '⚠️ Keep birds always banned from the kitchen.',
         small_es: '⚠️ Mantenga a las aves siempre prohibidas en la cocina.'

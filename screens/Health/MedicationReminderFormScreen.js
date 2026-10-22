@@ -442,7 +442,7 @@ export default function MedicationReminderFormScreen() {
 
                         {/* ── Seção: Cuidador Remoto ── */}
                         {CUIDADOR_REMOTO_DISPONIVEL && <>
-                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.cuidadorRemoto', 'Cuidador Remoto')}</Eyebrow>
+                        <Eyebrow style={fStyles.eyebrow}>{tx('telas.MedicationReminderFormScreen.cuidadorRemoto', 'Cuidador ou responsável')}</Eyebrow>
                         <NeoCard variant="elevated" style={fStyles.card}>
                             {/* Toggle de ativação */}
                             <TappablePressable

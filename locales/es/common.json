@@ -2670,7 +2670,7 @@
             "observacoes": "Observaciones",
             "horarios": "Horarios *",
             "diasDaSemana": "Días de la semana",
-            "cuidadorRemoto": "Cuidador Remoto",
+            "cuidadorRemoto": "Cuidador o responsable",
             "notificarPorSmsWhatsapp": "Notificar por SMS / WhatsApp",
             "avisaAPessoaAssistidaNoHorario": "Avisa a la persona asistida a la hora del recordatorio",
             "aPessoaAssistidaReceberaUmaMensagem": "La persona asistida recibirá un mensaje pidiendo confirmación antes de recibir recordatorios.",
@@ -2736,7 +2736,9 @@
             "limiteLembretes": "Se alcanzó el límite de recordatorios activos.",
             "naoAtualizou": "No se pudo actualizar el recordatorio.",
             "adiarLembrete": "Posponer recordatorio",
-            "nenhumLembrete": "Aún no hay recordatorios"
+            "nenhumLembrete": "Aún no hay recordatorios",
+            "doseAtrasadaTitulo": "¿Se retrasó u olvidó una dosis?",
+            "doseAtrasadaSub": "Vea qué hacer y cuándo consultar al médico"
         },
         "MinhaSaudeScreen": {
             "fichaMedica": "Ficha médica",

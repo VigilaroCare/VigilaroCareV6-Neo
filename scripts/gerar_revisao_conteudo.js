@@ -386,7 +386,7 @@ const TEMAS = [
     {
         nome: 'Cautela Juridica',
         sigla: 'CJ',
-        pendentes: ['m018'],
+        pendentes: ['m018', 'm019'],
         marcarMudancas: false,
         antes: '_antes-CJ.json',
         dataMudancas: '22/10/2026',
@@ -394,13 +394,16 @@ const TEMAS = [
             'data/legal/termos_uso.js': 'Termos de Uso (os 4 idiomas)',
             'data/legal/politica_privacidade.js': 'Politica de Privacidade (os 4 regimes)',
             'locales/pt-BR/common.json': 'Textos de interface',
+            'data/dose_atrasada.js': 'Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)',
         },
         descricao: 'Ajustes de cautela juridica: o app continua informando e orientando com firmeza, mas sem prometer '
             + 'o que nao pode garantir. Promessas de eficacia de produto ("impede", "salva vidas", "100%") viraram '
             + '"dificulta", "reduz o risco", "pode salvar vidas"; norma tecnica deixou de ser chamada de lei; frases em tom '
             + 'de prescricao medica passaram a apontar para a equipe de saude; Termos e Politica dizem que o indice de '
             + 'seguranca e estimativa, nao laudo, e que o app nao envia dados de saude. Instrucoes de seguranca e de '
-            + 'emergencia ("NUNCA deixe...", "Ligue para...") NAO foram suavizadas. A linha ANTES mostra como estava.',
+            + 'emergencia ("NUNCA deixe...", "Ligue para...") NAO foram suavizadas. A linha ANTES mostra como estava. '
+            + 'No fim, a tela nova "Atrasou ou esqueceu uma dose?": aponta para a bula e para o medico ou profissional de '
+            + 'saude responsavel, sem decidir pelo usuario.',
         fontes: [],
     },
 ];
@@ -434,7 +437,8 @@ const CHAVES_TECNICAS = new Set([
 const SUFIXO_IDIOMA = /(^|_)(en|es|ptpt|pt_pt|ptPT)$/i;
 
 /** Nao e prosa: caminho de asset, URL, hex, token puro. */
-const NAO_E_PROSA = /^(https?:\/\/|\.{1,2}\/|@[a-z]|#[0-9a-fA-F]{3,8}$|[A-Z_]{3,}$)/;
+// Tambem chave de traducao solta (home.homeNeedsAttention): e codigo, nao texto.
+const NAO_E_PROSA = /^(https?:\/\/|\.{1,2}\/|@[a-z]|#[0-9a-fA-F]{3,8}$|[A-Z_]{3,}$|[a-z][A-Za-z0-9]*(\.[A-Za-z0-9_]+)+$)/;
 
 /** Campos que sao prosa mesmo quando curtos (um passo de socorro e curto). */
 const CHAVES_DE_PROSA = new Set([

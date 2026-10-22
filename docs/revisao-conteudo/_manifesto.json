@@ -21,7 +21,7 @@
     "item": "5 dicas para prevenir engasgo em crianças",
     "chave": "summary",
     "linha": 71,
-    "original": "A prevenção pode salvar vidas:\n1. Corte alimentos pequenos: Uvas sempre cortadas ao meio no sentido do comprimento.\n2. Evite movimento: Nunca coma deitando ou correndo.\n3. Teste do rolo: Se passa no rolo de papel higiênico, é pequeno demais para a idade.\n4. Supervisão 100%: Esteja sempre presente nas refeições.\n5. Aprenda o desengasgo: 5 pancadas nas costas alternadas com 5 compressões, para agir rápido."
+    "original": "A prevenção pode salvar vidas:\n1. Corte alimentos pequenos: Uvas sempre cortadas ao meio no sentido do comprimento.\n2. Evite movimento: Nunca coma deitando ou correndo.\n3. Teste do rolo: o que passa por dentro de um rolo de papel higiênico pode engasgar uma criança pequena.\n4. Supervisão 100%: Esteja sempre presente nas refeições.\n5. Aprenda o desengasgo: 5 pancadas nas costas alternadas com 5 compressões, para agir rápido."
   },
   "CJ-0004": {
     "arquivo": "data/micro_blog.js",
@@ -37,7 +37,7 @@
     "item": "Tomadas sem proteção: 400 atendimentos/mês em bebês",
     "chave": "orientacoes[]",
     "linha": 141,
-    "original": "Trocar por tomadas no padrão ABNT com proteção infantil embutida é a solução mais duradoura."
+    "original": "Trocar por tomadas no padrão ABNT com proteção infantil embutida costuma ser a solução mais duradoura."
   },
   "CJ-0006": {
     "arquivo": "data/radarConteudoDB.js",
@@ -61,7 +61,7 @@
     "item": "Panela de Pressão sem Medo",
     "chave": "content",
     "linha": 310,
-    "original": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são assustadores, mas, na maioria das vezes, evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão."
+    "original": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são assustadores, mas, na maioria das vezes, evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para conferir se o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha quando estiver ressecada, rachada ou frouxa, ou no prazo que o fabricante indicar.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão."
   },
   "CJ-0009": {
     "arquivo": "data/kits/educational_content.js",
@@ -149,7 +149,7 @@
     "item": "Protetores de Porta",
     "chave": "resumo",
     "linha": 65,
-    "original": "Ajudam a evitar que crianças e pets prendam os dedos ou fiquem trancados em cômodos. Também evitam batidas que danificam portas e batentes."
+    "original": "Ajudam a evitar que crianças e pets prendam os dedos ou fiquem trancados em cômodos, e que batidas danifiquem portas e batentes."
   },
   "CJ-0020": {
     "arquivo": "data/dispositivos_protecao.js",
@@ -229,7 +229,7 @@
     "item": "Jararaca",
     "chave": "gravidade",
     "linha": 215,
-    "original": "MUITO GRAVE - Pode levar à morte e causar sequelas permanentes, como perda de dedos ou membros. O atendimento rápido, com soro, reduz muito esse risco."
+    "original": "MUITO GRAVE - Pode levar à morte e causar sequelas permanentes, como perda de dedos ou membros. O atendimento rápido, com soro quando a equipe de saúde indicar, reduz muito esse risco."
   },
   "CJ-0030": {
     "arquivo": "data/animais_ciatox.js",
@@ -245,9 +245,137 @@
     "item": "Risco Fatal: Antiaderentes (PTFE)",
     "chave": "desc",
     "linha": 15,
-    "original": "O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que paralisam o sistema respiratório das aves em segundos. É um risco letal: muitas vezes não há tempo para tratar."
+    "original": "O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que podem paralisar o sistema respiratório das aves em poucos minutos. É um risco letal: muitas vezes não há tempo para tratar."
   },
   "CJ-0032": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "titulo",
+    "linha": 24,
+    "original": "Atrasou ou esqueceu uma dose?"
+  },
+  "CJ-0033": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "intro",
+    "linha": 29,
+    "original": "O que fazer depende do remédio. A bula traz a orientação para aquele medicamento — no Brasil, na seção \"O que devo fazer quando eu me esquecer de usar este medicamento?\". Se tiver dúvida, fale com o médico ou o profissional de saúde responsável pelo tratamento, ou com o farmacêutico."
+  },
+  "CJ-0034": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "pergunta",
+    "linha": 34,
+    "original": "Quanto falta para o próximo horário?"
+  },
+  "CJ-0035": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "rotulo",
+    "linha": 42,
+    "original": "Ainda falta bastante"
+  },
+  "CJ-0036": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "texto",
+    "linha": 46,
+    "original": "Em geral, as bulas orientam tomar a dose esquecida assim que lembrar e seguir os próximos horários normalmente. Confirme na bula do seu remédio — há medicamentos com regra diferente."
+  },
+  "CJ-0037": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "rotulo",
+    "linha": 53,
+    "original": "Já está perto"
+  },
+  "CJ-0038": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "texto",
+    "linha": 57,
+    "original": "Em geral, quando já está perto do próximo horário, as bulas orientam não tomar a dose esquecida e seguir no horário normal. Confirme na bula do seu remédio e, se tiver dúvida, fale com o médico ou o farmacêutico antes de decidir."
+  },
+  "CJ-0039": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "regrasTitulo",
+    "linha": 64,
+    "original": "Vale para todos os remédios"
+  },
+  "CJ-0040": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "regras[]",
+    "linha": 69,
+    "original": "Não tome duas doses juntas para compensar a esquecida, a não ser que o médico tenha orientado assim."
+  },
+  "CJ-0041": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "regras[]",
+    "linha": 70,
+    "original": "Não mude por conta própria os horários nem a quantidade prescrita."
+  },
+  "CJ-0042": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "regras[]",
+    "linha": 71,
+    "original": "Anote o atraso ou a dose esquecida e conte ao médico na próxima consulta — e ao cuidador ou responsável, se houver."
+  },
+  "CJ-0043": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "atencaoTitulo",
+    "linha": 89,
+    "original": "Fale com o médico ou o farmacêutico antes de decidir"
+  },
+  "CJ-0044": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "atencao",
+    "linha": 93,
+    "original": "Alguns remédios pedem horário rigoroso, e o atraso pode trazer consequências. Entre eles: anticoagulantes, insulina e outros remédios para diabetes, remédios para convulsão, para o coração ou a pressão, anticoncepcionais, antibióticos e imunossupressores."
+  },
+  "CJ-0045": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "doseAMais",
+    "linha": 98,
+    "original": "Tomou dose a mais por engano? Ligue para o {{POISON_CONTROL}} e tenha a embalagem do remédio em mãos."
+  },
+  "CJ-0046": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "urgencia",
+    "linha": 103,
+    "original": "Se a pessoa passar mal — falta de ar, dor no peito, desmaio, convulsão ou confusão —, ligue para o {{EMERGENCY_MEDICAL}} ou procure atendimento imediatamente."
+  },
+  "CJ-0047": {
+    "arquivo": "data/dose_atrasada.js",
+    "rotulo": "Lembretes de remedio — Atrasou ou esqueceu uma dose? (tela nova)",
+    "item": "Atrasou ou esqueceu uma dose?",
+    "chave": "aviso",
+    "linha": 108,
+    "original": "Orientação geral e informativa. Não substitui a avaliação do médico ou do profissional de saúde responsável pelo tratamento."
+  },
+  "CJ-0048": {
     "arquivo": "data/legal/politica_privacidade.js",
     "rotulo": "Politica de Privacidade (os 4 regimes)",
     "item": "10. Retenção e exclusão",
@@ -255,7 +383,7 @@
     "linha": 126,
     "original": "Os dados permanecem no aparelho até você removê-los. Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, lembretes, registros locais, vistorias e arquivos gerados pelo app, incluindo fotos e gravações, e cancela as notificações agendadas. Desinstalar o app remove os dados locais do sandbox. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no aparelho, ela pode incluir dados do app, conforme as regras e a criptografia do próprio sistema; o Vigilaro Care não tem acesso a essas cópias."
   },
-  "CJ-0033": {
+  "CJ-0049": {
     "arquivo": "data/legal/politica_privacidade.js",
     "rotulo": "Politica de Privacidade (os 4 regimes)",
     "item": "9. Conservação",
@@ -263,7 +391,7 @@
     "linha": 180,
     "original": "Os dados permanecem no equipamento enquanto os mantiver. A opção Repor Aplicação elimina perfis, contactos, dados de saúde, consentimentos, lembretes, registos locais, vistorias e ficheiros gerados, incluindo fotografias e gravações, e cancela as notificações agendadas. Desinstalar remove os dados locais. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no equipamento, pode incluir dados da aplicação, segundo as regras e a cifragem do próprio sistema; o Vigilaro Care não tem acesso a essas cópias."
   },
-  "CJ-0034": {
+  "CJ-0050": {
     "arquivo": "data/legal/politica_privacidade.js",
     "rotulo": "Politica de Privacidade (os 4 regimes)",
     "item": "9. Conservación",
@@ -271,7 +399,7 @@
     "linha": 242,
     "original": "Los datos permanecen en el dispositivo mientras usted los mantenga. La opción Restablecer Aplicación elimina perfiles, contactos, datos de salud, consentimientos, recordatorios, registros locales, inspecciones y archivos generados, incluidas fotografías y grabaciones, y cancela las notificaciones programadas. Desinstalar la aplicación elimina los datos locales. Si la copia de seguridad del sistema (iCloud o Google) está activada en el dispositivo, puede incluir datos de la aplicación, según las reglas y el cifrado del propio sistema; Vigilaro Care no tiene acceso a esas copias."
   },
-  "CJ-0035": {
+  "CJ-0051": {
     "arquivo": "data/legal/politica_privacidade.js",
     "rotulo": "Politica de Privacidade (os 4 regimes)",
     "item": "3. Consumer health data",
@@ -279,7 +407,7 @@
     "linha": 280,
     "original": "Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. Health details are not sent by the app to any server — not to the AI features or to any other third party. We do not use geofencing around health care facilities for any purpose."
   },
-  "CJ-0036": {
+  "CJ-0052": {
     "arquivo": "data/legal/politica_privacidade.js",
     "rotulo": "Politica de Privacidade (os 4 regimes)",
     "item": "10. Retention and deletion",
@@ -287,7 +415,7 @@
     "linha": 308,
     "original": "Information stays on your device until you remove it. Reset Application erases profiles, contacts, health data, consents, reminders, local logs, inspections and files the app generated, including photos and recordings, and cancels scheduled notifications. Uninstalling the app removes the local data in the app sandbox. If your device's system backup (iCloud or Google) is turned on, it may include app data, under the system's own rules and encryption; Vigilaro Care has no access to those backups."
   },
-  "CJ-0037": {
+  "CJ-0053": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "2. O que o app é — e o que não é",
@@ -295,7 +423,7 @@
     "linha": 29,
     "original": "O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — checklists, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nO app NÃO faz diagnóstico, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamento e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.\n\nO conteúdo reúne boas práticas e fontes públicas disponíveis na data em que foi publicado. Ele pode não cobrir todas as situações, as normas do seu local ou mudanças posteriores; diante de um risco sério, confirme com um profissional e com as regras da sua região.\n\nO índice de segurança e o Mapa de Riscos são estimativas feitas a partir do que você informa: não são laudo, vistoria técnica nem certificação do imóvel, e concluir um checklist não garante a ausência de riscos. Produtos e dispositivos são citados como exemplos: o app não endossa marcas nem garante o desempenho de produtos de terceiros — siga sempre as instruções do fabricante e, quando indicado, a instalação por um profissional."
   },
-  "CJ-0038": {
+  "CJ-0054": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "10. Privacidade",
@@ -303,7 +431,7 @@
     "linha": 37,
     "original": "Seus dados ficam no seu aparelho. O app não envia seus dados de saúde a nenhum servidor nem a terceiros. O que pode sair — com a sua permissão ou de forma anônima — está descrito na Política de Privacidade."
   },
-  "CJ-0039": {
+  "CJ-0055": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "2. O que a aplicação é — e o que não é",
@@ -311,7 +439,7 @@
     "linha": 50,
     "original": "O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — listas de verificação, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nA aplicação NÃO faz diagnósticos, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamentos e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.\n\nO conteúdo reúne boas práticas e fontes públicas disponíveis na data em que foi publicado. Pode não abranger todas as situações, as normas do seu local ou alterações posteriores; perante um risco sério, confirme com um profissional e com as regras da sua região.\n\nO índice de segurança e o Mapa de Riscos são estimativas feitas a partir do que indica: não são relatório pericial, vistoria técnica nem certificação do imóvel, e concluir uma lista de verificação não garante a ausência de riscos. Produtos e dispositivos são referidos como exemplos: a aplicação não recomenda marcas nem garante o desempenho de produtos de terceiros — siga sempre as instruções do fabricante e, quando indicado, a instalação por um profissional."
   },
-  "CJ-0040": {
+  "CJ-0056": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "10. Privacidade",
@@ -319,7 +447,7 @@
     "linha": 58,
     "original": "Os seus dados ficam no seu equipamento. A aplicação não envia os seus dados de saúde a nenhum servidor nem a terceiros. O que pode sair — com a sua autorização ou de forma anónima — está descrito na Política de Privacidade."
   },
-  "CJ-0041": {
+  "CJ-0057": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "2. Qué es la aplicación — y qué no es",
@@ -327,7 +455,7 @@
     "linha": 71,
     "original": "Vigilaro Care es una herramienta de información, de apoyo a la prevención y de mapeo de riesgos domésticos. Todo el contenido — listas de verificación, guías, protocolos de primeros auxilios y análisis — tiene carácter informativo y educativo.\n\nLa aplicación NO hace diagnósticos, NO emite opinión sobre la salud de nadie, NO prescribe tratamientos y NO sustituye a profesionales de la salud, especialistas en seguridad, la supervisión de un adulto responsable ni los servicios de emergencia.\n\nEl contenido reúne buenas prácticas y fuentes públicas disponibles en la fecha de su publicación. Puede no abarcar todas las situaciones, las normas de su lugar ni cambios posteriores; ante un riesgo serio, confírmelo con un profesional y con las reglas de su región.\n\nEl índice de seguridad y el Mapa de Riesgos son estimaciones hechas a partir de lo que usted informa: no son un peritaje, una inspección técnica ni una certificación del inmueble, y completar una lista de verificación no garantiza la ausencia de riesgos. Los productos y dispositivos se citan como ejemplos: la aplicación no avala marcas ni garantiza el desempeño de productos de terceros — siga siempre las instrucciones del fabricante y, cuando se indique, la instalación por un profesional."
   },
-  "CJ-0042": {
+  "CJ-0058": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "10. Privacidad",
@@ -335,7 +463,7 @@
     "linha": 79,
     "original": "Sus datos permanecen en su dispositivo. La aplicación no envía sus datos de salud a ningún servidor ni a terceros. Lo que puede salir — con su permiso o de forma anónima — se describe en la Política de Privacidad."
   },
-  "CJ-0043": {
+  "CJ-0059": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "2. What the app is — and what it is not",
@@ -343,7 +471,7 @@
     "linha": 92,
     "original": "Vigilaro Care is a tool for information, prevention support and mapping hazards at home. All content — checklists, guides, first-aid protocols and analyses — is informational and educational.\n\nThe app does NOT diagnose, does NOT give an opinion on anyone's health, does NOT prescribe treatment and does NOT replace health professionals, safety specialists, supervision by a responsible adult or emergency services.\n\nThe content brings together good practice and public sources available on the date it was published. It may not cover every situation, the rules where you live or later changes; when the risk is serious, check with a professional and with your local rules.\n\nThe safety index and the Risk Map are estimates based on what you enter: they are not an expert report, a technical inspection or a certification of the property, and completing a checklist does not guarantee that there are no risks. Products and devices are mentioned as examples: the app does not endorse brands or guarantee how third-party products perform — always follow the manufacturer's instructions and, where indicated, have them installed by a professional."
   },
-  "CJ-0044": {
+  "CJ-0060": {
     "arquivo": "data/legal/termos_uso.js",
     "rotulo": "Termos de Uso (os 4 idiomas)",
     "item": "10. Privacy",
@@ -351,7 +479,7 @@
     "linha": 100,
     "original": "Your data stays on your device. The app does not send your health information to any server or third party. What may leave — with your permission or anonymously — is described in the Privacy Policy."
   },
-  "CJ-0045": {
+  "CJ-0061": {
     "arquivo": "components/BatteryMonitor.js",
     "rotulo": "BatteryMonitor",
     "item": "(sem titulo)",
@@ -359,7 +487,7 @@
     "linha": 68,
     "original": "Sua bateria está em {{pct}}%. Recomendamos recarregar seu dispositivo para manter o acesso às funções de emergência do Vigilaro."
   },
-  "CJ-0046": {
+  "CJ-0062": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "upgrade",
@@ -367,7 +495,7 @@
     "linha": 0,
     "original": "A prevenção, o Mapa de Riscos, o SOS, o Scanner e os guias continuam gratuitos. O Premium amplia os lembretes de remédio da família."
   },
-  "CJ-0047": {
+  "CJ-0063": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "upgrade",
@@ -375,7 +503,7 @@
     "linha": 0,
     "original": "Confira sua conexão e tente de novo — seus dados continuam no aparelho."
   },
-  "CJ-0048": {
+  "CJ-0064": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "welcome",
