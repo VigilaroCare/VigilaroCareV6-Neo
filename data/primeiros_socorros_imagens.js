@@ -31,6 +31,7 @@ export const PRIMEIROS_SOCORROS_IMAGENS = {
     ps_17: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Afogamento
     ps_18: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Vomito e aspiracao
     ps_19: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Incendio e fumaca
+    ps_20: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Atingido por raio — provisoria
 
     // ============ PETS ============
     engasgo_pet:        require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Veterinario c/ estetoscopio

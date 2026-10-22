@@ -326,5 +326,27 @@ export const primeirosSocorrosEN = [
             'DO NOT throw water on a cooking-oil fire or on electrical equipment that is switched on.',
         ],
         quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} if anyone who breathed in smoke has shortness of breath, a persistent cough, a hoarse voice, soot around the nose or mouth, a headache, dizziness, nausea or confusion — smoke can contain carbon monoxide, which poisons without any smell.'
+    },
+    {
+        id: 'ps_20',
+        titulo: 'Struck by Lightning',
+        emoji: '🌩️',
+        situacao: 'Person struck by lightning or who was very close to where it hit',
+        oQueFazer: [
+            'Call {{EMERGENCY_MEDICAL}} straight away.',
+            'You can touch the victim: a person who has been struck does NOT carry an electrical charge.',
+            'If the storm is still going and you can do it safely, move the victim to shelter — lightning can strike the same place again.',
+            'Check whether the person responds and is breathing. If they are not breathing, start CPR and keep going until help arrives.',
+            'With several victims, help first those who are not moving and not breathing — anyone shouting or moving is breathing.',
+            'If the person is breathing, lay them on their side (recovery position), keep them warm and stay with them.',
+            'Cover burns with a clean cloth or cling film, without pressing.',
+        ],
+        oQueNaoFazer: [
+            'Do NOT wait for the victim to "discharge" before helping — that is a myth, and every minute counts.',
+            'Do NOT put yourself at risk: if lightning is still striking, get yourself and the victim to shelter as soon as you can.',
+            'Do NOT give anything to drink to someone who is confused or drowsy.',
+            'Do NOT skip medical care for someone who seems fine.',
+        ],
+        quandoChamarAjuda: 'ALWAYS call {{EMERGENCY_MEDICAL}}: even people who seem fine can have injuries to the heart, nerves, ears and eyes that only show up later.'
     }
 ];

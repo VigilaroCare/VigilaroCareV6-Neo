@@ -30,6 +30,24 @@ const SEARCH_ALIASES = {
     envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao',
     sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete',
     aspiracao: 'vomito aspiracao engasgo vomitou lateral seguranca',
+    raio: 'raio raios relampago trovao trovoada tempestade descarga atmosferica lightning rayo rcp cpr',
+};
+
+// Tema -> grupos de sinônimos acima. Os temas se chamam ps_1, ps_2...; antes a busca
+// procurava SEARCH_ALIASES[item.id] e os sinônimos nunca entravam.
+const SINONIMOS_DO_TEMA = {
+    ps_1: ['queimadura'],
+    ps_2: ['engasgo'],
+    ps_3: ['engasgo'],
+    ps_4: ['sangramento'],
+    ps_5: ['choqueEletrico'],
+    ps_6: ['envenenamento'],
+    ps_7: ['queda', 'quedaAltura'],
+    ps_13: ['desmaio'],
+    ps_14: ['convulsao'],
+    ps_17: ['afogamento'],
+    ps_18: ['aspiracao'],
+    ps_20: ['raio'],
 };
 
 const normalizeSearch = (value = '') =>
@@ -44,7 +62,7 @@ const buildSearchText = (item) => normalizeSearch([
     item.situacao,
     item.descricao,
     item.emoji,
-    SEARCH_ALIASES[item.id],
+    ...(SINONIMOS_DO_TEMA[item.id] || []).map(k => SEARCH_ALIASES[k]),
     ...(item.oQueFazer || []),
     ...(item.oQueNaoFazer || []),
     ...[].concat(item.quandoChamarAjuda || []),

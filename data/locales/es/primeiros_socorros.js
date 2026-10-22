@@ -326,5 +326,27 @@ export const primeirosSocorrosES = [
             'NO eche agua sobre fuego de aceite de cocina ni sobre aparatos eléctricos encendidos.',
         ],
         quandoChamarAjuda: 'Llame a {{EMERGENCY_MEDICAL}} si quien respiró humo tiene falta de aire, tos persistente, ronquera, hollín en la nariz o la boca, dolor de cabeza, mareo, náuseas o confusión: el humo puede contener monóxido de carbono, que intoxica sin olor.'
+    },
+    {
+        id: 'ps_20',
+        titulo: 'Alcanzado por un Rayo',
+        emoji: '🌩️',
+        situacao: 'Persona alcanzada por un rayo o que estaba muy cerca de donde cayó',
+        oQueFazer: [
+            'Llame a {{EMERGENCY_MEDICAL}} de inmediato.',
+            'Puede tocar a la víctima: el cuerpo de quien fue alcanzado NO queda con carga eléctrica.',
+            'Si la tormenta continúa y puede hacerlo sin riesgo, lleve a la víctima a un lugar resguardado: el rayo puede volver a caer en el mismo sitio.',
+            'Compruebe si la persona responde y respira. Si no respira, inicie la RCP y continúe hasta que llegue la ayuda.',
+            'Con varias víctimas, atienda primero a quien no se mueve y no respira: quien grita o se mueve está respirando.',
+            'Si la persona respira, acuéstela de lado (posición lateral de seguridad), manténgala abrigada y quédese a su lado.',
+            'Cubra las quemaduras con un paño limpio o film transparente, sin apretar.',
+        ],
+        oQueNaoFazer: [
+            'NO espere a que la víctima "se descargue" para socorrerla: es un mito, y cada minuto cuenta.',
+            'NO se exponga: si todavía caen rayos, resguárdese con la víctima en cuanto sea posible.',
+            'NO dé nada de beber a quien esté confuso o somnoliento.',
+            'NO deje sin atención médica a quien parece estar bien.',
+        ],
+        quandoChamarAjuda: 'Llame SIEMPRE a {{EMERGENCY_MEDICAL}}: incluso quien parece estar bien puede tener lesiones en el corazón, los nervios, los oídos y los ojos que aparecen más tarde.'
     }
 ];

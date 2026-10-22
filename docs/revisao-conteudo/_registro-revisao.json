@@ -88,6 +88,10 @@
   "m022": {
    "texto": "Retorno do CK, AV e IF (22/10/2026): ajustes meus ao aplicar a revisao do Agnaldo, cautela, cerca de piscina padronizada, pilha, telas EPI e Ferramentas traduzidas, itens levados das secoes mortas para Escola, Asilo e Kits. Vai para o documento RK.",
    "em": "2026-10-22"
+  },
+  "m023": {
+   "texto": "Clima (22/10/2026, pedido do Agnaldo): alerta de raios para todas as regioes, alerta de vendaval/granizo/ciclone no Sul, tema de primeiros socorros 'Atingido por Raio'. Vai para o documento RK.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -165,6 +169,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "0163a9922dfbc6fb": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "01668a3c4dc6eb91": [
    "pendente",
@@ -821,6 +830,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "0d5957e1f3424ef7": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "0d67ccc12559b49b": [
    "pendente",
    "data/animais_ciatox.js",
@@ -866,6 +880,11 @@
    "data/safety_school.js",
    "m010"
   ],
+  "0e42e89c05e034be": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "0e4955b1d23a3779": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -885,6 +904,11 @@
    "pendente",
    "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
    "m006"
+  ],
+  "0eaadeddee5ece78": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "0eadf682c710d6ec": [
    "pendente",
@@ -1515,6 +1539,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m022"
+  ],
+  "198ceafc5da25e53": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "19b09657e9de60a4": [
    "pendente",
@@ -3416,6 +3445,11 @@
    "data/onboarding_data.js",
    "m010"
   ],
+  "384496ffbc720fc3": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "384b6408979c477f": [
    "aprovado",
    "data/knowledge_prevencao.js",
@@ -3690,6 +3724,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "3d57aa4e434679c5": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "3d796ef72372459c": [
    "pendente",
@@ -4081,6 +4120,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "42aa0112cab571dc": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "42bd96808d461f7f": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -4365,6 +4409,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
+  ],
+  "46c335ab4dc48954": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "46c3d4c19dacae53": [
    "pendente",
@@ -4651,6 +4700,11 @@
    "data/pet_food_safety.js",
    "m010"
   ],
+  "4af11076e1c89449": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "4b1ce0ac34f72225": [
    "pendente",
    "data/ferramentas_seguranca.js",
@@ -4910,6 +4964,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m008"
+  ],
+  "4fefacb9f962bbcc": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "4ff4fc198bd501e4": [
    "pendente",
@@ -5841,6 +5900,11 @@
    "data/legal/politica_privacidade.js",
    "m010"
   ],
+  "5ef62b86baf1554a": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "5f05607cf46b2fac": [
    "pendente",
    "data/locales/pt-BR/guiasSeguranca.js",
@@ -5960,6 +6024,11 @@
    "pendente",
    "data/ferramentas_seguranca.js",
    "m010"
+  ],
+  "610998dea934b991": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "6110e1a2b908aba9": [
    "pendente",
@@ -6135,6 +6204,11 @@
    "pendente",
    "data/epi_domestico.js",
    "m010"
+  ],
+  "62e19284e51c209b": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "62e44c1c313fec63": [
    "pendente",
@@ -7251,6 +7325,11 @@
    "data/areas_internas.js",
    "m001"
   ],
+  "75686bacc9e058a9": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "7572315231ea0e6f": [
    "pendente",
    "screens/InfoRotulosResultScreen.js",
@@ -7386,6 +7465,11 @@
    "data/opcoesPerfil.js",
    "m010"
   ],
+  "782bff18c03a12c1": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "782ccb02c890a3e8": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -7460,6 +7544,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m010"
+  ],
+  "79a6a6df6674818b": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "79ab807bd1f1609a": [
    "pendente",
@@ -7686,6 +7775,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "7d784cbab5e36c44": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "7d829fb38d6b7a22": [
    "pendente",
    "data/produtos_scanner.js",
@@ -7865,6 +7959,11 @@
    "pendente",
    "data/kits/tools.js",
    "m010"
+  ],
+  "80ab05a1d793e625": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "80ab92597db1a626": [
    "pendente",
@@ -8166,10 +8265,20 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "86a412148d6f57ec": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "86afe231d2eb67ef": [
    "pendente",
    "data/opcoesPerfil.js",
    "m010"
+  ],
+  "86bfdbbf17809165": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "86c69c8722d386ca": [
    "pendente",
@@ -9196,6 +9305,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
+  "97ec401e6e48aff8": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "97eecdb5bfa954d4": [
    "pendente",
    "data/teoria_fogo.js",
@@ -9281,6 +9395,11 @@
    "data/legal/politica_privacidade.js",
    "m008"
   ],
+  "990eedc40bd84630": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "992b77cc8287db70": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -9325,6 +9444,11 @@
    "pendente",
    "data/pet_safety_content.js",
    "m010"
+  ],
+  "99f84c105ad6f18b": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "9a0b46452641f712": [
    "aprovado",
@@ -10111,6 +10235,11 @@
    "data/kits/medicines.js",
    "m010"
   ],
+  "a5d568d9ed5a038b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosScreen.js",
+   "m023"
+  ],
   "a5f66f7d7dd4e0ff": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -10631,6 +10760,11 @@
    "data/pet_pregnancy_data.js",
    "m010"
   ],
+  "add43e3fbcd44e1c": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
+  ],
   "adeccd053ecbab6a": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -10710,6 +10844,11 @@
    "pendente",
    "data/radarSazonal/us.js",
    "m010"
+  ],
+  "aef9b138b5f99bc3": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "aefb3ba7c750f647": [
    "pendente",
@@ -10905,6 +11044,11 @@
    "pendente",
    "data/pet_food_safety.js",
    "m015"
+  ],
+  "b2e000fa20d3a105": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
   ],
   "b2f22d7e1003fcdf": [
    "aprovado",
@@ -12291,6 +12435,11 @@
    "data/produtos_categorias.js",
    "m011"
   ],
+  "cbd358ec30460b1a": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "cbf685014b90e728": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -12760,6 +12909,11 @@
    "pendente",
    "data/teoria_fogo.js",
    "m005"
+  ],
+  "d33b4542109da17a": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "d362d127a0787446": [
    "aprovado",
@@ -13446,6 +13600,11 @@
    "data/mapeamento_dados.js",
    "m022"
   ],
+  "dd27211deed4a5d1": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "dd2895e39bc325a0": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -13730,6 +13889,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "e2f8127e2fc0ce0e": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "e3250d25dfd5a6ec": [
    "pendente",
@@ -14801,6 +14965,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "f6078e1dae30bb14": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m023"
+  ],
   "f63589e82f684575": [
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -15285,6 +15454,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "fd856bb4e650fd67": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m023"
   ],
   "fd8679acfebdf209": [
    "pendente",

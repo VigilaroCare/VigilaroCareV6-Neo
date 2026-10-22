@@ -413,7 +413,7 @@ const TEMAS = [
     {
         nome: 'Retorno CK AV IF',
         sigla: 'RK',
-        pendentes: ['m020', 'm021', 'm022'],
+        pendentes: ['m020', 'm021', 'm022', 'm023'],
         marcarMudancas: false,
         antes: '_antes-RK.json',
         dataMudancas: '22/10/2026',
@@ -428,13 +428,15 @@ const TEMAS = [
             'data/opcoesPerfil.js': 'Cadastro de perfil (opcoes)',
             'screens/Travel/FazendoAsMalasScreen.js': 'Fazendo as Malas — bagagem aerea',
             'locales/pt-BR/common.json': 'Textos de interface',
+            'data/radarSazonal/br.js': 'Radar Sazonal (Brasil) — raios e temporais',
+            'data/locales/pt-BR/primeiros_socorros.js': 'Primeiros Socorros — Atingido por Raio (tema novo)',
         },
         descricao: 'Retorno da sua revisao do CK, do AV e do IF. Suas edicoes entraram como voce escreveu; aqui estao '
             + 'so os textos que voce ainda nao viu: onde ajustei a sua edicao ao aplicar (concordancia, repeticao), as '
             + 'respostas aos seus comentarios (sobrocado, pilha botao, cerca de piscina, aranha-marrom, churrasqueira, '
             + 'radonio, soro de reidratacao...), a cautela que estava esperando estes documentos, os ambientes do '
             + 'checklist e as telas EPI e Ferramentas que nao tinham traducao, e o que levei das partes mortas do '
-            + 'checklist para as telas vivas de Escola, Asilo e Kits. A linha ANTES mostra como estava; texto sem ANTES e novo.',
+            + 'checklist para as telas vivas de Escola, Asilo e Kits. No fim, o conteudo de clima que voce pediu: alerta de raios para todas as regioes, alerta de vendaval, granizo e ciclone no Sul e o tema de primeiros socorros Atingido por Raio. A linha ANTES mostra como estava; texto sem ANTES e novo.',
         fontes: [],
     },
 ];

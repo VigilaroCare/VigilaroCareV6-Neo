@@ -132,7 +132,6 @@ export default function KitPrimeirosSocorrosScreen({ navigation }) {
                     <Body style={[s.itemName, isChecked && s.itemNameChecked]}>
                       {item.text}
                     </Body>
-                    <Small style={s.itemDesc}>{item.category}</Small>
                   </View>
                   <View style={[s.checkbox, isChecked && s.checkboxChecked]}>
                     {isChecked && <NeoIcon name="Tick" size={14} color="#FFF" variant="Bold" />}

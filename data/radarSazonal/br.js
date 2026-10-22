@@ -124,34 +124,31 @@ export const JANELAS_BR = [
     categoria: "clima",
     publico: [],
     icone: "CloudLightning",
-    titulo: "Temporada de chuvas fortes e raios",
-    titulo_en: "Season of heavy rain and lightning",
-    titulo_es: "Temporada de lluvias fuertes y rayos",
-    resumo: "O Brasil é o país com mais raios no mundo, e as tempestades de verão trazem alagamento, deslizamento e choque elétrico em casa alagada. Cerca de 1 em cada 5 mortes por raio acontece com a pessoa dentro de casa, perto da rede elétrica ou hidráulica.",
-    resumo_en: "Brazil has more lightning than any other country, and summer storms bring flooding, landslides and electric shocks in flooded homes. About 1 in 5 lightning deaths happens indoors, near wiring or plumbing.",
-    resumo_es: "Brasil es el país con más rayos del mundo, y las tormentas de verano traen inundaciones, deslizamientos y descargas eléctricas en casas inundadas. Cerca de 1 de cada 5 muertes por rayo ocurre dentro de casa, cerca de la red eléctrica o de agua.",
+    titulo: "Temporada de chuvas fortes",
+    titulo_en: "Heavy rain season",
+    titulo_es: "Temporada de lluvias fuertes",
+    resumo: "As tempestades de verão trazem alagamento, deslizamento e choque elétrico em casa alagada. Para raios, veja o alerta próprio.",
+    resumo_en: "Summer storms bring flooding, landslides and electric shocks in flooded homes. For lightning, see its own alert.",
+    resumo_es: "Las tormentas de verano traen inundaciones, deslizamientos y descargas eléctricas en casas inundadas. Para los rayos, vea su propia alerta.",
     orientacoes: [
       "Cadastre seu CEP para alertas da Defesa Civil: envie o CEP por SMS para 40199 (gratuito).",
-      "Durante a tempestade, longe de tomadas, chuveiro elétrico, torneiras e celular no carregador.",
       "Água entrando em casa: desligue o disjuntor geral antes que a água chegue às tomadas — nunca pise na água com a energia ligada.",
       "Rachaduras novas, portas emperrando ou barranco cedendo perto de casa: saia e avise a Defesa Civil (199).",
       "Antes da temporada de chuvas, confira se as telhas estão firmes e limpe calhas e ralos."
     ],
     orientacoes_en: [
       "Register your postcode for Civil Defense alerts: text your CEP to 40199 (free).",
-      "During the storm, stay away from outlets, electric showers, taps and phones on charge.",
       "Water coming in: switch off the main breaker before it reaches the outlets — never step into water with the power on.",
       "New cracks, sticking doors or a slope giving way near the house: leave and call Civil Defense (199).",
       "Before the rainy season, check that the roof tiles are secure and clear the gutters and drains."
     ],
     orientacoes_es: [
       "Registre su código postal para alertas de Defensa Civil: envíe el CEP por SMS al 40199 (gratis).",
-      "Durante la tormenta, lejos de enchufes, ducha eléctrica, grifos y celular cargando.",
       "Si entra agua en casa: corte el interruptor general antes de que llegue a los enchufes — nunca pise el agua con la corriente encendida.",
       "Grietas nuevas, puertas que se traban o una ladera que cede cerca de casa: salga y avise a Defensa Civil (199).",
       "Antes de la temporada de lluvias, compruebe que las tejas estén firmes y limpie canaletas y desagües."
     ],
-    fonte: "Defesa Civil (SMS 40199); INPE/ELAT (raios)"
+    fonte: "Defesa Civil (SMS 40199)"
   },
   {
     id: "br_chuvas_nordeste",
@@ -222,6 +219,92 @@ export const JANELAS_BR = [
       "Agua para beber y cocinar solo tratada o hervida."
     ],
     fonte: "Defesa Civil (SMS 40199); Ministério da Saúde"
+  },
+  {
+    id: "br_raios",
+    paises: ["BR"],
+    janelas: [{ de: "10-01", ate: "05-31" }],
+    pico: { de: "12-01", ate: "03-31" },
+    severidade: 3,
+    categoria: "clima",
+    publico: ["pet"],
+    icone: "CloudLightning",
+    titulo: "Raios: proteção dentro e fora de casa",
+    titulo_en: "Lightning: staying safe indoors and outdoors",
+    titulo_es: "Rayos: protección dentro y fuera de casa",
+    resumo: "O Brasil é o país com mais raios no mundo e, em média, cerca de 100 pessoas morrem atingidas por ano. Cerca de 1 em cada 5 dessas mortes acontece dentro de casa, perto da rede elétrica ou hidráulica. Ouviu trovão, o raio já pode alcançar você.",
+    resumo_en: "Brazil has more lightning than any other country, and on average about 100 people are killed by it each year. About 1 in 5 of these deaths happens indoors, near wiring or plumbing. If you can hear thunder, lightning can reach you.",
+    resumo_es: "Brasil es el país con más rayos del mundo y, en promedio, unas 100 personas mueren alcanzadas cada año. Cerca de 1 de cada 5 de esas muertes ocurre dentro de casa, cerca de la red eléctrica o de agua. Si oye truenos, el rayo ya puede alcanzarlo.",
+    orientacoes: [
+      "Ouviu trovão: procure abrigo e só saia 30 minutos depois do último trovão. Abrigo seguro é dentro de casa ou de um carro fechado — quiosque, guarda-sol, barraca e árvore não protegem.",
+      "Fora de casa, saia de campo aberto, praia, piscina, rio, laje e quadra; fique longe de árvores isoladas, cercas de arame e postes. Não solte pipa.",
+      "Sem abrigo por perto, como último recurso: agache-se com os pés juntos, a cabeça abaixada e longe de outras pessoas — não se deite no chão.",
+      "Em casa, durante a tempestade: nada de banho de chuveiro elétrico, torneiras ou aparelhos ligados na tomada. Antes de ela chegar, tire da tomada os eletrônicos que puder.",
+      "Prédios e casas altas ou isoladas (sítio, chácara) podem precisar de para-raios. A instalação e a inspeção periódica são trabalho de profissional habilitado.",
+      "Traga os pets para dentro antes da tempestade e não os deixe amarrados no quintal: com medo do trovão, eles fogem e se machucam.",
+      "Se alguém for atingido, socorra na hora: o corpo da vítima não fica com carga elétrica. Veja Primeiros Socorros › Atingido por Raio."
+    ],
+    orientacoes_en: [
+      "If you hear thunder, take shelter and wait 30 minutes after the last thunderclap before going out. Safe shelter means inside a house or a closed car — kiosks, umbrellas, tents and trees do not protect you.",
+      "Outdoors, get away from open fields, beaches, pools, rivers, flat roofs and sports courts; keep clear of lone trees, wire fences and poles. Do not fly a kite.",
+      "With no shelter nearby, as a last resort: crouch with your feet together and head down, away from other people — do not lie flat on the ground.",
+      "At home during the storm: no electric showers, no running taps, nothing plugged in in use. Before it arrives, unplug the electronics you can.",
+      "Tall or isolated buildings and houses (farms, country homes) may need a lightning protection system. Installation and regular inspection are a job for a qualified professional.",
+      "Bring pets indoors before the storm and do not leave them tied up in the yard: frightened by thunder, they run off and get hurt.",
+      "If someone is struck, help at once: the victim's body does not carry an electrical charge. See First Aid › Struck by Lightning."
+    ],
+    orientacoes_es: [
+      "Si oye truenos, busque refugio y no salga hasta 30 minutos después del último trueno. Refugio seguro es dentro de casa o de un coche cerrado: quioscos, sombrillas, tiendas de campaña y árboles no protegen.",
+      "Fuera de casa, salga de campos abiertos, playas, piscinas, ríos, azoteas y canchas; manténgase lejos de árboles aislados, cercas de alambre y postes. No vuele cometas.",
+      "Sin refugio cerca, como último recurso: agáchese con los pies juntos, la cabeza baja y lejos de otras personas; no se tumbe en el suelo.",
+      "En casa, durante la tormenta: nada de ducha eléctrica, grifos ni aparatos enchufados en uso. Antes de que llegue, desenchufe los aparatos electrónicos que pueda.",
+      "Los edificios y las casas altas o aisladas (fincas, casas de campo) pueden necesitar pararrayos. La instalación y la inspección periódica son trabajo de un profesional habilitado.",
+      "Meta a las mascotas en casa antes de la tormenta y no las deje atadas en el patio: con miedo a los truenos, huyen y se lastiman.",
+      "Si alguien es alcanzado, socórralo enseguida: el cuerpo de la víctima no queda con carga eléctrica. Vea Primeros Auxilios › Alcanzado por un Rayo."
+    ],
+    fonte: "INPE/ELAT (Grupo de Eletricidade Atmosférica); Defesa Civil"
+  },
+  {
+    id: "br_vendaval_sul",
+    paises: ["BR"],
+    regioes: ["sul"],
+    janelas: [{ de: "04-01", ate: "11-30" }],
+    pico: { de: "06-01", ate: "10-31" },
+    severidade: 3,
+    categoria: "clima",
+    publico: ["pet"],
+    icone: "Wind",
+    titulo: "Vendaval, granizo e ciclone no Sul",
+    titulo_en: "Windstorms, hail and cyclones in the South",
+    titulo_es: "Vendavales, granizo y ciclones en el Sur",
+    resumo: "No Sul, ciclones extratropicais e temporais trazem vento forte, granizo e queda de árvores e de fios. Em geral, a previsão chega com um ou dois dias de antecedência — dá tempo de preparar a casa.",
+    resumo_en: "In the South, extratropical cyclones and severe storms bring strong winds, hail, and falling trees and power lines. Forecasts usually come a day or two ahead — enough time to get the house ready.",
+    resumo_es: "En el Sur, los ciclones extratropicales y los temporales traen viento fuerte, granizo y caída de árboles y cables. En general, el pronóstico llega con uno o dos días de antelación: da tiempo a preparar la casa.",
+    orientacoes: [
+      "Cadastre seu CEP para alertas da Defesa Civil (SMS para 40199, gratuito) e deixe ligados os alertas de emergência do celular.",
+      "Antes do temporal: recolha ou amarre o que o vento pode arremessar (vasos, móveis de área externa, telhas soltas) e deixe o carro longe de árvores e postes.",
+      "Durante: fique dentro de casa, longe de janelas e portas de vidro. Se o telhado começar a ceder, vá para um cômodo interno, como banheiro ou corredor.",
+      "Granizo: não saia para proteger o carro nem para recolher coisas — pedras grandes ferem.",
+      "Depois: trate todo fio caído como energizado — mantenha distância e chame a companhia de energia. Não suba no telhado com chuva ou vento.",
+      "Traga os pets para dentro antes do temporal: assustados, eles fogem e se ferem."
+    ],
+    orientacoes_en: [
+      "Register your postcode for Civil Defense alerts (text your CEP to 40199, free) and keep your phone's emergency alerts switched on.",
+      "Before the storm: bring in or tie down anything the wind can throw (plant pots, outdoor furniture, loose roof tiles) and park the car away from trees and poles.",
+      "During: stay indoors, away from windows and glass doors. If the roof starts to give way, move to an inner room such as a bathroom or hallway.",
+      "Hail: do not go out to protect the car or gather things — large hailstones cause injuries.",
+      "Afterwards: treat every fallen wire as live — keep away and call the power company. Do not climb onto the roof in rain or wind.",
+      "Bring pets indoors before the storm: frightened, they run off and get hurt."
+    ],
+    orientacoes_es: [
+      "Registre su código postal para alertas de Defensa Civil (SMS al 40199, gratis) y deje activadas las alertas de emergencia del celular.",
+      "Antes del temporal: recoja o amarre lo que el viento pueda lanzar (macetas, muebles de exterior, tejas sueltas) y deje el coche lejos de árboles y postes.",
+      "Durante: quédese dentro de casa, lejos de ventanas y puertas de vidrio. Si el techo empieza a ceder, vaya a una habitación interior, como el baño o un pasillo.",
+      "Granizo: no salga a proteger el coche ni a recoger cosas: el granizo grande hiere.",
+      "Después: trate todo cable caído como si tuviera corriente; manténgase a distancia y llame a la compañía eléctrica. No suba al tejado con lluvia o viento.",
+      "Meta a las mascotas en casa antes del temporal: asustadas, huyen y se lastiman."
+    ],
+    fonte: "Defesa Civil (SMS 40199); INMET (alertas meteorológicos)"
   },
   {
     id: "br_dengue",

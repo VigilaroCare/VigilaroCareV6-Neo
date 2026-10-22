@@ -326,5 +326,27 @@ export const primeirosSocorrosPTPT = [
             'NÃO deite água em fogo de óleo de cozinha nem em equipamento elétrico ligado.',
         ],
         quandoChamarAjuda: 'Ligue para o {{EMERGENCY_MEDICAL}} se quem respirou fumo tiver falta de ar, tosse persistente, rouquidão, fuligem no nariz ou na boca, dor de cabeça, tonturas, náuseas ou confusão — o fumo pode conter monóxido de carbono, que intoxica sem cheiro.'
+    },
+    {
+        id: 'ps_20',
+        titulo: 'Atingido por um Raio',
+        emoji: '🌩️',
+        situacao: 'Pessoa atingida por um raio ou que estava muito perto do local onde ele caiu',
+        oQueFazer: [
+            'Ligue para o {{EMERGENCY_MEDICAL}} de imediato.',
+            'Pode tocar na vítima: o corpo de quem foi atingido NÃO fica com carga elétrica.',
+            'Se a trovoada continuar e for possível sem risco para si, leve a vítima para um local abrigado — o raio pode voltar a cair no mesmo sítio.',
+            'Veja se a pessoa responde e respira. Se não respirar, inicie a RCP e continue até chegar o socorro.',
+            'Com várias vítimas, socorra primeiro quem não se mexe e não respira — quem grita ou se mexe está a respirar.',
+            'Se a pessoa respira, deite-a de lado (posição lateral de segurança), mantenha-a aquecida e fique junto dela.',
+            'Cubra as queimaduras com um pano limpo ou película aderente, sem apertar.',
+        ],
+        oQueNaoFazer: [
+            'NÃO espere que a vítima "descarregue" para a socorrer — isso é um mito, e cada minuto conta.',
+            'NÃO se exponha: se ainda houver raios, abrigue-se com a vítima assim que possível.',
+            'NÃO dê nada a beber a quem está confuso ou sonolento.',
+            'NÃO dispense a avaliação médica de quem parece bem.',
+        ],
+        quandoChamarAjuda: 'Ligue SEMPRE para o {{EMERGENCY_MEDICAL}}: mesmo quem parece bem pode ter lesões no coração, nos nervos, nos ouvidos e nos olhos que só surgem mais tarde.'
     }
 ];

@@ -326,5 +326,27 @@ export const primeirosSocorrosPTBR = [
             'NÃO jogue água em fogo de óleo de cozinha ou em equipamento elétrico ligado.',
         ],
         quandoChamarAjuda: 'Chame o {{EMERGENCY_MEDICAL}} se quem respirou fumaça tiver falta de ar, tosse persistente, rouquidão, fuligem no nariz ou na boca, dor de cabeça, tontura, náusea ou confusão — a fumaça pode conter monóxido de carbono, que intoxica sem cheiro.'
+    },
+    {
+        id: 'ps_20',
+        titulo: 'Atingido por Raio',
+        emoji: '🌩️',
+        situacao: 'Pessoa atingida por um raio ou que estava muito perto de onde ele caiu',
+        oQueFazer: [
+            'Ligue para o {{EMERGENCY_MEDICAL}} imediatamente.',
+            'Pode tocar na vítima: o corpo de quem foi atingido NÃO fica com carga elétrica.',
+            'Se a tempestade continuar e for possível sem risco para você, leve a vítima para um lugar abrigado — o raio pode cair de novo no mesmo lugar.',
+            'Veja se a pessoa responde e respira. Se não respirar, inicie a RCP e continue até o socorro chegar.',
+            'Com várias vítimas, atenda primeiro quem não se mexe e não respira — quem grita ou se mexe está respirando.',
+            'Se a pessoa respira, deite-a de lado (posição lateral de segurança), mantenha-a aquecida e fique ao lado dela.',
+            'Cubra as queimaduras com pano limpo ou filme plástico, sem apertar.',
+        ],
+        oQueNaoFazer: [
+            'NÃO espere a vítima "descarregar" para socorrer — isso é mito, e cada minuto conta.',
+            'NÃO se exponha: se ainda houver raios, abrigue-se com a vítima assim que possível.',
+            'NÃO dê nada de beber a quem está confuso ou sonolento.',
+            'NÃO dispense o atendimento de quem parece bem.',
+        ],
+        quandoChamarAjuda: 'SEMPRE chame o {{EMERGENCY_MEDICAL}}: mesmo quem parece bem pode ter lesões no coração, nos nervos, nos ouvidos e nos olhos que só aparecem depois.'
     }
 ];

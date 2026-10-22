@@ -298,9 +298,6 @@ export default function VistoriaAsiloScreen({ navigation }) {
 
                                                             {/* Conteúdo central */}
                                                             <View style={{ flex: 1, paddingRight: 10 }}>
-                                                                <Small style={styles.itemCategoryLabel}>
-                                                                    {t_field(categoria, 'nome').toUpperCase()}
-                                                                </Small>
                                                                 <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                                                                     <Body style={styles.itemText}>
                                                                         {t_field(item, 'texto')}

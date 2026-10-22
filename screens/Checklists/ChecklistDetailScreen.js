@@ -486,10 +486,9 @@ const ChecklistDetailScreen = ({ route, navigation }) => {
               <View style={{ width: 4, alignSelf: 'stretch', borderRadius: 2, backgroundColor: getPriorityColor(item.priority), marginRight: 12 }} />
 
               {/* Center: Content */}
+              {/* A categoria do item serve à parametrização (filtro, relatório), não ao
+                  usuário: deixou de aparecer em cada pergunta (pedido do Agnaldo, 22/10/2026). */}
               <View style={{ flex: 1, paddingRight: 12 }}>
-                <Caption style={{ color: textMuted, fontWeight: '700', letterSpacing: 0.6, marginBottom: 3 }}>
-                    {item.categoryObj ? t_field(item.categoryObj, 'nome').toUpperCase() : item.category.toUpperCase()}
-                </Caption>
                 <Body style={{ color: textPrimary, lineHeight: 20, fontWeight: '600' }}>
                   {item.itemObj ? t_field(item.itemObj, 'titulo') : item.text}
                 </Body>

@@ -1,5 +1,117 @@
 {
   "RK-0001": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "titulo",
+    "linha": 332,
+    "original": "Atingido por Raio"
+  },
+  "RK-0002": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "situacao",
+    "linha": 334,
+    "original": "Pessoa atingida por um raio ou que estava muito perto de onde ele caiu"
+  },
+  "RK-0003": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 336,
+    "original": "Ligue para o {{EMERGENCY_MEDICAL}} imediatamente."
+  },
+  "RK-0004": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 337,
+    "original": "Pode tocar na vítima: o corpo de quem foi atingido NÃO fica com carga elétrica."
+  },
+  "RK-0005": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 338,
+    "original": "Se a tempestade continuar e for possível sem risco para você, leve a vítima para um lugar abrigado — o raio pode cair de novo no mesmo lugar."
+  },
+  "RK-0006": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 339,
+    "original": "Veja se a pessoa responde e respira. Se não respirar, inicie a RCP e continue até o socorro chegar."
+  },
+  "RK-0007": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 340,
+    "original": "Com várias vítimas, atenda primeiro quem não se mexe e não respira — quem grita ou se mexe está respirando."
+  },
+  "RK-0008": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 341,
+    "original": "Se a pessoa respira, deite-a de lado (posição lateral de segurança), mantenha-a aquecida e fique ao lado dela."
+  },
+  "RK-0009": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueFazer[]",
+    "linha": 342,
+    "original": "Cubra as queimaduras com pano limpo ou filme plástico, sem apertar."
+  },
+  "RK-0010": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueNaoFazer[]",
+    "linha": 345,
+    "original": "NÃO espere a vítima \"descarregar\" para socorrer — isso é mito, e cada minuto conta."
+  },
+  "RK-0011": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueNaoFazer[]",
+    "linha": 346,
+    "original": "NÃO se exponha: se ainda houver raios, abrigue-se com a vítima assim que possível."
+  },
+  "RK-0012": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueNaoFazer[]",
+    "linha": 347,
+    "original": "NÃO dê nada de beber a quem está confuso ou sonolento."
+  },
+  "RK-0013": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "oQueNaoFazer[]",
+    "linha": 348,
+    "original": "NÃO dispense o atendimento de quem parece bem."
+  },
+  "RK-0014": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",
+    "item": "Atingido por Raio",
+    "chave": "quandoChamarAjuda",
+    "linha": 350,
+    "original": "SEMPRE chame o {{EMERGENCY_MEDICAL}}: mesmo quem parece bem pode ter lesões no coração, nos nervos, nos ouvidos e nos olhos que só aparecem depois."
+  },
+  "RK-0015": {
     "arquivo": "data/micro_blog.js",
     "rotulo": "Micro-blog",
     "item": "Como evitar afogamentos de crianças",
@@ -7,7 +119,7 @@
     "linha": 84,
     "original": "Riscos silenciosos:\n• Apenas 3 cm: É a profundidade suficiente para uma criança se afogar em minutos.\n• Esvazie: Baldes, bacias e banheiras devem estar sempre vazios após o uso.\n• Tampe: Mantenha o vaso sanitário sempre fechado e travado.\n• Piscinas: Exigem cerca de pelo menos 1,50 m e portão autotrancante. Supervisão total, mesmo sabendo nadar."
   },
-  "RK-0002": {
+  "RK-0016": {
     "arquivo": "data/micro_blog.js",
     "rotulo": "Micro-blog",
     "item": "Segurança Aquática para Pets",
@@ -15,7 +127,7 @@
     "linha": 476,
     "original": "Nem todo pet sabe nadar:\n• Exaustão: O pânico em quedas acidentais causa fadiga fatal em minutos.\n• Barreiras: Cerca de isolamento (pelo menos 1,50 m) ao redor da piscina é uma das melhores defesas.\n• Rampa: Escadas convencionais são impossíveis para eles. Instale uma \"Rampa de Emergência\" submersa com superfície antiderrapante.\nTreine seu cão para saber onde fica a saída."
   },
-  "RK-0003": {
+  "RK-0017": {
     "arquivo": "data/fases_vida.js",
     "rotulo": "Fases da vida",
     "item": "Crianças (3-12 anos)",
@@ -23,7 +135,7 @@
     "linha": 553,
     "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (cercas de pelo menos 1,50 m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Queimaduras em Crianças\n\nA pele da criança é muito mais sensível que a do adulto. O que é \"quente\" para você pode causar queimadura de 3º grau nela.\n\n### Dicas Práticas:\n*   **Banho:** Teste a temperatura da água com o cotovelo ou termômetro digital antes de colocar a criança na água do banho.\n*   **Cozinha:** Use as bocas de trás do fogão e vire os cabos das panelas para dentro.\n*   **Toalhas de Mesa:** Evite toalhas longas que a criança possa puxar, derrubando líquidos quentes sobre si.\n*   **Ferro de Passar:** Nunca deixe o ferro ligado sem supervisão e cuidado com o fio pendurado.\n\n---\n\n# Corpo Estranho no Nariz\n\nFeijão, milho, peças de brinquedo, espuma, pequenos insetos... crianças podem introduzir de tudo no nariz.\n\n### Sinais de Alerta:\n*   Secreção nasal unilateral (apenas de um lado), muitas vezes com mau cheiro.\n*   Dificuldade de respirar por uma narina.\n*   Dor ou desconforto no nariz.\n\n### O que fazer (e NÃO fazer):\n*   **NÃO** tente retirar com pinça ou cotonete se não estiver muito visível e fácil — você pode empurrar mais para dentro.\n*   **Se você NÃO sabe o que é o objeto:** incentive a criança a assoar o nariz tapando a narina livre.\n*   **SE FOR UMA BATERIA BOTÃO (pila moeda): NÃO tente nenhuma manobra.** Vá **IMEDIATAMENTE** ao Pronto-Socorro. Cada minuto conta. A queimadura química interna começa em minutos e pode ser fatal. (Fonte: CIATOX/SBP 2023)\n*   Para qualquer outro objeto: procure o PS se não sair facilmente com o assoar."
   },
-  "RK-0004": {
+  "RK-0018": {
     "arquivo": "data/fases_vida.js",
     "rotulo": "Fases da vida",
     "item": "Crianças (6 a 14 anos)",
@@ -31,7 +143,7 @@
     "linha": 1050,
     "original": "# Brinquedos: Diversão com Segurança\n\nAo escolher brinquedos, verifique sempre a classificação etária indicativa. Um brinquedo seguro para uma criança de 7 anos pode ser mortal para uma de 2.\n\n### Pontos de Atenção:\n*   **Peças Pequenas:** Risco de ingestão e engasgo para menores de 3 anos.\n*   **Baterias Botão:** Extremamente perigosas se engolidas (risco de queimadura interna grave). Verifique se o compartimento da bateria é parafusado ou tem uma trava que a criança não consegue abrir.\n*   **Tintas Tóxicas:** Prefira produtos com {{CERT_SEAL}}.\n*   **Barulho Excessivo:** Brinquedos muito barulhentos podem prejudicar a audição sensível da criança.\n*   **Quebráveis:** Evite materiais que possam estilhaçar (vidro, plástico rígido quebradiço).\n\n---\n\n# Prevenção de Afogamentos\n\n**O Risco Invisível:** O afogamento real é rápido e silencioso. Pode ocorrer em apenas 2,5 cm de água (baldes, bacias, banheiras, tanques e similares), devido ao peso da cabeça dos bebês.\n\n**Ação Tática Imediata:** Mantenha barreiras difíceis de transpor (cercas de pelo menos 1,50 m) ao redor de piscinas. Esvazie baldes imediatamente após o uso. Mantenha a tampa do vaso sanitário abaixada e travada.\n\n[Acesse o guia de afogamento em preveniremcasa.com.br](https://www.preveniremcasa.com.br)"
   },
-  "RK-0005": {
+  "RK-0019": {
     "arquivo": "data/locales/pt-BR/educational_guides.js",
     "rotulo": "Guias educativos",
     "item": "(sem titulo)",
@@ -39,7 +151,7 @@
     "linha": 24,
     "original": "Piscina precisa de cerca alta (pelo menos 1,50 m) e portão que tranca sozinho para nenhuma criança entrar sem querer. Use ralos que não sugam o cabelo. E escolha um adulto para vigiar os pequenos o tempo todo — sem celular nem distrações."
   },
-  "RK-0006": {
+  "RK-0020": {
     "arquivo": "data/kits/educational_content.js",
     "rotulo": "Guia de Kits",
     "item": "Comunicação",
@@ -47,7 +159,7 @@
     "linha": 454,
     "original": "**Lista em papel:** os mesmos contatos impressos, perto da porta ou na geladeira — servem quando o celular está sem bateria."
   },
-  "RK-0007": {
+  "RK-0021": {
     "arquivo": "data/kits/educational_content.js",
     "rotulo": "Guia de Kits",
     "item": "Comunicação",
@@ -55,7 +167,7 @@
     "linha": 455,
     "original": "**Documentos:** identidade e cartão do SUS ou do plano de saúde num lugar fácil de pegar numa saída às pressas."
   },
-  "RK-0008": {
+  "RK-0022": {
     "arquivo": "data/kits/educational_content.js",
     "rotulo": "Guia de Kits",
     "item": "Medicamentos Básicos (Uso Livre/Sintomáticos)",
@@ -63,7 +175,7 @@
     "linha": 578,
     "original": "**Antes de montar:** combine a lista e as doses com o médico ou o farmacêutico — sobretudo se houver crianças, gestantes, idosos, alergias ou doenças crônicas."
   },
-  "RK-0009": {
+  "RK-0023": {
     "arquivo": "data/kits/educational_content.js",
     "rotulo": "Guia de Kits",
     "item": "Medicamentos Básicos (Uso Livre/Sintomáticos)",
@@ -71,7 +183,7 @@
     "linha": 579,
     "original": "**Analgésicos e Antitérmicos:** os que o médico ou o farmacêutico indicarem para a família (por exemplo, paracetamol ou dipirona), para dor de cabeça, febre ou dores leves."
   },
-  "RK-0010": {
+  "RK-0024": {
     "arquivo": "data/kits/educational_content.js",
     "rotulo": "Guia de Kits",
     "item": "Medicamentos Básicos (Uso Livre/Sintomáticos)",
@@ -79,7 +191,7 @@
     "linha": 581,
     "original": "**Soro de reidratação oral** (vendido em farmácia, em pó para misturar na água): ajuda a repor os líquidos perdidos em diarreia ou vômito. Em bebês, idosos ou se a pessoa não melhorar, procure atendimento."
   },
-  "RK-0011": {
+  "RK-0025": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Celular no Banheiro/Molhado",
@@ -87,7 +199,7 @@
     "linha": 35,
     "original": "Choque elétrico grave com aparelho molhado"
   },
-  "RK-0012": {
+  "RK-0026": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Fios Desencapados (Pets e Bebês)",
@@ -95,7 +207,7 @@
     "linha": 62,
     "original": "Choque elétrico e queimadura na boca"
   },
-  "RK-0013": {
+  "RK-0027": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Troca da Resistência do Chuveiro",
@@ -103,7 +215,7 @@
     "linha": 89,
     "original": "Choque elétrico grave no banho"
   },
-  "RK-0014": {
+  "RK-0028": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Tomadas Desprotegidas (Crianças)",
@@ -111,7 +223,7 @@
     "linha": 116,
     "original": "Choque elétrico e queimadura nos dedos"
   },
-  "RK-0015": {
+  "RK-0029": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Pipas na Rede Elétrica",
@@ -119,7 +231,7 @@
     "linha": 170,
     "original": "Choque e queimadura por alta tensão"
   },
-  "RK-0016": {
+  "RK-0030": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "O Choque do Resgatista",
@@ -127,7 +239,7 @@
     "linha": 251,
     "original": "Choque elétrico também em quem tenta socorrer"
   },
-  "RK-0017": {
+  "RK-0031": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Armas de Fogo",
@@ -135,7 +247,7 @@
     "linha": 279,
     "original": "Disparo acidental com ferimento grave"
   },
-  "RK-0018": {
+  "RK-0032": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Afogamento",
@@ -143,7 +255,7 @@
     "linha": 342,
     "original": "Afogamento, inclusive em pouca água"
   },
-  "RK-0019": {
+  "RK-0033": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Esmagamento por Tombamento",
@@ -151,7 +263,7 @@
     "linha": 373,
     "original": "Esmagamento e lesões graves"
   },
-  "RK-0020": {
+  "RK-0034": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Sufocação e Engasgo",
@@ -159,7 +271,7 @@
     "linha": 425,
     "original": "Asfixia por obstrução das vias aéreas"
   },
-  "RK-0021": {
+  "RK-0035": {
     "arquivo": "data/riscos_fisicos.js",
     "rotulo": "Riscos Fisicos",
     "item": "Cortes Profundos",
@@ -167,7 +279,7 @@
     "linha": 451,
     "original": "Sangramento intenso"
   },
-  "RK-0022": {
+  "RK-0036": {
     "arquivo": "data/locales/pt-BR/HazardDatabase.js",
     "rotulo": "Base de perigos",
     "item": "(sem titulo)",
@@ -175,7 +287,7 @@
     "linha": 246,
     "original": "Use cercas de pelo menos 1,50 m ao redor da piscina com portão trancado por fora. Capas de lona não impedem quedas."
   },
-  "RK-0023": {
+  "RK-0037": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Piscina (se houver)",
@@ -183,7 +295,7 @@
     "linha": 531,
     "original": "Cerca de no mínimo 1,50 m de altura ao redor de toda a piscina."
   },
-  "RK-0024": {
+  "RK-0038": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Segurança Geral",
@@ -191,7 +303,7 @@
     "linha": 721,
     "original": "A criança só é entregue a pessoas autorizadas pela família"
   },
-  "RK-0025": {
+  "RK-0039": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Segurança Geral",
@@ -199,7 +311,7 @@
     "linha": 725,
     "original": "Pergunte como a escola confere quem vem buscar a criança e o que faz quando aparece alguém que não está na lista."
   },
-  "RK-0026": {
+  "RK-0040": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Segurança Geral",
@@ -207,7 +319,7 @@
     "linha": 731,
     "original": "A escola pede certidão de antecedentes criminais de quem trabalha com as crianças"
   },
-  "RK-0027": {
+  "RK-0041": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Segurança Geral",
@@ -215,7 +327,7 @@
     "linha": 735,
     "original": "Vale para professores e também para portaria, limpeza, cozinha e transporte."
   },
-  "RK-0028": {
+  "RK-0042": {
     "arquivo": "data/escola_segura_data.js",
     "rotulo": "Escola Segura",
     "item": "Equipe e Capacitação",
@@ -223,7 +335,7 @@
     "linha": 877,
     "original": "Adultos atentos em todas as áreas de recreação, inclusive nas idas ao banheiro."
   },
-  "RK-0029": {
+  "RK-0043": {
     "arquivo": "data/asilo_seguro_data.js",
     "rotulo": "Vistoria Asilo / ILPI",
     "item": "Incêndio e Evacuação Adaptada",
@@ -231,7 +343,7 @@
     "linha": 191,
     "original": "Plano de emergência prevê a retirada de pessoas acamadas ou com mobilidade reduzida"
   },
-  "RK-0030": {
+  "RK-0044": {
     "arquivo": "data/asilo_seguro_data.js",
     "rotulo": "Vistoria Asilo / ILPI",
     "item": "Incêndio e Evacuação Adaptada",
@@ -239,7 +351,7 @@
     "linha": 211,
     "original": "Sistema de detecção de fumaça e alarme sonoro ativo, com equipe treinada para a evacuação"
   },
-  "RK-0031": {
+  "RK-0045": {
     "arquivo": "data/dispositivos_eletronicos_reviews.js",
     "rotulo": "Reviews — dispositivos eletronicos",
     "item": "Consoles de Videogame",
@@ -247,7 +359,7 @@
     "linha": 265,
     "original": "Confira se a tampa das pilhas dos controles está firme — se abrir com facilidade, prenda com fita resistente ou troque a tampa (especialmente com crianças em casa)"
   },
-  "RK-0032": {
+  "RK-0046": {
     "arquivo": "data/dispositivos_protecao.js",
     "rotulo": "Acessorios de protecao",
     "item": "Capa de Segurança para Piscina",
@@ -255,7 +367,7 @@
     "linha": 638,
     "original": "Combine com uma cerca de pelo menos 1,50 m de altura em volta da piscina, com portão de fechamento e travamento automáticos"
   },
-  "RK-0033": {
+  "RK-0047": {
     "arquivo": "data/dispositivos_protecao.js",
     "rotulo": "Acessorios de protecao",
     "item": "Grade de Proteção para Cama",
@@ -263,7 +375,7 @@
     "linha": 715,
     "original": "Ajuda a evitar quedas da cama durante o sono — para a criança que saiu do berço e para o idoso com risco de queda. Precisa ser do tamanho certo para a cama: um vão entre a grade e o colchão pode prender a cabeça ou o tronco."
   },
-  "RK-0034": {
+  "RK-0048": {
     "arquivo": "screens/SegurancaLazerScreen.js",
     "rotulo": "Seguranca no Lazer",
     "item": "Piscina",
@@ -271,7 +383,7 @@
     "linha": 213,
     "original": "Cercas de no mínimo 1,50 m com portão autotravante."
   },
-  "RK-0035": {
+  "RK-0049": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para a Cabeça",
@@ -279,7 +391,7 @@
     "linha": 68,
     "original": "Mantenha um capacete simples em casa para emergências e pequenos serviços."
   },
-  "RK-0036": {
+  "RK-0050": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para os Olhos",
@@ -287,7 +399,7 @@
     "linha": 112,
     "original": "Óculos de grau NÃO protegem. Use por cima deles óculos de segurança de ampla visão."
   },
-  "RK-0037": {
+  "RK-0051": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para as Mãos",
@@ -295,7 +407,7 @@
     "linha": 146,
     "original": "Tenha pelo menos um par de luvas de cada tipo em casa."
   },
-  "RK-0038": {
+  "RK-0052": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para os Ouvidos",
@@ -303,7 +415,7 @@
     "linha": 190,
     "original": "Exposição a ruído intenso pode causar perda auditiva IRREVERSÍVEL. Proteja-se sempre!"
   },
-  "RK-0039": {
+  "RK-0053": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para os Pés",
@@ -311,7 +423,7 @@
     "linha": 237,
     "original": "Com sapato aberto, uma ferramenta ou objeto que cai pode ferir o pé."
   },
-  "RK-0040": {
+  "RK-0054": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Proteção para o Corpo",
@@ -319,7 +431,7 @@
     "linha": 333,
     "original": "Roupas soltas podem enroscar em ferramentas rotativas. Use roupas justas ao corpo."
   },
-  "RK-0041": {
+  "RK-0055": {
     "arquivo": "data/epi_domestico.js",
     "rotulo": "EPI Domestico",
     "item": "Armadura do Jardineiro",
@@ -327,7 +439,7 @@
     "linha": 369,
     "original": "Essa \"armadura\" dificulta que insetos subam pelas pernas e protege a pele da seiva irritante (látex) de plantas tóxicas."
   },
-  "RK-0042": {
+  "RK-0056": {
     "arquivo": "data/ferramentas_seguranca.js",
     "rotulo": "Ferramentas & Reparos",
     "item": "Ferramentas Manuais",
@@ -335,7 +447,7 @@
     "linha": 67,
     "original": "Itens essenciais"
   },
-  "RK-0043": {
+  "RK-0057": {
     "arquivo": "data/ferramentas_seguranca.js",
     "rotulo": "Ferramentas & Reparos",
     "item": "Ferramentas Elétricas",
@@ -343,7 +455,7 @@
     "linha": 143,
     "original": "Itens de atenção"
   },
-  "RK-0044": {
+  "RK-0058": {
     "arquivo": "data/ferramentas_seguranca.js",
     "rotulo": "Ferramentas & Reparos",
     "item": "Serra Mármore",
@@ -351,7 +463,7 @@
     "linha": 204,
     "original": "Serra Mármore"
   },
-  "RK-0045": {
+  "RK-0059": {
     "arquivo": "data/ferramentas_seguranca.js",
     "rotulo": "Ferramentas & Reparos",
     "item": "Motorizadas & Pesadas",
@@ -359,7 +471,7 @@
     "linha": 214,
     "original": "Itens de alto risco"
   },
-  "RK-0046": {
+  "RK-0060": {
     "arquivo": "data/ferramentas_seguranca.js",
     "rotulo": "Ferramentas & Reparos",
     "item": "Serra de Mesa",
@@ -367,7 +479,7 @@
     "linha": 251,
     "original": "Use um empurrador (\"push stick\") para peças pequenas. Mantenha a proteção."
   },
-  "RK-0047": {
+  "RK-0061": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Sala de Estar",
@@ -375,7 +487,7 @@
     "linha": 39,
     "original": "Convívio e brincadeiras sem tropeços, com móveis estáveis."
   },
-  "RK-0048": {
+  "RK-0062": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Cozinha",
@@ -383,7 +495,7 @@
     "linha": 75,
     "original": "Um dos cômodos com mais riscos da casa: queimaduras e cortes."
   },
-  "RK-0049": {
+  "RK-0063": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Quarto do Bebê",
@@ -391,7 +503,7 @@
     "linha": 94,
     "original": "Sono seguro: prevenção de sufocamento e quedas."
   },
-  "RK-0050": {
+  "RK-0064": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Quarto de Adulto",
@@ -399,7 +511,7 @@
     "linha": 129,
     "original": "Medicamentos guardados com segurança e ambiente de descanso."
   },
-  "RK-0051": {
+  "RK-0065": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Quarto do Idoso",
@@ -407,7 +519,7 @@
     "linha": 145,
     "original": "Autonomia sem barreiras e prevenção de quedas."
   },
-  "RK-0052": {
+  "RK-0066": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Banheiro",
@@ -415,7 +527,7 @@
     "linha": 163,
     "original": "Atenção a quedas, choque elétrico e afogamento."
   },
-  "RK-0053": {
+  "RK-0067": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Lavanderia / Área de Serviço",
@@ -423,7 +535,7 @@
     "linha": 198,
     "original": "Produtos químicos no alto e baldes vazios. Área de serviço organizada e segura."
   },
-  "RK-0054": {
+  "RK-0068": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Despensa",
@@ -431,7 +543,7 @@
     "linha": 217,
     "original": "Organização ajuda a evitar quedas e a atração de roedores."
   },
-  "RK-0055": {
+  "RK-0069": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Depósito / Bagunça",
@@ -439,7 +551,7 @@
     "linha": 357,
     "original": "Organização reduz os abrigos de aranhas e escorpiões."
   },
-  "RK-0056": {
+  "RK-0070": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Porão",
@@ -447,7 +559,7 @@
     "linha": 391,
     "original": "Atenção a umidade, mofo e falta de ventilação."
   },
-  "RK-0057": {
+  "RK-0071": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Central de Gás",
@@ -455,7 +567,7 @@
     "linha": 427,
     "original": "Ventilação e validade de mangueira e regulador, para prevenir vazamentos."
   },
-  "RK-0058": {
+  "RK-0072": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "O carregador do celular fica desligado da tomada quando não está em uso",
@@ -463,7 +575,7 @@
     "linha": 543,
     "original": "O carregador do celular fica desligado da tomada quando não está em uso"
   },
-  "RK-0059": {
+  "RK-0073": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Você prioriza as bocas traseiras do fogão durante o uso?",
@@ -471,7 +583,7 @@
     "linha": 558,
     "original": "Você prioriza as bocas traseiras do fogão durante o uso?"
   },
-  "RK-0060": {
+  "RK-0074": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Os cabos de airfryers ou fornos não ficam soltos ou pendurados para fora da bancada durante o uso, evitando que crianças os alcancem?",
@@ -479,7 +591,7 @@
     "linha": 561,
     "original": "Os cabos de airfryers ou fornos não ficam soltos ou pendurados para fora da bancada durante o uso, evitando que crianças os alcancem?"
   },
-  "RK-0061": {
+  "RK-0075": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "O box tem piso ou tapete de borracha antiderrapante",
@@ -487,7 +599,7 @@
     "linha": 604,
     "original": "O box tem piso ou tapete de borracha antiderrapante"
   },
-  "RK-0062": {
+  "RK-0076": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Medicamentos e lâminas estão trancados ou fora da vista e do alcance?",
@@ -495,7 +607,7 @@
     "linha": 615,
     "original": "Medicamentos e lâminas estão trancados ou fora da vista e do alcance?"
   },
-  "RK-0063": {
+  "RK-0077": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Carregadores de celular fora da tomada se não usados (risco de choque elétrico por mordida e de incêndio)",
@@ -503,7 +615,7 @@
     "linha": 644,
     "original": "Carregadores de celular fora da tomada se não usados (risco de choque elétrico por mordida e de incêndio)"
   },
-  "RK-0064": {
+  "RK-0078": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Bebidas alcoólicas trancadas ou fora da vista e do alcance",
@@ -511,7 +623,7 @@
     "linha": 651,
     "original": "Bebidas alcoólicas trancadas ou fora da vista e do alcance"
   },
-  "RK-0065": {
+  "RK-0079": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Controles e chaves com pilha tipo botão (portão, alarme, chave do carro) têm a tampa firme, e as pilhas novas e usadas ficam fora do alcance",
@@ -519,7 +631,7 @@
     "linha": 652,
     "original": "Controles e chaves com pilha tipo botão (portão, alarme, chave do carro) têm a tampa firme, e as pilhas novas e usadas ficam fora do alcance"
   },
-  "RK-0066": {
+  "RK-0080": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Caminho até o banheiro livre de móveis e objetos",
@@ -527,7 +639,7 @@
     "linha": 691,
     "original": "Caminho até o banheiro livre de móveis e objetos"
   },
-  "RK-0067": {
+  "RK-0081": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Produtos de limpeza no alto e trancados",
@@ -535,7 +647,7 @@
     "linha": 723,
     "original": "Produtos de limpeza no alto e trancados"
   },
-  "RK-0068": {
+  "RK-0082": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Mato mantido baixo e roçado",
@@ -543,7 +655,7 @@
     "linha": 748,
     "original": "Mato mantido baixo e roçado"
   },
-  "RK-0069": {
+  "RK-0083": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Piso plano, sem buracos ou desníveis escondidos pela grama ou por folhas",
@@ -551,7 +663,7 @@
     "linha": 756,
     "original": "Piso plano, sem buracos ou desníveis escondidos pela grama ou por folhas"
   },
-  "RK-0070": {
+  "RK-0084": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Supervisão visual constante: as crianças nunca ficam sozinhas no parquinho",
@@ -559,7 +671,7 @@
     "linha": 781,
     "original": "Supervisão visual constante: as crianças nunca ficam sozinhas no parquinho"
   },
-  "RK-0071": {
+  "RK-0085": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Piscina tem cerca em todo o contorno, de pelo menos 1,50 m, com portão que fecha e trava sozinho",
@@ -567,7 +679,7 @@
     "linha": 793,
     "original": "Piscina tem cerca em todo o contorno, de pelo menos 1,50 m, com portão que fecha e trava sozinho"
   },
-  "RK-0072": {
+  "RK-0086": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Capa de segurança firme, que aguenta peso e fica bem presa nas bordas — capa solta pode afundar e prender quem cair sobre ela",
@@ -575,7 +687,7 @@
     "linha": 794,
     "original": "Capa de segurança firme, que aguenta peso e fica bem presa nas bordas — capa solta pode afundar e prender quem cair sobre ela"
   },
-  "RK-0073": {
+  "RK-0087": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Piscina tem rampa ou degrau por onde o pet consiga sair sozinho",
@@ -583,7 +695,7 @@
     "linha": 805,
     "original": "Piscina tem rampa ou degrau por onde o pet consiga sair sozinho"
   },
-  "RK-0074": {
+  "RK-0088": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Brinquedos têm o selo de certificação de segurança exigido no país (no Brasil, o do Inmetro)",
@@ -591,7 +703,7 @@
     "linha": 832,
     "original": "Brinquedos têm o selo de certificação de segurança exigido no país (no Brasil, o do Inmetro)"
   },
-  "RK-0075": {
+  "RK-0089": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Peças pequenas (que cabem dentro de um rolo de papel higiênico) ficam longe de crianças menores de 3 anos — teste do rolo",
@@ -599,7 +711,7 @@
     "linha": 833,
     "original": "Peças pequenas (que cabem dentro de um rolo de papel higiênico) ficam longe de crianças menores de 3 anos — teste do rolo"
   },
-  "RK-0076": {
+  "RK-0090": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Brinquedos a pilha têm a tampa do compartimento presa com parafuso ou trava que a criança não consegue abrir",
@@ -607,7 +719,7 @@
     "linha": 834,
     "original": "Brinquedos a pilha têm a tampa do compartimento presa com parafuso ou trava que a criança não consegue abrir"
   },
-  "RK-0077": {
+  "RK-0091": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Balões estourados são recolhidos e descartados na hora (os pedaços podem ser engolidos e causar asfixia)",
@@ -615,7 +727,7 @@
     "linha": 836,
     "original": "Balões estourados são recolhidos e descartados na hora (os pedaços podem ser engolidos e causar asfixia)"
   },
-  "RK-0078": {
+  "RK-0092": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Não há materiais e fluidos inflamáveis estocados nesta área",
@@ -623,7 +735,7 @@
     "linha": 875,
     "original": "Não há materiais e fluidos inflamáveis estocados nesta área"
   },
-  "RK-0079": {
+  "RK-0093": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Sem entulho em volta do carro, para as portas abrirem e a circulação ficar livre",
@@ -631,7 +743,7 @@
     "linha": 876,
     "original": "Sem entulho em volta do carro, para as portas abrirem e a circulação ficar livre"
   },
-  "RK-0080": {
+  "RK-0094": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Caminho até a saída principal está livre de obstáculos a qualquer hora",
@@ -639,7 +751,7 @@
     "linha": 897,
     "original": "Caminho até a saída principal está livre de obstáculos a qualquer hora"
   },
-  "RK-0081": {
+  "RK-0095": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Fertilizantes e venenos ficam trancados, na embalagem original",
@@ -647,7 +759,7 @@
     "linha": 920,
     "original": "Fertilizantes e venenos ficam trancados, na embalagem original"
   },
-  "RK-0082": {
+  "RK-0096": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Porta da oficina trancada quando não está em uso (dificulta o acesso de crianças)",
@@ -655,7 +767,7 @@
     "linha": 954,
     "original": "Porta da oficina trancada quando não está em uso (dificulta o acesso de crianças)"
   },
-  "RK-0083": {
+  "RK-0097": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Proteção em Altura",
@@ -663,7 +775,7 @@
     "linha": 963,
     "original": "Proteção em Altura"
   },
-  "RK-0084": {
+  "RK-0098": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Sem móveis, vasos ou caixas junto ao guarda-corpo que uma criança possa usar como degrau para escalar",
@@ -671,7 +783,7 @@
     "linha": 967,
     "original": "Sem móveis, vasos ou caixas junto ao guarda-corpo que uma criança possa usar como degrau para escalar"
   },
-  "RK-0085": {
+  "RK-0099": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Vasos de plantas não obstruem a passagem e estão fixados, para não caírem com o vento",
@@ -679,7 +791,7 @@
     "linha": 975,
     "original": "Vasos de plantas não obstruem a passagem e estão fixados, para não caírem com o vento"
   },
-  "RK-0086": {
+  "RK-0100": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Churrasqueira da varanda (se houver) tem ventilação adequada; se for a gás, mangueira e regulador estão dentro da validade",
@@ -687,7 +799,7 @@
     "linha": 976,
     "original": "Churrasqueira da varanda (se houver) tem ventilação adequada; se for a gás, mangueira e regulador estão dentro da validade"
   },
-  "RK-0087": {
+  "RK-0101": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Grãos crus (feijão, milho) ficam em potes bem fechados (risco de asfixia e de a criança colocá-los no nariz ou no ouvido)",
@@ -695,7 +807,7 @@
     "linha": 991,
     "original": "Grãos crus (feijão, milho) ficam em potes bem fechados (risco de asfixia e de a criança colocá-los no nariz ou no ouvido)"
   },
-  "RK-0088": {
+  "RK-0102": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Ambiente se mantém limpo e ventilado (reduzindo o que atrai aranhas)",
@@ -703,7 +815,7 @@
     "linha": 1003,
     "original": "Ambiente se mantém limpo e ventilado (reduzindo o que atrai aranhas)"
   },
-  "RK-0089": {
+  "RK-0103": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Corredores internos ficam livres para circular",
@@ -711,7 +823,7 @@
     "linha": 1005,
     "original": "Corredores internos ficam livres para circular"
   },
-  "RK-0090": {
+  "RK-0104": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Não há materiais inflamáveis armazenados perto de fontes de calor ou instalações elétricas",
@@ -719,7 +831,7 @@
     "linha": 1012,
     "original": "Não há materiais inflamáveis armazenados perto de fontes de calor ou instalações elétricas"
   },
-  "RK-0091": {
+  "RK-0105": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Inspeção periódica de frestas e ralos contra escorpiões e aranhas",
@@ -727,7 +839,7 @@
     "linha": 1013,
     "original": "Inspeção periódica de frestas e ralos contra escorpiões e aranhas"
   },
-  "RK-0092": {
+  "RK-0106": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Porta do depósito tem trava que dificulta o acesso de crianças sem supervisão",
@@ -735,7 +847,7 @@
     "linha": 1014,
     "original": "Porta do depósito tem trava que dificulta o acesso de crianças sem supervisão"
   },
-  "RK-0093": {
+  "RK-0107": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Piso do sótão é forrado adequadamente, para ninguém pisar em falso no gesso ou no forro e cair",
@@ -743,7 +855,7 @@
     "linha": 1042,
     "original": "Piso do sótão é forrado adequadamente, para ninguém pisar em falso no gesso ou no forro e cair"
   },
-  "RK-0094": {
+  "RK-0108": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Iluminação é suficiente para ver os cantos escuros — ou há uma lanterna à mão",
@@ -751,7 +863,7 @@
     "linha": 1043,
     "original": "Iluminação é suficiente para ver os cantos escuros — ou há uma lanterna à mão"
   },
-  "RK-0095": {
+  "RK-0109": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Telhado inspecionado periodicamente contra goteiras que afetem a fiação elétrica",
@@ -759,7 +871,7 @@
     "linha": 1050,
     "original": "Telhado inspecionado periodicamente contra goteiras que afetem a fiação elétrica"
   },
-  "RK-0096": {
+  "RK-0110": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Caixas pesadas ficam nas bordas ou sobre as vigas de sustentação",
@@ -767,7 +879,7 @@
     "linha": 1059,
     "original": "Caixas pesadas ficam nas bordas ou sobre as vigas de sustentação"
   },
-  "RK-0097": {
+  "RK-0111": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Nenhum material inflamável ou químico estocado perto do calor do telhado",
@@ -775,7 +887,7 @@
     "linha": 1060,
     "original": "Nenhum material inflamável ou químico estocado perto do calor do telhado"
   },
-  "RK-0098": {
+  "RK-0112": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Ventilação, natural ou mecânica, contra umidade, mofo e acúmulo de gases (como os de aquecedor ou gerador)",
@@ -783,7 +895,7 @@
     "linha": 1073,
     "original": "Ventilação, natural ou mecânica, contra umidade, mofo e acúmulo de gases (como os de aquecedor ou gerador)"
   },
-  "RK-0099": {
+  "RK-0113": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Fiação elétrica não fica exposta à umidade do piso ou das paredes",
@@ -791,7 +903,7 @@
     "linha": 1081,
     "original": "Fiação elétrica não fica exposta à umidade do piso ou das paredes"
   },
-  "RK-0100": {
+  "RK-0114": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Escada de descida tem corrimão firme e iluminação própria",
@@ -799,7 +911,7 @@
     "linha": 1082,
     "original": "Escada de descida tem corrimão firme e iluminação própria"
   },
-  "RK-0101": {
+  "RK-0115": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Sem rachaduras novas ou profundas nas paredes e pilares — se houver, procure um engenheiro",
@@ -807,7 +919,7 @@
     "linha": 1083,
     "original": "Sem rachaduras novas ou profundas nas paredes e pilares — se houver, procure um engenheiro"
   },
-  "RK-0102": {
+  "RK-0116": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Inspeção periódica contra escorpiões, aranhas e roedores",
@@ -815,7 +927,7 @@
     "linha": 1090,
     "original": "Inspeção periódica contra escorpiões, aranhas e roedores"
   },
-  "RK-0103": {
+  "RK-0117": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Equipamentos e caixas ficam elevados do chão, longe da umidade e sem servir de abrigo para baratas, escorpiões e roedores",
@@ -823,7 +935,7 @@
     "linha": 1091,
     "original": "Equipamentos e caixas ficam elevados do chão, longe da umidade e sem servir de abrigo para baratas, escorpiões e roedores"
   },
-  "RK-0104": {
+  "RK-0118": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Cuidados no Quarto",
@@ -831,7 +943,7 @@
     "linha": 1100,
     "original": "Cuidados no Quarto"
   },
-  "RK-0105": {
+  "RK-0119": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Medicamentos e cosméticos ficam fora do alcance ou trancados em gavetas",
@@ -839,7 +951,7 @@
     "linha": 1103,
     "original": "Medicamentos e cosméticos ficam fora do alcance ou trancados em gavetas"
   },
-  "RK-0106": {
+  "RK-0120": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Objetos cortantes (alicate de unha, tesoura) são guardados em local seguro e fechado",
@@ -847,7 +959,7 @@
     "linha": 1104,
     "original": "Objetos cortantes (alicate de unha, tesoura) são guardados em local seguro e fechado"
   },
-  "RK-0107": {
+  "RK-0121": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "O carregador do celular fica desconectado e longe da cama na hora de dormir",
@@ -855,7 +967,7 @@
     "linha": 1105,
     "original": "O carregador do celular fica desconectado e longe da cama na hora de dormir"
   },
-  "RK-0108": {
+  "RK-0122": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Cigarros e isqueiros ficam fora do alcance das crianças",
@@ -863,7 +975,7 @@
     "linha": 1106,
     "original": "Cigarros e isqueiros ficam fora do alcance das crianças"
   },
-  "RK-0109": {
+  "RK-0123": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Aparelhos ligados direto na tomada, sem sobrecarregar extensões (\"benjamins\")",
@@ -871,7 +983,7 @@
     "linha": 1107,
     "original": "Aparelhos ligados direto na tomada, sem sobrecarregar extensões (\"benjamins\")"
   },
-  "RK-0110": {
+  "RK-0124": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Área do pet tem abrigo contra sol direto, chuva e vento forte",
@@ -879,7 +991,7 @@
     "linha": 1119,
     "original": "Área do pet tem abrigo contra sol direto, chuva e vento forte"
   },
-  "RK-0111": {
+  "RK-0125": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Piso da área é fácil de limpar e antiderrapante (sem acúmulo de urina e fezes)",
@@ -887,7 +999,7 @@
     "linha": 1120,
     "original": "Piso da área é fácil de limpar e antiderrapante (sem acúmulo de urina e fezes)"
   },
-  "RK-0112": {
+  "RK-0126": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) ficam fora do alcance do animal",
@@ -895,7 +1007,7 @@
     "linha": 1121,
     "original": "Plantas tóxicas para animais (comigo-ninguém-pode, lírio, espada-de-são-jorge) ficam fora do alcance do animal"
   },
-  "RK-0113": {
+  "RK-0127": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Produtos carrapaticidas, venenos e produtos químicos de limpeza ficam fora do alcance do animal",
@@ -903,7 +1015,7 @@
     "linha": 1122,
     "original": "Produtos carrapaticidas, venenos e produtos químicos de limpeza ficam fora do alcance do animal"
   },
-  "RK-0114": {
+  "RK-0128": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Lixeiras têm tampa pesada ou trava, para o animal não alcançar restos perigosos",
@@ -911,7 +1023,7 @@
     "linha": 1132,
     "original": "Lixeiras têm tampa pesada ou trava, para o animal não alcançar restos perigosos"
   },
-  "RK-0115": {
+  "RK-0129": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",
     "item": "Em caso de evacuação, coleira, guia e caixa de transporte estão à mão",
@@ -919,7 +1031,7 @@
     "linha": 1133,
     "original": "Em caso de evacuação, coleira, guia e caixa de transporte estão à mão"
   },
-  "RK-0116": {
+  "RK-0130": {
     "arquivo": "data/opcoesPerfil.js",
     "rotulo": "Cadastro de perfil (opcoes)",
     "item": "(sem titulo)",
@@ -927,7 +1039,7 @@
     "linha": 21,
     "original": "Neurodivergência (TEA, TDAH e outras)"
   },
-  "RK-0117": {
+  "RK-0131": {
     "arquivo": "data/opcoesPerfil.js",
     "rotulo": "Cadastro de perfil (opcoes)",
     "item": "(sem titulo)",
@@ -935,7 +1047,167 @@
     "linha": 22,
     "original": "Deficiência Intelectual"
   },
-  "RK-0118": {
+  "RK-0132": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Temporada de chuvas fortes",
+    "chave": "titulo",
+    "linha": 127,
+    "original": "Temporada de chuvas fortes"
+  },
+  "RK-0133": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Temporada de chuvas fortes",
+    "chave": "resumo",
+    "linha": 130,
+    "original": "As tempestades de verão trazem alagamento, deslizamento e choque elétrico em casa alagada. Para raios, veja o alerta próprio."
+  },
+  "RK-0134": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "titulo",
+    "linha": 232,
+    "original": "Raios: proteção dentro e fora de casa"
+  },
+  "RK-0135": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "resumo",
+    "linha": 235,
+    "original": "O Brasil é o país com mais raios no mundo e, em média, cerca de 100 pessoas morrem atingidas por ano. Cerca de 1 em cada 5 dessas mortes acontece dentro de casa, perto da rede elétrica ou hidráulica. Ouviu trovão, o raio já pode alcançar você."
+  },
+  "RK-0136": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 239,
+    "original": "Ouviu trovão: procure abrigo e só saia 30 minutos depois do último trovão. Abrigo seguro é dentro de casa ou de um carro fechado — quiosque, guarda-sol, barraca e árvore não protegem."
+  },
+  "RK-0137": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 240,
+    "original": "Fora de casa, saia de campo aberto, praia, piscina, rio, laje e quadra; fique longe de árvores isoladas, cercas de arame e postes. Não solte pipa."
+  },
+  "RK-0138": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 241,
+    "original": "Sem abrigo por perto, como último recurso: agache-se com os pés juntos, a cabeça abaixada e longe de outras pessoas — não se deite no chão."
+  },
+  "RK-0139": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 242,
+    "original": "Em casa, durante a tempestade: nada de banho de chuveiro elétrico, torneiras ou aparelhos ligados na tomada. Antes de ela chegar, tire da tomada os eletrônicos que puder."
+  },
+  "RK-0140": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 243,
+    "original": "Prédios e casas altas ou isoladas (sítio, chácara) podem precisar de para-raios. A instalação e a inspeção periódica são trabalho de profissional habilitado."
+  },
+  "RK-0141": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 244,
+    "original": "Traga os pets para dentro antes da tempestade e não os deixe amarrados no quintal: com medo do trovão, eles fogem e se machucam."
+  },
+  "RK-0142": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Raios: proteção dentro e fora de casa",
+    "chave": "orientacoes[]",
+    "linha": 245,
+    "original": "Se alguém for atingido, socorra na hora: o corpo da vítima não fica com carga elétrica. Veja Primeiros Socorros › Atingido por Raio."
+  },
+  "RK-0143": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "titulo",
+    "linha": 277,
+    "original": "Vendaval, granizo e ciclone no Sul"
+  },
+  "RK-0144": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "resumo",
+    "linha": 280,
+    "original": "No Sul, ciclones extratropicais e temporais trazem vento forte, granizo e queda de árvores e de fios. Em geral, a previsão chega com um ou dois dias de antecedência — dá tempo de preparar a casa."
+  },
+  "RK-0145": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 284,
+    "original": "Cadastre seu CEP para alertas da Defesa Civil (SMS para 40199, gratuito) e deixe ligados os alertas de emergência do celular."
+  },
+  "RK-0146": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 285,
+    "original": "Antes do temporal: recolha ou amarre o que o vento pode arremessar (vasos, móveis de área externa, telhas soltas) e deixe o carro longe de árvores e postes."
+  },
+  "RK-0147": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 286,
+    "original": "Durante: fique dentro de casa, longe de janelas e portas de vidro. Se o telhado começar a ceder, vá para um cômodo interno, como banheiro ou corredor."
+  },
+  "RK-0148": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 287,
+    "original": "Granizo: não saia para proteger o carro nem para recolher coisas — pedras grandes ferem."
+  },
+  "RK-0149": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 288,
+    "original": "Depois: trate todo fio caído como energizado — mantenha distância e chame a companhia de energia. Não suba no telhado com chuva ou vento."
+  },
+  "RK-0150": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal (Brasil) — raios e temporais",
+    "item": "Vendaval, granizo e ciclone no Sul",
+    "chave": "orientacoes[]",
+    "linha": 289,
+    "original": "Traga os pets para dentro antes do temporal: assustados, eles fogem e se ferem."
+  },
+  "RK-0151": {
+    "arquivo": "screens/Emergency/PrimeirosSocorrosScreen.js",
+    "rotulo": "PrimeirosSocorrosScreen",
+    "item": "(sem titulo)",
+    "chave": "raio",
+    "linha": 33,
+    "original": "raio raios relampago trovao trovoada tempestade descarga atmosferica lightning rayo rcp cpr"
+  },
+  "RK-0152": {
     "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
     "rotulo": "Fazendo as Malas — bagagem aerea",
     "item": "Bagagem Aérea: o que pode e onde",
@@ -943,7 +1215,7 @@
     "linha": 41,
     "original": "Vai de avião? Estas regras ajudam a evitar problemas no embarque. Mudaram em 2026 — confirme com a sua companhia aérea."
   },
-  "RK-0119": {
+  "RK-0153": {
     "arquivo": "screens/Travel/FazendoAsMalasScreen.js",
     "rotulo": "Fazendo as Malas — bagagem aerea",
     "item": "Bagagem Aérea: o que pode e onde",
@@ -951,7 +1223,7 @@
     "linha": 68,
     "original": "Leve na bagagem de mão, na embalagem original e com a receita (física ou digital) — sobretudo os de uso contínuo e de tarja preta. Em viagem internacional, leve a receita com o nome do princípio ativo e, se possível, uma tradução para o inglês ou para o idioma do destino; alguns países exigem autorização prévia para remédios controlados — consulte a embaixada ou o consulado."
   },
-  "RK-0120": {
+  "RK-0154": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "settings",
@@ -959,7 +1231,7 @@
     "linha": 0,
     "original": "Aumenta o tamanho da letra em todas as telas para facilitar a leitura."
   },
-  "RK-0121": {
+  "RK-0155": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "upgrade",
@@ -967,7 +1239,7 @@
     "linha": 0,
     "original": "Se você comprou há pouco tempo, espere alguns minutos e tente novamente."
   },
-  "RK-0122": {
+  "RK-0156": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -975,7 +1247,7 @@
     "linha": 0,
     "original": "Pensado para catástrofes naturais como enchentes, deslizamentos e desmoronamentos, além de incêndios. Deve ajudar a família a se manter por cerca de 72 horas."
   },
-  "RK-0123": {
+  "RK-0157": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -983,7 +1255,7 @@
     "linha": 0,
     "original": "Essencial para o atendimento imediato de lesões antes da chegada de ajuda profissional. Estar equipado ajuda a limpar ferimentos, conter sangramentos e reduzir o risco de infecção."
   },
-  "RK-0124": {
+  "RK-0158": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -991,7 +1263,7 @@
     "linha": 0,
     "original": "Uma farmácia doméstica organizada ajuda a encontrar rápido o que é preciso. Confira a validade e guarde bem os remédios para reduzir o risco de intoxicação e manter a eficácia."
   },
-  "RK-0125": {
+  "RK-0159": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -999,7 +1271,7 @@
     "linha": 0,
     "original": "Nenhuma instituição atingirá a pontuação máxima em todos os itens. Priorize as intervenções nos quesitos classificados como críticos e pergunte como a escola pretende melhorar os pontos fracos identificados."
   },
-  "RK-0126": {
+  "RK-0160": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "headersFirst",
@@ -1007,7 +1279,7 @@
     "linha": 0,
     "original": "Este relatório é complementar e não substitui a vistoria oficial do Corpo de Bombeiros ou da Vigilância Sanitária. Qualquer falha em itens **CRÍTICOS** deve ser tratada como prioridade máxima pela administração da ILPI."
   },
-  "RK-0127": {
+  "RK-0161": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1015,7 +1287,7 @@
     "linha": 0,
     "original": "Informações de emergência: estes dados de alergia aparecem na Ficha Médica de Emergência, que você pode mostrar ou enviar aos socorristas."
   },
-  "RK-0128": {
+  "RK-0162": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1023,7 +1295,7 @@
     "linha": 0,
     "original": "Em um incêndio, você pode ter menos de 3 minutos para sair. Ter um plano pode salvar sua família."
   },
-  "RK-0129": {
+  "RK-0163": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1031,7 +1303,7 @@
     "linha": 0,
     "original": "Ao continuar, você reconhece que este recurso é uma ferramenta de organização pessoal e que os avisos dependem do aparelho e do sistema operacional, que podem atrasá-los ou bloqueá-los."
   },
-  "RK-0130": {
+  "RK-0164": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1039,7 +1311,7 @@
     "linha": 0,
     "original": "Incluir também na lista de medicamentos do perfil? Ela aparece na Ficha Médica de Emergência."
   },
-  "RK-0131": {
+  "RK-0165": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1047,7 +1319,7 @@
     "linha": 0,
     "original": "O lembrete foi salvo, mas não foi possível incluir o medicamento no perfil. Inclua pelo cadastro do perfil."
   },
-  "RK-0132": {
+  "RK-0166": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1055,7 +1327,7 @@
     "linha": 0,
     "original": "Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:"
   },
-  "RK-0133": {
+  "RK-0167": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1063,7 +1335,7 @@
     "linha": 0,
     "original": "Segurança doméstica não é acidente, é planejamento. É o conjunto de medidas adotadas para reduzir riscos e proteger a integridade física de toda a família. Muitos acidentes acontecem onde deveríamos estar mais seguros: em casa."
   },
-  "RK-0134": {
+  "RK-0168": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1071,7 +1343,7 @@
     "linha": 0,
     "original": "A Metodologia 3D define ações para uma prevenção Diária, Dinâmica e Duradoura, transformando a casa em um refúgio seguro. Para reduzirmos os perigos do lar, prevenção e conscientização são as chaves. A grande maioria dos acidentes não acontece por acaso, mas por descaso."
   },
-  "RK-0135": {
+  "RK-0169": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
@@ -1079,7 +1351,7 @@
     "linha": 0,
     "original": "Não deu para salvar agora. Toca em \"Continuar depois\" e tenta de novo."
   },
-  "RK-0136": {
+  "RK-0170": {
     "arquivo": "locales/pt-BR/common.json",
     "rotulo": "Textos de interface",
     "item": "telas",
