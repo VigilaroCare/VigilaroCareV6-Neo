@@ -82,6 +82,22 @@ const FORA_DO_ESCOPO = {
     // /<Stack\.Screen/`. Foi o caso de PrimeirosSocorrosEmergenciaScreen (112
     // orientacoes de socorro nunca revisadas, so pt-BR, "(SAMU)" fixo), apagada
     // em 21/10/2026 — os 3 temas que so ela tinha foram para primeiros_socorros.
+    //
+    // MOTIVO (22/10/2026): ao montar os documentos do backlog, 7 telas so
+    // existiam no Stack do App.js — nenhum navigate, rota em dado ou link leva a
+    // elas — e 3 arquivos de dados so eram lidos por essas telas. Decisao de
+    // apagar ou religar e do Agnaldo (D32); ate la, ficam fora da revisao.
+    'screens/EletrodomesticosScreen.js': { motivo: 'tela orfa (rota Eletrodomesticos)', uso: /['"`]Eletrodomesticos['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/Education/UtensiliosDomesticosScreen.js': { motivo: 'tela orfa (rota UtensiliosDomesticos)', uso: /['"`]UtensiliosDomesticos['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/AcessoriosSegurancaScreen.js': { motivo: 'tela orfa (rota AcessoriosSeguranca)', uso: /['"`]AcessoriosSeguranca['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/SafetyPermitScreen.js': { motivo: 'tela orfa (rota SafetyPermit)', uso: /['"`]SafetyPermit['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/SituacoesTemporariasScreen.js': { motivo: 'tela orfa (rota SituacoesTemporarias)', uso: /['"`]SituacoesTemporarias['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/Tools/DataHealthScreen.js': { motivo: 'tela orfa (rota DataHealth)', uso: /['"`]DataHealth['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'screens/Checklists/ChecklistReportScreen.js': { motivo: 'tela orfa (rota ChecklistReport)', uso: /['"`]ChecklistReport['"`]/, ignorarLinha: /<Stack\.Screen/ },
+    'data/eletrodomesticos_seguranca.js': { motivo: 'so lido pela tela orfa Eletrodomesticos', uso: /\/eletrodomesticos_seguranca(\.js)?['"]/ },
+    'data/utensilios_domesticos.js': { motivo: 'so lido pela tela orfa UtensiliosDomesticos', uso: /\/utensilios_domesticos(\.js)?['"]/ },
+    'data/acessorios_seguranca.js': { motivo: 'so lido pela tela orfa AcessoriosSeguranca', uso: /\/acessorios_seguranca(\.js)?['"]/ },
+    'data/estatisticasAcidentes.js': { motivo: 'codigo morto — nenhum import', uso: /\/estatisticasAcidentes(\.js)?['"]|\b(ESTATISTICAS_ACIDENTES|ALERTAS_CATEGORIA|DICAS_FAIXA_ETARIA)\b/ },
 };
 const PASTAS_DE_CODIGO = ['data', 'screens', 'components', 'services', 'utils', 'hooks', 'context', 'contexts', 'navigation'];
 
@@ -146,7 +162,8 @@ function foraDoEscopoEmUso() {
     const achados = [];
     for (const [arquivo, regra] of Object.entries(FORA_DO_ESCOPO)) {
         for (const outro of codigo) {
-            if (outro === arquivo) continue;
+            // Uso por outro arquivo fora do escopo nao conta: a tela orfa le o dado orfao.
+            if (outro === arquivo || FORA_DO_ESCOPO[outro]) continue;
             const linhas = fs.readFileSync(path.join(RAIZ, outro), 'utf8').split('\n');
             linhas.forEach((l, i) => {
                 if (regra.uso.test(l) && !(regra.ignorarLinha && regra.ignorarLinha.test(l))) {

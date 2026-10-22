@@ -299,6 +299,64 @@ const TEMAS = [
             + '(no Brasil: CIATOX, classes da NBR).',
         fontes: [],
     },
+    // CK, AV, IF — o resto do backlog (22/10/2026), em tres documentos. Ficam
+    // de fora: Scanner/Info Rotulos (D26 vai mexer neles), texto juridico (D25)
+    // e o que a trava pos em FORA_DO_ESCOPO (telas orfas, codigo morto).
+    {
+        nome: 'Checklist dos Ambientes',
+        sigla: 'CK',
+        pendentes: ['m006', 'm010', 'm015'],
+        arquivos: ['data/mapeamento_dados.js'],
+        marcarMudancas: false,
+        titulosComoTexto: ['titulo'],
+        rotulos: { 'data/mapeamento_dados.js': 'Checklist dos ambientes (vistoria)' },
+        descricao: 'As perguntas e descricoes da vistoria de cada ambiente da casa. Nunca passaram por revisao. '
+            + 'Aqui elas aparecem como estao hoje, em forma de pergunta — a reescrita para enunciados de risco '
+            + '(Mapa de Riscos) e um trabalho a parte, que vira para voce depois.',
+        fontes: [],
+    },
+    {
+        nome: 'Textos Avulsos',
+        sigla: 'AV',
+        pendentes: ['m006', 'm010', 'm015'],
+        excluirArquivos: ['data/mapeamento_dados.js', 'data/produtos_scanner.js', 'locales/pt-BR/common.json'],
+        excluirPrefixos: ['data/legal/'],
+        marcarMudancas: false,
+        rotulos: {
+            'data/ferramentas_seguranca.js': 'Ferramentas de trabalho',
+            'data/epi_domestico.js': 'EPI domestico',
+            'data/riscos_fisicos.js': 'Riscos fisicos',
+            'data/opcoesPerfil.js': 'Cadastro de perfil (opcoes)',
+            'data/onboarding_data.js': 'Boas-vindas (onboarding)',
+            'data/categoriasRisco.js': 'Categorias de risco',
+            'data/ocorrencia_regional.js': 'Ocorrencia por regiao',
+            'data/telefones_ciatox.js': 'Telefones dos CIATOX',
+            'data/emergencyNumbersByCountry.js': 'Numeros de emergencia por pais',
+            'data/radarSazonal/index.js': 'Radar Sazonal — alertas oficiais',
+            'data/radarSazonal/textos.js': 'Radar Sazonal — textos da tela',
+            'data/radarSazonal/br.js': 'Radar Sazonal — Brasil',
+            'data/radarSazonal/pt.js': 'Radar Sazonal — Portugal',
+            'data/radarSazonal/es.js': 'Radar Sazonal — Espanha',
+            'data/radarSazonal/gb.js': 'Radar Sazonal — Reino Unido',
+            'data/radarSazonal/us.js': 'Radar Sazonal — EUA',
+            'data/radarSazonal/mx.js': 'Radar Sazonal — Mexico',
+        },
+        descricao: 'O que sobrou fora de todos os documentos: ferramentas, EPI, riscos fisicos, cadastro de perfil, '
+            + 'boas-vindas, categorias de risco, alertas por regiao e textos soltos de telas. Muitos sao frases '
+            + 'curtas e titulos — da para passar o olho.',
+        fontes: [],
+    },
+    {
+        nome: 'Textos de Interface',
+        sigla: 'IF',
+        pendentes: ['m007'],
+        marcarMudancas: false,
+        rotulos: { 'locales/pt-BR/common.json': 'Textos de interface' },
+        descricao: 'Os textos mais longos das telas (70 caracteres ou mais): explicacoes, avisos e mensagens. '
+            + 'Rotulos de botao e titulos curtos nao entram. Cada grupo leva o nome tecnico da tela ou da '
+            + 'funcao, para voce saber onde aparece.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -450,6 +508,8 @@ const PAPEL_DO_CAMPO = {
     detalhe: 'DETALHE',
     risco: 'RISCO',
     'peconhentos[]': 'ESPECIES PECONHENTAS NO ESTADO',
+    // CK: a pergunta da vistoria (campo `titulo` lido como texto)
+    titulo: 'PERGUNTA DA VISTORIA',
     'naoPeconhentos[]': 'ESPECIES NAO PECONHENTAS NO ESTADO',
 };
 
@@ -488,13 +548,13 @@ function dentroDeBlocoTraduzido(caminho) {
  * Titulo do item que contem este texto — o que o usuario ve como cabecalho no
  * app. Sobe nos objetos ancestrais ate achar um com titulo/title/nome proprio.
  */
-function tituloDoItem(caminho, titulosExtras = new Set()) {
+function tituloDoItem(caminho, titulosExtras = new Set(), comoTexto = new Set()) {
     let atual = caminho.findParent((x) => x.isObjectExpression());
     while (atual) {
         for (const prop of atual.node.properties) {
             if (prop.type !== 'ObjectProperty') continue;
             const k = prop.key && (prop.key.name || prop.key.value);
-            if ((CHAVES_DE_TITULO.has(k) || titulosExtras.has(k)) && prop.value.type === 'StringLiteral') {
+            if ((CHAVES_DE_TITULO.has(k) || titulosExtras.has(k)) && !comoTexto.has(k) && prop.value.type === 'StringLiteral') {
                 return prop.value.value;
             }
         }
@@ -511,6 +571,9 @@ function tituloDoItem(caminho, titulosExtras = new Set()) {
 function extrair(relativo, opcoes = {}, codigo = null) {
     const extras = new Set(opcoes.chavesExtras || []);
     const titulosExtras = new Set(opcoes.titulosExtras || []);
+    // Chave de titulo lida como texto comum (CK: a pergunta da vistoria esta em
+    // `titulo`; como titulo, o documento viraria 300 cabecalhos).
+    const comoTexto = new Set(opcoes.titulosComoTexto || []);
     let fonte = codigo;
     if (fonte == null) {
         const abs = path.join(RAIZ, relativo);
@@ -564,7 +627,7 @@ function extrair(relativo, opcoes = {}, codigo = null) {
                 texto,
                 chave,
                 ehTitulo: false,
-                item: tituloDoItem(caminho, titulosExtras),
+                item: tituloDoItem(caminho, titulosExtras, comoTexto),
                 linha: caminho.node.loc ? caminho.node.loc.start.line : 0,
             });
         },
@@ -580,8 +643,8 @@ function extrair(relativo, opcoes = {}, codigo = null) {
             if (CHAVES_TECNICAS.has(chave)) return;
             if (SUFIXO_IDIOMA.test(chave)) return;
 
-            const ehTitulo = CHAVES_DE_TITULO.has(chave) || titulosExtras.has(chave);
-            const conhecida = CHAVES_DE_PROSA.has(chave) || extras.has(chave) || ehTitulo;
+            const ehTitulo = (CHAVES_DE_TITULO.has(chave) || titulosExtras.has(chave)) && !comoTexto.has(chave);
+            const conhecida = CHAVES_DE_PROSA.has(chave) || extras.has(chave) || ehTitulo || comoTexto.has(chave);
             const minimo = conhecida ? (opcoes.minimoConhecida || MIN_PROSA_CONHECIDA) : MIN_PROSA_GENERICA;
             if (texto.length < minimo) return;
             // Campo desconhecido e curto: provavelmente rotulo de interface.
@@ -591,7 +654,7 @@ function extrair(relativo, opcoes = {}, codigo = null) {
                 texto,
                 chave: emArray ? `${chave}[]` : chave,
                 ehTitulo,
-                item: tituloDoItem(caminho, titulosExtras),
+                item: tituloDoItem(caminho, titulosExtras, comoTexto),
                 linha: caminho.node.loc ? caminho.node.loc.start.line : 0,
             });
         },
@@ -973,6 +1036,8 @@ function selecaoDePendentes(tema) {
         if (!motivos.has(t.motivo)) continue;
         if (tema.arquivos && !tema.arquivos.includes(t.arquivo)
             && !(tema.motivosSempre || []).includes(t.motivo)) continue;
+        if ((tema.excluirArquivos || []).includes(t.arquivo)) continue;
+        if ((tema.excluirPrefixos || []).some((p) => t.arquivo.startsWith(p))) continue;
         if (t.arquivo.endsWith('.json')) (doJson[t.arquivo] = doJson[t.arquivo] || []).push(t);
         if (revisados && !revisados.has(t.arquivo)) continue;
         escolhidos.set(t.id, t.motivo);
@@ -1002,9 +1067,21 @@ function selecaoDePendentes(tema) {
             chavesExtras: [...OPCOES.chavesExtras, ...(tema.chavesExtras || [])],
             titulosExtras: OPCOES.titulosExtras,
             minimoConhecida: tema.minimoConhecida || OPCOES.minimoConhecida,
+            titulosComoTexto: tema.titulosComoTexto,
             manterRepetidos: Boolean(tema.blocosInteiros),
         },
     };
+}
+
+/** Texto de common.json agrupado pelo primeiro nivel da chave (a tela ou a funcao). */
+function blocosDoJson(textos) {
+    const grupos = new Map();
+    for (const t of textos) {
+        const grupo = String(t.chave).split('.')[0];
+        if (!grupos.has(grupo)) grupos.set(grupo, []);
+        grupos.get(grupo).push({ texto: t.texto, chave: t.chave, linha: 0 });
+    }
+    return [...grupos].map(([item, lista]) => ({ item, textos: lista }));
 }
 
 /** Deixa so os textos escolhidos, cada um com a versao que o Agnaldo revisou (se houver). */
@@ -1066,7 +1143,7 @@ async function principal() {
         for (const fonte of selecao ? selecao.fontes : tema.fontes) {
             // common.json nao e codigo: o texto pendente vem pronto da trava, com a chave.
             const r = selecao && selecao.doJson[fonte.arquivo]
-                ? { blocos: [{ item: 'Textos de interface', textos: selecao.doJson[fonte.arquivo].map((t) => ({ texto: t.texto, chave: t.chave, linha: 0 })) }] }
+                ? { blocos: blocosDoJson(selecao.doJson[fonte.arquivo]) }
                 : extrair(fonte.arquivo, opcoes);
             if (selecao) r.blocos = filtrarPendentes(r.blocos, fonte.arquivo, selecao);
             if (r.ausente) {

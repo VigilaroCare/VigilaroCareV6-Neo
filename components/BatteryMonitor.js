@@ -65,7 +65,7 @@ export default function BatteryMonitor() {
                     tx('telas.BatteryMonitor.bateriaBaixa', '🟡 Bateria Baixa'),
                     tx('telas.BatteryMonitor.baixaMsg', {
                         pct: Math.round(level * 100),
-                        defaultValue: 'Sua bateria está em {{pct}}%. Recomendamos carregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro.',
+                        defaultValue: 'Sua bateria está em {{pct}}%. Recomendamos recarregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro.',
                     }),
                     [{ text: 'OK', style: 'default' }]
                 );

@@ -21,7 +21,7 @@ export const EDUCATIONAL_GUIDES_PT_PT = {
         label: 'Piscina',
         iconName: 'Pool',
         color: '#03A9F4',
-        content: 'A segurança na piscina exige barreiras físicas intransponíveis: instale vedações de pelo menos 1,5m de altura com portões de fecho automático. Utilize ralos anti-aprisionamento. Durante o lazer, designe sempre um "vigilante" adulto focado exclusivamente nas crianças, sem distrações como o telemóvel.'
+        content: 'A segurança na piscina exige barreiras físicas intransponíveis: instale vedações de pelo menos 1,5m de altura com portões de fecho automático. Utilize ralos antiaprisionamento. Durante o lazer, designe sempre um "vigilante" adulto focado exclusivamente nas crianças, sem distrações como o telemóvel.'
     },
     praia_rios: {
         label: 'Áreas Naturais',

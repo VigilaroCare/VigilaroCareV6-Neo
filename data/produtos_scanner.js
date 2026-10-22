@@ -256,7 +256,7 @@ export const PRODUTOS_PERIGOSOS = {
       ingestao: '{{EMERGENCY_MEDICAL}}. NÃO provocar vômito.',
       pele: 'Banho imediato com água e sabão.'
     },
-    prevencao: ['Não aplicar com vento', 'Manter crianças/pets afastados por 24-48h'],
+    prevencao: ['Não aplicar com vento', 'Manter crianças e pets afastados por 24-48h'],
     icone: 'Plant',
     cor: '#D32F2F',
     ghs_categories: ['toxico_agudo_ingestao', 'irritante_pele', 'irritante_ocular', 'toxico_ambiental'],

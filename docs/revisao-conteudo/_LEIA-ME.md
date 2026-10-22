@@ -98,6 +98,13 @@ bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos 
 dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
 (`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
 
+### CK, AV, IF — o resto do backlog (22/10/2026)
+
+CK (checklist da vistoria, `mapeamento_dados.js`) usa `titulosComoTexto: ['titulo']`: a pergunta da vistoria está no
+campo `titulo` e, como título, o documento teria 300 cabeçalhos; vira texto com o rótulo "PERGUNTA DA VISTORIA",
+agrupado pelo ambiente. AV usa `excluirArquivos`/`excluirPrefixos` (fica de fora o que tem documento próprio, o
+Scanner e o jurídico). IF agrupa o `common.json` pelo primeiro nível da chave (a tela ou a função).
+
 ### II — Intoxicação e Incêndio
 
 Primeiro documento de arquivos que nunca passaram por revisão. Lê o backlog da trava com `arquivos` (só os arquivos

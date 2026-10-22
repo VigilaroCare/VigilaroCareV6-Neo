@@ -548,7 +548,7 @@ export const areasInternas = [
             'A iluminação é boa e o chão está livre de objetos espalhados?',
             'Você verifica atrás/embaixo do carro antes de manobrar?',
             'Materiais inflamáveis estão longe de calor?',
-            'O portão tem sensor anti-esmagamento?'
+            'O portão tem sensor antiesmagamento?'
         ], oQueFazer_ptpt: [
             'A iluminação é boa e o chão está livre de objetos espalhados?',
             'Verifica atrás e por baixo do carro antes de manobrar?',

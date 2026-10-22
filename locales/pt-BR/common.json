@@ -2301,7 +2301,7 @@
             "entendi": "Entendi",
             "bateriaBaixa": "🟡 Bateria Baixa",
             "criticaMsg": "Sua bateria está em {{pct}}%. Em caso de emergência, você pode não conseguir usar o telefone. Conecte o carregador imediatamente.\n\n💡 Dica: Tenha sempre uma lanterna e uma lista de contatos de emergência em papel.",
-            "baixaMsg": "Sua bateria está em {{pct}}%. Recomendamos carregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro."
+            "baixaMsg": "Sua bateria está em {{pct}}%. Recomendamos recarregar seu dispositivo para garantir acesso às funções de emergência do Vigilaro."
         },
         "DisclaimerModal": {
             "avisoImportante": "Aviso Importante",

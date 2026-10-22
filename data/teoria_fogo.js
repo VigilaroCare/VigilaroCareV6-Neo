@@ -88,7 +88,7 @@ export const TEORIA_FOGO_DATA = {
     // orientação de todas as fontes é sair e chamar os bombeiros.
     'baterias': {
         rotuloComoIdentificar: 'Sinais de perigo', rotuloComoIdentificar_en: 'Warning signs', rotuloComoIdentificar_es: 'Señales de peligro',
-        rotuloComoEvitar: 'Como carregar e guardar', rotuloComoEvitar_en: 'Charging and storing', rotuloComoEvitar_es: 'Cómo cargar y guardar',
+        rotuloComoEvitar: 'Como recarregar e guardar', rotuloComoEvitar_en: 'Charging and storing', rotuloComoEvitar_es: 'Cómo cargar y guardar',
         rotuloComoAgir: 'Se esquentar, soltar fumaça ou pegar fogo', rotuloComoAgir_en: 'If it overheats, smokes or catches fire', rotuloComoAgir_es: 'Si se calienta, echa humo o se incendia',
         rotuloFontes: 'Fontes', rotuloFontes_en: 'Sources', rotuloFontes_es: 'Fuentes',
         titulo: 'Baterias de Lítio',
@@ -111,7 +111,7 @@ export const TEORIA_FOGO_DATA = {
         importancia_es: 'Una batería de iones de litio no es Clase D. Su fuego es muy caliente y se propaga rápido — por eso los bomberos indican salir y llamarlos, nunca intentar apagarlo.',
         importancia_ptpt: 'Uma bateria de iões de lítio não é Classe D. O fogo é muito quente e propaga-se depressa — por isso a indicação dos bombeiros é sair e chamá-los, nunca tentar apagar.',
         comoIdentificar: [
-            'Pare de usar e de recarregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (ficar estufada), vazar ou deixar de carregar.',
+            'Pare de usar e de recarregar se a bateria soltar fumaça ou cheiro estranho, esquentar além do normal, mudar de cor ou de formato (ficar estufada), vazar ou deixar de recarregar.',
             'Bateria que caiu, sofreu impacto, amassou ou molhou merece atenção: o dano interno pode causar curto-circuito depois.',
         ],
         comoIdentificar_en: [
