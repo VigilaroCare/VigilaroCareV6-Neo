@@ -80,6 +80,10 @@
   "m020": {
    "texto": "Ligacao lembretes x lista de medicamentos do perfil (22/10/2026). A pergunta 'Incluir tambem na lista...' foi aprovada pelo Agnaldo no chat como proposta; os outros dois sao novos. Os tres vao para o proximo documento.",
    "em": "2026-10-22"
+  },
+  "m021": {
+   "texto": "Cautela juridica (D33): item retido enquanto o TI estava com o Agnaldo, aplicado na volta do TI em 22/10/2026 ('Evita quedas' -> 'Ajuda a evitar quedas'). Aguarda revisao dele.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -5787,6 +5791,11 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
+  ],
+  "592601dac32896ff": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m021"
   ],
   "593febeacfdde662": [
    "pendente",
@@ -14053,11 +14062,6 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
-  "dc8227c05ce527fd": [
-   "pendente",
-   "data/dispositivos_protecao.js",
-   "m017"
-  ],
   "dc851c22a260907e": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -16172,11 +16176,6 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
-  ],
-  "ff7bd63ca93b94e5": [
-   "pendente",
-   "data/dispositivos_protecao.js",
-   "m017"
   ],
   "ff83c2a87610695f": [
    "aprovado",

@@ -1,0 +1,25 @@
+{
+  "documento": "TI-Telas-Integradas.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-22T14:53:55.747Z",
+  "coerencia": {
+    "lidos": 30,
+    "intactos": 29,
+    "taxa": 0.9667
+  },
+  "editados": [
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Grade de Proteção para Cama",
+      "chave": "descricao",
+      "linha": 717,
+      "original": "Queda da cama durante o sono, com batida na cabeça ou fratura",
+      "codigo": "TI-0020",
+      "novo": "Queda da cama durante o sono, com impacto na cabeça ou fratura"
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": []
+}
