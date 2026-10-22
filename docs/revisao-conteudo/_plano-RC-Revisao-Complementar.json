@@ -1,0 +1,1267 @@
+{
+  "documento": "RC-Revisao-Complementar.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-21T22:19:14.376Z",
+  "coerencia": {
+    "lidos": 1021,
+    "intactos": 916,
+    "taxa": 0.8972
+  },
+  "editados": [
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Carregadores e Cabos USB",
+      "chave": "estatistica",
+      "linha": 56,
+      "original": "Num teste encomendado pelo Trading Standards do Reino Unido, 397 de 400 carregadores falsificados de iPhone falharam no ensaio de isolamento contra choque elétrico (UL, 2016).",
+      "codigo": "RC-0013",
+      "novo": "Em um teste encomendado pelo Trading Standards do Reino Unido, 397 de 400 carregadores falsificados de iPhone falharam no ensaio de isolamento contra choque elétrico (UL, 2016)."
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Extensões e Filtros de Linha",
+      "chave": "resumo",
+      "linha": 70,
+      "original": "Os famosos \"benjamins\" e réguas de tomadas são vilões silenciosos. Sobrecarregá-los é como pedir por um curto-circuito.",
+      "codigo": "RC-0015",
+      "novo": "Os famosos \"benjamins\" e réguas de tomadas são vilões silenciosos. Sobrecarregá-los é o mesmo que pedir por um curto-circuito."
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Power Banks",
+      "chave": "prevencao[]",
+      "linha": 125,
+      "original": "Nunca compre power banks sem certificação — a economia pode sair muito cara",
+      "codigo": "RC-0032",
+      "novo": "Nunca compre powerbanks sem certificação — a economia pode sair muito cara"
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Televisores de Tela Plana",
+      "chave": "descricao",
+      "linha": 174,
+      "original": "Choque por crianças introduzindo objetos metálicos nas entradas (HDMI, USB)",
+      "codigo": "RC-0044",
+      "novo": "Choque em crianças introduzindo objetos metálicos nas entradas (HDMI, USB)"
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Televisores de Tela Plana",
+      "chave": "prevencao[]",
+      "linha": 178,
+      "original": "Se estiver sobre rack, use cabo de segurança anti-tombamento fixado à parede",
+      "codigo": "RC-0046",
+      "novo": "Se estiver sobre rack, use cabo de segurança antitombamento fixado à parede"
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Televisores de Tela Plana",
+      "chave": "estatistica",
+      "linha": 202,
+      "original": "Nos EUA, cerca de 17 mil crianças por ano vão ao pronto-socorro por acidentes com TV — uma a cada 30 minutos (estudo publicado na revista Pediatrics, 2013).",
+      "codigo": "RC-0051",
+      "novo": "Nos EUA, cerca de 17 mil crianças por ano vão ao pronto-socorro por acidentes com TV — uma a cada 30 minutos (estudo publicado na revista Pediátricas, 2013)."
+    },
+    {
+      "arquivo": "data/dispositivos_eletronicos_reviews.js",
+      "rotulo": "Reviews — dispositivos eletronicos",
+      "item": "Babá Eletrônica e Câmeras Wi-Fi",
+      "chave": "prevencao[]",
+      "linha": 220,
+      "original": "Posicione o cabo a pelo menos 1 metro de distância do berço — bebês alcançam e puxam fios",
+      "codigo": "RC-0057",
+      "novo": "Mantenha o cabo a pelo menos 1 metro de distância do berço — bebês alcançam e puxam fios"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Fogão e Cooktop",
+      "chave": "prevencao[]",
+      "linha": 31,
+      "original": "Nunca cozinhe usando roupas de mangas largas ou soltas",
+      "codigo": "RC-0099",
+      "novo": "Nunca cozinhe usando roupas de mangas largas ou soltas ou de tecido sintético."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Chuveiro Elétrico",
+      "chave": "prevencao[]",
+      "linha": 76,
+      "original": "Verifique se o disjuntor é compatível com a potência do chuveiro",
+      "codigo": "RC-0109",
+      "novo": "Verifique se o disjuntor e a fiação é compatível com a potência do chuveiro"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Máquina de Lavar Roupa",
+      "chave": "resumo",
+      "linha": 114,
+      "original": "A máquina de lavar apresenta um risco duplo: choque elétrico grave (por estar em ambiente úmido) e sufocamento infantil (crianças podem entrar dentro).",
+      "codigo": "RC-0115",
+      "novo": "A máquina de lavar apresenta um risco duplo: choque elétrico grave (por estar em ambiente úmido) e sufocamento infantil (crianças podem entrar REMOVER e fechar a tampa)."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Máquina de Lavar Roupa",
+      "chave": "descricao",
+      "linha": 117,
+      "original": "Sufocamento e afogamento de crianças que entram no tambor",
+      "codigo": "RC-0117",
+      "novo": "Sufocamento e afogamento de crianças que entram no REMOVER compartimento de lavagem"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Geladeira e Freezer",
+      "chave": "estatistica",
+      "linha": 197,
+      "original": "Em 10 anos, uma geladeira funciona cerca de 87 mil horas sem parar — o desgaste do motor e do aterramento se acumula sem dar sinal.",
+      "codigo": "RC-0138",
+      "novo": "Em 10 anos, uma geladeira funciona cerca de 87 mil horas sem parar — o desgaste do motor e do aterramento se REMOVER acentua sem dar sinal."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Micro-ondas",
+      "chave": "resumo",
+      "linha": 259,
+      "original": "O micro-ondas é seguro quando bem utilizado, mas o uso de materiais inadequados e o superaquecimento de líquidos podem causar acidentes sérios.",
+      "codigo": "RC-0153",
+      "novo": "O micro-ondas é seguro quando REMOVER utilizado corretamente, mas o uso de materiais inadequados e o superaquecimento de líquidos podem causar acidentes REMOVER graves"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Micro-ondas",
+      "chave": "prevencao[]",
+      "linha": 268,
+      "original": "Fure alimentos com \"pele\" (salsicha, batata, tomate) antes de aquecer — evita explosão",
+      "codigo": "RC-0159",
+      "novo": "Fure alimentos com \"pele\" (salsicha, batata, tomate, ovo) antes de aquecer — evita explosão"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Micro-ondas",
+      "chave": "oQueFazer",
+      "linha": 295,
+      "original": "Se o micro-ondas faíscar: desligue imediatamente (NÃO abra a porta). Espere parar e só então retire o material. Queimaduras por vapor: resfrie com água corrente por 15 minutos.",
+      "codigo": "RC-0164",
+      "novo": "Se o micro-ondas faiscar: desligue imediatamente (NÃO abra a porta). Espere parar e só então retire o material. Queimaduras por vapor: resfrie com água corrente por 15 minutos."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Air Fryer (Fritadeira Elétrica)",
+      "chave": "prevencao[]",
+      "linha": 318,
+      "original": "Limpe a gordura acumulada após cada uso — gordura ressecada é combustível",
+      "codigo": "RC-0175",
+      "novo": "Limpe a gordura acumulada após cada uso — gordura ressecada é combustível. Existem bons produtos no mercado que facilitam a limpeza"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Air Fryer (Fritadeira Elétrica)",
+      "chave": "prevencao[]",
+      "linha": 320,
+      "original": "Mantenha fora do alcance de crianças durante e após o uso (estrutura permanece quente por vários minutos)",
+      "codigo": "RC-0177",
+      "novo": "Mantenha fora do alcance de crianças durante e após o uso (REMOVER permanece quente por vários minutos)\nSe a air fryer começar a soltar fumaça escura: desligue da tomada, NÃO abra o cesto e espere esfriar completamente."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Air Fryer (Fritadeira Elétrica)",
+      "chave": "oQueFazer",
+      "linha": 343,
+      "original": "Queimaduras de contato: resfrie com água corrente por 15 minutos. Se a air fryer começar a soltar fumaça escura: desligue da tomada, NÃO abra o cesto e espere esfriar completamente.",
+      "codigo": "RC-0178",
+      "novo": "Queimaduras de contato: resfrie com água corrente por 15 minutos."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Ar-Condicionado",
+      "chave": "prevencao[]",
+      "linha": 366,
+      "original": "Limpe os filtros a cada 15 dias durante uso frequente",
+      "codigo": "RC-0185",
+      "novo": "Limpe os filtros a cada 15 dias durante uso frequente."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Ferro de Passar",
+      "chave": "oQueFazer",
+      "linha": 441,
+      "original": "Queimaduras de contato: resfrie com água corrente fria por 15 minutos. Não aplique gelo diretamente, pasta de dente ou manteiga. Se a queimadura formar bolhas grandes, procure atendimento médico.",
+      "codigo": "RC-0203",
+      "novo": "Queimaduras de contato: resfrie com água corrente fria por 15 minutos. Não aplique gelo diretamente, pasta de dente ou manteiga. Se a queimadura formar bolhas grandes (nunca fure as bolhas), procure atendimento médico."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Liquidificador e Processador",
+      "chave": "descricao",
+      "linha": 461,
+      "original": "Respingos de líquidos quentes se o copo não estiver bem travado",
+      "codigo": "RC-0210",
+      "novo": "Respingos de líquidos quentes se o copo não estiver bem travado ou sem a tampa"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Liquidificador e Processador",
+      "chave": "prevencao[]",
+      "linha": 467,
+      "original": "Nunca coloque líquidos ferventes no liquidificador — o vapor pode estourar a tampa",
+      "codigo": "RC-0214",
+      "novo": "Nunca coloque líquidos ferventes no liquidificador — o vapor pode ejetar a tampa"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Forno Elétrico",
+      "chave": "descricao",
+      "linha": 506,
+      "original": "Queimaduras por vapor ao abrir a porta durante o uso",
+      "codigo": "RC-0220",
+      "novo": "Queimaduras por vapor ao abrir a porta durante ou após o uso"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Forno Elétrico",
+      "chave": "prevencao[]",
+      "linha": 513,
+      "original": "Use sempre luvas térmicas ao inserir ou retirar assadeiras",
+      "codigo": "RC-0225",
+      "novo": "Use sempre luvas térmicas, cabos apropriados ou panos grossos ao inserir REMOVER assadeiras"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Forno Elétrico",
+      "chave": "estatistica",
+      "linha": 536,
+      "original": "Num centro de queimados de Nova York, as queimaduras em porta de forno atingiram bebês com idade mediana de 1 ano, quase sempre nas mãos (Archives of Pediatrics & Adolescent Medicine, 2001).",
+      "codigo": "RC-0229",
+      "novo": "REMOVER Em um centro de queimados de Nova York, as queimaduras em porta de forno atingiram bebês com idade mediana de 1 ano, quase sempre nas mãos (Archives of Pediatrics & Adolescent Medicine, 2001)."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Ventilador",
+      "chave": "prevencao[]",
+      "linha": 560,
+      "original": "Considere modelos sem hélice (\"bladeless\") para casas com crianças pequenas",
+      "codigo": "RC-0237",
+      "novo": "Considere modelos sem hélice (\"bladeless\") para casas com crianças pequenas, idosos e pessoas com limitações cognitivas"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Ventilador",
+      "chave": "oQueFazer",
+      "linha": 581,
+      "original": "Corte por hélice: lave e pressione a área. Se houver sangramento intenso ou lesão no dedo, procure pronto-socorro para avaliação.",
+      "codigo": "RC-0239",
+      "novo": "Corte por hélice: lave e pressione a área. Se houver sangramento intenso ou lesão nos dedos, procure pronto-socorro para avaliação."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Aspirador de Pó",
+      "chave": "descricao",
+      "linha": 595,
+      "original": "Quedas causadas por robôs aspiradores posicionados em passagens",
+      "codigo": "RC-0242",
+      "novo": "Quedas causadas por robôs aspiradores posicionados em passagens ou em funcionamento"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Aspirador de Pó",
+      "chave": "prevencao[]",
+      "linha": 603,
+      "original": "Mantenha o aspirador em local onde idosos não tropecem nele ao levantar de madrugada",
+      "codigo": "RC-0248",
+      "novo": "Mantenha o aspirador em local onde idosos não tropecem nele ao levantar-se de madrugada"
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Cafeteira Elétrica",
+      "chave": "resumo",
+      "linha": 631,
+      "original": "A cafeteira trabalha com água em temperatura de fervura. O maior risco é o derramamento acidental sobre crianças ou superfícies inadequadas.",
+      "codigo": "RC-0250",
+      "novo": "A cafeteira trabalha com água em temperatura de fervura. O maior risco é o derramamento acidental ou tombamento sobre crianças ou superfícies inadequadas."
+    },
+    {
+      "arquivo": "data/eletrodomesticos_reviews.js",
+      "rotulo": "Reviews — eletrodomesticos",
+      "item": "Cafeteira Elétrica",
+      "chave": "prevencao[]",
+      "linha": 642,
+      "original": "Nunca encha além da marcação máxima",
+      "codigo": "RC-0258",
+      "novo": "Nunca REMOVER use no nível do líquido além da marcação máxima"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Panela de Pressão",
+      "chave": "resumo",
+      "linha": 19,
+      "original": "Uma panela de pressão sem manutenção pode explodir ou soltar vapor fervente. A manutenção da válvula e da borracha é o que separa um jantar de uma emergência.",
+      "codigo": "RC-0261",
+      "novo": "Uma panela de pressão sem manutenção pode explodir ou soltar vapor fervente. A manutenção da válvula e da borracha é o que separa REMOVER uma refeição de uma emergência."
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Facas e Objetos Cortantes",
+      "chave": "nome",
+      "linha": 64,
+      "original": "Facas e Objetos Cortantes",
+      "codigo": "RC-0274",
+      "novo": "Facas e Objetos Perfuro Cortantes"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Facas e Objetos Cortantes",
+      "chave": "resumo",
+      "linha": 71,
+      "original": "Facas, tesouras, raladores e saca-rolhas cortam no uso, na limpeza e quando ficam soltos. Guardar com segurança é tão importante quanto manusear com cuidado.",
+      "codigo": "RC-0275",
+      "novo": "Facas, tesouras, raladores e saca-rolhas cortam e perfuram no uso, na limpeza e quando ficam soltos. Guardar com segurança é tão importante quanto manusear com cuidado."
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Escadas Domésticas",
+      "chave": "descricao",
+      "linha": 171,
+      "original": "Quedas graves com risco de fraturas, traumatismo craniano e lesões na coluna",
+      "codigo": "RC-0299",
+      "novo": "Quedas graves com risco de fraturas, traumatismo craniano e lesões na coluna e morte"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Escadas Domésticas",
+      "chave": "prevencao[]",
+      "linha": 181,
+      "original": "Peça sempre a alguém para segurar a base enquanto você sobe",
+      "codigo": "RC-0307",
+      "novo": "Peça sempre a alguém para segurar a REMOVER escada enquanto você usa"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Recipientes de Vidro e Cerâmica",
+      "chave": "prevencao[]",
+      "linha": 276,
+      "original": "Recolha cacos com vassoura e pano úmido — nunca com as mãos diretamente",
+      "codigo": "RC-0330",
+      "novo": "Recolha cacos com vassoura e pano papel toalha úmidos e que possam ser descartados — nunca diretamente  com as mãos"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Tapetes e Passadeiras",
+      "chave": "prevencao[]",
+      "linha": 321,
+      "original": "Em áreas molhadas (banheiro, cozinha), use apenas tapetes emborrachados próprios",
+      "codigo": "RC-0342",
+      "novo": "Em áreas molhadas (banheiro, cozinha), use apenas tapetes emborrachados REMOVER e com ventosas"
+    },
+    {
+      "arquivo": "data/utensilios_reviews.js",
+      "rotulo": "Reviews — utensilios domesticos",
+      "item": "Fósforos e Isqueiros",
+      "chave": "resumo",
+      "linha": 353,
+      "original": "Crianças são naturalmente fascinadas pelo fogo. Um isqueiro acessível pode desencadear queimaduras graves ou iniciar um incêndio doméstico.",
+      "codigo": "RC-0345",
+      "novo": "Crianças são naturalmente fascinadas pelo fogo. Um isqueiro REMOVER ao alcance delas pode desencadear queimaduras graves ou iniciar um incêndio doméstico."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetores de Porta",
+      "chave": "descricao",
+      "linha": 67,
+      "original": "Esmagamento de dedos ao fechar a porta com força",
+      "codigo": "RC-0377",
+      "novo": "Esmagamento de dedos ao fechar a porta REMOVER"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetores de Porta",
+      "chave": "prevencao[]",
+      "linha": 72,
+      "original": "Instale protetores de espuma ou silicone nas extremidades das portas",
+      "codigo": "RC-0380",
+      "novo": "Instale protetores de espuma ou silicone nas extremidades superiores das portas"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetor Veda Portas",
+      "chave": "resumo",
+      "linha": 146,
+      "original": "Impede a entrada de água, insetos e correntes de ar. Pisos molhados por infiltração de água de chuva aumentam o risco de quedas.",
+      "codigo": "RC-0396",
+      "novo": "Impede a entrada de água, insetos e correntes de ar. Pisos molhados por infiltração REMOVER de chuva aumentam o risco de quedas."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetor Veda Portas",
+      "chave": "descricao",
+      "linha": 148,
+      "original": "Piso escorregadio por entrada de água de chuva",
+      "codigo": "RC-0397",
+      "novo": "Piso escorregadio por entrada REMOVER de chuva"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetor Veda Portas",
+      "chave": "descricao",
+      "linha": 149,
+      "original": "Entrada de insetos e pequenos animais peçonhentos",
+      "codigo": "RC-0398",
+      "novo": "Entrada de insetos e REMOVER animais peçonhentos"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetor Veda Portas",
+      "chave": "prevencao[]",
+      "linha": 153,
+      "original": "Verifique o estado da borracha de vedação a cada 6 meses",
+      "codigo": "RC-0400",
+      "novo": "Verifique o estado REMOVER  da vedação a cada 6 meses"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Adesivos Antiderrapantes",
+      "chave": "prevencao[]",
+      "linha": 306,
+      "original": "Aplique dentro do box, banheira e no piso ao redor do vaso sanitário",
+      "codigo": "RC-0434",
+      "novo": "Aplique REMOVER no box, banheira e no piso ao redor do vaso sanitário"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Adesivos Antiderrapantes",
+      "chave": "prevencao[]",
+      "linha": 308,
+      "original": "Substitua quando começarem a descolar ou perder a textura",
+      "codigo": "RC-0436",
+      "novo": "Substitua quando começarem a descolar ou perder a textura antiderrapante"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Adesivos Antiderrapantes",
+      "chave": "prevencao[]",
+      "linha": 309,
+      "original": "Em casas com idosos, combine com barras de apoio no box e próximo ao vaso",
+      "codigo": "RC-0437",
+      "novo": "Em casas com idosos, combine com barras de apoio no box e próximo ao vaso sanitário"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Adesivos Antiderrapantes",
+      "chave": "oQueFazer",
+      "linha": 326,
+      "original": "Em caso de queda de idoso: não tente levantar imediatamente. Verifique se há dor no quadril ou impossibilidade de mover a perna. Em caso de suspeita de fratura, ligue para o {{EMERGENCY_MEDICAL}}.",
+      "codigo": "RC-0438",
+      "novo": "Em caso de queda de idoso: não tente levantar-se imediatamente. Verifique se há dor no quadril ou impossibilidade de mover a perna. Em caso de suspeita de fratura, ligue para o {{EMERGENCY_MEDICAL}}."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Proteção de Botão de Fogão",
+      "chave": "resumo",
+      "linha": 377,
+      "original": "Impedem que crianças girem os botões do fogão, prevenindo vazamento de gás e queimaduras. Item de segurança prioritário.",
+      "codigo": "RC-0451",
+      "novo": "Impedem que crianças girem os botões do fogão, prevenindo vazamento de gás e queimaduras. Item de segurança prioritário"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Limitador de Abertura de Janela",
+      "chave": "prevencao[]",
+      "linha": 470,
+      "original": "Instale limitadores em TODAS as janelas acessíveis a crianças",
+      "codigo": "RC-0475",
+      "novo": "Instale limitadores em TODAS as janelas acessíveis a crianças mesmo que haja telas de proteção"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Protetores de Tomada",
+      "chave": "prevencao[]",
+      "linha": 516,
+      "original": "Prefira modelos que só removam com ferramenta ou giro especial — evite os de encaixe simples",
+      "codigo": "RC-0486",
+      "novo": "Prefira modelos que só REMOVER possam ser removidos com ferramenta ou giro especial — evite os de encaixe simples"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Barreiras Eletrônicas",
+      "chave": "descricao",
+      "linha": 583,
+      "original": "Saída despercebida de idosos com quadros cognitivos",
+      "codigo": "RC-0501",
+      "novo": "Saída despercebida de idosos com limitações cognitivas ou não"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Capa de Segurança para Piscina",
+      "chave": "prevencao[]",
+      "linha": 630,
+      "original": "Combine com uma cerca de pelo menos 1,20 m de altura em volta da piscina, com portão que fecha e trava sozinho",
+      "codigo": "RC-0515",
+      "novo": "Combine com uma cerca de pelo menos 1,20 m de altura em volta da piscina, com portão REMOVER com abertura e fechamento automáticos"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Grade de Proteção para Escadas",
+      "chave": "oQueFazer",
+      "linha": 694,
+      "original": "Em caso de queda de escada: não movimente a vítima se houver suspeita de lesão na coluna. Ligue para o {{EMERGENCY_MEDICAL}}. Mantenha a vítima estável.",
+      "codigo": "RC-0529",
+      "novo": "Em caso de queda de escada: não movimente a vítima se houver suspeita de lesão na coluna, quadril ou fêmur. Ligue para o {{EMERGENCY_MEDICAL}}. Mantenha a vítima estável."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Barras de Apoio para Banheiro",
+      "chave": "resumo",
+      "linha": 709,
+      "original": "Barras fixadas na parede do box e ao lado do vaso sanitário dão apoio firme para sentar, levantar e se equilibrar no banho.",
+      "codigo": "RC-0532",
+      "novo": "Barras fixadas na parede do box ajudam e se equilibrar no banho e ao lado do vaso sanitário dão apoio firme para sentar e levantar."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Barras de Apoio para Banheiro",
+      "chave": "descricao",
+      "linha": 711,
+      "original": "Queda de idoso ao levantar do vaso sanitário",
+      "codigo": "RC-0533",
+      "novo": "Queda de idoso ao levantar-se do vaso sanitário"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Detector de Fumaça e Gás",
+      "chave": "resumo",
+      "linha": 750,
+      "original": "Alerta sonoro precoce em caso de princípio de incêndio ou vazamento de gás. Pode salvar vidas ao detectar o problema antes que se torne catástrofe.",
+      "codigo": "RC-0541",
+      "novo": "Alerta sonoro REMOVER imediato em caso de princípio de incêndio ou vazamento de gás. Pode salvar vidas ao detectar o problema antes que se torne catástrofe."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Extintor de Incêndio Residencial",
+      "chave": "resumo",
+      "linha": 792,
+      "original": "Permite combater princípios de incêndio antes que se alastrem. Deve estar acessível, visível e dentro da validade.",
+      "codigo": "RC-0552",
+      "novo": "Permite combater princípios de incêndio antes que se alastrem. Deve estar acessível, visível, desobstruído e dentro da validade."
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Extintor de Incêndio Residencial",
+      "chave": "prevencao[]",
+      "linha": 800,
+      "original": "Saiba como usar: puxe o pino, aponte a mangueira para a base do fogo, pressione e varra",
+      "codigo": "RC-0557",
+      "novo": "Saiba como usar: puxe o pino, aponte a mangueira para a base do fogo e pressione REMOVER o gatilho"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Extintor de Incêndio Residencial",
+      "chave": "prevencao[]",
+      "linha": 801,
+      "original": "NUNCA use água em incêndios de óleo ou elétricos",
+      "codigo": "RC-0558",
+      "novo": "NUNCA use água em REMOVER em fogo de óleo ou elétricos"
+    },
+    {
+      "arquivo": "data/dispositivos_protecao.js",
+      "rotulo": "Acessorios de protecao",
+      "item": "Extintor de Incêndio Residencial",
+      "chave": "oQueFazer",
+      "linha": 821,
+      "original": "Em princípio de incêndio: use o extintor apontando para a BASE das chamas. Se o fogo não ceder nos primeiros segundos, saia, feche a porta e ligue para os bombeiros ({{FIRE_NUMBER}}).",
+      "codigo": "RC-0559",
+      "novo": "Em princípio de incêndio: use o extintor apontando para a BASE das chamas. Se o fogo não REMOVER apagar nos primeiros segundos, saia, feche a porta e ligue para os bombeiros ({{FIRE_NUMBER}})."
+    },
+    {
+      "arquivo": "data/produtos_categorias.js",
+      "rotulo": "Produtos perigosos — categorias",
+      "item": "Medicamentos",
+      "chave": "importancia",
+      "linha": 147,
+      "original": "Intoxicação medicamentosa é comum em crianças (curiosas) e idosos (confusão).",
+      "codigo": "RC-0590",
+      "novo": "Intoxicação medicamentosa é comum em crianças (curiosas) e idosos REMOVER que podem confundir tipos e dosagens"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Cozinha e Copa",
+      "chave": "oQueNaoFazer[]",
+      "linha": 135,
+      "original": "Nunca deixe toalhas de mesa compridas pendentes.",
+      "codigo": "RC-0618",
+      "novo": "Nunca deixe toalhas de mesa compridas (muita sobra para baixo) REMOVER."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Cozinha e Copa",
+      "chave": "oQueNaoFazer[]",
+      "linha": 136,
+      "original": "Não cozinhe com crianças no colo.",
+      "codigo": "RC-0619",
+      "novo": "Não cozinhe com crianças no colo muito próximas a você."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Cozinha e Copa",
+      "chave": "oQueNaoFazer[]",
+      "linha": 137,
+      "original": "Não deixe eletrodomésticos ligados na tomada sem uso.",
+      "codigo": "RC-0620",
+      "novo": "Não deixe eletrodomésticos ligados na tomada REMOVER quando estiver fora de uso."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Quarto Adolescente",
+      "chave": "oQueFazer[]",
+      "linha": 340,
+      "original": "O uso de eletrônicos e fios está organizado (sem sobrecarga)?",
+      "codigo": "RC-0652",
+      "novo": "O uso de eletrônicos (sem sobrecarga) e fios estão organizados?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Quarto de Idoso",
+      "chave": "oQueFazer[]",
+      "linha": 409,
+      "original": "A altura da cama permite apoiar os pés no chão sentado?",
+      "codigo": "RC-0660",
+      "novo": "A altura da cama permite apoiar os pés no chão quando sentado?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Quarto de Idoso",
+      "chave": "oQueFazer[]",
+      "linha": 410,
+      "original": "O caminho ao banheiro é livre, sem tapetes e iluminado (luz noturna)?",
+      "codigo": "RC-0661",
+      "novo": "O caminho até o REMOVER banheiro é livre, sem tapetes e iluminado (luz noturna)?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Banheiros",
+      "chave": "oQueNaoFazer[]",
+      "linha": 480,
+      "original": "JAMAIS deixe crianças sozinhas na banheira (afogamento em cm de água).",
+      "codigo": "RC-0673",
+      "novo": "JAMAIS deixe crianças sozinhas na banheira (afogamento em poucos centímetros de água)."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Banheiros",
+      "chave": "quandoChamarAjuda",
+      "linha": 492,
+      "original": "Afogamento ou queda com batida na cabeça: ligue para o {{EMERGENCY_MEDICAL}}.",
+      "codigo": "RC-0675",
+      "novo": "Afogamento ou queda com impacto na cabeça: ligue para o {{EMERGENCY_MEDICAL}}."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Escadas",
+      "chave": "oQueNaoFazer[]",
+      "linha": 526,
+      "original": "Não deixe objetos nos degraus.",
+      "codigo": "RC-0680",
+      "novo": "Não deixe objetos nem permita pets nos degraus."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Garagem",
+      "chave": "riscos",
+      "linha": 546,
+      "original": "Atropelamento, CO, Inflamáveis.",
+      "codigo": "RC-0682",
+      "novo": "Atropelamento, monóxido de carbono (CO), Inflamáveis."
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Central de Gás",
+      "chave": "oQueFazer[]",
+      "linha": 591,
+      "original": "Botijões estão em local VENTILADO e externo (protegido sol/chuva)?",
+      "codigo": "RC-0689",
+      "novo": "Botijões estão em local VENTILADO e externo (protegido de sol e chuva?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Central de Gás",
+      "chave": "oQueFazer[]",
+      "linha": 593,
+      "original": "A validade da mangueira/regulador foi verificada?",
+      "codigo": "RC-0691",
+      "novo": "As validades da mangueira e do regulador foram verificadas?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Varanda / Sacada",
+      "chave": "oQueFazer[]",
+      "linha": 671,
+      "original": "Redes de proteção certificadas estão instaladas (indispensáveis com crianças/pets)?",
+      "codigo": "RC-0702",
+      "novo": "Redes de proteção certificadas estão instaladas (indispensáveis com crianças e pets)?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Acessibilidade (PCD)",
+      "chave": "oQueFazer[]",
+      "linha": 710,
+      "original": "Portas e corredores são largos o suficiente para cadeira de rodas/andador?",
+      "codigo": "RC-0707",
+      "novo": "Portas e corredores são largos o suficiente para cadeira de rodas e andador?"
+    },
+    {
+      "arquivo": "data/areas_internas.js",
+      "rotulo": "Roteiro dos ambientes — areas internas",
+      "item": "Acessibilidade (PCD)",
+      "chave": "oQueFazer[]",
+      "linha": 715,
+      "original": "Torneiras são de alavanca ou sensor (fáceis de abrir)?",
+      "codigo": "RC-0712",
+      "novo": "Torneiras são de alavanca ou sensor (fáceis de abrir-fechar)?"
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Jardinagem e Hortas",
+      "chave": "oQueFazer[]",
+      "linha": 54,
+      "original": "Fertilizantes e pesticidas estão trancados e longe de crianças/pets?",
+      "codigo": "RC-0727",
+      "novo": "Fertilizantes e pesticidas estão trancados e longe de crianças e pets?"
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Jardinagem e Hortas",
+      "chave": "oQueNaoFazer[]",
+      "linha": 75,
+      "original": "Não deixe crianças brincarem com terra adubada/química.",
+      "codigo": "RC-0731",
+      "novo": "Não deixe crianças brincarem com terra adubada ou que tratamento químico."
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Áreas Coletivas (Playground)",
+      "chave": "oQueFazer[]",
+      "linha": 98,
+      "original": "Piso de quadras/salões está em bom estado?",
+      "codigo": "RC-0738",
+      "novo": "Piso de quadras ou salões de festa está em bom estado?"
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Praia, Rios e Lagos",
+      "chave": "oQueNaoFazer[]",
+      "linha": 213,
+      "original": "Não entre na água depois de beber álcool.",
+      "codigo": "RC-0756",
+      "novo": "Não entre na água depois de REMOVER ingerir álcool."
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Oficina Doméstica",
+      "chave": "oQueNaoFazer[]",
+      "linha": 253,
+      "original": "Não armazene produtos em garrafas de bebida.",
+      "codigo": "RC-0762",
+      "novo": "Não armazene produtos em garrafas de bebidas ou sucos."
+    },
+    {
+      "arquivo": "data/areas_externas.js",
+      "rotulo": "Roteiro dos ambientes — areas externas",
+      "item": "Depósito \"Guarda-Tudo\"",
+      "chave": "oQueNaoFazer[]",
+      "linha": 294,
+      "original": "Não force a coluna ao mover peso sozinho.",
+      "codigo": "RC-0769",
+      "novo": "Não force a coluna REMOVER tentando mover peso sozinho."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Idosos Fora de Casa",
+      "chave": "bullets[]",
+      "linha": 44,
+      "original": "Mantenha a medicação nos MESMOS horários de casa — viagem não muda prescrição.",
+      "codigo": "RC-0773",
+      "novo": "Mantenha a medicação nos MESMOS horários de casa (não se deixe enganar por fuso horário)— viagem não muda prescrição."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Crianças e Água",
+      "chave": "bullets[]",
+      "linha": 56,
+      "original": "Nomeie um \"vigia da água\" por turnos — distração coletiva é o cenário clássico.",
+      "codigo": "RC-0776",
+      "novo": "Nomeie um \"vigia da água\" por turnos — distração coletiva é o cenário clássico e perigoso."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Crianças e Água",
+      "chave": "bullets[]",
+      "linha": 56,
+      "original": "Colete salva-vidas em barcos e rios; boia de braço é brinquedo, não segurança.",
+      "codigo": "RC-0777",
+      "novo": "Colete salva-vidas em barcos e rios; boia de braço é brinquedo, não item de segurança."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Pet em Ambiente Novo",
+      "chave": "content",
+      "linha": 65,
+      "original": "Animal em lugar estranho sente medo — e fuga é o acidente número um de pets em viagem.",
+      "codigo": "RC-0778",
+      "novo": "Animal em lugar estranho sente medo — e fuga é REMOVER o incidente número um de pets em viagem."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Pet em Ambiente Novo",
+      "chave": "bullets[]",
+      "linha": 69,
+      "original": "Guia mesmo em locais fechados nos primeiros dias — porta aberta é convite.",
+      "codigo": "RC-0780",
+      "novo": "Guia mesmo em locais fechados nos primeiros dias — porta aberta é convite para fuga."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Pet em Ambiente Novo",
+      "chave": "bullets[]",
+      "linha": 69,
+      "original": "Vistorie plantas, telas e frestas do local antes de soltar o animal.",
+      "codigo": "RC-0781",
+      "novo": "Vistorie plantas, telas e frestas do local antes de soltar REMOVER seu pet."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Acessibilidade Real no Destino",
+      "chave": "content",
+      "linha": 77,
+      "original": "Acessibilidade anunciada nem sempre é acessibilidade real — confirme antes, não descubra na chegada.",
+      "codigo": "RC-0783",
+      "novo": "Acessibilidade anunciada nem sempre é acessibilidade real — confirme antes, não deixe para descubrir na chegada."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Ambientes Aquáticos Naturais",
+      "chave": "bullets[]",
+      "linha": 93,
+      "original": "Nunca mergulhe de cabeça em água desconhecida.",
+      "codigo": "RC-0791",
+      "novo": "Nunca mergulhe de cabeça em águas desconhecidas."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Grandes Cidades",
+      "chave": "bullets[]",
+      "linha": 129,
+      "original": "À noite, prefira transporte de porta a porta a caminhadas em área desconhecida.",
+      "codigo": "RC-0804",
+      "novo": "À noite, prefira transporte de porta a porta à caminhadas em área desconhecida."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Brincadeiras ao Ar Livre",
+      "chave": "content",
+      "linha": 174,
+      "original": "Bicicletas, patinetes e parquinhos de viagem exigem o mesmo critério dos de casa — que você não conhece.",
+      "codigo": "RC-0818",
+      "novo": "Bicicletas, patinetes e parquinhos de viagem - que você não conhece - exigem o mesmo critério dos de casa."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Autorização de Viagem de Menor",
+      "chave": "content",
+      "linha": 240,
+      "original": "Criança sem a autorização certa é barrada no embarque, mesmo com a passagem paga. As regras mudam entre viagem nacional e internacional.",
+      "codigo": "RC-0841",
+      "novo": "Criança sem a autorização correta será barrada no embarque, mesmo com a passagem paga. As regras mudam entre viagem nacional e internacional."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Autorização de Viagem de Menor",
+      "chave": "bullets[]",
+      "linha": 243,
+      "original": "Use o formulário padrão do CNJ ou da Polícia Federal e leve uma via impressa — sem o documento, o embarque é negado.",
+      "codigo": "RC-0844",
+      "novo": "Use o formulário padrão do CNJ ou da Polícia Federal e leve uma via impressa — sem o documento, o embarque seránegado."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Autorização de Viagem de Menor",
+      "chave": "content",
+      "linha": 289,
+      "original": "Criança sem a documentação certa pode ser barrada no embarque, mesmo com a passagem paga. As regras dependem do país de saída e do destino.",
+      "codigo": "RC-0850",
+      "novo": "Criança sem a documentação correta pode ser barrada no embarque, mesmo com a passagem paga. As regras dependem do país de saída e do destino."
+    },
+    {
+      "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+      "rotulo": "Guia de Seguranca na Viagem",
+      "item": "Cinto de Segurança em Ônibus",
+      "chave": "bullets[]",
+      "linha": 352,
+      "original": "Em caso de tombamento, quem está sem cinto é arremessado.",
+      "codigo": "RC-0872",
+      "novo": "Em caso de capotamento, quem está sem cinto é arremessado."
+    },
+    {
+      "arquivo": "components/TravelTipsAccordion.js",
+      "rotulo": "Modo Viagem — Fique atento",
+      "item": "Janelas e Sacadas",
+      "chave": "text",
+      "linha": 37,
+      "original": "• Em hotéis, verifique se há telas nas janelas.\n• Crianças escalam: afaste camas e cadeiras.\n• Se possível, instale travas de janelas.\n• Sacadas sem vidro são um risco grave.",
+      "codigo": "RC-0879",
+      "novo": "• Em hotéis, verifique se há telas nas janelas.\n• Crianças escalam: afaste camas e cadeiras.\n• Se possível, instale travas de janelas.\n• Sacadas sem vidro ou tela de proteção são um risco grave."
+    },
+    {
+      "arquivo": "components/TravelTipsAccordion.js",
+      "rotulo": "Modo Viagem — Fique atento",
+      "item": "Medicamentos na Viagem",
+      "chave": "text",
+      "linha": 60,
+      "original": "• Remédio controlado: leve a receita médica — a comprovação pode ser exigida.\n• Mantenha na embalagem original, na bagagem de mão.\n• Viagem internacional: confirme se a substância é permitida no destino — remédios comuns no Brasil são proibidos em alguns países.\n• Leve quantidade para toda a viagem, com folga.",
+      "codigo": "RC-0889",
+      "novo": "• Remédio controlado: leve a receita médica — a comprovação pode ser exigida.\n• Mantenha na embalagem original, na bagagem de mão.\n• Viagem internacional: confirme se a substância é permitida no destino — remédios comuns no Brasil são proibidos em alguns países.\n• Leve quantidade para toda a viagem, com sobra."
+    },
+    {
+      "arquivo": "screens/SegurancaFeriasScreen.js",
+      "rotulo": "Seguranca nas Ferias",
+      "item": "Hotel e Airbnb",
+      "chave": "dicasExtras[]",
+      "linha": 164,
+      "original": "Leve protetores de quina e tomada na mala.",
+      "codigo": "RC-0914",
+      "novo": "Se possível leve protetores de quina e de tomada na mala."
+    },
+    {
+      "arquivo": "screens/SegurancaLazerScreen.js",
+      "rotulo": "Seguranca no Lazer",
+      "item": "Piscina",
+      "chave": "prevencao[]",
+      "linha": 213,
+      "original": "Cercas de no mínimo 1,20m com portão auto-travante.",
+      "codigo": "RC-0964",
+      "novo": "Cercas de no mínimo 1,20m com portão autotravante."
+    },
+    {
+      "arquivo": "screens/SegurancaLazerScreen.js",
+      "rotulo": "Seguranca no Lazer",
+      "item": "Churrasqueira",
+      "chave": "prevencao[]",
+      "linha": 426,
+      "original": "Use acendedores próprios sólidos.",
+      "codigo": "RC-0986",
+      "novo": "Use acendedores próprios sólidos ou elétricos."
+    },
+    {
+      "arquivo": "screens/Education/JardinagemSeguraScreen.js",
+      "rotulo": "Jardinagem Segura",
+      "item": "Plantas Tóxicas",
+      "chave": "conteudo",
+      "linha": 140,
+      "original": "Plantas muito comuns (Comigo-ninguém-pode, Bico-de-papagaio, Tinhorão, Coroa-de-cristo, Aroeira e Mamona) oferecem grande risco de intoxicação para crianças e animais.",
+      "codigo": "RC-1006",
+      "novo": "Plantas muito comuns (Comigo-ninguém-pode, Bico-de-papagaio, Tinhorão, Coroa-de-cristo, Aroeira e Mamona) oferecem grande risco de intoxicação para crianças e pets."
+    },
+    {
+      "arquivo": "screens/Education/JardinagemSeguraScreen.js",
+      "rotulo": "Jardinagem Segura",
+      "item": "Vasos Pesados e Animais Escondidos",
+      "chave": "conteudo",
+      "linha": 214,
+      "original": "Abaixo de vasos pesados e úmidos costumam se abrigar aranhas e escorpiões. Além disso, levantar o peso de forma incorreta pode travar a sua coluna lombar.",
+      "codigo": "RC-1018",
+      "novo": "Abaixo de vasos pesados e úmidos costumam se abrigar aranhas e escorpiões. Além disso, levantar o peso de forma incorreta pode lesar e travar a sua coluna lombar."
+    }
+  ],
+  "removidos": [],
+  "novos": [
+    {
+      "depoisDe": "RC-0410",
+      "texto": "Lembre de proteger também quinas que ficam na altura da cabeça e ombros"
+    },
+    {
+      "depoisDe": "RC-0472",
+      "texto": "Limitadores não impedem que objetos sejam lançados abaixo. Esteja atento para que crianças não joguem objetos, brinquedos, etc"
+    },
+    {
+      "depoisDe": "RC-0563",
+      "texto": "Queda de objetos lançados ou vasos de plantas"
+    },
+    {
+      "depoisDe": "RC-0761",
+      "texto": "Não deixe ferramentas elétricas de corte ou perfuração montados quando for ade uso"
+    },
+    {
+      "depoisDe": "RC-0790",
+      "texto": "Consulte a ocorrência de chuva onde você está e nas redondezas"
+    },
+    {
+      "depoisDe": "RC-0812",
+      "texto": "O sentido de trânsito dos veículos pode variar conforme o local onde você está"
+    },
+    {
+      "depoisDe": "RC-0956",
+      "texto": "Consulte a previsão do tempo onde você está e nas proximidades"
+    },
+    {
+      "depoisDe": "RC-0978",
+      "texto": "Compartilhe o trajeto."
+    }
+  ],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Usemos recarregar, em todas as ocorrências deste termo"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não entendi o contexto"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Vamos linkar conforme falei anteriormente? Viável, aconselhável, útil?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Entrar dentro é pleonasmo"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Se não houver redundância, podemos reinclui este item apenas dizendo que muitos acidentes com liquidificadores..."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O correto é os hélices. Porém em portug~es do Basil isso pode soar errado. Eu prefiro usar o gênero correto. Seria preciosismo?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Idem anterior e em todas as ocorrências"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Onde e quando este contexto for aplicável devemos citar de forma leve, sensível e informativa."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Corrija onde aplicável neste item"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Contextualizemos crianças, idosos e pessoas com limitações cognitivas onde e quando aplicável ao longo do app. Analise se neceessário considerar neurodivergentes mas com o cuidado de garantir a leveza necessária."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Considedrar onde, quando e no contexto que pets também podem esbarrar acidentalmente ou não."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Devemos explicar, mesmo que de forma simplificado onde e no contexto aplicável."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Explique de forma simples e didática sem onerar o contexto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não me parece um dado estatístico. Analise e resolva"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Podemos correr o risco de causar incômodo  com fabricantes?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Analise se estamos conforme os mais indicados protocolos de segurança em primeiros socorros. A depender do local do ferimento (hiper irrigação por exemplo) remover cacos mesmo de cortes pequenos pode ser uma prática perigosa. Analisemos"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não seria dupla face? Ou ambos?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Dentro deste mesmo contexto, onde aplicável incluir caso ainda não haja no app o cuidado para não deixar aerossóis, isqueiros ou qualquer recipiente pressurizado no interior do veículo. Ressalva que este cuidado é caso o veículo será exposto ao sol e seu interior atinja altas temperaturas (as quais já foram objetos d eestudos até em reportagens sobre o tema)."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não está claro o que queremos dizer com \"detalhes\""
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O correto é mantém ou mantenha?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Não seriam bloqueios?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Existem vedadores de portas em diferentes materiais disponíveis no mercado."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Contextualizar onde aplicável que idosos e portadores de necessidades especiais também são suscetíveis a este tipo a este tipo de acidentes"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Lembremos que crianças pequenas e que engatinham podem estar expostas a este tipo de mobilia"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Quando se trata de box é dentro, na área de banho."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Acredito que seja uma possibilidade remota mas que pode ocorrer. Crianças se pendurando nas telas de proteção. Analise criticamente este contexto."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Lembremos que crianças podem encontrar uma maneira de acessar mesmo tomadas mesmo em locais mais altos"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Seria incorreto ou preciosismo que citemos também, crianças pequenas?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Citamos aqui ou criamos outro item para afalar sobre afogamento secundário? E sobre o risco de a criança ter ingerido água do sanitário por conta de ser uma água contaminada?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "O leitor precisa saber o que é CPSC ou outras siglas ao longo do app?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Importante citar sobre piscinas vazias ou em manutenção onde aplicável no contexto de prevenção de quedas"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Importante registrar que estas piscinas não devem ficar expostas a chuva para evitar acúmulo de água e consequentemente ter risco de afogamento"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Na realidade brasileira colocado desta forma não faz muito sentido."
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "No contexto doméstico?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Válvula de segurança é inerente ao sistema de gás de cozinha. Perguntar isso me parece incorreto"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Isso me parece estar no lugar errado"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Cômodas não me parece ser um móvel passível de instabilidade"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Entulhos na garagem?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Está confuso, não está? Garanta estar dentro do contexto"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Companhia aérea?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Existem ônibus que não são rodoviários?"
+    },
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Inter é abreviação? Se sim, favor evitar)"
+    }
+  ]
+}

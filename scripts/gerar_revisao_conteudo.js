@@ -947,16 +947,29 @@ async function principal() {
     }
 
     console.log(`\nSaida: docs/revisao-conteudo/`);
-}
 
-// Só executa quando chamado direto. O importador faz `require` deste ficheiro
-// para ler PAPEL_DO_CAMPO; sem esta guarda, importar o gerador o RODAVA, e uma
-// simples leitura de constante reescrevia o manifesto.
-if (require.main === module) {
-    principal().catch((e) => { console.error(e); process.exit(1); });
+    // TEMAS e uma lista feita a mao: nao ve arquivo novo nem prosa escrita numa
+    // tela. A trava varre o app inteiro e diz o que ficou fora dos documentos.
+    const { avaliar } = require('./verify_revisao_conteudo');
+    const cobertura = avaliar();
+    const fora = cobertura.pendente.length + cobertura.semRegistro.length;
+    if (fora) {
+        console.log(`\n  ATENCAO — ${fora} texto(s) de usuario fora de qualquer documento devolvido`
+            + ` (${cobertura.semRegistro.length} sem registro nenhum).`);
+        console.log('  Ver: node scripts/verify_revisao_conteudo.js --listar');
+    }
 }
 
 // Exportado para o importador: `importar_revisao_conteudo.js` precisa saber
 // quais paragrafos sao rotulo de papel deste gerador, e nao texto do revisor.
 // Sem isto, "ITENS" e "DESCRICAO" entram como inclusao humana.
 module.exports = { PAPEL_DO_CAMPO, MARCAS_DE_MUDANCA, TEMAS, extrair, montarDocumento };
+
+// Só executa quando chamado direto — DEPOIS do module.exports: a trava
+// (verify_revisao_conteudo) importa este arquivo de volta no fim de principal().
+// O importador faz `require` deste ficheiro
+// para ler PAPEL_DO_CAMPO; sem esta guarda, importar o gerador o RODAVA, e uma
+// simples leitura de constante reescrevia o manifesto.
+if (require.main === module) {
+    principal().catch((e) => { console.error(e); process.exit(1); });
+}

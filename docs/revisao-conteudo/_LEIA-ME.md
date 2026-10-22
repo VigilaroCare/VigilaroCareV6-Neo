@@ -56,3 +56,32 @@ Os documentos PS, ED, AE e EX com as anotações e correções do Agnaldo foram 
 
 As cópias locais `.anterior-*` foram apagadas depois de conferido que eram idênticas, byte a byte,
 a essas versões do git. O que cada revisão mudou está em `_plano-<documento>.json`.
+
+## Trava: nenhum texto chega ao app sem se saber se foi revisado
+
+`scripts/verify_revisao_conteudo.js` (`npm run validate:revisao`, parte do `npm run validate`) varre o app
+inteiro — `data/`, `screens/`, `components/` e os textos de 70+ caracteres de `locales/pt-BR/common.json` —
+sem depender da lista de temas do gerador. Foi essa lista feita à mão que deixou 986 textos fora das revisões
+até a RC, e a tela `PrimeirosSocorrosEmergenciaScreen` inteira sem revisão humana.
+
+Cada texto em pt-BR cai numa de quatro situações:
+
+| situação | de onde vem |
+|---|---|
+| revisado | está num documento devolvido (texto original do manifesto ou texto novo do `_plano-*`) |
+| em revisão | está num documento enviado e ainda não devolvido (manifesto sem `_plano-`, ex.: RS) |
+| aprovado | mudou fora de documento com decisão registrada em `_registro-revisao.json` |
+| pendente | sabidamente não revisado — backlog, registrado com o motivo |
+
+Texto fora das quatro **faz o validate falhar**, com arquivo, linha e texto. Saídas:
+
+- mandar para revisão e aplicar o retorno (o `_plano-*` passa a contar como revisado);
+- se o Agnaldo já aprovou **aquele texto** (ex.: por chat): `--aprovar "o que ele aprovou e quando" <arquivo>`;
+- para seguir sem revisão: `--pendente "por que" <arquivo>` — fica visível no backlog.
+
+`--listar` mostra o backlog por motivo e por arquivo. Os `_plano-*.json` precisam estar no git: sem eles,
+o que já foi revisado volta a aparecer como não revisado.
+
+Registro inicial (21/10/2026): marca REMOVER resolvida, grafia, concordância, tokens de país e replicações
+pedidas pelo Agnaldo contaram como aprovadas; a volta ao imperativo dos primeiros socorros e os pontos da
+D27 também. Toda reescrita de conteúdo cuja redação final ele não viu ficou **pendente**.

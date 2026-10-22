@@ -1,0 +1,9914 @@
+{
+ "sobre": "Gerado por scripts/verify_revisao_conteudo.js. Cada texto: [situacao, arquivo, motivo]. Nao edite a mao: use --aprovar / --pendente.",
+ "motivos": {
+  "m001": {
+   "texto": "Aplicacao de revisao devolvida: marca REMOVER resolvida, grafia, concordancia, tokens de pais, siglas explicadas e replicacoes pedidas pelo Agnaldo (antitombamento, recarregar, Em um, antiaderente)",
+   "em": "2026-10-21"
+  },
+  "m002": {
+   "texto": "Primeiros socorros de volta ao imperativo, a pedido do Agnaldo (21/10/2026); conteudo da revisao PS/NV mantido",
+   "em": "2026-10-21"
+  },
+  "m003": {
+   "texto": "Confirmado pelo Agnaldo por chat - D27 (21/10/2026)",
+   "em": "2026-10-21"
+  },
+  "m004": {
+   "texto": "Alterado depois da revisao - o Agnaldo ainda nao viu a redacao final",
+   "em": "2026-10-21"
+  },
+  "m005": {
+   "texto": "Texto novo ou reescrito num arquivo ja revisado - o Agnaldo ainda nao viu",
+   "em": "2026-10-21"
+  },
+  "m006": {
+   "texto": "Nunca esteve em documento de revisao (levantamento de 21/10/2026)",
+   "em": "2026-10-21"
+  },
+  "m007": {
+   "texto": "Texto de interface (common.json, 70+ caracteres) - nunca esteve em documento de revisao",
+   "em": "2026-10-21"
+  },
+  "m008": {
+   "texto": "Texto juridico - revisao propria (D25), fora da revisao de conteudo",
+   "em": "2026-10-21"
+  }
+ },
+ "textos": {
+  "00297cb12ffdd6ed": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "002da006e4932453": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "004960333a26591a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "004c3250d07861b9": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "005016e8c0a36b71": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "0083722310dd8193": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "00a3fea7bcf09688": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "00adbe92863f444f": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "01119fc1100ef75f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "012fb3993b832967": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "013097201d6b60f0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0165a4704f8ac6c1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "01668a3c4dc6eb91": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "018e591f971ef709": [
+   "pendente",
+   "data/intro_safety.js",
+   "m004"
+  ],
+  "01a98ddc36879cc0": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "01e904770bcb63a9": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "01ec8e22d8e040c1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "01f8c88601cf7f8b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "01fb543b4c42470d": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "020339a40fc5ed4a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "020b03f07dcd6db5": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "02335c4c2a3cdbc7": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m003"
+  ],
+  "024a2618a1ab415b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "024b8788c9c07daa": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "0271138f5ca79a47": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "0276baf48f0d3162": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "029070ab06a89018": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0292ef15bd53bf60": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "029ec74a0b2b944b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "02d7592e92783482": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0315d4f9fdaca324": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "03a1882a1abc0002": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "03a9f7019ec9bb46": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "03d4f488f12354c4": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "03e1a37ce986d3f6": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "03ea233e246c4f02": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "0407fe06970bb79b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0460dc054ff9a673": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "049eda35d33ff943": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "04c69074675b50a3": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "05022f15239f3fb0": [
+   "pendente",
+   "components/BatteryMonitor.js",
+   "m006"
+  ],
+  "051ebe62716d19f5": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "052b5eb731905b3f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0534b15871ac9939": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "05a5546434f8c3cb": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "05b20ff89dde1830": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "05ec07d0ac8370bc": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "060a0a6184e1bdca": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "0672b75a3ce89e7d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "06760a7b750640e2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "06766b8bccb441d7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "067ed9f2c6aaf2e9": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "06adcc65559faaca": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "06bd8ba5812467f2": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "06d8f29133e09486": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m003"
+  ],
+  "0738c9d8b3927f47": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "078d868ab58d6ffb": [
+   "pendente",
+   "screens/SituacoesTemporariasScreen.js",
+   "m006"
+  ],
+  "078df6499f9478b1": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "07d36e6ca908b1ca": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "07d8190576e2afba": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "07e60a972e0e19ec": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "08fef40be47a9288": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "093342765bfa8f9f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "09777c2c9189b44d": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "09a2e71a37e09ab5": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "0a31e1f5e18a19ea": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "0a39767c67e54a21": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "0a975e8c0091f8ca": [
+   "pendente",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m004"
+  ],
+  "0aaf9c21e30d64f8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0ac9d223cf584cc9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0b014eb7c4997d12": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0b24fa1d98f9eb93": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "0b258061fc3483fa": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "0b368c9f569399b7": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "0b58cdd00db7d289": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "0b64999e7e2f9e83": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0b9864f071b24cdc": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "0baa4c7c93bb85b1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0be6685781062cdf": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "0c158f97cfa06790": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0c2eff59319dc389": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "0c4f55e50c4ef2dc": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "0c5afd52d62e66d2": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0cc7962c7d363601": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "0ccf305c27e1f85f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0cd7cf1b135a734f": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "0cd7d5320f248e33": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "0cdc018feb51efec": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "0d14d095f74a83c5": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "0db64dfd91d63de2": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "0e0584b0ddd64d37": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "0e0e40fd21dcec6f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0e4955b1d23a3779": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "0ea8180963b96296": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "0ea90d1ceae6d667": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "0ed60760ac938fc5": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "0efcaef8886805bf": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "0f48114d6606c735": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "0f64fb59e08b4ba5": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "0f7c6870238b980e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "0fb2bf37232a11a8": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "0ffb8d1b7afb0192": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "1004e23eea633ad0": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "102569ed2c8cc406": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "103e73e16ef02fe5": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "1053d3019548c2d7": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "10672895c372a7c1": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "10889b5c842e4b2c": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "108fdbdaa9cb34d2": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "10d54b26aa3c8908": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "10e5e9788b802aeb": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "10f40dd6ec5bc2cf": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "10fb3c186f68acb2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1177cd69bf1bad94": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1183fb3ec810ef9b": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "11a24ec7a90efee6": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "11daf047489fd01f": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "12107ca3888d150e": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "12a6a8bcb8fdf28f": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "12abfbcd763009f2": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "12d24d8721757186": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "12de230598191d45": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "12e3edbdbc1c66cd": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "12ecd6e42f827fba": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "132001964941e863": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "13358d3736a7ae7c": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "1342434d833c17f6": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "1388d8f7f50f79eb": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "138cfd3bd2bb0637": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "138e65588664dbe8": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "13cb6470e3fca5c7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "13e3ae7cd4ce023a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "140488305f749810": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "1409409a5d2d22a2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "1417d6568ad739a8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "14314b5fd4dfe461": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "146e1e1d71cd305d": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "14929fc19b1ac430": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "14e3eec60a5e8999": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "14edeab906ae3d54": [
+   "pendente",
+   "data/onboarding_data.js",
+   "m006"
+  ],
+  "14f11290b1c7e472": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "14ffd365bb3ead7a": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "152d629582f7945c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1585449be2d205a3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "159e5dd6757a719a": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "15ca3203bd02662b": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "15f30c24eb32821d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "163b8187a9e34e90": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "16652af41f818301": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "16710a77e27cda1b": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "169e496c4fcb2020": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "16a81b7e3a3f67a2": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "16d242c4810e4aa6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "16d5a6b5604defa5": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "16d9ed6230b39f0b": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "16e60d282c403c28": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "174595cae65ce60e": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "1756895740a1e847": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1768c97d89c39a0a": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "1784d23036853370": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "179ac2881bed8b21": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "17a2e2c251c5ab0a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "17fdfeee2abffc82": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "1801a4990aea4ca2": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "182e7c527ed7d444": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "18b94fb01beb6396": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "18bd565341d412a5": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "18fa0e3cbad5ae6a": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "190cbde3df810eeb": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "1981f23a9de12991": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "19f1df00b3d64139": [
+   "aprovado",
+   "data/produtos_categorias.js",
+   "m001"
+  ],
+  "1a710ee18eebb999": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "1a9d92ef7d7f7384": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1ad8b0adf755e8c7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1af445e5e977f2f8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1af727b05a60660b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1b136c3a7ef6ff26": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1b190ef3e41205da": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "1b19eb7d15e1627b": [
+   "aprovado",
+   "data/micro_blog.js",
+   "m001"
+  ],
+  "1b674f83e77ccf91": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "1b6d3e5a3de55aa6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1b7081538b4d6194": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "1b7c170dd8d7bdb0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1bad7127b7a3a161": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1c059b20e2743564": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "1c25888557caddb0": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "1c2e71be26a889b7": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "1c32662fbacd1122": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "1c933d66f0c8a439": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1c99a2d31a3f089d": [
+   "pendente",
+   "data/radarSazonal/textos.js",
+   "m006"
+  ],
+  "1cc9f7dc01b2ab12": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "1cfc5b3bf2d2939f": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "1d2e7f9635c397ad": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "1da28c7efa2334c9": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "1da5c0b80030f0f7": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "1dcff45c3cd29bb3": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m004"
+  ],
+  "1dd5d07a0a4800ea": [
+   "pendente",
+   "data/fases_vida.js",
+   "m004"
+  ],
+  "1e0defbd2ea025c6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1e0e2fd5c4dff45d": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "1e13741b6948a360": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "1e34acb28320e764": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "1e3f05ee6772fd6c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1e83d3ac40e83e7b": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "1ebcb32d75cece4d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1ecf59fb6323f336": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "1ee79bbba5666b56": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "1f026ba906e60f10": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1f32076e5394c17d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "1f4e5993cfa7a60f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1f5a41ace8028505": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "1f784033bc031ba8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1f7f052354275d09": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1f844162c1ec8012": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "1f9abf378b02bcb0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "1fae44aed4e06481": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "1fafe0b12e18d65c": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "1fda3cd4f3ef57e1": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "1fdc47372a30539a": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "1fff06be50eb302b": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "2029916fd8ee67ef": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "2044f295fc97c623": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "204f16e4a8dc702d": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "208d6f315fb4b234": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "20aff751dc3731ed": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "20cf0530ce4b59fe": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "20d580d5f252539d": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "210a307194da2039": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "213305d962f2f88a": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "2139e9485a4a5e7b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "218a848e9c32c7ec": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "21974cd0f4e9dbdc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "21bbf222b381413f": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "21c8a6540d9ca7b8": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "21dab032c6b04740": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "21f47234f9d173f9": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "221e9dd378cdd743": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "22391abc4841ce29": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "228cf600ebf5ad2d": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "22df8a3a3630d277": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "22e2c06c68f07386": [
+   "aprovado",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m001"
+  ],
+  "22ed3567e8643b55": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "2320873f2e9e8344": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "23450276eab687e5": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "23914b6578bf1d2d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "239b457b1e2a75d8": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "23d056c333e75818": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "23ec38b86138081e": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "242217fdb594dfe6": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "242abca251f74f34": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "243ba8b6d5ea8046": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2450703e530059e9": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "24508e6d5c4a165c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "246c93492d8f55fb": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "248106e7e1d39765": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "24b9ea0c061b2ae2": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "24cc2bdf6c21fd4d": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "24f6e00cb1927e88": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "250045ec676d0c9a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "25cadc7c72cffc5a": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "25dd153d9d4fcf88": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "25ee0ddd07abf307": [
+   "aprovado",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m001"
+  ],
+  "25f1a0cfe78ed756": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "2632d357e6ec11ca": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "26367cef8a12d76c": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "2645104882c522e0": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "265f6793fc4b2d54": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "2668552009d85663": [
+   "pendente",
+   "data/locales/pt-BR/RiskCategories.js",
+   "m004"
+  ],
+  "26b6e2d41834c859": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "26cba9a1af38550a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "272e159930f22c85": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2742a5b2cc9c8372": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "27bbcb254ac0c5a7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "27c4c1a78a9c164f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "280b29cee866d516": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "285a0579bd928914": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "28a50544b8ea91db": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "28b06c835885a9c2": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "28d4e959f5ccc15d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "28ee7c78cc392de7": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "28f141d02408293f": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "2940549df5f0b1aa": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "2947c5230affe275": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "298874340d5d5d52": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "298e1dd60c763053": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "298fb3596d88c15e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "299982b305426fe8": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "29e45a2e428b70f5": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "29f6bbdebfa3bb2b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "2a1a8488b53e691c": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "2a1bb51d0375121b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "2a1bce8f3f787fc3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2a34be5bb7348683": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2a37a9a3c915108b": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "2a3eec5a24f2ce3a": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "2a77e2de61ba5dfa": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "2a8811cabf9c2763": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "2aaab84686ae3247": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "2ab543b046cbc7bb": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "2ad6515c9d48f6d2": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "2add88bbb5748e18": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "2ae8c7971aa2646d": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2b2237eb7c1dad0a": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "2b30abf512c5aa04": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "2b58adfe96f395fa": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "2b65204d51d6be01": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2b8b854bb795deb7": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "2b93b925af559a02": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2b9d1f6d87926cd4": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "2bd9e99c546b620c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2bdf817d1a28e813": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2c0028ab9cf34cc2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2c566df572c0d733": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "2c7c8b8c1fe1581c": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "2cba49786a4fffcd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2cbc218c63620257": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2cfc9335f40444cc": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2d017b7aa3f5711e": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "2d124f7b105539b7": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "2d17e39d7d2be7c3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2d20e1ca15ae64f8": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "2d34b7a2b5cfb86f": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "2d53f1ad228a6317": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "2d8798fbbff64b07": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2db6f89157a45906": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "2dc07b249fd70f2b": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "2de3239935cdb89c": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "2dfd32ce014d2728": [
+   "pendente",
+   "data/areas_internas.js",
+   "m004"
+  ],
+  "2e0d73910c12b0bc": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2e1f7cffb4f4d790": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "2e515140bc88a541": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2ec8b041889d1753": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "2eca7aaaa59b8d3b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2ee8d29152e8793b": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "2eee63a7b366e88c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2f00780501a57460": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "2f06d143c966567f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "2f42eba32f0cd68b": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "2f51d0ddf28051a0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2f7958b2785559cd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2f79e8d9889ddcc8": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "2f9a04d49766d70b": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "2fba1d4640111c18": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "2fd04e9c770ed48f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "2fe3670fbfa54624": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "2ffe46ff2b919398": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "303f92cf19b28ce3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "305eceafbe382f00": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "30777d3f92716282": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "307d6e4404fc20e7": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "308841ad548230d7": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "3096843393aef726": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "30e71cf8d159f620": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "30fd8e2fc436d978": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "310e8f3291c88e80": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "311a74f08d20d427": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "311b84e4a8cba775": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "313fd1d98b5032a4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "314601896af89f50": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "316248974a1e2057": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3167419f7d21ab51": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "31819d10c53abb08": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "318704c42b4fc1af": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3193d3ee83e23e5f": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "31c2de4abe8a7ccd": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "32076e45492f624c": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "32246e89ef47b038": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "323c6c9cd096ad31": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "326dc5677c8fe847": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "326f3e288d08ad84": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "32b6340cc5022944": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "32c90693a466844b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "330392998fbac8e1": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "33a15cb1d389eb45": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "33fab7a62058243a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "34168362c02861c6": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "343305b4f0371ba4": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "34a2ea0ea9434e8e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "34b10e166196d2a8": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "34ca34c65cc183f4": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "34db95c88795fcef": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "351badea7fbb529f": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "353f27fb01026d18": [
+   "pendente",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m005"
+  ],
+  "353f28284c11b1a9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3541db8846882d9c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "355a71d1dc40d58a": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "357eb5261c9d25e0": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "35a224b0b5ebf865": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "35b8d20890bf035b": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "35c76a6497238195": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "35f0b88c2a648c22": [
+   "aprovado",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m001"
+  ],
+  "3603630aa91d1e3a": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "3613daa04382a288": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "361a250bc4427c60": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "36239da8210b3feb": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "3626f7899da991e8": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "36397af055b8d7cb": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "364d79d94a84b6f9": [
+   "pendente",
+   "screens/Checklists/OndeProtegerScreen.js",
+   "m006"
+  ],
+  "364dddc6ec7c82eb": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3661f64c1167939d": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "3699053f8af0f3f0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "36dc070a3c7fb011": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "3738ef01ea492f74": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "37642a857bf8ad16": [
+   "aprovado",
+   "data/safety_toys.js",
+   "m001"
+  ],
+  "37a3d05c24a75146": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "37c17cefa25a543b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "37ff39050edc5a7a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3802d3f49195dbc2": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "3807cfe064232600": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "38126d25f023419a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "3812a97cabfc42d4": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "381e5904627db830": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "382f1d874a91beb4": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "383f0e2de914ca89": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "384b6408979c477f": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "38627e9f1e04a7d8": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "38aecb41828a3644": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "38d0c0a663351b4d": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "38f1eaad54efcfa3": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "390a73ca3cccb837": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "39251a3840c1b159": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "393f08c80901ffb9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "397f87b18f6d72c6": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "399e4fa1502915dc": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "39f61d2de2cfd1be": [
+   "pendente",
+   "data/utensilios_reviews.js",
+   "m005"
+  ],
+  "39f7313f699d4ca2": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "3a3693ee95405cb7": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "3a50700d1186f6d1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3a5d73a5e8512e3d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3a77a220a35704f0": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3a8321b99d7b6e85": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3a8a61a4cdc7ae5b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "3a8ef0dc06f60df2": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "3aea90b3621b8544": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "3b0617d96bbf374a": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "3b1b2136638f73f1": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "3b55b89888d664b9": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "3b581f5f4c0cd3fd": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3b5bb153b0fde67a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "3b99db1cdba958c3": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "3bbcd9152128c5ee": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "3bd0992bf8576c9f": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m004"
+  ],
+  "3be5e0b9ab975c47": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3be7f0fcb2b1bd71": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "3c1d2c7c5e8a1d11": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "3c24c0333d3335b4": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "3c4bcb9a01e58ccd": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "3c53420d7394e252": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "3ca2707cb9a4c665": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3cb670dd31056254": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "3cc71759d83ebb1c": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "3cff35a09bb0c666": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3d05d54025615873": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "3d1c74dece6dbecc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3d457351db0267cc": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "3d45bb502cc51e5d": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "3d4721dda139c4e9": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3d488da7b3cd7063": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3d6bf3c14637ab92": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3d7d153a98552e82": [
+   "aprovado",
+   "data/riscos_fisicos.js",
+   "m001"
+  ],
+  "3d82ecd4de0357da": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "3d868eaa2d624baf": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3d9f07cb0abd43ac": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "3da05567195af6c7": [
+   "aprovado",
+   "data/mobilidade_data.js",
+   "m001"
+  ],
+  "3db35b26609cd27f": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "3dc46be8c14a4592": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "3de1694494ae2327": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "3df21676c81441f1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3e09087870d21df5": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "3e0db8adafdbbe91": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "3e2686da8ad067ec": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3e29904e77fecbcc": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "3e8a8cd11568f7af": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3e8b90951b80a471": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "3ecc3ae6dd13b6b1": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "3eec36c63a975e77": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3eecff1974abaa1b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "3f39d1019de7f656": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "3fb8cdd00d14cc03": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "3fc39fb5daf86e5a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3fc66851c0c2187a": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "3fc70b7fe2c829fe": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "3fc85f2298ac9c59": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "3fd5b56b3c73ffd2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "3fdc6076ce3338fb": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "3fea79b506154501": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "401f3390380c2455": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "403dc15eaa306c1b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "4046dccc5c016d82": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "40a6222c479442ec": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "40ddc1318c659d6a": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "40de064305313c50": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "40e66507702018fa": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "41082d51c8f3c107": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "411f97293b40643d": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "412ad9b41c22bbc4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "412ba346d5c3eac0": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "4144decc6503cc86": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "4156700167fd1f27": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "4226375f7dc6e303": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "42514a6d6d1364b3": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "429caaa29a5b9244": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "42bd96808d461f7f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "42dd4d6a714723b2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "4362b530e8d52817": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "437512e15d59ae43": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "43afae6b745f1945": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "43c87206cb493df7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "43d7d8272bf7c70b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "43e5b1e7815e7abd": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "4434d3a0712eae17": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "445d646338b3d299": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "4495175588dad2de": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "44d798f3799413b8": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "44f2ceb11fe92f26": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "45569b2490cc39f2": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "455af2279cae6223": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "456343d0c2f7bc31": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "458ffdabc2d50d17": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "459d29c8010b25ed": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "45d72c0649375dcc": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "45dd74a516777204": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "45dfd8a0095c5c1d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "464faab41379430c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4682f2ba9f3be10c": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "468a1f7a81959585": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "46aba63ddc9ada53": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "46c3d4c19dacae53": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "46c4bf1158679a0d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "46d9617a16ae232f": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "4700882b475297f9": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "47121dfd0e660ba5": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "471d46482071322b": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "47305976827be604": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "47725ebe575a3232": [
+   "aprovado",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m001"
+  ],
+  "47ce04e8d85e0ecc": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "47ce44e14224598b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "47e76e823150c2b9": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "481151d71f36ed50": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "48167d9f9545b545": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "485d0491988b6ada": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "4866455e1d9246c5": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4876eb3c5a39adf2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "489a953787c2570b": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m006"
+  ],
+  "489e3ed238763804": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "489fa468a4eceb9d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "48cbc8dd50f8c85c": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "48e0a0a9901e79fe": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "48fed5e0b34bc7f1": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "4913e4e157f5e1bb": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "4928167466bc4966": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4962719f130b5a68": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "496e4bf4e5798395": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "498480a0abaa0b58": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "498f7823453bfda7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4997ff4e12324bba": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "49a0a878c8e8bd99": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "4a00c29d7b30567c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4a46c9768f5e94e4": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "4a62c365e37e8ae4": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4a645c2640bc45e3": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "4a89bd27e6bddf94": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "4a9f5e58e3d94294": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "4ac5c07eb53141cb": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "4b42bef5ec764256": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4bc3cfedbb5fd631": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4c1866ddecf5a8af": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "4c21ea1dacd3cc7e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4c5209a166f8c715": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "4c793d1c596b9a7b": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "4ca3c447c11dcd1a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "4cadb0913fa3cf1d": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "4cf8650799eacdbc": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "4d7236cd59224ae3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4da754210030e24d": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "4df9335c29f24e8e": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "4e130fafdd8fc6ff": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "4e19f9ddcff78dfe": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4e25ff3e61486d1e": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "4e3bde5e7ce1a583": [
+   "aprovado",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m001"
+  ],
+  "4e62d43ccf1df5ff": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "4ea6c309a2b2efe3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4ea8de283a431651": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "4eb0586cbf5747dc": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "4ed096b69f8d563a": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "4edd1f402adecb1e": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "4f18b93f0468baba": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "4f2a9ef5aea15d7f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4f45e5fa8335efad": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4f4da5af43433a04": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "4f51e7e9fe2c0357": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "4f7704338b23a522": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4fa6d1acd26ab976": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "4faa97c885a0953d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "4fb96f44b39a7c47": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "4fc459dba9ec3ce3": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "4ffef999affa137b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "50018c9308b5dac0": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5015904476c98ccc": [
+   "pendente",
+   "data/utensilios_reviews.js",
+   "m004"
+  ],
+  "501d98077d38635f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "502ac58d6a3f8510": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5068d7cf1a89226b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "508ffd83c71d1e3c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "5092c881631f2d44": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "50a2fb957309cf9c": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "50a45fab443ba0db": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "50b4a94ce7c53b49": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "50f551e5aa34ace4": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "50f5acb141f7e970": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "511b7b902793d818": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "512d1a41d2300c93": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "514660037b51b028": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "515cc9f66be68ec4": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "51b9b75438c33148": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "51e2e01a61b42dec": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "51e3873c56a3c198": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "51e7c418ff3c0f94": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "521ca598cb9ed5aa": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "5224c2e8cd6fa5e6": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5294386dcd1109b7": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "52e0a264299fc924": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "530b9d7bb59bcf22": [
+   "pendente",
+   "data/intro_safety.js",
+   "m005"
+  ],
+  "5334e6adee8391be": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "536d055dbc206a8c": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "5398fb3efc64ffe5": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "53d7d4283f010174": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "53f18be2fd452e30": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "53fea5614b9f1b6f": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "54371a7e2202f348": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "54510497ce0500cd": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "5486f179a16b7be6": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "54986ab1f88012f5": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "54a6f2e487f65af0": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "54b738d2259f1536": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "54b93e623de984ed": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "54c7e69da73d857f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "54d1cb3093242603": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "54f5e704838decff": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "55000ecfdd61e0dc": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "550e183215f12633": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "551b292bba8d4aea": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "55344bb554a35d8f": [
+   "pendente",
+   "data/areas_internas.js",
+   "m004"
+  ],
+  "5564b4ca3e22b1d5": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "5567bc0440872894": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "558b5bd6ef474a85": [
+   "aprovado",
+   "data/radarSazonal/br.js",
+   "m001"
+  ],
+  "5596063b32180892": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "55d7a7fbd2be46a7": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "55d7e2d938a3093d": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "55e027a9cc8c2ca0": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "55eb3ce28abceb5a": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "55f81e865b65aa7b": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "5626882add223e89": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "562dbcc8d0e97b6e": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "563d8b8e1fd1a8cf": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "56661381ec9d9c76": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "56786f67b9aa87c6": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "56cbfa0e8dadfa79": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "56d86f9d1e4335b2": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "5726fcff4ed21113": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "57657a16accad002": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "57ca7f0f40e34bb8": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "58106a7d2f7e6773": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "58147de87b99a977": [
+   "pendente",
+   "components/AvisoPaisEmergencia.js",
+   "m006"
+  ],
+  "5838a6064cdab5c7": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "5866c914273d2c91": [
+   "pendente",
+   "data/utensilios_reviews.js",
+   "m005"
+  ],
+  "589acf0efe661156": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "58cf275576042356": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "58e80fecae899011": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "5908c6e21d807af0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "595d1df6143d36ff": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m005"
+  ],
+  "595fe02107d9749c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5990db161339d93b": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "59b5515fde3c3064": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "59d391196c4a9798": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "5a40572183eeb8af": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "5a40e0ef835c106b": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "5a703032ffe48ad9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5a9a93154ca51aa0": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "5af74184d6cabb33": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "5b4ddd4f7e0d42ac": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "5b56df5cf7d3472f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5b738d1737bd4655": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "5b7ec387d85dc292": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "5b83f347285d5fd7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5b8b22d72a9f8e4a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "5b9fb5a694650a4e": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "5bb2bded8a455c50": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "5bbc440f61bbc187": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "5bbc960effc8f20f": [
+   "pendente",
+   "data/areas_internas.js",
+   "m004"
+  ],
+  "5bc12992ad2baa6a": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5bd110ce2d2260dd": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "5c311208b509bbda": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "5c3bed7e2a1ed062": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5c41763e8257d14b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "5c52a40abab44c06": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "5d1989890fbedba6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5d1ee60c582e417a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "5d2b54c0b1bcf7ee": [
+   "pendente",
+   "data/safety_condo.js",
+   "m004"
+  ],
+  "5d3c1982dfe01ff5": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "5da60096666738e0": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "5db80bb74d8acf68": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "5ded7331edea7d65": [
+   "pendente",
+   "data/areas_externas.js",
+   "m004"
+  ],
+  "5e08af75959e937d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5e1f95763b6627fc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5e36ad1b25492378": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "5e5994f36d507a83": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "5eb2650ccb16ae7f": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "5ef14ea53addea67": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "5f05607cf46b2fac": [
+   "pendente",
+   "data/locales/pt-BR/guiasSeguranca.js",
+   "m005"
+  ],
+  "5f250702679739d7": [
+   "pendente",
+   "data/areas_externas.js",
+   "m005"
+  ],
+  "5f38d6d0f4b8d527": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5f53214e063d19b6": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "5f54b11398504cb6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5f70f99d27e03cb9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5f72383f62ae50fa": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "5f761f38e3a92d0d": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "5f7dafedf4b04531": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "5fa5cd8dee16d9ca": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "5fb4972d6932bff8": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "5fee257d43182d51": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "5ff9b260b3d96abc": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "600a8330bb57d452": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "604dedca9d9957cb": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "60573e3305d5a873": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "60793ee4c8a07625": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "60a79ee6e0936b79": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "60ce5c3395890640": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "6114b162a229c260": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6116b0217c280f06": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "612210fc953f72a6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "61290091f757ff9c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "615f1371a2236073": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "61869e25d13c609d": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "61a8d2c6e2b70d54": [
+   "pendente",
+   "screens/AcessoriosSegurancaScreen.js",
+   "m006"
+  ],
+  "61cad0edac88b2a8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "61ec848db9174749": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "62124e081768c70a": [
+   "pendente",
+   "components/SafetyDisclaimer.js",
+   "m006"
+  ],
+  "623c80ed37865fd6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6242e1a608ebbb0b": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6246ee1ba0b45de6": [
+   "aprovado",
+   "data/riscos_fisicos.js",
+   "m001"
+  ],
+  "624d504103ff9511": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "62542cc10d7dcb31": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "626197ed68bcaf02": [
+   "aprovado",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m001"
+  ],
+  "62635febe7decc9b": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6283ca560c80ba09": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "630c9b188a70c420": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "630ca6b694e4a19b": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6359bf3b3e35b3f2": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "636ce9154e830ca7": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "639d996eb8ca680f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "63b620b411247df7": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m006"
+  ],
+  "63e3b9685f6abef5": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "63f306aa69ade5a0": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "641c6afe22b3e139": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "643436d05a5d06c5": [
+   "aprovado",
+   "screens/SegurancaFeriasScreen.js",
+   "m001"
+  ],
+  "643b8e66b4a6d7fa": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "64878ced98ddfb40": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6491a856015231dc": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "6493aa2c46fd0c0a": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6496b58736ee5691": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "64c5d396ea534fde": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "64eebc8a32dfc429": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "64ef05b2056e502d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6501b46e9a21d0ed": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6511ddff17e2ee2e": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "6517e80a858680c7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6521fb382e63a472": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "652bb2600da4b837": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "652ea208d8c79e47": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "65a1abe2c15ee923": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "65b06881ea8e9b4a": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m006"
+  ],
+  "65caac8721b8ef1b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "65f5ec16914668cd": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "65fe8055988325d7": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "66441804cc3cb767": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "665f0b8bd59c3dcc": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m004"
+  ],
+  "665f32892a17342c": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "66602c12a6c9333a": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "668499e27dcb6cf2": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "668cc1ebdba4915e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "669462158c51fb3e": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6695fcc534a5de19": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "66bbbb79cce78c7d": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "66c90633f16c3176": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "66f60e4a320d8e65": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "67195677da0f0d81": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "671dcc4b75eb33c6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "67247e319e43fa86": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6736d23efba90561": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "6747be29ab7e0a13": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6768729ad27b44ab": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "677eda30621b0185": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6787da0ea24b9b01": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "67a9f427a33fa263": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "67c3930f9a9e4d63": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "67c81c2c15d2ee01": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m005"
+  ],
+  "67fa439c68fc62d0": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "6856f3c7239093de": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "686915f63ba31947": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "68906b9393b3a105": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "68ab965cf6df25de": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "68ceaba62b13c88a": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "68d926bb81cc9561": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "68d977bdc4b6fb8f": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "68fab7b30dbabc82": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "68fe80e7fa9fadf8": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "691f3d0b76bff2c5": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "695e26ec4d6117d0": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "6968b9d729da00eb": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "698a0f0849271220": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "698d695c0196828b": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "69acab90bb87d2b5": [
+   "aprovado",
+   "data/safety_gas.js",
+   "m001"
+  ],
+  "69b68822ec506819": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6a8168e8e2501f9f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6a82c3da8a93efba": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6aa457c370f227e3": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "6aa66723bad276c8": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "6afd765722234927": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "6b073e193b53c346": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "6b2c9f0667e4af18": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "6b31e633657938d3": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6b5076f00a59d28d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6b5ecdcd0649b77d": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6b6aae9d7e00dcb7": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "6beb18cf387b87d1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6c2f13bd19b595cf": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "6c37f36430741cd4": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6c3b04656778b60a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "6c88568761fcc41e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6ce7a61d640d854b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "6cf727cf1471d83b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6d1f5539eeff439a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6d27f4de748c0457": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6d3b1bc21f0d4df7": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6d6fd9c75aac951a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "6d8a851d019bff8a": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "6d9dcda8860bf522": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "6da9abc5fa7cdbc9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6df076ae55399e9a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6e44d8c50605c7b4": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6e92acbe1b1a66c3": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "6e9ee7d30950bfbc": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "6ec0a23ec82d24a2": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "6f1a40689972c01b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "6f5207c370b45723": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "6f55c651ed2ebbcf": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "6f5e8aa76be68f43": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "6f6b06af3ce8b71d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6f71665307adc42b": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6f88e7142e06ec1b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "6f90907e0c80f45e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "6f9e5c573a2706e2": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m003"
+  ],
+  "6faa465ce1ec26f3": [
+   "pendente",
+   "data/areas_internas.js",
+   "m004"
+  ],
+  "70014694cbb57e41": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "703d6e6fe871eda4": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "7044a2ce11c90332": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "707ef474ed2a5b69": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "7099691f33540560": [
+   "pendente",
+   "data/radarSazonal/textos.js",
+   "m006"
+  ],
+  "7099832911442983": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "70b39c66050f7f44": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "70cf0f8bc7fd9414": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "7117afb65a9b469c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "71423e539fe01d99": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "7152d220a180d4a7": [
+   "aprovado",
+   "data/safety_condo.js",
+   "m001"
+  ],
+  "71863b3e23574344": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "71ae9007256e486c": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "71e64e363797f060": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "7208d8ce5e082da4": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "7213cf2e44ada94f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "725305530e0d6e5d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "725d57260ce913b2": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m006"
+  ],
+  "72c5708e8accadc3": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "72ca1d8109c10bcd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "731ae3e6bf8703bd": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "73368751c4c46b0d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "735d9c4ec36eb284": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "736f1e2f529fb80b": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "73a36a14efbc666c": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "73a89802f820f466": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "73e4778c0a2396d2": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "73f66c2d243e01e4": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "7428b83929fe0f1f": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "744823b4b5793bcb": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "74b101bd51972eea": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "74eb8df3932c6d71": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "74f43f43bea67c5f": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "7503e29a542d319b": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m004"
+  ],
+  "75353691db7a4ee8": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "754396f5176dab65": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7556acb389565df4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "7563dc7dc2e5d7f4": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "75979bb168f64799": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "759a33d6abfa83f7": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "75aa40ef3b01551e": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "75c3027725ebc731": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "76151b37e508fa79": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "76380d04ee7eba2d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "7647e8076604ab3b": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "765545345e89f5f0": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "765ac0cd6df83918": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "76da30779abc6214": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "770cd5914324ff32": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "773451b8d932d48a": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "7769ed67807a863c": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "77739dd17414941d": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "7790b1bcde3743ee": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "779bf2455cbe8f10": [
+   "aprovado",
+   "data/intro_safety.js",
+   "m001"
+  ],
+  "77a63bf4ed95c92f": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "77ac6e7d83f1e161": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "77ae886217a11c4a": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "77d2806d94f4517d": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "77e5c587cf88bb35": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "78131e26f7a91380": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "782374659c7a6bf0": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "784013b523241ea7": [
+   "pendente",
+   "data/areas_internas.js",
+   "m004"
+  ],
+  "7844059d8adea3db": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "78766e33ecb365c7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "788c4a842e789f5c": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "78985fd0592e3458": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "78aa859ccd0d759f": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "78aed6b0742ed497": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "78b818deefa4a8a6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "79017168bcb68861": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "790de6a64ea01289": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "7954da9838df3e72": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "79f105cc202b17ff": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "79f512089a1982f3": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "7a1a5af401a99ed9": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "7a532e6f694f5c0b": [
+   "pendente",
+   "data/radarConteudoDB.js",
+   "m004"
+  ],
+  "7a6e090a3d280cd9": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "7a83ee85290587d4": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "7a97479b7dcbcced": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "7aab585aa112c917": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "7ac142d7994552b9": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "7afcba4d4e74f84d": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "7ba30f30cd1f146b": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "7bcebb06063adfac": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "7bd1a23ef8816099": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7bd5cd1cbc63c666": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "7bf72b06696d70a3": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "7cc95e3f8766f313": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "7d494103c1c249bc": [
+   "pendente",
+   "components/AvisoPaisEmergencia.js",
+   "m006"
+  ],
+  "7d5b1453a707f4c4": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "7d5b8c7423e3a8d9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7d60661f871fb57e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7d829fb38d6b7a22": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "7d88429cb614718f": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "7d8f5a15833ae43a": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "7d958b230083a622": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "7da55f4d37c5b151": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7de9648d93c44833": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7df3e3152669b1fe": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "7e033a3f819ef5c9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7e12900cc4d87e13": [
+   "pendente",
+   "data/radarSazonal/textos.js",
+   "m006"
+  ],
+  "7e33bc1268cac478": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "7f118c6d52adf1e8": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "7f133e8881ae9b75": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "7f3a01ab646d6e5f": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "7f96bb85d2544479": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "7fa55326b7450397": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "7fb34d28dca6cf86": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "7ffd0528931502f1": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "8019d1b0b16fa1e8": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "807f0d7061de0314": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "80a1f60a5bafce25": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "80a87bd15746a4d7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "80ab92597db1a626": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "80ca25ff55cbb373": [
+   "pendente",
+   "data/locales/pt-BR/fire_prevention_content.js",
+   "m005"
+  ],
+  "80e13c7c5b7848cf": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "813a9c75c386581d": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "816a5159c39739fb": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "8173b3389a008dd7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "819f5f0c51d2f891": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "82b6de3aa76a43c5": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "82f616d91c3fb372": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "830beeaaf8ecedf9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8318e41d26d3c7d0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "834bf36b14f0beae": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "835a3aad442e8f64": [
+   "pendente",
+   "components/MedicalDisclaimerModal.js",
+   "m006"
+  ],
+  "8391a8c0a4a5d600": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "83e82c22f4d6a3c8": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8410e22b20fad45b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "843d5bb1b85b0517": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "8447378c359584f3": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "846a85f243baf0ee": [
+   "pendente",
+   "data/locales/pt-BR/RiskCategories.js",
+   "m005"
+  ],
+  "84a15a07c5e1bb81": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "84f01c22b1873e90": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "85013fccca0b0dbf": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "8504c5d6d421f234": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "850fbe56ee815ec2": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "853ec6712af695e1": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "858ba2c5d429e7bb": [
+   "pendente",
+   "data/locales/pt-BR/RiskCategories.js",
+   "m005"
+  ],
+  "859ec97009c9047a": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "8602965ce6575d2e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8611e77c43541885": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "8641ae918295de1d": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "8697bfc797863d5f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "86c69c8722d386ca": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "86ce44d7566b3c0c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "86d39fc34761837a": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "86e16384d95ced24": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "86f6b7e7a54accec": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "87454c7369faf6ea": [
+   "aprovado",
+   "data/mobilidade_data.js",
+   "m001"
+  ],
+  "874888cd5f06a945": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "879d2052033c5b69": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "87b50ff457b4aa90": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "87c22235add06f85": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "87e93214443acb8f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "881086476e7fb31b": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m004"
+  ],
+  "8845ffbb0996ed9d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "886efb958738b05d": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8892503966499106": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "8892fb983bfdcf64": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "88a183deaf0919c7": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "890802159c3083cc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "89275a47e9cd0aab": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "8934c8d537eef83c": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "893bc4dfebba3ec1": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "894781aea8564ff2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "89560d23ffd2d96c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "896156164aba09e9": [
+   "pendente",
+   "screens/Education/GuiaKitsEmergenciaScreen.js",
+   "m006"
+  ],
+  "8965feedec486732": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "89747a2ca730fea7": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "897f46dd04dfc628": [
+   "aprovado",
+   "data/areas_externas.js",
+   "m001"
+  ],
+  "8987d003e4ebd99f": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "898b2721ecee072d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "898d4f74c22e6dfb": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8994800e09a9d860": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "89a6173756bb28cb": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "89cf478e18821738": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "89e9923217cef406": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "89ef14cfdd84e490": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8a0200c9d6f08743": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "8a6246af49d85d4f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8a66f6588f6a5c0d": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "8a8d31391ad03645": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "8ae650e502f1f18a": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "8b4e97a12ba9de2f": [
+   "aprovado",
+   "data/locales/pt-BR/guiasSeguranca.js",
+   "m001"
+  ],
+  "8b554411d0e31520": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "8b69029713a458f8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8bb1e5f918adfe59": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "8bb1eb4fb4bb6436": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "8bb3ab2bcc7824e2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8bb9e4fa317a920b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8c0a5979fe64558f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8c267aca018dcdd2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8c4158dfc153b4b1": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "8c439e8a9d25fe47": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8c44d8c38a2116ee": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "8c6b07f2b7cefb67": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "8c7adc06dd2fb40a": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "8c820f9276997ad7": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "8c83b0fc72a77b3e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "8ca8e05436df01a0": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "8cb49feff95a6161": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "8ce5e93f3f2ed097": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "8d01dd22f77759ca": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "8d112dc5d404dc5d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8d35ffc95e15d483": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "8d366f6fa695bbe8": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8d4b0dc2ba5cfb98": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "8d9d5e8420e892a0": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8e045b0f57e7ecb7": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "8e0a806ffc075b2b": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "8e0baec4f4441126": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "8e4be15f31cf0a07": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "8e552c643e8e9c19": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "8e90620dc62dd13a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "8e99d9325b019742": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8e9f5429a64254a0": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "8edc6c4215b1a549": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "8eea5dc1432bef42": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "8eeddff8e44b434e": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "8f17c9b62bc04ec5": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "8f72f0308f9e5756": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "8f771b0522f659c1": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "8f8cb9e6e836db6e": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "8fa537d6830ccd6b": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "8fd30fb722dbd86c": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "901e5654cd9884eb": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "9053cb5866167dc4": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "9077bfc05cebe1b6": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "908988a4e98de20f": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "9090f423afc6140d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "90da4fcb474e526b": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "9105ae62d76f979a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "911be049c8418e0c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "911e2d3110be79ea": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9123f890ed71872a": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "9135dfe506375c68": [
+   "pendente",
+   "components/SafetyDisclaimer.js",
+   "m006"
+  ],
+  "9144af6934136007": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "9144e8d2207961fa": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "914cbfcbb7e9cc6a": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "915bcc35a9c246b5": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "915c14f87a3c6ef4": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "915c68e844622d71": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "917566a88264eb24": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "919fb6b66cb8d94f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "91aa093e7362b34e": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "91b26f248afdbeb4": [
+   "aprovado",
+   "data/utensilios_reviews.js",
+   "m001"
+  ],
+  "922e469ecc63e74e": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "923cdd34b2e7539f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "9245745a14bafd19": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "9250143d9fa61abf": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "92738c00fa322d95": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "92a54135128f4999": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "92a77d5fdc173b4c": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "9361255b865c097e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "93660183f53b0105": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "93d2374d629ba364": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "93d62b74921f3168": [
+   "aprovado",
+   "screens/SegurancaLazerScreen.js",
+   "m001"
+  ],
+  "93f3bb65d451dfe8": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "940566d761aa5455": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "9424b80b4e188e81": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "94486d4309dc1b06": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "94493bd0c1e7da1a": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "947205bec57626c4": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "94c64f46a9205d3d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "94f5903ad3c6b6f7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "95be9d5bffc387b6": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "95c0145cf4c1cb24": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "95e7653773de0e46": [
+   "aprovado",
+   "data/mobilidade_data.js",
+   "m001"
+  ],
+  "96212927208d9b86": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "962621e14f3f8cc2": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "9632ce8371d79a9c": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "96416cb82c93b3bf": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "9651adaa1102ca0b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "9692b664a34eb77e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "96a8298473ceb8e8": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m004"
+  ],
+  "9744c42e900a64c5": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "977c57a98e49a3c5": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "97813aca33a5e027": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "97bdd37a5835f2f8": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "97c74bffe270d9b1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9804b563bef2ba56": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "9831b234b2bfaab9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9859f29fbfeb9d45": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "985ece7e9c44929e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "9865b0a3b107b114": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "987999ca8e33bbfe": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "988532f1fe0cdd6b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "98960d4728689671": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "98b0b41dc7fc5b5c": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "98c5677e04016fb6": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "98cdd8c6c7a87e90": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "98d28dc631b6ffc0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "98d52d18a83a2b2f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "98ef40541c52e8a0": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "990b688834bb8db9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "992b77cc8287db70": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "995c8c40bbee3e6c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "99609111ed4c3060": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "99954628568cae0c": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "9999e247a3c6cd27": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "99b1241f2338f1b1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "99d427a7a85f46ac": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "9a0b46452641f712": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "9a3607e5b6fff443": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "9a4748b526ac58aa": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "9a6a85172064f2f2": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "9a87e00933a30907": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "9ab3d9bffa4bdae1": [
+   "aprovado",
+   "data/areas_externas.js",
+   "m001"
+  ],
+  "9ac50e1644f8c0d6": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "9ac9696a4ff909be": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "9ad0570439daacc5": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9ad5d4288f843329": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "9af3b95de12dc3fb": [
+   "pendente",
+   "data/locales/pt-BR/fire_prevention_content.js",
+   "m005"
+  ],
+  "9b06a7c7249c4065": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "9b0b7dafbebb0cf6": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "9b4151e4b6db0dfc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9b61c2af1fcdb7f8": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "9b63e5d2a1808ac4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "9b98027c38f45b77": [
+   "pendente",
+   "data/ocorrencia_regional.js",
+   "m006"
+  ],
+  "9ba051486e3fa2d9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9bb91d50d3f14cc0": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "9bf339cef6327e29": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "9c0d8553df286589": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "9c16bf77b0824cd9": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "9c1bcce949635fb5": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "9c33bff07952c557": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "9c54e03d050ddb68": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "9c94d3a5b983862d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9c9d4c49f05c6224": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "9cabc45e1c7ecf04": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "9cc29e90178c087b": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "9cd09341063114ae": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9cf1aee90b6dd516": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "9d1fdee72223446c": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "9d4b1d0b54813dab": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9d53d81715435a4f": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "9d61fa2847be2b66": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "9da336cd4a29ecb8": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "9dcab69e1f11a533": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "9e025eb2b5e3ceed": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "9e189f5ee5c713b5": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "9e276fd9e4c812fb": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "9eb67fb3d6b119c3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "9ec99ed1c4b25a8c": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "9ed67ce812dcac68": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "9ef51b2b42ed61f8": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "9f10fb051b8c6d86": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "9f1f572acc0748dc": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "9f288356a0aa645f": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "9f5f896f9cf3a5b1": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "9f6f8dd012b9d444": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "9ff511513420513b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a017755eded3e4fd": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "a0a09567b48191b5": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a0b9a52e268470a3": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "a0bb22f968b59449": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a0d90f83b3c2abbc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a0de4b38f8777936": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "a0ed1cec77a25dfc": [
+   "pendente",
+   "data/fases_vida.js",
+   "m004"
+  ],
+  "a11248a2f4a39589": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "a17c336042a5b945": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a1831adbb70c24fb": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a19fec6b5e99df18": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "a1b49f32b82748b6": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "a1bf39d0d95f2147": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "a1cb689ae23efe2e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a1dbe19bd8a2a6ee": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "a1fd336cf7d6fc11": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "a21c2c8258343f24": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "a23e9e5ec944445e": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a25995fc219066c2": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a25ba0aac23d85c1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a2621f6fef60103a": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "a265eac147620ee3": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "a28128a9c5159299": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a2d3440cbf42cfe4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a2d6acc4b84a52e0": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "a3316f8d2c6a50ec": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a3340db31a1a6421": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "a33976d6a9902435": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a33eb2dceb4c8794": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "a34b23d2a39be04f": [
+   "aprovado",
+   "data/mobilidade_data.js",
+   "m001"
+  ],
+  "a35a4e76e8900438": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a36926ab4f370ee5": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "a379ce1ba4e3ea4c": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "a383eafeb1281c7e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a39f8009b75ce2cd": [
+   "pendente",
+   "data/radarConteudoDB.js",
+   "m004"
+  ],
+  "a3bcc12087041e31": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m003"
+  ],
+  "a3e480aaa9ef7e8b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a3f96f613c0b5ae3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a419bca7db26e26a": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m004"
+  ],
+  "a4851868a112dbb5": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "a48a6741f815f6e9": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "a4d9d3d9c3694a0d": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a4dccb87f10fa934": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "a54d5845dd56583f": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "a5798648aaa25f4c": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "a591efabd6f07741": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a5c94a16954f8df1": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "a5f66f7d7dd4e0ff": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "a6060403de405756": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "a68ac8e314bcf904": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a6a8db78c0dd490f": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "a6d1b79daf595892": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a6d8ac891c671adb": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a6f76f2cd80d25f6": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "a770aa2f806ca423": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "a773c0fb648680aa": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "a782a03a04da2fc2": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "a7877fcd86cc0fe0": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "a7938572ea0f0534": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "a7b50e499c3f0895": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a7caf8871fbf6dae": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a87a90a2e1a94803": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "a88a710826eb600e": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "a8c0b7a9169fe432": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "a8c6ff8ae775c125": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "a8f4c8682aa57f65": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "a9480d0aab129d23": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "a976f5a75a2af0df": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "a977db3e2da1876c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "a97ab1adb2de2544": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "a98bb166cda3ce19": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "a9bf57f95775d38b": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "a9c3b5d79f40184e": [
+   "pendente",
+   "data/radarConteudoDB.js",
+   "m004"
+  ],
+  "aa1fd51b5f4889e9": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "aa2aaf43abb4912a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "aa2d4742c709acc0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "aa46e01dec7864e4": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "aa5d74f09238f879": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "aa9dc0c7762445f9": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "aace9c9d5536d38b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "aafd0eb95e001f18": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "ab37687596a77092": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "ab4017bc1fb84746": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ab539f46560a471c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "ab9f1cee3bccad8b": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "abbe1935b8c924fa": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "abc1b4ae46c55d28": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "abffdd1fe124b4ea": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ac02da078a543ab8": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "ac20ce5b54931495": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "ac45bafa52a8e0ea": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "ac991a5ee2b07330": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "aceee84600c74c57": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "ad709cb9a1cb475a": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "adf675d87007c99f": [
+   "aprovado",
+   "data/areas_externas.js",
+   "m001"
+  ],
+  "ae0ceea7238b27d4": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ae14a355f04772cb": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "ae64a6ca664c1dec": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "aeb636ab3f18b29b": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "aefb3ba7c750f647": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "aefe0f4f4b988aad": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "af76bec3d022dd75": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "af96a333484b9d09": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "afbea28833c26544": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "b00f2db58edb7b8b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b0129f9058a35712": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "b01742a9ceb42cd9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "b04b061fe0d299b9": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "b04c437123349bed": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b04f6f0a50e80eab": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b05045d1d2f8144a": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "b07e64560c61c86c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b09f7b6b45dc60e4": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "b0a9cdf73a67bd59": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b0af933d45e5b0c0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b0b33ea6f9b2b00e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b0f49dac4c745096": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b1290814873d0387": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b12bf472b4fdf107": [
+   "pendente",
+   "components/BatteryMonitor.js",
+   "m006"
+  ],
+  "b12f66922c4f9837": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b133c47fcbbaba2b": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b13f572cb7fc2379": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b1d8ea747c72a190": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "b1e921a3c09a5ca0": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b2204a8e909dcf29": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "b2275a01ba5d3652": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b229380d2901f36c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b23f8fc6ffef168e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "b2536d6a597754ed": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "b256aa6520f54d66": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b259768530aefeba": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b2871fcd1a059ede": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "b2f22d7e1003fcdf": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b3049df50b2ab35a": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b31b9d283a079ebd": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b35211236550a8a9": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b36c7a22ca457285": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b36cd96d5f948e7b": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b3b16c1df1f381bc": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "b3b352d8bc5cf731": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b3d0707e0535decd": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "b3eca41ea0f4279b": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "b3f8b796801b8457": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b462b1a8b76a706a": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "b46d4a762cd57ee7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b4986165840a26ab": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b4b666b09587090c": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m003"
+  ],
+  "b4ba3848eae91c29": [
+   "pendente",
+   "screens/SegurancaLazerScreen.js",
+   "m005"
+  ],
+  "b55ccb9f7c20387b": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "b57b54f1aff2b85a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b5b984520cb9382b": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b5bab704f6ecc677": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "b5c4595653ed0670": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "b5c95879f1f42133": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b5f55d14e4e68f76": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b60b47c8ee4f02f7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b621627e846d525a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b648f83e381c161d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b6719ee437e33208": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "b6adc6723bb77b09": [
+   "pendente",
+   "screens/Tools/AmbienteRiscoScreen.js",
+   "m006"
+  ],
+  "b6b42f62f5bda837": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "b6ce67feddba15b5": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "b6f623070f6d8a98": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b7156e262a7559b1": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "b734b7814d0c28f8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "b734faf83b5df74f": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b735d06313ddf1ca": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b742acc695ecb6b7": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "b770d852a781b660": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b78b65ea6cf7dce9": [
+   "pendente",
+   "screens/SegurancaFeriasScreen.js",
+   "m004"
+  ],
+  "b791f5949c1c4b7b": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "b7a350cd2b77ac71": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b7d57d23fdf06370": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b863b7227fa72106": [
+   "pendente",
+   "data/knowledge_prevencao.js",
+   "m005"
+  ],
+  "b8805a5ffda8afed": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "b89312a8ec3c4651": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "b9149bb435fce539": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "b91c36fd66ef202c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "b97302350f7b6edb": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "b9863f10186edd15": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "b9d1bc939475e1d3": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "b9e27ffa11565817": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "ba0c15b15bbc02f5": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "ba77e7cc3c0ea353": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "ba863fb0394c8263": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "ba9bffc1a077ded6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "baa6091356037751": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "bab9b8f867483c7e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "bade28b4f85b1dbf": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "bae7f1021362441f": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "baed6a9bfc3d76ef": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "bb308d81c3671d77": [
+   "pendente",
+   "screens/SegurancaLazerScreen.js",
+   "m005"
+  ],
+  "bb5192b85615d219": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "bb9969198d60d164": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "bba4fadb79994e08": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "bba5407b2d37e7e6": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "bbb2c400ae284b17": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "bbc189ac3af452ed": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "bbe86a48a2b91e74": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "bc58d7036cbb0b1d": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "bc72ab859bbe2080": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "bc773e2a82d06b49": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "bc86951ebb627b7b": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "bc89c42b5c61b3b9": [
+   "aprovado",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m001"
+  ],
+  "bca86437ddd9dd81": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "bcb8d650c2fe4054": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "bcbe70f34b9c1e26": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "bcd728d1c97c18c2": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "bce1fd4bd4cc02bd": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "bce64f55f309b0ca": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "bce8cacdbc4aa06a": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "bd01d8451b046364": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "bd295750469e4b04": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "bd2d5fbecaca9ab8": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "bd58a8d6237d1ca8": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "bd5c470207628d43": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "bd5f8a35fe92d136": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "bd7bd4314a89c246": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "bd841b44f3816667": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "bdde2a44544d4458": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "be2e949e474a44ae": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "be4eb74fda9951e4": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "be549b6279e2e34d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "be6b0d786e659443": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "be7e0f3b4973c752": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "be92c8a2edcf6c93": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "beaead3ddbb72d48": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "beb56147f35a2eee": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "bf009178f425f576": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "bf6d346334758a96": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "bfcd9ae84536f887": [
+   "pendente",
+   "components/AvisoPaisEmergencia.js",
+   "m006"
+  ],
+  "bfe651e780cbe8e4": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "c00c05f887d3e921": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c0794457f9ee8b68": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c0a9299b7416b31b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c0b5ef91a9219edd": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c0d3c7847e48ae83": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c0e39196a2956dd6": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "c0e64f84448c62ad": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c1068acfa5ac3e2c": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "c13eb20d9cde37c7": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "c1466a619bc3656e": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c16c702a485ba399": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c17c3520871c608a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c18da4fd379691f9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c1b2a00e0c62f5ad": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "c1c884a3e8378ffb": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "c1d53ee7455e4ffe": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "c23fe4631c381d55": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "c24222a4c5f1e704": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "c2bec48d155c2bc2": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "c2cc2d0ed7868bde": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c2fa142c1a1a1cec": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c2fd1cac7b76052d": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "c3230d16b5fd6f78": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c354f83be902bcb8": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "c3b578c91c2917a4": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "c3d5a2540b3c4944": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c3d70308087c1084": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "c3f071643c3942da": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "c4075f45e1ca6f31": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "c413b7bdb6e7f09a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c41cfd74c1f8e2bd": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "c4338862d072e9c1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c45b00234ecbbf74": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c464433d2fc97011": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "c4692db608797dab": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c474db77500cadd0": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "c48f7c7669205490": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c4ba9b2ad2ba42ec": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "c4fcf3e9bca5b648": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c53dec9e2fa2ceb9": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "c5525aa79c395f4f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "c55e91a620040fcc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c57ef88fb07ff5fc": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "c590c09c2f071826": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c595767e06f8b998": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c5e860d9fcdc836d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c61690d07436ee41": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "c626bffed19628b5": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c6426d5624fd1ae6": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "c643d678dce41e68": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m004"
+  ],
+  "c6846b1c82c670eb": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "c68e13e5fbb80472": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c6a88aa665508156": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c6ae941dfa5177e7": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c6c484a27eb865f1": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "c6f596acb8e51a5d": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "c71a410d635ce781": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "c7234c3f9bf9e3dc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c72f91f466cdb36c": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c757e9492445a70c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c78c58bea8327eb7": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "c798174e7c8dfa11": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c799c5d09d61561e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "c7b365c7c47d21ab": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "c7eeb88d34149c25": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "c851e34849c4f30c": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "c86a42eec35f2d3e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "c8e32effb71c78c3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c8f4e30c82407520": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "c92978d67d0eefc2": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "c92bd3f60e6e106e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "c941cb0f9161bb60": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "c9633dd9e4e4c5b9": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "c9664cf9b73e8fad": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c969806641003990": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "c9ce2177957ce609": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "c9d4a641cc82a0b8": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "c9ddfcd0936c5292": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "c9f20eaa2426f06a": [
+   "pendente",
+   "components/AvisoPaisEmergencia.js",
+   "m006"
+  ],
+  "c9fe9388e0b466c7": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "c9fefbba2bfbe077": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "ca0b023c8b7a2609": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "ca13b0cf22a95e42": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "ca1f802abb05c6c6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ca59bb097190d330": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "ca5bfcf43ff1e79e": [
+   "pendente",
+   "data/opcoesPerfil.js",
+   "m006"
+  ],
+  "ca947ae725a26b39": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m004"
+  ],
+  "ca9da44a67873747": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "cabaa23d23c938d9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "cadf84e77620922a": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "cae223afb63eb7fc": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "cae60fea519158e1": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "cb4a1863c37ad2e8": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "cb50913b95193809": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cb52907b9194b157": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "cb76145c14e4e295": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "cb880fae93c79328": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cb9d42ab67232461": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cbc01490e919c6e4": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "cbf685014b90e728": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "cc0567f7f4d132d6": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cc4c7b724c883213": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cc552c305b0c70b7": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cc590628f560f7e0": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "cc7206837149831d": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "ccb3893efa92a955": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "cd187cfab976dea5": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "cd3daa7f467f9be4": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cd4910d8414e95cd": [
+   "pendente",
+   "components/SafetyDisclaimer.js",
+   "m006"
+  ],
+  "cd4a6a78d345a3a5": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "cd50a589481eef24": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "cd67629a4287a951": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "cd743dd1b56504b1": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "cd7b95d65919b165": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "cd87c8f59e9c480f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cd8bdc99b39af3ae": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cda09b8ee98c1279": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "cdc411e0f593803b": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "cdc560b9a285ef61": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "cdc5dd8be19cb9bf": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "cdca7182546e9a07": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "cddce27513c757ac": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cddf626da89fd182": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "cde74df39fbfdf2b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "ce3ab8516f57648d": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "ce634e85810cdbbe": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "ce6c348c07803a29": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "ce79329857c0518f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ce79fef28c1f2117": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ce8b91bc9c70b0eb": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "ce93a74936de2bf5": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "cea3cbd6f0200043": [
+   "pendente",
+   "screens/Travel/TravelModeScreen.js",
+   "m006"
+  ],
+  "cf1268bf07e60fec": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cf494a986f28bd1b": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "cf49f1ac7cb7b5be": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cf51e4b9919f69e8": [
+   "pendente",
+   "data/riscos_fisicos.js",
+   "m004"
+  ],
+  "cf76fb9a77e54a24": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "cfa1430210514f4c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "cfb93b1a21cb8deb": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "cfbd35e2a677158f": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "cfc43bd30326f42a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "cfef30c0750ad0a8": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "cff4bc28c38770e9": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "d008e60be392a007": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "d00dbe6d015d5bee": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d03516cf8585f9aa": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "d05423287446b484": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "d063a99eebbbaa91": [
+   "pendente",
+   "data/locales/pt-BR/guiasSeguranca.js",
+   "m004"
+  ],
+  "d0774e119cff57fb": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "d098eae5db577c58": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d0b9fb5322e6811c": [
+   "pendente",
+   "data/areas_internas.js",
+   "m005"
+  ],
+  "d0bd02d1b3d6ecf0": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "d0d075f4ee9a21ff": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d0d0f5bd8232695b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d0d8d2132abd9f4e": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "d0e6fbbeb6c38c35": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "d0f2678ce98b3c95": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "d0f84d5acb098208": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d1048254b11cb3d2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "d1154088387023d3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d15324497d8d1cca": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d17ac9c4b66c416d": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "d1be644834226541": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d1c4c4eb650d9029": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "d1c75e97f13df67d": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d1cfde815964c0b1": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "d210bb7edfe1e9f4": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "d2481dd606428c71": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d2b50ea8398afd8e": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "d3176e3f5bfa682b": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "d32463a8817027ba": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "d362d127a0787446": [
+   "aprovado",
+   "data/locales/pt-BR/educational_guides.js",
+   "m001"
+  ],
+  "d39dcb23c01678dc": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "d3a0380172a9cf16": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "d3dd548e1deaceca": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "d3fa4f91aba8bd8b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d427cf4fe3b990b7": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "d433386bb04876e5": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "d435020210c65e0b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "d449834ca5a4e41e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "d4552516446a1482": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "d463c7ffeea0b736": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d464ea478b7f1bba": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d47da2c3a655da7e": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "d495c97db46c7afc": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d4ca329538cd2a8f": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m004"
+  ],
+  "d50b6b8aa32000ff": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "d50bd60da6daed5d": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m006"
+  ],
+  "d54e7a2591b01570": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d5913ccbf27a4a57": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "d6016de8695803ab": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d67bf5fc01254eb3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d67d6410de127af1": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "d6a2598e15d65af9": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "d6d505ff7237af7e": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "d6eb1374acfbe08c": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "d6fdc2a21006dac8": [
+   "pendente",
+   "data/pet_wellness_data.js",
+   "m006"
+  ],
+  "d70b0dfef5ba04df": [
+   "pendente",
+   "screens/SituacoesTemporariasScreen.js",
+   "m006"
+  ],
+  "d7bb9fa5b3b3aff9": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "d7eb92b5bc1d541d": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "d80ec3e5dc1dee15": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "d814535f564cc429": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "d847a7443e93e576": [
+   "pendente",
+   "data/intro_safety.js",
+   "m005"
+  ],
+  "d86a8aab3a2548c0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d874b71e7a488a7a": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "d878aaf6b1232c11": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d87cd9aab3a9dbe1": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "d89d5a6041db0a61": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "d8a37b129c8f300c": [
+   "pendente",
+   "screens/Travel/TravelModeScreen.js",
+   "m006"
+  ],
+  "d8e53a40be42c3ff": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "d918f958a4ddbbe3": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "d92908a6ecd1a27a": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "d92a8eb36b5cdc58": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "d92cad755d7ef211": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "d92cf71a9e882983": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "d9596f41d20a5074": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "d97c2730b4b0f3e1": [
+   "aprovado",
+   "data/kits/bagagem_viagem.js",
+   "m001"
+  ],
+  "d9803cf7e4900702": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "d99545b068c5d7f3": [
+   "pendente",
+   "data/intro_safety.js",
+   "m005"
+  ],
+  "d99703bbeda389fd": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "d9bc00ba6e6b30db": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "d9efef3f0d85d73c": [
+   "aprovado",
+   "data/radarConteudoDB.js",
+   "m001"
+  ],
+  "da1e1f8d93a6ce1c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "da3d984e2be77cb2": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "da45deb4da126d90": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "da5154c7ffed238e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "da55d09d33372667": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "da62070665aaaaa3": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "da6a3027d8ad9907": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "da72f6b30860e899": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "da8f0359d2939972": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "daadb51884461683": [
+   "pendente",
+   "data/ferramentas_seguranca.js",
+   "m006"
+  ],
+  "dab60a006f714a26": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "dab9262057818d5d": [
+   "pendente",
+   "data/plantas_ciatox.js",
+   "m006"
+  ],
+  "dad4cacf9fae0a39": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "dae7ee0b9437acd2": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "daf4cd0b98b46a7e": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "daf7e6f7bdc3c66b": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "db00b43f00df8a01": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "db13749a863cf820": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "db148d2896137bc9": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "db1ae10772f60c13": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "db2b8c64ac0e75f1": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "db53a6d646c64582": [
+   "aprovado",
+   "data/micro_blog.js",
+   "m001"
+  ],
+  "db9d62d0b94ec2ac": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "dba72f06100286fe": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "dbb59625fa870926": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "dc4e3e6a1d566669": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "dc7b65deca472d49": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "dc851c22a260907e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "dc8b63ea2eed3c55": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "dcc8f6e0f320dd62": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "dcd805d71f64f7f7": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "dce78e136cd0caf2": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "dcfe156a29c257a3": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "dd04910d69aee28d": [
+   "pendente",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m004"
+  ],
+  "dd08485e87889f87": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "dd1e7497efa80371": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "dd2895e39bc325a0": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "dd34b0a49c05ea57": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "ddae2ce579775e79": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "ddb7bcbc4daaff07": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "ddd28bce983b5262": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "ddd9696e07ca0bdd": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "de139d23b222b77c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "de20e7916d9bc93c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "de43061d1b2ad847": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "de7106bf912c7e31": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "de7ea4a5d2b113e2": [
+   "pendente",
+   "data/utensilios_reviews.js",
+   "m004"
+  ],
+  "de910c703942f496": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "dea19c0d193fa5ff": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "deb4748c4bb932bf": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "deb9a8c8de89a021": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "dec68f9332110ff9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "df3b0eef53896c78": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "df4c3d73f93230fc": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "df54006cf8738c0c": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "df6efd992a784af0": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "df727d6aed688def": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "df8632ad758fd3fb": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "df8a4bc4a19ea87c": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "e00d2fc33e6f1d10": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e04c3254544881f2": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e05ba6cba2b01e75": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e067ab05baf8b2ae": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "e06c548323fc8271": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "e07ff0a8336bf2c9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e0c5de1a0e26d1f8": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "e0dbcf2501595cec": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e0dca4971fefa05c": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e0fa526d1ccdf533": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e100f6970e1cbd59": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e13e966bea5f171f": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "e15127911b97efed": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e1958f0d98389ac6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e1b5426ba00d8798": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e1dad8e3cb2ca9cd": [
+   "pendente",
+   "data/utensilios_reviews.js",
+   "m004"
+  ],
+  "e1f826814df05707": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e1fd222fa68ecdd6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e20c8d8710786ef3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e2105b2a63da28f1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e27d322af4a92b8d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e29d747a3f78b9d2": [
+   "pendente",
+   "data/aves_seguras_data.js",
+   "m006"
+  ],
+  "e2a1ab487fc34349": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e2ae102e07156e4d": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e3250d25dfd5a6ec": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "e32c7e702c248ee7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e337e519babebd83": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "e35285586127f668": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "e385e4aac0124fcc": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "e3892e9f8629e3b5": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "e38b320e20988357": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e39f42145d086fdb": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e3a7872c5ec11b4f": [
+   "pendente",
+   "data/epi_domestico.js",
+   "m006"
+  ],
+  "e3adcca9a77c35f1": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m004"
+  ],
+  "e3b1836a09af33f8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e3b325de138cc93d": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e3f60f9c90333a89": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "e417a87aad1d1a26": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e421eb7013d39da4": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "e421fd16b524f176": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e43aa9d4149ee95c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "e43c9ac633a3620a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e43e98428d599928": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e4412243521cb749": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e45a5e691fe6d55a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "e4683c77eee05f3e": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e47fd787352c1402": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e487bc68543a6624": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "e4a5c7fc1de735d1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e4b6ceb10ba6b436": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "e53a049363832bea": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "e5614ef4e8933e26": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e5778ae1411f959d": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e5812f2daeb8857f": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e5c3736fd2930c4f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e61c1f2c2dac098f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e62e7a0c6bdcbf15": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e656fe54009a17a7": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e679be99e12d9abd": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m004"
+  ],
+  "e6b3673939898f8e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e6d62bafae7f9791": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m004"
+  ],
+  "e6e20965d7da24af": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "e70323f8227dd1a0": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "e7058d37219ae2ab": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "e71294ca38603674": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "e739a28958e6ad1f": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "e73c9365d8e8e8da": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e750d7bb83cd9109": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e753b96f2f0e73a1": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e7607c4ee9acd508": [
+   "pendente",
+   "data/dispositivos_eletronicos_reviews.js",
+   "m004"
+  ],
+  "e7a82df9e3653f3e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "e7b3932caec47251": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e7cfd18eb160b290": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "e7e87796d2f3f81f": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e7ed4140160170d2": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "e83861e71557afd8": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "e83af171ddb18569": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e85ab97cf6481075": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e86e680a149331a5": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e87e8006e83917dc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "e889fad831283b21": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "e897059fc6f4567a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e89ed76a1b954f3c": [
+   "aprovado",
+   "data/tag_guidance.js",
+   "m001"
+  ],
+  "e8c1a8aa9dc3e95e": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "e8ca5bb907cf91de": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e8dbdfc3c95fe7e1": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "e969ea3e508e246a": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "e973af484f76806d": [
+   "pendente",
+   "components/AvisoPaisEmergencia.js",
+   "m006"
+  ],
+  "e97b828e23325fda": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "e9b05fa20d4c5154": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "e9c36d0242697187": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ea27829fa3099565": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "ea28a16134999d72": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "ea50015f7bdaa705": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "ea7d935889a7d396": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "ea821fb62352a1c9": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "ea95ce5e74e3a22a": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "eac0c0fffb30f306": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "ead16644889bc052": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "eaf5e8059cf0f8a5": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "eb1558272df935f3": [
+   "pendente",
+   "data/produtos_categorias.js",
+   "m004"
+  ],
+  "eb1a02f59ad71667": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "eb2493adfc057f06": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "eb2dfc870cd9e16d": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "eb38087b26094fbd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "eb557efc87685c16": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "eb625b60cf41ac01": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "eb840eb349627757": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "eba6da857a25dea7": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "ebbb9d824e54bee6": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "ebe17cf1d0ea880c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "ebe3a1d1d6b6c145": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "ebf8590be9c05c00": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ec19bcb255f00b01": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "ec7fb560b8175ae7": [
+   "pendente",
+   "screens/Tools/MapaDeRiscosScreen.js",
+   "m006"
+  ],
+  "ec8a94f40ef798e3": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ecd0cd8711dfc98d": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "ecdab9f3fc097ddf": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "ed62adb1ce30ed55": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "ed944284d192ccca": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "edcc28f849d43b59": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "edebe2c65d5bdabc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "edf06fb625518c2b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "ee0a6fb6a5868ae1": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ee324b2d17467bd8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ee4f0065deffc82b": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "ee582a4e3a2b1cee": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m004"
+  ],
+  "ee604acd92ca477c": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "ee9a40957d1c32b5": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "eea9e1f994aeac36": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "eec88bf0714da876": [
+   "pendente",
+   "data/estatisticasAcidentes.js",
+   "m006"
+  ],
+  "eed47f916de2e4af": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "eeda8f18ec1e705d": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "eedebe79f8870a07": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "ef16c87a92acc266": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "ef3df9666758edfe": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ef4c362eef8bab09": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "ef5392905bea532c": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "ef691d8afa64d585": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "efa31b7506c04ed1": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "eff6848f6207e767": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "f06d513dc431c012": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f073915b3d48227b": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f088f3a5ebf9c38a": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f0d2fc1279b5a5b4": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "f0f5afb4ae69e0f6": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f0f80c5fe6f3b9de": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f105c4c9c6a2524c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f12639bbf7333b8b": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "f1a41a315c2538ab": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f21dd99c5edfac7c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "f220e5e3868de587": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "f2691b1bc4ac3fbf": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "f27135b58fd55413": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "f2800cc3dc31e90e": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "f28c319954344b7c": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "f2c4f96b9af0d5eb": [
+   "aprovado",
+   "data/dispositivos_protecao.js",
+   "m001"
+  ],
+  "f2d5cb0b86f9434a": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "f2d7ff893551f783": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "f2dd4e37eea50e5e": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "f2ddb744e763e8a6": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "f2fcc6fb5fa169e7": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f303d8e807520f4c": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "f316a1258422ac21": [
+   "pendente",
+   "data/produtos_scanner.js",
+   "m006"
+  ],
+  "f318ec2ff1d4ea2e": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "f340ee4f35008f0c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "f3a275ebfa4acb25": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "f3dd9445aad1cb74": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "f3fde29d69f4e464": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "f40160f8111317b7": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "f4083c0f6af83f25": [
+   "pendente",
+   "data/legal/termos_uso.js",
+   "m008"
+  ],
+  "f42a158fd1413364": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f479116e925e036f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f4d3fe7737c06e83": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f4d469d3e3025482": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "f52df96818f4268c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "f53cf109d5998ac6": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "f53e65ba889d8025": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f585a677d2e07f01": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f5b222d901ab44d9": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "f5c9b1d4490026de": [
+   "pendente",
+   "data/produtos_perigosos.js",
+   "m006"
+  ],
+  "f5f6ae75dc21fbdc": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f60690f6c0f672ef": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f63b060a5af4500a": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "f6431a052a15b142": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "f650393a9d6528d5": [
+   "pendente",
+   "data/teoria_fogo.js",
+   "m005"
+  ],
+  "f66cd6e7f70922ed": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "f66e87e960db5915": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f682463312c09a05": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "f6976db121ecb6f9": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f6b911909fcdc3a3": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "f6cda8eaddefc399": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f6df096598e66616": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "f6edc253b1e53b0d": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "f6f6d27d924b5da7": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "f7096825d21a6ed4": [
+   "pendente",
+   "data/pet_safety_content.js",
+   "m006"
+  ],
+  "f744a3340b51d076": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ],
+  "f746eac8b9383a3b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f7487cf4c0e06d59": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f75f65848633225b": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f7841fc14d9e8bbb": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f79dc42eaac1bcb3": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m005"
+  ],
+  "f7cd11070ab52f1c": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m002"
+  ],
+  "f7d502095113cd09": [
+   "aprovado",
+   "data/knowledge_prevencao.js",
+   "m001"
+  ],
+  "f7f76f922e0eaa39": [
+   "aprovado",
+   "data/eletrodomesticos_reviews.js",
+   "m001"
+  ],
+  "f81e47efaf151ce7": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f869c7927a3d069b": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "f87155c8a5bf3d93": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "f8782858ce51a752": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "f8ad533251f89aba": [
+   "aprovado",
+   "data/areas_internas.js",
+   "m001"
+  ],
+  "f8b79f482066af3f": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "f8f4af0337ef0351": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "f914595ed95eaec6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f970639e1fac2eba": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "f9932f72c734dc38": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "f9d45d8f37f5d2cf": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "f9dcd42145894f08": [
+   "aprovado",
+   "data/locales/pt-BR/SafetyArticlesDB.js",
+   "m001"
+  ],
+  "fa18e05ece2ee0e5": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "fa3f5243711040e6": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fa4a0a706f2aa4cd": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "fa7258518f6c9f16": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "faa2c90a4b7b61ae": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "fab5b44fa6fb27ef": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "fac394535005073f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fae1dd38c25dfe2f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "fafe28058cfa5a64": [
+   "pendente",
+   "data/legal/politica_privacidade.js",
+   "m008"
+  ],
+  "fb181ec3578f8961": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fb284a944a49bf4a": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "fb2a182d91d49a8b": [
+   "pendente",
+   "screens/SafetyPermitScreen.js",
+   "m006"
+  ],
+  "fb9d5e314cff898c": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fbafb86aa122a4c6": [
+   "pendente",
+   "screens/Education/TravelSafetyGuideScreen.js",
+   "m005"
+  ],
+  "fbb83258f0919829": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "fc123f9ccdce5a97": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "fc374133cae0bbfb": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m005"
+  ],
+  "fc4c5296b4b2b8c8": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "fc98517c29f4e727": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fc9c9db79e39f888": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m002"
+  ],
+  "fcbb22340d159cac": [
+   "pendente",
+   "data/eletrodomesticos_seguranca.js",
+   "m006"
+  ],
+  "fd07e3bede66f62f": [
+   "pendente",
+   "screens/SegurancaLazerScreen.js",
+   "m004"
+  ],
+  "fd6c97470e04759b": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "fd782257fbb17c7b": [
+   "pendente",
+   "data/mobilidade_data.js",
+   "m004"
+  ],
+  "fd8679acfebdf209": [
+   "pendente",
+   "data/fases_vida.js",
+   "m004"
+  ],
+  "fdad4488d5fab287": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "fdc16e5d8fd4a30a": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "fde235442d09ce36": [
+   "pendente",
+   "data/utensilios_domesticos.js",
+   "m006"
+  ],
+  "fde996b68132042c": [
+   "pendente",
+   "data/classesIncendio.js",
+   "m006"
+  ],
+  "fe4c5462bcc0c034": [
+   "pendente",
+   "data/pet_food_safety.js",
+   "m006"
+  ],
+  "fe7c529f86b5f3b9": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m007"
+  ],
+  "feac9c4c91ee3704": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "fee04d9344f07f23": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "fef119ee1b01907a": [
+   "aprovado",
+   "data/locales/pt-BR/RiskCategories.js",
+   "m001"
+  ],
+  "ff39ea69572cfd4e": [
+   "pendente",
+   "data/acessorios_seguranca.js",
+   "m006"
+  ],
+  "ff3a6adbc225d48d": [
+   "pendente",
+   "screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js",
+   "m006"
+  ],
+  "ff60c119fe24bb37": [
+   "pendente",
+   "data/pet_pregnancy_data.js",
+   "m006"
+  ],
+  "ff6b0e79f7a3ff77": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m006"
+  ],
+  "ff71f777dff25650": [
+   "pendente",
+   "data/categoriasRisco.js",
+   "m006"
+  ],
+  "ffa66bd7e5235f48": [
+   "pendente",
+   "data/animais_ciatox.js",
+   "m006"
+  ]
+ }
+}
