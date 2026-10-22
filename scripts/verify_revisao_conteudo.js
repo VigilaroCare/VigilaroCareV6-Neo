@@ -72,16 +72,10 @@ const FORA_DO_ESCOPO = {
         motivo: 'codigo morto — deve ser removido, nao revisado',
         uso: /delay_guidance/,
     },
-    // MOTIVO (21/10/2026): a trava achou 112 orientacoes de socorro nunca
-    // revisadas aqui — mas a rota so existe no Stack do App.js; nenhuma tela
-    // navega ate ela. O socorro que o usuario ve vem de `PrimeirosSocorros`
-    // (data/locales/*/primeiros_socorros.js, revisado no PS). Esta tela, alem
-    // de nao revisada, so tem pt-BR e diz "(SAMU)" fixo.
-    'screens/Emergency/PrimeirosSocorrosEmergenciaScreen.js': {
-        motivo: 'tela orfa — nenhuma navegacao leva a ela; remover ou revisar antes de religar',
-        uso: /['"]PrimeirosSocorrosEmergencia['"]/,
-        ignorarLinha: /<Stack\.Screen/,
-    },
+    // Tela orfa: escreva aqui `uso` com o nome da rota e `ignorarLinha:
+    // /<Stack\.Screen/`. Foi o caso de PrimeirosSocorrosEmergenciaScreen (112
+    // orientacoes de socorro nunca revisadas, so pt-BR, "(SAMU)" fixo), apagada
+    // em 21/10/2026 — os 3 temas que so ela tinha foram para primeiros_socorros.
 };
 const PASTAS_DE_CODIGO = ['data', 'screens', 'components', 'services', 'utils', 'hooks', 'context', 'contexts', 'navigation'];
 

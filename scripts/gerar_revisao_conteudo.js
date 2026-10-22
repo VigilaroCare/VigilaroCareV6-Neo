@@ -193,6 +193,24 @@ const TEMAS = [
             + 'orgao do pais do usuario (no Brasil: 193, selo do INMETRO).',
         fontes: [],
     },
+    // PN — temas novos de primeiros socorros (21/10/2026): afogamento,
+    // vomito/aspiracao e incendio/fumaca, que so existiam na tela orfa
+    // PrimeirosSocorrosEmergenciaScreen (apagada). `blocosInteiros` manda o
+    // tema completo, e `minimoConhecida: 10` inclui as frases curtas ("NAO use
+    // o elevador.") que o limiar padrao de 25 caracteres deixaria de fora.
+    {
+        nome: 'Temas Novos de Primeiros Socorros',
+        sigla: 'PN',
+        pendentes: ['m009'],
+        blocosInteiros: true,
+        minimoConhecida: 10,
+        chavesExtras: ['situacao'],
+        descricao: 'Tres temas que faltavam nos primeiros socorros do app: afogamento, vomito com risco '
+            + 'de aspiracao e incendio com inalacao de fumaca. Todos os textos sao novos — voce ainda nao '
+            + 'viu nenhum. Trechos entre chaves duplas, como {{EMERGENCY_MEDICAL}} ou {{FIRE_NUMBER}}, '
+            + 'sao trocados no app pelo numero do pais do usuario (no Brasil: 192 e 193).',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -313,6 +331,7 @@ const PAPEL_DO_CAMPO = {
     'bullets[]': 'PONTOS DE ATENCAO',
     'exemplos[]': 'EXEMPLOS',
     estatistica: 'VOCE SABIA? (ESTATISTICA)',
+    situacao: 'SITUACAO',
 };
 
 // ---------------------------------------------------------------------------
@@ -412,7 +431,7 @@ function extrair(relativo, opcoes = {}, codigo = null) {
                 .map((q) => (q.value.cooked !== undefined ? q.value.cooked : q.value.raw))
                 .join('')
                 .replace(/^\n+|\s+$/g, '');
-            if (!texto || texto.length < MIN_PROSA_CONHECIDA) return;
+            if (!texto || texto.length < (opcoes.minimoConhecida || MIN_PROSA_CONHECIDA)) return;
             if (!/[a-zA-ZÀ-ÿ]/.test(texto)) return;
             if (dentroDeBlocoTraduzido(caminho)) return;
 
@@ -444,7 +463,7 @@ function extrair(relativo, opcoes = {}, codigo = null) {
 
             const ehTitulo = CHAVES_DE_TITULO.has(chave) || titulosExtras.has(chave);
             const conhecida = CHAVES_DE_PROSA.has(chave) || extras.has(chave) || ehTitulo;
-            const minimo = conhecida ? MIN_PROSA_CONHECIDA : MIN_PROSA_GENERICA;
+            const minimo = conhecida ? (opcoes.minimoConhecida || MIN_PROSA_CONHECIDA) : MIN_PROSA_GENERICA;
             if (texto.length < minimo) return;
             // Campo desconhecido e curto: provavelmente rotulo de interface.
             if (!conhecida && texto.length < MIN_PROSA_GENERICA) return;
@@ -465,7 +484,8 @@ function extrair(relativo, opcoes = {}, codigo = null) {
     const blocos = [];
     const vistos = new Set();
     for (const a of achados) {
-        if (vistos.has(a.texto)) continue; // mesmo texto repetido no arquivo
+        // mesmo texto repetido no arquivo — exceto quando o tema pede o bloco inteiro (PN)
+        if (vistos.has(a.texto) && !opcoes.manterRepetidos) continue;
         vistos.add(a.texto);
         const rotulo = a.item || '(sem titulo)';
         let bloco = blocos[blocos.length - 1];
@@ -842,7 +862,17 @@ function selecaoDePendentes(tema) {
         return { arquivo, rotulo: conhecida ? conhecida.rotulo : path.basename(arquivo, '.js') };
     });
     const rc = TEMAS.find((x) => x.sigla === 'RC');
-    return { escolhidos, fontes, opcoes: { chavesExtras: rc.chavesExtras, titulosExtras: rc.titulosExtras } };
+    return {
+        escolhidos,
+        fontes,
+        blocosInteiros: Boolean(tema.blocosInteiros),
+        opcoes: {
+            chavesExtras: [...rc.chavesExtras, ...(tema.chavesExtras || [])],
+            titulosExtras: rc.titulosExtras,
+            minimoConhecida: tema.minimoConhecida,
+            manterRepetidos: Boolean(tema.blocosInteiros),
+        },
+    };
 }
 
 /** Deixa so os textos escolhidos, cada um com a versao que o Agnaldo revisou (se houver). */
@@ -850,13 +880,18 @@ function filtrarPendentes(blocos, arquivo, selecao) {
     const { referenciaRevisada, impressao } = require('./verify_revisao_conteudo');
     const saida = [];
     for (const b of blocos) {
-        const textos = b.textos.filter((t) => selecao.escolhidos.has(impressao(t.texto)));
+        const algum = b.textos.some((t) => selecao.escolhidos.has(impressao(t.texto)))
+            || (b.chaveDoTitulo && selecao.escolhidos.has(impressao(b.item)));
+        const textos = selecao.blocosInteiros && algum
+            ? b.textos
+            : b.textos.filter((t) => selecao.escolhidos.has(impressao(t.texto)));
         for (const t of textos) {
             const versao = referenciaRevisada(arquivo, t.texto);
             if (versao) t.versaoRevisada = versao;
             else t.escritoDepois = true;
         }
-        const tituloPendente = Boolean(b.chaveDoTitulo) && selecao.escolhidos.has(impressao(b.item));
+        const tituloPendente = Boolean(b.chaveDoTitulo)
+            && (selecao.escolhidos.has(impressao(b.item)) || (selecao.blocosInteiros && algum));
         if (!textos.length && !tituloPendente) continue;
         saida.push({ ...b, textos, chaveDoTitulo: tituloPendente ? b.chaveDoTitulo : undefined });
     }

@@ -89,7 +89,17 @@ que voltou a ser usado — se esse sinal aparecer no código, a trava falha.
 O tema `RP` do gerador não lê arquivos inteiros: lê o backlog da trava, filtrado pelos motivos listados em
 `pendentes`. Abaixo de cada texto alterado vai a linha "VERSAO QUE VOCE REVISOU" (o texto revisado mais parecido
 do mesmo arquivo); texto escrito depois vai marcado "ESCRITO DEPOIS DA SUA REVISAO". O importador ignora as duas
-linhas. Enviado em 21/10/2026 com 202 códigos. Os `_plano-*.json` precisam estar no git: sem eles,
+linhas. Enviado em 21/10/2026 com 202 códigos.
+
+### PN — Temas Novos de Primeiros Socorros
+
+Mesmo mecanismo do RP, com três opções a mais: `blocosInteiros` (manda o tema inteiro, não só o texto
+pendente), `minimoConhecida: 10` (inclui frases curtas como "NÃO use o elevador.") e repetições mantidas (frase
+igual à de outro tema aparece no contexto). Enviado em 21/10/2026 com 37 códigos.
+
+Atenção: a seleção do RP/PN lê o backlog **pendente**. Depois que o documento é gerado, os textos passam a
+"em revisão"; apagar o `.docx` e regerar na mesma hora produz documento vazio, porque o manifesto ainda tem
+os códigos. Regere primeiro o manifesto (rode o gerador uma vez sem o `.docx`) ou restaure o manifesto. Os `_plano-*.json` precisam estar no git: sem eles,
 o que já foi revisado volta a aparecer como não revisado.
 
 Registro inicial (21/10/2026): marca REMOVER resolvida, grafia, concordância, tokens de país e replicações

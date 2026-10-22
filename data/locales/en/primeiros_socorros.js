@@ -264,6 +264,67 @@ export const primeirosSocorrosEN = [
             'DO NOT stop chest compressions until {{EMERGENCY_MEDICAL}} take over, the AED tells you to stand clear, or the person starts breathing normally again.',
             'DO NOT worry about breaking a rib — keeping blood flowing to the brain and heart is the absolute priority.',
         ],
-        quandoChamarAjuda: 'IMMEDIATAMENTE.'
+        quandoChamarAjuda: 'Immediately.'
+    },
+    {
+        id: 'ps_17',
+        titulo: 'Drowning',
+        emoji: '🌊',
+        situacao: 'Person pulled from the water or who was struggling to breathe',
+        oQueFazer: [
+            'Have someone call {{EMERGENCY_MEDICAL}} and the fire service ({{FIRE_NUMBER}}).',
+            'Help without getting into the water whenever possible: reach out with a broom handle or a rope, or throw something that floats (a ring buoy, a closed plastic bottle, a foam board).',
+            'Once out of the water, lay the person on their back on a firm surface and check whether they are breathing.',
+            'If they are NOT breathing, start CPR. In drowning, if you know how, begin with 5 rescue breaths, then continue with 30 compressions to 2 breaths; if you don\'t, do compressions only, without stopping.',
+            'If they are breathing but don\'t wake up, turn them on their side (recovery position) and watch their breathing until help arrives.',
+            'Remove wet clothing and cover the person to keep them warm.',
+        ],
+        oQueNaoFazer: [
+            'DO NOT jump into the water to rescue someone unless you are trained — many people who try to help drown too.',
+            'DO NOT try to get water out of the lungs by pressing on the belly or holding the person upside down: it delays CPR and can cause vomiting.',
+            'DO NOT skip a medical check because the person seems fine.',
+        ],
+        quandoChamarAjuda: 'Always. Even someone who came out of the water fine needs a check if they swallowed water, coughed a lot or became drowsy: breathing problems can appear hours later.'
+    },
+    {
+        id: 'ps_18',
+        titulo: 'Vomiting and Risk of Choking on Vomit',
+        emoji: '🤮',
+        situacao: 'Person vomiting who is drowsy, unresponsive or lying down',
+        oQueFazer: [
+            'Turn the person on their side (recovery position), with the head slightly lower, so the vomit drains out of the mouth.',
+            'Wipe the outside of the mouth with a cloth; only remove what you can see inside, with a finger wrapped in a cloth.',
+            'With a baby, hold them on their side on your lap, with the head slightly lower than the body.',
+            'Stay with them and watch their breathing until they are fully awake or help arrives.',
+            'If you suspect poisoning, keep the product or medicine packaging and call {{POISON_CONTROL}}.',
+        ],
+        oQueNaoFazer: [
+            'DO NOT leave the person lying on their back while they are vomiting or drowsy.',
+            'DO NOT give water, food or medicine to someone who is drowsy or unresponsive.',
+            'DO NOT make them vomit.',
+            'DO NOT leave the person alone.',
+        ],
+        quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} if the person won\'t wake up, has trouble breathing or a strong cough after vomiting, vomits blood, or if the vomiting follows a blow to the head or a suspected poisoning.'
+    },
+    {
+        id: 'ps_19',
+        titulo: 'House Fire and Smoke Inhalation',
+        emoji: '💨',
+        situacao: 'Fire at home, smoke in the room or someone who has breathed in smoke',
+        oQueFazer: [
+            'Get out and get everyone out of the house immediately; call the fire service ({{FIRE_NUMBER}}) once you are outside.',
+            'If there is smoke, get down low and crawl out close to the floor, where the air is cleaner; if a cloth is at hand, wet it and cover your nose and mouth, without wasting time looking for one.',
+            'Before opening a door, touch it with the back of your hand: if it is hot, don\'t open it and find another way out. Close doors behind you.',
+            'If your clothes catch fire: stop, drop to the ground, cover your face with your hands and roll until the flames are out.',
+            'Take anyone who breathed in smoke into fresh air and keep them sitting and resting.',
+            'If the person is not breathing, start CPR.',
+        ],
+        oQueNaoFazer: [
+            'NEVER go back inside for belongings, documents, people or pets — tell the fire service who is still inside.',
+            'DO NOT use the lift.',
+            'DO NOT hide in cupboards or under the bed — teach children this beforehand.',
+            'DO NOT throw water on a cooking-oil fire or on electrical equipment that is switched on.',
+        ],
+        quandoChamarAjuda: 'Call {{EMERGENCY_MEDICAL}} if anyone who breathed in smoke has shortness of breath, a persistent cough, a hoarse voice, soot around the nose or mouth, a headache, dizziness, nausea or confusion — smoke can contain carbon monoxide, which poisons without any smell.'
     }
 ];

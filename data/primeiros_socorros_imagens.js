@@ -28,6 +28,9 @@ export const PRIMEIROS_SOCORROS_IMAGENS = {
     ps_14: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Convulsao — paciente recebendo IV
     ps_15: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'), // AVC — mao com soro
     ps_16: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Parada cardiaca — desfibrilador
+    ps_17: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Afogamento
+    ps_18: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Vomito e aspiracao
+    ps_19: require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Incendio e fumaca
 
     // ============ PETS ============
     engasgo_pet:        require('../assets/illustrations/pad/engasgo-afogamento_engasgar-o-que-fazer-3_018.jpg'),  // Veterinario c/ estetoscopio

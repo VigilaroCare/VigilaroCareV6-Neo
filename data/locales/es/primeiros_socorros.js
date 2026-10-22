@@ -265,5 +265,66 @@ export const primeirosSocorrosES = [
             'NO tema fracturar una costilla: mantener el flujo de sangre al cerebro y al corazón es la prioridad absoluta.',
         ],
         quandoChamarAjuda: 'INMEDIATAMENTE.'
+    },
+    {
+        id: 'ps_17',
+        titulo: 'Ahogamiento',
+        emoji: '🌊',
+        situacao: 'Persona sacada del agua o que luchaba por respirar',
+        oQueFazer: [
+            'Pida a alguien que llame a {{EMERGENCY_MEDICAL}} y a los bomberos ({{FIRE_NUMBER}}).',
+            'Ayude sin entrar al agua siempre que pueda: acérquele un palo de escoba o una cuerda, o lance algo que flote (salvavidas, botella de plástico cerrada, una plancha de espuma).',
+            'Fuera del agua, acueste a la persona boca arriba sobre una superficie firme y compruebe si respira.',
+            'Si NO respira, inicie la RCP. En el ahogamiento, si sabe hacerlo, empiece con 5 respiraciones boca a boca y siga con 30 compresiones por 2 respiraciones; si no sabe, haga solo compresiones, sin parar.',
+            'Si respira pero no despierta, póngala de lado (posición lateral de seguridad) y vigile la respiración hasta que llegue la ayuda.',
+            'Quítele la ropa mojada y cúbrala para que entre en calor.',
+        ],
+        oQueNaoFazer: [
+            'NO se tire al agua para rescatar a alguien si no tiene formación: muchas personas que intentan ayudar también se ahogan.',
+            'NO intente sacar el agua de los pulmones apretando el abdomen ni poniendo a la persona boca abajo: retrasa la RCP y puede provocar vómito.',
+            'NO descarte la valoración médica porque la persona parezca estar bien.',
+        ],
+        quandoChamarAjuda: 'Siempre. Incluso quien salió bien del agua necesita valoración si tragó agua, tosió mucho o quedó somnoliento: los problemas para respirar pueden aparecer horas después.'
+    },
+    {
+        id: 'ps_18',
+        titulo: 'Vómito y Riesgo de Aspiración',
+        emoji: '🤮',
+        situacao: 'Persona que vomita y está somnolienta, inconsciente o acostada',
+        oQueFazer: [
+            'Ponga a la persona de lado (posición lateral de seguridad), con la cabeza un poco más baja, para que el vómito salga de la boca.',
+            'Limpie la boca por fuera con un paño; retire de dentro solo los restos que pueda ver, con el dedo envuelto en un paño.',
+            'A un bebé, sosténgalo de lado en su regazo, con la cabeza un poco más baja que el cuerpo.',
+            'Quédese a su lado y vigile la respiración hasta que esté bien despierta o llegue la ayuda.',
+            'Si sospecha una intoxicación, guarde el envase del producto o del medicamento y llame a {{POISON_CONTROL}}.',
+        ],
+        oQueNaoFazer: [
+            'NO deje a la persona boca arriba mientras vomita o está somnolienta.',
+            'NO dé agua, comida ni medicamentos a quien está somnoliento o inconsciente.',
+            'NO provoque el vómito.',
+            'NO deje sola a la persona.',
+        ],
+        quandoChamarAjuda: 'Llame a {{EMERGENCY_MEDICAL}} si la persona no despierta, tiene dificultad para respirar o tos fuerte después de vomitar, vomita sangre, o si el vómito aparece después de un golpe en la cabeza o de una sospecha de intoxicación.'
+    },
+    {
+        id: 'ps_19',
+        titulo: 'Incendio e Inhalación de Humo',
+        emoji: '💨',
+        situacao: 'Fuego en casa, humo en el ambiente o persona que respiró humo',
+        oQueFazer: [
+            'Salga y saque a todos de la casa de inmediato; llame a los bomberos ({{FIRE_NUMBER}}) ya desde fuera.',
+            'Si hay humo, agáchese y salga gateando a ras del suelo, donde el aire está más limpio; si tiene un paño a mano, mójelo y cúbrase la nariz y la boca, sin perder tiempo buscándolo.',
+            'Antes de abrir una puerta, tóquela con el dorso de la mano: si está caliente, no la abra y busque otra salida. Cierre las puertas al pasar.',
+            'Si se le prende la ropa: pare, tírese al suelo, cúbrase la cara con las manos y ruede hasta apagar las llamas.',
+            'Lleve a quien respiró humo al aire libre y manténgalo sentado y en reposo.',
+            'Si la persona no respira, inicie la RCP.',
+        ],
+        oQueNaoFazer: [
+            'NUNCA vuelva a entrar a buscar objetos, documentos, personas o mascotas: avise a los bomberos de quién quedó dentro.',
+            'NO use el ascensor.',
+            'NO se esconda en armarios ni debajo de la cama: enséñeselo antes a los niños.',
+            'NO eche agua sobre fuego de aceite de cocina ni sobre aparatos eléctricos encendidos.',
+        ],
+        quandoChamarAjuda: 'Llame a {{EMERGENCY_MEDICAL}} si quien respiró humo tiene falta de aire, tos persistente, ronquera, hollín en la nariz o la boca, dolor de cabeza, mareo, náuseas o confusión: el humo puede contener monóxido de carbono, que intoxica sin olor.'
     }
 ];

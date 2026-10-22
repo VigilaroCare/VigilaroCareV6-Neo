@@ -1,4 +1,300 @@
 {
+  "PN-0001": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "titulo",
+    "linha": 271,
+    "original": "Afogamento"
+  },
+  "PN-0002": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "situacao",
+    "linha": 273,
+    "original": "Pessoa retirada da água ou que se debatia para respirar"
+  },
+  "PN-0003": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 275,
+    "original": "Peça a alguém para ligar para o {{EMERGENCY_MEDICAL}} e para os Bombeiros ({{FIRE_NUMBER}})."
+  },
+  "PN-0004": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 276,
+    "original": "Ajude sem entrar na água sempre que possível: estenda um cabo de vassoura ou uma corda, ou jogue algo que flutue (boia, garrafa PET fechada, isopor)."
+  },
+  "PN-0005": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 277,
+    "original": "Fora da água, deite a pessoa de barriga para cima em lugar firme e veja se ela respira."
+  },
+  "PN-0006": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 278,
+    "original": "Se NÃO respira, inicie a RCP. No afogamento, se você souber, comece com 5 ventilações boca a boca e siga com 30 compressões para 2 ventilações; se não souber, faça só as compressões, sem parar."
+  },
+  "PN-0007": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 279,
+    "original": "Se respira, mas não acorda, vire-a de lado (posição lateral de segurança) e observe a respiração até o socorro chegar."
+  },
+  "PN-0008": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueFazer[]",
+    "linha": 280,
+    "original": "Tire a roupa molhada e cubra a pessoa para aquecê-la."
+  },
+  "PN-0009": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueNaoFazer[]",
+    "linha": 283,
+    "original": "NÃO pule na água para salvar alguém se você não tiver treinamento — muitas pessoas que tentam socorrer também se afogam."
+  },
+  "PN-0010": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueNaoFazer[]",
+    "linha": 284,
+    "original": "NÃO tente tirar a água dos pulmões apertando a barriga ou virando a pessoa de cabeça para baixo: isso atrasa a RCP e pode provocar vômito."
+  },
+  "PN-0011": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "oQueNaoFazer[]",
+    "linha": 285,
+    "original": "NÃO dispense a avaliação médica porque a pessoa parece bem."
+  },
+  "PN-0012": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Afogamento",
+    "chave": "quandoChamarAjuda",
+    "linha": 287,
+    "original": "Sempre. Mesmo quem saiu bem da água precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: problemas para respirar podem aparecer horas depois."
+  },
+  "PN-0013": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "titulo",
+    "linha": 291,
+    "original": "Vômito e Risco de Aspiração"
+  },
+  "PN-0014": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "situacao",
+    "linha": 293,
+    "original": "Pessoa vomitando que está sonolenta, desacordada ou deitada"
+  },
+  "PN-0015": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueFazer[]",
+    "linha": 295,
+    "original": "Vire a pessoa de lado (posição lateral de segurança), com a cabeça um pouco mais baixa, para o vômito escorrer para fora da boca."
+  },
+  "PN-0016": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueFazer[]",
+    "linha": 296,
+    "original": "Limpe a boca por fora com um pano; retire de dentro apenas os restos que você estiver vendo, com o dedo envolto num pano."
+  },
+  "PN-0017": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueFazer[]",
+    "linha": 297,
+    "original": "Em bebês, segure-o de lado no colo, com a cabeça um pouco mais baixa que o corpo."
+  },
+  "PN-0018": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueFazer[]",
+    "linha": 298,
+    "original": "Fique ao lado e observe a respiração até a pessoa estar bem acordada ou o socorro chegar."
+  },
+  "PN-0019": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueFazer[]",
+    "linha": 299,
+    "original": "Se suspeitar de intoxicação, guarde a embalagem do produto ou do remédio e ligue para o {{POISON_CONTROL}}."
+  },
+  "PN-0020": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueNaoFazer[]",
+    "linha": 302,
+    "original": "NÃO deixe a pessoa deitada de barriga para cima enquanto vomita ou está sonolenta."
+  },
+  "PN-0021": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueNaoFazer[]",
+    "linha": 303,
+    "original": "NÃO dê água, comida ou remédio a quem está sonolento ou desacordado."
+  },
+  "PN-0022": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueNaoFazer[]",
+    "linha": 304,
+    "original": "NÃO provoque o vômito."
+  },
+  "PN-0023": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "oQueNaoFazer[]",
+    "linha": 305,
+    "original": "NÃO deixe a pessoa sozinha."
+  },
+  "PN-0024": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Vômito e Risco de Aspiração",
+    "chave": "quandoChamarAjuda",
+    "linha": 307,
+    "original": "Chame o {{EMERGENCY_MEDICAL}} se a pessoa não acordar, tiver dificuldade para respirar ou tosse forte depois de vomitar, vomitar sangue, ou se o vômito vier depois de uma batida na cabeça ou de suspeita de intoxicação."
+  },
+  "PN-0025": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "titulo",
+    "linha": 311,
+    "original": "Incêndio e Inalação de Fumaça"
+  },
+  "PN-0026": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "situacao",
+    "linha": 313,
+    "original": "Fogo em casa, fumaça no ambiente ou pessoa que respirou fumaça"
+  },
+  "PN-0027": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 315,
+    "original": "Saia e tire todos de casa imediatamente; ligue para os Bombeiros ({{FIRE_NUMBER}}) já do lado de fora."
+  },
+  "PN-0028": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 316,
+    "original": "Com fumaça, abaixe-se e saia rastejando rente ao chão, onde o ar é mais limpo; se tiver um pano à mão, molhe-o e cubra o nariz e a boca, sem perder tempo procurando."
+  },
+  "PN-0029": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 317,
+    "original": "Antes de abrir uma porta, toque-a com o dorso da mão: se estiver quente, não abra e procure outra saída. Feche as portas atrás de você."
+  },
+  "PN-0030": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 318,
+    "original": "Se a roupa pegar fogo: pare, deite-se no chão, cubra o rosto com as mãos e role até apagar."
+  },
+  "PN-0031": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 319,
+    "original": "Leve quem respirou fumaça para o ar livre e mantenha a pessoa sentada e em repouso."
+  },
+  "PN-0032": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueFazer[]",
+    "linha": 320,
+    "original": "Se a pessoa não respirar, inicie a RCP."
+  },
+  "PN-0033": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueNaoFazer[]",
+    "linha": 323,
+    "original": "NUNCA volte para dentro para buscar objetos, documentos, pessoas ou pets — avise os Bombeiros de quem ficou lá dentro."
+  },
+  "PN-0034": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueNaoFazer[]",
+    "linha": 324,
+    "original": "NÃO use o elevador."
+  },
+  "PN-0035": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueNaoFazer[]",
+    "linha": 325,
+    "original": "NÃO se esconda em armários nem debaixo da cama — ensine isso às crianças antes."
+  },
+  "PN-0036": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "oQueNaoFazer[]",
+    "linha": 326,
+    "original": "NÃO jogue água em fogo de óleo de cozinha ou em equipamento elétrico ligado."
+  },
+  "PN-0037": {
+    "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
+    "rotulo": "Primeiros socorros — pessoas",
+    "item": "Incêndio e Inalação de Fumaça",
+    "chave": "quandoChamarAjuda",
+    "linha": 328,
+    "original": "Chame o {{EMERGENCY_MEDICAL}} se quem respirou fumaça tiver falta de ar, tosse persistente, rouquidão, fuligem no nariz ou na boca, dor de cabeça, tontura, náusea ou confusão — a fumaça pode conter monóxido de carbono, que intoxica sem cheiro."
+  },
   "RP-0001": {
     "arquivo": "data/knowledge_prevencao.js",
     "rotulo": "Central de Conhecimento",

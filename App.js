@@ -98,7 +98,6 @@ import PrivacyPolicyScreen               from './screens/PrivacyPolicyScreen';
 import EmergenciaPetScreen               from './screens/Emergency/EmergenciaPetScreen';
 import CustomSplashScreen                from './screens/CustomSplashScreen';
 import EletrodomesticosScreen            from "./screens/EletrodomesticosScreen";
-import PrimeirosSocorrosEmergenciaScreen from './screens/Emergency/PrimeirosSocorrosEmergenciaScreen';
 import SOSEmergencyModeScreen            from './screens/Emergency/SOSEmergencyModeScreenNeo';
 import SOSCountdownScreen                from './screens/Emergency/SOSCountdownScreen';
 import ModoPreventivoScreenNeo           from "./screens/ModoPreventivoScreenNeo";
@@ -627,7 +626,6 @@ export default function App() {
                       <Stack.Screen name="JardinagemSegura" component={JardinagemSeguraScreen} />
                       <Stack.Screen name="Scanner" component={ScannerScreen} />
                       <Stack.Screen name="ProdutoScanner" component={ProdutoScannerScreen} />
-                      <Stack.Screen name="PrimeirosSocorrosEmergencia" component={PrimeirosSocorrosEmergenciaScreen} />
                       <Stack.Screen name="PrimeirosSocorros" component={PrimeirosSocorrosScreen} />
                       <Stack.Screen name="EmergenciaRapida" component={EmergenciaRapidaScreen} options={{ headerShown: false, presentation: 'modal', animationEnabled: false }} />
                       <Stack.Screen name="GenericCategory" component={GenericCategoryScreen} />

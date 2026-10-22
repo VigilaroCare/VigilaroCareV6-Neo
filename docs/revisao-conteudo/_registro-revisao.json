@@ -32,6 +32,10 @@
   "m008": {
    "texto": "Texto juridico - revisao propria (D25), fora da revisao de conteudo",
    "em": "2026-10-21"
+  },
+  "m009": {
+   "texto": "Tema novo de primeiros socorros (afogamento, vomito/aspiracao, incendio/fumaca), escrito em 21/10/2026 - aguarda revisao do Agnaldo",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -244,6 +248,11 @@
    "pendente",
    "data/acessorios_seguranca.js",
    "m006"
+  ],
+  "058ff79adc48926f": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "05a5546434f8c3cb": [
    "aprovado",
@@ -1070,6 +1079,11 @@
    "data/pet_pregnancy_data.js",
    "m006"
   ],
+  "207a554c1ab056f7": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "208d6f315fb4b234": [
    "pendente",
    "data/produtos_perigosos.js",
@@ -1135,10 +1149,20 @@
    "data/acessorios_seguranca.js",
    "m006"
   ],
+  "2210d3ce7316dc3d": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "221e9dd378cdd743": [
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "22302045e0f402cf": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "22391abc4841ce29": [
    "pendente",
@@ -1565,6 +1589,11 @@
    "data/areas_internas.js",
    "m004"
   ],
+  "2e1072d4f1605447": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "2e1f7cffb4f4d790": [
    "pendente",
    "data/classesIncendio.js",
@@ -1694,6 +1723,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "313413c82d21c99c": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "313fd1d98b5032a4": [
    "pendente",
@@ -2019,6 +2053,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
+  ],
+  "39d0b28918765b73": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "39f61d2de2cfd1be": [
    "pendente",
@@ -2415,6 +2454,11 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "430c4824e0773d83": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "4362b530e8d52817": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -2694,6 +2738,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "4bbcdb57868fab59": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "4bc3cfedbb5fd631": [
    "pendente",
@@ -3335,6 +3384,11 @@
    "data/classesIncendio.js",
    "m006"
   ],
+  "5d5a0fae752c62e6": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "5db80bb74d8acf68": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -3794,6 +3848,11 @@
    "pendente",
    "data/utensilios_domesticos.js",
    "m006"
+  ],
+  "68421011036918b5": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "6856f3c7239093de": [
    "aprovado",
@@ -4410,6 +4469,11 @@
    "data/epi_domestico.js",
    "m006"
   ],
+  "79db9ab20aeddfdf": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "79f105cc202b17ff": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -4474,6 +4538,11 @@
    "pendente",
    "data/acessorios_seguranca.js",
    "m006"
+  ],
+  "7cc71cdcd00d29f0": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "7cc95e3f8766f313": [
    "pendente",
@@ -4900,6 +4969,11 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
+  "89b781c7c0388553": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "89cf478e18821738": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -5124,6 +5198,11 @@
    "pendente",
    "data/acessorios_seguranca.js",
    "m006"
+  ],
+  "9011679ea079e46c": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "901e5654cd9884eb": [
    "pendente",
@@ -5379,6 +5458,11 @@
    "pendente",
    "data/knowledge_prevencao.js",
    "m004"
+  ],
+  "97303df9a5926eeb": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "9744c42e900a64c5": [
    "pendente",
@@ -5915,6 +5999,11 @@
    "data/eletrodomesticos_reviews.js",
    "m003"
   ],
+  "a3cc799841579c16": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "a3e480aaa9ef7e8b": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5959,6 +6048,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m005"
+  ],
+  "a587d1c33d0da091": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "a591efabd6f07741": [
    "pendente",
@@ -6099,6 +6193,16 @@
    "pendente",
    "data/radarConteudoDB.js",
    "m004"
+  ],
+  "a9e96c4be27bdfca": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
+  "aa104bdff7ca6f54": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "aa1fd51b5f4889e9": [
    "pendente",
@@ -6329,6 +6433,11 @@
    "pendente",
    "data/classesIncendio.js",
    "m006"
+  ],
+  "b1af0c08845c780a": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "b1d8ea747c72a190": [
    "pendente",
@@ -6900,6 +7009,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "c18fb4c4b4c82490": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "c1b2a00e0c62f5ad": [
    "pendente",
    "data/acessorios_seguranca.js",
@@ -6945,10 +7059,20 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "c344d5ab5b0c795b": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "c354f83be902bcb8": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "c372228581cc829d": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "c3b578c91c2917a4": [
    "pendente",
@@ -7155,6 +7279,11 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "c89963ef383d5b0c": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "c8e32effb71c78c3": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -7189,6 +7318,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m006"
+  ],
+  "c980ecaf5dad2d59": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "c9ce2177957ce609": [
    "pendente",
@@ -7344,6 +7478,11 @@
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
    "m004"
+  ],
+  "ccdf31d4cf02ce37": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "cd187cfab976dea5": [
    "pendente",
@@ -8945,6 +9084,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
+  "f38071ff1c4927de": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
+  ],
   "f3a275ebfa4acb25": [
    "pendente",
    "data/mobilidade_data.js",
@@ -9029,6 +9173,11 @@
    "pendente",
    "data/classesIncendio.js",
    "m006"
+  ],
+  "f63589e82f684575": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "f63b060a5af4500a": [
    "pendente",
@@ -9194,6 +9343,11 @@
    "aprovado",
    "data/locales/pt-BR/SafetyArticlesDB.js",
    "m001"
+  ],
+  "fa10e633ab346a03": [
+   "pendente",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m009"
   ],
   "fa18e05ece2ee0e5": [
    "pendente",

@@ -265,5 +265,66 @@ export const primeirosSocorrosPTBR = [
             'NÃO receie fraturas de costela — a manutenção do fluxo sanguíneo para o cérebro e coração é a prioridade absoluta.',
         ],
         quandoChamarAjuda: 'Imediatamente.'
+    },
+    {
+        id: 'ps_17',
+        titulo: 'Afogamento',
+        emoji: '🌊',
+        situacao: 'Pessoa retirada da água ou que se debatia para respirar',
+        oQueFazer: [
+            'Peça a alguém para ligar para o {{EMERGENCY_MEDICAL}} e para os Bombeiros ({{FIRE_NUMBER}}).',
+            'Ajude sem entrar na água sempre que possível: estenda um cabo de vassoura ou uma corda, ou jogue algo que flutue (boia, garrafa PET fechada, isopor).',
+            'Fora da água, deite a pessoa de barriga para cima em lugar firme e veja se ela respira.',
+            'Se NÃO respira, inicie a RCP. No afogamento, se você souber, comece com 5 ventilações boca a boca e siga com 30 compressões para 2 ventilações; se não souber, faça só as compressões, sem parar.',
+            'Se respira, mas não acorda, vire-a de lado (posição lateral de segurança) e observe a respiração até o socorro chegar.',
+            'Tire a roupa molhada e cubra a pessoa para aquecê-la.',
+        ],
+        oQueNaoFazer: [
+            'NÃO pule na água para salvar alguém se você não tiver treinamento — muitas pessoas que tentam socorrer também se afogam.',
+            'NÃO tente tirar a água dos pulmões apertando a barriga ou virando a pessoa de cabeça para baixo: isso atrasa a RCP e pode provocar vômito.',
+            'NÃO dispense a avaliação médica porque a pessoa parece bem.',
+        ],
+        quandoChamarAjuda: 'Sempre. Mesmo quem saiu bem da água precisa de avaliação se engoliu água, tossiu muito ou ficou sonolento: problemas para respirar podem aparecer horas depois.'
+    },
+    {
+        id: 'ps_18',
+        titulo: 'Vômito e Risco de Aspiração',
+        emoji: '🤮',
+        situacao: 'Pessoa vomitando que está sonolenta, desacordada ou deitada',
+        oQueFazer: [
+            'Vire a pessoa de lado (posição lateral de segurança), com a cabeça um pouco mais baixa, para o vômito escorrer para fora da boca.',
+            'Limpe a boca por fora com um pano; retire de dentro apenas os restos que você estiver vendo, com o dedo envolto num pano.',
+            'Em bebês, segure-o de lado no colo, com a cabeça um pouco mais baixa que o corpo.',
+            'Fique ao lado e observe a respiração até a pessoa estar bem acordada ou o socorro chegar.',
+            'Se suspeitar de intoxicação, guarde a embalagem do produto ou do remédio e ligue para o {{POISON_CONTROL}}.',
+        ],
+        oQueNaoFazer: [
+            'NÃO deixe a pessoa deitada de barriga para cima enquanto vomita ou está sonolenta.',
+            'NÃO dê água, comida ou remédio a quem está sonolento ou desacordado.',
+            'NÃO provoque o vômito.',
+            'NÃO deixe a pessoa sozinha.',
+        ],
+        quandoChamarAjuda: 'Chame o {{EMERGENCY_MEDICAL}} se a pessoa não acordar, tiver dificuldade para respirar ou tosse forte depois de vomitar, vomitar sangue, ou se o vômito vier depois de uma batida na cabeça ou de suspeita de intoxicação.'
+    },
+    {
+        id: 'ps_19',
+        titulo: 'Incêndio e Inalação de Fumaça',
+        emoji: '💨',
+        situacao: 'Fogo em casa, fumaça no ambiente ou pessoa que respirou fumaça',
+        oQueFazer: [
+            'Saia e tire todos de casa imediatamente; ligue para os Bombeiros ({{FIRE_NUMBER}}) já do lado de fora.',
+            'Com fumaça, abaixe-se e saia rastejando rente ao chão, onde o ar é mais limpo; se tiver um pano à mão, molhe-o e cubra o nariz e a boca, sem perder tempo procurando.',
+            'Antes de abrir uma porta, toque-a com o dorso da mão: se estiver quente, não abra e procure outra saída. Feche as portas atrás de você.',
+            'Se a roupa pegar fogo: pare, deite-se no chão, cubra o rosto com as mãos e role até apagar.',
+            'Leve quem respirou fumaça para o ar livre e mantenha a pessoa sentada e em repouso.',
+            'Se a pessoa não respirar, inicie a RCP.',
+        ],
+        oQueNaoFazer: [
+            'NUNCA volte para dentro para buscar objetos, documentos, pessoas ou pets — avise os Bombeiros de quem ficou lá dentro.',
+            'NÃO use o elevador.',
+            'NÃO se esconda em armários nem debaixo da cama — ensine isso às crianças antes.',
+            'NÃO jogue água em fogo de óleo de cozinha ou em equipamento elétrico ligado.',
+        ],
+        quandoChamarAjuda: 'Chame o {{EMERGENCY_MEDICAL}} se quem respirou fumaça tiver falta de ar, tosse persistente, rouquidão, fuligem no nariz ou na boca, dor de cabeça, tontura, náusea ou confusão — a fumaça pode conter monóxido de carbono, que intoxica sem cheiro.'
     }
 ];
