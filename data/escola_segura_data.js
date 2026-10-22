@@ -952,7 +952,7 @@ IMPORTANTE:
     'Há seguro de acidentes para as crianças?',
     'Quantos funcionários têm treinamento em primeiros socorros?',
     'Com que frequência são realizados simulados de evacuação?',
-    'Como a escola lida com crianças com necessidades especiais?',
+    'Como a escola lida com crianças com deficiência ou neurodivergentes?',
     'Qual a política de administração de medicamentos?',
     'Como é feito o controle de visitantes?',
     'A escola já teve algum acidente grave? Como foi tratado?'

@@ -98,6 +98,13 @@ bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos 
 dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
 (`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
 
+### GS — Grupos Sensíveis
+
+Textos alterados para incluir idosos, pessoas com deficiência, mobilidade reduzida, limitações cognitivas e
+neurodivergentes onde o risco também é deles (comentário do Agnaldo na RC). Usa `antes: '_antes-GS.json'` (texto
+novo → texto que estava no app, gravado na aplicação) e `dataMudancas`, que viram a linha "ANTES (até …)".
+Texto de `common.json` entra direto da trava (o extrator só lê código). Enviado em 21/10/2026 com 44 códigos.
+
 ### PN — Temas Novos de Primeiros Socorros
 
 Mesmo mecanismo do RP, com três opções a mais: `blocosInteiros` (manda o tema inteiro, não só o texto

@@ -11,7 +11,7 @@ export const RISK_CATEGORIES_PT = [
       description: '**O Risco Invisível:** A "responsabilidade difusa" faz com que todos achem que alguém está vigiando. Cadeiras fora do lugar tornam-se degraus para janelas, e copos com álcool são esquecidos ao alcance de crianças.',
       keyPoints: [
         '**Ação Tática Imediata:** Isole fisicamente áreas de risco (tranque portões e cozinha).',
-        'Para visitas de idosos, remova imediatamente tapetes soltos.',
+        'Para visitas de idosos ou de pessoas com mobilidade reduzida, remova imediatamente os tapetes soltos.',
         'Alerte convidados sobre desníveis logo na chegada.',
         'Veja o conteúdo completo em preveniremcasa.com.br'
       ]
@@ -119,9 +119,9 @@ export const RISK_CATEGORIES_PT = [
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
     educational: {
-      description: 'Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças e bebés têm necessidades de segurança específicas que pode não notar na correria do dia a dia.',
+      description: 'Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças, bebés e pessoas com deficiência têm necessidades de segurança específicas que pode não notar na correria do dia a dia.',
       keyPoints: [
-        'Remova tapetes soltos para visitas de idosos.',
+        'Remova os tapetes soltos para visitas de idosos ou de pessoas com mobilidade reduzida.',
         'Verifique a largura de passagens e iluminação de degraus.',
         'Esconda fios e proteja tomadas para bebês e crianças em fase de engatinhar.',
         'Informe os riscos da casa (ex: degrau na sala) aos convidados.'
@@ -200,7 +200,7 @@ export const RISK_CATEGORIES_PT = [
       },
       {
         id: 'vis_10',
-        text: 'Está garantida a acessibilidade para visitantes com necessidades especiais?',
+        text: 'Está garantida a acessibilidade para visitantes com deficiência ou mobilidade reduzida?',
         consequence: 'Degraus soltos ou portas estreitas causam quedas graves quando se improvisa.',
         checkAction: 'Verifique acessibilidade e providencie rampas se necessário.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
@@ -412,7 +412,7 @@ export const RISK_CATEGORIES_PT = [
         critico: true,
         text: 'Medicamentos e produtos de limpeza estão trancados?',
         consequence: 'Intoxicação acidental é emergência frequente em menores de 5 anos.',
-        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance das crianças.',
+        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance das crianças e de pessoas com limitações cognitivas.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

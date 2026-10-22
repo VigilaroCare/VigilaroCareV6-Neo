@@ -302,7 +302,7 @@ export const UTENSILIOS_REVIEWS = [
         corRisco: '#F57F17',
         frequenciaUso: 'Muito Alta', frequenciaUso_ptpt: 'Muito Alta', frequenciaUso_es: 'Muy Alta', frequenciaUso_en: 'Very High',
         perfilRisco: ['idoso', 'crianca'],
-        resumo: 'Tapetes soltos estão entre os riscos de queda mais comuns para idosos dentro de casa. Um item decorativo pode se tornar uma armadilha silenciosa.', resumo_ptpt: 'Os tapetes soltos estão entre os riscos de queda mais comuns para idosos dentro de casa. Um objeto decorativo pode tornar-se uma armadilha silenciosa.', resumo_es: 'Las alfombras sueltas están entre los riesgos de caída más comunes para las personas mayores en casa. Un objeto decorativo puede convertirse en una trampa silenciosa.', resumo_en: 'Loose rugs are among the most common fall hazards for older people at home. A decorative item can become a silent trap.',
+        resumo: 'Tapetes soltos estão entre os riscos de queda mais comuns para idosos e pessoas com mobilidade reduzida dentro de casa. Um item decorativo pode se tornar uma armadilha silenciosa.', resumo_ptpt: 'Os tapetes soltos estão entre os riscos de queda mais comuns para idosos e pessoas com mobilidade reduzida dentro de casa. Um objeto decorativo pode tornar-se uma armadilha silenciosa.', resumo_es: 'Las alfombras sueltas están entre los riesgos de caída más comunes para las personas mayores y con movilidad reducida en casa. Un objeto decorativo puede convertirse en una trampa silenciosa.', resumo_en: 'Loose rugs are among the most common fall hazards for older people and anyone with reduced mobility at home. A decorative item can become a silent trap.',
         riscos: [
             { descricao: 'Escorregões e quedas por tapetes sem antiderrapante', descricao_ptpt: 'Escorregadelas e quedas por tapetes sem antiderrapante', descricao_es: 'Resbalones y caídas por alfombras sin antideslizante', descricao_en: 'Slips and falls on rugs without a non-slip backing', gravidade: 'critico' },
             { descricao: 'Tropeços em pontas dobradas ou bordas levantadas', descricao_ptpt: 'Tropeções em pontas dobradas ou bordas levantadas', descricao_es: 'Tropiezos con esquinas dobladas o bordes levantados', descricao_en: 'Tripping over folded corners or raised edges', gravidade: 'alto' },
@@ -311,25 +311,25 @@ export const UTENSILIOS_REVIEWS = [
         prevencao: [
             'Use exclusivamente tapetes com base antiderrapante ou aplique fita dupla face antiderrapante na parte de baixo',
             'Prefira tapetes de baixa espessura que não criem "degraus" para tropeço',
-            'Remova completamente os tapetes se houver idosos com dificuldade de marcha',
+            'Remova completamente os tapetes se houver idosos ou outras pessoas com dificuldade de marcha ou baixa visão',
             'Fixe as bordas — pontas dobradas são convites para tropeços',
             'Em áreas molhadas (banheiro, cozinha), use apenas tapetes emborrachados e com ventosas',
         ], prevencao_ptpt: [
             'Use apenas tapetes com base antiderrapante ou aplique fita dupla face antiderrapante por baixo',
             'Prefira tapetes finos que não criem «degraus» para tropeçar',
-            'Retire por completo os tapetes se houver idosos com dificuldade em andar',
+            'Retire por completo os tapetes se houver idosos ou outras pessoas com dificuldade em andar ou baixa visão',
             'Fixe as bordas — pontas dobradas são um convite a tropeções',
             'Em zonas molhadas (casa de banho, cozinha), use apenas tapetes de borracha com ventosas',
         ], prevencao_es: [
             'Use solo alfombras con base antideslizante o ponga cinta de doble cara antideslizante por debajo',
             'Prefiera alfombras finas que no formen un «escalón» con el que tropezar',
-            'Retire del todo las alfombras si hay personas mayores con dificultad para caminar',
+            'Retire del todo las alfombras si hay personas mayores u otras personas con dificultad para caminar o baja visión',
             'Fije los bordes: las esquinas dobladas invitan a tropezar',
             'En zonas húmedas (baño, cocina), use solo alfombrillas de goma con ventosas',
         ], prevencao_en: [
             'Only use rugs with a non-slip backing, or put non-slip double-sided tape underneath',
             'Choose thin rugs that do not create a "step" to trip on',
-            'Remove rugs altogether if an older person has difficulty walking',
+            'Remove rugs altogether if anyone in the home has difficulty walking or low vision',
             'Fix the edges down — folded corners are an invitation to trip',
             'In wet areas (bathroom, kitchen), only use rubber mats with suction cups',
         ],

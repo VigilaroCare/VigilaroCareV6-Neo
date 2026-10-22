@@ -282,7 +282,7 @@ function registrar(r, situacao, motivo, filtroArquivos) {
     let idMotivo = Object.keys(registro.motivos).find((k) => registro.motivos[k].texto === motivo);
     if (!idMotivo) {
         idMotivo = `m${String(Object.keys(registro.motivos).length + 1).padStart(3, '0')}`;
-        registro.motivos[idMotivo] = { texto: motivo, em: new Date().toISOString().slice(0, 10) };
+        registro.motivos[idMotivo] = { texto: motivo, em: new Date().toLocaleDateString('sv-SE') };
     }
     for (const t of alvo) {
         registro.textos[t.id] = [situacao, t.arquivo, idMotivo];

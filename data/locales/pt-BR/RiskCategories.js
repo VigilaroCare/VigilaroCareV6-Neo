@@ -12,7 +12,7 @@ export const RISK_CATEGORIES = [
       description: 'Quando a casa está cheia de convidados, é comum achar que "alguém" está cuidando das crianças. A distração em eventos faz com que copos com bebidas alcóolicas e facas de churrasco fiquem jogados ao alcance dos pequenos.',
       keyPoints: [
         'Combine com outros adultos quem vai ficar de olho nas crianças por turnos.',
-        'Tire tapetes soltos e avise os convidados idosos se houver degraus ou desníveis.',
+        'Tire tapetes soltos e avise os convidados idosos ou com mobilidade reduzida se houver degraus ou desníveis.',
         'Tranque a porta da cozinha e isole o acesso à churrasqueira e à piscina.',
         'Recolha copos de bebidas alcoólicas vazios ou pela metade nas mesas.'
       ]
@@ -121,9 +121,9 @@ export const RISK_CATEGORIES = [
     gradient: [ '#1976D2', '#BBDEFB' ],
     image: 'https://images.pexels.com/photos/6348123/pexels-photo-6348123.jpeg?auto=compress&cs=tinysrgb&w=800',
     educational: {
-      description: 'Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças e bebês têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia.',
+      description: 'Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças, bebês e pessoas com deficiência têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia.',
       keyPoints: [
-        'Tire capachos e tapetes soltos do caminho dos idosos.',
+        'Tire capachos e tapetes soltos do caminho dos idosos e de quem tem mobilidade reduzida.',
         'Mostre degraus e garanta boa iluminação nos corredores da casa.',
         'Proteja tomadas baixas e oculte fios elétricos se for receber bebês ou pets.',
         'Remédios e venenos devem ir para armários altos e trancados.'
@@ -202,14 +202,14 @@ export const RISK_CATEGORIES = [
       },
       {
         id: 'vis_10',
-        text: 'Garantia de acessibilidade para visitantes com necessidades especiais?',
+        text: 'Garantia de acessibilidade para visitantes com deficiência ou mobilidade reduzida?',
         consequence: 'Degraus soltos ou portas estreitas causam quedas graves ao improvisar.',
         checkAction: 'Libere acessos de cadeiras de rodas e muletas.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {
         id: 'vis_11',
-        text: 'Informou o convidado idoso sobre a presença de escadas ou rampas?',
+        text: 'Informou o convidado idoso, com deficiência ou com mobilidade reduzida sobre a presença de escadas ou rampas?',
         consequence: 'A desorientação em um novo ambiente favorece quedas graves.',
         checkAction: 'Faça um tour guiado rápido com o idoso mostrando o caminho.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
@@ -416,7 +416,7 @@ export const RISK_CATEGORIES = [
         critico: true,
         text: 'Medicamentos e desinfetantes estão fora de alcance?',
         consequence: 'A ingestão de remédios coloridos ou cloro causa intoxicação rápida.',
-        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance de crianças.',
+        checkAction: 'Guarde desinfetantes e comprimidos em prateleiras fora do alcance de crianças e de pessoas com limitações cognitivas.',
         options: [ { label: 'Sim', safe: true }, { label: 'Não', safe: false } ]
       },
       {

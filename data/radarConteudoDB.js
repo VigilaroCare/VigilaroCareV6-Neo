@@ -53,7 +53,7 @@ export const FATOS_IMPACTO = [
     orientacoes: [
       'Barras de apoio no banheiro reduzem risco de queda em até 60%.',
       'Calçado antiderrapante em casa é tão importante quanto o remédio diário.',
-      'Iluminação noturna em corredores é a medida de menor custo com maior impacto para idosos.'
+      'Iluminação noturna em corredores é a medida de menor custo com maior impacto para idosos e pessoas com baixa visão ou mobilidade reduzida.'
     ],
     icone: 'Health',
     cor: '#FF9800',

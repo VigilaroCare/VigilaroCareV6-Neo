@@ -124,7 +124,7 @@ export const HAZARD_DATABASE_ES = {
                 hazards: [
                     { type: 'queda', desc: 'Resbalón fatal en suelo mojado, riesgo de fractura de fémur/pelvis.', target: ['idoso'] }
                 ],
-                expert_tip: 'El baño de un anciano NO debe tener alfombras de tela. Use solo tapetes de goma fijos.'
+                expert_tip: 'El baño que usan personas mayores o con movilidad reducida NO debe tener alfombras de tela. Use solo tapetes de goma fijos.'
             },
             {
                 id: 'tomada_pia',
@@ -239,7 +239,7 @@ export const HAZARD_DATABASE_ES = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Caídas en escalones sin pasamanos firme o desprotegidos. Riesgo alto para bebés, niños pequeños y personas mayores.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Caídas en escalones sin pasamanos firme o desprotegidos. Riesgo alto para bebés, niños pequeños, personas mayores y personas con movilidad reducida o baja visión.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Suelo resbaladizo o alfombra suelta en escalones.', target: ['todos'] }
                 ],
                 expert_tip: 'Instale barreras de seguridad fijas arriba y abajo de la escalera si tiene bebés y niños pequeños (sobre todo los que gatean).'
@@ -260,9 +260,9 @@ export const HAZARD_DATABASE_ES = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'colisao', desc: 'El vidrio muy limpio se vuelve invisible. Los niños corren y chocan.', target: ['crianca', 'pet'] }
+                    { type: 'colisao', desc: 'El vidrio muy limpio se vuelve invisible. Los niños que corren y las personas con baja visión pueden chocar con él.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Use calcomanías a la altura de los ojos de los niños para señalar el vidrio.'
+                expert_tip: 'Use calcomanías a la altura de los ojos de los niños y también de los adultos, para que todos, incluidas las personas con baja visión, vean el vidrio.'
             }
         ]
     },

@@ -11,7 +11,7 @@ export const RISK_CATEGORIES_ES = [
       description: '**El Riesgo Invisible:** La "responsabilidad difusa" hace que todos piensen que alguien más está vigilando. Las sillas fuera de lugar se convierten en escalones hacia las ventanas, y los vasos con alcohol se olvidan al alcance de los niños.',
       keyPoints: [
         '**Acción Táctica Inmediata:** Aísle físicamente las áreas de riesgo (cierre con llave puertas y cocina).',
-        'Para visitas de ancianos, retire inmediatamente las alfombras sueltas.',
+        'Para visitas de personas mayores o con movilidad reducida, retire inmediatamente las alfombras sueltas.',
         'Advierta a los invitados sobre los desniveles al llegar.',
         'Conozca el ecosistema completo en preveniremcasa.com.br'
       ]
@@ -119,9 +119,9 @@ export const RISK_CATEGORIES_ES = [
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
     educational: {
-      description: 'Recibir visitas exige adaptar la casa para quien no la conoce. Las personas mayores, los niños y los bebés tienen necesidades de seguridad específicas que quizá no note en el ajetreo diario.',
+      description: 'Recibir visitas exige adaptar la casa para quien no la conoce. Las personas mayores, los niños, los bebés y las personas con discapacidad tienen necesidades de seguridad específicas que quizá no note en el ajetreo diario.',
       keyPoints: [
-        'Retire las alfombras sueltas para los visitantes ancianos.',
+        'Retire las alfombras sueltas para los visitantes mayores o con movilidad reducida.',
         'Verifique el ancho de los pasillos y la iluminación de los escalones.',
         'Oculte los cables y proteja los enchufes para los bebés y niños que gatean.',
         'Informe a los invitados sobre los riesgos de la casa (ej., escalón en la sala).'
@@ -200,7 +200,7 @@ export const RISK_CATEGORIES_ES = [
       },
       {
         id: 'vis_10',
-        text: '¿Está garantizada la accesibilidad para visitantes con necesidades especiales?',
+        text: '¿Está garantizada la accesibilidad para visitantes con discapacidad o movilidad reducida?',
         consequence: 'Los escalones sueltos o las puertas estrechas causan caídas graves al improvisar.',
         checkAction: 'Verifique la accesibilidad y proporcione rampas si es necesario.',
         options: [ { label: 'Sí', safe: true }, { label: 'No', safe: false } ]

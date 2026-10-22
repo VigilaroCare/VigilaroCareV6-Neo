@@ -112,7 +112,7 @@ export const GUIAS_SEGURANCA_EN = {
         titulo: 'FATAL ERRORS - NEVER DO THIS',
         tipo: 'lista',
         itens: [
-            'Never put disinfectant, bleach or cleaning products in drink bottles or cups — a child will mistake them for a soft drink or water.',
+            'Never put disinfectant, bleach or cleaning products in drink bottles or cups — children, and also people with low vision or cognitive impairments, can mistake them for a soft drink or water.',
             'Never mix cleaning products: only combine what the label allows. Bleach mixed with acids (vinegar, muriatic acid, rust or limescale removers), ammonia or rubbing alcohol releases toxic gases',
             'Never store cleaning products on the floor or under the sink without safety locks',
             'Never keep products without a label. In an accident, the doctor needs to know exactly what was swallowed',

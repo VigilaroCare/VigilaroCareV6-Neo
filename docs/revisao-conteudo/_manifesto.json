@@ -1,4 +1,356 @@
 {
+  "GS-0001": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quedas e Tropeços",
+    "chave": "texto",
+    "linha": 45,
+    "original": "Cerca de 30% das quedas de idosos ocorrem na sala. Tapetes soltos, fios atravessando o chão e mesas de centro de vidro pontiagudas são os maiores vilões. Use fitas antiderrapantes sob tapetes ou remova-os se houver idosos ou pessoas com mobilidade reduzida ou baixa visão. Organize fios atrás dos móveis ou use canaletas."
+  },
+  "GS-0002": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quedas no Banho",
+    "chave": "texto",
+    "linha": 168,
+    "original": "Para crianças, idosos e pessoas com mobilidade reduzida, o box é uma pista escorregadia. Tapetes com ventosas de fixação antiderrapantes dentro do box são mandatórios. Para idosos e pessoas com mobilidade reduzida, barras de apoio (fixadas com parafusos, jamais ventosas) dentro do box e ao lado do vaso podem salvar vidas e garantir autonomia."
+  },
+  "GS-0003": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Escadas",
+    "chave": "texto",
+    "linha": 377,
+    "original": "A gravidade sempre vence na ausência de limites e aderência. Escadas merecem atenção redobrada, principalmente em casas com crianças, idosos e pessoas com deficiência ou com limitações físicas e cognitivas."
+  },
+  "GS-0004": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Aderência e Visibilidade",
+    "chave": "texto",
+    "linha": 379,
+    "original": "Degraus envernizados são pistas de gelo. Aplique fitas antiderrapantes de borda em cada degrau, especialmente nos extremos. Em casas com idosos ou pessoas com mobilidade reduzida, considere instalar corrimão duplo (dos dois lados) com altura entre 80 e 92 cm."
+  },
+  "GS-0005": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar de conteudo",
+    "item": "1 em cada 3 idosos cai pelo menos uma vez por ano",
+    "chave": "orientacoes[]",
+    "linha": 56,
+    "original": "Iluminação noturna em corredores é a medida de menor custo com maior impacto para idosos e pessoas com baixa visão ou mobilidade reduzida."
+  },
+  "GS-0006": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "ERROS GRAVES - NUNCA FAÇA",
+    "chave": "itens[]",
+    "linha": 121,
+    "original": "Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — crianças, e também quem tem baixa visão ou limitações cognitivas, podem confundir com refrigerante ou água."
+  },
+  "GS-0007": {
+    "arquivo": "data/locales/pt-BR/guiasSeguranca.js",
+    "rotulo": "Guias de seguranca",
+    "item": "Quedas Graves ou Engasgos",
+    "chave": "itens[]",
+    "linha": 278,
+    "original": "Quedas: se um idoso ou uma pessoa com mobilidade reduzida cair e sentir dor forte no quadril ou perna, não tente levantá-lo. Chame o {{EMERGENCY_MEDICAL}}"
+  },
+  "GS-0008": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Iluminação de Emergência",
+    "chave": "content[]",
+    "linha": 445,
+    "original": "Essencial para quedas de energia, especialmente com idosos ou pessoas com mobilidade reduzida em casa."
+  },
+  "GS-0009": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Regras de Ouro",
+    "chave": "content[]",
+    "linha": 562,
+    "original": "**Longe do alcance de crianças, pets e pessoas com limitações cognitivas:** O principal risco em casa é a intoxicação acidental."
+  },
+  "GS-0010": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de intoxicação",
+    "chave": "curto",
+    "linha": 68,
+    "original": "Um medicamento ou produto de limpeza ao alcance pode ser ingerido na próxima vez que a criança, o idoso ou uma pessoa com limitações cognitivas explorar o local."
+  },
+  "GS-0011": {
+    "arquivo": "data/tag_guidance.js",
+    "rotulo": "Orientacao por tipo de risco",
+    "item": "Risco de atropelamento",
+    "chave": "longo",
+    "linha": 242,
+    "original": "Atropelamentos em garagem estão entre os acidentes domésticos mais graves — e mais evitáveis — com crianças pequenas, idosos e pessoas com mobilidade reduzida."
+  },
+  "GS-0012": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Instalações Antigas e Gambiarras",
+    "chave": "primeirosSocorros",
+    "linha": 214,
+    "original": "Instale detectores de fumaça, especialmente onde moram idosos ou pessoas com mobilidade reduzida, que precisam de mais tempo para sair. Se alguém na casa for surdo, prefira modelos com alerta luminoso ou vibratório."
+  },
+  "GS-0013": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Cortes Profundos",
+    "chave": "descricao",
+    "linha": 452,
+    "original": "Facas mal armazenadas e louças de banheiro (pias) usadas como apoio por idosos e pessoas com mobilidade reduzida, que quebram e geram lâminas mortais."
+  },
+  "GS-0014": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "expert_tip",
+    "linha": 141,
+    "original": "Nunca use tapetes de tecido soltos em banheiros usados por idosos ou pessoas com mobilidade reduzida. Dê preferência a tapetes de borracha com ventosas."
+  },
+  "GS-0015": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "desc",
+    "linha": 265,
+    "original": "Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês, crianças pequenas, idosos e pessoas com mobilidade reduzida ou baixa visão."
+  },
+  "GS-0016": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "desc",
+    "linha": 286,
+    "original": "Vidro transparente muito limpo fica invisível. Crianças correndo e pessoas com baixa visão podem colidir e quebrar o vidro."
+  },
+  "GS-0017": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "expert_tip",
+    "linha": 288,
+    "original": "Cole faixas adesivas na altura dos olhos das crianças e também na dos adultos, para que todos — inclusive quem tem baixa visão — vejam que a porta está fechada."
+  },
+  "GS-0018": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Festas e Eventos",
+    "chave": "keyPoints[]",
+    "linha": 15,
+    "original": "Tire tapetes soltos e avise os convidados idosos ou com mobilidade reduzida se houver degraus ou desníveis."
+  },
+  "GS-0019": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "description",
+    "linha": 124,
+    "original": "Receber visitas exige adaptar a casa para quem não a conhece. Idosos, crianças, bebês e pessoas com deficiência têm necessidades de segurança específicas que você pode não perceber na correria do dia a dia."
+  },
+  "GS-0020": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "keyPoints[]",
+    "linha": 126,
+    "original": "Tire capachos e tapetes soltos do caminho dos idosos e de quem tem mobilidade reduzida."
+  },
+  "GS-0021": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "text",
+    "linha": 205,
+    "original": "Garantia de acessibilidade para visitantes com deficiência ou mobilidade reduzida?"
+  },
+  "GS-0022": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Visitação Segura",
+    "chave": "text",
+    "linha": 212,
+    "original": "Informou o convidado idoso, com deficiência ou com mobilidade reduzida sobre a presença de escadas ou rampas?"
+  },
+  "GS-0023": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Categorias de risco",
+    "item": "Monitorando Crianças",
+    "chave": "checkAction",
+    "linha": 419,
+    "original": "Guarde desinfetantes e comprimidos em prateleiras fora do alcance de crianças e de pessoas com limitações cognitivas."
+  },
+  "GS-0024": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Escola Segura",
+    "chave": "perguntas_sugeridas[]",
+    "linha": 955,
+    "original": "Como a escola lida com crianças com deficiência ou neurodivergentes?"
+  },
+  "GS-0025": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Carregadores e Cabos USB",
+    "chave": "prevencao[]",
+    "linha": 31,
+    "original": "Não deixe carregadores e cabos espalhados pelo chão — crianças mordem, e qualquer pessoa pode tropeçar, sobretudo idosos e pessoas com mobilidade reduzida"
+  },
+  "GS-0026": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Televisores de Tela Plana",
+    "chave": "prevencao[]",
+    "linha": 179,
+    "original": "Organize os fios com canaletas — cabos soltos atraem crianças e causam tropeços, principalmente de idosos e de pessoas com mobilidade reduzida ou baixa visão"
+  },
+  "GS-0027": {
+    "arquivo": "data/dispositivos_eletronicos_reviews.js",
+    "rotulo": "Reviews — dispositivos eletronicos",
+    "item": "Pilhas e Baterias (Botão/AA/AAA)",
+    "chave": "prevencao[]",
+    "linha": 307,
+    "original": "Guarde pilhas novas e usadas em recipiente fechado, fora do alcance de crianças e de pessoas com limitações cognitivas, que podem confundi-las com comprimidos"
+  },
+  "GS-0028": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aspirador de Pó",
+    "chave": "prevencao[]",
+    "linha": 603,
+    "original": "Mantenha o aspirador em local onde ninguém tropece nele ao levantar-se de madrugada — principalmente idosos e pessoas com mobilidade reduzida ou baixa visão"
+  },
+  "GS-0029": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Tapetes e Passadeiras",
+    "chave": "resumo",
+    "linha": 310,
+    "original": "Tapetes soltos estão entre os riscos de queda mais comuns para idosos e pessoas com mobilidade reduzida dentro de casa. Um item decorativo pode se tornar uma armadilha silenciosa."
+  },
+  "GS-0030": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Tapetes e Passadeiras",
+    "chave": "prevencao[]",
+    "linha": 319,
+    "original": "Remova completamente os tapetes se houver idosos ou outras pessoas com dificuldade de marcha ou baixa visão"
+  },
+  "GS-0031": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Prendedores de Portas",
+    "chave": "descricao",
+    "linha": 111,
+    "original": "Idosos ou pessoas com limitações cognitivas acessando medicamentos sem supervisão"
+  },
+  "GS-0032": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Adesivos Antiderrapantes",
+    "chave": "prevencao[]",
+    "linha": 309,
+    "original": "Em casas com idosos ou pessoas com mobilidade reduzida, combine com barras de apoio no box e próximo ao vaso sanitário"
+  },
+  "GS-0033": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Proteção de Botão de Fogão",
+    "chave": "resumo",
+    "linha": 377,
+    "original": "Impedem que crianças ou pessoas com limitações cognitivas girem os botões do fogão, prevenindo vazamento de gás e queimaduras. Item de segurança prioritário"
+  },
+  "GS-0034": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barreiras Eletrônicas",
+    "chave": "resumo",
+    "linha": 580,
+    "original": "Alarmes e sensores de perímetro que alertam quando crianças, idosos, pessoas neurodivergentes ou pets acessam áreas de risco como piscinas e acessos externos."
+  },
+  "GS-0035": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barreiras Eletrônicas",
+    "chave": "prevencao[]",
+    "linha": 589,
+    "original": "Para idosos com demência ou pessoas neurodivergentes que costumam sair sem avisar, considere sensores de presença na porta de saída"
+  },
+  "GS-0036": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Escadas",
+    "chave": "prevencao[]",
+    "linha": 674,
+    "original": "Para idosos ou pessoas com mobilidade reduzida, combine com corrimão bilateral e iluminação adequada"
+  },
+  "GS-0037": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barras de Apoio para Banheiro",
+    "chave": "descricao",
+    "linha": 711,
+    "original": "Queda de idoso ou de pessoa com mobilidade reduzida ao levantar-se do vaso sanitário"
+  },
+  "GS-0038": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barras de Apoio para Banheiro",
+    "chave": "oQueFazer",
+    "linha": 735,
+    "original": "Em caso de queda no banheiro: verifique nível de consciência, dor no quadril e capacidade de movimentação. Não force a pessoa a se levantar. Se houver suspeita de fratura, ligue para o {{EMERGENCY_MEDICAL}}."
+  },
+  "GS-0039": {
+    "arquivo": "data/produtos_categorias.js",
+    "rotulo": "Produtos perigosos — categorias",
+    "item": "Medicamentos",
+    "chave": "importancia",
+    "linha": 147,
+    "original": "Intoxicação medicamentosa é comum em crianças (curiosas) e em idosos ou pessoas com limitações cognitivas, que podem confundir tipos e dosagens."
+  },
+  "GS-0040": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto Adulto",
+    "chave": "oQueNaoFazer[]",
+    "linha": 391,
+    "original": "Não deixe remédios na mesa de cabeceira se houver crianças ou pessoas com limitações cognitivas na casa."
+  },
+  "GS-0041": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto de Idoso",
+    "chave": "quandoChamarAjuda",
+    "linha": 442,
+    "original": "Queda de idoso ou de pessoa com mobilidade reduzida requer avaliação médica para descartar fraturas."
+  },
+  "GS-0042": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Banheiros",
+    "chave": "oQueFazer[]",
+    "linha": 456,
+    "original": "Há barras de apoio no box e vaso (essencial para idosos e pessoas com mobilidade reduzida)?"
+  },
+  "GS-0043": {
+    "arquivo": "data/acessorios_seguranca.js",
+    "rotulo": "acessorios_seguranca",
+    "item": "Dispositivos de Proteção Doméstica",
+    "chave": "descricao",
+    "linha": 11,
+    "original": "Dispositivos essenciais para proteção de crianças, idosos e pessoas com deficiência."
+  },
+  "GS-0044": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "common.json",
+    "item": "Textos de interface",
+    "chave": "headersFirst.mantenhaRemDiosLongeDoAlcanceDeCrianAsEV",
+    "linha": 0,
+    "original": "Mantenha remédios longe do alcance de crianças e de pessoas com limitações cognitivas, e verifique a validade regularmente."
+  },
   "TC-0001": {
     "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
     "rotulo": "Primeiros socorros — pessoas",

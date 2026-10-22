@@ -231,6 +231,26 @@ const TEMAS = [
             + 'comodos, "OK") nao entram.',
         fontes: [],
     },
+    // GS — grupos sensiveis (comentario do Agnaldo na RC: "Contextualizemos
+    // criancas, idosos e pessoas com limitacoes cognitivas onde e quando
+    // aplicavel ao longo do app"). `antes` e o mapa texto novo -> texto que
+    // estava no app, gravado na aplicacao; vira a linha "ANTES" do documento.
+    {
+        nome: 'Grupos Sensiveis',
+        sigla: 'GS',
+        pendentes: ['m011'],
+        marcarMudancas: false,
+        antes: '_antes-GS.json',
+        dataMudancas: '21/10/2026',
+        descricao: 'Seu comentario na Revisao Complementar pedia contextualizar, ao longo do app, idosos, '
+            + 'pessoas com limitacoes cognitivas e neurodivergentes, com leveza. Os textos abaixo ganharam '
+            + 'esses grupos SO onde o risco tambem e deles: tropeco e queda (idosos, mobilidade reduzida, '
+            + 'baixa visao), confundir remedio, pilha ou produto (limitacoes cognitivas), sair sem avisar '
+            + '(demencia, neurodivergentes), sair de casa num incendio (mobilidade reduzida, pessoas surdas). '
+            + '"Necessidades especiais" virou "pessoa com deficiencia", termo da Lei Brasileira de Inclusao '
+            + '(13.146/2015). Abaixo de cada texto, a linha "ANTES" mostra como estava.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------
@@ -873,8 +893,10 @@ function selecaoDePendentes(tema) {
     const arquivos = [];
     const { arquivosRevisados } = require('./verify_revisao_conteudo');
     const revisados = tema.somenteArquivosRevisados ? new Set(arquivosRevisados()) : null;
+    const doJson = {};
     for (const t of avaliar().pendente) {
         if (!motivos.has(t.motivo)) continue;
+        if (t.arquivo.endsWith('.json')) (doJson[t.arquivo] = doJson[t.arquivo] || []).push(t);
         if (revisados && !revisados.has(t.arquivo)) continue;
         escolhidos.set(t.id, t.motivo);
         if (!arquivos.includes(t.arquivo)) arquivos.push(t.arquivo);
@@ -892,8 +914,10 @@ function selecaoDePendentes(tema) {
     return {
         escolhidos,
         fontes,
+        doJson,
         blocosInteiros: Boolean(tema.blocosInteiros),
         marcarMudancas: tema.marcarMudancas !== false,
+        antes: tema.antes ? JSON.parse(fs.readFileSync(path.join(DESTINO, tema.antes), 'utf8')) : null,
         opcoes: {
             chavesExtras: [...rc.chavesExtras, ...(tema.chavesExtras || [])],
             titulosExtras: rc.titulosExtras,
@@ -913,6 +937,12 @@ function filtrarPendentes(blocos, arquivo, selecao) {
         const textos = selecao.blocosInteiros && algum
             ? b.textos
             : b.textos.filter((t) => selecao.escolhidos.has(impressao(t.texto)));
+        if (selecao.antes) {
+            for (const t of textos) {
+                const anterior = selecao.antes[impressao(t.texto)];
+                if (anterior) t.antes = anterior;
+            }
+        }
         for (const t of selecao.marcarMudancas ? textos : []) {
             const versao = referenciaRevisada(arquivo, t.texto);
             if (versao) t.versaoRevisada = versao;
@@ -950,7 +980,10 @@ async function principal() {
             ? selecao.opcoes
             : { chavesExtras: tema.chavesExtras, titulosExtras: tema.titulosExtras };
         for (const fonte of selecao ? selecao.fontes : tema.fontes) {
-            const r = extrair(fonte.arquivo, opcoes);
+            // common.json nao e codigo: o texto pendente vem pronto da trava, com a chave.
+            const r = selecao && selecao.doJson[fonte.arquivo]
+                ? { blocos: [{ item: 'Textos de interface', textos: selecao.doJson[fonte.arquivo].map((t) => ({ texto: t.texto, chave: t.chave, linha: 0 })) }] }
+                : extrair(fonte.arquivo, opcoes);
             if (selecao) r.blocos = filtrarPendentes(r.blocos, fonte.arquivo, selecao);
             if (r.ausente) {
                 console.warn(`  ! ausente: ${fonte.arquivo}`);

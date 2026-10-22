@@ -11,7 +11,7 @@ export const RISK_CATEGORIES_EN = [
       description: `**The Invisible Risk:** "Diffusion of responsibility" makes everyone think someone else is watching. Misplaced chairs become steps to windows, and glasses with alcohol are forgotten within children's reach.`,
       keyPoints: [
         '**Immediate Tactical Action:** Physically isolate risk areas (lock gates and kitchen).',
-        'For elderly visitors, immediately remove loose rugs.',
+        'For elderly visitors or those with reduced mobility, immediately remove loose rugs.',
         'Alert guests about uneven floors upon arrival.',
         'Learn the complete ecosystem at preveniremcasa.com.br'
       ]
@@ -119,9 +119,9 @@ export const RISK_CATEGORIES_EN = [
     color: '#2196F3',
     gradient: [ '#1976D2', '#BBDEFB' ],
     educational: {
-      description: 'Having guests means adapting the home for people who do not know it. Older adults, children and babies have specific safety needs you may not notice in the rush of everyday life.',
+      description: 'Having guests means adapting the home for people who do not know it. Older adults, children, babies and people with disabilities have specific safety needs you may not notice in the rush of everyday life.',
       keyPoints: [
-        'Remove loose rugs for elderly visitors.',
+        'Remove loose rugs for elderly visitors and those with reduced mobility.',
         'Check the width of passages and lighting of steps.',
         'Hide wires and protect outlets for crawling babies and children.',
         'Inform guests of house risks (e.g., step in the living room).'
@@ -200,7 +200,7 @@ export const RISK_CATEGORIES_EN = [
       },
       {
         id: 'vis_10',
-        text: 'Is the home accessible for visitors with special needs?',
+        text: 'Is the home accessible for visitors with disabilities or reduced mobility?',
         consequence: 'Loose steps or narrow doorways cause serious falls when people improvise.',
         checkAction: 'Check accessibility and provide ramps if necessary.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
@@ -412,7 +412,7 @@ export const RISK_CATEGORIES_EN = [
         critico: true,
         text: 'Are medicines and cleaning products locked?',
         consequence: 'Accidental poisoning is a frequent emergency in under-5s.',
-        checkAction: 'Store disinfectants and pills on shelves out of children\'s reach.',
+        checkAction: 'Store disinfectants and pills on shelves out of reach of children and of people with cognitive impairments.',
         options: [ { label: 'Yes', safe: true }, { label: 'No', safe: false } ]
       },
       {

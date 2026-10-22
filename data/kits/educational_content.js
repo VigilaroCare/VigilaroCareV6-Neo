@@ -442,7 +442,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Iluminação de Emergência',
                 content: [
-                    'Essencial para quedas de energia, especialmente com idosos em casa.',
+                    'Essencial para quedas de energia, especialmente com idosos ou pessoas com mobilidade reduzida em casa.',
                     'Tenha **Lanternas** com pilhas extras ou **Luzes de Emergência** instaladas nas áreas de circulação.'
                 ]
             },
@@ -468,7 +468,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Emergency Lighting',
                 content: [
-                    'Essential for power outages, especially with elderly people at home.',
+                    'Essential for power outages, especially with older people or anyone with reduced mobility at home.',
                     'Have **Flashlights** with extra batteries or **Emergency Lights** installed in circulation areas.'
                 ]
             },
@@ -494,7 +494,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Iluminación de Emergencia',
                 content: [
-                    'Esencial para cortes de energía, especialmente con personas mayores en casa.',
+                    'Esencial para cortes de energía, especialmente con personas mayores o con movilidad reducida en casa.',
                     'Tenga **Linternas** con pilas adicionales o **Luces de Emergencia** instaladas en las zonas de paso.'
                 ]
             },
@@ -520,7 +520,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Iluminação de Emergência',
                 content: [
-                    'Essencial para quebras de energia, especialmente com idosos em casa.',
+                    'Essencial para quebras de energia, especialmente com idosos ou pessoas com mobilidade reduzida em casa.',
                     'Tenha **Lanternas** com pilhas extra ou **Luzes de Emergência** instaladas nas áreas de circulação.'
                 ]
             },
@@ -559,7 +559,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Regras de Ouro',
                 content: [
-                    '**Longe do alcance de crianças e pets:** O principal risco em casa é a intoxicação acidental.',
+                    '**Longe do alcance de crianças, pets e pessoas com limitações cognitivas:** O principal risco em casa é a intoxicação acidental.',
                     '**Local de Armazenamento:** Guarde em local alto, seco e ao abrigo da luz. **O banheiro não é o local ideal** devido à umidade e variações de temperatura.',
                     '**Tranca:** Se houver crianças pequenas em casa, a caixa de medicamentos deve ter trava ou cadeado.'
                 ]
@@ -594,7 +594,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Golden Rules',
                 content: [
-                    '**Out of reach of children and pets:** The main risk at home is accidental poisoning.',
+                    '**Out of reach of children, pets and people with cognitive impairments:** The main risk at home is accidental poisoning.',
                     '**Storage Location:** Store in a high, dry place protected from light. **The bathroom is not the ideal location** due to humidity and temperature variations.',
                     '**Lock:** If there are young children at home, the medicine box should have a lock or padlock.'
                 ]
@@ -629,7 +629,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Regras de Oro',
                 content: [
-                    '**Fuera del alcance de niños y mascotas:** El principal riesgo en casa es la intoxicación accidental.',
+                    '**Fuera del alcance de niños, mascotas y personas con limitaciones cognitivas:** El principal riesgo en casa es la intoxicación accidental.',
                     '**Lugar de Almacenamiento:** Guárdelos en un lugar alto, seco y protegido de la luz. **El baño no es el lugar ideal** debido a la humedad y a los cambios de temperatura.',
                     '**Cierre:** Si hay niños pequeños en casa, la caja de medicamentos debe tener cerradura o candado.'
                 ]
@@ -664,7 +664,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
             {
                 title: 'Regras de Ouro',
                 content: [
-                    '**Longe do alcance de crianças e pets:** O principal risco em casa é a intoxicação acidental.',
+                    '**Longe do alcance de crianças, pets e pessoas com limitações cognitivas:** O principal risco em casa é a intoxicação acidental.',
                     '**Local de Armazenamento:** Guarde em local alto, seco e ao abrigo da luz. **A casa de banho não é o local ideal** devido à humidade e variações de temperatura.',
                     '**Fecho:** Se houver crianças pequenas em casa, a caixa de medicamentos deve ter fecho ou aloquete.'
                 ]

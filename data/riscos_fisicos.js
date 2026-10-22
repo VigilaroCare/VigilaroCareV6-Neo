@@ -211,9 +211,9 @@ export const riscosFisicos = [
             'Reemplace las cajas de fusibles antiguas por disyuntores modernos.',
             'Evite empalmes mal hechos con cinta aislante barata.'
         ],
-        primeirosSocorros: 'Instale detectores de fumaça, especialmente em lares de idosos, para alerta preventivo.',
-        primeirosSocorros_en: 'Install smoke detectors, especially in homes with older adults, for early warning.',
-        primeirosSocorros_es: 'Instale detectores de humo, especialmente en hogares con personas mayores, para tener una alerta temprana.'
+        primeirosSocorros: 'Instale detectores de fumaça, especialmente onde moram idosos ou pessoas com mobilidade reduzida, que precisam de mais tempo para sair. Se alguém na casa for surdo, prefira modelos com alerta luminoso ou vibratório.',
+        primeirosSocorros_en: 'Install smoke detectors, especially where older adults or people with reduced mobility live, as they need more time to get out. If anyone in the home is deaf, choose models with a flashing-light or vibrating alert.',
+        primeirosSocorros_es: 'Instale detectores de humo, especialmente donde viven personas mayores o con movilidad reducida, que necesitan más tiempo para salir. Si alguien en casa es sordo, elija modelos con alerta luminosa o vibratoria.'
     },
     {
         id: 'rf_e9',
@@ -449,7 +449,7 @@ export const riscosFisicos = [
         emoji: '🔪',
         imagemUrl: require('../assets/illustrations/pad/outros_conjunto-facas-cozinha_005.jpg'),
         risco: 'Hemorragia Severa', risco_en: 'Severe Hemorrhage', risco_es: 'Hemorragia Severa',
-        descricao: 'Facas mal armazenadas e louças de banheiro (pias) usadas como apoio por idosos, que quebram e geram lâminas mortais.',
+        descricao: 'Facas mal armazenadas e louças de banheiro (pias) usadas como apoio por idosos e pessoas com mobilidade reduzida, que quebram e geram lâminas mortais.',
         prevencao: [
             'Guarde facas e ferramentas cortantes em gavetas altas ou com trava.',
             'NUNCA se apoie na pia do banheiro ou suba no vaso sanitário (cerâmica). Instale barras de apoio de metal fixadas na alvenaria.',

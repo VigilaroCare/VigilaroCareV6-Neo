@@ -112,7 +112,7 @@ export const GUIAS_SEGURANCA_PT_PT = {
         titulo: 'ERROS FATAIS - NUNCA FAÇA',
         tipo: 'lista',
         itens: [
-            'Nunca coloque desinfetante, lixívia ou produtos de limpeza em garrafas de bebida ou copos — a criança confunde-os com refrigerante ou água.',
+            'Nunca coloque desinfetante, lixívia ou produtos de limpeza em garrafas de bebida ou copos — as crianças, e também quem tem baixa visão ou limitações cognitivas, podem confundi-los com refrigerante ou água.',
             'Nunca misture produtos de limpeza: só combine o que o rótulo autorizar. Lixívia com ácidos (vinagre, ácido clorídrico, produtos para tirar calcário), com amoníaco ou com álcool liberta gases tóxicos',
             'Nunca guarde produtos de limpeza no chão ou debaixo do lava-loiça sem fechos de segurança',
             'Nunca deixe produtos sem rótulo. Em caso de acidente, o médico precisa de saber exatamente o que foi ingerido',

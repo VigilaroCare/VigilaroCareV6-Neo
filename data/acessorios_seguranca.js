@@ -8,7 +8,7 @@ export const ACESSORIOS_SEGURANCA = {
     id: 'acess_seg',
     titulo: 'Dispositivos de Proteção Doméstica',
     emoji: '🔐', icone: 'LockKey',
-    descricao: 'Dispositivos essenciais para proteção de crianças, idosos e pessoas com necessidades especiais.',
+    descricao: 'Dispositivos essenciais para proteção de crianças, idosos e pessoas com deficiência.',
 
     categorias: [
         {

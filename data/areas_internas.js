@@ -388,13 +388,13 @@ export const areasInternas = [
             'Are firearms (if any) unloaded and in a safe?',
         ],
         oQueNaoFazer: [
-            'Não deixe remédios na mesa de cabeceira se houver crianças na casa.'
+            'Não deixe remédios na mesa de cabeceira se houver crianças ou pessoas com limitações cognitivas na casa.'
         ], oQueNaoFazer_ptpt: [
-            'Não deixe medicamentos na mesa de cabeceira se houver crianças em casa.',
+            'Não deixe medicamentos na mesa de cabeceira se houver crianças ou pessoas com limitações cognitivas em casa.',
         ], oQueNaoFazer_es: [
-            'No deje medicamentos en la mesilla de noche si hay niños en casa.',
+            'No deje medicamentos en la mesilla de noche si hay niños o personas con limitaciones cognitivas en casa.',
         ], oQueNaoFazer_en: [
-            'Do not leave medicines on the bedside table if there are children in the house.',
+            'Do not leave medicines on the bedside table if there are children or people with cognitive impairments in the house.',
         ]
     },
     {
@@ -439,7 +439,7 @@ export const areasInternas = [
             'Do not use loose rugs (they are among the worst culprits).',
             'Do not leave bedding trailing on the floor.',
         ],
-        quandoChamarAjuda: 'Queda de idoso requer avaliação médica para descartar fraturas.', quandoChamarAjuda_ptpt: 'Uma queda de um idoso exige avaliação médica para excluir fraturas.', quandoChamarAjuda_es: 'Una caída de una persona mayor requiere valoración médica para descartar fracturas.', quandoChamarAjuda_en: 'A fall in an older person needs a medical check to rule out fractures.'
+        quandoChamarAjuda: 'Queda de idoso ou de pessoa com mobilidade reduzida requer avaliação médica para descartar fraturas.', quandoChamarAjuda_ptpt: 'Uma queda de um idoso ou de uma pessoa com mobilidade reduzida exige avaliação médica para excluir fraturas.', quandoChamarAjuda_es: 'Una caída de una persona mayor o con movilidad reducida requiere valoración médica para descartar fracturas.', quandoChamarAjuda_en: 'A fall in an older person or someone with reduced mobility needs a medical check to rule out fractures.'
     },
 
     // === BANHEIRO ===
@@ -453,25 +453,25 @@ export const areasInternas = [
         riscos: 'Quedas, afogamento, choque.', riscos_ptpt: 'Quedas, afogamento, choque.', riscos_es: 'Caídas, ahogamiento, descargas.', riscos_en: 'Falls, drowning, shock.',
         oQueFazer: [
             'O piso do box tem tapete antiderrapante?',
-            'Há barras de apoio no box e vaso (essencial para idosos)?',
+            'Há barras de apoio no box e vaso (essencial para idosos e pessoas com mobilidade reduzida)?',
             'A tampa do vaso tem trava (evita afogamento de crianças)?',
             'Medicamentos/Giletes estão fora de alcance?',
             'O piso é mantido seco após o banho?'
         ], oQueFazer_ptpt: [
             'O piso do duche tem tapete antiderrapante?',
-            'Há barras de apoio no duche e junto à sanita (essencial para idosos)?',
+            'Há barras de apoio no duche e junto à sanita (essencial para idosos e pessoas com mobilidade reduzida)?',
             'A tampa da sanita tem bloqueio (evita o afogamento de crianças)?',
             'Os medicamentos e as lâminas estão fora do alcance?',
             'O piso é mantido seco após o banho?',
         ], oQueFazer_es: [
             '¿El suelo de la ducha tiene alfombrilla antideslizante?',
-            '¿Hay barras de apoyo en la ducha y junto al inodoro (esencial para personas mayores)?',
+            '¿Hay barras de apoyo en la ducha y junto al inodoro (esencial para personas mayores y con movilidad reducida)?',
             '¿La tapa del inodoro tiene cierre (evita el ahogamiento de niños)?',
             '¿Los medicamentos y las cuchillas están fuera del alcance?',
             '¿El suelo se mantiene seco después de la ducha?',
         ], oQueFazer_en: [
             'Does the shower floor have a non-slip mat?',
-            'Are there grab bars in the shower and by the toilet (essential for older people)?',
+            'Are there grab bars in the shower and by the toilet (essential for older people and anyone with reduced mobility)?',
             'Does the toilet lid have a lock (prevents children drowning)?',
             'Are medicines and razors out of reach?',
             'Is the floor kept dry after showering?',

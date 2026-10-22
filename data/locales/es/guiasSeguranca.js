@@ -112,7 +112,7 @@ export const GUIAS_SEGURANCA_ES = {
         titulo: 'ERRORES FATALES - NUNCA HAGA ESTO',
         tipo: 'lista',
         itens: [
-            'Nunca ponga desinfectante, lejía ni productos de limpieza en botellas de bebida o vasos: el niño los confunde con refresco o agua.',
+            'Nunca ponga desinfectante, lejía ni productos de limpieza en botellas de bebida o vasos: los niños, y también quienes tienen baja visión o limitaciones cognitivas, pueden confundirlos con refresco o agua.',
             'Nunca mezcle productos de limpieza: combine solo lo que la etiqueta autorice. La lejía con ácidos (vinagre, salfumán, antical), con amoníaco o con alcohol libera gases tóxicos',
             'Nunca guarde productos de limpieza en el suelo o debajo del fregadero sin cierres de seguridad',
             'Nunca deje productos sin etiqueta. En caso de accidente, el médico necesita saber exactamente qué se ha ingerido',

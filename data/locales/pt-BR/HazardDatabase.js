@@ -138,7 +138,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 hazards: [
                     { type: 'queda', desc: 'Escorregar no tapete de pano ao sair do banho, causando fraturas graves.', target: ['idoso'] }
                 ],
-                expert_tip: 'Nunca use tapetes de tecido soltos em banheiros de idosos. Dê preferência a tapetes de borracha com ventosas.'
+                expert_tip: 'Nunca use tapetes de tecido soltos em banheiros usados por idosos ou pessoas com mobilidade reduzida. Dê preferência a tapetes de borracha com ventosas.'
             },
             {
                 id: 'tomada_pia',
@@ -262,7 +262,7 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês, crianças pequenas e idosos.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco alto para bebês, crianças pequenas, idosos e pessoas com mobilidade reduzida ou baixa visão.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Pisos muito polidos ou tapetes decorativos colocados nos degraus.', target: ['todos'] }
                 ],
                 expert_tip: 'Use portõezinhos de segurança (grades) fixados no topo e na base das escadas se tiver bebês e crianças pequenas (principalmente as que engatinham).'
@@ -283,9 +283,9 @@ export const HAZARD_DATABASE_PT_BR = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'colisao', desc: 'Vidro transparente muito limpo fica invisível. Crianças correndo podem colidir e quebrar o vidro.', target: ['crianca', 'pet'] }
+                    { type: 'colisao', desc: 'Vidro transparente muito limpo fica invisível. Crianças correndo e pessoas com baixa visão podem colidir e quebrar o vidro.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Cole faixas adesivas decorativas na altura dos olhos das crianças para que elas vejam se a porta está fechada.'
+                expert_tip: 'Cole faixas adesivas na altura dos olhos das crianças e também na dos adultos, para que todos — inclusive quem tem baixa visão — vejam que a porta está fechada.'
             }
         ]
     },

@@ -147,7 +147,7 @@ export const HAZARD_DATABASE_PT_PT = {
                 hazards: [
                     { type: 'queda', desc: 'Deslizamento fatal em piso molhado, risco de fratura de fêmur/bacia.', target: ['idoso'] }
                 ],
-                expert_tip: 'Banheiro de idoso NÃO deve ter tapete de tecido. Use apenas emborrachados fixos.'
+                expert_tip: 'A casa de banho usada por idosos ou pessoas com mobilidade reduzida NÃO deve ter tapete de tecido. Use apenas tapetes de borracha fixos.'
             },
             {
                 id: 'tomada_pia',
@@ -271,7 +271,7 @@ export const HAZARD_DATABASE_PT_PT = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco elevado para bebés, crianças pequenas e idosos.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Quedas em degraus sem corrimão firme ou desprotegidos. Risco elevado para bebés, crianças pequenas, idosos e pessoas com mobilidade reduzida ou baixa visão.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Piso liso ou carpete solto nos degraus.', target: ['todos'] }
                 ],
                 expert_tip: 'Use portões de segurança fixos no topo e na base das escadas se tiver bebés e crianças pequenas (sobretudo as que gatinham).'
@@ -292,9 +292,9 @@ export const HAZARD_DATABASE_PT_PT = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'colisao', desc: 'Vidro muito limpo fica invisível. Crianças correm e colidem.', target: ['crianca', 'pet'] }
+                    { type: 'colisao', desc: 'Vidro muito limpo fica invisível. Crianças a correr e pessoas com baixa visão podem colidir com ele.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Use adesivos visuais na altura dos olhos das crianças para sinalizar o vidro.'
+                expert_tip: 'Use autocolantes visíveis à altura dos olhos das crianças e também dos adultos, para que todos — incluindo quem tem baixa visão — vejam o vidro.'
             }
         ]
     },

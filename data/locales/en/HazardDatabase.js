@@ -124,7 +124,7 @@ export const HAZARD_DATABASE_EN = {
                 hazards: [
                     { type: 'queda', desc: 'Fatal slip on wet floor, risk of femur/pelvis fracture.', target: ['idoso'] }
                 ],
-                expert_tip: 'An elderly person\'s bathroom MUST NOT have a fabric rug. Use only fixed rubber mats.'
+                expert_tip: 'A bathroom used by older people or anyone with reduced mobility MUST NOT have a fabric rug. Use only fixed rubber mats.'
             },
             {
                 id: 'tomada_pia',
@@ -239,7 +239,7 @@ export const HAZARD_DATABASE_EN = {
                 type: 'estrutura',
                 riskLevel: 'CRITICO',
                 hazards: [
-                    { type: 'queda', desc: 'Falls on steps without a sturdy handrail or with no protection. High risk for babies, young children and older adults.', target: ['bebe', 'idoso'] },
+                    { type: 'queda', desc: 'Falls on steps without a sturdy handrail or with no protection. High risk for babies, young children, older adults and people with reduced mobility or low vision.', target: ['bebe', 'idoso'] },
                     { type: 'escorregamento', desc: 'Slippery floor or loose carpet on steps.', target: ['todos'] }
                 ],
                 expert_tip: 'Fit safety gates at the top and bottom of the stairs if you have babies and young children (especially those who crawl).'
@@ -260,9 +260,9 @@ export const HAZARD_DATABASE_EN = {
                 type: 'estrutura',
                 riskLevel: 'ALTO',
                 hazards: [
-                    { type: 'colisao', desc: 'Very clean glass becomes invisible. Children run and collide.', target: ['crianca', 'pet'] }
+                    { type: 'colisao', desc: 'Very clean glass becomes invisible. Children running and people with low vision can walk into it.', target: ['crianca', 'pet'] }
                 ],
-                expert_tip: 'Use visual decals at children\'s eye level to signal the glass.'
+                expert_tip: 'Use visual decals at children\'s eye level and at adult eye level, so everyone — including people with low vision — can see the glass.'
             }
         ]
     },

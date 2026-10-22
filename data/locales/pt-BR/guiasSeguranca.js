@@ -118,7 +118,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         titulo: 'ERROS GRAVES - NUNCA FAÇA',
         tipo: 'lista',
         itens: [
-          'Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — a criança confunde com refrigerante ou água.',
+          'Nunca coloque desinfetante, cloro e produtos de limpeza em garrafas PET ou copos — crianças, e também quem tem baixa visão ou limitações cognitivas, podem confundir com refrigerante ou água.',
           'Nunca misture produtos de limpeza: só combine o que o rótulo autorizar. Água sanitária com ácidos (vinagre, ácido muriático, limpa-pedras), com amônia ou com álcool solta gases tóxicos',
           'Nunca guarde produtos de limpeza no chão ou debaixo da pia sem travas de segurança',
           'Nunca deixe produtos sem rótulo. Em caso de acidente, o médico precisa saber exatamente o que foi ingerido',
@@ -275,7 +275,7 @@ export const GUIAS_SEGURANCA_PT_BR = {
         titulo: 'Quedas Graves ou Engasgos',
         tipo: 'passos',
         itens: [
-          'Quedas: se um idoso cair e sentir dor forte no quadril ou perna, não tente levantá-lo. Chame o {{EMERGENCY_MEDICAL}}',
+          'Quedas: se um idoso ou uma pessoa com mobilidade reduzida cair e sentir dor forte no quadril ou perna, não tente levantá-lo. Chame o {{EMERGENCY_MEDICAL}}',
           'Mantenha a pessoa aquecida e deitada imóvel até a chegada do socorro',
           'Engasgo (Criança/Adulto): se não conseguir tossir ou falar, alterne 5 pancadas entre as escápulas com 5 compressões abdominais',
           'Engasgo (Bebê menor de 1 ano): deite o bebê no antebraço e dê 5 tapinhas nas costas alternados com 5 compressões no peito',
