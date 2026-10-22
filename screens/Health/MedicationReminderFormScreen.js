@@ -27,6 +27,8 @@ import TappablePressable from '../../components/TappablePressable';
 import { usePremiumGate } from '../../components/PremiumGate';
 import PremiumBadge from '../../components/PremiumBadge';
 import MedicationReminderService, { DIAS_SEMANA } from '../../services/MedicationReminderService';
+import ProfileService from '../../services/ProfileService';
+import { useProfiles } from '../../contexts/ProfileContext';
 
 const CLR = {
     pill:    Neo.colors.categoria.ardosia.fill,
@@ -54,6 +56,15 @@ const CLR = {
  * trocar esta constante para `true`.
  */
 const CUIDADOR_REMOTO_DISPONIVEL = false;
+
+// Alert como pergunta de sim/não que espera a resposta. Fechar o alerta sem
+// escolher (toque fora, botão voltar do Android) conta como "não".
+const perguntar = (titulo, texto, nao, sim) => new Promise((resolve) => {
+    Alert.alert(titulo, texto, [
+        { text: nao, style: 'cancel', onPress: () => resolve(false) },
+        { text: sim, onPress: () => resolve(true) },
+    ], { cancelable: true, onDismiss: () => resolve(false) });
+});
 
 // ─── Componente: Modal de Disclaimer ──────────────────────────────────────────
 
@@ -243,6 +254,25 @@ export default function MedicationReminderFormScreen() {
     const perfilIdParam = route.params?.perfilId ?? null;
     const perfilNomeParam = route.params?.perfilNome ?? null;
     const { guard } = usePremiumGate();
+    const { loadProfiles } = useProfiles();
+
+    // A lista oficial de remédios é a do perfil (medicamentosEmUso): é ela que
+    // sai na Ficha Médica de Emergência, no Mapa de Riscos e no dossiê de
+    // viagem. O lembrete sugere os remédios de lá e, ao salvar um que não está,
+    // oferece incluí-lo — para não existirem duas listas que discordam.
+    const perfilIdDoLembrete = editing?.perfilId ?? perfilIdParam ?? null;
+    const [perfilDoLembrete, setPerfilDoLembrete] = useState(null);
+    useEffect(() => {
+        if (!perfilIdDoLembrete) return;
+        let alive = true;
+        ProfileService.getAllPerfis()
+            .then(todos => { if (alive) setPerfilDoLembrete(todos.find(p => p.id === perfilIdDoLembrete) || null); })
+            .catch(e => { if (__DEV__) console.error('[MedicationReminderForm] perfil:', e); });
+        return () => { alive = false; };
+    }, [perfilIdDoLembrete]);
+    const medsDoPerfil = (Array.isArray(perfilDoLembrete?.medicamentosEmUso) ? perfilDoLembrete.medicamentosEmUso : [])
+        .map(m => (typeof m === 'string' ? m : m?.nome || ''))
+        .filter(Boolean);
 
     // Form state
     const [medicamentoNome, setMedicamentoNome] = useState(editing?.medicamentoNome ?? '');
@@ -329,6 +359,31 @@ export default function MedicationReminderFormScreen() {
 
             const salvo = await MedicationReminderService.save(payload);
 
+            // Remédio fora da lista do perfil: pergunta antes de sair. O
+            // lembrete já está salvo; a resposta só decide a lista do perfil.
+            if (perfilDoLembrete && !ProfileService.temMedicamentoEmUso(perfilDoLembrete, payload.medicamentoNome)) {
+                const incluir = await perguntar(
+                    tx('telas.MedicationReminderFormScreen.incluirNoPerfilTitulo', 'Lista de medicamentos do perfil'),
+                    tx('telas.MedicationReminderFormScreen.incluirNoPerfilTexto', 'Incluir também na lista de medicamentos do perfil? Ela aparece na Ficha Médica de Emergência.'),
+                    tx('telas.MedicationReminderFormScreen.incluirNoPerfilNao', 'Agora não'),
+                    tx('telas.MedicationReminderFormScreen.incluirNoPerfilSim', 'Incluir'),
+                );
+                if (incluir) {
+                    try {
+                        await ProfileService.incluirMedicamentoEmUso(perfilDoLembrete.id, payload.medicamentoNome);
+                        await loadProfiles();
+                    } catch (e) {
+                        if (__DEV__) console.error('[MedicationReminderForm] incluir no perfil:', e);
+                        await new Promise((resolve) => Alert.alert(
+                            tx('telas.MedicationReminderFormScreen.erro', 'Erro'),
+                            tx('telas.MedicationReminderFormScreen.incluirNoPerfilFalhou', 'O lembrete foi salvo, mas não foi possível incluir o medicamento no perfil. Inclua pelo cadastro do perfil.'),
+                            [{ text: 'OK', onPress: resolve }],
+                            { cancelable: true, onDismiss: resolve },
+                        ));
+                    }
+                }
+            }
+
             // O lembrete foi gravado, mas o sistema pode ter recusado os
             // agendamentos. Antes isso passava calado e o usuário ficava com um
             // lembrete "ligado" que nunca avisaria.
@@ -409,6 +464,27 @@ export default function MedicationReminderFormScreen() {
                                     accessibilityLabel={tx('telas.MedicationReminderFormScreen.nomeDoMedicamento2', 'Nome do medicamento')}
                                 />
                                 {!!erroNome && <Small style={fStyles.errText}>{erroNome}</Small>}
+                                {medsDoPerfil.length > 0 && (
+                                    <View style={fStyles.medsPerfil}>
+                                        <Small style={fStyles.medsPerfilLabel}>{tx('telas.MedicationReminderFormScreen.medicamentosDoPerfil', 'Medicamentos do perfil — toque para usar')}</Small>
+                                        <View style={fStyles.dayWrap}>
+                                            {medsDoPerfil.map(m => {
+                                                const escolhido = ProfileService.normalizarMedicamento(m) === ProfileService.normalizarMedicamento(medicamentoNome);
+                                                return (
+                                                    <TappablePressable
+                                                        key={m}
+                                                        style={[fStyles.dayChip, escolhido && fStyles.dayChipActive]}
+                                                        onPress={() => { setMedicamentoNome(m); setErroNome(''); }}
+                                                        accessibilityRole="button"
+                                                        accessibilityState={{ selected: escolhido }}
+                                                    >
+                                                        <Small style={[fStyles.dayChipText, escolhido && fStyles.dayChipTextActive]}>{m}</Small>
+                                                    </TappablePressable>
+                                                );
+                                            })}
+                                        </View>
+                                    </View>
+                                )}
                             </View>
 
                             <View style={fStyles.fieldWrap}>
@@ -683,6 +759,8 @@ const fStyles = StyleSheet.create({
 
     // Dias
     dayWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+    medsPerfil: { marginTop: Neo.spacing.sm },
+    medsPerfilLabel: { color: Neo.colors.textOn.muted, marginBottom: 6 },
     dayChip: {
         paddingHorizontal: 12, paddingVertical: 8, borderRadius: 999,
         borderWidth: 1.5, borderColor: Neo.colors.neutral[200],

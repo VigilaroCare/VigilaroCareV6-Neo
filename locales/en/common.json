@@ -2690,7 +2690,13 @@
             "adicioneHorario": "Add at least one time",
             "canalAmbos": "Both",
             "novoLembrete": "New reminder",
-            "criarLembrete": "Create reminder"
+            "criarLembrete": "Create reminder",
+            "medicamentosDoPerfil": "Medicines in the profile — tap to use",
+            "incluirNoPerfilTitulo": "Profile medicine list",
+            "incluirNoPerfilTexto": "Also add it to the profile's medicine list? That list appears on the Emergency Medical Record.",
+            "incluirNoPerfilNao": "Not now",
+            "incluirNoPerfilSim": "Add",
+            "incluirNoPerfilFalhou": "The reminder was saved, but the medicine could not be added to the profile. Add it from the profile form."
         },
         "MedicationRemindersScreen": {
             "para": "For: ",
@@ -2755,7 +2761,10 @@
             "outrosPerfisDaCasa": "Other profiles in the home",
             "compartilharFichaDeEmergencia": "Share Emergency Record",
             "necessidadesEspeciais": "Special Needs",
-            "perfil": "Profile"
+            "perfil": "Profile",
+            "lembretesForaDaLista": "These medicines have a reminder but are not in the list above. The Emergency Medical Record shows only the list. Tap to add:",
+            "incluirNaLista": "Add to the list",
+            "naoFoiPossivelIncluirMedicamento": "The medicine could not be added right now. Please try again."
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nothing recorded",

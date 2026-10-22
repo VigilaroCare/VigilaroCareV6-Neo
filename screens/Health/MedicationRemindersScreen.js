@@ -12,7 +12,7 @@ import { useState, useCallback } from "react";
 import { View, StyleSheet, ScrollView, TouchableOpacity, Alert, Switch } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { H2, H3, Body, Small, Eyebrow } from '../../components/NeoTypography';
 import NeoCard from '../../components/NeoCard';
@@ -168,6 +168,8 @@ function ReminderCard({ reminder, onToggle, onEdit, onDelete, onTomei, onSnooze,
 
 export default function MedicationRemindersScreen() {
     const navigation = useNavigation();
+    // Vindo da Minha Saúde de outro perfil, os lembretes são os DESSE perfil.
+    const perfilIdParam = useRoute().params?.perfilId ?? null;
     const [reminders, setReminders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [perfilAtivo, setPerfilAtivo] = useState(null);
@@ -181,7 +183,8 @@ export default function MedicationRemindersScreen() {
         (async () => {
             setLoading(true);
             try {
-                const perfil = await ProfileService.getPerfilAtivo();
+                const perfil = (perfilIdParam && (await ProfileService.getAllPerfis()).find(p => p.id === perfilIdParam))
+                    || await ProfileService.getPerfilAtivo();
                 if (!alive) return;
                 setPerfilAtivo(perfil);
                 if (perfil?.id) {
@@ -199,7 +202,7 @@ export default function MedicationRemindersScreen() {
             }
         })();
         return () => { alive = false; };
-    }, []));
+    }, [perfilIdParam]));
 
     const _performToggle = async (id) => {
         try {

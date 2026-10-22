@@ -2690,7 +2690,13 @@
             "adicioneHorario": "Adicione ao menos um horário",
             "canalAmbos": "Ambos",
             "novoLembrete": "Novo lembrete",
-            "criarLembrete": "Criar lembrete"
+            "criarLembrete": "Criar lembrete",
+            "medicamentosDoPerfil": "Medicamentos do perfil — toque para usar",
+            "incluirNoPerfilTitulo": "Lista de medicamentos do perfil",
+            "incluirNoPerfilTexto": "Incluir também na lista de medicamentos do perfil? Ela aparece na Ficha Médica de Emergência.",
+            "incluirNoPerfilNao": "Agora não",
+            "incluirNoPerfilSim": "Incluir",
+            "incluirNoPerfilFalhou": "O lembrete foi salvo, mas não foi possível incluir o medicamento no perfil. Inclua pelo cadastro do perfil."
         },
         "MedicationRemindersScreen": {
             "para": "Para: ",
@@ -2755,7 +2761,10 @@
             "outrosPerfisDaCasa": "Outros perfis da casa",
             "compartilharFichaDeEmergencia": "Compartilhar Ficha de Emergência",
             "necessidadesEspeciais": "Necessidades Especiais",
-            "perfil": "Perfil"
+            "perfil": "Perfil",
+            "lembretesForaDaLista": "Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:",
+            "incluirNaLista": "Incluir na lista",
+            "naoFoiPossivelIncluirMedicamento": "Não foi possível incluir o medicamento agora. Tente novamente."
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nada registrado",

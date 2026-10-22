@@ -76,6 +76,10 @@
   "m019": {
    "texto": "Orientacao sobre dose atrasada ou esquecida (pedido do Agnaldo, 22/10/2026): recomenda consultar o medico ou profissional de saude responsavel - aguarda revisao dele",
    "em": "2026-10-22"
+  },
+  "m020": {
+   "texto": "Ligacao lembretes x lista de medicamentos do perfil (22/10/2026). A pergunta 'Incluir tambem na lista...' foi aprovada pelo Agnaldo no chat como proposta; os outros dois sao novos. Os tres vao para o proximo documento.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -1314,6 +1318,11 @@
    "data/pet_safety_content.js",
    "m010"
   ],
+  "15a6ed66e562232e": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m020"
+  ],
   "15bfc1cda387d5b3": [
    "pendente",
    "data/animais_ciatox.js",
@@ -2263,6 +2272,11 @@
    "pendente",
    "data/teoria_fogo.js",
    "m010"
+  ],
+  "2589b5a0149852a0": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m020"
   ],
   "25953ade22dcbce6": [
    "pendente",
@@ -3683,6 +3697,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "3a46cee4dcf96e31": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m020"
   ],
   "3a4ccd4212fc3b09": [
    "pendente",

@@ -850,6 +850,45 @@ class ProfileService {
     }
 
     /**
+     * Compara nomes de medicamento sem caixa, acento nem espaço sobrando:
+     * "Losartana 50mg" e " losartana  50MG" são o mesmo remédio.
+     */
+    static normalizarMedicamento(nome) {
+        return String(nome || '')
+            .normalize('NFD').replace(/[̀-ͯ]/g, '')
+            .toLowerCase().replace(/\s+/g, ' ').trim();
+    }
+
+    /**
+     * true se o nome já está em `medicamentosEmUso` do perfil. A lista aceita
+     * string ou objeto { nome } (ver HealthService._normalizeMeds).
+     */
+    static temMedicamentoEmUso(perfil, nome) {
+        const alvo = this.normalizarMedicamento(nome);
+        if (!alvo) return true;
+        return (Array.isArray(perfil?.medicamentosEmUso) ? perfil.medicamentosEmUso : [])
+            .some(m => this.normalizarMedicamento(typeof m === 'string' ? m : m?.nome) === alvo);
+    }
+
+    /**
+     * Inclui um medicamento na lista oficial do perfil (`medicamentosEmUso`),
+     * a que alimenta a Ficha Médica de Emergência, o Mapa de Riscos e o dossiê
+     * de viagem. Os lembretes de medicamento usam esta função para não manter
+     * uma segunda lista solta. Lê o perfil na hora para não sobrescrever uma
+     * edição feita em outra tela; se o remédio já está lá, não duplica.
+     */
+    static async incluirMedicamentoEmUso(perfilId, nome) {
+        const limpo = String(nome || '').trim();
+        if (!perfilId || !limpo) return null;
+        const data = await this.getData();
+        const perfil = data.perfis.find(p => p.id === perfilId);
+        if (!perfil) return null;
+        if (this.temMedicamentoEmUso(perfil, limpo)) return perfil;
+        const lista = Array.isArray(perfil.medicamentosEmUso) ? perfil.medicamentosEmUso : [];
+        return this.updatePerfil(perfilId, { medicamentosEmUso: [...lista, limpo] });
+    }
+
+    /**
      * Remove um perfil e limpa seus vínculos de todas as residências.
      */
     static async removePerfil(perfilId) {

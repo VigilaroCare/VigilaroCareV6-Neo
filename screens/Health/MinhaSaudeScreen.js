@@ -14,6 +14,8 @@ import NeoIcon from '../../components/NeoIcon';
 import GlassProfileRing from '../../components/GlassProfileRing';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
+import MedicationReminderService from '../../services/MedicationReminderService';
+import { useProfiles } from '../../contexts/ProfileContext';
 import { rotuloOpcaoPerfil } from '../../data/opcoesPerfil';
 import FichaMedicaService from '../../services/FichaMedicaService';
 import NeoAlert from '../../utils/NeoAlert';
@@ -40,6 +42,8 @@ export default function MinhaSaudeScreen() {
     const perfilId = route.params?.perfilId ?? null;
 
     const [profile, setProfile] = useState(null);
+    const [lembretes, setLembretes] = useState([]);
+    const { loadProfiles } = useProfiles();
     const [compartilhando, setCompartilhando] = useState(false);
     const [others, setOthers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -55,7 +59,8 @@ export default function MinhaSaudeScreen() {
                 let current = perfilId ? humanos.find(p => p.id === perfilId) : null;
                 if (!current) current = await ProfileService.getPerfilAtivo();
                 const outros = humanos.filter(p => p.id !== current?.id);
-                if (alive) { setProfile(current); setOthers(outros); }
+                const doPerfil = current?.id ? await MedicationReminderService.getByPerfil(current.id) : [];
+                if (alive) { setProfile(current); setOthers(outros); setLembretes(doPerfil); }
             } catch (e) {
                 if (__DEV__) console.error('[MinhaSaude] load', e);
             } finally {
@@ -93,6 +98,25 @@ export default function MinhaSaudeScreen() {
     const condicoes = asList(profile?.condicoesMedicas).map(rotuloOpcaoPerfil);
     const alergias = asList(profile?.alergias).map(rotuloOpcaoPerfil);
     const medicamentos = asList(profile?.medicamentosEmUso);
+    // Remédios com lembrete que não estão na lista do perfil. A Ficha Médica
+    // de Emergência, o Mapa de Riscos e o dossiê de viagem leem só a lista do
+    // perfil; o aviso convida a incluir, sem incluir por conta própria.
+    const foraDoPerfil = [...new Map(lembretes
+        .map(r => (r?.medicamentoNome || '').trim())
+        .filter(nome => nome && !ProfileService.temMedicamentoEmUso(profile, nome))
+        .map(nome => [ProfileService.normalizarMedicamento(nome), nome])).values()];
+
+    const incluirNoPerfil = async (nome) => {
+        if (!profile?.id) return;
+        try {
+            const atualizado = await ProfileService.incluirMedicamentoEmUso(profile.id, nome);
+            if (atualizado) setProfile(p => ({ ...p, medicamentosEmUso: atualizado.medicamentosEmUso }));
+            await loadProfiles();
+        } catch (e) {
+            if (__DEV__) console.error('[MinhaSaude] incluir medicamento', e);
+            NeoAlert.alert(t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso'), t('telas.MinhaSaudeScreen.naoFoiPossivelIncluirMedicamento', 'Não foi possível incluir o medicamento agora. Tente novamente.'));
+        }
+    };
     const necessidades = asList(profile?.necessidadesEspeciais).map(rotuloOpcaoPerfil);
     const tipoSanguineo = profile?.tipoSanguineo || '';
 
@@ -269,6 +293,25 @@ export default function MinhaSaudeScreen() {
                         <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.muralDeRotina', 'Mural de Rotina')}</Eyebrow>
                         <Section icon="Plus" color={HUE.sky} title={t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
                             {renderChips(medicamentos, HUE.sky)}
+                            {foraDoPerfil.length > 0 && (
+                                <View style={s.foraBox}>
+                                    <Small style={s.foraTexto}>{t('telas.MinhaSaudeScreen.lembretesForaDaLista', 'Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:')}</Small>
+                                    <View style={s.chipsWrap}>
+                                        {foraDoPerfil.map(nome => (
+                                            <TappablePressable
+                                                key={nome}
+                                                onPress={() => incluirNoPerfil(nome)}
+                                                style={[s.chip, s.foraChip]}
+                                                accessibilityRole="button"
+                                                accessibilityLabel={t('telas.MinhaSaudeScreen.incluirNaLista', 'Incluir na lista') + ': ' + nome}
+                                            >
+                                                <NeoIcon name="AddCircle" variant="Bold" size={14} color={Neo.colors.textOn.info} />
+                                                <Small style={[s.chipText, { color: Neo.colors.textOn.info }]}>{nome}</Small>
+                                            </TappablePressable>
+                                        ))}
+                                    </View>
+                                </View>
+                            )}
                             <TouchableOpacity
                                 style={{
                                     flexDirection: 'row',
@@ -351,6 +394,9 @@ const s = StyleSheet.create({
     chip: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999, borderWidth: 1 },
     chipText: { fontWeight: '600' },
     emptyText: { color: Neo.colors.neutral[400], fontStyle: 'italic' },
+    foraBox: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], gap: 8 },
+    foraTexto: { color: Neo.colors.textOn.muted, lineHeight: 18 },
+    foraChip: { flexDirection: 'row', alignItems: 'center', gap: 6, borderStyle: 'dashed', borderColor: Neo.colors.textOn.info },
     hintText: { fontSize: 12, color: Neo.colors.neutral[500], marginTop: 10, fontStyle: 'italic' },
     row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: Neo.spacing.md, paddingVertical: 12 },
     rowDivider: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: Neo.colors.neutral[300] },
