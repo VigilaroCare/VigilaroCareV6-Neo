@@ -380,6 +380,29 @@ const TEMAS = [
             + 'a versao que voce revisou.',
         fontes: [],
     },
+    // CJ — vocabulos de cautela (pedido do Agnaldo, 22/10/2026): promessa de
+    // eficacia, garantia, lei e prescricao clinica ganham cautela; instrucao de
+    // seguranca e de emergencia continua firme.
+    {
+        nome: 'Cautela Juridica',
+        sigla: 'CJ',
+        pendentes: ['m018'],
+        marcarMudancas: false,
+        antes: '_antes-CJ.json',
+        dataMudancas: '22/10/2026',
+        rotulos: {
+            'data/legal/termos_uso.js': 'Termos de Uso (os 4 idiomas)',
+            'data/legal/politica_privacidade.js': 'Politica de Privacidade (os 4 regimes)',
+            'locales/pt-BR/common.json': 'Textos de interface',
+        },
+        descricao: 'Ajustes de cautela juridica: o app continua informando e orientando com firmeza, mas sem prometer '
+            + 'o que nao pode garantir. Promessas de eficacia de produto ("impede", "salva vidas", "100%") viraram '
+            + '"dificulta", "reduz o risco", "pode salvar vidas"; norma tecnica deixou de ser chamada de lei; frases em tom '
+            + 'de prescricao medica passaram a apontar para a equipe de saude; Termos e Politica dizem que o indice de '
+            + 'seguranca e estimativa, nao laudo, e que o app nao envia dados de saude. Instrucoes de seguranca e de '
+            + 'emergencia ("NUNCA deixe...", "Ligue para...") NAO foram suavizadas. A linha ANTES mostra como estava.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

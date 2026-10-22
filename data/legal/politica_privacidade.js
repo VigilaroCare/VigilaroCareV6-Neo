@@ -111,7 +111,7 @@ const PT_BR = {
         },
         {
             titulo: '7. Compartilhamento com terceiros',
-            texto: `Os recursos de inteligência artificial — a análise de fotos do Scanner, a análise personalizada de riscos e o resumo do dossiê de viagem — só enviam dados com a sua permissão explícita, pedida no próprio app antes do primeiro envio e revogável em Privacidade > Suas escolhas. Com ela, o Vigilaro envia, através do seu servidor intermediário (que não guarda o conteúdo), para a ${TERCEIROS_COMUNS.ia}, nos Estados Unidos: a foto que você escolher; e, para a análise personalizada, a faixa etária do perfil, o tipo de casa, os ambientes, a cidade e o resultado da vistoria. Nenhum nome e nenhum dado de saúde (condições, medicamentos, alergias) é enviado. A OpenAI não usa esses dados para treinar modelos e os mantém por até 30 dias apenas para prevenir abuso. O leitor de código de barras e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de falha, anônimos — sem nomes, telefones, endereços, dados de saúde nem identificador do aparelho —, vão para ${TERCEIROS_COMUNS.erros}. Assinaturas são validadas por ${TERCEIROS_COMUNS.assinatura}. Seus dados de saúde nunca saem do aparelho; sem a permissão de IA, suas fotos também não.`,
+            texto: `Os recursos de inteligência artificial — a análise de fotos do Scanner, a análise personalizada de riscos e o resumo do dossiê de viagem — só enviam dados com a sua permissão explícita, pedida no próprio app antes do primeiro envio e revogável em Privacidade > Suas escolhas. Com ela, o Vigilaro envia, através do seu servidor intermediário (que não guarda o conteúdo), para a ${TERCEIROS_COMUNS.ia}, nos Estados Unidos: a foto que você escolher; e, para a análise personalizada, a faixa etária do perfil, o tipo de casa, os ambientes, a cidade e o resultado da vistoria. Nenhum nome e nenhum dado de saúde (condições, medicamentos, alergias) é enviado. A OpenAI não usa esses dados para treinar modelos e os mantém por até 30 dias apenas para prevenir abuso. O leitor de código de barras e o Info Rótulos consultam ${TERCEIROS_COMUNS.bases}, enviando apenas o código de barras ou o nome da substância. Relatórios de falha, anônimos — sem nomes, telefones, endereços, dados de saúde nem identificador do aparelho —, vão para ${TERCEIROS_COMUNS.erros}. Assinaturas são validadas por ${TERCEIROS_COMUNS.assinatura}. O app não envia seus dados de saúde a nenhum servidor nem a terceiros; sem a permissão de IA, também não envia suas fotos.`,
         },
         {
             titulo: '8. O que o app nunca faz',
@@ -123,7 +123,7 @@ const PT_BR = {
         },
         {
             titulo: '10. Retenção e exclusão',
-            texto: 'Os dados permanecem no aparelho até você removê-los. Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, lembretes, registros locais, vistorias e arquivos gerados pelo app, incluindo fotos e gravações, e cancela as notificações agendadas. Desinstalar o app remove os dados locais do sandbox.',
+            texto: 'Os dados permanecem no aparelho até você removê-los. Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, lembretes, registros locais, vistorias e arquivos gerados pelo app, incluindo fotos e gravações, e cancela as notificações agendadas. Desinstalar o app remove os dados locais do sandbox. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no aparelho, ela pode incluir dados do app, conforme as regras e a criptografia do próprio sistema; o Vigilaro Care não tem acesso a essas cópias.',
         },
         {
             titulo: '11. Limites em emergência',
@@ -177,7 +177,7 @@ const PT_PT = {
         },
         {
             titulo: '9. Conservação',
-            texto: 'Os dados permanecem no equipamento enquanto os mantiver. A opção Repor Aplicação elimina perfis, contactos, dados de saúde, consentimentos, lembretes, registos locais, vistorias e ficheiros gerados, incluindo fotografias e gravações, e cancela as notificações agendadas. Desinstalar remove os dados locais.',
+            texto: 'Os dados permanecem no equipamento enquanto os mantiver. A opção Repor Aplicação elimina perfis, contactos, dados de saúde, consentimentos, lembretes, registos locais, vistorias e ficheiros gerados, incluindo fotografias e gravações, e cancela as notificações agendadas. Desinstalar remove os dados locais. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no equipamento, pode incluir dados da aplicação, segundo as regras e a cifragem do próprio sistema; o Vigilaro Care não tem acesso a essas cópias.',
         },
         {
             titulo: '10. Os seus direitos',
@@ -239,7 +239,7 @@ const ES = {
         },
         {
             titulo: '9. Conservación',
-            texto: 'Los datos permanecen en el dispositivo mientras usted los mantenga. La opción Restablecer Aplicación elimina perfiles, contactos, datos de salud, consentimientos, recordatorios, registros locales, inspecciones y archivos generados, incluidas fotografías y grabaciones, y cancela las notificaciones programadas. Desinstalar la aplicación elimina los datos locales.',
+            texto: 'Los datos permanecen en el dispositivo mientras usted los mantenga. La opción Restablecer Aplicación elimina perfiles, contactos, datos de salud, consentimientos, recordatorios, registros locales, inspecciones y archivos generados, incluidas fotografías y grabaciones, y cancela las notificaciones programadas. Desinstalar la aplicación elimina los datos locales. Si la copia de seguridad del sistema (iCloud o Google) está activada en el dispositivo, puede incluir datos de la aplicación, según las reglas y el cifrado del propio sistema; Vigilaro Care no tiene acceso a esas copias.',
         },
         {
             titulo: '10. Sus derechos',
@@ -277,7 +277,7 @@ const EN = {
         },
         {
             titulo: '3. Consumer health data',
-            texto: 'Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. Health details never leave the device — they are not sent to the AI features or to any other third party. We do not use geofencing around health care facilities for any purpose.',
+            texto: 'Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. Health details are not sent by the app to any server — not to the AI features or to any other third party. We do not use geofencing around health care facilities for any purpose.',
         },
         {
             titulo: '4. Children',
@@ -289,7 +289,7 @@ const EN = {
         },
         {
             titulo: '6. When information leaves your device',
-            texto: `Artificial intelligence features — photo analysis in the Scanner, the personalized risk analysis and the travel dossier summary — send data only with your explicit permission, asked for in the app before anything is first sent and revocable under Privacy > Your choices. With it, Vigilaro sends, through its intermediary server (which does not keep the content), to ${TERCEIROS_COMUNS.ia}, in the United States: the photo you choose; and, for the personalized analysis, the profile's age group, the type of home, its rooms, the city and the inspection results. No names and no health information (conditions, medications, allergies) are sent. OpenAI does not use this data to train models and keeps it for up to 30 days only for abuse monitoring. The barcode scanner and label information module query ${TERCEIROS_COMUNS.bases}, sending only the barcode or the substance name — nothing about you or your household. Crash reports, anonymous — without names, phone numbers, addresses, health information or any device identifier — go to ${TERCEIROS_COMUNS.erros}. Subscriptions are validated by ${TERCEIROS_COMUNS.assinatura}. Your health information never leaves your phone; without the AI permission, your photos don't either.`,
+            texto: `Artificial intelligence features — photo analysis in the Scanner, the personalized risk analysis and the travel dossier summary — send data only with your explicit permission, asked for in the app before anything is first sent and revocable under Privacy > Your choices. With it, Vigilaro sends, through its intermediary server (which does not keep the content), to ${TERCEIROS_COMUNS.ia}, in the United States: the photo you choose; and, for the personalized analysis, the profile's age group, the type of home, its rooms, the city and the inspection results. No names and no health information (conditions, medications, allergies) are sent. OpenAI does not use this data to train models and keeps it for up to 30 days only for abuse monitoring. The barcode scanner and label information module query ${TERCEIROS_COMUNS.bases}, sending only the barcode or the substance name — nothing about you or your household. Crash reports, anonymous — without names, phone numbers, addresses, health information or any device identifier — go to ${TERCEIROS_COMUNS.erros}. Subscriptions are validated by ${TERCEIROS_COMUNS.assinatura}. The app does not send your health information to any server or third party; without the AI permission, it does not send your photos either.`,
         },
         {
             titulo: '7. Crash reports and subscriptions',
@@ -305,7 +305,7 @@ const EN = {
         },
         {
             titulo: '10. Retention and deletion',
-            texto: 'Information stays on your device until you remove it. Reset Application erases profiles, contacts, health data, consents, reminders, local logs, inspections and files the app generated, including photos and recordings, and cancels scheduled notifications. Uninstalling the app removes the local data in the app sandbox.',
+            texto: 'Information stays on your device until you remove it. Reset Application erases profiles, contacts, health data, consents, reminders, local logs, inspections and files the app generated, including photos and recordings, and cancels scheduled notifications. Uninstalling the app removes the local data in the app sandbox. If your device\'s system backup (iCloud or Google) is turned on, it may include app data, under the system\'s own rules and encryption; Vigilaro Care has no access to those backups.',
         },
         {
             titulo: '11. Emergency features have limits',

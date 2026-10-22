@@ -23,7 +23,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Olhos e Face',
                 content: [
                     '**Óculos de Segurança:** Indispensável contra respingos químicos, poeira e partículas projetadas (furadeira, lixadeira).',
-                    '**Protetor Facial:** Para proteção completa do rosto.',
+                    '**Protetor Facial:** Cobre o rosto inteiro contra respingos e fragmentos.',
                     '**Nota:** Alguns models permitem o uso conjunto com óculos de grau.'
                 ]
             },
@@ -63,7 +63,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Eyes and Face',
                 content: [
                     '**Safety Glasses:** Indispensable against chemical splashes, dust, and projected particles (drill, sander).',
-                    '**Face Shield:** For complete face protection.',
+                    '**Face Shield:** Covers the whole face against splashes and fragments.',
                     '**Note:** Some models allow combined use with prescription glasses.'
                 ]
             },
@@ -103,7 +103,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Ojos y Rostro',
                 content: [
                     '**Gafas de Seguridad:** Indispensables contra salpicaduras químicas, polvo y partículas proyectadas (taladro, lijadora).',
-                    '**Protector Facial:** Para protección completa de la cara.',
+                    '**Protector Facial:** Cubre toda la cara contra salpicaduras y fragmentos.',
                     '**Nota:** Algunos modelos permiten el uso conjunto con gafas graduadas.'
                 ]
             },
@@ -143,7 +143,7 @@ export const KITS_EDUCATIONAL_CONTENT = {
                 title: 'Olhos e Rosto',
                 content: [
                     '**Óculos de Segurança:** Indispensável contra salpicos químicos, poeiras e partículas projetadas (berbequim, lixadora).',
-                    '**Protetor Facial:** Para proteção completa do rosto.',
+                    '**Protetor Facial:** Cobre o rosto inteiro contra respingos e fragmentos.',
                     '**Nota:** Alguns modelos permitem o uso conjunto com óculos graduados.'
                 ]
             },

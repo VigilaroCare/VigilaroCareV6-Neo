@@ -1084,7 +1084,7 @@ export const MICROMOBILIDADE_ELETRICA = {
         'Exigem habilitação (ACC ou categoria A)',
         'Garupa com as mesmas regras da moto'
       ],
-      ondeAndar: 'Só na rua, como os carros. PROIBIDO em ciclovias, ciclofaixas e calçadas.',
+      ondeAndar: 'No Brasil, só na rua, como os carros: é proibido em ciclovias, ciclofaixas e calçadas.',
       proibido: true
     }
   ],

@@ -48,9 +48,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Stairs and ramps have non-slip flooring',
           texto_es: 'Escaleras y rampas tienen piso antideslizante',
           critico: true,
-          detalhes: 'Superfícies antiderrapantes previnem quedas, especialmente em dias de chuva.',
-          detalhes_en: 'Non-slip surfaces prevent falls, especially on rainy days.',
-          detalhes_es: 'Las superficies antideslizantes previenen caídas, especialmente en días de lluvia.'
+          detalhes: 'Superfícies antiderrapantes ajudam a prevenir quedas, especialmente em dias de chuva.',
+          detalhes_en: 'Non-slip surfaces help prevent falls, especially on rainy days.',
+          detalhes_es: 'Las superficies antideslizantes ayudan a prevenir caídas, especialmente en días de lluvia.'
         },
         {
           id: 'corrimao',
@@ -98,9 +98,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Outlets protected with covers or placed at elevated height',
           texto_es: 'Tomacorrientes protegidos con tapas o a altura elevada',
           critico: true,
-          detalhes: 'Previne choque elétrico. Tomadas baixas devem ter proteção.',
-          detalhes_en: 'Prevents electrical shock. Low outlets must have protection.',
-          detalhes_es: 'Previene choques eléctricos. Los tomacorrientes bajos deben tener protección.'
+          detalhes: 'Reduz o risco de choque elétrico. Tomadas baixas devem ter proteção.',
+          detalhes_en: 'Reduces the risk of electric shock. Low outlets must have protection.',
+          detalhes_es: 'Reduce el riesgo de choques eléctricos. Los tomacorrientes bajos deben tener protección.'
         },
         {
           id: 'fiacao-protegida',
@@ -200,9 +200,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Furniture corners protected or rounded',
           texto_es: 'Esquinas de muebles protegidas o redondeadas',
           critico: false,
-          detalhes: 'Protetores de quina previnem ferimentos em impactos.',
-          detalhes_en: 'Corner guards prevent injuries from impacts.',
-          detalhes_es: 'Los protectores de esquinas previenen lesiones por golpes.'
+          detalhes: 'Protetores de quina reduzem ferimentos em batidas.',
+          detalhes_en: 'Corner guards reduce injuries from knocks.',
+          detalhes_es: 'Los protectores de esquinas reducen las lesiones por golpes.'
         },
         {
           id: 'moveis-conservacao',
@@ -344,9 +344,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Playground equipment follows safety standards',
           texto_es: 'Los juegos siguen las normas de seguridad',
           critico: true,
-          detalhes: 'Normas ABNT NBR 16071 garantem segurança dos equipamentos.',
-          detalhes_en: 'Safety standards ensure equipment safety.',
-          detalhes_es: 'Las normas de seguridad garantizan la seguridad de los equipos.'
+          detalhes: 'Equipamentos conforme a ABNT NBR 16071 (playgrounds) atendem a requisitos mínimos de segurança.',
+          detalhes_en: 'Equipment built to playground safety standards meets minimum safety requirements.',
+          detalhes_es: 'Los equipos conformes a las normas de seguridad de parques infantiles cumplen requisitos mínimos de seguridad.'
         },
         {
           id: 'parquinho-manutencao',
@@ -456,9 +456,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Good drainage (does not accumulate water)',
           texto_es: 'Buen drenaje (no acumula agua)',
           critico: false,
-          detalhes: 'Previne escorregões e permite uso após chuva.',
-          detalhes_en: 'Prevents slipping and allows use after rain.',
-          detalhes_es: 'Previene resbalones y permite el uso después de la lluvia.'
+          detalhes: 'Reduz escorregões e permite o uso depois da chuva.',
+          detalhes_en: 'Reduces slipping and allows use after rain.',
+          detalhes_es: 'Reduce los resbalones y permite el uso después de la lluvia.'
         },
         {
           id: 'basquete-protecao',
@@ -466,9 +466,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Basketball poles protected with foam padding',
           texto_es: 'Postes de baloncesto protegidos con espuma',
           critico: true,
-          detalhes: 'Proteção acolchoada previne lesões em colisões.',
-          detalhes_en: 'Padded protection prevents collision injuries.',
-          detalhes_es: 'La protección acolchada previene lesiones por colisión.'
+          detalhes: 'Proteção acolchoada reduz lesões em colisões.',
+          detalhes_en: 'Padded protection reduces collision injuries.',
+          detalhes_es: 'La protección acolchada reduce las lesiones por colisión.'
         },
         {
           id: 'traves-conservacao',
@@ -578,9 +578,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Non-slip edges',
           texto_es: 'Bordes antideslizantes',
           critico: true,
-          detalhes: 'Previne escorregões ao redor da piscina.',
-          detalhes_en: 'Prevents slipping around the pool.',
-          detalhes_es: 'Previene resbalones alrededor de la piscina.'
+          detalhes: 'Reduz escorregões ao redor da piscina.',
+          detalhes_en: 'Reduces slipping around the pool.',
+          detalhes_es: 'Reduce los resbalones alrededor de la piscina.'
         },
         {
           id: 'piscina-equipamentos',

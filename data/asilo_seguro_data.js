@@ -62,7 +62,7 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
           texto_en: 'Continuous handrails installed on both sides of ramps and corridors',
           texto_es: 'Pasamanos continuos instalados en ambos lados de rampas y pasillos',
           critico: false,
-          detalhes: 'O apoio firme em ambos os lados garante maior estabilidade na locomoção.',
+          detalhes: 'O apoio firme dos dois lados dá mais estabilidade para andar.',
           detalhes_en: 'Firm support on both sides ensures greater stability when walking.',
           detalhes_es: 'El apoyo firme en ambos lados garantiza mayor estabilidad al caminar.'
         },

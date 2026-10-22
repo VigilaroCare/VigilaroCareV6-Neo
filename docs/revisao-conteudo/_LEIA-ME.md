@@ -98,6 +98,11 @@ bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos 
 dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
 (`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
 
+### CJ — Cautela Jurídica (22/10/2026)
+
+Vocábulos de cautela: promessa de eficácia, garantia, lei e prescrição clínica ganham cautela; instrução de
+segurança e de emergência continua firme. Usa `antes: '_antes-CJ.json'`. 48 códigos. Ver D33.
+
 ### TI — Telas Integradas (22/10/2026)
 
 O que só existia nas telas órfãs apagadas e foi levado para as telas no ar, mais a troca de vocabulário no checklist

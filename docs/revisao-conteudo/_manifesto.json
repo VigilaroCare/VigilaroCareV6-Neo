@@ -1,4 +1,388 @@
 {
+  "CJ-0001": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Portão Automático",
+    "chave": "texto",
+    "linha": 222,
+    "original": "Portões automáticos fabricados conforme a ABNT NBR 16654 têm sensores antiesmagamento, mas equipamentos antigos podem não ter. Teste periodicamente: posicione uma caixa alta no caminho e veja se o portão recua na hora. Crianças e pets jamais devem brincar perto do portão em operação."
+  },
+  "CJ-0002": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Escadas",
+    "chave": "texto",
+    "linha": 381,
+    "original": "Fitas fotoluminescentes (que brilham no escuro) coladas na quina de cada degrau ajudam a evitar quedas quando falta luz à noite."
+  },
+  "CJ-0003": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "5 dicas para prevenir engasgo em crianças",
+    "chave": "summary",
+    "linha": 71,
+    "original": "A prevenção pode salvar vidas:\n1. Corte alimentos pequenos: Uvas sempre cortadas ao meio no sentido do comprimento.\n2. Evite movimento: Nunca coma deitando ou correndo.\n3. Teste do rolo: Se passa no rolo de papel higiênico, é pequeno demais para a idade.\n4. Supervisão 100%: Esteja sempre presente nas refeições.\n5. Aprenda o desengasgo: 5 pancadas nas costas alternadas com 5 compressões, para agir rápido."
+  },
+  "CJ-0004": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "22 itens de segurança para proteger sua casa",
+    "chave": "summary",
+    "linha": 285,
+    "original": "Equipamentos de baixo custo que podem salvar vidas:\n• Estruturais: Redes de janela, portões de escada e barras de apoio.\n• Dispositivos: Extintor, detector de fumaça e luz de emergência.\n• Bloqueios: Protetores de tomada, travas de gaveta e porta.\n• Superfícies: Fitas e tapetes antiderrapantes, protetores de quina.\nNão espere o acidente acontecer para investir em segurança básica."
+  },
+  "CJ-0005": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar de conteudo",
+    "item": "Tomadas sem proteção: 400 atendimentos/mês em bebês",
+    "chave": "orientacoes[]",
+    "linha": 141,
+    "original": "Trocar por tomadas no padrão ABNT com proteção infantil embutida é a solução mais duradoura."
+  },
+  "CJ-0006": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar de conteudo",
+    "item": "2.800 dedos presos em portas por ano no Brasil",
+    "chave": "orientacoes[]",
+    "linha": 224,
+    "original": "Protetor de batente de porta custa pouco e reduz muito o risco de esmagar ou amputar dedos na porta."
+  },
+  "CJ-0007": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Introdução à Segurança",
+    "chave": "definicao",
+    "linha": 14,
+    "original": "Segurança doméstica não é só prevenção, é planejamento. É o conjunto de medidas adotadas para reduzir riscos e preservar a integridade física de toda a família."
+  },
+  "CJ-0008": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Panela de Pressão sem Medo",
+    "chave": "content",
+    "linha": 310,
+    "original": "# Panela de Pressão: Uso Seguro\n\nA panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são assustadores, mas, na maioria das vezes, evitáveis.\n\n### Manual prático de uso:\n* **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.\n* **Pino Desobstruído:** Antes de fechar a tampa, olhe contra a luz para garantir que o buraquinho do pino (válvula) não está entupido com cascas ou gordura de cozimentos anteriores.\n* **Borracha Limpa:** Veja se a borracha de vedação não está rachada ou frouxa. Troque a borracha a cada ano.\n* **Espere a Pressão Sair:** Nunca force a abertura da tampa. Só tente abrir quando o chiado parar de vez e o pino abaixar por completo.\n\n*Sinal de Alerta:* Se a panela parar de chiar do nada com o fogo ligado, desligue o fogão imediatamente. O pino pode ter entupido, gerando risco de explosão."
+  },
+  "CJ-0009": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Olhos e Face",
+    "chave": "content[]",
+    "linha": 26,
+    "original": "**Protetor Facial:** Cobre o rosto inteiro contra respingos e fragmentos."
+  },
+  "CJ-0010": {
+    "arquivo": "data/mobilidade_data.js",
+    "rotulo": "Transporte seguro (cadeirinhas e veículos leves)",
+    "item": "Ciclomotor",
+    "chave": "ondeAndar",
+    "linha": 1087,
+    "original": "No Brasil, só na rua, como os carros: é proibido em ciclovias, ciclofaixas e calçadas."
+  },
+  "CJ-0011": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Estrutura Física",
+    "chave": "detalhes",
+    "linha": 51,
+    "original": "Superfícies antiderrapantes ajudam a prevenir quedas, especialmente em dias de chuva."
+  },
+  "CJ-0012": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Estrutura Física",
+    "chave": "detalhes",
+    "linha": 101,
+    "original": "Reduz o risco de choque elétrico. Tomadas baixas devem ter proteção."
+  },
+  "CJ-0013": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Mobiliário e Equipamentos",
+    "chave": "detalhes",
+    "linha": 203,
+    "original": "Protetores de quina reduzem ferimentos em batidas."
+  },
+  "CJ-0014": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Parquinho e Área de Lazer",
+    "chave": "detalhes",
+    "linha": 347,
+    "original": "Equipamentos conforme a ABNT NBR 16071 (playgrounds) atendem a requisitos mínimos de segurança."
+  },
+  "CJ-0015": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Quadras e Equipamentos Esportivos",
+    "chave": "detalhes",
+    "linha": 459,
+    "original": "Reduz escorregões e permite o uso depois da chuva."
+  },
+  "CJ-0016": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Quadras e Equipamentos Esportivos",
+    "chave": "detalhes",
+    "linha": 469,
+    "original": "Proteção acolchoada reduz lesões em colisões."
+  },
+  "CJ-0017": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Piscina (se houver)",
+    "chave": "detalhes",
+    "linha": 581,
+    "original": "Reduz escorregões ao redor da piscina."
+  },
+  "CJ-0018": {
+    "arquivo": "data/asilo_seguro_data.js",
+    "rotulo": "Instituicao de longa permanencia",
+    "item": "Acessibilidade (Estatuto/ABNT)",
+    "chave": "detalhes",
+    "linha": 65,
+    "original": "O apoio firme dos dois lados dá mais estabilidade para andar."
+  },
+  "CJ-0019": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetores de Porta",
+    "chave": "resumo",
+    "linha": 65,
+    "original": "Ajudam a evitar que crianças e pets prendam os dedos ou fiquem trancados em cômodos. Também evitam batidas que danificam portas e batentes."
+  },
+  "CJ-0020": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Armários",
+    "chave": "resumo",
+    "linha": 220,
+    "original": "Alternativa prática para quem não quer travar portas inteiras. Dificulta que crianças abram armários com conteúdo perigoso."
+  },
+  "CJ-0021": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Maçaneta",
+    "chave": "resumo",
+    "linha": 258,
+    "original": "Dificulta que crianças abram portas que dão acesso a áreas perigosas como piscinas, lavanderias e áreas externas."
+  },
+  "CJ-0022": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Gavetas",
+    "chave": "resumo",
+    "linha": 342,
+    "original": "Dificultam que crianças abram gavetas e alcancem objetos perigosos como facas, tesouras, pilhas e medicamentos."
+  },
+  "CJ-0023": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Proteção de Botão de Fogão",
+    "chave": "resumo",
+    "linha": 381,
+    "original": "Dificultam que crianças ou pessoas com limitações cognitivas girem os botões do fogão, reduzindo o risco de vazamento de gás e de queimaduras. Item de segurança prioritário"
+  },
+  "CJ-0024": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Luvas Térmicas",
+    "chave": "resumo",
+    "linha": 427,
+    "original": "Reduzem o risco de queimaduras ao manusear panelas quentes, formas do forno e utensílios sob alta temperatura."
+  },
+  "CJ-0025": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetores de Tomada",
+    "chave": "resumo",
+    "linha": 513,
+    "original": "Dificultam que crianças enfiem dedos ou objetos nas tomadas. Simples, baratos e podem salvar vidas."
+  },
+  "CJ-0026": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Trava de Assento Sanitário",
+    "chave": "resumo",
+    "linha": 554,
+    "original": "Trava de segurança que dificulta a criança abrir a tampa do vaso sanitário."
+  },
+  "CJ-0027": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Capa de Segurança para Piscina",
+    "chave": "resumo",
+    "linha": 630,
+    "original": "Cobertura que reduz o risco de quedas acidentais na piscina — desde que suporte o peso de uma criança sem afundar e fique bem presa às bordas."
+  },
+  "CJ-0028": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Telas de Proteção",
+    "chave": "resumo",
+    "linha": 888,
+    "original": "Reduzem muito o risco de quedas de janelas, varandas e sacadas. Indispensáveis em apartamentos com crianças ou pets."
+  },
+  "CJ-0029": {
+    "arquivo": "data/animais_ciatox.js",
+    "rotulo": "animais_ciatox",
+    "item": "Jararaca",
+    "chave": "gravidade",
+    "linha": 215,
+    "original": "MUITO GRAVE - Pode levar à morte e causar sequelas permanentes, como perda de dedos ou membros. O atendimento rápido, com soro, reduz muito esse risco."
+  },
+  "CJ-0030": {
+    "arquivo": "data/animais_ciatox.js",
+    "rotulo": "animais_ciatox",
+    "item": "Escorpião Amarelo",
+    "chave": "tratamento",
+    "linha": 397,
+    "original": "O soro antiescorpiônico está disponível em hospitais de referência, e a indicação é da equipe de saúde, conforme a gravidade. Em crianças a picada costuma ser mais grave: procure atendimento imediatamente, mesmo sem sintomas."
+  },
+  "CJ-0031": {
+    "arquivo": "data/aves_seguras_data.js",
+    "rotulo": "aves_seguras_data",
+    "item": "Risco Fatal: Antiaderentes (PTFE)",
+    "chave": "desc",
+    "linha": 15,
+    "original": "O revestimento (PTFE) superaquecido de panelas antiaderentes libera gases inodoros que paralisam o sistema respiratório das aves em segundos. É um risco letal: muitas vezes não há tempo para tratar."
+  },
+  "CJ-0032": {
+    "arquivo": "data/legal/politica_privacidade.js",
+    "rotulo": "Politica de Privacidade (os 4 regimes)",
+    "item": "10. Retenção e exclusão",
+    "chave": "texto",
+    "linha": 126,
+    "original": "Os dados permanecem no aparelho até você removê-los. Resetar Aplicativo apaga perfis, contatos, dados de saúde, consentimentos, lembretes, registros locais, vistorias e arquivos gerados pelo app, incluindo fotos e gravações, e cancela as notificações agendadas. Desinstalar o app remove os dados locais do sandbox. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no aparelho, ela pode incluir dados do app, conforme as regras e a criptografia do próprio sistema; o Vigilaro Care não tem acesso a essas cópias."
+  },
+  "CJ-0033": {
+    "arquivo": "data/legal/politica_privacidade.js",
+    "rotulo": "Politica de Privacidade (os 4 regimes)",
+    "item": "9. Conservação",
+    "chave": "texto",
+    "linha": 180,
+    "original": "Os dados permanecem no equipamento enquanto os mantiver. A opção Repor Aplicação elimina perfis, contactos, dados de saúde, consentimentos, lembretes, registos locais, vistorias e ficheiros gerados, incluindo fotografias e gravações, e cancela as notificações agendadas. Desinstalar remove os dados locais. Se a cópia de segurança do sistema (iCloud ou Google) estiver ativada no equipamento, pode incluir dados da aplicação, segundo as regras e a cifragem do próprio sistema; o Vigilaro Care não tem acesso a essas cópias."
+  },
+  "CJ-0034": {
+    "arquivo": "data/legal/politica_privacidade.js",
+    "rotulo": "Politica de Privacidade (os 4 regimes)",
+    "item": "9. Conservación",
+    "chave": "texto",
+    "linha": 242,
+    "original": "Los datos permanecen en el dispositivo mientras usted los mantenga. La opción Restablecer Aplicación elimina perfiles, contactos, datos de salud, consentimientos, recordatorios, registros locales, inspecciones y archivos generados, incluidas fotografías y grabaciones, y cancela las notificaciones programadas. Desinstalar la aplicación elimina los datos locales. Si la copia de seguridad del sistema (iCloud o Google) está activada en el dispositivo, puede incluir datos de la aplicación, según las reglas y el cifrado del propio sistema; Vigilaro Care no tiene acceso a esas copias."
+  },
+  "CJ-0035": {
+    "arquivo": "data/legal/politica_privacidade.js",
+    "rotulo": "Politica de Privacidade (os 4 regimes)",
+    "item": "3. Consumer health data",
+    "chave": "texto",
+    "linha": 280,
+    "original": "Some of what the app stores is consumer health data under state laws such as the Washington My Health My Data Act, and it is treated accordingly. We do not sell consumer health data, and we would not do so without the separate written authorization those laws require. You may delete this data at any time, in the app, using Reset Application; that removes it from the device, and we hold no copy on a server to remove. Health details are not sent by the app to any server — not to the AI features or to any other third party. We do not use geofencing around health care facilities for any purpose."
+  },
+  "CJ-0036": {
+    "arquivo": "data/legal/politica_privacidade.js",
+    "rotulo": "Politica de Privacidade (os 4 regimes)",
+    "item": "10. Retention and deletion",
+    "chave": "texto",
+    "linha": 308,
+    "original": "Information stays on your device until you remove it. Reset Application erases profiles, contacts, health data, consents, reminders, local logs, inspections and files the app generated, including photos and recordings, and cancels scheduled notifications. Uninstalling the app removes the local data in the app sandbox. If your device's system backup (iCloud or Google) is turned on, it may include app data, under the system's own rules and encryption; Vigilaro Care has no access to those backups."
+  },
+  "CJ-0037": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "2. O que o app é — e o que não é",
+    "chave": "texto",
+    "linha": 29,
+    "original": "O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — checklists, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nO app NÃO faz diagnóstico, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamento e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.\n\nO conteúdo reúne boas práticas e fontes públicas disponíveis na data em que foi publicado. Ele pode não cobrir todas as situações, as normas do seu local ou mudanças posteriores; diante de um risco sério, confirme com um profissional e com as regras da sua região.\n\nO índice de segurança e o Mapa de Riscos são estimativas feitas a partir do que você informa: não são laudo, vistoria técnica nem certificação do imóvel, e concluir um checklist não garante a ausência de riscos. Produtos e dispositivos são citados como exemplos: o app não endossa marcas nem garante o desempenho de produtos de terceiros — siga sempre as instruções do fabricante e, quando indicado, a instalação por um profissional."
+  },
+  "CJ-0038": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "10. Privacidade",
+    "chave": "texto",
+    "linha": 37,
+    "original": "Seus dados ficam no seu aparelho. O app não envia seus dados de saúde a nenhum servidor nem a terceiros. O que pode sair — com a sua permissão ou de forma anônima — está descrito na Política de Privacidade."
+  },
+  "CJ-0039": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "2. O que a aplicação é — e o que não é",
+    "chave": "texto",
+    "linha": 50,
+    "original": "O Vigilaro Care é uma ferramenta de informação, de apoio à prevenção e de mapeamento de riscos domésticos. Todo o conteúdo — listas de verificação, guias, protocolos de primeiros socorros e análises — tem caráter informativo e educativo.\n\nA aplicação NÃO faz diagnósticos, NÃO emite parecer sobre a saúde de ninguém, NÃO prescreve tratamentos e NÃO substitui profissionais de saúde, especialistas em segurança, a supervisão de um adulto responsável nem os serviços de emergência.\n\nO conteúdo reúne boas práticas e fontes públicas disponíveis na data em que foi publicado. Pode não abranger todas as situações, as normas do seu local ou alterações posteriores; perante um risco sério, confirme com um profissional e com as regras da sua região.\n\nO índice de segurança e o Mapa de Riscos são estimativas feitas a partir do que indica: não são relatório pericial, vistoria técnica nem certificação do imóvel, e concluir uma lista de verificação não garante a ausência de riscos. Produtos e dispositivos são referidos como exemplos: a aplicação não recomenda marcas nem garante o desempenho de produtos de terceiros — siga sempre as instruções do fabricante e, quando indicado, a instalação por um profissional."
+  },
+  "CJ-0040": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "10. Privacidade",
+    "chave": "texto",
+    "linha": 58,
+    "original": "Os seus dados ficam no seu equipamento. A aplicação não envia os seus dados de saúde a nenhum servidor nem a terceiros. O que pode sair — com a sua autorização ou de forma anónima — está descrito na Política de Privacidade."
+  },
+  "CJ-0041": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "2. Qué es la aplicación — y qué no es",
+    "chave": "texto",
+    "linha": 71,
+    "original": "Vigilaro Care es una herramienta de información, de apoyo a la prevención y de mapeo de riesgos domésticos. Todo el contenido — listas de verificación, guías, protocolos de primeros auxilios y análisis — tiene carácter informativo y educativo.\n\nLa aplicación NO hace diagnósticos, NO emite opinión sobre la salud de nadie, NO prescribe tratamientos y NO sustituye a profesionales de la salud, especialistas en seguridad, la supervisión de un adulto responsable ni los servicios de emergencia.\n\nEl contenido reúne buenas prácticas y fuentes públicas disponibles en la fecha de su publicación. Puede no abarcar todas las situaciones, las normas de su lugar ni cambios posteriores; ante un riesgo serio, confírmelo con un profesional y con las reglas de su región.\n\nEl índice de seguridad y el Mapa de Riesgos son estimaciones hechas a partir de lo que usted informa: no son un peritaje, una inspección técnica ni una certificación del inmueble, y completar una lista de verificación no garantiza la ausencia de riesgos. Los productos y dispositivos se citan como ejemplos: la aplicación no avala marcas ni garantiza el desempeño de productos de terceros — siga siempre las instrucciones del fabricante y, cuando se indique, la instalación por un profesional."
+  },
+  "CJ-0042": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "10. Privacidad",
+    "chave": "texto",
+    "linha": 79,
+    "original": "Sus datos permanecen en su dispositivo. La aplicación no envía sus datos de salud a ningún servidor ni a terceros. Lo que puede salir — con su permiso o de forma anónima — se describe en la Política de Privacidad."
+  },
+  "CJ-0043": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "2. What the app is — and what it is not",
+    "chave": "texto",
+    "linha": 92,
+    "original": "Vigilaro Care is a tool for information, prevention support and mapping hazards at home. All content — checklists, guides, first-aid protocols and analyses — is informational and educational.\n\nThe app does NOT diagnose, does NOT give an opinion on anyone's health, does NOT prescribe treatment and does NOT replace health professionals, safety specialists, supervision by a responsible adult or emergency services.\n\nThe content brings together good practice and public sources available on the date it was published. It may not cover every situation, the rules where you live or later changes; when the risk is serious, check with a professional and with your local rules.\n\nThe safety index and the Risk Map are estimates based on what you enter: they are not an expert report, a technical inspection or a certification of the property, and completing a checklist does not guarantee that there are no risks. Products and devices are mentioned as examples: the app does not endorse brands or guarantee how third-party products perform — always follow the manufacturer's instructions and, where indicated, have them installed by a professional."
+  },
+  "CJ-0044": {
+    "arquivo": "data/legal/termos_uso.js",
+    "rotulo": "Termos de Uso (os 4 idiomas)",
+    "item": "10. Privacy",
+    "chave": "texto",
+    "linha": 100,
+    "original": "Your data stays on your device. The app does not send your health information to any server or third party. What may leave — with your permission or anonymously — is described in the Privacy Policy."
+  },
+  "CJ-0045": {
+    "arquivo": "components/BatteryMonitor.js",
+    "rotulo": "BatteryMonitor",
+    "item": "(sem titulo)",
+    "chave": "defaultValue",
+    "linha": 68,
+    "original": "Sua bateria está em {{pct}}%. Recomendamos recarregar seu dispositivo para manter o acesso às funções de emergência do Vigilaro."
+  },
+  "CJ-0046": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "upgrade",
+    "chave": "upgrade.heroSub",
+    "linha": 0,
+    "original": "A prevenção, o Mapa de Riscos, o SOS, o Scanner e os guias continuam gratuitos. O Premium amplia os lembretes de remédio da família."
+  },
+  "CJ-0047": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "upgrade",
+    "chave": "upgrade.checkConnection",
+    "linha": 0,
+    "original": "Confira sua conexão e tente de novo — seus dados continuam no aparelho."
+  },
+  "CJ-0048": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "welcome",
+    "chave": "welcome.termsPrivacyDesc",
+    "linha": 0,
+    "original": "Seus dados ficam no seu aparelho. O app não envia seus dados de saúde a nenhum servidor nem a terceiros. Fotos só vão para a análise por IA com a sua permissão, e os relatórios de erro saem sem nomes nem dados de saúde."
+  },
   "TI-0001": {
     "arquivo": "data/visitChecklists.js",
     "rotulo": "Checklist de visitas (grupos de visitante)",

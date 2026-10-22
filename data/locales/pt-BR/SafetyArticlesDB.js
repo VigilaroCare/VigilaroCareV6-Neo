@@ -310,7 +310,7 @@ Um choque elétrico pode parecer um formigamento bobo, mas tem potencial para ca
         content: `
 # Panela de Pressão: Uso Seguro
 
-A panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são assustadores, mas perfeitamente evitáveis.
+A panela de pressão economiza gás e tempo, mas exige respeito. Acidentes com explosão são assustadores, mas, na maioria das vezes, evitáveis.
 
 ### Manual prático de uso:
 * **Limite de Espaço:** Nunca encha a panela de água até a boca. Deixe sempre um terço livre para o acúmulo de vapor.

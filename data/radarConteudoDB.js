@@ -138,7 +138,7 @@ export const FATOS_IMPACTO = [
     orientacoes: [
       'Protetor de tomada com trava giratória: item obrigatório em casas com bebês.',
       'Passagem rápida de inspeção no nível do chão identifica riscos com a perspectiva da criança.',
-      'Troca por tomadas ABNT com proteção infantil embutida é a solução definitiva.'
+      'Trocar por tomadas no padrão ABNT com proteção infantil embutida é a solução mais duradoura.'
     ],
     icone: 'Flash',
     cor: '#FFC107',
@@ -221,7 +221,7 @@ export const FATOS_IMPACTO = [
     destaque: '2.800 atendimentos/ano',
     fonte: 'SIH-SUS / Ministério da Saúde 2024',
     orientacoes: [
-      'Protetor de batente de porta custa menos de R$10 e previne 100% das amputações por porta.',
+      'Protetor de batente de porta custa pouco e reduz muito o risco de esmagar ou amputar dedos na porta.',
       'Tanto o batente (onde a porta fecha) quanto a dobradiça (articulação) precisam de proteção.',
       'Implemente como rotina: antes de fechar qualquer porta, confirme onde está a criança.'
     ],
