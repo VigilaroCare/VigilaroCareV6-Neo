@@ -357,6 +357,29 @@ const TEMAS = [
             + 'funcao, para voce saber onde aparece.',
         fontes: [],
     },
+    // TI — o que so existia nas telas orfas apagadas em 22/10/2026 e foi levado
+    // para as telas no ar (aquecedor, grade de cama, CO, contraste, alerta
+    // pessoal, altura, calhas) + vocabulario do checklist de visitas.
+    {
+        nome: 'Telas Integradas',
+        sigla: 'TI',
+        pendentes: ['m017'],
+        rotulos: {
+            'data/eletrodomesticos_reviews.js': 'Reviews — eletrodomesticos',
+            'data/dispositivos_protecao.js': 'Acessorios de protecao',
+            'data/visitChecklists.js': 'Checklist de visitas (grupos de visitante)',
+            'data/locales/pt-BR/RiskCategories.js': 'Modo Preventivo — servicos em altura',
+            'data/radarSazonal/br.js': 'Radar Sazonal — chuvas fortes e raios',
+            'locales/pt-BR/common.json': 'Modo Preventivo — cartao novo',
+        },
+        descricao: 'Sete telas do app nao tinham nenhuma entrada (nenhum botao levava a elas). Antes de apaga-las, '
+            + 'levei para as telas que estao no ar o que so elas tinham: aquecedor portatil, grade de protecao para '
+            + 'cama, detector de monoxido de carbono, contraste para baixa visao, alerta pessoal para quem mora '
+            + 'sozinho, "avise alguem antes de subir" e telhas e calhas antes das chuvas. No checklist de visitas, '
+            + '"PCD / Mobilidade Reduzida" e "Criancas (Hiperativas/Arteiras)" mudaram de nome — a linha cinza mostra '
+            + 'a versao que voce revisou.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

@@ -71,7 +71,6 @@ import BoasVindasScreen           from "./screens/BoasVindasScreen";
 import WelcomeTourScreen          from "./screens/WelcomeTourScreenNeo";
 import PerfilWizardScreen         from "./screens/Profiles/PerfilWizardScreen";
 import NewHomeWizardScreen        from "./screens/NewHomeWizardScreenNeo";
-import SafetyPermitScreen         from './screens/SafetyPermitScreen';
 import ChecklistWizardScreen     from './screens/Checklists/ChecklistWizardScreen';
 import AddPerfilScreen            from './screens/Profiles/AddPerfilScreenNeo';
 import QuemProtegerScreenNeo      from "./screens/Profiles/QuemProtegerScreenNeo";
@@ -97,7 +96,6 @@ import TermsOfUseScreen                  from './screens/TermsOfUseScreen';
 import PrivacyPolicyScreen               from './screens/PrivacyPolicyScreen';
 import EmergenciaPetScreen               from './screens/Emergency/EmergenciaPetScreen';
 import CustomSplashScreen                from './screens/CustomSplashScreen';
-import EletrodomesticosScreen            from "./screens/EletrodomesticosScreen";
 import SOSEmergencyModeScreen            from './screens/Emergency/SOSEmergencyModeScreenNeo';
 import SOSCountdownScreen                from './screens/Emergency/SOSCountdownScreen';
 import ModoPreventivoScreenNeo           from "./screens/ModoPreventivoScreenNeo";
@@ -136,7 +134,6 @@ import AnimaisPeconhentosScreen    from "./screens/Education/AnimaisPeconhentosS
 import ProdutosPerigososScreen     from "./screens/Education/ProdutosPerigososScreen";
 import RiscosFisicosScreen         from "./screens/Education/RiscosFisicosScreen";
 import ChecklistDetailScreen       from "./screens/Checklists/ChecklistDetailScreen";
-import ChecklistReportScreen       from "./screens/Checklists/ChecklistReportScreen";
 import RelatoriosScreen            from "./screens/Checklists/RelatoriosScreenNeo";
 import AmbientesVistoriadosScreen  from "./screens/AmbientesVistoriadosScreen";
 import JardinagemSeguraScreen      from "./screens/Education/JardinagemSeguraScreen";
@@ -148,7 +145,6 @@ import KitsHubScreen               from "./screens/Emergency/KitsHubScreen";
 import GuiaKitsEmergenciaScreen    from "./screens/Education/GuiaKitsEmergenciaScreen";
 import KitsMenuScreen              from "./screens/Checklists/KitsMenuScreen";
 import OndeProtegerScreen          from "./screens/Checklists/OndeProtegerScreen";
-import UtensiliosDomesticosScreen  from "./screens/Education/UtensiliosDomesticosScreen";
 import FerramentasTrabalhoScreen   from "./screens/Education/FerramentasTrabalhoScreen";
 
 // Reviews de Segurança (NEW)
@@ -170,7 +166,6 @@ import EduContentDetailScreen      from './screens/EduContentDetailScreen';
 import SegurancaLazerScreen        from "./screens/SegurancaLazerScreen";
 import SegurancaFeriasScreen       from "./screens/SegurancaFeriasScreen";
 import MobilidadeSeguraScreen      from "./screens/MobilidadeSeguraScreen";
-import AcessoriosSegurancaScreen   from "./screens/AcessoriosSegurancaScreen";
 import EpiDomesticoScreen          from "./screens/EPIDomesticoScreen";
 
 // ---------------------------------------------------------------------------
@@ -210,7 +205,6 @@ import UpgradePremiumScreen        from './screens/UpgradePremiumScreen';
 import ScannerScreen               from "./screens/ScannerScreen";
 import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
-import DataHealthScreen             from "./screens/Tools/DataHealthScreen";
 import MapaDeRiscosScreen           from "./screens/Tools/MapaDeRiscosScreen";
 import AmbienteRiscoScreen          from "./screens/Tools/AmbienteRiscoScreen";
 import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
@@ -601,7 +595,6 @@ export default function App() {
                       />
 
                       {/* ---- Modais e Apoio ---- */}
-                      <Stack.Screen name="SafetyPermit" component={SafetyPermitScreen} options={{ presentation: 'modal', headerShown: false }} />
                       <Stack.Screen name="AddPerfil" component={AddPerfilScreen} />
                       <Stack.Screen name="QuemProteger" component={QuemProtegerScreenNeo} />
                       <Stack.Screen name="SecretBriefing" component={SecretBriefingScreen} />
@@ -617,7 +610,6 @@ export default function App() {
                       <Stack.Screen name="TermsOfUse" component={TermsOfUseScreen} />
                       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
                       <Stack.Screen name="EmergenciaPet" component={EmergenciaPetScreen} />
-                      <Stack.Screen name="Eletrodomesticos" component={EletrodomesticosScreen} />
                       <Stack.Screen name="RenovationType" component={RenovationTypeScreen} />
                       <Stack.Screen name="ChecklistReforma" component={ChecklistReformaScreen} />
                       <Stack.Screen name="VisitType" component={VisitTypeScreen} />
@@ -661,7 +653,6 @@ export default function App() {
                       <Stack.Screen name="MobilidadeSegura" component={MobilidadeSeguraScreen} />
 
                       {/* ---- EPIs & Acessórios ---- */}
-                      <Stack.Screen name="AcessoriosSeguranca" component={AcessoriosSegurancaScreen} />
                       <Stack.Screen name="EpiDomestico" component={EpiDomesticoScreen} />
 
                       {/* ---- Situações Temporárias ---- */}
@@ -682,7 +673,6 @@ export default function App() {
                       <Stack.Screen name="InfoRotulos" component={InfoRotulosScreen} />
                       <Stack.Screen name="InfoRotulosResult" component={InfoRotulosResultScreen} />
                       <Stack.Screen name="HistoricoAuditoria" component={HistoricoAuditoriaScreen} />
-                      <Stack.Screen name="DataHealth" component={DataHealthScreen} />
                       {/* "MapaDeCalor" até 2026-08-07. A tela deixou de derivar
                           risco de respostas de checklist e passou a analisar os
                           dados declarados — moradia e moradores (RiscoService).
@@ -696,7 +686,6 @@ export default function App() {
                       <Stack.Screen name="KitsHub" component={KitsHubScreen} />
                       <Stack.Screen name="GuiaKitsEmergencia" component={GuiaKitsEmergenciaScreen} />
                       <Stack.Screen name="OndeProteger" component={OndeProtegerScreen} />
-                      <Stack.Screen name="UtensiliosDomesticos" component={UtensiliosDomesticosScreen} />
                       <Stack.Screen name="FerramentasTrabalho" component={FerramentasTrabalhoScreen} />
                       <Stack.Screen name="EnvironmentGuide" component={EnvironmentGuideScreen} />
                       <Stack.Screen name="EnvironmentGuideNeo" component={EnvironmentGuideNeoScreen} />
@@ -724,7 +713,6 @@ export default function App() {
                       <Stack.Screen name="KitsMenu" component={KitsMenuScreen} />
                       <Stack.Screen name="Relatorios" component={RelatoriosScreen} />
                       <Stack.Screen name="AmbientesVistoriados" component={AmbientesVistoriadosScreen} />
-                      <Stack.Screen name="ChecklistReport" component={ChecklistReportScreen} />
                       <Stack.Screen name="EscolaSegura" component={EscolaSeguraScreen} />
                       <Stack.Screen name="EscolaSeguraReport" component={EscolaSeguraReportScreen} />
                       <Stack.Screen name="AreasInternas" component={AreasInternasScreen} />

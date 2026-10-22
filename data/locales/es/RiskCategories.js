@@ -439,7 +439,8 @@ export const RISK_CATEGORIES_ES = [
         'Mantenga la escalera completamente abierta y asegurada.',
         'Siempre tenga un asistente sosteniendo la base de la escalera.',
         'No intente alcanzar lugares lejanos; baje y mueva la escalera.',
-        'Nunca use escaleras de metal cerca de redes eléctricas.'
+        'Nunca use escaleras de metal cerca de redes eléctricas.',
+        'Avise a alguien antes de subir y lleve el celular en el bolsillo.'
       ]
     },
     questions: [

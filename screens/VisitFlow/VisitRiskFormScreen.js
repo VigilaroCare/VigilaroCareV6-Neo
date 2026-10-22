@@ -7,6 +7,7 @@ import { RISK_GROUPS } from '../../data/visitChecklists';
 import { Spacing, Typography, BorderRadius, Shadows } from "../../utils/Theme";
 import AppBackground from '../../components/AppBackground';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { t_field } from '../../utils/getLocalizedField';
 
 export default function VisitRiskFormScreen({ route, navigation }) {
     const { t } = useTranslation('common');
@@ -39,7 +40,7 @@ export default function VisitRiskFormScreen({ route, navigation }) {
                                 <View style={styles.iconBox}>
                                     <NeoIcon name={risk.icon} size={20} color={Neo.colors.neutral[600]} />
                                 </View>
-                                <Text style={styles.label}>{risk.label}</Text>
+                                <Text style={styles.label}>{t_field(risk, 'label')}</Text>
                             </View>
                             <Switch
                                 value={!!selectedRisks[risk.id]}

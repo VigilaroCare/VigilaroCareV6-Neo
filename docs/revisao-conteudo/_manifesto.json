@@ -1,4 +1,244 @@
 {
+  "TI-0001": {
+    "arquivo": "data/visitChecklists.js",
+    "rotulo": "Checklist de visitas (grupos de visitante)",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 14,
+    "original": "Pessoas com deficiência ou mobilidade reduzida"
+  },
+  "TI-0002": {
+    "arquivo": "data/visitChecklists.js",
+    "rotulo": "Checklist de visitas (grupos de visitante)",
+    "item": "(sem titulo)",
+    "chave": "label",
+    "linha": 16,
+    "original": "Crianças muito ativas"
+  },
+  "TI-0003": {
+    "arquivo": "data/locales/pt-BR/RiskCategories.js",
+    "rotulo": "Modo Preventivo — servicos em altura",
+    "item": "Serviços em Altura",
+    "chave": "keyPoints[]",
+    "linha": 448,
+    "original": "Avise alguém antes de subir e leve o celular no bolso."
+  },
+  "TI-0004": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "nome",
+    "linha": 584,
+    "original": "Aquecedor Portátil"
+  },
+  "TI-0005": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "resumo",
+    "linha": 590,
+    "original": "Aquecedores esquentam muito e costumam ficar perto de cortinas, camas e sofás. Além de queimadura e incêndio, o modelo a gás em cômodo fechado pode liberar monóxido de carbono, que não tem cheiro."
+  },
+  "TI-0006": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "descricao",
+    "linha": 592,
+    "original": "Incêndio quando fica perto de cortinas, roupa de cama, sofás ou roupas secando"
+  },
+  "TI-0007": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "descricao",
+    "linha": 593,
+    "original": "Queimadura por contato com a grade ou a superfície quente — crianças, idosos e pets são os mais atingidos"
+  },
+  "TI-0008": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "descricao",
+    "linha": 594,
+    "original": "Intoxicação por monóxido de carbono (CO) com aquecedor a gás em cômodo fechado"
+  },
+  "TI-0009": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "descricao",
+    "linha": 595,
+    "original": "Superaquecimento de extensões e tomadas, porque o aparelho consome muita energia"
+  },
+  "TI-0010": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "prevencao[]",
+    "linha": 598,
+    "original": "Mantenha pelo menos 1 metro de distância de cortinas, camas, sofás e roupas"
+  },
+  "TI-0011": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "prevencao[]",
+    "linha": 599,
+    "original": "Ligue direto na tomada da parede — nunca em extensões ou adaptadores"
+  },
+  "TI-0012": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "prevencao[]",
+    "linha": 600,
+    "original": "Use em piso firme e fora da passagem, e prefira modelos que desligam sozinhos se tombarem ou esquentarem demais"
+  },
+  "TI-0013": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "prevencao[]",
+    "linha": 601,
+    "original": "Desligue ao sair do cômodo e na hora de dormir"
+  },
+  "TI-0014": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "prevencao[]",
+    "linha": 602,
+    "original": "Aquecedor a gás: só em cômodo ventilado, nunca no quarto durante o sono, e com detector de monóxido de carbono (CO)"
+  },
+  "TI-0015": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Aquecedor Portátil",
+    "chave": "oQueFazer",
+    "linha": 622,
+    "original": "Queimadura: resfrie com água corrente por 15 a 20 minutos, sem gelo nem pomada. Se alguém sentir dor de cabeça, tontura, náusea ou sonolência perto de um aquecedor a gás: desligue o aparelho, abra as janelas, leve a pessoa para o ar livre e ligue para o {{EMERGENCY_MEDICAL}}."
+  },
+  "TI-0016": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Adesivos Antiderrapantes",
+    "chave": "prevencao[]",
+    "linha": 310,
+    "original": "Para quem tem baixa visão, use faixas de cor contrastante na borda dos degraus e onde o piso muda de nível"
+  },
+  "TI-0017": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Barreiras Eletrônicas",
+    "chave": "prevencao[]",
+    "linha": 595,
+    "original": "Para quem mora sozinho, sobretudo idosos, considere um dispositivo de alerta pessoal (botão de emergência ou relógio com detecção de queda) ligado a familiares"
+  },
+  "TI-0018": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "nome",
+    "linha": 709,
+    "original": "Grade de Proteção para Cama"
+  },
+  "TI-0019": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "resumo",
+    "linha": 715,
+    "original": "Evita quedas da cama durante o sono — para a criança que saiu do berço e para o idoso com risco de queda. Precisa ser do tamanho certo para a cama: um vão entre a grade e o colchão pode prender a cabeça ou o tronco."
+  },
+  "TI-0020": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "descricao",
+    "linha": 717,
+    "original": "Queda da cama durante o sono, com batida na cabeça ou fratura"
+  },
+  "TI-0021": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "descricao",
+    "linha": 718,
+    "original": "Aprisionamento entre a grade e o colchão, que pode sufocar"
+  },
+  "TI-0022": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "prevencao[]",
+    "linha": 721,
+    "original": "Bebê não usa grade de cama: o lugar dele dormir é o berço"
+  },
+  "TI-0023": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "prevencao[]",
+    "linha": 722,
+    "original": "Escolha uma grade compatível com a cama e o colchão — sem vãos onde caibam cabeça, braço ou perna"
+  },
+  "TI-0024": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "prevencao[]",
+    "linha": 723,
+    "original": "Confira sempre se a grade está firme e se o colchão não se afastou dela"
+  },
+  "TI-0025": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "prevencao[]",
+    "linha": 724,
+    "original": "Para idosos, prefira modelos feitos para uso adulto e peça orientação a um profissional de saúde, sobretudo se houver confusão ou agitação à noite"
+  },
+  "TI-0026": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "prevencao[]",
+    "linha": 725,
+    "original": "Mantenha uma luz noturna e o caminho até o banheiro livre — a grade não substitui esses cuidados"
+  },
+  "TI-0027": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Cama",
+    "chave": "oQueFazer",
+    "linha": 745,
+    "original": "Se a pessoa ficar presa entre a grade e o colchão: solte-a com cuidado e veja se respira; se houver dificuldade para respirar ou desmaio, ligue para o {{EMERGENCY_MEDICAL}}. Depois de uma queda da cama com batida na cabeça, observe vômitos, sonolência ou confusão nas horas seguintes."
+  },
+  "TI-0028": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Detector de Fumaça e Gás",
+    "chave": "prevencao[]",
+    "linha": 809,
+    "original": "Se houver aquecedor a gás, aquecedor de água a gás, lareira ou braseiro, instale também um detector de monóxido de carbono (CO) perto dos quartos — o detector de gás de cozinha não acusa o CO"
+  },
+  "TI-0029": {
+    "arquivo": "data/radarSazonal/br.js",
+    "rotulo": "Radar Sazonal — chuvas fortes e raios",
+    "item": "Temporada de chuvas fortes e raios",
+    "chave": "orientacoes[]",
+    "linha": 138,
+    "original": "Antes da temporada de chuvas, confira se as telhas estão firmes e limpe calhas e ralos."
+  },
+  "TI-0030": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Modo Preventivo — cartao novo",
+    "item": "telas",
+    "chave": "telas.ModoPreventivoScreenNeo.planejarSituacaoDescricao",
+    "linha": 0,
+    "original": "Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes."
+  },
   "CK-0001": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes (vistoria)",

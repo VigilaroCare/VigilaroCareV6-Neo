@@ -441,7 +441,8 @@ export const RISK_CATEGORIES_PT = [
         'Tenha sempre um assistente (spotter) segurando a base da escada.',
         'Não tente alcançar lugares longes; desça e mova a escada.',
         'Em serviços em telhado ou laje, tenha certeza da sua capacidade. Chamar um profissional evita tragédias.',
-        'Nunca use escadas metálicas se houver mínima possibilidade de contato com rede elétrica.'
+        'Nunca use escadas metálicas se houver mínima possibilidade de contato com rede elétrica.',
+        'Avise alguém antes de subir e leve o telemóvel no bolso.'
       ]
     },
     questions: [

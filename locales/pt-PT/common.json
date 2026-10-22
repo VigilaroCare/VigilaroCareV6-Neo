@@ -2261,17 +2261,6 @@
             "politicaDePrivacidade": "Política de Privacidade",
             "especifica": " específica."
         },
-        "DataHealthScreen": {
-            "saudeDosDados": "Saúde dos Dados",
-            "diagnosticoDeIntegridadeDoVigilaroData": "Diagnóstico de integridade do @vigilaro_data",
-            "executarDiagnostico": "Executar Diagnóstico",
-            "estatisticas": "Estatísticas",
-            "problema": " Problema",
-            "encontrado": " Encontrado",
-            "tudoIntegro": "Tudo Íntegro!",
-            "nenhumaInconsistenciaEncontradaNosDados": "Nenhuma inconsistência encontrada nos dados.",
-            "executarNovamente": "Executar Novamente"
-        },
         "FazendoAsMalasScreen": {
             "fonte": "Fonte: ",
             "vigenteEm": " · vigente em "
@@ -2392,10 +2381,6 @@
             "atencaoRiscoModerado": "Atenção (Risco moderado)",
             "criticoRiscoAlto": "Crítico (Risco alto)"
         },
-        "AcessoriosSegurancaScreen": {
-            "acessoriosToqueParaVerDetalhes": " acessórios • Toque para ver detalhes",
-            "toqueParaVerTiposEInstalacao": "Toque para ver tipos e instalação."
-        },
         "AreasInternasScreen": {
             "erro": "Erro",
             "falhaAoCarregarChecklistTenteNovamente": "Falha ao carregar checklist. Tente novamente.",
@@ -2486,10 +2471,6 @@
             "perfilPets": "🐶 Animais",
             "perfilTodos": "👥 Todos"
         },
-        "UtensiliosDomesticosScreen": {
-            "buscarUtensilioExFacasPanelas": "Buscar utensílio (ex: Facas, Panelas)",
-            "itensToqueParaVerDetalhes": " itens • Toque para ver detalhes"
-        },
         "UtensiliosReviewsScreen": {
             "itensToqueParaVerOReview": " itens • Toque para ver o review completo",
             "uso": "Uso ",
@@ -2497,9 +2478,6 @@
             "riscoAlto": "Alto",
             "riscoMedio": "Médio",
             "riscoBaixo": "Baixo"
-        },
-        "EletrodomesticosScreen": {
-            "trava": "Trava"
         },
         "ContatosEmergenciaScreen": {
             "encontramosContatosDaFamiliaDesejaImport": "Encontrámos contactos da família. Deseja importá-los para este perfil?",
@@ -2832,7 +2810,9 @@
             "atencao": "Atenção",
             "respondaATodasAsQuestoesPara": "Responda a todas as questões para concluir.",
             "seguro": "% Seguro",
-            "acao": "AÇÃO: "
+            "acao": "AÇÃO: ",
+            "planejarSituacaoTitulo": "Planear obras, visita ou mudança",
+            "planejarSituacaoDescricao": "Listas de verificação detalhadas por tipo de obra e de visitante, para preparar a casa antes."
         },
         "HumanFormStep": {
             "passo1NovoIntegrantePessoa": "PASSO 1 — NOVO INTEGRANTE (PESSOA)",
@@ -2971,12 +2951,6 @@
             "conformes": " conformes",
             "conformes2": " conformes"
         },
-        "SafetyPermitScreen": {
-            "protocolo": "Protocolo '",
-            "naoEncontrado": "' não encontrado.",
-            "atencao": "Atenção",
-            "respondaTodasAsPerguntasParaGarantir": "Responda todas as perguntas para garantir sua segurança."
-        },
         "EmergenciaRapidaScreen": {
             "engasgo": "ENGASGAMENTO",
             "engasgo1": "1. Posicione-se atrás da pessoa.",
@@ -3032,6 +3006,17 @@
         },
         "KnowledgeHubScreen": {
             "socorrosCurto": "Socorros"
+        },
+        "SituacoesTemporariasScreen": {
+            "reformaTitulo": "Obras / Manutenção",
+            "reformaSubtitulo": "Trabalhos temporários em casa",
+            "festaTitulo": "Festa / Visita",
+            "festaSubtitulo": "Reuniões e eventos sociais",
+            "mudancaTitulo": "Mudança de Casa",
+            "mudancaSubtitulo": "Casa nova, riscos novos",
+            "outroTitulo": "Outro Evento",
+            "outroSubtitulo": "Cuidador, técnico, etc.",
+            "situacao": "Situação"
         }
     },
     "fichaMedica": {

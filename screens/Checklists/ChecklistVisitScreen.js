@@ -18,6 +18,7 @@ import NeoIcon from '../../components/NeoIcon';
 import AppBg from '../../components/AppBackground';
 import ScaleButton from '../../components/ScaleButton';
 import GamificationService from '../../services/GamificationService';
+import { t_field } from '../../utils/getLocalizedField';
 
 const THEME_COLOR = Neo.colors.primary[500]; // Standardized token
 
@@ -173,7 +174,7 @@ export default function ChecklistVisitScreen({ route, navigation }) {
                                         lineHeight: 20,
                                         textDecorationLine: isChecked ? 'line-through' : 'none',
                                     }}>
-                                        {it.label}
+                                        {t_field(it, 'label')}
                                     </Body>
                                 </NeoCard>
                             </TouchableOpacity>

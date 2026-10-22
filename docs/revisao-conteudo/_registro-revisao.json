@@ -64,6 +64,10 @@
   "m016": {
    "texto": "Regra do Agnaldo replicada em texto que tinha escapado (antitombamento/antiaprisionamento/antiesmagamento sem hifen, recarregar para bateria, crianças e pets) - 22/10/2026",
    "em": "2026-10-22"
+  },
+  "m017": {
+   "texto": "Novo ou ajustado ao levar para o app o que so existia nas telas orfas (22/10/2026) - aguarda revisao do Agnaldo",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -1116,6 +1120,11 @@
    "pendente",
    "data/classesIncendio.js",
    "m006"
+  ],
+  "138b30b557c6c84d": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
   ],
   "138cfd3bd2bb0637": [
    "pendente",
@@ -2717,6 +2726,11 @@
    "data/dispositivos_protecao.js",
    "m011"
   ],
+  "2d7ada9aed8d559e": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "2d854d3e9bfceaa4": [
    "pendente",
    "data/escola_segura_data.js",
@@ -3962,6 +3976,11 @@
    "data/produtos_scanner.js",
    "m010"
   ],
+  "3fb5a0bbbd6d7ca6": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "3fb8cdd00d14cc03": [
    "pendente",
    "data/pet_food_safety.js",
@@ -4442,6 +4461,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "464fe964893b6348": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "4682f2ba9f3be10c": [
    "pendente",
    "data/animais_ciatox.js",
@@ -4551,6 +4575,11 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m008"
+  ],
+  "4860486c0693d65e": [
+   "pendente",
+   "data/visitChecklists.js",
+   "m017"
   ],
   "4866455e1d9246c5": [
    "pendente",
@@ -4801,6 +4830,11 @@
    "pendente",
    "data/onboarding_data.js",
    "m010"
+  ],
+  "4c640a9fea0eab8c": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "4c793d1c596b9a7b": [
    "pendente",
@@ -5191,6 +5225,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "51aa21c68aec0a89": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "51ad92587e3f1c29": [
    "pendente",
@@ -5706,6 +5745,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "5a4fff4e76b63a2a": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "5a53e61fd8ce189f": [
    "pendente",
@@ -6862,6 +6906,11 @@
    "data/animais_ciatox.js",
    "m010"
   ],
+  "6cbaec873e559096": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "6ce7a61d640d854b": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -6901,6 +6950,11 @@
    "pendente",
    "data/pet_safety_content.js",
    "m006"
+  ],
+  "6d506edad4d14176": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m017"
   ],
   "6d6fd9c75aac951a": [
    "pendente",
@@ -7262,6 +7316,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "734544a020e6adf2": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "7353bc5bea369a2a": [
    "pendente",
    "data/kits/bagagem_viagem.js",
@@ -7547,6 +7606,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "78621d1cc57ba218": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "786b979d8548a3f6": [
    "pendente",
    "data/safety_fire.js",
@@ -7616,6 +7680,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
+  ],
+  "79c457162ae512cf": [
+   "pendente",
+   "data/radarSazonal/br.js",
+   "m017"
   ],
   "79ccba042ab802c6": [
    "pendente",
@@ -8067,6 +8136,11 @@
    "data/opcoesPerfil.js",
    "m010"
   ],
+  "82522c2674dc0f80": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "826fc07a0443f8bc": [
    "pendente",
    "data/animais_ciatox.js",
@@ -8402,6 +8476,11 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
+  "87df84809b1b05ab": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "87e93214443acb8f": [
    "pendente",
    "data/animais_ciatox.js",
@@ -8621,6 +8700,11 @@
    "pendente",
    "data/kits/tools.js",
    "m010"
+  ],
+  "8b4130f368a48da4": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
   ],
   "8b4e97a12ba9de2f": [
    "aprovado",
@@ -9262,6 +9346,11 @@
    "data/mobilidade_data.js",
    "m001"
   ],
+  "95fab92dbf15fe3e": [
+   "pendente",
+   "data/visitChecklists.js",
+   "m017"
+  ],
   "96098858fb89548d": [
    "aprovado",
    "data/teoria_fogo.js",
@@ -9316,6 +9405,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m010"
+  ],
+  "97255c284b9ae0ad": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "972ba33d3eb27dbb": [
    "aprovado",
@@ -9661,6 +9755,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
+  ],
+  "9c2ad4de716a6209": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
   ],
   "9c313cbf35bfe563": [
    "pendente",
@@ -10562,6 +10661,11 @@
    "data/legal/politica_privacidade.js",
    "m010"
   ],
+  "a970e91e38a9c3fa": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "a973554a62712da1": [
    "pendente",
    "screens/SegurancaLazerScreen.js",
@@ -11301,6 +11405,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m010"
+  ],
+  "b5b42792d8269777": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "b5b984520cb9382b": [
    "pendente",
@@ -13007,6 +13116,11 @@
    "data/teoria_fogo.js",
    "m005"
   ],
+  "d19af562ebd1b550": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "d19d4a096caee1fb": [
    "pendente",
    "data/ocorrencia_regional.js",
@@ -13051,6 +13165,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "d23bf7e968f0e8b7": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
   ],
   "d245bf8aa98e56a2": [
    "pendente",
@@ -13732,6 +13851,11 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
+  "dc8227c05ce527fd": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "dc851c22a260907e": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -14116,6 +14240,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "e393fc7f46c1ef98": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "e39f42145d086fdb": [
    "pendente",
@@ -14591,6 +14720,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m010"
+  ],
+  "eab5a5093ed85c20": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
   ],
   "eac0c0fffb30f306": [
    "pendente",
@@ -15417,6 +15551,11 @@
    "data/mapeamento_dados.js",
    "m006"
   ],
+  "f97a17196609905a": [
+   "pendente",
+   "data/eletrodomesticos_reviews.js",
+   "m017"
+  ],
   "f9932f72c734dc38": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -15536,6 +15675,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
+  ],
+  "fb3df5965ae18ac4": [
+   "pendente",
+   "data/locales/pt-BR/RiskCategories.js",
+   "m017"
   ],
   "fb425c40d06d4f9f": [
    "pendente",
@@ -15742,6 +15886,11 @@
    "screens/SegurancaFeriasScreen.js",
    "m010"
   ],
+  "fed1cb6fdc9340ef": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
+  ],
   "fed574af6f6735cf": [
    "pendente",
    "data/fases_vida.js",
@@ -15781,6 +15930,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "ff7bd63ca93b94e5": [
+   "pendente",
+   "data/dispositivos_protecao.js",
+   "m017"
   ],
   "ff83c2a87610695f": [
    "aprovado",

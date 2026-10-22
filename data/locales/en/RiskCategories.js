@@ -441,7 +441,8 @@ export const RISK_CATEGORIES_EN = [
         'Always have an assistant (spotter) holding the ladder base.',
         'Do not try to reach far places; climb down and move the ladder.',
         'For roof or slab services, be sure of your capacity. Calling a professional prevents tragedies.',
-        'Never use metal ladders if there is any chance of contact with electrical grids.'
+        'Never use metal ladders if there is any chance of contact with electrical grids.',
+        'Tell someone before you climb up and keep your phone in your pocket.'
       ]
     },
     questions: [

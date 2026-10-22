@@ -134,19 +134,22 @@ export const JANELAS_BR = [
       "Cadastre seu CEP para alertas da Defesa Civil: envie o CEP por SMS para 40199 (gratuito).",
       "Durante a tempestade, longe de tomadas, chuveiro elétrico, torneiras e celular no carregador.",
       "Água entrando em casa: desligue o disjuntor geral antes que a água chegue às tomadas — nunca pise na água com a energia ligada.",
-      "Rachaduras novas, portas emperrando ou barranco cedendo perto de casa: saia e avise a Defesa Civil (199)."
+      "Rachaduras novas, portas emperrando ou barranco cedendo perto de casa: saia e avise a Defesa Civil (199).",
+      "Antes da temporada de chuvas, confira se as telhas estão firmes e limpe calhas e ralos."
     ],
     orientacoes_en: [
       "Register your postcode for Civil Defense alerts: text your CEP to 40199 (free).",
       "During the storm, stay away from outlets, electric showers, taps and phones on charge.",
       "Water coming in: switch off the main breaker before it reaches the outlets — never step into water with the power on.",
-      "New cracks, sticking doors or a slope giving way near the house: leave and call Civil Defense (199)."
+      "New cracks, sticking doors or a slope giving way near the house: leave and call Civil Defense (199).",
+      "Before the rainy season, check that the roof tiles are secure and clear the gutters and drains."
     ],
     orientacoes_es: [
       "Registre su código postal para alertas de Defensa Civil: envíe el CEP por SMS al 40199 (gratis).",
       "Durante la tormenta, lejos de enchufes, ducha eléctrica, grifos y celular cargando.",
       "Si entra agua en casa: corte el interruptor general antes de que llegue a los enchufes — nunca pise el agua con la corriente encendida.",
-      "Grietas nuevas, puertas que se traban o una ladera que cede cerca de casa: salga y avise a Defensa Civil (199)."
+      "Grietas nuevas, puertas que se traban o una ladera que cede cerca de casa: salga y avise a Defensa Civil (199).",
+      "Antes de la temporada de lluvias, compruebe que las tejas estén firmes y limpie canaletas y desagües."
     ],
     fonte: "Defesa Civil (SMS 40199); INPE/ELAT (raios)"
   },

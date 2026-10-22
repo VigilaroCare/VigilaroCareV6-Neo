@@ -67,37 +67,21 @@ const PASTAS_DE_TRADUCAO = /^data\/locales\/(en|es|pt-PT)\//;
  * isso, religar uma tela orfa poria no ar texto nunca revisado sem aviso.
  */
 const FORA_DO_ESCOPO = {
-    // Conduta clinica sobre atraso de dose, que o app nao faz. Ver TEMAS (EX).
-    'data/delay_guidance.js': {
-        motivo: 'codigo morto — deve ser removido, nao revisado',
-        uso: /delay_guidance/,
-    },
     // MOTIVO (22/10/2026): ia para o documento de Intoxicacao e Incendio, mas
     // ninguem importa o arquivo (o nome so aparece como categoryId de artigo).
+    // Nao foi apagado: tem 25 produtos detalhados (e-liquid, termometro de
+    // mercurio, suplemento de ferro...) que a tela Produtos Perigosos nao tem.
+    // Ligar a essa tela e mandar para revisao (D32).
     'data/produtos_perigosos.js': {
-        motivo: 'codigo morto — nenhum import; remover ou ligar a uma tela antes de revisar',
+        motivo: 'sem uso — conteudo a ligar a tela Produtos Perigosos e revisar antes',
         uso: /\/produtos_perigosos(\.js)?['"]|\bprodutosPerigosos\b/,
     },
     // Tela orfa: escreva aqui `uso` com o nome da rota e `ignorarLinha:
-    // /<Stack\.Screen/`. Foi o caso de PrimeirosSocorrosEmergenciaScreen (112
-    // orientacoes de socorro nunca revisadas, so pt-BR, "(SAMU)" fixo), apagada
-    // em 21/10/2026 — os 3 temas que so ela tinha foram para primeiros_socorros.
-    //
-    // MOTIVO (22/10/2026): ao montar os documentos do backlog, 7 telas so
-    // existiam no Stack do App.js — nenhum navigate, rota em dado ou link leva a
-    // elas — e 3 arquivos de dados so eram lidos por essas telas. Decisao de
-    // apagar ou religar e do Agnaldo (D32); ate la, ficam fora da revisao.
-    'screens/EletrodomesticosScreen.js': { motivo: 'tela orfa (rota Eletrodomesticos)', uso: /['"`]Eletrodomesticos['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/Education/UtensiliosDomesticosScreen.js': { motivo: 'tela orfa (rota UtensiliosDomesticos)', uso: /['"`]UtensiliosDomesticos['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/AcessoriosSegurancaScreen.js': { motivo: 'tela orfa (rota AcessoriosSeguranca)', uso: /['"`]AcessoriosSeguranca['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/SafetyPermitScreen.js': { motivo: 'tela orfa (rota SafetyPermit)', uso: /['"`]SafetyPermit['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/SituacoesTemporariasScreen.js': { motivo: 'tela orfa (rota SituacoesTemporarias)', uso: /['"`]SituacoesTemporarias['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/Tools/DataHealthScreen.js': { motivo: 'tela orfa (rota DataHealth)', uso: /['"`]DataHealth['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'screens/Checklists/ChecklistReportScreen.js': { motivo: 'tela orfa (rota ChecklistReport)', uso: /['"`]ChecklistReport['"`]/, ignorarLinha: /<Stack\.Screen/ },
-    'data/eletrodomesticos_seguranca.js': { motivo: 'so lido pela tela orfa Eletrodomesticos', uso: /\/eletrodomesticos_seguranca(\.js)?['"]/ },
-    'data/utensilios_domesticos.js': { motivo: 'so lido pela tela orfa UtensiliosDomesticos', uso: /\/utensilios_domesticos(\.js)?['"]/ },
-    'data/acessorios_seguranca.js': { motivo: 'so lido pela tela orfa AcessoriosSeguranca', uso: /\/acessorios_seguranca(\.js)?['"]/ },
-    'data/estatisticasAcidentes.js': { motivo: 'codigo morto — nenhum import', uso: /\/estatisticasAcidentes(\.js)?['"]|\b(ESTATISTICAS_ACIDENTES|ALERTAS_CATEGORIA|DICAS_FAIXA_ETARIA)\b/ },
+    // /<Stack.Screen/`. Historico: PrimeirosSocorrosEmergenciaScreen (21/10/2026)
+    // e, em 22/10/2026, SafetyPermit, Eletrodomesticos, UtensiliosDomesticos,
+    // AcessoriosSeguranca, DataHealth e ChecklistReport foram apagadas depois de o
+    // que so elas tinham ir para as telas no ar; SituacoesTemporarias foi religada
+    // pelo Modo Preventivo.
 };
 const PASTAS_DE_CODIGO = ['data', 'screens', 'components', 'services', 'utils', 'hooks', 'context', 'contexts', 'navigation'];
 

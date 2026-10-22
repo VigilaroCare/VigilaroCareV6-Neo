@@ -184,6 +184,19 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                             </FadeInView>
                         );
                     })}
+
+                    {/* Situacoes temporarias: checklists detalhados de reforma (por tipo de
+                        obra) e de visita (por tipo de visitante). Ate 22/10/2026 so eram
+                        abertos por uma tela sem nenhuma entrada no app. */}
+                    <FadeInView delay={150 + RISK_CATEGORIES.length * 50}>
+                        <NeoHorizontalCard
+                            title={t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}
+                            description={t('telas.ModoPreventivoScreenNeo.planejarSituacaoDescricao', 'Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes.')}
+                            iconName="Calendar"
+                            color={Neo.colors.feedback.warning}
+                            onPress={() => navigation.navigate('SituacoesTemporarias')}
+                        />
+                    </FadeInView>
                 </View>
             </Animated.ScrollView>
                 {/* AUDIT MODAL */}

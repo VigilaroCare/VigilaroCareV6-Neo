@@ -6,12 +6,14 @@ import NeoIcon from '../components/NeoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { tx } from '../utils/txFixo';
 
+const T = 'telas.SituacoesTemporariasScreen.';
 const OPTIONS = [
-  { key: 'reforma', title: 'Reforma / Manutenção', subtitle: 'Trabalhos temporários em casa', icon: 'construct-outline', color: Neo.colors.feedback.warning },
-  { key: 'festa', title: 'Festa / Visita', subtitle: 'Reuniões e eventos sociais', icon: 'people-outline', color: Neo.colors.feedback.error },
-  { key: 'mudanca', title: 'Mudança de Moradia', subtitle: 'Novo lar, novos riscos', icon: 'home-outline', color: Neo.colors.secondary[500] },
-  { key: 'outro', title: 'Outro Evento', subtitle: 'Cuidador, técnico, etc.', icon: 'ellipsis-horizontal-circle-outline', color: Neo.colors.primary[500] },
+  { key: 'reforma', get title() { return tx(T + 'reformaTitulo', 'Reforma / Manutenção'); }, get subtitle() { return tx(T + 'reformaSubtitulo', 'Trabalhos temporários em casa'); }, icon: 'construct-outline', color: Neo.colors.feedback.warning },
+  { key: 'festa', get title() { return tx(T + 'festaTitulo', 'Festa / Visita'); }, get subtitle() { return tx(T + 'festaSubtitulo', 'Reuniões e eventos sociais'); }, icon: 'people-outline', color: Neo.colors.feedback.error },
+  { key: 'mudanca', get title() { return tx(T + 'mudancaTitulo', 'Mudança de Moradia'); }, get subtitle() { return tx(T + 'mudancaSubtitulo', 'Novo lar, novos riscos'); }, icon: 'home-outline', color: Neo.colors.secondary[500] },
+  { key: 'outro', get title() { return tx(T + 'outroTitulo', 'Outro Evento'); }, get subtitle() { return tx(T + 'outroSubtitulo', 'Cuidador, técnico, etc.'); }, icon: 'ellipsis-horizontal-circle-outline', color: Neo.colors.primary[500] },
 ];
 
 export default function SituacoesTemporariasScreen({ navigation }) {
@@ -27,7 +29,7 @@ export default function SituacoesTemporariasScreen({ navigation }) {
       navigation.navigate('VisitType');
       return;
     }
-    navigation.navigate('ModoSituacaoAtiva', { type: tipo, title: OPTIONS.find(o => o.key === tipo)?.title || 'Situação' });
+    navigation.navigate('ModoSituacaoAtiva', { type: tipo, title: OPTIONS.find(o => o.key === tipo)?.title || tx(T + 'situacao', 'Situação') });
   }
 
   return (

@@ -2261,17 +2261,6 @@
             "politicaDePrivacidade": "Privacy Policy",
             "especifica": "."
         },
-        "DataHealthScreen": {
-            "saudeDosDados": "Data Health",
-            "diagnosticoDeIntegridadeDoVigilaroData": "Integrity check of @vigilaro_data",
-            "executarDiagnostico": "Run Check",
-            "estatisticas": "Statistics",
-            "problema": " Issue",
-            "encontrado": " Found",
-            "tudoIntegro": "All Good!",
-            "nenhumaInconsistenciaEncontradaNosDados": "No inconsistencies found in the data.",
-            "executarNovamente": "Run Again"
-        },
         "FazendoAsMalasScreen": {
             "fonte": "Source: ",
             "vigenteEm": " · in force as of "
@@ -2392,10 +2381,6 @@
             "atencaoRiscoModerado": "Attention (Moderate risk)",
             "criticoRiscoAlto": "Critical (High risk)"
         },
-        "AcessoriosSegurancaScreen": {
-            "acessoriosToqueParaVerDetalhes": " accessories • Tap to see details",
-            "toqueParaVerTiposEInstalacao": "Tap to see types and installation."
-        },
         "AreasInternasScreen": {
             "erro": "Error",
             "falhaAoCarregarChecklistTenteNovamente": "Could not load the checklist. Please try again.",
@@ -2486,10 +2471,6 @@
             "perfilPets": "🐶 Pets",
             "perfilTodos": "👥 Everyone"
         },
-        "UtensiliosDomesticosScreen": {
-            "buscarUtensilioExFacasPanelas": "Search utensil (e.g. knives, pans)",
-            "itensToqueParaVerDetalhes": " items • Tap to see details"
-        },
         "UtensiliosReviewsScreen": {
             "itensToqueParaVerOReview": " items • Tap to see the full review",
             "uso": "Use ",
@@ -2497,9 +2478,6 @@
             "riscoAlto": "High",
             "riscoMedio": "Medium",
             "riscoBaixo": "Low"
-        },
-        "EletrodomesticosScreen": {
-            "trava": "Lock"
         },
         "ContatosEmergenciaScreen": {
             "encontramosContatosDaFamiliaDesejaImport": "We found family contacts. Would you like to import them into this profile?",
@@ -2832,7 +2810,9 @@
             "atencao": "Attention",
             "respondaATodasAsQuestoesPara": "Answer all the questions to finish.",
             "seguro": "% Safe",
-            "acao": "ACTION: "
+            "acao": "ACTION: ",
+            "planejarSituacaoTitulo": "Plan a renovation, visit or move",
+            "planejarSituacaoDescricao": "Detailed checklists by type of work and type of visitor, to get the home ready beforehand."
         },
         "HumanFormStep": {
             "passo1NovoIntegrantePessoa": "STEP 1 — NEW MEMBER (PERSON)",
@@ -2971,12 +2951,6 @@
             "conformes": " compliant",
             "conformes2": " compliant"
         },
-        "SafetyPermitScreen": {
-            "protocolo": "Protocol '",
-            "naoEncontrado": "' not found.",
-            "atencao": "Attention",
-            "respondaTodasAsPerguntasParaGarantir": "Answer every question to make sure you are safe."
-        },
         "EmergenciaRapidaScreen": {
             "engasgo": "CHOKING",
             "engasgo1": "1. Stand behind the person.",
@@ -3032,6 +3006,17 @@
         },
         "KnowledgeHubScreen": {
             "socorrosCurto": "First Aid"
+        },
+        "SituacoesTemporariasScreen": {
+            "reformaTitulo": "Renovation / Repairs",
+            "reformaSubtitulo": "Temporary work at home",
+            "festaTitulo": "Party / Visit",
+            "festaSubtitulo": "Gatherings and social events",
+            "mudancaTitulo": "Moving House",
+            "mudancaSubtitulo": "New home, new risks",
+            "outroTitulo": "Other Event",
+            "outroSubtitulo": "Carer, technician, etc.",
+            "situacao": "Situation"
         }
     },
     "fichaMedica": {

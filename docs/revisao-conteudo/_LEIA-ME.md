@@ -98,6 +98,11 @@ bebê."). O limiar agora é 10, na trava e no gerador. O TC levou os 517 textos 
 dos arquivos já revisados — `somenteArquivosRevisados` — sem as linhas "VERSAO QUE VOCE REVISOU"/"ESCRITO DEPOIS"
 (`marcarMudancas: false`): esses textos não mudaram, só nunca tinham entrado em documento. Enviado com 540 códigos.
 
+### TI — Telas Integradas (22/10/2026)
+
+O que só existia nas telas órfãs apagadas e foi levado para as telas no ar, mais a troca de vocabulário no checklist
+de visitas. 30 códigos. Ver D32.
+
 ### CK, AV, IF — o resto do backlog (22/10/2026)
 
 CK (checklist da vistoria, `mapeamento_dados.js`) usa `titulosComoTexto: ['titulo']`: a pergunta da vistoria está no
