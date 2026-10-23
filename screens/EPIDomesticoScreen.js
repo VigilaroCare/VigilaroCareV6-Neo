@@ -262,7 +262,9 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255,255,255,0.5)',
     },
     guideImageContainer: {
-        width: 130,
+        // 120 como nas outras 12 telas que usam este card. Estava 130 — uma
+        // tela fora de passo faz a coluna de texto andar ao mudar de tela.
+        width: 120,
         height: '100%',
         backgroundColor: '#F5F5F5',
         alignItems: 'center',
