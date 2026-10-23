@@ -458,6 +458,21 @@ const TEMAS = [
             + 'sozinho — prevencao, sem opinar sobre a pessoa. (4) No Lar Neurodiverso, o tema "Adolescentes e Adultos".',
         fontes: [],
     },
+    // Acessibilidade na vistoria (22/10/2026): deficiencia visual, auditiva e
+    // mobilidade marcadas no perfil passam a ativar itens (pedido do Agnaldo).
+    {
+        nome: 'Acessibilidade na Vistoria',
+        sigla: 'AC',
+        pendentes: ['m029'],
+        marcarMudancas: false,
+        rotulos: {
+            'data/mapeamento_dados.js': 'Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam',
+        },
+        descricao: 'Tudo aqui e novo: nove itens do checklist que passam a aparecer quando alguem da casa tem, no perfil, '
+            + 'deficiencia visual (3), deficiencia auditiva (2) ou dificuldade de locomocao ou desequilibrio (4). '
+            + 'Antes, nenhuma necessidade especial de pessoa mudava a vistoria nem o Mapa de Riscos.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

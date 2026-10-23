@@ -1,4 +1,76 @@
 {
+  "AC-0001": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Produtos de limpeza e remédios têm etiqueta em letra grande, relevo ou cor que os diferencie — para não serem confundidos",
+    "chave": "titulo",
+    "linha": 594,
+    "original": "Produtos de limpeza e remédios têm etiqueta em letra grande, relevo ou cor que os diferencie — para não serem confundidos"
+  },
+  "AC-0002": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Banco ou cadeira de banho firme e antiderrapante, para tomar banho sentado",
+    "chave": "titulo",
+    "linha": 608,
+    "original": "Banco ou cadeira de banho firme e antiderrapante, para tomar banho sentado"
+  },
+  "AC-0003": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Primeiro e último degrau marcados com faixa de cor contrastante, para quem enxerga pouco",
+    "chave": "titulo",
+    "linha": 717,
+    "original": "Primeiro e último degrau marcados com faixa de cor contrastante, para quem enxerga pouco"
+  },
+  "AC-0004": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Quem tem dificuldade de locomoção não depende da escada no dia a dia (quarto no térreo, cadeira elevatória ou rampa)",
+    "chave": "titulo",
+    "linha": 718,
+    "original": "Quem tem dificuldade de locomoção não depende da escada no dia a dia (quarto no térreo, cadeira elevatória ou rampa)"
+  },
+  "AC-0005": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Móveis e objetos ficam sempre no mesmo lugar, e portas e armários totalmente abertos ou fechados — quem enxerga pouco se orienta pela memória",
+    "chave": "titulo",
+    "linha": 907,
+    "original": "Móveis e objetos ficam sempre no mesmo lugar, e portas e armários totalmente abertos ou fechados — quem enxerga pouco se orienta pela memória"
+  },
+  "AC-0006": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Detector de fumaça com aviso luminoso ou vibratório — o alarme sonoro pode não ser ouvido",
+    "chave": "titulo",
+    "linha": 908,
+    "original": "Detector de fumaça com aviso luminoso ou vibratório — o alarme sonoro pode não ser ouvido"
+  },
+  "AC-0007": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Campainha e interfone com sinal luminoso, e um combinado de como avisar quem não ouve numa emergência à noite",
+    "chave": "titulo",
+    "linha": 909,
+    "original": "Campainha e interfone com sinal luminoso, e um combinado de como avisar quem não ouve numa emergência à noite"
+  },
+  "AC-0008": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Passagens livres e largas para andador ou cadeira de rodas (cerca de 80 cm), sem tapetes nem desníveis",
+    "chave": "titulo",
+    "linha": 910,
+    "original": "Passagens livres e largas para andador ou cadeira de rodas (cerca de 80 cm), sem tapetes nem desníveis"
+  },
+  "AC-0009": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+    "item": "Saída de emergência possível para quem usa andador ou cadeira de rodas — e já está combinado quem ajuda",
+    "chave": "titulo",
+    "linha": 911,
+    "original": "Saída de emergência possível para quem usa andador ou cadeira de rodas — e já está combinado quem ajuda"
+  },
   "QC-0001": {
     "arquivo": "data/neurodivergence_data.js",
     "rotulo": "Lar Neurodiverso — Adolescentes e Adultos (tema novo)",

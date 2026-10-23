@@ -112,6 +112,10 @@
   "m028": {
    "texto": "Familias atipicas (22/10/2026, aprovado o conceito pelo Agnaldo): itens do checklist ativados pela neurodivergencia, campo Comunicacao e o que acalma na Ficha, tema Quem Cuida e Lar Neurodiverso para adolescentes e adultos. Vai para o documento QC.",
    "em": "2026-10-22"
+  },
+  "m029": {
+   "texto": "Necessidades especiais de pessoas na vistoria (22/10/2026, pedido do Agnaldo): itens ativados por deficiencia visual, auditiva e mobilidade. Vai para o documento AC.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -1240,6 +1244,11 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "143478eef6505fcd": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "1444b6ab4199f204": [
    "pendente",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
@@ -1639,6 +1648,11 @@
    "pendente",
    "data/areas_internas.js",
    "m010"
+  ],
+  "1bc3768e6fdb1f66": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
   ],
   "1c059b20e2743564": [
    "pendente",
@@ -5740,6 +5754,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "5adf9b8a4d526cee": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "5af74184d6cabb33": [
    "pendente",
    "data/animais_ciatox.js",
@@ -6245,6 +6264,11 @@
    "data/produtos_scanner.js",
    "m010"
   ],
+  "62cfd1490cfb17e0": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "62d91e7eb88a094e": [
    "pendente",
    "data/epi_domestico.js",
@@ -6379,6 +6403,11 @@
    "pendente",
    "data/safety_pregnant.js",
    "m010"
+  ],
+  "66395f4cafe6a285": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
   ],
   "663a5538cd83eb3b": [
    "pendente",
@@ -9475,6 +9504,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "99501fb54ae9f877": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "99609111ed4c3060": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -12055,6 +12089,11 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
+  "c24e88a5113c5c8d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "c2fd1cac7b76052d": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -13915,6 +13954,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "e1a0ff4d1e0e7c7f": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
+  ],
   "e1b5426ba00d8798": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -14604,6 +14648,11 @@
    "pendente",
    "data/dose_atrasada.js",
    "m019"
+  ],
+  "ed5b296566e4ac94": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m029"
   ],
   "ed62adb1ce30ed55": [
    "pendente",

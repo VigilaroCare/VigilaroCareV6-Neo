@@ -140,8 +140,16 @@ export function isAreaRelevant(area, moradia, profiles, mapping) {
     return true;
 }
 
-// Ids de NECESSIDADES_ACESSIBILIDADE (data/opcoesPerfil.js) que ativam a tag 'neurodivergente'.
-const NECESSIDADES_NEURO = new Set(['neurodivergence', 'intellectual', 'cognitive']);
+// Tag de público -> ids de NECESSIDADES_ACESSIBILIDADE (data/opcoesPerfil.js) que a ativam.
+// Até 22/10/2026 nenhuma necessidade especial de PESSOA mudava o checklist ou o
+// Mapa de Riscos — só as de pets. Necessidade nova no cadastro que deva ativar
+// itens entra aqui (e a tag, em TAG_CATEGORIA de data/categoriasRisco.js).
+const TAG_POR_NECESSIDADE = {
+    neurodivergente: ['neurodivergence', 'intellectual', 'cognitive'],
+    deficiencia_visual: ['visual'],
+    deficiencia_auditiva: ['hearing'],
+    mobilidade_pessoa: ['mobility', 'balance'],
+};
 
 /**
  * Verifica se um ITEM específico é relevante baseado em suas tags.
@@ -205,15 +213,13 @@ export function isItemRelevant(item, profiles, moradia) {
         if (!hasIdoso) return false;
     }
 
-    // Pessoa com neurodivergência, deficiência intelectual ou condição cognitiva
-    // marcada no cadastro (data/opcoesPerfil.js). Ativa os pontos de fuga, água,
-    // ingestão, fogão e janelas. Antes de 22/10/2026 nenhuma necessidade especial
-    // de pessoa mudava o checklist ou o Mapa de Riscos — só as de pets.
-    if (item.tags.includes('neurodivergente')) {
-        const hasNeuro = safeProfiles.some(p => p.tipo !== 'pet'
+    // Necessidades especiais de pessoas marcadas no cadastro (ver TAG_POR_NECESSIDADE).
+    for (const [tag, necessidades] of Object.entries(TAG_POR_NECESSIDADE)) {
+        if (!item.tags.includes(tag)) continue;
+        const alguem = safeProfiles.some(p => p.tipo !== 'pet'
             && Array.isArray(p.necessidadesEspeciais)
-            && p.necessidadesEspeciais.some(n => NECESSIDADES_NEURO.has(n)));
-        if (!hasNeuro) return false;
+            && p.necessidadesEspeciais.some(n => necessidades.includes(n)));
+        if (!alguem) return false;
     }
 
     // Qualquer pet (Radar sazonal, D17: processionária, fogos, calor no carro).
