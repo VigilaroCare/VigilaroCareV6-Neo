@@ -102,10 +102,23 @@ const requireAppSecret = (req, res, next) => {
 // Allow-list de paths por proxy. Sem isto, o pathRewrite expõe as APIs
 // INTEIRAS dos fornecedores a quem tiver o app secret (ex.: /v1/files,
 // /v1/fine_tuning e /v1/images na OpenAI; /v1/history na ElevenLabs).
-// O `req.path` aqui já vem SEM o prefixo do mount (o Express o remove),
-// decodificado — regexes ancoradas tornam path traversal inócuo.
+// O `req.path` aqui já vem SEM o prefixo do mount (o Express o remove).
+//
+// A ancoragem das regexes NÃO basta por si só, e o comentário anterior aqui
+// afirmava que bastava. Um padrão sem `$` no fim (era o caso de ELEVEN_ALLOWED
+// e EPA_ALLOWED) só exige o prefixo: `/text-to-speech/../v1/history` passava
+// pelo teste, e o http-proxy-middleware repassa o `..` literal para o
+// fornecedor, cujo edge normaliza — chegando em /v1/history já com a nossa
+// chave injetada. Daí as duas camadas abaixo:
+//   1. recusa de dot-segment ANTES de testar os padrões;
+//   2. padrões fechados com `$` e sem `/` livre no fim.
+// A checagem cobre a forma literal e a percent-encoded porque `req.path` não é
+// decodificado pelo Express — não dependa de uma só.
 // Ao consumir um endpoint novo no app, adicione o padrão aqui.
+const temDotSegment = (p) => /(^|\/)\.\.?(\/|$)/.test(p) || /%2e/i.test(p);
+
 const allowPaths = (patterns) => (req, res, next) => {
+  if (temDotSegment(req.path)) return res.status(404).json({ error: 'Not found' });
   if (patterns.some((re) => re.test(req.path))) return next();
   return res.status(404).json({ error: 'Not found' });
 };
@@ -118,10 +131,15 @@ const OPENAI_ALLOWED = [
   // desativada no app; reativar exige host com WS fora da Vercel (ver acima).
 ];
 const ELEVEN_ALLOWED = [
-  /^\/text-to-speech\//,          // nenhum caller ativo hoje; mantido p/ TTS futuro
+  // nenhum caller ativo hoje; mantido p/ TTS futuro. voice_id e alfanumerico.
+  /^\/text-to-speech\/[A-Za-z0-9_-]+(\/stream)?$/,
 ];
 const EPA_ALLOWED = [
-  /^\/chemical\//,                // InfoRotulosSubstanceService (search/detail)
+  // As duas unicas formas que o InfoRotulosSubstanceService chama. O ultimo
+  // segmento e nome de substancia ou DTXSID: aceita qualquer caractere MENOS
+  // '/', para nao abrir segmento novo (ex.: 2,4-D, sodium hypochlorite).
+  /^\/chemical\/search\/equal\/[^/]+$/,
+  /^\/chemical\/detail\/search\/by-dtxsid\/[^/]+$/,
 ];
 
 // 1. Proxy OpenAI

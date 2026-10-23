@@ -73,12 +73,23 @@ Não defina `PORT` nem `NODE_ENV` — a Vercel cuida dos dois.
 curl -i https://SEU-PROJETO.vercel.app/
 ```
 
-Esperado: **401**, porque a raiz exige o segredo. Se vier **404 com `x-render-routing`** ou **`no-server`**, o deploy não aconteceu. Se vier 200 sem autenticação, algo está errado na proteção.
+Esperado: **200** com `{"status":"ok"}`. A raiz é health check público de propósito — não exige segredo. Se vier **404 com `x-render-routing`** ou **`no-server`**, o deploy não aconteceu.
 
-Com o segredo:
+> Até 23/10/2026 este trecho dizia para esperar **401** na raiz e tratar o 200
+> como falha de proteção. Estava errado nas duas pontas, e levava a concluir que
+> um deploy correto estava quebrado. Para conferir que a proteção está de pé,
+> use a rota abaixo **sem** o cabeçalho: ela sim tem de devolver 401.
+
+Conferindo que a proteção está ativa (sem cabeçalho, espera-se **401**):
 
 ```bash
-curl -i -H "x-vigilaro-app-secret: SEU_SEGREDO" https://SEU-PROJETO.vercel.app/api/attest/nonce
+curl -i https://SEU-PROJETO.vercel.app/api/openai/chat/completions
+```
+
+Com o segredo — o cabeçalho é `x-vigilaro-token` (não `x-vigilaro-app-secret`, que o servidor não lê):
+
+```bash
+curl -i -H "x-vigilaro-token: SEU_SEGREDO" https://SEU-PROJETO.vercel.app/api/attest/nonce
 ```
 
 Esperado: **200** com um nonce.
