@@ -268,6 +268,10 @@ export default function RelatoriosScreenNeo({ navigation }) {
                     source={typeof capaUrl === 'number' ? capaUrl : { uri: capaUrl }}
                     title={t('reports.title', 'Vistorias da Casa')}
                     height={260}
+                    // O scroll desta tela tem paddingHorizontal (s.scrollContent):
+                    // sem vencer esse recuo, o hero fica com faixa de fundo dos
+                    // dois lados em vez de ir de ponta a ponta.
+                    bleed={Neo.spacing.lg}
                 />
                     {loading ? (
                         <View style={{ paddingHorizontal: Neo.spacing.lg, marginTop: 12 }}>
