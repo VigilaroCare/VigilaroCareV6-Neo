@@ -377,7 +377,12 @@ function principal() {
         novos: semCodigo,
         comentarios: coment,
     };
-    const destino = path.join(RAIZ, 'docs/revisao-conteudo', `_plano-${path.basename(docPath, '.docx')}.json`);
+    // O "OK " que marca documento finalizado na pasta NAO entra no nome do
+    // plano: `verify_revisao_conteudo.js` le a sigla nos dois primeiros
+    // caracteres depois de `_plano-`, entao um `_plano-OK AC-....json` faria a
+    // sigla virar "OK" e o registro perderia de vista o documento devolvido.
+    const nomePlano = path.basename(docPath, '.docx').replace(/^OK\s+/, '');
+    const destino = path.join(RAIZ, 'docs/revisao-conteudo', `_plano-${nomePlano}.json`);
     fs.writeFileSync(destino, JSON.stringify(plano, null, 2), 'utf8');
     console.log(`\nPlano: ${path.relative(RAIZ, destino)}`);
 }
