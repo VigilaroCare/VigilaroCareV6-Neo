@@ -80,7 +80,11 @@ Fica **fora do ScrollView** (não rola). Composição travada no componente:
 - **Nunca:** dentro de card · centralizado · em H3.
 
 ### ② Hero opcional — formato ÚNICO
-Só quando a tela pede contexto visual. **Sempre** o mesmo formato: `NeoCard` (`glass` ou `premium`) com **arte/foto à esquerda (~72px) + lead à direita**.
+Só quando a tela pede contexto visual. **Sempre** o mesmo formato: `NeoCard` (`glass` ou `premium`) com **arte/foto à esquerda + lead à direita** — via `components/NeoSectionHero`, nunca montado à mão.
+
+> **Revisto em 23/10/2026 (decisão do Agnaldo).** O texto antes dizia "~72px". Esse número foi escrito pensando em tela de ficha e ficava modesto demais num hub com foto de capa — enquanto o código tinha derivado para banners de 280px. Ficou o meio, de propósito: a arte é `DS.layout.heroArt` (96 = 8×12, na malha de 8pt).
+>
+> **A altura do hero não é token e não se declara.** Ela é consequência da arte mais o respiro do card. Havia QUATRO alturas soltas no app (280 em 18 telas, 200 em 5, mais um 240 e um 220), todas nascidas de cópia e nenhuma de decisão — sem número de altura para copiar, não há como divergir de novo. Ver §9.3.
 - **Proibido:** banner full-bleed com fundo próprio, círculo de ícone custom, cor de hero em hex solto. A cor vem de `gridAccents`/paleta da seção.
 - Para fichas de perfil, a "arte" é `GlassProfileRing` (foto = identidade/guardrail de correção).
 
@@ -216,6 +220,20 @@ O que as duas telas exercitam do padrão-alvo:
 - `paddingBottom` = `DS.layout.scrollBottomFooter`; horizontal = `DS.layout.screenHPadding`.
 
 Cor nunca é o único portador de sentido (WCAG 1.4.1): cada categoria tem ícone próprio, cada chip exibe a contagem em texto, e severidade e vínculo com morador vêm sempre com rótulo escrito.
+
+---
+
+### 9.3 Atualização 2026-10-23 — o hero ganhou componente
+
+O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm tamanhos diferentes, são altos demais, e os pictogramas internos saltam aos olhos por desproporção. As três se confirmaram na medição, e têm a mesma causa.
+
+**O que foi medido:** 25 telas declaram `HERO_HEIGHT`, com **quatro valores** — 280 em 18, 200 em 5, mais um 240 e um 220 — e outras 3 definem a altura de outro jeito. Cada cópia trouxe junto, além do banner full-bleed que a §3② sempre proibiu, um **botão de voltar estilizado inline** (proibição nº 4) e um bloco de paralaxe repetido. O `PictogramTile`, que normaliza o tamanho óptico da arte, é usado em **5 lugares** do app inteiro — a home é um deles, e é por isso que ela parece certa e as internas não.
+
+**A causa raiz:** a §3② descrevia o hero como formato, e **nunca houve componente**. O §9.1 já tinha prescrito a saída ("migrar para o componente único em vez de continuar copiando o bloco"); faltava o componente existir.
+
+**Feito:** `components/NeoSectionHero` — `NeoCard` + arte à esquerda (`DS.layout.heroArt`) + lead à direita, sem altura declarada (ver §3②). A arte usa `resizeMode="contain"`, nunca `cover`: `cover` recorta a borda de um objeto desenhado e centrado, e era o que deixava a arte parecendo deslocada. Primeira tela migrada como amostra: `RiscosMenuScreen` — saíram a paralaxe, a altura mágica, o botão de voltar inline, o `#FFF`/`#222` cravados, o `fontSize: 34` no lugar do H1 e o `paddingBottom: 40`; entraram `NeoScreenHeader` e `NeoSectionHero`.
+
+**Pendente:** as outras 24 telas da lista do §9.1, e passar a arte das telas internas pelo `PictogramTile`. A migração espera o Agnaldo julgar a amostra no aparelho — nenhuma ferramenta de IA aqui enxerga tela React Native, então o acabamento visual não se confere lendo código.
 
 ---
 

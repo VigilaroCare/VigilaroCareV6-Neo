@@ -1,105 +1,43 @@
-import { useRef } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
-import NeoIcon from '../../components/NeoIcon';
 import NeoCard from '../../components/NeoCard';
-import ReviewImage from '../../components/ReviewImage';
 import AppBackground from '../../components/AppBackground';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
+import NeoSectionHero from '../../components/NeoSectionHero';
 
 import { DS as Neo } from '../../utils/DesignSystem2026';
 import { Body, Small } from "../../components/NeoTypography";
 import { MAPA_PREVENCAO } from '../../data/knowledge_prevencao';
 import { t_field } from '../../utils/getLocalizedField';
-import { useThemeColors } from '../../utils/ThemeContext';
 
 export default function RiscosMenuScreen() {
     const navigation = useNavigation();
     const { t } = useTranslation('common');
     const ambientes = Object.values(MAPA_PREVENCAO);
-    const themeColors = useThemeColors();
-
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateLeft: 'extend',
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
 
     const title = t('riscosMenu.title', 'Prevenção em casa');
     const capaSource = require('../../assets/illustrations/pad/hero_riscos.png');
 
     return (
         <AppBackground>
-            <StatusBar style="light" translucent={true} backgroundColor="transparent" />
+            <StatusBar style="auto" />
 
-            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{
-                        width: 44, height: 44, borderRadius: 22,
-                        backgroundColor: 'rgba(0,0,0,0.35)',
-                        justifyContent: 'center', alignItems: 'center',
-                        marginLeft: 16, marginTop: 12,
-                    }}
-                >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
+            <NeoScreenHeader title={title} onBack={() => navigation.goBack()} />
 
-            <Animated.ScrollView
-                contentContainerStyle={{ paddingBottom: 40 }}
+            <ScrollView
+                contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomBare }}
                 showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
             >
-                {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors?.neutral?.[800] || '#222',
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <ReviewImage
-                        source={capaSource}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                        accessibilityLabel={title}
+                <View style={{ paddingHorizontal: Neo.layout.screenHPadding }}>
+                    <NeoSectionHero
+                        titulo={title}
+                        lead={t('riscosMenu.lead', 'Os riscos mais comuns de cada ambiente da casa, e o que fazer antes do acidente.')}
+                        arte={capaSource}
                     />
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                    }}>
-                        <Text style={{
-                            fontSize: 34,
-                            fontWeight: '900',
-                            color: '#FFF',
-                            letterSpacing: -0.8,
-                            lineHeight: 38,
-                        }}>
-                            {title}
-                        </Text>
-                    </View>
-                </Animated.View>
+                </View>
 
                 {/* Main Content */}
                 <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
@@ -131,7 +69,7 @@ export default function RiscosMenuScreen() {
                         })}
                     </View>
                 </View>
-            </Animated.ScrollView>
+            </ScrollView>
         </AppBackground>
     );
 }

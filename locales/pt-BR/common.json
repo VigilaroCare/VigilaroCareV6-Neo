@@ -1357,7 +1357,8 @@
     "riscosMenu": {
         "title": "Prevenção em Casa",
         "subtitle": "Guia Consultivo dos acidentes por cômodo.",
-        "preventionTopics": "tópicos de prevenção"
+        "preventionTopics": "tópicos de prevenção",
+        "lead": "Os riscos mais comuns de cada ambiente da casa, e o que fazer antes do acidente."
     },
     "envScreens": {
         "title": "Riscos e Orientações por Ambiente",

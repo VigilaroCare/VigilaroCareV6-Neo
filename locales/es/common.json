@@ -1327,7 +1327,8 @@
     "riscosMenu": {
         "title": "Prevención en Casa",
         "subtitle": "Guía consultiva de accidentes por habitación.",
-        "preventionTopics": "temas de prevención"
+        "preventionTopics": "temas de prevención",
+        "lead": "Los riesgos más comunes de cada estancia de la casa, y qué hacer antes del accidente."
     },
     "envScreens": {
         "title": "Riesgos y Orientaciones por Ambiente",

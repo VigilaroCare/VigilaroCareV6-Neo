@@ -645,6 +645,12 @@ export const DS = {
         scrollBottomFooter: 190, // folga única p/ footer flutuante + respiro
         scrollBottomBare: 40,    // telas sem footer (modais, wizards)
         headerMinHeight: 56,
+        // Lado da arte do hero de seção (NeoSectionHero). 96 = 8 × 12, na malha
+        // de 8pt do spacing. A ALTURA do hero não existe como token de propósito:
+        // ela é consequência desta arte mais o respiro do card. Havia quatro
+        // alturas soltas no app (280/240/220/200), todas de cópia — sem número
+        // de altura para copiar, não há como divergir de novo.
+        heroArt: 96,
     },
 
     // 7. Tokens de Emergência — vermelho-pânico INTENCIONAL das telas de SOS

@@ -1327,7 +1327,8 @@
     "riscosMenu": {
         "title": "Home Prevention",
         "subtitle": "Advisory guide to accidents by room.",
-        "preventionTopics": "prevention topics"
+        "preventionTopics": "prevention topics",
+        "lead": "The most common risks in each room of the house, and what to do before an accident happens."
     },
     "envScreens": {
         "title": "Risks and Guidelines by Room",

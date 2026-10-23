@@ -124,6 +124,10 @@
   "m031": {
    "texto": "Avisos do WhatsApp sem DDI, criados na correcao de seguranca de 23/10/2026 (DDI deixou de ser fixo no Brasil). Texto tecnico de fallback: precisa da revisao do Agnaldo.",
    "em": "2026-10-23"
+  },
+  "m032": {
+   "texto": "Lead do hero de secao, criado na migracao do hero para o formato da anatomia (23/10/2026). Texto novo: precisa da revisao do Agnaldo.",
+   "em": "2026-10-23"
   }
  },
  "textos": {
@@ -4931,6 +4935,11 @@
    "pendente",
    "data/micro_blog.js",
    "m030"
+  ],
+  "4c1b66f5c49efc9a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m032"
   ],
   "4c2b7e52d061144b": [
    "pendente",
