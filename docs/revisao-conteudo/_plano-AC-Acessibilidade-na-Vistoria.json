@@ -1,0 +1,30 @@
+{
+  "documento": "AC-Acessibilidade-na-Vistoria.docx",
+  "manifesto": "atual",
+  "geradoEm": "2026-10-23T00:49:12.653Z",
+  "coerencia": {
+    "lidos": 9,
+    "intactos": 8,
+    "taxa": 0.8889
+  },
+  "editados": [
+    {
+      "arquivo": "data/mapeamento_dados.js",
+      "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",
+      "item": "Primeiro e último degrau marcados com faixa de cor contrastante, para quem enxerga pouco",
+      "chave": "titulo",
+      "linha": 717,
+      "original": "Primeiro e último degrau marcados com faixa de cor contrastante, para quem enxerga pouco",
+      "codigo": "AC-0003",
+      "novo": "Primeiro e último degraus marcados com faixa de cor contrastante, para quem enxerga pouco"
+    }
+  ],
+  "removidos": [],
+  "novos": [],
+  "comentarios": [
+    {
+      "autor": "AGNALDO FONTINELE",
+      "texto": "Fiz uma correção gramatical"
+    }
+  ]
+}
