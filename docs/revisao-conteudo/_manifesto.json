@@ -1,4 +1,172 @@
 {
+  "QC-0001": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Lar Neurodiverso — Adolescentes e Adultos (tema novo)",
+    "item": "Adolescentes e Adultos",
+    "chave": "title",
+    "linha": 122,
+    "original": "Adolescentes e Adultos"
+  },
+  "QC-0002": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Lar Neurodiverso — Adolescentes e Adultos (tema novo)",
+    "item": "Adolescentes e Adultos",
+    "chave": "short_desc",
+    "linha": 123,
+    "original": "Autonomia com segurança: fogão, rua e remédios."
+  },
+  "QC-0003": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Lar Neurodiverso — Adolescentes e Adultos (tema novo)",
+    "item": "Adolescentes e Adultos",
+    "chave": "content",
+    "linha": 124,
+    "original": "# Adolescentes e Adultos\nCom a idade, a pessoa ganha autonomia, mas a percepção de perigo pode continuar diferente. Os riscos mudam: saem os da primeira infância, entram o fogão, a rua e os remédios.\n\n### 1. Cozinha e Fogo\n* Ensine o uso do fogão passo a passo, com supervisão, e combine regras simples e visuais (por exemplo: \"fogão ligado, alguém na cozinha\").\n* Enquanto a autonomia ainda está sendo construída, trava nos botões do fogão e detector de fumaça ajudam.\n\n### 2. Sair de Casa\n* Treine antes o caminho e as situações de risco: atravessar a rua, pedir ajuda, o que fazer se se perder.\n* Identificação com nome e telefone de contato — no bolso, na carteira ou numa pulseira.\n* Localização compartilhada no celular, combinada com a pessoa e respeitando a autonomia dela.\n\n### 3. Remédios\n* Organizador semanal e lembretes ajudam. A guarda e a conferência das doses podem continuar com um responsável, conforme a orientação de quem acompanha o tratamento.\n\n### 4. Emergências\n* Ensaie o que fazer: ligar para o número de emergência, dizer o endereço, sair de casa num incêndio.\n* Preencha no perfil, em \"Comunicação e o que acalma\", como a pessoa se comunica e o que a acalma. Isso aparece na Ficha Médica de Emergência e ajuda quem for socorrer."
+  },
+  "QC-0004": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a neurodivergencia ativa",
+    "item": "Botões do fogão têm trava, ou o registro de gás fica fechado, quando não há um adulto na cozinha",
+    "chave": "titulo",
+    "linha": 564,
+    "original": "Botões do fogão têm trava, ou o registro de gás fica fechado, quando não há um adulto na cozinha"
+  },
+  "QC-0005": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a neurodivergencia ativa",
+    "item": "Porta do banheiro fica fechada por fora quando ninguém está usando — a água atrai, e pouca água basta para afogar",
+    "chave": "titulo",
+    "linha": 617,
+    "original": "Porta do banheiro fica fechada por fora quando ninguém está usando — a água atrai, e pouca água basta para afogar"
+  },
+  "QC-0006": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a neurodivergencia ativa",
+    "item": "Janelas têm trava ou limitador de abertura — quem não percebe a altura pode tentar sair por elas",
+    "chave": "titulo",
+    "linha": 646,
+    "original": "Janelas têm trava ou limitador de abertura — quem não percebe a altura pode tentar sair por elas"
+  },
+  "QC-0007": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a neurodivergencia ativa",
+    "item": "Objetos pequenos que não são comida (ímãs, pilhas, sementes, peças) ficam fora do alcance — podem ser engolidos",
+    "chave": "titulo",
+    "linha": 656,
+    "original": "Objetos pequenos que não são comida (ímãs, pilhas, sementes, peças) ficam fora do alcance — podem ser engolidos"
+  },
+  "QC-0008": {
+    "arquivo": "data/mapeamento_dados.js",
+    "rotulo": "Checklist dos ambientes — itens que a neurodivergencia ativa",
+    "item": "Porta da rua tem trava alta, de dupla ação ou alarme de abertura — para quem pode sair sozinho sem perceber o perigo",
+    "chave": "titulo",
+    "linha": 902,
+    "original": "Porta da rua tem trava alta, de dupla ação ou alarme de abertura — para quem pode sair sozinho sem perceber o perigo"
+  },
+  "QC-0009": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quem Cuida",
+    "chave": "title",
+    "linha": 14,
+    "original": "Quem Cuida"
+  },
+  "QC-0010": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quem Cuida",
+    "chave": "subtitle",
+    "linha": 17,
+    "original": "Prevenção para quem cuida de alguém"
+  },
+  "QC-0011": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Proteção que não depende de atenção",
+    "chave": "title",
+    "linha": 25,
+    "original": "Proteção que não depende de atenção"
+  },
+  "QC-0012": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Proteção que não depende de atenção",
+    "chave": "content",
+    "linha": 30,
+    "original": "Vigiar o tempo todo é impossível, e o cansaço é condição insegura: é nele que acontece a distração de um minuto. A proteção mais confiável é a que funciona sozinha — trava alta ou alarme na porta da rua, cerca com portão que fecha sozinho na piscina, produtos de limpeza e remédios trancados, trava nos botões do fogão. Ela continua protegendo quando você cochila ou precisa atender o telefone."
+  },
+  "QC-0013": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quando você precisa se ausentar",
+    "chave": "title",
+    "linha": 36,
+    "original": "Quando você precisa se ausentar"
+  },
+  "QC-0014": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quando você precisa se ausentar",
+    "chave": "content",
+    "linha": 41,
+    "original": "Combine antes quem substitui você numa ida ao médico, numa internação ou numa viagem. Deixe por escrito o que essa pessoa precisa saber: rotina, remédios e horários, como a pessoa se comunica, o que a acalma e o que a desorganiza, e os contatos de emergência. A Ficha Médica de Emergência do app reúne boa parte disso e pode ser enviada a quem vai substituir você."
+  },
+  "QC-0015": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Rede de apoio",
+    "chave": "title",
+    "linha": 47,
+    "original": "Rede de apoio"
+  },
+  "QC-0016": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Rede de apoio",
+    "chave": "content",
+    "linha": 52,
+    "original": "Cadastre nos contatos de emergência do app quem pode ajudar de verdade — família, vizinhos, amigos — e combine com eles o que fazer ao receber um alerta. Um vizinho que conhece a rotina da casa costuma chegar antes de qualquer socorro."
+  },
+  "QC-0017": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quem cuida também precisa de cuidado",
+    "chave": "title",
+    "linha": 58,
+    "original": "Quem cuida também precisa de cuidado"
+  },
+  "QC-0018": {
+    "arquivo": "data/safety_caregivers.js",
+    "rotulo": "Cuidar e Proteger — Quem Cuida (tema novo)",
+    "item": "Quem cuida também precisa de cuidado",
+    "chave": "content",
+    "linha": 63,
+    "original": "Quem cuida também adoece, se machuca e precisa descansar. Dividir o cuidado com outra pessoa faz parte do plano de segurança da casa: com mais alguém por perto, a casa fica mais segura para todos."
+  },
+  "QC-0019": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "cuidarProteger",
+    "chave": "cuidarProteger.descQuemCuida",
+    "linha": 0,
+    "original": "Para quem cuida sozinho: proteção que não depende de atenção, substituto e rede de apoio."
+  },
+  "QC-0020": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "telas",
+    "chave": "telas.AddPerfilScreenNeo.comunicacaoAjuda",
+    "linha": 0,
+    "original": "Para quem for socorrer: como a pessoa se comunica, o que a acalma e o que a desorganiza (barulho, toque, luz). Aparece na Ficha Médica de Emergência."
+  },
+  "QC-0021": {
+    "arquivo": "locales/pt-BR/common.json",
+    "rotulo": "Textos de interface",
+    "item": "telas",
+    "chave": "telas.AddPerfilScreenNeo.comunicacaoExemplo",
+    "linha": 0,
+    "original": "Ex.: não fala; entende frases curtas; acalma com fone de ouvido; não gosta de ser tocado"
+  },
   "RK-0001": {
     "arquivo": "data/locales/pt-BR/primeiros_socorros.js",
     "rotulo": "Primeiros Socorros — Atingido por Raio (tema novo)",

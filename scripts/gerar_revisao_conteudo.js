@@ -439,6 +439,25 @@ const TEMAS = [
             + 'checklist para as telas vivas de Escola, Asilo e Kits. No fim, o conteudo de clima que voce pediu: alerta de raios para todas as regioes, alerta de vendaval, granizo e ciclone no Sul e o tema de primeiros socorros Atingido por Raio. E os avisos que o Mapa de Riscos e o Relatorio dao antes de abrir, agora no fim da tela de vistorias. A linha ANTES mostra como estava; texto sem ANTES e novo.',
         fontes: [],
     },
+    // Familias atipicas (22/10/2026): conceito aprovado pelo Agnaldo no chat.
+    {
+        nome: 'Quem Cuida e Lar Neurodiverso',
+        sigla: 'QC',
+        pendentes: ['m028'],
+        marcarMudancas: false,
+        rotulos: {
+            'data/mapeamento_dados.js': 'Checklist dos ambientes — itens que a neurodivergencia ativa',
+            'data/safety_caregivers.js': 'Cuidar e Proteger — Quem Cuida (tema novo)',
+            'data/neurodivergence_data.js': 'Lar Neurodiverso — Adolescentes e Adultos (tema novo)',
+            'locales/pt-BR/common.json': 'Textos de interface',
+        },
+        descricao: 'Tudo aqui e novo. (1) Cinco itens do checklist que passam a aparecer quando alguem da casa tem '
+            + 'neurodivergencia, deficiencia intelectual ou condicao cognitiva marcada no perfil: porta da rua, fogao, '
+            + 'janelas, objetos pequenos e porta do banheiro. (2) O campo opcional "Comunicacao e o que acalma" no perfil, '
+            + 'que sai na Ficha Medica de Emergencia. (3) O tema "Quem Cuida", em Cuidar e Proteger, para quem cuida '
+            + 'sozinho — prevencao, sem opinar sobre a pessoa. (4) No Lar Neurodiverso, o tema "Adolescentes e Adultos".',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

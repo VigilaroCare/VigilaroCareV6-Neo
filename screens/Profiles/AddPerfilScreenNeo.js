@@ -125,6 +125,8 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
     // Estado das Listas Estruturadas (Acessibilidade, Condições, Alergias)
     const [necessidadesEspeciais, setNecessidadesEspeciais] = useState([]);
+    // Texto livre e opcional para o socorrista: como a pessoa se comunica, o que a acalma e o que a desorganiza.
+    const [comunicacaoEmergencia, setComunicacaoEmergencia] = useState('');
     const [condicoes, setCondicoes] = useState([]);
     const [alergias, setAlergias] = useState([]);
     const [tipoSanguineo, setTipoSanguineo] = useState('');
@@ -191,6 +193,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
 
             const loadedAcc = editingProfile.necessidadesEspeciais || [];
             setNecessidadesEspeciais(Array.isArray(loadedAcc) ? loadedAcc : []);
+            setComunicacaoEmergencia(editingProfile.comunicacaoEmergencia || '');
 
             const loadedMeds = editingProfile.medicamentosEmUso || [];
             setMedicamentosEmUso(Array.isArray(loadedMeds) ? loadedMeds : []);
@@ -442,6 +445,7 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                 alergias: tipo === 'humano' ? alergias : [],
                 medicamentosEmUso: tipo === 'humano' ? medicamentosEmUso : [],
                 necessidadesEspeciais: necessidadesEspeciais,
+                comunicacaoEmergencia: tipo === 'humano' ? comunicacaoEmergencia.trim() : '',
                 comodosUsados: comodosUsados,
                 infoPet: tipo === 'pet' ? { raca, chip, castrado, especie } : null,
                 especie: tipo === 'pet' ? especie : null,
@@ -722,6 +726,25 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
                                     })}
                                 </View>
                             </View>
+
+                            {/* Comunicação e o que acalma — vai para a Ficha Médica de Emergência */}
+                            {tipo === 'humano' && (
+                                <View style={{ marginTop: 12 }}>
+                                    <Small style={styles.fieldLabel}>{t('telas.AddPerfilScreenNeo.comunicacaoTitulo', 'COMUNICAÇÃO E O QUE ACALMA (OPCIONAL)')}</Small>
+                                    <Caption style={{ color: Neo.colors.neutral[500], marginBottom: 10 }}>
+                                        {t('telas.AddPerfilScreenNeo.comunicacaoAjuda', 'Para quem for socorrer: como a pessoa se comunica, o que a acalma e o que a desorganiza (barulho, toque, luz). Aparece na Ficha Médica de Emergência.')}
+                                    </Caption>
+                                    <TextInput
+                                        style={[styles.textInput, { minHeight: 80, textAlignVertical: 'top' }]}
+                                        placeholder={t('telas.AddPerfilScreenNeo.comunicacaoExemplo', 'Ex.: não fala; entende frases curtas; acalma com fone de ouvido; não gosta de ser tocado')}
+                                        value={comunicacaoEmergencia}
+                                        onChangeText={setComunicacaoEmergencia}
+                                        multiline
+                                        maxLength={300}
+                                        accessibilityLabel={t('telas.AddPerfilScreenNeo.comunicacaoTitulo', 'COMUNICAÇÃO E O QUE ACALMA (OPCIONAL)')}
+                                    />
+                                </View>
+                            )}
 
                             {/* Cômodos Frequentados (Briefing Vivo) */}
                             {availableRooms.length > 0 && (

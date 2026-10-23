@@ -121,6 +121,8 @@ class FichaMedicaService {
                 return `${nome}${dose}${freq}`;
             }),
             necessidades: lista(saude?.specialNeeds ?? profile.necessidadesEspeciais).map(rotuloOpcaoPerfil),
+            // Texto livre do perfil: como a pessoa se comunica e o que a acalma.
+            comunicacao: String(profile.comunicacaoEmergencia || '').trim(),
             endereco: endereco.join(', '),
             contatos,
             coords,
@@ -145,6 +147,7 @@ class FichaMedicaService {
             bloco(L('medicamentosEmUso', 'Medicamentos em uso'), f.medicamentos),
         ];
         if (f.necessidades.length) linhas.push(bloco(L('necessidadesEspeciais', 'Necessidades especiais'), f.necessidades));
+        if (f.comunicacao) linhas.push(`${L('comunicacao', 'Comunicação e o que acalma')}: ${f.comunicacao}`);
         if (f.idade != null) linhas.push(`${L('idade', 'Idade')}: ${L('anos', '{{n}} anos', { n: f.idade })}`);
         if (f.endereco) linhas.push(`${L('endereco', 'Endereço')}: ${f.endereco}`);
         if (f.coords) linhas.push(`${L('localizacao', 'Localização')}: https://maps.google.com/?q=${f.coords.latitude},${f.coords.longitude}`);
@@ -195,6 +198,7 @@ class FichaMedicaService {
                 ? `<ul class="bullets">${f.medicamentos.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>`
                 : `<p class="muted">${esc(L('nenhumDeclarado', 'Nenhum declarado.'))}</p>`)}
             ${f.necessidades.length ? secao(L('necessidadesEspeciais', 'Necessidades especiais'), `<div>${chips(f.necessidades, '')}</div>`) : ''}
+            ${f.comunicacao ? secao(L('comunicacao', 'Comunicação e o que acalma'), `<p>${esc(f.comunicacao)}</p>`) : ''}
             ${secao(L('contatosEmergencia', 'Contatos de emergência'), contatosHtml)}
             ${f.coords ? `<p class="muted">${esc(L('localizacaoNaGeracao', 'Localização no momento da geração'))}: ${f.coords.latitude}, ${f.coords.longitude}</p>` : ''}
             <div class="disclaimer">${esc(avisoLegal())}</div>`;

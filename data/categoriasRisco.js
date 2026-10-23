@@ -221,6 +221,7 @@ export const TAG_CATEGORIA = {
 
     // ── Não classificam risco ──────────────────────────────────────────────
     'crianças': null,   // público-alvo; quem ativa o item sai do ProfileFilterEngine
+    'neurodivergente': null, // idem: neurodivergência, deficiência intelectual ou condição cognitiva no perfil
     'idosos': null,
     'pets': null,
     'básico': null,     // nível de dificuldade do item

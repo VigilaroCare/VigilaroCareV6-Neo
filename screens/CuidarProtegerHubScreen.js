@@ -24,6 +24,7 @@ export default function CuidarProtegerHubScreen({ navigation }) {
         { id: 'mentes_atipicas', titulo: t('knowledgeHub.neurodivergence', 'Lar Neurodiverso'), iconName: 'Activity', cor: themeColors.categoria.ameixa.fill, route: 'NeurodivergenceMenu', imageUrl: 'https://images.pexels.com/photos/7162002/pexels-photo-7162002.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'pets',            titulo: t('knowledgeHub.protectPet', 'Proteção para Pets'),     iconName: 'ProtejaPet', cor: themeColors.categoria.rose.fill, route: 'PetsMenu', imageUrl: 'https://images.pexels.com/photos/4587979/pexels-photo-4587979.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'seguranca_idade', titulo: t('knowledgeHub.ageCare', 'Segurança 60+'),        iconName: 'TrendUp',    cor: '#0EA5E9', route: 'FasesVidaMenu', imageUrl: 'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=800' },
+        { id: 'quem_cuida',      titulo: t('knowledgeHub.caregivers', 'Quem Cuida'),       iconName: 'Profile2User', cor: '#0EA5E9', route: 'GenericCategory', params: { categoryId: 'quem_cuida' }, imageUrl: require('../assets/illustrations/pad/pessoas-lifestyle_photo-of-family-having-fun-3820210_010.jpg') },
         { id: 'gestante_segura', titulo: t('knowledgeHub.pregnancyCare', 'Gestante Segura'),  iconName: 'Woman',      cor: themeColors.categoria.rose.fill, route: 'GenericCategory', params: { categoryId: 'gestante_segura' }, imageUrl: 'https://images.pexels.com/photos/7055935/pexels-photo-7055935.jpeg?auto=compress&cs=tinysrgb&w=800' },
         { id: 'brinquedos_hub',  titulo: t('knowledgeHub.toyGuide', 'Guia de Brinquedos'),       iconName: 'MagicStar',  cor: '#D97706', route: 'GenericCategory', params: { categoryId: 'brinquedos' }, imageUrl: 'https://images.pexels.com/photos/3662804/pexels-photo-3662804.jpeg?auto=compress&cs=tinysrgb&w=800' },
     ];
@@ -33,6 +34,7 @@ export default function CuidarProtegerHubScreen({ navigation }) {
         'mentes_atipicas': t('cuidarProteger.descMentesAtipicas', 'Segurança inclusiva e adaptação do lar para perfis neurodivergentes.'),
         'pets': t('cuidarProteger.descPets', 'Plantas tóxicas, alimentos proibidos e adaptação de ambientes para animais.'),
         'seguranca_idade': t('cuidarProteger.descSegurancaIdade', 'Adaptações cruciais para a segurança e independência da terceira idade.'),
+        'quem_cuida': t('cuidarProteger.descQuemCuida', 'Para quem cuida sozinho: proteção que não depende de atenção, substituto e rede de apoio.'),
         'gestante_segura': t('cuidarProteger.descGestanteSegura', 'Cuidados estruturais e de hábitos para a segurança durante a gestação.'),
         'brinquedos_hub': t('cuidarProteger.descBrinquedosHub', 'Guia sobre classificação etária, riscos de engasgo e brinquedos perigosos.')
     };

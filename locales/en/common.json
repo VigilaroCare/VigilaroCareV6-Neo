@@ -622,7 +622,8 @@
         "blogSub": "Preventing at Home",
         "articles": "Articles",
         "realCases": "Real Cases",
-        "peopleAndContext": "People and context"
+        "peopleAndContext": "People and context",
+        "caregivers": "Caregivers"
     },
     "reports": {
         "title": "Inspect Your Spaces",
@@ -2104,7 +2105,8 @@
         "descPets": "Toxic plants, forbidden foods, and environment adaptation for animals.",
         "descSegurancaIdade": "Crucial adaptations for safety and independence of seniors.",
         "descGestanteSegura": "Structural care and habits for safety during pregnancy.",
-        "descBrinquedosHub": "Guide on age classification, choking hazards, and dangerous toys."
+        "descBrinquedosHub": "Guide on age classification, choking hazards, and dangerous toys.",
+        "descQuemCuida": "For those caring alone: protection that does not rely on attention, a stand-in and a support network."
     },
     "areas": {
         "ambientesDaCasa": "Areas of the home",
@@ -2149,7 +2151,10 @@
             "alergiasESensibilidades": "Allergies and Sensitivities",
             "macho": "Male",
             "masculino": "Male",
-            "feminino": "Female"
+            "feminino": "Female",
+            "comunicacaoTitulo": "COMMUNICATION AND WHAT HELPS CALM THEM (OPTIONAL)",
+            "comunicacaoAjuda": "For whoever comes to help: how the person communicates, what calms them and what upsets them (noise, touch, light). It appears on the Emergency Medical Record.",
+            "comunicacaoExemplo": "E.g. non-speaking; understands short sentences; calmed by headphones; dislikes being touched"
         },
         "MedicalDisclaimerModal": {
             "emergenciaLigue": "In a medical emergency, call {{servico}} immediately or go to the nearest hospital.",
@@ -2705,7 +2710,8 @@
             "perfil": "Profile",
             "lembretesForaDaLista": "These medicines have a reminder but are not in the list above. The Emergency Medical Record shows only the list. Tap to add:",
             "incluirNaLista": "Add to the list",
-            "naoFoiPossivelIncluirMedicamento": "The medicine could not be added right now. Please try again."
+            "naoFoiPossivelIncluirMedicamento": "The medicine could not be added right now. Please try again.",
+            "comunicacao": "Communication and what helps calm them"
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nothing recorded",
@@ -2996,7 +3002,8 @@
         "nenhumDeclarado": "None declared.",
         "geradaEm": "Generated on {{data}}",
         "fichaMedica": "Medical record",
-        "fichaMedicaEmergencia": "Emergency medical record"
+        "fichaMedicaEmergencia": "Emergency medical record",
+        "comunicacao": "Communication and what helps calm them"
     },
     "paisEmergencia": {
         "ligue112": "If you are in another country, call 112 — your phone routes the call to local emergency services in most countries.",

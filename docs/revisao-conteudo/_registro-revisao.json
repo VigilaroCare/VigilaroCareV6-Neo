@@ -108,6 +108,10 @@
   "m027": {
    "texto": "Aprovado pelo Agnaldo no chat em 22/10/2026: titulos da bagagem aerea (Power bank e baterias de litio; Liquidos, geis e aerossois; Cortantes e isqueiro).",
    "em": "2026-10-22"
+  },
+  "m028": {
+   "texto": "Familias atipicas (22/10/2026, aprovado o conceito pelo Agnaldo): itens do checklist ativados pela neurodivergencia, campo Comunicacao e o que acalma na Ficha, tema Quem Cuida e Lar Neurodiverso para adolescentes e adultos. Vai para o documento QC.",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -606,6 +610,11 @@
    "data/radarSazonal/gb.js",
    "m012"
   ],
+  "09062de218fc021a": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "093c8434cf7e0470": [
    "pendente",
    "data/teoria_fogo.js",
@@ -901,6 +910,11 @@
    "data/legal/termos_uso.js",
    "m008"
   ],
+  "0e5104b6f5e03919": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "0e551c2d72fd56df": [
    "pendente",
    "data/produtos_scanner.js",
@@ -1111,6 +1125,11 @@
    "data/mapeamento_dados.js",
    "m022"
   ],
+  "1264013008da1e7e": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "12798ea0304b1e13": [
    "pendente",
    "data/pet_safety_content.js",
@@ -1165,6 +1184,11 @@
    "pendente",
    "data/kits/educational_content.js",
    "m010"
+  ],
+  "136d6b01d792a355": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m028"
   ],
   "1388d8f7f50f79eb": [
    "pendente",
@@ -1410,6 +1434,11 @@
    "pendente",
    "data/produtos_scanner.js",
    "m006"
+  ],
+  "16a8881cf09bcef8": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m028"
   ],
   "16bc4a7e635ba750": [
    "aprovado",
@@ -3366,6 +3395,11 @@
    "screens/Checklists/OndeProtegerScreen.js",
    "m010"
   ],
+  "36eef7e29a91b936": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m028"
+  ],
   "3738ef01ea492f74": [
    "pendente",
    "data/produtos_scanner.js",
@@ -3605,6 +3639,11 @@
    "pendente",
    "data/aves_seguras_data.js",
    "m006"
+  ],
+  "3b159af7f310f801": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m028"
   ],
   "3b2fce6706866adc": [
    "pendente",
@@ -4175,6 +4214,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "43809446ea782ff5": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
   ],
   "43afae6b745f1945": [
    "pendente",
@@ -5176,6 +5220,11 @@
    "data/eletrodomesticos_reviews.js",
    "m004"
   ],
+  "522a8ab8213db6eb": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m028"
+  ],
   "52510f30bbccdd69": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5670,6 +5719,11 @@
    "pendente",
    "data/telefones_ciatox.js",
    "m010"
+  ],
+  "5a762a9791592619": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m028"
   ],
   "5a879fde07b6425e": [
    "pendente",
@@ -7121,6 +7175,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
   ],
+  "7229145294e60b06": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "725d57260ce913b2": [
    "pendente",
    "data/opcoesPerfil.js",
@@ -7346,6 +7405,11 @@
    "data/kits/first_aid.js",
    "m010"
   ],
+  "7633bb982c3a8a23": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m028"
+  ],
   "76380d04ee7eba2d": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -7365,6 +7429,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "7672d27370c387d2": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m028"
   ],
   "7681a852ad95ed42": [
    "pendente",
@@ -10431,6 +10500,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "a90ab1865a9bb467": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "a919e5ea84884de4": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -11001,6 +11075,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "b23fb8b3cc059959": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m028"
+  ],
   "b2536d6a597754ed": [
    "pendente",
    "data/pet_safety_content.js",
@@ -11066,6 +11145,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "b3773e3d385073b4": [
+   "pendente",
+   "data/neurodivergence_data.js",
+   "m028"
+  ],
   "b39cb6621fab6c21": [
    "pendente",
    "data/knowledge_prevencao.js",
@@ -11120,6 +11204,11 @@
    "pendente",
    "screens/SegurancaFeriasScreen.js",
    "m010"
+  ],
+  "b44489e722ffbf4e": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
   ],
   "b44c07f918c0a7c8": [
    "pendente",
@@ -12335,6 +12424,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
+  ],
+  "ca64e6a58b0a464d": [
+   "pendente",
+   "data/mapeamento_dados.js",
+   "m028"
   ],
   "ca947ae725a26b39": [
    "pendente",
@@ -13716,6 +13810,11 @@
    "data/pet_pregnancy_data.js",
    "m006"
   ],
+  "df91c6205699c415": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
+  ],
   "dfe266d5ad39e51b": [
    "pendente",
    "data/animais_ciatox.js",
@@ -14040,6 +14139,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "e5abe881ef6bda0a": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
   ],
   "e5ad42b02a847fdd": [
    "pendente",
@@ -14960,6 +15064,11 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m023"
+  ],
+  "f6163158af758610": [
+   "pendente",
+   "data/safety_caregivers.js",
+   "m028"
   ],
   "f63589e82f684575": [
    "pendente",

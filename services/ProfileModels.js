@@ -111,6 +111,7 @@ export const getDefaultProfile = (tipo = 'humano') => ({
     alergias: [],
     medicamentosEmUso: [],
     necessidadesEspeciais: [], // mobilidade reduzida, visual, auditivo
+    comunicacaoEmergencia: '', // como se comunica / o que acalma — sai na Ficha Médica de Emergência
 
     // Contatos de Emergência (por pessoa)
     contatos: [], // [{ nome, telefone, relacao }]

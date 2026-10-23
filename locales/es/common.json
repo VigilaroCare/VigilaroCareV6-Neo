@@ -622,7 +622,8 @@
         "blogSub": "Prevenir en Casa",
         "articles": "Artículos",
         "realCases": "Casos Reales",
-        "peopleAndContext": "Personas y contexto"
+        "peopleAndContext": "Personas y contexto",
+        "caregivers": "Quien Cuida"
     },
     "reports": {
         "title": "Inspeccione sus Ambientes",
@@ -2104,7 +2105,8 @@
         "descPets": "Plantas tóxicas, alimentos prohibidos y adaptación de entornos para animales.",
         "descSegurancaIdade": "Adaptaciones cruciales para la seguridad e independencia de la tercera edad.",
         "descGestanteSegura": "Cuidados estructurales y de hábitos para la seguridad durante la gestación.",
-        "descBrinquedosHub": "Guía sobre clasificación por edades, riesgos de asfixia y juguetes peligrosos."
+        "descBrinquedosHub": "Guía sobre clasificación por edades, riesgos de asfixia y juguetes peligrosos.",
+        "descQuemCuida": "Para quien cuida solo: protección que no depende de la atención, un sustituto y una red de apoyo."
     },
     "areas": {
         "ambientesDaCasa": "Espacios del hogar",
@@ -2149,7 +2151,10 @@
             "alergiasESensibilidades": "Alergias y Sensibilidades",
             "macho": "Macho",
             "masculino": "Masculino",
-            "feminino": "Femenino"
+            "feminino": "Femenino",
+            "comunicacaoTitulo": "COMUNICACIÓN Y QUÉ LE CALMA (OPCIONAL)",
+            "comunicacaoAjuda": "Para quien la socorra: cómo se comunica la persona, qué la calma y qué la desorganiza (ruido, contacto, luz). Aparece en la Ficha Médica de Emergencia.",
+            "comunicacaoExemplo": "Ej.: no habla; entiende frases cortas; se calma con auriculares; no le gusta que lo toquen"
         },
         "MedicalDisclaimerModal": {
             "emergenciaLigue": "En caso de emergencia médica, llame de inmediato a {{servico}} o acuda al hospital más cercano.",
@@ -2705,7 +2710,8 @@
             "perfil": "Perfil",
             "lembretesForaDaLista": "Estos medicamentos tienen recordatorio, pero no están en la lista de arriba. La Ficha Médica de Emergencia muestra solo la lista. Toque para incluir:",
             "incluirNaLista": "Incluir en la lista",
-            "naoFoiPossivelIncluirMedicamento": "No fue posible incluir el medicamento ahora. Inténtelo de nuevo."
+            "naoFoiPossivelIncluirMedicamento": "No fue posible incluir el medicamento ahora. Inténtelo de nuevo.",
+            "comunicacao": "Comunicación y qué le calma"
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nada registrado",
@@ -2996,7 +3002,8 @@
         "nenhumDeclarado": "Ninguno declarado.",
         "geradaEm": "Generada el {{data}}",
         "fichaMedica": "Ficha médica",
-        "fichaMedicaEmergencia": "Ficha médica de emergencia"
+        "fichaMedicaEmergencia": "Ficha médica de emergencia",
+        "comunicacao": "Comunicación y qué le calma"
     },
     "paisEmergencia": {
         "ligue112": "Si está en otro país, llame al 112 — el móvil desvía la llamada al servicio de emergencias local en la mayoría de los países.",

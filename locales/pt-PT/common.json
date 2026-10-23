@@ -622,7 +622,8 @@
         "blogSub": "Prevenir em Casa",
         "articles": "Artigos",
         "realCases": "Casos Reais",
-        "peopleAndContext": "Pessoas & Contexto"
+        "peopleAndContext": "Pessoas & Contexto",
+        "caregivers": "Quem Cuida"
     },
     "reports": {
         "title": "Vistorie os seus Ambientes",
@@ -2104,7 +2105,8 @@
         "descPets": "Plantas tóxicas, alimentos proibidos e adaptação de espaços para animais.",
         "descSegurancaIdade": "Adaptações cruciais para a segurança e independência da terceira idade.",
         "descGestanteSegura": "Cuidados estruturais e de hábitos para a segurança durante a gestação.",
-        "descBrinquedosHub": "Guia sobre classificação etária, riscos de engasgo e brinquedos perigosos."
+        "descBrinquedosHub": "Guia sobre classificação etária, riscos de engasgo e brinquedos perigosos.",
+        "descQuemCuida": "Para quem cuida sozinho: proteção que não depende da atenção, substituto e rede de apoio."
     },
     "areas": {
         "ambientesDaCasa": "Ambientes da casa",
@@ -2149,7 +2151,10 @@
             "alergiasESensibilidades": "Alergias e Sensibilidades",
             "macho": "Macho",
             "masculino": "Masculino",
-            "feminino": "Feminino"
+            "feminino": "Feminino",
+            "comunicacaoTitulo": "COMUNICAÇÃO E O QUE ACALMA (OPCIONAL)",
+            "comunicacaoAjuda": "Para quem for socorrer: como a pessoa comunica, o que a acalma e o que a desorganiza (barulho, toque, luz). Aparece na Ficha Médica de Emergência.",
+            "comunicacaoExemplo": "Ex.: não fala; entende frases curtas; acalma com auscultadores; não gosta de ser tocado"
         },
         "MedicalDisclaimerModal": {
             "emergenciaLigue": "Em caso de emergência médica, ligue imediatamente para o {{servico}} ou dirija-se ao hospital mais próximo.",
@@ -2705,7 +2710,8 @@
             "perfil": "Perfil",
             "lembretesForaDaLista": "Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra apenas a lista. Toque para incluir:",
             "incluirNaLista": "Incluir na lista",
-            "naoFoiPossivelIncluirMedicamento": "Não foi possível incluir o medicamento agora. Tente novamente."
+            "naoFoiPossivelIncluirMedicamento": "Não foi possível incluir o medicamento agora. Tente novamente.",
+            "comunicacao": "Comunicação e o que acalma"
         },
         "SaudePetScreen": {
             "nadaRegistrado": "Nada registado",
@@ -2996,7 +3002,8 @@
         "nenhumDeclarado": "Nenhum declarado.",
         "geradaEm": "Gerada em {{data}}",
         "fichaMedica": "Ficha médica",
-        "fichaMedicaEmergencia": "Ficha médica de emergência"
+        "fichaMedicaEmergencia": "Ficha médica de emergência",
+        "comunicacao": "Comunicação e o que acalma"
     },
     "paisEmergencia": {
         "ligue112": "Se estiver noutro país, ligue 112 — o telemóvel encaminha a chamada para o socorro local na maioria dos países.",

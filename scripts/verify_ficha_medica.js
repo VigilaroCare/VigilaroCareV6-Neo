@@ -25,6 +25,8 @@ const perfil = {
     alergias: ['Amendoim', 'Penicilina', 'pó de giz'],
     condicoesMedicas: ['Diabetes', 'Epilepsia', 'Dor Crônica'],
     necessidadesEspeciais: ['visual', 'balance'],
+    // Texto livre (22/10/2026): sai na ficha como foi digitado e escapado no PDF.
+    comunicacaoEmergencia: 'Não fala; acalma com fone <b>',
 };
 const dubles = {
     '../i18n': { default: i18n },
@@ -66,6 +68,8 @@ const ok = (c, m) => { console.log(`  ${c ? 'OK   ' : 'FALHA'} ${m}`); if (!c) f
         ok(!/\b(visual|balance)\b/.test(txt), 'texto sem id cru de necessidade');
         ok(rotuloOnboarding(PET_SPECIES, 'cao') === trechos[trechos.length - 1], `espécie "cao" → ${rotuloOnboarding(PET_SPECIES, 'cao')}`);
         ok(html.includes(`lang="${lng}"`), `PDF com lang="${lng}"`);
+        ok(txt.includes('Não fala; acalma com fone <b>'), 'texto traz a comunicação como digitada');
+        ok(html.includes('acalma com fone &lt;b&gt;') && !html.includes('fone <b>'), 'PDF traz a comunicação escapada');
         if (lng !== 'pt-BR' && lng !== 'pt-PT') ok(!/Condições médicas|Necessidades especiais|Gerada em/.test(txt + html), 'sem rótulo em português');
         if (lng === 'en') console.log('\n' + txt.split('\n').map((l) => '    | ' + l).join('\n'));
     }

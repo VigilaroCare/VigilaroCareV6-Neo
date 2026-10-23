@@ -147,7 +147,7 @@ if (tiposDeclarados.has('Health')) problemas.push('Manifesto declara coleta de S
         generateConsultativeReport: corpo('async generateConsultativeReport(', 'async generateTravelBriefing('),
         generateTravelBriefing: corpo('async generateTravelBriefing(', 'async analyzeVaccineCard('),
     };
-    const SAUDE = /condicoesEspeciais|condicoesMedicas|medNames|hasMeds|medicamentosEmUso|@medications|alergias|tipoSanguineo|necessidadesEspeciais|hasPcd|pessoa com deficiência/;
+    const SAUDE = /condicoesEspeciais|condicoesMedicas|medNames|hasMeds|medicamentosEmUso|@medications|alergias|tipoSanguineo|necessidadesEspeciais|comunicacaoEmergencia|hasPcd|pessoa com deficiência/;
     for (const [fn, txt] of Object.entries(trechos)) {
         if (!txt) { problemas.push(`verify_legal: não achei OpenAIService.${fn} — a checagem de saúde ficaria cega; ajuste o script.`); continue; }
         // comentários não contam

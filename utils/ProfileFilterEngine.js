@@ -140,6 +140,9 @@ export function isAreaRelevant(area, moradia, profiles, mapping) {
     return true;
 }
 
+// Ids de NECESSIDADES_ACESSIBILIDADE (data/opcoesPerfil.js) que ativam a tag 'neurodivergente'.
+const NECESSIDADES_NEURO = new Set(['neurodivergence', 'intellectual', 'cognitive']);
+
 /**
  * Verifica se um ITEM específico é relevante baseado em suas tags.
  * 
@@ -148,6 +151,7 @@ export function isAreaRelevant(area, moradia, profiles, mapping) {
  * @param {Object} moradia - Dados da moradia
  * @returns {boolean}
  */
+
 export function isItemRelevant(item, profiles, moradia) {
     const safeProfiles = Array.isArray(profiles) ? profiles : [];
     const safeMoradia = moradia || {};
@@ -199,6 +203,17 @@ export function isItemRelevant(item, profiles, moradia) {
     }
     if (item.tags.includes('idoso') || item.tags.includes('idosos')) {
         if (!hasIdoso) return false;
+    }
+
+    // Pessoa com neurodivergência, deficiência intelectual ou condição cognitiva
+    // marcada no cadastro (data/opcoesPerfil.js). Ativa os pontos de fuga, água,
+    // ingestão, fogão e janelas. Antes de 22/10/2026 nenhuma necessidade especial
+    // de pessoa mudava o checklist ou o Mapa de Riscos — só as de pets.
+    if (item.tags.includes('neurodivergente')) {
+        const hasNeuro = safeProfiles.some(p => p.tipo !== 'pet'
+            && Array.isArray(p.necessidadesEspeciais)
+            && p.necessidadesEspeciais.some(n => NECESSIDADES_NEURO.has(n)));
+        if (!hasNeuro) return false;
     }
 
     // Qualquer pet (Radar sazonal, D17: processionária, fogos, calor no carro).

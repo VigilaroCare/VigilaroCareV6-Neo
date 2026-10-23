@@ -113,6 +113,94 @@ Muitas pessoas no espectro não possuem o medo inato de altura ou não julgam co
 ### 2. Vidros e Películas
 A busca por estímulos pode incluir bater nos vidros. A aplicação de uma película transparente (anti-estilhaço) evita que o vidro comum quebre em lâminas perigosas em caso de impacto.
             `, content_ptpt: '\n# Perceção da Altura\nMuitas pessoas no espetro não têm o medo instintivo das alturas ou não avaliam bem a profundidade. O hiperfoco num objeto pode levá-las a ignorar o limite de uma janela.\n\n### 1. Redes e Limitadores de Janela\n* As janelas não devem abrir mais de 10 centímetros. Instale limitadores de abertura com chave.\n* Afaste das janelas móveis como camas e sofás (funcionam como «escadas»).\n* Se necessário, consulte redes de polietileno com fios internos de metal (resistentes a cortes e dentadas).\n\n### 2. Vidros e Películas\nA procura de estímulos pode incluir bater nos vidros. Uma película transparente de segurança (anti-estilhaço) evita que o vidro comum se parta em lâminas perigosas em caso de impacto.\n            ', content_es: '\n# Percepción de la Altura\nMuchas personas en el espectro no tienen el miedo instintivo a la altura o no calculan bien la profundidad. El hiperfoco en un objeto puede hacer que ignoren el borde de una ventana.\n\n### 1. Redes y Limitadores de Ventana\n* Las ventanas no deben abrirse más de 10 centímetros. Instale limitadores de apertura con llave.\n* Aleje de las ventanas muebles como camas y sofás (funcionan como «escaleras»).\n* Si es necesario, consulte redes de polietileno con hilos internos de metal (resistentes a cortes y mordiscos).\n\n### 2. Cristales y Láminas\nLa búsqueda de estímulos puede incluir golpear los cristales. Una lámina transparente de seguridad (antiastillas) evita que el cristal común se rompa en fragmentos peligrosos ante un golpe.\n            ', content_en: '\n# Perception of Height\nMany people on the spectrum have no instinctive fear of heights or do not judge depth correctly. Hyperfocus on an object can make them ignore the edge of a window.\n\n### 1. Safety Nets and Window Restrictors\n* Windows should not open more than 10 centimetres. Fit lockable opening restrictors.\n* Move furniture such as beds and sofas away from windows (they work as "ladders").\n* If needed, look into polyethylene nets with internal metal wires (resistant to cutting and biting).\n\n### 2. Glass and Films\nSeeking stimulation can include hitting windows. A clear safety (anti-shatter) film keeps ordinary glass from breaking into dangerous shards on impact.\n            '
+        },
+        {
+            id: "nd_autonomia",
+            icon: "Profile2User",
+            color: "#0EA5E9",
+            imagemUrl: require('../assets/illustrations/pad/cozinha-utensilios_cozinha-fogao-panelas_006.jpg'),
+            title: "Adolescentes e Adultos", title_ptpt: 'Adolescentes e Adultos', title_es: 'Adolescentes y Adultos', title_en: 'Teenagers and Adults',
+            short_desc: "Autonomia com segurança: fogão, rua e remédios.", short_desc_ptpt: 'Autonomia com segurança: fogão, rua e medicamentos.', short_desc_es: 'Autonomía con seguridad: cocina, calle y medicamentos.', short_desc_en: 'Independence with safety: stove, street and medicines.',
+            content: `
+# Adolescentes e Adultos
+Com a idade, a pessoa ganha autonomia, mas a percepção de perigo pode continuar diferente. Os riscos mudam: saem os da primeira infância, entram o fogão, a rua e os remédios.
+
+### 1. Cozinha e Fogo
+* Ensine o uso do fogão passo a passo, com supervisão, e combine regras simples e visuais (por exemplo: "fogão ligado, alguém na cozinha").
+* Enquanto a autonomia ainda está sendo construída, trava nos botões do fogão e detector de fumaça ajudam.
+
+### 2. Sair de Casa
+* Treine antes o caminho e as situações de risco: atravessar a rua, pedir ajuda, o que fazer se se perder.
+* Identificação com nome e telefone de contato — no bolso, na carteira ou numa pulseira.
+* Localização compartilhada no celular, combinada com a pessoa e respeitando a autonomia dela.
+
+### 3. Remédios
+* Organizador semanal e lembretes ajudam. A guarda e a conferência das doses podem continuar com um responsável, conforme a orientação de quem acompanha o tratamento.
+
+### 4. Emergências
+* Ensaie o que fazer: ligar para o número de emergência, dizer o endereço, sair de casa num incêndio.
+* Preencha no perfil, em "Comunicação e o que acalma", como a pessoa se comunica e o que a acalma. Isso aparece na Ficha Médica de Emergência e ajuda quem for socorrer.
+            `,
+            content_ptpt: `
+# Adolescentes e Adultos
+Com a idade, a pessoa ganha autonomia, mas a perceção do perigo pode continuar diferente. Os riscos mudam: saem os da primeira infância, entram o fogão, a rua e os medicamentos.
+
+### 1. Cozinha e Fogo
+* Ensine a usar o fogão passo a passo, com supervisão, e combine regras simples e visuais (por exemplo: "fogão ligado, alguém na cozinha").
+* Enquanto a autonomia ainda está a ser construída, a trava dos botões do fogão e o detetor de fumo ajudam.
+
+### 2. Sair de Casa
+* Treine antes o caminho e as situações de risco: atravessar a rua, pedir ajuda, o que fazer se se perder.
+* Identificação com nome e telefone de contacto — no bolso, na carteira ou numa pulseira.
+* Localização partilhada no telemóvel, combinada com a pessoa e respeitando a sua autonomia.
+
+### 3. Medicamentos
+* Caixas organizadoras semanais e lembretes ajudam. A guarda e a verificação das doses podem continuar com um responsável, conforme a indicação de quem acompanha o tratamento.
+
+### 4. Emergências
+* Ensaie o que fazer: ligar para o número de emergência, dizer a morada, sair de casa num incêndio.
+* Preencha no perfil, em "Comunicação e o que acalma", como a pessoa comunica e o que a acalma. Isso aparece na Ficha Médica de Emergência e ajuda quem for socorrer.
+            `,
+            content_es: `
+# Adolescentes y Adultos
+Con la edad, la persona gana autonomía, pero la percepción del peligro puede seguir siendo diferente. Los riesgos cambian: salen los de la primera infancia y entran la cocina, la calle y los medicamentos.
+
+### 1. Cocina y Fuego
+* Enseñe a usar la cocina paso a paso, con supervisión, y acuerde reglas simples y visuales (por ejemplo: "cocina encendida, alguien en la cocina").
+* Mientras la autonomía se está construyendo, la traba en los mandos de la cocina y el detector de humo ayudan.
+
+### 2. Salir de Casa
+* Practique antes el recorrido y las situaciones de riesgo: cruzar la calle, pedir ayuda, qué hacer si se pierde.
+* Identificación con nombre y teléfono de contacto: en el bolsillo, en la cartera o en una pulsera.
+* Ubicación compartida en el celular, acordada con la persona y respetando su autonomía.
+
+### 3. Medicamentos
+* Los pastilleros semanales y los recordatorios ayudan. La custodia y la comprobación de las dosis pueden seguir a cargo de un responsable, según la indicación de quien acompaña el tratamiento.
+
+### 4. Emergencias
+* Ensaye qué hacer: llamar al número de emergencias, decir la dirección, salir de casa en un incendio.
+* Complete en el perfil, en "Comunicación y qué le calma", cómo se comunica la persona y qué la calma. Aparece en la Ficha Médica de Emergencia y ayuda a quien la socorra.
+            `,
+            content_en: `
+# Teenagers and Adults
+With age comes independence, but the sense of danger may still work differently. The risks change: those of early childhood fade, and the stove, the street and medicines come in.
+
+### 1. Kitchen and Fire
+* Teach stove use step by step, with supervision, and agree on simple, visual rules (for example: "stove on, someone in the kitchen").
+* While independence is still being built, stove knob locks and a smoke alarm help.
+
+### 2. Going Out
+* Practise the route and risky situations beforehand: crossing the street, asking for help, what to do if lost.
+* ID with a name and a contact phone number — in a pocket, wallet or on a wristband.
+* Location sharing on the phone, agreed with the person and respecting their independence.
+
+### 3. Medicines
+* Weekly pill organizers and reminders help. Keeping the medicines and checking the doses can stay with a responsible adult, as advised by whoever oversees the treatment.
+
+### 4. Emergencies
+* Rehearse what to do: call the emergency number, give the address, get out of the house in a fire.
+* In the profile, fill in "Communication and what helps calm them": how the person communicates and what calms them. It appears on the Emergency Medical Record and helps whoever comes to help.
+            `,
         }
     ]
 };

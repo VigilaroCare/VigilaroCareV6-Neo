@@ -20,6 +20,7 @@ import { SAFETY_TOYS } from '../data/safety_toys';
 import { SAFETY_FIRE } from '../data/safety_fire';
 import { SAFETY_CONDO } from '../data/safety_condo';
 import { SAFETY_GAS } from '../data/safety_gas';
+import { SAFETY_CAREGIVERS } from '../data/safety_caregivers';
 import { getArticlesByCategory } from '../data/SafetyArticlesDB';
 
 // Mapping ID -> Data
@@ -32,6 +33,7 @@ const DATA_MAP = {
     'fire_prevention': SAFETY_FIRE,
     'condominio_seguranca': SAFETY_CONDO,
     'vazamento_gas': SAFETY_GAS,
+    'quem_cuida': SAFETY_CAREGIVERS,
 };
 
 export default function GenericCategoryScreen({ route, navigation }) {

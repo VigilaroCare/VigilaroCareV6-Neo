@@ -289,6 +289,11 @@ export default function MinhaSaudeScreen() {
                         <Section icon="Wheelchair" color={Neo.colors.primary[600]} title={t('telas.MinhaSaudeScreen.necessidadesEspeciais', 'Necessidades Especiais')}>
                             {renderChips(necessidades, Neo.colors.primary[600])}
                         </Section>
+                        {!!profile?.comunicacaoEmergencia && (
+                            <Section icon="MessageText1" color={Neo.colors.primary[600]} title={t('telas.MinhaSaudeScreen.comunicacao', 'Comunicação e o que acalma')}>
+                                <Body style={{ color: Neo.colors.textOn.ink, lineHeight: 22 }}>{profile.comunicacaoEmergencia}</Body>
+                            </Section>
+                        )}
 
                         <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.muralDeRotina', 'Mural de Rotina')}</Eyebrow>
                         <Section icon="Plus" color={HUE.sky} title={t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
