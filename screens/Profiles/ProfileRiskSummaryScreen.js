@@ -42,7 +42,9 @@ function formatAckDate(isoString) {
 // `implication`, pois t/useTranslation não estavam no escopo).
 function RiskCard({ item, onAcknowledge, onNavigate, t }) {
     const ack = item.acknowledged;
-    const textPrimary = Neo.colors.neutral[900];
+    // Vinha preso em Neo.colors (paleta clara): no modo escuro o titulo do
+    // risco ficava quase invisivel. O hook devolve a paleta ativa.
+    const textPrimary = useThemeColors().neutral[900];
 
     return (
         <NeoCard variant="elevated" style={s.riskCard}>
@@ -74,7 +76,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                                     <NeoIcon name="TickSquare" size={13} color={Neo.colors.primary[500]} variant="Bold" />
                                     <Text style={s.measureTitleCorretiva}>{t('telas.ProfileRiskSummaryScreen.medidaCorretivaAcaoFisica', 'Medida Corretiva (Ação Física)')}</Text>
                                 </View>
-                                <Text style={s.measureText}>{item.medidaCorretiva}</Text>
+                                <Small style={s.measureText}>{item.medidaCorretiva}</Small>
                             </View>
                         ) : null}
 
@@ -84,7 +86,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                                     <NeoIcon name="Shield" size={13} color={Neo.colors.secondary[500]} variant="Bold" />
                                     <Text style={s.measureTitlePreventiva}>{t('telas.ProfileRiskSummaryScreen.medidaPreventivaHabitoCuidado', 'Medida Preventiva (Hábito/Cuidado)')}</Text>
                                 </View>
-                                <Text style={s.measureText}>{item.medidaPreventiva}</Text>
+                                <Small style={s.measureText}>{item.medidaPreventiva}</Small>
                             </View>
                         ) : null}
 
@@ -94,7 +96,7 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                                     <NeoIcon name="Heart" size={13} color={Neo.colors.categoria.ocre.fill} variant="Bold" />
                                     <Text style={s.measureTitleMitigacao}>{t('telas.ProfileRiskSummaryScreen.medidaDeMitigacaoReducaoDeDano', 'Medida de Mitigação (Redução de Dano)')}</Text>
                                 </View>
-                                <Text style={s.measureText}>{item.medidaMitigacao}</Text>
+                                <Small style={s.measureText}>{item.medidaMitigacao}</Small>
                             </View>
                         ) : null}
                     </View>
@@ -103,9 +105,9 @@ function RiskCard({ item, onAcknowledge, onNavigate, t }) {
                 {ack ? (
                     <View style={s.ackBanner}>
                         <NeoIcon name="TickCircle" size={14} color={Neo.colors.neutral[600]} variant="Bold" />
-                        <Text style={s.ackText}>
+                        <Caption style={s.ackText}>
                             {t('riskSummary.ackBy', 'Reconhecido por')} {ack.responsibleName} {t('riskSummary.ackOn', 'em')} {formatAckDate(ack.date)}
-                        </Text>
+                        </Caption>
                     </View>
                 ) : (
                     <View style={s.actionRow}>
@@ -360,7 +362,7 @@ export default function ProfileRiskSummaryScreen() {
                         <H1 style={s.title}>
                             {t('riskSummary.headerTitle', 'Relatório de proteção')}
                         </H1>
-                        <Caption style={s.subtitle}>
+                        <Caption>
                             {t('riskSummary.headerSubtitle', 'Análise individual de risco')}
                         </Caption>
                     </View>
@@ -437,7 +439,7 @@ export default function ProfileRiskSummaryScreen() {
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={s.healthNoticeTitle}>{t('telas.ProfileRiskSummaryScreen.fichaDeSaudeIncompleta', 'Ficha de Saúde Incompleta')}</Text>
-                                    <Text style={s.healthNoticeText}>{t('telas.ProfileRiskSummaryScreen.fichaIncompletaTexto', { nome: profile?.nome || t('telas.ProfileRiskSummaryScreen.oMorador', 'o morador'), defaultValue: 'Para obter recomendações e um relatório de prevenção personalizados para {{nome}}, informe as medicações, enfermidades e limitações físicas/cognitivas.' })}</Text>
+                                    <Small style={s.healthNoticeText}>{t('telas.ProfileRiskSummaryScreen.fichaIncompletaTexto', { nome: profile?.nome || t('telas.ProfileRiskSummaryScreen.oMorador', 'o morador'), defaultValue: 'Para obter recomendações e um relatório de prevenção personalizados para {{nome}}, informe as medicações, enfermidades e limitações físicas/cognitivas.' })}</Small>
                                 </View>
                             </View>
                             <TouchableOpacity
@@ -462,8 +464,8 @@ export default function ProfileRiskSummaryScreen() {
                                     <NeoIcon name="Warning2" size={20} color={Neo.colors.accent.champagne} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={s.onboardingTitle}>{t('telas.ProfileRiskSummaryScreen.configuracaoInicialPendente', 'Configuração Inicial Pendente')}</Text>
-                                    <Text style={s.onboardingSubtitle}>{t('telas.ProfileRiskSummaryScreen.paraGerarAPrevencaoPersonalizadaPrecisam', 'Para gerar a prevenção personalizada, precisamos de:')}</Text>
+                                    <H3 style={s.onboardingTitle}>{t('telas.ProfileRiskSummaryScreen.configuracaoInicialPendente', 'Configuração Inicial Pendente')}</H3>
+                                    <Caption style={s.onboardingSubtitle}>{t('telas.ProfileRiskSummaryScreen.paraGerarAPrevencaoPersonalizadaPrecisam', 'Para gerar a prevenção personalizada, precisamos de:')}</Caption>
                                 </View>
                             </View>
 
@@ -473,8 +475,8 @@ export default function ProfileRiskSummaryScreen() {
                                         <NeoIcon name={stats.answeredCount > 0 ? "TickCircle" : "Clock"} size={13} color={stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.1VistoriaDosAmbientes', '1. Vistoria dos Ambientes')}</Text>
-                                        <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.responderAosChecklistsDosAmbientesInform', 'Responder aos checklists dos ambientes informados no onboarding.')}</Text>
+                                        <Small style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.1VistoriaDosAmbientes', '1. Vistoria dos Ambientes')}</Small>
+                                        <Caption style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.responderAosChecklistsDosAmbientesInform', 'Responder aos checklists dos ambientes informados no onboarding.')}</Caption>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: stats.answeredCount > 0 ? Neo.colors.feedback.success : Neo.colors.accent.champagne }]}>
                                         {stats.answeredCount > 0 ? t('telas.ProfileRiskSummaryScreen.concluido', 'Concluído') : t('telas.ProfileRiskSummaryScreen.pendente', 'Pendente')}
@@ -486,8 +488,8 @@ export default function ProfileRiskSummaryScreen() {
                                         <NeoIcon name={hasHealthInfo ? "TickCircle" : "InfoCircle"} size={13} color={hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500]} variant="Bold" />
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.2FichaDeSaudeMedicacoesLimitacoes', '2. Ficha de Saúde (Medicações/Limitações)')}</Text>
-                                        <Text style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.preencherMedicacoesLimitacoesEEnfermidad', 'Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.')}</Text>
+                                        <Small style={s.stepTitle}>{t('telas.ProfileRiskSummaryScreen.2FichaDeSaudeMedicacoesLimitacoes', '2. Ficha de Saúde (Medicações/Limitações)')}</Small>
+                                        <Caption style={s.stepDesc}>{t('telas.ProfileRiskSummaryScreen.preencherMedicacoesLimitacoesEEnfermidad', 'Preencher medicações, limitações e enfermidades essenciais para a prevenção ativa.')}</Caption>
                                     </View>
                                     <Text style={[s.stepStatusLabel, { color: hasHealthInfo ? Neo.colors.feedback.success : Neo.colors.secondary[500] }]}>
                                         {hasHealthInfo ? t('telas.ProfileRiskSummaryScreen.concluido2', 'Concluído') : t('telas.ProfileRiskSummaryScreen.recomendado', 'Recomendado')}
@@ -683,7 +685,7 @@ export default function ProfileRiskSummaryScreen() {
                                 <View style={s.curiosityIconWrap}>
                                     <NeoIcon name="InfoCircle" size={18} color={Neo.colors.primary[600]} variant="Bold" />
                                 </View>
-                                <Text style={s.curiosityText}>{curiosity.text || ''}</Text>
+                                <Caption style={s.curiosityText}>{curiosity.text || ''}</Caption>
                             </NeoCard>
                         </View>
                     )}
@@ -771,7 +773,6 @@ const s = StyleSheet.create({
         alignItems: 'center', justifyContent: 'center',
     },
     title: { fontWeight: '800', letterSpacing: -0.5, marginBottom: 2 },
-    subtitle: { color: Neo.colors.neutral[600] },
 
     scrollContent: {
         paddingHorizontal: Neo.spacing.lg, paddingTop: 4, paddingBottom: 190,
@@ -876,7 +877,7 @@ const s = StyleSheet.create({
         flexDirection: 'row', alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.05)', borderRadius: 10, padding: 10, gap: 7,
     },
-    ackText: { fontSize: 11.5, color: Neo.colors.neutral[700], flex: 1, fontStyle: 'italic' },
+    ackText: { fontSize: 11.5, flex: 1, fontStyle: 'italic' },
 
     // Pending
     pendingCard: { padding: 0, borderRadius: 16, overflow: 'hidden' },
@@ -903,7 +904,7 @@ const s = StyleSheet.create({
         alignItems: 'center', justifyContent: 'center',
     },
     curiosityText: {
-        flex: 1, fontSize: 13, color: Neo.colors.neutral[700], lineHeight: 19, fontStyle: 'italic',
+        flex: 1, fontSize: 13, lineHeight: 19, fontStyle: 'italic',
     },
 
     // Mini grid (other profiles)
@@ -976,7 +977,6 @@ const s = StyleSheet.create({
     },
     measureText: {
         fontSize: 12,
-        color: Neo.colors.neutral[800],
         lineHeight: 16.5,
     },
     onboardingCard: {
@@ -1000,11 +1000,9 @@ const s = StyleSheet.create({
     onboardingTitle: {
         fontWeight: '800',
         fontSize: 15,
-        color: Neo.colors.neutral[900],
     },
     onboardingSubtitle: {
         fontSize: 11,
-        color: Neo.colors.neutral[600],
         marginTop: 2,
     },
     onboardingText: {
@@ -1053,11 +1051,9 @@ const s = StyleSheet.create({
     stepTitle: {
         fontSize: 13,
         fontWeight: '800',
-        color: Neo.colors.neutral[800],
     },
     stepDesc: {
         fontSize: 11,
-        color: Neo.colors.neutral[500],
         marginTop: 1,
     },
     stepStatusLabel: {
@@ -1110,7 +1106,6 @@ const s = StyleSheet.create({
     },
     healthNoticeText: {
         fontSize: 12,
-        color: Neo.colors.neutral[700],
         lineHeight: 17,
         marginTop: 2,
     },
