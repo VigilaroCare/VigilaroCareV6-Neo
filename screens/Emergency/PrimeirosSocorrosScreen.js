@@ -1,5 +1,5 @@
 import { useMemo, useState, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions, TextInput } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Animated, TextInput } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -140,7 +140,7 @@ export default function PrimeirosSocorrosScreen({ navigation, route }) {
     }, [items, normalizedQuery]);
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
     const heroTransform = [

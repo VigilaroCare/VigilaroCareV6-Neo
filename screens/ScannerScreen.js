@@ -44,7 +44,7 @@ const ScannerIntro = ({ onSelectMode, onClose }) => {
   const isDark = useIsDark();
 
   const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = 240;
+  const HERO_HEIGHT = Neo.layout.heroBanner;
   const heroTransform = [
     {
       translateY: scrollY.interpolate({

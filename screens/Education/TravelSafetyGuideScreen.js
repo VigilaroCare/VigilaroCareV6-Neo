@@ -31,7 +31,7 @@ import { paisDoAparelho } from '../../utils/getEmergencyCountry';
 // aparece no "guia completo".
 // ─────────────────────────────────────────────────────────────────────────
 const SCREEN_W = Dimensions.get('window').width;
-const HERO_HEIGHT = 220;
+const HERO_HEIGHT = Neo.layout.heroBanner;
 
 export const GUIDE_SECTIONS = [
     {

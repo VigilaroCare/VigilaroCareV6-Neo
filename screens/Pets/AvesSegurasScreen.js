@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import ReviewImage from '../../components/ReviewImage';
@@ -33,7 +33,7 @@ export default function AvesSegurasScreen({ navigation, route }) {
 
   const surface = isDark ? Neo.colors.neutral[100] : colors.neutral.white;
   const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const HERO_HEIGHT = Neo.layout.heroBanner;
 
   const title = t('avesSeguras.headerTitle', 'Aves seguras');
   const cor = petHero?.cor || '#FBC02D';

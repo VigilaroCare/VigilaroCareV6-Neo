@@ -244,7 +244,7 @@ export default function PetsMenuScreen({ navigation, route }) {
     };
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

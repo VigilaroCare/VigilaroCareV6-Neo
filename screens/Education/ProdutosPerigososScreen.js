@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, Animated, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Animated, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Shadows } from '../../utils/Theme';
@@ -37,7 +37,7 @@ export default function ProdutosPerigososScreen({ navigation }) {
   };
 
   const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const HERO_HEIGHT = Neo.layout.heroBanner;
   const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
   const heroTransform = [

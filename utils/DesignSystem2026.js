@@ -651,6 +651,13 @@ export const DS = {
         // alturas soltas no app (280/240/220/200), todas de cópia — sem número
         // de altura para copiar, não há como divergir de novo.
         heroArt: 96,
+        // Altura do banner full-bleed LEGADO (o que a §3② da anatomia proibe e
+        // o §9.1 lista para migrar ao NeoSectionHero). Enquanto essas ~28 telas
+        // nao migram, a altura passa por aqui: havia SETE valores soltos —
+        // 0.78 x largura da tela em 14 telas (304 num telefone comum, e cresce
+        // em tela grande), 280 em 18, 260 no NeoHeroHeader, 240, 220 e 200 em 5.
+        // Todos de copia, nenhum de decisao. Mudar este numero move as 28 juntas.
+        heroBanner: 240,
     },
 
     // 7. Tokens de Emergência — vermelho-pânico INTENCIONAL das telas de SOS

@@ -9,7 +9,7 @@
 
 import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, Animated, Dimensions, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Animated, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { DS as Neo } from '../../utils/DesignSystem2026';
@@ -60,7 +60,7 @@ export default function DispositivosProtecaoScreen({ navigation }) {
 
     
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const HERO_HEIGHT = Neo.layout.heroBanner;
 
     const heroTransform = [
         {

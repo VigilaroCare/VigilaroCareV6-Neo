@@ -63,7 +63,7 @@ export default function UtensiliosReviewsScreen({ navigation }) {
     const capaUrl = require('../../assets/illustrations/pad/cozinha-utensilios_cozinha-fogao-panelas_006.jpg');
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

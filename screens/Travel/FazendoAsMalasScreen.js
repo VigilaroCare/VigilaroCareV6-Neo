@@ -254,7 +254,7 @@ export default function FazendoAsMalasScreen({ navigation }) {
 
     // Parallax Hero
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 200;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

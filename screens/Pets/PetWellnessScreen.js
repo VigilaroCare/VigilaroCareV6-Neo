@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -50,7 +50,7 @@ export default function PetWellnessScreen({ navigation, route }) {
 
   const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
   const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const HERO_HEIGHT = Neo.layout.heroBanner;
 
   const title = t('petWellness.title', 'Bem-estar pet');
   const cor = petHero?.cor || '#16A34A';

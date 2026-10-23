@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import ReviewImage from './ReviewImage';
 import { useThemeColors } from '../utils/ThemeContext';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 /**
  * NeoHeroHeader
@@ -13,7 +14,9 @@ import { useThemeColors } from '../utils/ThemeContext';
  * @param {Animated.Value} scrollY - Obrigatório. O Animated.Value do ScrollView pai.
  * @param {any} source - Imagem (require) ou URI ({ uri: '...' }).
  * @param {string} title - Título principal exibido sobre a imagem.
- * @param {number} [height=260] - Altura base do Hero. Padrão unificado: 260px.
+ * @param {number} [height] - Altura do Hero. O padrão é DS.layout.heroBanner,
+ *   a fonte única das ~28 telas com banner legado; só passe um valor aqui
+ *   quando esta tela tiver motivo próprio, e diga qual.
  * @param {number} [bleed=0] - Recuo lateral do scroll PAI que este hero precisa
  *   vencer para ir de ponta a ponta. O hero é `width: '100%'`; dentro de um
  *   `contentContainerStyle` com `paddingHorizontal`, esses 100% passam a ser da
@@ -25,7 +28,7 @@ export default function NeoHeroHeader({
     scrollY,
     source,
     title,
-    height = 260,
+    height = Neo.layout.heroBanner,
     bleed = 0,
 }) {
     const themeColors = useThemeColors();

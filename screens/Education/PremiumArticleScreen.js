@@ -13,7 +13,7 @@ import SafeGradient from '../../components/SafeGradient';
 import MarkdownLeve, { renderInline } from '../../components/MarkdownLeve';
 
 const { width } = Dimensions.get('window');
-const HERO_HEIGHT = Math.round(width * 0.78);
+const HERO_HEIGHT = Neo.layout.heroBanner;
 
 /**
  * Hero fallback estilizado (igual ao EnvironmentGuideNeoScreen)

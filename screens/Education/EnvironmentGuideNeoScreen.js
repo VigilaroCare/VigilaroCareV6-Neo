@@ -10,9 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../../context/AccessibilityContext';
 import SafeGradient from '../../components/SafeGradient';
 import { t_field } from '../../utils/getLocalizedField';
+import { DS as Neo } from '../../utils/DesignSystem2026';
 
 const { width } = Dimensions.get('window');
-const HERO_HEIGHT = Math.round(width * 0.78);
+const HERO_HEIGHT = Neo.layout.heroBanner;
 
 /**
  * Hero estilizado para fallback ou ambientes sem foto adequada.

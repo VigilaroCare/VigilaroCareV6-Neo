@@ -4,7 +4,7 @@
  */
 
 import { useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import ReviewImage from '../../components/ReviewImage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -29,7 +29,7 @@ export default function PetPregnancyGuideScreen({ navigation, route }) {
     const surface = isDark ? themeColors.neutral[100] : themeColors.neutral.white;
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const HERO_HEIGHT = Neo.layout.heroBanner;
 
     const title = t('petPregnancy.title', 'Prenhez e ninhadas');
     const cor = petHero?.cor || themeColors.categoria.rose.fill;

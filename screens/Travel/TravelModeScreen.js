@@ -70,6 +70,7 @@ const TRAVEL_PICTOGRAMS = {
     transporte_onibus:     require('../../assets/illustrations/glifos/pictogram-transporte-onibus.png'),
     transporte_trem:       require('../../assets/illustrations/glifos/pictogram-transporte-trem.png'),
     transporte_navio:      require('../../assets/illustrations/glifos/pictogram-transporte-navio.png'),
+    transporte_moto:       require('../../assets/illustrations/glifos/pictogram-transporte-moto.png'),
 
     // companhia
     companhia_criancas:    require('../../assets/illustrations/glifos/pictogram-companhia-criancas.png'),
@@ -164,7 +165,7 @@ export default function TravelModeScreen({ navigation }) {
     const [tripPurpose, setTripPurpose] = useState('lazer'); // 'lazer' | 'trabalho'
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 200;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({
@@ -393,9 +394,8 @@ export default function TravelModeScreen({ navigation }) {
                                 { key: 'navio', picto: 'transporte_navio', label: t('travel.ship', 'Cruzeiro / Navio') },
                                 // Moto entrou em 23/10/2026 (pedido do Agnaldo): faltava um dos
                                 // modais mais usados, e a grade de 2 colunas tinha uma vaga.
-                                // PENDENTE: a arte ceramica. O pictograma cai no fallback ate
-                                // existir `glifos/pictogram-transporte-moto.png`, gerado a partir
-                                // do desenho original por scripts/normalizar_pictogramas.js.
+                                // Arte dele, normalizada no mesmo dia: tinta 0,1165 e caixa 0,48,
+                                // em família com carro (0,1060/0,50) e avião (0,1041/0,51).
                                 { key: 'moto', picto: 'transporte_moto', label: t('travel.motorcycle', 'Moto') },
                             ].map(opt => (
                                 <CeramicSelectTile

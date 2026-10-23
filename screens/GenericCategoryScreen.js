@@ -22,6 +22,7 @@ import { SAFETY_CONDO } from '../data/safety_condo';
 import { SAFETY_GAS } from '../data/safety_gas';
 import { SAFETY_CAREGIVERS } from '../data/safety_caregivers';
 import { getArticlesByCategory } from '../data/SafetyArticlesDB';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 // Mapping ID -> Data
 const DATA_MAP = {
@@ -123,7 +124,7 @@ export default function GenericCategoryScreen({ route, navigation }) {
     const showImage = !!finalImageUrl;
 
         const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

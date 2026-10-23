@@ -8,6 +8,7 @@ import ReviewImage from '../../components/ReviewImage';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { DS as Neo } from '../../utils/DesignSystem2026';
 
 export default function LazerFeriasMenuScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -44,7 +45,7 @@ export default function LazerFeriasMenuScreen({ navigation }) {
     ];
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

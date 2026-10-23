@@ -12,6 +12,7 @@ import AppBackground from '../components/AppBackground';
 import ReviewImage from '../components/ReviewImage';
 import NeoIcon from '../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import { DS as Neo } from '../utils/DesignSystem2026';
 
 export default function EduContentDetailScreen({ navigation, route }) {
     const { t } = useTranslation('common');
@@ -22,7 +23,7 @@ export default function EduContentDetailScreen({ navigation, route }) {
     const { title, image, sections = [] } = route.params || {};
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
 
     const heroTransform = [
         {

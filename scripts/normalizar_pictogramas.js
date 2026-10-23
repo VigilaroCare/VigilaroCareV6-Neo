@@ -18,6 +18,8 @@
  * O tile creme, o canto e a sombra passam a ser desenhados pelo PictogramTile.
  *
  * Uso: node scripts/normalizar_pictogramas.js [--pasta home-pictograms] [--base 180]
+ *      --limpo  quando a arte de origem JA vem transparente, sem o tile creme
+ *               e sem a moldura pintados (o formato novo; ver extrairLimpo)
  */
 const fs = require('fs');
 const path = require('path');
@@ -122,10 +124,29 @@ function extrair(png) {
     return { alfa, cor };
 }
 
-function processar(arquivo, base) {
+// Arte JA LIMPA: desenho em fundo transparente, sem tile nem moldura pintados.
+// A `extrair()` acima existe para a arte ANTIGA, que vinha sobre o tile creme —
+// ela identifica o creme e desfaz a mistura para recuperar a cor do glifo. Numa
+// arte transparente nao ha creme de onde partir, e essa matematica apaga o
+// desenho (medido em 23/10/2026: a moto saiu com 0,05% de tinta, uns respingos).
+// Aqui o alfa e a cor ja sao os do proprio PNG; o resto do pipeline — tamanho
+// optico, centro de massa, verde unico e as tres densidades — segue igual.
+function extrairLimpo(png) {
+    const { width: w, height: h, data } = png;
+    const alfa = new Float32Array(w * h);
+    const cor = new Float32Array(w * h * 3);
+    for (let p = 0; p < w * h; p++) {
+        const i = p * 4;
+        alfa[p] = data[i + 3] / 255;
+        cor[p * 3] = data[i]; cor[p * 3 + 1] = data[i + 1]; cor[p * 3 + 2] = data[i + 2];
+    }
+    return { alfa, cor };
+}
+
+function processar(arquivo, base, limpo) {
     const src = PNG.sync.read(fs.readFileSync(arquivo));
     const { width: w, height: h } = src;
-    const { alfa, cor } = extrair(src);
+    const { alfa, cor } = limpo ? extrairLimpo(src) : extrair(src);
 
     // caixa, centro de massa, luminância média e ÁREA DE TINTA do glifo
     let x0 = w, y0 = h, x1 = -1, y1 = -1, peso = 0, sx = 0, sy = 0, sL = 0, tinta = 0;
@@ -199,13 +220,14 @@ function processar(arquivo, base) {
 
 const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n); return i >= 0 && a[i + 1] ? a[i + 1] : p; };
 const pasta = arg('pasta', 'home-pictograms');
+const limpo = process.argv.includes('--limpo');  // arte ja transparente, sem tile
 const base = Number(arg('base', 180));
 const dir = path.join(ORIGEM, pasta);
 const arquivos = fs.readdirSync(dir).filter((f) => f.endsWith('.png'));
 
 console.log(`Normalizando ${arquivos.length} peça(s) de ${pasta} — verde único, tamanho óptico, base ${base}px.`);
 for (const f of arquivos) {
-    const r = processar(path.join(dir, f), base);
+    const r = processar(path.join(dir, f), base, limpo);
     console.log('  ' + f.padEnd(34), r ? 'caixa ' + (r.caixaFinal * 100).toFixed(0) + '% (tinta equilibrada)' : 'FALHOU: glifo nao encontrado');
 }
 console.log(`\nGlifos em assets/illustrations/glifos/ (1x, @2x, @3x). Originais intactos.`);

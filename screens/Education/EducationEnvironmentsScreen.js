@@ -115,7 +115,7 @@ export default function EducationEnvironmentsScreen({ navigation, route }) {
 
     const { heroImage } = route?.params || {};
     const scrollY = React.useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

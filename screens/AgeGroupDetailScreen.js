@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NeoIcon from '../components/NeoIcon';
@@ -25,7 +25,7 @@ export default function AgeGroupDetailScreen({ route, navigation }) {
     const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const HERO_HEIGHT = Neo.layout.heroBanner;
 
     if (!group) return null;
 

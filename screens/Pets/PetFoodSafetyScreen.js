@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { View, Text, TouchableOpacity, Linking, StyleSheet, Animated, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, Linking, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import ReviewImage from '../../components/ReviewImage';
@@ -56,7 +56,7 @@ export default function PetFoodSafetyScreen({ navigation, route }) {
 
   const surface = isDark ? Neo.colors.neutral[100] : colors.neutral.white;
   const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+  const HERO_HEIGHT = Neo.layout.heroBanner;
 
   const title = t('petFood.headerTitle', 'Lista negra');
   const cor = petHero?.cor || '#D32F2F';

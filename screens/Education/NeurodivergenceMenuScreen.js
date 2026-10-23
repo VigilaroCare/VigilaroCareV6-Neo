@@ -24,7 +24,7 @@ export default function NeurodivergenceMenuScreen({ navigation, route }) {
     const capaSource = heroImage ? (typeof heroImage === 'string' ? { uri: heroImage } : heroImage) : require('../../assets/images/headers/header-neuro.jpeg');
 
     const scrollY = React.useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = 280;
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const heroTransform = [
         {
             translateY: scrollY.interpolate({

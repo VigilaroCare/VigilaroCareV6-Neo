@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import ReviewImage from '../../components/ReviewImage';
@@ -8,6 +8,7 @@ import NeoIcon from '../../components/NeoIcon';
 import NeoHorizontalCard from '../../components/NeoHorizontalCard';
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 import { t_deep } from '../../utils/getLocalizedField';
+import { DS as Neo } from '../../utils/DesignSystem2026';
 
 export default function JardinagemSeguraScreen({ navigation }) {
     const { t } = useTranslation('common');
@@ -249,7 +250,7 @@ export default function JardinagemSeguraScreen({ navigation }) {
     };
 
     const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Math.round(Dimensions.get('window').width * 0.78);
+    const HERO_HEIGHT = Neo.layout.heroBanner;
     const surface = isDark ? themeColors.neutral[100] : '#FFFFFF';
 
     const heroTransform = [
