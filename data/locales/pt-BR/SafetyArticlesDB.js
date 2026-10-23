@@ -214,7 +214,7 @@ Acidentes com escorpiões, aranhas e cobras são mais comuns no calor, em época
         content: `
 # Kit de Primeiros Socorros Básico
 
-Ter uma caixinha com itens básicos de saúde em casa evita correria e pânico na hora de um pequeno corte ou queda.
+Ter uma caixinha com itens básicos de saúde em casa ajuda a evitar correria e pânico na hora de um pequeno corte ou queda.
 
 ### O que colocar na caixinha:
 1.  **Curativos:** Gaze estéril, esparadrapo antialérgico, band-aids de vários tamanhos e ataduras.
@@ -353,9 +353,9 @@ A cozinha concentra a maior parte dos acidentes domésticos. Proteja-se com essa
         content: `
 # Redes de Proteção: Janelas e Sacadas
 
-Se você mora em apartamento ou casa com mais de um andar, as redes de proteção são a única barreira física realmente eficaz contra quedas graves.
+Se você mora em apartamento ou casa com mais de um andar, as redes de proteção estão entre as barreiras físicas mais eficazes contra quedas graves.
 
-### Onde a proteção é obrigatória:
+### Onde a proteção é indispensável:
 * Janelas de quartos e salas.
 * Sacadas, varandas e mezaninos.
 * Áreas de serviço com janelas baixas.

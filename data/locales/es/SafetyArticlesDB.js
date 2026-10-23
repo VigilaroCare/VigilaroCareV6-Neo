@@ -130,7 +130,7 @@ Evite cortes, quemaduras y contaminación.
         content: `
 # Mallas de Seguridad
 
-Si vive en un apartamento o casa de varios pisos, la malla es obligatoria.
+Si vive en un apartamento o casa de varios pisos, la malla es muy recomendable.
 
 ### Consejos de Instalación:
 * **Norma Técnica:** Exija mallas certificadas.

@@ -14,9 +14,9 @@ export const INTRO_CONCEPTS = [
         definicao: 'Segurança doméstica não é só prevenção, é planejamento. É o conjunto de medidas adotadas para reduzir riscos e preservar a integridade física de toda a família.',
         definicao_en: 'Home safety is not just prevention — it is planning. It is the set of measures taken to minimize risks and protect the physical well-being of the whole family.',
         definicao_es: 'La seguridad en el hogar no es solo prevención: es planificación. Es el conjunto de medidas adoptadas para reducir riesgos y preservar la integridad física de toda la familia.',
-        importancia: 'A maioria dos acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos previne tragédias antes que aconteçam.',
-        importancia_en: 'Most accidents happen where we should be safest: at home. Understanding the fundamentals prevents tragedies before they happen.',
-        importancia_es: 'La mayoría de los accidentes ocurren donde deberíamos estar más seguros: en casa. Entender los fundamentos previene tragedias antes de que ocurran.',
+        importancia: 'Muitos acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos ajuda a prevenir tragédias antes que aconteçam.',
+        importancia_en: 'Many accidents happen where we should be safest: at home. Understanding the fundamentals helps prevent tragedies before they happen.',
+        importancia_es: 'Muchos accidentes ocurren donde deberíamos estar más seguros: en casa. Entender los fundamentos ayuda a prevenir tragedias antes de que ocurran.',
         curiosidades: [
             'As quedas são a principal causa de acidentes domésticos no Brasil.',
             'Crianças e idosos são os grupos mais vulneráveis.'
@@ -45,12 +45,12 @@ export const INTRO_CONCEPTS = [
         comoIdentificar: [
             '🗓️ DIÁRIA: Devemos diariamente estar muito atentos ao nosso ambiente doméstico, já que ele deve ser um refúgio e não uma armadilha criada por nós mesmos. E para isso, a prevenção deve ser diária e jamais negligenciada pela pressa, distrações ou mesmo por estarmos habituados a conviver com situações ou práticas com potencial de causarem acidentes.',
             '🔄 DINÂMICA: Tal como nossas vidas, a prevenção deve ser dinâmica, pois devemos estar sempre atentos em nossos afazeres do dia a dia. Precisamos ser abrangentes em relação às diferentes características dos nossos lares, tendo constantemente um olhar crítico e atento.',
-            '♾️ DURADOURA: Somente a constância garante a proteção real. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos o que nos é mais precioso: nossa saúde e bem-estar. Ser preventivo será sempre mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
+            '♾️ DURADOURA: A proteção real depende da constância. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos o que nos é mais precioso: nossa saúde e bem-estar. Ser preventivo será sempre mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família.'
         ],
         comoIdentificar_en: [
             '🗓️ DAILY: Every day we must pay close attention to our home, because it should be a refuge, not a trap of our own making. For that, prevention must be daily and never neglected because of haste, distraction, or simply because we have grown used to living with situations or habits that could cause accidents.',
             '🔄 DYNAMIC: Just like our lives, prevention must be dynamic, because we must always stay alert in our everyday tasks. We need to take in the different characteristics of our homes, always with a critical and attentive eye.',
-            '♾️ DURABLE: Only consistency guarantees real protection. Prevention must be continuous so that new dangers do not threaten the family\'s health and well-being. Prevention can keep new dangerous situations from needlessly exposing us to accidents that could take away, from us and the people we love, what is most precious to us: our health and well-being. Being preventive will always be better than an easily avoidable emergency. Prevention spares us the anguish of seeking medical care, whether for ourselves or someone in our family.',
+            '♾️ DURABLE: Real protection depends on consistency. Prevention must be continuous so that new dangers do not threaten the family\'s health and well-being. Prevention can keep new dangerous situations from needlessly exposing us to accidents that could take away, from us and the people we love, what is most precious to us: our health and well-being. Being preventive will always be better than an easily avoidable emergency. Prevention spares us the anguish of seeking medical care, whether for ourselves or someone in our family.',
         ],
         comoIdentificar_es: [
             '🗓️ DIARIA: Debemos estar muy atentos a nuestro hogar todos los días, ya que debe ser un refugio y no una trampa creada por nosotros mismos. Para ello, la prevención debe ser diaria y nunca descuidada por la prisa, las distracciones o por estar acostumbrados a convivir con situaciones o prácticas que pueden causar accidentes.',
@@ -111,9 +111,9 @@ La Metodología de Prevención 3D cobra vida a través de la lógica estructural
         definicao: 'Os “quase acidentes”, e também os acidentes sem ferimentos ou danos materiais, não podem ser ignorados, uma vez que eles são “avisos” do que pode ou, provavelmente, irá acontecer se os atos e condições inseguras forem ignorados. Lembre-se: Um acidente acontece, mais cedo ou mais tarde, quando tais “avisos” são ignorados.',
         definicao_en: '"Bird\'s Pyramid" concept: For every serious accident, there were hundreds of "near misses" or unsafe behaviors that were ignored.',
         definicao_es: 'Concepto de la "Pirámide de Bird": Por cada accidente grave, hubo cientos de "casi accidentes" o comportamientos inseguros que fueron ignorados.',
-        importancia: 'Se você ignorar o "quase caiu" (tropeção no tapete), eventualmente a queda real vai acontecer. Tratar o quase acidente previne o acidente fatal.',
-        importancia_en: 'If you ignore the "almost fell" (tripping on a rug), eventually the real fall will happen. Treating near misses prevents fatal accidents.',
-        importancia_es: 'Si ignoras el "casi caí" (tropezón en la alfombra), eventualmente la caída real ocurrirá. Tratar el casi accidente previene el accidente fatal.',
+        importancia: 'Se você ignorar o "quase caiu" (tropeção no tapete), eventualmente a queda real vai acontecer. Tratar o quase acidente ajuda a prevenir o acidente grave.',
+        importancia_en: 'If you ignore the "almost fell" (tripping on a rug), eventually the real fall will happen. Dealing with near misses helps prevent serious accidents.',
+        importancia_es: 'Si ignoras el "casi caí" (tropezón en la alfombra), eventualmente la caída real ocurrirá. Tratar el casi accidente ayuda a prevenir el accidente grave.',
         comoEvitar: [
             'Relate e corrija imediatamente qualquer "susto".',
             'Não diga "foi só um susto", diga "foi um aviso".',

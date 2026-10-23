@@ -2728,7 +2728,7 @@ export const animaisCatalog = [
         primeirosSocorros: {
             "fazer": [
                 "Hospital IMEDIATAMENTE ao primeiro sintoma após comer peixe",
-                "Ventilação mecânica (respirador) salva vidas"
+                "Ventilação mecânica (respirador) pode salvar a vida"
             ],
             "naoFazer": [
                 "Não esperar passar"

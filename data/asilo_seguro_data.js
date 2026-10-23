@@ -72,9 +72,9 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
           texto_en: 'Strong and continuous lighting, especially at night (guide lights)',
           texto_es: 'Iluminación fuerte y continua, principalmente de noche (luces de guía)',
           critico: true,
-          detalhes: 'Idosos possuem sensibilidade visual reduzida. Luzes de vigília evitam desorientação.',
-          detalhes_en: 'Elderly have reduced visual sensitivity. Night lights prevent disorientation.',
-          detalhes_es: 'Los ancianos tienen sensibilidad visual reducida. Las luces nocturnas evitan la desorientación.'
+          detalhes: 'Idosos possuem sensibilidade visual reduzida. Luzes de vigília ajudam a evitar a desorientação.',
+          detalhes_en: 'Elderly have reduced visual sensitivity. Night lights help prevent disorientation.',
+          detalhes_es: 'Los ancianos tienen sensibilidad visual reducida. Las luces nocturnas ayudan a evitar la desorientación.'
         },
         {
           id: 'asilo_pisos',
@@ -132,9 +132,9 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
           texto_en: 'Toilet seat is raised for easier use',
           texto_es: 'Asiento del inodoro elevado para facilitar el uso',
           critico: false,
-          detalhes: 'Vasos elevados exigem menos esforço dos joelhos e evitam tonturas ao levantar.',
-          detalhes_en: 'Raised toilets require less knee effort and prevent dizziness when standing.',
-          detalhes_es: 'Los inodoros elevados requieren menos esfuerzo de rodillas y evitan mareos al levantarse.'
+          detalhes: 'Vasos elevados exigem menos esforço dos joelhos e reduzem as tonturas ao levantar.',
+          detalhes_en: 'Raised toilets require less knee effort and reduce dizziness when standing.',
+          detalhes_es: 'Los inodoros elevados requieren menos esfuerzo de rodillas y reducen los mareos al levantarse.'
         }
       ]
     },
@@ -172,9 +172,9 @@ La seguridad en instituciones para ancianos va más allá de la accesibilidad f�
           texto_en: 'Beds have adjustable height and retractable rails to prevent falls',
           texto_es: 'Las camas tienen altura regulable y barandillas retráctiles para evitar caídas',
           critico: false,
-          detalhes: 'A grade evita que o idoso role para fora da cama durante o sono.',
-          detalhes_en: 'The rail prevents the elderly from rolling out of bed during sleep.',
-          detalhes_es: 'La barandilla evita que el anciano ruede fuera de la cama durante el sueño.'
+          detalhes: 'A grade ajuda a evitar que o idoso role para fora da cama durante o sono.',
+          detalhes_en: 'The rail helps keep an older person from rolling out of bed during sleep.',
+          detalhes_es: 'La barandilla ayuda a evitar que la persona mayor ruede fuera de la cama durante el sueño.'
         }
       ]
     },

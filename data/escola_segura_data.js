@@ -118,9 +118,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Adequate lighting in all areas',
           texto_es: 'Iluminación adecuada en todos los ambientes',
           critico: false,
-          detalhes: 'Boa iluminação previne acidentes e favorece a aprendizagem.',
-          detalhes_en: 'Good lighting prevents accidents and promotes learning.',
-          detalhes_es: 'La buena iluminación previene accidentes y favorece el aprendizaje.'
+          detalhes: 'Boa iluminação ajuda a prevenir acidentes e favorece a aprendizagem.',
+          detalhes_en: 'Good lighting helps prevent accidents and supports learning.',
+          detalhes_es: 'La buena iluminación ayuda a prevenir accidentes y favorece el aprendizaje.'
         },
         {
           id: 'ventilacao',
@@ -128,9 +128,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Adequate ventilation in classrooms',
           texto_es: 'Ventilación adecuada en las aulas',
           critico: false,
-          detalhes: 'Ambiente bem ventilado previne propagação de doenças.',
-          detalhes_en: 'Well-ventilated environments prevent disease spread.',
-          detalhes_es: 'Un ambiente bien ventilado previene la propagación de enfermedades.'
+          detalhes: 'Ambiente bem ventilado reduz a propagação de doenças.',
+          detalhes_en: 'Good ventilation reduces the spread of disease.',
+          detalhes_es: 'Un ambiente bien ventilado reduce la propagación de enfermedades.'
         },
         {
           id: 'saidas-emergencia',
@@ -240,9 +240,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Crib slats with adequate spacing (max 6 cm)',
           texto_es: 'Barrotes de cunas con espaciado adecuado (máx 6 cm)',
           critico: true,
-          detalhes: 'Evita que cabeça do bebê fique presa.',
-          detalhes_en: 'Prevents the baby\'s head from getting stuck.',
-          detalhes_es: 'Evita que la cabeza del bebé quede atrapada.'
+          detalhes: 'Reduz o risco de a cabeça do bebê ficar presa.',
+          detalhes_en: 'Reduces the risk of the baby\'s head getting stuck.',
+          detalhes_es: 'Reduce el riesgo de que la cabeza del bebé quede atrapada.'
         }
       ]
     },
@@ -272,15 +272,15 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Bathrooms clean and well maintained',
           texto_es: 'Baños limpios y bien mantenidos',
           critico: true,
-          detalhes: 'Higiene previne doenças e infecções.',
-          detalhes_en: 'Hygiene prevents diseases and infections.',
-          detalhes_es: 'La higiene previene enfermedades e infecciones.'
+          detalhes: 'Higiene ajuda a prevenir doenças e infecções.',
+          detalhes_en: 'Hygiene helps prevent diseases and infections.',
+          detalhes_es: 'La higiene ayuda a prevenir enfermedades e infecciones.'
         },
         {
           id: 'banheiro-privacidade',
-          texto: 'Divisórias garantindo privacidade',
-          texto_en: 'Partitions ensuring privacy',
-          texto_es: 'Divisiones que garanticen privacidad',
+          texto: 'Divisórias que preservam a privacidade',
+          texto_en: 'Partitions that preserve privacy',
+          texto_es: 'Divisiones que preserven la privacidad',
           critico: false,
           detalhes: 'Importante para desenvolvimento da autonomia e pudor.',
           detalhes_en: 'Important for developing autonomy and modesty.',
@@ -312,9 +312,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Adequate ventilation',
           texto_es: 'Ventilación adecuada',
           critico: false,
-          detalhes: 'Previne mofo e umidade excessiva.',
-          detalhes_en: 'Prevents mold and excessive humidity.',
-          detalhes_es: 'Previene moho y humedad excesiva.'
+          detalhes: 'Ajuda a prevenir mofo e umidade excessiva.',
+          detalhes_en: 'Helps prevent mold and excessive humidity.',
+          detalhes_es: 'Ayuda a prevenir el moho y la humedad excesiva.'
         },
         {
           id: 'fraldario',
@@ -404,9 +404,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Playground area fenced or delimited',
           texto_es: 'Área del parque infantil cercada o delimitada',
           critico: false,
-          detalhes: 'Impede que crianças corram para áreas perigosas.',
-          detalhes_en: 'Prevents children from running into dangerous areas.',
-          detalhes_es: 'Impide que los niños corran hacia áreas peligrosas.'
+          detalhes: 'Dificulta que crianças corram para áreas perigosas.',
+          detalhes_en: 'Makes it harder for children to run into dangerous areas.',
+          detalhes_es: 'Dificulta que los niños corran hacia áreas peligrosas.'
         },
         {
           id: 'parquinho-supervisao',
@@ -742,9 +742,9 @@ Solicite un recorrido por las instalaciones y no dude en hacer preguntas sobre l
           texto_en: 'Gates kept locked during school hours',
           texto_es: 'Portones cerrados con llave durante el horario de clases',
           critico: true,
-          detalhes: 'Impede saída não autorizada e entrada de estranhos.',
-          detalhes_en: 'Prevents unauthorized exit and stranger entry.',
-          detalhes_es: 'Impide la salida no autorizada y la entrada de extraños.'
+          detalhes: 'Dificulta a saída não autorizada e a entrada de estranhos.',
+          detalhes_en: 'Makes unauthorized exits and strangers getting in harder.',
+          detalhes_es: 'Dificulta la salida no autorizada y la entrada de extraños.'
         },
         {
           id: 'cameras',

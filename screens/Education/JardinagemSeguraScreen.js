@@ -35,20 +35,20 @@ export default function JardinagemSeguraScreen({ navigation }) {
             conteudo_es: 'La jardinería y el cuidado de huertos tienen riesgos específicos. Es esencial y obligatorio usar guantes de jardinería de buena calidad, calzado cerrado (o botas de caña alta), camisas de manga larga y pantalones con los bajos cerrados.',
             conteudo_ptpt: 'A prática da jardinagem e a manutenção de hortas apresentam riscos específicos. É essencial e obrigatório usar luvas de jardinagem de boa qualidade, calçado fechado (ou botas de cano alto), camisas de manga comprida e calças com as bainhas fechadas.',
             prevencao: [
-                'Essa armadura impede que insetos entrem na roupa e piquem a pele.',
-                'Evita que a pele seja queimada pelo contato com seiva leitosa (látex) de plantas nocivas ao podá-las.'
+                'Essa armadura dificulta que insetos entrem na roupa e piquem a pele.',
+                'Reduz o risco de a pele ser queimada pelo contato com seiva leitosa (látex) de plantas nocivas ao podá-las.'
             ],
             prevencao_en: [
-                'This armour stops insects getting into your clothes and stinging your skin.',
-                'It prevents skin burns from the milky sap (latex) of harmful plants when pruning them.'
+                'This armour makes it harder for insects to get into your clothes and sting your skin.',
+                'It lowers the risk of skin burns from the milky sap (latex) of harmful plants when pruning them.'
             ],
             prevencao_es: [
-                'Esta armadura impide que los insectos se metan en la ropa y piquen la piel.',
-                'Evita que la piel se queme con la savia lechosa (látex) de plantas dañinas al podarlas.'
+                'Esta armadura dificulta que los insectos se metan en la ropa y piquen la piel.',
+                'Reduce el riesgo de que la piel se queme con la savia lechosa (látex) de plantas dañinas al podarlas.'
             ],
             prevencao_ptpt: [
-                'Esta armadura impede que os insetos entrem na roupa e piquem a pele.',
-                'Evita que a pele seja queimada pelo contacto com a seiva leitosa (látex) de plantas nocivas ao podá-las.'
+                'Esta armadura dificulta que os insetos entrem na roupa e piquem a pele.',
+                'Reduz o risco de a pele ser queimada pelo contacto com a seiva leitosa (látex) de plantas nocivas ao podá-las.'
             ]
         },
         {

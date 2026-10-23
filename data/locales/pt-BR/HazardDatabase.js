@@ -128,7 +128,7 @@ export const HAZARD_DATABASE_PT_BR = {
                     { type: 'corte', desc: 'O vidro temperado pode estourar com impactos nas quinas, espalhando cacos afiados.', target: ['todos'] },
                     { type: 'aprisionamento', desc: 'A porta do box pode emperrar se houver queda e desmaio ao encostar nela.', target: ['idoso'] }
                 ],
-                expert_tip: 'Coloque uma película de segurança transparente no vidro do box. Ela impede que os cacos voem se o vidro quebrar.'
+                expert_tip: 'Coloque uma película de segurança transparente no vidro do box. Ela segura os cacos e reduz o risco de cortes se o vidro quebrar.'
             },
             {
                 id: 'tapete_comum',

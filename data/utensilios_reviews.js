@@ -399,7 +399,7 @@ export const UTENSILIOS_REVIEWS = [
         ],
         prevencao: [
             'Guarde sacos plásticos em local alto, fechado e fora do alcance de crianças',
-            'Dê um nó nos sacos antes de guardar, impedindo que sejam abertos facilmente',
+            'Dê um nó nos sacos antes de guardar, para não serem abertos com facilidade',
             'Descarte imediatamente sacos de embalagem de produtos — não os deixe espalhados',
             'Jamais deixe sacos plásticos dentro ou próximo do berço, cama ou área de brincadeira',
             'Substitua sacos plásticos por recipientes reutilizáveis quando possível',

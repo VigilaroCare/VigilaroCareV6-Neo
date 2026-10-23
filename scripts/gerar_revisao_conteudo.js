@@ -473,6 +473,26 @@ const TEMAS = [
             + 'Antes, nenhuma necessidade especial de pessoa mudava a vistoria nem o Mapa de Riscos.',
         fontes: [],
     },
+    // Segunda varredura de cautela (22/10/2026), pedida pelo Agnaldo sem esperar o CJ.
+    {
+        nome: 'Cautela 2a Varredura',
+        sigla: 'CV',
+        pendentes: ['m030'],
+        marcarMudancas: false,
+        antes: '_antes-CV.json',
+        dataMudancas: '22/10/2026',
+        rotulos: {
+            'data/radarConteudoDB.js': 'Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)',
+            'locales/pt-BR/common.json': 'Textos de interface',
+        },
+        descricao: 'Segunda varredura de cautela, no mesmo criterio da primeira (CJ): promessa de eficacia vira '
+            + '"ajuda a", "reduz o risco", "dificulta"; "obrigatorio" sem lei por tras vira "indispensavel" ou "sempre"; '
+            + 'absolutos ("infaliveis", "a unica barreira", "tropeco garantido") sairam. Instrucao de seguranca e de '
+            + 'emergencia continua firme. Destaque: o Radar Vigilaro (fatos de impacto) trazia numeros e nomes de '
+            + 'documento que nao se confirmam — ficou so o numero verificado, com a fonte real; o resto virou afirmacao '
+            + 'sem numero, e uma materia saiu (quedas de 2023). A linha ANTES mostra como estava.',
+        fontes: [],
+    },
 ];
 
 // ---------------------------------------------------------------------------

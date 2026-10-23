@@ -136,7 +136,7 @@ Avoid cuts, burns, and contamination.
         content: `
 # Safety Nets
 
-If you live in a multi-story house or apartment, a safety net is mandatory.
+If you live in a multi-storey house or a flat, a safety net is strongly recommended.
 
 ### Installation Tips:
 * **Technical Standard:** Demand certified nets.

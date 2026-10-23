@@ -72,9 +72,9 @@ export const PET_WELLNESS_DATA = {
                 },
                 {
                     pet: 'Exercício e Castração', pet_en: 'Exercise and Neutering', pet_es: 'Ejercicio y Castración',
-                    texto: 'Passeios diários (cães). Brinquedos interativos (gatos). Castração previne doenças e comportamentos indesejados.',
-                    texto_en: 'Daily walks (dogs). Interactive toys (cats). Neutering prevents diseases and unwanted behaviors.',
-                    texto_es: 'Paseos diarios (perros). Juguetes interactivos (gatos). La castración previene enfermedades y comportamientos no deseados.'
+                    texto: 'Passeios diários (cães). Brinquedos interativos (gatos). A castração ajuda a prevenir algumas doenças — converse com o veterinário.',
+                    texto_en: 'Daily walks (dogs). Interactive toys (cats). Neutering helps prevent some diseases — talk to your vet.',
+                    texto_es: 'Paseos diarios (perros). Juguetes interactivos (gatos). La castración ayuda a prevenir algunas enfermedades: consulte con el veterinario.'
                 }
             ]
         },

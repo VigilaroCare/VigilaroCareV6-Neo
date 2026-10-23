@@ -65,15 +65,15 @@ export const areasInternas = [
         cor: '#FFCA28',
         riscos: 'Queimaduras, cortes.', riscos_ptpt: 'Queimaduras, cortes.', riscos_es: 'Quemaduras, cortes.', riscos_en: 'Burns, cuts.',
         oQueFazer: [
-            'A toalha de mesa é curta ou segura (evita que crianças puxem)?',
+            'A toalha de mesa é curta ou segura (dificulta que crianças a puxem)?',
             'Há espaço livre para circulação ao redor das cadeiras?',
             'Objetos de vidro estão longe das bordas da mesa?'
         ], oQueFazer_ptpt: [
-            'A toalha de mesa é curta ou está presa (evita que as crianças a puxem)?',
+            'A toalha de mesa é curta ou está presa (dificulta que as crianças a puxem)?',
             'Há espaço livre para circular à volta das cadeiras?',
             'Os objetos de vidro estão longe das bordas da mesa?',
         ], oQueFazer_es: [
-            '¿El mantel es corto o está sujeto (evita que los niños tiren de él)?',
+            '¿El mantel es corto o está sujeto (dificulta que los niños tiren de él)?',
             '¿Hay espacio libre para circular alrededor de las sillas?',
             '¿Los objetos de vidrio están lejos de los bordes de la mesa?',
         ], oQueFazer_en: [
@@ -336,19 +336,19 @@ export const areasInternas = [
         cor: '#5C6BC0',
         riscos: 'Elétricos, bagunça.', riscos_ptpt: 'Elétricos, desarrumação.', riscos_es: 'Eléctricos, desorden.', riscos_en: 'Electrical, clutter.',
         oQueFazer: [
-            'O chão está livre de objetos (evita tropeços)?',
+            'O chão está livre de objetos (reduz o risco de tropeços)?',
             'Os eletrônicos (sem sobrecarga) e os fios estão organizados?',
             'A postura na cadeira de estudo/PC é adequada?'
         ], oQueFazer_ptpt: [
-            'O chão está livre de objetos (evita tropeções)?',
+            'O chão está livre de objetos (reduz o risco de tropeções)?',
             'Os eletrónicos e os fios estão organizados (sem sobrecarga)?',
             'A postura na cadeira de estudo/computador é adequada?',
         ], oQueFazer_es: [
-            '¿El suelo está libre de objetos (evita tropiezos)?',
+            '¿El suelo está libre de objetos (reduce el riesgo de tropiezos)?',
             '¿Los aparatos electrónicos y cables están ordenados (sin sobrecarga)?',
             '¿La postura en la silla de estudio/ordenador es adecuada?',
         ], oQueFazer_en: [
-            'Is the floor clear of objects (avoids trips)?',
+            'Is the floor clear of objects (reduces the risk of trips)?',
             'Are electronics and cables organised (no overload)?',
             'Is posture at the study/computer chair appropriate?',
         ],
@@ -454,25 +454,25 @@ export const areasInternas = [
         oQueFazer: [
             'O piso do box tem tapete antiderrapante?',
             'Há barras de apoio no box e vaso (essencial para idosos e pessoas com mobilidade reduzida)?',
-            'A tampa do vaso tem trava (evita afogamento de crianças)?',
+            'A tampa do vaso tem trava (reduz o risco de afogamento de crianças)?',
             'Medicamentos/Giletes estão fora de alcance?',
             'O piso é mantido seco após o banho?'
         ], oQueFazer_ptpt: [
             'O piso do duche tem tapete antiderrapante?',
             'Há barras de apoio no duche e junto à sanita (essencial para idosos e pessoas com mobilidade reduzida)?',
-            'A tampa da sanita tem bloqueio (evita o afogamento de crianças)?',
+            'A tampa da sanita tem bloqueio (reduz o risco de afogamento de crianças)?',
             'Os medicamentos e as lâminas estão fora do alcance?',
             'O piso é mantido seco após o banho?',
         ], oQueFazer_es: [
             '¿El suelo de la ducha tiene alfombrilla antideslizante?',
             '¿Hay barras de apoyo en la ducha y junto al inodoro (esencial para personas mayores y con movilidad reducida)?',
-            '¿La tapa del inodoro tiene cierre (evita el ahogamiento de niños)?',
+            '¿La tapa del inodoro tiene cierre (reduce el riesgo de ahogamiento de niños)?',
             '¿Los medicamentos y las cuchillas están fuera del alcance?',
             '¿El suelo se mantiene seco después de la ducha?',
         ], oQueFazer_en: [
             'Does the shower floor have a non-slip mat?',
             'Are there grab bars in the shower and by the toilet (essential for older people and anyone with reduced mobility)?',
-            'Does the toilet lid have a lock (prevents children drowning)?',
+            'Does the toilet lid have a lock (reduces the risk of children drowning)?',
             'Are medicines and razors out of reach?',
             'Is the floor kept dry after showering?',
         ],

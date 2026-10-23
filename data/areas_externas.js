@@ -5,25 +5,25 @@ export const areasExternas = [
         emoji: '🌳', icone: 'Tree',
         situacao: 'Área externa', situacao_ptpt: 'Zona exterior', situacao_es: 'Zona exterior', situacao_en: 'Outdoor area',
         oQueFazer: [
-            'O local está limpo e sem entulhos/mato alto (evita escorpiões/ratos)?',
+            'O local está limpo e sem entulhos/mato alto (ajuda a afastar escorpiões e ratos)?',
             'O piso é plano e sem buracos (risco de queda)?',
             'Piso cerâmico/cimentado é antiderrapante?',
             'A iluminação é boa nas passagens (para segurança noturna)?',
             'Não há acesso fácil para a rua (portão trancado)?'
         ], oQueFazer_ptpt: [
-            'O local está limpo e sem entulho ou mato alto (evita escorpiões e ratos)?',
+            'O local está limpo e sem entulho ou mato alto (ajuda a afastar escorpiões e ratos)?',
             'O piso é plano e sem buracos (risco de queda)?',
             'O piso cerâmico ou de cimento é antiderrapante?',
             'A iluminação é boa nas passagens (segurança à noite)?',
             'Não há acesso fácil para a rua (portão trancado)?',
         ], oQueFazer_es: [
-            '¿El lugar está limpio, sin escombros ni maleza alta (evita escorpiones y ratas)?',
+            '¿El lugar está limpio, sin escombros ni maleza alta (ayuda a alejar escorpiones y ratas)?',
             '¿El suelo es llano y sin agujeros (riesgo de caída)?',
             '¿El suelo cerámico o de cemento es antideslizante?',
             '¿La iluminación es buena en las zonas de paso (seguridad de noche)?',
             '¿No hay salida fácil a la calle (puerta cerrada con llave)?',
         ], oQueFazer_en: [
-            'Is the area clean, with no rubble or tall weeds (keeps scorpions and rats away)?',
+            'Is the area clean, with no rubble or tall weeds (helps keep scorpions and rats away)?',
             'Is the ground level and free of holes (fall risk)?',
             'Is tiled or concrete flooring non-slip?',
             'Is the lighting good along walkways (for safety at night)?',
@@ -228,22 +228,22 @@ export const areasExternas = [
         emoji: '🛠️', icone: 'Toolbox',
         situacao: 'Ferramentas', situacao_ptpt: 'Ferramentas', situacao_es: 'Herramientas', situacao_en: 'Tools',
         oQueFazer: [
-            'Ferramentas estão organizadas em caixas/painéis (evita corte)?',
+            'Ferramentas estão organizadas em caixas/painéis (reduz o risco de corte)?',
             'Ambiente é ventilado e iluminado?',
             'Produtos químicos (tinta, solvente) estão na embalagem original e rotulados?',
             'Usa EPIs (óculos, luvas) ao trabalhar?'
         ], oQueFazer_ptpt: [
-            'As ferramentas estão organizadas em caixas ou painéis (evita cortes)?',
+            'As ferramentas estão organizadas em caixas ou painéis (reduz o risco de cortes)?',
             'O local é ventilado e iluminado?',
             'Os produtos químicos (tinta, solvente) estão na embalagem original e rotulados?',
             'Usa equipamento de proteção (óculos, luvas) ao trabalhar?',
         ], oQueFazer_es: [
-            '¿Las herramientas están ordenadas en cajas o paneles (evita cortes)?',
+            '¿Las herramientas están ordenadas en cajas o paneles (reduce el riesgo de cortes)?',
             '¿El lugar está ventilado e iluminado?',
             '¿Los productos químicos (pintura, disolvente) están en su envase original y etiquetados?',
             '¿Usa protección (gafas, guantes) al trabajar?',
         ], oQueFazer_en: [
-            'Are tools organised in boxes or on pegboards (avoids cuts)?',
+            'Are tools organised in boxes or on pegboards (reduces the risk of cuts)?',
             'Is the space ventilated and well lit?',
             'Are chemicals (paint, solvent) in their original, labelled containers?',
             'Do you wear protective gear (goggles, gloves) when working?',
@@ -269,23 +269,23 @@ export const areasExternas = [
         emoji: '📦', icone: 'Package',
         situacao: 'Armazenamento', situacao_ptpt: 'Armazenamento', situacao_es: 'Almacenamiento', situacao_en: 'Storage',
         oQueFazer: [
-            'O local é limpo e ventilado (evita aranhas/mofo)?',
-            'Objetos pesados estão no chão e perto da saída (evita lesão na coluna)?',
+            'O local é limpo e ventilado (ajuda a evitar aranhas e mofo)?',
+            'Objetos pesados estão no chão e perto da saída (reduz o risco de lesão na coluna)?',
             'Há corredores livres para circulação?',
             'Caixas estão estáveis e não muito altas?'
         ], oQueFazer_ptpt: [
-            'O local está limpo e ventilado (evita aranhas e bolor)?',
-            'Os objetos pesados estão no chão e perto da saída (evita lesões na coluna)?',
+            'O local está limpo e ventilado (ajuda a evitar aranhas e bolor)?',
+            'Os objetos pesados estão no chão e perto da saída (reduz o risco de lesões na coluna)?',
             'Há corredores livres para circular?',
             'As caixas estão estáveis e não demasiado altas?',
         ], oQueFazer_es: [
-            '¿El lugar está limpio y ventilado (evita arañas y moho)?',
-            '¿Los objetos pesados están en el suelo y cerca de la salida (evita lesiones de espalda)?',
+            '¿El lugar está limpio y ventilado (ayuda a evitar arañas y moho)?',
+            '¿Los objetos pesados están en el suelo y cerca de la salida (reduce el riesgo de lesiones de espalda)?',
             '¿Hay pasillos libres para circular?',
             '¿Las cajas están estables y no demasiado altas?',
         ], oQueFazer_en: [
-            'Is the space clean and ventilated (keeps spiders and mould away)?',
-            'Are heavy items on the floor and near the exit (avoids back injury)?',
+            'Is the space clean and ventilated (helps keep spiders and mould away)?',
+            'Are heavy items on the floor and near the exit (reduces the risk of back injury)?',
             'Are aisles clear to walk through?',
             'Are boxes stable and not stacked too high?',
         ],

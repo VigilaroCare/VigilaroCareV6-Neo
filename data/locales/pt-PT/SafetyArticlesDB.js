@@ -152,7 +152,7 @@ Evite cortes, queimaduras e contaminação.
         content: `
 # Redes de Proteção
 
-Se vive em apartamento ou em casa com mais de um piso, a rede é a barreira mais eficaz contra quedas.
+Se vive em apartamento ou em casa com mais de um piso, a rede é uma das barreiras mais eficazes contra quedas.
 
 ### Dicas de Instalação:
 *   **Norma Técnica:** Exija redes que cumpram {{STANDARDS_BODY}} aplicável a redes de proteção.
@@ -214,7 +214,7 @@ Ocorre especialmente em casas com quintais, próximas a terrenos baldios ou em �
         content: `
 # Kit de Primeiros Socorros Básico
 
-Ter um kit pronto e acessível evita pânico na hora do acidente.
+Ter um kit pronto e acessível ajuda a evitar o pânico na hora do acidente.
 
 ### Lista de Itens Essenciais:
 1.  **Curativos:** Band-aids de vários tamanhos, gaze estéril, esparadrapo ou micropore.
@@ -375,7 +375,7 @@ A panela de pressão acelera o cozimento, mas exige respeito. Acidentes podem se
         content: `
 # Redes de Proteção para Janelas e Varandas
 
-Se vive em apartamento ou em casa com mais de um piso, as redes de proteção são a barreira física mais eficaz contra quedas.
+Se vive em apartamento ou em casa com mais de um piso, as redes de proteção estão entre as barreiras físicas mais eficazes contra quedas.
 
 **Onde Instalar:**
 * Janelas de quartos e salas.

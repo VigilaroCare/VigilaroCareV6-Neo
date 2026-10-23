@@ -1336,13 +1336,13 @@ Ao escolher brinquedos, verifique sempre a classificação etária indicativa. U
             'No dejar objetos en el camino.',
             'No subirse a bancos para alcanzar cosas altas.'
         ],
-        estatisticas: '75% das lesões em idosos ocorrem em casa.',
-        estatisticas_en: '75% of injuries in the elderly occur at home.',
-        estatisticas_es: 'El 75% de las lesiones en ancianos ocurren en el hogar.',
+        estatisticas: 'A maior parte das quedas de idosos acontece dentro de casa.',
+        estatisticas_en: 'Most falls among older people happen at home.',
+        estatisticas_es: 'La mayoría de las caídas de personas mayores ocurren en casa.',
 
         conteudo: `# Quedas na Terceira Idade
 
-**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
+**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. Muitas fraturas acontecem no próprio lar.
 
 **Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.
 
@@ -1370,12 +1370,12 @@ O banheiro combina piso molhado, superfícies duras e necessidade de sentar/leva
 ### Checklist de Adaptação:
 1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!
 2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.
-3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho evita a fadiga e quedas.
+3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho reduz a fadiga e o risco de quedas.
 4.  **Box:** Abertura ampla, sem degraus na entrada se possível.
-5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos.`,
+5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos não são indicados.`,
         conteudo_en: `# Falls in the Elderly
 
-**The Invisible Risk:** Sarcopenia (muscle loss) and taking multiple medications (polypharmacy) turn the house into a lethal obstacle course for the elderly. 70% of fractures occur at home.
+**The Invisible Risk:** Sarcopenia (muscle loss) and taking multiple medications (polypharmacy) turn the house into a lethal obstacle course for the elderly. Many fractures happen at home.
 
 **Immediate Tactical Action:** Remove all loose rugs or secure them with double-sided tape. Install motion-sensor night lights on baseboards and screwed-in grab bars in the bathroom.
 
@@ -1401,12 +1401,12 @@ The bathroom combines a wet floor, hard surfaces, and the need to sit/stand, cre
 ### Adaptation Checklist:
 1. **Grab Bars:** Install in the shower area and next to the toilet (height usually 30-32 inches). **Do not** rely on towel racks for support!
 2. **Raised Seat:** If the elderly person has difficulty sitting, a raised toilet seat makes it much easier.
-3. **Shower Chair:** For those with reduced balance, a firm plastic chair or specific shower bench prevents fatigue and falls.
+3. **Shower Chair:** For those with reduced balance, a firm plastic chair or specific shower bench reduces fatigue and the risk of falls.
 4. **Shower Enclosure:** Wide opening, no steps at the entrance if possible.
-5. **Floor:** Must be non-slip. Polished ceramic floors are prohibited.`,
+5. **Floor:** Must be non-slip. Polished ceramic floors are not suitable.`,
         conteudo_es: `# Caídas en la Tercera Edad
 
-**El Riesgo Invisible:** La pérdida muscular y los medicamentos múltiples convierten la casa en una carrera de obstáculos letal. El 70% de las fracturas ocurren en casa.
+**El Riesgo Invisible:** La pérdida muscular y los medicamentos múltiples convierten la casa en una carrera de obstáculos letal. Muchas fracturas ocurren en casa.
 
 **Acción Táctica Inmediata:** Retire todas las alfombras sueltas o fíjelas. Instale luces nocturnas con sensor y barras de apoyo atornilladas en el baño.
 
@@ -1431,12 +1431,12 @@ El baño combina suelo mojado y superficies duras, creando una trampa perfecta.
 ### Lista de Adaptación:
 1. **Barras de Apoyo:** Instálelas en la ducha y junto al inodoro. ¡**No** confíe en los toalleros para apoyarse!
 2. **Asiento Elevado:** Un asiento elevado en el inodoro facilita mucho sentarse y levantarse.
-3. **Silla de Ducha:** Para personas con problemas de equilibrio, una silla plástica firme evita la fatiga y caídas.
+3. **Silla de Ducha:** Para personas con problemas de equilibrio, una silla plástica firme reduce la fatiga y el riesgo de caídas.
 4. **Ducha:** Apertura amplia, sin escalones si es posible.
-5. **Suelo:** Debe ser antideslizante. Los pisos pulidos están prohibidos.`,
+5. **Suelo:** Debe ser antideslizante. Los pisos pulidos no son adecuados.`,
         conteudo_pt_PT: `# Quedas na Terceira Idade
 
-**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. 70% das fraturas ocorrem no próprio lar.
+**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. Muitas fraturas acontecem no próprio lar.
 
 **Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.
 
@@ -1464,8 +1464,8 @@ O banheiro combina piso molhado, superfícies duras e necessidade de sentar/leva
 ### Checklist de Adaptação:
 1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!
 2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.
-3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho evita a fadiga e quedas.
+3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho reduz a fadiga e o risco de quedas.
 4.  **Box:** Abertura ampla, sem degraus na entrada se possível.
-5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos são proibidos.`,
+5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos não são indicados.`,
     }
 };

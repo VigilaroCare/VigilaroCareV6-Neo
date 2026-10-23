@@ -1,4 +1,804 @@
 {
+  "CV-0001": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Quedas e Tropeços",
+    "chave": "texto",
+    "linha": 45,
+    "original": "A sala está entre os cômodos onde idosos mais caem. Tapetes soltos, fios atravessando o chão e mesas de centro de vidro pontiagudas são os maiores vilões. Use fitas dupla face sob tapetes ou remova-os se houver idosos ou pessoas com mobilidade reduzida ou baixa visão. Organize fios atrás dos móveis ou use canaletas."
+  },
+  "CV-0002": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Despensa",
+    "chave": "texto",
+    "linha": 82,
+    "original": "Mantenha uma lanterna pendurada perto da porta. Em emergências (falta de luz, alagamento), a despensa é o primeiro lugar visitado, e tropeçar no escuro é muito provável."
+  },
+  "CV-0003": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Caminho Noturno Desimpedido",
+    "chave": "texto",
+    "linha": 99,
+    "original": "Adultos sonolentos, acordando de madrugada para ir ao banheiro, são vítimas frequentes de quedas. Mantenha o caminho da cama até a porta livre de cabos, calçados e quinas pontiagudas. Uma luz noturna LED próxima ao chão ajuda a evitar quedas sem comprometer o sono."
+  },
+  "CV-0004": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Posicionamento e Ventilação",
+    "chave": "texto",
+    "linha": 273,
+    "original": "Botijões P13 (o cilindro comum) e cilindros P45 (aqueles de restaurantes e prédios) NUNCA devem ficar em locais fechados, porões ou áreas abaixo do nível do solo: o GLP é mais pesado que o ar e desce em casos de vazamento. Verifique se seu edifício ou conjunto residencial com garagem subterrânea tem central de gás. Mantenha os botijões a uma distância mínima de 1,5 m de portas e janelas: isso reduz o risco de o gás chegar a outros ambientes da casa e encontrar uma faísca ou fonte de calor."
+  },
+  "CV-0005": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "A \"Armadura\" do Jardineiro",
+    "chave": "texto",
+    "linha": 310,
+    "original": "Use sempre luvas, calçados fechados (ou botas), além de camisas de manga comprida e calças com as barras fechadas, para dificultar que insetos subam e que plantas nocivas queimem a pele."
+  },
+  "CV-0006": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Portões de Escada Bem Instalados",
+    "chave": "titulo",
+    "linha": 378,
+    "original": "Portões de Escada Bem Instalados"
+  },
+  "CV-0007": {
+    "arquivo": "data/knowledge_prevencao.js",
+    "rotulo": "Central de Conhecimento",
+    "item": "Iluminação e Caminho Livre",
+    "chave": "texto",
+    "linha": 380,
+    "original": "Escadas precisam de interruptor no INÍCIO e no FIM do percurso (sistema \"three-way\"). Brinquedos, calçados e qualquer objeto solto nos degraus = alto risco de tropeço. Crie a regra de família: degrau nunca é prateleira nem área de permanência de pets."
+  },
+  "CV-0008": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Brinquedos perigosos: como escolher com segurança",
+    "chave": "summary",
+    "linha": 123,
+    "original": "Checklist do brinquedo seguro:\n• Certificação e Idade: Exija {{CERT_SEAL}} e respeite a faixa etária indicada.\n• Partes pequenas: Atenção redobrada para menores de 3 anos (risco de asfixia).\n• Eletrônicos: O compartimento de pilhas deve ter parafuso, para dificultar a abertura.\n• Descarte: Revise e descarte brinquedos quebrados ou balões de látex estourados imediatamente."
+  },
+  "CV-0009": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Riscos na melhor idade",
+    "chave": "summary",
+    "linha": 165,
+    "original": "Com o envelhecimento, pequenos obstáculos viram grandes riscos:\n• Adaptação: Instale corrimões, barras de apoio e iluminação clara.\n• Sinalização: Use fitas antiderrapantes em degraus.\n• Saúde Física e Mental: Ofereça apoio emocional e encoraje exercícios orientados para melhorar o equilíbrio.\n• Acolhimento: O cuidado e a atenção ajudam a combater o isolamento."
+  },
+  "CV-0010": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Como evitar quedas na terceira idade",
+    "chave": "summary",
+    "linha": 191,
+    "original": "Fatores de risco invisíveis:\n• Medicamentos: Remédios que causam tontura ou sonolência merecem atenção médica.\n• Visão: Revisão oftalmológica frequente (catarata, glaucoma).\n• Músculos: Exercícios de força e equilíbrio como Tai Chi ajudam a reduzir as quedas.\n• Contraste visual: Pinte ou sinalize degraus com cores vivas para não \"sumirem\" na visão debilitada."
+  },
+  "CV-0011": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Prevenir erros na medicação de idosos",
+    "chave": "summary",
+    "linha": 217,
+    "original": "A gestão segura de medicamentos ajuda a evitar internações:\n• Organização: Use caixas organizadoras semanais (manhã, tarde, noite).\n• Lista unificada: Mantenha uma lista atualizada de remédios e horários na porta da geladeira.\n• Descarte: Nunca guarde medicamentos vencidos ou que não estão mais em uso.\n• Alertas: Configure alarmes no celular do idoso ou use aplicativos de lembrete."
+  },
+  "CV-0012": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Como adaptar o banheiro para idosos",
+    "chave": "summary",
+    "linha": 243,
+    "original": "Piso molhado + superfícies lisas = perigo extremo:\n• Barras de apoio: Fixe barras (não ventosas!) no box e ao lado do vaso.\n• Antiderrapante: Use pisos ásperos ou fitas antiderrapantes no chão do box.\n• Banho seguro: Um banco de banho firme reduz a fadiga e os desequilíbrios em pé.\n• Conforto: Considere assentos elevados para o vaso sanitário e chuveirinhos com mangueira."
+  },
+  "CV-0013": {
+    "arquivo": "data/micro_blog.js",
+    "rotulo": "Micro-blog",
+    "item": "Caixa de ferramentas para reparos",
+    "chave": "summary",
+    "linha": 544,
+    "original": "Pequenos reparos ajudam a evitar grandes acidentes:\n• Básicos: Martelo, chaves (fenda/phillips), alicate, trena e fita isolante.\n• Fixação: Parafusos, pregos, buchas e cola instantânea.\n• EPI: Óculos de proteção e luvas isolantes são tão importantes quanto as ferramentas.\nOrganize tudo em uma caixa fechada e longe das crianças."
+  },
+  "CV-0014": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes: 14 internações de crianças por hora no Brasil",
+    "chave": "titulo",
+    "linha": 24,
+    "original": "Acidentes: 14 internações de crianças por hora no Brasil"
+  },
+  "CV-0015": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes: 14 internações de crianças por hora no Brasil",
+    "chave": "resumo",
+    "linha": 25,
+    "original": "Em 2024, 121.933 crianças e adolescentes de até 14 anos foram internados por acidentes no Brasil — cerca de 14 por hora. As quedas são a principal causa, com 44% dos casos."
+  },
+  "CV-0016": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes: 14 internações de crianças por hora no Brasil",
+    "chave": "orientacoes[]",
+    "linha": 29,
+    "original": "Boa parte das quedas pode ser evitada com ajustes simples no ambiente."
+  },
+  "CV-0017": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes: 14 internações de crianças por hora no Brasil",
+    "chave": "orientacoes[]",
+    "linha": 30,
+    "original": "Tapetes soltos, escadas sem corrimão e móveis instáveis estão entre os fatores mais comuns."
+  },
+  "CV-0018": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes: 14 internações de crianças por hora no Brasil",
+    "chave": "orientacoes[]",
+    "linha": 31,
+    "original": "Faça uma vistoria do ambiente todo mês, com o olhar focado nos pontos de queda."
+  },
+  "CV-0019": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Afogamento é silencioso — não há gritos",
+    "chave": "resumo",
+    "linha": 42,
+    "original": "Ao contrário do que mostram os filmes, o afogamento real é silencioso: a vítima fica com a cabeça para fora d'água por poucos segundos, sem conseguir chamar socorro. Em crianças pequenas, pode acontecer em poucos segundos."
+  },
+  "CV-0020": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "1 em cada 3 idosos cai pelo menos uma vez por ano",
+    "chave": "resumo",
+    "linha": 59,
+    "original": "Cerca de 1 em cada 3 pessoas com mais de 65 anos cai ao menos uma vez por ano. A fratura de quadril é a consequência mais grave, com mortalidade alta no ano seguinte à queda."
+  },
+  "CV-0021": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "1 em cada 3 idosos cai pelo menos uma vez por ano",
+    "chave": "orientacoes[]",
+    "linha": 63,
+    "original": "Barras de apoio no banheiro ajudam a evitar quedas."
+  },
+  "CV-0022": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "1 em cada 3 idosos cai pelo menos uma vez por ano",
+    "chave": "orientacoes[]",
+    "linha": 64,
+    "original": "Calçado fechado e antiderrapante em casa faz diferença."
+  },
+  "CV-0023": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Crianças de 1 a 4 anos são as mais atingidas por intoxicações em casa",
+    "chave": "titulo",
+    "linha": 75,
+    "original": "Crianças de 1 a 4 anos são as mais atingidas por intoxicações em casa"
+  },
+  "CV-0024": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Crianças de 1 a 4 anos são as mais atingidas por intoxicações em casa",
+    "chave": "resumo",
+    "linha": 76,
+    "original": "Medicamentos e produtos de limpeza estão entre as causas mais comuns de intoxicação de crianças em casa. A faixa de 1 a 4 anos é a mais atingida — a fase em que a criança explora tudo levando à boca."
+  },
+  "CV-0025": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Crianças de 1 a 4 anos são as mais atingidas por intoxicações em casa",
+    "chave": "orientacoes[]",
+    "linha": 80,
+    "original": "Guarde produtos de limpeza e remédios no alto ou trancados logo depois de usar."
+  },
+  "CV-0026": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Crianças de 1 a 4 anos são as mais atingidas por intoxicações em casa",
+    "chave": "orientacoes[]",
+    "linha": 81,
+    "original": "Produto de limpeza deixado fora do armário \"só por um minuto\" já é risco."
+  },
+  "CV-0027": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Água quente queima a pele do bebê em segundos",
+    "chave": "titulo",
+    "linha": 92,
+    "original": "Água quente queima a pele do bebê em segundos"
+  },
+  "CV-0028": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Água quente queima a pele do bebê em segundos",
+    "chave": "resumo",
+    "linha": 93,
+    "original": "A pele do bebê é mais fina que a do adulto e queima mais rápido. Água a cerca de 60 °C pode causar queimadura grave em poucos segundos — e aquecedores e chuveiros podem chegar a essa temperatura."
+  },
+  "CV-0029": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Água quente queima a pele do bebê em segundos",
+    "chave": "orientacoes[]",
+    "linha": 98,
+    "original": "Temperatura ideal do banho: 37 °C a 38 °C. Use termômetro de banho."
+  },
+  "CV-0030": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Pilha-botão engolida: lesão grave em cerca de 2 horas",
+    "chave": "titulo",
+    "linha": 109,
+    "original": "Pilha-botão engolida: lesão grave em cerca de 2 horas"
+  },
+  "CV-0031": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Pilha-botão engolida: lesão grave em cerca de 2 horas",
+    "chave": "resumo",
+    "linha": 110,
+    "original": "Engolida, a pilha-botão pode ficar presa no esôfago e, em contato com a umidade, provocar uma queimadura química. Lesões graves podem acontecer em cerca de 2 horas. Não espere sintomas: vá ao pronto-socorro imediatamente."
+  },
+  "CV-0032": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Pilha-botão engolida: lesão grave em cerca de 2 horas",
+    "chave": "orientacoes[]",
+    "linha": 114,
+    "original": "No início, muitas crianças não têm sintoma nenhum — na dúvida, vá ao pronto-socorro."
+  },
+  "CV-0033": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Pilha-botão engolida: lesão grave em cerca de 2 horas",
+    "chave": "orientacoes[]",
+    "linha": 115,
+    "original": "Vá imediatamente ao pronto-socorro com a embalagem da pilha, para identificar o tamanho."
+  },
+  "CV-0034": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Pilha-botão engolida: lesão grave em cerca de 2 horas",
+    "chave": "orientacoes[]",
+    "linha": 116,
+    "original": "Depois da retirada, siga o acompanhamento indicado pela equipe médica."
+  },
+  "CV-0035": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Mordida de cão em criança: o risco costuma estar em casa",
+    "chave": "titulo",
+    "linha": 126,
+    "original": "Mordida de cão em criança: o risco costuma estar em casa"
+  },
+  "CV-0036": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Mordida de cão em criança: o risco costuma estar em casa",
+    "chave": "resumo",
+    "linha": 127,
+    "original": "Na maior parte dos casos, a mordida vem de um cão conhecido ou da própria família. Em crianças pequenas, cabeça e rosto estão entre as regiões mais atingidas. No SUS, as internações por mordida de cão chegaram a 1.361 em 2025, 43% a mais que em 2020."
+  },
+  "CV-0037": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Mordida de cão em criança: o risco costuma estar em casa",
+    "chave": "orientacoes[]",
+    "linha": 131,
+    "original": "Histórico de docilidade não é garantia: qualquer cão pode morder quando se sente ameaçado."
+  },
+  "CV-0038": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Mordida de cão em criança: o risco costuma estar em casa",
+    "chave": "orientacoes[]",
+    "linha": 133,
+    "original": "Situações de risco comuns: cão comendo, dormindo, com filhotes ou com dor."
+  },
+  "CV-0039": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Tomadas: atenção redobrada quando o bebê começa a engatinhar",
+    "chave": "titulo",
+    "linha": 143,
+    "original": "Tomadas: atenção redobrada quando o bebê começa a engatinhar"
+  },
+  "CV-0040": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Tomadas: atenção redobrada quando o bebê começa a engatinhar",
+    "chave": "resumo",
+    "linha": 144,
+    "original": "Quando começa a engatinhar e a andar, a criança explora tudo com as mãos — e as tomadas baixas ficam bem na altura dela. Enfiar um objeto na tomada pode causar choque elétrico e queimadura."
+  },
+  "CV-0041": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Tomadas: atenção redobrada quando o bebê começa a engatinhar",
+    "chave": "orientacoes[]",
+    "linha": 148,
+    "original": "Protetor de tomada com trava giratória: item indispensável em casas com bebês."
+  },
+  "CV-0042": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Uva inteira é risco de engasgo para menores de 5 anos",
+    "chave": "titulo",
+    "linha": 160,
+    "original": "Uva inteira é risco de engasgo para menores de 5 anos"
+  },
+  "CV-0043": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Uva inteira é risco de engasgo para menores de 5 anos",
+    "chave": "resumo",
+    "linha": 161,
+    "original": "A uva inteira está entre os alimentos que mais causam engasgo grave em crianças pequenas. Redonda e lisa, ela pode se encaixar na via aérea da criança e bloquear a passagem do ar. Cortar no sentido do comprimento pode salvar vidas."
+  },
+  "CV-0044": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes com crianças aumentam nas férias",
+    "chave": "titulo",
+    "linha": 177,
+    "original": "Acidentes com crianças aumentam nas férias"
+  },
+  "CV-0045": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes com crianças aumentam nas férias",
+    "chave": "resumo",
+    "linha": 178,
+    "original": "Nas férias escolares, mais tempo em casa e rotina diferente aumentam os acidentes com crianças — a Sociedade Brasileira de Pediatria estima alta de cerca de 25%. Piscinas, playgrounds e escadas estão entre os locais mais comuns."
+  },
+  "CV-0046": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Acidentes com crianças aumentam nas férias",
+    "chave": "orientacoes[]",
+    "linha": 184,
+    "original": "Mantenha o número do {{EMERGENCY_MEDICAL}} e dos Bombeiros ({{FIRE_NUMBER}}) visível em casa."
+  },
+  "CV-0047": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Álcool líquido: chama quase invisível",
+    "chave": "titulo",
+    "linha": 194,
+    "original": "Álcool líquido: chama quase invisível"
+  },
+  "CV-0048": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Álcool líquido: chama quase invisível",
+    "chave": "resumo",
+    "linha": 195,
+    "original": "O álcool líquido é uma causa frequente de queimaduras em casa, inclusive em crianças: num centro de referência de Minas Gerais, quase 1 em cada 4 queimaduras em crianças de 0 a 4 anos foi por álcool. Com luz do dia, a chama do álcool é difícil de ver."
+  },
+  "CV-0049": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Álcool líquido: chama quase invisível",
+    "chave": "orientacoes[]",
+    "linha": 201,
+    "original": "Mantenha as crianças afastadas ao acender churrasqueira ou fogueira."
+  },
+  "CV-0050": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Dedos presos em portas: lesão comum em crianças pequenas",
+    "chave": "titulo",
+    "linha": 211,
+    "original": "Dedos presos em portas: lesão comum em crianças pequenas"
+  },
+  "CV-0051": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Dedos presos em portas: lesão comum em crianças pequenas",
+    "chave": "resumo",
+    "linha": 212,
+    "original": "Crianças que estão aprendendo a andar se apoiam em tudo, inclusive nos batentes, e podem prender os dedos quando uma porta fecha. No Reino Unido, a associação de cirurgiões plásticos estima cerca de 50 mil crianças por ano com lesões nas mãos ou nos dedos causadas por portas."
+  },
+  "CV-0052": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Cerca em volta da piscina: a proteção que mais reduz afogamentos",
+    "chave": "titulo",
+    "linha": 228,
+    "original": "Cerca em volta da piscina: a proteção que mais reduz afogamentos"
+  },
+  "CV-0053": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Cerca em volta da piscina: a proteção que mais reduz afogamentos",
+    "chave": "resumo",
+    "linha": 229,
+    "original": "Estudos reunidos pela Cochrane mostram que a cerca que isola a piscina por todos os lados, com portão que fecha sozinho, pode evitar cerca de 3 em cada 4 afogamentos de crianças em piscinas."
+  },
+  "CV-0054": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Cerca em volta da piscina: a proteção que mais reduz afogamentos",
+    "chave": "orientacoes[]",
+    "linha": 233,
+    "original": "Altura: pelo menos 1,50 m, como recomenda a Sociedade Brasileira de Pediatria."
+  },
+  "CV-0055": {
+    "arquivo": "data/radarConteudoDB.js",
+    "rotulo": "Radar Vigilaro — fatos e protocolos (numeros e fontes conferidos)",
+    "item": "Cerca em volta da piscina: a proteção que mais reduz afogamentos",
+    "chave": "orientacoes[]",
+    "linha": 234,
+    "original": "Portão com fechamento automático, abrindo para fora da área da piscina."
+  },
+  "CV-0056": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Introdução à Segurança",
+    "chave": "importancia",
+    "linha": 17,
+    "original": "Muitos acidentes acontecem onde deveríamos estar mais seguros: em casa. Entender os fundamentos ajuda a prevenir tragédias antes que aconteçam."
+  },
+  "CV-0057": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Metodologia 3D",
+    "chave": "comoIdentificar[]",
+    "linha": 48,
+    "original": "♾️ DURADOURA: A proteção real depende da constância. A prevenção deve ser contínua para evitar que novos perigos ameacem a saúde e o bem-estar da família. A prevenção pode evitar que novas situações de perigo nos exponham desnecessariamente a acidentes que possam tirar de nós e de quem amamos o que nos é mais precioso: nossa saúde e bem-estar. Ser preventivo será sempre mais vantajoso que uma emergência facilmente evitável. Prevenir nos poupa da angústia por um atendimento médico, seja para nós ou para alguém da nossa família."
+  },
+  "CV-0058": {
+    "arquivo": "data/intro_safety.js",
+    "rotulo": "Introducao a seguranca",
+    "item": "Quase Acidentes",
+    "chave": "importancia",
+    "linha": 114,
+    "original": "Se você ignorar o \"quase caiu\" (tropeção no tapete), eventualmente a queda real vai acontecer. Tratar o quase acidente ajuda a prevenir o acidente grave."
+  },
+  "CV-0059": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Idosos (60+ anos)",
+    "chave": "estatisticas",
+    "linha": 1339,
+    "original": "A maior parte das quedas de idosos acontece dentro de casa."
+  },
+  "CV-0060": {
+    "arquivo": "data/fases_vida.js",
+    "rotulo": "Fases da vida",
+    "item": "Idosos (60+ anos)",
+    "chave": "conteudo",
+    "linha": 1343,
+    "original": "# Quedas na Terceira Idade\n\n**O Risco Invisível:** Sarcopenia e múltiplos medicamentos (polifarmácia) transformam a casa em uma pista de obstáculos letal para idosos. Muitas fraturas acontecem no próprio lar.\n\n**Ação Tática Imediata:** Remova todos os tapetes soltos ou fixe-os com dupla-face. Instale luzes noturnas com sensor de movimento no rodapé e barras de apoio parafusadas no banheiro.\n\n[Veja adaptações vitais para idosos em preveniremcasa.com.br](https://www.preveniremcasa.com.br)\n\n---\n\n# Segurança Medicamentosa\n\nIdosos costumam tomar múltiplos medicamentos (polifarmácia), o que aumenta o risco de confusão.\n\n### Estratégias de Segurança:\n*   **Organizador Semanal:** Use caixas organizadoras (pill boxes) divididas por dias e turnos (Manhã, Tarde, Noite).\n*   **Lista Atualizada:** Mantenha uma lista em papel na geladeira ou no celular com todos os remédios, doses e horários.\n*   **Rótulos:** Se a visão estiver ruim, use etiquetas coloridas ou escreva em letras grandes na caixa do remédio. Convém verificar a visão periodicamente.\n*   **Validade:** Revise a caixa de remédios mensalmente e descarte os vencidos em farmácias (não no lixo comum).\n*   **Revisão periódica:** Consulte o médico a cada **6 meses** para revisar a lista de medicamentos. A polifarmácia (uso simultâneo de 5+ remédios) é o principal fator de risco de queda em idosos além dos fatores ambientais. (Fonte: SBGeriatria/CFF)\n\n---\n\n# Banheiro Acessível e Seguro\n\nO banheiro combina piso molhado, superfícies duras e necessidade de sentar/levantar, criando uma armadilha perfeita.\n\n### Checklist de Adaptação:\n1.  **Barras de Apoio:** Instale na área do chuveiro e ao lado do vaso sanitário (altura geralmente de 75-80cm). **Não** confie em porta-toalhas como apoio!\n2.  **Assento Elevado:** Se o idoso tiver dificuldade para sentar, um assento elevado no vaso facilita muito.\n3.  **Cadeira de Banho:** Para quem tem equilíbrio reduzido, uma cadeira plástica firme ou banco próprio para banho reduz a fadiga e o risco de quedas.\n4.  **Box:** Abertura ampla, sem degraus na entrada se possível.\n5.  **Piso:** Deve ser antiderrapante. Pisos cerâmicos polidos não são indicados."
+  },
+  "CV-0061": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Kit de Primeiros Socorros Doméstico",
+    "chave": "content",
+    "linha": 214,
+    "original": "# Kit de Primeiros Socorros Básico\n\nTer uma caixinha com itens básicos de saúde em casa ajuda a evitar correria e pânico na hora de um pequeno corte ou queda.\n\n### O que colocar na caixinha:\n1.  **Curativos:** Gaze estéril, esparadrapo antialérgico, band-aids de vários tamanhos e ataduras.\n2.  **Higiene:** Soro fisiológico (frascos pequenos), sabonete líquido neutro e um antisséptico suave.\n3.  **Ferramentas:** Uma tesoura pequena sem ponta, uma pinça limpa (ótima para tirar farpas de madeira) e um termômetro.\n4.  **Básicos:** Luvas descartáveis de procedimento e uma bolsa térmica em gel (para compressas frias em pancadas).\n\n*Dica:* Dê uma olhada na validade dos itens e pomadas a cada seis meses e troque o que estiver vencido."
+  },
+  "CV-0062": {
+    "arquivo": "data/locales/pt-BR/SafetyArticlesDB.js",
+    "rotulo": "Artigos de seguranca",
+    "item": "Redes em Janelas e Varandas",
+    "chave": "content",
+    "linha": 353,
+    "original": "# Redes de Proteção: Janelas e Sacadas\n\nSe você mora em apartamento ou casa com mais de um andar, as redes de proteção estão entre as barreiras físicas mais eficazes contra quedas graves.\n\n### Onde a proteção é indispensável:\n* Janelas de quartos e salas.\n* Sacadas, varandas e mezaninos.\n* Áreas de serviço com janelas baixas.\n* Escadas abertas com vãos laterais.\n\n### Dicas de manutenção:\nA durabilidade média da rede é de 3 a 5 anos. O sol e a chuva ressecam o material. Cheque regularmente se há ganchos soltos ou enferrujados, fios desfiados ou cortados. Se tiver gatos, olhe com mais atenção, pois eles gostam de morder as redes."
+  },
+  "CV-0063": {
+    "arquivo": "data/kits/educational_content.js",
+    "rotulo": "Conteudo educativo dos kits",
+    "item": "Caixa de Ferramentas",
+    "chave": "description",
+    "linha": 314,
+    "original": "Organização e manutenção ajudam a prevenir acidentes graves em reparos domésticos."
+  },
+  "CV-0064": {
+    "arquivo": "data/safety_condo.js",
+    "rotulo": "Condominio",
+    "item": "Saídas de Emergência",
+    "chave": "content",
+    "linha": 41,
+    "original": "As portas corta-fogo devem estar SEMPRE FECHADAS, mas nunca trancadas à chave. Elas retardam a passagem da fumaça e do fogo para as escadas. Verifique se não há objetos (bicicletas, vasos, lixo) obstruindo os corredores ou escadas."
+  },
+  "CV-0065": {
+    "arquivo": "data/safety_toys.js",
+    "rotulo": "Brinquedos",
+    "item": "1. Regras de Ouro (Compra)",
+    "chave": "content",
+    "linha": 20,
+    "original": "Antes de comprar, verifique:\n\n• Classificação Etária: Respeite a faixa indicada. Não é sobre inteligência, é sobre peças engolíveis.\n• Certificação: Exija {{CERT_SEAL}}. Indica que o brinquedo passou por testes químicos e físicos.\n• Materiais: Evite vidro ou metal para menores de 8 anos. Prefira plásticos atóxicos.\n• Fique atento aos brinquedos de faixas etárias diferentes nas interações.\n• Crianças de faixas etárias diferentes devem receber maior atenção."
+  },
+  "CV-0066": {
+    "arquivo": "data/riscos_fisicos.js",
+    "rotulo": "Riscos fisicos",
+    "item": "Cortes Profundos",
+    "chave": "prevencao[]",
+    "linha": 457,
+    "original": "Coloque películas protetoras ou redes em portas de vidro. Isso reduz o risco de cacos e estilhaços cortantes."
+  },
+  "CV-0067": {
+    "arquivo": "data/locales/pt-BR/HazardDatabase.js",
+    "rotulo": "Base de perigos",
+    "item": "(sem titulo)",
+    "chave": "expert_tip",
+    "linha": 131,
+    "original": "Coloque uma película de segurança transparente no vidro do box. Ela segura os cacos e reduz o risco de cortes se o vidro quebrar."
+  },
+  "CV-0068": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Fuga e Perambulação",
+    "chave": "content",
+    "linha": 13,
+    "original": "# Risco de Fuga (Elopement)\nO comportamento de \"perambulação\" ou fuga é um dos riscos mais críticos, especialmente no espectro autista. Muitas vezes, não possuem percepção de perigo em relação a trânsito ou corpos d'água.\n\n### 1. Barreiras e Trancas\nTrancas comuns não são suficientes, pois a memória visual e a capacidade de aprendizado por repetição costumam ser altíssimas.\n* **Trancas de dupla ação:** Utilize fechaduras que exigem dois movimentos simultâneos.\n* **Trancas altas e invertidas:** Instale trancas do lado de fora de portas de risco ou em alturas superiores a 1,60m. \n* **Olho mágico digital:** Ajuda a não abrir a porta às cegas.\n\n### 2. Alarmes de Perímetro\nO tempo de reação é crucial. Cada porta que dá acesso à rua deve ter um sistema de alerta.\n* **Chimes:** Instale alarmes magnéticos nas portas. O som deve acordar os responsáveis à noite, mas não tão estridente a ponto de causar uma crise sensorial.\n\n### 3. Rastreamento e Pulseiras\n* **Wearables:** Pulseiras com GPS, rastreadores Bluetooth fixados no cadarço do tênis ou costuradas na roupa (para evitar remoção).\n* Roupas com etiquetas contendo nome e telefone. No caso de não-verbais, uma pulseira de identificação emborrachada inquebrável é essencial."
+  },
+  "CV-0069": {
+    "arquivo": "data/neurodivergence_data.js",
+    "rotulo": "Neurodivergencia",
+    "item": "Janelas e Alturas",
+    "chave": "content",
+    "linha": 104,
+    "original": "# Percepção de Altura\nMuitas pessoas no espectro não possuem o medo inato de altura ou não julgam corretamente a profundidade. O hiperfoco num objeto pode fazê-los ignorar o limite de uma janela.\n\n### 1. Redes e Limitadores de Janela\n* Janelas não devem abrir mais do que 10 centímetros. Instale limitadores de abertura com chave.\n* Afaste móveis como camas e sofás de baixo das janelas (funcionam como \"escadas\").\n* Se necessário, consulte redes de polietileno com fios internos de metal (contra cortes e mordidas).\n\n### 2. Vidros e Películas\nA busca por estímulos pode incluir bater nos vidros. A aplicação de uma película transparente (anti-estilhaço) reduz o risco de o vidro comum quebrar em lâminas perigosas em caso de impacto."
+  },
+  "CV-0070": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Estrutura Física",
+    "chave": "detalhes",
+    "linha": 121,
+    "original": "Boa iluminação ajuda a prevenir acidentes e favorece a aprendizagem."
+  },
+  "CV-0071": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Estrutura Física",
+    "chave": "detalhes",
+    "linha": 131,
+    "original": "Ambiente bem ventilado reduz a propagação de doenças."
+  },
+  "CV-0072": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Mobiliário e Equipamentos",
+    "chave": "detalhes",
+    "linha": 243,
+    "original": "Reduz o risco de a cabeça do bebê ficar presa."
+  },
+  "CV-0073": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "detalhes",
+    "linha": 275,
+    "original": "Higiene ajuda a prevenir doenças e infecções."
+  },
+  "CV-0074": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "texto",
+    "linha": 281,
+    "original": "Divisórias que preservam a privacidade"
+  },
+  "CV-0075": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Banheiros",
+    "chave": "detalhes",
+    "linha": 315,
+    "original": "Ajuda a prevenir mofo e umidade excessiva."
+  },
+  "CV-0076": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Parquinho e Área de Lazer",
+    "chave": "detalhes",
+    "linha": 407,
+    "original": "Dificulta que crianças corram para áreas perigosas."
+  },
+  "CV-0077": {
+    "arquivo": "data/escola_segura_data.js",
+    "rotulo": "Escola segura",
+    "item": "Segurança Geral",
+    "chave": "detalhes",
+    "linha": 745,
+    "original": "Dificulta a saída não autorizada e a entrada de estranhos."
+  },
+  "CV-0078": {
+    "arquivo": "data/asilo_seguro_data.js",
+    "rotulo": "Instituicao de longa permanencia",
+    "item": "Acessibilidade (Estatuto/ABNT)",
+    "chave": "detalhes",
+    "linha": 75,
+    "original": "Idosos possuem sensibilidade visual reduzida. Luzes de vigília ajudam a evitar a desorientação."
+  },
+  "CV-0079": {
+    "arquivo": "data/asilo_seguro_data.js",
+    "rotulo": "Instituicao de longa permanencia",
+    "item": "Banheiros e Higiene (RDC Anvisa)",
+    "chave": "detalhes",
+    "linha": 135,
+    "original": "Vasos elevados exigem menos esforço dos joelhos e reduzem as tonturas ao levantar."
+  },
+  "CV-0080": {
+    "arquivo": "data/asilo_seguro_data.js",
+    "rotulo": "Instituicao de longa permanencia",
+    "item": "Emergência e Cuidados Médicos",
+    "chave": "detalhes",
+    "linha": 175,
+    "original": "A grade ajuda a evitar que o idoso role para fora da cama durante o sono."
+  },
+  "CV-0081": {
+    "arquivo": "data/eletrodomesticos_reviews.js",
+    "rotulo": "Reviews — eletrodomesticos",
+    "item": "Micro-ondas",
+    "chave": "prevencao[]",
+    "linha": 268,
+    "original": "Fure alimentos com \"pele\" (salsicha, batata, tomate, ovo) antes de aquecer — reduz o risco de estourar"
+  },
+  "CV-0082": {
+    "arquivo": "data/utensilios_reviews.js",
+    "rotulo": "Reviews — utensilios domesticos",
+    "item": "Sacos Plásticos",
+    "chave": "prevencao[]",
+    "linha": 408,
+    "original": "Dê um nó nos sacos antes de guardar, para não serem abertos com facilidade"
+  },
+  "CV-0083": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Redutor de Assento Sanitário",
+    "chave": "resumo",
+    "linha": 24,
+    "original": "Facilita o desfralde ao permitir que a criança alcance o vaso sanitário com segurança, ajudando a evitar quedas e desequilíbrios no banheiro."
+  },
+  "CV-0084": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Protetor Veda Portas",
+    "chave": "resumo",
+    "linha": 146,
+    "original": "Dificulta a entrada de água, insetos e correntes de ar. Pisos molhados por infiltração de chuva aumentam o risco de quedas."
+  },
+  "CV-0085": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Limitador de Abertura de Janela",
+    "chave": "resumo",
+    "linha": 468,
+    "original": "Limita a abertura de janelas a no máximo 10 cm, reduzindo o risco de crianças caírem. Indispensável em apartamentos com crianças."
+  },
+  "CV-0086": {
+    "arquivo": "data/dispositivos_protecao.js",
+    "rotulo": "Acessorios de protecao",
+    "item": "Grade de Proteção para Escadas",
+    "chave": "resumo",
+    "linha": 672,
+    "original": "Barreiras instaladas no topo e na base das escadas para reduzir o risco de quedas. Essenciais em casas com crianças e idosos."
+  },
+  "CV-0087": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Sala de Jantar",
+    "chave": "oQueFazer[]",
+    "linha": 68,
+    "original": "A toalha de mesa é curta ou segura (dificulta que crianças a puxem)?"
+  },
+  "CV-0088": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Quarto Adolescente",
+    "chave": "oQueFazer[]",
+    "linha": 339,
+    "original": "O chão está livre de objetos (reduz o risco de tropeços)?"
+  },
+  "CV-0089": {
+    "arquivo": "data/areas_internas.js",
+    "rotulo": "Roteiro dos ambientes — areas internas",
+    "item": "Banheiros",
+    "chave": "oQueFazer[]",
+    "linha": 457,
+    "original": "A tampa do vaso tem trava (reduz o risco de afogamento de crianças)?"
+  },
+  "CV-0090": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Quintal",
+    "chave": "oQueFazer[]",
+    "linha": 8,
+    "original": "O local está limpo e sem entulhos/mato alto (ajuda a afastar escorpiões e ratos)?"
+  },
+  "CV-0091": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Oficina Doméstica",
+    "chave": "oQueFazer[]",
+    "linha": 231,
+    "original": "Ferramentas estão organizadas em caixas/painéis (reduz o risco de corte)?"
+  },
+  "CV-0092": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Depósito \"Guarda-Tudo\"",
+    "chave": "oQueFazer[]",
+    "linha": 272,
+    "original": "O local é limpo e ventilado (ajuda a evitar aranhas e mofo)?"
+  },
+  "CV-0093": {
+    "arquivo": "data/areas_externas.js",
+    "rotulo": "Roteiro dos ambientes — areas externas",
+    "item": "Depósito \"Guarda-Tudo\"",
+    "chave": "oQueFazer[]",
+    "linha": 273,
+    "original": "Objetos pesados estão no chão e perto da saída (reduz o risco de lesão na coluna)?"
+  },
+  "CV-0094": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Vacinação Internacional (Febre Amarela)",
+    "chave": "content",
+    "linha": 227,
+    "original": "Vários países só deixam entrar quem comprova a vacina de febre amarela — e o certificado exige antecedência. Deixar para a última hora pode impedir a viagem."
+  },
+  "CV-0095": {
+    "arquivo": "screens/Education/TravelSafetyGuideScreen.js",
+    "rotulo": "Guia de Seguranca na Viagem",
+    "item": "Cinto de Segurança em Ônibus",
+    "chave": "content",
+    "linha": 348,
+    "original": "No Brasil, o cinto de segurança é obrigatório em ônibus de viagem (rodoviários) e pode salvar vidas, mas muitos passageiros ignoram."
+  },
+  "CV-0096": {
+    "arquivo": "screens/SegurancaLazerScreen.js",
+    "rotulo": "Seguranca no Lazer",
+    "item": "Rio e Lago",
+    "chave": "dicasExtras[]",
+    "linha": 173,
+    "original": "Use calçados aquáticos (reduz o risco de cortes)."
+  },
+  "CV-0097": {
+    "arquivo": "screens/Education/JardinagemSeguraScreen.js",
+    "rotulo": "Jardinagem Segura",
+    "item": "(sem titulo)",
+    "chave": "prevencao[]",
+    "linha": 38,
+    "original": "Essa armadura dificulta que insetos entrem na roupa e piquem a pele."
+  },
+  "CV-0098": {
+    "arquivo": "screens/Education/JardinagemSeguraScreen.js",
+    "rotulo": "Jardinagem Segura",
+    "item": "(sem titulo)",
+    "chave": "prevencao[]",
+    "linha": 39,
+    "original": "Reduz o risco de a pele ser queimada pelo contato com seiva leitosa (látex) de plantas nocivas ao podá-las."
+  },
+  "CV-0099": {
+    "arquivo": "data/animais_ciatox.js",
+    "rotulo": "animais_ciatox",
+    "item": "Baiacu",
+    "chave": "fazer[]",
+    "linha": 2731,
+    "original": "Ventilação mecânica (respirador) pode salvar a vida"
+  },
+  "CV-0100": {
+    "arquivo": "data/pet_wellness_data.js",
+    "rotulo": "pet_wellness_data",
+    "item": "Cuidados Gerais",
+    "chave": "texto",
+    "linha": 75,
+    "original": "Passeios diários (cães). Brinquedos interativos (gatos). A castração ajuda a prevenir algumas doenças — converse com o veterinário."
+  },
   "AC-0001": {
     "arquivo": "data/mapeamento_dados.js",
     "rotulo": "Checklist dos ambientes — itens que a deficiencia visual, auditiva ou a mobilidade ativam",

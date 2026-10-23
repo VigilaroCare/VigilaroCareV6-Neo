@@ -454,17 +454,17 @@ export const riscosFisicos = [
             'Guarde facas e ferramentas cortantes em gavetas altas ou com trava.',
             'NUNCA se apoie na pia do banheiro ou suba no vaso sanitário (cerâmica). Instale barras de apoio de metal fixadas na alvenaria.',
             'Use luvas anticorte (EPI) ao manusear ferramentas pesadas.',
-            'Coloque películas protetoras ou redes em portas de vidro. Isso evita cacos e estilhaços cortantes.'
+            'Coloque películas protetoras ou redes em portas de vidro. Isso reduz o risco de cacos e estilhaços cortantes.'
         ], prevencao_es: [
             'Guarde cuchillos y herramientas cortantes en cajones altos o con traba.',
             'NUNCA se apoye en el lavabo ni se suba al inodoro (cerámica). Instale barras de apoyo metálicas fijadas a la mampostería.',
             'Use guantes anticorte (EPP) al manipular herramientas pesadas.',
-            'Coloque láminas de seguridad o redes en las puertas de vidrio. Así se evitan fragmentos cortantes si el vidrio se rompe.',
+            'Coloque láminas de seguridad o redes en las puertas de vidrio. Así se reduce el riesgo de fragmentos cortantes si el vidrio se rompe.',
         ], prevencao_en: [
             'Store knives and sharp tools in high or locked drawers.',
             'NEVER lean on the bathroom sink or stand on the toilet (ceramic). Install metal grab bars anchored into the masonry.',
             'Wear cut-resistant gloves (PPE) when handling heavy tools.',
-            'Apply safety film or netting to glass doors. This prevents sharp shards if the glass shatters.',
+            'Apply safety film or netting to glass doors. This reduces the risk of sharp shards if the glass shatters.',
         ],
         primeirosSocorros: 'Faça compressão direta no ferimento com um pano limpo para estancar o sangramento. Eleve o membro se possível. Vá ao hospital.'
     },

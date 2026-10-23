@@ -170,18 +170,18 @@ export default function SegurancaLazerScreen({ navigation }) {
       ],
       emergencias_ptpt: ['Afogamento: não tente salvar a nado — atire uma corda ou um ramo.', 'Corte: lave com água limpa e comprima.'],
       dicasExtras: [
-        'Use calçados aquáticos (evita cortes).',
+        'Use calçados aquáticos (reduz o risco de cortes).',
         'Cuidado com animais (arraias, cobras).'
       ],
       dicasExtras_en: [
-        'Use water shoes (prevents cuts).',
+        'Use water shoes (reduces the risk of cuts).',
         'Beware of animals (stingrays, snakes).'
       ],
       dicasExtras_es: [
         'Use zapatos acuáticos (evita cortes).',
         'Cuidado con animales (mantarrayas, serpientes).'
       ],
-      dicasExtras_ptpt: ['Use calçado aquático (evita cortes).', 'Cuidado com animais (raias, cobras).']
+      dicasExtras_ptpt: ['Use calçado aquático (reduz o risco de cortes).', 'Cuidado com animais (raias, cobras).']
     },
     {
       id: 3,

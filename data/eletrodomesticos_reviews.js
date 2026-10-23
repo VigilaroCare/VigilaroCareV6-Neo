@@ -265,7 +265,7 @@ export const ELETRODOMESTICOS_REVIEWS = [
         ],
         prevencao: [
             'NUNCA coloque metais, papel alumínio ou utensílios com partes metálicas dentro do micro-ondas',
-            'Fure alimentos com "pele" (salsicha, batata, tomate, ovo) antes de aquecer — evita explosão',
+            'Fure alimentos com "pele" (salsicha, batata, tomate, ovo) antes de aquecer — reduz o risco de estourar',
             'Abra recipientes parcialmente para permitir saída de vapor — nunca aqueça fechado',
             'Ao aquecer água pura, coloque um palito de madeira dentro do copo para evitar superaquecimento',
             'Instale o micro-ondas fora do alcance de crianças (nunca na altura dos olhos delas)',
