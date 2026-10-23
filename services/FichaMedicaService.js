@@ -203,10 +203,14 @@ class FichaMedicaService {
             ${f.coords ? `<p class="muted">${esc(L('localizacaoNaGeracao', 'Localização no momento da geração'))}: ${f.coords.latitude}, ${f.coords.longitude}</p>` : ''}
             <div class="disclaimer">${esc(avisoLegal())}</div>`;
 
+        // htmlDocument() interpola estes valores direto em <title>, <h1> e <p>
+        // (ver utils/pdfReport.js): o escape é responsabilidade de quem chama.
+        // Nome e endereço são texto livre do usuário — um '<' no endereço comia
+        // o resto do campo numa ficha de emergência.
         return htmlDocument({
-            title: `${L('fichaMedica', 'Ficha médica')} — ${f.nome}`,
-            headline: f.nome,
-            subtitle: identificacao || L('fichaMedicaEmergencia', 'Ficha médica de emergência'),
+            title: `${esc(L('fichaMedica', 'Ficha médica'))} — ${esc(f.nome)}`,
+            headline: esc(f.nome),
+            subtitle: esc(identificacao) || esc(L('fichaMedicaEmergencia', 'Ficha médica de emergência')),
             bodyHtml: `<style>${FICHA_CSS}</style>${body}`,
             footerNote: `${L('geradaEm', 'Gerada em {{data}}', { data: dataHora(f.geradoEm) })} · Vigilaro Care`,
         });

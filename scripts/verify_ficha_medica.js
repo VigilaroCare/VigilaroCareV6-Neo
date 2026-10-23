@@ -21,7 +21,9 @@ const i18n = i18next.createInstance();
 i18n.init({ resources: recursos, lng: 'pt-BR', fallbackLng: 'pt-BR', defaultNS: 'common', interpolation: { escapeValue: false }, initImmediate: false });
 
 const perfil = {
-    id: 'p1', nome: 'Ana', dataNascimento: '1950-03-10', tipoSanguineo: 'O-',
+    // Nome com '<' e '&' de proposito: eles vao para <title> e <h1> do PDF e
+    // ja sairam sem escape uma vez — um '<' comia o resto do campo.
+    id: 'p1', nome: 'Ana <Nena> & Cia', dataNascimento: '1950-03-10', tipoSanguineo: 'O-',
     alergias: ['Amendoim', 'Penicilina', 'pó de giz'],
     condicoesMedicas: ['Diabetes', 'Epilepsia', 'Dor Crônica'],
     necessidadesEspeciais: ['visual', 'balance'],
@@ -32,7 +34,8 @@ const dubles = {
     '../i18n': { default: i18n },
     'expo-print': {}, 'expo-sharing': {},
     'react-native': { Share: { share: async () => {} } },
-    './ProfileService': { default: { getPerfilAtivo: async () => perfil, getMoradia: async () => ({ endereco: 'Rua A, 10', andar: 3 }), calcularIdade: () => 76 } },
+    // Endereco com '<': vai para o subtitle do PDF pelo mesmo caminho do nome.
+    './ProfileService': { default: { getPerfilAtivo: async () => perfil, getMoradia: async () => ({ endereco: 'Rua A, 10 <fundos>', andar: 3 }), calcularIdade: () => 76 } },
     './HealthService': { default: { getHealthSummary: async () => ({ conditions: perfil.condicoesMedicas, specialNeeds: perfil.necessidadesEspeciais, medications: [] }) } },
     '../utils/SecureStorage': { Storage: { getItem: async () => JSON.stringify([{ nome: 'Rui', telefone: '+351 900' }]) } },
     './getEmergencyCountry': { detectEmergencyCountry: () => 'BR' },
@@ -70,6 +73,12 @@ const ok = (c, m) => { console.log(`  ${c ? 'OK   ' : 'FALHA'} ${m}`); if (!c) f
         ok(html.includes(`lang="${lng}"`), `PDF com lang="${lng}"`);
         ok(txt.includes('Não fala; acalma com fone <b>'), 'texto traz a comunicação como digitada');
         ok(html.includes('acalma com fone &lt;b&gt;') && !html.includes('fone <b>'), 'PDF traz a comunicação escapada');
+        // Nome e endereço vão para <title>, <h1> e <p class="subtitle"> via
+        // htmlDocument(), que NÃO escapa: o escape é de quem chama.
+        ok(html.includes('Ana &lt;Nena&gt; &amp; Cia') && !html.includes('Ana <Nena>'), 'PDF traz o nome escapado');
+        ok(html.includes('Rua A, 10 &lt;fundos&gt;') && !html.includes('10 <fundos>'), 'PDF traz o endereço escapado');
+        // O texto para compartilhar é texto puro: escapar ali mostraria "&amp;".
+        ok(txt.includes('Ana <Nena> & Cia'), 'texto traz o nome como digitado');
         if (lng !== 'pt-BR' && lng !== 'pt-PT') ok(!/Condições médicas|Necessidades especiais|Gerada em/.test(txt + html), 'sem rótulo em português');
         if (lng === 'en') console.log('\n' + txt.split('\n').map((l) => '    | ' + l).join('\n'));
     }
