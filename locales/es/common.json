@@ -532,7 +532,8 @@
         "kitItemCount": "{{count}} artículos",
         "dossieFonteBagagem": "Fuente: {{fonte}} · vigente en {{revisao}}. Confírmelo con su aerolínea.",
         "consularTitle": "Recomendaciones oficiales de viaje",
-        "consularBody": "Consulte las recomendaciones de viaje del gobierno de su país para el destino y anote el contacto de la embajada o del consulado más cercano."
+        "consularBody": "Consulte las recomendaciones de viaje del gobierno de su país para el destino y anote el contacto de la embajada o del consulado más cercano.",
+        "motorcycle": "Moto"
     },
     "medications": {
         "title": "Hora del Medicamento",

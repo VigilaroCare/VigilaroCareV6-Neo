@@ -391,6 +391,12 @@ export default function TravelModeScreen({ navigation }) {
                                 { key: 'onibus', picto: 'transporte_onibus', label: t('travel.bus', 'Ônibus') },
                                 { key: 'trem', picto: 'transporte_trem', label: t('travel.train', 'Trem') },
                                 { key: 'navio', picto: 'transporte_navio', label: t('travel.ship', 'Cruzeiro / Navio') },
+                                // Moto entrou em 23/10/2026 (pedido do Agnaldo): faltava um dos
+                                // modais mais usados, e a grade de 2 colunas tinha uma vaga.
+                                // PENDENTE: a arte ceramica. O pictograma cai no fallback ate
+                                // existir `glifos/pictogram-transporte-moto.png`, gerado a partir
+                                // do desenho original por scripts/normalizar_pictogramas.js.
+                                { key: 'moto', picto: 'transporte_moto', label: t('travel.motorcycle', 'Moto') },
                             ].map(opt => (
                                 <CeramicSelectTile
                                     key={opt.key}

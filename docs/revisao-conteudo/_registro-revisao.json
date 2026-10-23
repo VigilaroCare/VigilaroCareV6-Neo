@@ -128,6 +128,10 @@
   "m032": {
    "texto": "Lead do hero de secao, criado na migracao do hero para o formato da anatomia (23/10/2026). Texto novo: precisa da revisao do Agnaldo.",
    "em": "2026-10-23"
+  },
+  "m033": {
+   "texto": "Modal MOTO no Modo Viagem, pedido do Agnaldo em 23/10/2026: 7 blocos (capacete, equipamento, crianca na garupa, bagagem, chuva, cansaco, revisao) nos 4 idiomas, mais o rotulo. Conteudo novo de risco — precisa da revisao dele, e ele e quem tem a pratica para conferir.",
+   "em": "2026-10-23"
   }
  },
  "textos": {
@@ -2606,6 +2610,11 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "2a1472661fe58a7c": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "2a1a8488b53e691c": [
    "pendente",
    "data/legal/termos_uso.js",
@@ -2815,6 +2824,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "2d9a8c1a3b059f2b": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "2da5465effd6c680": [
    "pendente",
@@ -3035,6 +3049,11 @@
    "pendente",
    "data/produtos_scanner.js",
    "m006"
+  ],
+  "2fd8d958a098aece": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "2fe3670fbfa54624": [
    "pendente",
@@ -3415,6 +3434,11 @@
    "aprovado",
    "data/eletrodomesticos_reviews.js",
    "m001"
+  ],
+  "35b1a2c0326a4f02": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "35bd018002c1f567": [
    "pendente",
@@ -5481,6 +5505,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "5390a3ce0aa38580": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "5399bc1341cd4f60": [
    "pendente",
    "data/locales/pt-BR/HazardDatabase.js",
@@ -6321,6 +6350,11 @@
    "data/opcoesPerfil.js",
    "m010"
   ],
+  "61c8343a9c516699": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "61cad0edac88b2a8": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -6890,6 +6924,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m010"
+  ],
+  "6a1ee5c50d4d5401": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "6a20b548a2f962be": [
    "pendente",
@@ -9091,6 +9130,11 @@
    "data/pet_pregnancy_data.js",
    "m010"
   ],
+  "8e6115355b023416": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "8e6f13689b7a0a4c": [
    "pendente",
    "data/fases_vida.js",
@@ -10436,6 +10480,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "a3aea98af4c5e938": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "a3bcc12087041e31": [
    "aprovado",
    "data/eletrodomesticos_reviews.js",
@@ -10510,6 +10559,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "a4c5cb1e3225902e": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "a4d9d3d9c3694a0d": [
    "pendente",
@@ -11446,6 +11500,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "b327ded386f2388e": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
+  ],
   "b35211236550a8a9": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -11965,6 +12024,11 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m010"
+  ],
+  "ba1bd360e6fa9c49": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "ba378daeb26b1be6": [
    "pendente",
@@ -12540,6 +12604,11 @@
    "pendente",
    "data/legal/politica_privacidade.js",
    "m010"
+  ],
+  "c527e9a36c2f1dfb": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "c53dec9e2fa2ceb9": [
    "pendente",
@@ -13665,6 +13734,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "d63c822aafeaa960": [
+   "pendente",
+   "screens/Travel/FazendoAsMalasScreen.js",
+   "m033"
   ],
   "d66b5793a449a9ed": [
    "pendente",

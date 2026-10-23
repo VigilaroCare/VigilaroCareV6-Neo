@@ -89,6 +89,98 @@ export const TRANSPORTE_AEREO = {
     revisao_es: 'oct. 2026',
 };
 
+// Viagem e passeio de motocicleta. Pedido do Agnaldo (23/10/2026): o modal
+// estava fora do Modo Viagem e e dos mais usados hoje.
+//
+// Criterio de redacao, o mesmo das duas varreduras de cautela: cautela na
+// promessa, firmeza na instrucao. Equipamento "reduz o risco" e "ajuda a",
+// nunca "evita" ou "garante". So entra "obrigatorio" com lei atras — aqui o
+// capacete (CTB art. 244, I) e a idade da garupa (CTB art. 244, V, menor de
+// 10 anos, infracao gravissima, redacao da Lei 14.071/2020). As duas sao
+// regras BRASILEIRAS e estao marcadas como tal, porque o app atende 6 paises.
+export const TRANSPORTE_MOTO = {
+    title: 'De moto: o que conferir antes e durante',
+    title_en: 'By motorcycle: what to check before and during',
+    title_es: 'En moto: qué revisar antes y durante',
+    title_ptpt: 'De mota: o que conferir antes e durante',
+    intro: 'Na moto o corpo e a carroceria: o que protege e o que voce veste e o modo como voce pilota. Confira estes pontos antes de sair e lembre deles na estrada.',
+    intro_en: 'On a motorcycle your body is the bodywork: what protects you is what you wear and how you ride. Check these points before leaving and keep them in mind on the road.',
+    intro_es: 'En moto el cuerpo es la carrocería: lo que protege es lo que lleva puesto y cómo conduce. Revise estos puntos antes de salir y recuérdelos en la carretera.',
+    intro_ptpt: 'Na mota o corpo é a carroçaria: o que protege é o que veste e a forma como conduz. Confira estes pontos antes de sair e lembre-se deles na estrada.',
+    blocos: [
+        {
+            rotulo: 'Capacete',
+            rotulo_en: 'Helmet',
+            rotulo_es: 'Casco',
+            rotulo_ptpt: 'Capacete',
+            regra: 'No Brasil o capacete é obrigatório para condutor e garupa (CTB, art. 244). Use sempre afivelado: solto, ele sai na primeira pancada. Confira o selo do Inmetro, a viseira sem risco que atrapalhe a visão e o tamanho — capacete que gira na cabeça não protege como deveria. Capacete que sofreu um impacto deve ser trocado, mesmo sem marca aparente.',
+            regra_en: 'In Brazil a helmet is required for rider and passenger (Traffic Code, art. 244); most countries require one too — check the local rule. Always fasten the strap: loose, it comes off at the first impact. Check the certification seal, a visor without scratches that block your view, and the size — a helmet that turns on your head does not protect as it should. A helmet that has taken an impact should be replaced, even with no visible mark.',
+            regra_es: 'En Brasil el casco es obligatorio para conductor y pasajero (Código de Tránsito, art. 244); en la mayoría de los países también se exige — confirme la norma local. Úselo siempre abrochado: suelto, sale en el primer golpe. Revise el sello de certificación, la visera sin rayas que dificulten la visión y la talla — un casco que gira en la cabeza no protege como debería. Un casco que sufrió un impacto debe cambiarse, aunque no tenga marca visible.',
+            regra_ptpt: 'Em Portugal o capacete é obrigatório para condutor e passageiro. Use sempre apertado: solto, sai na primeira pancada. Confira a homologação, a viseira sem riscos que dificultem a visão e o tamanho — um capacete que roda na cabeça não protege como devia. Um capacete que sofreu um impacto deve ser substituído, mesmo sem marca visível.',
+        },
+        {
+            rotulo: 'O resto do equipamento',
+            rotulo_en: 'The rest of the gear',
+            rotulo_es: 'El resto del equipo',
+            rotulo_ptpt: 'O resto do equipamento',
+            regra: 'Jaqueta, luvas, calça comprida e calçado fechado que cubra o tornozelo reduzem o atrito com o asfalto numa queda. Não são exigidos por lei na maior parte dos trajetos, mas são a diferença entre um arranhão e uma lesão que demora a fechar. Em viagem longa, roupa clara ou com faixa refletiva ajuda outros motoristas a enxergar você mais cedo.',
+            regra_en: 'A jacket, gloves, long trousers and closed footwear covering the ankle reduce friction with the asphalt in a fall. They are not required by law on most journeys, but they are the difference between a scrape and an injury that takes a long time to heal. On a long trip, light-coloured or reflective clothing helps other drivers see you sooner.',
+            regra_es: 'Chaqueta, guantes, pantalón largo y calzado cerrado que cubra el tobillo reducen el roce con el asfalto en una caída. No se exigen por ley en la mayoría de los trayectos, pero marcan la diferencia entre un raspón y una lesión que tarda en cerrar. En viaje largo, la ropa clara o con banda reflectante ayuda a que otros conductores le vean antes.',
+            regra_ptpt: 'Blusão, luvas, calças compridas e calçado fechado que cubra o tornozelo reduzem o atrito com o alcatrão numa queda. Não são exigidos por lei na maior parte dos trajetos, mas são a diferença entre um arranhão e uma lesão que demora a sarar. Em viagem longa, roupa clara ou com faixa refletora ajuda os outros condutores a vê-lo mais cedo.',
+        },
+        {
+            rotulo: 'Criança na garupa',
+            rotulo_en: 'Children as passengers',
+            rotulo_es: 'Niños de pasajeros',
+            rotulo_ptpt: 'Crianças como passageiras',
+            regra: 'No Brasil é proibido levar criança menor de 10 anos na garupa — infração gravíssima (CTB, art. 244, V). Acima dessa idade, a lei ainda exige que o passageiro consiga cuidar da própria segurança: alcançar os pedaleiros, segurar-se firme durante todo o trajeto e usar capacete do tamanho da cabeça dela. Criança com sono não se segura; em trajeto longo, prefira outro meio.',
+            regra_en: 'In Brazil it is forbidden to carry a child under 10 as a passenger — a most serious offence (Traffic Code, art. 244, V). Above that age, the law still requires the passenger to be able to look after their own safety: reach the footpegs, hold on firmly for the whole journey, and wear a helmet that fits their head. A sleepy child cannot hold on; on a long trip, choose another means of transport. Age limits vary by country — check the local rule.',
+            regra_es: 'En Brasil está prohibido llevar a un niño menor de 10 años de pasajero — infracción gravísima (Código de Tránsito, art. 244, V). Por encima de esa edad, la ley exige además que el pasajero pueda cuidar de su propia seguridad: alcanzar los reposapiés, sujetarse con firmeza durante todo el trayecto y usar un casco de su talla. Un niño con sueño no se sujeta; en trayecto largo, elija otro medio. El límite de edad varía según el país — confirme la norma local.',
+            regra_ptpt: 'O limite de idade para passageiro varia de país para país — confirme a regra local antes de sair. Seja qual for a idade, o passageiro tem de conseguir cuidar da própria segurança: alcançar os pousa-pés, segurar-se com firmeza durante todo o trajeto e usar capacete do tamanho da cabeça. Uma criança com sono não se segura; em trajeto longo, prefira outro meio.',
+        },
+        {
+            rotulo: 'A bagagem',
+            rotulo_en: 'The luggage',
+            rotulo_es: 'El equipaje',
+            rotulo_ptpt: 'A bagagem',
+            regra: 'Nunca pendure sacola no guidão nem no braço: ela desequilibra a direção e pode prender na roda. Use baú, alforje ou mochila presa ao corpo, com o peso mais baixo e mais centrado possível, distribuído dos dois lados. Confira as cintas na primeira parada — carga que afrouxa muda o comportamento da moto sem avisar.',
+            regra_en: 'Never hang a bag from the handlebars or from your arm: it unbalances the steering and can catch in the wheel. Use a top case, panniers or a backpack strapped to your body, with the weight as low and as centred as possible, balanced on both sides. Check the straps at the first stop — a load that works loose changes how the bike handles without warning.',
+            regra_es: 'Nunca cuelgue una bolsa del manillar ni del brazo: desequilibra la dirección y puede engancharse en la rueda. Use baúl, alforjas o una mochila sujeta al cuerpo, con el peso lo más bajo y centrado posible, repartido a ambos lados. Revise las correas en la primera parada — una carga que se afloja cambia el comportamiento de la moto sin avisar.',
+            regra_ptpt: 'Nunca pendure sacos no guiador nem no braço: desequilibram a direção e podem prender-se na roda. Use mala, alforge ou mochila presa ao corpo, com o peso o mais baixo e centrado possível, repartido pelos dois lados. Confira as cintas na primeira paragem — carga que afrouxa muda o comportamento da mota sem avisar.',
+        },
+        {
+            rotulo: 'Chuva e piso escorregadio',
+            rotulo_en: 'Rain and slippery surfaces',
+            rotulo_es: 'Lluvia y piso resbaladizo',
+            rotulo_ptpt: 'Chuva e piso escorregadio',
+            regra: 'Os primeiros minutos de chuva são os mais traiçoeiros: a água levanta o óleo acumulado no asfalto. Reduza a velocidade, aumente a distância do veículo da frente e evite frear em cima de faixa pintada, tampa de bueiro e trilho — todos ficam muito mais lisos molhados. Se a chuva apertar, parar em local seguro é decisão melhor que seguir.',
+            regra_en: 'The first minutes of rain are the most treacherous: water lifts the oil built up on the asphalt. Slow down, increase the distance to the vehicle ahead, and avoid braking on painted lines, manhole covers and rails — all become far more slippery when wet. If the rain gets heavy, stopping somewhere safe is a better decision than pressing on.',
+            regra_es: 'Los primeros minutos de lluvia son los más traicioneros: el agua levanta el aceite acumulado en el asfalto. Reduzca la velocidad, aumente la distancia con el vehículo de delante y evite frenar sobre líneas pintadas, tapas de alcantarilla y raíles — todos se vuelven mucho más resbaladizos mojados. Si la lluvia arrecia, parar en un lugar seguro es mejor decisión que seguir.',
+            regra_ptpt: 'Os primeiros minutos de chuva são os mais traiçoeiros: a água levanta o óleo acumulado no alcatrão. Reduza a velocidade, aumente a distância do veículo da frente e evite travar em cima de linha pintada, tampa de saneamento e carril — todos ficam muito mais escorregadios molhados. Se a chuva apertar, parar em local seguro é melhor decisão do que seguir.',
+        },
+        {
+            rotulo: 'Cansaço na estrada',
+            rotulo_en: 'Fatigue on the road',
+            rotulo_es: 'Cansancio en la carretera',
+            rotulo_ptpt: 'Cansaço na estrada',
+            regra: 'Pilotar cansa mais que dirigir: o corpo trabalha o tempo todo para equilibrar, e o vento e o ruído somam. Pare a cada duas horas, mesmo sem sentir sono — o cansaço aparece primeiro na atenção e só depois nos olhos. Beba água: desidratação reduz a concentração antes de dar sede.',
+            regra_en: 'Riding tires you more than driving: the body works all the time to balance, and wind and noise add up. Stop every two hours, even if you do not feel sleepy — fatigue shows up in your attention first and only later in your eyes. Drink water: dehydration cuts concentration before it makes you thirsty.',
+            regra_es: 'Conducir una moto cansa más que un coche: el cuerpo trabaja todo el tiempo para equilibrar, y el viento y el ruido se suman. Pare cada dos horas, aunque no tenga sueño — el cansancio aparece primero en la atención y solo después en los ojos. Beba agua: la deshidratación reduce la concentración antes de dar sed.',
+            regra_ptpt: 'Conduzir uma mota cansa mais do que um carro: o corpo trabalha a toda a hora para equilibrar, e o vento e o ruído somam-se. Pare de duas em duas horas, mesmo sem sono — o cansaço aparece primeiro na atenção e só depois nos olhos. Beba água: a desidratação reduz a concentração antes de dar sede.',
+        },
+        {
+            rotulo: 'A revisão antes de uma viagem longa',
+            rotulo_en: 'The check before a long trip',
+            rotulo_es: 'La revisión antes de un viaje largo',
+            rotulo_ptpt: 'A revisão antes de uma viagem longa',
+            regra: 'Confira pneus (desenho da banda e calibragem, com a moto carregada como vai viajar), corrente (tensão e lubrificação), freios, luzes e setas, e o nível de óleo. Leve a documentação e o contato do seu seguro ou assistência onde você alcance sem descarregar a bagagem.',
+            regra_en: 'Check the tyres (tread and pressure, with the bike loaded as you will travel), the chain (tension and lubrication), brakes, lights and indicators, and the oil level. Carry your documents and your insurance or assistance contact somewhere you can reach without unloading the luggage.',
+            regra_es: 'Revise los neumáticos (dibujo y presión, con la moto cargada como va a viajar), la cadena (tensión y lubricación), los frenos, las luces e intermitentes y el nivel de aceite. Lleve la documentación y el contacto de su seguro o asistencia donde pueda alcanzarlos sin descargar el equipaje.',
+            regra_ptpt: 'Confira os pneus (desenho e pressão, com a mota carregada como vai viajar), a corrente (tensão e lubrificação), os travões, as luzes e os piscas, e o nível de óleo. Leve a documentação e o contacto do seu seguro ou assistência onde consiga alcançar sem descarregar a bagagem.',
+        },
+    ],
+};
+
 // --- COMPONENTE ACCORDION CARD (padrão estático, pois as malas são checklists físicos) ---
 /** Uma linha de item, com o marcador na cor do kit. */
 function ItemLinha({ texto, cor }) {
@@ -247,7 +339,9 @@ export default function FazendoAsMalasScreen({ navigation }) {
                     <CategoryCard key={cat.id} category={cat} expanded={expandedId === cat.id} onToggle={handleToggle} />
                 ))}
 
-                {/* Regras de Transporte Aéreo (conteúdo sensível + fonte) */}
+                {/* Regras do modal escolhido. Antes o bloco AEREO aparecia sempre,
+                    mesmo em viagem de carro — regra de embarque que nao se aplicava. */}
+                {activeTrip?.transportMode === 'aviao' && (
                 <NeoCard variant="elevated" style={{ marginTop: 4, marginBottom: 8, padding: 16 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                         <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: Neo.colors.feedback.warning + '26', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
@@ -269,6 +363,26 @@ export default function FazendoAsMalasScreen({ navigation }) {
                     {/* Aviso de segurança em DESTAQUE (não mais grudado na fonte miúda) */}
                     <SafetyDisclaimer variant="travelAir" style={{ marginTop: 10 }} />
                 </NeoCard>
+                )}
+
+                {activeTrip?.transportMode === 'moto' && (
+                <NeoCard variant="elevated" style={{ marginTop: 4, marginBottom: 8, padding: 16 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                        <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: Neo.colors.feedback.warning + '26', alignItems: 'center', justifyContent: 'center', marginRight: 12 }}>
+                            <NeoIcon name="Danger" size={20} color={Neo.colors.feedback.warning} />
+                        </View>
+                        <H3 style={{ color: Neo.colors.feedback.warning, fontSize: 14, flex: 1 }}>{t_field(TRANSPORTE_MOTO, 'title')}</H3>
+                    </View>
+                    <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18, marginBottom: 12 }}>{t_field(TRANSPORTE_MOTO, 'intro')}</Body>
+                    {TRANSPORTE_MOTO.blocos.map((b, i) => (
+                        <View key={i} style={{ marginBottom: 10 }}>
+                            <Body style={{ color: Neo.colors.neutral[800], fontSize: 12.5, fontWeight: '800', marginBottom: 2 }}>{t_field(b, 'rotulo')}</Body>
+                            <Body style={{ color: Neo.colors.neutral[600], fontSize: 12, lineHeight: 18 }}>{t_field(b, 'regra')}</Body>
+                        </View>
+                    ))}
+                    <SafetyDisclaimer variant="travelAir" style={{ marginTop: 10 }} />
+                </NeoCard>
+                )}
 
                 <Caption style={{ textAlign: 'center', marginTop: 20, color: Neo.colors.neutral[500] }}>
                     {t('headersFirst.boaViagemSeguranAEmPrimeiroLugar', 'Boa viagem! Segurança em primeiro lugar. 🧳')}
