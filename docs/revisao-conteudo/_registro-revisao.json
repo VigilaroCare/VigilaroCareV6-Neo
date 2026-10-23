@@ -104,6 +104,10 @@
   "m026": {
    "texto": "Aprovado pelo Agnaldo no chat em 22/10/2026 (\"Nada a alterar\"): respostas aos comentarios do RK — trovao x raio, contagem dos 30 minutos, ordem da frase ao sinal de tempestade, frase da ficha de saude com o nome, Toque/tente.",
    "em": "2026-10-22"
+  },
+  "m027": {
+   "texto": "Aprovado pelo Agnaldo no chat em 22/10/2026: titulos da bagagem aerea (Power bank e baterias de litio; Liquidos, geis e aerossois; Cortantes e isqueiro).",
+   "em": "2026-10-22"
   }
  },
  "textos": {
@@ -6523,9 +6527,9 @@
    "m015"
   ],
   "688f3f9f7333778f": [
-   "pendente",
+   "aprovado",
    "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
+   "m027"
   ],
   "68c120fded8d4d4b": [
    "pendente",
@@ -6538,9 +6542,9 @@
    "m008"
   ],
   "68d4256378931bdd": [
-   "pendente",
+   "aprovado",
    "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
+   "m027"
   ],
   "68d4e3124f392c8a": [
    "pendente",
@@ -6993,9 +6997,9 @@
    "m006"
   ],
   "70111e835a7196b8": [
-   "pendente",
+   "aprovado",
    "screens/Travel/FazendoAsMalasScreen.js",
-   "m006"
+   "m027"
   ],
   "7028d07bfb48f64d": [
    "pendente",
