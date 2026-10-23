@@ -59,6 +59,7 @@ backend-proxy/.env
 # ATTESTATION.md sem ninguem notar — ele existia em disco e nunca esteve no git.
 !backend-proxy/ATTESTATION.md
 !backend-proxy/DEPLOY.md
+!backend-proxy/ROTACAO_SEGREDO.md
 !package-lock.json
 !tsconfig.json
 !iconMapUpdates.json
