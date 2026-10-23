@@ -9,6 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { AudioPlayer } from 'expo-audio';
 import { getEmergencyLocation } from '../../utils/getEmergencyLocation';
+import { paraWhatsApp } from '../../utils/telefoneInternacional';
+import { paisDoAparelho } from '../../utils/getEmergencyCountry';
 // Storage roteia chaves sensíveis (PII/saúde) pro SecureStore criptografado
 // e o restante pro AsyncStorage — ver utils/SecureStorage.js.
 import { Storage } from '../../utils/SecureStorage';
@@ -114,30 +116,36 @@ export default function SOSCountdownScreen({ navigation, route }) {
     }
   }, [countdown]);
 
-  // Normaliza número pra WhatsApp. WhatsApp exige código de país.
-  // Heurística pragmática: se o número tem 10-11 dígitos (formato BR sem DDI),
-  // prepende 55. Caso já tenha 12-13 dígitos começando com 55, mantém.
-  // Para outros formatos (ex: usuário já salvou com DDI estrangeiro), mantém.
-  const normalizeForWhatsApp = (phone) => {
-    const clean = (phone || '').replace(/\D/g, '');
-    if (!clean) return '';
-    if (clean.startsWith('55') && clean.length >= 12) return clean;
-    if (clean.length === 10 || clean.length === 11) return `55${clean}`;
-    return clean;
-  };
-
   // Botão "Enviar via WhatsApp também" — visível na view "sending".
   // Manda a mesma mensagem do SMS pro primeiro contato (limitação técnica:
   // WhatsApp não aceita múltiplos destinatários num único link).
+  //
+  // O DDI sai de utils/telefoneInternacional.js (versão canônica, compartilhada
+  // com ContatosEmergenciaScreen). O país é o do APARELHO, não o da posição: o
+  // número de emergência segue onde a pessoa está, mas o contato dela continua
+  // no país de origem — em viagem ao exterior, prefixar o DDI do país visitado
+  // mandaria o pedido de socorro para um desconhecido.
   const handleSendWhatsApp = async () => {
     if (whatsappOpened || !firstContactRef.current) return;
+
+    const phone = paraWhatsApp(firstContactRef.current, paisDoAparelho());
+    if (!phone) {
+      // Sem certeza do DDI, não abre conversa com número errado. O SMS de SOS
+      // já saiu para todos os contatos e é o caminho que vale; o auto-fechamento
+      // segue de pé, porque não há nada para o usuário fazer fora do app.
+      NeoAlert.alert(
+        t('sosCountdown.whatsappSemDdiTitulo', 'WhatsApp indisponível'),
+        t('sosCountdown.whatsappSemDdi', 'Não foi possível identificar o código do país deste contato. O SMS de SOS já foi enviado. Para usar o WhatsApp, salve o contato com o código internacional.')
+      );
+      return;
+    }
+
     // Cancela o auto-fechamento — o usuário fecha manualmente após voltar
     if (closeTimerRef.current) {
       clearTimeout(closeTimerRef.current);
       closeTimerRef.current = null;
     }
     setWhatsappOpened(true);
-    const phone = normalizeForWhatsApp(firstContactRef.current);
     const text = encodeURIComponent(sosMessageRef.current);
     const nativeUrl = `whatsapp://send?phone=${phone}&text=${text}`;
     try {
@@ -165,11 +173,19 @@ export default function SOSCountdownScreen({ navigation, route }) {
         locationText = ` Estou em: https://maps.google.com/?q=${coords.latitude},${coords.longitude}`;
       }
 
+      // unifiedContacts guarda só dígitos (é o que o URI sms: aceita);
+      // unifiedRaw guarda o número COMO O USUÁRIO SALVOU, na mesma ordem. O
+      // WhatsApp precisa do bruto: é o '+' digitado que revela o DDI de um
+      // contato estrangeiro, e ele se perde ao tirar a pontuação.
       let unifiedContacts = [];
+      const unifiedRaw = [];
       const profile = await ProfileService.getPerfilAtivo();
       if (profile?.contatos && Array.isArray(profile.contatos)) {
         profile.contatos.forEach(c => {
-          if (c.telefone) unifiedContacts.push(c.telefone.replace(/\D/g, ''));
+          if (c.telefone) {
+            unifiedContacts.push(c.telefone.replace(/\D/g, ''));
+            unifiedRaw.push(c.telefone);
+          }
         });
       }
 
@@ -180,7 +196,10 @@ export default function SOSCountdownScreen({ navigation, route }) {
           manual.forEach(c => {
             if (c.phone) {
               const num = c.phone.replace(/\D/g, '');
-              if (!unifiedContacts.includes(num)) unifiedContacts.push(num);
+              if (!unifiedContacts.includes(num)) {
+                unifiedContacts.push(num);
+                unifiedRaw.push(c.phone);
+              }
             }
           });
         }
@@ -216,7 +235,7 @@ export default function SOSCountdownScreen({ navigation, route }) {
 
       // Guarda dados pro botão de WhatsApp complementar
       sosMessageRef.current = messageForSms;
-      firstContactRef.current = unifiedContacts[0];
+      firstContactRef.current = unifiedRaw[0] || unifiedContacts[0];
 
       // Detecta disponibilidade de WhatsApp (não bloqueia o fluxo se falhar)
       try {

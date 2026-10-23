@@ -691,7 +691,9 @@
         "whatsappOpened": "WhatsApp opened",
         "sensitivityPromptTitle": "Didn't seem like a fall?",
         "sensitivityPromptAdjust": "Adjust sensitivity",
-        "sensitivityPromptDismiss": "Not now"
+        "sensitivityPromptDismiss": "Not now",
+        "whatsappSemDdiTitulo": "WhatsApp unavailable",
+        "whatsappSemDdi": "We couldn't identify this contact's country code. The SOS text message has already been sent. To use WhatsApp, save the contact with its international code."
     },
     "firstAid": {
         "whatHappened": "What Happened?",
@@ -2453,7 +2455,9 @@
                 "outro": "Other",
                 "veterinario": "Vet"
             },
-            "contatosDe": "{{nome}}'s contacts"
+            "contatosDe": "{{nome}}'s contacts",
+            "whatsappSemDdiTitulo": "Incomplete number",
+            "whatsappSemDdi": "We couldn't identify this number's country code. Edit the contact and save it with the international code (e.g. +1 415 555 2671) to use WhatsApp. Calling and SMS still work."
         },
         "EmergenciaPetScreen": {
             "ligar": "CALL",

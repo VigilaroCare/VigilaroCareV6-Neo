@@ -120,6 +120,10 @@
   "m030": {
    "texto": "Segunda varredura de cautela (22/10/2026, pedido do Agnaldo): promessa vira ajuda a/reduz o risco/dificulta; obrigatorio sem lei vira indispensavel; Radar Vigilaro com numeros e fontes inventados corrigido. Vai para o documento CV.",
    "em": "2026-10-22"
+  },
+  "m031": {
+   "texto": "Avisos do WhatsApp sem DDI, criados na correcao de seguranca de 23/10/2026 (DDI deixou de ser fixo no Brasil). Texto tecnico de fallback: precisa da revisao do Agnaldo.",
+   "em": "2026-10-23"
   }
  },
  "textos": {
@@ -4033,6 +4037,11 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
+  "3f853428f2b56038": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m031"
+  ],
   "3f89a59c6efc1e87": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -5667,6 +5676,11 @@
    "pendente",
    "data/produtos_scanner.js",
    "m006"
+  ],
+  "56d3647ec6e80481": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m031"
   ],
   "56d86f9d1e4335b2": [
    "pendente",

@@ -17,6 +17,8 @@ import NeoAlert from '../../utils/NeoAlert';
 import SafetyDisclaimer from '../../components/SafetyDisclaimer';
 import { Storage } from '../../utils/SecureStorage';
 import { tx } from '../../utils/txFixo';
+import { paraWhatsApp } from '../../utils/telefoneInternacional';
+import { paisDoAparelho } from '../../utils/getEmergencyCountry';
 
 const TIPOS = ['Familiar', 'Médico', 'Vizinho', 'Amigo', 'Outro', 'Veterinário'];
 
@@ -209,9 +211,21 @@ export default function ContatosEmergenciaScreen({ navigation, route }) {
     Linking.openURL(`tel:${telefoneNum}`);
   };
 
+  // O DDI vem do país do aparelho, não fixo no Brasil: prefixar 55 num celular
+  // português mandava o pedido de socorro para um desconhecido. Sem certeza do
+  // DDI, não abre conversa nenhuma — pede o número completo (ver
+  // utils/telefoneInternacional.js).
   const whatsappContato = (telefoneNum) => {
-    const num = telefoneNum.replace(/\D/g, '');
-    Linking.openURL(`https://wa.me/55${num}`);
+    const num = paraWhatsApp(telefoneNum, paisDoAparelho());
+    if (!num) {
+      NeoAlert.alert(
+        t('telas.ContatosEmergenciaScreen.whatsappSemDdiTitulo', 'Número incompleto'),
+        t('telas.ContatosEmergenciaScreen.whatsappSemDdi',
+          'Não foi possível identificar o código do país deste número. Edite o contato e salve com o código internacional (ex.: +55 41 99999-9999) para usar o WhatsApp. A ligação e o SMS continuam funcionando.')
+      );
+      return;
+    }
+    Linking.openURL(`https://wa.me/${num}`);
   };
 
   const smsContato = (telefoneNum) => {

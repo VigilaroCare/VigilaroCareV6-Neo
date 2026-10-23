@@ -691,7 +691,9 @@
         "whatsappOpened": "WhatsApp abierto",
         "sensitivityPromptTitle": "¿Parece que no fue una caída?",
         "sensitivityPromptAdjust": "Ajustar sensibilidad",
-        "sensitivityPromptDismiss": "Ahora no"
+        "sensitivityPromptDismiss": "Ahora no",
+        "whatsappSemDdiTitulo": "WhatsApp no disponible",
+        "whatsappSemDdi": "No se pudo identificar el código de país de este contacto. El SMS de SOS ya se envió. Para usar WhatsApp, guarda el contacto con el código internacional."
     },
     "firstAid": {
         "whatHappened": "Que Paso?",
@@ -2453,7 +2455,9 @@
                 "outro": "Otro",
                 "veterinario": "Veterinario"
             },
-            "contatosDe": "Contactos de {{nome}}"
+            "contatosDe": "Contactos de {{nome}}",
+            "whatsappSemDdiTitulo": "Número incompleto",
+            "whatsappSemDdi": "No se pudo identificar el código de país de este número. Edita el contacto y guárdalo con el código internacional (ej.: +34 612 345 678) para usar WhatsApp. La llamada y el SMS siguen funcionando."
         },
         "EmergenciaPetScreen": {
             "ligar": "LLAMAR",
