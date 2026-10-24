@@ -173,7 +173,12 @@ function processar(arquivo, base, limpo) {
         // desenho cheio encolhe — e a faixa impede qualquer extremo.
         const porCaixa = (S * CAIXA_ALVO) / lado;
         const porTinta = Math.sqrt((TINTA_ALVO * S * S) / tinta);
-        let escala = Math.sqrt(porCaixa * porTinta);
+        // Arte limpa iguala pela CAIXA, não pela média com a tinta: desenho com
+        // muito detalhe fino (raios, discos, grades) acumula tinta sem ganhar
+        // presença, então a média o encolhe para "caber" — a moto ficou em 0,48
+        // de caixa contra 0,50 do carro e pareceu menor (Agnaldo, 23/10/2026).
+        // O olho compara o tamanho aparente, e esse é a caixa.
+        let escala = limpo ? porCaixa : Math.sqrt(porCaixa * porTinta);
         const caixa = (lado * escala) / S;
         if (caixa > CAIXA_MAX) escala = (S * CAIXA_MAX) / lado;
         if (caixa < CAIXA_MIN) escala = (S * CAIXA_MIN) / lado;
@@ -196,10 +201,21 @@ function processar(arquivo, base, limpo) {
                 // REANCORAGEM DE COR: a razão entre a luminância do pixel e a
                 // média do glifo é o que carrega o volume. Multiplicar o verde
                 // alvo por essa razão troca a cor sem achatar luz e sombra.
+                //
+                // NÃO se aplica a arte limpa. A reancoragem existe para unificar
+                // tons desencontrados do acervo ANTIGO; numa arte que já nasce no
+                // verde da casa ela só satura — a moto saiu "pincelada de neon"
+                // (Agnaldo, 23/10/2026). Arte limpa mantém os tons do autor.
+                if (limpo) {
+                    ar += cor[p * 3] * a;
+                    ag += cor[p * 3 + 1] * a;
+                    ab += cor[p * 3 + 2] * a;
+                } else {
                 const r = lum(cor[p * 3], cor[p * 3 + 1], cor[p * 3 + 2]) / Lmedia;
                 ar += clamp(VERDE_ALVO[0] * r, 0, 255) * a;
                 ag += clamp(VERDE_ALVO[1] * r, 0, 255) * a;
                 ab += clamp(VERDE_ALVO[2] * r, 0, 255) * a;
+                }
                 aa += a;
             }
             const n = F * F, d = (y * S + x) * 4;
