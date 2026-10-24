@@ -23,6 +23,7 @@ Situação em 23/09/2026, branch `feat/mapa-de-riscos-domesticos`. Tudo que est�
 | A4 | **DSN do Sentry nos EAS Secrets** | Já está no `.env` local, mas os builds não leem o `.env`. Sem isso, release sai sem telemetria. | Média |
 | A5 | **Conectar GitHub ao Sentry** (passo `scm-connect`) | Faz o Sentry apontar qual commit provavelmente causou o erro. Adiado por decisão sua. | Baixa |
 | A6 | **Credenciais para a atestação de app** | Service account no Google Cloud (Play Integrity) e chave `.p8` da Apple (DeviceCheck). Sem elas, a etapa 2 não anda. Ver `backend-proxy/ATTESTATION.md`. | Média |
+| A9 | **Acesso ao EAS Simulator (lista de espera)** | Pedido em 23/10/2026 pela conta `agnaldoaf` em https://expo.dev/services/simulators; `simulator:availability` ainda devolve `available: false` (e liberado por lotes). **Por que importa:** nenhuma ferramenta de IA aqui enxerga tela React Native, entao acabamento visual, erro de tela e imagem fora de contexto nao se conferem lendo codigo — hoje cada ajuste depende do Agnaldo rodar o dev build e relatar. Com o simulador, a iteracao visual passa a ser feita e verificada do lado da ferramenta. Checar de vez em quando com `npx --yes eas-cli@latest simulator:availability --json`. | Media — destrava a frente visual |
 | A7 | **Preencher Data Safety (Play) e App Privacy (Apple)** | Precisa declarar o compartilhamento com OpenAI, ElevenLabs, EPA, Zenvia e Twilio. A base está no §4 do Mapa de Funcionalidades. | Média — trava a publicação |
 
 ---
