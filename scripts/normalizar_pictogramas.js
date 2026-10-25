@@ -18,6 +18,7 @@
  * O tile creme, o canto e a sombra passam a ser desenhados pelo PictogramTile.
  *
  * Uso: node scripts/normalizar_pictogramas.js [--pasta home-pictograms] [--base 180]
+ *      [--caixa 0.73] [--saida glifos-justos] [--alvo "#064E3B"]
  *      --limpo  quando a arte de origem JA vem transparente, sem o tile creme
  *               e sem a moldura pintados (o formato novo; ver extrairLimpo)
  */
@@ -25,6 +26,7 @@ const fs = require('fs');
 const path = require('path');
 const { PNG } = require('pngjs');
 
+const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n); return i >= 0 && a[i + 1] ? a[i + 1] : p; };
 const RAIZ = path.join(__dirname, '..');
 const ORIGEM = path.join(RAIZ, 'assets', 'illustrations');
 // DESTINO e resolvido depois das opcoes (--saida); ver o rodape do ficheiro.
@@ -44,10 +46,29 @@ const CREME = [244, 235, 220];
 // Também não serve igualar só a tinta: a linha de pulso precisaria crescer
 // 58% e estouraria o tile. O equilíbrio é a média geométrica entre as duas
 // normalizações, com a caixa presa numa faixa.
-const TINTA_ALVO = 0.097;     // mediana medida do conjunto
-const CAIXA_ALVO = 0.52;
-const CAIXA_MIN = 0.46;
-const CAIXA_MAX = 0.66;
+
+// --caixa <n>: o alvo de OCUPAÇÃO do quadro, e com ele TODA a escala óptica.
+//
+// O padrão 0,52 foi calibrado para o glifo morar DENTRO do tile creme, com
+// respiro até a moldura. No card retroiluminado (prancha L, 25/10/2026) não há
+// tile: a margem vira desperdício. Medido em 22 peças, o desenho ocupa 52% do
+// lado do arquivo — numa caixa de 78px na tela sobram 41px de desenho, e numa
+// de 58px (grade de 3 colunas) sobram 30px. É isso que o olho lê como
+// "pictograma desproporcional".
+//
+// Por que mexer aqui NÃO desequilibra o conjunto: a escala de cada peça é a
+// média geométrica entre igualar a CAIXA e igualar a TINTA. A caixa é lado
+// (escala linear), a tinta é área (escala com o quadrado). Movendo os dois
+// alvos juntos nessa razão, a média geométrica inteira é multiplicada pelo
+// mesmo fator: a ponderação RELATIVA entre as peças fica idêntica e só o
+// tamanho absoluto muda. Verificado — com --caixa 0.52 a saída é byte a byte
+// igual aos glifos em produção (22 de 22), e --caixa 0.73 preserva o mesmo
+// espalhamento relativo (47–58% vira 66–81%, 21% do alvo nos dois casos).
+const CAIXA_ALVO = Number(arg('caixa', 0.52));
+const _fator = CAIXA_ALVO / 0.52;
+const TINTA_ALVO = 0.097 * _fator * _fator;
+const CAIXA_MIN = 0.46 * _fator;
+const CAIXA_MAX = Math.min(0.66 * _fator, 0.90);
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
@@ -268,7 +289,6 @@ function processar(arquivo, base, limpo) {
     return { ocupacaoOriginal: lado / w, caixaFinal, tinta: tinta / (w * h), saidas };
 }
 
-const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n); return i >= 0 && a[i + 1] ? a[i + 1] : p; };
 const pasta = arg('pasta', 'home-pictograms');
 const limpo = process.argv.includes('--limpo');  // arte ja transparente, sem tile
 const base = Number(arg('base', 180));
