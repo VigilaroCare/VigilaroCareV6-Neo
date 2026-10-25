@@ -207,8 +207,8 @@ function processar(arquivo, base, limpo) {
                 // tons desencontrados do acervo ANTIGO; numa arte que já nasce no
                 // verde da casa ela só satura — a moto saiu "pincelada de neon"
                 // (Agnaldo, 23/10/2026). Arte limpa mantém os tons do autor.
-                if (limpo && !ALVO) {
-                    // arte limpa sem alvo: a cor do autor passa intacta
+                if ((limpo || SEM_COR) && !ALVO) {
+                    // sem alvo: a cor do autor passa intacta, com o relevo que ela tem
                     ar += cor[p * 3] * a;
                     ag += cor[p * 3 + 1] * a;
                     ab += cor[p * 3 + 2] * a;
@@ -222,8 +222,29 @@ function processar(arquivo, base, limpo) {
                 // Para alvo claro, COMPRIME: a razao vira um fator entre 0,68
                 // e 1,0 do alvo, o que preserva luz e sombra sem clipar.
                 const alvoClaro = lum(alvo[0], alvo[1], alvo[2]) > 140;
+                if (VELADO) {
+                    // GLIFO SOBRE CAMPO DE COR — o relevo vem do ALFA, nao da cor.
+                    //
+                    // Reancorar num alvo claro nao resolve: multiplicar so desce,
+                    // entao mais contraste interno = conjunto mais escuro. Piso
+                    // 0,80 saiu lavado; piso 0,40 saiu acinzentado. Os dois
+                    // brigam com a mesma manopla.
+                    //
+                    // Aqui a cor e UMA so (o alvo, tipicamente branco) e a
+                    // modulacao vai para a transparencia: realce opaco, sombra
+                    // translucida deixando o gradiente do card atravessar. Da
+                    // leveza, nitidez e relevo ao mesmo tempo, e harmoniza
+                    // sozinho com qualquer cor de card — e como as referencias
+                    // que o Agnaldo mandou tratam grafismo sobre campo de cor.
+                    const t = PISO + (1 - PISO) * clamp((r - 0.4) / 1.4, 0, 1);
+                    ar += alvo[0] * a * t;
+                    ag += alvo[1] * a * t;
+                    ab += alvo[2] * a * t;
+                    aa += a * t;
+                    continue;
+                }
                 const f = alvoClaro
-                    ? 0.80 + 0.20 * clamp((r - 0.4) / 1.4, 0, 1)
+                    ? PISO + (1 - PISO) * clamp((r - 0.4) / 1.4, 0, 1)
                     : r;
                 ar += clamp(alvo[0] * f, 0, 255) * a;
                 ag += clamp(alvo[1] * f, 0, 255) * a;
@@ -254,6 +275,17 @@ const base = Number(arg('base', 180));
 // --alvo "#E8F3EC": reancora a cor NESTE tom em vez do verde unico. Com
 // --limpo e sem --alvo, a cor do autor passa intacta (ver o bloco de cor).
 // --saida <pasta>: escreve noutra pasta em vez de glifos/.
+// --piso 0.55: quanto a SOMBRA do glifo claro desce em relacao ao alvo.
+// Piso alto = pouco contraste interno (lavado); piso baixo = mais relevo.
+// 0,80 saiu lavado na primeira prova; ver §previa no scratchpad.
+const PISO = Number(arg('piso', 0.55));
+// --velado: a modulacao vai para o ALFA em vez da cor (glifo sobre campo de cor).
+const VELADO = process.argv.includes('--velado');
+// --sem-cor: nao reancora, mesmo na arte antiga com tile. A reancoragem
+// (alvo x razao de luminancia) ACHATA o relevo quando o desenho e um bloco
+// escuro com realce fino: medido em 25/10/2026, o acervo em uso tem 13 niveis
+// de amplitude contra 191 do original. Esta opcao preserva o modelado.
+const SEM_COR = process.argv.includes('--sem-cor');
 const hexAlvo = arg('alvo', null);
 const ALVO = hexAlvo ? [1, 3, 5].map((i) => parseInt(hexAlvo.replace('#', '').slice(i - 1, i + 1), 16)) : null;
 DESTINO = path.join(ORIGEM, arg('saida', 'glifos'));
