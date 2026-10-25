@@ -48,6 +48,21 @@ const CREME_NOTURNO = '#E7DDCC';
 // elemento gráfico — e a opção continua tocável. A 0,70 mede 3,98:1.
 const OPACIDADE_RECUADO = 0.7;
 
+// O glifo passou a ocupar 73% do arquivo, não mais 52% (25/10/2026, commit
+// 70e0adf). O reenquadramento foi feito para o card RETROILUMINADO, onde não
+// existe tile e a margem do PNG era desperdício puro.
+//
+// Aqui existe tile, e a margem é o respiro entre o desenho e o creme. Sem
+// compensar, o mesmo arquivo passa a encher o prato: o desenho saltaria de 52%
+// para 73% da altura do tile, de uma vez, em Home, Menu, Viagem e Educação.
+//
+// 0,52/0,73 devolve ao desenho exatamente o tamanho óptico que ele tinha dentro
+// do tile. Uma fonte de arte, dois enquadramentos: o card usa o arquivo cheio,
+// o tile recua para a margem que o desenho do tile pede.
+const OCUPACAO_ARQUIVO = 0.73;
+const OCUPACAO_NO_TILE = 0.52;
+const FATOR_TILE = OCUPACAO_NO_TILE / OCUPACAO_ARQUIVO;
+
 export default function PictogramTile({
     source,
     width,
@@ -125,7 +140,7 @@ export default function PictogramTile({
                 {lado > 0 && (
                     <Image
                         source={source}
-                        style={[{ width: lado, height: lado }, estiloGlifo]}
+                        style={[{ width: lado * FATOR_TILE, height: lado * FATOR_TILE }, estiloGlifo]}
                         resizeMode={resizeMode}
                     />
                 )}
