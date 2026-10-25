@@ -237,6 +237,18 @@ O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm taman
 
 ---
 
+### 9.4 Atualização 2026-10-25 — a paleta deixa de ser refém da logomarca
+
+**Decisão do Agnaldo, registrada nas palavras dele:** *"A paleta de cores foi definida com base na logomarca Vigilaro Care, que no início do desenvolvimento do app eu insistia em deixá-lo na home, competindo com todo o resto. Para o bem geral, abro mão da rigidez das cores adotadas. No momento oportuno, adequaremos a logo ao app e não como foi no início, no caso, ao contrário."*
+
+**O que isso autoriza:** a paleta pode crescer quando houver ganho demonstrável. Não é licença para cor avulsa — a proibição 5 (§6) continua de pé, e toda cor nova entra como **token** com significado declarado.
+
+**O que isso NÃO autoriza:** escolher cor por gosto. A primeira aplicação da licença, no mesmo dia, foi o gradiente de card indexado pela severidade que o `ScoreService` já devolve (`TOM_POR_BANDA`): terracota = ação necessária, âmbar = atenção, verde = em dia, petróleo = informação sem juízo de risco. A cor vem do dado; um card em `error` com as pendências resolvidas vira `success` sozinho. Sem essa amarra o gradiente seria decoração, e a diretriz do Agnaldo é explícita contra isso ("não busco maquiar, firula e perfumaria").
+
+**A inversão, que é o ponto:** a logo passa a se adequar ao app, não o app à logo. Fica pendente adequar a marca quando a identidade do app estiver estável — ver `docs/PENDENCIAS.md`.
+
+---
+
 ## 10. Exemplo de referência
 
 `MinhaSaudeScreen` é o melhor espelho do padrão porque exercita **os dois níveis na mesma tela**:
