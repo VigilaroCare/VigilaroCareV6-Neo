@@ -27,7 +27,8 @@ const { PNG } = require('pngjs');
 
 const RAIZ = path.join(__dirname, '..');
 const ORIGEM = path.join(RAIZ, 'assets', 'illustrations');
-const DESTINO = path.join(ORIGEM, 'glifos');
+// DESTINO e resolvido depois das opcoes (--saida); ver o rodape do ficheiro.
+let DESTINO = path.join(ORIGEM, 'glifos');
 
 // Verde único de todo o acervo — primary900. Mede 8,22:1 sobre o creme do
 // tile, acima do nível AAA da norma, e continua legível a 24px.
@@ -206,15 +207,27 @@ function processar(arquivo, base, limpo) {
                 // tons desencontrados do acervo ANTIGO; numa arte que já nasce no
                 // verde da casa ela só satura — a moto saiu "pincelada de neon"
                 // (Agnaldo, 23/10/2026). Arte limpa mantém os tons do autor.
-                if (limpo) {
+                if (limpo && !ALVO) {
+                    // arte limpa sem alvo: a cor do autor passa intacta
                     ar += cor[p * 3] * a;
                     ag += cor[p * 3 + 1] * a;
                     ab += cor[p * 3 + 2] * a;
                 } else {
                 const r = lum(cor[p * 3], cor[p * 3 + 1], cor[p * 3 + 2]) / Lmedia;
-                ar += clamp(VERDE_ALVO[0] * r, 0, 255) * a;
-                ag += clamp(VERDE_ALVO[1] * r, 0, 255) * a;
-                ab += clamp(VERDE_ALVO[2] * r, 0, 255) * a;
+                const alvo = ALVO || VERDE_ALVO;
+                // Multiplicar o alvo pela razao so funciona com alvo ESCURO:
+                // sobra espaco para o pixel claro subir. Com alvo claro tudo
+                // estoura em branco e o volume desaparece — medido em
+                // 25/10/2026, o primeiro lote claro saiu lavado.
+                // Para alvo claro, COMPRIME: a razao vira um fator entre 0,68
+                // e 1,0 do alvo, o que preserva luz e sombra sem clipar.
+                const alvoClaro = lum(alvo[0], alvo[1], alvo[2]) > 140;
+                const f = alvoClaro
+                    ? 0.80 + 0.20 * clamp((r - 0.4) / 1.4, 0, 1)
+                    : r;
+                ar += clamp(alvo[0] * f, 0, 255) * a;
+                ag += clamp(alvo[1] * f, 0, 255) * a;
+                ab += clamp(alvo[2] * f, 0, 255) * a;
                 }
                 aa += a;
             }
@@ -238,6 +251,12 @@ const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n)
 const pasta = arg('pasta', 'home-pictograms');
 const limpo = process.argv.includes('--limpo');  // arte ja transparente, sem tile
 const base = Number(arg('base', 180));
+// --alvo "#E8F3EC": reancora a cor NESTE tom em vez do verde unico. Com
+// --limpo e sem --alvo, a cor do autor passa intacta (ver o bloco de cor).
+// --saida <pasta>: escreve noutra pasta em vez de glifos/.
+const hexAlvo = arg('alvo', null);
+const ALVO = hexAlvo ? [1, 3, 5].map((i) => parseInt(hexAlvo.replace('#', '').slice(i - 1, i + 1), 16)) : null;
+DESTINO = path.join(ORIGEM, arg('saida', 'glifos'));
 const dir = path.join(ORIGEM, pasta);
 const arquivos = fs.readdirSync(dir).filter((f) => f.endsWith('.png'));
 
