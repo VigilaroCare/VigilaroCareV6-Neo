@@ -12,7 +12,7 @@
  */
 
 import { useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, Animated } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, Animated, Dimensions } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -22,12 +22,24 @@ import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
 import PictogramTile from '../../components/PictogramTile';
+import NeoGlifoCard from '../../components/NeoGlifoCard';
 import { Body } from "../../components/NeoTypography";
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import NeoIcon from '../../components/NeoIcon';
 import { MICRO_BLOG_ARTICLES, MICRO_BLOG_CATEGORIES } from '../../data/micro_blog';
 import { t_field } from '../../utils/getLocalizedField';
+
+// Grade de 3 colunas, medida em px e não em porcentagem: `width: '31.5%'` com
+// `gap: 8` soma 94,5% + 16px, que estoura em tela estreita e deixa a última
+// fileira fora de prumo. Aqui a célula é o que sobra, dividido por 3.
+const VAO_GRADE = 9;
+const LADO_CELULA = Math.floor(
+    (Dimensions.get('window').width - 2 * Neo.spacing.lg - 2 * VAO_GRADE) / 3
+);
+// Altura: 2 linhas de título a 11px (26px) no alto + a arte embaixo. Medido em
+// 25/10/2026 — com 104px sobravam 7px entre o texto e a tinta do pictograma.
+const ALTURA_CELULA = 112;
 
 // Featured rotativo (5 aleatórios por sessão)
 const FEATURED_ARTICLES = [...MICRO_BLOG_ARTICLES].sort(() => 0.5 - Math.random()).slice(0, 5);
@@ -113,14 +125,14 @@ export default function KnowledgeHubScreen({ navigation }) {
             // namespace knowledgeHub.*. A porta de entrada é que estava fora
             // do lugar. Fica em primeiro por ser sobre pessoas, que é o eixo
             // do app. A arte é o mesmo PNG que estava na Home.
-            key: 'pessoas',
+            key: 'pessoas', tom: 'success',
             title: t('knowledgeHub.peopleAndContext', 'Pessoas & Contexto'),
             items: [
                 { id: 'cuidar_proteger', titulo: t('home.cuidarProteger', 'Cuidar & Proteger'), iconName: 'People', cor: themeColors.primary[600], route: 'CuidarProtegerHub' },
             ],
         },
         {
-            key: 'analises',
+            key: 'analises', tom: 'muted',
             title: t('knowledgeHub.safetyReviews', 'Análises de Segurança'),
             items: [
                 { id: 'utensilios_rev',    titulo: t('knowledgeHub.kitchenUtensils'),   iconName: 'Scissor', cor: themeColors.accent.copper, route: 'UtensiliosReviews' },
@@ -129,7 +141,7 @@ export default function KnowledgeHubScreen({ navigation }) {
             ],
         },
         {
-            key: 'emergencias',
+            key: 'emergencias', tom: 'error',
             title: t('knowledgeHub.emergencies', 'Emergências'),
             items: [
                 { id: 'fire_prev',                titulo: t('knowledgeHub.firePrev'),    iconName: 'PrevencaoIncendio', cor: themeColors.feedback.error, route: 'GenericCategory', params: { categoryId: 'fire_prevention' } },
@@ -140,7 +152,7 @@ export default function KnowledgeHubScreen({ navigation }) {
             ],
         },
         {
-            key: 'riscos',
+            key: 'riscos', tom: 'info',
             title: t('knowledgeHub.practicalGuides', 'Riscos Comuns'),
             items: [
                 { id: 'plantas',         titulo: t('knowledgeHub.toxicPlants'),       iconName: 'Tree',     cor: themeColors.primary[500], route: 'PlantasToxicas' },
@@ -155,7 +167,7 @@ export default function KnowledgeHubScreen({ navigation }) {
             ],
         },
         {
-            key: 'mobilidade',
+            key: 'mobilidade', tom: 'warning',
             title: t('knowledgeHub.mobilityMaintenance', 'Viagem & Equipamentos'),
             items: [
                 { id: 'lazer_mobilidade',   titulo: t('knowledgeHub.leisureTravel'), iconName: 'Airplane',  cor: themeColors.secondary[500], route: 'LazerFeriasMenu' },
@@ -164,26 +176,21 @@ export default function KnowledgeHubScreen({ navigation }) {
         },
     ];
 
-    const renderGridCard = (item, index) => {
+    const renderGridCard = (item, index, tom) => {
         const pictogramSource = PICTOGRAMS[item.id];
 
-        // Formato cerâmico: o PNG já é o card (tile+moldura embutidos) —
-        // renderiza nu, sem NeoCard, com o label abaixo (como na Home).
+        // Card RETROILUMINADO: o campo é um só e o pictograma mora na luz do
+        // canto. Substituiu o tile cerâmico em 25/10/2026 — ver NeoGlifoCard
+        // para por que a placa clara atrás da arte caiu.
         if (pictogramSource && CERAMIC_STYLE_IDS.has(item.id)) {
             return (
                 <FadeInView key={item.id} delay={120 + index * 40} style={s.gridCell}>
-                    <TouchableOpacity
+                    <NeoGlifoCard
+                        source={pictogramSource}
+                        titulo={item.titulo}
+                        tom={tom}
                         onPress={() => navigation.navigate(item.route, item.params || {})}
-                        activeOpacity={0.85}
-                        style={s.ceramicCell}
-                        accessibilityRole="button"
-                        accessibilityLabel={item.titulo}
-                    >
-                        <PictogramTile source={pictogramSource} style={s.ceramicImage} moldura atenuado={isDark} />
-                        <Text style={[s.gridLabel, { color: textPrimary, marginTop: -10 }]} numberOfLines={2}>
-                            {item.titulo}
-                        </Text>
-                    </TouchableOpacity>
+                    />
                 </FadeInView>
             );
         }
@@ -430,7 +437,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                                 {section.title}
                             </Text>
                             <View style={s.grid}>
-                                {section.items.map(renderGridCard)}
+                                {section.items.map((item, i) => renderGridCard(item, i, section.tom))}
                             </View>
                         </View>
                     ))}
@@ -566,14 +573,18 @@ const s = StyleSheet.create({
     grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 8,
-        marginTop: -14, // Compensa o padding transparente no topo dos assets 3D
+        // flex-start, não center: com 5 itens a última fileira tinha 2 cards
+        // centrados, fora de prumo com a de cima. Invisível com o tile cerâmico
+        // (margem transparente dos lados), gritante com o card de cor chapada.
+        justifyContent: 'flex-start',
+        gap: VAO_GRADE,
+        // o -14 de antes compensava o padding transparente no topo dos assets
+        // 3D; o card retroiluminado não tem esse padding.
+        marginTop: 0,
     },
     gridCell: {
-        width: '31.5%',
-        aspectRatio: 1,
-        marginBottom: 4,
+        width: LADO_CELULA,
+        height: ALTURA_CELULA,
     },
     gridCard: {
         flex: 1,
@@ -610,16 +621,4 @@ const s = StyleSheet.create({
         lineHeight: 14,
     },
 
-    // ── Célula cerâmica (pictograma novo = o próprio card, sem NeoCard) ──
-    ceramicCell: {
-        flex: 1,
-        alignItems: 'center',
-        // topo, não center: com labels de 1 vs 2 linhas, a centralização
-        // vertical fazia os tiles "flutuarem" desalinhados entre vizinhos
-        justifyContent: 'flex-start',
-    },
-    ceramicImage: {
-        width: '100%',
-        marginBottom: 2,
-    },
 });

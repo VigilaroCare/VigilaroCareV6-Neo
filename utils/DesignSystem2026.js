@@ -748,6 +748,32 @@ export const DS = {
         cardInfoDark:     { colors: ['#12303A', '#236274', '#328FA4'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
         cardMuted:        { colors: ['#48544E', '#6E7C75', '#94A29A'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
         cardMutedDark:    { colors: ['#2A332E', '#3F4A44', '#566159'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+
+    // ── RETROILUMINAÇÃO ─────────────────────────────────────────────────────
+    // Os `card*` acima são LINEARES e servem a card com texto. Estes são
+    // RADIAIS e existem para o card em que o pictograma mora na luz.
+    //
+    // A pergunta que eles respondem é a do Agnaldo em 25/10/2026: "por que o
+    // pictograma está dentro de um card bege que está dentro do card?". A placa
+    // existia para dar contraste à arte. Aqui o próprio card clareia no canto
+    // onde a arte fica — um campo só, sem moldura, sem card dentro de card.
+    //
+    // Cada token é o `card*Dark` correspondente com uma parada de LUZ na frente
+    // e a ordem invertida (claro no foco, escuro na borda). A severidade
+    // continua lendo pelo corpo saturado, que é o mesmo.
+    //
+    // Geometria: elipse de 132% x 116% da caixa, centrada em 88% x 74% — canto
+    // inferior direito, que é onde o pictograma é assentado. `expo-linear-gradient`
+    // não faz radial; isto se desenha com react-native-svg (ver NeoGlifoCard).
+    radiais: {
+        foco: { cx: 0.88, cy: 0.74, rx: 1.32, ry: 1.16 },
+        paradas: [0, 0.26, 0.58, 1],
+        error:   ['#F0DED8', '#D98268', '#A2462F', '#5E2418'],
+        warning: ['#F6E6C8', '#D59D44', '#A17024', '#5A3E10'],
+        success: ['#DCF0E6', '#5FBF96', '#1F7459', '#0E3A2D'],
+        info:    ['#D5EAF0', '#68AEC0', '#236274', '#12303A'],
+        muted:   ['#DDE2DE', '#7E8C84', '#3F4A44', '#2A332E'],
+    },
     },
 };
 
