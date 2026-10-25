@@ -52,6 +52,7 @@ import ProfileService from '../services/ProfileService';
 import { useProfiles } from '../contexts/ProfileContext';
 import ProactiveNotificationService from '../services/ProactiveNotificationService';
 import ScoreService from '../services/ScoreService';
+import NeoGlifoCard from '../components/NeoGlifoCard';
 
 import { H2 } from '../components/NeoTypography';
 import HeroScoreCard, { HERO_COMPACT_SAVING } from '../components/HeroScoreCard';
@@ -241,6 +242,29 @@ export default function HomeScreenNeo() {
         GRID_IMG_W = CONTENT_W;
         cellWidth = '100%';
     }
+
+    // ALTURA DO CARD RETROILUMINADO (prancha L, 25/10/2026).
+    //
+    // Toda a lógica acima existe para cumprir "Home sem scroll": ela encolhe o
+    // pictograma até a grade caber acima do rodapé. O card novo NÃO pode
+    // reabrir essa conta, então ele herda exatamente a altura que o tile mais o
+    // rótulo ocupavam juntos: a imagem era GRID_IMG_W × 0.75 (razão 577/433) e
+    // o rótulo somava ~22px (2 linhas de 16px com marginTop -10). O rótulo
+    // agora mora DENTRO do card, então a soma é a mesma e o orçamento vertical
+    // da tela não muda.
+    //
+    // O VÃO sai da mesma conta. Antes a separação entre fileiras vinha do
+    // branco em volta do rótulo (marginBottom era só 2px); com card de cor
+    // chapada as fileiras encostariam. Então o vão vira explícito e a altura do
+    // card cede o mesmo tanto: por fileira continua dando 0,75·W + 24.
+    const VAO_GRADE = 9;
+    const ALTURA_CARD = Math.round(GRID_IMG_W * 0.75 + 24 - VAO_GRADE);
+
+    // O tom do card de Vistorias vem do DADO, não do gosto: é a banda do score
+    // pela fonte única (ScoreService.getTom → success|warning|error|muted). Os
+    // outros cinco ficam em `info` — informação, sem juízo de risco. A
+    // assimetria é a informação: o que tem cor quente é o que pede ação.
+    const tomDoScore = ScoreService.getTom(scoreData.geral);
 
     const isDark = useIsDark();
     // Superfície dos tiles em row layout (telas estreitas). O mesmo creme que
@@ -516,19 +540,33 @@ export default function HomeScreenNeo() {
                         {GRID_ITEMS.map((item, idx) => (
                             <View
                                 key={item.key}
-                                style={[s.gridCell, { width: cellWidth, marginBottom: isRowLayout ? 12 : 2 }]}
+                                style={[s.gridCell, { width: cellWidth, marginBottom: isRowLayout ? 12 : VAO_GRADE }]}
                             >
-                                <BarePictogramShortcut
-                                    item={item}
-                                    textColor={textPrimary}
-                                    imageWidth={GRID_IMG_W}
-                                    isRowLayout={isRowLayout}
-                                    cardBgColor={cardBgColorResolved}
-                                    cardBorderColor={cardBorderColorResolved}
-                                    cardBorderWidth={cardBorderWidthResolved}
-                                    accentColor={themeColors.textOn.brand}
-                                    onPress={() => navigateWithHaptic(item.route)}
-                                />
+                                {isRowLayout ? (
+                                    <BarePictogramShortcut
+                                        item={item}
+                                        textColor={textPrimary}
+                                        imageWidth={GRID_IMG_W}
+                                        isRowLayout
+                                        cardBgColor={cardBgColorResolved}
+                                        cardBorderColor={cardBorderColorResolved}
+                                        cardBorderWidth={cardBorderWidthResolved}
+                                        accentColor={themeColors.textOn.brand}
+                                        onPress={() => navigateWithHaptic(item.route)}
+                                    />
+                                ) : (
+                                    <NeoGlifoCard
+                                        source={item.image}
+                                        titulo={item.label}
+                                        tom={item.key === 'vistorias' ? tomDoScore : 'info'}
+                                        valor={item.key === 'vistorias' && scoreData.pendencias > 0 ? scoreData.pendencias : undefined}
+                                        unidade={item.key === 'vistorias' && scoreData.pendencias > 0 ? t('home.signals.open', 'Em aberto') : undefined}
+                                        arte={Math.round(ALTURA_CARD * 0.62)}
+                                        tamanhoTitulo={13}
+                                        style={{ height: ALTURA_CARD }}
+                                        onPress={() => navigateWithHaptic(item.route)}
+                                    />
+                                )}
                             </View>
                         ))}
                     </View>

@@ -45,6 +45,12 @@ export default function NeoGlifoCard({
     style,
     arte = 70,          // lado da CAIXA da arte; o desenho ocupa ~73% dela
     tamanhoTitulo = 11,
+    // Número no pé do card. Só passe quando o dado for REAL e já estiver
+    // carregado — a prancha L decidiu que card sem dado não inventa número, e
+    // que a assimetria (um card com número, os outros sem) É a informação: o
+    // que tem número é o que pede ação.
+    valor,
+    unidade,
     accessibilityLabel,
     ...rest
 }) {
@@ -84,6 +90,13 @@ export default function NeoGlifoCard({
             >
                 {titulo}
             </Text>
+
+            {valor != null && (
+                <View style={styles.pe}>
+                    <Text style={[styles.valor, { fontSize: Math.round(tamanhoTitulo * 2.1) }]}>{valor}</Text>
+                    {!!unidade && <Text style={styles.unidade}>{unidade}</Text>}
+                </View>
+            )}
         </View>
     );
 
@@ -113,6 +126,27 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -3,
         bottom: -3,
+    },
+    pe: {
+        position: 'absolute',
+        left: 10,
+        bottom: 8,
+        flexDirection: 'row',
+        alignItems: 'baseline',
+    },
+    valor: {
+        color: '#FFFFFF',
+        fontWeight: '800',
+        letterSpacing: -0.6,
+        textShadowColor: 'rgba(0,0,0,0.30)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 8,
+    },
+    unidade: {
+        color: 'rgba(255,255,255,0.86)',
+        fontSize: 11,
+        marginLeft: 4,
+        fontWeight: '600',
     },
     titulo: {
         position: 'absolute',
