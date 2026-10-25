@@ -1,4 +1,4 @@
-import Svg, { Rect, Path, Line } from 'react-native-svg';
+import Svg, { G, Rect, Path, Line } from 'react-native-svg';
 
 /**
  * ReportTileIcon — ícone da aba "Relatório", família "eco do tile": prancheta
@@ -7,15 +7,25 @@ import Svg, { Rect, Path, Line } from 'react-native-svg';
  *   - weight='fill'    (ATIVA):   prancheta PREENCHIDA com as linhas VAZADAS
  *                                  (fillRule evenodd → buracos reais, em
  *                                  qualquer fundo).
- * Traço reforçado p/ legibilidade no footer (14 / linhas 13 / tile 12). Consumido via NeoIcon (name="ReportTile").
+ * Traço reforçado p/ legibilidade no footer. Consumido via NeoIcon (name="ReportTile").
+ *
+ * ÓRFÃO desde 2026-07-31, quando "Relatório" saiu do rodapé e virou card ao
+ * lado do Mapa de Calor. Segue registrado no NeoIcon, então foi alinhado junto
+ * com os irmãos em 25/10/2026 — moldura removida e glifo reescalado. Deixá-lo
+ * para trás manteria a língua antiga acessível pelo registro, à espera de que
+ * alguém a usasse sem saber. Ver HomeTileIcon.js para o porquê e para a razão
+ * de o traço ser dividido por `K`.
+ *
+ * `K` aqui é 1,49: a prancheta media ~134 de largura com traço (x 78..178 mais
+ * a meia-espessura) e passa a medir ~200, a medida da família.
  */
+const K = 1.49;
+
 export default function ReportTileIcon({ size = 24, color = '#000', weight = 'regular' }) {
     const active = weight === 'fill';
     return (
         <Svg width={size} height={size} viewBox="0 0 256 256" fill="none">
-            {/* Tile — assinatura constante */}
-            <Rect x={20} y={20} width={216} height={216} rx={58}
-                  stroke={color} strokeWidth={12} fill="none" />
+            <G transform={`translate(128 128) scale(${K}) translate(-128 -128)`}>
             {active ? (
                 <>
                     <Path
@@ -32,14 +42,15 @@ export default function ReportTileIcon({ size = 24, color = '#000', weight = 're
             ) : (
                 <>
                     <Rect x={78} y={82} width={100} height={104} rx={16}
-                          stroke={color} strokeWidth={14} fill="none" />
+                          stroke={color} strokeWidth={14 / K} fill="none" />
                     <Rect x={108} y={66} width={40} height={26} rx={8}
-                          stroke={color} strokeWidth={14} fill="none" />
-                    <Line x1={96} y1={118} x2={160} y2={118} stroke={color} strokeWidth={13} strokeLinecap="round" />
-                    <Line x1={96} y1={140} x2={160} y2={140} stroke={color} strokeWidth={13} strokeLinecap="round" />
-                    <Line x1={96} y1={162} x2={138} y2={162} stroke={color} strokeWidth={13} strokeLinecap="round" />
+                          stroke={color} strokeWidth={14 / K} fill="none" />
+                    <Line x1={96} y1={118} x2={160} y2={118} stroke={color} strokeWidth={13 / K} strokeLinecap="round" />
+                    <Line x1={96} y1={140} x2={160} y2={140} stroke={color} strokeWidth={13 / K} strokeLinecap="round" />
+                    <Line x1={96} y1={162} x2={138} y2={162} stroke={color} strokeWidth={13 / K} strokeLinecap="round" />
                 </>
             )}
+            </G>
         </Svg>
     );
 }

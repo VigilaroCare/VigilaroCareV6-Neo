@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, Defs, RadialGradient, Stop, Rect } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as NavigationService from '../services/NavigationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -141,6 +141,40 @@ const TAB_BUTTONS = [
   { labelKey: 'navigation.travel',    route: 'TravelModeTab', icon: 'TravelTile' },
   { labelKey: 'navigation.menu',      route: 'MenuTab',       icon: 'MenuTile' },
 ];
+
+/**
+ * LuzDaAba — a aba ativa ACENDE, em vez de ganhar moldura.
+ *
+ * Até 25/10/2026 a família de ícones do rodapé citava o tile cerâmico: cada
+ * glifo morava dentro de um quadrado de cantos arredondados, e o ativo se
+ * preenchia. Os tiles saíram das telas quando o card retroiluminado entrou
+ * (ANATOMIA §9.5), e o rodapé ficou citando um padrão que não existe mais.
+ *
+ * A tradução do padrão novo para uma barra de 32px não é um card — seria
+ * pesado e a navegação competiria com o conteúdo. É a LUZ, que é o que o card
+ * tem de essencial: um ponto claro de onde o desenho emerge. Aqui ela fica
+ * atrás do glifo, suave, e some no inativo.
+ *
+ * O preenchimento do glifo (Bold) continua: o sinal nunca pode ser só a luz,
+ * que é cor — a norma de acessibilidade pede um segundo canal (WCAG 1.4.1), e
+ * no alto contraste a luz tem contraste baixo de propósito.
+ */
+let seqLuz = 0;
+function LuzDaAba({ cor, tamanho = 46 }) {
+    const id = useRef(`luzaba${++seqLuz}`).current;
+    return (
+        <Svg width={tamanho} height={tamanho} style={styles.luzDaAba} pointerEvents="none">
+            <Defs>
+                <RadialGradient id={id} cx="0.5" cy="0.5" rx="0.5" ry="0.5">
+                    <Stop offset="0" stopColor={cor} stopOpacity="0.34" />
+                    <Stop offset="0.55" stopColor={cor} stopOpacity="0.13" />
+                    <Stop offset="1" stopColor={cor} stopOpacity="0" />
+                </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
+        </Svg>
+    );
+}
 
 export default function GlobalFloatingFooter({ currentRouteName }) {
   // ─── TODOS OS HOOKS ANTES DE QUALQUER RETORNO CONDICIONAL ───────────────
@@ -347,6 +381,8 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
               accessibilityLabel={t(tab.labelKey)}
               accessibilityState={{ selected: active }}
             >
+              <View style={styles.caixaIcone}>
+              {isIconActive && <LuzDaAba cor={color} />}
               {tab.route === 'TravelModeTab' ? (
                 // Narrativa: ícone inativo (pousado) quando viagem está desligada.
                 // Quando ativo, usamos a animação de flutuação e ícone dinâmico baseado no modal.
@@ -393,6 +429,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                   color={color}
                 />
               )}
+              </View>
               <Text style={[styles.tabLabel, { color }]}>{t(tab.labelKey)}</Text>
             </TouchableOpacity>
           );
@@ -452,6 +489,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     alignSelf: 'stretch', // evita height: '100%' que gera warning no Android
+  },
+  // 32×32, a mesma caixa que o ícone sempre ocupou — a luz transborda dela por
+  // posição absoluta em vez de aumentar a caixa. Assim o orçamento vertical da
+  // barra (60px) não muda nem um pixel.
+  caixaIcone: {
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  luzDaAba: {
+    position: 'absolute',
+    top: -7,
+    left: -7,
   },
   tabLabel: {
     fontSize: 10,
