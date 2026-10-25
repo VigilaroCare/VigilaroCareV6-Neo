@@ -718,6 +718,36 @@ export const DS = {
             start: { x: 0, y: 0 },
             end: { x: 1, y: 1 },
         },
+
+        // ── CARD DE DESTINO (home) — a cor CARREGA SEVERIDADE ──────────────
+        //
+        // Decisão do Agnaldo em 25/10/2026: o acabamento dos cards passa a ter
+        // campo de cor com gradiente, no lugar da caixa branca com borda.
+        //
+        // A chave NÃO é estética, é semântica: indexa pelo `tone` que o
+        // ScoreService já devolve (TOM_POR_BANDA → success | warning | error |
+        // muted), para a cor do card vir do DADO e não de escolha à mão. Sem
+        // isto o gradiente vira decoração — que é justamente o que ele rejeita.
+        // Um card em `error` com as pendências resolvidas VIRA `success`
+        // sozinho, porque a banda mudou.
+        //
+        // `info` é o único fora da escala de score: destino sem juízo de risco
+        // (quantos ambientes foram lidos, quantos produtos estão na casa).
+        //
+        // Três paradas de cor, não duas: foi o que separou a amostra aprovada
+        // das tentativas chapadas. O par claro/escuro segue a convenção do
+        // `specular`/`specularDark` acima — o DarkDS herda `gradients` do DS,
+        // então a variante escura mora aqui mesmo, com sufixo.
+        cardError:        { colors: ['#8A3524', '#C4573C', '#E08A6B'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardErrorDark:    { colors: ['#5E2418', '#A2462F', '#CE7254'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardWarning:      { colors: ['#7E571A', '#BE8630', '#E3B45C'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardWarningDark:  { colors: ['#5A3E10', '#A17024', '#D59D44'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardSuccess:      { colors: ['#16543F', '#2A8F6B', '#46BE92'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardSuccessDark:  { colors: ['#0E3A2D', '#1F7459', '#31A77E'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardInfo:         { colors: ['#1A4654', '#2F7A90', '#49A6BC'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardInfoDark:     { colors: ['#12303A', '#236274', '#328FA4'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardMuted:        { colors: ['#48544E', '#6E7C75', '#94A29A'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+        cardMutedDark:    { colors: ['#2A332E', '#3F4A44', '#566159'], locations: [0, 0.58, 1], start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
     },
 };
 
