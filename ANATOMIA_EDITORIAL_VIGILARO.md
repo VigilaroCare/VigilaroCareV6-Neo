@@ -267,6 +267,7 @@ O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm taman
 |---|---|
 | `KnowledgeHubScreen` (Central de Aprendizado) | migrada — 3 colunas, cor por seção, título no alto |
 | `HomeScreenNeo` (grade de 6 atalhos) | migrada — 2 colunas, tom do Vistorias pelo score |
+| `GlobalFloatingFooter` (menu inferior) | migrado — ver abaixo |
 | `HomeScreenNeo` em uma coluna (`isRowLayout`) | **pendente** — telefone estreito segue no tile |
 | `MenuScreenNeo` | **pendente** |
 | `TravelModeScreen` | **pendente** (39 peças, via `CeramicSelectTile`) |
@@ -275,6 +276,12 @@ O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm taman
 **Número no card:** só quando o dado é real e já está carregado. A prancha L decidiu que card sem dado não inventa número, e que a assimetria é a informação — o que tem número é o que pede ação. Hoje só Vistorias tem dado na abertura da Home.
 
 **Título no ALTO, não embaixo.** Medido: embaixo ele disputa a faixa horizontal com a arte, e "Segurança em Condomínio" a 11px não cabe ao lado de um pictograma de 70px numa célula de 112px. A prancha L usava título embaixo porque os rótulos da Home têm até 12 caracteres; os da Educação chegam a 24.
+
+**O menu inferior, e por que ele não virou um card.** A família de ícones do rodapé (`HomeTile`, `EducationTile`, `TravelTile`, `MenuTile`, `ReportTile`) citava o tile de propósito: cada glifo morava num quadrado de cantos arredondados, de "assinatura constante". Com o tile fora das telas, o rodapé passou a citar o que não existe. A moldura saiu dos cinco, e `K` devolveu a cada glifo a extensão que ela ocupava — os cinco medem ~200 de 256.
+
+Traduzir o card para uma barra de 32px **não podia ser um card**: seria pesado e a navegação competiria com o conteúdo. A tradução é a **luz** — o que o card tem de essencial, um ponto claro de onde o desenho emerge. A aba ativa acende; a inativa não.
+
+Duas amarras que não podem cair numa revisão futura: o glifo ativo **continua preenchido** (o sinal nunca é só cor — WCAG 1.4.1 pede segundo canal, e no alto contraste a luz tem contraste baixo de propósito); e a espessura do traço é **dividida por `K`**, senão o `scale` do SVG a multiplicaria junto e cada ícone sairia com um peso de linha diferente conforme o quanto cresceu.
 
 ---
 
