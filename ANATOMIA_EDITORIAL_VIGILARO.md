@@ -249,6 +249,35 @@ O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm taman
 
 ---
 
+### 9.5 Atualização 2026-10-25 — o card retroiluminado (`NeoGlifoCard`)
+
+**ATENÇÃO antes de copiar o tile cerâmico de qualquer tela:** o padrão de grade de pictogramas está **em migração**. Duas telas já saíram do tile; quatro ainda não. Copiar o tile hoje é copiar o padrão antigo.
+
+**O que mudou.** O pictograma deixa de morar num prato creme e passa a morar na **luz do próprio card**. O gradiente é radial, vai do escuro na borda ao claro no canto inferior direito, e a arte é assentada nesse canto. Um campo só — sem placa, sem moldura, sem card dentro de card.
+
+**De onde veio.** Da pergunta do Agnaldo sobre a versão anterior: *"por que o pictograma está dentro de um card bege que está dentro do card?"*. A placa clara atrás da arte era remendo para dar contraste a ela, não decisão de desenho. Ela caiu.
+
+**A cor continua vindo do dado**, pelos mesmos tokens de §9.4 — agora em `DS.gradients.radiais`, que são os `card*Dark` lineares com uma parada de luz na frente. Numa tela com score, o tom sai de `ScoreService.getTom()`. Numa tela de conteúdo, da seção. Nunca do gosto.
+
+**Duas artes, dois enquadramentos, um arquivo.** Os glifos foram reenquadrados de 52% para 73% de ocupação (a margem existia para caber dentro do prato, que não existe mais). `PictogramTile` compensa com `FATOR_TILE` para as telas não migradas ficarem idênticas ao que eram. Quem usa `NeoGlifoCard` recebe o arquivo cheio.
+
+**Estado da migração:**
+
+| tela | estado |
+|---|---|
+| `KnowledgeHubScreen` (Central de Aprendizado) | migrada — 3 colunas, cor por seção, título no alto |
+| `HomeScreenNeo` (grade de 6 atalhos) | migrada — 2 colunas, tom do Vistorias pelo score |
+| `HomeScreenNeo` em uma coluna (`isRowLayout`) | **pendente** — telefone estreito segue no tile |
+| `MenuScreenNeo` | **pendente** |
+| `TravelModeScreen` | **pendente** (39 peças, via `CeramicSelectTile`) |
+| cards Radar e Conceitos do `KnowledgeHubScreen` | **pendente** — ainda `PictogramTile` com `width={110}` |
+
+**Número no card:** só quando o dado é real e já está carregado. A prancha L decidiu que card sem dado não inventa número, e que a assimetria é a informação — o que tem número é o que pede ação. Hoje só Vistorias tem dado na abertura da Home.
+
+**Título no ALTO, não embaixo.** Medido: embaixo ele disputa a faixa horizontal com a arte, e "Segurança em Condomínio" a 11px não cabe ao lado de um pictograma de 70px numa célula de 112px. A prancha L usava título embaixo porque os rótulos da Home têm até 12 caracteres; os da Educação chegam a 24.
+
+---
+
 ## 10. Exemplo de referência
 
 `MinhaSaudeScreen` é o melhor espelho do padrão porque exercita **os dois níveis na mesma tela**:
