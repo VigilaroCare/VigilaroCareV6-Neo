@@ -518,7 +518,7 @@ export default function SegurancaLazerScreen({ navigation }) {
                  </Text>
              </View>
              <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: Neo.colors.neutral[50], alignItems: 'center', justifyContent: 'center' }}>
-                 <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
+                 <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
              </View>
           </View>
         </NeoCard>

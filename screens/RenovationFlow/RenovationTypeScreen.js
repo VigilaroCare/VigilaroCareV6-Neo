@@ -39,7 +39,7 @@ export default function RenovationTypeScreen({ navigation }) {
                             <View style={styles.cardBody}>
                                 <Text style={styles.cardTitle}>{opt.title}</Text>
                             </View>
-                            <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
+                            <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
                         </TouchableOpacity>
                     ))}
                 </View>

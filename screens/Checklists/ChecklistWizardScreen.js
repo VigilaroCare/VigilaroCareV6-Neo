@@ -170,7 +170,7 @@ export default function ChecklistWizardScreen({ navigation }) {
                             </View>
                         </View>
                     </View>
-                    <NeoIcon name="ArrowRight2" size={20} color={themeColors.neutral[400]} />
+                    <NeoIcon name="ArrowRight2" size={20} color={themeColors.neutral[500]} />
                 </NeoCard>
             </ScaleButton>
           ))}

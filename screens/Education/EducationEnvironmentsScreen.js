@@ -96,7 +96,7 @@ function EnvironmentCard({ id, item, ambiente, onPress, theme }) {
 
                     {/* Chevron */}
                     <View style={styles.chevron}>
-                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
+                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
                     </View>
                 </View>
             </View>

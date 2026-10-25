@@ -235,7 +235,7 @@ export default function PetsMenuScreen({ navigation, route }) {
 
                         {/* Chevron */}
                         <View style={s.chevron}>
-                            <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
+                            <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
                         </View>
                     </View>
                 </View>

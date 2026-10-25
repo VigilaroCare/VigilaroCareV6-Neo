@@ -32,7 +32,7 @@ export default function VisitTypeScreen({ navigation }) {
                         <Text style={styles.cardTitle}>{t('headersFirst.recebendoVisita', 'Recebendo Visita')}</Text>
                         <Text style={styles.cardSub}>{t('headersFirst.prepararMinhaCasaParaConvidados', 'Preparar minha casa para convidados')}</Text>
                     </View>
-                    <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[400]} />
+                    <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[500]} />
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.card} onPress={() => handleSelect(VISIT_TYPES.VISITING)}>
@@ -43,7 +43,7 @@ export default function VisitTypeScreen({ navigation }) {
                         <Text style={styles.cardTitle}>{t('headersFirst.indoVisitar', 'Indo Visitar')}</Text>
                         <Text style={styles.cardSub}>{t('headersFirst.cuidadosAoIrNaCasaDeOutros', 'Cuidados ao ir na casa de outros')}</Text>
                     </View>
-                    <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[400]} />
+                    <NeoIcon name="ArrowRight2" size={24} color={Neo.colors.neutral[500]} />
                 </TouchableOpacity>
 
             </ScrollView>

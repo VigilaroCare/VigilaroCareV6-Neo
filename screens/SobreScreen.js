@@ -110,12 +110,12 @@ export default function SobreScreen({ navigation }) {
           <NeoCard variant="elevated" style={styles.menuGroup}>
             <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('TermsOfUse')}>
               <Body style={styles.menuText}>{t('about.termsOfUse')}</Body>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
             <View style={styles.divider} />
             <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('PrivacyPolicy')}>
               <Body style={styles.menuText}>{t('about.privacyPolicy')}</Body>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
           </NeoCard>
 
@@ -127,7 +127,7 @@ export default function SobreScreen({ navigation }) {
                 <NeoIcon name="Sms" size={20} color={Neo.colors.primary[500]} variant="Bold" />
                 <Body style={styles.menuText}>{t('about.contactUs')}</Body>
               </View>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
             <View style={styles.divider} />
             <TouchableOpacity style={styles.menuItem} onPress={() => handleLink('https://www.vigilarocare.ia.br')}>
@@ -135,7 +135,7 @@ export default function SobreScreen({ navigation }) {
                 <NeoIcon name="Global" size={20} color={Neo.colors.primary[500]} variant="Bold" />
                 <Body style={styles.menuText}>{t('about.visitSite')}</Body>
               </View>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
           </NeoCard>
 
@@ -169,7 +169,7 @@ export default function SobreScreen({ navigation }) {
                 <NeoIcon name="Trash" size={20} color={Neo.colors.feedback.error} variant="Bold" />
                 <Body style={[styles.menuText, { color: Neo.colors.feedback.error, fontWeight: 'bold' }]}>{t('about.resetApp')}</Body>
               </View>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[300]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
           </NeoCard>
 

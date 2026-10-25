@@ -68,7 +68,7 @@ export default function SituacoesTemporariasScreen({ navigation }) {
                 <Text style={styles.cardTitle}>{opt.title}</Text>
                 <Text style={styles.cardSub}>{opt.subtitle}</Text>
               </View>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[400]} />
+              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
             </TouchableOpacity>
           ))}
         </View>

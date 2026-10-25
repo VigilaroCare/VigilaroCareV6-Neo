@@ -108,7 +108,7 @@ export default function ContatoScreen({ navigation }) {
                                         {SITE_LABEL}
                                     </Body>
                                 </View>
-                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[400]} />
+                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
                             </View>
                         </NeoCard>
                     </TouchableOpacity>

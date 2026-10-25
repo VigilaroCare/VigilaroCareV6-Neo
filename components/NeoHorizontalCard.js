@@ -110,7 +110,7 @@ export default function NeoHorizontalCard({
 
                     {/* Chevron Direita */}
                     <View style={styles.chevron}>
-                        <NeoIcon name="ArrowRight2" size={16} color={plainImage ? Neo.colors.textOn.muted : themeColors.neutral[400]} />
+                        <NeoIcon name="ArrowRight2" size={16} color={plainImage ? Neo.colors.textOn.muted : themeColors.neutral[500]} />
                     </View>
                 </View>
             </View>

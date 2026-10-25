@@ -266,7 +266,7 @@ export default function VigilaroScanHubScreen() {
                                             <Body style={s.historyName}>{item.nome}</Body>
                                             <Small style={s.historyCat}>{item.categoria}</Small>
                                         </View>
-                                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[400]} />
+                                        <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.neutral[500]} />
                                     </NeoCard>
                                 </TouchableOpacity>
                             ))}
