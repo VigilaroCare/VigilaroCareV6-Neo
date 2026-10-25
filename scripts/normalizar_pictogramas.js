@@ -172,9 +172,18 @@ function processar(arquivo, base, limpo) {
 
     // caixa, centro de massa, luminância média e ÁREA DE TINTA do glifo
     let x0 = w, y0 = h, x1 = -1, y1 = -1, peso = 0, sx = 0, sy = 0, sL = 0, tinta = 0;
+    // Caixa CHEIA, no limiar da borda suave. A caixa acima corta em 0,5 — é a
+    // medida certa para o tamanho óptico (o olho não pesa a aresta esfumada),
+    // mas a renderização pinta todo pixel com alfa > 0. Quem decide se cabe no
+    // quadro é esta, não aquela.
+    let ex0 = w, ey0 = h, ex1 = -1, ey1 = -1;
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
         const p = y * w + x, a = alfa[p];
         if (a > 0.03) tinta += a;                      // cobertura real, com a borda suave
+        if (a > 0.02) {
+            if (x < ex0) ex0 = x; if (y < ey0) ey0 = y;
+            if (x > ex1) ex1 = x; if (y > ey1) ey1 = y;
+        }
         if (a < 0.5) continue;
         if (x < x0) x0 = x; if (y < y0) y0 = y; if (x > x1) x1 = x; if (y > y1) y1 = y;
         peso += a; sx += x * a; sy += y * a;
@@ -204,6 +213,23 @@ function processar(arquivo, base, limpo) {
         const caixa = (lado * escala) / S;
         if (caixa > CAIXA_MAX) escala = (S * CAIXA_MAX) / lado;
         if (caixa < CAIXA_MIN) escala = (S * CAIXA_MIN) / lado;
+
+        // TETO SEM CORTE. A peça é assentada pelo centro de MASSA, que não é o
+        // centro da caixa. O teto acima olha só o LADO do desenho, então numa
+        // peça de massa deslocada o lado pesado cabe e o leve transborda:
+        // pictogram-companhia-idosos saiu com tinta na borda ao subir para 92%
+        // de caixa. O limite real é a maior distância do centro de massa até
+        // uma extremidade da caixa CHEIA (ex*/ey*, que inclui a borda suave que
+        // de fato é pintada). Inerte na calibração antiga — só morde quando a
+        // ocupação sobe.
+        // A folga é proporcional, não de 1px: a amostragem 2x2 espalha a tinta
+        // além do pixel teórico, e um quadro de 540px com 1px de margem entrega
+        // o desenho encostado na moldura. 4% do semi-lado resolve nas 3
+        // densidades e não muda nada abaixo do teto.
+        const bracoMax = Math.max(cmx - ex0, ex1 - cmx, cmy - ey0, ey1 - cmy);
+        const tetoSemCorte = (S / 2) * 0.96 / bracoMax;
+        if (escala > tetoSemCorte) escala = tetoSemCorte;
+
         caixaFinal = (lado * escala) / S;
         const out = new PNG({ width: S, height: S });
         out.data.fill(0);
