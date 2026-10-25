@@ -70,6 +70,12 @@ const TINTA_ALVO = 0.097 * _fator * _fator;
 const CAIXA_MIN = 0.46 * _fator;
 const CAIXA_MAX = Math.min(0.66 * _fator, 0.90);
 
+// --alongamento: compensa a silhueta esguia (ver o bloco no laço de escala).
+// 0,86 é a MEDIANA medida da proporção menor/maior nas 62 peças do acervo
+// (q1 0,77 · mediana 0,86 · q3 0,94 · extremos 0,51 e 1,00).
+const ALONGAMENTO = process.argv.includes('--alongamento');
+const PROPORCAO_TIPICA = 0.86;
+
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
@@ -193,6 +199,8 @@ function processar(arquivo, base, limpo) {
     const Lmedia = sL / peso;
     const cmx = sx / peso, cmy = sy / peso;            // centro de MASSA, não da caixa
     const lado = Math.max(x1 - x0 + 1, y1 - y0 + 1);
+    const menor = Math.min(x1 - x0 + 1, y1 - y0 + 1);
+    const proporcao = menor / lado;                    // 1 = quadrada
 
     const saidas = [];
     let caixaFinal = 0;
@@ -213,6 +221,30 @@ function processar(arquivo, base, limpo) {
         const caixa = (lado * escala) / S;
         if (caixa > CAIXA_MAX) escala = (S * CAIXA_MAX) / lado;
         if (caixa < CAIXA_MIN) escala = (S * CAIXA_MIN) / lado;
+
+        // COMPENSAÇÃO DE ALONGAMENTO (--alongamento).
+        //
+        // As duas escalas acima medem a peça pelo LADO MAIOR e pela TINTA. Uma
+        // silhueta muito alongada passa nas duas e mesmo assim lê como
+        // "magrinha": medido no botijão de gás em 25/10/2026 — tinta 19,8%
+        // contra 20,2% de mediana (ou seja, no alvo) e largura 37% contra 68%.
+        // O olho também pesa a EXTENSÃO, não só a tinta e a altura.
+        //
+        // Não é defeito de processamento: a arte de origem tem a mesma
+        // proporção 0,52 do glifo gerado. O desenho é esguio mesmo. O que a
+        // compensação faz é dar a ele a presença que a proporção lhe tira.
+        //
+        // RAIZ da razão, não a razão inteira: igualar o lado menor à mediana
+        // estouraria o lado maior. Com raiz, o botijão (0,52) cresce 29% e uma
+        // peça típica (0,83) cresce 2% — ou seja, não mexe em quem está em dia.
+        //
+        // Vem DEPOIS do teto de caixa de propósito: CAIXA_MAX existe para uma
+        // peça não dominar a grade, e quem domina é a peça quadrada. Em 94% de
+        // altura o botijão ainda ocupa 49% de largura. Quem garante que cabe no
+        // quadro é o teto sem corte, logo abaixo.
+        if (ALONGAMENTO && proporcao < PROPORCAO_TIPICA) {
+            escala *= Math.sqrt(PROPORCAO_TIPICA / proporcao);
+        }
 
         // TETO SEM CORTE. A peça é assentada pelo centro de MASSA, que não é o
         // centro da caixa. O teto acima olha só o LADO do desenho, então numa

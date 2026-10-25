@@ -29,6 +29,8 @@ const path = require('path');
 const arg = (n, p) => { const a = process.argv.slice(2), i = a.indexOf('--' + n); return i >= 0 && a[i + 1] ? a[i + 1] : p; };
 const CAIXA = arg('caixa', '0.52');
 const SAIDA = arg('saida', '_controle');
+// repassa --alongamento ao normalizador (compensa silhueta esguia)
+const EXTRA = process.argv.includes('--alongamento') ? ' --alongamento' : '';
 
 const A = path.join(__dirname, '..', 'assets', 'illustrations');
 const PASTAS = ['education-pictograms', 'home-pictograms', 'menu-pictograms', 'travel-pictograms'];
@@ -49,14 +51,14 @@ for (const f of FORA) {
 try {
     // 2. as 4 pastas, modo padrao
     for (const p of PASTAS) {
-        execSync(`node scripts/normalizar_pictogramas.js --pasta ${p} --caixa ${CAIXA} --saida ${SAIDA}`,
+        execSync(`node scripts/normalizar_pictogramas.js --pasta ${p} --caixa ${CAIXA} --saida ${SAIDA}${EXTRA}`,
             { cwd: path.join(__dirname, '..'), stdio: 'ignore' });
     }
 
     // 3. a moto, modo limpo, com renomeacao
     const umA = tmp('_uma'); rmrf(umA); fs.mkdirSync(umA, { recursive: true });
     fs.copyFileSync(path.join(guardado, MOTO.arquivo), path.join(umA, MOTO.nome + '.png'));
-    execSync(`node scripts/normalizar_pictogramas.js --pasta _uma --caixa ${CAIXA} --saida ${SAIDA} --limpo`,
+    execSync(`node scripts/normalizar_pictogramas.js --pasta _uma --caixa ${CAIXA} --saida ${SAIDA} --limpo${EXTRA}`,
         { cwd: path.join(__dirname, '..'), stdio: 'ignore' });
     rmrf(umA);
 } finally {
