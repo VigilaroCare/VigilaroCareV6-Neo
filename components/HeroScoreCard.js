@@ -51,7 +51,7 @@
 import { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import SafeGradient from './SafeGradient';
+import Svg, { Line } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
@@ -72,6 +72,51 @@ import { getPendingGuidance } from '../data/tag_guidance';
 // mesma duplicação que o docblock daquele serviço diz ter eliminado, e que o
 // PILAR 3 do CLAUDE.md nomeia. `ScoreService.getTom(score)` é o caminho único
 // e devolve exatamente estas chaves. Removido em 25/10/2026.
+
+/**
+ * MedidorDeScore — o arco de marcações da prancha L.
+ *
+ * É o "gráfico" que o Agnaldo esperava desde a aprovação da prancha e que eu
+ * nunca levei ao código: migrei a paleta e os cards e deixei o hero para trás,
+ * primeiro como widget creme, depois tentando salvar com acabamento. Ele
+ * chegou a duvidar da própria memória ("acho que me enganei ao pensar que
+ * teríamos um gráfico") — não tinha se enganado.
+ *
+ * GEOMETRIA DA PRANCHA, sem reinterpretação: 40 marcações num arco de 180°,
+ * raio interno 76 e externo 90 num quadro de 214x106, traço 2,2 com ponta
+ * arredondada. A marcação acende quando sua posição relativa alcança o score.
+ *
+ * A COR DA MARCAÇÃO É NEUTRA, não da banda. Na prancha ela é branca sobre o
+ * fundo escuro, e quem carrega a banda é a legenda ("Atenção necessária" em
+ * âmbar). Pintar o arco do tom da banda duplicaria o sinal e tiraria do número
+ * o protagonismo que a prancha deu a ele.
+ */
+function MedidorDeScore({ pct, cor, corVazia, largura = 214, altura = 106 }) {
+    const N = 40;
+    const cx = 107, cy = 98, r1 = 76, r2 = 90;
+    const marcas = [];
+    for (let i = 0; i < N; i++) {
+        const ang = Math.PI * (1 + i / (N - 1));
+        marcas.push({
+            x1: cx + r1 * Math.cos(ang), y1: cy + r1 * Math.sin(ang),
+            x2: cx + r2 * Math.cos(ang), y2: cy + r2 * Math.sin(ang),
+            acesa: i / N <= pct / 100,
+        });
+    }
+    return (
+        <Svg width={largura} height={altura} viewBox="0 0 214 106">
+            {marcas.map((m, i) => (
+                <Line
+                    key={i}
+                    x1={m.x1} y1={m.y1} x2={m.x2} y2={m.y2}
+                    stroke={m.acesa ? cor : corVazia}
+                    strokeWidth={2.2}
+                    strokeLinecap="round"
+                />
+            ))}
+        </Svg>
+    );
+}
 
 /** Interpola dois hex. Usado para apertar a parada clara do campo do card
  *  até o branco alcançar o contraste mínimo de texto — ver o uso. */
@@ -155,16 +200,31 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     // outras três bandas passariam em 100% (terracota 6,08 · verde 5,67 ·
     // grafite 9,23); 0,92 é o menor fator que serve às quatro, e 8% de
     // diferença é imperceptível como desenho.
-    const campoClaro = misturarHex(radial[3], radial[2], 0.92);
-    const track = 'rgba(255,255,255,0.24)';
+
+    // O arco: marcação acesa na tinta do card, apagada na mesma tinta a 18%.
+    // `corDaBanda` é quem carrega a severidade — a LEGENDA, não o arco. Na
+    // prancha L o arco é branco e "Atenção necessária" sai em âmbar.
+    const trilhoMedidor = colors.tile.track;
+    const corDaBanda = tomDaBanda === 'muted' ? mutedCard : colors.textOn[tomDaBanda];
+    const track = colors.tile.track;
 
     // DUAS TINTAS, e a distinção é o que torna a troca de superfície segura.
     // O CARD tem campo saturado e pede branco. A FOLHA DE REVISÃO (o
     // questionário em modal) continua em superfície neutra e pede a tinta do
     // tema — ela tem texto corrido, item a item, e branco sobre claro a
     // deixaria ilegível. Os dois pares eram um só; separá-los veio primeiro.
-    const inkCard = '#FFFFFF';
-    const mutedCard = 'rgba(255,255,255,0.78)';
+    // ── A TINTA VOLTOU A SER A DO TEMA ───────────────────────────────────
+    // Por algumas horas em 25/10/2026 o card teve campo saturado e tinta
+    // branca. A prancha L, que é a referência aprovada, não tem card nenhum
+    // aqui: o medidor fica direto sobre o fundo da tela. Com o campo fora, a
+    // tinta branca perde o chão — literalmente — e o problema de contraste que
+    // me custou três correções some junto com a causa.
+    //
+    // Os nomes `inkCard`/`mutedCard` ficam, porque distinguem a tinta do HERO da
+    // tinta da FOLHA DE REVISÃO, que é outra superfície e continua sendo útil
+    // separar.
+    const inkCard = colors.textOn.ink;
+    const mutedCard = colors.textOn.muted;
 
     const superficieFolha = isDark ? colors.neutral[200] : colors.neutral.white;
     const inkText = colors.textOn.ink;
@@ -183,11 +243,11 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     // CONTROLE" só aparecia na ponta âmbar/vermelha; a parte verde era invisível.
     // Âmbar e vermelho ficam como estão: contrastam com qualquer tom de campo, e
     // são justamente os que precisam saltar.
-    const CHEIO_EM_DIA = 'rgba(255,255,255,0.94)';
+    const CHEIO_EM_DIA = colors.feedback.success;
 
     const bandFillColor = (value) => {
         const tone = ScoreService.getTom(value);
-        if (tone === 'muted') return 'rgba(255,255,255,0.55)';
+        if (tone === 'muted') return colors.neutral[400];
         if (tone === 'success') return CHEIO_EM_DIA;
         return colors.feedback[tone];
     };
@@ -383,32 +443,6 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
 
     return (
         <View style={styles.card}>
-            {/* O CAMPO. LINEAR e na faixa ESCURA, não o radial dos cards de
-                pictograma — e o aviso estava escrito por mim mesmo no token:
-                "os `card*` são LINEARES e servem a card com texto; estes são
-                RADIAIS e existem para o card em que o pictograma mora na luz".
-                O radial clareia até quase branco no canto inferior direito, que
-                é onde o pictograma deveria pousar. Pus texto branco ali: medido,
-                o branco dá 1,19:1 sobre a parada de luz e 2,24:1 sobre a clara.
-                O "100%" do Quarto de Adulto ficou invisível no print.
-
-                Aqui só as duas paradas escuras do mesmo tom de banda — 5,67:1 e
-                12,64:1 para o branco, as duas acima do mínimo de texto. Mesma
-                família de cor, mesma semântica de severidade, faixa em que a
-                tinta branca sobrevive.
-
-                SafeGradient e não <Svg>: é view nativa, estica com os insets sem
-                os truques de dimensionamento do SVG (o `width="100%"` resolvia
-                contra o pai e parava 35pt antes da borda), e é o wrapper
-                obrigatório do projeto para gradiente linear. */}
-            <SafeGradient
-                colors={[radial[3], campoClaro]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={styles.campo}
-                pointerEvents="none"
-                debugLabel="HeroScoreCard.campo"
-            />
             <TouchableOpacity
                 activeOpacity={0.88}
                 onPress={onPress}
@@ -441,28 +475,34 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                     </View>
                 )}
 
+                {/* O MEDIDOR. Substituiu o painel de duas colunas (score |
+                    divisor | lista de ambientes), que era o que a prancha L
+                    nunca teve. A lista foi para o estado EXPANDIDO, que é o que
+                    a legenda sempre prometeu — "toque para ver os ambientes com
+                    pendência" — e o que resolve de uma vez o "Quarto de Ad..."
+                    truncado: em coluna estreita não cabia nome de ambiente. */}
                 <View style={[styles.compactPanel, compact && styles.compactPanelTight]}>
-                    <View style={[styles.compactMain, compact && styles.compactMainTight]}>
-                        <View style={styles.scoreColumn}>
+                    <View style={styles.medidorWrap}>
+                        <MedidorDeScore
+                            pct={score}
+                            cor={inkCard}
+                            corVazia={trilhoMedidor}
+                            largura={compact ? 180 : 214}
+                            altura={compact ? 89 : 106}
+                        />
+                        {/* Sobe para dentro do arco: é o vazio do semicírculo que
+                            a prancha usa para alojar o número. */}
+                        <View style={[styles.medidorTexto, { marginTop: compact ? -40 : -48 }]}>
                             <Text style={[styles.scoreValue, compact && styles.scoreValueTight, { color: scoreColor }]} numberOfLines={1}>
-                                {score}%
+                                {score}
+                                <Text style={[styles.scorePct, { color: mutedCard }]}>%</Text>
                             </Text>
-                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: inkCard }]} numberOfLines={2}>
+                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: corDaBanda }]} numberOfLines={2}>
                                 {headline}
                             </Text>
-                            <View style={[styles.globalBarWrap, compact && styles.globalBarWrapTight]}>
-                                {renderSegmentBar(statsGeral, compact ? 6 : 8, score)}
-                            </View>
-                        </View>
-
-                        <View style={[styles.verticalDivider, compact && styles.verticalDividerTight, { backgroundColor: track }]} />
-
-                        <View style={styles.ambientesColumn}>
-                            {ambientesSorted.length > 0 ? (
-                                ambientesSorted.map(renderAmbienteItem)
-                            ) : (
-                                <Text style={[styles.noAmbienteText, { color: mutedCard }]}>
-                                    {t('home.noInspectedEnvironment', 'Nenhum ambiente vistoriado.')}
+                            {score > 0 && (
+                                <Text style={[styles.medidorDica, { color: mutedCard }]} numberOfLines={1}>
+                                    {t('home.expandPending', 'Toque para ver os ambientes com pendência')}
                                 </Text>
                             )}
                         </View>
@@ -486,7 +526,23 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                         </Text>
                     ) : (
                         <>
+                            {/* A LISTA COMPLETA, que antes dividia a linha com o
+                                score numa coluna de ~150px — onde "Quarto de
+                                Adulto" virava "Quarto de Ad...". Aqui ela tem a
+                                largura inteira e o nome cabe. É o que a legenda
+                                do medidor promete ao convidar o toque. */}
                             <Text style={[styles.pendingTitle, { color: mutedCard }]} numberOfLines={1}>
+                                {sectionTitle}
+                            </Text>
+                            {ambientesSorted.length > 0 ? (
+                                ambientesSorted.map(renderAmbienteItem)
+                            ) : (
+                                <Text style={[styles.noPendingText, { color: mutedCard }]}>
+                                    {t('home.noInspectedEnvironment', 'Nenhum ambiente vistoriado.')}
+                                </Text>
+                            )}
+
+                            <Text style={[styles.pendingTitle, { color: mutedCard, marginTop: 14 }]} numberOfLines={1}>
                                 {t('home.pendingEnvironmentsTitle', 'Ambientes com pendência')}
                             </Text>
                             {pendingAmbientes.length > 0 ? (
@@ -737,27 +793,31 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
  * o tema existir — cor sai como prop inline, sempre.
  */
 const styles = StyleSheet.create({
-    // Espelha o padding do `card` em negativo — ver o comentário no JSX.
-    campo: {
-        position: 'absolute',
-        left: -12,
-        right: -12,
-        top: -4,
-        bottom: -6,
+    medidorWrap: {
+        alignItems: 'center',
     },
+    medidorTexto: {
+        alignItems: 'center',
+    },
+    scorePct: {
+        fontSize: 19,
+        fontWeight: '700',
+    },
+    medidorDica: {
+        fontSize: 10.5,
+        marginTop: 3,
+    },
+    // Espelha o padding do `card` em negativo — ver o comentário no JSX.
+    // SEM SUPERFÍCIE. Na prancha L o medidor fica direto sobre o fundo da tela —
+    // não há card aqui, e foi tentar manter um que custou três correções de
+    // contraste numa noite. Sem campo, sem borda, sem sombra: o arco e o número
+    // se bastam, e a tinta volta a ser a do tema.
     card: {
-        borderRadius: Neo.radius.lg,
-        // Recorta o gradiente do campo nos cantos arredondados.
-        overflow: 'hidden',
         paddingHorizontal: 12,
         paddingTop: 4,
         paddingBottom: 6,
         marginTop: 6,
         marginBottom: 2,
-        // A sombra `ceramic` saiu com o creme: ela existia para o card pousar na
-        // mesma altura dos tiles de pictograma, e eles não existem mais. Campo
-        // saturado se separa do fundo sozinho — e `overflow: 'hidden'` recorta
-        // sombra no iOS, então as duas coisas não conviveriam de todo jeito.
     },
     heroTitle: {
         textAlign: 'center',
@@ -805,13 +865,6 @@ const styles = StyleSheet.create({
     compactPanelTight: {
         paddingTop: 4,          // era 7   (-3)
     },
-    compactMainTight: {
-        minHeight: 78,          // deixa de ser o limitante
-    },
-    scoreValueTight: {
-        fontSize: 34,           // era 40
-        lineHeight: 36,         // era 42  (-6)
-    },
     scoreHeadlineTight: {
         marginTop: 2,           // era 4   (-2)
         lineHeight: 13,         // era 14  (-2 em 2 linhas)
@@ -819,27 +872,36 @@ const styles = StyleSheet.create({
     globalBarWrapTight: {
         marginTop: 7,           // era 11  (-4)
     },                          // + barra 8 → 6 (-2), passada em renderSegmentBar
-    verticalDividerTight: {
-        height: 73,             // era 92; acompanha a coluna encolhida
-    },
     scoreColumn: {
         flex: 0.88,
         minWidth: 0,
         paddingRight: 12,
     },
+    // Proporções da prancha L: número dominante com entreletra negativa, dentro
+    // do vazio do arco. Era 40/900 sem recuo quando o número dividia a linha com
+    // a lista de ambientes; sozinho no centro do medidor ele pode ser o que a
+    // prancha pede.
     scoreValue: {
+        fontSize: 48,
+        lineHeight: 50,
+        fontWeight: '800',
+        letterSpacing: -1.6,
+        textAlign: 'center',
+    },
+    scoreValueTight: {
         fontSize: 40,
         lineHeight: 42,
-        fontWeight: '900',
-        letterSpacing: 0,
     },
+    // CAIXA NORMAL, não maiúscula. Na prancha é "Atenção necessária", não
+    // "ATENÇÃO NECESSÁRIA" — a maiúscula vinha de quando a legenda era rótulo de
+    // coluna e precisava competir com o número ao lado.
     scoreHeadline: {
-        marginTop: 4,
-        fontSize: 12,
-        lineHeight: 14,
-        fontWeight: '900',
-        textTransform: 'uppercase',
-        letterSpacing: 0,
+        marginTop: 1,
+        fontSize: 12.5,
+        lineHeight: 15,
+        fontWeight: '700',
+        letterSpacing: -0.1,
+        textAlign: 'center',
     },
     globalBarWrap: {
         marginTop: 11,
@@ -848,12 +910,6 @@ const styles = StyleSheet.create({
         width: 1,
         height: 92,
         marginRight: 12,
-    },
-    ambientesColumn: {
-        flex: 1.42,
-        justifyContent: 'center',
-        minWidth: 0,
-        paddingTop: 1,
     },
     ambienteRow: {
         flexDirection: 'row',
@@ -890,12 +946,6 @@ const styles = StyleSheet.create({
     segmentTrack: {
         flexDirection: 'row',
         overflow: 'hidden',
-    },
-    noAmbienteText: {
-        fontSize: 12,
-        lineHeight: 16,
-        fontWeight: '700',
-        textAlign: 'center',
     },
     footerChevron: {
         height: 12,
