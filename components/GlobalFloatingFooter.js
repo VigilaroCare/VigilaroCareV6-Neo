@@ -418,15 +418,15 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                   {isTravelModeOn ? (
                     // Ícone dinâmico do transporte (ativo)
                     (() => {
-                        if (activeTransportMode === 'carro') return <NeoIcon name="CarProfile" variant="Bold" size={22} color={color} />;
-                        if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={22} color={color} />;
-                        if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={22} color={color} />;
-                        if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={22} color={color} />;
+                        if (activeTransportMode === 'carro') return <NeoIcon name="CarProfile" variant="Bold" size={32} color={color} />;
+                        if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={32} color={color} />;
+                        if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={32} color={color} />;
+                        if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={32} color={color} />;
                         // Moto faltava desde 23/10/2026, quando ela entrou no
                         // seletor: caía no fallback e a aba mostrava um AVIÃO
                         // para quem viajava de moto. O fallback existe para
                         // modal desconhecido, não para um que está na lista.
-                        if (activeTransportMode === 'moto') return <NeoIcon name="Motorcycle" variant="Bold" size={22} color={color} />;
+                        if (activeTransportMode === 'moto') return <NeoIcon name="Motorcycle" variant="Bold" size={32} color={color} />;
                         
                         // Fallback (avião decolando - corpo do avião sem o chão)
                         return (
@@ -442,14 +442,14 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                     // era um avião solto, sem moldura — aí ele precisava ser
                     // menor para não brigar com os vizinhos e nunca acendia.
                     // Com o TravelTile, tem de seguir a mesma régua dos irmãos.
-                    <NeoIcon name={tab.icon} variant={isIconActive ? 'Bold' : 'Linear'} size={22} color={color} />
+                    <NeoIcon name={tab.icon} variant={isIconActive ? 'Bold' : 'Linear'} size={32} color={color} />
                   )}
                 </Animated.View>
               ) : (
                 <NeoIcon
                   name={tab.icon}
                   variant={isIconActive ? 'Bold' : 'Linear'}
-                  size={22}
+                  size={32}
                   color={color}
                 />
               )}
@@ -520,8 +520,8 @@ const styles = StyleSheet.create({
   cardAba: {
     flex: 1,
     alignSelf: 'stretch',
-    marginVertical: 6,
-    marginHorizontal: 3,
+    marginVertical: 4,
+    marginHorizontal: 4,
     borderRadius: 14,
     overflow: 'hidden',
     alignItems: 'center',

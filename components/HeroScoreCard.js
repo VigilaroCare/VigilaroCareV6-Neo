@@ -377,7 +377,16 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 terminava antes da borda direita e o chevron de expandir
                 aparecia fora dela. Os valores espelham o padding do `card`;
                 o que passar da borda é recortado pelo `overflow: 'hidden'`. */}
-            <Svg style={styles.campo} width="100%" height="100%" pointerEvents="none">
+            {/* SEM as props `width`/`height`. Com elas em "100%" o Svg resolvia
+                a porcentagem contra a largura do PAI (344 − 24 de padding =
+                320pt), não contra a própria caixa esticada pelos insets
+                negativos: pintava 320pt a partir de −12 e parava ~35pt antes da
+                borda direita. Era o "continua cortado" do segundo print. Sem as
+                props, quem manda é a caixa do estilo.
+                O NeoGlifoCard usa `absoluteFill` com width/height a 100% e
+                funciona — porque o card DELE não tem padding. É a diferença
+                inteira entre os dois casos. */}
+            <Svg style={styles.campo} pointerEvents="none">
                 <Defs>
                     <RadialGradient
                         id={idCampo}
