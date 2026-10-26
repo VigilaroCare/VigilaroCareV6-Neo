@@ -8,8 +8,28 @@
  * — mesma claridade, temperaturas opostas, encostados. É isso que produzia a
  * sensação de "elemento colado por cima".
  *
- * Agora o card usa colors.tile.cream — o mesmo creme que os PNGs dos
- * pictogramas já carregam impresso. A tela passa de três superfícies para duas.
+ * Em 2026-07 o card passou a usar colors.tile.cream — o mesmo creme que os PNGs
+ * dos pictogramas carregavam impresso. A tela foi de três superfícies para duas.
+ *
+ * ── E EM 25/10/2026 O CREME SAIU TAMBÉM ───────────────────────────────────
+ * Os tiles cerâmicos foram substituídos pelo card retroiluminado em todas as
+ * telas (ANATOMIA §9.5). O creme deste card virou órfão: ele passou a ser a
+ * única superfície clara no meio de seis cards saturados na Home. O Agnaldo
+ * descreveu assim, depois de duas tentativas minhas de resolver com
+ * acabamento: *"como se eu tivesse uma tela que mostra gráficos de altíssima
+ * qualidade e acima deles algo vintage"*.
+ *
+ * Agora o campo do card é o mesmo gradiente radial dos outros, no tom da BANDA
+ * do score. A cor do card do score é o score. O que isso obrigou:
+ *  - a tinta do CARD virou branca (`inkCard`/`mutedCard`). `textOn.*` é
+ *    calibrado para superfície tingida CLARA e mediria perto de 1:1 sobre o
+ *    campo saturado. Superfície e tinta mudam juntas ou o card fica ilegível.
+ *  - a tinta da FOLHA DE REVISÃO continua a do tema: o questionário é texto
+ *    corrido em superfície neutra. Os dois pares eram um só.
+ *  - o número do score deixou de carregar a cor da banda — o campo já é ela.
+ *  - a sombra `ceramic` saiu: existia para o card pousar na mesma altura dos
+ *    tiles, e `overflow: 'hidden'` (que recorta o gradiente) recortaria a
+ *    sombra no iOS de qualquer forma.
  *
  * Outras correções desta passagem:
  *  - colors.textOn.* no lugar de hex cravados. O laranja do score (#D97706)
@@ -35,7 +55,7 @@ import Svg, { Defs, RadialGradient, Stop, Rect } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
-import { useThemeColors } from '../utils/ThemeContext';
+import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import ScoreService from '../services/ScoreService';
 import ProfileService from '../services/ProfileService';
 import ChecklistService from '../services/ChecklistService';
@@ -53,45 +73,6 @@ import { getPendingGuidance } from '../data/tag_guidance';
 // PILAR 3 do CLAUDE.md nomeia. `ScoreService.getTom(score)` é o caminho único
 // e devolve exatamente estas chaves. Removido em 25/10/2026.
 
-/**
- * LuzDoScore — a retroiluminação do número do score.
- *
- * O card era calibrado para casar com os oito tiles creme da Home: o docblock
- * acima registra a medição (1.01:1 de luminância entre o card e os tiles). Os
- * tiles saíram quando o card retroiluminado entrou, e este ficou casando com
- * uma superfície que não existe mais — "o hero accordion ainda não mudou"
- * (Agnaldo, 25/10/2026).
- *
- * Pintar o card inteiro com o tom da banda seria o mais consistente e custaria
- * legibilidade: ele carrega accordion, barras e botões. A tradução que cabe é a
- * mesma do rodapé — a LUZ. O campo segue legível, e o tom da banda nasce atrás
- * do número, que é onde o dado mora.
- */
-// ELIPSE, não círculo, e por medição: o número tem 42px de altura (36 no
-// compacto) por ~85 de largura. Uma luz quadrada centrada nele subiria 27px
-// acima e vazaria pela borda arredondada do card — e conter com
-// `overflow: 'hidden'` no card não serve, porque no iOS isso recorta junto a
-// sombra `ceramic` dele. A elipse abraça o número e fica dentro por geometria.
-function LuzDoScore({ cor, largura, altura, deslocamento }) {
-    const id = useRef(`luzscore${++seqLuz}`).current;
-    return (
-        <Svg
-            width={largura}
-            height={altura}
-            style={[styles.luzDoScore, deslocamento]}
-            pointerEvents="none"
-        >
-            <Defs>
-                <RadialGradient id={id} cx="0.5" cy="0.5" rx="0.5" ry="0.5">
-                    <Stop offset="0" stopColor={cor} stopOpacity="0.30" />
-                    <Stop offset="0.55" stopColor={cor} stopOpacity="0.11" />
-                    <Stop offset="1" stopColor={cor} stopOpacity="0" />
-                </RadialGradient>
-            </Defs>
-            <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
-        </Svg>
-    );
-}
 let seqLuz = 0;
 
 /**
@@ -123,6 +104,10 @@ export const HERO_COMPACT_SAVING = 19;
 export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDataChanged, heroHeadline, isExpanded = false, compact = false }) {
     const { t, i18n } = useTranslation();
     const colors = useThemeColors();
+    const isDark = useIsDark();
+    // Id do gradiente do campo. Em RN cada <Svg> é seu próprio documento, mas id
+    // repetido entre instâncias já colidiu em versões antigas da lib.
+    const idCampo = useRef(`campoScore${++seqLuz}`).current;
     const insets = useSafeAreaInsets();
     const [mapping, setMapping] = useState([]);
     const [reviewVisible, setReviewVisible] = useState(false);
@@ -141,12 +126,30 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
         return !!stats && ((stats.warning || 0) > 0 || (stats.critical || 0) > 0 || (stats.failedItems || []).length > 0);
     });
 
-    // ── Cores derivadas do tema ──────────────────────────────────────────
-    const surface = colors.tile.cream;
-    const borderColor = colors.tile.border;
-    const borderWidth = colors.tile.borderWidth;
-    const track = colors.tile.track;
+    // ── O CAMPO DO CARD ──────────────────────────────────────────────────
+    //
+    // Era `colors.tile.cream`, calibrado para casar com os oito tiles creme da
+    // Home (o docblock no topo registra a medição: 1.01:1 de luminância entre o
+    // card e os tiles). Os tiles saíram; ele virou a única superfície creme no
+    // meio de seis cards saturados — *"como se eu tivesse uma tela que mostra
+    // gráficos de altíssima qualidade e acima deles algo vintage"* (Agnaldo,
+    // 25/10/2026, depois de duas tentativas minhas de resolver com acabamento).
+    //
+    // Agora é o mesmo campo retroiluminado dos cards, no tom da BANDA: a cor do
+    // card do score é o score.
+    const tomDaBanda = ScoreService.getTom(score);
+    const radial = Neo.gradients.radiais[tomDaBanda] || Neo.gradients.radiais.muted;
+    const track = 'rgba(255,255,255,0.24)';
 
+    // DUAS TINTAS, e a distinção é o que torna a troca de superfície segura.
+    // O CARD tem campo saturado e pede branco. A FOLHA DE REVISÃO (o
+    // questionário em modal) continua em superfície neutra e pede a tinta do
+    // tema — ela tem texto corrido, item a item, e branco sobre claro a
+    // deixaria ilegível. Os dois pares eram um só; separá-los veio primeiro.
+    const inkCard = '#FFFFFF';
+    const mutedCard = 'rgba(255,255,255,0.78)';
+
+    const superficieFolha = isDark ? colors.neutral[200] : colors.neutral.white;
     const inkText = colors.textOn.ink;
     const mutedText = colors.textOn.muted;
 
@@ -163,7 +166,10 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
         return colors.feedback[tone];
     };
 
-    const scoreColor = bandTextColor(score);
+    // O número não precisa mais carregar a cor da banda: o CAMPO já é a banda.
+    // Pintá-lo do tom sobre o próprio tom seria o número sumindo dentro da sua
+    // própria cor.
+    const scoreColor = inkCard;
 
     useEffect(() => {
         let mounted = true;
@@ -280,7 +286,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
         return (
             <View key={id} style={styles.ambienteRow}>
                 <View style={[styles.ambienteDot, { backgroundColor: bandFillColor(value) }]} />
-                <Text style={[styles.ambienteName, { color: mutedText }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
+                <Text style={[styles.ambienteName, { color: mutedCard }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
                 <View style={styles.ambienteBarWrap}>
                     {renderSegmentBar(stats, 4, value)}
                 </View>
@@ -315,7 +321,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
             <View key={id} style={[styles.pendingRow, { borderTopColor: track }]}>
                 <View style={styles.pendingHeader}>
                     <View style={[styles.pendingDot, { backgroundColor: isCritical ? colors.feedback.error : colors.feedback.warning }]} />
-                    <Text style={[styles.pendingName, { color: inkText }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
+                    <Text style={[styles.pendingName, { color: inkCard }]} numberOfLines={1}>{getAmbienteName(id)}</Text>
                     <Text style={[styles.pendingScore, { color: bandTextColor(value) }]}>{value}%</Text>
                 </View>
                 <Text
@@ -324,7 +330,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 >
                     {issueLabel}
                 </Text>
-                <Text style={[styles.pendingIssueText, { color: mutedText }]} numberOfLines={2}>
+                <Text style={[styles.pendingIssueText, { color: mutedCard }]} numberOfLines={2}>
                     {issueText}
                 </Text>
             </View>
@@ -350,9 +356,25 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
             : t('home.expandPending', 'Toque para ver os ambientes com pendência'));
 
     return (
-        <View
-            style={[styles.card, { backgroundColor: surface, borderColor, borderWidth }]}
-        >
+        <View style={styles.card}>
+            {/* O CAMPO: o mesmo gradiente radial dos cards da Home, no tom da
+                banda. O recorte vive no estilo `card`, junto com o raio. */}
+            <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" pointerEvents="none">
+                <Defs>
+                    <RadialGradient
+                        id={idCampo}
+                        cx={Neo.gradients.radiais.foco.cx}
+                        cy={Neo.gradients.radiais.foco.cy}
+                        rx={Neo.gradients.radiais.foco.rx}
+                        ry={Neo.gradients.radiais.foco.ry}
+                    >
+                        {radial.map((c, i) => (
+                            <Stop key={i} offset={Neo.gradients.radiais.paradas[i]} stopColor={c} stopOpacity="1" />
+                        ))}
+                    </RadialGradient>
+                </Defs>
+                <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${idCampo})`} />
+            </Svg>
             <TouchableOpacity
                 activeOpacity={0.88}
                 onPress={onPress}
@@ -361,7 +383,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 accessibilityHint={a11yHint}
                 accessibilityState={{ expanded: isExpanded }}
             >
-                <Text style={[styles.heroTitle, { color: mutedText }]} numberOfLines={1}>
+                <Text style={[styles.heroTitle, { color: mutedCard }]} numberOfLines={1}>
                     {sectionTitle.toUpperCase()}
                 </Text>
 
@@ -388,20 +410,10 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 <View style={[styles.compactPanel, compact && styles.compactPanelTight]}>
                     <View style={[styles.compactMain, compact && styles.compactMainTight]}>
                         <View style={styles.scoreColumn}>
-                            {/* A luz transborda da coluna por posição absoluta:
-                                o orçamento de altura do card é apertado (ver as
-                                contas de compactação no topo) e não pode crescer
-                                nem um pixel. */}
-                            <LuzDoScore
-                                cor={scoreColor}
-                                largura={compact ? 104 : 118}
-                                altura={compact ? 56 : 64}
-                                deslocamento={compact ? { left: -14, top: -10 } : { left: -16, top: -11 }}
-                            />
                             <Text style={[styles.scoreValue, compact && styles.scoreValueTight, { color: scoreColor }]} numberOfLines={1}>
                                 {score}%
                             </Text>
-                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: inkText }]} numberOfLines={2}>
+                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: inkCard }]} numberOfLines={2}>
                                 {headline}
                             </Text>
                             <View style={[styles.globalBarWrap, compact && styles.globalBarWrapTight]}>
@@ -415,7 +427,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                             {ambientesSorted.length > 0 ? (
                                 ambientesSorted.map(renderAmbienteItem)
                             ) : (
-                                <Text style={[styles.noAmbienteText, { color: mutedText }]}>
+                                <Text style={[styles.noAmbienteText, { color: mutedCard }]}>
                                     {t('home.noInspectedEnvironment', 'Nenhum ambiente vistoriado.')}
                                 </Text>
                             )}
@@ -426,7 +438,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                         <NeoIcon
                             name={isExpanded ? 'ArrowUp2' : 'ArrowDown2'}
                             size={18}
-                            color={mutedText}
+                            color={mutedCard}
                         />
                     </View>
                 </View>
@@ -435,18 +447,18 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
             {(isExpanded || score === 0) && (
                 <View style={[styles.heroWell, { borderTopColor: track }]}>
                     {score === 0 ? (
-                        <Text style={[styles.noPendingText, { color: mutedText }]}>
+                        <Text style={[styles.noPendingText, { color: mutedCard }]}>
                             {ScoreService.getMensagemImpacto(score, scoreData?.pendencias || 0).alerta}
                         </Text>
                     ) : (
                         <>
-                            <Text style={[styles.pendingTitle, { color: mutedText }]} numberOfLines={1}>
+                            <Text style={[styles.pendingTitle, { color: mutedCard }]} numberOfLines={1}>
                                 {t('home.pendingEnvironmentsTitle', 'Ambientes com pendência')}
                             </Text>
                             {pendingAmbientes.length > 0 ? (
                                 pendingAmbientes.map(renderPendingItem)
                             ) : (
-                                <Text style={[styles.noPendingText, { color: mutedText }]}>
+                                <Text style={[styles.noPendingText, { color: mutedCard }]}>
                                     {t('home.noPendingEnvironments', 'Nenhum ambiente com pendência ativa.')}
                                 </Text>
                             )}
@@ -465,14 +477,14 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                                 <NeoIcon name="Home2" size={17} color={colors.textOn.brand} variant="Bold" />
                             </View>
                             <View style={styles.xrayTextGroup}>
-                                <Text style={[styles.xrayTitle, { color: inkText }]} numberOfLines={1}>
+                                <Text style={[styles.xrayTitle, { color: inkCard }]} numberOfLines={1}>
                                     {t('home.homeXRay', 'Raio-X da Casa')}
                                 </Text>
-                                <Text style={[styles.xraySubtitle, { color: mutedText }]} numberOfLines={1}>
+                                <Text style={[styles.xraySubtitle, { color: mutedCard }]} numberOfLines={1}>
                                     {t('home.homeXRayDesc', 'Resumo da casa, dos moradores e dos cômodos')}
                                 </Text>
                             </View>
-                            <NeoIcon name="ArrowRight2" size={18} color={mutedText} />
+                            <NeoIcon name="ArrowRight2" size={18} color={mutedCard} />
                         </TouchableOpacity>
                     )}
 
@@ -487,10 +499,10 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                             accessibilityRole="button"
                             accessibilityLabel={t('home.collapsePending', 'Toque para recolher os ambientes com pendência')}
                         >
-                            <Text style={[styles.collapseFooterText, { color: mutedText }]}>
+                            <Text style={[styles.collapseFooterText, { color: mutedCard }]}>
                                 {t('home.collapseAccordion', 'Recolher')}
                             </Text>
-                            <NeoIcon name="ArrowUp2" size={16} color={mutedText} />
+                            <NeoIcon name="ArrowUp2" size={16} color={mutedCard} />
                         </TouchableOpacity>
                     )}
                 </View>
@@ -504,7 +516,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 onRequestClose={closeReview}
             >
                 <View style={styles.reviewOverlay}>
-                    <View style={[styles.reviewSheet, { backgroundColor: surface, paddingBottom: 18 + insets.bottom }]}>
+                    <View style={[styles.reviewSheet, { backgroundColor: superficieFolha, paddingBottom: 18 + insets.bottom }]}>
                         <View style={[styles.reviewHeader, { borderBottomColor: track }]}>
                             <Text style={[styles.reviewTitle, { color: inkText }]} numberOfLines={1}>
                                 {reviewResult
@@ -691,19 +703,19 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
  * o tema existir — cor sai como prop inline, sempre.
  */
 const styles = StyleSheet.create({
-    luzDoScore: {
-        position: 'absolute',
-    },
     card: {
         borderRadius: Neo.radius.lg,
+        // Recorta o gradiente do campo nos cantos arredondados.
+        overflow: 'hidden',
         paddingHorizontal: 12,
         paddingTop: 4,
         paddingBottom: 6,
         marginTop: 6,
         marginBottom: 2,
-        // Mesma sombra do tile de pictograma — o card do score pertence à
-        // família cerâmica e precisa pousar no fundo na mesma altura que eles.
-        ...Neo.shadows.ceramic,
+        // A sombra `ceramic` saiu com o creme: ela existia para o card pousar na
+        // mesma altura dos tiles de pictograma, e eles não existem mais. Campo
+        // saturado se separa do fundo sozinho — e `overflow: 'hidden'` recorta
+        // sombra no iOS, então as duas coisas não conviveriam de todo jeito.
     },
     heroTitle: {
         textAlign: 'center',
