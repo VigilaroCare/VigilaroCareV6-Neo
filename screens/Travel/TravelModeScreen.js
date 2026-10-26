@@ -10,10 +10,10 @@ import NeoCard from '../../components/NeoCard';
 import { H2, H3, Body, Small } from "../../components/NeoTypography";
 import ScaleButton from '../../components/ScaleButton';
 import AppBackground from '../../components/AppBackground';
-import PictogramTile from '../../components/PictogramTile';
+import NeoGlifoCard from '../../components/NeoGlifoCard';
 import { useTranslation } from 'react-i18next';
 import { t_field } from '../../utils/getLocalizedField';
-import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
+import { useThemeColors } from '../../utils/ThemeContext';
 import NeoAlert from '../../utils/NeoAlert';
 import TravelTipsAccordion from '../../components/TravelTipsAccordion';
 import TravelReportService from '../../services/TravelReportService';
@@ -27,7 +27,12 @@ import AvisoPaisEmergencia, { aceitarUsoDaLocalizacao } from '../../components/A
 const SCREEN_W = Dimensions.get('window').width;
 const CONTENT_W = SCREEN_W - Neo.spacing.lg * 2; // padding horizontal do scroll
 const CELL_W = CONTENT_W * 0.48;                 // célula do grid 2-col
-const TILE_W = Math.round(CELL_W * 0.88);
+// Altura do card retroiluminado: herda o que o tile mais o rótulo ocupavam
+// juntos (largura × 0.75 pela razão 577/433, mais ~22px de rótulo), com o vão
+// entre fileiras saindo da mesma soma — antes a separação vinha do branco em
+// volta do texto, que o card de cor chapada não tem.
+const VAO_GRADE = 9;
+const ALTURA_CARD = Math.round(CELL_W * 0.75 + 24 - VAO_GRADE);
 // Altura vem de PictogramTile (PICTOGRAM_ASPECT_RATIO) — a proporção real
 // do PNG, não mais uma constante local (436/428 estava invertida: mais
 // alta que larga, o oposto do asset, causava letterboxing no contain).
@@ -100,15 +105,19 @@ const TRIP_TYPES = [
     { id: 'resort', label: 'Resort e Lazer', label_en: 'Resort & Leisure', label_es: 'Resort y Ocio', icon: 'Sun1', color: Neo.colors.primary[500], desc: 'Piscinas, áreas comuns.', desc_en: 'Pools, common areas.', desc_es: 'Piscinas, áreas comunes.' }
 ];
 
-// Tile cerâmico selecionável — padrão único dos seletores do wizard.
-// selected: badge de check + label forest; dimmed: recua o desenho (`recuado`
-// do PictogramTile), mantendo o tile creme cheio — esmaecer o card inteiro
-// deixava uma moldura fantasma em volta dele no Android.
+// Card selecionável do wizard — padrão único dos seletores.
+//
+// O ESTADO VEM DO TOM, não da opacidade. Antes a opção não escolhida recuava o
+// desenho (`recuado` do PictogramTile), porque esmaecer o card inteiro com
+// `opacity` deixava uma moldura fantasma em volta dele no Android: o wrapper
+// vira camada de composição e a sombra de elevação é redesenhada como um
+// retângulo chapado maior que o card.
+//
+// Com o card retroiluminado o problema desaparece junto com a solução: o campo
+// é a própria cor, então o estado se diz trocando o tom. Verde no escolhido
+// (que é o que o check confirma), grafite nos preteridos, petróleo enquanto
+// nada foi escolhido. Nenhuma opacidade em lugar nenhum.
 function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
-    // Componente fora do escopo da tela: lê o tema por conta própria. O
-    // `isDark` de TravelModeScreen não alcança aqui.
-    const isDark = useIsDark();
-    const colors = useThemeColors();
     return (
         <ScaleButton
             style={s.gridCell}
@@ -117,29 +126,19 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
             accessibilityState={{ selected }}
             accessibilityLabel={label}
         >
-            <View style={s.ceramicCell}>
-                <View style={s.ceramicTileWrap}>
-                    <PictogramTile
-                        source={source}
-                        width={TILE_W}
-                        recuado={dimmed}
-                        moldura
-                        atenuado={isDark}
-                    />
-                    {selected && (
-                        <View style={s.ceramicCheckBadge}>
-                            <NeoIcon name="TickCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
-                        </View>
-                    )}
+            <NeoGlifoCard
+                source={source}
+                titulo={label}
+                tom={selected ? 'success' : (dimmed ? 'muted' : 'info')}
+                arte={Math.round(ALTURA_CARD * 0.62)}
+                tamanhoTitulo={13}
+                style={{ height: ALTURA_CARD }}
+            />
+            {selected && (
+                <View style={s.ceramicCheckBadge}>
+                    <NeoIcon name="TickCircle" size={22} color={Neo.colors.primary[600]} variant="Bold" />
                 </View>
-                {/* Body, não Text cru: a NeoTypography é quem aplica a cor do
-                    tema e, em alto contraste, o preto ou branco puro. O rótulo
-                    era #1a1a2e cravado — 1,07:1 sobre o fundo noturno, e por
-                    isso só o selecionado aparecia no escuro. */}
-                <Body style={[s.gridLabel, { marginTop: -10 }, selected && { color: colors.textOn.brand }]}>
-                    {label}
-                </Body>
-            </View>
+            )}
         </ScaleButton>
     );
 }
@@ -147,7 +146,6 @@ function CeramicSelectTile({ source, label, selected, dimmed, onPress }) {
 export default function TravelModeScreen({ navigation }) {
     const { t } = useTranslation('common');
     const themeColors = useThemeColors();
-    const isDark = useIsDark();
     const textSecondary = themeColors.neutral[700];
     const [activeTrip, setActiveTrip] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -572,23 +570,30 @@ export default function TravelModeScreen({ navigation }) {
                                 accessibilityRole="button"
                                 accessibilityLabel={card.label}
                             >
-                                <View style={s.ceramicCell}>
-                                    <PictogramTile source={TRAVEL_PICTOGRAMS[card.key]} width={TILE_W} moldura atenuado={isDark} />
-                                    <Body style={s.ceramicCardLabel} numberOfLines={2}>{card.label}</Body>
-                                </View>
+                                <NeoGlifoCard
+                                    source={TRAVEL_PICTOGRAMS[card.key]}
+                                    titulo={card.label}
+                                    tom="info"
+                                    arte={Math.round(ALTURA_CARD * 0.62)}
+                                    tamanhoTitulo={13}
+                                    style={{ height: ALTURA_CARD }}
+                                />
                             </ScaleButton>
                         ))}
 
-                        {/* Card 5: Guia de Segurança — horizontal com thumbnail cerâmico */}
+                        {/* Card 5: Guia de Segurança — card largo retroiluminado */}
                         <ScaleButton onPress={() => navigation.navigate('TravelSafetyGuide')} style={{ width: '100%' }} accessibilityRole="button">
-                            <NeoCard variant="elevated" style={{ height: 80, padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', paddingHorizontal: 16 }}>
-                                <PictogramTile source={TRAVEL_PICTOGRAMS.guia} width={54} style={s.guiaThumb} moldura atenuado={isDark} />
-                                <View style={{ flex: 1 }}>
-                                    <Body style={{ fontWeight: 'bold', color: Neo.colors.primary[700], fontSize: 14 }}>{t('travel.safetyGuide', 'Guia de Segurança')}</Body>
-                                    <Small style={{ color: Neo.colors.neutral[500] }}>{t('travel.safetyGuideDesc', 'Dicas, telefones úteis e mais.')}</Small>
-                                </View>
-                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.neutral[500]} />
-                            </NeoCard>
+                            <NeoGlifoCard
+                                source={TRAVEL_PICTOGRAMS.guia}
+                                titulo={t('travel.safetyGuide', 'Guia de Segurança')}
+                                sub={t('travel.safetyGuideDesc', 'Dicas, telefones úteis e mais.')}
+                                tom="info"
+                                largo
+                                seta
+                                arte={88}
+                                tamanhoTitulo={15}
+                                style={{ height: 92 }}
+                            />
                         </ScaleButton>
                     </View>
 
@@ -648,20 +653,6 @@ const s = StyleSheet.create({
     gridCell: {
         width: '48%',
     },
-    gridLabel: {
-        fontSize: 13,
-        fontWeight: '800',
-        textAlign: 'center',
-        lineHeight: 17,
-    },
-    ceramicCell: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    ceramicTileWrap: {
-        width: TILE_W,
-        position: 'relative',
-    },
     ceramicCheckBadge: {
         position: 'absolute',
         top: 2,
@@ -669,15 +660,6 @@ const s = StyleSheet.create({
         backgroundColor: Neo.colors.neutral.white,
         borderRadius: 12,
         ...Neo.shadows.subtle,
-    },
-    ceramicCardLabel: {
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 12,
-        lineHeight: 15,
-    },
-    guiaThumb: {
-        marginRight: 14,
     },
     backButton: {
         width: 44,

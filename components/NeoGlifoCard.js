@@ -31,6 +31,7 @@ import { useRef } from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Svg, { Defs, RadialGradient, Stop, Rect } from 'react-native-svg';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import NeoIcon from './NeoIcon';
 
 // Ids de gradiente são globais no documento SVG. Em RN cada <Svg> é o seu
 // próprio documento, mas um id repetido entre instâncias já causou colisão em
@@ -51,6 +52,14 @@ export default function NeoGlifoCard({
     // que tem número é o que pede ação.
     valor,
     unidade,
+    // LARGO: card de largura cheia, no lugar de uma linha horizontal. O título
+    // passa a ficar centrado à esquerda, com a direita reservada para a arte,
+    // em vez de atravessar o card por baixo dela. `seta` mantém a affordance de
+    // navegação que a linha tinha (ANATOMIA §3④), em branco porque o campo do
+    // card é saturado e não acompanha o tema.
+    largo = false,
+    seta = false,
+    sub,
     accessibilityLabel,
     ...rest
 }) {
@@ -84,12 +93,21 @@ export default function NeoGlifoCard({
                 horizontal com a arte: medido em 25/10/2026, "Segurança em
                 Condomínio" a 11px não cabe ao lado de um pictograma de 70px numa
                 célula de 112px. No alto ele tem a largura inteira do card. */}
-            <Text
-                style={[styles.titulo, { fontSize: tamanhoTitulo, lineHeight: Math.round(tamanhoTitulo * 1.18) }]}
-                numberOfLines={2}
-            >
-                {titulo}
-            </Text>
+            <View style={[styles.faixaTitulo, largo && { top: 0, bottom: 0, right: arte + 4, justifyContent: 'center' }]}>
+                <Text
+                    style={[styles.titulo, { fontSize: tamanhoTitulo, lineHeight: Math.round(tamanhoTitulo * 1.18) }]}
+                    numberOfLines={largo ? (sub ? 2 : 3) : 2}
+                >
+                    {titulo}
+                </Text>
+                {!!sub && <Text style={styles.sub} numberOfLines={2}>{sub}</Text>}
+            </View>
+
+            {seta && (
+                <View style={styles.seta}>
+                    <NeoIcon name="ArrowRight2" size={18} color="rgba(255,255,255,0.82)" />
+                </View>
+            )}
 
             {valor != null && (
                 <View style={styles.pe}>
@@ -148,11 +166,24 @@ const styles = StyleSheet.create({
         marginLeft: 4,
         fontWeight: '600',
     },
-    titulo: {
+    faixaTitulo: {
         position: 'absolute',
         left: 10,
         right: 9,
         top: 9,
+    },
+    seta: {
+        position: 'absolute',
+        right: 9,
+        top: 9,
+    },
+    sub: {
+        color: 'rgba(255,255,255,0.76)',
+        fontSize: 11.5,
+        marginTop: 3,
+        fontWeight: '500',
+    },
+    titulo: {
         // Tinta FIXA, não do tema: o campo do card não acompanha o modo claro /
         // escuro — ele é sempre saturado. Com a tinta do tema, o texto do modo
         // claro sumiria sobre a borda escura do gradiente.

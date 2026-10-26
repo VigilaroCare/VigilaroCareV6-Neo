@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { View, ScrollView, TouchableOpacity, Text, StyleSheet, Modal } from "react-native";
+import { View, ScrollView, TouchableOpacity, Text, StyleSheet, Modal, Dimensions } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -9,10 +9,19 @@ import ProfileService from '../services/ProfileService';
 import SubscriptionService from '../services/SubscriptionService';
 
 import NeoCard from '../components/NeoCard';
-import PictogramTile from '../components/PictogramTile';
+import NeoGlifoCard from '../components/NeoGlifoCard';
 import { H1, H3, Body, Small } from '../components/NeoTypography';
 import AppBackground from '../components/AppBackground';
 import { useTranslation } from 'react-i18next';
+
+// Grade de 2 colunas a 49% com `space-between`, igual à Home. A altura do card
+// herda o que o tile mais o rótulo ocupavam: a imagem era largura × 0.75 (razão
+// 577/433) e o rótulo somava ~22px. Com o rótulo DENTRO do card, a soma não
+// muda — e o vão entre fileiras sai da mesma conta, porque antes a separação
+// vinha do branco em volta do texto.
+const VAO_GRADE = 9;
+const LARGURA_CELULA = (Dimensions.get('window').width - 2 * 24) * 0.49;
+const ALTURA_CARD = Math.round(LARGURA_CELULA * 0.75 + 24 - VAO_GRADE);
 import * as Haptics from 'expo-haptics';
 import NeoIcon from '../components/NeoIcon';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
@@ -154,29 +163,24 @@ export default function MenuScreenNeo() {
         },
     ];
 
-    const renderSectionGrid = (title, items) => (
+    const renderSectionGrid = (title, items, tom) => (
         <View style={s.sectionContainer}>
             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
                 {title}
             </Text>
             <View style={s.gridContainer}>
                 {items.map((item) => (
-                    <TouchableOpacity
-                        key={item.key}
-                        activeOpacity={0.85}
-                        onPress={item.action}
-                        style={s.gridItem}
-                    >
-                        <PictogramTile
+                    <View key={item.key} style={s.gridItem}>
+                        <NeoGlifoCard
                             source={item.image}
-                            width="100%"
-                            moldura
-                            atenuado={isDark}
+                            titulo={item.label}
+                            tom={tom}
+                            arte={Math.round(ALTURA_CARD * 0.62)}
+                            tamanhoTitulo={13}
+                            style={{ height: ALTURA_CARD }}
+                            onPress={item.action}
                         />
-                        <Small style={s.gridItemText} numberOfLines={2}>
-                            {item.label}
-                        </Small>
-                    </TouchableOpacity>
+                    </View>
                 ))}
             </View>
         </View>
@@ -235,8 +239,12 @@ export default function MenuScreenNeo() {
                     </TouchableOpacity>
 
                                         {/* SEÇÕES - BLOCOS CONTÍNUOS */}
-                    {renderSectionGrid(t('menu.sectionAccount', 'Conta & Preferências'), sectionConta)}
-                    {renderSectionGrid(t('menu.sectionHelp', 'Ajuda & Informações'), sectionAjuda)}
+                    {/* Nada no Menu merece cor quente: é configuração e
+                        informação, não risco. Grafite para as preferências,
+                        petróleo para a ajuda — e o Menu não compete com o
+                        conteúdo das outras telas, que é o que se quer dele. */}
+                    {renderSectionGrid(t('menu.sectionAccount', 'Conta & Preferências'), sectionConta, 'muted')}
+                    {renderSectionGrid(t('menu.sectionHelp', 'Ajuda & Informações'), sectionAjuda, 'info')}
 
                     {/* DIVISOR + LINK DESTRUTIVO — visualmente quieto, isolado */}
                     <View style={s.divider} />
@@ -359,20 +367,13 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: -14, // Compensa o padding transparente no topo dos assets 3D cerâmicos
+        // o -14 de antes compensava o padding transparente no topo dos assets
+        // cerâmicos; o card retroiluminado não tem esse padding.
+        marginTop: 0,
     },
     gridItem: {
-        alignItems: 'center',
         width: '49%', // 2 columns like Home
-        marginBottom: 8,
-    },
-    gridItemText: {
-        textAlign: 'center',
-        fontSize: 13,
-        fontWeight: '700',
-        lineHeight: 16,
-        marginTop: -10, // pulls text closer to the image
-        paddingHorizontal: 4,
+        marginBottom: VAO_GRADE,
     },
 
 // Destrutivo + footer

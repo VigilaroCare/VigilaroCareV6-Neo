@@ -58,7 +58,6 @@ import { H2 } from '../components/NeoTypography';
 import HeroScoreCard, { HERO_COMPACT_SAVING } from '../components/HeroScoreCard';
 import AppBackground from '../components/AppBackground';
 import TappablePressable from '../components/TappablePressable';
-import PictogramTile from '../components/PictogramTile';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
@@ -267,11 +266,6 @@ export default function HomeScreenNeo() {
     const tomDoScore = ScoreService.getTom(scoreData.geral);
 
     const isDark = useIsDark();
-    // Superfície dos tiles em row layout (telas estreitas). O mesmo creme que
-    // os PNGs dos pictogramas carregam impresso — e o mesmo do HeroScoreCard.
-    const cardBgColorResolved = themeColors.tile.cream;
-    const cardBorderColorResolved = themeColors.tile.border;
-    const cardBorderWidthResolved = themeColors.tile.borderWidth;
 
     React.useEffect(() => { setImageError(false); }, [currentProfile?.id]);
 
@@ -542,31 +536,28 @@ export default function HomeScreenNeo() {
                                 key={item.key}
                                 style={[s.gridCell, { width: cellWidth, marginBottom: isRowLayout ? 12 : VAO_GRADE }]}
                             >
-                                {isRowLayout ? (
-                                    <BarePictogramShortcut
-                                        item={item}
-                                        textColor={textPrimary}
-                                        imageWidth={GRID_IMG_W}
-                                        isRowLayout
-                                        cardBgColor={cardBgColorResolved}
-                                        cardBorderColor={cardBorderColorResolved}
-                                        cardBorderWidth={cardBorderWidthResolved}
-                                        accentColor={themeColors.textOn.brand}
-                                        onPress={() => navigateWithHaptic(item.route)}
-                                    />
-                                ) : (
-                                    <NeoGlifoCard
-                                        source={item.image}
-                                        titulo={item.label}
-                                        tom={item.key === 'vistorias' ? tomDoScore : 'info'}
-                                        valor={item.key === 'vistorias' && scoreData.pendencias > 0 ? scoreData.pendencias : undefined}
-                                        unidade={item.key === 'vistorias' && scoreData.pendencias > 0 ? t('home.signals.open', 'Em aberto') : undefined}
-                                        arte={Math.round(ALTURA_CARD * 0.62)}
-                                        tamanhoTitulo={13}
-                                        style={{ height: ALTURA_CARD }}
-                                        onPress={() => navigateWithHaptic(item.route)}
-                                    />
-                                )}
+                                {/* Um componente só nos dois layouts. O de uma
+                                    coluna (telefone estreito) vira card LARGO,
+                                    que é a mesma linguagem — antes ele era uma
+                                    linha com tile creme, chevron e sombra
+                                    própria, a única superfície da Home fora do
+                                    padrão. */}
+                                <NeoGlifoCard
+                                    source={item.image}
+                                    titulo={item.label}
+                                    tom={item.key === 'vistorias' ? tomDoScore : 'info'}
+                                    valor={!isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0 ? scoreData.pendencias : undefined}
+                                    unidade={!isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0 ? t('home.signals.open', 'Em aberto') : undefined}
+                                    sub={isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0
+                                        ? t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` })
+                                        : undefined}
+                                    largo={isRowLayout}
+                                    seta={isRowLayout}
+                                    arte={isRowLayout ? 76 : Math.round(ALTURA_CARD * 0.62)}
+                                    tamanhoTitulo={isRowLayout ? 16 : 13}
+                                    style={{ height: isRowLayout ? 88 : ALTURA_CARD }}
+                                    onPress={() => navigateWithHaptic(item.route)}
+                                />
                             </View>
                         ))}
                     </View>
@@ -579,77 +570,6 @@ export default function HomeScreenNeo() {
     );
 }
 
-/**
- * Pictograma NU: o PNG já contém o tile creme com moldura verde 3D — ele É o
- * card. Renderizamos a imagem inteira sem recortes rudimentares no código.
- */
-function BarePictogramShortcut({
-    item,
-    textColor,
-    onPress,
-    imageWidth,
-    isRowLayout,
-    cardBgColor,
-    cardBorderColor,
-    cardBorderWidth,
-    accentColor,
-}) {
-    // Este componente vive FORA do escopo do HomeScreenNeo, então lê o tema
-    // por conta própria — o `isDark` da tela não alcança aqui.
-    const isDark = useIsDark();
-
-    if (isRowLayout) {
-        return (
-            <TappablePressable
-                style={[
-                    s.barePictogramRow,
-                    {
-                        backgroundColor: cardBgColor,
-                        borderColor: cardBorderColor,
-                        borderWidth: cardBorderWidth,
-                        padding: 12,
-                    }
-                ]}
-                onPress={onPress}
-                pressRetentionOffset={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                accessibilityRole="button"
-                accessibilityLabel={item.accessibilityLabel || item.label}
-            >
-                <PictogramTile source={item.image} width={64} moldura atenuado={isDark} />
-                <Text
-                    style={[
-                        s.barePictogramLabelRow,
-                        {
-                            color: textColor,
-                            fontSize: 15,
-                            fontWeight: '700',
-                            lineHeight: 18,
-                        }
-                    ]}
-                    numberOfLines={2}
-                >
-                    {item.label}
-                </Text>
-                <NeoIcon name="ArrowRight2" size={20} color={accentColor} />
-            </TappablePressable>
-        );
-    }
-
-    return (
-        <TappablePressable
-            style={s.barePictogram}
-            onPress={onPress}
-            pressRetentionOffset={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            accessibilityRole="button"
-            accessibilityLabel={item.accessibilityLabel || item.label}
-        >
-            <PictogramTile source={item.image} width={imageWidth} moldura atenuado={isDark} />
-            <Text style={[s.barePictogramLabel, { color: textColor }]} numberOfLines={2}>
-                {item.label}
-            </Text>
-        </TappablePressable>
-    );
-}
 
 const s = StyleSheet.create({
 
@@ -738,32 +658,4 @@ const s = StyleSheet.create({
         marginBottom: 2,
     },
 
-    barePictogram: {
-        alignItems: 'center',
-        paddingVertical: 0,
-    },
-    barePictogramRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderRadius: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    barePictogramLabel: {
-        fontWeight: '700',
-        fontSize: 13,
-        lineHeight: 16,
-        textAlign: 'center',
-        marginTop: -10,
-        paddingHorizontal: 4,
-    },
-    barePictogramLabelRow: {
-        flex: 1,
-        fontWeight: '700',
-        marginLeft: 12,
-        marginRight: 8,
-    },
 });

@@ -1,6 +1,25 @@
 /**
  * PictogramTile.js
  *
+ * ══ SUPERADO EM 25/10/2026 — NENHUMA TELA USA ESTE COMPONENTE ══
+ *
+ * O tile cerâmico foi substituído pelo card retroiluminado (`NeoGlifoCard`) em
+ * todas as superfícies: Home (nas duas larguras), Educação, Menu, Viagem e os
+ * cards Radar e Conceitos. Ver `ANATOMIA_EDITORIAL_VIGILARO.md` §9.5.
+ *
+ * O arquivo fica porque guarda medições e armadilhas que custaram caro e
+ * continuam verdadeiras sobre o acervo — o creme fixo no modo noturno, a
+ * moldura fantasma do `opacity` no Android, a proporção 577/433 e a regra
+ * "Home sem scroll". Não é para ser usado em tela nova: se aparecer um caso
+ * que pareça pedir um prato creme, a pergunta certa é por que o card
+ * retroiluminado não serve.
+ *
+ * `FATOR_TILE` também ficou sem consumidor. Ele existia para o glifo
+ * reenquadrado (73% de ocupação) continuar do tamanho antigo DENTRO do prato,
+ * enquanto a migração não terminava. A migração terminou.
+ *
+ * ────────────────────────────────────────────────────────────────────────────
+ *
  * O tile cerâmico: o COMPONENTE desenha o quadrado creme, o canto, a borda e a
  * sombra; o PNG traz apenas o desenho, em fundo transparente.
  *

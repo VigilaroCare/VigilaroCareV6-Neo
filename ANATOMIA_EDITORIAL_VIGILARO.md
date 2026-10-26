@@ -261,17 +261,19 @@ O Agnaldo olhou o app e disse três coisas: os heroes de cada seção têm taman
 
 **Duas artes, dois enquadramentos, um arquivo.** Os glifos foram reenquadrados de 52% para 73% de ocupação (a margem existia para caber dentro do prato, que não existe mais). `PictogramTile` compensa com `FATOR_TILE` para as telas não migradas ficarem idênticas ao que eram. Quem usa `NeoGlifoCard` recebe o arquivo cheio.
 
-**Estado da migração:**
+**Estado da migração — CONCLUÍDA em 25/10/2026.** Nenhuma tela usa `PictogramTile`; o componente está marcado como superado no próprio arquivo.
 
-| tela | estado |
+| superfície | formato |
 |---|---|
-| `KnowledgeHubScreen` (Central de Aprendizado) | migrada — 3 colunas, cor por seção, título no alto |
-| `HomeScreenNeo` (grade de 6 atalhos) | migrada — 2 colunas, tom do Vistorias pelo score |
-| `GlobalFloatingFooter` (menu inferior) | migrado — ver abaixo |
-| `HomeScreenNeo` em uma coluna (`isRowLayout`) | **pendente** — telefone estreito segue no tile |
-| `MenuScreenNeo` | **pendente** |
-| `TravelModeScreen` | **pendente** (39 peças, via `CeramicSelectTile`) |
-| cards Radar e Conceitos do `KnowledgeHubScreen` | **pendente** — ainda `PictogramTile` com `width={110}` |
+| `KnowledgeHubScreen` (grade) | 3 colunas, cor por seção, título no alto |
+| `KnowledgeHubScreen` (Radar e Conceitos) | card largo, com seta |
+| `HomeScreenNeo` (2 colunas) | tom do Vistorias pelo score, número das pendências |
+| `HomeScreenNeo` (1 coluna, telefone estreito) | card largo, com seta — mesmo componente |
+| `MenuScreenNeo` | 2 colunas; grafite nas preferências, petróleo na ajuda |
+| `TravelModeScreen` | seletores + etapas + guia largo |
+| `GlobalFloatingFooter` (menu inferior) | sem moldura; a aba ativa acende na luz |
+
+**O seletor do Viagem é o caso que o card resolveu melhor que o tile.** Ali a opção não escolhida precisava recuar, e recuar com `opacity` deixava moldura fantasma no Android (ver `PictogramTile.js`). Com o card, o estado se diz pelo **tom**: verde no escolhido, grafite nos preteridos, petróleo enquanto nada foi escolhido. Nenhuma opacidade em lugar nenhum — o problema sumiu junto com a solução que o contornava.
 
 **Número no card:** só quando o dado é real e já está carregado. A prancha L decidiu que card sem dado não inventa número, e que a assimetria é a informação — o que tem número é o que pede ação. Hoje só Vistorias tem dado na abertura da Home.
 

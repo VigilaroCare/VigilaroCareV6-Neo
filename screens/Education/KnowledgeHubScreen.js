@@ -21,9 +21,7 @@ import NeoCard from '../../components/NeoCard';
 import AppBackground from '../../components/AppBackground';
 import FadeInView from '../../components/FadeInView';
 import ReviewImage from '../../components/ReviewImage';
-import PictogramTile from '../../components/PictogramTile';
 import NeoGlifoCard from '../../components/NeoGlifoCard';
-import { Body } from "../../components/NeoTypography";
 import { useThemeColors, useIsDark } from '../../utils/ThemeContext';
 
 import NeoIcon from '../../components/NeoIcon';
@@ -384,51 +382,44 @@ export default function KnowledgeHubScreen({ navigation }) {
                         <NeoIcon name="ArrowRight2" size={14} color={Neo.colors.primary[700]} />
                     </TouchableOpacity>
 
-                    {/* RADAR DA PREVENÇÃO — card especial premium (substitui banner laranja) */}
-                    <TouchableOpacity
-                        activeOpacity={0.85}
-                        onPress={() => navigation.navigate('RadarVigilaro')}
-                        style={{ marginTop: 18, marginBottom: 8 }}
-                    >
-                        <NeoCard variant="elevated" style={s.radarCard}>
-                            <PictogramTile source={REAL_CASES_PICTOGRAM} width={110} moldura atenuado={isDark} />
-                            <View style={{ flex: 1, minWidth: 0, marginLeft: 14, paddingRight: 8 }}>
-                                <Body style={s.radarTitle}>
-                                    {t('knowledgeHub.realCasesTeach', 'Radar da Prevenção: os riscos desta época')}
-                                </Body>
-                            </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.textOn.muted} />
-                            </View>
-                        </NeoCard>
-                    </TouchableOpacity>
+                    {/* RADAR DA PREVENÇÃO — card largo retroiluminado.
+                        Âmbar e não petróleo: é o único bloco da tela sobre o
+                        que está acontecendo AGORA ("os riscos desta época"), e
+                        dois cards largos seguidos no mesmo tom ficavam
+                        chapados. */}
+                    <View style={{ marginTop: 18, marginBottom: 8 }}>
+                        <NeoGlifoCard
+                            source={REAL_CASES_PICTOGRAM}
+                            titulo={t('knowledgeHub.realCasesTeach', 'Radar da Prevenção: os riscos desta época')}
+                            tom="warning"
+                            largo
+                            seta
+                            arte={112}
+                            tamanhoTitulo={15}
+                            style={{ height: 118 }}
+                            onPress={() => navigation.navigate('RadarVigilaro')}
+                        />
+                    </View>
 
                     {/* CONCEITOS — card único (era grid de 1, fica menos órfão como linha) */}
                     <Text style={[s.sectionLabel, { marginTop: 20, color: textSecondary }]} accessibilityRole="header">
                         {t('knowledgeHub.essentialConcepts', 'Conceitos')}
                     </Text>
-                    <TouchableOpacity
-                        activeOpacity={0.85}
+                    {/* A ressalva da "superfície creme FIXA" que morava aqui
+                        saiu junto com o creme: o card não tem mais prato, e a
+                        tinta branca do NeoGlifoCard já é fixa por natureza —
+                        o campo saturado não acompanha o tema. */}
+                    <NeoGlifoCard
+                        source={CONCEPTS_PICTOGRAM}
+                        titulo={conceitoItem.titulo}
+                        tom="info"
+                        largo
+                        seta
+                        arte={112}
+                        tamanhoTitulo={17}
+                        style={{ height: 118 }}
                         onPress={() => navigation.navigate(conceitoItem.route)}
-                        accessibilityRole="button"
-                        accessibilityLabel={conceitoItem.titulo}
-                    >
-                        <NeoCard variant="elevated" style={s.conceitoCard}>
-                            <PictogramTile source={CONCEPTS_PICTOGRAM} width={110} style={s.conceptPictogramWrap} moldura atenuado={isDark} />
-                            <View style={{ flex: 1, minWidth: 0, paddingRight: 8 }}>
-                                {/* Superfície creme FIXA: a tinta vem da paleta
-                                    clara, não do tema. Com o ink do tema o
-                                    título media 1,06:1 sobre o creme no modo
-                                    escuro — sumia. */}
-                                <Body style={s.conceitoTitle}>
-                                    {conceitoItem.titulo}
-                                </Body>
-                            </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', width: 24 }}>
-                                <NeoIcon name="ArrowRight2" size={18} color={Neo.colors.textOn.muted} />
-                            </View>
-                        </NeoCard>
-                    </TouchableOpacity>
+                    />
 
                     {/* 5 SEÇÕES — grid 3 colunas */}
                     {SECTIONS.map((section) => (
@@ -535,39 +526,10 @@ const s = StyleSheet.create({
     },
 
     // ── Radar card especial ──
-    radarCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 6,
-        paddingHorizontal: 12,
-        borderRadius: 18,
-        backgroundColor: Neo.colors.tile.cream,
-    },
     // Os dois cards abaixo são creme nos dois temas, para fundir com o tile
     // cerâmico que carregam. Por isso a tinta deles é a da paleta CLARA —
     // 13,62:1 sobre o creme — e não a do tema.
-    radarTitle: {
-        fontWeight: '800',
-        fontSize: 15,
-        color: Neo.colors.textOn.ink,
-    },
-    conceitoTitle: {
-        fontWeight: '800',
-        fontSize: 14,
-        color: Neo.colors.textOn.ink,
-    },
     // ── Conceitos (card único horizontal) ──
-    conceitoCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 6,
-        paddingHorizontal: 12,
-        borderRadius: 16,
-        backgroundColor: Neo.colors.tile.cream,
-    },
-    conceptPictogramWrap: {
-        marginRight: 14,
-    },
 
     // ── Grid 3-col para seções de categorias ──
     grid: {
