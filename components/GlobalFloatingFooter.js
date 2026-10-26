@@ -143,36 +143,52 @@ const TAB_BUTTONS = [
 ];
 
 /**
- * LuzDaAba — a aba ativa ACENDE, em vez de ganhar moldura.
- *
- * Até 25/10/2026 a família de ícones do rodapé citava o tile cerâmico: cada
- * glifo morava dentro de um quadrado de cantos arredondados, e o ativo se
- * preenchia. Os tiles saíram das telas quando o card retroiluminado entrou
- * (ANATOMIA §9.5), e o rodapé ficou citando um padrão que não existe mais.
- *
- * A tradução do padrão novo para uma barra de 32px não é um card — seria
- * pesado e a navegação competiria com o conteúdo. É a LUZ, que é o que o card
- * tem de essencial: um ponto claro de onde o desenho emerge. Aqui ela fica
- * atrás do glifo, suave, e some no inativo.
- *
- * O preenchimento do glifo (Bold) continua: o sinal nunca pode ser só a luz,
- * que é cor — a norma de acessibilidade pede um segundo canal (WCAG 1.4.1), e
- * no alto contraste a luz tem contraste baixo de propósito.
+ * A MOLDURA SAIU DOS GLIFOS em 25/10/2026. Até ali a família de ícones do
+ * rodapé citava o tile cerâmico: cada glifo morava dentro de um quadrado de
+ * cantos arredondados, e o ativo se preenchia. Os tiles saíram das telas quando
+ * o card retroiluminado entrou (ANATOMIA §9.5), e o rodapé ficou citando um
+ * padrão que não existe mais. Ver `components/icons/HomeTileIcon.js` para o
+ * reescalonamento que a remoção exigiu.
  */
 let seqLuz = 0;
-function LuzDaAba({ cor, tamanho = 46 }) {
-    const id = useRef(`luzaba${++seqLuz}`).current;
+
+/**
+ * CardDaAba — cada aba é um card, como os da Home.
+ *
+ * A primeira tentativa foi só a LUZ atrás do glifo, mantendo a barra leve. O
+ * Agnaldo olhou e recusou, com um diagnóstico que eu não tinha previsto: *"a
+ * maior diferença que percebi foi o distanciamento do pictograma do seu nome
+ * correspondente"*. Ao crescer os glifos (a moldura saiu e `K` devolveu a
+ * extensão que ela ocupava), o rótulo passou a parecer solto do ícone — e a luz
+ * sozinha não ancorava os dois.
+ *
+ * Com o card, ícone e rótulo moram no mesmo campo e o distanciamento acaba por
+ * construção. A barra fica mais presente do que eu teria escolhido; é decisão
+ * dele, e o custo está contido: o tom dos inativos é `muted`, não um matiz
+ * saturado, então a barra não compete com o conteúdo.
+ *
+ * A gramática é a do seletor do Viagem, que é o que a barra de abas é: escolhido
+ * em verde, preteridos em grafite. O glifo continua Bold no ativo e Linear no
+ * inativo — o sinal nunca pode ser só cor (WCAG 1.4.1).
+ */
+function CardDaAba({ tom, children }) {
+    const id = useRef(`cardaba${++seqLuz}`).current;
+    const r = Neo.gradients.radiais;
+    const cores = r[tom] || r.muted;
     return (
-        <Svg width={tamanho} height={tamanho} style={styles.luzDaAba} pointerEvents="none">
-            <Defs>
-                <RadialGradient id={id} cx="0.5" cy="0.5" rx="0.5" ry="0.5">
-                    <Stop offset="0" stopColor={cor} stopOpacity="0.34" />
-                    <Stop offset="0.55" stopColor={cor} stopOpacity="0.13" />
-                    <Stop offset="1" stopColor={cor} stopOpacity="0" />
-                </RadialGradient>
-            </Defs>
-            <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
-        </Svg>
+        <View style={styles.cardAba}>
+            <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" pointerEvents="none">
+                <Defs>
+                    <RadialGradient id={id} cx={r.foco.cx} cy={r.foco.cy} rx={r.foco.rx} ry={r.foco.ry}>
+                        {cores.map((c, i) => (
+                            <Stop key={i} offset={r.paradas[i]} stopColor={c} stopOpacity="1" />
+                        ))}
+                    </RadialGradient>
+                </Defs>
+                <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
+            </Svg>
+            {children}
+        </View>
     );
 }
 
@@ -369,7 +385,11 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
           const forceTravelHighlight = tab.route === 'TravelModeTab' && isTravelModeOn;
           const isIconActive = active || forceTravelHighlight;
           
-          const color = isIconActive ? Neo.colors.primary[500] : inactiveTabColor;
+          // Tinta BRANCA nos dois estados: o campo do card e saturado tanto no
+          // ativo (verde) quanto no inativo (grafite), e tinta de tema sumiria
+          // sobre ele. O estado se diz pelo TOM do card e pelo peso do glifo.
+          const color = '#FFFFFF';
+          const tomDaAba = isIconActive ? 'success' : 'muted';
           
           return (
             <TouchableOpacity
@@ -381,8 +401,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
               accessibilityLabel={t(tab.labelKey)}
               accessibilityState={{ selected: active }}
             >
-              <View style={styles.caixaIcone}>
-              {isIconActive && <LuzDaAba cor={color} />}
+              <CardDaAba tom={tomDaAba}>
               {tab.route === 'TravelModeTab' ? (
                 // Narrativa: ícone inativo (pousado) quando viagem está desligada.
                 // Quando ativo, usamos a animação de flutuação e ícone dinâmico baseado no modal.
@@ -399,15 +418,15 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                   {isTravelModeOn ? (
                     // Ícone dinâmico do transporte (ativo)
                     (() => {
-                        if (activeTransportMode === 'carro') return <NeoIcon name="CarProfile" variant="Bold" size={26} color={color} />;
-                        if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={26} color={color} />;
-                        if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={26} color={color} />;
-                        if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={26} color={color} />;
+                        if (activeTransportMode === 'carro') return <NeoIcon name="CarProfile" variant="Bold" size={22} color={color} />;
+                        if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={22} color={color} />;
+                        if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={22} color={color} />;
+                        if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={22} color={color} />;
                         // Moto faltava desde 23/10/2026, quando ela entrou no
                         // seletor: caía no fallback e a aba mostrava um AVIÃO
                         // para quem viajava de moto. O fallback existe para
                         // modal desconhecido, não para um que está na lista.
-                        if (activeTransportMode === 'moto') return <NeoIcon name="Motorcycle" variant="Bold" size={26} color={color} />;
+                        if (activeTransportMode === 'moto') return <NeoIcon name="Motorcycle" variant="Bold" size={22} color={color} />;
                         
                         // Fallback (avião decolando - corpo do avião sem o chão)
                         return (
@@ -423,19 +442,19 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                     // era um avião solto, sem moldura — aí ele precisava ser
                     // menor para não brigar com os vizinhos e nunca acendia.
                     // Com o TravelTile, tem de seguir a mesma régua dos irmãos.
-                    <NeoIcon name={tab.icon} variant={isIconActive ? 'Bold' : 'Linear'} size={32} color={color} />
+                    <NeoIcon name={tab.icon} variant={isIconActive ? 'Bold' : 'Linear'} size={22} color={color} />
                   )}
                 </Animated.View>
               ) : (
                 <NeoIcon
                   name={tab.icon}
                   variant={isIconActive ? 'Bold' : 'Linear'}
-                  size={32}
+                  size={22}
                   color={color}
                 />
               )}
-              </View>
-              <Text style={[styles.tabLabel, { color }]}>{t(tab.labelKey)}</Text>
+                <Text style={[styles.tabLabel, { color }]} numberOfLines={1}>{t(tab.labelKey)}</Text>
+              </CardDaAba>
             </TouchableOpacity>
           );
         })}
@@ -490,29 +509,29 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   tabButton: {
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     flex: 1,
     alignSelf: 'stretch', // evita height: '100%' que gera warning no Android
   },
-  // 32×32, a mesma caixa que o ícone sempre ocupou — a luz transborda dela por
-  // posição absoluta em vez de aumentar a caixa. Assim o orçamento vertical da
-  // barra (60px) não muda nem um pixel.
-  caixaIcone: {
-    width: 32,
-    height: 32,
+  // O CARD DA ABA. Ícone e rótulo moram dentro dele, que é o que resolve o
+  // distanciamento entre os dois (Agnaldo, 25/10/2026). A altura cabe no
+  // orçamento de 60px da barra: 48 de card mais 6 de folga em cima e embaixo.
+  cardAba: {
+    flex: 1,
+    alignSelf: 'stretch',
+    marginVertical: 6,
+    marginHorizontal: 3,
+    borderRadius: 14,
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  luzDaAba: {
-    position: 'absolute',
-    top: -7,
-    left: -7,
-  },
   tabLabel: {
-    fontSize: 10,
-    fontWeight: '500',
-    marginTop: 4,
+    fontSize: 9.5,
+    fontWeight: '700',
+    marginTop: 1,
+    letterSpacing: -0.05,
     fontFamily: Platform.OS === 'ios' ? 'System' : 'Roboto',
   },
   // SOS pulse wrapper — Animated.View replaces direct TouchableOpacity styling
