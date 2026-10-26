@@ -28,9 +28,10 @@
  *  - accessibilityLabel no card: antes o leitor de tela anunciava a subárvore
  *    inteira sem dizer o que o número significa.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Svg, { Defs, RadialGradient, Stop, Rect } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
@@ -47,13 +48,51 @@ import { getPendingGuidance } from '../data/tag_guidance';
  * Faixa do score → tom semântico. Só o nome do tom mora aqui; a cor concreta
  * vem do tema em tempo de render, nunca do módulo.
  */
-const TONE_BY_BAND = {
-    maxima: 'success',
-    controle: 'success',
-    atencao: 'warning',
-    critico: 'error',
-    inicio: 'muted',
-};
+// TONE_BY_BAND vivia aqui como cópia do TOM_POR_BANDA do ScoreService — a
+// mesma duplicação que o docblock daquele serviço diz ter eliminado, e que o
+// PILAR 3 do CLAUDE.md nomeia. `ScoreService.getTom(score)` é o caminho único
+// e devolve exatamente estas chaves. Removido em 25/10/2026.
+
+/**
+ * LuzDoScore — a retroiluminação do número do score.
+ *
+ * O card era calibrado para casar com os oito tiles creme da Home: o docblock
+ * acima registra a medição (1.01:1 de luminância entre o card e os tiles). Os
+ * tiles saíram quando o card retroiluminado entrou, e este ficou casando com
+ * uma superfície que não existe mais — "o hero accordion ainda não mudou"
+ * (Agnaldo, 25/10/2026).
+ *
+ * Pintar o card inteiro com o tom da banda seria o mais consistente e custaria
+ * legibilidade: ele carrega accordion, barras e botões. A tradução que cabe é a
+ * mesma do rodapé — a LUZ. O campo segue legível, e o tom da banda nasce atrás
+ * do número, que é onde o dado mora.
+ */
+// ELIPSE, não círculo, e por medição: o número tem 42px de altura (36 no
+// compacto) por ~85 de largura. Uma luz quadrada centrada nele subiria 27px
+// acima e vazaria pela borda arredondada do card — e conter com
+// `overflow: 'hidden'` no card não serve, porque no iOS isso recorta junto a
+// sombra `ceramic` dele. A elipse abraça o número e fica dentro por geometria.
+function LuzDoScore({ cor, largura, altura, deslocamento }) {
+    const id = useRef(`luzscore${++seqLuz}`).current;
+    return (
+        <Svg
+            width={largura}
+            height={altura}
+            style={[styles.luzDoScore, deslocamento]}
+            pointerEvents="none"
+        >
+            <Defs>
+                <RadialGradient id={id} cx="0.5" cy="0.5" rx="0.5" ry="0.5">
+                    <Stop offset="0" stopColor={cor} stopOpacity="0.30" />
+                    <Stop offset="0.55" stopColor={cor} stopOpacity="0.11" />
+                    <Stop offset="1" stopColor={cor} stopOpacity="0" />
+                </RadialGradient>
+            </Defs>
+            <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`} />
+        </Svg>
+    );
+}
+let seqLuz = 0;
 
 /**
  * Altura (px) que o modo compacto poupa. Exportada para que a Home possa
@@ -113,13 +152,13 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
 
     /** Cor de TEXTO da faixa (>= 4.5:1 sobre o creme). */
     const bandTextColor = (value) => {
-        const tone = TONE_BY_BAND[ScoreService.getBanda(value).key] || 'muted';
+        const tone = ScoreService.getTom(value);
         return colors.textOn[tone];
     };
 
     /** Cor de PREENCHIMENTO da faixa — pontos e segmentos de barra. */
     const bandFillColor = (value) => {
-        const tone = TONE_BY_BAND[ScoreService.getBanda(value).key] || 'muted';
+        const tone = ScoreService.getTom(value);
         if (tone === 'muted') return colors.neutral[400];
         return colors.feedback[tone];
     };
@@ -349,6 +388,16 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 <View style={[styles.compactPanel, compact && styles.compactPanelTight]}>
                     <View style={[styles.compactMain, compact && styles.compactMainTight]}>
                         <View style={styles.scoreColumn}>
+                            {/* A luz transborda da coluna por posição absoluta:
+                                o orçamento de altura do card é apertado (ver as
+                                contas de compactação no topo) e não pode crescer
+                                nem um pixel. */}
+                            <LuzDoScore
+                                cor={scoreColor}
+                                largura={compact ? 104 : 118}
+                                altura={compact ? 56 : 64}
+                                deslocamento={compact ? { left: -14, top: -10 } : { left: -16, top: -11 }}
+                            />
                             <Text style={[styles.scoreValue, compact && styles.scoreValueTight, { color: scoreColor }]} numberOfLines={1}>
                                 {score}%
                             </Text>
@@ -642,6 +691,9 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
  * o tema existir — cor sai como prop inline, sempre.
  */
 const styles = StyleSheet.create({
+    luzDoScore: {
+        position: 'absolute',
+    },
     card: {
         borderRadius: Neo.radius.lg,
         paddingHorizontal: 12,

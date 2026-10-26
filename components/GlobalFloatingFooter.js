@@ -403,6 +403,11 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                         if (activeTransportMode === 'onibus') return <NeoIcon name="Bus" variant="Bold" size={26} color={color} />;
                         if (activeTransportMode === 'trem') return <NeoIcon name="Train" variant="Bold" size={26} color={color} />;
                         if (activeTransportMode === 'navio') return <NeoIcon name="Boat" variant="Bold" size={26} color={color} />;
+                        // Moto faltava desde 23/10/2026, quando ela entrou no
+                        // seletor: caía no fallback e a aba mostrava um AVIÃO
+                        // para quem viajava de moto. O fallback existe para
+                        // modal desconhecido, não para um que está na lista.
+                        if (activeTransportMode === 'moto') return <NeoIcon name="Motorcycle" variant="Bold" size={26} color={color} />;
                         
                         // Fallback (avião decolando - corpo do avião sem o chão)
                         return (
