@@ -183,6 +183,10 @@ function processar(arquivo, base, limpo) {
     // mas a renderização pinta todo pixel com alfa > 0. Quem decide se cabe no
     // quadro é esta, não aquela.
     let ex0 = w, ey0 = h, ex1 = -1, ey1 = -1;
+    // Luminâncias do glifo, para medir a FAIXA de relevo por percentil (ver a
+    // compressão de faixa no bloco de cor). Percentil e não mínimo/máximo: um
+    // único pixel de realce especular não pode definir a escala.
+    const amostrasL = [];
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
         const p = y * w + x, a = alfa[p];
         if (a > 0.03) tinta += a;                      // cobertura real, com a borda suave
@@ -193,10 +197,52 @@ function processar(arquivo, base, limpo) {
         if (a < 0.5) continue;
         if (x < x0) x0 = x; if (y < y0) y0 = y; if (x > x1) x1 = x; if (y > y1) y1 = y;
         peso += a; sx += x * a; sy += y * a;
-        sL += lum(cor[p * 3], cor[p * 3 + 1], cor[p * 3 + 2]) * a;
+        const Lpx = lum(cor[p * 3], cor[p * 3 + 1], cor[p * 3 + 2]);
+        sL += Lpx * a;
+        amostrasL.push(Lpx);
     }
     if (x1 < 0) return null;
     const Lmedia = sL / peso;
+
+    // ── COMPRESSÃO DE FAIXA ─────────────────────────────────────────────────
+    // A reancoragem de cor multiplica o alvo pela razão luminância/média. Isso
+    // funciona quando a razão é modesta, que é o caso do acervo antigo: medido
+    // nas 59 peças, a faixa p2..p98 fica em 0,53..1,09 da média.
+    //
+    // A arte nova (formato limpo, render 3D) tem 3 a 4 vezes esse contraste:
+    // extintor 0,11..3,43 · moto 0,19..4,05 · botijão 0,29..2,40. Multiplicar
+    // #064E3B por 3,4 dá verde vivo — foi daí que veio a "pincelada de neon"
+    // que o Agnaldo relatou na moto em 23/10/2026. É aritmética, não azar.
+    //
+    // A correção é remapear a faixa da peça para a faixa da família ANTES de
+    // multiplicar: o relevo mantém a ordem, a média cai exatamente no alvo e
+    // nada estoura. Só se aplica a arte limpa COM alvo, que é a combinação em
+    // que a multiplicação crua está errada; o caminho padrão fica intocado.
+    // A compressão é ASSIMÉTRICA, em torno da razão 1. Um remapeamento linear
+    // da faixa inteira para [min,max] parece a solução óbvia e está errado: ele
+    // não preserva o ponto médio, então a peça toda escurece ou clareia. Medido
+    // em 25/10/2026 — o extintor saiu em (4,52,40) contra o alvo (6,78,59).
+    // Aqui sombra e realce têm cada um seu fator, e r=1 continua valendo 1, que
+    // é o que garante a média exata no alvo.
+    //
+    // A faixa de destino NÃO é a do acervo antigo (0,53..1,09). Aquela arte é
+    // chapada, sem realce especular — quase toda a variação dela está ABAIXO da
+    // média. Forçar uma arte com relevo 3D nessa faixa apagaria o realce, que é
+    // justamente o que a arte nova tem de bom. A faixa aqui dá espaço para os
+    // dois lados.
+    const FAIXA_MIN = Number(arg('faixa-min', 0.45));
+    const FAIXA_MAX = Number(arg('faixa-max', 1.55));
+    let remapear = null;
+    if (limpo && ALVO && amostrasL.length > 32) {
+        amostrasL.sort((a, b) => a - b);
+        const pct = (f) => amostrasL[Math.floor(f * (amostrasL.length - 1))];
+        const rMin = pct(0.02) / Lmedia, rMax = pct(0.98) / Lmedia;
+        const kBaixo = rMin < 0.98 ? (1 - FAIXA_MIN) / (1 - rMin) : 1;
+        const kAlto = rMax > 1.02 ? (FAIXA_MAX - 1) / (rMax - 1) : 1;
+        remapear = (r) => (r <= 1
+            ? Math.max(FAIXA_MIN, 1 - (1 - r) * kBaixo)
+            : Math.min(FAIXA_MAX, 1 + (r - 1) * kAlto));
+    }
     const cmx = sx / peso, cmy = sy / peso;            // centro de MASSA, não da caixa
     const lado = Math.max(x1 - x0 + 1, y1 - y0 + 1);
     const menor = Math.min(x1 - x0 + 1, y1 - y0 + 1);
@@ -324,7 +370,7 @@ function processar(arquivo, base, limpo) {
                 }
                 const f = alvoClaro
                     ? PISO + (1 - PISO) * clamp((r - 0.4) / 1.4, 0, 1)
-                    : r;
+                    : (remapear ? remapear(r) : r);
                 ar += clamp(alvo[0] * f, 0, 255) * a;
                 ag += clamp(alvo[1] * f, 0, 255) * a;
                 ab += clamp(alvo[2] * f, 0, 255) * a;

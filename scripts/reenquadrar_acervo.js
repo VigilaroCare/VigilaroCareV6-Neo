@@ -41,12 +41,19 @@ const PASTAS = ['education-pictograms', 'home-pictograms', 'menu-pictograms', 't
 // e, numa arte que nao tem creme, trata o que encontra como se fosse tile — ja
 // produziu saida invertida (tile da cor alvo com o desenho vazado).
 //
-// SEM `--alvo`, de proposito. A reancoragem no verde unico existe para unificar
-// o acervo ANTIGO, de tons desencontrados. Numa arte que ja nasce no verde da
-// casa ela amplifica o brilho especular: a moto saiu "pincelada de neon"
-// (Agnaldo, 23/10/2026) e o botijao novo repetiu o efeito em 25/10/2026.
-// O custo e conhecido e aceito: a peca fica no tom do autor, nao na media
-// exata (6,78,59) que as peças do caminho padrao tem.
+// COM `--alvo`, desde 25/10/2026. A reancoragem no verde unico vale para TODAS
+// as pecas — e o que faz o acervo ser um conjunto. Ela chegou a ser desligada
+// aqui porque multiplicava o alvo pela razao de luminancia crua, e a arte nova
+// tem 3 a 4 vezes o contraste interno da antiga (medido: faixa p2..p98 de
+// 0,11..3,43 no extintor contra 0,53..1,09 nas 59 pecas antigas). Multiplicar
+// #064E3B por 3,4 da verde vivo — foi dai que veio a "pincelada de neon" que o
+// Agnaldo relatou na moto em 23/10/2026.
+//
+// A COMPRESSAO DE FAIXA do normalizador resolveu isso: a faixa da peca e
+// remapeada para a da familia antes de multiplicar, com fatores separados para
+// sombra e realce para a media nao escorregar. Resultado medido: o extintor foi
+// de distancia 22 para 9 do verde unico, e o botijao de 62 para 7, com o relevo
+// preservado.
 //
 // Cada entrada tambem RENOMEIA: o arquivo tem nome de autor e a saida precisa
 // do nome que o app importa.
@@ -103,7 +110,7 @@ try {
         if (!fs.existsSync(origem)) continue;
         const umA = tmp('_uma'); rmrf(umA); fs.mkdirSync(umA, { recursive: true });
         fs.copyFileSync(origem, path.join(umA, nome + '.png'));
-        execSync(`node scripts/normalizar_pictogramas.js --pasta _uma --caixa ${CAIXA} --saida ${SAIDA} --limpo${EXTRA}`,
+        execSync(`node scripts/normalizar_pictogramas.js --pasta _uma --caixa ${CAIXA} --saida ${SAIDA} --limpo --alvo "#064E3B"${EXTRA}`,
             { cwd: path.join(__dirname, '..'), stdio: 'ignore' });
         rmrf(umA);
     }
