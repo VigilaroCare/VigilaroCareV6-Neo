@@ -160,9 +160,18 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     };
 
     /** Cor de PREENCHIMENTO da faixa — pontos e segmentos de barra. */
+    // "Em dia" sobre o campo é BRANCO, não verde. O campo do card agora é o tom
+    // da banda, e num score bom ele é verde — pintar de verde o que está em dia
+    // some dentro do próprio fundo. No print do Agnaldo a barra sob "CASA SOB
+    // CONTROLE" só aparecia na ponta âmbar/vermelha; a parte verde era invisível.
+    // Âmbar e vermelho ficam como estão: contrastam com qualquer tom de campo, e
+    // são justamente os que precisam saltar.
+    const CHEIO_EM_DIA = 'rgba(255,255,255,0.94)';
+
     const bandFillColor = (value) => {
         const tone = ScoreService.getTom(value);
-        if (tone === 'muted') return colors.neutral[400];
+        if (tone === 'muted') return 'rgba(255,255,255,0.55)';
+        if (tone === 'success') return CHEIO_EM_DIA;
         return colors.feedback[tone];
     };
 
@@ -273,7 +282,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
 
         return (
             <View style={[styles.segmentTrack, { height, borderRadius: height / 2, backgroundColor: track }]}>
-                {safePct > 0 && <View style={{ width: `${safePct}%`, backgroundColor: colors.feedback.success }} />}
+                {safePct > 0 && <View style={{ width: `${safePct}%`, backgroundColor: CHEIO_EM_DIA }} />}
                 {warningPct > 0 && <View style={{ width: `${warningPct}%`, backgroundColor: colors.feedback.warning }} />}
                 {criticalPct > 0 && <View style={{ width: `${criticalPct}%`, backgroundColor: colors.feedback.error }} />}
                 {remainder > 0 && <View style={{ width: `${remainder}%`, backgroundColor: 'transparent' }} />}
@@ -358,8 +367,17 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     return (
         <View style={styles.card}>
             {/* O CAMPO: o mesmo gradiente radial dos cards da Home, no tom da
-                banda. O recorte vive no estilo `card`, junto com o raio. */}
-            <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" pointerEvents="none">
+                banda. O recorte vive no estilo `card`, junto com o raio.
+
+                INSETS NEGATIVOS, e não `absoluteFill`. No React Native (Yoga,
+                ao contrário do CSS) um filho `position: absolute` é posicionado
+                a partir da borda de PADDING do pai — com `absoluteFill` o
+                gradiente cobria só a área de conteúdo e sobrava fundo claro nas
+                margens. Era visível no print do Agnaldo: a faixa verde
+                terminava antes da borda direita e o chevron de expandir
+                aparecia fora dela. Os valores espelham o padding do `card`;
+                o que passar da borda é recortado pelo `overflow: 'hidden'`. */}
+            <Svg style={styles.campo} width="100%" height="100%" pointerEvents="none">
                 <Defs>
                     <RadialGradient
                         id={idCampo}
@@ -703,6 +721,14 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
  * o tema existir — cor sai como prop inline, sempre.
  */
 const styles = StyleSheet.create({
+    // Espelha o padding do `card` em negativo — ver o comentário no JSX.
+    campo: {
+        position: 'absolute',
+        left: -12,
+        right: -12,
+        top: -4,
+        bottom: -6,
+    },
     card: {
         borderRadius: Neo.radius.lg,
         // Recorta o gradiente do campo nos cantos arredondados.
