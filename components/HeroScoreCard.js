@@ -51,7 +51,7 @@
 import { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Svg, { Defs, RadialGradient, Stop, Rect } from 'react-native-svg';
+import SafeGradient from './SafeGradient';
 import NeoIcon from './NeoIcon';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
@@ -72,6 +72,16 @@ import { getPendingGuidance } from '../data/tag_guidance';
 // mesma duplicação que o docblock daquele serviço diz ter eliminado, e que o
 // PILAR 3 do CLAUDE.md nomeia. `ScoreService.getTom(score)` é o caminho único
 // e devolve exatamente estas chaves. Removido em 25/10/2026.
+
+/** Interpola dois hex. Usado para apertar a parada clara do campo do card
+ *  até o branco alcançar o contraste mínimo de texto — ver o uso. */
+function misturarHex(a, b, t) {
+    const comp = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+    const [ar, ag, ab] = comp(a);
+    const [br, bg, bb] = comp(b);
+    const canal = (x, y) => Math.round(x + (y - x) * t).toString(16).padStart(2, '0');
+    return `#${canal(ar, br)}${canal(ag, bg)}${canal(ab, bb)}`;
+}
 
 let seqLuz = 0;
 
@@ -107,7 +117,6 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     const isDark = useIsDark();
     // Id do gradiente do campo. Em RN cada <Svg> é seu próprio documento, mas id
     // repetido entre instâncias já colidiu em versões antigas da lib.
-    const idCampo = useRef(`campoScore${++seqLuz}`).current;
     const insets = useSafeAreaInsets();
     const [mapping, setMapping] = useState([]);
     const [reviewVisible, setReviewVisible] = useState(false);
@@ -139,6 +148,14 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     // card do score é o score.
     const tomDaBanda = ScoreService.getTom(score);
     const radial = Neo.gradients.radiais[tomDaBanda] || Neo.gradients.radiais.muted;
+
+    // A parada CLARA do campo é 92% do caminho da escura até a média, e o 0,92
+    // vem de medição, não de gosto: no ÂMBAR a parada média (#A17024) dá 4,32:1
+    // para o texto branco — abaixo do mínimo de 4,5. A 92% ela dá 4,60:1. As
+    // outras três bandas passariam em 100% (terracota 6,08 · verde 5,67 ·
+    // grafite 9,23); 0,92 é o menor fator que serve às quatro, e 8% de
+    // diferença é imperceptível como desenho.
+    const campoClaro = misturarHex(radial[3], radial[2], 0.92);
     const track = 'rgba(255,255,255,0.24)';
 
     // DUAS TINTAS, e a distinção é o que torna a troca de superfície segura.
@@ -366,42 +383,32 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
 
     return (
         <View style={styles.card}>
-            {/* O CAMPO: o mesmo gradiente radial dos cards da Home, no tom da
-                banda. O recorte vive no estilo `card`, junto com o raio.
+            {/* O CAMPO. LINEAR e na faixa ESCURA, não o radial dos cards de
+                pictograma — e o aviso estava escrito por mim mesmo no token:
+                "os `card*` são LINEARES e servem a card com texto; estes são
+                RADIAIS e existem para o card em que o pictograma mora na luz".
+                O radial clareia até quase branco no canto inferior direito, que
+                é onde o pictograma deveria pousar. Pus texto branco ali: medido,
+                o branco dá 1,19:1 sobre a parada de luz e 2,24:1 sobre a clara.
+                O "100%" do Quarto de Adulto ficou invisível no print.
 
-                INSETS NEGATIVOS, e não `absoluteFill`. No React Native (Yoga,
-                ao contrário do CSS) um filho `position: absolute` é posicionado
-                a partir da borda de PADDING do pai — com `absoluteFill` o
-                gradiente cobria só a área de conteúdo e sobrava fundo claro nas
-                margens. Era visível no print do Agnaldo: a faixa verde
-                terminava antes da borda direita e o chevron de expandir
-                aparecia fora dela. Os valores espelham o padding do `card`;
-                o que passar da borda é recortado pelo `overflow: 'hidden'`. */}
-            {/* SEM as props `width`/`height`. Com elas em "100%" o Svg resolvia
-                a porcentagem contra a largura do PAI (344 − 24 de padding =
-                320pt), não contra a própria caixa esticada pelos insets
-                negativos: pintava 320pt a partir de −12 e parava ~35pt antes da
-                borda direita. Era o "continua cortado" do segundo print. Sem as
-                props, quem manda é a caixa do estilo.
-                O NeoGlifoCard usa `absoluteFill` com width/height a 100% e
-                funciona — porque o card DELE não tem padding. É a diferença
-                inteira entre os dois casos. */}
-            <Svg style={styles.campo} pointerEvents="none">
-                <Defs>
-                    <RadialGradient
-                        id={idCampo}
-                        cx={Neo.gradients.radiais.foco.cx}
-                        cy={Neo.gradients.radiais.foco.cy}
-                        rx={Neo.gradients.radiais.foco.rx}
-                        ry={Neo.gradients.radiais.foco.ry}
-                    >
-                        {radial.map((c, i) => (
-                            <Stop key={i} offset={Neo.gradients.radiais.paradas[i]} stopColor={c} stopOpacity="1" />
-                        ))}
-                    </RadialGradient>
-                </Defs>
-                <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${idCampo})`} />
-            </Svg>
+                Aqui só as duas paradas escuras do mesmo tom de banda — 5,67:1 e
+                12,64:1 para o branco, as duas acima do mínimo de texto. Mesma
+                família de cor, mesma semântica de severidade, faixa em que a
+                tinta branca sobrevive.
+
+                SafeGradient e não <Svg>: é view nativa, estica com os insets sem
+                os truques de dimensionamento do SVG (o `width="100%"` resolvia
+                contra o pai e parava 35pt antes da borda), e é o wrapper
+                obrigatório do projeto para gradiente linear. */}
+            <SafeGradient
+                colors={[radial[3], campoClaro]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.campo}
+                pointerEvents="none"
+                debugLabel="HeroScoreCard.campo"
+            />
             <TouchableOpacity
                 activeOpacity={0.88}
                 onPress={onPress}
