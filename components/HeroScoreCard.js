@@ -100,7 +100,14 @@ function MedidorDeScore({ pct, cor, corVazia, largura = 214, altura = 106 }) {
         marcas.push({
             x1: cx + r1 * Math.cos(ang), y1: cy + r1 * Math.sin(ang),
             x2: cx + r2 * Math.cos(ang), y2: cy + r2 * Math.sin(ang),
-            acesa: i / N <= pct / 100,
+            // `<`, não `<=`. Com `<=` a marcação 0 dava `0 <= 0` e acendia com o
+            // score em 0% — um tracinho de "progresso" que não existe. A prancha
+            // L tinha a mesma conta e ninguém viu porque lá o score era 61%; o
+            // emulador mostrou em 27/10/2026, numa casa com 60 pendências e
+            // nenhuma vistoria. Cada marcação cobre 2,5% do arco e acende quando
+            // o score ENTRA no trecho dela: 0% não acende nenhuma, 100% acende
+            // as 40.
+            acesa: i / N < pct / 100,
         });
     }
     return (
@@ -132,24 +139,27 @@ let seqLuz = 0;
 
 /**
  * Altura (px) que o modo compacto poupa. Exportada para que a Home possa
- * contabilizar essa poupanca ao decidir quanto o grid de pictogramas ainda
- * precisa encolher — se este numero mudar aqui, o calculo la acompanha.
- * 94 - 78 (minHeight) + 7 - 4 (paddingTop) = 19.
+ * contabilizar essa poupança ao decidir quanto a grade de pictogramas ainda
+ * precisa encolher — se este número mudar aqui, o cálculo lá acompanha.
+ *
+ * É a altura do bloco do MEDIDOR nos dois modos:
+ *   paddingTop + altura do arco + deslocamento do texto (negativo: o número
+ *   sobe para dentro do vazio do semicírculo) + linha do número + legenda
+ *
+ *   normal:    7 + 121 − 55 + 56 + (2 + 17)  =  148
+ *   compacto:  4 +  99 − 45 + 42 + (2 + 16)  =  118
+ *                                   poupa       30
+ *
+ * A dica abaixo da legenda é igual nos dois modos e se cancela na conta.
+ *
+ * ERA 19 até 27/10/2026, e o comentário que vinha aqui descrevia um layout que
+ * não existe mais — `scoreColumn`, `verticalDivider` de 92px, barra de 8px —
+ * todos do painel de duas colunas que o medidor substituiu. Com o número
+ * errado a Home subestimava o que a compactação libera; o laço de medição de
+ * lá corrigia na prática, mas a primeira estimativa partia de uma premissa
+ * falsa. Recalcular sempre que mexer em qualquer um dos cinco termos acima.
  */
-// A altura do hero é ditada pela scoreColumn, não pelo minHeight:
-//   scoreValue lineHeight 42 + headline (marginTop 4 + 2 linhas × 14 = 32)
-//   + globalBarWrap marginTop 11 + barra 8  ≈  93px
-// e o verticalDivider tem height: 92 rígido acompanhando isso.
-//
-// A primeira versão do modo compacto mexia só no minHeight (94 → 78) e por
-// isso poupava 2px, não 19 — o divider de 92 segurava a altura. O grid de
-// pictogramas acabou absorvendo a diferença toda e encolheu à vista.
-// Agora o corte é onde a altura realmente mora:
-//   scoreValue  42 → 36   (-6)
-//   headline    marginTop 4 → 2, lineHeight 14 → 13 em 2 linhas   (-4)
-//   barra       marginTop 11 → 7, altura 8 → 6   (-6)
-//   paddingTop  7 → 4   (-3)
-export const HERO_COMPACT_SAVING = 19;
+export const HERO_COMPACT_SAVING = 30;
 
 /**
  * @param {boolean} compact - trima a altura do hero em aparelhos onde a barra
@@ -855,9 +865,15 @@ const styles = StyleSheet.create({
     compactPanelTight: {
         paddingTop: 4,          // era 7   (-3)
     },
+    // 13/16. Era só `lineHeight: 13`, calibrado para quando a legenda tinha 12px.
+    // Em 26/10/2026 a legenda normal subiu para 14/17 e esta não acompanhou: o
+    // compacto ficou com fonte 14 numa linha de 13. O Android desenha mesmo
+    // assim; o iOS corta as descendentes ("g", "p") quando a linha é menor que
+    // a fonte. Agora a fonte também encolhe, e a linha cabe nela.
     scoreHeadlineTight: {
-        marginTop: 2,           // era 4   (-2)
-        lineHeight: 13,         // era 14  (-2 em 2 linhas)
+        marginTop: 2,
+        fontSize: 13,
+        lineHeight: 16,
     },
     globalBarWrapTight: {
         marginTop: 7,           // era 11  (-4)

@@ -41,7 +41,7 @@ import {
     useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getFooterClearance } from '../components/GlobalFloatingFooter';
+import { getFooterClearance, getSosClearance } from '../components/GlobalFloatingFooter';
 import NeoIcon from '../components/NeoIcon';
 import { StatusBar } from 'expo-status-bar';
 
@@ -115,9 +115,8 @@ export default function HomeScreenNeo() {
     // outro lugar — senao a ultima fileira de pictogramas volta pra tras do
     // footer, que e exatamente o bug que este calculo resolve.
     const clearanceExtra = Math.max(0, footerClearance - 90);
-    // Parte do clearance extra sai do hero (mais barato visualmente do que
-    // encolher os 8 pictogramas), o resto sai do grid.
-    const heroCompact = false;
+    // `heroCompact` é decidido mais abaixo, depois de `columns` — ele depende da
+    // geometria da grade e do excesso medido. Ver "A VÁLVULA DO MEDIDOR".
 
     // ── "HOME SEM SCROLL": AJUSTE MEDIDO, NAO ESTIMADO ──────────────────────
     // Toda a estimativa aqui (altura do header, do hero, do rotulo de 2 linhas,
@@ -194,6 +193,33 @@ export default function HomeScreenNeo() {
 
     const isRowLayout = columns === 1;
 
+    // ── A VÁLVULA DO MEDIDOR, religada por NECESSIDADE MEDIDA ──────────────
+    // A grade é quem cede primeiro: a razão desce de 0,49 até o piso de 0,32
+    // conforme o excesso medido. Só quando ela bateria no piso e AINDA sobraria
+    // excesso é que o medidor compacta — é a segunda alavanca, não a primeira.
+    //
+    // Este critério já mudou três vezes, e o histórico importa:
+    //  - era `clearanceExtra > 0`: ligava em qualquer aparelho com barra de
+    //    gestos, inclusive os altos, onde não fazia falta nenhuma;
+    //  - em 26/10/2026 virou `false` fixo, para o medidor ganhar o tamanho da
+    //    prancha L. No aparelho do Agnaldo e no emulador de 411x914 ficou
+    //    perfeito. Num 16:9 de 411x731 a terceira fileira entrou embaixo do
+    //    rodapé e o botão SOS ficou EM CIMA do card Scanner — medido no
+    //    emulador em 27/10, com a grade já no piso de 0,32. É a regressão que o
+    //    histórico deste arquivo já registrava ("os rótulos da última fileira
+    //    acabavam atrás do footer no aparelho real");
+    //  - agora: liga só onde a grade não dá conta. Telefones altos mantêm o
+    //    medidor grande da calibração; os baixos compactam.
+    //
+    // ESTÁVEL por construção: depende só de `clearanceExtra` e de
+    // `excedenteMedido`, e este último só cresce (ver `medirConteudo`). Então a
+    // decisão não oscila entre quadros — uma vez necessária, fica.
+    // Só na grade de 2 colunas: a de 1 coluna rola por projeto ("melhor rolar
+    // do que esconder"), e a de 3 colunas é tablet, onde sobra altura.
+    const fileirasGrade = Math.ceil(GRID_ITEMS.length / 2);
+    const razaoSemMedidor = 0.49 - (clearanceExtra + excedenteMedido) / (fileirasGrade * 0.75 * CONTENT_W);
+    const heroCompact = columns === 2 && razaoSemMedidor < 0.32;
+
     let GRID_IMG_W = CONTENT_W * 0.49;
     let cellWidth = '49%';
     if (columns === 3) {
@@ -220,6 +246,9 @@ export default function HomeScreenNeo() {
         // Estimativa inicial (primeiro frame) + correcao medida (frames
         // seguintes). A medida manda: se a estimativa errou, `excedenteMedido`
         // corrige exatamente a diferenca.
+        // A folga do botão SOS não entra aqui: ela vai no paddingBottom do
+        // scroll (ver `clearanceDaGrade`), onde o laço de medição a cobra só
+        // dos aparelhos que precisam.
         const faltaAbsorver = Math.max(0, clearanceExtra - poupancaDoHero) + excedenteMedido;
         // Derivado do número real de fileiras — antes estava fixo em 3, que era
         // 4 fileiras × 0.75. Com 6 tiles são 3 fileiras, e o divisor muda.
@@ -254,9 +283,48 @@ export default function HomeScreenNeo() {
     // O VÃO sai da mesma conta. Antes a separação entre fileiras vinha do
     // branco em volta do rótulo (marginBottom era só 2px); com card de cor
     // chapada as fileiras encostariam. Então o vão vira explícito e a altura do
-    // card cede o mesmo tanto: por fileira continua dando 0,75·W + 24.
+    // card cede o mesmo tanto: por fileira dá 0,75·W + 25.
+    //
+    // ACOPLADO DE PROPÓSITO: a altura do card é escrita como `25 − VAO_GRADE`,
+    // não como número fixo. Mexer no vão faz o card ceder ou crescer o mesmo
+    // tanto, e a altura por fileira — que é o que decide se a Home rola — não
+    // muda. Em 26/10/2026 a calibração no aparelho levou o vão de 9 para 11 e
+    // escreveu o card como `+ 14` fixo: o resultado visual estava certo, mas o
+    // acoplamento se perdeu e este comentário passou a prometer 24 enquanto o
+    // código dava 25. Restaurado em 27/10 com os valores daquela calibração
+    // (25 − 11 = 14), então a tela ficou exatamente igual.
     const VAO_GRADE = 11;
-    const ALTURA_CARD = Math.round(GRID_IMG_W * 0.75 + 14);
+    const ALTURA_CARD = Math.round(GRID_IMG_W * 0.75 + 25 - VAO_GRADE);
+
+    // FOLGA DO BOTÃO SOS — pela fonte única do rodapé, não por número próprio.
+    //
+    // Duas coisas flutuam sobre o fim do scroll: a barra, em toda a largura, e
+    // o SOS, um círculo de 64dp centrado que sobe 16 a 20dp acima dela.
+    // `getFooterClearance` cobre só a barra, e é o certo para conteúdo que não
+    // passa pelo meio do ecrã. A grade de 2 colunas passa: o vão entre as
+    // colunas tem ~7dp e o SOS tem 64, então os cantos internos da última
+    // fileira ficam bem em cima dele.
+    //
+    // Medido no emulador em 27/10/2026: em todo aparelho onde o laço encolhe a
+    // grade, o conteúdo termina rente ao fim da área visível, e a última
+    // fileira ficava 1dp DENTRO do SOS (a 411x780 o botão encostava nos cards
+    // Scanner e Info Rótulos). O toque no canto do card podia cair no SOS —
+    // e este alvo é de EMERGÊNCIA; a norma de toque pede 8dp entre alvos.
+    //
+    // `getSosClearance` já inclui esses 8dp. O `marginBottom` da última
+    // fileira (VAO_GRADE) também é espaço livre, por isso sai da conta.
+    //
+    // É padding, não encolhimento: nos telefones altos, onde a grade cabe com
+    // sobra, nada muda na tela — a calibração aprovada no aparelho do Agnaldo
+    // fica intacta. Só onde falta altura é que o laço de medição cobra esses
+    // dp da grade. Com a grade já no piso de 0,32 (16:9), a Home rola esses
+    // poucos dp, pela regra que já vale: melhor rolar do que esconder.
+    //
+    // O layout de 1 coluna mantém a sua conta: ele rola por projeto, e os +32
+    // já deixam o fim da lista longe do botão.
+    const clearanceDaGrade = isRowLayout
+        ? footerClearance + 32
+        : Math.max(footerClearance, getSosClearance(insets.bottom) - VAO_GRADE);
 
     // O tom do card de Vistorias vem do DADO, não do gosto: é a banda do score
     // pela fonte única (ScoreService.getTom → success|warning|error|muted). Os
@@ -470,8 +538,10 @@ export default function HomeScreenNeo() {
                         // fixo anterior (90) ignorava insets.bottom e por isso
                         // escondia a ultima fileira de pictogramas em aparelho
                         // com barra de gestos. O extra do row layout (+32)
-                        // continua, porque la os tiles sao mais altos.
-                        paddingBottom: footerClearance + (isRowLayout ? 32 : 0),
+                        // continua, porque la os tiles sao mais altos. Na
+                        // grade, a folga do SOS entra junto — ver
+                        // `clearanceDaGrade`.
+                        paddingBottom: clearanceDaGrade,
                         paddingTop: 6,
                     }}
                 >
