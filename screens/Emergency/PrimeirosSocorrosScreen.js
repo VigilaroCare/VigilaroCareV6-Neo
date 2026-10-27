@@ -27,7 +27,7 @@ const SEARCH_ALIASES = {
     quedaAltura: 'queda altura escada degrau janela cama coluna cervical trauma beliche rede sacada',
     desmaio: 'desmaio desmaiou inconsciente apagou respiracao rcp cpr parada tontura',
     convulsao: 'convulsao crise epilepsia tremores movimentos involuntarios febre convulsiva',
-    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao agua sanitaria qboa candida cloro amonia amoniaco vinagre alcool soda caustica diabo verde chumbinho desinfetante detergente gas mistura planta chocolate uva sapo',
+    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao agua sanitaria candida lixivia cloro amonia amoniaco vinagre alcool soda caustica chumbinho desinfetante detergente gas mistura planta chocolate uva sapo',
     sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete faca vidro nariz',
     aspiracao: 'vomito aspiracao engasgo vomitou lateral seguranca',
     raio: 'raio raios relampago trovao trovoada tempestade descarga atmosferica lightning rayo rcp cpr',

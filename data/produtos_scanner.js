@@ -403,28 +403,29 @@ export const buscarProduto = (codigo) => {
   };
 };
 
-// Sinônimos populares para busca tolerante (Lei de Postel): permite achar o
-// produto pelo nome comercial/popular ou sem acento no momento de urgência.
+// Sinônimos genéricos para busca tolerante (Lei de Postel): permite achar o
+// produto pelo nome popular genérico ou sem acento no momento de urgência,
+// sem citar marcas comerciais.
 const SINONIMOS_PRODUTOS = {
-  '7891022100105': 'qboa candida cloro lixivia alvejante hipoclorito bleach lejia',
-  '7891022101201': 'pinho sol kalipto casa km creolina eucalipto',
-  '7896004712345': 'amoniaco lysoform ajax limpador amonia',
-  '7896090700102': 'diabo verde soda caustica hidroxido de sodio',
-  '7891024130001': 'veja mr musculo uau cif multiuso',
-  '7891035021008': 'vidrex limpa vidro limpa vidros',
-  '7891023900101': 'desentupidor pia ralo acido muriatico acido sulfurico',
-  '7891024110002': 'downy comfort fofo amaciante',
+  '7891022100105': 'cloro lixivia alvejante candida hipoclorito bleach lejia',
+  '7891022101201': 'pinho eucalipto creolina fenol',
+  '7896004712345': 'amoniaco amonia limpador amoniacal',
+  '7896090700102': 'soda caustica hidroxido de sodio',
+  '7891024130001': 'multiuso desengordurante limpador geral',
+  '7891035021008': 'limpa vidro limpa vidros',
+  '7891023900101': 'desentupidor pia ralo esgoto',
+  '7891024110002': 'amaciante roupas lavanderia',
   '7896022200388': 'alcool 70 alcool liquido etanol',
   '7896036600010': 'acetona esmalte removedor',
   '7896020428015': 'agua raz aguarraz thinner solvente querosene terebintina',
-  '7891035500201': 'baygon sbp raid mata barata mata mosquito veneno inseto',
-  '7896009945000': 'chumbinho veneno de rato mata rato raticida klerat',
+  '7891035500201': 'inseticida aerossol mata barata mata mosquito veneno inseto',
+  '7896009945000': 'chumbinho veneno de rato mata rato raticida',
   '7896002300100': 'naftalina bolinha traca',
-  '7896100500203': 'roundup glifosato mata mato herbicida',
-  '7896006200012': 'tylenol paracetamol acetaminofeno',
-  '7891058001004': 'novalgina dipirona dorflex neosaldina metamizol',
-  '7896015528010': 'advil alivium ibuprofeno',
-  '7896004701516': 'ype limpol minuano detergente lava loucas sabao',
+  '7896100500203': 'glifosato mata mato herbicida',
+  '7896006200012': 'paracetamol acetaminofeno antitermico analgesico',
+  '7891058001004': 'dipirona metamizol antitermico analgesico',
+  '7896015528010': 'ibuprofeno anti inflamatorio',
+  '7896004701516': 'detergente lava loucas sabao liquido',
   '7891010000100': 'bateria pilha botao moeda controle remoto',
   '7891000100103': 'melaleuca tea tree oleo essencial difusor',
 };

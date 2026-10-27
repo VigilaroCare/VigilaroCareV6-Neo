@@ -373,23 +373,14 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                         if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
 
                                         const progressText = area.total > 0 ? t('telas.RelatoriosScreenNeo.itensContagem', { feitos: area.checked, total: area.total, defaultValue: '{{feitos}}/{{total}} Itens' }) : t('telas.RelatoriosScreenNeo.semItens', 'Sem itens');
-                                        const restantes = Math.max(0, area.total - area.checked);
-                                        const minutosEst = restantes > 0 ? Math.max(1, Math.ceil(restantes * 0.12)) : 0;
 
-                                        // Pílula de status + tempo estimado (Lei de Parkinson) + trilha de progresso (Gradiente de Meta)
+                                        // Pílula de status + trilha de progresso (Gradiente de Meta)
                                         const StatusPill = (
                                             <View style={{ marginTop: 4, width: '100%' }}>
-                                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                                                    <View style={[s.statusPill, { backgroundColor: statusStyle.bg }]}>
-                                                        <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
-                                                            {statusLabel}
-                                                        </Small>
-                                                    </View>
-                                                    {minutosEst > 0 && (
-                                                        <Small style={{ fontSize: 11, color: themeColors.neutral[600], fontWeight: '600' }} numberOfLines={1}>
-                                                            {`~${minutosEst} min`}
-                                                        </Small>
-                                                    )}
+                                                <View style={[s.statusPill, { backgroundColor: statusStyle.bg, alignSelf: 'flex-start' }]}>
+                                                    <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
+                                                        {statusLabel}
+                                                    </Small>
                                                 </View>
                                                 {area.total > 0 && (
                                                     <View style={{
