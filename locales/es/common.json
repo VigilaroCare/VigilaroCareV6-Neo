@@ -262,7 +262,11 @@
         "heroControl": "Casa bajo control",
         "heroAttention": "Atención necesaria",
         "heroAct": "Actúa de inmediato",
-        "heroStart": "Comienza tu protección"
+        "heroStart": "Inspecciones pendientes",
+        "heroMaxima": "Seguridad máxima",
+        "homeXRay": "Radiografía de la Casa",
+        "homeXRayDesc": "Su casa, residentes y ambientes",
+        "pendenciasPill": "{{count}} pendientes"
     },
     "onboarding": {
         "title1": "Blindaje 360º",
@@ -624,7 +628,9 @@
         "articles": "Artículos",
         "realCases": "Casos Reales",
         "peopleAndContext": "Personas y contexto",
-        "caregivers": "Quien Cuida"
+        "caregivers": "Quien Cuida",
+        "gasLeak": "Fuga de Gas",
+        "dangerousMixtures": "Mezclas Peligrosas"
     },
     "reports": {
         "title": "Inspeccione sus Ambientes",
@@ -742,7 +748,7 @@
         "peopleTab": "Personas",
         "petsTab": "Mascotas",
         "homeXRay": "Rayos X del Hogar",
-        "homeXRayDesc": "Resumen de edificación, residentes y habitaciones",
+        "homeXRayDesc": "Su casa, residentes y ambientes",
         "peopleProfiles": "Perfiles de Personas",
         "myPets": "Mis Mascotas",
         "newPet": "Nueva Mascota",

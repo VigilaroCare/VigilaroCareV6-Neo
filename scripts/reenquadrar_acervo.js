@@ -61,6 +61,7 @@ const LIMPAS = [
     { pasta: 'travel-pictograms',    arquivo: 'Modal motocicleta com baú.png',      nome: 'pictogram-transporte-moto' },
     { pasta: 'education-pictograms', arquivo: 'Botijão de gás standard.png',        nome: 'pictogram-vazamento-gas' },
     { pasta: 'education-pictograms', arquivo: 'Extintor Verde com Chama em 3D.png', nome: 'pictogram-fire-prev' },
+    { pasta: 'education-pictograms', arquivo: 'Misturas perigosas.png',             nome: 'pictogram-misturas-perigosas' },
 ];
 
 // ── FORA DA PASSADA PADRAO ──────────────────────────────────────────────────
@@ -73,6 +74,7 @@ const FORA = [
     { pasta: 'travel-pictograms',    arquivo: 'Modal motocicleta com baú.png' },  // (1)
     { pasta: 'education-pictograms', arquivo: 'Botijão de gás standard.png' },    // (1)
     { pasta: 'education-pictograms', arquivo: 'Extintor Verde com Chama em 3D.png' }, // (1)
+    { pasta: 'education-pictograms', arquivo: 'Misturas perigosas.png' },         // (1)
     { pasta: 'education-pictograms', arquivo: 'pictogram-vazamento-gas.png' },    // (2) superado em 25/10/2026
     { pasta: 'education-pictograms', arquivo: 'pictogram-fire-prev.png' },        // (2) superado em 25/10/2026
                                                                                    //     — no desenho antigo a alavanca

@@ -344,7 +344,7 @@ function principal() {
             console.error(`${modo} exige o motivo entre aspas.`);
             process.exit(2);
         }
-        registrar(r, modo.slice(2), motivo, args.slice(i + 2).filter((a) => !a.startsWith('--')));
+        registrar(r, modo === '--aprovar' ? 'aprovado' : 'pendente', motivo, args.slice(i + 2).filter((a) => !a.startsWith('--')));
         return;
     }
 

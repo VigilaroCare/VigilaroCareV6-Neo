@@ -75,6 +75,7 @@ const PICTOGRAMS = {
     riscos_eletricos:   require('../../assets/illustrations/glifos/pictogram-riscos-eletricos.png'),
     dispositivos_protecao: require('../../assets/illustrations/glifos/pictogram-dispositivos-protecao.png'),
     vazamento_gas: require('../../assets/illustrations/glifos/pictogram-vazamento-gas.png'),
+    misturas_perigosas: require('../../assets/illustrations/glifos/pictogram-misturas-perigosas.png'),
 };
 const REAL_CASES_PICTOGRAM = require('../../assets/illustrations/glifos/pictogram-casos-reais.png');
 const CONCEPTS_PICTOGRAM = require('../../assets/illustrations/glifos/pictogram-conceitos.png');
@@ -97,6 +98,7 @@ const CERAMIC_STYLE_IDS = new Set([
     // Dispositivos de Proteção (2026-06-18):
     'dispositivos_protecao',
     'vazamento_gas',
+    'misturas_perigosas',
 ]);
 
 export default function KnowledgeHubScreen({ navigation }) {
@@ -147,6 +149,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                 { id: 'primeiros_socorros_hub',   titulo: t('knowledgeHub.firstAid'),    iconName: 'Health',            cor: themeColors.feedback.error, route: 'PrimeirosSocorros' },
                 { id: 'kits_emergencia',          titulo: t('knowledgeHub.kitsGuide'),   iconName: 'Briefcase',         cor: themeColors.feedback.error, route: 'GuiaKitsEmergencia' },
                 { id: 'vazamento_gas',            titulo: t('knowledgeHub.gasLeak', 'Vazamento de Gás'), iconName: 'Danger', cor: themeColors.feedback.error, route: 'GenericCategory', params: { categoryId: 'vazamento_gas' } },
+                { id: 'misturas_perigosas',       titulo: t('knowledgeHub.dangerousMixtures', 'Misturas Perigosas'), iconName: 'Danger', cor: themeColors.feedback.error, route: 'GenericCategory', params: { categoryId: 'misturas_perigosas' } },
             ],
         },
         {

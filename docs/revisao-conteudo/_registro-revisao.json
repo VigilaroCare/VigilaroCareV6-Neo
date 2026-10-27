@@ -132,6 +132,18 @@
   "m033": {
    "texto": "Modal MOTO no Modo Viagem, pedido do Agnaldo em 23/10/2026: 7 blocos (capacete, equipamento, crianca na garupa, bagagem, chuva, cansaco, revisao) nos 4 idiomas, mais o rotulo. Conteudo novo de risco — precisa da revisao dele, e ele e quem tem a pratica para conferir.",
    "em": "2026-10-23"
+  },
+  "m034": {
+   "texto": "Estrutura de 3 secoes (As 5 Misturas Proibidas, Acao Imediata no Ambiente, Prevencao de Rotina) aprovada pelo Agnaldo por chat em 26/10/2026 sobre a base canonica ED-0576 aprovada em 16/10/2026",
+   "em": "2026-10-26"
+  },
+  "m035": {
+   "texto": "Arquitetura de 1 card para cada uma das 5 misturas perigosas (com descricao, acao imediata no ambiente e prevencao/rotina dentro de cada card) pedida pelo Agnaldo em 26/10/2026 sobre a base canonica ED-0576",
+   "em": "2026-10-26"
+  },
+  "m036": {
+   "texto": "Ajustes de limao, desinfetante/detergente e bicarbonato aprovados pelo Agnaldo em 27/10/2026",
+   "em": "2026-10-27"
   }
  },
  "textos": {
@@ -859,6 +871,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "0d0a7f55a4963c26": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
   ],
   "0d14d095f74a83c5": [
    "pendente",
@@ -3434,6 +3451,11 @@
    "aprovado",
    "data/eletrodomesticos_reviews.js",
    "m001"
+  ],
+  "35b197e4ac1a025d": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
   ],
   "35b1a2c0326a4f02": [
    "pendente",
@@ -9275,6 +9297,11 @@
    "data/riscos_fisicos.js",
    "m015"
   ],
+  "906cc97fca5cb9a9": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m034"
+  ],
   "9077bfc05cebe1b6": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
@@ -9644,6 +9671,11 @@
    "aprovado",
    "data/radarSazonal/br.js",
    "m026"
+  ],
+  "96e1461e8f7e1a56": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m036"
   ],
   "96ece565012e9aae": [
    "pendente",
@@ -11370,6 +11402,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "b0f62f0ba61ea381": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
+  ],
   "b10a7f447b7e6599": [
    "pendente",
    "data/animais_ciatox.js",
@@ -12294,6 +12331,11 @@
    "aprovado",
    "data/radarSazonal/pt.js",
    "m012"
+  ],
+  "beb4bfa82a0a5fee": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
   ],
   "bee21f94429557b0": [
    "pendente",
@@ -13955,6 +13997,11 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
+  "d9e44e5a190b1ecc": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
+  ],
   "d9efef3f0d85d73c": [
    "aprovado",
    "data/radarConteudoDB.js",
@@ -15285,6 +15332,11 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
+  "ef9f05fcbbd5c9cb": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m035"
+  ],
   "efa31b7506c04ed1": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -15339,6 +15391,11 @@
    "pendente",
    "data/kits/bagagem_viagem.js",
    "m010"
+  ],
+  "f16a39fa2dc59bb6": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m036"
   ],
   "f194033a14529a0d": [
    "pendente",
@@ -15519,6 +15576,11 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
+  ],
+  "f39dea1d4fc3d33c": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m036"
   ],
   "f3a275ebfa4acb25": [
    "pendente",
@@ -15969,6 +16031,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "fa9e107904b3dd36": [
+   "aprovado",
+   "data/safety_mixtures.js",
+   "m036"
   ],
   "faa8427c76cd0d33": [
    "pendente",

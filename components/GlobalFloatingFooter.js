@@ -521,7 +521,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     marginVertical: 4,
-    marginHorizontal: 4,
+    // 8 e não 4. No papel a proporção já batia com a da Home — card de aba
+    // 70x52 (1,35) contra card da Home 173x130 (1,33) — mas o olho lia esticado,
+    // e o Agnaldo apontou. A diferença é o CONTEÚDO: no card da Home um
+    // pictograma grande preenche a caixa; no da aba sobra vazio horizontal em
+    // volta de um glifo pequeno, e vazio alongado lê como alongamento. Em 8pt o
+    // card fica 62x52 (1,19) e a mancha fecha.
+    marginHorizontal: 8,
     borderRadius: 14,
     overflow: 'hidden',
     alignItems: 'center',

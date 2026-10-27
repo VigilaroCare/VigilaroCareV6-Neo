@@ -61,8 +61,7 @@ import TappablePressable from '../components/TappablePressable';
 import { useLeftHandedStyle } from '../hooks/useLeftHandedStyle';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 
-import GlassProfileRing, { getNivelRingColors } from '../components/GlassProfileRing';
-import SafeGradient from '../components/SafeGradient';
+import GlassProfileRing from '../components/GlassProfileRing';
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -118,7 +117,7 @@ export default function HomeScreenNeo() {
     const clearanceExtra = Math.max(0, footerClearance - 90);
     // Parte do clearance extra sai do hero (mais barato visualmente do que
     // encolher os 8 pictogramas), o resto sai do grid.
-    const heroCompact = clearanceExtra > 0;
+    const heroCompact = false;
 
     // ── "HOME SEM SCROLL": AJUSTE MEDIDO, NAO ESTIMADO ──────────────────────
     // Toda a estimativa aqui (altura do header, do hero, do rotulo de 2 linhas,
@@ -256,8 +255,8 @@ export default function HomeScreenNeo() {
     // branco em volta do rótulo (marginBottom era só 2px); com card de cor
     // chapada as fileiras encostariam. Então o vão vira explícito e a altura do
     // card cede o mesmo tanto: por fileira continua dando 0,75·W + 24.
-    const VAO_GRADE = 9;
-    const ALTURA_CARD = Math.round(GRID_IMG_W * 0.75 + 24 - VAO_GRADE);
+    const VAO_GRADE = 11;
+    const ALTURA_CARD = Math.round(GRID_IMG_W * 0.75 + 14);
 
     // O tom do card de Vistorias vem do DADO, não do gosto: é a banda do score
     // pela fonte única (ScoreService.getTom → success|warning|error|muted). Os
@@ -332,7 +331,8 @@ export default function HomeScreenNeo() {
     // ── ESTADO-HERÓI (manchete do hero verde) ──
     const score = scoreData.geral;
     // Faixa única (ScoreService.getBanda) — mesmo limiar do HeroScoreCard.
-    const heroHeadline = ScoreService.getBanda(score).headline;
+    const banda = ScoreService.getBanda(score);
+    const heroHeadline = t(banda.headlineKey, banda.headline);
 
     // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
     const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
@@ -393,13 +393,6 @@ export default function HomeScreenNeo() {
     // trocar por themeColors.primary[200] teria escurecido o texto no dark.
     const chipText = themeColors.textOn.brand;
     const chipIconColor = themeColors.textOn.brand;
-    // Ícone da casinha ecoa o TOM do nível (textOn.* é AA nas superfícies
-    // claras dos dois temas). O texto do chip permanece brand — o eco de
-    // estado é a moldura + ícone, não o nome da casa inteiro colorido.
-    const chipLevelIconColor = (nivelProtecao && nivelProtecao.tone !== 'muted' && themeColors.textOn[nivelProtecao.tone])
-        ? themeColors.textOn[nivelProtecao.tone]
-        : chipIconColor;
-
     return (
         <AppBackground>
             <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
@@ -417,30 +410,22 @@ export default function HomeScreenNeo() {
                         <H2 style={[s.greetingText, { color: textPrimary }]} numberOfLines={1} accessibilityRole="header">
                             {greeting}{firstName ? `, ${firstName}` : ''}
                         </H2>
-                        {/* Moldura do chip = mesma gramática do anel do avatar
-                            (nível de proteção da residência ativa). ECO, não
-                            duplicata: o selo com ícone de estado fica só no
-                            avatar — dois alarmes idênticos lado a lado seria
-                            ruído. Sem nível ainda (load), gradiente neutro. */}
-                        <SafeGradient
-                            colors={getNivelRingColors(nivelProtecao?.key)}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 1 }}
-                            style={s.residenceChipRing}
+                        {/* Chip da moradia ativa sem anel colorido duplicado:
+                            o nível de proteção fica concentrado no anel + selo
+                            do avatar à direita (evita dois alarmes do mesmo
+                            dado lado a lado). */}
+                        <View
+                            style={[s.residenceChip, { backgroundColor: chipBg }]}
+                            accessible
+                            accessibilityRole="summary"
+                            accessibilityLabel={
+                                t('home.activeResidence', 'Moradia ativa') + ': ' + houseName
+                                + (nivelProtecao ? '. ' + t(nivelProtecao.labelKey, nivelProtecao.label) + '.' : '')
+                            }
                         >
-                            <View
-                                style={[s.residenceChip, { backgroundColor: chipBg }]}
-                                accessible
-                                accessibilityRole="summary"
-                                accessibilityLabel={
-                                    t('home.activeResidence', 'Moradia ativa') + ': ' + houseName
-                                    + (nivelProtecao ? '. ' + t(nivelProtecao.labelKey, nivelProtecao.label) + '.' : '')
-                                }
-                            >
-                                <NeoIcon name="Home2" size={14} color={chipLevelIconColor} variant="Bold" />
-                                <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
-                            </View>
-                        </SafeGradient>
+                            <NeoIcon name="Home2" size={14} color={chipIconColor} variant="Bold" />
+                            <Text style={[s.residenceChipText, { color: chipText }]} numberOfLines={1}>{houseName}</Text>
+                        </View>
                     </View>
 
                     <TappablePressable
@@ -589,20 +574,13 @@ const s = StyleSheet.create({
     // Sem color aqui: o StyleSheet é avaliado no escopo do módulo, antes de o
     // tema existir. A cor entra como prop inline no <H2>.
     greetingText: {
-        fontSize: 24,
-        lineHeight: 29,
-        letterSpacing: -0.4,
-    },
-    // Moldura gradiente do chip — mesmo peso do anel do avatar (3 vs 3.5;
-    // o padding faz o papel de borda, a borda sólida antiga saiu para não
-    // somar duas molduras).
-    residenceChipRing: {
-        alignSelf: 'flex-start',
-        marginTop: 6,
-        padding: 3,
-        borderRadius: Neo.radius.pill,
+        fontSize: 19,
+        lineHeight: 24,
+        letterSpacing: -0.3,
     },
     residenceChip: {
+        alignSelf: 'flex-start',
+        marginTop: 5,
         flexDirection: 'row',
         alignItems: 'center',
         gap: 6,
@@ -651,7 +629,7 @@ const s = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 8,
+        marginTop: 10,
     },
     gridCell: {
         width: '49%',

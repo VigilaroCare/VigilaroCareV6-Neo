@@ -20,6 +20,7 @@ import { SAFETY_TOYS } from '../data/safety_toys';
 import { SAFETY_FIRE } from '../data/safety_fire';
 import { SAFETY_CONDO } from '../data/safety_condo';
 import { SAFETY_GAS } from '../data/safety_gas';
+import { SAFETY_MIXTURES } from '../data/safety_mixtures';
 import { SAFETY_CAREGIVERS } from '../data/safety_caregivers';
 import { getArticlesByCategory } from '../data/SafetyArticlesDB';
 import { DS as Neo } from '../utils/DesignSystem2026';
@@ -34,6 +35,7 @@ const DATA_MAP = {
     'fire_prevention': SAFETY_FIRE,
     'condominio_seguranca': SAFETY_CONDO,
     'vazamento_gas': SAFETY_GAS,
+    'misturas_perigosas': SAFETY_MIXTURES, // 5 cards por mistura perigosa
     'quem_cuida': SAFETY_CAREGIVERS,
 };
 

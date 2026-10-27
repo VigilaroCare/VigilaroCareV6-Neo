@@ -262,7 +262,11 @@
         "heroControl": "Home under control",
         "heroAttention": "Attention needed",
         "heroAct": "Act immediately",
-        "heroStart": "Start your protection"
+        "heroStart": "Pending inspections",
+        "heroMaxima": "Maximum safety",
+        "homeXRay": "Home X-Ray",
+        "homeXRayDesc": "Your home, residents and rooms",
+        "pendenciasPill": "{{count}} pending"
     },
     "onboarding": {
         "title1": "360º Shielding",
@@ -624,7 +628,9 @@
         "articles": "Articles",
         "realCases": "Real Cases",
         "peopleAndContext": "People and context",
-        "caregivers": "Caregivers"
+        "caregivers": "Caregivers",
+        "gasLeak": "Gas Leak",
+        "dangerousMixtures": "Dangerous Mixtures"
     },
     "reports": {
         "title": "Inspect Your Spaces",
@@ -742,7 +748,7 @@
         "peopleTab": "People",
         "petsTab": "Pets",
         "homeXRay": "Home X-Ray",
-        "homeXRayDesc": "Building, residents and rooms summary",
+        "homeXRayDesc": "Your home, residents and rooms",
         "peopleProfiles": "People Profiles",
         "myPets": "My Pets",
         "newPet": "New Pet",

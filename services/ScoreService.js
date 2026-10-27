@@ -193,11 +193,11 @@ class ScoreService {
    */
   getBanda(score) {
     const s = Number(score) || 0;
-    if (s <= 0)  return { key: 'inicio',   headline: 'Comece sua proteção', titulo: 'Monitor Ativo' };
-    if (s >= 90) return { key: 'maxima',   headline: 'Segurança máxima',    titulo: 'Segurança Máxima' };
-    if (s >= 70) return { key: 'controle', headline: 'Casa sob controle',   titulo: 'Ambiente Seguro' };
-    if (s >= 40) return { key: 'atencao',  headline: 'Atenção necessária',  titulo: 'Atenção Necessária' };
-    return         { key: 'critico',  headline: 'Aja imediatamente',   titulo: 'Alerta de Risco' };
+    if (s <= 0)  return { key: 'inicio',   headlineKey: 'home.heroStart',     headline: 'Vistorias pendentes', titulo: 'Monitor Ativo' };
+    if (s >= 90) return { key: 'maxima',   headlineKey: 'home.heroMaxima',    headline: 'Segurança máxima',    titulo: 'Segurança Máxima' };
+    if (s >= 70) return { key: 'controle', headlineKey: 'home.heroControl',   headline: 'Casa sob controle',   titulo: 'Ambiente Seguro' };
+    if (s >= 40) return { key: 'atencao',  headlineKey: 'home.heroAttention', headline: 'Atenção necessária',  titulo: 'Atenção Necessária' };
+    return         { key: 'critico',  headlineKey: 'home.heroAct',       headline: 'Aja imediatamente',   titulo: 'Alerta de Risco' };
   }
 
   /**
@@ -226,7 +226,9 @@ class ScoreService {
   getMensagemImpacto(score, pendencias) {
     const b = this.getBanda(score);
     const alertas = {
-      inicio:   'Inicie o mapeamento para proteger sua família.',
+      inicio:   pendencias > 0
+        ? `Existem ${pendencias} itens aguardando vistoria.`
+        : 'Vistorias pendentes.',
       maxima:   pendencias > 0
         ? `Quase lá: ainda há ${pendencias} ponto(s) a resolver.`
         : 'Sua casa está blindada contra acidentes.',

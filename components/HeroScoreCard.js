@@ -171,7 +171,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
 
     const score = scoreData?.geral || 0;
     const banda = ScoreService.getBanda(score);
-    const headline = heroHeadline || banda.headline;
+    const headline = heroHeadline || t(banda.headlineKey, banda.headline);
     const statsGeral = scoreData?.statsGeral || { total: 0, checked: 0, warning: 0, critical: 0 };
     const ambientesAllSorted = Object.entries(scoreData?.ambientes || {}).sort((a, b) => a[1] - b[1]);
     const ambientesSorted = ambientesAllSorted.slice(0, 6);
@@ -433,13 +433,9 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
         headline,
         defaultValue: `${sectionTitle}: ${score} por cento. ${headline}.`,
     });
-    // Score 0: o poco ja fica sempre aberto (nada pra recolher), entao o hint
-    // de expandir/recolher nao se aplica — auditoria UX 2026-07-30, achado 1.
-    const a11yHint = score === 0
-        ? undefined
-        : (isExpanded
-            ? t('home.collapsePending', 'Toque para recolher os ambientes com pendência')
-            : t('home.expandPending', 'Toque para ver os ambientes com pendência'));
+    const a11yHint = isExpanded
+        ? t('home.collapsePending', 'Toque para recolher os ambientes com pendência')
+        : t('home.expandPending', 'Toque para ver os ambientes com pendência');
 
     return (
         <View style={styles.card}>
@@ -487,12 +483,12 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                             pct={score}
                             cor={inkCard}
                             corVazia={trilhoMedidor}
-                            largura={compact ? 180 : 214}
-                            altura={compact ? 89 : 106}
+                            largura={compact ? 200 : 244}
+                            altura={compact ? 99 : 121}
                         />
                         {/* Sobe para dentro do arco: é o vazio do semicírculo que
                             a prancha usa para alojar o número. */}
-                        <View style={[styles.medidorTexto, { marginTop: compact ? -40 : -48 }]}>
+                        <View style={[styles.medidorTexto, { marginTop: compact ? -45 : -55 }]}>
                             <Text style={[styles.scoreValue, compact && styles.scoreValueTight, { color: scoreColor }]} numberOfLines={1}>
                                 {score}
                                 <Text style={[styles.scorePct, { color: mutedCard }]}>%</Text>
@@ -518,14 +514,9 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                 </View>
             </TouchableOpacity>
 
-            {(isExpanded || score === 0) && (
+            {isExpanded && (
                 <View style={[styles.heroWell, { borderTopColor: track }]}>
-                    {score === 0 ? (
-                        <Text style={[styles.noPendingText, { color: mutedCard }]}>
-                            {ScoreService.getMensagemImpacto(score, scoreData?.pendencias || 0).alerta}
-                        </Text>
-                    ) : (
-                        <>
+                    <>
                             {/* A LISTA COMPLETA, que antes dividia a linha com o
                                 score numa coluna de ~150px — onde "Quarto de
                                 Adulto" virava "Quarto de Ad...". Aqui ela tem a
@@ -552,8 +543,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                                     {t('home.noPendingEnvironments', 'Nenhum ambiente com pendência ativa.')}
                                 </Text>
                             )}
-                        </>
-                    )}
+                    </>
 
                     {onOpenHomeXRay && (
                         <TouchableOpacity
@@ -561,17 +551,17 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                             activeOpacity={0.82}
                             onPress={onOpenHomeXRay}
                             accessibilityRole="button"
-                            accessibilityLabel={t('home.homeXRay', 'Raio-X da Casa')}
+                            accessibilityLabel={t('home.homeXRay', t('profiles.homeXRay', 'Raio-X da Casa'))}
                         >
                             <View style={[styles.xrayIconBox, { backgroundColor: track }]}>
                                 <NeoIcon name="Home2" size={17} color={colors.textOn.brand} variant="Bold" />
                             </View>
                             <View style={styles.xrayTextGroup}>
                                 <Text style={[styles.xrayTitle, { color: inkCard }]} numberOfLines={1}>
-                                    {t('home.homeXRay', 'Raio-X da Casa')}
+                                    {t('home.homeXRay', t('profiles.homeXRay', 'Raio-X da Casa'))}
                                 </Text>
                                 <Text style={[styles.xraySubtitle, { color: mutedCard }]} numberOfLines={1}>
-                                    {t('home.homeXRayDesc', 'Resumo da casa, dos moradores e dos cômodos')}
+                                    {t('home.homeXRayDesc', t('profiles.homeXRayDesc', 'Sua casa, moradores e ambientes'))}
                                 </Text>
                             </View>
                             <NeoIcon name="ArrowRight2" size={18} color={mutedCard} />
@@ -581,7 +571,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                     {/* Recolher no rodapé do poço, não no topo onde se abre — depois
                         de ler os ambientes com pendência (e o Raio-X da Casa), o lugar
                         natural pra fechar é aqui embaixo, sem precisar rolar de volta. */}
-                    {score > 0 && (
+                    {(
                         <TouchableOpacity
                             style={[styles.collapseFooter, { borderTopColor: track }]}
                             activeOpacity={0.7}
@@ -800,7 +790,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     scorePct: {
-        fontSize: 19,
+        fontSize: 22,
         fontWeight: '700',
     },
     medidorDica: {
@@ -882,10 +872,10 @@ const styles = StyleSheet.create({
     // a lista de ambientes; sozinho no centro do medidor ele pode ser o que a
     // prancha pede.
     scoreValue: {
-        fontSize: 48,
-        lineHeight: 50,
+        fontSize: 54,
+        lineHeight: 56,
         fontWeight: '800',
-        letterSpacing: -1.6,
+        letterSpacing: -2.0,
         textAlign: 'center',
     },
     scoreValueTight: {
@@ -896,9 +886,9 @@ const styles = StyleSheet.create({
     // "ATENÇÃO NECESSÁRIA" — a maiúscula vinha de quando a legenda era rótulo de
     // coluna e precisava competir com o número ao lado.
     scoreHeadline: {
-        marginTop: 1,
-        fontSize: 12.5,
-        lineHeight: 15,
+        marginTop: 2,
+        fontSize: 14,
+        lineHeight: 17,
         fontWeight: '700',
         letterSpacing: -0.1,
         textAlign: 'center',
