@@ -36,10 +36,27 @@ export default function PlantasToxicasScreen({ navigation }) {
     const [searchText, setSearchText] = useState('');
     const THEME_COLOR = Neo.colors.primary[500]; // Emerald
 
-    const plantasFiltradas = plantasCiatox.filter(planta =>
-        t_field(planta, 'nomePopular').toLowerCase().includes(searchText.toLowerCase()) ||
-        planta.nomeCientifico.toLowerCase().includes(searchText.toLowerCase())
-    );
+    const normalizarBusca = (valor = '') =>
+        String(valor)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[-_/]/g, ' ')
+            .toLowerCase()
+            .trim();
+
+    const queryNormalizada = normalizarBusca(searchText);
+    const plantasFiltradas = !queryNormalizada
+        ? plantasCiatox
+        : plantasCiatox.filter(planta => {
+            const alvo = normalizarBusca([
+                t_field(planta, 'nomePopular'),
+                planta.nomePopular,
+                planta.nomeCientifico,
+                t_field(planta, 'descricao'),
+                ...(t_array(planta, 'outrosNomes') || []),
+            ].filter(Boolean).join(' '));
+            return alvo.includes(queryNormalizada);
+        });
 
     const getToxicidadeColor = (nivel) => {
         // Data uses 'nivelPerigo'

@@ -373,13 +373,40 @@ export default function RelatoriosScreenNeo({ navigation }) {
                                         if (statusKey === 'Risco')    statusLabel = t('reports.statusRisk', 'Risco');
 
                                         const progressText = area.total > 0 ? t('telas.RelatoriosScreenNeo.itensContagem', { feitos: area.checked, total: area.total, defaultValue: '{{feitos}}/{{total}} Itens' }) : t('telas.RelatoriosScreenNeo.semItens', 'Sem itens');
-                                        
-                                        // Pílula customizada que será injetada como subtítulo
+                                        const restantes = Math.max(0, area.total - area.checked);
+                                        const minutosEst = restantes > 0 ? Math.max(1, Math.ceil(restantes * 0.12)) : 0;
+
+                                        // Pílula de status + tempo estimado (Lei de Parkinson) + trilha de progresso (Gradiente de Meta)
                                         const StatusPill = (
-                                            <View style={[s.statusPill, { backgroundColor: statusStyle.bg, alignSelf: 'flex-start', marginTop: 4 }]}>
-                                                <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
-                                                    {statusLabel}
-                                                </Small>
+                                            <View style={{ marginTop: 4, width: '100%' }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                                                    <View style={[s.statusPill, { backgroundColor: statusStyle.bg }]}>
+                                                        <Small style={[s.statusText, { color: statusStyle.color }]} numberOfLines={1}>
+                                                            {statusLabel}
+                                                        </Small>
+                                                    </View>
+                                                    {minutosEst > 0 && (
+                                                        <Small style={{ fontSize: 11, color: themeColors.neutral[600], fontWeight: '600' }} numberOfLines={1}>
+                                                            {`~${minutosEst} min`}
+                                                        </Small>
+                                                    )}
+                                                </View>
+                                                {area.total > 0 && (
+                                                    <View style={{
+                                                        height: 4,
+                                                        borderRadius: 2,
+                                                        backgroundColor: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.07)',
+                                                        marginTop: 6,
+                                                        overflow: 'hidden',
+                                                    }}>
+                                                        <View style={{
+                                                            width: `${Math.min(100, Math.max(area.checked > 0 ? 8 : 0, area.percent))}%`,
+                                                            height: '100%',
+                                                            borderRadius: 2,
+                                                            backgroundColor: area.checked > 0 ? statusStyle.color : 'transparent',
+                                                        }} />
+                                                    </View>
+                                                )}
                                             </View>
                                         );
 

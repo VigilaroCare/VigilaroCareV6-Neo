@@ -37,10 +37,28 @@ export default function AnimaisPeconhentosScreen({ navigation }) {
     const [searchText, setSearchText] = useState('');
     const THEME_COLOR = themeColors.categoria.ameixa.fill;
 
-    const animaisFiltrados = animaisCatalog ? animaisCatalog.filter(animal =>
-        t_field(animal, 'nomePopular').toLowerCase().includes(searchText.toLowerCase()) ||
-        animal.nomeCientifico.toLowerCase().includes(searchText.toLowerCase())
-    ) : [];
+    const normalizarBusca = (valor = '') =>
+        String(valor)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[-_/]/g, ' ')
+            .toLowerCase()
+            .trim();
+
+    const queryNormalizada = normalizarBusca(searchText);
+    const animaisFiltrados = !animaisCatalog
+        ? []
+        : !queryNormalizada
+            ? animaisCatalog
+            : animaisCatalog.filter(animal => {
+                const alvo = normalizarBusca([
+                    t_field(animal, 'nomePopular'),
+                    animal.nomePopular,
+                    animal.nomeCientifico,
+                    t_field(animal, 'descricao'),
+                ].filter(Boolean).join(' '));
+                return alvo.includes(queryNormalizada);
+            });
 
     // Relevancia regional: separa o que ocorre na regiao do utilizador do que
     // nao ocorre. NUNCA remove — o resto continua listado abaixo, porque o

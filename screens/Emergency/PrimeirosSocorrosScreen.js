@@ -19,16 +19,16 @@ const HUMAN_ACCENT = '#EF4444'; // red — pessoas (urgência)
 const PET_ACCENT = '#10B981';   // green — pets (cuidado)
 
 const SEARCH_ALIASES = {
-    engasgo: 'engasgo engasgado choking heimlich tosse sufocamento asfixia garganta objeto',
-    afogamento: 'afogamento afogado drowning piscina agua banheira balde rcp cpr reanimacao ressuscitacao respiracao',
-    choqueEletrico: 'choque eletrico eletrocutado tomada energia descarga flash rcp cpr parada cardiaca',
-    queimadura: 'queimadura queimou burn fogo oleo agua quente quimico quimica bolha pele',
-    queda: 'queda caiu cair fratura pancada cabeca idoso tropeço escorregao',
-    quedaAltura: 'queda altura escada degrau janela cama coluna cervical trauma',
-    desmaio: 'desmaio desmaiou inconsciente apagou respiracao rcp cpr parada',
-    convulsao: 'convulsao convulsao crise epilepsia tremores movimentos involuntarios',
-    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao',
-    sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete',
+    engasgo: 'engasgo engasgado choking heimlich tosse sufocamento asfixia garganta objeto leite moeda brinquedo osso racao',
+    afogamento: 'afogamento afogado drowning piscina agua banheira balde rcp cpr reanimacao ressuscitacao respiracao mar praia rio',
+    choqueEletrico: 'choque eletrico eletrocutado tomada energia descarga flash rcp cpr parada cardiaca fio desencapado',
+    queimadura: 'queimadura queimou burn fogo oleo agua quente quimico quimica bolha pele sol escaldadura cafe panela',
+    queda: 'queda caiu cair fratura pancada cabeca idoso tropeco escorregao galo tontura',
+    quedaAltura: 'queda altura escada degrau janela cama coluna cervical trauma beliche rede sacada',
+    desmaio: 'desmaio desmaiou inconsciente apagou respiracao rcp cpr parada tontura',
+    convulsao: 'convulsao crise epilepsia tremores movimentos involuntarios febre convulsiva',
+    envenenamento: 'envenenamento intoxicacao veneno remedio medicamento produto toxico ciatox ingestao agua sanitaria qboa candida cloro amonia amoniaco vinagre alcool soda caustica diabo verde chumbinho desinfetante detergente gas mistura planta chocolate uva sapo',
+    sangramento: 'sangramento hemorragia sangue corte ferimento pressao torniquete faca vidro nariz',
     aspiracao: 'vomito aspiracao engasgo vomitou lateral seguranca',
     raio: 'raio raios relampago trovao trovoada tempestade descarga atmosferica lightning rayo rcp cpr',
 };
@@ -54,6 +54,7 @@ const normalizeSearch = (value = '') =>
     String(value)
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[-_/]/g, ' ')
         .toLowerCase();
 
 const buildSearchText = (item) => normalizeSearch([
@@ -66,8 +67,8 @@ const buildSearchText = (item) => normalizeSearch([
     ...(item.oQueFazer || []),
     ...(item.oQueNaoFazer || []),
     ...[].concat(item.quandoChamarAjuda || []),
-    ...(item.passos || []).flatMap(step => [step?.titulo, step?.descricao]),
-    ...(item.alertas || []),
+    ...(item.passos || item.rawPetData?.passos || []).flatMap(step => [step?.titulo, step?.descricao]),
+    ...(item.alertas || item.rawPetData?.alertas || []),
 ].filter(Boolean).join(' '));
 
 export default function PrimeirosSocorrosScreen({ navigation, route }) {
