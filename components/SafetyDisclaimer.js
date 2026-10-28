@@ -25,6 +25,7 @@ import NeoIcon from './NeoIcon';
 import { getMedicalLabel, getFireDial, getPoisonControlLabel } from '../utils/emergencyTokens';
 import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useThemeColors } from '../utils/ThemeContext';
 
 const COPY = {
     // Números do PAÍS (não do idioma): pt-BR em Portugal recebe o 112.
@@ -38,11 +39,12 @@ const COPY = {
 
 export default function SafetyDisclaimer({ variant = 'sos', style }) {
     const { t } = useTranslation('common');
+    const colors = useThemeColors();
     const [key, fallback] = COPY[variant] || COPY.sos;
     return (
         <View style={[styles.box, style]} accessibilityRole="text">
             <NeoIcon name="InfoCircle" size={16} color={Neo.colors.accent.warm || '#A16207'} variant="Bold" />
-            <Small style={styles.text}>{t(key, { defaultValue: fallback, servico: getMedicalLabel(), bombeiros: getFireDial(), centro: getPoisonControlLabel() })}</Small>
+            <Small style={[styles.text, { color: colors.neutral[800] }]}>{t(key, { defaultValue: fallback, servico: getMedicalLabel(), bombeiros: getFireDial(), centro: getPoisonControlLabel() })}</Small>
         </View>
     );
 }

@@ -285,6 +285,50 @@ Traduzir o card para uma barra de 32px **não podia ser um card**: seria pesado 
 
 Duas amarras que não podem cair numa revisão futura: o glifo ativo **continua preenchido** (o sinal nunca é só cor — WCAG 1.4.1 pede segundo canal, e no alto contraste a luz tem contraste baixo de propósito); e a espessura do traço é **dividida por `K`**, senão o `scale` do SVG a multiplicaria junto e cada ícone sairia com um peso de linha diferente conforme o quanto cresceu.
 
+### 9.6 Atualização 2026-10-28 — a linguagem da Home chega às telas internas (piloto: Scanner e Info Rótulos)
+
+**A decisão do Agnaldo, nas palavras dele:** *"Não gosto do design das nossas páginas internas, que ainda apresentam características que tinham antes da nossa nova estética da home, a qual deve nortear todo o resto. Precisamos trabalhar para que todo o app tenha a mesma linguagem gráfica. O fino acabamento que conseguimos com a nova home."*
+
+**O que a medição mostrou.** Varredura estática das 107 telas registradas (tabela completa, por onda, em `docs/AUDITORIA_VISUAL_2026-10-28.md`): **3** na linguagem nova, **11** na anatomia de junho (cabeçalho fixo, sem banner), **35** com banner de foto, **50** com botão de voltar copiado à mão e **8** sem cabeçalho padrão. **563** cores hex soltas, **20** telas sem `AppBackground`, **51** com `NeoCard variant="elevated"`. O diagnóstico é o mesmo do §9.3: a anatomia de junho descrevia o padrão e a Home foi redesenhada depois, sem que as internas a acompanhassem. Olhando a tela, a diferença é imediata: a Home é fundo limpo, tipografia forte e cartões de cor com pictograma; as internas são foto de estoque no topo (a MESMA foto de ferramentas serve de capa a Vistorias e a Atividades, e de miniatura a vários cômodos), faixa verde-escura vazia, e cartões brancos com ícone em círculo claro.
+
+**O que o piloto estabeleceu.** Scanner e Info Rótulos foram refeitos na linguagem da Home (commit 62439ed). As peças e as regras, para a migração ser troca e não reinvenção:
+
+| Peça | Componente | Regra |
+|---|---|---|
+| Cabeçalho | `NeoScreenHeader` (fixo, H1 à esquerda, subtítulo de 1 linha) | Sem banner de foto e sem botão de voltar copiado. O título da tela é igual ao do ícone que a abriu. |
+| Ação principal e destino | `NeoGlifoCard` — pequeno (2 colunas) ou `largo` com seta | O tom é o **significado**, nunca o gosto. Substitui o cartão branco com círculo de ícone claro e o tile cerâmico. |
+| Estado | `components/NeoPill` — suave, sólida ou `sobreCampo` | O nível vai ESCRITO; a cor só reforça (WCAG 1.4.1). Texto e fundo saem de `textOn.*`, aferido em AA. |
+| Topo de um resultado | `NeoGlifoCard` estático, com `rodape` para as pílulas | O tom é o do DADO (perigo), não da seção. |
+| Aviso | `SafetyDisclaimer` (variantes `sos`, `ia`, `produto`…) | Texto na tinta do tema. Telefone do PAÍS onde a pessoa está, nunca "CIATOX ou SAMU" para todos. |
+| Lista de histórico | linhas dentro de **1** `NeoCard`, com pílula e chevron | Conforme o §3④. |
+| Estilos | fábrica que recebe o tema (`useThemeDS`) | Nunca `StyleSheet.create` com a paleta do DS no escopo do módulo. |
+
+**Proibições acrescentadas** (somam-se às 7 do §6):
+
+8. ❌ Banner de foto no topo de tela interna. Foto é CONTEÚDO (artigo, guia, planta): só entra onde a foto é o assunto.
+9. ❌ Emoji como ícone. Ícone é `NeoIcon`.
+10. ❌ Círculo claro atrás de ícone.
+11. ❌ Pílula ou selo montado à mão. Só `NeoPill`.
+12. ❌ Texto em cor de PREENCHIMENTO (`feedback.*`, laranja, amarelo) ou em hex solto. Texto usa `textOn.*`.
+13. ❌ `StyleSheet.create` com cor do DS no escopo do módulo — prende a tela na paleta clara. Medido no piloto: o rótulo "Se INGERIR", a parte mais importante do resultado, saía verde-escuro sobre cartão escuro.
+
+**O que isto altera nas seções anteriores.** §3② (hero): quando a tela precisa de hero, o formato único deixa de ser "`NeoCard` com arte à esquerda" e passa a ser o `NeoGlifoCard` estático, com o tom do dado. §5: "cerâmica = navegação" lê-se, desde 25/10, como "cartão retroiluminado = navegação e estado" (§9.5).
+
+**Defeitos reais achados de brinde** (a mesma família dos do §9.1: o que a cópia de bloco não revisa). A regra do §3 de esconder o rodapé com a câmera aberta nunca valeu, porque a lista de rotas trazia o nome do COMPONENTE (`ScannerScreen`) e a rota se chama `Scanner`. O texto do alerta saía em laranja de 2,8:1 sobre branco. O texto da ação vazava do cartão. Subtítulos saíam em preto por uma cor inválida (`'#FFF' + 'BB'`). O hub inteiro não tinha texto em NENHUM idioma e caía no português reserva.
+
+**Ordem de migração.** Por porta de entrada (o que o usuário abre mais cedo), não por facilidade. Detalhe tela a tela em `docs/AUDITORIA_VISUAL_2026-10-28.md`.
+
+| Onda | Telas | Conteúdo |
+|---|---:|---|
+| 1 — feita | 4 | Scanner, Info Rótulos, resultado, Modo Viagem |
+| 2 | 28 | as portas dos cartões da Home: Vistorias, Atividades, Minha Saúde, Saúde Pet, perfis |
+| 3 | 24 | Educação |
+| 4 | 32 | Menu, Viagem, Segurança, ferramentas e o resto |
+| fora | 13 | emergência (linguagem própria, §0) |
+| fora | 6 | rotas que nenhuma tela abre (PENDENCIAS E3): decidir apagar ANTES de migrar |
+
+**Checklist de migração de uma tela** (some ao §8): troca o bloco banner + voltar + título por `NeoScreenHeader`; destinos viram `NeoGlifoCard` (se há glifo) ou linhas em 1 card; selos viram `NeoPill`; hex vira token (`textOn.*` para texto); emoji vira `NeoIcon`; estilos viram fábrica de tema; texto novo sai nos 4 idiomas e entra no registro de revisão como pendente; **conferir a tela no tema claro, no escuro e num aparelho de 360dp** — nenhuma ferramenta de IA enxerga tela só lendo código, e foi no escuro que o piloto achou o defeito mais grave.
+
 ---
 
 ## 10. Exemplo de referência

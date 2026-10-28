@@ -30,7 +30,7 @@ import NeoGlifoCard from '../components/NeoGlifoCard';
 import NeoPill from '../components/NeoPill';
 import SafetyDisclaimer from '../components/SafetyDisclaimer';
 import { Small, Caption } from "../components/NeoTypography";
-import { useIsDark, useThemeColors } from '../utils/ThemeContext';
+import { useIsDark, useThemeColors, useThemeDS } from '../utils/ThemeContext';
 import { addToHistory } from '../services/inforotulos_cache';
 import { tomDoPerigo, rotuloDoPerigo, tomDaSeveridade, iconeDaSeveridade } from '../utils/perigoProduto';
 import FadeInView from '../components/FadeInView';
@@ -105,6 +105,11 @@ export default function InfoRotulosResultScreen() {
     const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb', 'ai_label'].includes(source);
     const isDark = useIsDark();
     const colors = useThemeColors();
+    // Os estilos agora nascem do TEMA (criarEstilos). Antes eram calculados uma vez,
+    // no escopo do módulo, com a paleta clara: no escuro o rótulo "Se INGERIR" saía
+    // verde-escuro sobre cartão escuro, quase invisível — a parte mais importante da tela.
+    const tema = useThemeDS();
+    const s = useMemo(() => criarEstilos(tema), [tema]);
 
     // Toda consulta entra no histórico DAQUI, qualquer que seja a entrada: nome,
     // busca online, código de barras, foto do rótulo ou o próprio histórico. Antes
@@ -293,7 +298,7 @@ export default function InfoRotulosResultScreen() {
                                     </Text>
                                     {enriching && (
                                         <View style={s.enrichingRow}>
-                                            <ActivityIndicator size="small" color={Neo.colors.primary[500]} />
+                                            <ActivityIndicator size="small" color={tema.colors.primary[500]} />
                                             <Small style={{ marginLeft: 8, color: Neo.colors.neutral[500] }}>
                                                 {t('scanner.loadingEpa', 'Consultando bases toxicológicas…')}
                                             </Small>
@@ -366,7 +371,7 @@ export default function InfoRotulosResultScreen() {
                                 <NeoCard variant="elevated" style={s.sectionCard}>
                                     {prevencao.map((item, idx) => (
                                         <View key={idx} style={s.preventionItem}>
-                                            <NeoIcon name="TickCircle" size={16} color={Neo.colors.primary[600]} variant="Bold" />
+                                            <NeoIcon name="TickCircle" size={16} color={tema.colors.primary[600]} variant="Bold" />
                                             <Text style={s.preventionText}>{item}</Text>
                                         </View>
                                     ))}
@@ -449,13 +454,13 @@ export default function InfoRotulosResultScreen() {
                                 style={s.actionButton}
                             >
                                 <View style={s.actionIconWrap}>
-                                    <NeoIcon name="Scan" size={18} color={Neo.colors.primary[600]} variant="Bold" />
+                                    <NeoIcon name="Scan" size={18} color={tema.colors.primary[600]} variant="Bold" />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={s.actionTitle}>{t('scanner.analyzeWithAi', 'Escanear outro rótulo')}</Text>
                                     <Text style={s.actionSubtitle}>{t('scanner.analyzeWithAiSub', 'Use a câmera para ler outra etiqueta')}</Text>
                                 </View>
-                                <NeoIcon name="ArrowRight2" size={16} color={Neo.colors.primary[600]} />
+                                <NeoIcon name="ArrowRight2" size={16} color={tema.colors.primary[600]} />
                             </TouchableOpacity>
                         </FadeInView>
 
@@ -466,7 +471,7 @@ export default function InfoRotulosResultScreen() {
                                 onPress={() => navigation.navigate('InfoRotulos')}
                                 style={s.newSearchButton}
                             >
-                                <NeoIcon name="SearchNormal1" size={18} color={Neo.colors.primary[600]} />
+                                <NeoIcon name="SearchNormal1" size={18} color={tema.colors.primary[600]} />
                                 <Text style={s.newSearchText}>{t('scanner.newSearch', 'Nova consulta')}</Text>
                             </TouchableOpacity>
                         </FadeInView>
@@ -477,7 +482,8 @@ export default function InfoRotulosResultScreen() {
     );
 }
 
-const s = StyleSheet.create({
+// Fábrica: recebe o DS do tema (claro, escuro ou alto contraste — todos têm o formato do DS).
+const criarEstilos = (Neo) => StyleSheet.create({
     // Hero Header
     ingredientesText: {
         fontSize: 13,

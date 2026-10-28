@@ -286,6 +286,7 @@ export default function InfoRotulosScreen() {
                         <FadeInView delay={180}>
                             <NeoCard variant="elevated" style={s.familia}>
                                 <NeoIcon
+                                    style={{ marginTop: 2 }}
                                     name={familySummary.hasVulnerables ? 'Warning2' : 'People'}
                                     size={22}
                                     color={familySummary.hasVulnerables ? colors.textOn.warning : colors.textOn.brand}
@@ -421,7 +422,7 @@ const s = StyleSheet.create({
     },
     familia: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         gap: 14,
         marginTop: Neo.spacing.md,
     },
