@@ -7,6 +7,7 @@ import { Config } from "../utils/Config";
 import { fetchWithTimeout as fetchWithTimeoutBase } from "../utils/fetchWithTimeout";
 import { getFamilySummary } from "./InfoRotulosRuleEngine";
 import ConsentimentoIAService from './ConsentimentoIAService';
+import { sinalDoRotulo } from '../utils/classificarRotulo';
 
 import i18n from '../i18n';
 
@@ -147,25 +148,29 @@ function sanitizarAnalises(bruto) {
  * Rótulo lido pela IA, já limpo e no formato de PRODUTO do Info Rótulos.
  *
  * A IA LÊ o rótulo; não julga. Não pedimos nível de perigo nem primeiros
- * socorros: o perigo vem das bases (PubChem/GHS) e dos alertas locais, e a
- * instrução de socorro é a do centro de intoxicação. "App informa, não opina."
+ * socorros: o nível sai do que está IMPRESSO (palavra de sinal e frases de
+ * perigo), classificado por regras fixas em utils/classificarRotulo.js — não
+ * pelas bases químicas, que não entendem nome em português —, e a instrução de
+ * socorro é a do centro de intoxicação. "App informa, não opina."
  * Lança RotuloIlegivel quando não há o que ler.
  */
 function sanitizarRotulo(bruto) {
     const legivel = bruto?.legivel !== false && bruto?.legivel !== 'false';
     const nome = limpar(bruto?.nome, 100);
     const ingredientes = lista(bruto?.ingredientes, 60, 80);
-    const riscos = lista(bruto?.advertencias, 12, 200);
-    const prevencao = lista(bruto?.precaucoes, 12, 200);
+    const riscos = lista(bruto?.advertencias, 20, 200);
+    const prevencao = lista(bruto?.precaucoes, 20, 200);
     if (!legivel || (!nome && ingredientes.length === 0 && riscos.length === 0)) {
-        const erro = new Error('Label not legible');
-        erro.name = 'RotuloIlegivel';
-        throw erro;
+        throw erroRotuloIlegivel();
     }
     return {
         nome: nome || null,
         marca: limpar(bruto?.marca, 60) || null,
         categoria: limpar(bruto?.categoria, 60) || null,
+        // Para que serve, COMO ESTÁ IMPRESSO (indicações / modo de usar). Não é opinião da IA.
+        indicacao: limpar(bruto?.indicacao, 240) || null,
+        // PERIGO | ATENÇÃO | CUIDADO | '': valor canônico, nunca texto livre do modelo.
+        palavraSinal: sinalDoRotulo(bruto?.palavra_sinal),
         componentes: ingredientes,
         riscos,
         prevencao,
@@ -173,12 +178,12 @@ function sanitizarRotulo(bruto) {
 }
 
 /** Faz a chamada ao modelo e devolve o JSON da resposta (ou lança). */
-async function chamarModelo({ system, user, imageBase64, maxTokens }) {
+async function chamarModelo({ system, user, imageBase64, maxTokens, modelo = 'gpt-4o-mini', temperatura }) {
     const response = await fetchWithTimeout(CHAT_URL, {
         method: "POST",
         headers: PROXY_HEADERS,
         body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: modelo,
             messages: [
                 { role: "system", content: system },
                 { role: "user", content: [
@@ -187,6 +192,7 @@ async function chamarModelo({ system, user, imageBase64, maxTokens }) {
                 ] },
             ],
             max_tokens: maxTokens,
+            ...(temperatura != null ? { temperature: temperatura } : {}),
             response_format: { type: "json_object" },
         }),
     });
@@ -197,6 +203,37 @@ async function chamarModelo({ system, user, imageBase64, maxTokens }) {
     const trecho = content.match(/\{[\s\S]*\}/);
     return JSON.parse(trecho ? trecho[0] : content);
 }
+
+// ─────────────────────────────────────────
+// Leitura de rótulo: o FILTRO e a LEITURA
+// ─────────────────────────────────────────
+// Medido em 28/10/2026 (rótulo sintético e imagens sem rótulo, 3 rodadas por imagem):
+//  - o gpt-4.1-mini LÊ melhor que o gpt-4o-mini (advertências 45/45 e precauções 45/45, contra
+//    42/45 e 37/45; rótulo girado e subexposto também) e gasta ~10x menos tokens de entrada por
+//    foto. Mas, sozinho, INVENTA um produto inteiro ("Água Sanitária · Ypê", com ingredientes e
+//    advertências) quando a foto é preta ou branca — mesmo com o prompt proibindo. Num app de
+//    segurança, esse é o pior erro: parece uma identificação.
+//  - o mesmo modelo, perguntado só "há um rótulo legível nesta foto?", acertou 36/36: recusou
+//    preto, branco, sala, rótulo borrado, tela de aplicativo, ruído e parede, e aceitou todos os
+//    rótulos (inclusive girado). O gpt-4o-mini errou no borrado.
+// Por isso são DUAS chamadas AO MESMO TEMPO (a espera não soma): a leitura só vale se o filtro
+// disser sim. O ambiente (analyzeImage) segue no gpt-4o-mini: o resultado dele foi aprovado e
+// não foi remedido.
+const MODELO_ROTULO = 'gpt-4.1-mini';
+
+const PROMPT_FILTRO_ROTULO = [
+    'Você é um filtro de fotos. Responda APENAS com JSON válido: {"imagem":"string","rotulo_legivel":true|false}.',
+    '"imagem": diga em poucas palavras o que a foto mostra.',
+    '"rotulo_legivel": true SOMENTE se a foto mostra a embalagem ou o rótulo de um produto com texto impresso que dê para LER de verdade (nome do produto, composição ou advertências).',
+    'Imagem escura, vazia, desfocada, ruído, parede, ambiente, tela de aparelho, pessoa, ou sem texto de produto legível: false. Na dúvida, false.',
+].join(' ');
+
+/** Erro que a tela trata como "não consegui ler o rótulo" (e não como falha de rede). */
+const erroRotuloIlegivel = () => {
+    const erro = new Error('Label not legible');
+    erro.name = 'RotuloIlegivel';
+    return erro;
+};
 
 export const VisionService = {
 
@@ -357,19 +394,44 @@ export const VisionService = {
 
         try {
             const formato = JSON.stringify({
+                imagem: 'string',
                 legivel: 'true|false',
                 nome: 'string', marca: 'string', categoria: 'string',
+                indicacao: 'string', palavra_sinal: 'PERIGO|ATENÇÃO|CUIDADO|vazio',
                 ingredientes: ['string'], advertencias: ['string'], precaucoes: ['string'],
             });
-            const bruto = await chamarModelo({
-                system: `Você lê rótulos de produtos domésticos. Transcreva APENAS o que está impresso na imagem; não complete, não deduza, não invente. Responda APENAS com JSON válido neste formato: ${formato}. "ingredientes": cada substância exatamente como impressa (nome químico ou INCI), sem traduzir. "advertencias": as advertências de perigo impressas (ex.: corrosivo, inflamável, nocivo se ingerido). "precaucoes": as precauções de uso impressas. NÃO escreva instruções de primeiros socorros. Se o rótulo não estiver legível, devolva "legivel": false e listas vazias. Escreva "categoria" em ${idiomaDaIA()}.`,
+            const leitura = chamarModelo({
+                system: [
+                    'Você lê rótulos de produtos domésticos a partir de uma foto.',
+                    `Responda APENAS com JSON válido neste formato: ${formato}.`,
+                    'PRIMEIRO preencha "imagem": diga em poucas palavras o que a foto mostra (por exemplo: "rótulo de produto com texto", "imagem escura", "ambiente de uma casa", "embalagem sem texto legível").',
+                    'Só marque "legivel": true se a foto mostrar o rótulo ou a embalagem de um produto COM TEXTO que você consiga ler de verdade.',
+                    'Imagem escura, desfocada, vazia, de um ambiente, de uma pessoa ou sem texto impresso legível: "legivel": false, textos vazios e listas vazias.',
+                    'Transcreva APENAS o que está impresso e visível na imagem. NUNCA use o que você sabe sobre produtos ou marcas conhecidos para completar, deduzir ou inventar: se um dado não está impresso na foto, deixe-o vazio, mesmo que você reconheça o produto.',
+                    `Campos: "nome": o nome do produto como impresso. "marca": a marca como impressa. "categoria": o tipo do produto, em poucas palavras, em ${idiomaDaIA()}. "indicacao": para que o produto serve, como impresso (indicações ou modo de usar), em no máximo duas frases. "palavra_sinal": a palavra de sinal impressa (PERIGO, ATENÇÃO ou CUIDADO); vazio se não houver. "ingredientes": cada substância exatamente como impressa, sem traduzir. "advertencias": TODAS as frases de perigo impressas, uma por item, copiadas como estão, sem resumir, sem juntar e sem pular nenhuma. "precaucoes": TODAS as precauções de uso impressas, uma por item, copiadas como estão, sem resumir e sem pular nenhuma.`,
+                    'NÃO escreva instruções de primeiros socorros.',
+                ].join(' '),
                 user: 'Leia este rótulo.',
                 imageBase64,
-                maxTokens: 900,
+                maxTokens: 1400,
+                modelo: MODELO_ROTULO,
+                temperatura: 0, // transcrever não é criar: a mesma foto tem que dar a mesma leitura
             });
+            const filtro = chamarModelo({
+                system: PROMPT_FILTRO_ROTULO,
+                user: 'Há um rótulo legível?',
+                imageBase64,
+                maxTokens: 150,
+                modelo: MODELO_ROTULO,
+                temperatura: 0,
+            });
+            const [bruto, veredito] = await Promise.all([leitura, filtro]);
+            // Só o "sim" explícito do filtro libera a leitura. Qualquer outra coisa — "não",
+            // ausente, texto — é "não consegui ler": o erro seguro é recusar.
+            if (veredito?.rotulo_legivel !== true && veredito?.rotulo_legivel !== 'true') throw erroRotuloIlegivel();
             return sanitizarRotulo(bruto);
         } catch (e) {
-            if (__DEV__) { console.error("ProductLabel Error:", e); }
+            if (__DEV__ && e?.name !== 'RotuloIlegivel') { console.error("ProductLabel Error:", e); }
             throw e;
         }
     },

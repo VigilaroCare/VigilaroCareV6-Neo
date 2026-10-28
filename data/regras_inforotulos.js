@@ -366,3 +366,73 @@ export const ROTULO_DO_PERIGO = {
     'Baixo':         { label: 'Baixo',         label_en: 'Low',          label_es: 'Bajo',      label_ptpt: 'Baixo' },
     'Indeterminado': { label: 'Indeterminado', label_en: 'Undetermined', label_es: 'Indeterminado', label_ptpt: 'Indeterminado' },
 };
+
+// ── Como o RÓTULO LIDO vira nível de perigo e categorias ─────────────────────
+// Um produto lido por foto não vem do catálogo: ninguém o curou. O perigo dele é
+// o que o FABRICANTE imprimiu — palavra de sinal (PERIGO / ATENÇÃO / CUIDADO) e
+// frases de perigo —, que a IA TRANSCREVE e que é classificado AQUI, por regras
+// fixas e conferíveis. A IA lê; não julga ("app informa, não opina").
+//
+// POR QUE NÃO PELAS BASES QUÍMICAS (PubChem), que foi o desenho de 28/10/2026:
+// elas só entendem nome em INGLÊS — "hipoclorito de sódio" não acha nada, nem sem
+// acento — e descrevem a substância PURA, não o produto diluído: o cloreto de
+// sódio sai "Alto" por classificações minoritárias. Resultado: toda foto de rótulo
+// em português caía em "Perigo: Indeterminado" e o aviso para bebê, criança,
+// gestante, idoso e alergia nunca disparava, nem para um produto escrito
+// "CORROSIVO". O rótulo é a classificação do produto que está na mão da pessoa.
+//
+// O vocabulário de `categoria` é o de `ghs_categories` do catálogo, o mesmo que o
+// motor de alertas (InfoRotulosRuleEngine, regras 1 a 6) já lê. Os níveis seguem
+// calculateSeverity (InfoRotulosSubstanceService), para o mesmo código H dar o
+// mesmo nível em qualquer caminho. Os padrões casam texto SEM acento e em
+// minúsculas, em português, inglês e espanhol (rótulo importado), e também o código
+// H impresso (H314 etc.).
+//
+// SÓ ESTAS REGRAS decidem o nível de um rótulo. Frase de perigo que elas não
+// reconhecem deixa o produto em "Médio" (há advertência impressa), nunca mais
+// baixo: sobre-alertar é o erro seguro, subestimar não. Negação curta ("não
+// inflamável") é tratada em classificarRotulo. PARA REVISÃO DO AGNALDO: é a tabela
+// que decide "Muito alto", "Alto" e "Médio" — a calibração é dele.
+
+/** Do que a IA transcreveu em "palavra de sinal" ao valor canônico. O primeiro que casar vale (ordem = gravidade). */
+export const PALAVRA_DE_SINAL = [
+    { sinal: 'PERIGO',  padrao: /\b(perigo|danger|peligro)\b/ },
+    { sinal: 'ATENÇÃO', padrao: /\b(atencao|warning|atencion)\b/ },
+    { sinal: 'CUIDADO', padrao: /\b(cuidado|caution|precaucion)\b/ },
+];
+
+/** Nível mínimo que a palavra de sinal garante, mesmo que nenhuma frase seja reconhecida. */
+export const PISO_DO_SINAL = { 'PERIGO': 'Alto', 'ATENÇÃO': 'Médio', 'CUIDADO': 'Médio' };
+
+/** Do menos ao mais grave: a escala de NIVEIS_PERIGO (data/produtos_scanner.js). */
+export const ORDEM_DO_PERIGO = ['Baixo', 'Médio', 'Alto', 'Muito Alto', 'Extremo'];
+
+export const FRASES_DE_PERIGO = [
+    // Fatal (H300, H310, H330)
+    { nivel: 'Extremo', categoria: 'toxico_agudo_ingestao', padrao: /(fatal|mortal|letal)\s+(se|por|em caso de)\s+(inger|ingest)|\bh300\b|fatal if swallowed/ },
+    { nivel: 'Extremo', categoria: 'toxico_agudo_inalacao', padrao: /(fatal|mortal|letal)\s+(se|por|em caso de)\s+inala|\bh330\b|fatal if inhaled/ },
+    { nivel: 'Extremo', categoria: null, padrao: /(fatal|mortal|letal)\s+(em|por)\s+contato|pode\s+(causar\s+a\s+morte|ser\s+fatal)|risco\s+de\s+morte|\bh310\b/ },
+
+    // Corrosivo, tóxico, câncer, mutagênico, feto, explosivo (H314, H301, H331, H350, H340, H360, H20x)
+    { nivel: 'Muito Alto', categoria: 'corrosivo', padrao: /corrosiv|queimaduras?\s+(graves?|severas?|quimicas?)|(causa|provoca|pode\s+causar|pode\s+provocar)\s+queimaduras?|\bh314\b|severe\s+skin\s+burns|quemaduras\s+graves/ },
+    { nivel: 'Muito Alto', categoria: 'toxico_agudo_ingestao', padrao: /toxic[oa]\s+(se|por|em caso de)\s+(inger|ingest)|\bh301\b|toxic\s+if\s+swallowed/ },
+    { nivel: 'Muito Alto', categoria: 'toxico_agudo_inalacao', padrao: /toxic[oa]\s+(se|por|em caso de)\s+inala|\bh331\b|toxic\s+if\s+inhaled/ },
+    { nivel: 'Muito Alto', categoria: 'carcinogenico', padrao: /cancer|cancerigen|carcinogen|\bh35[01]\b/ },
+    { nivel: 'Muito Alto', categoria: 'genotóxico', padrao: /mutagen|alteracoes\s+geneticas|defeitos\s+geneticos|\bh34[01]\b/ },
+    { nivel: 'Muito Alto', categoria: 'teratogeno', padrao: /fertilidade|(afetar|afeta|prejudicar|prejudica)\s+o\s+feto|teratogen|unborn\s+child|\bh36[01]\b/ },
+    { nivel: 'Muito Alto', categoria: null, padrao: /explosiv|pode\s+explodir|risco\s+de\s+explosao/ },
+
+    // Lesão ocular, nocivo, alérgeno, gás tóxico por mistura, inflamável, órgãos (H318, H302, H317, H334, EUH031, H22x, H37x)
+    { nivel: 'Alto', categoria: 'irritante_ocular', padrao: /lesoes?\s+oculares?\s+graves?|danos?\s+(graves?\s+)?(aos|nos)\s+olhos|cegueira|serious\s+eye\s+damage|\bh318\b/ },
+    { nivel: 'Alto', categoria: 'nocivo_ingestao', padrao: /(nocivo|prejudicial|perigos[oa])\s+(se|por|em caso de)\s+(inger|ingest)|harmful\s+if\s+swallowed|\bh302\b/ },
+    { nivel: 'Alto', categoria: 'alergeno', padrao: /reacao\s+alergica|sensibilizante|pode\s+(causar|provocar)\s+alergia|allergic\s+(skin\s+)?reaction|\bh317\b|\bh334\b/ },
+    { nivel: 'Alto', categoria: 'toxico_agudo_inalacao', padrao: /(libera|liberta|desprende|emite)\w*\s+(gas|gases|vapor|vapores)\s+toxic|gas(es)?\s+toxic|toxic\s+gas|\beuh03[12]\b/ },
+    { nivel: 'Alto', categoria: 'dano_orgaos', padrao: /danos?\s+(aos|nos|a)\s+orgaos|organ\s+damage|\bh37[0-3]\b/ },
+    { nivel: 'Alto', categoria: null, padrao: /inflamavel|flammable|inflamable|\bh22[0-5]\b/ },
+
+    // Irritantes e solventes (H315, H319, H335, H336)
+    { nivel: 'Médio', categoria: 'irritante_ocular', padrao: /irrita\w*[^.]{0,30}\bolhos\b|irritacao\s+ocular|eye\s+irritation|\bh319\b/ },
+    { nivel: 'Médio', categoria: 'irritante_pele', padrao: /irrita\w*[^.]{0,30}\b(pele|cutanea|dermica)\b|irritacao\s+(cutanea|dermica)|skin\s+irritation|\bh315\b/ },
+    { nivel: 'Médio', categoria: 'irritante_respiratorio', padrao: /irrita\w*[^.]{0,30}vias\s+respiratorias|vapores\s+irritantes|respiratory\s+irritation|\bh335\b/ },
+    { nivel: 'Médio', categoria: 'neurotoxico', padrao: /sonolencia|vertigens?|tontura|drowsiness|dizziness|\bh336\b/ },
+];

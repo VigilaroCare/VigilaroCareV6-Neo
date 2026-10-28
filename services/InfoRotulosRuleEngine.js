@@ -67,7 +67,11 @@ export async function evaluateProduct(substanceData, productData = null) {
     if (!familyContext) return alerts;
 
     const name = productData?.nome || substanceData?.name_pt || '';
-    const categories = substanceData?.ghs_categories || productData?.ghs_categories || [];
+    // As do PRODUTO (catálogo curado, ou o que o rótulo lido por foto imprime) e as da
+    // SUBSTÂNCIA consultada, juntas. Antes as da substância ganhavam e, se viessem vazias
+    // (achou o composto, sem código H), apagavam as do produto — e o aviso para bebê,
+    // gestante e idoso, que depende delas, não disparava.
+    const categories = [...new Set([...(productData?.ghs_categories || []), ...(substanceData?.ghs_categories || [])])];
     const hCodes = new Set((substanceData?.hazard_statements || []).map(h => h.code));
     const componentes = productData?.componentes || [];
 

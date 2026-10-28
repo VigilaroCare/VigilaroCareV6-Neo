@@ -55,7 +55,7 @@ const { width } = Dimensions.get('window');
 // O que muda de um modo para o outro. `ia`: a foto sai do aparelho (com permissão).
 const MODOS = {
   environment:  { tituloKey: 'scanner.titleEnv',     titulo: 'Scanner Ambiente', guiaKey: 'scanner.guideEnv',     guia: 'Aponte para o ambiente',               avisoKey: 'scanner.aiNoticeEnv',   aviso: 'A IA pode errar e não substitui a vistoria.', ia: true },
-  label_scan:   { tituloKey: 'scanner.titleLabel',   titulo: 'Foto do rótulo',   guiaKey: 'scanner.guideLabel',   guia: 'Aponte para o rótulo e tire a foto',   avisoKey: 'scanner.aiNoticeLabel', aviso: 'A IA lê o rótulo: confira o que está impresso.', ia: true },
+  label_scan:   { tituloKey: 'scanner.titleLabel',   titulo: 'Foto do rótulo',   guiaKey: 'scanner.guideLabel',   guia: 'Fotografe o verso: composição e advertências',   avisoKey: 'scanner.aiNoticeLabel', aviso: 'A IA lê o rótulo: confira o que está impresso.', ia: true },
   barcode_scan: { tituloKey: 'scanner.titleBarcode', titulo: 'Código de barras', guiaKey: 'scanner.guideBarcode', guia: 'Enquadre o código de barras',          ia: false },
 };
 
@@ -121,12 +121,15 @@ export default function ScannerScreen({ navigation, route }) {
   const takePicture = async () => {
     if (cameraRef) {
       try {
-        // Captura com qualidade baixa (0.3) — apenas para preview na tela
-        // A compressão real para IA é feita via ImageManipulator
+        // Ambiente: qualidade baixa (0.3) basta — é cena, não texto — e é mais rápido.
+        // Rótulo: é TEXTO miúdo, e foto muito comprimida o borra. Qualidade alta e com o ajuste
+        // de orientação do aparelho, para a IA receber o texto reto. Esta é a foto que a IA
+        // recebe: o ImageManipulator só a reduz depois, então a qualidade daqui vale até o fim.
+        const ehRotulo = currentMode === 'label_scan';
         const photoData = await cameraRef.takePictureAsync({
-          quality: 0.3,
+          quality: ehRotulo ? 0.8 : 0.3,
           base64: false,  // Não gera base64 aqui (economia de memória)
-          skipProcessing: true, // Pula pós-processamento do device (mais rápido)
+          skipProcessing: !ehRotulo, // Ambiente: pula o pós-processamento (mais rápido)
         });
         setPhoto(photoData.uri);
         setIsAnalyzing(true);
@@ -167,7 +170,7 @@ export default function ScannerScreen({ navigation, route }) {
         ]);
         if (__DEV__) console.log('[Scanner] ✅ Proxy online:', proxyCheck.status);
       } catch (proxyErr) {
-        if (__DEV__) console.error('[Scanner] ❌ Proxy offline:', proxyErr.message);
+        if (__DEV__) console.log('[Scanner] ❌ Proxy offline:', proxyErr.message); // o alerta abaixo já avisa: não é erro de programa
         NeoAlert.alert(
           t('telas.ScannerScreen.servidorIndisponivel', 'Servidor indisponível'),
           // Endereço e instrução técnica só em desenvolvimento: em produção o
@@ -190,7 +193,7 @@ export default function ScannerScreen({ navigation, route }) {
         imageUri,
         [{ resize: { width: 1024 } }],
         {
-          compress: 0.6,
+          compress: currentMode === 'label_scan' ? 0.85 : 0.6, // texto precisa de menos compressão que cena,
           format: ImageManipulator.SaveFormat.JPEG,
           base64: true,
         }
@@ -214,6 +217,8 @@ export default function ScannerScreen({ navigation, route }) {
             nome: rotulo.nome || t('scanner.unnamedProduct', 'Produto sem nome'),
             marca: rotulo.marca || '',
             categoria: rotulo.categoria || t('scanner.labelCategory', 'Produto lido do rótulo'),
+            indicacao: rotulo.indicacao || '',
+            palavraSinal: rotulo.palavraSinal || '',
             componentes: rotulo.componentes,
             riscos: rotulo.riscos,
             prevencao: rotulo.prevencao,
@@ -235,7 +240,8 @@ export default function ScannerScreen({ navigation, route }) {
       await GamificationService.addPoints('USE_SCANNER');
     } catch (error) {
       const elapsed = Date.now() - startTime;
-      if (__DEV__) console.error(`[Scanner] ❌ Análise falhou (${elapsed}ms):`, error.name, error.message);
+      // Rótulo ilegível é resultado esperado (a pessoa vê o alerta): log comum, não erro.
+      if (__DEV__) (error.name === 'RotuloIlegivel' ? console.log : console.error)(`[Scanner] ❌ Análise falhou (${elapsed}ms):`, error.name, error.message);
 
       // Mensagem específica por tipo de erro
       if (error.name === 'AbortError') {

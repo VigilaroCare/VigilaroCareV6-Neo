@@ -33,6 +33,7 @@ import { Small, Caption } from "../components/NeoTypography";
 import { useIsDark, useThemeColors, useThemeDS } from '../utils/ThemeContext';
 import { addToHistory } from '../services/inforotulos_cache';
 import { tomDoPerigo, rotuloDoPerigo, tomDaSeveridade, iconeDaSeveridade } from '../utils/perigoProduto';
+import { classificarRotulo } from '../utils/classificarRotulo';
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 import { SkeletonCard } from '../components/SkeletonLoader';
@@ -49,16 +50,16 @@ const GLIFO_INTOXICACAO = require('../assets/illustrations/glifos/pictogram-prim
 
 // Pictogramas funcionais (não "cara de IA" — iconografia universal de primeiros socorros)
 const FIRST_AID_ICONS = {
-    ingestao:        { emoji: '💧', get label() { return tx('telas.InfoRotulosResultScreen.seIngerir', 'Se INGERIR'); } },
-    contato_pele:    { emoji: '✋', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
-    contato_olhos:   { emoji: '👁️', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
-    inalacao:        { emoji: '💨', get label() { return tx('telas.InfoRotulosResultScreen.seInalar', 'Se INALAR'); } },
-    pele:            { emoji: '✋', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
-    olhos:           { emoji: '👁️', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
-    queimadura:      { emoji: '🔥', get label() { return tx('telas.InfoRotulosResultScreen.seQueimar', 'Se QUEIMAR'); } },
-    reacao:          { emoji: '⚡', get label() { return tx('telas.InfoRotulosResultScreen.seReacao', 'Se REAÇÃO ALÉRGICA'); } },
-    ingestao_pet:    { emoji: '🐾', get label() { return tx('telas.InfoRotulosResultScreen.sePetIngerir', 'Se PET INGERIR'); } },
-    ingestao_humana: { emoji: '💧', get label() { return tx('telas.InfoRotulosResultScreen.seHumanoIngerir', 'Se HUMANO INGERIR'); } },
+    ingestao:        { icone: 'Drop', get label() { return tx('telas.InfoRotulosResultScreen.seIngerir', 'Se INGERIR'); } },
+    contato_pele:    { icone: 'Hand', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
+    contato_olhos:   { icone: 'Eye', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
+    inalacao:        { icone: 'Wind', get label() { return tx('telas.InfoRotulosResultScreen.seInalar', 'Se INALAR'); } },
+    pele:            { icone: 'Hand', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
+    olhos:           { icone: 'Eye', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
+    queimadura:      { icone: 'Fire', get label() { return tx('telas.InfoRotulosResultScreen.seQueimar', 'Se QUEIMAR'); } },
+    reacao:          { icone: 'Lightning', get label() { return tx('telas.InfoRotulosResultScreen.seReacao', 'Se REAÇÃO ALÉRGICA'); } },
+    ingestao_pet:    { icone: 'PawPrint', get label() { return tx('telas.InfoRotulosResultScreen.sePetIngerir', 'Se PET INGERIR'); } },
+    ingestao_humana: { icone: 'Drop', get label() { return tx('telas.InfoRotulosResultScreen.seHumanoIngerir', 'Se HUMANO INGERIR'); } },
 };
 
 // Labels limpas para fonte (sem emoji prefix — cor faz o trabalho)
@@ -99,7 +100,22 @@ export default function InfoRotulosResultScreen() {
     const nome = productData.nome || substanceData?.name_pt || searchQuery || 'Produto';
     const categoria = productData.categoria || 'Substância';
     const brandName = marca || productData.marca || '';
-    const perigo = productData.perigo || substanceData?.severity || 'Indeterminado';
+    // Produto lido por foto não tem `perigo` nem `ghs_categories` de catálogo: o perigo dele é o
+    // que o rótulo IMPRIME (palavra de sinal e frases de perigo), por regras fixas — ver
+    // data/regras_inforotulos.js. As bases químicas não entendem nome em português: sem isto,
+    // toda foto de rótulo caía em "Indeterminado" e o aviso da família nunca disparava.
+    const doRotulo = useMemo(
+        () => (source === 'ai_label'
+            ? classificarRotulo({ riscos: productData.riscos, palavraSinal: productData.palavraSinal })
+            : null),
+        [source, productData],
+    );
+    // O motor de alertas lê `ghs_categories` do produto: o rótulo lido passa a tê-las.
+    const produtoParaOMotor = useMemo(
+        () => (doRotulo ? { ...product, ghs_categories: doRotulo.ghs_categories } : product),
+        [product, doRotulo],
+    );
+    const perigo = productData.perigo || doRotulo?.perigo || substanceData?.severity || 'Indeterminado';
     const sourceInfo = SOURCE_LABELS[source] || SOURCE_LABELS['not_found'];
 
     const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb', 'ai_label'].includes(source);
@@ -170,7 +186,7 @@ export default function InfoRotulosResultScreen() {
 
             const productAlerts = await evaluateProduct(
                 substanceData || substance,
-                product
+                produtoParaOMotor
             );
             setAlerts(productAlerts);
 
@@ -183,7 +199,7 @@ export default function InfoRotulosResultScreen() {
 
     useEffect(() => {
         if (substanceData) {
-            evaluateProduct(substanceData, product).then(setAlerts);
+            evaluateProduct(substanceData, produtoParaOMotor).then(setAlerts);
         }
     }, [substanceData]);
 
@@ -239,6 +255,13 @@ export default function InfoRotulosResultScreen() {
                             <NeoPill label={sourceInfo.label} tom="muted" />
                         </View>
 
+                        {/* Foto da frente (só o nome) ou rótulo sem advertência: orienta, não deixa só o "Indeterminado". */}
+                        {source === 'ai_label' && perigo === 'Indeterminado' && (
+                            <Small style={s.dicaRotulo}>
+                                {t('inforotulos.semAdvertencia', 'Não encontrei advertência de perigo no que foi lido. Se o rótulo tiver, fotografe o verso, onde ficam a composição e as advertências.')}
+                            </Small>
+                        )}
+
                         {/* Conteúdo de IA é SEMPRE identificado como tal. */}
                         {source === 'ai_label' && (
                             <SafetyDisclaimer variant="ia" style={{ marginTop: Neo.spacing.sm }} />
@@ -285,6 +308,16 @@ export default function InfoRotulosResultScreen() {
                                         </NeoCard>
                                     );
                                 })}
+                            </FadeInView>
+                        )}
+
+                        {/* PARA QUE SERVE — como está impresso (indicações / modo de usar), só na leitura por foto */}
+                        {source === 'ai_label' && !!productData.indicacao && (
+                            <FadeInView delay={140}>
+                                <Text style={s.sectionLabel}>{(t('scanner.resultUse', 'Para que serve (segundo o rótulo)') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
+                                    <Text style={s.ingredientesText}>{productData.indicacao}</Text>
+                                </NeoCard>
                             </FadeInView>
                         )}
 
@@ -349,11 +382,11 @@ export default function InfoRotulosResultScreen() {
                                 <NeoCard variant="elevated" style={s.sectionCard}>
                                     {Object.entries(firstAid).map(([key, value]) => {
                                         if (!value) return null;
-                                        const icon = FIRST_AID_ICONS[key] || { emoji: '🩹', label: key };
+                                        const icon = FIRST_AID_ICONS[key] || { icone: 'FirstAidKit', label: key };
                                         return (
                                             <View key={key} style={s.firstAidItem}>
                                                 <View style={s.firstAidHeader}>
-                                                    <Text style={{ fontSize: 18 }}>{icon.emoji}</Text>
+                                                    <NeoIcon name={icon.icone} size={20} color={tema.colors.primary[600]} variant="Bold" />
                                                     <Text style={s.firstAidLabel}>{icon.label}</Text>
                                                 </View>
                                                 <Text style={s.firstAidText}>{value}</Text>
@@ -509,6 +542,12 @@ const criarEstilos = (Neo) => StyleSheet.create({
     },
     fonteLinha: {
         marginTop: Neo.spacing.sm,
+    },
+    dicaRotulo: {
+        marginTop: Neo.spacing.sm,
+        fontSize: 14,
+        lineHeight: 20,
+        color: Neo.colors.neutral[700],
     },
     ciatoxCard: {
         height: 92,

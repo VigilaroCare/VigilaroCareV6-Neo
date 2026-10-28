@@ -164,6 +164,10 @@
   "m041": {
    "texto": "Textos novos do piloto Scanner Ambiente + Info Rotulos (28/10/2026): scanner dedicado so ao ambiente com aviso de IA ANTES da foto; foto do rotulo como terceira forma de consultar produto no Info Rotulos; aviso do Info Rotulos que agora usa o telefone do PAIS onde a pessoa esta (antes dizia CIATOX ou SAMU para todos); mensagens de codigo nao reconhecido e rotulo ilegivel; nota de que 'nenhum risco identificado' nao e atestado de seguranca; rotulos dos niveis de perigo (Muito alto, Indeterminado). Redacao pt-BR minha, en/es/pt-PT derivadas. PARA O AGNALDO CONFERIR: o tom das mensagens de erro e a nota do resultado sem riscos.",
    "em": "2026-10-28"
+  },
+  "m042": {
+   "texto": "m042 (28/10/2026): orientação do Info Rótulos quando a foto do rótulo não traz advertência (foto da frente). Agnaldo ainda não viu. Junto, para revisão dele: a tabela de classificação do rótulo (data/regras_inforotulos.js, FRASES_DE_PERIGO e PISO_DO_SINAL) e os textos curtos 'Para que serve (segundo o rótulo)' e a dica da câmera 'Fotografe o verso', que ficam abaixo do limite de 70 caracteres da trava.",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -3776,6 +3780,11 @@
    "pendente",
    "components/TravelTipsAccordion.js",
    "m010"
+  ],
+  "398f97e988471958": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m042"
   ],
   "399e4fa1502915dc": [
    "aprovado",

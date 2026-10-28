@@ -17,7 +17,7 @@
     "validate:imagens": "node scripts/verify_imagens.js",
     "validate:types": "tsc --noEmit",
     "validate:android-export": "expo export --platform android",
-    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:pais && npm run validate:ocorrencia && npm run validate:icons && npm run validate:paleta && npm run validate:imagens && npm run validate:legal && npm run validate:ia && npm run validate:respostas && npm run validate:radar && npm run validate:ficha && npm run validate:necessidades && npm run validate:telefone && npm run validate:proxy && npm run validate:catalogo && npm run validate:revisao && npm run validate:types && npm run validate:android-export",
+    "validate": "npm run validate:locales && npm run validate:emergency && npm run validate:pais && npm run validate:ocorrencia && npm run validate:icons && npm run validate:paleta && npm run validate:imagens && npm run validate:legal && npm run validate:ia && npm run validate:respostas && npm run validate:radar && npm run validate:ficha && npm run validate:necessidades && npm run validate:telefone && npm run validate:proxy && npm run validate:catalogo && npm run validate:rotulo && npm run validate:revisao && npm run validate:types && npm run validate:android-export",
     "check:contrast": "node scripts/checkContrast.mjs",
     "validate:legal": "node scripts/verify_legal.js",
     "validate:respostas": "node scripts/verify_respostas_vistoria.js",
@@ -29,7 +29,8 @@
     "validate:necessidades": "node scripts/verify_necessidades.js",
     "validate:telefone": "node scripts/verify_telefone_internacional.js",
     "validate:proxy": "node backend-proxy/verify_allowpaths.js",
-    "validate:catalogo": "node scripts/verify_catalogo_scanner.js"
+    "validate:catalogo": "node scripts/verify_catalogo_scanner.js",
+    "validate:rotulo": "node scripts/verify_classificacao_rotulo.js"
   },
   "dependencies": {
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",
