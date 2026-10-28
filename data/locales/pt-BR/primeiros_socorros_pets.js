@@ -151,6 +151,6 @@ export const emergenciasPetsPTBR = [
             { titulo: 'Ligue para a toxicologia', descricao: 'Ligue para {{POISON_CONTROL}} segurando a embalagem do produto para ler os componentes.' },
             { titulo: 'Leve ao pronto-socorro', descricao: 'Leve a embalagem do produto químico ou a caixa do veneno junto com o pet ao veterinário.', },
         ],
-        alertas: ['NUNCA dê remédios de humanos (como paracetamol ou aspirina) para cães e gatos.', 'Alimentos como chocolate, cebola e xilitol (adoçante) também são venenosos para pets.'],
+        alertas: ['NUNCA dê remédios de humanos (como paracetamol ou ácido acetilsalicílico) para cães e gatos.', 'Alimentos como chocolate, cebola e xilitol (adoçante) também são venenosos para pets.'],
     },
 ];

@@ -152,6 +152,10 @@
   "m038": {
    "texto": "Nome sem marca comercial no catalogo do scanner, decisao do Agnaldo por chat em 27/10/2026: 'Soda Caustica (Diabo Verde)' -> 'Soda Caustica', 'Paracetamol (Tylenol/Generico)' -> 'Paracetamol', 'Ibuprofeno (Advil/Generico)' -> 'Ibuprofeno'. Mesma regra que ele ja aplicou a busca (f256784).",
    "em": "2026-10-27"
+  },
+  "m039": {
+   "texto": "Marca trocada pelo nome generico: 'Aspirina' -> 'acido acetilsalicilico' (em ingles fica 'aspirin', nome generico oficial). Decisao do Agnaldo por chat em 27/10/2026; o resto de cada texto e o que ele ja tinha revisado. Na lista de alergias o rotulo antigo segue como 'legado' para perfis ja salvos.",
+   "em": "2026-10-27"
   }
  },
  "textos": {
@@ -3745,11 +3749,6 @@
    "data/utensilios_reviews.js",
    "m005"
   ],
-  "39f7313f699d4ca2": [
-   "aprovado",
-   "data/locales/pt-BR/primeiros_socorros_pets.js",
-   "m002"
-  ],
   "3a2d34afec306065": [
    "pendente",
    "data/kits/bagagem_viagem.js",
@@ -4815,6 +4814,11 @@
    "data/animais_ciatox.js",
    "m010"
   ],
+  "4915724a895f4e51": [
+   "aprovado",
+   "data/opcoesPerfil.js",
+   "m039"
+  ],
   "492235dabf2ccf81": [
    "pendente",
    "data/animais_ciatox.js",
@@ -5324,6 +5328,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m002"
+  ],
+  "50d0936bfe27dfe4": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros.js",
+   "m039"
   ],
   "50f551e5aa34ace4": [
    "pendente",
@@ -7765,11 +7774,6 @@
    "data/mapeamento_dados.js",
    "m022"
   ],
-  "770cd5914324ff32": [
-   "aprovado",
-   "data/locales/pt-BR/primeiros_socorros.js",
-   "m002"
-  ],
   "7718500d721e55c9": [
    "pendente",
    "data/animais_ciatox.js",
@@ -8290,6 +8294,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "80070f8b662b1471": [
+   "aprovado",
+   "data/locales/pt-BR/primeiros_socorros_pets.js",
+   "m039"
+  ],
   "800b29ee20a5afa4": [
    "pendente",
    "data/produtos_scanner.js",
@@ -8764,6 +8773,11 @@
    "pendente",
    "data/radarSazonal/mx.js",
    "m010"
+  ],
+  "880b5ac9c6fd2e8f": [
+   "aprovado",
+   "data/locales/pt-BR/guiasSeguranca.js",
+   "m039"
   ],
   "881086476e7fb31b": [
    "pendente",

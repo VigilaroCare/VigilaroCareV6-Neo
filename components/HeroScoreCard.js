@@ -53,7 +53,6 @@ import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'rea
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Line } from 'react-native-svg';
 import NeoIcon from './NeoIcon';
-import { DS as Neo } from '../utils/DesignSystem2026';
 import { useTranslation } from 'react-i18next';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import ScoreService from '../services/ScoreService';
@@ -166,7 +165,7 @@ export const HERO_COMPACT_SAVING = 30;
  *   de gestos consome espaco extra no fundo. Sem isso, a ultima fileira de
  *   pictogramas da Home fica escondida atras do footer flutuante.
  */
-export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDataChanged, heroHeadline, isExpanded = false, compact = false }) {
+export default function HeroScoreCard({ scoreData, nivel = null, onPress, onOpenHomeXRay, onDataChanged, heroHeadline, isExpanded = false, compact = false }) {
     const { t, i18n } = useTranslation();
     const colors = useThemeColors();
     const isDark = useIsDark();
@@ -180,8 +179,10 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     const [reviewSaving, setReviewSaving] = useState(false);
 
     const score = scoreData?.geral || 0;
-    const banda = ScoreService.getBanda(score);
-    const headline = heroHeadline || t(banda.headlineKey, banda.headline);
+    // Frase e tom pelo NÍVEL de proteção, a mesma regra do selo do avatar — ver
+    // ScoreService.getManchete. O número no meio do arco segue sendo a cobertura.
+    const manchete = ScoreService.getManchete(nivel, score);
+    const headline = heroHeadline || t(manchete.headlineKey, manchete.headline);
     const statsGeral = scoreData?.statsGeral || { total: 0, checked: 0, warning: 0, critical: 0 };
     const ambientesAllSorted = Object.entries(scoreData?.ambientes || {}).sort((a, b) => a[1] - b[1]);
     const ambientesSorted = ambientesAllSorted.slice(0, 6);
@@ -199,23 +200,16 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     // gráficos de altíssima qualidade e acima deles algo vintage"* (Agnaldo,
     // 25/10/2026, depois de duas tentativas minhas de resolver com acabamento).
     //
-    // Agora é o mesmo campo retroiluminado dos cards, no tom da BANDA: a cor do
-    // card do score é o score.
-    const tomDaBanda = ScoreService.getTom(score);
-    const radial = Neo.gradients.radiais[tomDaBanda] || Neo.gradients.radiais.muted;
-
-    // A parada CLARA do campo é 92% do caminho da escura até a média, e o 0,92
-    // vem de medição, não de gosto: no ÂMBAR a parada média (#A17024) dá 4,32:1
-    // para o texto branco — abaixo do mínimo de 4,5. A 92% ela dá 4,60:1. As
-    // outras três bandas passariam em 100% (terracota 6,08 · verde 5,67 ·
-    // grafite 9,23); 0,92 é o menor fator que serve às quatro, e 8% de
-    // diferença é imperceptível como desenho.
+    // Depois ele virou o campo retroiluminado dos cards, no tom da faixa, e por
+    // fim saiu de vez: a prancha L não tem card aqui (ver "A TINTA VOLTOU A SER
+    // A DO TEMA", abaixo). O gradiente radial desse campo continuou calculado,
+    // sem ninguém o ler, até 27/10/2026. Do tom, o que sobrou é a cor da LEGENDA
+    // — `corDaLegenda`, mais abaixo.
 
     // O arco: marcação acesa na tinta do card, apagada na mesma tinta a 18%.
-    // `corDaBanda` é quem carrega a severidade — a LEGENDA, não o arco. Na
+    // `corDaLegenda` é quem carrega a severidade — a LEGENDA, não o arco. Na
     // prancha L o arco é branco e "Atenção necessária" sai em âmbar.
     const trilhoMedidor = colors.tile.track;
-    const corDaBanda = tomDaBanda === 'muted' ? mutedCard : colors.textOn[tomDaBanda];
     const track = colors.tile.track;
 
     // DUAS TINTAS, e a distinção é o que torna a troca de superfície segura.
@@ -235,6 +229,19 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
     // separar.
     const inkCard = colors.textOn.ink;
     const mutedCard = colors.textOn.muted;
+
+    // A cor da legenda vem do tom da MANCHETE, que segue o nível de proteção.
+    //
+    // Fica DEPOIS de `inkCard` de propósito. Até 27/10/2026 ela era calculada
+    // lá em cima, lendo `mutedCard` antes de a constante existir. No app isso
+    // não dá erro: a leitura devolve `undefined`, e a legenda de 0% saía no
+    // preto padrão do Text (medido no emulador: 0,0,0, enquanto o número ao
+    // lado sai na tinta do tema). No tema claro passava por desenho. No
+    // escuro a cor ficava por conta da plataforma — e no iPhone o padrão do
+    // Text é preto, sobre fundo escuro. O tom neutro agora usa a tinta do
+    // tema: no claro fica como estava (#16241D, quase o mesmo preto), e no
+    // escuro sai a tinta clara do tema (medido no emulador).
+    const corDaLegenda = manchete.tom === 'muted' ? inkCard : colors.textOn[manchete.tom];
 
     const superficieFolha = isDark ? colors.neutral[200] : colors.neutral.white;
     const inkText = colors.textOn.ink;
@@ -503,7 +510,7 @@ export default function HeroScoreCard({ scoreData, onPress, onOpenHomeXRay, onDa
                                 {score}
                                 <Text style={[styles.scorePct, { color: mutedCard }]}>%</Text>
                             </Text>
-                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: corDaBanda }]} numberOfLines={2}>
+                            <Text style={[styles.scoreHeadline, compact && styles.scoreHeadlineTight, { color: corDaLegenda }]} numberOfLines={2}>
                                 {headline}
                             </Text>
                             {score > 0 && (

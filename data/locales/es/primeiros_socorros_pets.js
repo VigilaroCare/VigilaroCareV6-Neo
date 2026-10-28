@@ -173,7 +173,7 @@ export const emergenciasPetsES = [
             { titulo: 'Acuda a urgencias veterinarias', descricao: 'Lleve el envase del producto químico o la caja del veneno junto con la mascota al veterinario.' },
         ],
         alertas: [
-            'NUNCA dé medicamentos de personas (como paracetamol o aspirina) a perros y gatos.',
+            'NUNCA dé medicamentos de personas (como paracetamol o ácido acetilsalicílico) a perros y gatos.',
             'Alimentos como el chocolate, la cebolla y el xilitol (edulcorante) también son venenosos para las mascotas.',
         ],
     },

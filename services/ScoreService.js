@@ -40,6 +40,26 @@ const NIVEIS_PROTECAO = {
   critico:   { key: 'critico',   tone: 'error',   icon: 'WarningOctagon', labelKey: 'protection.critico', label: 'Risco crítico' },
 };
 
+// Manchete de cada faixa. A TABELA é a fonte dos textos: `getBanda` escolhe a
+// linha pelo número, `getManchete` pelo nível de proteção.
+const FAIXAS = {
+  inicio:   { key: 'inicio',   headlineKey: 'home.heroStart',     headline: 'Vistorias pendentes' },
+  maxima:   { key: 'maxima',   headlineKey: 'home.heroMaxima',    headline: 'Segurança máxima' },
+  controle: { key: 'controle', headlineKey: 'home.heroControl',   headline: 'Casa sob controle' },
+  atencao:  { key: 'atencao',  headlineKey: 'home.heroAttention', headline: 'Atenção necessária' },
+  critico:  { key: 'critico',  headlineKey: 'home.heroAct',       headline: 'Aja imediatamente' },
+};
+
+// Nível de proteção → faixa cuja manchete ele usa. Só o topo muda de nome: o
+// nível diz 'protegido' onde a faixa diz 'maxima'.
+const FAIXA_DO_NIVEL = {
+  inicio: 'inicio',
+  protegido: 'maxima',
+  controle: 'controle',
+  atencao: 'atencao',
+  critico: 'critico',
+};
+
 class ScoreService {
   /**
    * Calcula o Score Geral e os Scores por Ambiente com base nos dados reais salvos
@@ -192,14 +212,18 @@ class ScoreService {
    *
    * Faixas: 90 / 70 / 40, os cortes que o antigo getMensagemImpacto já usava.
    *   >=90  maxima    · >=70 controle · >=40 atencao · >0 critico · 0 inicio
+   *
+   * A faixa mede COBERTURA. Para a frase e a cor que vão na tela, use
+   * `getManchete`: ela segue o nível de proteção, que também pesa os perigos
+   * em aberto.
    */
   getBanda(score) {
     const s = Number(score) || 0;
-    if (s <= 0)  return { key: 'inicio',   headlineKey: 'home.heroStart',     headline: 'Vistorias pendentes' };
-    if (s >= 90) return { key: 'maxima',   headlineKey: 'home.heroMaxima',    headline: 'Segurança máxima' };
-    if (s >= 70) return { key: 'controle', headlineKey: 'home.heroControl',   headline: 'Casa sob controle' };
-    if (s >= 40) return { key: 'atencao',  headlineKey: 'home.heroAttention', headline: 'Atenção necessária' };
-    return         { key: 'critico',  headlineKey: 'home.heroAct',       headline: 'Aja imediatamente' };
+    if (s <= 0)  return { ...FAIXAS.inicio };
+    if (s >= 90) return { ...FAIXAS.maxima };
+    if (s >= 70) return { ...FAIXAS.controle };
+    if (s >= 40) return { ...FAIXAS.atencao };
+    return { ...FAIXAS.critico };
   }
 
   /**
@@ -215,6 +239,34 @@ class ScoreService {
    */
   getTom(score) {
     return TOM_POR_BANDA[this.getBanda(score).key] || 'muted';
+  }
+
+  /**
+   * A MANCHETE DO ESTADO DA CASA — a frase e o tom que vão em cima do número.
+   *
+   * Segue o NÍVEL de proteção (getNivelProtecao, a mesma regra do selo do
+   * avatar), não a faixa crua. A faixa mede COBERTURA: quanto da casa já foi
+   * confirmado seguro. O nível julga o ESTADO: um item de perigo ainda não
+   * confirmado rebaixa para atenção e, em cômodo de pessoa vulnerável, para
+   * crítico.
+   *
+   * Até 27/10/2026 a frase vinha da faixa. Uma casa com 95% e um perigo em
+   * aberto mostrava "Segurança máxima" no medidor, enquanto o avatar, na mesma
+   * tela, dizia "Atenção necessária". E uma vistoria toda respondida e toda
+   * reprovada (score 0) mostrava "Vistorias pendentes", a frase de quem nem
+   * começou — o pior caso com o sinal mais brando.
+   *
+   * O NÚMERO continua sendo a cobertura; só a frase e o tom mudaram de fonte.
+   * Sem nível (ainda carregando, ou se ele falhar), cai na faixa do score.
+   *
+   * @param {object|null} nivel  retorno de getNivelProtecao()
+   * @param {number}      score  scoreData.geral
+   * @returns {{key:string, headlineKey:string, headline:string, tom:string}}
+   */
+  getManchete(nivel, score) {
+    const faixa = FAIXA_DO_NIVEL[nivel?.key];
+    const m = faixa ? { ...FAIXAS[faixa] } : this.getBanda(score);
+    return { ...m, tom: TOM_POR_BANDA[m.key] || 'muted' };
   }
 
   /**

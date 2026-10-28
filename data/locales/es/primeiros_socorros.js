@@ -245,7 +245,7 @@ export const primeirosSocorrosES = [
         ],
         oQueNaoFazer: [
             'NO espere a que los síntomas mejoren solos.',
-            'NO administre medicamentos (como aspirina o calmantes) antes de la valoración médica.',
+            'NO administre medicamentos (como ácido acetilsalicílico o calmantes) antes de la valoración médica.',
         ],
         quandoChamarAjuda: 'Llame a {{EMERGENCY_MEDICAL}} en cuanto observe cualquier signo de la prueba rápida. El tiempo es vital para evitar secuelas.'
     },

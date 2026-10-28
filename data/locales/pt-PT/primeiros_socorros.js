@@ -245,7 +245,7 @@ export const primeirosSocorrosPTPT = [
         ],
         oQueNaoFazer: [
             'NÃO espere que os sintomas melhorem sozinhos.',
-            'NÃO dê medicamentos (como aspirina ou calmantes) antes da avaliação médica.',
+            'NÃO dê medicamentos (como ácido acetilsalicílico ou calmantes) antes da avaliação médica.',
         ],
         quandoChamarAjuda: 'Ligue para o {{EMERGENCY_MEDICAL}} assim que identificar qualquer sinal do teste dos 3F. O tempo é vital para evitar sequelas.'
     },

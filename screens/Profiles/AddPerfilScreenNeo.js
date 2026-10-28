@@ -32,6 +32,7 @@ import { MAPPING_TRIGGERS, getDynamicAreaName } from '../../utils/ProfileFilterE
 import {
     NECESSIDADES_ACESSIBILIDADE as ACCESSIBILITY_NEEDS, CONDICOES_MEDICAS as MEDICAL_CONDITIONS,
     CATEGORIAS_ALERGIA as ALLERGY_CATEGORIES, CONDICOES_PET as PET_CONDITIONS, rotuloOpcao,
+    valorAtualOpcao,
 } from '../../data/opcoesPerfil';
 import { t_field } from '../../utils/getLocalizedField';
 
@@ -185,11 +186,14 @@ export default function AddPerfilScreenNeo({ navigation, route }) {
             setCondicoes(Array.isArray(loadedConds) ? loadedConds : []);
 
             const loadedAlergias = editingProfile.alergias || editingProfile.saude?.alergias || [];
-            if (typeof loadedAlergias === 'string') {
-                setAlergias(loadedAlergias.split(',').map(s => s.trim()).filter(Boolean));
-            } else {
-                setAlergias(Array.isArray(loadedAlergias) ? loadedAlergias : []);
-            }
+            const listaAlergias = typeof loadedAlergias === 'string'
+                ? loadedAlergias.split(',').map(s => s.trim()).filter(Boolean)
+                : (Array.isArray(loadedAlergias) ? loadedAlergias : []);
+            // Rótulo antigo de opção renomeada vira o de hoje ("Aspirina" ->
+            // "Ácido acetilsalicílico"): o chip aparece marcado e o valor não
+            // vira alergia "customizada". O Set tira a duplicata se o perfil
+            // tiver os dois.
+            setAlergias([...new Set(listaAlergias.map(valorAtualOpcao))]);
 
             const loadedAcc = editingProfile.necessidadesEspeciais || [];
             setNecessidadesEspeciais(Array.isArray(loadedAcc) ? loadedAcc : []);

@@ -326,11 +326,16 @@ export default function HomeScreenNeo() {
         ? footerClearance + 32
         : Math.max(footerClearance, getSosClearance(insets.bottom) - VAO_GRADE);
 
-    // O tom do card de Vistorias vem do DADO, não do gosto: é a banda do score
-    // pela fonte única (ScoreService.getTom → success|warning|error|muted). Os
-    // outros cinco ficam em `info` — informação, sem juízo de risco. A
-    // assimetria é a informação: o que tem cor quente é o que pede ação.
-    const tomDoScore = ScoreService.getTom(scoreData.geral);
+    // O tom do card de Vistorias vem do DADO, não do gosto. Os outros cinco
+    // ficam em `info` — informação, sem juízo de risco. A assimetria é a
+    // informação: o que tem cor quente é o que pede ação.
+    //
+    // Desde 27/10/2026 o dado é o NÍVEL de proteção (a regra do selo do
+    // avatar), não a faixa crua do score — pela mesma manchete que dá a frase
+    // do medidor (ScoreService.getManchete). Antes, uma casa com 95% e um
+    // perigo em aberto tinha card verde e "Segurança máxima" no medidor, com o
+    // avatar ao lado dizendo "Atenção necessária".
+    const tomDoScore = ScoreService.getManchete(nivelProtecao, scoreData.geral).tom;
 
     const isDark = useIsDark();
 
@@ -344,10 +349,14 @@ export default function HomeScreenNeo() {
             const meta = await ProfileService.getMeta();
             setFamilyMeta(meta || { totalMoradoresEsperados: 0 });
 
+            // Score e nível entram JUNTOS no estado. A frase e as cores do
+            // medidor dependem dos dois (ScoreService.getManchete); com o nível
+            // chegando depois, a tela mostraria por um instante a frase da
+            // faixa crua e trocaria em seguida. Se o nível falhar, o score
+            // entra mesmo assim e a frase cai na faixa, como era antes.
             const sData = await ScoreService.getScoreCompleto();
+            const nivel = await ScoreService.getNivelProtecao(sData).catch(() => null);
             setScoreData(sData);
-
-            const nivel = await ScoreService.getNivelProtecao(sData);
             setNivelProtecao(nivel);
 
         } catch (e) {
@@ -396,11 +405,10 @@ export default function HomeScreenNeo() {
             : t('home.greetingEvening', 'Boa noite');
     const firstName = currentProfile?.nome?.split(' ')[0] || '';
 
-    // ── ESTADO-HERÓI (manchete do hero verde) ──
-    const score = scoreData.geral;
-    // Faixa única (ScoreService.getBanda) — mesmo limiar do HeroScoreCard.
-    const banda = ScoreService.getBanda(score);
-    const heroHeadline = t(banda.headlineKey, banda.headline);
+    // ── ESTADO-HERÓI ──
+    // A frase do medidor era montada aqui, pela faixa crua do score. Agora o
+    // HeroScoreCard a tira do nível de proteção (prop `nivel`), pela mesma
+    // manchete do card de Vistorias — ver ScoreService.getManchete.
 
     // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
     const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
@@ -547,7 +555,7 @@ export default function HomeScreenNeo() {
                 >
                     <HeroScoreCard
                         scoreData={scoreData}
-                        heroHeadline={heroHeadline}
+                        nivel={nivelProtecao}
                         onDataChanged={loadData}
                         onPress={toggleMonitor}
                         onOpenHomeXRay={() => navigateWithHaptic('HomeXRay')}

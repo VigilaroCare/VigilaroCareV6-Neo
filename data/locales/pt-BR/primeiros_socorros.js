@@ -245,7 +245,7 @@ export const primeirosSocorrosPTBR = [
         ],
         oQueNaoFazer: [
             'NÃO espere os sintomas melhorarem sozinhos.',
-            'NÃO administre remédios (como aspirina ou calmantes) antes da avaliação médica.',
+            'NÃO administre remédios (como ácido acetilsalicílico ou calmantes) antes da avaliação médica.',
         ],
         quandoChamarAjuda: 'Chame o {{EMERGENCY_MEDICAL}} imediatamente ao identificar qualquer sinal do teste SAMU. O tempo é vital para evitar sequelas.'
     },

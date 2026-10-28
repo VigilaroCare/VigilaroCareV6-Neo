@@ -262,7 +262,7 @@ export const GUIAS_SEGURANCA_PT_PT = {
             'Analgésicos líquidos (gotas): a dose errada num frasco conta-gotas pode intoxicar rapidamente',
             'Paracetamol: o excesso causa danos graves e silenciosos ao fígado',
             'Colírios: a ingestão acidental do líquido pode levar a convulsões e coma',
-            'Aspirina: doses altas causam irritação gástrica grave e hemorragias',
+            'Ácido acetilsalicílico: doses altas causam irritação gástrica grave e hemorragias',
         ],
       },
       {

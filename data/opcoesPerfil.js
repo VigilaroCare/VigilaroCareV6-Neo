@@ -75,7 +75,14 @@ export const CATEGORIAS_ALERGIA = [
         icon: '💊',
         items: [
             { id: 'penicillin', label: 'Penicilina', label_en: 'Penicillin', label_es: 'Penicilina' },
-            { id: 'aspirin', label: 'Aspirina', label_en: 'Aspirin', label_es: 'Aspirina' },
+            // SEM MARCA desde 27/10/2026, por decisão do Agnaldo: era "Aspirina",
+            // marca da Bayer no Brasil. Em inglês "aspirin" é o nome genérico
+            // oficial (USAN/BAN) e fica.
+            // A lista grava o RÓTULO no perfil, não o id — por isso o nome antigo
+            // segue em `legado`. Sem ele, quem já tinha marcado "Aspirina"
+            // perderia a marcação no formulário, a alergia viraria "customizada"
+            // e a Ficha Médica deixaria de traduzi-la. Ver valorAtualOpcao().
+            { id: 'aspirin', label: 'Ácido acetilsalicílico', label_en: 'Aspirin', label_es: 'Ácido acetilsalicílico', legado: ['Aspirina'] },
             { id: 'ibuprofen', label: 'Ibuprofeno', label_en: 'Ibuprofen', label_es: 'Ibuprofeno' },
             { id: 'codeine', label: 'Codeína', label_en: 'Codeine', label_es: 'Codeína' },
         ],
@@ -118,13 +125,29 @@ const TODAS = [
 /** Texto para exibir de uma opção — recebe o objeto da lista. */
 export const rotuloOpcao = (opcao) => t_field(opcao, 'label') || opcao.label;
 
+/** A opção de um valor gravado: id, rótulo atual ou rótulo antigo (`legado`). */
+const acharOpcao = (v) => TODAS.find((o) => o.id === v || o.label === v || (o.legado || []).includes(v));
+
 /**
- * Texto para exibir de um valor GRAVADO no perfil (id ou label pt-BR).
- * Valor digitado pelo usuário ("outra condição") volta como está.
+ * Texto para exibir de um valor GRAVADO no perfil (id, label pt-BR atual ou
+ * label antigo de opção renomeada). Valor digitado pelo usuário ("outra
+ * condição") volta como está.
  */
 export const rotuloOpcaoPerfil = (valor) => {
     if (valor == null) return '';
     const v = String(valor);
-    const op = TODAS.find((o) => o.id === v || o.label === v);
+    const op = acharOpcao(v);
     return op ? rotuloOpcao(op) : v;
+};
+
+/**
+ * Valor gravado → o valor que o formulário grava HOJE. Só troca rótulo antigo
+ * de opção renomeada (`legado`) pelo atual; id, rótulo atual e texto digitado
+ * pelo usuário voltam como estão. O formulário de perfil aplica ao carregar,
+ * e o perfil antigo se atualiza na próxima vez que for salvo.
+ */
+export const valorAtualOpcao = (valor) => {
+    if (valor == null) return valor;
+    const op = TODAS.find((o) => (o.legado || []).includes(String(valor)));
+    return op ? op.label : valor;
 };
