@@ -1521,7 +1521,6 @@
         "PartesTXicas": "☣️ Partes Tóxicas",
         "SintomasEmHumanos": "👤 Síntomas en Humanos",
         "SintomasEmPetsCEsEGatos": "🐾 Síntomas en Mascotas (Perros y Gatos)",
-        "PrimeirosSocorros": "🩹 Primeros Auxilios",
         "OQUEFAZER": "✅ QUÉ HACER:",
         "OQUENOFAZER": "❌ QUÉ NO HACER:",
         "ComoIdentificar": "🔍 Cómo Identificar",
@@ -1790,18 +1789,6 @@
         "notificaEs": "Notificaciones:",
         "microfone": "Micrófono:",
         "5ExclusODeDados": "5. Eliminación de Datos",
-        "Voltar": "← Volver",
-        "cDigoDeBarras": "Código de Barras:",
-        "Componentes": "🧪 Componentes",
-        "RiscosEPerigos": "⚠️ Riesgos y Peligros",
-        "SeINGERIU": "💧 Si se INGIRIÓ:",
-        "ContatoComOLHOS": "👁️ Contacto con los OJOS:",
-        "ContatoComPELE": "✋ Contacto con la PIEL:",
-        "INALAO": "💨 INHALACIÓN:",
-        "ComoPrevenirAcidentes": "🛡️ Cómo Prevenir Accidentes",
-        "iMPORTANTE": "IMPORTANTE",
-        "emCasoDeAcidenteLigueIMEDIATAMENTEParaOC": "En caso de accidente, llame DE INMEDIATO al centro de toxicología. Tenga a mano el envase del producto para informar los componentes.",
-        "lIGARPARACIATOX": "LLAMAR AL CENTRO DE TOXICOLOGÍA",
         "vNCULOCOMARESIDNCIA": "VÍNCULO CON LA RESIDENCIA",
         "tIPOSANGUNEO": "TIPO SANGUÍNEO",
         "rAAMESTIO": "RAZA / MESTIZO",
@@ -1944,7 +1931,6 @@
         "indoVisitar": "Yendo de Visita",
         "cuidadosAoIrNaCasaDeOutros": "Cuidados al ir a casa de otros",
         "itensParaVerificar": "elementos por verificar",
-        "ligarAgora": "Llamar ahora",
         "bombeirosRotulo": "Bomberos",
         "policiaRotulo": "Policía"
     },
@@ -1960,9 +1946,7 @@
         "sectionAnaliseVisual": "Análisis Visual",
         "sectionAssistentes": "Asistentes",
         "sectionEmBreve": "Próximamente",
-        "scannerAmbienteTitle": "Escanear Entorno",
         "scannerAmbienteSubtitle": "Análisis Visual IA",
-        "scannerAmbienteDesc": "Análisis de riesgos físicos en habitaciones",
         "voiceTitle": "Vigilaro Voice",
         "voiceSubtitle": "Asistente de Audio",
         "voiceDesc": "Habla con el asistente de IA de seguridad para resolver dudas de forma inmediata.",
@@ -1976,14 +1960,7 @@
         "recentTitle": "Actividad reciente",
         "recentSub": "Eventos y acciones de la aplicación",
         "dataHealthTitle": "Salud de los datos",
-        "dataHealthSub": "Diagnóstico de integridad",
-        "scanTitle": "Vigilaro Scan",
-        "scanSubtitle": "Inteligencia Artificial y Análisis",
-        "cameraScanning": "Escaneo por Cámara",
-        "labelScanTitle": "Analizar Etiqueta con IA",
-        "labelScanSubtitle": "Fotografíe los ingredientes del producto",
-        "barcodeTitle": "Código de Barras",
-        "barcodeDesc": "Identificación rápida en la base de datos"
+        "dataHealthSub": "Diagnóstico de integridad"
     },
     "mapaRiscos": {
         "title": "Mapa de riesgos",
@@ -2884,9 +2861,6 @@
         },
         "PetFoodSafetyScreen": {
             "risco": "RIESGO "
-        },
-        "ProdutoScannerScreen": {
-            "perigo": "PELIGRO: "
         },
         "HomeXRayScreen": {
             "pessoasEPetsVinculados": "Personas y Mascotas Vinculadas",

@@ -1,7 +1,14 @@
 /**
  * produtos_scanner.js
- * Base de dados de produtos perigosos para scanner
- * Códigos de barras comuns de produtos domésticos
+ * Base de dados de produtos perigosos — busca por nome e leitura de código.
+ *
+ * CHAVES: numérica = EAN-13 com dígito verificador VÁLIDO (conferido por
+ * scripts/verify_catalogo_scanner.js); texto = produto genérico, sem código —
+ * só a busca por nome o encontra. Um código de barras identifica um produto
+ * comercial específico; "Ibuprofeno" ou "Água Sanitária" em geral não têm um.
+ * Em 28/10/2026 saíram 11 chaves numéricas inválidas (o dígito verificador não
+ * fechava, então nenhum leitor as produziria). As 11 numéricas que sobraram
+ * passam na conta, mas a origem delas não é conhecida: não foram confirmadas.
  *
  * Campos adicionados para InfoRótulos (retrocompatíveis):
  *   - ghs_categories: categorias internas para matching com RuleEngine
@@ -61,7 +68,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['corrosivo', 'irritante_respiratorio', 'toxico_agudo_inalacao'],
     toxic_for_species: ['gato', 'ave'],
   },
-  '7896090700102': {
+  'soda-caustica': {
     nome: 'Soda Cáustica',
     categoria: 'Corrosivo',
     perigo: 'Extremo',
@@ -110,7 +117,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['irritante_respiratorio', 'nocivo_ingestao'],
     toxic_for_species: ['ave'],
   },
-  '7891023900101': {
+  'desentupidor-liquido': {
     nome: 'Desentupidor Líquido',
     categoria: 'Corrosivo',
     perigo: 'Extremo',
@@ -127,7 +134,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['corrosivo', 'toxico_agudo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
   },
-  '7891024110002': {
+  'amaciante-de-roupas': {
     nome: 'Amaciante de Roupas',
     categoria: 'Limpeza',
     perigo: 'Médio',
@@ -147,7 +154,7 @@ export const PRODUTOS_PERIGOSOS = {
   // ═══════════════════════════════════════
   // INFLAMÁVEIS E SOLVENTES
   // ═══════════════════════════════════════
-  '7896022200388': {
+  'alcool-liquido-70': {
     nome: 'Álcool Líquido 70%',
     categoria: 'Inflamável',
     perigo: 'Alto',
@@ -163,7 +170,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['nocivo_ingestao', 'irritante_ocular'],
     toxic_for_species: [],
   },
-  '7896036600010': {
+  'acetona-removedor-de-esmalte': {
     nome: 'Acetona / Removedor de Esmalte',
     categoria: 'Solvente',
     perigo: 'Médio',
@@ -200,7 +207,7 @@ export const PRODUTOS_PERIGOSOS = {
   // ═══════════════════════════════════════
   // VENENOS E PESTICIDAS
   // ═══════════════════════════════════════
-  '7891035500201': {
+  'inseticida-spray-mata-barata-mosquito': {
     nome: 'Inseticida Spray (Mata Barata/Mosquito)',
     categoria: 'Veneno',
     perigo: 'Alto',
@@ -216,7 +223,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['neurotoxico', 'toxico_agudo_inalacao', 'toxico_ambiental'],
     toxic_for_species: ['gato', 'peixe', 'ave'],
   },
-  '7896009945000': {
+  'raticida-isca': {
     nome: 'Raticida (Isca)',
     categoria: 'Veneno',
     perigo: 'Extremo',
@@ -246,7 +253,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['toxico_agudo_ingestao', 'carcinogenico', 'dano_orgaos'],
     toxic_for_species: ['cachorro', 'gato'],
   },
-  '7896100500203': {
+  'herbicida-mata-mato': {
     nome: 'Herbicida / Mata-Mato',
     categoria: 'Jardinagem',
     perigo: 'Muito Alto',
@@ -266,7 +273,7 @@ export const PRODUTOS_PERIGOSOS = {
   // ═══════════════════════════════════════
   // MEDICAMENTOS COMUNS
   // ═══════════════════════════════════════
-  '7896006200012': {
+  'paracetamol': {
     nome: 'Paracetamol',
     categoria: 'Medicamento',
     perigo: 'Médio (Humanos) / Mortal (Gatos)',
@@ -282,7 +289,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['dano_orgaos'],
     toxic_for_species: ['gato'],
   },
-  '7891058001004': {
+  'dipirona-sodica': {
     nome: 'Dipirona Sódica',
     categoria: 'Medicamento',
     perigo: 'Baixo/Médio',
@@ -345,7 +352,7 @@ export const PRODUTOS_PERIGOSOS = {
     ghs_categories: ['nocivo_ingestao'],
     toxic_for_species: [],
   },
-  '7891010000100': {
+  'pilha-alcalina-aa-aaa': {
     nome: 'Pilha Alcalina (AA/AAA)',
     categoria: 'Eletrônico',
     perigo: 'Médio',
@@ -410,23 +417,23 @@ const SINONIMOS_PRODUTOS = {
   '7891022100105': 'cloro lixivia alvejante candida hipoclorito bleach lejia',
   '7891022101201': 'pinho eucalipto creolina fenol',
   '7896004712345': 'amoniaco amonia limpador amoniacal',
-  '7896090700102': 'soda caustica hidroxido de sodio',
+  'soda-caustica': 'soda caustica hidroxido de sodio',
   '7891024130001': 'multiuso desengordurante limpador geral',
   '7891035021008': 'limpa vidro limpa vidros',
-  '7891023900101': 'desentupidor pia ralo esgoto',
-  '7891024110002': 'amaciante roupas lavanderia',
-  '7896022200388': 'alcool 70 alcool liquido etanol',
-  '7896036600010': 'acetona esmalte removedor',
+  'desentupidor-liquido': 'desentupidor pia ralo esgoto',
+  'amaciante-de-roupas': 'amaciante roupas lavanderia',
+  'alcool-liquido-70': 'alcool 70 alcool liquido etanol',
+  'acetona-removedor-de-esmalte': 'acetona esmalte removedor',
   '7896020428015': 'agua raz aguarraz thinner solvente querosene terebintina',
-  '7891035500201': 'inseticida aerossol mata barata mata mosquito veneno inseto',
-  '7896009945000': 'chumbinho veneno de rato mata rato raticida',
+  'inseticida-spray-mata-barata-mosquito': 'inseticida aerossol mata barata mata mosquito veneno inseto',
+  'raticida-isca': 'chumbinho veneno de rato mata rato raticida',
   '7896002300100': 'naftalina bolinha traca',
-  '7896100500203': 'glifosato mata mato herbicida',
-  '7896006200012': 'paracetamol acetaminofeno antitermico analgesico',
-  '7891058001004': 'dipirona metamizol antitermico analgesico',
+  'herbicida-mata-mato': 'glifosato mata mato herbicida',
+  'paracetamol': 'paracetamol acetaminofeno antitermico analgesico',
+  'dipirona-sodica': 'dipirona metamizol antitermico analgesico',
   '7896015528010': 'ibuprofeno anti inflamatorio',
   '7896004701516': 'detergente lava loucas sabao liquido',
-  '7891010000100': 'bateria pilha botao moeda controle remoto',
+  'pilha-alcalina-aa-aaa': 'bateria pilha botao moeda controle remoto',
   '7891000100103': 'melaleuca tea tree oleo essencial difusor',
 };
 
@@ -456,7 +463,7 @@ export const buscarProdutoPorNome = (termo) => {
       ].filter(Boolean).join(' '));
       return alvo.includes(query);
     })
-    .map(([barcode, p]) => ({ ...p, barcode }));
+    .map(([chave, p]) => ({ ...p, id: chave, barcode: /^[0-9]+$/.test(chave) ? chave : undefined }));
 };
 
 export const NIVEIS_PERIGO = {

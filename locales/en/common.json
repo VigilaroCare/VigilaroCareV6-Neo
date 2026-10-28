@@ -1521,7 +1521,6 @@
         "PartesTXicas": "☣️ Toxic Parts",
         "SintomasEmHumanos": "👤 Symptoms in Humans",
         "SintomasEmPetsCEsEGatos": "🐾 Symptoms in Pets (Dogs and Cats)",
-        "PrimeirosSocorros": "🩹 First Aid",
         "OQUEFAZER": "✅ WHAT TO DO:",
         "OQUENOFAZER": "❌ WHAT NOT TO DO:",
         "ComoIdentificar": "🔍 How to Identify",
@@ -1790,18 +1789,6 @@
         "notificaEs": "Notifications:",
         "microfone": "Microphone:",
         "5ExclusODeDados": "5. Data Deletion",
-        "Voltar": "← Back",
-        "cDigoDeBarras": "Barcode:",
-        "Componentes": "🧪 Components",
-        "RiscosEPerigos": "⚠️ Risks and Hazards",
-        "SeINGERIU": "💧 If SWALLOWED:",
-        "ContatoComOLHOS": "👁️ EYE contact:",
-        "ContatoComPELE": "✋ SKIN contact:",
-        "INALAO": "💨 INHALATION:",
-        "ComoPrevenirAcidentes": "🛡️ How to Prevent Accidents",
-        "iMPORTANTE": "IMPORTANT",
-        "emCasoDeAcidenteLigueIMEDIATAMENTEParaOC": "In case of an accident, call the poison center IMMEDIATELY. Have the product packaging at hand to report its components.",
-        "lIGARPARACIATOX": "CALL THE POISON CENTER",
         "vNCULOCOMARESIDNCIA": "RESIDENCE LINK",
         "tIPOSANGUNEO": "BLOOD TYPE",
         "rAAMESTIO": "BREED / MIXED",
@@ -1944,7 +1931,6 @@
         "indoVisitar": "Visiting others",
         "cuidadosAoIrNaCasaDeOutros": "Precautions when visiting others",
         "itensParaVerificar": "items to check",
-        "ligarAgora": "Call now",
         "bombeirosRotulo": "Fire service",
         "policiaRotulo": "Police"
     },
@@ -1960,9 +1946,7 @@
         "sectionAnaliseVisual": "Visual Analysis",
         "sectionAssistentes": "Assistants",
         "sectionEmBreve": "Coming soon",
-        "scannerAmbienteTitle": "Scan Room/Environment",
         "scannerAmbienteSubtitle": "AI Visual Analysis",
-        "scannerAmbienteDesc": "Physical risk analysis in rooms",
         "voiceTitle": "Vigilaro Voice",
         "voiceSubtitle": "Audio Assistant",
         "voiceDesc": "Talk to the AI safety assistant by voice to get immediate answers.",
@@ -1976,14 +1960,7 @@
         "recentTitle": "Recent activity",
         "recentSub": "App events and actions",
         "dataHealthTitle": "Data health",
-        "dataHealthSub": "Integrity diagnosis",
-        "scanTitle": "Vigilaro Scan",
-        "scanSubtitle": "Artificial Intelligence & Analysis",
-        "cameraScanning": "Camera Scanning",
-        "labelScanTitle": "Analyze Label with AI",
-        "labelScanSubtitle": "Photograph product ingredients",
-        "barcodeTitle": "Barcode Scan",
-        "barcodeDesc": "Quick identification in the database"
+        "dataHealthSub": "Integrity diagnosis"
     },
     "mapaRiscos": {
         "title": "Risk map",
@@ -2884,9 +2861,6 @@
         },
         "PetFoodSafetyScreen": {
             "risco": "RISK "
-        },
-        "ProdutoScannerScreen": {
-            "perigo": "DANGER: "
         },
         "HomeXRayScreen": {
             "pessoasEPetsVinculados": "Linked People and Pets",

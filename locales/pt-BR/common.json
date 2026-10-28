@@ -1552,7 +1552,6 @@
         "PartesTXicas": "☣️ Partes Tóxicas",
         "SintomasEmHumanos": "👤 Sintomas em Humanos",
         "SintomasEmPetsCEsEGatos": "🐾 Sintomas em Pets (Cães e Gatos)",
-        "PrimeirosSocorros": "🩹 Primeiros Socorros",
         "OQUEFAZER": "✅ O QUE FAZER:",
         "OQUENOFAZER": "❌ O QUE NÃO FAZER:",
         "ComoIdentificar": "🔍 Como Identificar",
@@ -1821,18 +1820,6 @@
         "notificaEs": "Notificações:",
         "microfone": "Microfone:",
         "5ExclusODeDados": "5. Exclusão de Dados",
-        "Voltar": "← Voltar",
-        "cDigoDeBarras": "Código de Barras:",
-        "Componentes": "🧪 Componentes",
-        "RiscosEPerigos": "⚠️ Riscos e Perigos",
-        "SeINGERIU": "💧 Se INGERIU:",
-        "ContatoComOLHOS": "👁️ Contato com OLHOS:",
-        "ContatoComPELE": "✋ Contato com PELE:",
-        "INALAO": "💨 INALAÇÃO:",
-        "ComoPrevenirAcidentes": "🛡️ Como Prevenir Acidentes",
-        "iMPORTANTE": "IMPORTANTE",
-        "emCasoDeAcidenteLigueIMEDIATAMENTEParaOC": "Em caso de acidente, ligue IMEDIATAMENTE para o centro de intoxicação. Tenha em mãos a embalagem do produto para informar os componentes.",
-        "lIGARPARACIATOX": "LIGAR PARA O CENTRO DE INTOXICAÇÃO",
         "vNCULOCOMARESIDNCIA": "VÍNCULO COM A RESIDÊNCIA",
         "tIPOSANGUNEO": "TIPO SANGUÍNEO",
         "rAAMESTIO": "RAÇA / MESTIÇO",
@@ -1974,7 +1961,6 @@
         "prepararMinhaCasaParaConvidados": "Preparar minha casa para convidados",
         "indoVisitar": "Indo Visitar",
         "cuidadosAoIrNaCasaDeOutros": "Cuidados ao ir na casa de outros",
-        "ligarAgora": "Ligar agora",
         "bombeirosRotulo": "Bombeiros",
         "policiaRotulo": "Polícia"
     },
@@ -1990,9 +1976,7 @@
         "sectionAnaliseVisual": "Análise Visual",
         "sectionAssistentes": "Assistentes",
         "sectionEmBreve": "Chegando em breve",
-        "scannerAmbienteTitle": "Escanear Ambiente",
         "scannerAmbienteSubtitle": "Análise Visual IA",
-        "scannerAmbienteDesc": "Análise de riscos físicos em cômodos",
         "voiceTitle": "Vigilaro Voice",
         "voiceSubtitle": "Assistente de Áudio",
         "voiceDesc": "Converse com a IA por voz para tirar dúvidas na hora.",
@@ -2006,14 +1990,7 @@
         "recentTitle": "Atividade recente",
         "recentSub": "Eventos e ações do app",
         "dataHealthTitle": "Saúde dos dados",
-        "dataHealthSub": "Diagnóstico de integridade",
-        "scanTitle": "Vigilaro Scan",
-        "scanSubtitle": "Inteligência Artificial e Análise",
-        "cameraScanning": "Escaneamento por Câmera",
-        "labelScanTitle": "Analisar Rótulo com IA",
-        "labelScanSubtitle": "Fotografe os ingredientes do produto",
-        "barcodeTitle": "Código de Barras",
-        "barcodeDesc": "Identificação rápida na base de dados"
+        "dataHealthSub": "Diagnóstico de integridade"
     },
     "mapaRiscos": {
         "title": "Mapa de riscos",
@@ -2884,9 +2861,6 @@
         },
         "PetFoodSafetyScreen": {
             "risco": "RISCO "
-        },
-        "ProdutoScannerScreen": {
-            "perigo": "PERIGO: "
         },
         "HomeXRayScreen": {
             "pessoasEPetsVinculados": "Pessoas e Pets Vinculados",

@@ -159,7 +159,6 @@ import TravelSafetyGuideScreen     from "./screens/Education/TravelSafetyGuideSc
 import TravelModeScreen            from "./screens/Travel/TravelModeScreen";
 import LazerFeriasMenuScreen       from "./screens/Education/LazerFeriasMenuScreen";
 import NeurodivergenceMenuScreen   from "./screens/Education/NeurodivergenceMenuScreen";
-import VigilaroScanHubScreen       from "./screens/VigilaroScanHubScreen";
 import CuidarProtegerHubScreen     from "./screens/CuidarProtegerHubScreen";
 import EduContentDetailScreen      from './screens/EduContentDetailScreen';
 import SegurancaLazerScreen        from "./screens/SegurancaLazerScreen";
@@ -206,7 +205,6 @@ import HistoricoAuditoriaScreen    from './screens/HistoricoAuditoriaScreen';
 import AccessibilitySettingsScreen from "./screens/AccessibilitySettingsScreen";
 import MapaDeRiscosScreen           from "./screens/Tools/MapaDeRiscosScreen";
 import AmbienteRiscoScreen          from "./screens/Tools/AmbienteRiscoScreen";
-import ProdutoScannerScreen        from "./screens/ProdutoScannerScreen";
 import InfoRotulosScreen           from "./screens/InfoRotulosScreen";
 import InfoRotulosResultScreen     from "./screens/InfoRotulosResultScreen";
 import MinhaSaudeScreen            from "./screens/Health/MinhaSaudeScreen";
@@ -617,7 +615,6 @@ export default function App() {
                       <Stack.Screen name="ChecklistVisit" component={ChecklistVisitScreen} />
                       <Stack.Screen name="JardinagemSegura" component={JardinagemSeguraScreen} />
                       <Stack.Screen name="Scanner" component={ScannerScreen} />
-                      <Stack.Screen name="ProdutoScanner" component={ProdutoScannerScreen} />
                       <Stack.Screen name="PrimeirosSocorros" component={PrimeirosSocorrosScreen} />
                       <Stack.Screen name="EmergenciaRapida" component={EmergenciaRapidaScreen} options={{ headerShown: false, presentation: 'modal', animationEnabled: false }} />
                       <Stack.Screen name="GenericCategory" component={GenericCategoryScreen} />
@@ -725,7 +722,6 @@ export default function App() {
                       <Stack.Screen name="MedicationDoseHistory" component={MedicationDoseHistoryScreen} />
 
                       {/* ---- Novos Hubs da Home ---- */}
-                      <Stack.Screen name="VigilaroScanHub" component={VigilaroScanHubScreen} />
                       <Stack.Screen name="CuidarProtegerHub" component={CuidarProtegerHubScreen} />
                     </Stack.Group>
                   </Stack.Navigator>
