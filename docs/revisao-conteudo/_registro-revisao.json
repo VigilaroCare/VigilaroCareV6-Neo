@@ -172,6 +172,10 @@
   "m043": {
    "texto": "m043 (28/10/2026): riscos de remédios de uso humano, alimentos e produtos da casa para cães, gatos e aves (22 grupos em RISCOS_COMUNS_PETS), alerta de medicamento ou suplemento na casa e o cartão Conferido com a sua família. O Agnaldo ainda não viu. Recomenda-se a revisão de um médico-veterinário: a fonte de conferência foi a lista da ASPCA e o Manual Veterinário Merck, sem nenhuma dose.",
    "em": "2026-10-28"
+  },
+  "m044": {
+   "texto": "m044 (28/10/2026): só o nome da aba mudou — Educação virou Aprendizado, por proposta do Agnaldo (pergunta dele no chat, aguarda a confirmação final). Mudou a frase do alerta de misturas que cita a aba: Detalhes em Aprendizado → Misturas Perigosas.",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -7690,11 +7694,6 @@
    "data/teoria_fogo.js",
    "m010"
   ],
-  "72a9e4a10bf5c60f": [
-   "pendente",
-   "data/regras_inforotulos.js",
-   "m040"
-  ],
   "72c5708e8accadc3": [
    "pendente",
    "data/ferramentas_seguranca.js",
@@ -11064,6 +11063,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "a6e42027b04beac5": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m044"
   ],
   "a6e702ad19354d09": [
    "pendente",

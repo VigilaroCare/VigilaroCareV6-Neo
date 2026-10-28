@@ -455,7 +455,8 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                   color={color}
                 />
               )}
-                <Text style={[styles.tabLabel, { color }]} numberOfLines={1}>{t(tab.labelKey)}</Text>
+                {/* adjustsFontSizeToFit: "Aprendizado" (11 letras) passa da aba em aparelho de 360dp e era cortado nas pontas; encolhe só o necessário. */}
+                <Text style={[styles.tabLabel, { color }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>{t(tab.labelKey)}</Text>
               </CardDaAba>
             </TouchableOpacity>
           );
@@ -536,6 +537,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabLabel: {
+    // Largura de REFERÊNCIA para o adjustsFontSizeToFit: sem ela o texto não é limitado e passa do card.
+    alignSelf: 'stretch',
+    textAlign: 'center',
+    paddingHorizontal: 2,
     fontSize: 9.5,
     fontWeight: '700',
     marginTop: 1,

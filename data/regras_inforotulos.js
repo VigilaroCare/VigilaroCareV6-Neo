@@ -302,10 +302,10 @@ export const ALERTAS = {
         mensagem_en: 'Dangerous combinations with this product: {{lista}}.',
         mensagem_es: 'Combinaciones peligrosas con este producto: {{lista}}.',
         mensagem_ptpt: 'Combinações perigosas com este produto: {{lista}}.',
-        acao: 'Use um produto de cada vez e ventile o ambiente. Detalhes em Educação → Misturas Perigosas.',
-        acao_en: 'Use one product at a time and ventilate the room. Details in Education → Dangerous Mixtures.',
-        acao_es: 'Use un producto cada vez y ventile el ambiente. Detalles en Educación → Mezclas Peligrosas.',
-        acao_ptpt: 'Utilize um produto de cada vez e ventile o espaço. Detalhes em Educação → Misturas Perigosas.',
+        acao: 'Use um produto de cada vez e ventile o ambiente. Detalhes em Aprendizado → Misturas Perigosas.',
+        acao_en: 'Use one product at a time and ventilate the room. Details in Learn → Dangerous Mixtures.',
+        acao_es: 'Use un producto cada vez y ventile el ambiente. Detalles en Aprender → Mezclas Peligrosas.',
+        acao_ptpt: 'Utilize um produto de cada vez e ventile o espaço. Detalhes em Aprender → Misturas Perigosas.',
     },
     // Remédio ou suplemento no produto: guarda segura para quem mora com criança ou animal.
     // Não é aviso sobre USAR o remédio (isso é com médico e bula): é sobre onde ele fica.

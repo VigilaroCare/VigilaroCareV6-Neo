@@ -254,7 +254,10 @@ export default function KnowledgeHubScreen({ navigation }) {
         }
     ];
 
-    const title = t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção');
+    // O MESMO nome da aba que abriu esta tela (navigation.education). O que antes era o título vira
+    // a linha de apoio logo abaixo.
+    const title = t('navigation.education', 'Aprendizado');
+    const subtitle = t('knowledgeHub.subtitleShort', 'Guias práticos de prevenção');
     const capaSource = require('../../assets/illustrations/pad/hero_knowledge.png');
 
     return (
@@ -309,6 +312,9 @@ export default function KnowledgeHubScreen({ navigation }) {
                             lineHeight: 38,
                         }}>
                             {title}
+                        </Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: 'rgba(255,255,255,0.92)', marginTop: 6 }}>
+                            {subtitle}
                         </Text>
                     </View>
                 </Animated.View>
