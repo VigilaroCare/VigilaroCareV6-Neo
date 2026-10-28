@@ -54,6 +54,10 @@ export const ESPECIES = {
         nome: 'peixe', nome_en: 'fish', nome_es: 'pez', nome_ptpt: 'peixe',
         plural: 'peixes', plural_en: 'fish', plural_es: 'peces', plural_ptpt: 'peixes',
     },
+    reptil: {
+        nome: 'réptil', nome_en: 'reptile', nome_es: 'reptil', nome_ptpt: 'réptil',
+        plural: 'répteis', plural_en: 'reptiles', plural_es: 'reptiles', plural_ptpt: 'répteis',
+    },
     outro: {
         nome: 'outro animal', nome_en: 'other pet', nome_es: 'otra mascota', nome_ptpt: 'outro animal',
         plural: 'outros animais', plural_en: 'other pets', plural_es: 'otras mascotas', plural_ptpt: 'outros animais',
@@ -108,7 +112,7 @@ export const TOXICIDADE_PETS = {
             mensagem_ptpt: 'Tóxico para gatos e cães — pode causar úlceras gástricas e falência renal.',
         },
         {
-            match: /cloro|hipoclorito|chlorine|bleach/i, severity: 'MEDIUM',
+            match: /\bcloro\b|hipoclorito|isocianurato|tricloro|chlorine|bleach/i, severity: 'MEDIUM',
             mensagem: 'Irritante severo para mucosas felinas. Enxaguar piso completamente antes de liberar acesso ao pet.',
             mensagem_en: 'Severe irritant to feline mucous membranes. Rinse the floor thoroughly before letting the pet back in.',
             mensagem_es: 'Irritante grave para las mucosas de los felinos. Enjuague bien el suelo antes de permitir el acceso a la mascota.',
@@ -168,7 +172,7 @@ export const TOXICIDADE_PETS = {
             mensagem_ptpt: 'O sistema respiratório das aves é extremamente sensível. Nunca use sprays perto de viveiros.',
         },
         {
-            match: /cloro|hipoclorito|bleach/i, severity: 'HIGH',
+            match: /\bcloro\b|hipoclorito|isocianurato|tricloro|bleach/i, severity: 'HIGH',
             mensagem: 'Vapores de cloro são tóxicos para aves. Ventilar antes de devolver ao ambiente.',
             mensagem_en: 'Chlorine fumes are toxic to birds. Ventilate before bringing them back into the room.',
             mensagem_es: 'Los vapores de cloro son tóxicos para las aves. Ventile antes de devolverlas al ambiente.',
@@ -184,7 +188,7 @@ export const TOXICIDADE_PETS = {
             mensagem_ptpt: 'FATAL para peixes — os piretroides são extremamente tóxicos em meio aquático.',
         },
         {
-            match: /cloro|hipoclorito|bleach/i, severity: 'CRITICAL',
+            match: /\bcloro\b|hipoclorito|isocianurato|tricloro|bleach/i, severity: 'CRITICAL',
             mensagem: 'Cloro é letal para peixes. Nunca descartar produto com cloro em aquários ou fontes.',
             mensagem_en: 'Chlorine is lethal to fish. Never pour chlorine products into aquariums or fountains.',
             mensagem_es: 'El cloro es letal para los peces. Nunca vierta productos con cloro en acuarios ni en fuentes.',
@@ -303,6 +307,22 @@ export const ALERTAS = {
         acao_es: 'Use un producto cada vez y ventile el ambiente. Detalles en Educación → Mezclas Peligrosas.',
         acao_ptpt: 'Utilize um produto de cada vez e ventile o espaço. Detalhes em Educação → Misturas Perigosas.',
     },
+    // Remédio ou suplemento no produto: guarda segura para quem mora com criança ou animal.
+    // Não é aviso sobre USAR o remédio (isso é com médico e bula): é sobre onde ele fica.
+    medicamento: {
+        titulo: 'Medicamento ou suplemento na casa',
+        titulo_en: 'Medicine or supplement in the home',
+        titulo_es: 'Medicamento o suplemento en casa',
+        titulo_ptpt: 'Medicamento ou suplemento em casa',
+        mensagem: 'Remédios de uso humano estão entre as causas mais comuns de intoxicação de crianças e de animais em casa, e uma dose segura para um adulto pode ser perigosa para eles. Guarde na embalagem original, fora do alcance e da vista.',
+        mensagem_en: 'Human medicines are among the most common causes of poisoning in children and pets at home, and a dose that is safe for an adult can be dangerous for them. Keep it in its original packaging, out of reach and out of sight.',
+        mensagem_es: 'Los medicamentos de uso humano figuran entre las causas más comunes de intoxicación de niños y mascotas en casa, y una dosis segura para un adulto puede ser peligrosa para ellos. Guárdelo en su envase original, fuera del alcance y de la vista.',
+        mensagem_ptpt: 'Os medicamentos de uso humano estão entre as causas mais comuns de intoxicação de crianças e animais em casa, e uma dose segura para um adulto pode ser perigosa para eles. Guarde na embalagem original, fora do alcance e da vista.',
+        acao: 'Se alguém ou algum animal engolir, não provoque vômito. Pessoas: {{POISON_CONTROL}}. Animais: veterinário de emergência.',
+        acao_en: 'If a person or an animal swallows it, do not induce vomiting. People: {{POISON_CONTROL}}. Animals: emergency veterinarian.',
+        acao_es: 'Si una persona o un animal lo traga, no provoque el vómito. Personas: {{POISON_CONTROL}}. Animales: veterinario de urgencias.',
+        acao_ptpt: 'Se uma pessoa ou um animal engolir, não provoque o vómito. Pessoas: {{POISON_CONTROL}}. Animais: veterinário de urgência.',
+    },
 };
 
 // ── Quais misturas de data/safety_mixtures.js cada tipo de produto dispara ───
@@ -314,7 +334,7 @@ export const ALERTAS = {
 // ácido de LIMPEZA: o motor antigo casava qualquer "ácido" no nome, inclusive o
 // "ácido acetilsalicílico".
 export const MISTURAS_DO_PRODUTO = [
-    { match: /cloro|hipoclorito|água.?sanitária|agua.?sanitaria|bleach|lixívia|lixivia|lejía|lejia/i,
+    { match: /\bcloro\b|hipoclorito|água.?sanitária|agua.?sanitaria|bleach|lixívia|lixivia|lejía|lejia/i,
       secoes: ['cloro_acidos', 'cloro_amonia', 'cloro_alcool'], emComponentes: true },
     { match: /amônia|amoníaco|amoniaco|ammonia/i,
       secoes: ['cloro_amonia'], emComponentes: true },
@@ -401,6 +421,20 @@ export const PALAVRA_DE_SINAL = [
     { sinal: 'CUIDADO', padrao: /\b(cuidado|caution|precaucion)\b/ },
 ];
 
+/**
+ * Avisos impressos que NÃO são perigo: situação de venda, guarda, validade, forma de uso. A IA os
+ * põe junto das "advertências" (estão mesmo na embalagem), mas não descrevem risco do produto: não
+ * contam para o nível e, na tela, vão para "Prevenção". Texto sem acento e em minúsculas, como as
+ * frases de perigo. Uma frase que casa AQUI e também com FRASES_DE_PERIGO ("Mantenha fora do
+ * alcance. Corrosivo.") continua sendo perigo.
+ */
+export const AVISOS_QUE_NAO_SAO_PERIGO = [
+    /fora do alcance|longe do alcance|out of reach|fuera del alcance/,
+    /venda sob|prescricao|receita medica|uso sob|prescription only|con receta/,
+    /uso (adulto|pediatrico|oral|externo|topico)|via oral|consulte (o|seu) medico|leia a bula|read the (leaflet|label)/,
+    /validade|\blote\b|armazen|conserv(e|ar)|guard(e|ar)|proteg(er|ido) da (luz|umidade)|temperatura ambiente|\bstore\b/,
+];
+
 /** Nível mínimo que a palavra de sinal garante, mesmo que nenhuma frase seja reconhecida. */
 export const PISO_DO_SINAL = { 'PERIGO': 'Alto', 'ATENÇÃO': 'Médio', 'CUIDADO': 'Médio' };
 
@@ -436,3 +470,249 @@ export const FRASES_DE_PERIGO = [
     { nivel: 'Médio', categoria: 'irritante_respiratorio', padrao: /irrita\w*[^.]{0,30}vias\s+respiratorias|vapores\s+irritantes|respiratory\s+irritation|\bh335\b/ },
     { nivel: 'Médio', categoria: 'neurotoxico', padrao: /sonolencia|vertigens?|tontura|drowsiness|dizziness|\bh336\b/ },
 ];
+
+// ── Riscos comuns a cães e gatos: remédios de uso humano, alimentos e produtos da casa ──
+// Até 28/10/2026 a lista de TOXICIDADE_PETS tinha 17 regras e NENHUM remédio de uso
+// humano: um pet que engolisse o comprimido do dono não gerava alerta nenhum. Aqui
+// entram os grupos mais comuns, com UMA mensagem por grupo (não uma por substância).
+//
+// COMO ESCREVER `match`: minúsculo e SEM acento. O motor testa o texto como veio E sem
+// acento ("ácido acetilsalicílico" casa "acido acetilsalicilico"). Palavra ambígua leva
+// \b ou a expressão inteira: "álcool" sozinho pegaria "álcool cetílico" (cosmético),
+// "cloro" pegaria "clorofila", e "uva" pegaria "óleo de semente de uva".
+//
+// FONTE de conferência: lista de substâncias tóxicas da ASPCA (APCC) e Manual Veterinário
+// Merck. NENHUMA dose: afirmação numérica de letalidade sem referência não entra (ver a
+// retirada do "10mg/kg" do paracetamol). PARA REVISÃO — de preferência de um
+// médico-veterinário: o Agnaldo é da segurança do trabalho, não da toxicologia animal.
+// Gravidade por espécie: `cachorro`, `gato`, `ave`; sem a chave = a regra não vale para ela.
+export const RISCOS_COMUNS_PETS = [
+    {
+        id: 'veneno_grave', cachorro: 'CRITICAL', gato: 'CRITICAL',
+        match: /chumbinho|aldicarb|carbofurano|organofosforado|organophosphate|carbamato|metaldeido|metaldehyde|lesmicida|raticida|rodenticida|cumarinico|brodifacoum/i,
+        mensagem: 'Veneno de ação rápida (chumbinho, raticida, lesmicida) — FATAL para cães e gatos. É emergência veterinária imediata.',
+        mensagem_en: 'Fast-acting poison (rat poison, slug bait) — FATAL to dogs and cats. It is an immediate veterinary emergency.',
+        mensagem_es: 'Veneno de acción rápida (raticida, molusquicida): FATAL para perros y gatos. Es una emergencia veterinaria inmediata.',
+        mensagem_ptpt: 'Veneno de ação rápida (raticida, lesmicida) — FATAL para cães e gatos. É uma emergência veterinária imediata.',
+    },
+    {
+        id: 'estimulante', cachorro: 'CRITICAL', gato: 'CRITICAL',
+        match: /metilfenidato|methylphenidate|ritalina|concerta|lisdexanfetamina|venvanse|anfetamina|amphetamine|dexanfetamina|modafinila/i,
+        mensagem: 'Estimulante (como os usados para TDAH) — causa tremores, convulsões e disparo do coração em cães e gatos. É emergência veterinária.',
+        mensagem_en: 'Stimulant (such as ADHD medication) — causes tremors, seizures and a racing heart in dogs and cats. It is a veterinary emergency.',
+        mensagem_es: 'Estimulante (como los del TDAH): causa temblores, convulsiones y taquicardia en perros y gatos. Es una emergencia veterinaria.',
+        mensagem_ptpt: 'Estimulante (como os usados para a PHDA) — causa tremores, convulsões e coração acelerado em cães e gatos. É uma emergência veterinária.',
+    },
+    {
+        id: 'baclofeno', cachorro: 'CRITICAL', gato: 'CRITICAL',
+        match: /baclofeno|baclofen/i,
+        mensagem: 'Relaxante muscular (baclofeno) — muito tóxico para cães e gatos: causa fraqueza, convulsões e parada da respiração.',
+        mensagem_en: 'Muscle relaxant (baclofen) — very toxic to dogs and cats: causes weakness, seizures and breathing failure.',
+        mensagem_es: 'Relajante muscular (baclofeno): muy tóxico para perros y gatos; causa debilidad, convulsiones y paro respiratorio.',
+        mensagem_ptpt: 'Relaxante muscular (baclofeno) — muito tóxico para cães e gatos: causa fraqueza, convulsões e paragem respiratória.',
+    },
+    {
+        id: 'minoxidil', cachorro: 'HIGH', gato: 'CRITICAL',
+        match: /minoxidil|rogaine|regaine/i,
+        mensagem: 'Minoxidil (para queda de cabelo) — extremamente tóxico para gatos e perigoso para cães: o contato com a pele de quem usou, ou lamber o produto, pode causar falência do coração e do pulmão.',
+        mensagem_en: 'Minoxidil (hair-loss treatment) — extremely toxic to cats and dangerous to dogs: contact with the skin of someone who used it, or licking the product, can cause heart and lung failure.',
+        mensagem_es: 'Minoxidil (para la caída del cabello): extremadamente tóxico para los gatos y peligroso para los perros; el contacto con la piel de quien lo usó, o lamer el producto, puede causar insuficiencia cardíaca y pulmonar.',
+        mensagem_ptpt: 'Minoxidil (para a queda de cabelo) — extremamente tóxico para gatos e perigoso para cães: o contacto com a pele de quem o usou, ou lamber o produto, pode causar falência do coração e do pulmão.',
+    },
+    {
+        id: 'aine', cachorro: 'HIGH', gato: 'HIGH',
+        match: /ibuprofeno|ibuprofen|naproxeno|naproxen|diclofenaco|diclofenac|cetoprofeno|ketoprofen|nimesulida|meloxicam|piroxicam|etoricoxibe|celecoxibe|indometacina|cetorolaco|ketorolac|acido acetilsalicilico|aspirina|aspirin/i,
+        mensagem: 'Anti-inflamatório de uso humano — causa úlcera no estômago e lesão nos rins em cães e gatos, mesmo em dose pequena.',
+        mensagem_en: 'Human anti-inflammatory — causes stomach ulcers and kidney damage in dogs and cats, even in small doses.',
+        mensagem_es: 'Antiinflamatorio de uso humano: causa úlceras de estómago y daño renal en perros y gatos, incluso en dosis pequeñas.',
+        mensagem_ptpt: 'Anti-inflamatório de uso humano — causa úlcera no estômago e lesão nos rins em cães e gatos, mesmo em dose pequena.',
+    },
+    {
+        id: 'paracetamol_cao', cachorro: 'HIGH',
+        match: /paracetamol|acetaminofeno|acetaminophen|tylenol/i,
+        mensagem: 'Paracetamol é tóxico para cães — pode lesar o fígado e o sangue.',
+        mensagem_en: 'Paracetamol (acetaminophen) is toxic to dogs — it can damage the liver and the blood.',
+        mensagem_es: 'El paracetamol es tóxico para los perros: puede dañar el hígado y la sangre.',
+        mensagem_ptpt: 'O paracetamol é tóxico para cães — pode lesar o fígado e o sangue.',
+    },
+    {
+        id: 'antidepressivo', cachorro: 'HIGH', gato: 'HIGH',
+        match: /escitalopram|citalopram|fluoxetina|fluoxetine|sertralina|sertraline|paroxetina|venlafaxina|duloxetina|amitriptilina|nortriptilina|clomipramina|bupropiona|trazodona|mirtazapina|fluvoxamina/i,
+        mensagem: 'Antidepressivo de uso humano — pode causar tremores, agitação, convulsões e alteração do coração em cães e gatos.',
+        mensagem_en: 'Human antidepressant — can cause tremors, agitation, seizures and heart rhythm changes in dogs and cats.',
+        mensagem_es: 'Antidepresivo de uso humano: puede causar temblores, agitación, convulsiones y alteraciones del corazón en perros y gatos.',
+        mensagem_ptpt: 'Antidepressivo de uso humano — pode causar tremores, agitação, convulsões e alterações do coração em cães e gatos.',
+    },
+    {
+        id: 'calmante', cachorro: 'HIGH', gato: 'HIGH',
+        match: /diazepam|clonazepam|alprazolam|lorazepam|bromazepam|midazolam|zolpidem|rivotril|lexotan|stilnox|buspirona/i,
+        mensagem: 'Calmante ou remédio para dormir — pode causar sedação profunda ou, ao contrário, agitação e falta de coordenação em cães e gatos.',
+        mensagem_en: 'Sedative or sleeping pill — can cause deep sedation or, the opposite, agitation and loss of coordination in dogs and cats.',
+        mensagem_es: 'Calmante o somnífero: puede causar sedación profunda o, al contrario, agitación y falta de coordinación en perros y gatos.',
+        mensagem_ptpt: 'Calmante ou comprimido para dormir — pode causar sedação profunda ou, ao contrário, agitação e falta de coordenação em cães e gatos.',
+    },
+    {
+        id: 'opioide', cachorro: 'HIGH', gato: 'HIGH',
+        match: /tramadol|codeina|morfina|oxicodona|fentanil|metadona|hidrocodona/i,
+        mensagem: 'Analgésico opioide — causa sedação intensa e queda da respiração em cães e gatos; nos gatos pode causar também agitação.',
+        mensagem_en: 'Opioid painkiller — causes deep sedation and slowed breathing in dogs and cats; in cats it can also cause agitation.',
+        mensagem_es: 'Analgésico opioide: causa sedación intensa y respiración lenta en perros y gatos; en los gatos también puede causar agitación.',
+        mensagem_ptpt: 'Analgésico opioide — causa sedação intensa e respiração lenta em cães e gatos; nos gatos pode causar também agitação.',
+    },
+    {
+        id: 'hipoglicemiante', cachorro: 'HIGH', gato: 'HIGH',
+        match: /glibenclamida|glimepirida|gliclazida|glipizida|insulina|insulin/i,
+        mensagem: 'Remédio para diabetes ou insulina — pode causar queda perigosa do açúcar no sangue: fraqueza, tremores e convulsão.',
+        mensagem_en: 'Diabetes medication or insulin — can cause a dangerous drop in blood sugar: weakness, tremors and seizures.',
+        mensagem_es: 'Medicamento para la diabetes o insulina: puede causar una caída peligrosa del azúcar en sangre: debilidad, temblores y convulsiones.',
+        mensagem_ptpt: 'Medicamento para a diabetes ou insulina — pode causar uma descida perigosa do açúcar no sangue: fraqueza, tremores e convulsões.',
+    },
+    {
+        id: 'cardio_forte', cachorro: 'HIGH', gato: 'HIGH',
+        match: /propranolol|atenolol|metoprolol|carvedilol|bisoprolol|anlodipino|amlodipino|nifedipino|verapamil|diltiazem|digoxina|clonidina/i,
+        mensagem: 'Remédio de pressão ou do coração — pode causar queda perigosa da pressão e alteração do ritmo do coração em cães e gatos.',
+        mensagem_en: 'Blood-pressure or heart medication — can cause a dangerous drop in blood pressure and heart rhythm changes in dogs and cats.',
+        mensagem_es: 'Medicamento para la presión o el corazón: puede causar una caída peligrosa de la presión y alteraciones del ritmo cardíaco en perros y gatos.',
+        mensagem_ptpt: 'Medicamento para a tensão ou para o coração — pode causar uma descida perigosa da tensão e alterações do ritmo do coração em cães e gatos.',
+    },
+    {
+        id: 'pressao', cachorro: 'MEDIUM', gato: 'MEDIUM',
+        match: /losartana|valsartana|olmesartana|enalapril|captopril|ramipril|hidroclorotiazida|furosemida|espironolactona|isossorbida|nitroglicerina/i,
+        mensagem: 'Remédio de pressão ou diurético — pode derrubar a pressão e sobrecarregar os rins de cães e gatos.',
+        mensagem_en: 'Blood-pressure medication or diuretic — can lower blood pressure and strain the kidneys of dogs and cats.',
+        mensagem_es: 'Medicamento para la presión o diurético: puede bajar la presión y sobrecargar los riñones de perros y gatos.',
+        mensagem_ptpt: 'Medicamento para a tensão ou diurético — pode baixar a tensão e sobrecarregar os rins de cães e gatos.',
+    },
+    {
+        id: 'pde5', cachorro: 'MEDIUM', gato: 'MEDIUM',
+        match: /tadalafila|tadalafil|sildenafila|sildenafil|vardenafila|vardenafil|viagra|cialis/i,
+        mensagem: 'Remédio para disfunção erétil — pode derrubar a pressão e acelerar o coração de cães e gatos.',
+        mensagem_en: 'Erectile dysfunction medication — can lower blood pressure and speed up the heart of dogs and cats.',
+        mensagem_es: 'Medicamento para la disfunción eréctil: puede bajar la presión y acelerar el corazón de perros y gatos.',
+        mensagem_ptpt: 'Medicamento para a disfunção erétil — pode baixar a tensão e acelerar o coração de cães e gatos.',
+    },
+    {
+        id: 'cafeina', cachorro: 'MEDIUM', gato: 'MEDIUM',
+        match: /cafeina|caffeine|guarana|energetico|energy drink/i,
+        mensagem: 'Cafeína — em cães e gatos causa agitação, tremores e disparo do coração.',
+        mensagem_en: 'Caffeine — in dogs and cats it causes restlessness, tremors and a racing heart.',
+        mensagem_es: 'Cafeína: en perros y gatos causa inquietud, temblores y taquicardia.',
+        mensagem_ptpt: 'Cafeína — em cães e gatos causa agitação, tremores e coração acelerado.',
+    },
+    {
+        id: 'vitamina_d', cachorro: 'HIGH', gato: 'HIGH',
+        match: /calcipotriol|calcipotrieno|calcipotriene|colecalciferol|cholecalciferol|ergocalciferol|vitamina d3|vitamin d3/i,
+        mensagem: 'Vitamina D em excesso causa falência dos rins em cães e gatos; pomadas com calcipotriol (psoríase) são ainda mais perigosas.',
+        mensagem_en: 'Too much vitamin D causes kidney failure in dogs and cats; psoriasis ointments with calcipotriol are even more dangerous.',
+        mensagem_es: 'El exceso de vitamina D causa insuficiencia renal en perros y gatos; las pomadas con calcipotriol (psoriasis) son aún más peligrosas.',
+        mensagem_ptpt: 'O excesso de vitamina D causa falência dos rins em cães e gatos; as pomadas com calcipotriol (psoríase) são ainda mais perigosas.',
+    },
+    {
+        id: 'ferro', cachorro: 'HIGH', gato: 'HIGH',
+        match: /sulfato ferroso|fumarato ferroso|gluconato ferroso|ferro elementar|ferrous sulfate|ferrous fumarate|iron sulfate/i,
+        mensagem: 'Suplemento de ferro — irrita e lesa o estômago, o intestino e o fígado de cães e gatos.',
+        mensagem_en: 'Iron supplement — irritates and damages the stomach, intestines and liver of dogs and cats.',
+        mensagem_es: 'Suplemento de hierro: irrita y daña el estómago, el intestino y el hígado de perros y gatos.',
+        mensagem_ptpt: 'Suplemento de ferro — irrita e lesa o estômago, o intestino e o fígado de cães e gatos.',
+    },
+    {
+        id: 'nicotina', cachorro: 'HIGH', gato: 'HIGH',
+        match: /nicotina(?!mid)|nicotine(?!amide)|tabaco|tobacco|cigarro/i,
+        mensagem: 'Nicotina (cigarro, refil de cigarro eletrônico, adesivo) — causa vômito, tremores e disparo do coração em cães e gatos.',
+        mensagem_en: 'Nicotine (cigarettes, e-cigarette refills, patches) — causes vomiting, tremors and a racing heart in dogs and cats.',
+        mensagem_es: 'Nicotina (cigarrillos, recargas de cigarrillo electrónico, parches): causa vómitos, temblores y taquicardia en perros y gatos.',
+        mensagem_ptpt: 'Nicotina (cigarros, recargas de cigarro eletrónico, adesivos) — causa vómitos, tremores e coração acelerado em cães e gatos.',
+    },
+    {
+        id: 'naftalina', cachorro: 'HIGH', gato: 'HIGH',
+        match: /naftalina|naftaleno|naphthalene|canfora|camphor/i,
+        mensagem: 'Naftalina e cânfora — causam lesão no sangue e no fígado e convulsões em cães e gatos.',
+        mensagem_en: 'Mothballs and camphor — cause blood and liver damage and seizures in dogs and cats.',
+        mensagem_es: 'Naftalina y alcanfor: causan daño en la sangre y el hígado, y convulsiones en perros y gatos.',
+        mensagem_ptpt: 'Naftalina e cânfora — causam lesão no sangue e no fígado e convulsões em cães e gatos.',
+    },
+    {
+        id: 'allium', cachorro: 'MEDIUM', gato: 'HIGH',
+        match: /\bcebola|\balho\b|alho-poro|alho poro|cebolinha|\bonions?\b|\bgarlic\b|\bchives?\b/i,
+        mensagem: 'Cebola e alho (frescos, em pó ou cozidos) destroem os glóbulos vermelhos de cães e gatos; os gatos são ainda mais sensíveis.',
+        mensagem_en: 'Onion and garlic (fresh, powdered or cooked) destroy the red blood cells of dogs and cats; cats are even more sensitive.',
+        mensagem_es: 'La cebolla y el ajo (frescos, en polvo o cocidos) destruyen los glóbulos rojos de perros y gatos; los gatos son aún más sensibles.',
+        mensagem_ptpt: 'A cebola e o alho (frescos, em pó ou cozinhados) destroem os glóbulos vermelhos de cães e gatos; os gatos são ainda mais sensíveis.',
+    },
+    {
+        id: 'passas', cachorro: 'HIGH',
+        match: /\bpassas?\b|uva passa|uva-passa|\braisins?\b/i,
+        mensagem: 'Uva-passa e passas — podem causar falência dos rins em cães, mesmo em pequena quantidade.',
+        mensagem_en: 'Raisins — can cause kidney failure in dogs, even in small amounts.',
+        mensagem_es: 'Pasas: pueden causar insuficiencia renal en perros, incluso en pequeñas cantidades.',
+        mensagem_ptpt: 'Uvas-passas — podem causar falência dos rins em cães, mesmo em pequena quantidade.',
+    },
+    {
+        id: 'chocolate_outros', gato: 'MEDIUM', ave: 'HIGH',
+        match: /chocolate|massa de cacau|po de cacau|cacau em po|cocoa powder|cocoa mass|cocoa solids|teobromina|theobromine/i,
+        mensagem: 'Chocolate e cacau (teobromina) — tóxicos para animais de estimação: causam vômito, tremores e alteração do coração.',
+        mensagem_en: 'Chocolate and cocoa (theobromine) — toxic to pets: cause vomiting, tremors and heart rhythm changes.',
+        mensagem_es: 'Chocolate y cacao (teobromina): tóxicos para las mascotas; causan vómitos, temblores y alteraciones del corazón.',
+        mensagem_ptpt: 'Chocolate e cacau (teobromina) — tóxicos para animais de estimação: causam vómitos, tremores e alterações do coração.',
+    },
+    {
+        id: 'alcool', cachorro: 'MEDIUM', gato: 'MEDIUM',
+        match: /alcool etilico|alcool isopropilico|alcool 70|alcool gel|alcool absoluto|etanol|ethanol|isopropanol|cerveja|vinho|vodca|vodka|cachaca|whisky|\bwine\b|\bbeer\b/i,
+        mensagem: 'Álcool (bebida, gel ou álcool 70) — causa embriaguez e queda da temperatura e do açúcar no sangue de animais pequenos.',
+        mensagem_en: 'Alcohol (drinks, gel or rubbing alcohol) — causes intoxication and drops in body temperature and blood sugar in small animals.',
+        mensagem_es: 'Alcohol (bebidas, gel o alcohol de 70°): causa embriaguez y bajadas de temperatura y de azúcar en sangre en animales pequeños.',
+        mensagem_ptpt: 'Álcool (bebida, gel ou álcool a 70°) — causa embriaguez e descida da temperatura e do açúcar no sangue de animais pequenos.',
+    },
+    {
+        id: 'oleo_essencial', cachorro: 'MEDIUM', gato: 'HIGH',
+        match: /oleo essencial|essential oil|tea tree|melaleuca|eucalipto|eucalyptus|pinho|pine oil|ylang|peppermint oil|oleo de canela|cinnamon oil|oleo de cravo|clove oil/i,
+        mensagem: 'Óleos essenciais e limpadores perfumados com pinho ou eucalipto — tóxicos para gatos e irritantes para cães. Evite difusores e mantenha o animal longe do piso molhado.',
+        mensagem_en: 'Essential oils and pine- or eucalyptus-scented cleaners — toxic to cats and irritating to dogs. Avoid diffusers and keep the animal off wet floors.',
+        mensagem_es: 'Aceites esenciales y limpiadores perfumados con pino o eucalipto: tóxicos para los gatos e irritantes para los perros. Evite los difusores y mantenga al animal lejos del suelo mojado.',
+        mensagem_ptpt: 'Óleos essenciais e produtos de limpeza perfumados com pinho ou eucalipto — tóxicos para gatos e irritantes para cães. Evite difusores e mantenha o animal longe do chão molhado.',
+    },
+    {
+        id: 'inseticida', cachorro: 'MEDIUM', gato: 'HIGH',
+        match: /piretroide|pyrethroid|cipermetrina|deltametrina|bifentrina|esbiotrina|inseticida|insecticide|pesticida|mata.?barata|mata.?mosquito/i,
+        mensagem: 'Inseticida — os gatos são especialmente sensíveis aos piretróides e a outros inseticidas. Mantenha o animal fora do ambiente durante o uso e longe do produto.',
+        mensagem_en: 'Insecticide — cats are especially sensitive to pyrethroids and other insecticides. Keep the animal out of the room while it is used and away from the product.',
+        mensagem_es: 'Insecticida: los gatos son especialmente sensibles a los piretroides y a otros insecticidas. Mantenga al animal fuera del ambiente durante su uso y lejos del producto.',
+        mensagem_ptpt: 'Inseticida — os gatos são especialmente sensíveis aos piretroides e a outros inseticidas. Mantenha o animal fora da divisão durante a utilização e longe do produto.',
+    },
+    {
+        id: 'cloro_cao', cachorro: 'MEDIUM',
+        match: /\bcloro\b|hipoclorito|sodium hypochlorite|\bbleach\b|agua sanitaria/i,
+        mensagem: 'Água sanitária e cloro — irritam a pele, os olhos e o estômago de cães. Evite o contato com o piso ainda molhado.',
+        mensagem_en: 'Bleach and chlorine — irritate the skin, eyes and stomach of dogs. Keep dogs off floors that are still wet.',
+        mensagem_es: 'Lejía y cloro: irritan la piel, los ojos y el estómago de los perros. Evite el contacto con el suelo todavía mojado.',
+        mensagem_ptpt: 'Lixívia e cloro — irritam a pele, os olhos e o estômago dos cães. Evite o contacto com o chão ainda molhado.',
+    },
+    {
+        id: 'abacate_aves', ave: 'HIGH',
+        match: /abacate|avocado|persin/i,
+        mensagem: 'Abacate é tóxico para aves — causa dificuldade para respirar e pode ser fatal.',
+        mensagem_en: 'Avocado is toxic to birds — it causes breathing difficulty and can be fatal.',
+        mensagem_es: 'El aguacate es tóxico para las aves: causa dificultad para respirar y puede ser mortal.',
+        mensagem_ptpt: 'O abacate é tóxico para aves — causa dificuldade em respirar e pode ser fatal.',
+    },
+];
+
+// Junta o que vale para cada espécie às regras de cima. O motor para na PRIMEIRA regra que
+// casa (um alerta por pet por produto), então a mais grave vem primeiro. Ordenação estável:
+// dentro da mesma gravidade, vale a ordem em que foram escritas.
+const GRAVIDADE_PET = { CRITICAL: 5, HIGH: 4, MEDIUM: 3, LOW: 2, INFO: 1 };
+for (const r of RISCOS_COMUNS_PETS) {
+    for (const especie of ['gato', 'cachorro', 'ave']) {
+        if (!r[especie]) continue;
+        TOXICIDADE_PETS[especie].push({
+            match: r.match, severity: r[especie], id: r.id,
+            mensagem: r.mensagem, mensagem_en: r.mensagem_en, mensagem_es: r.mensagem_es, mensagem_ptpt: r.mensagem_ptpt,
+        });
+    }
+}
+for (const especie of Object.keys(TOXICIDADE_PETS)) {
+    TOXICIDADE_PETS[especie] = TOXICIDADE_PETS[especie]
+        .map((regra, i) => ({ regra, i }))
+        .sort((a, b) => (GRAVIDADE_PET[b.regra.severity] - GRAVIDADE_PET[a.regra.severity]) || (a.i - b.i))
+        .map(({ regra }) => regra);
+}

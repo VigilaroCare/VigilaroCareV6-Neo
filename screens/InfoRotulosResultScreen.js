@@ -33,12 +33,14 @@ import { Small, Caption } from "../components/NeoTypography";
 import { useIsDark, useThemeColors, useThemeDS } from '../utils/ThemeContext';
 import { addToHistory } from '../services/inforotulos_cache';
 import { tomDoPerigo, rotuloDoPerigo, tomDaSeveridade, iconeDaSeveridade } from '../utils/perigoProduto';
-import { classificarRotulo } from '../utils/classificarRotulo';
+import { classificarRotulo, separarAvisos } from '../utils/classificarRotulo';
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 import { SkeletonCard } from '../components/SkeletonLoader';
 
-import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
+import { evaluateProduct, getFamilyCheck, pareceMedicamento } from '../services/InfoRotulosRuleEngine';
+import { ESPECIES, RESUMO_FAMILIA } from '../data/regras_inforotulos';
+import { t_field } from '../utils/getLocalizedField';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
 import { getPoisonControlDial, getPoisonControlLabel, resolveEmergencyTokensDeep } from '../utils/emergencyTokens';
@@ -95,6 +97,15 @@ export default function InfoRotulosResultScreen() {
     const [substanceData, setSubstanceData] = useState(substance ? resolveEmergencyTokensDeep(substance) : null);
     const [loading, setLoading] = useState(!substance);
     const [enriching, setEnriching] = useState(false);
+    // Quem a família tem: pessoas e pets. null = ainda carregando. Pets contam MESMO sem ser o
+    // perfil ativo (um pet nunca é): o motor de alertas já cruza a casa inteira, e esta lista mostra isso.
+    const [familia, setFamilia] = useState(null);
+    useEffect(() => {
+        let vivo = true;
+        const vazia = { pessoas: [], pets: [], total: 0 };
+        getFamilyCheck().then((f) => { if (vivo) setFamilia(f || vazia); }).catch(() => { if (vivo) setFamilia(vazia); });
+        return () => { vivo = false; };
+    }, []);
 
     const productData = useMemo(() => resolveEmergencyTokensDeep(product || {}), [product]);
     const nome = productData.nome || substanceData?.name_pt || searchQuery || 'Produto';
@@ -104,9 +115,20 @@ export default function InfoRotulosResultScreen() {
     // que o rótulo IMPRIME (palavra de sinal e frases de perigo), por regras fixas — ver
     // data/regras_inforotulos.js. As bases químicas não entendem nome em português: sem isto,
     // toda foto de rótulo caía em "Indeterminado" e o aviso da família nunca disparava.
+    // O que a IA pôs em "advertências" e NÃO é perigo ("venda sob prescrição", "fora do alcance") vai para
+    // "Prevenção"; só o que descreve risco fica em "Principais riscos" e entra na conta do nível.
+    const avisos = useMemo(
+        () => (source === 'ai_label' ? separarAvisos(productData.riscos) : null),
+        [source, productData],
+    );
     const doRotulo = useMemo(
         () => (source === 'ai_label'
-            ? classificarRotulo({ riscos: productData.riscos, palavraSinal: productData.palavraSinal })
+            ? classificarRotulo({
+                riscos: productData.riscos,
+                palavraSinal: productData.palavraSinal,
+                // remédio ou suplemento: piso Médio (guarda segura de criança e animal)
+                medicamento: pareceMedicamento(productData, productData.nome, productData.componentes || []),
+            })
             : null),
         [source, productData],
     );
@@ -137,7 +159,7 @@ export default function InfoRotulosResultScreen() {
         if (loading || enriching || registrado.current) return;
         registrado.current = true;
         const id = source === 'ai_label'
-            ? `ia:${String(nome).toLowerCase()}`
+            ? (productData.barcode ? String(productData.barcode) : `ia:${String(nome).toLowerCase()}`)
             : (productData.id || productData.barcode || substanceData?.pubchem_cid || searchQuery || nome);
         addToHistory({
             id: String(id),
@@ -146,8 +168,11 @@ export default function InfoRotulosResultScreen() {
             icone: productData.icone || 'TestTube',
             perigo,
             origem: source,
-            // a leitura por IA fica guardada: reabrir não repete a foto nem a chamada
-            ...(source === 'ai_label' && product ? { snapshot: product } : {}),
+            // O produto fica guardado: reabrir não repete a foto nem a consulta, e volta COMO era — com a
+            // origem, a marca e o código de barras. Sem isto, um produto de código de barras reaberto pelo
+            // histórico virava só o nome ("Histórico") e perdia até a opção de fotografar os ingredientes.
+            // O catálogo local não precisa (reabre pelo nome).
+            ...(product && source !== 'local' && source !== 'history' ? { snapshot: product } : {}),
         });
     }, [loading, enriching]);
 
@@ -211,10 +236,33 @@ export default function InfoRotulosResultScreen() {
     const hazardStatements = substanceData?.hazard_statements || [];
     const precautionary = substanceData?.precautionary || [];
 
-    const prevencao = productData.prevencao || [];
-    const riscos = productData.riscos || [];
+    const prevencao = [...(productData.prevencao || []), ...(avisos ? avisos.gerais : [])];
+    const riscos = avisos ? avisos.perigos : (productData.riscos || []);
 
     const componentesDisplay = productData.componentes || [];
+
+    // Veio de uma base (código de barras ou busca) SEM composição: não há o que cruzar com a família.
+    // O caminho é fotografar a região dos ingredientes — a leitura é a mesma do rótulo, e o nome e a
+    // marca que a base já deu passam para o resultado.
+    const semComposicao = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb', 'not_found'].includes(source)
+        && !loading && !enriching && componentesDisplay.length === 0 && !substanceData;
+    const completarPorFoto = () => navigation.navigate('Scanner', {
+        mode: 'label_scan',
+        completar: {
+            nome: productData.nome || searchQuery || '',
+            marca: brandName,
+            categoria: productData.categoria || '',
+            barcode: productData.barcode || (/^[0-9]{6,14}$/.test(String(searchQuery || '')) ? String(searchQuery) : ''),
+        },
+    });
+
+    // Resumo para a pílula de cada pessoa/pet: "Caio · 4 anos", "Duquesa · gato".
+    const rotuloDaPessoa = (p) => {
+        if (p.idade == null) return p.nome;
+        return `${p.nome} · ${t_field(RESUMO_FAMILIA.ano, p.idade === 1 ? 'um' : 'varios').replace('{{n}}', String(p.idade))}`;
+    };
+    const rotuloDoPet = (p) => `${p.nome} · ${t_field(ESPECIES[p.especie] || ESPECIES.outro, 'nome')}`;
+    const alertasDaFamilia = alerts.filter((a) => a.profiles && a.profiles.length > 0).length;
 
     return (
         <AppBackground>
@@ -260,6 +308,23 @@ export default function InfoRotulosResultScreen() {
                             <Small style={s.dicaRotulo}>
                                 {t('inforotulos.semAdvertencia', 'Não encontrei advertência de perigo no que foi lido. Se o rótulo tiver, fotografe o verso, onde ficam a composição e as advertências.')}
                             </Small>
+                        )}
+
+                        {/* Produto sem composição: o caminho é fotografar os ingredientes, não parar em "Indeterminado". */}
+                        {semComposicao && (
+                            <NeoGlifoCard
+                                source={GLIFO_PRODUTO}
+                                titulo={t('inforotulos.completarTitulo', 'Fotografar os ingredientes')}
+                                sub={t('inforotulos.completarSub', 'Veio sem composição. Fotografe a região dos ingredientes para conferir com a sua família.')}
+                                tom="info"
+                                largo
+                                seta
+                                arte={84}
+                                tamanhoTitulo={18}
+                                style={s.completarCard}
+                                onPress={completarPorFoto}
+                                accessibilityLabel={t('inforotulos.completarTitulo', 'Fotografar os ingredientes')}
+                            />
                         )}
 
                         {/* Conteúdo de IA é SEMPRE identificado como tal. */}
@@ -308,6 +373,32 @@ export default function InfoRotulosResultScreen() {
                                         </NeoCard>
                                     );
                                 })}
+                            </FadeInView>
+                        )}
+
+                        {/* CONFERIDO COM A SUA FAMÍLIA — quem entrou na conta e o que achou. Sem alerta NÃO é
+                            "seguro": a base de substâncias é pequena, e a tela diz isso. */}
+                        {!loading && familia && (
+                            <FadeInView delay={120}>
+                                <Text style={s.sectionLabel}>{(t('inforotulos.familiaTitulo', 'Conferido com a sua família') || '').toUpperCase()}</Text>
+                                <NeoCard variant="elevated" style={s.sectionCard}>
+                                    {familia.total === 0 ? (
+                                        <Text style={s.ingredientesText}>{t('inforotulos.familiaVazia', 'Cadastre as pessoas e os animais da casa para conferir este produto com eles.')}</Text>
+                                    ) : (
+                                        <>
+                                            <View style={s.familiaChips}>
+                                                {familia.pessoas.map((p) => <NeoPill key={`h${p.id}`} icone="User" tom="muted" label={rotuloDaPessoa(p)} />)}
+                                                {familia.pets.map((p) => <NeoPill key={`p${p.id}`} icone="PawPrint" tom="muted" label={rotuloDoPet(p)} />)}
+                                            </View>
+                                            <Text style={s.ingredientesText}>
+                                                {alertasDaFamilia > 0
+                                                    ? t('inforotulos.familiaComAlerta', { count: alertasDaFamilia, defaultValue: '{{count}} alerta(s) acima para esta família.' })
+                                                    : t('inforotulos.familiaSemAlerta', 'Nenhum alerta conhecido para estas pessoas e animais.')}
+                                            </Text>
+                                            <Small style={s.familiaLimite}>{t('inforotulos.familiaLimite', 'A nossa base de substâncias ainda é pequena, principalmente para medicamentos. Isso não prova que o produto seja seguro: confira o rótulo ou a bula.')}</Small>
+                                        </>
+                                    )}
+                                </NeoCard>
                             </FadeInView>
                         )}
 
@@ -542,6 +633,23 @@ const criarEstilos = (Neo) => StyleSheet.create({
     },
     fonteLinha: {
         marginTop: Neo.spacing.sm,
+    },
+    // O NeoGlifoCard ocupa o que o pai der (flex: 1): sem altura, o cartão some. Mesma ideia do ciatoxCard.
+    completarCard: {
+        height: 112,
+        marginTop: Neo.spacing.md,
+    },
+    familiaChips: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
+        marginBottom: 10,
+    },
+    familiaLimite: {
+        marginTop: 8,
+        fontSize: 12,
+        lineHeight: 18,
+        color: Neo.colors.neutral[600],
     },
     dicaRotulo: {
         marginTop: Neo.spacing.sm,

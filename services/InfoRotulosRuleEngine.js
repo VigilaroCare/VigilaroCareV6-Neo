@@ -172,11 +172,13 @@ export async function evaluateProduct(substanceData, productData = null) {
 
         if (!toxRules) continue;
 
-        // Testa contra nome do produto E contra cada componente
-        const textsToTest = [name, ...componentes].filter(Boolean);
+        // Testa contra nome do produto, cada componente e o texto de ingredientes. O texto
+        // vai como veio E sem acento: as regras novas são escritas sem acento
+        // ("acido acetilsalicilico"), as antigas têm ("óleo.*essencial").
+        const textsToTest = [name, ...componentes, productData?.ingredientes_texto].filter(Boolean);
 
         for (const rule of toxRules) {
-            const matched = textsToTest.some(t => rule.match.test(t));
+            const matched = textsToTest.some(t => rule.match.test(t) || rule.match.test(semAcento(t)));
             if (matched) {
                 alerts.push({
                     severity: rule.severity,
@@ -221,6 +223,22 @@ export async function evaluateProduct(substanceData, productData = null) {
                 }
             }
         }
+    }
+
+    // ── Regra 8: Remédio ou suplemento — onde ele fica, para quem mora com criança ou animal ──
+    // Não é aviso sobre USAR o remédio (isso é com o médico e a bula): é sobre guarda segura.
+    // Entra para criança até 12 anos e para qualquer animal, de qualquer espécie.
+    const moradoresVulneraveis = [...familyContext.childrenUnder3, ...familyContext.childrenUnder12, ...familyContext.pets];
+    if (moradoresVulneraveis.length > 0 && pareceMedicamento(productData, name, componentes)) {
+        alerts.push({
+            severity: 'MEDIUM',
+            ...SEVERITY.MEDIUM,
+            rule: 'medicine_storage',
+            profiles: moradoresVulneraveis,
+            title: texto(ALERTAS.medicamento, 'titulo'),
+            message: texto(ALERTAS.medicamento, 'mensagem'),
+            action: texto(ALERTAS.medicamento, 'acao'),
+        });
     }
 
     // ── Regra 7: Misturas perigosas (alerta educativo) ──
@@ -296,6 +314,7 @@ async function loadFamilyContext() {
         }
 
         return {
+            humans,
             childrenUnder3,
             childrenUnder12,
             pregnant,
@@ -386,12 +405,43 @@ export async function getFamilySummary() {
 // Utilitários
 // ─────────────────────────────────────────
 
-function normalizePetSpecies(especie) {
-    if (!especie) return 'outro';
-    const e = especie.toLowerCase().trim();
-    if (/gato|felino|cat/i.test(e)) return 'gato';
-    if (/cão|cachorro|dog|canino/i.test(e)) return 'cachorro';
-    if (/ave|pássaro|pássaro|bird|calopsita|periquito|papagaio|canário/i.test(e)) return 'ave';
-    if (/peixe|fish|aquário/i.test(e)) return 'peixe';
+/**
+ * Quem foi conferido: as pessoas (nome e idade) e os animais (nome e espécie) da casa. A tela
+ * do resultado mostra isto, para ficar claro que os pets entram na conta MESMO sem ser o perfil
+ * ativo (um pet nunca é). Tem nome próprio: é só para a tela, NUNCA vai para a IA (para isso
+ * existe getFamilySummary().textoIA).
+ */
+export async function getFamilyCheck() {
+    const ctx = await loadFamilyContext();
+    if (!ctx) return null;
+    const pessoas = (ctx.humans || []).map(p => ({ id: p.id, nome: p.nome, idade: ProfileService.calcularIdade(p.dataNascimento) }));
+    const pets = (ctx.pets || []).map(p => ({ id: p.id, nome: p.nome, especie: normalizePetSpecies(p.especie) }));
+    return { pessoas, pets, total: pessoas.length + pets.length };
+}
+
+/** Minúsculo e sem acento. O cadastro grava 'cao'; texto livre traz 'cão', 'Cachorro'. */
+const semAcento = (s) => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+/** Espécie do pet em uma das chaves de TOXICIDADE_PETS / ESPECIES. Exportada para o verificador. */
+export function normalizePetSpecies(especie) {
+    const e = semAcento(especie).trim();
+    if (!e) return 'outro';
+    if (/gato|felino|\bcats?\b/.test(e)) return 'gato';
+    if (/\bcao\b|\bcaes\b|cachorro|cadela|canino|\bdogs?\b/.test(e)) return 'cachorro';
+    if (/\baves?\b|passaro|\bbirds?\b|calopsita|periquito|papagaio|canario|pomba|arara/.test(e)) return 'ave';
+    if (/peixe|\bfish\b|aquario/.test(e)) return 'peixe';
+    if (/reptil|repteis|tartaruga|jabuti|cobra|lagarto|iguana|\breptiles?\b/.test(e)) return 'reptil';
     return 'outro';
+}
+
+// Sinais de que o produto é remédio ou suplemento. Palavras no nome, na categoria ou no texto
+// de ingredientes; ou uma dose em MASSA (mg, mcg, UI) escrita ao lado de um componente — dose é
+// o que distingue "tadalafila 5 mg" de uma lista de ingredientes de limpeza.
+const SINAIS_DE_MEDICAMENTO = /medicament|remedio|farmaco|comprimid|capsul|dragea|xarope|solucao oral|gotas orais|\bgenerico\b|\bbula\b|\b(?:tablets?|capsules?|medicines?|medications?|drugs?)\b/;
+const DOSE_EM_MASSA = /\b\d+(?:[.,]\d+)?\s*(?:mg|mcg|ug|\u00b5g|ui|iu)\b/;
+
+/** O produto parece remédio ou suplemento? Exportada para o verificador. */
+export function pareceMedicamento(productData, name, componentes = []) {
+    const texto = semAcento([name, productData?.categoria, productData?.ingredientes_texto, ...componentes].filter(Boolean).join(' | '));
+    return SINAIS_DE_MEDICAMENTO.test(texto) || componentes.some(c => DOSE_EM_MASSA.test(semAcento(c)));
 }

@@ -342,18 +342,20 @@ async function fetchUPCitemdb(barcode) {
 
     const item = data.items[0];
 
-    // Tenta extrair ingredientes da descrição (se existir)
+    // A descrição do UPCitemdb é texto de LOJA ("Zyad 5mg 30 comprimidos, Aché..."), não a
+    // composição. Antes ela era cortada em vírgulas e cada pedaço virava "ingrediente": o
+    // resultado listava propaganda como se fosse composição e ainda a mandava para a consulta
+    // toxicológica. Sem composição, o produto fica SEM composição — e a tela pede a foto dos
+    // ingredientes.
     const descricao = item.description || '';
-    const componentesFromDesc = descricao.length > 10
-        ? descricao.split(/[,;.]/).map(s => s.trim()).filter(s => s.length > 2)
-        : [];
 
     return {
         nome: item.title || 'Produto',
         categoria: item.category || 'Geral',
         marca: item.brand || '',
-        ingredientes_texto: descricao,
-        componentes: componentesFromDesc,
+        ingredientes_texto: '',
+        componentes: [],
+        descricao,
         imagem: item.images?.[0] || null,
         barcode,
         source: 'upcitemdb',

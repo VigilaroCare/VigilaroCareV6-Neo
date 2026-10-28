@@ -78,6 +78,8 @@ export default function ScannerScreen({ navigation, route }) {
   // Sem parâmetro, é o scanner de ambiente — o que o nome do ícone promete.
   const [currentMode, setCurrentMode] = useState(MODOS[route.params?.mode] ? route.params.mode : 'environment');
   const modo = MODOS[currentMode];
+  // Vem do resultado de um produto sem composição (ver InfoRotulosResultScreen.completarPorFoto).
+  const completar = route.params?.completar || null;
 
   useEffect(() => {
     if (MODOS[route.params?.mode]) {
@@ -214,9 +216,11 @@ export default function ScannerScreen({ navigation, route }) {
         voltarACamera(); // ao voltar do resultado, a câmera está pronta
         navigation.navigate('InfoRotulosResult', {
           product: {
-            nome: rotulo.nome || t('scanner.unnamedProduct', 'Produto sem nome'),
-            marca: rotulo.marca || '',
-            categoria: rotulo.categoria || t('scanner.labelCategory', 'Produto lido do rótulo'),
+            // O que a IA leu vale primeiro; o que a base já sabia (nome, marca, categoria, código) completa.
+            nome: rotulo.nome || completar?.nome || t('scanner.unnamedProduct', 'Produto sem nome'),
+            marca: rotulo.marca || completar?.marca || '',
+            categoria: rotulo.categoria || completar?.categoria || t('scanner.labelCategory', 'Produto lido do rótulo'),
+            ...(completar?.barcode ? { barcode: completar.barcode } : {}),
             indicacao: rotulo.indicacao || '',
             palavraSinal: rotulo.palavraSinal || '',
             componentes: rotulo.componentes,
@@ -226,7 +230,7 @@ export default function ScannerScreen({ navigation, route }) {
             icone: 'TestTube',
           },
           source: 'ai_label',
-          searchQuery: rotulo.nome || '',
+          searchQuery: rotulo.nome || completar?.nome || '',
         });
         return;
       }
@@ -392,7 +396,7 @@ export default function ScannerScreen({ navigation, route }) {
 
         {/* Instrução, aviso de IA e disparador */}
         <View style={[styles.rodape, { paddingBottom: insets.bottom + 36 }]}>
-          <Text style={styles.guia}>{t(modo.guiaKey, modo.guia)}</Text>
+          <Text style={styles.guia}>{completar && currentMode === 'label_scan' ? t('scanner.guideIngredients', 'Fotografe a região dos ingredientes') : t(modo.guiaKey, modo.guia)}</Text>
           {modo.ia && (
             // Antes da foto, não só depois: a pessoa precisa saber que é IA e que
             // ela erra ANTES de apontar a câmera.

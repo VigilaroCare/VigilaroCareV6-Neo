@@ -27,7 +27,7 @@ Module.prototype._compile = function (codigo, ficheiro) {
 };
 global.__DEV__ = false;
 
-const { classificarRotulo, sinalDoRotulo } = require('../utils/classificarRotulo');
+const { classificarRotulo, sinalDoRotulo, separarAvisos } = require('../utils/classificarRotulo');
 const { FRASES_DE_PERIGO, PISO_DO_SINAL, ORDEM_DO_PERIGO, ROTULO_DO_PERIGO } = require('../data/regras_inforotulos');
 const { NIVEIS_PERIGO, PRODUTOS_PERIGOSOS } = require('../data/produtos_scanner');
 
@@ -58,6 +58,16 @@ ok(classificarRotulo({ riscos: ['Corrosivo.'], palavraSinal: 'CUIDADO' }).perigo
 // ── frase que as regras não conhecem: na dúvida, cuidado ──
 r = classificarRotulo({ riscos: ['Não usar em superfícies de mármore.'] });
 ok(r.perigo === 'Médio' && r.ghs_categories.length === 0, 'advertência não reconhecida: Médio, sem categoria inventada');
+
+// ── avisos que NÃO são perigo (a IA os põe junto das advertências) ──
+const gerais = ['VENDA SOB PRESCRIÇÃO MÉDICA.', 'MANTENHA FORA DO ALCANCE DAS CRIANÇAS.'];
+ok(classificarRotulo({ riscos: gerais }).perigo === null, 'só "venda sob prescrição" e "fora do alcance": não é perigo (a tela mostra Indeterminado, não Médio)');
+ok(classificarRotulo({ riscos: gerais, medicamento: true }).perigo === 'Médio', 'remédio ou suplemento: piso Médio (guarda segura)');
+ok(classificarRotulo({ riscos: ['Fatal se ingerido.'], medicamento: true }).perigo === 'Extremo', 'o piso do remédio nunca REBAIXA o que o rótulo diz');
+ok(classificarRotulo({ riscos: ['Mantenha fora do alcance das crianças. Corrosivo.'] }).perigo === 'Muito Alto', 'aviso geral junto de uma frase de perigo: continua perigo');
+r = separarAvisos([...gerais, 'Corrosivo.', 'Nocivo se ingerido.']);
+ok(r.gerais.length === 2 && r.perigos.length === 2 && r.perigos[0] === 'Corrosivo.', 'separarAvisos: o perigo vai para "riscos", o aviso geral para "prevenção"');
+ok(separarAvisos().perigos.length === 0 && separarAvisos(null).gerais.length === 0, 'separarAvisos sem argumento não quebra');
 
 // ── níveis ──
 ok(classificarRotulo({ riscos: ['Fatal se ingerido.'] }).perigo === 'Extremo', 'fatal se ingerido = Extremo');
