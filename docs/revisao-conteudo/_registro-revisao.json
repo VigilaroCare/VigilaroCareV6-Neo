@@ -160,6 +160,10 @@
   "m040": {
    "texto": "Textos do motor de regras do Info Rotulos (data/regras_inforotulos.js), movidos em 28/10/2026 de services/InfoRotulosRuleEngine.js, onde nunca passaram por revisao nem tinham traducao (a trava so varre data, screens e components). Sao ~40 frases de seguranca: toxicidade por especie (gato, cachorro, ave, peixe), avisos para crianca, gestante, idoso e alergia. A redacao pt-BR e a que estava no app; en, es e pt-PT foram escritas agora e derivam dela. ATENCAO PARA A REVISAO: (1) SAIU 'Dose minima letal: 10mg/kg' da frase do paracetamol para gatos, numero sem fonte; (2) as frases 'FATAL para...' sao afirmacoes fortes de letalidade e merecem fonte; (3) 'asfixia celular' (paracetamol/gato) e termo nao tecnico, avaliar troca por 'impede o sangue de transportar oxigenio'; (4) o alerta de mistura nao tem texto proprio: lista as secoes de Misturas Perigosas (data/safety_mixtures.js), a versao ja revisada.",
    "em": "2026-10-28"
+  },
+  "m041": {
+   "texto": "Textos novos do piloto Scanner Ambiente + Info Rotulos (28/10/2026): scanner dedicado so ao ambiente com aviso de IA ANTES da foto; foto do rotulo como terceira forma de consultar produto no Info Rotulos; aviso do Info Rotulos que agora usa o telefone do PAIS onde a pessoa esta (antes dizia CIATOX ou SAMU para todos); mensagens de codigo nao reconhecido e rotulo ilegivel; nota de que 'nenhum risco identificado' nao e atestado de seguranca; rotulos dos niveis de perigo (Muito alto, Indeterminado). Redacao pt-BR minha, en/es/pt-PT derivadas. PARA O AGNALDO CONFERIR: o tom das mensagens de erro e a nota do resultado sem riscos.",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -217,11 +221,6 @@
    "pendente",
    "data/mobilidade_data.js",
    "m005"
-  ],
-  "013097201d6b60f0": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
   ],
   "013c79619f12243f": [
    "pendente",
@@ -471,11 +470,6 @@
   "057b424e6129d383": [
    "pendente",
    "data/dispositivos_eletronicos_reviews.js",
-   "m010"
-  ],
-  "057ebc015356fcd7": [
-   "pendente",
-   "screens/InfoRotulosResultScreen.js",
    "m010"
   ],
   "058ff79adc48926f": [
@@ -1343,6 +1337,11 @@
    "data/locales/pt-BR/primeiros_socorros_pets.js",
    "m010"
   ],
+  "144dabe857ebeacd": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
+  ],
   "14505db61562a7ed": [
    "pendente",
    "data/pet_food_safety.js",
@@ -1732,6 +1731,11 @@
    "pendente",
    "data/opcoesPerfil.js",
    "m010"
+  ],
+  "1b1d32585d0aa9d1": [
+   "pendente",
+   "components/SafetyDisclaimer.js",
+   "m041"
   ],
   "1b2ad745498c09cf": [
    "pendente",
@@ -2592,6 +2596,11 @@
    "pendente",
    "data/kits/educational_content.js",
    "m022"
+  ],
+  "2939869620bf34c4": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
   ],
   "293ff4c529895daa": [
    "pendente",
@@ -3477,11 +3486,6 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
-  ],
-  "354b33c8ebe133f5": [
-   "pendente",
-   "screens/InfoRotulosResultScreen.js",
-   "m010"
   ],
   "355a71d1dc40d58a": [
    "pendente",
@@ -7303,6 +7307,11 @@
    "data/classesIncendio.js",
    "m006"
   ],
+  "6e61aa3b28dc668f": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m041"
+  ],
   "6e8aa0dfdaeea516": [
    "pendente",
    "data/plantas_ciatox.js",
@@ -7792,11 +7801,6 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m023"
-  ],
-  "7572315231ea0e6f": [
-   "pendente",
-   "screens/InfoRotulosResultScreen.js",
-   "m010"
   ],
   "75aa40ef3b01551e": [
    "pendente",
@@ -8677,6 +8681,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m010"
+  ],
+  "8584843d4914f5e8": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m041"
   ],
   "85858976887d5aeb": [
    "pendente",
@@ -9588,6 +9597,11 @@
    "data/areas_externas.js",
    "m010"
   ],
+  "921c9b4a28793ba6": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
+  ],
   "921d98565480a104": [
    "pendente",
    "data/produtos_scanner.js",
@@ -9747,6 +9761,11 @@
    "pendente",
    "data/kits/medicines.js",
    "m010"
+  ],
+  "9620f9d4d619a554": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m041"
   ],
   "962621e14f3f8cc2": [
    "pendente",
@@ -9958,6 +9977,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "994b09c74fb929fa": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
+  ],
   "99501fb54ae9f877": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -10007,6 +10031,11 @@
    "pendente",
    "data/legal/termos_uso.js",
    "m008"
+  ],
+  "9a37352175e5e7c6": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m041"
   ],
   "9a4748b526ac58aa": [
    "aprovado",
@@ -12413,6 +12442,11 @@
    "data/dispositivos_protecao.js",
    "m004"
   ],
+  "bd3ba41891b9d63c": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m041"
+  ],
   "bd58a8d6237d1ca8": [
    "pendente",
    "data/produtos_scanner.js",
@@ -12592,6 +12626,11 @@
    "pendente",
    "data/pet_food_safety.js",
    "m015"
+  ],
+  "c07118fa66b692e6": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
   ],
   "c0794457f9ee8b68": [
    "pendente",
@@ -14393,6 +14432,11 @@
    "data/classesIncendio.js",
    "m006"
   ],
+  "dcce15a559f2bc23": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m041"
+  ],
   "dcdb46c791368999": [
    "pendente",
    "data/locales/pt-BR/fire_prevention_content.js",
@@ -15938,11 +15982,6 @@
    "data/teoria_fogo.js",
    "m005"
   ],
-  "f66cd6e7f70922ed": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "f68ea7e31af437e9": [
    "pendente",
    "data/animais_ciatox.js",
@@ -16202,6 +16241,11 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
+  ],
+  "fa238a8dc0b8b5d8": [
+   "pendente",
+   "screens/ScannerScreen.js",
+   "m041"
   ],
   "fa322aa36e894213": [
    "pendente",

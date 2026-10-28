@@ -60,6 +60,9 @@ export default function NeoGlifoCard({
     largo = false,
     seta = false,
     sub,
+    // Nó no pé do card, à esquerda — para o que não é número: pílulas de estado
+    // (perigo, fonte). Não combine com `valor`: ocupam o mesmo canto.
+    rodape,
     accessibilityLabel,
     ...rest
 }) {
@@ -109,6 +112,10 @@ export default function NeoGlifoCard({
                 </View>
             )}
 
+            {!!rodape && (
+                <View style={[styles.rodape, { right: arte + 6 }]}>{rodape}</View>
+            )}
+
             {valor != null && (
                 <View style={styles.pe}>
                     <Text style={[styles.valor, { fontSize: Math.round(tamanhoTitulo * 2.1) }]}>{valor}</Text>
@@ -144,6 +151,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -3,
         bottom: -3,
+    },
+    rodape: {
+        position: 'absolute',
+        left: 10,
+        bottom: 9,
     },
     pe: {
         position: 'absolute',

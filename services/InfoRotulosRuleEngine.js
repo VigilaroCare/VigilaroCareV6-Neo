@@ -312,15 +312,20 @@ async function loadFamilyContext() {
  * Ex: "1 criança (bebê), 1 gato"
  *
  * Devolve DOIS textos, de propósito:
- *  - `text`  — sempre pt-BR. É o contexto que a IA recebe no pedido de análise;
- *              mudar de idioma não pode mudar o que o prompt diz.
- *  - `label` — no idioma do app. É o que a tela "Seu perfil familiar" mostra.
+ *  - `label` — no idioma do app, completo. É o que a tela "Seu perfil familiar"
+ *              mostra, só no aparelho.
+ *  - `text`  — pt-BR, completo. Uso LOCAL; não mande para fora.
+ *  - `textoIA` — pt-BR e SEM dado de saúde (nada de gestação). É o único que pode
+ *              entrar no pedido à IA; mudar de idioma não muda o que o prompt diz.
  */
 export async function getFamilySummary() {
     const ctx = await loadFamilyContext();
     if (!ctx) return null;
 
-    const montar = (ptBr) => {
+    // semSaude: o resumo que VAI PARA A IA. Gestação e alergias são dado de saúde e
+    // nunca saem do aparelho (o aviso de permissão promete isso). Faixa etária e
+    // animais de estimação ficam.
+    const montar = (ptBr, semSaude = false) => {
         // pt-BR lê o campo base; os outros idiomas passam por t_field().
         const c = (bloco, campo) => (ptBr ? (bloco[campo] ?? '') : t_field(bloco, campo));
         const qtd = (bloco, n) => c(bloco, n === 1 ? 'um' : 'varios').replace('{{n}}', String(n));
@@ -337,7 +342,7 @@ export async function getFamilySummary() {
             parts.push(qtd(RESUMO_FAMILIA.crianca, ctx.childrenUnder12.length));
         }
 
-        if (ctx.pregnant.length > 0) {
+        if (ctx.pregnant.length > 0 && !semSaude) {
             parts.push(qtd(RESUMO_FAMILIA.gestante, ctx.pregnant.length));
         }
 
@@ -365,6 +370,7 @@ export async function getFamilySummary() {
 
     return {
         text: partesPt.join(', '),
+        textoIA: montar(true, true).join(', '),
         label: montar(false).join(', '),
         hasVulnerables: ctx.childrenUnder3.length > 0 || ctx.pregnant.length > 0 || ctx.elderly.length > 0,
         hasPets: ctx.pets.length > 0,

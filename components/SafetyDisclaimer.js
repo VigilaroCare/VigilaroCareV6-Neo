@@ -11,6 +11,7 @@
  *   sos — SOS: depende de sinal/SMS; combine com os contatos
  *   travelAir — regras de bagagem mudam; confirme com a companhia
  *   ia — resultado gerado por IA: identifica a origem e pede conferência
+ *   produto — Info Rótulos: referência educativa, não substitui toxicologista
  *
  * A variante `ia` existe por obrigação, não por estilo: conteúdo gerado por
  * inteligência artificial precisa ser identificado como tal (EU AI Act, e a
@@ -21,7 +22,7 @@
 import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import NeoIcon from './NeoIcon';
-import { getMedicalLabel, getFireDial } from '../utils/emergencyTokens';
+import { getMedicalLabel, getFireDial, getPoisonControlLabel } from '../utils/emergencyTokens';
 import { Small } from './NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 
@@ -29,6 +30,9 @@ const COPY = {
     // Números do PAÍS (não do idioma): pt-BR em Portugal recebe o 112.
     sos: ['disclaimer.sos', 'O envio do SOS depende de o aparelho ter sinal e plano para SMS. Combine com seus contatos o que fazer ao receber um alerta. Em risco imediato, ligue para o {{servico}} ou para os Bombeiros ({{bombeiros}}).'],
     travelAir: ['disclaimer.travelAir', 'As regras de viagem e os limites de bagagem mudam com frequência. Confirme sempre com a sua companhia aérea — e, em viagem internacional, com o consulado — antes de viajar.'],
+    // Aviso do Info Rótulos: o texto é o que a tela já tinha (inforotulos.disclaimer),
+    // nos 4 idiomas. A tela montava uma caixa própria; agora é o mesmo componente.
+    produto: ['inforotulos.disclaimer', 'O Vigilaro Care não substitui avaliação de um toxicologista, engenheiro químico ou profissional de saúde. Use as informações como referência educativa. Em caso de intoxicação, ligue imediatamente: {{centro}} ou {{servico}}.'],
     ia: ['disclaimer.ia', 'Esta análise foi gerada por inteligência artificial a partir da sua foto e pode conter erros. Confira o ambiente ou o rótulo antes de agir. Não substitui laudo técnico nem orientação médica.'],
 };
 
@@ -38,7 +42,7 @@ export default function SafetyDisclaimer({ variant = 'sos', style }) {
     return (
         <View style={[styles.box, style]} accessibilityRole="text">
             <NeoIcon name="InfoCircle" size={16} color={Neo.colors.accent.warm || '#A16207'} variant="Bold" />
-            <Small style={styles.text}>{t(key, { defaultValue: fallback, servico: getMedicalLabel(), bombeiros: getFireDial() })}</Small>
+            <Small style={styles.text}>{t(key, { defaultValue: fallback, servico: getMedicalLabel(), bombeiros: getFireDial(), centro: getPoisonControlLabel() })}</Small>
         </View>
     );
 }

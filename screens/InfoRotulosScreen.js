@@ -1,26 +1,30 @@
 /**
- * InfoRotulosScreen.js
- * Hub do módulo InfoRótulos
+ * InfoRotulosScreen.js — a casa de tudo que é PRODUTO.
  *
- * 3 pontos de entrada:
- *   - Busca por nome/ingrediente (autocomplete local + PubChem)
- *   - Scan de código de barras (câmera)
- *   - Histórico recente
+ * Três jeitos de chegar à mesma tela de resultado:
+ *   - buscar pelo nome ou ingrediente (catálogo local, depois PubChem);
+ *   - ler o código de barras;
+ *   - fotografar o rótulo (a IA lê o que está impresso).
  *
- * Exibe: contexto familiar, histórico, CIATOX, disclaimer
+ * Até 28/10/2026 a foto do rótulo morava no "Scanner Ambiente", com resultado em
+ * formato próprio que sumia ao fechar. Agora ela é daqui, cai na mesma tela de
+ * resultado, e todas as consultas entram no histórico.
+ *
+ * Visual: a linguagem da Home — fundo limpo, tipografia como hierarquia, os
+ * cartões retroiluminados nas ações, o tom de "ação necessária" no atalho do
+ * centro de intoxicação. Sem banner de foto.
  */
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Linking,
-  ActivityIndicator,
-  Animated,
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    TextInput,
+    Linking,
+    ActivityIndicator,
+    ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -28,26 +32,35 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import NeoCard from '../components/NeoCard';
 import NeoIcon from '../components/NeoIcon';
-import ReviewImage from '../components/ReviewImage';
-import { Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
+import NeoGlifoCard from '../components/NeoGlifoCard';
+import NeoPill from '../components/NeoPill';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
 import FadeInView from '../components/FadeInView';
+import { Body, Small, Caption, Eyebrow } from '../components/NeoTypography';
 import { useIsDark, useThemeColors } from '../utils/ThemeContext';
 
 import { buscarProdutoPorNome } from '../data/produtos_scanner';
 import { getFamilySummary } from '../services/InfoRotulosRuleEngine';
-import { getHistory, addToHistory } from '../services/inforotulos_cache';
+import { getHistory } from '../services/inforotulos_cache';
 import { getSubstanceByName } from '../services/InfoRotulosSubstanceService';
 import NeoAlert from '../utils/NeoAlert';
 import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
+import { tomDoPerigo, rotuloDoPerigo, iconeSeguro } from '../utils/perigoProduto';
+
+const GLIFOS = {
+    codigo: require('../assets/illustrations/glifos/info-rotulos.png'),
+    rotulo: require('../assets/illustrations/glifos/pictogram-produtos.png'),
+    intoxicacao: require('../assets/illustrations/glifos/pictogram-primeiros-socorros.png'),
+};
 
 export default function InfoRotulosScreen() {
     const { t } = useTranslation('common');
     const navigation = useNavigation();
     const isDark = useIsDark();
-    const themeColors = useThemeColors();
-    const searchRef = useRef(null);
+    const colors = useThemeColors();
     const searchTimeout = useRef(null);
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -71,170 +84,107 @@ export default function InfoRotulosScreen() {
             return;
         }
         searchTimeout.current = setTimeout(() => {
-            const localResults = buscarProdutoPorNome(text);
-            setSearchResults(localResults.slice(0, 8));
+            setSearchResults(buscarProdutoPorNome(text).slice(0, 8));
         }, 300);
     };
 
-    const handleProductSelect = async (product) => {
+    const limparBusca = () => {
         setSearchQuery('');
         setSearchResults([]);
-        await addToHistory({
-            id: product.barcode || product.nome,
-            nome: product.nome,
-            categoria: product.categoria,
-            icone: product.icone || '🧪',
-            perigo: product.perigo,
-        });
+    };
+
+    // O histórico é gravado pela TELA DE RESULTADO, para valer para as cinco
+    // entradas (nome, online, código de barras, foto, histórico) e não só para
+    // as duas que passavam por aqui.
+    const handleProductSelect = (product) => {
+        limparBusca();
         navigation.navigate('InfoRotulosResult', { product, source: 'local' });
     };
 
     const handleSearchSubmit = async () => {
-        if (!searchQuery.trim()) return;
+        const consulta = searchQuery.trim();
+        if (!consulta) return;
         setIsSearching(true);
         try {
-            const data = await getSubstanceByName(searchQuery.trim());
+            const data = await getSubstanceByName(consulta);
             if (data) {
-                await addToHistory({
-                    id: data.pubchem_cid || searchQuery,
-                    nome: data.name_pt || searchQuery,
-                    categoria: t('inforotulos.substance', 'Substância'),
-                    icone: '🧪',
-                    perigo: data.severity || 'Indeterminado',
-                });
-                navigation.navigate('InfoRotulosResult', {
-                    substance: data, source: 'pubchem', searchQuery: searchQuery.trim(),
-                });
+                navigation.navigate('InfoRotulosResult', { substance: data, source: 'pubchem', searchQuery: consulta });
             } else {
                 NeoAlert.alert(
                     t('inforotulos.notFoundTitle', 'Substância não encontrada'),
-                    t('inforotulos.notFoundDesc', { query: searchQuery, defaultValue: `"${searchQuery}" não foi encontrada nas bases de dados.` }),
-                    [{ text: 'OK' }]
+                    t('inforotulos.notFoundDesc', { query: consulta, defaultValue: `"${consulta}" não foi encontrada nas bases de dados.` }),
+                    [{ text: 'OK' }],
                 );
             }
         } catch {
             NeoAlert.alert(
                 t('inforotulos.errorTitle', 'Erro'),
-                t('inforotulos.errorDesc', 'Falha na busca. Verifique sua conexão.')
+                t('inforotulos.errorDesc', 'Falha na busca. Verifique sua conexão.'),
             );
         } finally {
             setIsSearching(false);
         }
     };
 
-    const handleBarcodeScan = () => {
-        navigation.navigate('Scanner', { mode: 'barcode_scan', returnTo: 'InfoRotulos' });
-    };
+    const handleBarcodeScan = () => navigation.navigate('Scanner', { mode: 'barcode_scan' });
+    const handleLabelPhoto = () => navigation.navigate('Scanner', { mode: 'label_scan' });
 
     const handleHistorySelect = async (item) => {
+        // 1) leitura de rótulo por IA: o produto lido fica guardado, não se repete a foto
+        if (item.snapshot) {
+            navigation.navigate('InfoRotulosResult', { product: item.snapshot, source: item.origem || 'ai_label' });
+            return;
+        }
+        // 2) produto do catálogo local: não precisa de rede
+        const local = buscarProdutoPorNome(item.nome).find((p) => p.nome === item.nome);
+        if (local) {
+            navigation.navigate('InfoRotulosResult', { product: local, source: 'local' });
+            return;
+        }
+        // 3) substância pesquisada online
         const data = await getSubstanceByName(item.nome);
         if (data) {
-            navigation.navigate('InfoRotulosResult', {
-                substance: data, source: 'cache', searchQuery: item.nome,
-            });
+            navigation.navigate('InfoRotulosResult', { substance: data, source: 'cache', searchQuery: item.nome });
         } else {
             navigation.navigate('InfoRotulosResult', {
-                product: {
-                    nome: item.nome, categoria: item.categoria,
-                    perigo: item.perigo, icone: item.icone,
-                },
+                product: { nome: item.nome, categoria: item.categoria, perigo: item.perigo, icone: item.icone },
                 source: 'history',
             });
         }
     };
 
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Neo.layout.heroBanner;
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateLeft: 'extend',
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
-
-    const titleStr = t('inforotulos.headerTitle', 'Info Rótulos');
-    const capaSource = require('../assets/illustrations/pad/hero_rotulos.jpg');
-
-    const textPrimary = themeColors.neutral[900];
-    const textBody = themeColors.neutral[700];
-    const textMuted = themeColors.neutral[500];
-    const hairline = isDark ? 'rgba(255,255,255,0.08)' : themeColors.neutral[200];
-    const hairlineSoft = isDark ? 'rgba(255,255,255,0.05)' : themeColors.neutral[100];
+    const textPrimary = colors.neutral[900];
+    const textMuted = colors.textOn.muted;
+    const hairline = colors.neutral[300];
 
     return (
         <AppBackground>
-            <StatusBar style="light" translucent backgroundColor="transparent" />
+            <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: 'transparent' }}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-            {/* Float Header / Back Button — mesmo padrao de Cuidar & Proteger / Riscos Fisicos */}
-            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{
-                        width: 44, height: 44, borderRadius: 22,
-                        backgroundColor: 'rgba(0,0,0,0.35)',
-                        justifyContent: 'center', alignItems: 'center',
-                        marginLeft: 16, marginTop: 12,
+                <NeoScreenHeader
+                    title={t('inforotulos.headerTitle', 'Info Rótulos')}
+                    subtitle={t('inforotulos.headerSub', 'Descubra os riscos de um produto')}
+                    onBack={() => navigation.goBack()}
+                />
+
+                {/* "handled": com o teclado aberto, o toque numa sugestão age na hora.
+                    No padrão ("never") o primeiro toque só fechava o teclado. */}
+                <ScrollView
+                    keyboardShouldPersistTaps="handled"
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{
+                        paddingHorizontal: Neo.layout.screenHPadding,
+                        paddingTop: Neo.spacing.sm,
+                        paddingBottom: Neo.layout.scrollBottomFooter,
                     }}
-                    accessibilityRole="button"
-                    accessibilityLabel={t('common.back', 'Voltar')}
                 >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
-
-            {/* "handled": com o teclado aberto, o toque numa sugestão da busca age na
-                hora. No padrão ("never") o primeiro toque só fechava o teclado e a
-                sugestão pedia um segundo — medido no emulador em 28/10/2026. A tela
-                antiga (VigilaroScanHub) tinha este ajuste e a nova o perdeu. */}
-            <Animated.ScrollView
-                keyboardShouldPersistTaps="handled"
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-                contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}
-            >
-                {/* HERO com parallax */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors.neutral[800],
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <ReviewImage
-                        source={capaSource}
-                        style={StyleSheet.absoluteFill}
-                        resizeMode="cover"
-                        accessibilityLabel={titleStr}
-                    />
-                    <View style={{ position: 'absolute', bottom: 24, paddingHorizontal: 22, width: '100%' }}>
-                        <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38 }}>
-                            {titleStr}
-                        </Text>
-                    </View>
-                </Animated.View>
-
-                {/* Main Content */}
-                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
-
-                    {/* CAMPO DE BUSCA */}
-                    <FadeInView delay={80}>
-                        <NeoCard variant="elevated" style={s.searchCard}>
+                    {/* BUSCA */}
+                    <FadeInView delay={60}>
+                        <NeoCard variant="elevated" padding={0}>
                             <View style={s.searchRow}>
                                 <NeoIcon name="SearchNormal1" size={20} color={textMuted} variant="Bold" />
                                 <TextInput
-                                    ref={searchRef}
                                     style={[s.searchInput, { color: textPrimary }]}
                                     placeholder={t('inforotulos.searchPlaceholder', 'Buscar produto ou ingrediente…')}
                                     placeholderTextColor={textMuted}
@@ -243,271 +193,253 @@ export default function InfoRotulosScreen() {
                                     onSubmitEditing={handleSearchSubmit}
                                     returnKeyType="search"
                                     autoCorrect={false}
+                                    maxLength={80}
+                                    accessibilityLabel={t('inforotulos.searchPlaceholder', 'Buscar produto ou ingrediente…')}
                                 />
                                 {searchQuery.length > 0 && (
-                                    <TouchableOpacity onPress={() => { setSearchQuery(''); setSearchResults([]); }}>
+                                    <TouchableOpacity
+                                        onPress={limparBusca}
+                                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                                        accessibilityRole="button"
+                                        accessibilityLabel={t('common.clear', 'Limpar')}
+                                    >
                                         <NeoIcon name="CloseCircle" size={20} color={textMuted} variant="Bold" />
                                     </TouchableOpacity>
                                 )}
-                                {isSearching && <ActivityIndicator size="small" color={Neo.colors.primary[500]} />}
+                                {isSearching && <ActivityIndicator size="small" color={colors.textOn.brand} />}
                             </View>
 
                             {searchResults.length > 0 && (
-                                <View style={[s.searchResults, { borderTopColor: hairline }]}>
-                                    {searchResults.map((item, idx) => (
+                                <View style={[s.resultados, { borderTopColor: hairline }]}>
+                                    {searchResults.map((item) => (
                                         <TouchableOpacity
-                                            key={idx}
-                                            style={[s.searchResultItem, { borderBottomColor: hairlineSoft }]}
+                                            key={item.id || item.nome}
+                                            style={[s.linha, { borderBottomColor: hairline }]}
                                             onPress={() => handleProductSelect(item)}
                                             activeOpacity={0.7}
+                                            accessibilityRole="button"
+                                            accessibilityLabel={`${item.nome}. ${rotuloDoPerigo(item.perigo)}`}
                                         >
-                                            <NeoIcon name={item.icone || 'TestTube'} size={20} color={Neo.colors.neutral[600]} variant="Bold" />
-                                            <View style={{ flex: 1 }}>
-                                                <Body style={[s.searchResultName, { color: textPrimary }]}>{item.nome}</Body>
-                                                <Small style={[s.searchResultCat, { color: textMuted }]}>{item.categoria}</Small>
+                                            <NeoIcon name={iconeSeguro(item.icone)} size={20} color={textMuted} variant="Bold" />
+                                            <View style={s.linhaTexto}>
+                                                <Body style={s.linhaNome}>{item.nome}</Body>
+                                                <Small style={{ color: textMuted }} numberOfLines={1}>{item.categoria}</Small>
                                             </View>
-                                            <View style={[s.perigoTag, { backgroundColor: (item.cor || textMuted) + '22' }]}>
-                                                <Caption style={[s.perigoTagText, { color: item.cor || textBody }]}>
-                                                    {item.perigo}
-                                                </Caption>
-                                            </View>
+                                            <NeoPill label={rotuloDoPerigo(item.perigo)} tom={tomDoPerigo(item.perigo)} />
                                         </TouchableOpacity>
                                     ))}
-                                    <TouchableOpacity style={s.searchOnlineBtn} onPress={handleSearchSubmit} activeOpacity={0.7}>
-                                        <NeoIcon name="SearchNormal1" size={15} color={Neo.colors.primary[700]} variant="Bold" />
-                                        <Caption style={s.searchOnlineText}>
-                                            {t('inforotulos.searchOnline', { query: searchQuery, defaultValue: `Buscar "${searchQuery}" online` })}
-                                        </Caption>
-                                        <NeoIcon name="ArrowRight2" size={14} color={Neo.colors.primary[700]} />
-                                    </TouchableOpacity>
                                 </View>
+                            )}
+
+                            {searchQuery.trim().length >= 2 && (
+                                <TouchableOpacity
+                                    style={[s.online, { borderTopColor: hairline }]}
+                                    onPress={handleSearchSubmit}
+                                    activeOpacity={0.7}
+                                    accessibilityRole="button"
+                                >
+                                    <NeoIcon name="SearchNormal1" size={15} color={colors.textOn.brand} variant="Bold" />
+                                    <Caption style={[s.onlineTexto, { color: colors.textOn.brand }]} numberOfLines={1}>
+                                        {t('inforotulos.searchOnline', { query: searchQuery, defaultValue: `Buscar "${searchQuery}" online` })}
+                                    </Caption>
+                                    <NeoIcon name="ArrowRight2" size={14} color={colors.textOn.brand} />
+                                </TouchableOpacity>
                             )}
                         </NeoCard>
                     </FadeInView>
 
-                    {/* BARCODE — card de acao rapida, mesma linguagem do restante do app */}
-                    <FadeInView delay={150}>
-                        <TouchableOpacity
-                            activeOpacity={0.85}
-                            onPress={handleBarcodeScan}
-                            style={{ marginTop: 14, marginBottom: 14 }}
-                        >
-                            <NeoCard variant="elevated" style={s.actionCard}>
-                                <View style={[s.actionIconWrap, { backgroundColor: Neo.colors.primary[600] + '22' }]}>
-                                    <NeoIcon name="Scan" size={24} color={Neo.colors.primary[600]} variant="Bold" />
-                                </View>
-                                <View style={{ flex: 1, marginLeft: 14 }}>
-                                    <Body style={[s.actionTitle, { color: textPrimary }]}>
-                                        {t('inforotulos.barcodeTitle', 'Escanear código de barras')}
-                                    </Body>
-                                    <Small style={[s.actionSub, { color: textMuted }]}>
-                                        {t('inforotulos.barcodeSub', 'Aponte a câmera para identificar o produto')}
-                                    </Small>
-                                </View>
-                                <NeoIcon name="ArrowRight2" size={18} color={textMuted} />
-                            </NeoCard>
-                        </TouchableOpacity>
+                    {/* AS DUAS FORMAS DE CONSULTAR SEM DIGITAR — a grade da Home, em pequeno */}
+                    <FadeInView delay={120}>
+                        <View style={s.acoes}>
+                            <View style={s.acaoCelula}>
+                                <NeoGlifoCard
+                                    source={GLIFOS.codigo}
+                                    titulo={t('inforotulos.barcodeTitle', 'Escanear código de barras')}
+                                    tom="info"
+                                    arte={68}
+                                    tamanhoTitulo={13}
+                                    style={s.acaoCard}
+                                    onPress={handleBarcodeScan}
+                                    accessibilityLabel={`${t('inforotulos.barcodeTitle', 'Escanear código de barras')}. ${t('inforotulos.barcodeSub', 'Aponte a câmera para identificar o produto')}`}
+                                />
+                            </View>
+                            <View style={s.acaoCelula}>
+                                <NeoGlifoCard
+                                    source={GLIFOS.rotulo}
+                                    titulo={t('inforotulos.labelPhotoTitle', 'Fotografar o rótulo')}
+                                    tom="info"
+                                    arte={68}
+                                    tamanhoTitulo={13}
+                                    style={s.acaoCard}
+                                    onPress={handleLabelPhoto}
+                                    accessibilityLabel={`${t('inforotulos.labelPhotoTitle', 'Fotografar o rótulo')}. ${t('inforotulos.labelPhotoNote', 'A foto do rótulo é lida por inteligência artificial, com a sua permissão.')}`}
+                                />
+                            </View>
+                        </View>
+                        <Caption style={[s.nota, { color: textMuted }]}>
+                            {t('inforotulos.labelPhotoNote', 'A foto do rótulo é lida por inteligência artificial, com a sua permissão.')}
+                        </Caption>
                     </FadeInView>
 
-                    {/* CONTEXTO FAMILIAR */}
+                    {/* PERFIL FAMILIAR */}
                     {familySummary && (
-                        <FadeInView delay={220}>
-                            <NeoCard variant="elevated" style={[
-                                s.familyCard,
-                                familySummary.hasVulnerables
-                                    ? { borderColor: 'rgba(245,158,11,0.4)', borderWidth: 1 }
-                                    : null,
-                            ]}>
-                                <View style={[s.familyIconWrap, {
-                                    backgroundColor: familySummary.hasVulnerables
-                                        ? 'rgba(245,158,11,0.22)'
-                                        : Neo.colors.primary[600] + '22',
-                                }]}>
-                                    <NeoIcon
-                                        name={familySummary.hasVulnerables ? 'Warning2' : 'People'}
-                                        size={20}
-                                        color={familySummary.hasVulnerables ? '#B45309' : Neo.colors.primary[700]}
-                                        variant="Bold"
-                                    />
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Body style={[s.familyTitle, { color: textPrimary }]}>
-                                        {t('inforotulos.familyProfile', 'Seu perfil familiar')}
-                                    </Body>
-                                    <Small style={[s.familyText, { color: textBody }]}>{familySummary.text}</Small>
-                                    {familySummary.hasVulnerables && (
-                                        <Caption style={s.familyWarning}>
-                                            {t('inforotulos.personalizedAlerts', 'Alertas personalizados aparecerão nos resultados.')}
-                                        </Caption>
-                                    )}
+                        <FadeInView delay={180}>
+                            <NeoCard variant="elevated" style={s.familia}>
+                                <NeoIcon
+                                    name={familySummary.hasVulnerables ? 'Warning2' : 'People'}
+                                    size={22}
+                                    color={familySummary.hasVulnerables ? colors.textOn.warning : colors.textOn.brand}
+                                    variant="Bold"
+                                />
+                                <View style={s.linhaTexto}>
+                                    <Body style={s.linhaNome}>{t('inforotulos.familyProfile', 'Seu perfil familiar')}</Body>
+                                    <Small style={{ color: textMuted }}>{familySummary.label}</Small>
+                                    <Caption style={{ color: textMuted, marginTop: 2 }}>
+                                        {t('inforotulos.personalizedAlerts', 'Alertas personalizados aparecerão nos resultados.')}
+                                    </Caption>
                                 </View>
                             </NeoCard>
                         </FadeInView>
                     )}
 
-                    {/* HISTÓRICO */}
-                    <FadeInView delay={280}>
-                        <Eyebrow style={[s.sectionLabel, { color: textMuted }]}>
-                            {t('inforotulos.recentSearches', 'Consultas recentes')}
-                        </Eyebrow>
-                        {history.length > 0 ? (
-                            <NeoCard variant="elevated" style={s.historyCard}>
-                                {history.map((item, idx) => (
-                                    <TouchableOpacity
-                                        key={idx}
-                                        style={[s.historyItem, idx < history.length - 1 && { borderBottomWidth: 1, borderBottomColor: hairlineSoft }]}
-                                        onPress={() => handleHistorySelect(item)}
-                                        activeOpacity={0.7}
-                                    >
-                                        <NeoIcon name={item.icone || 'TestTube'} size={18} color={Neo.colors.neutral[600]} variant="Bold" style={{ marginRight: 12 }} />
-                                        <View style={{ flex: 1 }}>
-                                            <Body style={[s.historyName, { color: textPrimary }]}>{item.nome}</Body>
-                                            <Caption style={[s.historyDate, { color: textMuted }]}>
-                                                {formatRelativeTime(item.consultedAt)}
-                                            </Caption>
-                                        </View>
-                                        <NeoIcon name="ArrowRight2" size={16} color={textMuted} />
-                                    </TouchableOpacity>
-                                ))}
-                            </NeoCard>
-                        ) : (
-                            <NeoCard variant="elevated" style={{ padding: 24, alignItems: 'center', borderRadius: 18 }}>
-                                <NeoIcon name="SearchNormal1" size={32} color={textMuted} />
-                                <Body style={{ color: textMuted, marginTop: 10, textAlign: 'center' }}>
-                                    {t('inforotulos.emptyHistory', 'Seus produtos consultados aparecerão aqui.')}
-                                </Body>
-                                <Caption style={{ color: textMuted, marginTop: 4, textAlign: 'center' }}>
-                                    {t('inforotulos.emptyHistoryHint', 'Use a busca ou o scanner para começar.')}
-                                </Caption>
-                            </NeoCard>
-                        )}
-                    </FadeInView>
-
-                    {/* CIATOX — vermelho solido fixo (reservado a emergencia real, nao segue tema) */}
-                    <FadeInView delay={350}>
-                        <Eyebrow style={[s.sectionLabel, { color: textMuted }]}>
-                            {t('inforotulos.emergencyLabel', 'Em caso de intoxicação')}
-                        </Eyebrow>
-                        <TouchableOpacity
-                            activeOpacity={0.85}
-                            onPress={() => Linking.openURL(`tel:${getPoisonControlDial()}`)}
-                        >
-                            <View style={s.ciatoxCard}>
-                                <View style={s.ciatoxIconWrap}>
-                                    <NeoIcon name="Call" size={22} color="#FFF" variant="Bold" />
-                                </View>
-                                <View style={{ flex: 1, marginLeft: 14 }}>
-                                    <Body style={s.ciatoxTitle}>
-                                        {t('inforotulos.ciatoxTitle', 'CIATOX — Emergência toxicológica')}
+                    {/* CONSULTAS RECENTES */}
+                    <FadeInView delay={240}>
+                        <Eyebrow style={s.eyebrow}>{t('inforotulos.recentSearches', 'Consultas recentes')}</Eyebrow>
+                        <NeoCard variant="elevated" padding={0}>
+                            {history.length > 0 ? history.map((item, idx) => (
+                                <TouchableOpacity
+                                    key={item.id || idx}
+                                    style={[s.linha, idx < history.length - 1 && { borderBottomColor: hairline }, idx === history.length - 1 && { borderBottomWidth: 0 }]}
+                                    onPress={() => handleHistorySelect(item)}
+                                    activeOpacity={0.7}
+                                    accessibilityRole="button"
+                                    accessibilityLabel={`${item.nome}. ${rotuloDoPerigo(item.perigo)}`}
+                                >
+                                    <NeoIcon name={iconeSeguro(item.icone)} size={20} color={textMuted} variant="Bold" />
+                                    <View style={s.linhaTexto}>
+                                        <Body style={s.linhaNome} numberOfLines={1}>{item.nome}</Body>
+                                        {!!item.categoria && <Small style={{ color: textMuted }} numberOfLines={1}>{item.categoria}</Small>}
+                                    </View>
+                                    <NeoPill label={rotuloDoPerigo(item.perigo)} tom={tomDoPerigo(item.perigo)} />
+                                    <NeoIcon name="ArrowRight2" size={16} color={textMuted} />
+                                </TouchableOpacity>
+                            )) : (
+                                <View style={s.vazio}>
+                                    <NeoIcon name="SearchNormal1" size={28} color={textMuted} />
+                                    <Body style={[s.vazioTitulo, { color: textMuted }]}>
+                                        {t('inforotulos.emptyHistory', 'Seus produtos consultados aparecerão aqui.')}
                                     </Body>
-                                    <Small style={s.ciatoxNumber}>
-                                        {t('inforotulos.ciatoxNumber', { defaultValue: '{{poisonControl}} · 24h', poisonControl: getPoisonControlLabel() })}
+                                    <Small style={{ color: textMuted, textAlign: 'center' }}>
+                                        {t('inforotulos.emptyHistoryHint', 'Use a busca ou o scanner para começar.')}
                                     </Small>
                                 </View>
-                                <NeoIcon name="ArrowRight2" size={18} color="rgba(255,255,255,0.85)" />
-                            </View>
-                        </TouchableOpacity>
+                            )}
+                        </NeoCard>
                     </FadeInView>
 
-                    {/* DISCLAIMER — em destaque, nunca letra miuda (feedback_disclaimers_destaque) */}
-                    <View style={[s.disclaimerBox, {
-                        backgroundColor: themeColors.feedback.warning + '1A',
-                        borderColor: themeColors.feedback.warning + '40',
-                    }]}>
-                        <NeoIcon name="InfoCircle" size={18} color={themeColors.feedback.warning} variant="Bold" />
-                        <Small style={[s.disclaimerText, { color: textBody }]}>
-                            {t('inforotulos.disclaimer', 'O Vigilaro Care não substitui avaliação de um toxicologista, engenheiro químico ou profissional de saúde. Use as informações como referência educativa. Em caso de intoxicação, ligue imediatamente para o CIATOX ou SAMU.')}
-                        </Small>
-                    </View>
-                </View>
-            </Animated.ScrollView>
+                    {/* INTOXICAÇÃO — o tom de "ação necessária", o mesmo do card de Vistorias com pendências */}
+                    <FadeInView delay={300}>
+                        <Eyebrow style={s.eyebrow}>{t('inforotulos.emergencyLabel', 'Em caso de intoxicação')}</Eyebrow>
+                        <NeoGlifoCard
+                            source={GLIFOS.intoxicacao}
+                            titulo={t('inforotulos.ciatoxTitle', 'CIATOX — Emergência toxicológica')}
+                            sub={t('inforotulos.ciatoxNumber', { defaultValue: '{{poisonControl}} · 24h', poisonControl: getPoisonControlLabel() })}
+                            tom="error"
+                            largo
+                            seta
+                            arte={80}
+                            tamanhoTitulo={15}
+                            style={s.intoxicacao}
+                            onPress={() => Linking.openURL(`tel:${getPoisonControlDial()}`)}
+                        />
+                    </FadeInView>
+
+                    <SafetyDisclaimer variant="produto" style={{ marginTop: Neo.spacing.lg }} />
+                </ScrollView>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
-function formatRelativeTime(timestamp) {
-    if (!timestamp) return '';
-    const diff = Date.now() - timestamp;
-    const mins = Math.floor(diff / 60000);
-    if (mins < 60) return `há ${mins} min`;
-    const hours = Math.floor(mins / 60);
-    if (hours < 24) return `há ${hours}h`;
-    const days = Math.floor(hours / 24);
-    if (days < 7) return `há ${days} dia${days > 1 ? 's' : ''}`;
-    return `há ${Math.floor(days / 7)} semana${Math.floor(days / 7) > 1 ? 's' : ''}`;
-}
-
 const s = StyleSheet.create({
-    // Section labels (cor aplicada inline via textMuted, theme-aware)
-    sectionLabel: {
-        fontSize: 11, fontWeight: '900',
-        letterSpacing: 1.6, marginTop: 22, marginBottom: 10, textTransform: 'uppercase',
+    searchRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        paddingHorizontal: 16,
+        minHeight: 52,
     },
-
-    // Search — fundo/borda vem do proprio NeoCard (glass theme-aware), so estrutura aqui
-    searchCard: {
-        borderRadius: 20, padding: 0, overflow: 'hidden',
+    searchInput: {
+        flex: 1,
+        fontSize: 16,
+        paddingVertical: 12,
     },
-    searchRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 10 },
-    searchInput: { flex: 1, fontSize: 15, fontWeight: '500' },
-    searchResults: { borderTopWidth: 1 },
-    searchResultItem: {
-        flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12,
-        borderBottomWidth: 1,
+    resultados: {
+        borderTopWidth: StyleSheet.hairlineWidth,
     },
-    searchResultIcon: { fontSize: 22, marginRight: 12 },
-    searchResultName: { fontSize: 14, fontWeight: '700' },
-    searchResultCat: { marginTop: 1 },
-    perigoTag: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8 },
-    perigoTagText: { fontSize: 9.5, fontWeight: '800', letterSpacing: 0.3 },
-    searchOnlineBtn: {
-        flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 8,
-        backgroundColor: 'rgba(16,185,129,0.15)',
+    linha: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderBottomWidth: StyleSheet.hairlineWidth,
     },
-    searchOnlineText: { flex: 1, fontWeight: '700', color: '#81C784', fontSize: 12 },
-
-    // Generic action card (Barcode)
-    actionCard: {
-        flexDirection: 'row', alignItems: 'center', padding: 14, borderRadius: 18,
+    linhaTexto: {
+        flex: 1,
+        minWidth: 0,
     },
-    actionIconWrap: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
-    actionTitle: { fontWeight: '800', fontSize: 15, marginBottom: 2 },
-    actionSub: { lineHeight: 16 },
-
-    // Family card
-    familyCard: {
-        flexDirection: 'row', alignItems: 'flex-start', padding: 14, borderRadius: 18, gap: 12,
+    linhaNome: {
+        fontWeight: '700',
     },
-    familyIconWrap: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
-    familyTitle: { fontWeight: '800', marginBottom: 2 },
-    familyText: { lineHeight: 17 },
-    familyWarning: { color: '#F59E0B', fontWeight: '700', marginTop: 6 },
-
-    // History
-    historyCard: {
-        padding: 0, borderRadius: 18, overflow: 'hidden',
+    online: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderTopWidth: StyleSheet.hairlineWidth,
     },
-    historyItem: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12 },
-    historyName: { fontWeight: '700', fontSize: 14 },
-    historyDate: { marginTop: 1 },
-
-    // CIATOX — vermelho sólido: emergência = sempre visível. Usa DS feedback.error.
-    ciatoxCard: {
-        flexDirection: 'row', alignItems: 'center', backgroundColor: Neo.colors.feedback.error, padding: 14, borderRadius: 18,
+    onlineTexto: {
+        flex: 1,
+        fontWeight: '700',
     },
-    ciatoxIconWrap: {
-        width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.22)',
-        alignItems: 'center', justifyContent: 'center',
+    acoes: {
+        flexDirection: 'row',
+        gap: Neo.spacing.sm + 4,
+        marginTop: Neo.spacing.md,
     },
-    ciatoxTitle: { fontWeight: '800', color: '#FFF', fontSize: 14 },
-    ciatoxNumber: { color: 'rgba(255,255,255,0.85)', marginTop: 2 },
-
-    // Disclaimer — em destaque (icone + fundo de aviso), nunca letra miuda apagada
-    disclaimerBox: {
-        flexDirection: 'row', alignItems: 'flex-start', gap: 10,
-        marginTop: 22, padding: 14, borderRadius: 14, borderWidth: 1,
+    acaoCelula: {
+        flex: 1,
     },
-    disclaimerText: {
-        flex: 1, lineHeight: 18, fontSize: 12.5,
+    acaoCard: {
+        height: 112,
+    },
+    nota: {
+        marginTop: Neo.spacing.sm,
+        lineHeight: 16,
+    },
+    familia: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 14,
+        marginTop: Neo.spacing.md,
+    },
+    eyebrow: {
+        marginTop: Neo.spacing.lg,
+        marginBottom: Neo.spacing.sm,
+    },
+    vazio: {
+        alignItems: 'center',
+        gap: 6,
+        paddingVertical: 28,
+        paddingHorizontal: 20,
+    },
+    vazioTitulo: {
+        textAlign: 'center',
+        marginTop: 4,
+    },
+    intoxicacao: {
+        height: 92,
     },
 });

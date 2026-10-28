@@ -98,8 +98,10 @@ const HIDDEN_ROUTES = new Set([
   'SOSEmergencyMode', 'SOSCountdown',
   'ModoSituacaoAtiva', 'EncerrarSituacao', 'EmergenciaRapida',
 
-  // 3. Câmera — a barra tapa o enquadramento.
-  'ScannerScreen', 'Camera',
+  // 3. Câmera — a barra tapa o enquadramento. A rota do Scanner se chama
+  //    'Scanner' (App.js); a lista só trazia 'ScannerScreen' (o nome do
+  //    COMPONENTE), então a regra nunca valeu e a barra cobria o disparador.
+  'Scanner', 'ScannerScreen', 'Camera',
 ]);
 
 // ---------------------------------------------------------------------------

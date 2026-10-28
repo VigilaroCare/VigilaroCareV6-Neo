@@ -353,3 +353,16 @@ export const RESUMO_FAMILIA = {
         varios: '{{n}} anos', varios_en: '{{n}} years', varios_es: '{{n}} años', varios_ptpt: '{{n}} anos',
     },
 };
+
+// ── Nível de perigo de um produto, como aparece na pílula ────────────────────
+// A chave é o valor que o catálogo e as bases gravam em `perigo`. Combinações do
+// catálogo ("Médio (Humanos) / Mortal (Gatos)") não estão aqui: mantêm o texto
+// original, porque o qualificador é parte da informação.
+export const ROTULO_DO_PERIGO = {
+    'Extremo':       { label: 'Extremo',       label_en: 'Extreme',      label_es: 'Extremo',   label_ptpt: 'Extremo' },
+    'Muito Alto':    { label: 'Muito alto',    label_en: 'Very high',    label_es: 'Muy alto',  label_ptpt: 'Muito alto' },
+    'Alto':          { label: 'Alto',          label_en: 'High',         label_es: 'Alto',      label_ptpt: 'Alto' },
+    'Médio':         { label: 'Médio',         label_en: 'Medium',       label_es: 'Medio',     label_ptpt: 'Médio' },
+    'Baixo':         { label: 'Baixo',         label_en: 'Low',          label_es: 'Bajo',      label_ptpt: 'Baixo' },
+    'Indeterminado': { label: 'Indeterminado', label_en: 'Undetermined', label_es: 'Indeterminado', label_ptpt: 'Indeterminado' },
+};

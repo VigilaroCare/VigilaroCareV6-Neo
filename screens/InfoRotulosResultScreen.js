@@ -3,7 +3,7 @@
  * Tela de resultado do InfoRótulos
  *
  * Exibe:
- *   - Header colorido por severidade (sinal visual crítico para segurança)
+ *   - Card retroiluminado no tom do perigo (sinal visual crítico para segurança)
  *   - Alertas personalizados (RuleEngine × Perfil)
  *   - Classificação GHS traduzida
  *   - Primeiros socorros por via de exposição
@@ -12,7 +12,7 @@
  *   - Re-escanear via câmera (opcional)
  */
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
     Linking, ActivityIndicator,
@@ -25,7 +25,14 @@ import { DS as Neo } from '../utils/DesignSystem2026';
 import AppBackground from '../components/AppBackground';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
+import NeoScreenHeader from '../components/NeoScreenHeader';
+import NeoGlifoCard from '../components/NeoGlifoCard';
+import NeoPill from '../components/NeoPill';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
 import { Small, Caption } from "../components/NeoTypography";
+import { useIsDark, useThemeColors } from '../utils/ThemeContext';
+import { addToHistory } from '../services/inforotulos_cache';
+import { tomDoPerigo, rotuloDoPerigo, tomDaSeveridade, iconeDaSeveridade } from '../utils/perigoProduto';
 import FadeInView from '../components/FadeInView';
 import { useTranslation } from 'react-i18next';
 import { SkeletonCard } from '../components/SkeletonLoader';
@@ -34,30 +41,18 @@ import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
 import { getPoisonControlDial, getPoisonControlLabel, resolveEmergencyTokensDeep } from '../utils/emergencyTokens';
-import SafeGradient from '../components/SafeGradient';
 import { tx } from '../utils/txFixo';
 
-// Cores por severidade — agora centralizadas no Design System (DS.severity)
-// Mapeador: nome em português (vindo dos dados) → chave canônica no DS
-const SEVERITY_KEY_MAP = {
-    'Extremo':       'extreme',
-    'Muito Alto':    'veryHigh',
-    'Alto':          'high',
-    'Médio':         'medium',
-    'Baixo':         'low',
-    'Indeterminado': 'indeterminate',
-};
-const getSeverityColor = (label) => {
-    const key = SEVERITY_KEY_MAP[label] || SEVERITY_KEY_MAP[findClosestSeverity(label)] || 'indeterminate';
-    return Neo.severity[key];
-};
+// Glifos do resultado: o do produto no topo, o do centro de intoxicação no fim.
+const GLIFO_PRODUTO = require('../assets/illustrations/glifos/pictogram-produtos.png');
+const GLIFO_INTOXICACAO = require('../assets/illustrations/glifos/pictogram-primeiros-socorros.png');
 
 // Pictogramas funcionais (não "cara de IA" — iconografia universal de primeiros socorros)
 const FIRST_AID_ICONS = {
-    ingestao:        { emoji: '💧', label: 'Se INGERIR' },
-    contato_pele:    { emoji: '✋', label: 'Se TOCAR NA PELE' },
-    contato_olhos:   { emoji: '👁️', label: 'Se CAIR NOS OLHOS' },
-    inalacao:        { emoji: '💨', label: 'Se INALAR' },
+    ingestao:        { emoji: '💧', get label() { return tx('telas.InfoRotulosResultScreen.seIngerir', 'Se INGERIR'); } },
+    contato_pele:    { emoji: '✋', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
+    contato_olhos:   { emoji: '👁️', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
+    inalacao:        { emoji: '💨', get label() { return tx('telas.InfoRotulosResultScreen.seInalar', 'Se INALAR'); } },
     pele:            { emoji: '✋', get label() { return tx('telas.InfoRotulosResultScreen.seTocarPele', 'Se TOCAR NA PELE'); } },
     olhos:           { emoji: '👁️', get label() { return tx('telas.InfoRotulosResultScreen.seCairOlhos', 'Se CAIR NOS OLHOS'); } },
     queimadura:      { emoji: '🔥', get label() { return tx('telas.InfoRotulosResultScreen.seQueimar', 'Se QUEIMAR'); } },
@@ -73,6 +68,12 @@ const SOURCE_LABELS = {
     open_beauty_facts:   { label: 'Open Beauty Facts', color: Neo.colors.categoria.rose.fill },
     open_products_facts: { label: 'Open Products Facts', color: Neo.colors.categoria.ocre.fill },
     upcitemdb:           { label: 'UPCitemdb', color: Neo.colors.categoria.ameixa.fill },
+    // PubChem (busca online), o cache dela e o histórico caíam em "Não encontrado":
+    // não havia entrada para eles aqui.
+    pubchem:             { get label() { return tx('telas.InfoRotulosResultScreen.fontePubchem', 'PubChem (NIH)'); }, color: Neo.colors.categoria.ardosia.fill },
+    cache:               { get label() { return tx('telas.InfoRotulosResultScreen.fontePubchem', 'PubChem (NIH)'); }, color: Neo.colors.categoria.ardosia.fill },
+    history:             { get label() { return tx('telas.InfoRotulosResultScreen.fonteHistorico', 'Histórico'); }, color: '#9E9E9E' },
+    ai_label:            { get label() { return tx('telas.InfoRotulosResultScreen.fonteIA', 'Leitura por IA'); }, color: Neo.colors.categoria.ameixa.fill },
     not_found:           { get label() { return tx('telas.InfoRotulosResultScreen.fonteNaoEncontrado', 'Não encontrado'); }, color: '#9E9E9E' },
 };
 
@@ -99,10 +100,35 @@ export default function InfoRotulosResultScreen() {
     const categoria = productData.categoria || 'Substância';
     const brandName = marca || productData.marca || '';
     const perigo = productData.perigo || substanceData?.severity || 'Indeterminado';
-    const severityColor = getSeverityColor(perigo);
     const sourceInfo = SOURCE_LABELS[source] || SOURCE_LABELS['not_found'];
 
-    const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb'].includes(source);
+    const isExternalSource = ['open_food_facts', 'open_beauty_facts', 'open_products_facts', 'upcitemdb', 'ai_label'].includes(source);
+    const isDark = useIsDark();
+    const colors = useThemeColors();
+
+    // Toda consulta entra no histórico DAQUI, qualquer que seja a entrada: nome,
+    // busca online, código de barras, foto do rótulo ou o próprio histórico. Antes
+    // só as duas que passavam pelo hub gravavam, então o que se escaneava nunca
+    // aparecia em "Consultas recentes". Espera o resultado ficar definitivo (nome
+    // e perigo podem chegar do enriquecimento) e grava uma vez só.
+    const registrado = useRef(false);
+    useEffect(() => {
+        if (loading || enriching || registrado.current) return;
+        registrado.current = true;
+        const id = source === 'ai_label'
+            ? `ia:${String(nome).toLowerCase()}`
+            : (productData.id || productData.barcode || substanceData?.pubchem_cid || searchQuery || nome);
+        addToHistory({
+            id: String(id),
+            nome,
+            categoria,
+            icone: productData.icone || 'TestTube',
+            perigo,
+            origem: source,
+            // a leitura por IA fica guardada: reabrir não repete a foto nem a chamada
+            ...(source === 'ai_label' && product ? { snapshot: product } : {}),
+        });
+    }, [loading, enriching]);
 
     useEffect(() => {
         initialize();
@@ -171,78 +197,47 @@ export default function InfoRotulosResultScreen() {
 
     return (
         <AppBackground>
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['left', 'right']}>
-                <StatusBar style="light" />
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={{ paddingBottom: 220 }}>
+                <NeoScreenHeader
+                    title={t('inforotulos.headerTitle', 'Info Rótulos')}
+                    onBack={() => navigation.goBack()}
+                />
 
-                    {/* HERO colorido por severidade — sinal de risco instantâneo */}
-                    <SafeGradient
-                        colors={[severityColor.bg, severityColor.bg + 'CC']}
-                        style={s.heroHeader}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 0, y: 1 }}
-                    >
-                        <SafeAreaView edges={['top']}>
-                            <View style={s.heroNav}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.goBack()}
-                                    style={s.heroBackBtn}
-                                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                                    accessibilityRole="button"
-                                    accessibilityLabel={t('common.back', 'Voltar')}
-                                >
-                                    <NeoIcon name="ArrowLeft2" size={22} color={severityColor.text} />
-                                </TouchableOpacity>
-                                <Caption style={{ color: severityColor.text, opacity: 0.85, fontWeight: '700', letterSpacing: 0.5 }}>
-                                    {t('headersFirst.infoRTulos', 'INFO RÓTULOS')}
-                                </Caption>
-                            </View>
-                        </SafeAreaView>
-
-                        <View style={s.heroContent}>
-                            <NeoIcon name={productData.icone || 'TestTube'} size={34} color={severityColor.text} variant="Bold" />
-                            <Text style={[s.heroTitle, { color: severityColor.text }]}>{nome}</Text>
-                            {brandName ? (
-                                <Text style={[s.heroSubtitle, { color: severityColor.text, fontWeight: '600' }]}>
-                                    {brandName}
-                                </Text>
-                            ) : null}
-                            {/* Marca e categoria em cor CHEIA. Eram severityColor.text + 'DD'/'BB',
-                                e text vale '#FFF' (3 dígitos): a soma dá '#FFFDD', cor inválida que
-                                o Android troca por PRETO — preto sobre o vermelho da severidade,
-                                3,81:1, medido no emulador em 28/10/2026. Todas as severidades do DS
-                                dão 4,5:1 ou mais com branco puro; a hierarquia fica pelo peso. */}
-                            <Text style={[s.heroSubtitle, { color: severityColor.text }]}>{categoria}</Text>
-
-                            <View style={s.heroBadges}>
-                                <View style={[s.severityBadge, { backgroundColor: severityColor.accent + '30', flexDirection: 'row', alignItems: 'center' }]}>
-                                    {/* O nível de perigo vinha como bolinha colorida em emoji
-                                        (🔴🟠🟡🟢) concatenada ao texto. O ícone traz a cor do
-                                        DS via `severityColor`, em vez da cor fixa do emoji. */}
-                                    <NeoIcon
-                                        name={NIVEIS_PERIGO[perigo]?.icone || 'Warning2'}
-                                        size={12}
-                                        color={severityColor.text}
-                                        variant="Bold"
-                                        style={{ marginRight: 5 }}
-                                    />
-                                    <Text style={[s.severityText, { color: severityColor.text }]}>
-                                        {perigo.toUpperCase()}
-                                    </Text>
-                                </View>
-
-                                <View style={[s.sourceBadge, { backgroundColor: 'rgba(255,255,255,0.18)' }]}>
-                                    <View style={[s.sourceDot, { backgroundColor: sourceInfo.color }]} />
-                                    <Text style={[s.sourceText, { color: severityColor.text }]}>
-                                        {sourceInfo.label}
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-                    </SafeGradient>
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
 
                     <View style={s.contentArea}>
+
+                        {/* TOPO — a linguagem da Home. O sinal de risco instantâneo que o slab
+                            vermelho dava, agora num card retroiluminado cujo TOM é o do perigo:
+                            terracota = ação necessária, âmbar = atenção, verde = baixo, grafite
+                            = indeterminado. O nível também vai ESCRITO na pílula (WCAG 1.4.1:
+                            cor nunca é o único sinal). */}
+                        <NeoGlifoCard
+                            source={GLIFO_PRODUTO}
+                            titulo={nome}
+                            sub={[brandName, categoria].filter(Boolean).join(' · ')}
+                            tom={tomDoPerigo(perigo)}
+                            arte={104}
+                            tamanhoTitulo={22}
+                            style={s.heroCard}
+                            rodape={(
+                                <NeoPill
+                                    sobreCampo
+                                    icone={NIVEIS_PERIGO[perigo]?.icone || 'Warning2'}
+                                    label={`${t('inforotulos.hazardLevel', 'Perigo')}: ${rotuloDoPerigo(perigo)}`}
+                                />
+                            )}
+                        />
+                        <View style={s.fonteLinha}>
+                            <NeoPill label={sourceInfo.label} tom="muted" />
+                        </View>
+
+                        {/* Conteúdo de IA é SEMPRE identificado como tal. */}
+                        {source === 'ai_label' && (
+                            <SafetyDisclaimer variant="ia" style={{ marginTop: Neo.spacing.sm }} />
+                        )}
 
                         {loading && (
                             <View style={{ marginTop: 12 }}>
@@ -254,34 +249,37 @@ export default function InfoRotulosResultScreen() {
                         {alerts.length > 0 && (
                             <FadeInView delay={100}>
                                 <Text style={s.sectionLabel}>{(t('scanner.resultAlerts', 'Alertas para você') || '').toUpperCase()}</Text>
-                                {alerts.map((alert, idx) => (
-                                    <NeoCard
-                                        key={idx}
-                                        variant="elevated"
-                                        style={[s.alertCard, { borderLeftWidth: 4, borderLeftColor: alert.color }]}
-                                    >
-                                        <View style={s.alertHeader}>
-                                            <Text style={{ fontSize: 20 }}>{alert.icon}</Text>
-                                            <View style={[s.alertSeverityTag, { backgroundColor: alert.color + '20' }]}>
-                                                <Text style={[s.alertSeverityText, { color: alert.color }]}>
-                                                    {alert.label}
-                                                </Text>
+                                {alerts.map((alert, idx) => {
+                                    // O TEXTO do alerta usa a cor aferida em AA (textOn); a cor de
+                                    // alert.color — um laranja de 2,8:1 sobre branco — fica só na
+                                    // faixa lateral, que é decoração. O nível vai escrito na pílula.
+                                    const tom = tomDaSeveridade(alert.severity);
+                                    const tinta = colors.textOn[tom];
+                                    return (
+                                        <NeoCard
+                                            key={idx}
+                                            variant="elevated"
+                                            style={[s.alertCard, { borderLeftWidth: 4, borderLeftColor: alert.color }]}
+                                        >
+                                            <View style={s.alertHeader}>
+                                                <NeoIcon name={iconeDaSeveridade(alert.severity)} size={22} color={tinta} variant="Bold" />
+                                                <NeoPill label={alert.label} tom={tom} />
                                             </View>
-                                        </View>
 
-                                        <Text style={[s.alertTitle, { color: alert.color }]}>{alert.title}</Text>
-                                        <Text style={s.alertMessage}>{alert.message}</Text>
+                                            <Text style={[s.alertTitle, { color: tinta }]}>{alert.title}</Text>
+                                            <Text style={s.alertMessage}>{alert.message}</Text>
 
-                                        {alert.action && (
-                                            <View style={s.alertAction}>
-                                                <NeoIcon name="ShieldTick" size={14} color={alert.color} variant="Bold" />
-                                                <Text style={[s.alertActionText, { color: alert.color }]}>
-                                                    {alert.action}
-                                                </Text>
-                                            </View>
-                                        )}
-                                    </NeoCard>
-                                ))}
+                                            {alert.action && (
+                                                <View style={s.alertAction}>
+                                                    <NeoIcon name="ShieldTick" size={16} color={tinta} variant="Bold" />
+                                                    <Text style={[s.alertActionText, { color: tinta }]}>
+                                                        {alert.action}
+                                                    </Text>
+                                                </View>
+                                            )}
+                                        </NeoCard>
+                                    );
+                                })}
                             </FadeInView>
                         )}
 
@@ -427,19 +425,20 @@ export default function InfoRotulosResultScreen() {
                             </FadeInView>
                         )}
 
-                        {/* CIATOX — emergência, fica em vermelho destacado */}
+                        {/* CIATOX — o tom de "ação necessária", o mesmo do hub e do card de Vistorias */}
                         <FadeInView delay={450}>
-                            <TouchableOpacity
-                                activeOpacity={0.85}
+                            <NeoGlifoCard
+                                source={GLIFO_INTOXICACAO}
+                                titulo={t('scanner.callCiatox', 'Ligar para o CIATOX')}
+                                sub={t('scanner.ciatoxNumber', { defaultValue: '{{poisonControl}} · gratuito 24h', poisonControl: getPoisonControlLabel() })}
+                                tom="error"
+                                largo
+                                seta
+                                arte={80}
+                                tamanhoTitulo={16}
+                                style={s.ciatoxCard}
                                 onPress={() => Linking.openURL(`tel:${getPoisonControlDial()}`)}
-                                style={s.ciatoxButton}
-                            >
-                                <NeoIcon name="Call" size={22} color="#FFF" variant="Bold" />
-                                <View style={{ flex: 1, marginLeft: 12 }}>
-                                    <Text style={s.ciatoxTitle}>{t('scanner.callCiatox', 'Ligar para o CIATOX')}</Text>
-                                    <Text style={s.ciatoxNumber}>{t('scanner.ciatoxNumber', { defaultValue: '{{poisonControl}} · gratuito 24h', poisonControl: getPoisonControlLabel() })}</Text>
-                                </View>
-                            </TouchableOpacity>
+                            />
                         </FadeInView>
 
                         {/* ESCANEAR ROTULO — re-uso da câmera */}
@@ -478,98 +477,8 @@ export default function InfoRotulosResultScreen() {
     );
 }
 
-// Casamento de severidade para variantes como "Médio (Humanos) / Mortal (Gatos)"
-function findClosestSeverity(perigo) {
-    if (!perigo) return 'Indeterminado';
-    const p = perigo.toLowerCase();
-    if (p.includes('extremo') || p.includes('mortal') || p.includes('fatal')) return 'Extremo';
-    if (p.includes('muito alto')) return 'Muito Alto';
-    if (p.includes('alto')) return 'Alto';
-    if (p.includes('médio') || p.includes('medio')) return 'Médio';
-    if (p.includes('baixo')) return 'Baixo';
-    return 'Indeterminado';
-}
-
 const s = StyleSheet.create({
     // Hero Header
-    heroHeader: {
-        paddingBottom: 30,
-        borderBottomLeftRadius: 32,
-        borderBottomRightRadius: 32,
-    },
-    heroNav: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: Neo.spacing.md,
-        paddingBottom: 4,
-        gap: 12,
-    },
-    heroBackBtn: {
-        width: 38,
-        height: 38,
-        borderRadius: 12,
-        backgroundColor: 'rgba(255,255,255,0.18)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    heroContent: {
-        alignItems: 'center',
-        paddingHorizontal: Neo.spacing.lg,
-        paddingTop: 10,
-    },
-    heroIcon: {
-        fontSize: 48,
-        marginBottom: 8,
-    },
-    heroTitle: {
-        fontSize: 24,
-        fontWeight: '800',
-        textAlign: 'center',
-        marginBottom: 4,
-        letterSpacing: -0.5,
-    },
-    heroSubtitle: {
-        fontSize: 14,
-        fontWeight: '500',
-        textAlign: 'center',
-        marginBottom: 12,
-    },
-    heroBadges: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 8,
-        marginTop: 4,
-    },
-    severityBadge: {
-        paddingHorizontal: 16,
-        paddingVertical: 6,
-        borderRadius: 12,
-    },
-    severityText: {
-        fontSize: 13,
-        fontWeight: '900',
-        letterSpacing: 1,
-    },
-    sourceBadge: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 12,
-        paddingVertical: 5,
-        borderRadius: 10,
-        gap: 6,
-    },
-    sourceDot: {
-        width: 7,
-        height: 7,
-        borderRadius: 3.5,
-    },
-    sourceText: {
-        fontSize: 11,
-        fontWeight: '700',
-        letterSpacing: 0.3,
-    },
     ingredientesText: {
         fontSize: 13,
         color: Neo.colors.neutral[700],
@@ -586,8 +495,18 @@ const s = StyleSheet.create({
 
     // Content
     contentArea: {
-        padding: Neo.spacing.lg,
-        marginTop: -16,
+        paddingHorizontal: Neo.spacing.lg,
+        paddingTop: Neo.spacing.sm,
+    },
+    heroCard: {
+        height: 168,
+    },
+    fonteLinha: {
+        marginTop: Neo.spacing.sm,
+    },
+    ciatoxCard: {
+        height: 92,
+        marginTop: Neo.spacing.md,
     },
     sectionLabel: {
         fontSize: 11.5,
@@ -645,7 +564,9 @@ const s = StyleSheet.create({
         borderTopColor: 'rgba(0,0,0,0.05)',
     },
     alertActionText: {
-        fontSize: 12,
+        flex: 1,
+        fontSize: 13,
+        lineHeight: 18,
         fontWeight: '700',
     },
 
@@ -759,26 +680,6 @@ const s = StyleSheet.create({
     },
 
     // CIATOX — vermelho de emergência (mantido)
-    ciatoxButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#D32F2F',
-        borderRadius: 16,
-        padding: 18,
-        marginTop: Neo.spacing.lg,
-    },
-    ciatoxTitle: {
-        fontSize: 16,
-        fontWeight: '800',
-        color: '#FFF',
-    },
-    ciatoxNumber: {
-        fontSize: 12,
-        color: 'rgba(255,255,255,0.85)',
-        marginTop: 2,
-    },
-
-    // Action button (escanear)
     actionButton: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -794,7 +695,6 @@ const s = StyleSheet.create({
         width: 36,
         height: 36,
         borderRadius: 18,
-        backgroundColor: Neo.colors.primary[600] + '1A',
         alignItems: 'center',
         justifyContent: 'center',
     },

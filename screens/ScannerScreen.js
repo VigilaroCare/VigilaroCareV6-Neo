@@ -1,3 +1,18 @@
+/**
+ * ScannerScreen.js — a câmera do app.
+ *
+ * Três modos, escolhidos por quem abre a tela (route.params.mode):
+ *   - 'environment'  (padrão)  foto de um cômodo; a IA lista os riscos que enxerga.
+ *                              É o que o ícone "Scanner Ambiente" da Home abre.
+ *   - 'barcode_scan'           lê o código de barras; resultado no Info Rótulos.
+ *   - 'label_scan'             foto do rótulo; a IA lê o que está impresso;
+ *                              resultado no Info Rótulos.
+ *
+ * Até 28/10/2026 esta tela abria numa "intro" de três cards ("Scanner
+ * Inteligente") que levavam todos à mesma câmera, e dois deles eram do Info
+ * Rótulos. A intro saiu: o ícone chama a câmera do que o nome promete, e as duas
+ * formas de consultar produto passaram a morar no Info Rótulos.
+ */
 import { useState, useRef, useEffect } from "react";
 import {
   View,
@@ -13,14 +28,17 @@ import {
   AccessibilityInfo,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useIsFocused } from '@react-navigation/native';
 import { useAccessibility } from '../context/AccessibilityContext';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import NeoIcon from '../components/NeoIcon';
 import NeoCard from '../components/NeoCard';
-import ReviewImage from '../components/ReviewImage';
-import FadeInView from '../components/FadeInView';
+import NeoPill from '../components/NeoPill';
+import NeoScreenHeader from '../components/NeoScreenHeader';
+import AppBackground from '../components/AppBackground';
+import SafetyDisclaimer from '../components/SafetyDisclaimer';
+import { Body, Small, H3 } from '../components/NeoTypography';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import { useThemeColors, useIsDark } from '../utils/ThemeContext';
 import { VisionService } from '../services/VisionService';
@@ -29,136 +47,16 @@ import GamificationService from '../services/GamificationService';
 import { resolveBarcode } from '../services/InfoRotulosSubstanceService';
 import { Config } from '../utils/Config';
 import { useTranslation } from 'react-i18next';
-import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
-import SafetyDisclaimer from '../components/SafetyDisclaimer';
+import { tomDoPerigo, rotuloDoPerigo } from '../utils/perigoProduto';
 
+const { width } = Dimensions.get('window');
 
-const { width, height } = Dimensions.get('window');
-
-// INTRO COMPONENT — hero com foto+gradiente+parallax e cards theme-aware,
-// mesmo padrao do resto do app (Cuidar&Proteger, Riscos Fisicos, Info Rotulos).
-const ScannerIntro = ({ onSelectMode, onClose }) => {
-  const { t } = useTranslation();
-  const colors = useThemeColors();
-  const isDark = useIsDark();
-
-  const scrollY = useRef(new Animated.Value(0)).current;
-  const HERO_HEIGHT = Neo.layout.heroBanner;
-  const heroTransform = [
-    {
-      translateY: scrollY.interpolate({
-        inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-        outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-        extrapolate: 'clamp',
-      })
-    },
-    {
-      scale: scrollY.interpolate({
-        inputRange: [-HERO_HEIGHT, 0],
-        outputRange: [2, 1],
-        extrapolateLeft: 'extend',
-        extrapolateRight: 'clamp',
-      })
-    }
-  ];
-
-  const textMuted = colors.neutral[500];
-  const textBody = colors.neutral[700];
-
-  const MODES = [
-    { key: 'environment', icon: 'Home2', color: '#0284C7', title: t('scanner.modeEnv'), desc: t('scanner.modeEnvDesc'), trailingIcon: 'ArrowRight2' },
-    { key: 'label_scan', icon: 'DocumentText', color: '#9333EA', title: t('scanner.modeLabel'), desc: t('scanner.modeLabelDesc'), trailingIcon: 'Camera' },
-    { key: 'barcode_scan', icon: 'Barcode', color: Neo.colors.primary[600], title: t('scanner.modeBarcode'), desc: t('scanner.modeBarcodeDesc'), trailingIcon: 'ArrowRight2' },
-  ];
-
-  return (
-    <AppBackground>
-      <StatusBar style="light" translucent backgroundColor="transparent" />
-
-      <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-        <TouchableOpacity
-          onPress={onClose}
-          style={{
-            width: 44, height: 44, borderRadius: 22,
-            backgroundColor: 'rgba(0,0,0,0.35)',
-            justifyContent: 'center', alignItems: 'center',
-            marginLeft: 16, marginTop: 12,
-          }}
-          accessibilityRole="button"
-          accessibilityLabel={t('common.close', 'Fechar')}
-        >
-          <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-        </TouchableOpacity>
-      </SafeAreaView>
-
-      <Animated.ScrollView
-        showsVerticalScrollIndicator={false}
-        scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}
-        contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}
-      >
-        {/* HERO com parallax */}
-        <Animated.View style={{
-          width: '100%',
-          height: HERO_HEIGHT,
-          backgroundColor: colors.neutral[800],
-          overflow: 'hidden',
-          transform: heroTransform,
-        }}>
-          <ReviewImage
-            source={require('../assets/illustrations/pad/hero_rotulos.jpg')}
-            style={StyleSheet.absoluteFill}
-            resizeMode="cover"
-            accessibilityLabel={t('scanner.introTitle')}
-          />
-          <View style={{ position: 'absolute', bottom: 24, paddingHorizontal: 22, width: '100%' }}>
-            <Text style={{ fontSize: 30, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 34 }}>
-              {t('scanner.introTitle')}
-            </Text>
-          </View>
-        </Animated.View>
-
-        <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
-          {MODES.map((mode, idx) => (
-            <FadeInView key={mode.key} delay={80 + idx * 70}>
-              <TouchableOpacity
-                activeOpacity={0.85}
-                onPress={() => onSelectMode(mode.key)}
-                style={{ marginBottom: 14 }}
-                accessibilityRole="button"
-                accessibilityLabel={`${mode.title} — ${mode.desc}`}
-              >
-                <NeoCard variant="elevated" style={styles.modeCard}>
-                  <View style={[styles.modeIcon, { backgroundColor: mode.color + '22' }]}>
-                    <NeoIcon name={mode.icon} size={32} color={mode.color} variant="Bold" />
-                  </View>
-                  <View style={styles.modeInfo}>
-                    <Text style={[styles.modeTitle, { color: colors.neutral[900] }]}>{mode.title}</Text>
-                    <Text style={[styles.modeDesc, { color: textMuted }]}>{mode.desc}</Text>
-                  </View>
-                  <NeoIcon name={mode.trailingIcon} size={22} color={textMuted} />
-                </NeoCard>
-              </TouchableOpacity>
-            </FadeInView>
-          ))}
-
-          {/* Info Box */}
-          <FadeInView delay={80 + MODES.length * 70}>
-            <View style={[styles.infoBox, {
-              backgroundColor: colors.feedback.warning + '1A',
-              borderColor: colors.feedback.warning + '40',
-            }]}>
-              <NeoIcon name="LampOn" size={20} color={colors.feedback.warning} variant="Bold" />
-              <Text style={[styles.infoText, { color: textBody }]}>
-                {t('scanner.hint')}
-              </Text>
-            </View>
-          </FadeInView>
-        </View>
-      </Animated.ScrollView>
-    </AppBackground>
-  );
+// O que muda de um modo para o outro. `ia`: a foto sai do aparelho (com permissão).
+const MODOS = {
+  environment:  { tituloKey: 'scanner.titleEnv',     titulo: 'Scanner Ambiente', guiaKey: 'scanner.guideEnv',     guia: 'Aponte para o ambiente',               avisoKey: 'scanner.aiNoticeEnv',   aviso: 'A IA pode errar e não substitui a vistoria.', ia: true },
+  label_scan:   { tituloKey: 'scanner.titleLabel',   titulo: 'Foto do rótulo',   guiaKey: 'scanner.guideLabel',   guia: 'Aponte para o rótulo e tire a foto',   avisoKey: 'scanner.aiNoticeLabel', aviso: 'A IA lê o rótulo: confira o que está impresso.', ia: true },
+  barcode_scan: { tituloKey: 'scanner.titleBarcode', titulo: 'Código de barras', guiaKey: 'scanner.guideBarcode', guia: 'Enquadre o código de barras',          ia: false },
 };
 
 export default function ScannerScreen({ navigation, route }) {
@@ -172,16 +70,17 @@ export default function ScannerScreen({ navigation, route }) {
   const { t } = useTranslation();
   const { reduceMotion } = useAccessibility();
   const colors = useThemeColors();
+  const isDark = useIsDark();
 
   // Hook at the top level to avoid rules of hooks issues
   const isFocused = useIsFocused();
 
-  // Mode Selection State
-  // If passed via route (e.g. shortcut), use it. Otherwise null to show intro.
-  const [currentMode, setCurrentMode] = useState(route.params?.mode || null);
+  // Sem parâmetro, é o scanner de ambiente — o que o nome do ícone promete.
+  const [currentMode, setCurrentMode] = useState(MODOS[route.params?.mode] ? route.params.mode : 'environment');
+  const modo = MODOS[currentMode];
 
   useEffect(() => {
-    if (route.params?.mode) {
+    if (MODOS[route.params?.mode]) {
       setCurrentMode(route.params.mode);
       // Reset any existing analysis when mode changes via navigation
       setPhoto(null);
@@ -207,7 +106,7 @@ export default function ScannerScreen({ navigation, route }) {
   }, [isAnalyzing, reduceMotion]);
 
   useEffect(() => {
-    if (currentMode && permission?.granted && !reduceMotion) {
+    if (permission?.granted && !reduceMotion) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(scanLineAnim, { toValue: 1, duration: 2000, useNativeDriver: true, easing: Easing.linear }),
@@ -239,12 +138,17 @@ export default function ScannerScreen({ navigation, route }) {
     }
   };
 
+  // Volta à câmera. Usado depois de recusa, falha ou de entregar o resultado.
+  const voltarACamera = () => {
+    setIsAnalyzing(false);
+    setPhoto(null);
+  };
+
   const analyzePhoto = async (imageUri) => {
     // A análise da foto É feita por IA de terceiro: sem permissão explícita,
     // a foto não sai do aparelho (Apple 5.1.2(i); LGPD art. 33).
     if (!(await ConsentimentoIAService.pedir())) {
-      setIsAnalyzing(false);
-      setPhoto(null);
+      voltarACamera();
       NeoAlert.alert(
         t('consentimentoIA.semPermissaoTitulo', 'Análise não enviada'),
         t('consentimentoIA.semPermissaoScanner', 'A análise de fotos usa inteligência artificial e precisa da sua permissão. A foto não saiu do aparelho. Você pode permitir em Privacidade → Suas escolhas.'),
@@ -275,8 +179,7 @@ export default function ScannerScreen({ navigation, route }) {
               'Execute: node server.js na pasta backend-proxy'
             : t('telas.ScannerScreen.servidorIndisponivelMsg', 'O serviço de análise está fora do ar no momento. Tente novamente em alguns minutos.'),
         );
-        setIsAnalyzing(false);
-        setPhoto(null); // volta à câmera, como na recusa da permissão de IA
+        voltarACamera(); // volta à câmera, como na recusa da permissão de IA
         return;
       }
 
@@ -298,16 +201,37 @@ export default function ScannerScreen({ navigation, route }) {
         console.log(`[Scanner] 📷 Imagem pronta: ${compressed.width}x${compressed.height} | ~${sizeKB}KB | ${Date.now() - startTime}ms`);
       }
 
-      // ③ Enviar para IA (Passamos o currentMode para a Vision AI injetar o contexto correto)
-      if (__DEV__) console.log('[Scanner] Enviando para GPT-4o-mini...');
       const base64 = compressed.base64;
 
-      const result = await VisionService.analyzeImage(base64, currentMode);
+      // ③ Rótulo: a IA LÊ, e o resultado vai para a tela de resultado do Info
+      // Rótulos — a mesma do código de barras e da busca. Ambiente: lista de riscos aqui.
+      if (currentMode === 'label_scan') {
+        const rotulo = await VisionService.analyzeProductLabel(base64);
+        await GamificationService.addPoints('USE_SCANNER');
+        voltarACamera(); // ao voltar do resultado, a câmera está pronta
+        navigation.navigate('InfoRotulosResult', {
+          product: {
+            nome: rotulo.nome || t('scanner.unnamedProduct', 'Produto sem nome'),
+            marca: rotulo.marca || '',
+            categoria: rotulo.categoria || t('scanner.labelCategory', 'Produto lido do rótulo'),
+            componentes: rotulo.componentes,
+            riscos: rotulo.riscos,
+            prevencao: rotulo.prevencao,
+            ingredientes_texto: rotulo.componentes.join(', '),
+            icone: 'TestTube',
+          },
+          source: 'ai_label',
+          searchQuery: rotulo.nome || '',
+        });
+        return;
+      }
+
+      const result = await VisionService.analyzeImage(base64);
 
       if (__DEV__) console.log(`[Scanner] ✅ Análise concluída em ${Date.now() - startTime}ms`);
 
       setAnalysisResult(result);
-      AccessibilityInfo.announceForAccessibility(t('scanner.analysisComplete', { count: result?.analises?.length || 0, defaultValue: `Análise concluída. ${result?.analises?.length || 0} riscos detectados.` }));
+      AccessibilityInfo.announceForAccessibility(t('scanner.analysisComplete', { count: result.analises.length }));
       await GamificationService.addPoints('USE_SCANNER');
     } catch (error) {
       const elapsed = Date.now() - startTime;
@@ -318,6 +242,11 @@ export default function ScannerScreen({ navigation, route }) {
         NeoAlert.alert(
           t('telas.ScannerScreen.tempoEsgotado', 'Tempo esgotado'),
           t('telas.ScannerScreen.aAnaliseDemorouMaisQueO', 'A análise demorou mais que o esperado.\n\nSugestões:\n• Tente com melhor conexão Wi-Fi\n• Fotografe em boa iluminação\n• Foque apenas no rótulo/ingredientes'),
+        );
+      } else if (error.name === 'RotuloIlegivel') {
+        NeoAlert.alert(
+          t('scanner.labelUnreadableTitle', 'Não consegui ler o rótulo'),
+          t('scanner.labelUnreadable', 'Tente de novo com mais luz, bem de perto e com o texto reto na imagem.'),
         );
       } else if (error.message?.includes('Network') || error.message?.includes('fetch')) {
         NeoAlert.alert(t('telas.ScannerScreen.semConexao', 'Sem conexão'), t('telas.ScannerScreen.verifiqueSuaConexaoComAInternet', 'Verifique sua conexão com a internet e tente novamente.'));
@@ -338,67 +267,52 @@ export default function ScannerScreen({ navigation, route }) {
     setPhoto(null);
     setAnalysisResult(null);
     setIsAnalyzing(false);
-    // Optional: Return to Intro? No, simpler to just scan again in same mode.
-    // If user wants to change mode, they back out or maybe we add a 'Change Mode' button.
   };
 
-  const changeMode = () => {
-    resetScanner();
-    setCurrentMode(null);
-  }
-
-   const handleBarcodeScanned = async ({ type, data }) => {
+  const handleBarcodeScanned = async ({ data }) => {
     if (isAnalyzing) return;
     setIsAnalyzing(true);
 
     // Feedback tátil
     Vibration.vibrate(50);
 
-    if (__DEV__) console.log(`[Scanner] Barcode lido: ${data} (tipo: ${type})`);
+    if (__DEV__) console.log(`[Scanner] Barcode lido (${String(data).length} caracteres)`);
     AccessibilityInfo.announceForAccessibility(t('scanner.lookupBarcode', 'Buscando dados do produto…'));
-
-    // Filtrar URLs (QR codes com links) — não são códigos de produto
-    if (data.startsWith('http') || data.startsWith('www') || data.includes('://')) {
-      if (__DEV__) console.log('[Scanner] ⏭️ URL detectada, mudando para foto do rótulo');
-      setCurrentMode('label_scan');
-      AccessibilityInfo.announceForAccessibility(t('scanner.barcodeUrlDetected', 'Código lido é um link. Câmera alternada para foto do rótulo.'));
-      NeoAlert.alert(t('telas.ScannerScreen.fotografeORotulo', 'Fotografe o rótulo'), t('telas.ScannerScreen.oCodigoLidoEUmLink', 'O código lido é um link, não um código de barras.\nA câmera foi preparada para foto do rótulo.'));
-      setTimeout(() => setIsAnalyzing(false), 500);
-      return;
-    }
 
     try {
       // Tenta resolver o código de barras (Local → OFF → OBF → OPF → UPCitemdb)
       const result = await resolveBarcode(data);
-      
+
       if (result && result.found && result.product) {
-          if (__DEV__) console.log(`[Scanner] ✅ Produto encontrado via: ${result.source}`, result.product.nome);
-          AccessibilityInfo.announceForAccessibility(t('scanner.barcodeSuccess', 'Produto encontrado. Redirecionando.'));
+        if (__DEV__) console.log(`[Scanner] ✅ Produto encontrado via: ${result.source}`);
+        AccessibilityInfo.announceForAccessibility(t('scanner.barcodeSuccess', 'Produto encontrado. Redirecionando.'));
 
-          navigation.navigate('InfoRotulosResult', {
-            product: result.product,
-            source: result.source,
-            searchQuery: data,
-            ingredientes_texto: result.product.ingredientes_texto || '',
-            marca: result.product.marca || '',
-          });
+        navigation.navigate('InfoRotulosResult', {
+          product: result.product,
+          source: result.source,
+          searchQuery: data,
+          ingredientes_texto: result.product.ingredientes_texto || '',
+          marca: result.product.marca || '',
+        });
+      } else if (result?.source === 'invalid') {
+        // Não é código de produto (um link, um QR de Wi-Fi, texto qualquer). Não
+        // é culpa de ninguém e não há o que fotografar: só avisa e segue lendo.
+        // O conteúdo lido NÃO é mostrado: pode ser qualquer coisa.
+        NeoAlert.alert(
+          t('scanner.barcodeInvalidTitle', 'Código não reconhecido'),
+          t('scanner.barcodeInvalidMsg', 'Este não parece um código de barras de produto. Aponte para o código de barras da embalagem.'),
+          [{ text: t('telas.ScannerScreen.entendi', 'Entendi') }],
+        );
       } else {
-          // Produto NÃO encontrado — switch automático para foto do rótulo
-          if (__DEV__) console.log('[Scanner] ❌ Não encontrado → auto-switch para foto do rótulo');
-
-          // Feedback tátil duplo para indicar mudança de modo
-          Vibration.vibrate([0, 50, 100, 50]);
-
-          // Muda direto para modo label_scan — fluxo automático
-          setCurrentMode('label_scan');
-          AccessibilityInfo.announceForAccessibility(t('scanner.barcodeNotFound', 'Produto não cadastrado. Câmera alternada para foto do rótulo.'));
-
-          // Alerta breve informativo — atribui causa ao fabricante, não ao app
-          NeoAlert.alert(
-            t('telas.ScannerScreen.fotografeORotulo2', 'Fotografe o rótulo'),
-            `O fabricante deste produto ainda não o cadastrou nas bases de dados públicas mundiais (código ${data}).\n\nMas não se preocupe — fotografe o rótulo e nossa IA analisará os ingredientes e riscos em segundos.`,
-            [{ text: t('telas.ScannerScreen.entendi', 'Entendi') }],
-          );
+        // Código válido, produto fora das bases consultadas: o rótulo é o caminho.
+        Vibration.vibrate([0, 50, 100, 50]);
+        setCurrentMode('label_scan');
+        AccessibilityInfo.announceForAccessibility(t('scanner.barcodeNotFound', 'Produto não cadastrado. Câmera alternada para foto do rótulo.'));
+        NeoAlert.alert(
+          t('scanner.barcodeNotFoundTitle', 'Produto não encontrado'),
+          t('scanner.barcodeNotFoundMsg', { code: String(data).trim(), defaultValue: 'Não encontrei o código {{code}} nas bases consultadas. Fotografe o rótulo: a inteligência artificial lê os ingredientes.' }),
+          [{ text: t('telas.ScannerScreen.entendi', 'Entendi') }],
+        );
       }
     } catch (e) {
       console.warn('Erro ao ler código de barras:', e);
@@ -408,93 +322,98 @@ export default function ScannerScreen({ navigation, route }) {
     }
   };
 
-
-  // 1. Permissions Check
+  // 1. Permissão da câmera
   if (!permission) return <View />;
   if (!permission.granted) {
     return (
-      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <Text style={{ color: colors.neutral.white, fontSize: 18, marginBottom: 20 }}>{t('scanner.permReq')}</Text>
-        <TouchableOpacity style={styles.permissionButton} onPress={requestPermission}>
-          <Text style={styles.permissionButtonText}>{t('scanner.grant')}</Text>
-        </TouchableOpacity>
-      </View>
+      <AppBackground>
+        <StatusBar style={isDark ? 'light' : 'dark'} />
+        <View style={{ paddingTop: insets.top }}>
+          <NeoScreenHeader title={t(modo.tituloKey, modo.titulo)} onBack={() => navigation.goBack()} />
+        </View>
+        <View style={styles.permissao}>
+          <NeoCard variant="elevated" style={styles.permissaoCard}>
+            <NeoIcon name="Camera" size={32} color={colors.textOn.brand} variant="Bold" />
+            <Body style={styles.permissaoTexto}>{t('scanner.permReq')}</Body>
+            <TouchableOpacity
+              style={styles.permissaoBotao}
+              onPress={requestPermission}
+              accessibilityRole="button"
+            >
+              <Text style={styles.permissaoBotaoTexto}>{t('scanner.grant')}</Text>
+            </TouchableOpacity>
+          </NeoCard>
+        </View>
+      </AppBackground>
     );
   }
 
-  // 2. Intro Screen (if no mode selected)
-  if (!currentMode) {
-    return <ScannerIntro onSelectMode={setCurrentMode} onClose={() => navigation.goBack()} />;
-  }
+  // 2. Câmera ou resultado
+  const ehBarras = currentMode === 'barcode_scan';
+  const janelaW = width * 0.85;
+  const janelaH = ehBarras ? width * 0.5 : width * 0.85;
 
-  // 3. Main Scanner UI (Camera or Result)
   const renderCamera = () => (
     <View style={styles.cameraContainer}>
       {isFocused && (
         <CameraView
           style={styles.camera}
           facing={facing}
-          barcodeScannerSettings={{ barcodeTypes: ["qr", "ean13", "ean8", "upc_a", "upc_e"] }}
-          onBarcodeScanned={isAnalyzing || currentMode !== 'barcode_scan' ? undefined : handleBarcodeScanned}
+          // Só códigos de PRODUTO. O QR ficou de fora: não é código de barras de
+          // produto, e lê-lo só servia para cair no aviso de "código não reconhecido".
+          barcodeScannerSettings={{ barcodeTypes: ["ean13", "ean8", "upc_a", "upc_e"] }}
+          onBarcodeScanned={isAnalyzing || !ehBarras ? undefined : handleBarcodeScanned}
           ref={(ref) => setCameraRef(ref)}
         />
       )}
 
-      {/* Overlay: AR HUD */}
-      <View style={styles.overlayContainer}>
-        {/* Top Space */}
+      {/* Mira */}
+      <View style={styles.overlayContainer} pointerEvents="box-none">
         <View style={{ flex: 1 }} />
-        {/* Center Reticle */}
-        <View style={{ flexDirection: 'row', height: width * 0.85 }}>
+        <View style={{ flexDirection: 'row', height: janelaH }}>
           <View style={{ flex: 1 }} />
-          <View style={{ width: width * 0.85, height: width * 0.85, position: 'relative' }}>
-            <View style={[styles.corner, styles.cornerTL, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
-            <View style={[styles.corner, styles.cornerTR, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
-            <View style={[styles.corner, styles.cornerBL, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
-            <View style={[styles.corner, styles.cornerBR, { borderColor: 'rgba(255,255,255,0.7)', borderRadius: 12 }]} />
+          <View style={{ width: janelaW, height: janelaH, position: 'relative' }}>
+            <View style={[styles.corner, styles.cornerTL]} />
+            <View style={[styles.corner, styles.cornerTR]} />
+            <View style={[styles.corner, styles.cornerBL]} />
+            <View style={[styles.corner, styles.cornerBR]} />
             <Animated.View style={[styles.scanLine, {
-              height: 4,
-              borderRadius: 2,
-              backgroundColor: '#4CAF50', // Tech green
-              shadowColor: '#4CAF50',
-              shadowOpacity: 0.8,
-              shadowRadius: 12,
-              elevation: 8,
-              transform: [{ translateY: scanLineAnim.interpolate({ inputRange: [0, 1], outputRange: [0, width * 0.85] }) }]
+              transform: [{ translateY: scanLineAnim.interpolate({ inputRange: [0, 1], outputRange: [0, janelaH] }) }]
             }]} />
           </View>
           <View style={{ flex: 1 }} />
         </View>
-        {/* Bottom Space & Controls */}
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 60 }}>
-          <Text style={{ 
-              color: '#FFF', fontSize: 16, marginBottom: 30, fontWeight: '600', 
-              textShadowColor: 'rgba(0,0,0,0.8)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 4 
-          }}>
-            {currentMode === 'label_scan' ? t('scanner.guideLabel') : 
-             currentMode === 'barcode_scan' ? t('scanner.guideBarcode') : t('scanner.guideEnv')}
-          </Text>
-          <View style={styles.controls}>
-            {currentMode !== 'barcode_scan' && (
-              <TouchableOpacity
-                style={styles.captureButton}
-                onPress={takePicture}
-                accessibilityRole="button"
-                accessibilityLabel={t('scanner.capturePhoto', 'Tirar foto')}
-              >
-                <View style={[styles.captureInner, { backgroundColor: 'rgba(255,255,255,0.3)' }]}>
-                  <NeoIcon name="Camera" size={32} color="#FFF" />
-                </View>
-              </TouchableOpacity>
-            )}
-          </View>
+
+        {/* Instrução, aviso de IA e disparador */}
+        <View style={[styles.rodape, { paddingBottom: insets.bottom + 36 }]}>
+          <Text style={styles.guia}>{t(modo.guiaKey, modo.guia)}</Text>
+          {modo.ia && (
+            // Antes da foto, não só depois: a pessoa precisa saber que é IA e que
+            // ela erra ANTES de apontar a câmera.
+            <View style={styles.aviso} accessibilityRole="text">
+              <NeoIcon name="InfoCircle" size={14} color="#FFFFFF" variant="Bold" />
+              <Text style={styles.avisoTexto}>{t(modo.avisoKey, modo.aviso)}</Text>
+            </View>
+          )}
+          {!ehBarras && (
+            <TouchableOpacity
+              style={styles.disparador}
+              onPress={takePicture}
+              accessibilityRole="button"
+              accessibilityLabel={t('scanner.capturePhoto', 'Tirar foto')}
+            >
+              <View style={styles.disparadorMiolo}>
+                <NeoIcon name="Camera" size={32} color="#FFF" />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
 
-      {/* Header */}
+      {/* Cabeçalho flutuante */}
       <View style={[styles.floatingHeader, { top: insets.top }]}>
         <TouchableOpacity
-          onPress={changeMode}
+          onPress={() => navigation.goBack()}
           style={styles.glassButton}
           accessibilityRole="button"
           accessibilityLabel={t('common.back', 'Voltar')}
@@ -503,10 +422,7 @@ export default function ScannerScreen({ navigation, route }) {
         </TouchableOpacity>
 
         <View style={styles.glassBadge}>
-          <Text style={styles.glassBadgeText}>
-            {currentMode === 'label_scan' ? t('scanner.modeLabel') : 
-             currentMode === 'barcode_scan' ? t('scanner.modeBarcode') : t('scanner.modeEnv')}
-          </Text>
+          <Text style={styles.glassBadgeText}>{t(modo.tituloKey, modo.titulo)}</Text>
         </View>
 
         <TouchableOpacity
@@ -515,11 +431,15 @@ export default function ScannerScreen({ navigation, route }) {
           accessibilityRole="button"
           accessibilityLabel={t('scanner.flipCamera', 'Alternar câmera')}
         >
-          <NeoIcon name="Camera" size={24} color="#FFF" />
+          <NeoIcon name="CameraRotate" size={24} color="#FFF" />
         </TouchableOpacity>
       </View>
     </View>
   );
+
+  // Resultado da análise de AMBIENTE (o de rótulo vai para o Info Rótulos).
+  const superficie = isDark ? colors.neutral[200] : colors.neutral.white;
+  const analises = analysisResult?.analises || [];
 
   const renderAnalysis = () => (
     <View style={styles.analysisContainer}>
@@ -543,61 +463,62 @@ export default function ScannerScreen({ navigation, route }) {
               <NeoIcon name="Eye" size={48} color="#FFF" />
             </View>
           </Animated.View>
-          <Text style={styles.analyzingText}>{t('scanner.analyzing')}</Text>
+          <Text style={styles.analyzingText}>{t('scanner.analyzing', 'Analisando imagem…')}</Text>
         </View>
       )}
 
-      {!isAnalyzing && analysisResult && analysisResult.analises && (
-        <ScrollView style={styles.resultSheet} contentContainerStyle={{ paddingBottom: 190 }}>
-          <View style={styles.dragIndicator} />
-          
-          <Text style={{ fontSize: 22, fontWeight: 'bold', color: colors.neutral[900], marginBottom: 16, marginTop: 10, alignSelf: 'center' }}>
-            {analysisResult.analises.length}{t('telas.ScannerScreen.riscoSDetectadoS', ' risco(s) detectado(s)')}</Text>
+      {!isAnalyzing && analysisResult && (
+        <ScrollView
+          style={[styles.folha, { backgroundColor: superficie }]}
+          contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomBare + insets.bottom }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={[styles.alca, { backgroundColor: colors.neutral[300] }]} />
+
+          {/* O resultado diz QUANTOS riscos foram vistos — e, quando são zero, diz
+              que isso não é atestado de segurança: a IA só vê o que está na foto. */}
+          <H3 style={styles.folhaTitulo} accessibilityRole="header">
+            {t('scanner.risksFound', { count: analises.length })}
+          </H3>
+          {analises.length === 0 && (
+            <Body style={[styles.folhaNota, { color: colors.textOn.muted }]}>
+              {t('scanner.noRisksNote', 'Isso não significa que o ambiente esteja seguro: a IA só vê o que aparece na foto.')}
+            </Body>
+          )}
 
           {/* Identifica a origem do resultado antes da lista: o usuário precisa
               saber que é análise de IA ANTES de agir sobre os riscos. */}
-          <SafetyDisclaimer variant="ia" style={{ marginBottom: 16 }} />
+          <SafetyDisclaimer variant="ia" style={{ marginBottom: Neo.spacing.md }} />
 
-          {analysisResult.analises.map((item, index) => (
-            <View key={index} style={{ marginBottom: 24, backgroundColor: colors.neutral[100], borderRadius: 16, padding: 16, borderWidth: 1, borderColor: colors.neutral[300] }}>
-              {/* Header */}
-              <View style={[styles.resultHeader, { marginBottom: 12 }]}>
-                <View style={[styles.severityBadge, { backgroundColor: item.cor || colors.neutral[500] }]}>
-                  <Text style={styles.severityText}>{item.risco || 'Info'}</Text>
-                </View>
+          {analises.map((item, index) => (
+            <NeoCard key={index} variant="elevated" style={styles.risco}>
+              <View style={styles.riscoTopo}>
+                {/* Cor E texto: o nível está escrito, a cor só reforça. */}
+                <NeoPill solida tom={tomDoPerigo(item.risco)} label={rotuloDoPerigo(item.risco)} icone={item.risco === 'Baixo' ? 'InfoCircle' : 'Warning2'} />
               </View>
-
-              <Text style={[styles.resultTitle, { marginTop: 0 }]}>{item.titulo}</Text>
-              <Text style={styles.resultDescription}>{item.descricao}</Text>
-
-              {/* Actions */}
-              <View style={[styles.actionBox, { marginTop: 12 }]}>
-                <View style={styles.actionHeader}>
-                  <NeoIcon name="LampOn" size={24} color={Neo.colors.primary[600]} />
-                  <Text style={styles.actionTitle}>{t('headersFirst.recomendaEs', 'Recomendações')}</Text>
-                </View>
-                <Text style={styles.actionText}>{item.acao || item.recomendacao}</Text>
-              </View>
-
-              {/* Emergency Actions Section */}
-              {item.emergencia && (
-                <View style={[styles.actionBox, { backgroundColor: 'rgba(239, 68, 68, 0.1)', borderLeftColor: colors.feedback.error, marginTop: 12 }]}>
-                  <View style={styles.actionHeader}>
-                    <NeoIcon name="Health" size={24} color={colors.feedback.error} />
-                    <Text style={[styles.actionTitle, { color: colors.feedback.error }]}>{t('headersFirst.emCasoDeExposiO', 'Em Caso de Exposição')}</Text>
+              <Text style={[styles.riscoTitulo, { color: colors.neutral[900] }]}>{item.titulo}</Text>
+              {!!item.descricao && <Body style={{ color: colors.neutral[700] }}>{item.descricao}</Body>}
+              {!!item.acao && (
+                <View style={[styles.oQueFazer, { backgroundColor: colors.tile?.track || 'rgba(6,95,70,0.08)' }]}>
+                  <View style={styles.oQueFazerTopo}>
+                    <NeoIcon name="LampOn" size={18} color={colors.textOn.brand} variant="Bold" />
+                    <Small style={[styles.oQueFazerRotulo, { color: colors.textOn.brand }]}>
+                      {t('scanner.whatToDo', 'O que fazer')}
+                    </Small>
                   </View>
-                  <Text style={[styles.actionText, { color: colors.feedback.error, fontWeight: 'bold' }]}>{item.emergencia}</Text>
-                  <Text style={{ marginTop: 8, fontSize: 13, color: colors.feedback.error, fontStyle: 'italic' }}>
-                    {t('headersFirst.fonteOrientaEsDeSeguranAEProtocolosDeEme', 'Fonte: Orientações de segurança e protocolos de emergência.')}
-                  </Text>
+                  <Body style={{ color: colors.neutral[900] }}>{item.acao}</Body>
                 </View>
               )}
-            </View>
+            </NeoCard>
           ))}
 
-          <TouchableOpacity style={[styles.primaryButton, { marginTop: 16 }]} onPress={resetScanner}>
+          <TouchableOpacity
+            style={styles.novaFoto}
+            onPress={resetScanner}
+            accessibilityRole="button"
+          >
             <NeoIcon name="Scan" size={20} color="#FFF" />
-            <Text style={styles.primaryButtonText}>{t('scanner.newScan')}</Text>
+            <Text style={styles.novaFotoTexto}>{t('scanner.newScan', 'Nova foto')}</Text>
           </TouchableOpacity>
         </ScrollView>
       )}
@@ -613,76 +534,58 @@ export default function ScannerScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'transparent' },
+  container: { flex: 1, backgroundColor: '#000' },
 
-  // INTRO STYLES — cor/fundo aplicados inline (theme-aware); aqui so estrutura
-  modeCard: {
-    flexDirection: 'row', alignItems: 'center', padding: 16, borderRadius: 20,
-  },
-  modeIcon: { width: 56, height: 56, borderRadius: 28, justifyContent: 'center', alignItems: 'center', marginRight: 16 },
-  modeInfo: { flex: 1 },
-  modeTitle: { fontSize: 17, fontWeight: '800', marginBottom: 4 },
-  modeDesc: { fontSize: 13, lineHeight: 18 },
-  infoBox: {
-    flexDirection: 'row', padding: 16,
-    borderRadius: 14, alignItems: 'flex-start', gap: 12, borderWidth: 1,
-  },
-  infoText: { flex: 1, fontSize: 13.5, lineHeight: 18, fontWeight: '500' },
+  // PERMISSÃO
+  permissao: { flex: 1, justifyContent: 'center', paddingHorizontal: Neo.layout.screenHPadding, paddingBottom: Neo.layout.scrollBottomFooter },
+  permissaoCard: { alignItems: 'center', gap: Neo.spacing.md, paddingVertical: Neo.spacing.xl },
+  permissaoTexto: { textAlign: 'center' },
+  permissaoBotao: { backgroundColor: Neo.colors.primary[700], paddingHorizontal: 24, paddingVertical: 12, borderRadius: Neo.radius.md },
+  permissaoBotaoTexto: { color: '#FFFFFF', fontWeight: '700', fontSize: 15 },
 
-  // PERMISSION
-  permissionButton: { backgroundColor: Neo.colors.primary[600], paddingHorizontal: 24, paddingVertical: 12, borderRadius: 8 },
-  permissionButtonText: { color: Neo.colors.surface, fontWeight: 'bold' },
-
-  // CAMERA STYLES
+  // CÂMERA
   cameraContainer: { flex: 1 },
   camera: { flex: 1 },
-
-  // OVERLAY
   overlayContainer: { ...StyleSheet.absoluteFillObject, zIndex: 1 },
-  darkOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' },
-  middleOverlay: { flexDirection: 'row', height: width * 0.7 },
-  darkOverlaySide: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' },
-  darkOverlayBottom: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', paddingTop: 40 },
-  scanWindow: { width: width * 0.7, height: width * 0.7, position: 'relative' },
-  corner: { position: 'absolute', width: 30, height: 30, borderColor: '#FFF', borderWidth: 4 },
+  corner: { position: 'absolute', width: 30, height: 30, borderColor: 'rgba(255,255,255,0.8)', borderWidth: 4, borderRadius: 12 },
   cornerTL: { top: 0, left: 0, borderRightWidth: 0, borderBottomWidth: 0 },
   cornerTR: { top: 0, right: 0, borderLeftWidth: 0, borderBottomWidth: 0 },
   cornerBL: { bottom: 0, left: 0, borderRightWidth: 0, borderTopWidth: 0 },
   cornerBR: { bottom: 0, right: 0, borderLeftWidth: 0, borderTopWidth: 0 },
-  scanLine: { width: '100%', height: 2, backgroundColor: Neo.colors.primary[600], shadowColor: Neo.colors.primary[600], shadowOffset: { width: 0, height: 0 }, shadowOpacity: 1, shadowRadius: 10, elevation: 5 },
+  scanLine: { width: '100%', height: 4, borderRadius: 2, backgroundColor: '#4CAF50', shadowColor: '#4CAF50', shadowOpacity: 0.8, shadowRadius: 12, elevation: 8 },
+  rodape: { flex: 1, alignItems: 'center', justifyContent: 'flex-end', paddingHorizontal: 24 },
+  guia: { color: '#FFF', fontSize: 16, marginBottom: 12, fontWeight: '600', textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.8)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 4 },
+  aviso: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 14, backgroundColor: 'rgba(0,0,0,0.55)', marginBottom: 24 },
+  avisoTexto: { color: '#FFF', fontSize: 12.5, fontWeight: '600' },
+  disparador: { width: 84, height: 84, borderRadius: 42, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.5)' },
+  disparadorMiolo: { width: 68, height: 68, borderRadius: 34, backgroundColor: 'rgba(255,255,255,0.3)', justifyContent: 'center', alignItems: 'center' },
 
-  // CONTROLS
-  floatingHeader: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 },
+  // CABEÇALHO FLUTUANTE
+  floatingHeader: { position: 'absolute', left: 0, right: 0, zIndex: 10, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10 },
   glassButton: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.15)', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)' },
   glassBadge: { paddingHorizontal: 16, height: 36, borderRadius: 18, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)', marginTop: 4 },
   glassBadgeText: { color: '#FFF', fontSize: 14, fontWeight: '600' },
-  instructionText: { color: '#FFF', fontSize: 16, marginBottom: 40, fontWeight: '500' },
-  controls: { marginBottom: 80 },
-  captureButton: { width: 84, height: 84, borderRadius: 42, backgroundColor: 'rgba(255,255,255,0.2)', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'rgba(255,255,255,0.5)' },
-  captureInner: { width: 68, height: 68, borderRadius: 34, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', ...Neo.shadows.md },
 
-  // RESULT
+  // RESULTADO DO AMBIENTE
   analysisContainer: { flex: 1, backgroundColor: '#000' },
   previewImage: { flex: 1, resizeMode: 'cover', opacity: 0.6 },
   loadingOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' },
-  pulseCircle: { width: 100, height: 100, borderRadius: 50, backgroundColor: Neo.colors.primary[600], justifyContent: 'center', alignItems: 'center', marginBottom: Neo.spacing.lg, ...Neo.shadows.lg },
+  pulseCircle: { width: 100, height: 100, borderRadius: 50, backgroundColor: Neo.colors.primary[700], justifyContent: 'center', alignItems: 'center', marginBottom: Neo.spacing.lg },
   analyzingText: { color: '#FFF', fontSize: 20, fontWeight: 'bold', marginTop: Neo.spacing.md },
-  resultSheet: {
-    position: 'absolute', bottom: 0, left: 0, right: 0, maxHeight: '90%',
-    backgroundColor: 'rgba(255, 255, 255, 0.96)',
-    borderTopLeftRadius: 32, borderTopRightRadius: 32,
-    padding: Neo.spacing.xl, paddingTop: 12, ...Neo.shadows.xl
+  folha: {
+    position: 'absolute', bottom: 0, left: 0, right: 0, maxHeight: '88%',
+    borderTopLeftRadius: 28, borderTopRightRadius: 28,
+    paddingHorizontal: Neo.layout.screenHPadding, paddingTop: 12,
   },
-  dragIndicator: { width: 40, height: 5, backgroundColor: Neo.colors.neutral[200], borderRadius: 3, alignSelf: 'center', marginBottom: 20 },
-  resultHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
-  severityBadge: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 16 },
-  severityText: { color: '#FFF', fontWeight: 'bold', fontSize: 12, textTransform: 'uppercase' },
-  resultTitle: { fontSize: 24, fontWeight: 'bold', color: Neo.colors.neutral[900], marginBottom: 8 },
-  resultDescription: { fontSize: 16, color: Neo.colors.neutral[600], marginBottom: 24, lineHeight: 24 },
-  actionBox: { backgroundColor: 'rgba(33, 150, 243, 0.1)', padding: 20, borderRadius: 16, marginBottom: 24, borderLeftWidth: 4, borderLeftColor: Neo.colors.primary[600] },
-  actionHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 8, gap: 8 },
-  actionTitle: { fontSize: 16, fontWeight: 'bold', color: Neo.colors.primary[600] },
-  actionText: { fontSize: 15, color: Neo.colors.neutral[700], lineHeight: 22 },
-  primaryButton: { backgroundColor: Neo.colors.primary[600], paddingVertical: 18, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8, marginTop: 10, marginBottom: 30 },
-  primaryButtonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
+  alca: { width: 40, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 16 },
+  folhaTitulo: { marginBottom: Neo.spacing.sm },
+  folhaNota: { marginBottom: Neo.spacing.md },
+  risco: { marginBottom: Neo.spacing.md, gap: Neo.spacing.sm },
+  riscoTopo: { flexDirection: 'row' },
+  riscoTitulo: { fontSize: 18, fontWeight: '800', letterSpacing: -0.2 },
+  oQueFazer: { borderRadius: 14, padding: 14, gap: 6, marginTop: Neo.spacing.xs },
+  oQueFazerTopo: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  oQueFazerRotulo: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.8 },
+  novaFoto: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Neo.colors.primary[700], borderRadius: Neo.radius.md, paddingVertical: 14, marginTop: Neo.spacing.sm },
+  novaFotoTexto: { color: '#FFFFFF', fontWeight: '800', fontSize: 15 },
 });
