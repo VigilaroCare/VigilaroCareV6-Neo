@@ -193,7 +193,12 @@ export default function InfoRotulosScreen() {
                 </TouchableOpacity>
             </SafeAreaView>
 
+            {/* "handled": com o teclado aberto, o toque numa sugestão da busca age na
+                hora. No padrão ("never") o primeiro toque só fechava o teclado e a
+                sugestão pedia um segundo — medido no emulador em 28/10/2026. A tela
+                antiga (VigilaroScanHub) tinha este ajuste e a nova o perdeu. */}
             <Animated.ScrollView
+                keyboardShouldPersistTaps="handled"
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
                 onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: true })}

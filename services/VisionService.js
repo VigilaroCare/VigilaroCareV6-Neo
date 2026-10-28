@@ -152,20 +152,20 @@ export const VisionService = {
             const content = data.choices[0].message.content;
             const match = content.match(/\{[\s\S]*\}/);
             const jsonStr = match ? match[0] : content;
-            return JSON.parse(jsonStr);
+            const parsed = JSON.parse(jsonStr);
+            // Resposta sem a lista de análises não é resultado: é falha.
+            if (!Array.isArray(parsed?.analises)) throw new Error("Invalid Response: analises");
+            return parsed;
 
         } catch (error) {
             if (__DEV__) { console.error("Vision Error:", error); }
-            return {
-                analises: [{
-                    error: true,
-                    titulo: "Erro ou Timeout",
-                    descricao: "A análise demorou muito ou falhou.",
-                    acao: "Tente novamente.",
-                    risco: "Erro",
-                    cor: "#6B7280"
-                }]
-            };
+            // PROPAGA. Até 28/10/2026 isto devolvia um "risco" fictício de título
+            // "Erro ou Timeout", que a tela de Scanner exibia como resultado ("1
+            // risco detectado"), anunciava como "análise concluída" ao leitor de
+            // tela e premiava com pontos. O tratamento de erro da própria tela
+            // (tempo esgotado, sem conexão, falha genérica) nunca chegava a rodar.
+            // Quem decide a mensagem é quem chama.
+            throw error;
         }
     },
 

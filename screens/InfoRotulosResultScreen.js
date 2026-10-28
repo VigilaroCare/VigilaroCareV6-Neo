@@ -12,7 +12,7 @@
  *   - Re-escanear via câmera (opcional)
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
     View, Text, StyleSheet, ScrollView, TouchableOpacity,
     Linking, ActivityIndicator,
@@ -33,7 +33,7 @@ import { SkeletonCard } from '../components/SkeletonLoader';
 import { evaluateProduct } from '../services/InfoRotulosRuleEngine';
 import { getSubstancesForIngredients } from '../services/InfoRotulosSubstanceService';
 import { NIVEIS_PERIGO } from '../data/produtos_scanner';
-import { getPoisonControlDial, getPoisonControlLabel } from '../utils/emergencyTokens';
+import { getPoisonControlDial, getPoisonControlLabel, resolveEmergencyTokensDeep } from '../utils/emergencyTokens';
 import SafeGradient from '../components/SafeGradient';
 import { tx } from '../utils/txFixo';
 
@@ -84,11 +84,17 @@ export default function InfoRotulosResultScreen() {
     const { product, substance, source, searchQuery, ingredientes_texto, marca } = route.params || {};
 
     const [alerts, setAlerts] = useState([]);
-    const [substanceData, setSubstanceData] = useState(substance || null);
+    // Os textos de primeiros socorros do catálogo trazem {{POISON_CONTROL}} no
+    // lugar do telefone do país. Sem resolver, a tela mostrava o token cru:
+    // "Dar água. {{POISON_CONTROL}}." — na frase que se lê com uma pessoa
+    // intoxicada ao lado. Resolvido NA ORIGEM (produto e substância), para
+    // valer para todos os campos e não só para o que apareceu. Ver o resolvedor
+    // em utils/emergencyTokens.js.
+    const [substanceData, setSubstanceData] = useState(substance ? resolveEmergencyTokensDeep(substance) : null);
     const [loading, setLoading] = useState(!substance);
     const [enriching, setEnriching] = useState(false);
 
-    const productData = product || {};
+    const productData = useMemo(() => resolveEmergencyTokensDeep(product || {}), [product]);
     const nome = productData.nome || substanceData?.name_pt || searchQuery || 'Produto';
     const categoria = productData.categoria || 'Substância';
     const brandName = marca || productData.marca || '';
@@ -123,7 +129,7 @@ export default function InfoRotulosResultScreen() {
                     setEnriching(true);
                     const substancesData = await getSubstancesForIngredients(ingredientesToSearch);
                     if (substancesData.length > 0) {
-                        setSubstanceData(substancesData[0]);
+                        setSubstanceData(resolveEmergencyTokensDeep(substancesData[0]));
                     }
                     setEnriching(false);
                 }
@@ -198,11 +204,16 @@ export default function InfoRotulosResultScreen() {
                             <NeoIcon name={productData.icone || 'TestTube'} size={34} color={severityColor.text} variant="Bold" />
                             <Text style={[s.heroTitle, { color: severityColor.text }]}>{nome}</Text>
                             {brandName ? (
-                                <Text style={[s.heroSubtitle, { color: severityColor.text + 'DD', fontWeight: '600' }]}>
+                                <Text style={[s.heroSubtitle, { color: severityColor.text, fontWeight: '600' }]}>
                                     {brandName}
                                 </Text>
                             ) : null}
-                            <Text style={[s.heroSubtitle, { color: severityColor.text + 'BB' }]}>{categoria}</Text>
+                            {/* Marca e categoria em cor CHEIA. Eram severityColor.text + 'DD'/'BB',
+                                e text vale '#FFF' (3 dígitos): a soma dá '#FFFDD', cor inválida que
+                                o Android troca por PRETO — preto sobre o vermelho da severidade,
+                                3,81:1, medido no emulador em 28/10/2026. Todas as severidades do DS
+                                dão 4,5:1 ou mais com branco puro; a hierarquia fica pelo peso. */}
+                            <Text style={[s.heroSubtitle, { color: severityColor.text }]}>{categoria}</Text>
 
                             <View style={s.heroBadges}>
                                 <View style={[s.severityBadge, { backgroundColor: severityColor.accent + '30', flexDirection: 'row', alignItems: 'center' }]}>

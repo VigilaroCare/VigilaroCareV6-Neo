@@ -276,6 +276,7 @@ export default function ScannerScreen({ navigation, route }) {
             : t('telas.ScannerScreen.servidorIndisponivelMsg', 'O serviço de análise está fora do ar no momento. Tente novamente em alguns minutos.'),
         );
         setIsAnalyzing(false);
+        setPhoto(null); // volta à câmera, como na recusa da permissão de IA
         return;
       }
 
@@ -325,6 +326,9 @@ export default function ScannerScreen({ navigation, route }) {
       }
       AccessibilityInfo.announceForAccessibility(t('scanner.analysisFailed', 'Falha na análise. Tente novamente.'));
       setAnalysisResult(null);
+      // Volta à câmera para tentar de novo. Sem isto a foto ficava parada na
+      // tela, sem resultado, e a pessoa tinha que descobrir o botão de fechar.
+      setPhoto(null);
     } finally {
       setIsAnalyzing(false);
     }
