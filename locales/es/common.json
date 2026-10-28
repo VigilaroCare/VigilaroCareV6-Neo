@@ -39,9 +39,6 @@
         "myLocations": "Mis Residencias",
         "addNewLocation": "Agregar nueva residencia",
         "inspectedEnvironments": "Ambientes Inspeccionados",
-        "homeSafe": "Tu casa está\nsegura",
-        "homeNeedsAttention": "Tu casa necesita\natención",
-        "actImmediately": "Actúa\ninmediatamente",
         "noInspectedEnvironment": "Ningún ambiente inspeccionado.",
         "pendingEnvironmentsTitle": "Ambientes con pendientes",
         "noPendingEnvironments": "Ningún ambiente con pendientes activos.",
@@ -52,9 +49,6 @@
         "verifyItem": "Verifica: {{item}}",
         "offlineAlert": "Sin conexión. Solo contenidos locales y SOS disponibles.",
         "batteryAlert": "Batería crítica. Carga tu dispositivo.",
-        "labelSafe": "Seguro: {{pct}}%",
-        "labelAttention": "Atención: {{pct}}%",
-        "labelCritical": "Crítico: {{pct}}%",
         "residence": {
             "alertMissingNameTitle": "Atención",
             "alertMissingNameBody": "Dale un nombre a la nueva vivienda.",
@@ -266,7 +260,11 @@
         "heroMaxima": "Seguridad máxima",
         "homeXRay": "Radiografía de la Casa",
         "homeXRayDesc": "Su casa, residentes y ambientes",
-        "pendenciasPill": "{{count}} pendientes"
+        "pendenciasPill": "{{count}} pendientes",
+        "criticalInspections_one": "{{count}} punto crítico pendiente",
+        "criticalInspections_other": "{{count}} puntos críticos pendientes",
+        "openPendencias_one": "{{count}} ítem pendiente",
+        "openPendencias_other": "{{count}} ítems pendientes"
     },
     "onboarding": {
         "title1": "Blindaje 360º",

@@ -335,7 +335,9 @@ export default function RelatoriosScreenNeo({ navigation }) {
                             )}
 
                             {/* AMBIENTES VISTORIADOS — seção inline.
-                                Antes era card de nav que abria AmbientesVistoriadosScreen.
+                                Antes era card de nav que abria AmbientesVistoriadosScreen
+                                (apagada em 27/10/2026: nenhum caminho a abria mais, e
+                                ela ainda julgava a casa pela faixa crua do score).
                                 Conteúdo (Mapa de Riscos + grid de ambientes) elevado pra cá. */}
                             <Text style={[s.sectionLabel, { marginTop: pendingActions.length > 0 ? 4 : 0 }]}>
                                 {t('reports.environmentInspection', 'Ambientes Vistoriados')}

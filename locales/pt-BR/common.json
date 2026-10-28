@@ -39,9 +39,6 @@
         "myLocations": "Minhas Residências",
         "addNewLocation": "Adicionar nova residência",
         "inspectedEnvironments": "Ambientes Vistoriados",
-        "homeSafe": "Sua casa está\nsegura",
-        "homeNeedsAttention": "Sua casa precisa\nde atenção",
-        "actImmediately": "Aja\nimediatamente",
         "noInspectedEnvironment": "Você ainda não vistoriou nenhum ambiente.",
         "pendingEnvironmentsTitle": "Ambientes com pendência",
         "noPendingEnvironments": "Nenhum ambiente com pendência ativa.",
@@ -52,9 +49,6 @@
         "verifyItem": "Verifique: {{item}}",
         "offlineAlert": "Offline. Apenas conteúdos e SOS disponíveis.",
         "batteryAlert": "Bateria crítica. Recarregue o dispositivo.",
-        "labelSafe": "Seguro: {{pct}}%",
-        "labelAttention": "Atenção: {{pct}}%",
-        "labelCritical": "Crítico: {{pct}}%",
         "residence": {
             "alertMissingNameTitle": "Atenção",
             "alertMissingNameBody": "Dê um nome para a nova moradia.",
@@ -266,7 +260,11 @@
         "heroMaxima": "Segurança máxima",
         "homeXRay": "Raio-X da Casa",
         "homeXRayDesc": "Sua casa, moradores e ambientes",
-        "pendenciasPill": "{{count}} pendências"
+        "pendenciasPill": "{{count}} pendências",
+        "criticalInspections_one": "{{count}} ponto crítico em aberto",
+        "criticalInspections_other": "{{count}} pontos críticos em aberto",
+        "openPendencias_one": "{{count}} pendência em aberto",
+        "openPendencias_other": "{{count}} pendências em aberto"
     },
     "onboarding": {
         "title1": "Blindagem 360º",

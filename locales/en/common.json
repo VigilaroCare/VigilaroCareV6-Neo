@@ -39,9 +39,6 @@
         "myLocations": "My Locations",
         "addNewLocation": "Add new location",
         "inspectedEnvironments": "Inspected Environments",
-        "homeSafe": "Your home is\nsafe",
-        "homeNeedsAttention": "Your home needs\nattention",
-        "actImmediately": "Act\nimmediately",
         "noInspectedEnvironment": "No inspected environments.",
         "pendingEnvironmentsTitle": "Environments with pending items",
         "noPendingEnvironments": "No environments with active pending items.",
@@ -52,9 +49,6 @@
         "verifyItem": "Check: {{item}}",
         "offlineAlert": "Offline. Only local content and SOS available.",
         "batteryAlert": "Critical battery. Charge your device.",
-        "labelSafe": "Safe: {{pct}}%",
-        "labelAttention": "Attention: {{pct}}%",
-        "labelCritical": "Critical: {{pct}}%",
         "residence": {
             "alertMissingNameTitle": "Attention",
             "alertMissingNameBody": "Give the new home a name.",
@@ -266,7 +260,11 @@
         "heroMaxima": "Maximum safety",
         "homeXRay": "Home X-Ray",
         "homeXRayDesc": "Your home, residents and rooms",
-        "pendenciasPill": "{{count}} pending"
+        "pendenciasPill": "{{count}} pending",
+        "criticalInspections_one": "{{count}} critical item open",
+        "criticalInspections_other": "{{count}} critical items open",
+        "openPendencias_one": "{{count}} open item",
+        "openPendencias_other": "{{count}} open items"
     },
     "onboarding": {
         "title1": "360º Shielding",

@@ -135,7 +135,6 @@ import ProdutosPerigososScreen     from "./screens/Education/ProdutosPerigososSc
 import RiscosFisicosScreen         from "./screens/Education/RiscosFisicosScreen";
 import ChecklistDetailScreen       from "./screens/Checklists/ChecklistDetailScreen";
 import RelatoriosScreen            from "./screens/Checklists/RelatoriosScreenNeo";
-import AmbientesVistoriadosScreen  from "./screens/AmbientesVistoriadosScreen";
 import JardinagemSeguraScreen      from "./screens/Education/JardinagemSeguraScreen";
 import RiscosMenuScreen            from "./screens/Education/RiscosMenuScreen";
 import MicroArticleScreen          from "./screens/Education/MicroArticleScreen";
@@ -713,7 +712,6 @@ export default function App() {
                       <Stack.Screen name="RadarArticle" component={RadarArticleScreen} />
                       <Stack.Screen name="KitsMenu" component={KitsMenuScreen} />
                       <Stack.Screen name="Relatorios" component={RelatoriosScreen} />
-                      <Stack.Screen name="AmbientesVistoriados" component={AmbientesVistoriadosScreen} />
                       <Stack.Screen name="EscolaSegura" component={EscolaSeguraScreen} />
                       <Stack.Screen name="EscolaSeguraReport" component={EscolaSeguraReportScreen} />
                       <Stack.Screen name="AreasInternas" component={AreasInternasScreen} />

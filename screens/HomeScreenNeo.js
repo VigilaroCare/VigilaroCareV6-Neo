@@ -411,7 +411,12 @@ export default function HomeScreenNeo() {
     // manchete do card de Vistorias — ver ScoreService.getManchete.
 
     // ── DERIVADOS PARA ALERTA CONTEXTUAL ──
-    const hasCriticalScore = scoreData.geral > 0 && scoreData.geral < 50;
+    // O aviso de vistorias segue a MESMA manchete do medidor e do card de
+    // Vistorias (`tomDoScore`, de ScoreService.getManchete): aparece em
+    // atenção e fica sólido em crítico. Até 27/10/2026 ele tinha corte próprio
+    // — score abaixo de 50%, sólido abaixo de 40% —, o último limiar declarado
+    // por tela que restava na Home, contra a regra do CLAUDE.md. Com ele, uma
+    // casa com 95% e um perigo em aberto não recebia aviso nenhum.
     const hasOffline = !systemStatus.isConnected;
     const hasCriticalBattery = systemStatus.isCriticalBattery;
 
@@ -431,14 +436,22 @@ export default function HomeScreenNeo() {
                 route: null,
             };
         }
-        if (hasCriticalScore) {
-            // Faixa "critico" do ScoreService (score < 40) ganha tom solido —
-            // risco real aberto na casa nao pode ter menos peso visual que
-            // elementos decorativos da tela (auditoria UX 2026-07-30, achado 2).
-            const isSevere = scoreData.geral < 40;
+        if (tomDoScore === 'error' || tomDoScore === 'warning') {
+            // Nível crítico ganha tom sólido — risco real aberto na casa não
+            // pode ter menos peso visual que elementos decorativos da tela
+            // (auditoria UX 2026-07-30, achado 2).
+            //
+            // O texto diz o que conta. Antes dizia "pontos críticos" contando
+            // TODAS as pendências (perigo e atenção), e a chave nem existia nos
+            // locales: o aviso saía em português em qualquer idioma. Agora conta
+            // os itens de perigo em aberto; se não houver nenhum (casa em
+            // atenção só por cobertura baixa), conta as pendências e diz isso.
+            const criticos = scoreData.statsGeral?.critical || 0;
             return {
-                tone: isSevere ? 'critical' : 'warning',
-                label: t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` }),
+                tone: tomDoScore === 'error' ? 'critical' : 'warning',
+                label: criticos > 0
+                    ? t('home.criticalInspections', { count: criticos })
+                    : t('home.openPendencias', { count: scoreData.pendencias }),
                 route: 'Relatorios',
                 params: { focus: 'pendencias' },
             };
@@ -612,7 +625,10 @@ export default function HomeScreenNeo() {
                                     valor={!isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0 ? scoreData.pendencias : undefined}
                                     unidade={!isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0 ? t('home.signals.open', 'Em aberto') : undefined}
                                     sub={isRowLayout && item.key === 'vistorias' && scoreData.pendencias > 0
-                                        ? t('home.criticalInspections', { count: scoreData.pendencias, defaultValue: `${scoreData.pendencias} pontos críticos abertos` })
+                                        // Conta TODAS as pendências, como o card de 2
+                                        // colunas ("60 Em aberto"). Dizia "pontos
+                                        // críticos" com esta mesma conta.
+                                        ? t('home.openPendencias', { count: scoreData.pendencias })
                                         : undefined}
                                     largo={isRowLayout}
                                     seta={isRowLayout}
