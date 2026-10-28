@@ -62,7 +62,7 @@ export const PRODUTOS_PERIGOSOS = {
     toxic_for_species: ['gato', 'ave'],
   },
   '7896090700102': {
-    nome: 'Soda Cáustica (Diabo Verde)',
+    nome: 'Soda Cáustica',
     categoria: 'Corrosivo',
     perigo: 'Extremo',
     componentes: ['Hidróxido de Sódio'],
@@ -267,7 +267,7 @@ export const PRODUTOS_PERIGOSOS = {
   // MEDICAMENTOS COMUNS
   // ═══════════════════════════════════════
   '7896006200012': {
-    nome: 'Paracetamol (Tylenol/Genérico)',
+    nome: 'Paracetamol',
     categoria: 'Medicamento',
     perigo: 'Médio (Humanos) / Mortal (Gatos)',
     componentes: ['Paracetamol'],
@@ -298,7 +298,7 @@ export const PRODUTOS_PERIGOSOS = {
     toxic_for_species: [],
   },
   '7896015528010': {
-    nome: 'Ibuprofeno (Advil/Genérico)',
+    nome: 'Ibuprofeno',
     categoria: 'Medicamento',
     perigo: 'Médio (Humanos) / Alto (Pets)',
     componentes: ['Ibuprofeno'],

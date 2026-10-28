@@ -10,6 +10,8 @@
  * limiares diferentes: HeroScoreCard (cor/label em 80/50), HomeScreenNeo
  * (heroHeadline em 80/50) e getMensagemImpacto (texto em 90/70/40). Um score 75
  * saía âmbar + "Ambiente Seguro" ao mesmo tempo. Agora todos consomem getBanda.
+ * O getMensagemImpacto saiu em 27/10/2026: não tinha mais nenhum chamador, e o
+ * campo `titulo` da faixa existia só para ele.
  */
 
 import { AMBIENTES, CHECKLISTS } from '../data/mapeamento_dados';
@@ -188,16 +190,16 @@ class ScoreService {
    * superfície (o hero creme usa tints claros; o monitor usa tokens semânticos
    * fortes), mapeando por `key` — assim o limiar é único e a cor é contextual.
    *
-   * Faixas (alinhadas ao histórico do getMensagemImpacto): 90 / 70 / 40.
+   * Faixas: 90 / 70 / 40, os cortes que o antigo getMensagemImpacto já usava.
    *   >=90  maxima    · >=70 controle · >=40 atencao · >0 critico · 0 inicio
    */
   getBanda(score) {
     const s = Number(score) || 0;
-    if (s <= 0)  return { key: 'inicio',   headlineKey: 'home.heroStart',     headline: 'Vistorias pendentes', titulo: 'Monitor Ativo' };
-    if (s >= 90) return { key: 'maxima',   headlineKey: 'home.heroMaxima',    headline: 'Segurança máxima',    titulo: 'Segurança Máxima' };
-    if (s >= 70) return { key: 'controle', headlineKey: 'home.heroControl',   headline: 'Casa sob controle',   titulo: 'Ambiente Seguro' };
-    if (s >= 40) return { key: 'atencao',  headlineKey: 'home.heroAttention', headline: 'Atenção necessária',  titulo: 'Atenção Necessária' };
-    return         { key: 'critico',  headlineKey: 'home.heroAct',       headline: 'Aja imediatamente',   titulo: 'Alerta de Risco' };
+    if (s <= 0)  return { key: 'inicio',   headlineKey: 'home.heroStart',     headline: 'Vistorias pendentes' };
+    if (s >= 90) return { key: 'maxima',   headlineKey: 'home.heroMaxima',    headline: 'Segurança máxima' };
+    if (s >= 70) return { key: 'controle', headlineKey: 'home.heroControl',   headline: 'Casa sob controle' };
+    if (s >= 40) return { key: 'atencao',  headlineKey: 'home.heroAttention', headline: 'Atenção necessária' };
+    return         { key: 'critico',  headlineKey: 'home.heroAct',       headline: 'Aja imediatamente' };
   }
 
   /**
@@ -213,30 +215,6 @@ class ScoreService {
    */
   getTom(score) {
     return TOM_POR_BANDA[this.getBanda(score).key] || 'muted';
-  }
-
-  /**
-   * Retorna a saudação/mensagem de segurança baseada no Score.
-   * Agora delega o limiar ao getBanda — os textos de alerta seguem idênticos
-   * aos anteriores, garantindo zero regressão de conteúdo.
-   */
-  // `pendencias` manda na mensagem de topo: a faixa é percentual, e um único
-  // `perigo` aberto convive com 95%. Dizer "blindada" com risco crítico em
-  // aberto contradiz o próprio nível de proteção, que rebaixa nesse caso.
-  getMensagemImpacto(score, pendencias) {
-    const b = this.getBanda(score);
-    const alertas = {
-      inicio:   pendencias > 0
-        ? `Existem ${pendencias} itens aguardando vistoria.`
-        : 'Vistorias pendentes.',
-      maxima:   pendencias > 0
-        ? `Quase lá: ainda há ${pendencias} ponto(s) a resolver.`
-        : 'Sua casa está blindada contra acidentes.',
-      controle: pendencias > 0 ? `Existem ${pendencias} pontos de melhoria.` : 'Proteção em dia.',
-      atencao:  `Sua casa tem ${pendencias} riscos ativos.`,
-      critico:  `Muitos riscos pendentes (${pendencias}). Priorize a correção.`,
-    };
-    return { titulo: b.titulo, alerta: alertas[b.key] };
   }
 
   /**

@@ -144,6 +144,14 @@
   "m036": {
    "texto": "Ajustes de limao, desinfetante/detergente e bicarbonato aprovados pelo Agnaldo em 27/10/2026",
    "em": "2026-10-27"
+  },
+  "m037": {
+   "texto": "Misturas Perigosas (data/safety_mixtures.js), escritas no Antigravity em 26-27/10/2026. O Agnaldo aprovou a estrutura e a arquitetura dos cards (m034, m035) e ajustes pontuais (m036), mas nao leu o texto final linha a linha. Voltam para revisao por decisao dele em 27/10/2026.",
+   "em": "2026-10-27"
+  },
+  "m038": {
+   "texto": "Nome sem marca comercial no catalogo do scanner, decisao do Agnaldo por chat em 27/10/2026: 'Soda Caustica (Diabo Verde)' -> 'Soda Caustica', 'Paracetamol (Tylenol/Generico)' -> 'Paracetamol', 'Ibuprofeno (Advil/Generico)' -> 'Ibuprofeno'. Mesma regra que ele ja aplicou a busca (f256784).",
+   "em": "2026-10-27"
   }
  },
  "textos": {
@@ -873,9 +881,9 @@
    "m015"
   ],
   "0d0a7f55a4963c26": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "0d14d095f74a83c5": [
    "pendente",
@@ -2146,11 +2154,6 @@
    "pendente",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
-  ],
-  "22391abc4841ce29": [
-   "pendente",
-   "data/produtos_scanner.js",
-   "m006"
   ],
   "228cf600ebf5ad2d": [
    "aprovado",
@@ -3453,9 +3456,9 @@
    "m001"
   ],
   "35b197e4ac1a025d": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "35b1a2c0326a4f02": [
    "pendente",
@@ -5122,6 +5125,11 @@
    "data/animais_ciatox.js",
    "m010"
   ],
+  "4e5b3b162b0f4d48": [
+   "aprovado",
+   "data/produtos_scanner.js",
+   "m038"
+  ],
   "4e62d43ccf1df5ff": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros_pets.js",
@@ -5731,11 +5739,6 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m010"
-  ],
-  "56cbfa0e8dadfa79": [
-   "pendente",
-   "data/produtos_scanner.js",
-   "m006"
   ],
   "56d3647ec6e80481": [
    "pendente",
@@ -8282,11 +8285,6 @@
    "data/produtos_scanner.js",
    "m006"
   ],
-  "7fb34d28dca6cf86": [
-   "pendente",
-   "data/produtos_scanner.js",
-   "m006"
-  ],
   "7ffd0528931502f1": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -9298,9 +9296,9 @@
    "m015"
   ],
   "906cc97fca5cb9a9": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m034"
+   "m037"
   ],
   "9077bfc05cebe1b6": [
    "aprovado",
@@ -9673,9 +9671,9 @@
    "m026"
   ],
   "96e1461e8f7e1a56": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m036"
+   "m037"
   ],
   "96ece565012e9aae": [
    "pendente",
@@ -11403,9 +11401,9 @@
    "m002"
   ],
   "b0f62f0ba61ea381": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "b10a7f447b7e6599": [
    "pendente",
@@ -12333,9 +12331,9 @@
    "m012"
   ],
   "beb4bfa82a0a5fee": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "bee21f94429557b0": [
    "pendente",
@@ -13502,6 +13500,11 @@
    "data/kits/emergency.js",
    "m010"
   ],
+  "d2a82582ef9205b8": [
+   "aprovado",
+   "data/produtos_scanner.js",
+   "m038"
+  ],
   "d2af73f9d08b4166": [
    "pendente",
    "data/micro_blog.js",
@@ -13998,9 +14001,9 @@
    "m010"
   ],
   "d9e44e5a190b1ecc": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "d9efef3f0d85d73c": [
    "aprovado",
@@ -15333,9 +15336,9 @@
    "m010"
   ],
   "ef9f05fcbbd5c9cb": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m035"
+   "m037"
   ],
   "efa31b7506c04ed1": [
    "aprovado",
@@ -15393,9 +15396,9 @@
    "m010"
   ],
   "f16a39fa2dc59bb6": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m036"
+   "m037"
   ],
   "f194033a14529a0d": [
    "pendente",
@@ -15578,9 +15581,9 @@
    "m009"
   ],
   "f39dea1d4fc3d33c": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m036"
+   "m037"
   ],
   "f3a275ebfa4acb25": [
    "pendente",
@@ -16033,9 +16036,9 @@
    "m015"
   ],
   "fa9e107904b3dd36": [
-   "aprovado",
+   "pendente",
    "data/safety_mixtures.js",
-   "m036"
+   "m037"
   ],
   "faa8427c76cd0d33": [
    "pendente",
