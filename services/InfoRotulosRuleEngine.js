@@ -6,54 +6,46 @@
  * Gera alertas personalizados por membro da família.
  *
  * Severidades: CRITICAL > HIGH > MEDIUM > LOW > INFO
+ *
+ * OS TEXTOS NÃO MORAM AQUI. Até 28/10/2026 este arquivo trazia cerca de 40
+ * frases de segurança em português, sem tradução e fora da trava de revisão
+ * (que só varre data/, screens/ e components/). Agora o texto vive em
+ * data/regras_inforotulos.js — pt-BR como fonte, com _en/_es/_ptpt, lido por
+ * t_field(). Aqui ficam só as REGRAS: quando cada alerta aparece e com que
+ * severidade.
  */
 
 import ProfileService from './ProfileService';
+import { t_field } from '../utils/getLocalizedField';
+import { rotuloOpcaoPerfil } from '../data/opcoesPerfil';
+import { SAFETY_MIXTURES } from '../data/safety_mixtures';
+import {
+    SEVERIDADES, ESPECIES, TOXICIDADE_PETS, ALERTAS, MISTURAS_DO_PRODUTO, RESUMO_FAMILIA,
+} from '../data/regras_inforotulos';
 
 // ─────────────────────────────────────────
 // Constantes
 // ─────────────────────────────────────────
 
+// Cor, nível e ícone são design. O rótulo é texto e sai do arquivo de conteúdo:
+// o getter é lido na hora de montar o alerta (spread), então acompanha o idioma.
 export const SEVERITY = {
-    CRITICAL: { level: 5, label: 'CRÍTICO', color: '#B71C1C', bg: '#FFEBEE', icon: '🚨' },
-    HIGH:     { level: 4, label: 'ALTO',    color: '#D32F2F', bg: '#FFCDD2', icon: '⚠️' },
-    MEDIUM:   { level: 3, label: 'MÉDIO',   color: '#F57C00', bg: '#FFF3E0', icon: '⚡' },
-    LOW:      { level: 2, label: 'BAIXO',   color: '#FFC107', bg: '#FFF8E1', icon: '💡' },
-    INFO:     { level: 1, label: 'INFO',    color: '#1976D2', bg: '#E3F2FD', icon: 'ℹ️' },
+    CRITICAL: { level: 5, get label() { return t_field(SEVERIDADES.CRITICAL, 'label'); }, color: '#B71C1C', bg: '#FFEBEE', icon: '🚨' },
+    HIGH:     { level: 4, get label() { return t_field(SEVERIDADES.HIGH, 'label'); },     color: '#D32F2F', bg: '#FFCDD2', icon: '⚠️' },
+    MEDIUM:   { level: 3, get label() { return t_field(SEVERIDADES.MEDIUM, 'label'); },   color: '#F57C00', bg: '#FFF3E0', icon: '⚡' },
+    LOW:      { level: 2, get label() { return t_field(SEVERIDADES.LOW, 'label'); },      color: '#FFC107', bg: '#FFF8E1', icon: '💡' },
+    INFO:     { level: 1, get label() { return t_field(SEVERIDADES.INFO, 'label'); },     color: '#1976D2', bg: '#E3F2FD', icon: 'ℹ️' },
 };
 
-// Substâncias conhecidas como tóxicas para espécies específicas
-const PET_TOXICITY_DB = {
-    // Substâncias fatais para GATOS
-    gato: [
-        { match: /paracetamol|acetaminophen|tylenol/i, message: 'FATAL para gatos — causa anemia hemolítica e asfixia celular. Dose mínima letal: 10mg/kg.', severity: 'CRITICAL' },
-        { match: /fenol|phenol|creosol|cresol/i, message: 'Altamente tóxico para gatos — deficiência enzimática impede metabolização. Evite desinfetantes com fenol.', severity: 'CRITICAL' },
-        { match: /permetrina|permethrin/i, message: 'FATAL para gatos — nunca aplicar antipulgas de cão em gato.', severity: 'CRITICAL' },
-        { match: /etilenoglicol|ethylene.?glycol|anticongelante/i, message: 'Fatal para gatos e cães — sabor adocicado atrai pets. Causa falência renal rápida.', severity: 'CRITICAL' },
-        { match: /óleo.*essencial.*melaleuca|tea.?tree/i, message: 'Tóxico para gatos — não usar difusores em ambientes com felinos.', severity: 'HIGH' },
-        { match: /ibuprofeno|ibuprofen/i, message: 'Tóxico para gatos e cães — pode causar úlceras gástricas e falência renal.', severity: 'HIGH' },
-        { match: /cloro|hipoclorito|chlorine|bleach/i, message: 'Irritante severo para mucosas felinas. Enxaguar piso completamente antes de liberar acesso ao pet.', severity: 'MEDIUM' },
-    ],
-    // Substâncias tóxicas para CÃES
-    cachorro: [
-        { match: /etilenoglicol|ethylene.?glycol|anticongelante/i, message: 'Fatal para cães — sabor adocicado os atrai. Falência renal em horas.', severity: 'CRITICAL' },
-        { match: /xilitol|xylitol/i, message: 'EXTREMAMENTE tóxico para cães — hipoglicemia e falência hepática fulminante.', severity: 'CRITICAL' },
-        { match: /raticida|brodifacoum|warfarin|cumarínico/i, message: 'Fatal para cães — causa hemorragia interna. Sintomas podem levar dias para aparecer.', severity: 'CRITICAL' },
-        { match: /ibuprofeno|ibuprofen/i, message: 'Tóxico para cães — pode causar úlceras gástricas e falência renal.', severity: 'HIGH' },
-        { match: /chocolate|teobromina|theobromine/i, message: 'Tóxico para cães — chocolate amargo é mais perigoso que ao leite.', severity: 'HIGH' },
-    ],
-    // Substâncias tóxicas para AVES
-    ave: [
-        { match: /teflon|ptfe|politetrafluoretileno/i, message: 'FATAL para aves — vapores de panelas antiaderentes superaquecidas causam morte rápida.', severity: 'CRITICAL' },
-        { match: /aerossol|spray|inseticida/i, message: 'Sistema respiratório de aves é extremamente sensível. Nunca use sprays perto de viveiros.', severity: 'HIGH' },
-        { match: /cloro|hipoclorito|bleach/i, message: 'Vapores de cloro são tóxicos para aves. Ventilar antes de devolver ao ambiente.', severity: 'HIGH' },
-    ],
-    // Peixes
-    peixe: [
-        { match: /inseticida|piretróide|pyrethroid|piretrina/i, message: 'FATAL para peixes — piretróides são extremamente tóxicos em ambiente aquático.', severity: 'CRITICAL' },
-        { match: /cloro|hipoclorito|bleach/i, message: 'Cloro é letal para peixes. Nunca descartar produto com cloro em aquários ou fontes.', severity: 'CRITICAL' },
-    ],
-};
+/** Troca {{marcador}} pelo valor. Marcador ausente vira vazio, nunca "undefined". */
+function interpolar(texto, vars = {}) {
+    return String(texto || '').replace(/\{\{(\w+)\}\}/g, (_m, k) => (vars[k] == null ? '' : String(vars[k])));
+}
+
+/** Campo de texto de um bloco de conteúdo, no idioma atual, com marcadores preenchidos. */
+function texto(bloco, campo, vars) {
+    return interpolar(t_field(bloco, campo), vars);
+}
 
 // ─────────────────────────────────────────
 // PONTO DE ENTRADA PRINCIPAL
@@ -91,9 +83,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                 ...SEVERITY.CRITICAL,
                 rule: 'child_under_3',
                 profiles: familyContext.childrenUnder3,
-                title: `Perigo para ${familyContext.childrenUnder3.map(p => p.nome).join(', ')}`,
-                message: `Produto com substâncias corrosivas ou tóxicas. Crianças menores de 3 anos exploram TUDO com a boca. Manter absolutamente fora de alcance, preferencialmente trancado.`,
-                action: 'Armazene em armário alto com trava de segurança.',
+                title: texto(ALERTAS.criancaMenor3, 'titulo', { nomes: familyContext.childrenUnder3.map(p => p.nome).join(', ') }),
+                message: texto(ALERTAS.criancaMenor3, 'mensagem'),
+                action: texto(ALERTAS.criancaMenor3, 'acao'),
             });
         }
     }
@@ -110,9 +102,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                 ...SEVERITY.HIGH,
                 rule: 'child_under_12',
                 profiles: familyContext.childrenUnder12,
-                title: `Atenção: produto perigoso na casa`,
-                message: `Substância tóxica ou corrosiva. Crianças em idade escolar já conseguem abrir embalagens. Oriente sobre o perigo.`,
-                action: 'Converse sobre segurança. Mantenha fora do alcance.',
+                title: texto(ALERTAS.criancaMenor12, 'titulo'),
+                message: texto(ALERTAS.criancaMenor12, 'mensagem'),
+                action: texto(ALERTAS.criancaMenor12, 'acao'),
             });
         }
     }
@@ -129,9 +121,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                 ...SEVERITY.HIGH,
                 rule: 'pregnant',
                 profiles: familyContext.pregnant,
-                title: `Risco na gestação para ${familyContext.pregnant.map(p => p.nome).join(', ')}`,
-                message: `Produto contém substâncias com potencial teratogênico, genotóxico ou carcinogênico. Evite exposição direta durante a gestação. Prefira alternativas seguras.`,
-                action: 'Peça a outra pessoa para manusear este produto.',
+                title: texto(ALERTAS.gestante, 'titulo', { nomes: familyContext.pregnant.map(p => p.nome).join(', ') }),
+                message: texto(ALERTAS.gestante, 'mensagem'),
+                action: texto(ALERTAS.gestante, 'acao'),
             });
         }
 
@@ -143,9 +135,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                 ...SEVERITY.MEDIUM,
                 rule: 'pregnant_solvent',
                 profiles: familyContext.pregnant,
-                title: 'Solvente — evitar na gestação',
-                message: 'Produtos que causam sonolência/tontura podem conter solventes orgânicos prejudiciais ao desenvolvimento fetal.',
-                action: 'Ventile o ambiente. Evite inalação prolongada.',
+                title: texto(ALERTAS.gestanteSolvente, 'titulo'),
+                message: texto(ALERTAS.gestanteSolvente, 'mensagem'),
+                action: texto(ALERTAS.gestanteSolvente, 'acao'),
             });
         }
     }
@@ -162,9 +154,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                 ...SEVERITY.MEDIUM,
                 rule: 'elderly',
                 profiles: familyContext.elderly,
-                title: `Cuidado para ${familyContext.elderly.map(p => p.nome).join(', ')}`,
-                message: 'Produto com irritantes respiratórios ou neurotóxicos. Idosos têm maior sensibilidade a vapores e risco aumentado de tontura/queda.',
-                action: 'Use em local bem ventilado. Evite uso prolongado.',
+                title: texto(ALERTAS.idoso, 'titulo', { nomes: familyContext.elderly.map(p => p.nome).join(', ') }),
+                message: texto(ALERTAS.idoso, 'mensagem'),
+                action: texto(ALERTAS.idoso, 'acao'),
             });
         }
     }
@@ -172,7 +164,7 @@ export async function evaluateProduct(substanceData, productData = null) {
     // ── Regra 5: Pets (por espécie) ──
     for (const pet of familyContext.pets) {
         const especie = normalizePetSpecies(pet.especie);
-        const toxRules = PET_TOXICITY_DB[especie];
+        const toxRules = TOXICIDADE_PETS[especie];
 
         if (!toxRules) continue;
 
@@ -187,9 +179,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                     ...SEVERITY[rule.severity],
                     rule: 'pet_toxicity',
                     profiles: [pet],
-                    title: `Tóxico para ${pet.nome} (${especie})`,
-                    message: rule.message,
-                    action: `Mantenha fora do alcance de ${pet.nome}. Em caso de contato, procure veterinário de emergência.`,
+                    title: texto(ALERTAS.pet, 'titulo', { nome: pet.nome, especie: t_field(ESPECIES[especie], 'nome') }),
+                    message: t_field(rule, 'mensagem'),
+                    action: texto(ALERTAS.pet, 'acao', { nome: pet.nome }),
                 });
                 break; // Uma alerta por pet por produto
             }
@@ -204,8 +196,12 @@ export async function evaluateProduct(substanceData, productData = null) {
             // Verifica cruzamento com alergias específicas cadastradas
             for (const { profile, allergen } of familyContext.allergies) {
                 const textsToTest = [name, ...componentes].filter(Boolean);
+                // O valor gravado no perfil pode ser um rótulo antigo de opção
+                // renomeada ("Aspirina"); testa o gravado e o rótulo de hoje.
+                const exibido = rotuloOpcaoPerfil(allergen);
                 const hasMatch = textsToTest.some(t =>
-                    t.toLowerCase().includes(allergen.toLowerCase())
+                    t.toLowerCase().includes(String(allergen).toLowerCase()) ||
+                    t.toLowerCase().includes(String(exibido).toLowerCase())
                 );
 
                 if (hasMatch) {
@@ -214,9 +210,9 @@ export async function evaluateProduct(substanceData, productData = null) {
                         ...SEVERITY.HIGH,
                         rule: 'allergy_cross',
                         profiles: [profile],
-                        title: `Alergia de ${profile.nome}: ${allergen}`,
-                        message: `Este produto pode conter "${allergen}", listada como alergia de ${profile.nome}. Evite contato direto.`,
-                        action: 'Verifique o rótulo completo. Use luvas se necessário.',
+                        title: texto(ALERTAS.alergia, 'titulo', { nome: profile.nome, alergeno: exibido }),
+                        message: texto(ALERTAS.alergia, 'mensagem', { nome: profile.nome, alergeno: exibido }),
+                        action: texto(ALERTAS.alergia, 'acao'),
                     });
                 }
             }
@@ -224,23 +220,27 @@ export async function evaluateProduct(substanceData, productData = null) {
     }
 
     // ── Regra 7: Misturas perigosas (alerta educativo) ──
-    const isBleach = /cloro|hipoclorito|água.?sanitária|bleach/i.test(name);
-    const isAmmonia = /amônia|ammonia/i.test(name);
-    const isAcid = /ácido|acid|vinagre/i.test(name);
+    // O texto vem de data/safety_mixtures.js — a versão canônica, revisada — e
+    // não de uma cópia aqui. As regras de qual produto dispara qual mistura ficam
+    // em MISTURAS_DO_PRODUTO.
+    const secoesDaMistura = new Set();
+    for (const r of MISTURAS_DO_PRODUTO) {
+        const alvo = [name, ...(r.emComponentes ? componentes : [])].filter(Boolean);
+        if (alvo.some(t => r.match.test(t))) r.secoes.forEach(id => secoesDaMistura.add(id));
+    }
+    if (secoesDaMistura.size > 0) {
+        const lista = SAFETY_MIXTURES.sections
+            .filter(s => secoesDaMistura.has(s.id))
+            .map(s => t_field(s, 'title'));
 
-    if (isBleach || isAmmonia || isAcid) {
         alerts.push({
             severity: 'INFO',
             ...SEVERITY.INFO,
             rule: 'mixture_warning',
             profiles: [],
-            title: '⚠️ NUNCA misturar com outros produtos',
-            message: isBleach
-                ? 'Água sanitária + amônia = gás cloramina (tóxico). Água sanitária + ácido/vinagre = gás cloro (potencialmente letal). Use APENAS um produto por vez.'
-                : isAmmonia
-                    ? 'Amônia + cloro = gás cloramina (tóxico). Nunca misture produtos de limpeza.'
-                    : 'Ácidos + cloro = gás cloro (potencialmente letal). Nunca misture produtos de limpeza.',
-            action: 'Use um produto de cada vez. Ventile o ambiente.',
+            title: texto(ALERTAS.misturas, 'titulo'),
+            message: texto(ALERTAS.misturas, 'mensagem', { lista: lista.join('; ') }),
+            action: texto(ALERTAS.misturas, 'acao'),
         });
     }
 
@@ -308,48 +308,64 @@ async function loadFamilyContext() {
 }
 
 /**
- * Retorna resumo do perfil familiar para exibição na UI.
- * Ex: "1 criança (2 anos), 1 gato"
+ * Retorna resumo do perfil familiar.
+ * Ex: "1 criança (bebê), 1 gato"
+ *
+ * Devolve DOIS textos, de propósito:
+ *  - `text`  — sempre pt-BR. É o contexto que a IA recebe no pedido de análise;
+ *              mudar de idioma não pode mudar o que o prompt diz.
+ *  - `label` — no idioma do app. É o que a tela "Seu perfil familiar" mostra.
  */
 export async function getFamilySummary() {
     const ctx = await loadFamilyContext();
     if (!ctx) return null;
 
-    const parts = [];
+    const montar = (ptBr) => {
+        // pt-BR lê o campo base; os outros idiomas passam por t_field().
+        const c = (bloco, campo) => (ptBr ? (bloco[campo] ?? '') : t_field(bloco, campo));
+        const qtd = (bloco, n) => c(bloco, n === 1 ? 'um' : 'varios').replace('{{n}}', String(n));
 
-    if (ctx.childrenUnder3.length > 0) {
-        const ages = ctx.childrenUnder3.map(p => {
-            const age = ProfileService.calcularIdade(p.dataNascimento);
-            return age < 1 ? 'bebê' : `${age} ano${age > 1 ? 's' : ''}`;
-        });
-        parts.push(`${ctx.childrenUnder3.length} criança${ctx.childrenUnder3.length > 1 ? 's' : ''} (${ages.join(', ')})`);
-    } else if (ctx.childrenUnder12.length > 0) {
-        parts.push(`${ctx.childrenUnder12.length} criança${ctx.childrenUnder12.length > 1 ? 's' : ''}`);
-    }
+        const parts = [];
 
-    if (ctx.pregnant.length > 0) {
-        parts.push(`${ctx.pregnant.length} gestante${ctx.pregnant.length > 1 ? 's' : ''}`);
-    }
-
-    if (ctx.elderly.length > 0) {
-        parts.push(`${ctx.elderly.length} idoso${ctx.elderly.length > 1 ? 's' : ''} (70+)`);
-    }
-
-    if (ctx.pets.length > 0) {
-        const petTypes = {};
-        for (const pet of ctx.pets) {
-            const species = normalizePetSpecies(pet.especie);
-            petTypes[species] = (petTypes[species] || 0) + 1;
+        if (ctx.childrenUnder3.length > 0) {
+            const ages = ctx.childrenUnder3.map(p => {
+                const age = ProfileService.calcularIdade(p.dataNascimento);
+                return age < 1 ? c(RESUMO_FAMILIA.bebe, 'nome') : qtd(RESUMO_FAMILIA.ano, age);
+            });
+            parts.push(`${qtd(RESUMO_FAMILIA.crianca, ctx.childrenUnder3.length)} (${ages.join(', ')})`);
+        } else if (ctx.childrenUnder12.length > 0) {
+            parts.push(qtd(RESUMO_FAMILIA.crianca, ctx.childrenUnder12.length));
         }
-        for (const [species, count] of Object.entries(petTypes)) {
-            parts.push(`${count} ${species}${count > 1 ? 's' : ''}`);
-        }
-    }
 
-    if (parts.length === 0) return null;
+        if (ctx.pregnant.length > 0) {
+            parts.push(qtd(RESUMO_FAMILIA.gestante, ctx.pregnant.length));
+        }
+
+        if (ctx.elderly.length > 0) {
+            parts.push(qtd(RESUMO_FAMILIA.idoso, ctx.elderly.length));
+        }
+
+        if (ctx.pets.length > 0) {
+            const petTypes = {};
+            for (const pet of ctx.pets) {
+                const species = normalizePetSpecies(pet.especie);
+                petTypes[species] = (petTypes[species] || 0) + 1;
+            }
+            for (const [species, count] of Object.entries(petTypes)) {
+                const e = ESPECIES[species] || ESPECIES.outro;
+                parts.push(`${count} ${c(e, count > 1 ? 'plural' : 'nome')}`);
+            }
+        }
+
+        return parts;
+    };
+
+    const partesPt = montar(true);
+    if (partesPt.length === 0) return null;
 
     return {
-        text: parts.join(', '),
+        text: partesPt.join(', '),
+        label: montar(false).join(', '),
         hasVulnerables: ctx.childrenUnder3.length > 0 || ctx.pregnant.length > 0 || ctx.elderly.length > 0,
         hasPets: ctx.pets.length > 0,
         context: ctx,

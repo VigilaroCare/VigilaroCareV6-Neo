@@ -156,6 +156,10 @@
   "m039": {
    "texto": "Marca trocada pelo nome generico: 'Aspirina' -> 'acido acetilsalicilico' (em ingles fica 'aspirin', nome generico oficial). Decisao do Agnaldo por chat em 27/10/2026; o resto de cada texto e o que ele ja tinha revisado. Na lista de alergias o rotulo antigo segue como 'legado' para perfis ja salvos.",
    "em": "2026-10-27"
+  },
+  "m040": {
+   "texto": "Textos do motor de regras do Info Rotulos (data/regras_inforotulos.js), movidos em 28/10/2026 de services/InfoRotulosRuleEngine.js, onde nunca passaram por revisao nem tinham traducao (a trava so varre data, screens e components). Sao ~40 frases de seguranca: toxicidade por especie (gato, cachorro, ave, peixe), avisos para crianca, gestante, idoso e alergia. A redacao pt-BR e a que estava no app; en, es e pt-PT foram escritas agora e derivam dela. ATENCAO PARA A REVISAO: (1) SAIU 'Dose minima letal: 10mg/kg' da frase do paracetamol para gatos, numero sem fonte; (2) as frases 'FATAL para...' sao afirmacoes fortes de letalidade e merecem fonte; (3) 'asfixia celular' (paracetamol/gato) e termo nao tecnico, avaliar troca por 'impede o sangue de transportar oxigenio'; (4) o alerta de mistura nao tem texto proprio: lista as secoes de Misturas Perigosas (data/safety_mixtures.js), a versao ja revisada.",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -523,6 +527,11 @@
    "pendente",
    "data/tag_guidance.js",
    "m010"
+  ],
+  "05e0a1ad00688292": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "05e6520a5e6703ed": [
    "pendente",
@@ -1024,6 +1033,11 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
+  "0ef99d215e741f4b": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "0efcaef8886805bf": [
    "pendente",
    "data/mapeamento_dados.js",
@@ -1238,6 +1252,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m006"
+  ],
+  "12e2f69714dcdfd9": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "12ecd6e42f827fba": [
    "pendente",
@@ -2159,6 +2178,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m009"
   ],
+  "2255a4b5ff97bb8d": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "228cf600ebf5ad2d": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -2719,6 +2743,11 @@
    "data/mobilidade_data.js",
    "m005"
   ],
+  "2ae61833302908a0": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "2b2237eb7c1dad0a": [
    "pendente",
    "screens/Education/TravelSafetyGuideScreen.js",
@@ -2864,6 +2893,11 @@
    "data/tag_guidance.js",
    "m010"
   ],
+  "2dc06c3f69be2f0b": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "2dc07b249fd70f2b": [
    "pendente",
    "data/produtos_scanner.js",
@@ -2883,6 +2917,11 @@
    "pendente",
    "data/areas_internas.js",
    "m004"
+  ],
+  "2e00df8078cc95da": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "2e1072d4f1605447": [
    "pendente",
@@ -3294,6 +3333,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "331736641849ad0e": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "33260fc13297ab74": [
    "pendente",
    "data/animais_ciatox.js",
@@ -3498,6 +3542,11 @@
    "pendente",
    "data/kits/emergency.js",
    "m010"
+  ],
+  "3603fc3b072b93fa": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "3605332439805557": [
    "pendente",
@@ -3903,6 +3952,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "3cf4ef5fdb365b70": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "3d05d54025615873": [
    "aprovado",
@@ -4534,6 +4588,11 @@
    "data/kits/bagagem_viagem.js",
    "m010"
   ],
+  "45437a0d4fa8333e": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "454a3fdcdc5f10ef": [
    "pendente",
    "data/produtos_scanner.js",
@@ -4663,6 +4722,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m010"
+  ],
+  "46f7e41800d718b0": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "47121dfd0e660ba5": [
    "pendente",
@@ -6344,6 +6408,11 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "6145ccc6822ad53f": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "615f1371a2236073": [
    "pendente",
    "data/mobilidade_data.js",
@@ -6398,6 +6467,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "61f3157ec2505c87": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "61ffb31658b37d68": [
    "pendente",
@@ -6909,6 +6983,11 @@
    "locales/pt-BR/common.json",
    "m007"
   ],
+  "6928bc2423255818": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "6951f6ea3a9aae1f": [
    "pendente",
    "data/animais_ciatox.js",
@@ -7203,6 +7282,11 @@
    "pendente",
    "data/radarConteudoDB.js",
    "m030"
+  ],
+  "6dde1ea6eb55dd01": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "6deb606176b5a30b": [
    "pendente",
@@ -7504,6 +7588,11 @@
    "data/teoria_fogo.js",
    "m010"
   ],
+  "72a9e4a10bf5c60f": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "72c5708e8accadc3": [
    "pendente",
    "data/ferramentas_seguranca.js",
@@ -7588,6 +7677,11 @@
    "pendente",
    "data/radarConteudoDB.js",
    "m030"
+  ],
+  "741fe49e05e5407d": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "7428b83929fe0f1f": [
    "pendente",
@@ -7778,6 +7872,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "774efb8997fef962": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "7769ed67807a863c": [
    "pendente",
@@ -8719,6 +8818,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "876d8d0a02d2c55c": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "8799ce2908fd246c": [
    "pendente",
    "data/micro_blog.js",
@@ -9609,6 +9713,11 @@
    "data/animais_ciatox.js",
    "m015"
   ],
+  "9586633734c4b17e": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "95be9d5bffc387b6": [
    "pendente",
    "data/produtos_scanner.js",
@@ -9819,6 +9928,11 @@
    "data/animais_ciatox.js",
    "m006"
   ],
+  "98e16fa7d915a38b": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "98ef40541c52e8a0": [
    "pendente",
    "data/legal/politica_privacidade.js",
@@ -9923,6 +10037,11 @@
    "aprovado",
    "data/areas_externas.js",
    "m001"
+  ],
+  "9abf7250a742a9b2": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "9ac50e1644f8c0d6": [
    "pendente",
@@ -10114,6 +10233,11 @@
    "data/legal/termos_uso.js",
    "m010"
   ],
+  "9cde092f66888839": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "9cf1aee90b6dd516": [
    "pendente",
    "data/dispositivos_protecao.js",
@@ -10203,6 +10327,11 @@
    "pendente",
    "locales/pt-BR/common.json",
    "m007"
+  ],
+  "9ee9abd7579f9522": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "9ef51b2b42ed61f8": [
    "pendente",
@@ -10714,6 +10843,11 @@
    "data/legal/termos_uso.js",
    "m018"
   ],
+  "a64b360393f037c8": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "a65b95fe9cb85155": [
    "pendente",
    "data/areas_externas.js",
@@ -11099,6 +11233,11 @@
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
   ],
+  "ab4e57a29978e4c7": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "ab53353c26be5d67": [
    "pendente",
    "data/fases_vida.js",
@@ -11123,6 +11262,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "abace601a9fc9cad": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "abea85edf9d002ec": [
    "pendente",
@@ -11258,6 +11402,11 @@
    "pendente",
    "data/pet_safety_content.js",
    "m006"
+  ],
+  "ae186a4eda89506e": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "ae45ed7f6ed620d2": [
    "pendente",
@@ -11663,6 +11812,11 @@
    "pendente",
    "data/mapeamento_dados.js",
    "m022"
+  ],
+  "b4939543c4a79ad5": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "b4986165840a26ab": [
    "pendente",
@@ -13054,11 +13208,6 @@
    "data/locales/pt-BR/SafetyArticlesDB.js",
    "m010"
   ],
-  "cc4c7b724c883213": [
-   "pendente",
-   "locales/pt-BR/common.json",
-   "m007"
-  ],
   "cc552c305b0c70b7": [
    "pendente",
    "data/animais_ciatox.js",
@@ -13238,6 +13387,11 @@
    "pendente",
    "screens/Travel/TravelModeScreen.js",
    "m006"
+  ],
+  "cea6eca0080ceab6": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "cec089ec1347ce83": [
    "pendente",
@@ -13443,6 +13597,11 @@
    "pendente",
    "data/teoria_fogo.js",
    "m005"
+  ],
+  "d18007c96d37f17a": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "d19af562ebd1b550": [
    "pendente",
@@ -14224,6 +14383,11 @@
    "data/mapeamento_dados.js",
    "m010"
   ],
+  "dcc616043c2868fe": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "dcc8f6e0f320dd62": [
    "pendente",
    "data/classesIncendio.js",
@@ -14293,6 +14457,11 @@
    "aprovado",
    "data/dispositivos_protecao.js",
    "m001"
+  ],
+  "dde514092bea1d0b": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "ddf5e52b4d698a76": [
    "pendente",
@@ -14733,6 +14902,11 @@
    "pendente",
    "data/mobilidade_data.js",
    "m005"
+  ],
+  "e54372c6b02c36de": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "e5614ef4e8933e26": [
    "pendente",
@@ -15234,6 +15408,11 @@
    "data/legal/politica_privacidade.js",
    "m008"
   ],
+  "ed64ef44b84d74dd": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "ed944284d192ccca": [
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
@@ -15248,6 +15427,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "ede89d76b8dacc06": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "ee12e617a7b69751": [
    "pendente",
@@ -15358,6 +15542,11 @@
    "aprovado",
    "data/locales/pt-BR/primeiros_socorros.js",
    "m002"
+  ],
+  "f056048e5e735584": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "f05e1e50d99ae62e": [
    "pendente",
@@ -15493,6 +15682,11 @@
    "pendente",
    "data/animais_ciatox.js",
    "m015"
+  ],
+  "f29579afd9cc7da8": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "f2c4f96b9af0d5eb": [
    "aprovado",
@@ -16054,6 +16248,11 @@
    "data/safety_mixtures.js",
    "m037"
   ],
+  "faa572f9891a628f": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
+  ],
   "faa8427c76cd0d33": [
    "pendente",
    "locales/pt-BR/common.json",
@@ -16248,6 +16447,11 @@
    "pendente",
    "data/pet_food_safety.js",
    "m006"
+  ],
+  "fdd1702b885e93d5": [
+   "pendente",
+   "data/regras_inforotulos.js",
+   "m040"
   ],
   "fdd65ac1362ebd2a": [
    "aprovado",

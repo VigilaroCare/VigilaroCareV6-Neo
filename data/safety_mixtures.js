@@ -24,6 +24,7 @@ export const SAFETY_MIXTURES = {
     imagemUrl: require('../assets/illustrations/pad/ambientes-casa_produto-limpeza-luvas-esponja_033.jpg'),
     sections: [
         {
+            id: 'cloro_acidos',
             title: 'Água Sanitária + Produtos Ácidos',
             title_en: 'Bleach + Acidic Products',
             title_es: 'Lejía + Productos Ácidos',
@@ -36,6 +37,7 @@ export const SAFETY_MIXTURES = {
             description_ptpt: 'Misturar lixívia com vinagre, limão, ácido clorídrico, limpa-pedras, removedores de ferrugem ou produtos ácidos para a sanita liberta gás cloro. É um gás altamente tóxico que ataca os olhos, a garganta e os pulmões em segundos, mesmo em pequena quantidade.\n\n## Ação Imediata no Ambiente\n1. Pare a limpeza na hora e saia de imediato da divisão (a casa de banho fechada é o local mais crítico).\n2. Retire crianças, idosos e animais domésticos e feche a porta ao sair para o gás não se espalhar pela casa.\n3. Só abra janelas se o conseguir fazer sustendo a respiração e sem inalar o vapor.\n4. NUNCA deite outro produto por cima para tentar anular o efeito.\n5. Se houver tosse, ardor nos olhos ou falta de ar, consulte Primeiros Socorros (Intoxicação / Substâncias Químicas) e ligue para o {{POISON_CONTROL}} ou para o {{EMERGENCY_MEDICAL}}.\n\n## Prevenção e Rotina\n• Nunca use vinagre, sumo de limão ou anticalcário junto com lixívia para «reforçar» a limpeza.\n• Se aplicou um produto ácido, enxague abundantemente com água antes de usar lixívia no mesmo local.\n• Dilua a lixívia apenas em água limpa e fria, respeitando a medida do rótulo.',
         },
         {
+            id: 'cloro_amonia',
             title: 'Água Sanitária + Amônia ou Desinfetante',
             title_en: 'Bleach + Ammonia or Disinfectant',
             title_es: 'Lejía + Amoníaco o Desinfectante',
@@ -48,6 +50,7 @@ export const SAFETY_MIXTURES = {
             description_ptpt: 'Misturar lixívia com amoníaco, desinfetantes, limpa-vidros, lava-tudo ou detergentes liberta cloraminas e vapores irritantes. Estes gases tóxicos causam lacrimejo imediato, tosse, ardor nas vias respiratórias, náuseas, dor no peito e sufocamento em espaços fechados.\n\n## Ação Imediata no Ambiente\n1. Afaste-se de imediato da zona onde os produtos foram aplicados e vá para o ar livre.\n2. Retire todas as pessoas e animais da divisão e isole o espaço fechando a porta.\n3. Ventile o local abrindo portas e janelas exteriores apenas quando o puder fazer sem respirar o vapor químico.\n4. Não tente lavar a superfície sem antes dissipar o gás acumulado na divisão.\n5. Em caso de dor no peito, tosse persistente ou dificuldade em respirar, consulte Primeiros Socorros e ligue para o {{POISON_CONTROL}} ou para o {{EMERGENCY_MEDICAL}}.\n\n## Prevenção e Rotina\n• Nunca misture lixívia com desinfetante, lava-tudo ou detergente no mesmo balde ou na sanita.\n• Leia a composição no rótulo: muitos desinfetantes, lava-tudo e limpa-vidros contêm amoníaco ou compostos de amónio sem o destacar na frente.\n• Ao limpar pavimentos ou casas de banho, use um único produto de cada vez e enxague com água antes de aplicar outro.',
         },
         {
+            id: 'cloro_alcool',
             title: 'Água Sanitária + Álcool',
             title_en: 'Bleach + Rubbing Alcohol',
             title_es: 'Lejía + Alcohol',
@@ -60,6 +63,7 @@ export const SAFETY_MIXTURES = {
             description_ptpt: 'Misturar lixívia com álcool (líquido ou em gel) forma clorofórmio, cloroacetona e ácido clorídrico. O vapor libertado pode causar tonturas rápidas, náuseas, sonolência, irritação grave nos olhos e na pele e, em espaços fechados, perda de consciência.\n\n## Ação Imediata no Ambiente\n1. Saia de imediato da divisão para um local aberto: o vapor de clorofórmio causa tonturas antes de a pessoa perceber o risco de desmaio.\n2. Afaste crianças, idosos e animais e mantenha a divisão isolada.\n3. Se for possível sem inalar os vapores, abra as janelas para renovar o ar.\n4. Nunca deite outros produtos sobre a mistura; deixe o espaço ventilar por completo antes de enxaguar com água fria.\n5. Se houver tonturas, sonolência, enjoo ou ardor respiratório, consulte Primeiros Socorros e ligue para o {{POISON_CONTROL}} ou para o {{EMERGENCY_MEDICAL}}.\n\n## Prevenção e Rotina\n• A desinfeção não se soma: a lixívia diluída em água ou o álcool a 70% já desinfetam sozinhos; juntos geram compostos tóxicos.\n• Nunca prepare «receitas caseiras» em borrifador misturando álcool, lixívia e desinfetante.\n• Aguarde que a superfície seque ou enxague com água antes de aplicar álcool onde já passou lixívia.',
         },
         {
+            id: 'oxigenada_vinagre',
             title: 'Água Oxigenada + Vinagre',
             title_en: 'Hydrogen Peroxide + Vinegar',
             title_es: 'Agua Oxigenada + Vinagre',
@@ -72,6 +76,7 @@ export const SAFETY_MIXTURES = {
             description_ptpt: 'Misturar água oxigenada e vinagre no mesmo recipiente ou na mesma superfície forma ácido peracético. Embora os dois ingredientes pareçam inofensivos em separado, o ácido formado é altamente corrosivo para os olhos, a pele e as vias respiratórias.\n\n## Ação Imediata no Ambiente\n1. Interrompa o manuseamento de imediato e afaste-se dos vapores ou do borrifador.\n2. Abra portas e janelas para ventilar a divisão e retire crianças e animais domésticos.\n3. Se a mistura foi feita num borrifador ou frasco fechado, NÃO o deixe tapado: despeje no lava-loiça com bastante água fria corrente e luvas, sem aproximar o rosto.\n4. Se houver ardor nos olhos, na pele ou tosse, consulte de imediato Primeiros Socorros e ligue para o {{POISON_CONTROL}}.\n\n## Prevenção e Rotina\n• Desconfie de dicas de «limpeza natural» que mandam juntar vinagre e água oxigenada no mesmo borrifador.\n• Se quiser usar ambos em bancadas ou tábuas, aplique um, enxague com água e seque antes de aplicar o outro.\n• Pelo mesmo motivo, nunca feche borrifadores ou frascos com vinagre + bicarbonato de sódio: além de anularem o efeito um do outro, o gás libertado cria pressão e pode rebentar o recipiente.',
         },
         {
+            id: 'desentupidores',
             title: 'Dois Desentupidores Diferentes',
             title_en: 'Two Different Drain Cleaners',
             title_es: 'Dos Desatascadores Distintos',
