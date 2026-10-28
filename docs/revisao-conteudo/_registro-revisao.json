@@ -176,6 +176,10 @@
   "m044": {
    "texto": "m044 (28/10/2026): só o nome da aba mudou — Educação virou Aprendizado, por proposta do Agnaldo (pergunta dele no chat, aguarda a confirmação final). Mudou a frase do alerta de misturas que cita a aba: Detalhes em Aprendizado → Misturas Perigosas.",
    "em": "2026-10-28"
+  },
+  "m045": {
+   "texto": "estado vazio da Saude Pet: o texto ja existia como fallback fixo no codigo (SaudePetScreen) e nunca tinha chave em nenhum idioma; agora esta no locale. Aguarda a revisao do Agnaldo junto com os demais textos de saude",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -1788,6 +1792,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m015"
+  ],
+  "1b66d24552978b6a": [
+   "pendente",
+   "locales/pt-BR/common.json",
+   "m045"
   ],
   "1bb67b679453e844": [
    "pendente",

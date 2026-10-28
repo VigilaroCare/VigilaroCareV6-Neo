@@ -10,7 +10,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import {
   View, TouchableOpacity, Text, StyleSheet,
-  Platform, Vibration, DeviceEventEmitter, Animated, Easing
+  Platform, Vibration, DeviceEventEmitter, Animated, Easing, useWindowDimensions
 } from 'react-native';
 import { DS as Neo } from '../utils/DesignSystem2026';
 import NeoIcon from './NeoIcon';
@@ -173,12 +173,40 @@ let seqLuz = 0;
  * em verde, preteridos em grafite. O glifo continua Bold no ativo e Linear no
  * inativo — o sinal nunca pode ser só cor (WCAG 1.4.1).
  */
+// Largura do card de aba nos aparelhos de 411dp. Em aparelho mais estreito a margem lateral cede (até 3) para o
+// card não ficar menor que isso: com 8 de margem, em 360dp ele tinha 56 e "Aprendizado" era cortado nos cantos.
+const LARGURA_DO_CARD_DE_REFERENCIA = 66;
+
+/**
+ * RotuloDaAba — o nome da aba, com o tamanho escolhido pela largura REAL do card.
+ * `adjustsFontSizeToFit` não serve aqui: no Android, com uma linha só, ele ajusta pela altura e o texto
+ * apenas é truncado. O rótulo mora na borda de baixo do card, onde os cantos (raio 14) comem as pontas;
+ * por isso deixa 5 de cada lado. 0,53 em é a largura média de uma letra do Roboto Bold.
+ */
+function RotuloDaAba({ texto, color }) {
+    const [largura, setLargura] = React.useState(0);
+    const tamanho = largura > 0
+        ? Math.min(9.5, Math.max(7.5, (largura - 10) / (texto.length * 0.53)))
+        : 9.5;
+    return (
+        <Text
+            style={[styles.tabLabel, { color, fontSize: tamanho }]}
+            numberOfLines={1}
+            onLayout={(e) => setLargura(e.nativeEvent.layout.width)}
+        >
+            {texto}
+        </Text>
+    );
+}
+
 function CardDaAba({ tom, children }) {
     const id = useRef(`cardaba${++seqLuz}`).current;
+    const { width: larguraDaTela } = useWindowDimensions();
+    const margem = Math.max(3, Math.min(8, (larguraDaTela / 5 - LARGURA_DO_CARD_DE_REFERENCIA) / 2));
     const r = Neo.gradients.radiais;
     const cores = r[tom] || r.muted;
     return (
-        <View style={styles.cardAba}>
+        <View style={[styles.cardAba, { marginHorizontal: margem }]}>
             <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" pointerEvents="none">
                 <Defs>
                     <RadialGradient id={id} cx={r.foco.cx} cy={r.foco.cy} rx={r.foco.rx} ry={r.foco.ry}>
@@ -455,8 +483,7 @@ export default function GlobalFloatingFooter({ currentRouteName }) {
                   color={color}
                 />
               )}
-                {/* adjustsFontSizeToFit: "Aprendizado" (11 letras) passa da aba em aparelho de 360dp e era cortado nas pontas; encolhe só o necessário. */}
-                <Text style={[styles.tabLabel, { color }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>{t(tab.labelKey)}</Text>
+                <RotuloDaAba texto={t(tab.labelKey)} color={color} />
               </CardDaAba>
             </TouchableOpacity>
           );
@@ -537,7 +564,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabLabel: {
-    // Largura de REFERÊNCIA para o adjustsFontSizeToFit: sem ela o texto não é limitado e passa do card.
+    // Largura de REFERÊNCIA: o texto ocupa o card inteiro, e o RotuloDaAba mede essa largura para escolher o tamanho.
     alignSelf: 'stretch',
     textAlign: 'center',
     paddingHorizontal: 2,

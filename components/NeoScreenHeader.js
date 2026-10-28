@@ -37,7 +37,7 @@ export default function NeoScreenHeader({ title, subtitle, onBack, rightAction, 
             {onBack && (
                 <TouchableOpacity
                     onPress={onBack}
-                    style={styles.backCircle}
+                    style={[styles.backCircle, { backgroundColor: colors.glass.light, borderColor: colors.glass.border }]}
                     activeOpacity={0.7}
                     accessibilityRole="button"
                     accessibilityLabel={t('common.back', 'Voltar')}
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
         width: 44,
         height: 44,
         borderRadius: 22,
-        backgroundColor: Neo.colors.glass.light,
+        // fundo e borda vêm do TEMA (aplicados em linha acima): a paleta clara no escopo do módulo
+        // deixava o círculo claro com a seta clara no tema escuro.
         borderWidth: 1,
-        borderColor: Neo.colors.glass.border,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,

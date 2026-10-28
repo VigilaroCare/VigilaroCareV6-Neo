@@ -1,17 +1,30 @@
-
-import { useRef, useState, useCallback } from "react";
-import { View, Text, Image, Animated, StyleSheet, Share, TouchableOpacity } from "react-native";
+/**
+ * MinhaSaudeScreen — a ficha de saúde de uma PESSOA.
+ *
+ * 28/10/2026 — na linguagem da Home (ANATOMIA §9.6) e com a MESMA estrutura da Saúde Pet:
+ * cabeçalho padrão, a fileira "Trocar pessoa ou pet", o cartão da pessoa (com a foto que ela
+ * cadastrou) e as seções. Antes: banner escuro com a foto em miniatura, botão de voltar copiado à
+ * mão, vidro nas seções e "Outros perfis da casa" em linhas — e um pet só se alcançava voltando
+ * à Home. O que NÃO mudou: os dados, o PDF da ficha médica, a inclusão de medicamentos e os
+ * lembretes.
+ */
+import { useState, useCallback, useMemo } from "react";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import { DS as Neo } from '../../utils/DesignSystem2026';
-import { H3, Body, Small, Eyebrow } from "../../components/NeoTypography";
-import NeoCard from '../../components/NeoCard';
+import { useIsDark, useThemeDS } from '../../utils/ThemeContext';
+import { Small, Eyebrow } from "../../components/NeoTypography";
 import ButtonNeo from '../../components/ButtonNeo';
 import AppBackground from '../../components/AppBackground';
 import NeoIcon from '../../components/NeoIcon';
-import GlassProfileRing from '../../components/GlassProfileRing';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
+import NeoGlifoCard from '../../components/NeoGlifoCard';
+import NeoPill from '../../components/NeoPill';
+import MembrosDaCasa, { fotoDoPerfil, inicialDoNome } from '../../components/MembrosDaCasa';
+import SaudeSecao, { SaudeChips } from '../../components/SaudeSecao';
 import TappablePressable from '../../components/TappablePressable';
 import ProfileService from '../../services/ProfileService';
 import MedicationReminderService from '../../services/MedicationReminderService';
@@ -27,40 +40,40 @@ const asList = (arr) => (Array.isArray(arr) ? arr : [])
     .map(it => (typeof it === 'string' ? it : (it?.nome || it?.label || it?.descricao || '')))
     .filter(Boolean);
 
-// Hues a partir da paleta de grid do DS (hex → permite alpha +'18').
-// accent só expõe champagne/copper; rose/amber vivem em gridAccents.
-const HUE = {
-    rose: Neo.colors.gridAccents.pets.color,        // #BE185D — condições/sangue
-    sky:  Neo.colors.gridAccents.vistorias.color,   // #0369A1 — medicamentos (informativo)
-};
-
 export default function MinhaSaudeScreen() {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const route = useRoute();
-    // Sem param = perfil ativo (pouso). Com param = espiar outro perfil (read-only).
+    const isDark = useIsDark();
+    const tema = useThemeDS();
+    const s = useMemo(() => criarEstilos(tema), [tema]);
+    // Matizes das seções: da paleta de grid do DS (o tema escuro tem as suas).
+    const HUE = {
+        rose: tema.colors.gridAccents?.pets?.color || Neo.colors.gridAccents.pets.color,        // condições
+        sky: tema.colors.gridAccents?.vistorias?.color || Neo.colors.gridAccents.vistorias.color, // medicamentos
+    };
+    // Sem param = perfil ativo (pouso). Com param = ficha de outra pessoa da casa.
     const perfilId = route.params?.perfilId ?? null;
 
     const [profile, setProfile] = useState(null);
+    const [humanos, setHumanos] = useState([]);
+    const [pets, setPets] = useState([]);
     const [lembretes, setLembretes] = useState([]);
     const { loadProfiles } = useProfiles();
     const [compartilhando, setCompartilhando] = useState(false);
-    const [others, setOthers] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [imageError, setImageError] = useState(false);
 
     useFocusEffect(useCallback(() => {
         let alive = true;
         (async () => {
             setLoading(true);
-            setImageError(false);
             try {
-                const humanos = await ProfileService.getPerfisHumanos();
-                let current = perfilId ? humanos.find(p => p.id === perfilId) : null;
+                const todos = await ProfileService.getPerfisHumanos();
+                const animais = await ProfileService.getPets();
+                let current = perfilId ? todos.find(p => p.id === perfilId) : null;
                 if (!current) current = await ProfileService.getPerfilAtivo();
-                const outros = humanos.filter(p => p.id !== current?.id);
                 const doPerfil = current?.id ? await MedicationReminderService.getByPerfil(current.id) : [];
-                if (alive) { setProfile(current); setOthers(outros); setLembretes(doPerfil); }
+                if (alive) { setProfile(current); setHumanos(todos); setPets(animais); setLembretes(doPerfil); }
             } catch (e) {
                 if (__DEV__) console.error('[MinhaSaude] load', e);
             } finally {
@@ -70,29 +83,17 @@ export default function MinhaSaudeScreen() {
         return () => { alive = false; };
     }, [perfilId]));
 
-    const scrollY = useRef(new Animated.Value(0)).current;
-    const HERO_HEIGHT = Neo.layout.heroBanner;
-    const heroTransform = [
-        {
-            translateY: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0, HERO_HEIGHT],
-                outputRange: [-HERO_HEIGHT / 2, 0, HERO_HEIGHT * 0.5],
-                extrapolate: 'clamp',
-            })
-        },
-        {
-            scale: scrollY.interpolate({
-                inputRange: [-HERO_HEIGHT, 0],
-                outputRange: [2, 1],
-                extrapolateLeft: 'extend',
-                extrapolateRight: 'clamp',
-            })
-        }
-    ];
+    // Pessoas primeiro, depois os animais: é a ordem da fileira "Trocar pessoa ou pet".
+    const membros = useMemo(() => ([
+        ...humanos.map(p => ({ id: p.id, tipo: 'pessoa', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
+        ...pets.map(p => ({ id: p.id, tipo: 'pet', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
+    ]), [humanos, pets]);
 
-    const titleStr = perfilId ? (profile?.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')) : t('health.myHealth', 'Sua Saúde');
-    const capaSource = require('../../assets/images/headers/header-saude.jpeg');
-    const themeColors = Neo.colors;
+    // Troca a ficha SEM empilhar telas: voltar continua levando à Home.
+    const trocarPara = (m) => {
+        if (m.tipo === 'pet') navigation.replace('SaudePet', { petId: m.id });
+        else navigation.replace('MinhaSaude', { perfilId: m.id });
+    };
 
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
     const condicoes = asList(profile?.condicoesMedicas).map(rotuloOpcaoPerfil);
@@ -134,277 +135,150 @@ export default function MinhaSaudeScreen() {
         }
     };
 
-    const renderChips = (arr, color) => {
-        if (!arr.length) return <Body style={s.emptyText}>{t('telas.MinhaSaudeScreen.nadaRegistrado', 'Nada registrado')}</Body>;
-        return (
-            <View style={s.chipsWrap}>
-                {arr.map((item, i) => (
-                    <View key={i} style={[s.chip, { backgroundColor: color + '18', borderColor: color + '33' }]}>
-                        <Small style={[s.chipText, { color }]}>{item}</Small>
-                    </View>
-                ))}
-            </View>
-        );
-    };
-
-    const Section = ({ icon, color, title, children }) => (
-        <NeoCard variant="glass" style={s.card}>
-            <View style={s.cardHeaderRow}>
-                <NeoIcon name={icon} variant="Linear" color={color} size={22} />
-                <H3 style={s.cardTitle}>{title}</H3>
-            </View>
-            {children}
-        </NeoCard>
-    );
+    const vazio = t('telas.MinhaSaudeScreen.nadaRegistrado', 'Nada registrado');
+    const idadeTxt = idade != null
+        ? t('telas.SaudePetScreen.idadeAnos', { count: idade, defaultValue: idade === 1 ? '{{count}} ano' : '{{count}} anos' })
+        : null;
+    // O tipo sanguíneo aparecia no banner antigo, com o ícone de gota: segue visível, agora com o nome por extenso.
+    const meta = [idadeTxt, tipoSanguineo ? `${t('fichaMedica.tipoSanguineo', 'Tipo sanguíneo')} ${tipoSanguineo}` : null].filter(Boolean).join(' · ');
 
     return (
         <AppBackground>
-            
-                <StatusBar style="dark" />
-                            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{
-                        width: 44, height: 44, borderRadius: 22,
-                        backgroundColor: 'rgba(0,0,0,0.35)',
-                        justifyContent: 'center', alignItems: 'center',
-                        marginLeft: 16, marginTop: 12,
-                    }}
-                >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-            <Animated.ScrollView
-                contentContainerStyle={{ paddingBottom: 40 }}
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-            >
-                {/* HERO com Glassmorphism Pessoal */}
-                <Animated.View style={{
-                    width: '100%',
-                    height: HERO_HEIGHT,
-                    backgroundColor: themeColors?.neutral?.[800] || '#222',
-                    overflow: 'hidden',
-                    transform: heroTransform,
-                }}>
-                    <View style={{
-                        position: 'absolute',
-                        bottom: 24,
-                        paddingHorizontal: 22,
-                        width: '100%',
-                        flexDirection: 'row',
-                        alignItems: 'flex-end',
-                    }}>
-                        {profile ? (
+                {/* O nome da tela é o do cartão da Home que a abriu. */}
+                <NeoScreenHeader title={t('home.myHealth', 'Minha Saúde')} onBack={() => navigation.goBack()} />
+
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
+                    <View style={s.corpo}>
+                        <MembrosDaCasa
+                            membros={membros}
+                            selecionado={profile ? { tipo: 'pessoa', id: profile.id } : null}
+                            onSelect={trocarPara}
+                            style={s.membros}
+                        />
+
+                        {loading ? (
+                            <View style={{ marginTop: Neo.spacing.md }}>
+                                <SkeletonCard lines={2} />
+                                <SkeletonCard lines={3} />
+                                <SkeletonCard lines={2} />
+                            </View>
+                        ) : !profile ? (
+                            <EmptyState
+                                icon="Users"
+                                title={t('health.noProfiles', 'Nenhum perfil cadastrado')}
+                                description={t('health.noProfilesDesc', 'Cadastre perfis humanos para gerenciar as informações de saúde.')}
+                                cta={{
+                                    label: t('health.addProfile', 'Cadastrar Perfil'),
+                                    onPress: () => navigation.navigate('QuemProteger'),
+                                    color: Neo.colors.primary[500],
+                                }}
+                            />
+                        ) : (
                             <>
-                                {/* Foto Principal Quadrada */}
-                                <View style={{
-                                    width: 110,
-                                    height: 110,
-                                    borderRadius: 20,
-                                    backgroundColor: 'rgba(255,255,255,0.2)',
-                                    borderWidth: 3,
-                                    borderColor: 'rgba(255,255,255,0.6)',
-                                    overflow: 'hidden',
-                                    marginRight: 16,
-                                    elevation: 8,
-                                    shadowColor: '#000',
-                                    shadowOffset: { width: 0, height: 4 },
-                                    shadowOpacity: 0.3,
-                                    shadowRadius: 8,
-                                }}>
-                                    <Image
-                                        source={profile?.foto ? { uri: ProfileService.resolveImageUri(profile.foto) } : capaSource}
-                                        style={{ width: '100%', height: '100%' }}
-                                        resizeMode="cover"
-                                    />
-                                </View>
+                                {/* O cartão da PESSOA: a foto que ela cadastrou (ou a inicial), o nome e o essencial. */}
+                                <NeoGlifoCard
+                                    foto={fotoDoPerfil(profile.foto)}
+                                    inicial={inicialDoNome(profile.nome)}
+                                    titulo={profile.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')}
+                                    sub={meta}
+                                    tom="info"
+                                    largo
+                                    arte={96}
+                                    tamanhoTitulo={24}
+                                    style={s.cartaoMembro}
+                                    rodape={<NeoPill sobreCampo icone="ShieldTick" label={t('telas.MinhaSaudeScreen.monitoramentoAtivo', 'Monitoramento Ativo')} />}
+                                />
 
-                                <View style={{ flex: 1, paddingBottom: 4 }}>
-                                    <View style={{ backgroundColor: Neo.colors.success[500], paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: 'flex-start', marginBottom: 8 }}>
-                                        <Text style={{ color: '#FFF', fontSize: 12, fontWeight: 'bold' }}>{t('telas.MinhaSaudeScreen.monitoramentoAtivo', 'Monitoramento Ativo')}</Text>
-                                    </View>
-                                    <Text style={{
-                                        fontSize: 28,
-                                        fontWeight: '900',
-                                        color: '#FFF',
-                                        letterSpacing: -0.5,
-                                        lineHeight: 32,
-                                        marginBottom: 4,
-                                    }} numberOfLines={2}>
-                                        {profile.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')}
-                                    </Text>
-                                    {!!tipoSanguineo && (
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
-                                            <NeoIcon name="Drop" variant="Bold" color={HUE.rose} size={14} />
-                                            <Text style={{ fontSize: 14, color: '#FFF', fontWeight: 'bold', marginLeft: 4 }}>{tipoSanguineo}</Text>
+                                <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.perfilDeRiscoEPrevencao', 'Perfil de Risco e Prevenção')}</Eyebrow>
+                                <SaudeSecao icone="Heartbeat" cor={HUE.rose} titulo={t('telas.MinhaSaudeScreen.condicoesMedicas', 'Condições Médicas')}>
+                                    <SaudeChips itens={condicoes} cor={HUE.rose} vazio={vazio} />
+                                </SaudeSecao>
+                                <SaudeSecao icone="Warning" cor={tema.colors.textOn.copper} titulo={t('telas.MinhaSaudeScreen.alergiasERestricoes', 'Alergias e Restrições')}>
+                                    <SaudeChips itens={alergias} cor={tema.colors.textOn.copper} vazio={vazio} />
+                                </SaudeSecao>
+                                <SaudeSecao icone="Wheelchair" cor={tema.colors.textOn.brand} titulo={t('telas.MinhaSaudeScreen.necessidadesEspeciais', 'Necessidades Especiais')}>
+                                    <SaudeChips itens={necessidades} cor={tema.colors.textOn.brand} vazio={vazio} />
+                                </SaudeSecao>
+                                {!!profile?.comunicacaoEmergencia && (
+                                    <SaudeSecao icone="MessageText1" cor={tema.colors.textOn.brand} titulo={t('telas.MinhaSaudeScreen.comunicacao', 'Comunicação e o que acalma')}>
+                                        <Small style={s.texto}>{profile.comunicacaoEmergencia}</Small>
+                                    </SaudeSecao>
+                                )}
+
+                                <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.muralDeRotina', 'Mural de Rotina')}</Eyebrow>
+                                <SaudeSecao icone="Plus" cor={HUE.sky} titulo={t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
+                                    <SaudeChips itens={medicamentos} cor={HUE.sky} vazio={vazio} />
+                                    {foraDoPerfil.length > 0 && (
+                                        <View style={s.foraBox}>
+                                            <Small style={s.foraTexto}>{t('telas.MinhaSaudeScreen.lembretesForaDaLista', 'Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:')}</Small>
+                                            <View style={s.chipsLinha}>
+                                                {foraDoPerfil.map(nome => (
+                                                    <TappablePressable
+                                                        key={nome}
+                                                        onPress={() => incluirNoPerfil(nome)}
+                                                        style={s.foraChip}
+                                                        accessibilityRole="button"
+                                                        accessibilityLabel={t('telas.MinhaSaudeScreen.incluirNaLista', 'Incluir na lista') + ': ' + nome}
+                                                    >
+                                                        <NeoIcon name="AddCircle" variant="Bold" size={14} color={tema.colors.textOn.info} />
+                                                        <Small style={[s.chipTexto, { color: tema.colors.textOn.info }]}>{nome}</Small>
+                                                    </TappablePressable>
+                                                ))}
+                                            </View>
                                         </View>
                                     )}
+                                    <TappablePressable
+                                        style={s.lembretes}
+                                        onPress={() => navigation.navigate('MedicationReminders', { perfilId: profile?.id, perfilNome: profile?.nome })}
+                                        accessibilityRole="button"
+                                        accessibilityLabel={t('telas.MinhaSaudeScreen.gerenciarLembretesDeMedicamentos', 'Gerenciar lembretes de medicamentos')}
+                                    >
+                                        <NeoIcon name="Clock" variant="Bold" size={14} color={HUE.sky} />
+                                        <Small style={[s.chipTexto, { color: HUE.sky }]}>{t('telas.MinhaSaudeScreen.gerenciarLembretes', 'Gerenciar lembretes')}</Small>
+                                    </TappablePressable>
+                                </SaudeSecao>
+
+                                <View style={s.acao}>
+                                    <ButtonNeo
+                                        title={compartilhando ? t('telas.MinhaSaudeScreen.gerandoFicha', 'Gerando ficha…') : t('telas.MinhaSaudeScreen.compartilharFichaDeEmergencia', 'Compartilhar Ficha de Emergência')}
+                                        iconName="ShareNetwork"
+                                        onPress={handleShare}
+                                        type="primary"
+                                        disabled={compartilhando || !profile}
+                                    />
                                 </View>
                             </>
-                        ) : (
-                            <View style={{ paddingBottom: 4 }}>
-                                <Text style={{ fontSize: 34, fontWeight: '900', color: '#FFF', letterSpacing: -0.8, lineHeight: 38 }}>
-                                    {titleStr}
-                                </Text>
-                            </View>
                         )}
                     </View>
-                </Animated.View>
-
-                {/* Main Content */}
-                <View style={{ paddingTop: 24 }}>
-
-                {loading ? (
-                    <View style={s.scroll}>
-                        <View style={{ marginTop: Neo.spacing.md }}>
-                            <SkeletonCard lines={2} />
-                            <SkeletonCard lines={3} />
-                            <SkeletonCard lines={2} />
-                        </View>
-                    </View>
-                ) : !profile ? (
-                    <EmptyState
-                        icon="Users"
-                        title={t('health.noProfiles', 'Nenhum perfil cadastrado')}
-                        description={t('health.noProfilesDesc', 'Cadastre perfis humanos para gerenciar as informações de saúde.')}
-                        cta={{
-                            label: t('health.addProfile', 'Cadastrar Perfil'),
-                            onPress: () => navigation.navigate('QuemProteger'),
-                            color: Neo.colors.primary[500]
-                        }}
-                    />
-                ) : (
-                    <View style={s.scroll}>
-                        {/* Profile stats now in Hero */}
-                        <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.perfilDeRiscoEPrevencao', 'Perfil de Risco e Prevenção')}</Eyebrow>
-                        <Section icon="Heartbeat" color={HUE.rose} title={t('telas.MinhaSaudeScreen.condicoesMedicas', 'Condições Médicas')}>
-                            {renderChips(condicoes, HUE.rose)}
-                        </Section>
-                        <Section icon="Warning" color={Neo.colors.accent.copper} title={t('telas.MinhaSaudeScreen.alergiasERestricoes', 'Alergias e Restrições')}>
-                            {renderChips(alergias, Neo.colors.accent.copper)}
-                        </Section>
-                        <Section icon="Wheelchair" color={Neo.colors.primary[600]} title={t('telas.MinhaSaudeScreen.necessidadesEspeciais', 'Necessidades Especiais')}>
-                            {renderChips(necessidades, Neo.colors.primary[600])}
-                        </Section>
-                        {!!profile?.comunicacaoEmergencia && (
-                            <Section icon="MessageText1" color={Neo.colors.primary[600]} title={t('telas.MinhaSaudeScreen.comunicacao', 'Comunicação e o que acalma')}>
-                                <Body style={{ color: Neo.colors.textOn.ink, lineHeight: 22 }}>{profile.comunicacaoEmergencia}</Body>
-                            </Section>
-                        )}
-
-                        <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.muralDeRotina', 'Mural de Rotina')}</Eyebrow>
-                        <Section icon="Plus" color={HUE.sky} title={t('telas.MinhaSaudeScreen.medicamentosEmUso', 'Medicamentos em Uso')}>
-                            {renderChips(medicamentos, HUE.sky)}
-                            {foraDoPerfil.length > 0 && (
-                                <View style={s.foraBox}>
-                                    <Small style={s.foraTexto}>{t('telas.MinhaSaudeScreen.lembretesForaDaLista', 'Estes medicamentos têm lembrete, mas não estão na lista acima. A Ficha Médica de Emergência mostra só a lista. Toque para incluir:')}</Small>
-                                    <View style={s.chipsWrap}>
-                                        {foraDoPerfil.map(nome => (
-                                            <TappablePressable
-                                                key={nome}
-                                                onPress={() => incluirNoPerfil(nome)}
-                                                style={[s.chip, s.foraChip]}
-                                                accessibilityRole="button"
-                                                accessibilityLabel={t('telas.MinhaSaudeScreen.incluirNaLista', 'Incluir na lista') + ': ' + nome}
-                                            >
-                                                <NeoIcon name="AddCircle" variant="Bold" size={14} color={Neo.colors.textOn.info} />
-                                                <Small style={[s.chipText, { color: Neo.colors.textOn.info }]}>{nome}</Small>
-                                            </TappablePressable>
-                                        ))}
-                                    </View>
-                                </View>
-                            )}
-                            <TouchableOpacity
-                                style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    gap: 6,
-                                    marginTop: 12,
-                                    alignSelf: 'flex-start',
-                                    backgroundColor: HUE.sky + '12',
-                                    paddingHorizontal: 14,
-                                    paddingVertical: 8,
-                                    borderRadius: 999,
-                                    borderWidth: 1,
-                                    borderColor: HUE.sky + '30',
-                                }}
-                                onPress={() => navigation.navigate('MedicationReminders', { perfilId: profile?.id, perfilNome: profile?.nome })}
-                                accessibilityLabel={t('telas.MinhaSaudeScreen.gerenciarLembretesDeMedicamentos', 'Gerenciar lembretes de medicamentos')}
-                            >
-                                <NeoIcon name="Clock" variant="Bold" size={14} color={HUE.sky} />
-                                <Small style={{ color: HUE.sky, fontWeight: '700', fontSize: 13 }}>{t('telas.MinhaSaudeScreen.gerenciarLembretes', 'Gerenciar lembretes')}</Small>
-                            </TouchableOpacity>
-                        </Section>
-
-                        {/* OUTROS PERFIS — linhas dentro de um NeoCard (§4); voltar retorna ao ativo */}
-                        {others.length > 0 && (
-                            <>
-                                <Eyebrow style={s.eyebrow}>{t('telas.MinhaSaudeScreen.outrosPerfisDaCasa', 'Outros perfis da casa')}</Eyebrow>
-                                <NeoCard variant="glass" padding={0} style={s.card}>
-                                    {others.map((p, i) => (
-                                        <TappablePressable
-                                            key={p.id}
-                                            onPress={() => navigation.push('MinhaSaude', { perfilId: p.id })}
-                                            style={[s.row, i > 0 && s.rowDivider]}
-                                        >
-                                            <GlassProfileRing profile={p} score={0} resolveUri={ProfileService.resolveImageUri} size={40} ringWidth={2} />
-                                            <Body style={s.rowName} numberOfLines={1}>{p.nome || t('telas.MinhaSaudeScreen.perfil', 'Perfil')}</Body>
-                                            <NeoIcon name="ArrowRight2" variant="Linear" color={Neo.colors.neutral[500]} size={16} />
-                                        </TappablePressable>
-                                    ))}
-                                </NeoCard>
-                            </>
-                        )}
-
-                        <View style={s.actionContainer}>
-                            <ButtonNeo
-                                title={compartilhando ? 'Gerando ficha...' : t('telas.MinhaSaudeScreen.compartilharFichaDeEmergencia', 'Compartilhar Ficha de Emergência')}
-                                iconName="ShareNetwork"
-                                onPress={handleShare}
-                                type="primary"
-                                disabled={compartilhando || !profile}
-                            />
-                        </View>
-                    </View>
-                )}
-            
-            </View>
-            </Animated.ScrollView>
+                </ScrollView>
+            </SafeAreaView>
         </AppBackground>
     );
 }
 
-const s = StyleSheet.create({
-    center: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: Neo.spacing.xl, gap: 12 },
-    emptyBig: { color: Neo.colors.neutral[500], textAlign: 'center' },
-    scroll: { paddingHorizontal: Neo.spacing.lg, paddingBottom: Neo.layout.scrollBottomFooter },
-    hero: { marginTop: Neo.spacing.sm },
-    heroRow: { flexDirection: 'row', alignItems: 'center', gap: 16 },
-    heroLead: { flex: 1 },
-    heroName: { color: Neo.colors.neutral[800] },
-    heroMeta: { color: Neo.colors.neutral[500], marginTop: 2 },
-    bloodBadge: {
-        flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 8, alignSelf: 'flex-start',
-        paddingHorizontal: 10, paddingVertical: 4, borderRadius: 999, backgroundColor: HUE.rose + '14',
-    },
-    bloodText: { color: HUE.rose, fontWeight: '700' },
+// Fábrica: recebe o DS do TEMA (nunca a paleta clara no escopo do módulo — ANATOMIA §9.6, regra 13).
+const criarEstilos = (Neo) => StyleSheet.create({
+    corpo: { paddingHorizontal: Neo.spacing.lg },
+    membros: { marginBottom: Neo.spacing.md },
+    cartaoMembro: { height: 160, marginBottom: Neo.spacing.sm },
     eyebrow: { marginTop: Neo.spacing.lg, marginBottom: Neo.spacing.sm },
-    card: { marginBottom: Neo.spacing.md },
-    cardHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10, gap: 8 },
-    cardTitle: { fontSize: 16, color: Neo.colors.neutral[800] },
-    chipsWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-    chip: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999, borderWidth: 1 },
-    chipText: { fontWeight: '600' },
-    emptyText: { color: Neo.colors.neutral[400], fontStyle: 'italic' },
-    foraBox: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: Neo.colors.neutral[200], gap: 8 },
+    texto: { color: Neo.colors.textOn.ink, lineHeight: 22 },
+    chipTexto: { fontWeight: '600' },
+    chipsLinha: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+    foraBox: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: Neo.colors.neutral[300], gap: 8 },
     foraTexto: { color: Neo.colors.textOn.muted, lineHeight: 18 },
-    foraChip: { flexDirection: 'row', alignItems: 'center', gap: 6, borderStyle: 'dashed', borderColor: Neo.colors.textOn.info },
-    hintText: { fontSize: 12, color: Neo.colors.neutral[500], marginTop: 10, fontStyle: 'italic' },
-    row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: Neo.spacing.md, paddingVertical: 12 },
-    rowDivider: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: Neo.colors.neutral[300] },
-    rowName: { flex: 1, color: Neo.colors.neutral[800] },
-    actionContainer: { marginTop: Neo.spacing.lg },
+    foraChip: {
+        flexDirection: 'row', alignItems: 'center', gap: 6,
+        paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999,
+        borderWidth: 1, borderStyle: 'dashed', borderColor: Neo.colors.textOn.info,
+    },
+    lembretes: {
+        flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 12, alignSelf: 'flex-start',
+        paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999, borderWidth: 1,
+        borderColor: Neo.colors.neutral[300],
+    },
+    acao: { marginTop: Neo.spacing.lg },
 });

@@ -63,12 +63,18 @@ export default function NeoGlifoCard({
     // Nó no pé do card, à esquerda — para o que não é número: pílulas de estado
     // (perigo, fonte). Não combine com `valor`: ocupam o mesmo canto.
     rodape,
+    // FOTO: no lugar do pictograma, a foto de uma pessoa ou de um animal (ImageSource) ou, sem foto,
+    // a inicial do nome. A foto é conteúdo, não decoração: entra como um quadrado de cantos
+    // arredondados com borda clara, nunca como fundo do card.
+    foto,
+    inicial,
     accessibilityLabel,
     ...rest
 }) {
     const id = useRef(`glifo${++seq}`).current;
     const r = Neo.gradients.radiais;
     const cores = r[tom] || r.info;
+    const temFoto = !!(foto || inicial);
 
     const corpo = (
         <View style={[styles.card, style]}>
@@ -86,17 +92,25 @@ export default function NeoGlifoCard({
             {/* A arte no canto da luz. Sangra 3px para fora em baixo e à direita:
                 o arquivo tem ~13% de margem transparente de cada lado, então o
                 desenho fica com respiro real mesmo encostando a caixa na borda. */}
-            <Image
-                source={source}
-                style={[styles.arte, { width: arte, height: arte }]}
-                resizeMode="contain"
-            />
+            {temFoto ? (
+                <View style={[styles.foto, { width: arte, height: arte, borderRadius: Math.round(arte * 0.2) }]}>
+                    {foto
+                        ? <Image source={foto} style={StyleSheet.absoluteFill} resizeMode="cover" />
+                        : <Text style={[styles.inicial, { fontSize: Math.round(arte * 0.44) }]}>{inicial}</Text>}
+                </View>
+            ) : (
+                <Image
+                    source={source}
+                    style={[styles.arte, { width: arte, height: arte }]}
+                    resizeMode="contain"
+                />
+            )}
 
             {/* Título no ALTO, não embaixo. Embaixo ele disputa a faixa
                 horizontal com a arte: medido em 25/10/2026, "Segurança em
                 Condomínio" a 11px não cabe ao lado de um pictograma de 70px numa
                 célula de 112px. No alto ele tem a largura inteira do card. */}
-            <View style={[styles.faixaTitulo, largo && { top: 0, bottom: 0, right: arte + 4, justifyContent: 'center' }]}>
+            <View style={[styles.faixaTitulo, largo && { top: 0, bottom: 0, right: arte + (temFoto ? 22 : 4), justifyContent: 'center' }]}>
                 <Text
                     style={[styles.titulo, { fontSize: tamanhoTitulo, lineHeight: Math.round(tamanhoTitulo * 1.18) }]}
                     numberOfLines={largo ? (sub ? 2 : 3) : 2}
@@ -151,6 +165,21 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: -3,
         bottom: -3,
+    },
+    foto: {
+        position: 'absolute',
+        right: 12,
+        bottom: 12,
+        overflow: 'hidden',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 3,
+        borderColor: 'rgba(255,255,255,0.7)',
+        backgroundColor: 'rgba(255,255,255,0.2)',
+    },
+    inicial: {
+        color: '#FFFFFF',
+        fontWeight: '800',
     },
     rodape: {
         position: 'absolute',
