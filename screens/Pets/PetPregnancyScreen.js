@@ -128,7 +128,9 @@ export default function PetPregnancyScreen({ navigation, route }) {
             setMatingDate('');
             setDueDate(null);
             setLitterSize('');
-            NeoAlert.alert(t('petPregnancyTracker.congratsTitle'), t('petPregnancyTracker.congratsBirth', { count: litterSize }));
+            // count NUMÉRICO: com o texto do campo ('3') o i18next não escolhe
+            // singular/plural e devolve o nome da chave no lugar da frase.
+            NeoAlert.alert(t('petPregnancyTracker.congratsTitle'), t('petPregnancyTracker.congratsBirth', { count: Number(litterSize) || 0 }));
             navigation.goBack();
         }
     };
