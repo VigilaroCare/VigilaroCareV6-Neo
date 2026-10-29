@@ -25,6 +25,8 @@ Total de cores hex soltas nas telas: **563** · telas sem `AppBackground`: **20*
 | Fora da migração — telas de emergência (linguagem própria, ANATOMIA §0) | 13 | 4992 |
 | Fora da migração — rotas que nenhuma tela abre (PENDENCIAS E3: decidir apagar antes de migrar) | 6 | 1213 |
 
+> **Atualização de 28/10/2026 (fim do dia):** Minha Saúde, Saúde Pet e Atividades Eventuais (a grade) foram migradas e passam à geração A. Os números do resumo acima são os da varredura inicial e não foram refeitos.
+
 A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), não por facilidade. Onda 2 vem primeiro porque é onde o Agnaldo está: Vistorias, Atividades e Saúde são os cartões da Home.
 
 ## Onda 1 — piloto (feita em 28/10/2026)
@@ -46,13 +48,13 @@ A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), n
 | PetWellness | screens/Pets/PetWellnessScreen.js | C-banner | banner de foto; voltar copiado; sem AppBackground; 4 hex soltos | 216 |
 | PetsMenu | screens/Pets/PetsMenuScreen.js | C-banner | banner de foto; voltar copiado; 12 hex soltos | 449 |
 | OndeProteger | screens/Checklists/OndeProtegerScreen.js | D-voltar | voltar copiado; sem AppBackground; 17 hex soltos | 448 |
-| MinhaSaude | screens/Health/MinhaSaudeScreen.js | C-banner | banner de foto; voltar copiado; 7 hex soltos | 411 |
-| SaudePet | screens/Health/SaudePetScreen.js | C-banner | banner de foto; voltar copiado; 6 hex soltos | 358 |
+| MinhaSaude | screens/Health/MinhaSaudeScreen.js | A-nova | **migrada em 28/10/2026** (ANATOMIA §9.7) | 284 |
+| SaudePet | screens/Health/SaudePetScreen.js | A-nova | **migrada em 28/10/2026** (ANATOMIA §9.7) | 235 |
 | QuemProteger | screens/Profiles/QuemProtegerScreenNeo.js | D-voltar | voltar copiado; 17 hex soltos | 797 |
 | AddPerfil | screens/Profiles/AddPerfilScreenNeo.js | D-voltar | voltar copiado; 8 hex soltos | 1466 |
 | Relatorios | screens/Checklists/RelatoriosScreenNeo.js | D-voltar | voltar copiado; 15 hex soltos | 907 |
 | MedicationReminderForm | screens/Health/MedicationReminderFormScreen.js | D-voltar | voltar copiado; 11 hex soltos | 821 |
-| ModoPreventivo | screens/ModoPreventivoScreenNeo.js | D-voltar | voltar copiado; 8 hex soltos | 553 |
+| ModoPreventivo | screens/ModoPreventivoScreenNeo.js | A-nova | **grade migrada em 28/10/2026**; o modal de auditoria segue no modelo antigo (foto remota no topo, cores fixas) | 501 |
 | HomeXRay | screens/Profiles/HomeXRayScreen.js | D-voltar | voltar copiado; 10 hex soltos | 487 |
 | ProfileRiskSummary | screens/Profiles/ProfileRiskSummaryScreen.js | D-voltar | voltar copiado; 2 hex soltos | 1127 |
 | AreasInternas | screens/Checklists/AreasInternasScreen.js | D-voltar | voltar copiado; 5 hex soltos | 851 |

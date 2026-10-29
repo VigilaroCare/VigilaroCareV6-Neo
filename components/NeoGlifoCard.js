@@ -68,6 +68,10 @@ export default function NeoGlifoCard({
     // arredondados com borda clara, nunca como fundo do card.
     foto,
     inicial,
+    // Afasta a arte do canto, em px. Para o pictograma cuja tinta encosta na borda da própria caixa.
+    recuo = 0,
+    // Quantas linhas o título pode ocupar. Sem ele: 2 no card comum; 2 ou 3 no largo.
+    linhasTitulo,
     accessibilityLabel,
     ...rest
 }) {
@@ -101,7 +105,7 @@ export default function NeoGlifoCard({
             ) : (
                 <Image
                     source={source}
-                    style={[styles.arte, { width: arte, height: arte }]}
+                    style={[styles.arte, { width: arte, height: arte }, recuo > 0 && { right: -3 + recuo, bottom: -3 + recuo }]}
                     resizeMode="contain"
                 />
             )}
@@ -113,7 +117,7 @@ export default function NeoGlifoCard({
             <View style={[styles.faixaTitulo, largo && { top: 0, bottom: 0, right: arte + (temFoto ? 22 : 4), justifyContent: 'center' }]}>
                 <Text
                     style={[styles.titulo, { fontSize: tamanhoTitulo, lineHeight: Math.round(tamanhoTitulo * 1.18) }]}
-                    numberOfLines={largo ? (sub ? 2 : 3) : 2}
+                    numberOfLines={linhasTitulo || (largo ? (sub ? 2 : 3) : 2)}
                 >
                     {titulo}
                 </Text>

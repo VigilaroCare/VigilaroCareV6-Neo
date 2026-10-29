@@ -1,30 +1,53 @@
-import { useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, Animated, StyleSheet } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Modal, LayoutAnimation, Image, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import NeoIcon from '../components/NeoIcon';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // Services & Utils
 import { DS as Neo } from '../utils/DesignSystem2026';
-import { useThemeColors, useIsDark } from '../utils/ThemeContext';
+import { useThemeColors, useIsDark, useThemeDS } from '../utils/ThemeContext';
 import { RISK_CATEGORIES } from '../data/RiskCategories';
 
 // Neo Components
 import NeoCard from '../components/NeoCard';
-import NeoHorizontalCard from '../components/NeoHorizontalCard';
+import NeoGlifoCard from '../components/NeoGlifoCard';
+import NeoScreenHeader from '../components/NeoScreenHeader';
 import { H2, H3, Body, Small } from "../components/NeoTypography";
 import TriColorBar from '../components/TriColorBar';
 import FadeInView from '../components/FadeInView';
 
 import AppBackground from '../components/AppBackground';
 import NeoAlert from '../utils/NeoAlert';
-import NeoHeroHeader from '../components/NeoHeroHeader';
 import ScoreService from '../services/ScoreService';
 import { resolveEmergencyTokens } from '../utils/emergencyTokens';
+
+// Um pictograma por categoria, do conjunto normalizado em assets/illustrations/glifos (o mesmo da Home e do
+// Aprendizado). Escolhidos pelo assunto: o balão da criança diz festa; o 60+ diz visitar idosos; o capacete,
+// obra; a mala aberta, mudança; os brinquedos, supervisão de crianças; a placa de piso molhado, queda;
+// o frasco com aviso, química de limpeza.
+const PICTOGRAMAS = {
+    festas_eventos: require('../assets/illustrations/glifos/pictogram-companhia-criancas.png'),
+    visitacao_segura: require('../assets/illustrations/glifos/pictogram-companhia-idosos.png'),
+    reformas_obras: require('../assets/illustrations/glifos/pictogram-guias-equipamentos.png'),
+    mudanca_residencia: require('../assets/illustrations/glifos/pictogram-viagem-malas.png'),
+    monitor_kids: require('../assets/illustrations/glifos/pictogram-brinquedos.png'),
+    servicos_altura: require('../assets/illustrations/glifos/pictogram-riscos-fisicos.png'),
+    faxina_quimica: require('../assets/illustrations/glifos/pictogram-produtos.png'),
+};
+const PICTOGRAMA_PLANEJAR = require('../assets/illustrations/glifos/atividades-eventuais.png');
+// A tinta do "60+" encosta na borda direita da própria caixa (2% de margem): sem recuo o "+" sai cortado.
+const RECUO_DA_ARTE = { visitacao_segura: 6 };
+
+const VAO_GRADE = 12;
+// Título de até 3 linhas no alto (o mais longo é "Planejar reforma, visita ou mudança") e a arte embaixo.
+const ALTURA_CELULA = 140;
 
 export default function ModoPreventivoScreenNeo({ navigation }) {
     const { t } = useTranslation();
     const themeColors = useThemeColors();
     const isDark = useIsDark();
+    const tema = useThemeDS();
     const insets = useSafeAreaInsets();
     const [selectedRisk, setSelectedRisk] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
@@ -119,86 +142,67 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
 
 
 
-    const titleStr = t('headersFirst.atividadesEventuais', 'Atividades Eventuais');
-    const capaSource = require('../assets/illustrations/pad/hero_preventivo.png');
-    const scrollY = useRef(new Animated.Value(0)).current;
+    // O nome da tela é o do cartão da Home que a abriu: a mesma chave, para os dois nunca mais divergirem.
+    const titleStr = t('home.eventualActivities', 'Atividades Eventuais');
+    const { width: larguraDaTela } = useWindowDimensions();
+    const s = useMemo(() => criarEstilos(tema), [tema]);
+    // Duas colunas medidas em px, como a Home e o Aprendizado: `width: '48%'` com `gap` estoura em tela estreita.
+    const larguraCelula = Math.floor((larguraDaTela - 2 * Neo.spacing.lg - VAO_GRADE) / 2);
+    // Em aparelho estreito cabem menos letras por linha: o corpo desce um pouco para o título não ser cortado.
+    const tamanhoTitulo = larguraCelula >= 165 ? 15 : 13.5;
+    const celula = { width: larguraCelula, height: ALTURA_CELULA };
 
     return (
         <AppBackground>
-            
-                
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Padrão "Anatomia Editorial": título solto H1 à esquerda,
-                    sem card-moldura (PADRAO_ANATOMIA_PAGINAS.md) */}
-                
-            <SafeAreaView edges={['top']} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 100 }}>
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={{
-                        width: 44, height: 44, borderRadius: 22,
-                        backgroundColor: 'rgba(0,0,0,0.35)',
-                        justifyContent: 'center', alignItems: 'center',
-                        marginLeft: 16, marginTop: 12,
-                    }}
-                >
-                    <NeoIcon name="ArrowLeft2" size={24} color="#FFF" />
-                </TouchableOpacity>
-            </SafeAreaView>
+                <NeoScreenHeader title={titleStr} onBack={() => navigation.goBack()} />
 
-            <Animated.ScrollView
-                contentContainerStyle={{ paddingBottom: 140 }}
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-            >
-                {/* HERO com parallax */}
-                <NeoHeroHeader
-                    scrollY={scrollY}
-                    source={capaSource}
-                    title={titleStr}
-                    height={260}
-                />
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
+                    <View style={s.corpo}>
+                        <Small style={s.dica}>
+                            {RISK_CATEGORIES.length}{t('telas.ModoPreventivoScreenNeo.categoriasToqueParaIniciarAVerificacao', ' categorias • Toque para iniciar a verificação')}
+                        </Small>
 
-                {/* Main Content */}
-                <View style={{ marginTop: 24, paddingHorizontal: 24 }}>
-                    {/* Info bar */}
-                    <FadeInView delay={100}>
-                        <View style={styles.infoBar}>
-                            <NeoIcon name="ClipboardText" size={13} color={themeColors.neutral[500]} style={{ marginRight: 6 }} />
-                            <Text style={[styles.infoText, { color: themeColors.neutral[500] }]}>
-                                {RISK_CATEGORIES.length}{t('telas.ModoPreventivoScreenNeo.categoriasToqueParaIniciarAVerificacao', ' categorias • Toque para iniciar a verificação')}</Text>
-                        </View>
-                    </FadeInView>
+                        <View style={s.grade}>
+                            {RISK_CATEGORIES.map((item, idx) => (
+                                <FadeInView key={item.id} delay={120 + idx * 40} style={celula}>
+                                    <NeoGlifoCard
+                                        source={PICTOGRAMAS[item.id] || PICTOGRAMA_PLANEJAR}
+                                        titulo={item.title}
+                                        tom="info"
+                                        arte={92}
+                                        recuo={RECUO_DA_ARTE[item.id] || 0}
+                                        tamanhoTitulo={tamanhoTitulo}
+                                        linhasTitulo={3}
+                                        accessibilityLabel={item.subtitle ? `${item.title}. ${item.subtitle}` : item.title}
+                                        onPress={() => handleRiskPress(item)}
+                                    />
+                                </FadeInView>
+                            ))}
 
-                    {RISK_CATEGORIES.map((item, idx) => {
-                        return (
-                            <FadeInView key={item.id} delay={150 + idx * 50}>
-                                <NeoHorizontalCard
-                                    title={item.title}
-                                    description={item.educational?.description || t('telas.ModoPreventivoScreenNeo.auditoriaPreventivaDoAmbiente', 'Auditoria preventiva do ambiente')}
-                                    iconName={item.icon}
-                                    imageUrl={item.image}
-                                    color={item.color}
-                                    onPress={() => handleRiskPress(item)}
+                            {/* Situações temporárias: checklists detalhados de reforma (por tipo de
+                                obra) e de visita (por tipo de visitante). Até 22/10/2026 só eram
+                                abertos por uma tela sem nenhuma entrada no app. É o único cartão que
+                                não abre uma verificação, e por isso fala em âmbar. */}
+                            <FadeInView delay={120 + RISK_CATEGORIES.length * 40} style={celula}>
+                                <NeoGlifoCard
+                                    source={PICTOGRAMA_PLANEJAR}
+                                    titulo={t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}
+                                    tom="warning"
+                                    arte={92}
+                                    tamanhoTitulo={tamanhoTitulo}
+                                    linhasTitulo={3}
+                                    accessibilityLabel={`${t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}. ${t('telas.ModoPreventivoScreenNeo.planejarSituacaoDescricao', 'Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes.')}`}
+                                    onPress={() => navigation.navigate('SituacoesTemporarias')}
                                 />
                             </FadeInView>
-                        );
-                    })}
+                        </View>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
 
-                    {/* Situacoes temporarias: checklists detalhados de reforma (por tipo de
-                        obra) e de visita (por tipo de visitante). Ate 22/10/2026 so eram
-                        abertos por uma tela sem nenhuma entrada no app. */}
-                    <FadeInView delay={150 + RISK_CATEGORIES.length * 50}>
-                        <NeoHorizontalCard
-                            title={t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}
-                            description={t('telas.ModoPreventivoScreenNeo.planejarSituacaoDescricao', 'Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes.')}
-                            iconName="Calendar"
-                            color={Neo.colors.feedback.warning}
-                            onPress={() => navigation.navigate('SituacoesTemporarias')}
-                        />
-                    </FadeInView>
-                </View>
-            </Animated.ScrollView>
                 {/* AUDIT MODAL */}
                 <Modal
                     animationType="slide"
@@ -489,64 +493,9 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
     );
 }
 
-const styles = StyleSheet.create({
-    infoBar: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'rgba(150,150,150,0.1)',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderRadius: 12,
-        marginBottom: 24,
-    },
-    infoText: {
-        fontSize: 13,
-        fontWeight: '500',
-    },
-    guideCardOuter: {
-        borderRadius: 24,
-        shadowColor: Neo.colors.neutral.black,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.06,
-        shadowRadius: 8,
-        elevation: 2,
-    },
-    guideCardInner: {
-        flexDirection: 'row',
-        height: 120,
-        backgroundColor: Neo.colors.neutral.white,
-        borderRadius: 24,
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.5)',
-    },
-    guideImageContainer: {
-        width: 120,
-        height: '100%',
-        backgroundColor: Neo.colors.neutral[200],
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    guideContent: {
-        flex: 1,
-        padding: 14,
-        justifyContent: 'flex-start',
-    },
-    guideTitle: {
-        fontSize: 15,
-        fontWeight: '700',
-        color: Neo.colors.neutral[900],
-        marginBottom: 2,
-    },
-    guideSubtitle: {
-        fontSize: 11.5,
-        fontStyle: 'italic',
-        color: Neo.colors.neutral[500],
-        marginBottom: 6,
-    },
-    sptText: {
-        fontSize: 11.5,
-        color: Neo.colors.neutral[600],
-        lineHeight: 16,
-    },
+// Fábrica: recebe o DS do TEMA (nunca a paleta clara no escopo do módulo — ANATOMIA §9.6, regra 13).
+const criarEstilos = (Neo) => StyleSheet.create({
+    corpo: { paddingHorizontal: Neo.spacing.lg },
+    dica: { color: Neo.colors.textOn.muted, marginBottom: Neo.spacing.md },
+    grade: { flexDirection: 'row', flexWrap: 'wrap', gap: VAO_GRADE },
 });

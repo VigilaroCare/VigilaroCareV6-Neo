@@ -31,8 +31,8 @@ Corolário importante: **o app não tem um padrão por nível.** Tem **um único
 | Nível | O que é | Função | Header | Exemplos |
 |---|---|---|---|---|
 | **1º — raiz de tab** | Home, Aprender (`KnowledgeHub`), Menu | Vitrine / dispatcher | título **rola junto**, **sem back** (padrão C, exceção sancionada) | grid de pictogramas cerâmicos |
-| **2º — hub / índice / lista** | telas que a tab abre | **Rotear** — porta de entrada | `NeoScreenHeader` **fixo, com back** | `MinhaSaude` (lista de perfis), `SaudePet` (grid de pets), `TeoriaFogo`, `PlantasToxicas` |
-| **3º — detalhe / folha** | telas que o 2º abre | **Informar / agir** — consumo final | `NeoScreenHeader` **fixo, com back** | ficha individual do pet, `ConceitoDetail`, `MicroArticle` |
+| **2º — hub / índice / lista** | telas que a tab abre | **Rotear** — porta de entrada | `NeoScreenHeader` **fixo, com back** | `ModoPreventivo` (grade de cartões das atividades), `TeoriaFogo`, `PlantasToxicas` |
+| **3º — detalhe / folha** | telas que o 2º abre | **Informar / agir** — consumo final | `NeoScreenHeader` **fixo, com back** | `MinhaSaude` e `SaudePet` (ficha individual, com a fileira "Trocar pessoa ou pet"), `ConceitoDetail`, `MicroArticle` |
 
 > Do 2º nível para baixo, a anatomia da §3 é **obrigatória**. O 1º nível é o único com licença de rolar o título e dispensar o back.
 
@@ -117,7 +117,7 @@ Mesmo esqueleto, **composição diferente** — é isto que dá o "caráter" de 
 - Corpo = **seções de conteúdo** (Eyebrow + NeoCard glass).
 - **Não navega adiante** — é folha; termina em **CTA** (ex: "Compartilhar Ficha de Emergência").
 
-> **Prova de que o padrão é um só:** a mesma `MinhaSaude` é 2º nível quando lista os perfis da casa, e vira 3º nível (ficha individual) quando recebe um `perfilId`. O nível é *composição*, não arquitetura separada.
+> **Nota (28/10/2026):** `MinhaSaude` e `SaudePet` já não têm "lista de pouso": abrem direto na ficha (a do perfil ativo; a do primeiro animal) e a troca de pessoa ou de animal é a fileira `MembrosDaCasa`, igual nas duas. Ver §9.7.
 
 ---
 
@@ -183,10 +183,10 @@ Use ao criar ou auditar uma tela interna (2º/3º nível):
 
 Este é o **padrão-alvo**; a aplicação é **parcial**.
 
-- ✅ **Conformes (verificados):** `MinhaSaudeScreen`, `SaudePetScreen` — exemplares de referência (header fixo, hero `GlassProfileRing`, seções glass, listas em 1 card, padding por token). `MapaDeRiscosScreen` (2026-08-07) — vide §9.2.
+- ✅ **Conformes (verificados):** `MinhaSaudeScreen`, `SaudePetScreen`, `ModoPreventivoScreenNeo` (a grade; o modal de auditoria segue no modelo antigo) — na linguagem da Home desde 28/10/2026 (§9.7). `MapaDeRiscosScreen` (2026-08-07) — vide §9.2.
 - 🟡 **Migração pendente (auditoria 2026-06-10 — reconferir estado atual antes de migrar):**
   - `TeoriaFogo` — **padrão D**: estrutura própria, header vermelho custom, sem `AppBackground`. Não conforme.
-  - Telas com **título em card** (padrão B): `ModoPreventivo`, `Sobre` e similares.
+  - Telas com **título em card** (padrão B): `Sobre` e similares. (`ModoPreventivo` saiu desta lista em 28/10/2026 — §9.7.)
   - **Heroes fora de família:** `PetsMenu` (banner full-bleed), `KitEmergencia` (círculo de ícone), `ConceitoDetail` (cor de hero hardcoded).
 
 A migração das internas para o `NeoScreenHeader` é uma das sessões dedicadas ainda pendentes na dívida de design (casa com a frente de padronização premium — cards horizontais + fotos).
@@ -198,7 +198,7 @@ Levantamento em `screens/` encontrou **~30 telas** usando o padrão banner full-
 Nesta rodada foi feita **higiene dentro do padrão não-conforme** (não migração para o padrão-alvo): removido gradiente de sombreamento no rodapé da imagem, removido `blurRadius` decorativo, removido subtítulo sobreposto — mantendo só o título. Título continua sobreposto à imagem sem gradiente de legibilidade; contraste passa a depender da foto de cada tela (risco aceito).
 
 Lista completa (candidatas a migração futura para `NeoScreenHeader` + hero §2, quando essa frente for retomada):
-`KnowledgeHubScreen`, `KitsHubScreen`, `AcessoriosSegurancaScreen`, `EletrodomesticosScreen`, `UtensiliosReviewsScreen`, `EletrodomesticosReviewsScreen`, `DispositivosEletronicosReviewsScreen`, `PetsMenuScreen`, `UtensiliosDomesticosScreen`, `RiscosFisicosScreen`, `CuidarProtegerHubScreen`, `InfoRotulosScreen`, `NeurodivergenceMenuScreen`, `ScannerScreen` (intro), `FasesVidaMenuScreen`, `LazerFeriasMenuScreen`, `RiscosMenuScreen`, `EducationEnvironmentsScreen`, `DispositivosProtecaoScreen`, `MinhaSaudeScreen`, `SaudePetScreen`, mais os 10 já listados na auditoria original de 2026-06-10 e as 6 telas de `screens/Travel/*`.
+`KnowledgeHubScreen`, `KitsHubScreen`, `AcessoriosSegurancaScreen`, `EletrodomesticosScreen`, `UtensiliosReviewsScreen`, `EletrodomesticosReviewsScreen`, `DispositivosEletronicosReviewsScreen`, `PetsMenuScreen`, `UtensiliosDomesticosScreen`, `RiscosFisicosScreen`, `CuidarProtegerHubScreen`, `InfoRotulosScreen`, `NeurodivergenceMenuScreen`, `ScannerScreen` (intro), `FasesVidaMenuScreen`, `LazerFeriasMenuScreen`, `RiscosMenuScreen`, `EducationEnvironmentsScreen`, `DispositivosProtecaoScreen`, mais os 10 já listados na auditoria original de 2026-06-10 e as 6 telas de `screens/Travel/*`.
 
 **Bugs reais encontrados de brinde** (cópia-e-cola sem revisão): `KitsHubScreen.js` e `RiscosMenuScreen.js` referenciavam `themeColors` sem nunca importá-lo — `ReferenceError` garantido se a tela fosse aberta. Ambos corrigidos. Isso é o tipo de risco concreto que a duplicação de padrão gera — vale como argumento a favor de, quando essa frente for retomada, migrar para o componente único em vez de continuar copiando o bloco.
 
@@ -321,7 +321,7 @@ Duas amarras que não podem cair numa revisão futura: o glifo ativo **continua 
 | Onda | Telas | Conteúdo |
 |---|---:|---|
 | 1 — feita | 4 | Scanner, Info Rótulos, resultado, Modo Viagem |
-| 2 | 28 | as portas dos cartões da Home: Vistorias, Atividades, Minha Saúde, Saúde Pet, perfis |
+| 2 | 28 | as portas dos cartões da Home: Vistorias, Atividades, Minha Saúde, Saúde Pet, perfis — **Minha Saúde, Saúde Pet e Atividades Eventuais feitas em 28/10/2026 (§9.7)** |
 | 3 | 24 | Educação |
 | 4 | 32 | Menu, Viagem, Segurança, ferramentas e o resto |
 | fora | 13 | emergência (linguagem própria, §0) |
@@ -329,14 +329,49 @@ Duas amarras que não podem cair numa revisão futura: o glifo ativo **continua 
 
 **Checklist de migração de uma tela** (some ao §8): troca o bloco banner + voltar + título por `NeoScreenHeader`; destinos viram `NeoGlifoCard` (se há glifo) ou linhas em 1 card; selos viram `NeoPill`; hex vira token (`textOn.*` para texto); emoji vira `NeoIcon`; estilos viram fábrica de tema; texto novo sai nos 4 idiomas e entra no registro de revisão como pendente; **conferir a tela no tema claro, no escuro e num aparelho de 360dp** — nenhuma ferramenta de IA enxerga tela só lendo código, e foi no escuro que o piloto achou o defeito mais grave.
 
+### 9.7 Atualização 2026-10-28 — Minha Saúde, Saúde Pet e Atividades Eventuais (a onda 2 começou)
+
+A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melhorou muito. Gostei."): (1) "Trocar pessoa ou pet" e as duas telas de saúde no MESMO formato, com a foto que cada pessoa e cada animal tem do cadastro, em cartões como os da Home; (2) Atividades Eventuais, com os cartões "ainda no modelo antigo".
+
+| Tela | O que virou |
+|---|---|
+| `MinhaSaude`, `SaudePet` | `NeoScreenHeader` + fileira `MembrosDaCasa` + `NeoGlifoCard` `largo` em modo foto + `SaudeSecao`. Sem lista de pouso; `SaudePet` sem `petId` abre o primeiro animal. |
+| `ModoPreventivo` (Atividades Eventuais) | `NeoScreenHeader` + grade de 2 colunas de `NeoGlifoCard`: as 7 categorias em tom `info` e o 8º cartão, "Planejar reforma, visita ou mudança", em `warning` por ser o único que não abre uma verificação. Um pictograma por categoria, do conjunto `assets/illustrations/glifos`. |
+
+**Peças novas ou ampliadas**
+
+- `components/MembrosDaCasa.js` — a fileira "Trocar pessoa ou pet"; exporta `fotoDoPerfil` e `inicialDoNome`. Com um membro só não desenha nada.
+- `components/SaudeSecao.js` — `SaudeSecao` (cartão de seção) e `SaudeChips`. Antes cada tela tinha a sua cópia, com a paleta clara no escopo do módulo.
+- `NeoGlifoCard`: modo FOTO (`foto`, `inicial`: a foto é conteúdo, entra como quadrado de cantos arredondados com borda clara, nunca como fundo), `linhasTitulo` (título de até N linhas) e `recuo` (afasta a arte do canto, para o pictograma cuja tinta encosta na borda da própria caixa, como o "60+").
+
+**Regras que ficam**
+
+- O título da página é o do cartão que a abriu, pela MESMA chave de texto (`home.myHealth`, `home.petHealth`, `home.eventualActivities`, `navigation.education`), para os dois nunca mais divergirem. Aconteceu em Atividades: o cartão dizia "Atividades" e a página "Atividades Eventuais"; em inglês, "Occasional" no cartão e "Eventual" (falso cognato) na página.
+- Pessoa e animal têm o MESMO formato de ficha. O que difere é o conteúdo, não a estrutura.
+- Trocar de ficha é `navigation.replace`, não `push`: voltar continua levando à Home.
+
+**Defeitos reais achados de brinde**
+
+- `NeoScreenHeader`: o círculo do "voltar" lia a paleta clara no escopo do módulo; no tema escuro ficava claro com a seta clara (regra 13). Afetava todas as telas que usam o cabeçalho.
+- 8 textos dos estados vazios dessas telas não existiam em NENHUM idioma (en, es e pt-PT mostravam o português reserva).
+- `GlobalFloatingFooter`: o conserto de "Aprendizado" (commit 09ebb35) não funcionava em 360dp. No Android, `adjustsFontSizeToFit` com `numberOfLines={1}` só trunca, não reduz a fonte. Agora o card da aba mede a si mesmo e o rótulo escolhe o tamanho.
+- Medir em aparelho estreito com `wm size` deixa `useWindowDimensions` com valor velho depois do `wm size reset` (apareceu 540dp num aparelho de 411dp). Reiniciar o app antes de concluir que a tela tem defeito.
+
+**O que NÃO foi migrado (dívida, de propósito)**
+
+- O **modal de auditoria** de cada categoria de Atividades Eventuais (educação, perguntas S/N/NA, resultado) segue no modelo antigo: foto de estoque remota no topo, botões com cores fixas, sem tema escuro completo. É um fluxo de três estados dentro de um `Modal`; migrar pede decidir se vira tela própria.
+- Os 7 pictogramas de categoria foram escolhidos entre os que já existem. Um conjunto desenhado para cada categoria (festa, visita a idosos, obra, mudança, crianças, altura, química) seria melhor; é decisão de arte.
+
 ---
 
 ## 10. Exemplo de referência
 
-`MinhaSaudeScreen` é o melhor espelho do padrão porque exercita **os dois níveis na mesma tela**:
+`MinhaSaudeScreen` (e `SaudePetScreen`, que tem a MESMA estrutura) é o espelho da linguagem da Home numa ficha individual:
 
-- **Como 2º nível** (sem param): pousa no perfil ativo, lista "Outros perfis da casa" como linhas-com-chevron dentro de 1 NeoCard. Cada linha **roteia** (`navigation.push('MinhaSaude', { perfilId })`).
-- **Como 3º nível** (com `perfilId`): vira ficha individual — hero `GlassProfileRing` (foto = guardrail de correção) + seções (Condições, Alergias, Necessidades…) + CTA "Compartilhar Ficha de Emergência". É folha: não navega adiante.
+- `NeoScreenHeader` com o nome do cartão da Home ("Minha Saúde" / "Saúde Pet").
+- Fileira `MembrosDaCasa` ("Trocar pessoa ou pet"): um cartão com a foto de cada pessoa e de cada animal; o aberto fica marcado; tocar em outro troca a ficha com `navigation.replace`.
+- Cartão da pessoa ou do animal: `NeoGlifoCard` `largo` em modo FOTO (`foto` e `inicial`), com `NeoPill sobreCampo` no rodapé.
+- Seções em `SaudeSecao` e `SaudeChips` (leem o tema) e o CTA "Compartilhar Ficha de Emergência". É folha: não navega adiante.
 
 ---
 
