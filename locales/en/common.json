@@ -332,6 +332,9 @@
         "daysLeft": "{{count}} day(s)"
     },
     "checklists": {
+        "statusConforme": "Yes, compliant",
+        "statusRisco": "No, risk",
+        "statusNA": "Not applicable",
         "roomNotFound": "Room not found",
         "loading": "Loading...",
         "room": "Room",
@@ -2834,7 +2837,14 @@
             "seguro": "% Safe",
             "acao": "ACTION: ",
             "planejarSituacaoTitulo": "Plan a renovation, visit or move",
-            "planejarSituacaoDescricao": "Detailed checklists by type of work and type of visitor, to get the home ready beforehand."
+            "planejarSituacaoDescricao": "Detailed checklists by type of work and type of visitor, to get the home ready beforehand.",
+            "resultadoNaoAplicavel": "Nothing to check here.",
+            "resultadoNaoAplicavelTitulo": "Not applicable",
+            "pontosDeAtencao_one": "We found {{count}} point of attention.",
+            "pontosDeAtencao_other": "We found {{count}} points of attention.",
+            "pontoCritico": "Critical",
+            "pontoAtencao": "Attention",
+            "verEpisDesc": "Which protection to use with each tool"
         },
         "HumanFormStep": {
             "passo1NovoIntegrantePessoa": "STEP 1 — NEW MEMBER (PERSON)",

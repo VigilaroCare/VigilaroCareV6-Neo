@@ -54,7 +54,7 @@ A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), n
 | AddPerfil | screens/Profiles/AddPerfilScreenNeo.js | D-voltar | voltar copiado; 8 hex soltos | 1466 |
 | Relatorios | screens/Checklists/RelatoriosScreenNeo.js | D-voltar | voltar copiado; 15 hex soltos | 907 |
 | MedicationReminderForm | screens/Health/MedicationReminderFormScreen.js | D-voltar | voltar copiado; 11 hex soltos | 821 |
-| ModoPreventivo | screens/ModoPreventivoScreenNeo.js | A-nova | **grade migrada em 28/10/2026**; o modal de auditoria segue no modelo antigo (foto remota no topo, cores fixas) | 501 |
+| ModoPreventivo | screens/ModoPreventivoScreenNeo.js | A-nova | **grade e modal de verificação migrados em 28/10/2026** (`AuditoriaAtividadeModal`) | 501 |
 | HomeXRay | screens/Profiles/HomeXRayScreen.js | D-voltar | voltar copiado; 10 hex soltos | 487 |
 | ProfileRiskSummary | screens/Profiles/ProfileRiskSummaryScreen.js | D-voltar | voltar copiado; 2 hex soltos | 1127 |
 | AreasInternas | screens/Checklists/AreasInternasScreen.js | D-voltar | voltar copiado; 5 hex soltos | 851 |

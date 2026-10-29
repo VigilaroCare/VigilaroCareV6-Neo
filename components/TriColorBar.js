@@ -51,7 +51,7 @@ export default function TriColorBar({
         <View style={{ height, backgroundColor: COLORS.empty, borderRadius: height / 2, overflow: 'hidden' }} />
         {showLabels && (
           <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 6 }}>
-            <Small style={{ color: colors.neutral[400], fontSize: 11 }}>{tx('telas.TriColorBar.nenhumItemRespondido', 'Nenhum item respondido')}</Small>
+            <Small style={{ color: colors.textOn.muted, fontSize: 11 }}>{tx('telas.TriColorBar.nenhumItemRespondido', 'Nenhum item respondido')}</Small>
           </View>
         )}
       </View>
@@ -109,15 +109,15 @@ export default function TriColorBar({
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 6, paddingHorizontal: 2 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.baixo }} />
-            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.atende', 'Atende ')}{pctB}%</Small>
+            <Small style={{ color: colors.textOn.muted, fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.atende', 'Atende ')}{pctB}%</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.atencao }} />
-            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.atencao', 'Atenção ')}{pctA}%</Small>
+            <Small style={{ color: colors.textOn.muted, fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.atencao', 'Atenção ')}{pctA}%</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.critico }} />
-            <Small style={{ color: colors.neutral[500], fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.critico', 'Crítico ')}{pctV > 0 && critico > 0 ? pctV : 0}%</Small>
+            <Small style={{ color: colors.textOn.muted, fontSize: 11, fontWeight: '600' }}>{tx('telas.TriColorBar.critico', 'Crítico ')}{pctV > 0 && critico > 0 ? pctV : 0}%</Small>
           </View>
         </View>
       )}
@@ -127,15 +127,15 @@ export default function TriColorBar({
         <View style={{ marginTop: 10, gap: 4 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.baixo }} />
-            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>{tx('telas.TriColorBar.conformeBaixoRisco', 'Conforme (Baixo risco)')}</Small>
+            <Small style={{ color: colors.textOn.ink, fontSize: 12 }}>{tx('telas.TriColorBar.conformeBaixoRisco', 'Conforme (Baixo risco)')}</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.atencao }} />
-            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>{tx('telas.TriColorBar.atencaoRiscoModerado', 'Atenção (Risco moderado)')}</Small>
+            <Small style={{ color: colors.textOn.ink, fontSize: 12 }}>{tx('telas.TriColorBar.atencaoRiscoModerado', 'Atenção (Risco moderado)')}</Small>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: COLORS.critico }} />
-            <Small style={{ color: colors.neutral[800], fontSize: 12 }}>{tx('telas.TriColorBar.criticoRiscoAlto', 'Crítico (Risco alto)')}</Small>
+            <Small style={{ color: colors.textOn.ink, fontSize: 12 }}>{tx('telas.TriColorBar.criticoRiscoAlto', 'Crítico (Risco alto)')}</Small>
           </View>
         </View>
       )}

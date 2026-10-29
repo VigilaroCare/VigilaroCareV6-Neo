@@ -180,6 +180,10 @@
   "m045": {
    "texto": "estado vazio da Saude Pet: o texto ja existia como fallback fixo no codigo (SaudePetScreen) e nunca tinha chave em nenhum idioma; agora esta no locale. Aguarda a revisao do Agnaldo junto com os demais textos de saude",
    "em": "2026-10-28"
+  },
+  "m046": {
+   "texto": "rotulos de acessibilidade das respostas S / N / N/A (RespostaSNA): textos novos, so lidos por leitor de tela; ChecklistDetail ja os pedia por chave que nao existia em nenhum idioma. Aguardam a revisao do Agnaldo junto com os textos do modal de verificacao de Atividades (resultado, pontos de atencao, EPIs)",
+   "em": "2026-10-28"
   }
  },
  "textos": {
@@ -10303,6 +10307,11 @@
    "data/dispositivos_protecao.js",
    "m010"
   ],
+  "9be4b6b593a15dd1": [
+   "pendente",
+   "components/RespostaSNA.js",
+   "m046"
+  ],
   "9bec14a7eaf624d6": [
    "pendente",
    "data/teoria_fogo.js",
@@ -13168,6 +13177,11 @@
    "screens/Education/TravelSafetyGuideScreen.js",
    "m004"
   ],
+  "c85ced6dcfca522f": [
+   "pendente",
+   "components/RespostaSNA.js",
+   "m046"
+  ],
   "c85d6f576d365b31": [
    "pendente",
    "data/radarConteudoDB.js",
@@ -13572,6 +13586,11 @@
    "pendente",
    "data/plantas_ciatox.js",
    "m006"
+  ],
+  "ce6ff2f7e19c3965": [
+   "pendente",
+   "components/RespostaSNA.js",
+   "m046"
   ],
   "ce79329857c0518f": [
    "pendente",

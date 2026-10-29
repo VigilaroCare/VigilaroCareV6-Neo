@@ -332,6 +332,9 @@
         "daysLeft": "{{count}} dia(s)"
     },
     "checklists": {
+        "statusConforme": "Sim, conforme",
+        "statusRisco": "Não, risco",
+        "statusNA": "Não aplicável",
         "roomNotFound": "Ambiente não encontrado",
         "loading": "Carregando...",
         "room": "Ambiente",
@@ -2834,7 +2837,14 @@
             "seguro": "% Seguro",
             "acao": "AÇÃO: ",
             "planejarSituacaoTitulo": "Planejar reforma, visita ou mudança",
-            "planejarSituacaoDescricao": "Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes."
+            "planejarSituacaoDescricao": "Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes.",
+            "resultadoNaoAplicavel": "Nada a verificar neste ambiente.",
+            "resultadoNaoAplicavelTitulo": "Não aplicável",
+            "pontosDeAtencao_one": "Encontramos {{count}} ponto de atenção.",
+            "pontosDeAtencao_other": "Encontramos {{count}} pontos de atenção.",
+            "pontoCritico": "Crítico",
+            "pontoAtencao": "Atenção",
+            "verEpisDesc": "Qual proteção usar em cada ferramenta"
         },
         "HumanFormStep": {
             "passo1NovoIntegrantePessoa": "PASSO 1 — NOVO INTEGRANTE (PESSOA)",

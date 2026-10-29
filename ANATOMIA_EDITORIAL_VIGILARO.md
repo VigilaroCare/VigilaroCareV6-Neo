@@ -342,6 +342,9 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 
 - `components/MembrosDaCasa.js` — a fileira "Trocar pessoa" (Minha Saúde) ou "Trocar pet" (Saúde Pet); recebe `titulo` e `tipo`; exporta `fotoDoPerfil` e `inicialDoNome`. Com um membro só não desenha nada.
 - `components/SaudeSecao.js` — `SaudeSecao` (cartão de seção) e `SaudeChips`. Antes cada tela tinha a sua cópia, com a paleta clara no escopo do módulo.
+- `components/RespostaSNA.js` — as respostas S / N / N/A de uma verificação, com a letra e o rótulo de acessibilidade. Estava escrita à mão em cinco telas (Vistorias, Plano de Ação, Atividades Eventuais, Escola Segura, Vistoria de Asilo), com hex soltos presos na paleta clara. As outras quatro ainda não a usam.
+- `components/AuditoriaAtividadeModal.js` — a verificação de uma categoria de Atividades Eventuais (educação, perguntas, resultado). Saiu de dentro da tela, que perdeu ~330 linhas. Cabeçalho padrão com o nome da categoria, `NeoGlifoCard` com o pictograma, `RespostaSNA`, tom do resultado pelo DADO.
+- `data/pictogramasAtividades.js` — o pictograma de cada categoria; a grade e o modal leem daqui.
 - `NeoGlifoCard`: modo FOTO (`foto`, `inicial`: a foto é conteúdo, entra como quadrado de cantos arredondados com borda clara, nunca como fundo), `linhasTitulo` (título de até N linhas) e `recuo` (afasta a arte do canto, para o pictograma cuja tinta encosta na borda da própria caixa, como o "60+").
 
 **Regras que ficam**
@@ -350,6 +353,7 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 - Pessoa e animal têm o MESMO formato de ficha. O que difere é o conteúdo, não a estrutura.
 - **Cada tela lista só o seu tipo:** pessoas em Minha Saúde, animais em Saúde Pet. Nunca misturar na mesma fileira.
 - Trocar de ficha é `navigation.replace`, não `push`: voltar continua levando à Home.
+- **O N/A fica fora da conta nos dois lados.** A pontuação da verificação contava o N/A como seguro no numerador e o tirava do denominador (2 N/A e 6 seguras de 8 respondidas dava 100%, havendo itens em risco). E tudo N/A saía "0% Seguro" em vermelho. Agora tudo N/A diz que o ambiente não se aplica, e o resultado nunca é "seguro" havendo ponto em aberto (é crítico se algum ponto crítico foi marcado como risco). O limiar de cada faixa segue sendo só o do `ScoreService`.
 
 **Defeitos reais achados de brinde**
 
@@ -360,8 +364,8 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 
 **O que NÃO foi migrado (dívida, de propósito)**
 
-- O **modal de auditoria** de cada categoria de Atividades Eventuais (educação, perguntas S/N/NA, resultado) segue no modelo antigo: foto de estoque remota no topo, botões com cores fixas, sem tema escuro completo. É um fluxo de três estados dentro de um `Modal`; migrar pede decidir se vira tela própria.
-- Os 7 pictogramas de categoria foram escolhidos entre os que já existem. Um conjunto desenhado para cada categoria (festa, visita a idosos, obra, mudança, crianças, altura, química) seria melhor; é decisão de arte.
+- ~~O modal de auditoria de cada categoria seguia no modelo antigo~~ **Migrado em 28/10/2026** (`AuditoriaAtividadeModal`, ver acima). Continuou sendo um `Modal` de três etapas, não virou tela própria.
+- Os 7 pictogramas de categoria foram escolhidos entre os que já existem. O Agnaldo decidiu (28/10/2026) que **artes dedicadas** valem mais; o pedido está em `docs/PLANO_PICTOGRAMAS_ATIVIDADES.md` e a troca será em um só lugar (`data/pictogramasAtividades.js`).
 
 ---
 

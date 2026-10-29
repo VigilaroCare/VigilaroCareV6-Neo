@@ -332,6 +332,9 @@
         "daysLeft": "{{count}} dia(s)"
     },
     "checklists": {
+        "statusConforme": "Sim, conforme",
+        "statusRisco": "Não, risco",
+        "statusNA": "Não aplicável",
         "roomNotFound": "Divisão não encontrada",
         "loading": "A carregar...",
         "room": "Divisão",
@@ -2834,7 +2837,14 @@
             "seguro": "% Seguro",
             "acao": "AÇÃO: ",
             "planejarSituacaoTitulo": "Planear obras, visita ou mudança",
-            "planejarSituacaoDescricao": "Listas de verificação detalhadas por tipo de obra e de visitante, para preparar a casa antes."
+            "planejarSituacaoDescricao": "Listas de verificação detalhadas por tipo de obra e de visitante, para preparar a casa antes.",
+            "resultadoNaoAplicavel": "Nada a verificar neste ambiente.",
+            "resultadoNaoAplicavelTitulo": "Não aplicável",
+            "pontosDeAtencao_one": "Encontrámos {{count}} ponto de atenção.",
+            "pontosDeAtencao_other": "Encontrámos {{count}} pontos de atenção.",
+            "pontoCritico": "Crítico",
+            "pontoAtencao": "Atenção",
+            "verEpisDesc": "Que proteção usar em cada ferramenta"
         },
         "HumanFormStep": {
             "passo1NovoIntegrantePessoa": "PASSO 1 — NOVO INTEGRANTE (PESSOA)",
