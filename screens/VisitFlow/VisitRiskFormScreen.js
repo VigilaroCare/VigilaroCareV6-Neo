@@ -1,16 +1,32 @@
-import { useState } from "react";
-import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
+/**
+ * VisitRiskFormScreen — "Quem vai estar nesta visita?": marca os grupos de risco presentes para o
+ * checklist ser gerado sob medida.
+ *
+ * 28/10/2026 — na linguagem da Home: cabeçalho padrão com o NOME da opção que a abriu (Recebendo Visita
+ * ou Indo Visitar; era "Fatores de Risco", que passa a rótulo da lista), a lista num cartão só, os
+ * ícones do catálogo (os do Ionicons caíam todos no triângulo de alerta) e o botão padrão.
+ */
+import { useMemo, useState } from 'react';
+import { View, ScrollView, Switch, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import NeoIcon from '../../components/NeoIcon';
-import { RISK_GROUPS } from '../../data/visitChecklists';
-import { Spacing, Typography, BorderRadius, Shadows } from "../../utils/Theme";
+import { StatusBar } from 'expo-status-bar';
+import { useTranslation } from 'react-i18next';
+import { DS as Neo, withAlpha } from '../../utils/DesignSystem2026';
+import { useIsDark, useThemeDS } from '../../utils/ThemeContext';
 import AppBackground from '../../components/AppBackground';
-import { DS as Neo } from '../../utils/DesignSystem2026';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
+import NeoCard from '../../components/NeoCard';
+import NeoIcon from '../../components/NeoIcon';
+import ButtonNeo from '../../components/ButtonNeo';
+import { Body, Eyebrow } from '../../components/NeoTypography';
+import { RISK_GROUPS, VISIT_TYPES } from '../../data/visitChecklists';
 import { t_field } from '../../utils/getLocalizedField';
 
 export default function VisitRiskFormScreen({ route, navigation }) {
     const { t } = useTranslation('common');
+    const isDark = useIsDark();
+    const tema = useThemeDS();
+    const s = useMemo(() => criarEstilos(tema), [tema]);
     const { visitType } = route.params;
     const [selectedRisks, setSelectedRisks] = useState({});
 
@@ -22,84 +38,60 @@ export default function VisitRiskFormScreen({ route, navigation }) {
         navigation.navigate('ChecklistVisit', { visitType, selectedRisks });
     };
 
+    // O nome da página é o da opção que a abriu.
+    const titulo = visitType === VISIT_TYPES.VISITING
+        ? t('headersFirst.indoVisitar', 'Indo Visitar')
+        : t('headersFirst.recebendoVisita', 'Recebendo Visita');
+
     return (
         <AppBackground>
-        <SafeAreaView style={styles.container}>
-            <ScrollView contentContainerStyle={styles.inner}>
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                    <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral[900]} />
-                </TouchableOpacity>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                <Text style={styles.title}>{t('headersFirst.fatoresDeRisco', 'Fatores de Risco')}</Text>
-                <Text style={styles.subtitle}>{t('headersFirst.selecioneQuemEstarPresenteNestaVisita', 'Quem vai estar nesta visita?')}</Text>
+                <NeoScreenHeader title={titulo} onBack={() => navigation.goBack()} />
 
-                <View style={styles.list}>
-                    {RISK_GROUPS.map(risk => (
-                        <View key={risk.id} style={styles.row}>
-                            <View style={styles.rowInfo}>
-                                <View style={styles.iconBox}>
-                                    <NeoIcon name={risk.icon} size={20} color={Neo.colors.neutral[600]} />
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
+                    <View style={s.corpo}>
+                        <Body style={s.apoio}>{t('headersFirst.selecioneQuemEstarPresenteNestaVisita', 'Quem vai estar nesta visita?')}</Body>
+
+                        <Eyebrow style={s.rotulo}>{t('headersFirst.fatoresDeRisco', 'Fatores de Risco')}</Eyebrow>
+                        <NeoCard variant="elevated" padding={0}>
+                            {RISK_GROUPS.map((risk, i) => (
+                                <View key={risk.id} style={[s.linha, i > 0 && s.divisor]}>
+                                    <NeoIcon name={risk.icon} variant="Linear" size={22} color={tema.colors.textOn.brand} />
+                                    <Body style={s.texto}>{t_field(risk, 'label')}</Body>
+                                    <Switch
+                                        value={!!selectedRisks[risk.id]}
+                                        onValueChange={() => toggleRisk(risk.id)}
+                                        trackColor={{ false: withAlpha(tema.colors.textOn.muted, 0.3), true: tema.colors.primary[500] }}
+                                        thumbColor={tema.colors.neutral.white}
+                                        accessibilityLabel={t_field(risk, 'label')}
+                                    />
                                 </View>
-                                <Text style={styles.label}>{t_field(risk, 'label')}</Text>
-                            </View>
-                            <Switch
-                                value={!!selectedRisks[risk.id]}
-                                onValueChange={() => toggleRisk(risk.id)}
-                                trackColor={{ false: Neo.colors.neutral[200], true: Neo.colors.primary[500] }}
-                                thumbColor={Neo.colors.neutral.white}
-                            />
-                        </View>
-                    ))}
-                </View>
+                            ))}
+                        </NeoCard>
 
-                <TouchableOpacity style={styles.button} onPress={handleContinue}>
-                    <Text style={styles.buttonText}>{t('headersFirst.gerarChecklist', 'Gerar Checklist')}</Text>
-                    <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral.white} style={{ marginLeft: Spacing.sm }} />
-                </TouchableOpacity>
-
-            </ScrollView>
-        </SafeAreaView>
-      </AppBackground>
+                        <ButtonNeo
+                            title={t('headersFirst.gerarChecklist', 'Gerar Checklist')}
+                            iconName="ArrowRight2"
+                            onPress={handleContinue}
+                            type="primary"
+                            style={s.botao}
+                        />
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        </AppBackground>
     );
 }
 
-const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: 'transparent' },
-    inner: { padding: Spacing.lg },
-    backButton: { marginBottom: Spacing.lg },
-    title: { fontSize: Typography.sizes.xl, fontWeight: Typography.weights.bold, color: Neo.colors.neutral[900], marginBottom: Spacing.sm },
-    subtitle: { fontSize: Typography.sizes.md, color: Neo.colors.neutral[600], marginBottom: Spacing.xl },
-    list: { backgroundColor: Neo.colors.neutral.white, borderRadius: BorderRadius.lg, padding: Spacing.sm, ...Shadows.sm },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: Spacing.md,
-        borderBottomWidth: 1,
-        borderBottomColor: Neo.colors.neutral[200],
-    },
-    rowInfo: { flexDirection: 'row', alignItems: 'center' },
-    iconBox: {
-        width: 36,
-        height: 36,
-        borderRadius: BorderRadius.sm,
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: Spacing.md,
-    },
-    label: { fontSize: Typography.sizes.md, color: Neo.colors.neutral[900], fontWeight: Typography.weights.medium },
-    button: {
-        marginTop: Spacing.xl,
-        backgroundColor: Neo.colors.primary[500],
-        borderRadius: BorderRadius.md,
-        paddingVertical: Spacing.md,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...Shadows.sm,
-    },
-    buttonText: { color: Neo.colors.neutral.white, fontSize: Typography.sizes.lg, fontWeight: Typography.weights.bold },
+// Fábrica: recebe o DS do TEMA (nunca a paleta clara no escopo do módulo — ANATOMIA §9.6, regra 13).
+const criarEstilos = (Neo) => StyleSheet.create({
+    corpo: { paddingHorizontal: Neo.spacing.lg, paddingTop: Neo.spacing.sm },
+    apoio: { color: Neo.colors.textOn.muted, lineHeight: 21, marginBottom: Neo.spacing.md },
+    rotulo: { marginBottom: Neo.spacing.sm },
+    linha: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: Neo.spacing.md },
+    divisor: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: Neo.colors.neutral[300] },
+    texto: { flex: 1, color: Neo.colors.textOn.ink, fontWeight: '500' },
+    botao: { marginTop: Neo.spacing.lg },
 });
-
-

@@ -10,11 +10,11 @@ export const VISIT_TYPES = {
 };
 
 export const RISK_GROUPS = [
-  { id: 'idoso', label: 'Idosos', label_en: 'Older people', label_es: 'Personas mayores', icon: 'body' },
-  { id: 'pcd', label: 'Pessoas com deficiência ou mobilidade reduzida', label_en: 'People with disabilities or reduced mobility', label_es: 'Personas con discapacidad o movilidad reducida', icon: 'walk' },
-  { id: 'bebe', label: 'Bebês (0-2 anos)', label_en: 'Babies (0–2 years)', label_es: 'Bebés (0-2 años)', label_ptpt: 'Bebés (0-2 anos)', icon: 'happy' },
-  { id: 'crianca_arteira', label: 'Crianças muito ativas', label_en: 'Very active children', label_es: 'Niños muy activos', icon: 'bicycle' },
-  { id: 'enfermo', label: 'Enfermos / Convalescentes', label_en: 'People who are ill or recovering', label_es: 'Personas enfermas o convalecientes', label_ptpt: 'Doentes / convalescentes', icon: 'medkit' },
+  { id: 'idoso', label: 'Idosos', label_en: 'Older people', label_es: 'Personas mayores', icon: 'Elderly' },
+  { id: 'pcd', label: 'Pessoas com deficiência ou mobilidade reduzida', label_en: 'People with disabilities or reduced mobility', label_es: 'Personas con discapacidad o movilidad reducida', icon: 'Wheelchair' },
+  { id: 'bebe', label: 'Bebês (0-2 anos)', label_en: 'Babies (0–2 years)', label_es: 'Bebés (0-2 años)', label_ptpt: 'Bebés (0-2 anos)', icon: 'Baby' },
+  { id: 'crianca_arteira', label: 'Crianças muito ativas', label_en: 'Very active children', label_es: 'Niños muy activos', icon: 'PersonSimpleRun' },
+  { id: 'enfermo', label: 'Enfermos / Convalescentes', label_en: 'People who are ill or recovering', label_es: 'Personas enfermas o convalecientes', label_ptpt: 'Doentes / convalescentes', icon: 'FirstAid' },
 ];
 
 export const VISIT_CHECKLISTS = {

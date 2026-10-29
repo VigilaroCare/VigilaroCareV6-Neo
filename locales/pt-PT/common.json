@@ -332,6 +332,7 @@
         "daysLeft": "{{count}} dia(s)"
     },
     "checklists": {
+        "verificados": " verificados",
         "statusConforme": "Sim, conforme",
         "statusRisco": "Não, risco",
         "statusNA": "Não aplicável",
@@ -1890,7 +1891,6 @@
         "pet": "Pet",
         "carregandoAtividades": "Carregando atividades...",
         "comeceAUsarOVigilaroParaVerSeuHistRicoAq": "Comece a usar o Vigilaro para ver seu histórico aqui.",
-        "tipoDeReforma": "Tipo de Obras",
         "ondeAObraEstAcontecendo": "Onde decorrem as obras?",
         "nVELDESEGURANA": "NÍVEL DE SEGURANÇA",
         "tOTAL": "TOTAL",
@@ -1988,7 +1988,6 @@
         "fatoresDeRisco": "Fatores de Risco",
         "selecioneQuemEstarPresenteNestaVisita": "Quem vai estar nesta visita?",
         "gerarChecklist": "Gerar Checklist",
-        "tipoDeVisita": "Tipo de Visita",
         "vocEstRecebendoAlguMOuIndoVisitar": "Você está recebendo alguém ou indo visitar?",
         "recebendoVisita": "Recebendo Visita",
         "prepararMinhaCasaParaConvidados": "Preparar minha casa para convidados",
@@ -2404,13 +2403,11 @@
         },
         "ChecklistReformaScreen": {
             "tipo": "Tipo: ",
-            "verificados": " verificados",
             "duracao": "Duração: "
         },
         "ChecklistVisitScreen": {
             "prepareSuaCasa": "Prepare sua casa",
             "fiqueAtentoAoVisitar": "Fique atento ao visitar",
-            "verificados": " verificados",
             "prontoParaVisitar": "Pronto para Visitar",
             "recebendoVisita": "Recebendo Visita",
             "indoVisitar": "Indo Visitar",

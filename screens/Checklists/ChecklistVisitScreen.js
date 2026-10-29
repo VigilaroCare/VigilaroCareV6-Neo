@@ -1,29 +1,35 @@
 /**
  * ChecklistVisitScreen.js
  * Checklist de segurança para receber ou fazer visitas
- * Vigilaro Care V6 Neo — Padronizado Neo Design
+ *
+ * 28/10/2026 — na linguagem da Home: cabeçalho padrão, o progresso e as linhas nas peças
+ * compartilhadas (ProgressoDoChecklist, LinhaDeChecklist) e o botão padrão. O que NÃO mudou: os itens
+ * (por tipo de visita e grupos de risco), o estado guardado no aparelho, os pontos de gamificação e
+ * o índice temporário que segue para o Modo Situação.
  */
-
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from 'react-i18next';
-import { View, TouchableOpacity, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { VISIT_CHECKLISTS } from '../../data/visitChecklists';
 import { DS as Neo } from '../../utils/DesignSystem2026';
+import { useIsDark, useThemeDS } from '../../utils/ThemeContext';
 import NeoCard from '../../components/NeoCard';
-import { H2, H3, Body, Small } from '../../components/NeoTypography';
-import NeoIcon from '../../components/NeoIcon';
+import NeoScreenHeader from '../../components/NeoScreenHeader';
+import ButtonNeo from '../../components/ButtonNeo';
+import LinhaDeChecklist from '../../components/LinhaDeChecklist';
+import ProgressoDoChecklist from '../../components/ProgressoDoChecklist';
 import AppBg from '../../components/AppBackground';
-import ScaleButton from '../../components/ScaleButton';
 import GamificationService from '../../services/GamificationService';
 import { t_field } from '../../utils/getLocalizedField';
 
-const THEME_COLOR = Neo.colors.primary[500]; // Standardized token
-
 export default function ChecklistVisitScreen({ route, navigation }) {
     const { t } = useTranslation('common');
+    const isDark = useIsDark();
+    const tema = useThemeDS();
+    const s = useMemo(() => criarEstilos(tema), [tema]);
     const { visitType, selectedRisks } = route.params || {};
 
     const items = useMemo(() => {
@@ -75,7 +81,6 @@ export default function ChecklistVisitScreen({ route, navigation }) {
 
     const completedCount = Object.values(state).filter(Boolean).length;
     const totalCount = items.length;
-    const percentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
     const tempIndex = useMemo(() => {
         if (totalCount === 0) return 100;
@@ -97,112 +102,49 @@ export default function ChecklistVisitScreen({ route, navigation }) {
     }
 
     return (
-        <AppBg variant="subtle">
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'bottom']}>
-                <StatusBar style="dark" />
+        <AppBg>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+                <StatusBar style={isDark ? 'light' : 'dark'} />
 
-                {/* Header Neo */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                        style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.05)', alignItems: 'center', justifyContent: 'center' }}
-                    >
-                        <NeoIcon name="ArrowLeft2" size={22} color={Neo.colors.neutral[800]} />
-                    </TouchableOpacity>
-                    <View style={{ flex: 1, marginLeft: 12 }}>
-                        <H2 style={{ color: Neo.colors.neutral[800] }}>{t('headersFirst.checklistVisita', 'Checklist: Visita')}</H2>
-                        <Small style={{ color: Neo.colors.neutral[500], marginTop: 2 }}>
-                            {isRecebendo ? t('telas.ChecklistVisitScreen.prepareSuaCasa', 'Prepare sua casa') : t('telas.ChecklistVisitScreen.fiqueAtentoAoVisitar', 'Fique atento ao visitar')}
-                        </Small>
-                    </View>
-                    <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: THEME_COLOR + '15', alignItems: 'center', justifyContent: 'center' }}>
-                        <NeoIcon name="People" size={22} color={THEME_COLOR} variant="Bold" />
-                    </View>
-                </View>
+                <NeoScreenHeader
+                    title={t('headersFirst.checklistVisita', 'Checklist: Visita')}
+                    subtitle={isRecebendo ? t('telas.ChecklistVisitScreen.prepareSuaCasa', 'Prepare sua casa') : t('telas.ChecklistVisitScreen.fiqueAtentoAoVisitar', 'Fique atento ao visitar')}
+                    onBack={() => navigation.goBack()}
+                />
 
-                {/* Progress Bar Compacta */}
-                <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
-                    <NeoCard variant="elevated" padding={12} style={{ backgroundColor: Neo.colors.neutral.white }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                            <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{completedCount}/{totalCount}{t('telas.ChecklistVisitScreen.verificados', ' verificados')}</Small>
-                            <H3 style={{ color: percentage === 100 ? Neo.colors.feedback.success : THEME_COLOR }}>{percentage}%</H3>
-                        </View>
-                        <View style={{ height: 6, backgroundColor: Neo.colors.neutral[200], borderRadius: 3, overflow: 'hidden' }}>
-                            <View style={{ width: `${percentage}%`, height: '100%', backgroundColor: percentage === 100 ? Neo.colors.feedback.success : THEME_COLOR, borderRadius: 3 }} />
-                        </View>
-                    </NeoCard>
-                </View>
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
+                    <View style={s.corpo}>
+                        <ProgressoDoChecklist concluidos={completedCount} total={totalCount} style={s.progresso} />
 
-                {/* Lista de Itens */}
-                <ScrollView
-                    style={{ flex: 1 }}
-                    contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 190 }}
-                    showsVerticalScrollIndicator={false}
-                >
-                    {items.map((it, idx) => {
-                        const isChecked = !!state[it.key];
-                        return (
-                            <TouchableOpacity key={it.key || idx} activeOpacity={0.7} onPress={() => toggle(it.key)}>
-                                <NeoCard variant="elevated" style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    paddingVertical: 12,
-                                    paddingHorizontal: 14,
-                                    marginBottom: 8,
-                                    backgroundColor: Neo.colors.neutral.white,
-                                    borderRadius: 18,
-                                    borderWidth: 1,
-                                    borderColor: isChecked ? Neo.colors.primary[200] : Neo.colors.neutral[100],
-                                }}>
-                                    {/* Checkbox circular */}
-                                    <View style={{
-                                        width: 28, height: 28, borderRadius: 14, marginRight: 12,
-                                        backgroundColor: isChecked ? Neo.colors.feedback.success : 'transparent',
-                                        borderWidth: isChecked ? 0 : 2,
-                                        borderColor: isChecked ? 'transparent' : Neo.colors.neutral[300],
-                                        alignItems: 'center', justifyContent: 'center',
-                                    }}>
-                                        {isChecked && <NeoIcon name="TickCircle" size={16} color={Neo.colors.neutral.white} variant="Bold" />}
-                                    </View>
-
-                                    {/* Label */}
-                                    <Body style={{
-                                        flex: 1,
-                                        color: isChecked ? Neo.colors.neutral[400] : Neo.colors.neutral[900],
-                                        fontWeight: '600',
-                                        fontSize: 15,
-                                        lineHeight: 20,
-                                        textDecorationLine: isChecked ? 'line-through' : 'none',
-                                    }}>
-                                        {t_field(it, 'label')}
-                                    </Body>
-                                </NeoCard>
-                            </TouchableOpacity>
-                        );
-                    })}
-
-                    {/* Botão Ativar Modo */}
-                    <ScaleButton onPress={ativarModo} style={{ marginTop: 16 }}>
-                        <NeoCard variant="elevated" style={{
-                            backgroundColor: THEME_COLOR,
-                            padding: 16,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            ...Neo.shadows.md,
-                        }}>
-                            <NeoIcon name="People" size={22} color={Neo.colors.neutral.white} variant="Bold" />
-                            <H3 style={{ color: Neo.colors.neutral.white, marginLeft: 10 }}>
-                                {isRecebendo ? t('telas.ChecklistVisitScreen.ativarModoVisita', 'Ativar Modo Visita') : t('telas.ChecklistVisitScreen.prontoParaVisitar', 'Pronto para Visitar')}
-                            </H3>
+                        <NeoCard variant="elevated" padding={0}>
+                            {items.map((it, idx) => (
+                                <LinhaDeChecklist
+                                    key={it.key || idx}
+                                    rotulo={t_field(it, 'label')}
+                                    marcado={!!state[it.key]}
+                                    onPress={() => toggle(it.key)}
+                                    primeira={idx === 0}
+                                />
+                            ))}
                         </NeoCard>
-                    </ScaleButton>
 
-                    <TouchableOpacity style={{ marginTop: 12, alignItems: 'center', paddingVertical: 12 }} onPress={() => navigation.goBack()}>
-                        <Small style={{ color: Neo.colors.neutral[500], fontWeight: '600' }}>{t('headersFirst.voltar', 'Voltar')}</Small>
-                    </TouchableOpacity>
+                        <ButtonNeo
+                            title={isRecebendo ? t('telas.ChecklistVisitScreen.ativarModoVisita', 'Ativar Modo Visita') : t('telas.ChecklistVisitScreen.prontoParaVisitar', 'Pronto para Visitar')}
+                            iconName="ArrowRight2"
+                            onPress={ativarModo}
+                            type="primary"
+                            style={s.botao}
+                        />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </AppBg>
     );
 }
+
+// Fábrica: recebe o DS do TEMA (nunca a paleta clara no escopo do módulo — ANATOMIA §9.6, regra 13).
+const criarEstilos = (Neo) => StyleSheet.create({
+    corpo: { paddingHorizontal: Neo.spacing.lg, paddingTop: Neo.spacing.sm },
+    progresso: { marginBottom: Neo.spacing.md },
+    botao: { marginTop: Neo.spacing.lg },
+});

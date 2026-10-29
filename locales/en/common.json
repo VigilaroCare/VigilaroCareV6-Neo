@@ -332,6 +332,7 @@
         "daysLeft": "{{count}} day(s)"
     },
     "checklists": {
+        "verificados": " checked",
         "statusConforme": "Yes, compliant",
         "statusRisco": "No, risk",
         "statusNA": "Not applicable",
@@ -1889,7 +1890,6 @@
         "pet": "Pet",
         "carregandoAtividades": "Loading activities...",
         "comeceAUsarOVigilaroParaVerSeuHistRicoAq": "Start using Vigilaro to see your history here.",
-        "tipoDeReforma": "Renovation Type",
         "ondeAObraEstAcontecendo": "Where is the renovation happening?",
         "nVELDESEGURANA": "SAFETY LEVEL",
         "tOTAL": "TOTAL",
@@ -1987,7 +1987,6 @@
         "fatoresDeRisco": "Risk Factors",
         "selecioneQuemEstarPresenteNestaVisita": "Who will be at this visit?",
         "gerarChecklist": "Generate Checklist",
-        "tipoDeVisita": "Type of Visit",
         "vocEstRecebendoAlguMOuIndoVisitar": "Are you receiving someone or visiting?",
         "recebendoVisita": "Receiving Visit",
         "prepararMinhaCasaParaConvidados": "Prepare my home for guests",
@@ -2404,13 +2403,11 @@
         },
         "ChecklistReformaScreen": {
             "tipo": "Type: ",
-            "verificados": " checked",
             "duracao": "Duration: "
         },
         "ChecklistVisitScreen": {
             "prepareSuaCasa": "Prepare your home",
             "fiqueAtentoAoVisitar": "Stay alert when visiting",
-            "verificados": " checked",
             "prontoParaVisitar": "Ready to Visit",
             "recebendoVisita": "Hosting a Visit",
             "indoVisitar": "Going on a Visit",

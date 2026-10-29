@@ -1,24 +1,42 @@
-import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+/**
+ * SituacoesTemporariasScreen — a página que o cartão "Planejar reforma, visita ou mudança" (Atividades
+ * Eventuais) abre: escolher o cenário. Reforma e visita seguem para o seu fluxo; mudança e outro
+ * entram direto no modo da situação.
+ *
+ * 28/10/2026 — na linguagem da Home (ANATOMIA §9.6 e §9.7): cabeçalho padrão com o NOME do cartão que
+ * a abriu (era "Gestão de Eventos") e as quatro opções como NeoGlifoCard, no âmbar do cartão de
+ * origem (planejamento). Antes: banner verde copiado, cartões brancos e ícones que caíam todos no
+ * triângulo de alerta.
+ */
+import { useMemo } from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { LinearGradient } from 'expo-linear-gradient';
-import NeoIcon from '../components/NeoIcon';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Spacing, Typography, BorderRadius, Shadows } from '../utils/Theme';
+import { useTranslation } from 'react-i18next';
 import { DS as Neo } from '../utils/DesignSystem2026';
+import { useIsDark, useThemeDS } from '../utils/ThemeContext';
+import AppBackground from '../components/AppBackground';
+import NeoScreenHeader from '../components/NeoScreenHeader';
+import NeoGlifoCard from '../components/NeoGlifoCard';
+import { H3, Body } from '../components/NeoTypography';
 import { tx } from '../utils/txFixo';
+import { PICTOGRAMAS_ATIVIDADES, PICTOGRAMA_PLANEJAR } from '../data/pictogramasAtividades';
 
 const T = 'telas.SituacoesTemporariasScreen.';
+// Os pictogramas são os das categorias de Atividades Eventuais (data/pictogramasAtividades.js): quando
+// a arte dedicada chegar, estes cartões a recebem junto.
 const OPTIONS = [
-  { key: 'reforma', get title() { return tx(T + 'reformaTitulo', 'Reforma / Manutenção'); }, get subtitle() { return tx(T + 'reformaSubtitulo', 'Trabalhos temporários em casa'); }, icon: 'Hammer', color: Neo.colors.feedback.warning },
-  { key: 'festa', get title() { return tx(T + 'festaTitulo', 'Festa / Visita'); }, get subtitle() { return tx(T + 'festaSubtitulo', 'Reuniões e eventos sociais'); }, icon: 'Confetti', color: Neo.colors.feedback.error },
-  { key: 'mudanca', get title() { return tx(T + 'mudancaTitulo', 'Mudança de Moradia'); }, get subtitle() { return tx(T + 'mudancaSubtitulo', 'Novo lar, novos riscos'); }, icon: 'Truck', color: Neo.colors.secondary[500] },
-  { key: 'outro', get title() { return tx(T + 'outroTitulo', 'Outro Evento'); }, get subtitle() { return tx(T + 'outroSubtitulo', 'Cuidador, técnico, etc.'); }, icon: 'DotsThreeCircle', color: Neo.colors.primary[500] },
+  { key: 'reforma', get title() { return tx(T + 'reformaTitulo', 'Reforma / Manutenção'); }, get subtitle() { return tx(T + 'reformaSubtitulo', 'Trabalhos temporários em casa'); }, pictograma: PICTOGRAMAS_ATIVIDADES.reformas_obras },
+  { key: 'festa', get title() { return tx(T + 'festaTitulo', 'Festa / Visita'); }, get subtitle() { return tx(T + 'festaSubtitulo', 'Reuniões e eventos sociais'); }, pictograma: PICTOGRAMAS_ATIVIDADES.festas_eventos },
+  { key: 'mudanca', get title() { return tx(T + 'mudancaTitulo', 'Mudança de Moradia'); }, get subtitle() { return tx(T + 'mudancaSubtitulo', 'Novo lar, novos riscos'); }, pictograma: PICTOGRAMAS_ATIVIDADES.mudanca_residencia },
+  { key: 'outro', get title() { return tx(T + 'outroTitulo', 'Outro Evento'); }, get subtitle() { return tx(T + 'outroSubtitulo', 'Cuidador, técnico, etc.'); }, pictograma: PICTOGRAMA_PLANEJAR },
 ];
 
 export default function SituacoesTemporariasScreen({ navigation }) {
-    const { t } = useTranslation('common');
-  const insets = useSafeAreaInsets();
+  const { t } = useTranslation('common');
+  const isDark = useIsDark();
+  const tema = useThemeDS();
+  const s = useMemo(() => criarEstilos(tema), [tema]);
 
   function abrir(tipo) {
     if (tipo === 'reforma') {
@@ -33,126 +51,50 @@ export default function SituacoesTemporariasScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" backgroundColor={Neo.colors.primary[900]} />
+    <AppBackground>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
+        <StatusBar style={isDark ? 'light' : 'dark'} />
 
-      <LinearGradient
-        colors={[Neo.colors.primary[800], Neo.colors.primary[600]]}
-        style={[styles.header, { paddingTop: insets.top + 10 }]}
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}</Text>
-        <Text style={styles.headerSubtitle}>{t('headersFirst.monitoreRiscosTemporRios', 'Monitore riscos temporários')}</Text>
-      </LinearGradient>
+        {/* O nome da página é o do cartão que a abriu (Atividades Eventuais). */}
+        <NeoScreenHeader
+          title={t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}
+          subtitle={t('headersFirst.monitoreRiscosTemporRios', 'Monitore riscos temporários')}
+          onBack={() => navigation.goBack()}
+        />
 
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionTitle}>{t('headersFirst.selecioneOEvento', 'Qual evento?')}</Text>
-        <Text style={styles.sectionSubtitle}>
-          {t('headersFirst.ajustaremosAsRecomendaEsDeSeguranAComBas', 'Ajustaremos as recomendações de segurança com base no cenário escolhido.')}
-        </Text>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: Neo.layout.scrollBottomFooter }}>
+          <View style={s.corpo}>
+            <H3 style={s.pergunta}>{t('headersFirst.selecioneOEvento', 'Qual evento?')}</H3>
+            <Body style={s.apoio}>
+              {t('headersFirst.ajustaremosAsRecomendaEsDeSeguranAComBas', 'Ajustaremos as recomendações de segurança com base no cenário escolhido.')}
+            </Body>
 
-        <View style={styles.grid}>
-          {OPTIONS.map(opt => (
-            <TouchableOpacity
-              key={opt.key}
-              style={styles.card}
-              onPress={() => abrir(opt.key)}
-              activeOpacity={0.9}
-            >
-              <View style={[styles.iconWrap, { backgroundColor: opt.color + '20' }]}>
-                <NeoIcon name={opt.icon} size={28} color={opt.color} />
-              </View>
-              <View style={styles.cardBody}>
-                <Text style={styles.cardTitle}>{opt.title}</Text>
-                <Text style={styles.cardSub}>{opt.subtitle}</Text>
-              </View>
-              <NeoIcon name="ArrowRight2" size={20} color={Neo.colors.neutral[500]} />
-            </TouchableOpacity>
-          ))}
-        </View>
-      </ScrollView>
-    </View>
+            {OPTIONS.map(opt => (
+              <NeoGlifoCard
+                key={opt.key}
+                source={opt.pictograma}
+                titulo={opt.title}
+                sub={opt.subtitle}
+                tom="warning"
+                largo
+                seta
+                arte={96}
+                tamanhoTitulo={18}
+                style={s.cartao}
+                onPress={() => abrir(opt.key)}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </AppBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'transparent'
-  },
-  header: {
-    paddingHorizontal: Spacing.lg,
-    paddingBottom: Spacing.xl,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    ...Shadows.md,
-  },
-  backBtn: {
-    marginBottom: Spacing.md,
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral.white,
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: Neo.colors.neutral.white + 'E6',
-  },
-  content: {
-    padding: Spacing.lg,
-    paddingTop: Spacing.xl,
-  },
-  sectionTitle: {
-    fontSize: Typography.sizes.lg,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral[900],
-    marginBottom: 4,
-  },
-  sectionSubtitle: {
-    fontSize: Typography.sizes.sm,
-    color: Neo.colors.neutral[600],
-    marginBottom: Spacing.lg,
-    lineHeight: 20,
-  },
-  grid: {
-    gap: Spacing.md,
-  },
-  card: {
-    backgroundColor: Neo.colors.neutral.white,
-    borderRadius: BorderRadius.lg,
-    padding: Spacing.md,
-    flexDirection: 'row',
-    alignItems: 'center',
-    ...Shadows.sm,
-    borderWidth: 1,
-    borderColor: Neo.colors.neutral[200],
-  },
-  iconWrap: {
-    width: 56,
-    height: 56,
-    borderRadius: BorderRadius.md,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: Spacing.md,
-  },
-  cardBody: { flex: 1 },
-  cardTitle: {
-    fontSize: Typography.sizes.md,
-    fontWeight: 'bold',
-    color: Neo.colors.neutral[900],
-    marginBottom: 2,
-  },
-  cardSub: {
-    fontSize: Typography.sizes.sm,
-    color: Neo.colors.neutral[600],
-  },
+// Fábrica: recebe o DS do TEMA (nunca a paleta clara no escopo do módulo — ANATOMIA §9.6, regra 13).
+const criarEstilos = (Neo) => StyleSheet.create({
+  corpo: { paddingHorizontal: Neo.spacing.lg, paddingTop: Neo.spacing.sm },
+  pergunta: { color: Neo.colors.textOn.ink, marginBottom: 4 },
+  apoio: { color: Neo.colors.textOn.muted, lineHeight: 21, marginBottom: Neo.spacing.md },
+  cartao: { height: 118, marginBottom: Neo.spacing.sm + 4 },
 });
-
-

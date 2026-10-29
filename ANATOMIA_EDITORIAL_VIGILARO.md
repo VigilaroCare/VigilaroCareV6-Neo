@@ -336,12 +336,14 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 | Tela | O que virou |
 |---|---|
 | `MinhaSaude`, `SaudePet` | `NeoScreenHeader` + fileira `MembrosDaCasa` + `NeoGlifoCard` `largo` em modo foto + `SaudeSecao`. Sem lista de pouso; `SaudePet` sem `petId` abre o primeiro animal. |
+| Fluxo "Planejar reforma, visita ou mudança" (`SituacoesTemporarias`, `RenovationType`, `VisitType`, `VisitRiskForm`, `ChecklistVisit`, `ChecklistReforma`) | Cabeçalho padrão com o NOME da opção que abriu cada página; opções como `NeoGlifoCard` no âmbar do cartão de origem (planejamento); checklists com `ProgressoDoChecklist` + `LinhaDeChecklist`. Os dois últimos passos do fluxo, `ModoSituacaoAtiva` e `EncerrarSituacao`, seguem como estão (a auditoria os classificou como telas de emergência). |
 | `ModoPreventivo` (Atividades Eventuais) | `NeoScreenHeader` + grade de 2 colunas de `NeoGlifoCard`: as 7 categorias em tom `info` e o 8º cartão, "Planejar reforma, visita ou mudança", em `warning` por ser o único que não abre uma verificação. Um pictograma por categoria, do conjunto `assets/illustrations/glifos`. |
 
 **Peças novas ou ampliadas**
 
 - `components/MembrosDaCasa.js` — a fileira "Trocar pessoa" (Minha Saúde) ou "Trocar pet" (Saúde Pet); recebe `titulo` e `tipo`; exporta `fotoDoPerfil` e `inicialDoNome`. Com um membro só não desenha nada.
 - `components/SaudeSecao.js` — `SaudeSecao` (cartão de seção) e `SaudeChips`. Antes cada tela tinha a sua cópia, com a paleta clara no escopo do módulo.
+- `components/LinhaDeChecklist.js` e `components/ProgressoDoChecklist.js` — a linha com caixa de marcar e o cartão "x/y verificados" de um checklist. Estavam duplicados em ChecklistVisit e ChecklistReforma (hex presos na paleta clara e cartão branco fixo: no escuro o texto claro sumia).
 - `components/RespostaSNA.js` — as respostas S / N / N/A de uma verificação, com a letra e o rótulo de acessibilidade. Estava escrita à mão em cinco telas (Vistorias, Plano de Ação, Atividades Eventuais, Escola Segura, Vistoria de Asilo), com hex soltos presos na paleta clara. As outras quatro ainda não a usam.
 - `components/AuditoriaAtividadeModal.js` — a verificação de uma categoria de Atividades Eventuais (educação, perguntas, resultado). Saiu de dentro da tela, que perdeu ~330 linhas. Cabeçalho padrão com o nome da categoria, `NeoGlifoCard` com o pictograma, `RespostaSNA`, tom do resultado pelo DADO.
 - `data/pictogramasAtividades.js` — o pictograma de cada categoria; a grade e o modal leem daqui.

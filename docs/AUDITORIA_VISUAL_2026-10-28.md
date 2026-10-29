@@ -62,12 +62,12 @@ A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), n
 | MedicationReminders | screens/Health/MedicationRemindersScreen.js | D-voltar | voltar copiado; 6 hex soltos | 560 |
 | SafetyActionPlan | screens/Checklists/SafetyActionPlanScreen.js | B-anatomia | 33 hex soltos | 443 |
 | MedicationDoseHistory | screens/Health/MedicationDoseHistoryScreen.js | D-voltar | voltar copiado; 5 hex soltos | 346 |
-| ChecklistVisit | screens/Checklists/ChecklistVisitScreen.js | D-voltar | voltar copiado | 209 |
-| ChecklistReforma | screens/Checklists/ChecklistReformaScreen.js | D-voltar | voltar copiado | 197 |
+| ChecklistVisit | screens/Checklists/ChecklistVisitScreen.js | A-nova | **migrada em 28/10/2026** (fluxo "Planejar", ANATOMIA §9.7) | 163 |
+| ChecklistReforma | screens/Checklists/ChecklistReformaScreen.js | A-nova | **migrada em 28/10/2026** (fluxo "Planejar", ANATOMIA §9.7) | 160 |
 | DoseAtrasada | screens/Health/DoseAtrasadaScreen.js | D-voltar | voltar copiado | 150 |
-| VisitRiskForm | screens/VisitFlow/VisitRiskFormScreen.js | D-voltar | voltar copiado | 106 |
-| VisitType | screens/VisitFlow/VisitTypeScreen.js | D-voltar | voltar copiado | 84 |
-| RenovationType | screens/RenovationFlow/RenovationTypeScreen.js | D-voltar | voltar copiado | 82 |
+| VisitRiskForm | screens/VisitFlow/VisitRiskFormScreen.js | A-nova | **migrada em 28/10/2026** (fluxo "Planejar", ANATOMIA §9.7) | 121 |
+| VisitType | screens/VisitFlow/VisitTypeScreen.js | A-nova | **migrada em 28/10/2026** (fluxo "Planejar", ANATOMIA §9.7) | 112 |
+| RenovationType | screens/RenovationFlow/RenovationTypeScreen.js | A-nova | **migrada em 28/10/2026** (fluxo "Planejar", ANATOMIA §9.7) | 100 |
 | PerfilWizard | screens/Profiles/PerfilWizardScreen.js | E-outra | — | 31 |
 | Checklist | screens/Checklists/ChecklistWizardScreen.js | B-anatomia | 6 hex soltos | 242 |
 
@@ -111,7 +111,7 @@ A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), n
 | InspecaoRetorno | screens/Travel/InspecaoRetornoScreen.js | C-banner | banner de foto; voltar copiado; 1 hex soltos | 181 |
 | InspecaoPartida | screens/Travel/InspecaoPartidaScreen.js | C-banner | banner de foto; voltar copiado; 1 hex soltos | 159 |
 | EduContentDetail | screens/EduContentDetailScreen.js | C-banner | banner de foto; voltar copiado; 3 hex soltos | 148 |
-| SituacoesTemporarias | screens/SituacoesTemporariasScreen.js | D-voltar | voltar copiado; sem AppBackground. **Hoje é aberta pelo cartão "Planejar reforma, visita ou mudança" (Atividades Eventuais):** em 28/10/2026 recebeu o nome do cartão e os ícones corretos; o visual segue antigo | 159 |
+| SituacoesTemporarias | screens/SituacoesTemporariasScreen.js | A-nova | **migrada em 28/10/2026.** É aberta pelo cartão "Planejar reforma, visita ou mudança" (Atividades Eventuais) | 110 |
 | RadarArticle | screens/Engajamento/RadarArticleScreen.js | D-voltar | voltar copiado; 12 hex soltos | 409 |
 | EpiDomestico | screens/EPIDomesticoScreen.js | D-voltar | voltar copiado; 9 hex soltos | 288 |
 | MobilidadeSegura | screens/MobilidadeSeguraScreen.js | D-voltar | voltar copiado; 5 hex soltos | 976 |
