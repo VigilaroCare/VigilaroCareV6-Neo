@@ -70,7 +70,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                         source={PICTOGRAMAS_ATIVIDADES[item.id] || PICTOGRAMA_PLANEJAR}
                                         titulo={item.title}
                                         tom="info"
-                                        arte={92}
+                                        arte={112}
                                         recuo={RECUO_DA_ARTE[item.id] || 0}
                                         tamanhoTitulo={tamanhoTitulo}
                                         linhasTitulo={3}
@@ -89,7 +89,7 @@ export default function ModoPreventivoScreenNeo({ navigation }) {
                                     source={PICTOGRAMA_PLANEJAR}
                                     titulo={t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}
                                     tom="warning"
-                                    arte={92}
+                                    arte={98}
                                     tamanhoTitulo={tamanhoTitulo}
                                     linhasTitulo={3}
                                     accessibilityLabel={`${t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}. ${t('telas.ModoPreventivoScreenNeo.planejarSituacaoDescricao', 'Checklists detalhados por tipo de obra e de visitante, para preparar a casa antes.')}`}

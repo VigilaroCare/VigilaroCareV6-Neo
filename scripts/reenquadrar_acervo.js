@@ -62,6 +62,15 @@ const LIMPAS = [
     { pasta: 'education-pictograms', arquivo: 'Botijão de gás standard.png',        nome: 'pictogram-vazamento-gas' },
     { pasta: 'education-pictograms', arquivo: 'Extintor Verde com Chama em 3D.png', nome: 'pictogram-fire-prev' },
     { pasta: 'education-pictograms', arquivo: 'Misturas perigosas.png',             nome: 'pictogram-misturas-perigosas' },
+    // Atividades Eventuais (28/10/2026): arte dedicada do Agnaldo, formato limpo.
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Faxina Pesada.png', nome: 'pictogram-atividade-faxina' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Festas e Eventos.png', nome: 'pictogram-atividade-festas' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Monitorando Criancas.png', nome: 'pictogram-atividade-criancas' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Mudanca de Residencia.png', nome: 'pictogram-atividade-mudanca' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Planejar.png', nome: 'pictogram-atividade-planejar' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Reformas e Obras.png', nome: 'pictogram-atividade-obras' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Servicos em Altura.png', nome: 'pictogram-atividade-altura' },
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Visitacao Segura.png', nome: 'pictogram-atividade-visita' },
 ];
 
 // ── FORA DA PASSADA PADRAO ──────────────────────────────────────────────────
@@ -80,6 +89,14 @@ const FORA = [
                                                                                    //     — no desenho antigo a alavanca
                                                                                    //     e o bocal apontavam para o mesmo
                                                                                    //     lado, o que e impossivel de operar
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Faxina Pesada.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Festas e Eventos.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Monitorando Criancas.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Mudanca de Residencia.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Planejar.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Reformas e Obras.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Servicos em Altura.png' },  // (1)
+    { pasta: 'education-pictograms', arquivo: 'Atividade - Visitacao Segura.png' },  // (1)
     { pasta: 'travel-pictograms',    arquivo: 'Modal motocicleta.png' },          // (3)
     { pasta: 'travel-pictograms',    arquivo: 'pictogram-transporte-carro .png' },// (3) nome com espaco
 ];

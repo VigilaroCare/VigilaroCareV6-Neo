@@ -155,7 +155,7 @@ export default function AuditoriaAtividadeModal({ risco, visivel, onFechar, navi
                 sub={risco.subtitle}
                 tom="info"
                 largo
-                arte={92}
+                arte={112}
                 recuo={RECUO_DA_ARTE[risco.id] || 0}
                 tamanhoTitulo={22}
                 style={s.hero}
@@ -264,7 +264,7 @@ export default function AuditoriaAtividadeModal({ risco, visivel, onFechar, navi
                     sub={mensagem}
                     tom={tom}
                     largo
-                    arte={92}
+                    arte={112}
                     recuo={RECUO_DA_ARTE[risco.id] || 0}
                     tamanhoTitulo={26}
                     style={s.hero}
