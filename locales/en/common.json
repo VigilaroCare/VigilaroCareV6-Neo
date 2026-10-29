@@ -288,7 +288,8 @@
     },
     "health": {
         "title": "My Health",
-        "switchTitle": "Switch person or pet",
+        "switchPerson": "Switch person",
+        "switchPet": "Switch pet",
         "personLabel": "person",
         "petLabel": "pet",
         "noProfiles": "No profiles yet",

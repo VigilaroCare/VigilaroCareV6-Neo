@@ -288,7 +288,8 @@
     },
     "health": {
         "title": "A Minha Saúde",
-        "switchTitle": "Trocar de pessoa ou animal",
+        "switchPerson": "Trocar de pessoa",
+        "switchPet": "Trocar de animal",
         "personLabel": "pessoa",
         "petLabel": "animal",
         "noProfiles": "Nenhum perfil registado",

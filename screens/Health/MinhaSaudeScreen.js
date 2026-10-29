@@ -57,7 +57,6 @@ export default function MinhaSaudeScreen() {
 
     const [profile, setProfile] = useState(null);
     const [humanos, setHumanos] = useState([]);
-    const [pets, setPets] = useState([]);
     const [lembretes, setLembretes] = useState([]);
     const { loadProfiles } = useProfiles();
     const [compartilhando, setCompartilhando] = useState(false);
@@ -69,11 +68,10 @@ export default function MinhaSaudeScreen() {
             setLoading(true);
             try {
                 const todos = await ProfileService.getPerfisHumanos();
-                const animais = await ProfileService.getPets();
                 let current = perfilId ? todos.find(p => p.id === perfilId) : null;
                 if (!current) current = await ProfileService.getPerfilAtivo();
                 const doPerfil = current?.id ? await MedicationReminderService.getByPerfil(current.id) : [];
-                if (alive) { setProfile(current); setHumanos(todos); setPets(animais); setLembretes(doPerfil); }
+                if (alive) { setProfile(current); setHumanos(todos); setLembretes(doPerfil); }
             } catch (e) {
                 if (__DEV__) console.error('[MinhaSaude] load', e);
             } finally {
@@ -83,17 +81,14 @@ export default function MinhaSaudeScreen() {
         return () => { alive = false; };
     }, [perfilId]));
 
-    // Pessoas primeiro, depois os animais: é a ordem da fileira "Trocar pessoa ou pet".
-    const membros = useMemo(() => ([
-        ...humanos.map(p => ({ id: p.id, tipo: 'pessoa', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
-        ...pets.map(p => ({ id: p.id, tipo: 'pet', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
-    ]), [humanos, pets]);
+    // A fileira "Trocar pessoa" lista só as PESSOAS da casa: animal tem a sua tela (Saúde Pet).
+    const membros = useMemo(
+        () => humanos.map(p => ({ id: p.id, nome: p.nome, foto: fotoDoPerfil(p.foto) })),
+        [humanos],
+    );
 
     // Troca a ficha SEM empilhar telas: voltar continua levando à Home.
-    const trocarPara = (m) => {
-        if (m.tipo === 'pet') navigation.replace('SaudePet', { petId: m.id });
-        else navigation.replace('MinhaSaude', { perfilId: m.id });
-    };
+    const trocarPara = (m) => navigation.replace('MinhaSaude', { perfilId: m.id });
 
     const idade = profile?.dataNascimento ? ProfileService.calcularIdade(profile.dataNascimento) : null;
     const condicoes = asList(profile?.condicoesMedicas).map(rotuloOpcaoPerfil);
@@ -154,8 +149,10 @@ export default function MinhaSaudeScreen() {
                     <View style={s.corpo}>
                         <MembrosDaCasa
                             membros={membros}
-                            selecionado={profile ? { tipo: 'pessoa', id: profile.id } : null}
+                            selecionadoId={profile?.id}
                             onSelect={trocarPara}
+                            titulo={t('health.switchPerson', 'Trocar pessoa')}
+                            tipo="pessoa"
                             style={s.membros}
                         />
 

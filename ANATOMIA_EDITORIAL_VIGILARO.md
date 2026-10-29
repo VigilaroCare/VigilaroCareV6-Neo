@@ -32,7 +32,7 @@ Corolário importante: **o app não tem um padrão por nível.** Tem **um único
 |---|---|---|---|---|
 | **1º — raiz de tab** | Home, Aprender (`KnowledgeHub`), Menu | Vitrine / dispatcher | título **rola junto**, **sem back** (padrão C, exceção sancionada) | grid de pictogramas cerâmicos |
 | **2º — hub / índice / lista** | telas que a tab abre | **Rotear** — porta de entrada | `NeoScreenHeader` **fixo, com back** | `ModoPreventivo` (grade de cartões das atividades), `TeoriaFogo`, `PlantasToxicas` |
-| **3º — detalhe / folha** | telas que o 2º abre | **Informar / agir** — consumo final | `NeoScreenHeader` **fixo, com back** | `MinhaSaude` e `SaudePet` (ficha individual, com a fileira "Trocar pessoa ou pet"), `ConceitoDetail`, `MicroArticle` |
+| **3º — detalhe / folha** | telas que o 2º abre | **Informar / agir** — consumo final | `NeoScreenHeader` **fixo, com back** | `MinhaSaude` e `SaudePet` (ficha individual, com a fileira "Trocar pessoa" / "Trocar pet"), `ConceitoDetail`, `MicroArticle` |
 
 > Do 2º nível para baixo, a anatomia da §3 é **obrigatória**. O 1º nível é o único com licença de rolar o título e dispensar o back.
 
@@ -117,7 +117,7 @@ Mesmo esqueleto, **composição diferente** — é isto que dá o "caráter" de 
 - Corpo = **seções de conteúdo** (Eyebrow + NeoCard glass).
 - **Não navega adiante** — é folha; termina em **CTA** (ex: "Compartilhar Ficha de Emergência").
 
-> **Nota (28/10/2026):** `MinhaSaude` e `SaudePet` já não têm "lista de pouso": abrem direto na ficha (a do perfil ativo; a do primeiro animal) e a troca de pessoa ou de animal é a fileira `MembrosDaCasa`, igual nas duas. Ver §9.7.
+> **Nota (28/10/2026):** `MinhaSaude` e `SaudePet` já não têm "lista de pouso": abrem direto na ficha (a do perfil ativo; a do primeiro animal) e a troca de ficha é a fileira `MembrosDaCasa`, igual nas duas, que em cada tela lista só o seu tipo (pessoas em Minha Saúde, animais em Saúde Pet). Ver §9.7.
 
 ---
 
@@ -331,7 +331,7 @@ Duas amarras que não podem cair numa revisão futura: o glifo ativo **continua 
 
 ### 9.7 Atualização 2026-10-28 — Minha Saúde, Saúde Pet e Atividades Eventuais (a onda 2 começou)
 
-A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melhorou muito. Gostei."): (1) "Trocar pessoa ou pet" e as duas telas de saúde no MESMO formato, com a foto que cada pessoa e cada animal tem do cadastro, em cartões como os da Home; (2) Atividades Eventuais, com os cartões "ainda no modelo antigo".
+A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melhorou muito. Gostei."): (1) as duas telas de saúde no MESMO formato, com a fileira de troca e a foto que cada pessoa e cada animal tem do cadastro, em cartões como os da Home. A primeira versão misturava pessoas e animais na mesma fileira; ele corrigiu no mesmo dia: *"Não faz sentido ter pet em Minha Saúde. Não faz sentido ter Pessoas em Saúde pet."*; (2) Atividades Eventuais, com os cartões "ainda no modelo antigo".
 
 | Tela | O que virou |
 |---|---|
@@ -340,7 +340,7 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 
 **Peças novas ou ampliadas**
 
-- `components/MembrosDaCasa.js` — a fileira "Trocar pessoa ou pet"; exporta `fotoDoPerfil` e `inicialDoNome`. Com um membro só não desenha nada.
+- `components/MembrosDaCasa.js` — a fileira "Trocar pessoa" (Minha Saúde) ou "Trocar pet" (Saúde Pet); recebe `titulo` e `tipo`; exporta `fotoDoPerfil` e `inicialDoNome`. Com um membro só não desenha nada.
 - `components/SaudeSecao.js` — `SaudeSecao` (cartão de seção) e `SaudeChips`. Antes cada tela tinha a sua cópia, com a paleta clara no escopo do módulo.
 - `NeoGlifoCard`: modo FOTO (`foto`, `inicial`: a foto é conteúdo, entra como quadrado de cantos arredondados com borda clara, nunca como fundo), `linhasTitulo` (título de até N linhas) e `recuo` (afasta a arte do canto, para o pictograma cuja tinta encosta na borda da própria caixa, como o "60+").
 
@@ -348,6 +348,7 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 
 - O título da página é o do cartão que a abriu, pela MESMA chave de texto (`home.myHealth`, `home.petHealth`, `home.eventualActivities`, `navigation.education`), para os dois nunca mais divergirem. Aconteceu em Atividades: o cartão dizia "Atividades" e a página "Atividades Eventuais"; em inglês, "Occasional" no cartão e "Eventual" (falso cognato) na página.
 - Pessoa e animal têm o MESMO formato de ficha. O que difere é o conteúdo, não a estrutura.
+- **Cada tela lista só o seu tipo:** pessoas em Minha Saúde, animais em Saúde Pet. Nunca misturar na mesma fileira.
 - Trocar de ficha é `navigation.replace`, não `push`: voltar continua levando à Home.
 
 **Defeitos reais achados de brinde**
@@ -369,7 +370,7 @@ A pedido do Agnaldo, na conversa em que ele testou o piloto ("Info rótulos melh
 `MinhaSaudeScreen` (e `SaudePetScreen`, que tem a MESMA estrutura) é o espelho da linguagem da Home numa ficha individual:
 
 - `NeoScreenHeader` com o nome do cartão da Home ("Minha Saúde" / "Saúde Pet").
-- Fileira `MembrosDaCasa` ("Trocar pessoa ou pet"): um cartão com a foto de cada pessoa e de cada animal; o aberto fica marcado; tocar em outro troca a ficha com `navigation.replace`.
+- Fileira `MembrosDaCasa` ("Trocar pessoa" em Minha Saúde, "Trocar pet" em Saúde Pet): um cartão com a foto de cada pessoa (ou de cada animal); o aberto fica marcado; tocar em outro troca a ficha com `navigation.replace`.
 - Cartão da pessoa ou do animal: `NeoGlifoCard` `largo` em modo FOTO (`foto` e `inicial`), com `NeoPill sobreCampo` no rodapé.
 - Seções em `SaudeSecao` e `SaudeChips` (leem o tema) e o CTA "Compartilhar Ficha de Emergência". É folha: não navega adiante.
 

@@ -52,7 +52,6 @@ export default function SaudePetScreen() {
     const petId = route.params?.petId ?? null;
 
     const [pets, setPets] = useState([]);
-    const [humanos, setHumanos] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useFocusEffect(useCallback(() => {
@@ -61,8 +60,7 @@ export default function SaudePetScreen() {
             setLoading(true);
             try {
                 const animais = await ProfileService.getPets();
-                const todos = await ProfileService.getPerfisHumanos();
-                if (alive) { setPets(animais); setHumanos(todos); }
+                if (alive) setPets(animais);
             } catch (e) {
                 if (__DEV__) console.error('[SaudePet] load', e);
             } finally {
@@ -74,17 +72,14 @@ export default function SaudePetScreen() {
 
     const pet = useMemo(() => (petId ? pets.find(p => p.id === petId) : pets[0]) || null, [pets, petId]);
 
-    // Pessoas primeiro, depois os animais: é a ordem da fileira "Trocar pessoa ou pet".
-    const membros = useMemo(() => ([
-        ...humanos.map(p => ({ id: p.id, tipo: 'pessoa', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
-        ...pets.map(p => ({ id: p.id, tipo: 'pet', nome: p.nome, foto: fotoDoPerfil(p.foto) })),
-    ]), [humanos, pets]);
+    // A fileira "Trocar pet" lista só os ANIMAIS da casa: pessoa tem a sua tela (Minha Saúde).
+    const membros = useMemo(
+        () => pets.map(p => ({ id: p.id, nome: p.nome, foto: fotoDoPerfil(p.foto) })),
+        [pets],
+    );
 
     // Troca a ficha SEM empilhar telas: voltar continua levando à Home.
-    const trocarPara = (m) => {
-        if (m.tipo === 'pet') navigation.replace('SaudePet', { petId: m.id });
-        else navigation.replace('MinhaSaude', { perfilId: m.id });
-    };
+    const trocarPara = (m) => navigation.replace('SaudePet', { petId: m.id });
 
     const nomeDoPet = (p) => p?.nome || t('telas.SaudePetScreen.pet', 'Pet');
 
@@ -212,8 +207,10 @@ export default function SaudePetScreen() {
                     <View style={s.corpo}>
                         <MembrosDaCasa
                             membros={membros}
-                            selecionado={pet ? { tipo: 'pet', id: pet.id } : null}
+                            selecionadoId={pet?.id}
                             onSelect={trocarPara}
+                            titulo={t('health.switchPet', 'Trocar pet')}
+                            tipo="pet"
                             style={s.membros}
                         />
                         {renderConteudo()}

@@ -1,26 +1,28 @@
 /**
- * MembrosDaCasa.js — "Trocar pessoa ou pet": a fileira de cartões com a FOTO de cada pessoa e de
- * cada animal da casa.
+ * MembrosDaCasa.js — a fileira de cartões com a FOTO de cada pessoa OU de cada animal da casa, para
+ * trocar de ficha ("Trocar pessoa" em Minha Saúde, "Trocar pet" em Saúde Pet).
  *
  * POR QUE EXISTE
- * Minha Saúde abria direto na ficha da pessoa ativa e Saúde Pet abria numa lista; para ir de uma
- * pessoa a um animal era preciso voltar à Home. O Agnaldo (28/10/2026) pediu "trocar pessoa ou
- * pet" e que cada um seja um CARTÃO com a foto que ele cadastrou. Esta fileira é a mesma nas duas
- * telas: quem está aberto fica marcado; tocar em outro troca a ficha (pessoa → Minha Saúde,
- * animal → Saúde Pet), sem empilhar telas.
+ * Minha Saúde abria direto na ficha da pessoa ativa e Saúde Pet abria numa lista. O Agnaldo
+ * (28/10/2026) pediu que cada pessoa e cada animal seja um CARTÃO com a foto que ele cadastrou, no
+ * padrão da Home. A fileira é a mesma nas duas telas, mas cada tela lista só o SEU tipo: ele
+ * corrigiu a primeira versão, que misturava os dois ("não faz sentido ter pet em Minha Saúde, nem
+ * pessoas em Saúde Pet"). Quem está aberto fica marcado; tocar em outro troca a ficha, sem
+ * empilhar telas.
  *
  * Com um membro só não há o que trocar: não desenha nada.
  *
- * @param {Array<{ id: string, tipo: 'pessoa'|'pet', nome: string, foto?: any }>} membros
+ * @param {Array<{ id: string, nome: string, foto?: any }>} membros
  *   `foto` já é uma ImageSource (use fotoDoPerfil); sem ela, aparece a inicial do nome.
- * @param {{ tipo: string, id: string }} selecionado
+ * @param {string} selecionadoId
  * @param {(membro: object) => void} onSelect
+ * @param {string} titulo   rótulo da fileira ("Trocar pessoa" / "Trocar pet")
+ * @param {'pessoa'|'pet'} tipo   só para o rótulo de acessibilidade de cada cartão
  */
 import { useMemo } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import NeoCard from './NeoCard';
-import NeoIcon from './NeoIcon';
 import ProfileService from '../services/ProfileService';
 import { useThemeDS } from '../utils/ThemeContext';
 import { withAlpha } from '../utils/DesignSystem2026';
@@ -36,7 +38,7 @@ export const fotoDoPerfil = (foto) => {
 /** Primeira letra do nome, para quem não tem foto. */
 export const inicialDoNome = (nome) => String(nome || '?').trim().charAt(0).toUpperCase() || '?';
 
-export default function MembrosDaCasa({ membros = [], selecionado, onSelect, style }) {
+export default function MembrosDaCasa({ membros = [], selecionadoId, onSelect, titulo, tipo = 'pessoa', style }) {
     const { t } = useTranslation();
     const tema = useThemeDS();
     const s = useMemo(() => criarEstilos(tema), [tema]);
@@ -45,13 +47,13 @@ export default function MembrosDaCasa({ membros = [], selecionado, onSelect, sty
 
     return (
         <View style={style}>
-            <Text style={s.titulo}>{String(t('health.switchTitle', 'Trocar pessoa ou pet')).toUpperCase()}</Text>
+            <Text style={s.titulo}>{String(titulo || '').toUpperCase()}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.fila}>
                 {membros.map((m) => {
-                    const ativo = !!selecionado && selecionado.tipo === m.tipo && selecionado.id === m.id;
+                    const ativo = m.id === selecionadoId;
                     return (
                         <NeoCard
-                            key={`${m.tipo}:${m.id}`}
+                            key={m.id}
                             variant="elevated"
                             padding={8}
                             onPress={() => { if (!ativo) onSelect?.(m); }}
@@ -61,18 +63,13 @@ export default function MembrosDaCasa({ membros = [], selecionado, onSelect, sty
                                 accessible
                                 accessibilityRole="button"
                                 accessibilityState={{ selected: ativo }}
-                                accessibilityLabel={`${m.nome}, ${m.tipo === 'pet' ? t('health.petLabel', 'pet') : t('health.personLabel', 'pessoa')}`}
+                                accessibilityLabel={`${m.nome}, ${tipo === 'pet' ? t('health.petLabel', 'pet') : t('health.personLabel', 'pessoa')}`}
                                 style={s.conteudo}
                             >
                                 <View style={s.foto}>
                                     {m.foto
                                         ? <Image source={m.foto} style={StyleSheet.absoluteFill} resizeMode="cover" />
                                         : <Text style={s.inicial}>{inicialDoNome(m.nome)}</Text>}
-                                    {m.tipo === 'pet' && (
-                                        <View style={s.selo}>
-                                            <NeoIcon name="PawPrint" size={10} color={tema.colors.neutral.white} variant="Bold" />
-                                        </View>
-                                    )}
                                 </View>
                                 <Text style={[s.nome, ativo && s.nomeAtivo]} numberOfLines={1}>{m.nome}</Text>
                             </View>
@@ -123,17 +120,6 @@ const criarEstilos = (Neo) => StyleSheet.create({
         fontSize: 24,
         fontWeight: '800',
         color: Neo.colors.textOn.brand,
-    },
-    selo: {
-        position: 'absolute',
-        right: 3,
-        bottom: 3,
-        width: 18,
-        height: 18,
-        borderRadius: 9,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: Neo.colors.primary[600],
     },
     nome: {
         maxWidth: 72,
