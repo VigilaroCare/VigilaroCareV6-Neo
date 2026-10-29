@@ -111,7 +111,7 @@ A divisão por onda é por PORTA DE ENTRADA (o que o usuário abre mais cedo), n
 | InspecaoRetorno | screens/Travel/InspecaoRetornoScreen.js | C-banner | banner de foto; voltar copiado; 1 hex soltos | 181 |
 | InspecaoPartida | screens/Travel/InspecaoPartidaScreen.js | C-banner | banner de foto; voltar copiado; 1 hex soltos | 159 |
 | EduContentDetail | screens/EduContentDetailScreen.js | C-banner | banner de foto; voltar copiado; 3 hex soltos | 148 |
-| SituacoesTemporarias | screens/SituacoesTemporariasScreen.js | D-voltar | voltar copiado; sem AppBackground | 159 |
+| SituacoesTemporarias | screens/SituacoesTemporariasScreen.js | D-voltar | voltar copiado; sem AppBackground. **Hoje é aberta pelo cartão "Planejar reforma, visita ou mudança" (Atividades Eventuais):** em 28/10/2026 recebeu o nome do cartão e os ícones corretos; o visual segue antigo | 159 |
 | RadarArticle | screens/Engajamento/RadarArticleScreen.js | D-voltar | voltar copiado; 12 hex soltos | 409 |
 | EpiDomestico | screens/EPIDomesticoScreen.js | D-voltar | voltar copiado; 9 hex soltos | 288 |
 | MobilidadeSegura | screens/MobilidadeSeguraScreen.js | D-voltar | voltar copiado; 5 hex soltos | 976 |

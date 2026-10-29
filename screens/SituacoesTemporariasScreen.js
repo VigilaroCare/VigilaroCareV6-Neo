@@ -10,10 +10,10 @@ import { tx } from '../utils/txFixo';
 
 const T = 'telas.SituacoesTemporariasScreen.';
 const OPTIONS = [
-  { key: 'reforma', get title() { return tx(T + 'reformaTitulo', 'Reforma / Manutenção'); }, get subtitle() { return tx(T + 'reformaSubtitulo', 'Trabalhos temporários em casa'); }, icon: 'construct-outline', color: Neo.colors.feedback.warning },
-  { key: 'festa', get title() { return tx(T + 'festaTitulo', 'Festa / Visita'); }, get subtitle() { return tx(T + 'festaSubtitulo', 'Reuniões e eventos sociais'); }, icon: 'people-outline', color: Neo.colors.feedback.error },
-  { key: 'mudanca', get title() { return tx(T + 'mudancaTitulo', 'Mudança de Moradia'); }, get subtitle() { return tx(T + 'mudancaSubtitulo', 'Novo lar, novos riscos'); }, icon: 'home-outline', color: Neo.colors.secondary[500] },
-  { key: 'outro', get title() { return tx(T + 'outroTitulo', 'Outro Evento'); }, get subtitle() { return tx(T + 'outroSubtitulo', 'Cuidador, técnico, etc.'); }, icon: 'ellipsis-horizontal-circle-outline', color: Neo.colors.primary[500] },
+  { key: 'reforma', get title() { return tx(T + 'reformaTitulo', 'Reforma / Manutenção'); }, get subtitle() { return tx(T + 'reformaSubtitulo', 'Trabalhos temporários em casa'); }, icon: 'Hammer', color: Neo.colors.feedback.warning },
+  { key: 'festa', get title() { return tx(T + 'festaTitulo', 'Festa / Visita'); }, get subtitle() { return tx(T + 'festaSubtitulo', 'Reuniões e eventos sociais'); }, icon: 'Confetti', color: Neo.colors.feedback.error },
+  { key: 'mudanca', get title() { return tx(T + 'mudancaTitulo', 'Mudança de Moradia'); }, get subtitle() { return tx(T + 'mudancaSubtitulo', 'Novo lar, novos riscos'); }, icon: 'Truck', color: Neo.colors.secondary[500] },
+  { key: 'outro', get title() { return tx(T + 'outroTitulo', 'Outro Evento'); }, get subtitle() { return tx(T + 'outroSubtitulo', 'Cuidador, técnico, etc.'); }, icon: 'DotsThreeCircle', color: Neo.colors.primary[500] },
 ];
 
 export default function SituacoesTemporariasScreen({ navigation }) {
@@ -43,7 +43,7 @@ export default function SituacoesTemporariasScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <NeoIcon name="ArrowLeft2" size={24} color={Neo.colors.neutral.white} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{t('headersFirst.gestODeEventos', 'Gestão de Eventos')}</Text>
+        <Text style={styles.headerTitle}>{t('telas.ModoPreventivoScreenNeo.planejarSituacaoTitulo', 'Planejar reforma, visita ou mudança')}</Text>
         <Text style={styles.headerSubtitle}>{t('headersFirst.monitoreRiscosTemporRios', 'Monitore riscos temporários')}</Text>
       </LinearGradient>
 
