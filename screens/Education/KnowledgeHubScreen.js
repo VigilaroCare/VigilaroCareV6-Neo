@@ -115,7 +115,7 @@ export default function KnowledgeHubScreen({ navigation }) {
         route: 'IntroSafetyMenu',
     };
 
-    // 5 seções com grid 3-col
+    // 4 seções com grid 3-col
     const SECTIONS = [
         {
             // 2026-07-31: Cuidar & Proteger deixou de ser tile da Home e veio
@@ -129,15 +129,23 @@ export default function KnowledgeHubScreen({ navigation }) {
             title: t('knowledgeHub.peopleAndContext', 'Pessoas & Contexto'),
             items: [
                 { id: 'cuidar_proteger', titulo: t('home.cuidarProteger', 'Cuidar & Proteger'), iconName: 'People', cor: themeColors.primary[600], route: 'CuidarProtegerHub' },
+                // Veio de "Mobilidade e Manutenção" (28/10/2026, a pedido do Agnaldo): lazer, viagem e transporte de
+                // bebês, crianças e pets tratam das MESMAS pessoas do Cuidar & Proteger.
+                { id: 'lazer_mobilidade',   titulo: t('knowledgeHub.leisureTravel'), iconName: 'Airplane',  cor: themeColors.secondary[500], route: 'LazerFeriasMenu' },
             ],
         },
         {
-            key: 'analises', tom: 'muted',
-            title: t('knowledgeHub.safetyReviews', 'Análises de Segurança'),
+            // Objetos que se compram, instalam e manuseiam. Antes "Análises de Segurança" (3 cartões); recebeu os
+            // Acessórios de Proteção (que estavam em Guias Práticos) e EPIs & Ferramentas (que estava sozinho, ao
+            // lado de Lazer e Viagens, numa seção sem assunto).
+            key: 'equipamentos', tom: 'muted',
+            title: t('knowledgeHub.equipment', 'Equipamentos'),
             items: [
                 { id: 'utensilios_rev',    titulo: t('knowledgeHub.kitchenUtensils'),   iconName: 'Scissor', cor: themeColors.accent.copper, route: 'UtensiliosReviews' },
                 { id: 'eletro_rev',        titulo: t('knowledgeHub.homeAppliances'),    iconName: 'Cpu',     cor: themeColors.secondary[500], route: 'EletrodomesticosReviews' },
                 { id: 'disp_eletronicos',  titulo: t('knowledgeHub.electronicDevices'), iconName: 'Monitor', cor: themeColors.primary[800], route: 'DispositivosEletronicosReviews' },
+                { id: 'dispositivos_protecao', titulo: t('knowledgeHub.protectionDevices', 'Acessórios de Proteção'), iconName: 'Shield', cor: themeColors.primary[700], route: 'DispositivosProtecao' },
+                { id: 'guias_equipamentos', titulo: t('knowledgeHub.ppeTools'),      iconName: 'Setting2',  cor: themeColors.neutral[700], route: 'FerramentasTrabalho' },
             ],
         },
         {
@@ -164,15 +172,6 @@ export default function KnowledgeHubScreen({ navigation }) {
                 { id: 'jardinagem',      titulo: t('knowledgeHub.safeGardening'),     iconName: 'Tree',     cor: themeColors.primary[600], route: 'JardinagemSegura' },
                 { id: 'condo_safety',    titulo: t('knowledgeHub.condoSafety'),       iconName: 'Building4',cor: themeColors.neutral[500], route: 'GenericCategory', params: { categoryId: 'condominio_seguranca' } },
                 { id: 'teoria_fogo',     titulo: t('knowledgeHub.fireTheory', 'Teoria do Fogo'), iconName: 'Fire', cor: themeColors.accent.copper, route: 'TeoriaFogo' },
-                { id: 'dispositivos_protecao', titulo: t('knowledgeHub.protectionDevices', 'Acessórios de Proteção'), iconName: 'Shield', cor: themeColors.primary[700], route: 'DispositivosProtecao' },
-            ],
-        },
-        {
-            key: 'mobilidade', tom: 'warning',
-            title: t('knowledgeHub.mobilityMaintenance', 'Viagem & Equipamentos'),
-            items: [
-                { id: 'lazer_mobilidade',   titulo: t('knowledgeHub.leisureTravel'), iconName: 'Airplane',  cor: themeColors.secondary[500], route: 'LazerFeriasMenu' },
-                { id: 'guias_equipamentos', titulo: t('knowledgeHub.ppeTools'),      iconName: 'Setting2',  cor: themeColors.neutral[700], route: 'FerramentasTrabalho' },
             ],
         },
     ];
@@ -430,7 +429,7 @@ export default function KnowledgeHubScreen({ navigation }) {
                         onPress={() => navigation.navigate(conceitoItem.route)}
                     />
 
-                    {/* 5 SEÇÕES — grid 3 colunas */}
+                    {/* 4 SEÇÕES — grid 3 colunas */}
                     {SECTIONS.map((section) => (
                         <View key={section.key} style={{ marginTop: 12 }}>
                             <Text style={[s.sectionLabel, { color: textSecondary }]} accessibilityRole="header">
