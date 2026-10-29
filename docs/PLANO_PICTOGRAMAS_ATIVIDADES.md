@@ -28,29 +28,64 @@ Cada peça é UM objeto, ou um grupo compacto de objetos, sem texto. O motivo ab
 - **Cor:** pode ser qualquer uma, porque o normalizador reancora tudo no verde único `#064E3B`. Só evite vermelho, laranja e azul fortes: eles viram verde e o relevo que depende da cor se perde.
 - **Peso:** o estilo novo é uns 1,9x mais pesado que o antigo (~99 KB por arquivo). Oito peças somam menos de 1 MB nas três densidades; não é problema.
 
-## Prompt-base (para a ferramenta de imagem)
+## Prompts (um por peça) — para ficar o mais próximo possível dos pictogramas atuais
 
-Mantém a família dos pictogramas que já existem (cerâmica 3D, verde-escuro, luz suave). Troque só a última linha, o motivo.
+**Como usar (vale para todos)**
+1. Anexe SEMPRE 3 imagens de referência do acervo atual, as mesmas nas 8 gerações: `assets/illustrations/glifos/pictogram-guias-equipamentos.png`, `pictogram-viagem-malas.png` e `pictogram-produtos.png`. Escreva na ferramenta: "match the style, material, lighting and level of detail of the attached reference icons".
+2. Cole o BLOCO DE ESTILO abaixo seguido do MOTIVO da peça, e o BLOCO NEGATIVO no campo de "negative prompt" (ou ao fim, como "Avoid: ...").
+3. Gere uma peça por vez, na mesma conversa/sessão e, se a ferramenta permitir, com a mesma semente (seed). Gere 4 variações e escolha a mais simples.
+4. Peça fundo transparente. Se vier fundo sólido, gere em fundo branco liso e remova depois; confira o canal alfa antes de enviar.
+5. Confira a 24 px de largura: se a silhueta não se lê, simplifique o motivo.
 
+**BLOCO DE ESTILO (igual em todas)**
 ```
-3D ceramic app icon, single object group, centered, chunky rounded shapes,
-glossy ceramic material with soft bevel and gentle specular highlights,
-monochrome deep green, soft studio lighting, transparent background,
-no text, no letters, no numbers, no ground, no cast shadow,
-generous empty margin around the object (object fills about 65% of the square).
-Subject: <MOTIVO DA TABELA, em inglês>
+Single 3D embossed ceramic icon, one compact object group centered on a square canvas.
+Soft rounded chunky shapes with a gentle bevel, like glazed porcelain relief.
+Monochrome deep forest green (#064E3B), one hue only, shading from darker green in the
+shadows to a slightly lighter green on the highlights. Soft diffuse studio light from the
+top-left, smooth gentle specular highlights, subtle inner engraved lines for details.
+Simple readable silhouette, minimal detail, flat front view, no perspective.
+Transparent background. The object fills about 65% of the frame with generous empty margin.
+Same style as the attached reference icons.
 ```
 
-Motivos em inglês, prontos para colar:
+**BLOCO NEGATIVO (igual em todas)**
+```
+text, letters, numbers, logo, watermark, ground, floor, cast shadow, drop shadow, background,
+gradient background, realistic photo, people with faces, multiple colors, red, orange, blue,
+yellow, outline stroke, flat vector style, cartoon, clutter, small tiny details, perspective, 3/4 view
+```
 
-1. `two balloons tied with a ribbon, a party hat and a few pieces of confetti`
-2. `a house front door slightly open with a doormat, two small silhouettes in the doorway: an adult with a walking cane and a small child`
-3. `a half-built brick wall corner with a mason's trowel and a paint roller`
-4. `two stacked cardboard boxes, one sealed with tape, and a house key hanging on a tag`
-5. `a small baby monitor camera next to a seated toddler playing with building blocks`
-6. `a ladder leaning on a roof edge with a safety harness clipped to the top`
-7. `a bucket with a mop, a pair of rubber gloves resting on the rim, and a trigger spray bottle`
-8. `a calendar page with a small house on it and a check mark`
+**MOTIVO de cada peça (cole depois do bloco de estilo, começando por "Subject:")**
+
+1. Festas e Eventos
+`Subject: two helium balloons tied with thin curved ribbons, next to a small striped party hat with a round pom-pom on top, and a few tiny confetti pieces floating around. Balloons glossy and rounded, hat cone-shaped with two engraved stripes.`
+
+2. Visitação Segura
+`Subject: a house front door slightly open, seen straight on, with a thick doormat in front. In the open doorway, two simple faceless silhouettes standing together: a tall adult leaning on a walking cane holding hands with a small child. Door frame as raised relief, doorway recessed.`
+
+3. Reformas e Obras
+`Subject: a half-built brick wall corner with engraved brick joints, a mason's trowel leaning against it, and a paint roller resting on top. No hard hat.`
+
+4. Mudança de Residência
+`Subject: two stacked cardboard moving boxes, the top one sealed with a strip of tape, and a house key hanging on a round tag beside them. No suitcase.`
+
+5. Monitorando Crianças
+`Subject: a small baby monitor camera on a short stand with a round lens, next to a faceless toddler silhouette sitting and playing with three stacked building blocks. No teddy bear.`
+
+6. Serviços em Altura
+`Subject: a straight ladder leaning on the edge of a sloped roof, with a safety harness ring and strap clipped to the top of the ladder. Keep the roof very simple, one slanted slab. No warning signs.`
+
+7. Faxina Pesada
+`Subject: a bucket with a mop standing in it, a pair of rubber gloves resting on the rim, and a small trigger spray bottle beside the bucket. No warning triangle, no skull, no mixed bottles.`
+
+8. Planejar (cartão âmbar)
+`Subject: a single calendar page with two binding rings at the top, a small house engraved in its center and a round check-mark badge in the lower right corner. No hammer, no tools.`
+
+**Se alguma peça sair confusa, versões simplificadas**
+- 2: só a porta entreaberta com o tapete e UMA silhueta no vão.
+- 6: só a escada com o cinto pendurado, sem telhado.
+- 5: só a babá eletrônica sobre os blocos, sem a criança.
 
 ## Quando as artes chegarem (passos de quem integra)
 
